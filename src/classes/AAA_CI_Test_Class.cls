@@ -1,11 +1,11 @@
-public class 111_CI_Test_Class{
+public class AAA_CI_Test_Class{
 
 
     String str_1;
     String str_3;
 	
 	
-    public 111_CI_Test_Class(){
+    public AAA_CI_Test_Class(){
 	//test
     } //End Constructor
 
