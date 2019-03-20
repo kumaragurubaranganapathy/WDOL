@@ -7,7 +7,6 @@ public class AAA_CI_Test_Class{
 	
 	
 	
-	
     public AAA_CI_Test_Class(){
 	//test
     } //End Constructor
