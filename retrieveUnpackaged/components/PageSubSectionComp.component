@@ -1,0 +1,322 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : PageSubSectionComp
+** Description      : To display subsection in license portal application
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Rinku Patel                  08/01/2018                  1.0             UI Changes
+**                                                                          
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component layout="block">
+    <!-- Attributes -->
+    <apex:attribute name="subSectionName" description="subSection Name" type="String" required="true"/>
+    <apex:attribute name="subSectionDesc" description="subSection Description" type="String" required="false"/>
+    <apex:attribute name="fieldList" description="Field List" type="Application_Field__c[]" required="true"/>
+    <apex:attribute name="currRecord" description="License2 object" type="SObject" required="true"/>
+    <apex:attribute name="parentRecord" description="Parent to curr object" type="SObject" required="false"/>
+    <apex:attribute name="contactRecord" description="Contact object" type="Contact"/>
+    <apex:attribute name="accountRecord" description="Account object" type="Account"/>
+    <apex:attribute name="subSectionNameWithoutWhitespace" description="rubbish" type="String"/>
+    
+    <!-- Attributes -->
+    
+    <!-- Sub-section left container -->
+    <div class="col-sm-3 col-md-3">
+        <h2><apex:outputText value="{!subSectionName}" escape="false"/></h2>
+        <p><apex:outputText value="{!subSectionDesc}" escape="false"/></p>
+    </div>
+    <!-- Sub-section left container -->
+    <!-- Sub-section center container -->
+    <div class="labeloverflowing col-sm-5 col-sm-offset-1 col-md-5 no-padding" id="{!subSectionNameWithoutWhitespace}">
+        <apex:repeat value="{!fieldList}" var="fld">
+            <div class="row">
+                <!--<div class="animated-input-group {!IF((fld.Required__c = true), 'required', '')} {!IF((fld.Read_Only__c = true), 'read-only', '')} {!fld.Class_Name__c} no-padding vald{!fld.Id}" id="vald{!fld.Id}">-->
+                <div class="animated-input-group {!IF((fld.Required__c = true), 'required', '')} {!IF((fld.Read_Only__c = true), 'read-only', '')} vald{!fld.Id}" id="vald{!fld.Id}">
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(fld.Object_Name__c== 'Main Object', CONTAINS(fld.Type__c, 'Text')), true, false)}"
+                                      for="field1" styleClass="InputLabel"></apex:outputLabel>
+                    <!-- Label -->
+                    <!-- If regular field then we used inputField-->
+                    <apex:inputField value="{!currRecord[fld.Name]}"
+                                     styleClass="form-control"
+                                     rendered="{!IF(AND(fld.Object_Name__c=='Main Object', CONTAINS(fld.Type__c, 'Text')), true, false)}"
+                                     id="field1">
+                    </apex:inputField>
+                    
+                      <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(fld.Object_Name__c== 'Parent of Main Object', CONTAINS(fld.Type__c, 'Text')), true, false)}"
+                                      for="field1d" styleClass="InputLabel"></apex:outputLabel>
+                    <!-- Label -->
+                    <!-- If regular field then we used inputField-->
+                    <apex:inputField value="{!parentRecord[fld.Name]}"
+                                     styleClass="form-control"
+                                     rendered="{!IF(AND(fld.Object_Name__c=='Parent of Main Object', CONTAINS(fld.Type__c, 'Text')), true, false)}"
+                                     id="field1d">
+                    </apex:inputField>
+                    
+                    
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Formula')), true, false)}"
+                                      for="field1b" ></apex:outputLabel>
+                    <apex:inputfield value="{!currRecord[fld.Name]}"
+                                     styleClass="form-control readonly"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Formula')), true, false)}"
+                                     id="field1b"/> 
+                    
+                    
+                    <!-- If regular field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Picklist')), true, false)}"
+                                      for="field2" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If regular field then we used inputField -->
+                    <apex:inputField value="{!currRecord[fld.Name]}"
+                                     styleClass="form-control selectpicker"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Picklist')), true, false)}"
+                                     id="field2">
+                    </apex:inputField>
+                    <!-- If regular field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Date')), true, false)}"
+                                      for="field3" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If regular field then we used inputField-->
+                    <apex:inputField value="{!currRecord[fld.Name]}"
+                                     styleClass="form-control customDateNow"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Date')), true, false)}"
+                                     id="field3">
+                    </apex:inputField>
+                    <!-- If regular field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Multi-Select')), true, false)}"
+                                      for="field4" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If regular field then we used inputField-->
+                    <apex:inputField value="{!currRecord[fld.Name]}"
+                                     styleClass=""
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Multi-Select')), true, false)}"
+                                     id="field4">
+                    </apex:inputField>
+                    <!-- If regular field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Lookup')), true, false)}"
+                                      for="field5" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If regular field then we used inputField-->
+                    <apex:inputField value="{!currRecord[fld.Name]}"
+                                     styleClass="form-control inAnimate"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Main Object'), CONTAINS(fld.Type__c, 'Lookup')), true, false)}"
+                                     id="field5">
+                    </apex:inputField>
+                    <!-- If regular field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"                                      
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Text')), true, false)}"
+                                      for="field6" StyleClass="{!IF((fld.Required__c = true) && (contactRecord[fld.Name]=''),'errorRed' , 'InputLabel')}"/>
+                    <!-- Label -->
+                    <!-- If reference text field -->
+                              
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="form-control"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Text')), true, false)}"
+                                     id="field6"  required="{!IF((fld.Required__c = true), true, false)}">
+                    </apex:inputField>
+                  
+                    
+                    <!-- If reference text field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Picklist'),NOT(CONTAINS(fld.Name, 'Military__c'))), true, false)}"
+                                      for="field7" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="form-control dependent-picklist"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Picklist'),NOT(CONTAINS(fld.Name, 'Military__c'))), true, false)}"
+                                     id="field7" required="{!IF((fld.Required__c = true), true, false)}">
+                    </apex:inputField>
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Picklist'),CONTAINS(fld.Name, 'Military__c')), true, false)}"
+                                      for="field7i1" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="form-control dependent-picklist"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Picklist'),CONTAINS(fld.Name, 'Military__c')), true, false)}"
+                                     id="field7i1" required="{!IF((fld.Required__c = true), true, false)}">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="checkbox do_not_hide"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Checkbox')), true, false)}"
+                                     id="field7i">
+                    </apex:inputField>
+                    <!-- Label -->
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Date')), true, false)}"
+                                      for="field8" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="form-control customDateNow"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Date')), true, false)}"
+                                     id="field8">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Multi-Select')), true, false)}"
+                                      for="field9" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="form-control multiple-picklist-parent"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Multi-Select')), true, false)}"
+                                     id="field9">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Lookup')), true, false)}"
+                                      for="field10" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!contactRecord[fld.Name]}"
+                                     styleClass="form-control inAnimate"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Contact'), CONTAINS(fld.Type__c, 'Lookup')), true, false)}"
+                                     id="field10">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Text'),fld.Read_Only__c==FALSE), true, false)}"
+                                      for="field11" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference text field -->
+                    <apex:inputField value="{!accountRecord[fld.Name]}"
+                                     styleClass="form-control"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Text'),fld.Read_Only__c==FALSE), true, false)}"
+                                     id="field11">
+                    </apex:inputField>
+                    
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Text'),fld.Read_Only__c), true, false)}"
+                                      for="field11a" styleClass="InputLabel"/>
+                    <apex:inputField value="{!accountRecord[fld.Name]}"
+                                     styleClass="form-control" html-disabled="true"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Text'),fld.Read_Only__c), true, false)}"
+                                     id="field11a">
+                    </apex:inputField>
+                    
+                    
+                    <!-- If reference text field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Picklist'),fld.Read_Only__c==FALSE), true, false)}"
+                                      for="field12" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!accountRecord[fld.Name]}"
+                                     styleClass="form-control dependent-picklist"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Picklist'),fld.Read_Only__c==FALSE), true, false)}"
+                                     id="field12">
+                    </apex:inputField>
+                    
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Picklist'),fld.Read_Only__c), true, false)}"
+                                      for="field12a" styleClass="InputLabel"/>
+                    
+                    <apex:inputText value="{!accountRecord[fld.Name]}"
+                                    styleClass="form-control dependent-picklist"
+                                    rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Picklist'),fld.Read_Only__c), true, false)}"
+                                    id="field12a">
+                    </apex:inputText>                <!-- If reference picklist field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Date')), true, false)}"
+                                      for="field13" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!accountRecord[fld.Name]}"
+                                     styleClass="form-control customDateNow"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Date')), true, false)}"
+                                     id="field13">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Multi-Select')), true, false)}"
+                                      for="field14" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!accountRecord[fld.Name]}"
+                                     styleClass="form-control multiple-picklist-parent"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Multi-Select')), true, false)}"
+                                     id="field14">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- Label -->
+                    <apex:outputLabel value="{!fld.Label__c}"
+                                      rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Lookup')), true, false)}"
+                                      for="field15" styleClass="InputLabel"/>
+                    <!-- Label -->
+                    <!-- If reference picklist field -->
+                    <apex:inputField value="{!accountRecord[fld.Name]}"
+                                     styleClass="form-control inAnimate"
+                                     rendered="{!IF(AND(CONTAINS(fld.Object_Name__c, 'Account'), CONTAINS(fld.Type__c, 'Lookup')), true, false)}"
+                                     id="field15">
+                    </apex:inputField>
+                    <!-- If reference picklist field -->
+                    
+                    <!-- Empty span tag for styling -->
+                    <span class="bottomShade"></span>
+                    <!-- Empty span tag for styling -->
+                    
+                    <!-- For validation -->
+                    <span class="errorRed" id="fl{!fld.Id}"></span>
+                    <!-- For validation -->
+                </div>
+            </div>
+            
+        </apex:repeat>
+    </div>
+    <!-- Sub-section center container -->
+    <!-- Sub-section right container -->
+    <div class="col-sm-2 col-md-2">
+        <span>&nbsp;</span>
+    </div>
+    <!-- Sub-section right container -->
+    <section class="row"></section>
+</apex:component>

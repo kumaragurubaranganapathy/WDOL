@@ -1,0 +1,151 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : PortalCommunitiesLogin
+** Description      : Login ability for users from portal (User Story: 146 - Ability to log in)
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Srikanth Kottam/Deloitte     06/27/2018                                  Initial Creation
+** Rinku Patel/Deloitte         07/11/2018                                  UI changes                                                                         
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page controller="PortalCommunitiesLogin_CC"
+           standardStylesheets="false" sidebar="false" showHeader="false"
+           docType="html-5.0" cache="true" applyHtmlTag="true" applyBodyTag="false">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+        <title>Login</title>
+        
+        <head>
+            
+            <c:Resources /> 
+            <script src="https://www.googletagmanager.com/gtag/js?id=UA-128308969-1" type="application/javascript"></script>
+            <script type="application/javascript">
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'UA-128308969-1');
+            </script>           
+        </head>
+        
+        <body>
+            <c:Header rendered="{!NOT(isGuestUser)}"/>
+            <c:HeaderUnauthUser rendered="{!isGuestUser}"/> 
+            <main class='container home'>                          
+                <br/><br/>
+                <div class="col-sm-6">
+                    <h2>First Time User</h2><hr/>
+                    <h3>Create Account</h3>
+                    <p>If you currently hold or previously held a credential or have conducted business with the Department, please create an account by clicking here.</p>
+                    <button onclick="location.href='/ExistingUserRegistration';" class="btn btn-primary" >Existing Customer</button>
+                    <br/><br/>
+                    <p>If you have never held a credential or conducted business with the Department, please create an account here.</p>
+                    <button onclick="location.href='/PortalRegistration';" class="btn btn-primary" >New Customer</button>
+                    
+                    <!--<a href="#" target="_blank" class="pull-left">Do you need help registering? Click here</a>  -->
+                    <br/><br/>
+                </div>
+                
+                <div class="col-sm-1 or-divider">
+                    <div></div>
+                </div>
+                
+                <div class="col-sm-5">
+                    <h2>Existing Users</h2><hr/>
+                    <h3>Login</h3>                            
+                    <apex:form id="loginForm">                          
+                        <div id="small-form">
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="animated-input-group requiredElement">
+                                        <apex:outputLabel value="Email" for="email" styleClass="InputLabel"/>
+                                        <apex:inputText required="true" id="email" value="{!userName}" styleClass="form-control" html-aria-required="true"/>
+                                        <span class="bottomShade"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="animated-input-group requiredElement">
+                                        <apex:outputLabel value="Password" for="password" styleClass="InputLabel"/>
+                                        <apex:inputSecret required="true" id="password" value="{!Password}" styleClass="form-control" html-aria-required="true"/>
+                                        <span class="bottomShade"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="button" class="btn btn-primary" value="Login" onclick="performValidation();"/>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="pull-right" href="/PortalForgotPassword" >Forgot Password?</a><br/>
+                        <a class="pull-right" href="/ForgotUsername" >Forgot Username?</a><br/>
+                        <apex:outputpanel id="dummyPanel" >
+                            <Apex:outputpanel id="loginRes" style="display:none;"> 
+                                {!loginMessage}
+                            </Apex:outputpanel> 
+                        </apex:outputpanel>
+                        <apex:actionStatus onstart="NOTIFICATIONS.spinnerStart();" id="actnStatBus" onstop="NOTIFICATIONS.spinnerStop(); processResult();"/>
+                        <apex:actionFunction name="onValidationComplete" action="{!login}" rerender="dummyPanel" status="actnStatBus"/>    
+                        
+                    </apex:form>
+                </div>
+            </main>
+            <br/><br/><br/><br/>
+            <c:Footer />   
+        </body>
+        
+        <script>
+        var fields = [];
+        fields.push({
+            id:"email",
+            validator: "Email",
+            required: "true",
+            name: "Email",
+            watch: true
+        });
+        fields.push({
+            id:"password",
+            required: "true",
+            name: "Password",
+            watch: true
+        });
+        var validator = new ValidationEngine({
+            fields : fields
+        });
+        
+        function performValidation()
+        {
+            if(validator.errors().length <= 0){
+                
+                onValidationComplete();
+            } else {
+                MODAL_UTILITY.errorMessageModal(validator.errorHtml());
+            }
+        }
+        
+        $("#small-form").bindAnimatedForm() ;
+        function processResult()
+        {
+            var loginMessage = $("span[id$='loginRes']").html() ; 
+            if(loginMessage.length > 2 )
+            {
+                MODAL_UTILITY.errorMessageModal(loginMessage , 'Login Failure ') ;   
+            }
+        }
+        </script>
+    </html>
+</apex:page>

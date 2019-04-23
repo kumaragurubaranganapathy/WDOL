@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Employment History</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Employment History</value>
+    </caseValues>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Employment History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- County --></label>
+        <name>County__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current --></label>
+        <name>Current__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employer --></label>
+        <name>Employer__c</name>
+    </fields>
+    <fields>
+        <label><!-- End date --></label>
+        <name>End_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Title --></label>
+        <name>Job_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Employment History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Name of Course --></label>
+        <name>Name_of_Course__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>Permit__c</name>
+        <relationshipLabel><!-- Employment History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Renewal &amp; Reinstatement Application --></label>
+        <name>Renewal_Reinstatement_Application__c</name>
+        <relationshipLabel><!-- Employment History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Address --></label>
+        <name>Street_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Job Title --></label>
+        <name>Supervisor_Job_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Name --></label>
+        <name>Supervisor_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supervisor Phone Number --></label>
+        <name>Supervisor_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Hours --></label>
+        <name>Total_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zip code --></label>
+        <name>Zip_code__c</name>
+    </fields>
+    <layouts>
+        <layout>Employment History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Employer Information --></label>
+            <section>Employer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Employment History Details --></label>
+            <section>Employment History Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Employment Training History Layout</layout>
+        <sections>
+            <label><!-- Course Information --></label>
+            <section>Course Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Default Employment History --></label>
+        <name>Default_Employment_History</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Employment Training History --></label>
+        <name>Employment_Training_History</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

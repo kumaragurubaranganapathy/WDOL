@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Master_page --></label>
+        <name>Master_page</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Page Question Basic --></label>
+        <name>Page_Question_Basic</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist Name --></label>
+        <name>BGCK__BG_Checklist_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist Version Status --></label>
+        <name>BGCK__Checklist_Version_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Criteria --></label>
+        <name>BGCK__Criteria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required --></label>
+        <name>BGCK__IsRequired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>BGCK__Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page --></label>
+        <name>BGCK__Page__c</name>
+        <relationshipLabel><!-- Page Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Page Question --></label>
+        <name>BGCK__Parent_Page_Question__c</name>
+        <relationshipLabel><!-- Page Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Question Number --></label>
+        <name>BGCK__Question_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>BGCK__Question__c</name>
+        <relationshipLabel><!-- Page Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SubQuestion --></label>
+        <name>BGCK__SubQuestion__c</name>
+        <relationshipLabel><!-- Page Questions (SubQuestion) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tracking Number --></label>
+        <name>BGCK__Track_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist type --></label>
+        <name>Checklist_type__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Area --></label>
+        <name>Permit_Type_or_Credential_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Review for --></label>
+        <name>Review_for__c</name>
+        <picklistValues>
+            <masterLabel>A degree in Architectural Technology</masterLabel>
+            <translation><!-- A degree in Architectural Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architect Direct Registration</masterLabel>
+            <translation><!-- Architect Direct Registration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architect Firm</masterLabel>
+            <translation><!-- Architect Firm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architect by Reciprocity - licensed less than 9 years</masterLabel>
+            <translation><!-- Architect by Reciprocity - licensed less than 9 years --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architect by Reciprocity - licensed more 9 years licensure</masterLabel>
+            <translation><!-- Architect by Reciprocity - licensed more 9 years licensure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign Degree</masterLabel>
+            <translation><!-- Foreign Degree --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High School Diploma</masterLabel>
+            <translation><!-- High School Diploma --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-accredited Bachelor or Master in architecture</masterLabel>
+            <translation><!-- Non-accredited Bachelor or Master in architecture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postsecondary Study in Architecture or Related Fields</masterLabel>
+            <translation><!-- Postsecondary Study in Architecture or Related Fields --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+</CustomObjectTranslation>
