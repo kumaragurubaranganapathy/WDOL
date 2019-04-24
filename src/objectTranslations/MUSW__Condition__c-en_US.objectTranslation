@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- New/Edit Comments --></label>
+        <name>New_Edit_Comments</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- New/Edit Conditions --></label>
+        <name>New_Edit_Conditions</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Application --></label>
+        <name>MUSW__Application2__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date Resolved --></label>
+        <name>MUSW__Date_Resolved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Description --></label>
+        <name>MUSW__Full_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>MUSW__License__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>MUSW__Ordinance__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit2__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Planning Application --></label>
+        <name>MUSW__Planning_Application__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Review --></label>
+        <name>MUSW__Review__c</name>
+        <relationshipLabel><!-- Conditions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>MUSW__Status__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outstanding</masterLabel>
+            <translation><!-- Outstanding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolved</masterLabel>
+            <translation><!-- Resolved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>MUSW__Type__c</name>
+        <picklistValues>
+            <masterLabel>DRAINAGE EASEMENT</masterLabel>
+            <translation><!-- DRAINAGE EASEMENT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FINAL GRADE</masterLabel>
+            <translation><!-- FINAL GRADE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FLOOD HAZARD  AREA</masterLabel>
+            <translation><!-- FLOOD HAZARD  AREA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER</masterLabel>
+            <translation><!-- OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOIL EROSION</masterLabel>
+            <translation><!-- SOIL EROSION --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- All --></label>
+        <name>All</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Comment --></label>
+        <name>Comment</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Add_Multiple_Conditions --></label>
+        <name>MUSW__Add_Multiple_Conditions</name>
+    </webLinks>
+</CustomObjectTranslation>

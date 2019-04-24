@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Amount --></label>
+        <name>BGBK__Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>BGBK__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee --></label>
+        <name>BGBK__Fee__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fund --></label>
+        <name>BGBK__Fund__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Payment --></label>
+        <name>BGBK__Payment__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Price Per Unit --></label>
+        <name>BGBK__Price_Per_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>BGBK__Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt --></label>
+        <name>BGBK__Receipt__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Refund --></label>
+        <name>BGBK__Refund2__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Refund --></label>
+        <name>BGBK__Refund__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Related To --></label>
+        <name>BGBK__Related_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue Source --></label>
+        <name>BGBK__Revenue_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transaction --></label>
+        <name>BGBK__Transaction__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>BGBK__Type__c</name>
+        <picklistValues>
+            <masterLabel>Allocation</masterLabel>
+            <translation><!-- Allocation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cash</masterLabel>
+            <translation><!-- Cash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fee</masterLabel>
+            <translation><!-- Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refund</masterLabel>
+            <translation><!-- Refund --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Deposit --></label>
+        <name>Deposit__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fee Payment --></label>
+        <name>Fee_Payment__c</name>
+        <relationshipLabel><!-- Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Transaction Code --></label>
+        <name>Transaction_Code__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- AdminOnly --></label>
+        <name>AdminOnly</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Transaction is not editable --></errorMessage>
+        <name>BGBK__Item_Trans_change_not_allowed</name>
+    </validationRules>
+</CustomObjectTranslation>

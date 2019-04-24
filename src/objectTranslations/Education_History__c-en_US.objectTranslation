@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Education History</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Education History</value>
+    </caseValues>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Education History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Degree --></label>
+        <name>Degree__c</name>
+    </fields>
+    <fields>
+        <label><!-- Education Program --></label>
+        <name>Education_Program__c</name>
+        <relationshipLabel><!-- Education History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Educational Institution Name --></label>
+        <name>Educational_Institution_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Educational Institution --></label>
+        <name>Educational_Institution__c</name>
+        <relationshipLabel><!-- Education History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End date --></label>
+        <name>End_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Education History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Major --></label>
+        <name>Major__c</name>
+    </fields>
+    <fields>
+        <label><!-- Minor --></label>
+        <name>Minor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name of Institution --></label>
+        <name>Name_of_Institution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other --></label>
+        <name>Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>Permit__c</name>
+        <relationshipLabel><!-- Education History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Renewal &amp; Reinstatement Application --></label>
+        <name>Renewal_Reinstatement_Application__c</name>
+        <relationshipLabel><!-- Education History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <layouts>
+        <layout>Education History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Education History Details --></label>
+            <section>Education History Details</section>
+        </sections>
+        <sections>
+            <label><!-- Education Institution Information --></label>
+            <section>Education Institution Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

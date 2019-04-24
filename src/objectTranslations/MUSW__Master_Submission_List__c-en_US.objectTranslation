@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Method --></label>
+        <name>Application_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- BG File Location Type --></label>
+        <name>BG_File_Location_Type__c</name>
+        <picklistValues>
+            <masterLabel>Bluebeam</masterLabel>
+            <translation><!-- Bluebeam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salesforce</masterLabel>
+            <translation><!-- Salesforce --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Background Question Field API Name --></label>
+        <name>Background_Question_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential Type --></label>
+        <name>Credential_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default --></label>
+        <name>Default__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description Long --></label>
+        <name>Description_Long__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document API Name --></label>
+        <name>Document_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective End Date --></label>
+        <name>Effective_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Start Date --></label>
+        <name>Effective_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Answer --></label>
+        <name>Expected_Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id of Question --></label>
+        <name>External_Id_of_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hide Upload button in backend --></label>
+        <name>Hide_Upload_button_in_backend__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number --></label>
+        <name>License_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name of establishment or branch --></label>
+        <name>Name_of_establishment_or_branch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object --></label>
+        <name>Object__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit Type --></label>
+        <name>Permit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Area --></label>
+        <name>Program_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>Question__c</name>
+        <relationshipLabel><!-- Master Submission Lists --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Record Type Name --></label>
+        <name>Record_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required --></label>
+        <name>Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Request Type --></label>
+        <name>Service_Request_Type__c</name>
+        <picklistValues>
+            <masterLabel>Change Name</masterLabel>
+            <translation><!-- Change Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufactured Homes Title Modification</masterLabel>
+            <translation><!-- Manufactured Homes Title Modification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit Additional Documentation</masterLabel>
+            <translation><!-- Submit Additional Documentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdraw Application</masterLabel>
+            <translation><!-- Withdraw Application --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Show For --></label>
+        <name>Show_For__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submission Type --></label>
+        <name>Submission_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subtype --></label>
+        <name>Subtype__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- UBI Number --></label>
+        <name>UBI_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Use Group --></label>
+        <name>Use_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Type --></label>
+        <name>Work_Type__c</name>
+    </fields>
+    <layouts>
+        <layout>License Submissions</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permit Submissions</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- License Submissions --></description>
+        <label><!-- License --></label>
+        <name>License</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Permit Submissions --></description>
+        <label><!-- Permit --></label>
+        <name>Permit</name>
+    </recordTypes>
+</CustomObjectTranslation>

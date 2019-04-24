@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- New/Edit Capacities --></label>
+        <name>New_Edit_Capacities</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- New/Edit Work Items --></label>
+        <name>New_Edit_Work_Items</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Review Work Items List --></label>
+        <name>Review_Work_Items_List</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Category --></label>
+        <name>MUSW__Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>MUSW__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group --></label>
+        <name>MUSW__Group__c</name>
+        <picklistValues>
+            <masterLabel>All</masterLabel>
+            <translation><!-- All --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building</masterLabel>
+            <translation><!-- Building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical</masterLabel>
+            <translation><!-- Electrical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mechanical</masterLabel>
+            <translation><!-- Mechanical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plumbing</masterLabel>
+            <translation><!-- Plumbing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit2__c</name>
+        <relationshipLabel><!-- Work Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit__c</name>
+        <relationshipLabel><!-- Work Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- As measured by unit type --></help>
+        <label><!-- Size --></label>
+        <name>MUSW__Quantity2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Count or Number of Items. Eg 2 Deck Areas, or 5 Faucets --></help>
+        <label><!-- Quantity --></label>
+        <name>MUSW__Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>MUSW__Sub_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summary --></label>
+        <name>MUSW__Summary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Item Value --></label>
+        <name>MUSW__Total_Item_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>MUSW__Type__c</name>
+        <picklistValues>
+            <masterLabel>FURNACE</masterLabel>
+            <translation><!-- FURNACE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIVING SPACE</masterLabel>
+            <translation><!-- LIVING SPACE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEWER CONNECTION</masterLabel>
+            <translation><!-- SEWER CONNECTION --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>MUSW__Unit__c</name>
+        <picklistValues>
+            <masterLabel>$</masterLabel>
+            <translation><!-- $ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100 LI</masterLabel>
+            <translation><!-- 100 LI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1K BTU</masterLabel>
+            <translation><!-- 1K BTU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1K CFM</masterLabel>
+            <translation><!-- 1K CFM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AMP</masterLabel>
+            <translation><!-- AMP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CU YD</masterLabel>
+            <translation><!-- CU YD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DEVICE</masterLabel>
+            <translation><!-- DEVICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EACH</masterLabel>
+            <translation><!-- EACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FLAT</masterLabel>
+            <translation><!-- FLAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FT</masterLabel>
+            <translation><!-- FT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GAL</masterLabel>
+            <translation><!-- GAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HEADS</masterLabel>
+            <translation><!-- HEADS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOUR</masterLabel>
+            <translation><!-- HOUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HP</masterLabel>
+            <translation><!-- HP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INCH</masterLabel>
+            <translation><!-- INCH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIN FT</masterLabel>
+            <translation><!-- LIN FT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QTY</masterLabel>
+            <translation><!-- QTY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SQ FT</masterLabel>
+            <translation><!-- SQ FT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SQ YD</masterLabel>
+            <translation><!-- SQ YD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SYSTEM</masterLabel>
+            <translation><!-- SYSTEM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Value Per Unit --></label>
+        <name>MUSW__Value_Per_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Item Calculated --></label>
+        <name>Total_Item_Calculated__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- All --></label>
+        <name>All</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Capacity --></label>
+        <name>Capacity</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Add_Multiple_Work_Items --></label>
+        <name>MUSW__Add_Multiple_Work_Items</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Edit_Work_Items --></label>
+        <name>MUSW__Create_Edit_Work_Items</name>
+    </webLinks>
+</CustomObjectTranslation>

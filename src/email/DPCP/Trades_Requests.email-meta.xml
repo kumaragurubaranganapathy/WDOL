@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Various Quick parts to easily respond to Customer requests</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS_Trades_Letterhead</letterhead>
+    <name>Trades Requests</name>
+    <style>freeForm</style>
+    <subject>DSPS Response to Inquiry</subject>
+    <textOnly>{!Today}
+
+Dear {!MUSW__License2__c.Applicant_Full_Name__c},
+
+Replacement cards
+Replacement cards cost $15.00 each.  Please fill out and return this form – https://dsps.wi.gov/Credentialing/Trades/fm3168.pdf
+Submit paperwork/payment
+Please make payment via the eSLA portal at https://eSLA.wi.gov. You can access your cart by clicking on the cart icon in the upper right corner of the screen.
+
+For alternate payments options, mail payment into the Milwaukee PO Box, email/fax in with a credit card payment form (https://dsps.wi.gov/Credentialing/General/fm3073.pdf), or bring into the Madison address during business hours (immediate service).
+Verifications
+To request a Wisconsin credential status verification, please print, fill out and return this form - https://dsps.wi.gov/Credentialing/Trades/fm3176.pdf
+Processing time
+Wisconsin Administrative Code provides us with 21 days from the time the check is cashed to process the application and return the credential or a request for additional information to you.  Once your items are reviewed, you will receive notification via mail from the Department.
+Lists
+You may purchase a list of credential holders online - https://app.wi.gov/DSPSLicenseList
+Lists do not include phone numbers, and may not include email addresses.  Note: If a credential holder opts out from the list, the list will only contain their name, city, and state.
+Complaints
+If you would like to file a complaint about a person in the Trades, you can do that online or print out a form to submit - https://dsps.wi.gov/pages/SelfService/FileAComplaint.aspx
+If you have questions about the status of a complaint you have already filed, you can contact Joe Kaether at 608-266-2112.
+Payment – credit card
+Please make payment via the eSLA portal at www.eSLA.wi.gov. You can access your cart by clicking on the cart icon in the upper right corner of the screen.
+
+For your convenience, included is a link to our credit card payment form:  https://dsps.wi.gov/Credentialing/General/fm3073.pdf
+You may fax the form using our secure line: (608) 267-0592, or send by email.
+
+
+Thank you,
+The Wisconsin Department of Safety and Professional Services</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

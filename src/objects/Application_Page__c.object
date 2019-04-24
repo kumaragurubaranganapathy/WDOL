@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Page configuration for online applications</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Application_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Method</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>General Application</fullName>
+                    <default>false</default>
+                    <label>General Application</label>
+                </value>
+                <value>
+                    <fullName>Comity</fullName>
+                    <default>false</default>
+                    <label>Comity</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Application_Type__c</fullName>
+        <description>Application Types- Credential/License, Plan Review, Permit, etc.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Application Types- Credential/License, Plan Review, Permit, etc.</inlineHelpText>
+        <label>Application Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Credential_Type__c</fullName>
+        <description>List of license types</description>
+        <externalId>false</externalId>
+        <label>Credential Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Application_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary Certified General</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>State Licensed Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Certificate of Removal Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Establishment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Prearrangement Funeral Services</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Establishment Branch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Credential__c</fullName>
+        <description>This refers to the credential being applied for.</description>
+        <externalId>false</externalId>
+        <label>Credential</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Credential_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>Credential</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <valueName>Certificate of Removal Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Dwelling Contractor</controllingFieldValue>
+                <valueName>Dwelling Contractor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Dwelling Contractor</controllingFieldValue>
+                <valueName>Dwelling Contractor Qualifier</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Dwelling Contractor</controllingFieldValue>
+                <valueName>Dwelling Contractor Restricted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Credential</controllingFieldValue>
+                <valueName>Manufactured Homes Dealer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Credential</controllingFieldValue>
+                <valueName>Manufactured Homes Installer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Credential</controllingFieldValue>
+                <valueName>Manufactured Homes Manufacturer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Credential</controllingFieldValue>
+                <valueName>Manufactured Homes Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Soil Professions</controllingFieldValue>
+                <valueName>Soil Erosion Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Soil Professions</controllingFieldValue>
+                <valueName>Soil Tester</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Uniform Dwelling Code</controllingFieldValue>
+                <valueName>UDC Construction Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Uniform Dwelling Code</controllingFieldValue>
+                <valueName>UDC Electrical Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Uniform Dwelling Code</controllingFieldValue>
+                <valueName>UDC HVAC Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Uniform Dwelling Code</controllingFieldValue>
+                <valueName>UDC Inspection Agency</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Uniform Dwelling Code</controllingFieldValue>
+                <valueName>UDC Plumbing Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Titling</controllingFieldValue>
+                <valueName>Manufactured Homes Certificate of Title</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - Commercial Building</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - Fire Suppression/Alarm Systems</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - Plumbing</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - POWTS</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - Elevator</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - Boiler</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
+                <valueName>Delegated Agent - Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <valueName>Geologist in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <valueName>Temporary Certified General</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <valueName>State Licensed Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
+                <valueName>Funeral Director Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
+                <valueName>Funeral Establishment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
+                <valueName>Prearrangement Funeral Services</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
+                <valueName>Funeral Establishment Branch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>External ID for the record. Once populated, it should not be changed for that record as it may impact data loads to other environments.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>External ID for the record. Once populated, it should not be changed for that record as it may impact data loads to other environments.</inlineHelpText>
+        <label>External Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>License_Reciprocity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>License Reciprocity</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Reinstatement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is the license reinstatement.</description>
+        <externalId>false</externalId>
+        <label>License Reinstatement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this page applicable to License Renewal?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this page applicable to License Renewal?</inlineHelpText>
+        <label>License Renewal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this page applicable to License?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this page applicable to License?</inlineHelpText>
+        <label>License</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit_Reinstatement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this for a permit reinstatement.</description>
+        <externalId>false</externalId>
+        <label>Permit Reinstatement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this page applicable to Permit Renewal?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this page applicable to Permit Renewal?</inlineHelpText>
+        <label>Permit Renewal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit_Type__c</fullName>
+        <description>This is the name of the permit.</description>
+        <externalId>false</externalId>
+        <label>Permit Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Program_Area__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>Permit_Type</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Individual Site Design</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Component Manual Design</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Petition for Variance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Experimental System</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Miscellaneous Review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Sanitary Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS State-Owned Privy Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Consultation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Component Manual Review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS</controllingFieldValue>
+                <valueName>POWTS Soil Saturation Determination</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Communities</controllingFieldValue>
+                <valueName>Manufactured Homes Community Permit</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Permit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this page applicable to Permit?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this page applicable to Permit?</inlineHelpText>
+        <label>Permit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Program_Area__c</fullName>
+        <description>This  is the program related to the the permit</description>
+        <externalId>false</externalId>
+        <label>Program Area</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Application_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>Program_Area</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>POWTS</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Manufactured Homes Communities</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Delegated Municipality Agent</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public Commission</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Request Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Request__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Service Request</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Application Page</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Credential__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>DPCP</fullName>
+        <columns>NAME</columns>
+        <columns>Credential__c</columns>
+        <columns>Permit__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>notContain</operation>
+            <value>POWTS,Delegated,Service Request</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>notEqual</operation>
+            <value>Exam Re-Application SR</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>notEqual</operation>
+            <value>Title Modification SR</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>notEqual</operation>
+            <value>Test</value>
+        </filters>
+        <label>DPCP</label>
+    </listViews>
+    <nameField>
+        <label>Application Page Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Application Pages</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>

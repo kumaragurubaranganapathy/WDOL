@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Contains information on Dwelling Contractor credential</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS_Trades_Letterhead</letterhead>
+    <name>Dwelling Contractor/Qualifier</name>
+    <style>freeForm</style>
+    <subject>Credential Information</subject>
+    <textOnly>{!Today}
+
+Dear {!MUSW__License2__c.Applicant_Full_Name__c},
+
+In order to pull permits to do work on one- or two-family homes, you need both the Dwelling Contractor certification and at least one person from the company needs the Dwelling Contractor Qualifier certification.  The Dwelling Contractor is a business license – it requires proof of financial responsibility (see application form). The Dwelling Contractor Qualifier is an individual license – it requires completion of a pre-credential “Initial Qualifier” course and then 12 hours of continuing education every two years.
+These applications can be applied for and maintained via the eSLA portal.
+If you are not doing work on one- or two-family homes (such as commercial or industrial work), or you are doing work that does not require you to pull building permits, the state does not require a license for that type of work, but you would still need to comply with any license requirements at the local level.
+Please note that the above information only applies to general construction work; if you are an electrical, elevator, fire sprinkler, HVAC, or plumbing contractor, different licensing requirements apply - https://dsps.wi.gov/pages/Professions
+
+Thank you,
+
+The Wisconsin Department of Safety and Professional Services</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
