@@ -18,7 +18,6 @@ public with sharing class ApplicationSelection_CC
     public Newsfeed__c news {get; set;}
     public List<Question__c> queList {get; set;}
     public String questionsJson {get; set;}
-    public String licenseJson {get; set;}
     public String contactId {get; set;}
     public String accountId {get; set;}
     public String accountType {get; set;}
@@ -30,8 +29,7 @@ public with sharing class ApplicationSelection_CC
     public boolean flagchecked {get; set;}
     public Set<String> allcredentials;
     public Set<String> allplanreviewsandpermits;
-    public String applicationInstructions{get; set;}
-    public List<MUSW__License2__c> licCount {get; set;}
+     public String applicationInstructions{get; set;}
      
     /**
 * constructor
@@ -281,19 +279,9 @@ public with sharing class ApplicationSelection_CC
                 ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'ApplicationSelection_CC', 'Retrieve Credential Records', 'getEligibilityQuestions', 'ApplicationSelection_CC', label.Str_Low);
             }
             
-            try{
-            system.debug('contactId : '+contactId );
-            licCount = [SELECT id,Credential__c,MUSW__Issue_Date__c,MUSW__Applicant__c FROM MUSW__License2__c WHERE Credential__c LIKE '%Temp%' AND CreatedDate = THIS_YEAR AND MUSW__Applicant__c = :contactId ];
-            }
-             catch(Exception e) {
-                ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'ApplicationSelection_CC', 'Retrieve Credential Records', 'getEligibilityQuestions', 'ApplicationSelection_CC', label.Str_Low);
-            }
             // Serialize list of questions
             questionsJson = JSON.serialize(queList);
-            // Serialize list of Licenses
-            licenseJson = JSON.serialize(licCount);
-            system.debug('licCount : '+licCount );
-            system.debug('licenseJson: '+licenseJson );
+            
             // Get instructions
             getInstructions();    
         }else if(allplanreviewsandpermits.contains(permit.Application_Type__c)) {

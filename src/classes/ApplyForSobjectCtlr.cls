@@ -55,7 +55,6 @@ public virtual class ApplyForSobjectCtlr {
     public String credentialType {get; set;}
     public Id reviewedpId =null;
     public String applicationMethod {get; set;}
-    public String appType {get; set;}
     public String credential {get; set;}
     public String programArea {get; set;}
     public String serviceRequestType {get; set;}
@@ -187,7 +186,6 @@ public virtual class ApplyForSobjectCtlr {
         // Get contact id
         try {
             contactId = [Select contactId from user where id = : UserInfo.getUserId()].contactId;
-            system.debug('contactId---'+contactId);
         } catch (Exception e) {
             System.debug('e '+e.getMessage());      
         }
@@ -216,7 +214,6 @@ public virtual class ApplyForSobjectCtlr {
         allplanreviewsandpermits =Utilities.getallPlanreviewsandpermits();
         allcredentials =Utilities.getallCredentials();
         existingRecId = ApexPages.currentPage().getParameters().get('pid');
-        //applicationType = ApexPages.currentPage().getParameters().get('applicationType');
         if(existingRecId != null) {
             licenseGlobalData.licenseId = existingRecId; 
         }
@@ -253,9 +250,8 @@ public virtual class ApplyForSobjectCtlr {
         getURLParameters();
         // Instantiate config class for the controller
         ctlrConfig = ApplicationForSObjectConfig.factoryMethod(applicationType);
-         
         try {
-           ctlrConfig.getBoardLicenseType(this);
+            ctlrConfig.getBoardLicenseType(this);
         } catch (Exception e) {  }
         getContact();
         try{
@@ -264,12 +260,11 @@ public virtual class ApplyForSobjectCtlr {
             ApexPages.addMessage( new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()) );
         }
         try{
-           ctlrConfig.setBoardLicenseType(this); 
+        ctlrConfig.setBoardLicenseType(this); 
         }catch(Exception ex){}
-        
         pageTitle = ctlrConfig.setPageTitle();
         if(applicationType == Label.Str_Service_Request){
-            pageTitle = pageTitle + ' - ' + serviceRequestType;
+            //pageTitle = pageTitle + ' - ' + serviceRequestType;
             pageTitle = serviceRequestType;
         }
         
@@ -299,7 +294,7 @@ public virtual class ApplyForSobjectCtlr {
 * @Param       : void
 * @Return      : String
 ***************************************************************************************************/
-    public String getAttachmentsSerialized() {    
+    public String getAttachmentsSerialized() {
         if (attService != null) {
             return (String)JSON.serialize(this.attService.attachmentList);
         } else {
@@ -392,7 +387,6 @@ public virtual class ApplyForSobjectCtlr {
         existingRecId = ApexPages.currentPage().getParameters().get('pid');
         serviceRequestType = ApexPages.currentPage().getParameters().get('srType');
         pageName = ApexPages.currentPage().getUrl();
-        appType = ApexPages.currentPage().getParameters().get('appType');       
         
     }
     
@@ -592,7 +586,7 @@ public virtual class ApplyForSobjectCtlr {
         if (licenseGlobalData.licenseId != null) { // Examination history
             // Employment history
             try {
-                String empHistQuery = 'SELECT Id, City__c, Contact__c,Employer__c,Street_Address__c, County__c, Country__c, End_date__c, Current__c, License__c,Renewal_Reinstatement_Application__c, Job_Title__c, Permit__c, Start_Date__c, Supervisor_Job_Title__c, State__c, Supervisor_Name__c, Supervisor_Phone_Number__c, Zip_code__c,Total_Hours__c FROM Employment_History__c where License__c=\'' + licenseGlobalData.licenseId + '\' Order by Name ASC LIMIT 1000';
+                String empHistQuery = 'SELECT Id, City__c, Contact__c,Employer__c,Street_Address__c, County__c, Country__c, End_date__c, Current__c, License__c, Job_Title__c, Permit__c, Start_Date__c, Supervisor_Job_Title__c, State__c, Supervisor_Name__c, Supervisor_Phone_Number__c, Zip_code__c,Total_Hours__c FROM Employment_History__c where License__c=\'' + licenseGlobalData.licenseId + '\' Order by Name ASC LIMIT 1000';
                 this.emplHistList = Database.query(empHistQuery);
             } catch (Exception e) {
                 System.debug('e '+e.getMessage());
@@ -600,7 +594,7 @@ public virtual class ApplyForSobjectCtlr {
             }
             try {
                 List<Education_History__c> edulist = new List<Education_History__c>();
-                String eduHistQuery = 'SELECT State__c,Country__c,Major__c,Minor__c,Permit__c,Other__c, License__c,Renewal_Reinstatement_Application__c, Educational_Institution__c,Educational_Institution__r.Name,Education_Program__r.Name, Education_Program__c,Contact__c, Name_of_Institution__c, Start_Date__c, Degree__c, End_date__c, Id, Name FROM Education_History__c where License__c=\'' + licenseGlobalData.licenseId  + '\' Order by Name ASC LIMIT 1000';
+                String eduHistQuery = 'SELECT State__c,Country__c,Major__c,Minor__c,Permit__c,Other__c, License__c, Educational_Institution__c,Educational_Institution__r.Name,Education_Program__r.Name, Education_Program__c,Contact__c, Name_of_Institution__c, Start_Date__c, Degree__c, End_date__c, Id, Name FROM Education_History__c where License__c=\'' + licenseGlobalData.licenseId  + '\' Order by Name ASC LIMIT 1000';
                 
                 this.eduHistList = Database.query(eduHistQuery);                
                 
@@ -1239,7 +1233,6 @@ There's one scenario where we need the license id before the user clicks save&co
                 // Build error map
                 for (Database.Error err : saveResult.getErrors()) {
                     System.debug('err '+err);
-                    System.debug(' Sumeet '+err.getMessage());
                     // Push errors to error map
                     service.handleSaveOperation( (Map<String, ValidationError.FieldError>)JSON.deserialize( err.getMessage(), Map<String, ValidationError.FieldError>.class ) );
                     
@@ -1352,7 +1345,6 @@ There's one scenario where we need the license id before the user clicks save&co
                         printComp =ApplyforSobjectHelper.printComponentCreator(this.coaffHistList,subSectionObj,null);
                     }
                     else if(subSectionObj.componentName == 'AttachmentsComp'){
-                    
                         if (existingRecId != null) {
                             this.attService = new PortalAttachmentSection(credentialType, applicationType, existingRecId);
                         } else if (LicenseGlobalData.licenseId != null) {
@@ -1370,9 +1362,9 @@ There's one scenario where we need the license id before the user clicks save&co
                             addressType = ' AND Public__c = true ';
                         } else if (subSectionObj.name.containsIgnoreCase(label.Str_Mailing)) {
                             addressType = ' AND Mailing__c = true ';
-                        } /*else if (subSectionObj.name.containsIgnoreCase(label.Str_Physical)) {
+                        } else if (subSectionObj.name.containsIgnoreCase(label.Str_Physical)) {
                         addressType = ' AND Physical_Address__c = true ';
-                        } */                  
+                        }                   
                         String selectParcelStr = 'SELECT Id, Mailing__c, '
                             + 'Account__c, Public__c, '
                             + 'Type__c, MUSW__Parcel__c, '

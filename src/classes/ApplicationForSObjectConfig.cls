@@ -29,7 +29,6 @@ public class ApplicationForSObjectConfig {
 * @Return      : ApplyForSObjectConfig object
 ***************************************************************************************************/
     public static ApplyForSObjectConfig factoryMethod(String applicationType) {
-        
         Set<String> allcredentials =Utilities.getallCredentials();
         Set<String> allplanreviewsandpermits =Utilities.getallPlanreviewsandpermits();
         if (allcredentials.contains(applicationType)) return new LicenseConfig();
@@ -38,7 +37,6 @@ public class ApplicationForSObjectConfig {
         else if (allplanreviewsandpermits.contains(applicationType)) return new PermitConfig();
         else if (label.Str_ManufacturedHomesRenewal  == applicationType) return new RenewalPermitConfig();
         else if (label.STR_Service_Request == applicationType) return new ServiceRequestConfig();
-        
         return null;
     }
     
@@ -690,7 +688,6 @@ public class ApplicationForSObjectConfig {
         public void setFieldValues(ApplyForSObjectCtlr ctlr) {
             
             // Set field values
-            ctlr.lic.put(label.Api_Application_Type, ctlr.appType);
             ctlr.lic.put(label.Api_Credential_Type, ctlr.credentialtype);
             ctlr.lic.put(label.Api_Credential, ctlr.credential);
             ctlr.lic.put(label.API_License_Field, ctlr.parentId);
@@ -1123,7 +1120,6 @@ public class ApplicationForSObjectConfig {
         public void setFieldValues(ApplyForSObjectCtlr ctlr) {
             
             // Set field values
-            ctlr.lic.put(label.Api_Application_Type, ctlr.appType);
             ctlr.lic.put(label.Api_Credential_Type, ctlr.credentialtype);
             ctlr.lic.put(label.Api_Credential, ctlr.credential);
             ctlr.lic.put(label.API_License_Field, ctlr.parentId);

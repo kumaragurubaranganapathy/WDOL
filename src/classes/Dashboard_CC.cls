@@ -1,13 +1,13 @@
 /****************************************************************************************************************************************
 ** Class Name       : Dashboard_CC 
 ** Description      : This class serves as backend controller for Dashboard component 
-**                    (User Story: 138 - Portal Dashboard)
+**					  (User Story: 138 - Portal Dashboard)
 ** Version          : 1.0
 ** Built By         : Srikanth Kottam
 **----------------------------------------------------------------------------------------------------------------------------------------
 ** Modification Log:
 **----------------------------------------------------------------------------------------------------------------------------------------
-** Developer                        Date            Reference               Description
+** Developer                 		Date            Reference               Description
 ** 
 **----------------------------------------------------------------------------------------------------------------------------------------
 ** Review Log:
@@ -202,7 +202,7 @@ public class Dashboard_CC {
         
         // Query license data
         String licenseQuery = 'SELECT Id, Name, MUSW__Applicant__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, Application_Type__c, Credential__c, Credential_Type__c, MUSW__Status__c, MUSW__Primary_Licensee__c, Business_License__c ' 
-                            +'FROM MUSW__License2__c WHERE (MUSW__Applicant__c IN :contactIds or MUSW__Primary_Licensee__c IN :accountIds ) order by LastModifiedDate DESC  LIMIT 1000';
+            				+'FROM MUSW__License2__c WHERE (MUSW__Applicant__c IN :contactIds or MUSW__Primary_Licensee__c IN :accountIds ) order by LastModifiedDate DESC  LIMIT 1000';
         system.debug('licenseQuery123 '+licenseQuery);
         licenseList = Database.query(licenseQuery);
         system.debug('licenseList>>>>'+licenseList);
@@ -211,7 +211,7 @@ public class Dashboard_CC {
         // Load license records into two lists
         for(MUSW__License2__c licObj : licenseList){
             // Applications
-            if((licObj.MUSW__Status__c != 'Active') && (licObj.MUSW__Status__c != 'Inactive') && (licObj.MUSW__Status__c != 'Closed') && (licObj.MUSW__Status__c != 'Expired') && (licObj.MUSW__Status__c != 'Late Renewal' && licObj.MUSW__Status__c != 'Canceled')) {
+            if((licObj.MUSW__Status__c != 'Active') && (licObj.MUSW__Status__c != 'Inactive') && (licObj.MUSW__Status__c != 'Closed') && (licObj.MUSW__Status__c != 'Expired') && (licObj.MUSW__Status__c != 'Late Renewal')) {
                 appLicenseList.add(new HomeAuthService.LicenseObj(licObj.Id, licObj.Name, licObj.Application_Type__c,licObj.Credential__c,
                                                                   licObj.Credential_Type__c, licObj.MUSW__Expiration_Date__c, licObj.MUSW__Status__c, licObj.MUSW__Primary_Licensee__c, licObj.Business_License__c, licObj,licObj.MUSW__Applicant__c));
                 isLicList = false;
@@ -219,7 +219,7 @@ public class Dashboard_CC {
             }
             // Licenses
             else{
-                if(licObj.MUSW__Status__c == label.ST_Active || licObj.MUSW__Status__c == 'Expired' || licObj.MUSW__Status__c == 'Late Renewal' || licObj.MUSW__Status__c == 'Canceled' ){
+                if(licObj.MUSW__Status__c == label.ST_Active || licObj.MUSW__Status__c == 'Expired' || licObj.MUSW__Status__c == 'Late Renewal'){
                     activeLicenses.add(new HomeAuthService.LicenseObj(licObj.Id, licObj.Name, licObj.Application_Type__c, licObj.Credential__c,
                                                                       licObj.Credential_Type__c, licObj.MUSW__Expiration_Date__c, licObj.MUSW__Status__c, licObj.MUSW__Primary_Licensee__c, licObj.Business_License__c, licObj,licObj.MUSW__Applicant__c));
                     
@@ -350,8 +350,8 @@ public class Dashboard_CC {
                                                                         perObj.MUSW__Account__c, 
                                                                         perObj.Business_License__c,
                                                                         perObj,
-                                                                        perObj.Generate_Invoice__c,
-                                                                        perObj.MUSW__Total_Balance__c));
+                                                                       	perObj.Generate_Invoice__c,
+                                                                       	perObj.MUSW__Total_Balance__c));
                     isPlanList = false;
                     isAppPlan = true;
                 }else{
@@ -366,7 +366,7 @@ public class Dashboard_CC {
                                                                                perObj.Business_License__c,
                                                                                perObj,
                                                                                perObj.Generate_Invoice__c,
-                                                                               perObj.MUSW__Total_Balance__c));
+                                                                       		   perObj.MUSW__Total_Balance__c));
                         system.debug('activePlanReviewList>>>>'+activePlanReviewList);
                     }else{
                         inactivePlanReviewList.add(new HomeAuthService.permitObj(perObj.Id, perObj.Name, 
@@ -379,7 +379,7 @@ public class Dashboard_CC {
                                                                                  perObj.Business_License__c,
                                                                                  perObj,
                                                                                  perObj.Generate_Invoice__c,
-                                                                                 perObj.MUSW__Total_Balance__c));
+                                                                       			 perObj.MUSW__Total_Balance__c));
                     }
                     planreviewIdList.add(perObj.Id);
                     isExPlanList = true;
@@ -395,8 +395,8 @@ public class Dashboard_CC {
                                                                         perObj.MUSW__Account__c, 
                                                                         perObj.Business_License__c,
                                                                         perObj,
-                                                                        perObj.Generate_Invoice__c,
-                                                                        perObj.MUSW__Total_Balance__c));
+                                                                   		perObj.Generate_Invoice__c,
+                                                                       	perObj.MUSW__Total_Balance__c));
                     isPerList = false;
                     isAppPer = true;
                 }else{
@@ -410,8 +410,8 @@ public class Dashboard_CC {
                                                                                perObj.MUSW__Account__c, 
                                                                                perObj.Business_License__c,
                                                                                perObj,
-                                                                               perObj.Generate_Invoice__c,
-                                                                               perObj.MUSW__Total_Balance__c));
+                                                                          	   perObj.Generate_Invoice__c,
+                                                                       		   perObj.MUSW__Total_Balance__c));
                     }else{
                         inactivePermitList.add(new HomeAuthService.permitObj(perObj.Id, perObj.Name, 
                                                                                  perObj.Application_Type__c, 
@@ -422,8 +422,8 @@ public class Dashboard_CC {
                                                                                  perObj.MUSW__Account__c, 
                                                                                  perObj.Business_License__c,
                                                                                  perObj,
-                                                                                 perObj.Generate_Invoice__c,
-                                                                                 perObj.MUSW__Total_Balance__c));
+                                                                            	 perObj.Generate_Invoice__c,
+                                                                       	         perObj.MUSW__Total_Balance__c));
                     }
                     permitIdList.add(perObj.Id);
                     isExPerList = true;
@@ -539,7 +539,7 @@ public class Dashboard_CC {
     
     
     /**
-    * Method - To retrieve list of service requrests
+	* Method - To retrieve list of service requrests
     * @return    void
     */
     public List<Service_Links__mdt> loadServiceRequests() {
@@ -596,13 +596,13 @@ public class Dashboard_CC {
         system.debug('licensePermitType>>>'+licensePermitType);
         if(licensePermitType == 'License'){
             // Get parameters of current license record
-            String licenseQuery = 'SELECT Id, Name, Application_Type__c, Credential_Type__c, Credential__c, Application_Method__c, '
-                                + 'MUSW__Applicant__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, App_Submitted_Date__c, '
+        	String licenseQuery = 'SELECT Id, Name, Application_Type__c, Credential_Type__c, Credential__c, Application_Method__c, '
+            					+ 'MUSW__Applicant__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, App_Submitted_Date__c, '
                                 + 'MUSW__Status__c, Sub_Status__c, MUSW__Primary_Licensee__c, Business_License__c, '
                                 + 'Is_Renewal_Eligible__c, Is_Late_Renewal_Eligible__c, Is_Reinstatement_Eligible__c, '
-                                + 'MUSW__Applicant__r.Contact_Status__c, MUSW__Primary_Licensee__r.Account_Status__c '
+                				+ 'MUSW__Applicant__r.Contact_Status__c, MUSW__Primary_Licensee__r.Account_Status__c '
                                 + 'FROM MUSW__License2__c WHERE Id = \'' + String.escapeSingleQuotes(currentLicenseId) + '\'';
-            MUSW__License2__c lic = Database.query(licenseQuery);
+        	MUSW__License2__c lic = Database.query(licenseQuery);
             if(lic != null) {
                 // Set parameters
                 bIsBusinessLicense = lic.Business_License__c;
@@ -628,7 +628,7 @@ public class Dashboard_CC {
                 if(lic.MUSW__Applicant__r.Contact_Status__c == 'On Hold' || lic.MUSW__Primary_Licensee__r.Account_Status__c == 'On Hold'){
                     isOnHold = true;
                 }
-            }
+        	}
         } else if(licensePermitType == 'Permit'){
             String permitQuery = 'SELECT Id, Name, Application_Type__c, Permit_Type__c, Program_Area__c, Application_Method__c, '
                 + 'MUSW__Applicant__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, App_Submitted_Date__c, '
