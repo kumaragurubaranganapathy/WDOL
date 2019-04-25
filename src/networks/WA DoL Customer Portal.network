@@ -25,7 +25,7 @@
     <enableUpDownVote>false</enableUpDownVote>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
-    <logoutUrl>https://qa-qa-polaris.cs32.force.com/PortalCommunityLogin</logoutUrl>
+    <logoutUrl>https://ci-ci-polaris.cs32.force.com/PortalCommunityLogin</logoutUrl>
     <navigationLinkSet>
         <navigationMenuItem>
             <label>Topics</label>
@@ -35,10 +35,6 @@
             <type>NavigationalTopic</type>
         </navigationMenuItem>
     </navigationLinkSet>
-    <networkMemberGroups>
-        <profile>eSLA Customer Community Login User</profile>
-        <profile>eSLA Customer Community Plus Login User</profile>
-    </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
         <forgotPasswordPageOverrideSetting>Standard</forgotPasswordPageOverrideSetting>
