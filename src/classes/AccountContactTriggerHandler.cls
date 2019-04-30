@@ -24,6 +24,6 @@ public class AccountContactTriggerHandler implements BGCM.ITriggerHandler{
         // Sharing records with Customer Community Plus Portal user
         ApexUserSharingModel apexSharing = new ApexUserSharingModel();
         apexSharing.getAccountIds(Trigger.isInsert, Trigger.isUpdate, (Map<Id, MUSW__Account_Contact__c>)Trigger.OldMap, (Map<Id, MUSW__Account_Contact__c>)Trigger.NewMap);
-        System.debug('inSide AccountContactTriggerHandler');
+        System.debug('inside AccountContactTriggerHandler');
     }
 }
