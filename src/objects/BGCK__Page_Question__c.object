@@ -63,6 +63,11 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>BGCK__IsRequired__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -75,10 +80,15 @@
         <label>Page Question Basic</label>
     </fieldSets>
     <fieldSets>
-        <fullName>Master_page</fullName>
-        <description>Name</description>
+        <fullName>POWTS_Inspection_Fieldset</fullName>
+        <description>For generating POWTS INSPECTION REPORT</description>
         <displayedFields>
             <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Checklist_type__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -87,12 +97,97 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-        <label>Master_page</label>
+        <label>POWTS Inspection Fieldset</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Question_Field_set</fullName>
+        <description>Dynamic Checklists</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Application_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type_Crendential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Checklist_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__IsRequired__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Review_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Question Field set</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Review_Check_list</fullName>
+        <description>While generating Review check lists</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Checklist_type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Review Check list</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Review_Checklist_Test</fullName>
+        <description>Review Records</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Application_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__Question__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__Question__r.BGCK__Body__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__IsRequired__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Review Checklist Test</label>
     </fieldSets>
     <fields>
         <fullName>Application_Type__c</fullName>
         <externalId>false</externalId>
-        <label>Application Type</label>
+        <label>Program/Application Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -236,6 +331,19 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Checklist_for__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Method</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Method</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>Checklist_type__c</fullName>
         <externalId>false</externalId>
         <label>Checklist type</label>
@@ -246,6 +354,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Credential__c</fullName>
+        <externalId>false</externalId>
+        <label>Credential</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>External_Id__c</fullName>
         <externalId>true</externalId>
         <label>External Id</label>
@@ -254,6 +375,19 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>License Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Status</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Permit_Type_or_Credential_Type__c</fullName>
@@ -274,56 +408,22 @@
         <type>MultiselectPicklist</type>
         <valueSet>
             <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>A degree in Architectural Technology</fullName>
-                    <default>false</default>
-                    <label>A degree in Architectural Technology</label>
-                </value>
-                <value>
-                    <fullName>Architect by Reciprocity - licensed less than 9 years</fullName>
-                    <default>false</default>
-                    <label>Architect by Reciprocity - licensed less than 9 years</label>
-                </value>
-                <value>
-                    <fullName>Architect by Reciprocity - licensed more 9 years licensure</fullName>
-                    <default>false</default>
-                    <label>Architect by Reciprocity - licensed more 9 years licensure</label>
-                </value>
-                <value>
-                    <fullName>Architect Direct Registration</fullName>
-                    <default>false</default>
-                    <label>Architect Direct Registration</label>
-                </value>
-                <value>
-                    <fullName>Architect Firm</fullName>
-                    <default>false</default>
-                    <label>Architect Firm</label>
-                </value>
-                <value>
-                    <fullName>Foreign Degree</fullName>
-                    <default>false</default>
-                    <label>Foreign Degree</label>
-                </value>
-                <value>
-                    <fullName>High School Diploma</fullName>
-                    <default>false</default>
-                    <label>High School Diploma</label>
-                </value>
-                <value>
-                    <fullName>Non-accredited Bachelor or Master in architecture</fullName>
-                    <default>false</default>
-                    <label>Non-accredited Bachelor or Master in architecture</label>
-                </value>
-                <value>
-                    <fullName>Postsecondary Study in Architecture or Related Fields</fullName>
-                    <default>false</default>
-                    <label>Postsecondary Study in Architecture or Related Fields</label>
-                </value>
-            </valueSetDefinition>
+            <valueSetName>Review_for</valueSetName>
         </valueSet>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type_Crendential__c</fullName>
+        <externalId>false</externalId>
+        <label>License Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+        </valueSet>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Type__c</fullName>
@@ -333,7 +433,31 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>Mulesoft Ext Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Page Question</label>
+    <listViews>
+        <fullName>All2</fullName>
+        <columns>NAME</columns>
+        <columns>BGCK__BG_Checklist_Name__c</columns>
+        <columns>Permit_Type_or_Credential_Type__c</columns>
+        <columns>BGCK__Question__c</columns>
+        <columns>Checklist_type__c</columns>
+        <columns>BGCK__Checklist_Version_Status__c</columns>
+        <columns>BGCK__Order__c</columns>
+        <columns>BGCK__Page__c</columns>
+        <columns>BGCK__Parent_Page_Question__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <listViews>
         <fullName>All_Active</fullName>
         <columns>BGCK__Order__c</columns>
@@ -341,6 +465,7 @@
         <columns>BGCK__BG_Checklist_Name__c</columns>
         <columns>Type__c</columns>
         <columns>BGCK__Checklist_Version_Status__c</columns>
+        <columns>BGCK__Question__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>BGCK__Checklist_Version_Status__c</field>
@@ -348,6 +473,7 @@
             <value>Active</value>
         </filters>
         <label>All Active</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>BGCK__All_Draft</fullName>
