@@ -163,9 +163,9 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Degree__c</fullName>
+        <fullName>DegreeEarned__c</fullName>
         <externalId>false</externalId>
-        <label>Degree</label>
+        <label>DegreeEarned</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -173,6 +173,16 @@
             <restricted>true</restricted>
             <valueSetName>Degree</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Degree__c</fullName>
+        <externalId>false</externalId>
+        <label>Degree</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Education_Program__c</fullName>
@@ -258,6 +268,16 @@
             <restricted>true</restricted>
             <valueSetName>Exam_Type</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Hours</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Job_Title__c</fullName>
@@ -1814,7 +1834,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Degree__c</picklist>
+            <picklist>DegreeEarned__c</picklist>
             <values>
                 <fullName>Associate</fullName>
                 <default>false</default>
@@ -4633,7 +4653,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Degree__c</picklist>
+            <picklist>DegreeEarned__c</picklist>
             <values>
                 <fullName>Associate</fullName>
                 <default>false</default>
@@ -7452,7 +7472,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Degree__c</picklist>
+            <picklist>DegreeEarned__c</picklist>
             <values>
                 <fullName>Associate</fullName>
                 <default>false</default>
