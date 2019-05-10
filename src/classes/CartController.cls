@@ -745,11 +745,12 @@ public with sharing class CartController
 
     public void process()
     {
-        if (totalBalance > 0 && !canPayPartial)
+        /*if (totalBalance > 0 && !canPayPartial)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Insufficient funds. Tender at least the Amount owing.'));
             return;
-        }
+        }*/
+        canPayPartial = true;
         if (String.isBlank(accountSelected))
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
@@ -823,9 +824,13 @@ public with sharing class CartController
         
         try
         {
+             MUSW__License2__c oL = new MUSW__License2__c();
+            oL.id = m_pid;
+            oL.MUSW__Status__c = 'Submittted';
+            update oL;
             Set<Id> feePaymentIds = new Set<Id>();
 
-            system.debug('**** RS: ' + rs);
+         //   system.debug('**** RS: ' + rs);
             if((payables.size() + m_payableDeposits.size()) <= 150) {
                 // below code can be used when Process Payment by Batch functionality is not required
                 if(!m_payableDeposits.isEmpty()){
@@ -842,7 +847,7 @@ public with sharing class CartController
                 } else {        
                     // this call is made for testing the clean receipt method.      
                     // Within the org, it should throw a exception, so it will go to the catch, but can't be handled via tests.     
-                    cleanReceiptsAfterPaymentFail(receiptVOs);      
+                    //cleanReceiptsAfterPaymentFail(receiptVOs);      
                 }
     
                 
@@ -859,6 +864,7 @@ public with sharing class CartController
                     jobId = m_ps.processPaymentByBatch(payables, rsAmt, accountSelected, cart.BGBK__Process_DateTime__c);
                 }
             }
+           
         }
         catch (Exception e)
         {
@@ -980,7 +986,7 @@ public with sharing class CartController
         public PageReference  backToItems()
     {
        // selectedTab = label.Str_Fees;
-             PageReference pageRef = new PageReference('/apex/dashboard');
+             PageReference pageRef = new PageReference('/s/dashboard');
             return pageRef; 
        
     }
