@@ -13,6 +13,12 @@
        // helper.checkMandatory(component, event, helper);
       
 	},
+    onCheckboxChange: function(component, event, helper) {
+		helper.onCheckboxChange(component, event, helper);
+	},
+    onAttestationChange: function(component, event, helper) {
+		helper.onAttestationChange(component, event, helper);
+	},
     showDependentQuestions : function(component, event, helper){
         helper.showDependentQuestionsHelper(component, event, helper);
     },

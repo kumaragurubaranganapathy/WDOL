@@ -177,6 +177,7 @@
 }
 .THIS .tile-wrap{
     display:flex;
+    flex-wrap: wrap;
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
@@ -193,4 +194,8 @@
 }
 .THIS .error{
     color:t(LnGErrorMsg);
+}
+.THIS .btn-lnp[disabled], 
+.THIS .btn-lnp:disabled{
+    background: t(LnGGrayText);
 }

@@ -197,7 +197,7 @@
     <fields>
         <fullName>Educational_Institution_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>00Nr0000001xFyu.TextName</formula>
+        <formula>Educational_Institution__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Educational Institution Name</label>
         <required>false</required>
@@ -288,6 +288,18 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Bg__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License Bg</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>LnP_BackgroundSections</relationshipLabel>
+        <relationshipName>LnP_BackgroundSections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>License_Type__c</fullName>

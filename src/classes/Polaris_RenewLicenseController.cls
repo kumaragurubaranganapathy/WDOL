@@ -404,9 +404,11 @@ return parser;
         Boolean questionsIncomplete = false;
         Boolean submissionsIncomplete = true;
         Map<String,List<LnP_Parcel__c>> mapAddress = new  Map<String,List<LnP_Parcel__c>>();
+        Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
         mapAddress = getAddresses(setAppId);
+        mapEducation = getBackgroundInformation(setAppId);
         System.debug('dataString---->'+dataString);
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
         Integer questionsAnswered=0;
@@ -492,6 +494,7 @@ return parser;
             
             Set<String> docId = new Set<String>();
             Map<Id,Id> docLinkMap = new Map<Id,Id>();
+            Integer filesSubmitted = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
                 if(fieldMap.multiValues != null && fieldMap.multiValues.size()>0){
                     docId.addAll(fieldMap.multiValues);
@@ -510,10 +513,16 @@ return parser;
                 }    
             }
             Integer count = 0;
-            Integer filesSubmitted = 0;
             system.debug('submissionFields'+submissionFields);
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
-                
+                if(fieldMap.isMandatorySub == true){
+                    count++;
+                }
+                if(fieldMap.isMandatorySub == true && !fieldMap.multiValues.isEmpty()){
+                    filesSubmitted++;
+                }
+                system.debug('counttotal'+count);
+                system.debug('filesSubmitted'+filesSubmitted);
                 if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
                     for(String contentdocId : fieldMap.multiValues){
                         Integer innerCount = 0;
@@ -550,17 +559,13 @@ return parser;
                         
                         bodySub.ContentDocumentId = contentdocId +';'+ bodySub.ContentDocumentId ;
                     }
-                    filesSubmitted++;
                 }
                 requestDetailSub.body = bodySub;
                 requestDetailsList.add(requestDetailSub);
-                if(fieldMap.isMandatorySub == true){
-                    count++;
-                }
             }
-            //validationForSubmissions:
-            if(filesSubmitted == count){//change logic to not equals to count, where count is the number of complete submissions
-                submissionsIncomplete = false;
+            submissionsIncomplete = false;
+            if(filesSubmitted != count) {//change logic to not equals to count, where count is the number of complete submissions
+                submissionsIncomplete = true;
             }
         }
         finalRequest.compositeRequest = requestDetailsList;
@@ -593,8 +598,8 @@ return parser;
         String jsonString = JSON.serialize(field);
         List<MUSW__Application2__c> appList =new List<MUSW__Application2__c>();
         String appCondition = 'Id=\''+appId+'\'';
-        // String strApp = 'Select Id, Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC),(Select Id, Name from Education_History__r ) from MUSW__Application2__c where '+appCondition;
-        String strApp = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c,(Select Id, Name from Education_History__r ) from MUSW__Application2__c where '+appCondition;
+        //String strApp = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC),(Select Id, Name from Education_History__r ) from MUSW_Application2__c where '+appCondition;
+        String strApp = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c from MUSW__Application2__c where '+appCondition;
         appList = Utilityclass_withsharing.queryRecords(strApp);
         List<Education_History__c> lstEducations = new List<Education_History__c>();
         
@@ -658,21 +663,23 @@ listApp.add(applicationChild);*/
             if(objWrapper.sectionName.contains('Questions') && questionsIncomplete==true){
                 objWrapper.sectionError = true;
             }
-            if(objWrapper.sectionName.contains('Attachments') && submissionsIncomplete==true){
-                objWrapper.sectionError = true;
-            }
             if(objWrapper.mandatorySubsection != null){
                 lstMandatorySubsection = objWrapper.mandatorySubsection.split(',') ;
                 if(lstMandatorySubsection != null){
                     for(String mandatorySubSection : lstMandatorySubsection){
                         system.debug('mandatorySubsection098'+ mandatorySubSection);
-                        if(mandatorySubSection == 'Qualifying Education' && lstEducations.isEmpty()) {
-                            objWrapper.sectionError = true;
-                        }
                         if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                             if(mapAddress.isEmpty()){
                                 objWrapper.sectionError = true;
                             } else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
+                                system.debug('inside the mandatory');
+                                objWrapper.sectionError = true;
+                            }
+                        }
+                        else if((mandatorySubSection == 'Qualifying Education' || mandatorySubSection == 'Qualifying Training' || mandatorySubSection == 'Qualifying Experience')  ){
+                            if(mapEducation.isEmpty()){
+                                objWrapper.sectionError = true;
+                            } else if(mapEducation.get(mandatorySubSection) == null ||  mapEducation.get(mandatorySubSection).size() == 0 ){
                                 system.debug('inside the mandatory');
                                 objWrapper.sectionError = true;
                             }
@@ -716,6 +723,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
             stringJSON = stringJSON.replaceAll('\\bApplication\\b', 'Application_BG__c');
             stringJSON = stringJSON.replaceAll('\\bMUSW_Application2\\b', 'MUSW__Application2__c');
             stringJSON = stringJSON.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
+            // stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
             stringJSON = stringJSON.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
             // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
             
@@ -754,22 +762,15 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                     }
                     update lstParcels;                
                 }
-                List<Education_History__c> lstEduHist = new List<Education_History__c>();            
-                if(appListOtherDetils[0].Education_History__r != null && appListOtherDetils[0].Education_History__r.size()>0){
-                    for(Education_History__c EduHist : appListOtherDetils[0].Education_History__r){
-                        EduHist.Renewal_Reinstatement_Application__c = licenseID; 
+                List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
+                if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
+                    for(LnP_BackgroundSection__c EduHist : appListOtherDetils[0].LnP_BackgroundSections__r){
+                        EduHist.License_Bg__c = licenseID; 
                         lstEduHist.add(EduHist);
                     }
                     update lstEduHist;                
                 }   
-                List<Employment_History__c> lstEmpHist = new List<Employment_History__c>();            
-                if(appListOtherDetils[0].Employment_History__r != null && appListOtherDetils[0].Employment_History__r.size()>0){
-                    for(Employment_History__c EmpHist : appListOtherDetils[0].Employment_History__r){
-                        EmpHist.Renewal_Reinstatement_Application__c = licenseID; 
-                        lstEmpHist.add(EmpHist);
-                    }
-                    update lstEmpHist;                
-                }
+                
                 List<BGCK__Answer__c> lstAnswers = new List<BGCK__Answer__c>();  
                 system.debug('lstAnswers '+lstAnswers);
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
@@ -872,6 +873,21 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
             }
         }
         return  mapAddress ;
+    }
+    //Fetch BackgroundInformation
+    public static Map<String,List<LnP_BackgroundSection__c>> getBackgroundInformation (Set<Id> appId) {
+        Map<String, List<LnP_BackgroundSection__c>> mapBackgroundInfo =  new Map<String,List<LnP_BackgroundSection__c>>();
+        List<LnP_BackgroundSection__c> lstBackground = [SELECT Id, RecordType.name , Application_BG__c FROM LnP_BackgroundSection__c WHERE Application_BG__c IN :appId and RecordTypeID != null];
+        if(!lstBackground.isEmpty()){
+            for(LnP_BackgroundSection__c backgroundInfo : lstBackground) {
+                if(mapBackgroundInfo.containsKey(backgroundInfo.RecordType.name )) {
+                    mapBackgroundInfo.get(backgroundInfo.RecordType.name ).add(backgroundInfo);
+                } else {
+                    mapBackgroundInfo.put(backgroundInfo.RecordType.name, new List<LnP_BackgroundSection__c>{backgroundInfo});
+                }
+            }
+        }
+        return  mapBackgroundInfo ;  
     }
     public static String getFormattedValue(String str) {
         return str != null ? str.replace('\r\n', ' ').replace('\n', ' ').escapeHtml4() : str;

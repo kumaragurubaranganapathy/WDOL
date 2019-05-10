@@ -78,7 +78,7 @@
         var curTab= component.get("v.currentTab");		
         var tabNumber = component.get("v.currentTab");
         var totalTabNumber = component.get("v.totalTabs");
-         
+        component.set("v.submitButtonDisable", "true"); 
         component.set("v.currentTab", tabNumber+1);
         tabNumber++;
         if(totalTabNumber ==tabNumber){
@@ -283,6 +283,49 @@
 	},
     certificateCheckbox: function(component, event){
         //var selectedValue = event.getSource().get("v.checked");
+    },
+    onCheckboxChange: function(component, event){
+        this.toEnableSubmitButtonCheck(component, event);
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"){
+            component.set("v.submitButtonDisable", "false");
+        }
+        else {
+            component.set("v.submitButtonDisable", "true");
+        }
+    },
+    onAttestationChange: function(component, event, helper) {
+		this.toEnableSubmitButtonCheck(component, event);
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"){
+            component.set("v.submitButtonDisable", "false");
+        }
+        else {
+            component.set("v.submitButtonDisable", "true");
+        }
+	},
+    toEnableSubmitButtonCheck: function(component, event, helper) {
+		var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
+        var counter = 0;
+        for(var i=0; i < totalCheckbox.length; i++ ){
+            if(document.getElementById('cert'+i).checked === true){
+                counter = counter + 1;
+            }
+        }        
+        if(totalCheckbox.length == counter) {
+            component.set("v.certificateValues", true);
+            //component.set("v.certificateError", "");
+        } else {
+            component.set("v.certificateValues", false);
+            //component.set("v.certificateError", "All checkbox's must be checked.");
+        }
+		var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
+        var givenName = component.get("v.attestValue").trim().toLowerCase();
+        if(attestedName == givenName){
+            component.set("v.attestationStatus", true);
+            //component.set("v.attestationError", "");
+        } else {
+            component.set("v.attestationStatus", false);
+            //component.set("v.attestationError", "Name should be same.");
+        }        
     },
     checkboxValidation: function(component, event){
         var totalCheckbox = document.getElementsByClassName("certificate-checkbox");

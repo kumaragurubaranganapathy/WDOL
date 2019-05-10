@@ -35,6 +35,7 @@
     <aura:attribute name="showMessage" type="Boolean" default="false" />
     <aura:attribute name="title" type="String" /> 
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+    <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -134,7 +135,7 @@
                                             <div class="slds-form-element">
                                               <div class="slds-form-element__control">
                                                 <div class="slds-checkbox certificate-checkbox">
-                                                  <input type="checkbox" name="{!'cert'+questionItem}" id="{!'cert'+questionItem}" />
+                                                  <input type="checkbox" name="{!'cert'+questionItem}" id="{!'cert'+questionItem}" onchange="{!c.onCheckboxChange}"/>
                                                   <label class="slds-checkbox__label" for="{!'cert'+questionItem}">
                                                     <span class="slds-checkbox_faux"></span>
                                                     <span class="slds-form-element__label">{!question.label}</span>
@@ -149,7 +150,7 @@
                                         <div class="reviewHeading attestation">DECLARATION</div><br/>
                                         <div class="attestBody">Declare before proceeding.</div>
                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
-                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation"/>                                            
+                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                            (<span>{!v.currentUser.Name}</span>)
                                         </div>
                                         <aura:if isTrue="{!v.showMessage}">
@@ -270,7 +271,7 @@
         <div class="slds-grid slds-m-top_xx-large button-section">
             <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp'}"/>
             <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" class="{!and(v.AttFlagForsubmit, v.currentTab==v.totalTabs)?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->

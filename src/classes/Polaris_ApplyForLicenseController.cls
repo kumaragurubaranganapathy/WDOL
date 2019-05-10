@@ -412,9 +412,11 @@ public class Polaris_ApplyForLicenseController {
         Boolean questionsIncomplete = false;
         Boolean submissionsIncomplete = true;
         Map<String,List<LnP_Parcel__c>> mapAddress = new  Map<String,List<LnP_Parcel__c>>();
+        Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
         mapAddress = getAddresses(setAppId);
+        mapEducation = getBackgroundInformation(setAppId);
         System.debug('dataString---->'+dataString);
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
         Integer questionsAnswered=0;
@@ -498,9 +500,9 @@ public class Polaris_ApplyForLicenseController {
             }
         }
         if(submissionFields.size()>0){
-            
             Set<String> docId = new Set<String>();
             Map<Id,Id> docLinkMap = new Map<Id,Id>();
+            Integer filesSubmitted = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
                 if(fieldMap.multiValues != null && fieldMap.multiValues.size()>0){
                     docId.addAll(fieldMap.multiValues);
@@ -519,10 +521,16 @@ public class Polaris_ApplyForLicenseController {
                 }    
             }
             Integer count = 0;
-            Integer filesSubmitted = 0;
             system.debug('submissionFields'+submissionFields);
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
-                
+                if(fieldMap.isMandatorySub == true){
+                    count++;
+                }
+                if(fieldMap.isMandatorySub == true && !fieldMap.multiValues.isEmpty()){
+                    filesSubmitted++;
+                }
+                system.debug('counttotal'+count);
+                system.debug('filesSubmitted'+filesSubmitted);
                 if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
                     for(String contentdocId : fieldMap.multiValues){
                         Integer innerCount = 0;
@@ -559,21 +567,14 @@ public class Polaris_ApplyForLicenseController {
                         
                         bodySub.ContentDocumentId = contentdocId +';'+ bodySub.ContentDocumentId ;
                     }
-                   // filesSubmitted++;
                 }
                 requestDetailSub.body = bodySub;
                 requestDetailsList.add(requestDetailSub);
-               /* if(fieldMap.isMandatorySub == true){
-                 count++;
-                }*/
             }
-            submissionsIncomplete = false;
-            system.debug('filesSubmitted123'+filesSubmitted);
-            system.debug('filesSubmittedcount'+count);
-            //validationForSubmissions:
-           /* if(filesSubmitted == count){//change logic to not equals to count, where count is the number of complete submissions
-                submissionsIncomplete = false;
-            }*/
+             submissionsIncomplete = false;
+             if(filesSubmitted != count) {//change logic to not equals to count, where count is the number of complete submissions
+                submissionsIncomplete = true;
+            }
         } 
         finalRequest.compositeRequest = requestDetailsList;
         String JSONstr = JSON.serialize(finalRequest);
@@ -606,27 +607,15 @@ public class Polaris_ApplyForLicenseController {
         List<MUSW__Application2__c> appList =new List<MUSW__Application2__c>();
         String appCondition = 'Id=\''+appId+'\'';
         //String strApp = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC),(Select Id, Name from Education_History__r ) from MUSW_Application2__c where '+appCondition;
-        String strApp = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c,(Select Id, Name from Education_History__r ) from MUSW__Application2__c where '+appCondition;
+        String strApp = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c from MUSW__Application2__c where '+appCondition;
         appList = Utilityclass_withsharing.queryRecords(strApp);
         List<Education_History__c> lstEducations = new List<Education_History__c>();
         
         MUSW__Application2__c application = new MUSW__Application2__c();
         if(appList.size()>0){
-            /*List<LnP_Licence_Application__c> listAppDelete = new List<LnP_Licence_Application__c>();
-            if(appList[0].License_Application__r != null && appList[0].License_Application__r.size()>0){
-                listAppDelete.addAll(appList[0].License_Application__r);
-            }*/
-            
-            if(appList[0].Education_History__r != null && appList[0].Education_History__r.size() >0){
-               // lstEducations = 
-                lstEducations.addAll(appList[0].Education_History__r);
-            }
-           // delete listAppDelete;
             application = appList[0];
             application.id = appList[0].id;
-            application.Stage__c = Integer.valueOf(tabNumber);
-           // application.MUSW_Applicant__c = getContactId;
-            
+            application.Stage__c = Integer.valueOf(tabNumber);            
         }
         else{
             application.MUSW__Applicant__c = getContactId;
@@ -637,17 +626,7 @@ public class Polaris_ApplyForLicenseController {
         Integer count = 1;
       
         while(count != 20){
-           /* LnP_Licence_Application__c applicationChild = new LnP_Licence_Application__c();
-            applicationChild.Contact__c = getContactId;
-            applicationChild.Sequence__c = count;
-            if(accountId != ''){
-                applicationChild.Account__c = accountId;
-            }
-            
-            applicationChild.Licence_Application_Bg__c = appId;*/
             if(jsonString.length() <= 131072){
-              /*  applicationChild.LnP_Form_JSON__c = jsonString;
-                listApp.add(applicationChild);*/
                 application.Form_JSON__c = jsonString;
                 break;
             }
@@ -655,12 +634,8 @@ public class Polaris_ApplyForLicenseController {
                 application.Form_JSON__c = jsonString.subString(0,32768);
                 jsonString = jsonString.subString(32768,jsonString.length());
             }
-           // listApp.add(applicationChild);
             count++;
         }  
-       // insert listApp;
-      //  string recID = listApp[0].ID;
-     //   system.debug('listApp'+ recID);
         
         //Subsection  error
         List<String> lstMandatorySubsection;
@@ -670,21 +645,23 @@ public class Polaris_ApplyForLicenseController {
             if(objWrapper.sectionName.contains('Questions') && questionsIncomplete==true){
                 objWrapper.sectionError = true;
             }
-            if(objWrapper.sectionName.contains('Attachments') && submissionsIncomplete==true){
-                objWrapper.sectionError = true;
-            }
             if(objWrapper.mandatorySubsection != null){
                 lstMandatorySubsection = objWrapper.mandatorySubsection.split(',') ;
                 if(lstMandatorySubsection != null){
                     for(String mandatorySubSection : lstMandatorySubsection){
                         system.debug('mandatorySubsection098'+ mandatorySubSection);
-                        if(mandatorySubSection == 'Qualifying Education' && lstEducations.isEmpty()) {
-                            objWrapper.sectionError = true;
-                        }
                         if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                             if(mapAddress.isEmpty()){
                                 objWrapper.sectionError = true;
                             } else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
+                                system.debug('inside the mandatory');
+                                objWrapper.sectionError = true;
+                            }
+                        }
+                       else if((mandatorySubSection == 'Qualifying Education' || mandatorySubSection == 'Qualifying Training' || mandatorySubSection == 'Qualifying Experience')  ){
+                            if(mapEducation.isEmpty()){
+                                objWrapper.sectionError = true;
+                            } else if(mapEducation.get(mandatorySubSection) == null ||  mapEducation.get(mandatorySubSection).size() == 0 ){
                                 system.debug('inside the mandatory');
                                 objWrapper.sectionError = true;
                             }
@@ -755,10 +732,9 @@ public class Polaris_ApplyForLicenseController {
             //Setup  for the populating the details
             List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
            // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
-            String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,License__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
+            String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,License__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
             system.debug('StrApp Query--->'+strAppOther);
             appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
-            
             List<LnP_Parcel__c> lstParcels = new List<LnP_Parcel__c>();            
             if(appListOtherDetils[0].LnP_Parcels__r != null && appListOtherDetils[0].LnP_Parcels__r.size()>0){
                 for(LnP_Parcel__c parcel : appListOtherDetils[0].LnP_Parcels__r){
@@ -767,22 +743,14 @@ public class Polaris_ApplyForLicenseController {
                 }
                 update lstParcels;                
             }
-            List<Education_History__c> lstEduHist = new List<Education_History__c>();            
-            if(appListOtherDetils[0].Education_History__r != null && appListOtherDetils[0].Education_History__r.size()>0){
-                for(Education_History__c EduHist : appListOtherDetils[0].Education_History__r){
-                    EduHist.License__c = licenseID; 
+            List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
+            if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
+                for(LnP_BackgroundSection__c EduHist : appListOtherDetils[0].LnP_BackgroundSections__r){
+                    EduHist.License_Bg__c = licenseID; 
                     lstEduHist.add(EduHist);
                 }
                 update lstEduHist;                
             }   
-            List<Employment_History__c> lstEmpHist = new List<Employment_History__c>();            
-            if(appListOtherDetils[0].Employment_History__r != null && appListOtherDetils[0].Employment_History__r.size()>0){
-                for(Employment_History__c EmpHist : appListOtherDetils[0].Employment_History__r){
-                    EmpHist.License__c = licenseID; 
-                    lstEmpHist.add(EmpHist);
-                }
-                update lstEmpHist;                
-            }
            List<BGCK__Answer__c> lstAnswers = new List<BGCK__Answer__c>();  
             system.debug('lstAnswers '+lstAnswers);
             if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
@@ -800,8 +768,6 @@ public class Polaris_ApplyForLicenseController {
                 }
                 update lstSubmissions;                
             }
-            
-            
             update appList[0];
             
         }   
@@ -823,7 +789,7 @@ public class Polaris_ApplyForLicenseController {
             mstLicense.Credential_Type__c = application.Credential_Type__c;
             mstLicense.Credential__c = application.Credential_Type__c;
             mstLicense.Application_Method__c = application.Application_Method__c;
-			if(application.MUSW__Account__c!=null)
+            if(application.MUSW__Account__c!=null)
             {
                 mstLicense.RecordTypeId = businessRT;
             }
@@ -885,8 +851,23 @@ public class Polaris_ApplyForLicenseController {
         }
         return  mapAddress ;
     }
+    //Fetch BackgroundInformation
+    public static Map<String,List<LnP_BackgroundSection__c>> getBackgroundInformation (Set<Id> appId) {
+      Map<String, List<LnP_BackgroundSection__c>> mapBackgroundInfo =  new Map<String,List<LnP_BackgroundSection__c>>();
+      List<LnP_BackgroundSection__c> lstBackground = [SELECT Id, RecordType.name , Application_BG__c FROM LnP_BackgroundSection__c WHERE Application_BG__c IN :appId and RecordTypeID != null];
+      if(!lstBackground.isEmpty()){
+            for(LnP_BackgroundSection__c backgroundInfo : lstBackground) {
+                if(mapBackgroundInfo.containsKey(backgroundInfo.RecordType.name )) {
+                    mapBackgroundInfo.get(backgroundInfo.RecordType.name ).add(backgroundInfo);
+                } else {
+                    mapBackgroundInfo.put(backgroundInfo.RecordType.name, new List<LnP_BackgroundSection__c>{backgroundInfo});
+                }
+            }
+        }
+        return  mapBackgroundInfo ;  
+    }
     public static String getFormattedValue(String str) {
-        return str != null ? str.replace('\r\n', ' ').replace('\n', ' ').escapeHtml4() : str;
+        return str != null ? str.replace('\r\n', ' ').replace('\n', ' ').escapeHtml4() : str; 
     }
     
 }
