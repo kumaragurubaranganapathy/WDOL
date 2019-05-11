@@ -91,12 +91,21 @@ public class LnP_WizardApexController {
     }
    
     private static List<Account> getAccountList(){        
-        List<Account> lstAccount = new List<Account>();
-        Id AccoundId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
-        for (Account ao : [select ID, Name, RecordType.Id from  Account where RecordType.Id =: AccoundId AND Owner.Id =: UserInfo.getUserId()]){
-            lstAccount.add(ao);
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        Id getContactId;
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        Set<Id> setAcctId = new  Set<Id>();
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
         }
-        return lstAccount;
+        for (MUSW__Account_Contact__c ac : [SELECT Id, MUSW__Account__c,MUSW__Contact__c, MUSW__Account__r.Id,MUSW__Account__r.Name, MUSW__Account__r.Business_Alias__c from  MUSW__Account_Contact__c where MUSW__Contact__c =: getContactId])
+        {
+                   setAcctId.add(ac.MUSW__Account__r.Id);     
+        }
+        
+        return [Select Id,Name From Account where id IN: setAcctId];
     }
 	
     @AuraEnabled
