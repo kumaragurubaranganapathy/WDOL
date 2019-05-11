@@ -92,8 +92,8 @@ public class LnP_WizardApexController {
    
     private static List<Account> getAccountList(){        
         List<Account> lstAccount = new List<Account>();
-         //Id AccoundId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business_Account').getRecordTypeId();
-        for (Account ao : [select ID, Name from  Account ]){
+        Id AccoundId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
+        for (Account ao : [select ID, Name, RecordType.Id from  Account where RecordType.Id =: AccoundId AND Owner.Id =: UserInfo.getUserId()]){
             lstAccount.add(ao);
         }
         return lstAccount;
