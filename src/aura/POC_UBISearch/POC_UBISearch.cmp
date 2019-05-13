@@ -1,0 +1,19 @@
+<aura:component description="POC_UBISearch" controller="Dol_UBISearchTransform" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+    <aura:attribute name= "recordId" type ="ID" />
+    <aura:attribute name ="status" type ="String" />
+    <aura:attribute name ="ubiNumber" type ="String" />
+    <aura:attribute name="conatct" type="Account" />
+     <aura:handler name="init" action="{!c.doinit}" value="{!this}"/>
+    <div class = "slds-form-element__group">
+        <div class="slds-form-element__row">
+            <div class="slds-form-element slds-size_1-of-2">                        
+              
+                <lightning:input label="UBI#" aura:id="addressLine1" required="true" disabled="false" value="{!v.ubiNumber}" onkeyup="{!c.format}" maxlength = "11"/>
+            </div>
+        </div>
+    </div><br/>
+    <div>
+        <lightning:button variant="neutral" label="Search" onclick="{!c.search}"/>
+    </div>
+</aura:component>

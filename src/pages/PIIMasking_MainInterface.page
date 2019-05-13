@@ -1,0 +1,323 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name                : PIIMasking_MainInterface
+** Description      :  As a system admin user, I want to be able to see the past jobs run to mask the PII data on certain objects 
+and have the ability to schedule the Apex Job for masking the PII in the sandbox at any given time. 
+** Version             : 1.0
+** Built By             : Akosa Okwudiafor
+**-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                         Date                    Version                      Description
+**-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**
+**
+** Review Log:
+**---------------
+** Reviewer                  Date           Version               Description
+**-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<!-- This only renders if the user is a System Adminstrator-->
+<apex:page Controller="PIIMasking_MainInterface_Constructor" standardStylesheets="false" sidebar="false" rendered="{!IF($Profile.Name =='System Administrator', true, false)}" docType="html-5.0"  >
+    <head>
+        <title> E License Admin</title>
+        <meta charset="utf-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"/>
+        <apex:includeScript value="{!$Resource.JQueryMin}"/>
+        <apex:includeScript value="{!$Resource.Bootstrap}"/>
+        <link href="{!URLFOR($Resource.Bootstrap, 'css/bootstrap.css')}" rel="stylesheet"/>
+        
+    </head>
+    <!-- This only renders in a sandbox-->
+    <apex:form rendered="{!(inSandBox)}">
+        <br/>
+        <div class="container-fluids" >
+            <div  class="panel  panel-default">
+                <div class="panel-body">
+                    <div  class="header">
+                        <h2>
+                            <b>E License Admin</b>
+                        </h2>
+                    </div>
+                    <br/>
+                    <br/>
+                    <!-- This is the container that has a dropdown for selecting the object to be masked.-->
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3 " >
+                            <label class="control-label" for="objects">  Choose the Object to Masked:</label>
+                        </div>
+                        <div class="col-xs-5 col-md-3">
+                            <apex:selectList styleClass="form-control" onchange="fieldFromObject()" value="{!selectedObject}"  size="1" >
+                                <apex:selectOptions id="objects" value="{!objectList}" />
+                            </apex:selectList>
+                            <apex:actionFunction name="allFields" action="{!returnAllfields}"  rerender="fieldsCollection,messagePanel,maskingWayAndField"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <!-- This is the container that has the selectbox for the fields , the user has the option of selecting , unselecting , selecting all and unselect all field options.-->
+                    <div class="row" id="fieldsList">
+                        <div class="col-xs-12 col-md-3">
+                            <label class="control-label" for="fieldsCollection">
+                                Choose the Fields to Masked:
+                            </label>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            
+                            <apex:panelGrid columns="12" id="fieldsCollection">
+                                <apex:selectList id="unSelectedFields" value="{!selecteditems}" styleClass="selected form-control  " multiselect="true"  size="12" >
+                                    <apex:selectOptions value="{!unSelectedValues}" />
+                                </apex:selectList>
+                                <apex:panelGroup >
+                                    <br/>
+                                    <apex:commandButton styleClass="btn btn-primary btnsize" action="{!selectClick}" reRender="waytomaskfields, fieldsCollection,messagePanel,maskingWayAndField"  value=">" id="movebutton" />
+                                    <br/><br/>
+                                    <apex:commandButton styleClass="btn btn-primary btnsize" action="{!unSelectClick}"  reRender="waytomaskfields, fieldsCollection,maskingWayAndField" value="<" id="removebutton" />
+                                    <br/><br/>
+                                    <apex:commandButton styleClass="btn btn-primary btnsize doublearrow" action="{!selectAllClick}" reRender="waytomaskfields, fieldsCollection,messagePanel,maskingWayAndField" value=">>" id="moveallbutton" />
+                                    <br/><br/>
+                                    <apex:commandButton styleClass="btn btn-primary btnsize doublearrow" action="{!unSelectAllClick}" reRender="waytomaskfields, fieldsCollection,maskingWayAndField" value="<<" id="removeallbutton" />
+                                </apex:panelGroup>
+                                <apex:selectList id="selectedFields" styleClass="selected form-control" value="{!deSelectedItems}" multiselect="true"  size="12">
+                                    <apex:selectOptions value="{!SelectedValues}" />
+                                </apex:selectList>
+                            </apex:panelGrid>
+                            <apex:actionFunction name="placeholder" />
+                        </div>
+                    </div>
+                    <br/>
+                    <!-- This is the container for displaying the item being masked and how it is being masked.-->
+                    <div class="row " id="infoForFieldMasking">
+                        <div class="col-xs-12 col-md-3">
+                            <label class="control-label" for="maskingWayAndField">
+                                Masking Information:
+                            </label>
+                        </div>
+                        <div class="col-xs-12 col-md-5">
+                            <apex:panelGrid columns="12" id="maskingWayAndField">
+                                <apex:actionFunction name="placeholder" />
+                                <apex:repeat value="{!waytomaskwhatfield}" var="info" >
+                                    <h5><i>
+                                        {!info}    {!waytomaskwhatfield}
+                                        </i>
+                                        <br/>
+                                    </h5>
+                                </apex:repeat>
+                            </apex:panelGrid>
+                        </div>
+                    </div>
+                    <br/>
+                    <!-- This is the container for the submit button and the alerts based on the form submission.-->
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <apex:outputPanel id="messagePanel">
+                                <apex:panelGroup >
+                                    <apex:commandButton styleClass="btn btn-primary" action="{!objectsandfieldstobemasked}" reRender="apexjobs,messagePanel,fieldsCollection" value="Mask the fields" id="maskingFields" />
+                                    <br/>
+                                    <h5>
+                                        <br/>
+                                        <apex:outputPanel rendered="{!successMessage=='The batch is scheduled for execution.'}">
+                                            <div class="alert alert-success">
+                                                <strong>  <p class="text-center">
+                                                    {!successMessage}
+                                                    </p> </strong>
+                                            </div>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!failedMessage=='No field was selected.'}">
+                                            <div class="alert alert-danger span4 offset-4">
+                                                <strong>  <p class="text-center">
+                                                    {!failedMessage}
+                                                    </p> </strong>    
+                                            </div>
+                                        </apex:outputPanel>
+                                    </h5>
+                                </apex:panelGroup>
+                                
+                            </apex:outputPanel>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- This is the container for two tables , one of the tables is the for a mobile version while the other only runs on the wide screeens-->
+            <div  class="panel panel-default">
+                <div class="panel-body">
+                    
+                    <apex:outputPanel title=" Apex  Jobs" id="apexjobs" styleClass="col-xs-12">
+                        <table class="table table-striped table-responsive table-bordered table-hover displayformobile"  >
+                            <caption>Apex  Jobs</caption>
+                            <tr>
+                                <th>Completion date</th>
+                                <th> Batch Owner</th>
+                            </tr>
+                            <tr>
+                                <apex:repeat value="{!jobs}" var="job">
+                                    <tr>
+                                        <td>
+                                            <apex:outputField value="{!job.CompletedDate}" />
+                                        </td>
+                                        <td>
+                                            <apex:outputField value="{!job.CreatedBy.Name}" />
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                            </tr>
+                        </table>
+                        <table class="table table-striped table-responsive table-bordered table-hover hideformobile "  >
+                            <caption>Apex  Jobs</caption>
+                            <tr>
+                                <th>Job Type</th>
+                                <th>Apex class</th>
+                                <th>Status</th>
+                                <th>Batches Processed</th>
+                                <th>Total Batches</th>
+                                <th>Completion date</th>
+                                <th>Status detail</th>
+                                <th>Failures</th>
+                                <th>Batch Owner</th>
+                                <th>Batch Name</th>
+                            </tr>
+                            <apex:repeat value="{!jobs}" var="job">
+                                <tr>
+                                    <td>
+                                        <apex:outputField value="{!job.JobType}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.ApexClassId}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.Status}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.JobItemsProcessed}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.TotalJobItems}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.CompletedDate}" />
+                                    </td>
+                                    <td>
+                                       <!-- <apex:outputField value="{!job.ExtendedStatus}" />-->
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.NumberOfErrors}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.CreatedBy.Name}" />
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!job.ApexClass.name}" />
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                        </table>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+        <!--  <apex:actionFunction name="jobs" /> -->
+        <apex:actionPoller action="{!updateJobs}" rerender="apexjobs" interval="60"/>
+    </apex:form>
+    
+    <!-- This is the container only runs when the page is accessed in any environment apart from the sandbox-->
+    <apex:outputPanel rendered="{!(!insandbox)}">
+        <br/>
+        <div class="container-fluid" >
+            <div  class="panel panel-default">
+                <div class="panel-body">
+                    <div class="header">
+                        <h2>
+                            <b>E License Admin</b>
+                        </h2>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3">
+                            <apex:outputText value="This is a Production org, and this feature is inaccessible."/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:outputPanel>
+    <script>
+    function fieldFromObject()
+    {
+        allFields() ;
+    }
+    
+    //runs for the first object so the fields list is not empty
+    $( document ).ready(function() {
+        allFields() ;
+    });
+    
+    
+    </script>
+    <style>
+        .panel{
+        background-color:#f1f0ed;
+        }
+        .header {
+        border-bottom:solid 2px black;
+        } 
+        .btnsize{
+        width:35px;
+        }
+        .doublearrow{
+        padding-left:10px;
+        }
+        .selected{
+        width:200px
+        }
+        .displayformobile{
+        display:none;
+        }
+        @media only screen and (max-width: 480px) {
+        .selected{
+        width:149px;
+        padding-left:-10px;
+        word-wrap: break-word
+        }
+        .btnsize{
+        width:30px;
+        }
+        .doublearrow{
+        padding-left:6px;
+        }
+        .hideformobile{
+        display:none;
+        }
+        .displayformobile{
+        display:inline;
+        }
+        .select[multiple], select[size]
+        {
+        padding-left:0px;
+        }
+        }     
+        
+        .table {
+        table-layout: fixed;
+        word-wrap: break-word;
+        }
+        .table-bordered td, .table-bordered th{
+        border-color: black !important;
+        }
+        th{
+        white-space: normal;
+        }
+        .btn-primary {
+        background-color: #3b6280;
+        border-color: #294459;
+        font-weight: bold;
+        }
+        body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+        background: #3b6280;
+        color:#fff;
+        font-weight: bold;
+        }
+    </style>
+</apex:page>

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Edit Checklist Question --></label>
+        <name>Edit_Checklist_Question</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Question Basic --></label>
+        <name>Question_Basic</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Allow Multiple Question Groups --></label>
+        <name>Allow_Multiple_Question_Groups__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Method --></label>
+        <name>Application_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment Required --></label>
+        <name>Attachment_Required__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>BGCK__Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Body --></label>
+        <name>BGCK__Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist Version --></label>
+        <name>BGCK__Checklist_Version__c</name>
+        <relationshipLabel><!-- Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Criteria --></label>
+        <name>BGCK__Criteria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical --></label>
+        <name>BGCK__Historical__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Number --></label>
+        <name>BGCK__Question_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <lookupFilter>
+            <errorMessage><!-- Value does not exist or does not match filter criteria. --></errorMessage>
+        </lookupFilter>
+        <name>BGCK__Question_Type__c</name>
+        <relationshipLabel><!-- Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Question --></label>
+        <name>BGCK__Question__c</name>
+        <relationshipLabel><!-- Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section Name --></label>
+        <name>BGCK__Section_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tip --></label>
+        <name>BGCK__Tip__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tracking Number --></label>
+        <name>BGCK__Track_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Optional --></label>
+        <name>BGCK__isOptional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Chevron Type --></label>
+        <name>Chevron_Type__c</name>
+        <picklistValues>
+            <masterLabel>Financial Guarantee</masterLabel>
+            <translation><!-- Financial Guarantee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Background</masterLabel>
+            <translation><!-- Legal Background --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Questions</masterLabel>
+            <translation><!-- Questions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Child Question Group --></label>
+        <name>Child_Question_Group__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please ensure that the field is on the object in the &quot;Parent Object Field API Name&quot; field. --></help>
+        <label><!-- Compliance Field API Name --></label>
+        <name>Compliance_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential Type --></label>
+        <name>Credential_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Type --></label>
+        <name>Data_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Style --></label>
+        <name>Display_Style__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Date --></label>
+        <name>Effective_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Eligibility questions determine appType --></label>
+        <name>Eli_Ques_determines_App_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Answer Parent Field Value Map --></label>
+        <name>Expected_Answer_Parent_Field_Value_Map__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID of Question type --></label>
+        <name>External_ID_of_Question_type__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id of Parent --></label>
+        <name>External_Id_of_Parent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Any Submission --></label>
+        <name>Has_Any_Submission__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has dependent questions? --></label>
+        <name>Has_dependent_questions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Background Question --></label>
+        <name>Legal_Background_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mulesoft External Id --></label>
+        <name>Mulesoft_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Number --></label>
+        <name>Order_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Object API Name --></label>
+        <name>Parent_Object_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Object Field API Name --></label>
+        <name>Parent_Object_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit Type --></label>
+        <name>Permit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Possible Responses --></label>
+        <name>Possible_Responses__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Question Version --></label>
+        <name>Previous_Question_Version__c</name>
+        <relationshipLabel><!-- Questions (Previous Question Version) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Program Area --></label>
+        <name>Program_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qualifying Response --></label>
+        <name>Qualifying_Response__c</name>
+    </fields>
+    <fields>
+        <label><!-- QuestionFieldAPI --></label>
+        <name>QuestionFieldAPI__c</name>
+    </fields>
+    <fields>
+        <label><!-- QuestionObjectName --></label>
+        <name>QuestionObjectName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Body --></label>
+        <name>Question_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Group --></label>
+        <name>Question_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Sub Section --></label>
+        <name>Question_Sub_Section__c</name>
+        <relationshipLabel><!-- Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Question is Compliance Related? --></label>
+        <name>Question_is_Compliance_Related__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Name --></label>
+        <name>Record_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Order --></label>
+        <name>Section_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Request Type --></label>
+        <name>Service_Request_Type__c</name>
+        <picklistValues>
+            <masterLabel>Change Name</masterLabel>
+            <translation><!-- Change Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exam Re-Application</masterLabel>
+            <translation><!-- Exam Re-Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdraw Application</masterLabel>
+            <translation><!-- Withdraw Application --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Show For --></label>
+        <name>Show_For__c</name>
+        <picklistValues>
+            <masterLabel>Answer</masterLabel>
+            <translation><!-- Answer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credential</masterLabel>
+            <translation><!-- Credential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credential Reinstatement</masterLabel>
+            <translation><!-- Credential Reinstatement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credential Renewal</masterLabel>
+            <translation><!-- Credential Renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>License</masterLabel>
+            <translation><!-- License --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permit</masterLabel>
+            <translation><!-- Permit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permit Reinstatement</masterLabel>
+            <translation><!-- Permit Reinstatement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permit Renewal</masterLabel>
+            <translation><!-- Permit Renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Request</masterLabel>
+            <translation><!-- Service Request --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Header --></label>
+        <name>Sub_Header__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Sub Header --></label>
+        <name>Sub_Sub_Header__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submission Title --></label>
+        <name>Submission_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Comment Box Value --></label>
+        <name>Triggering_Comment_Box_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Field API Name --></label>
+        <name>Triggering_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Field Value --></label>
+        <name>Triggering_Field_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Parent Answer --></label>
+        <name>Triggering_Parent_Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Version --></label>
+        <name>Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mulesoft Ext Id --></label>
+        <name>WADOL_Mulesoft_Ext_Id__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Background Information --></label>
+        <name>Background_Information</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Background Questions --></label>
+        <name>Background_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Educational Background Questions --></label>
+        <name>Educational_Background_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Eligibility Questions --></label>
+        <name>Eligibility_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Endorsement --></label>
+        <name>Endorsement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Financial Guarantee --></label>
+        <name>Financial_Guarantee</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Review and Submit --></label>
+        <name>Review_and_Submit</name>
+    </recordTypes>
+</CustomObjectTranslation>

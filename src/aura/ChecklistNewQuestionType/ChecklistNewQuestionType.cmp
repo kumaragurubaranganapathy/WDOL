@@ -1,0 +1,16 @@
+<aura:component >
+	doInit: function(component, event, helper) {
+helper.handleReadMode(component);
+},
+saveAnswer: function(component, event, helper) {
+if(helper.isInCurrentSection(component, event)) {
+var response;
+//set response = to the value in the component's input field
+// for our phone number example it would be:
+var input = component.find("bgck-phone");
+response = input.get("v.value");
+// pass the response as a parameter to the shared helper method
+helper.handleResponse(component, response);
+}
+}
+</aura:component>

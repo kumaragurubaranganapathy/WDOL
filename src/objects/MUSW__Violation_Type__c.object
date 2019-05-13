@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Repository of Municipality Code Ordinances and Sections</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Approval_Description__c</fullName>
+        <description>Approval Description</description>
+        <externalId>false</externalId>
+        <label>Approval Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <description>Approval Status</description>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Submit for Approval</fullName>
+                    <default>false</default>
+                    <label>Submit for Approval</label>
+                </value>
+                <value>
+                    <fullName>Pending Approval</fullName>
+                    <default>false</default>
+                    <label>Pending Approval</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Days_to_correct__c</fullName>
+        <externalId>false</externalId>
+        <label>Days to correct</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Abatement_Requirement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Standardized description of the action that must be taken to correct the violation.  This is displayed on the add/edit violation page by default. This can be used in letters.</description>
+        <externalId>false</externalId>
+        <label>Abatement Requirement</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MUSW__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The lookup from the violation to the ordinance table should be restricted to only Active Ordinances.  This allows client to retire violations where codes have been changed or replaced without changing the content of historical violations.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Citation_Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This value can be used to standardize the fine amount for a code violation. The DRE would reference this field.</description>
+        <externalId>false</externalId>
+        <label>Citation Amount</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Code_Number__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <defaultValue>&quot;1-1.1&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Typically, this is a chapter within the Code Book.</description>
+        <externalId>true</externalId>
+        <label>Code Number</label>
+        <length>80</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Code__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Title of the Code Book (ie City Codes, Zoning Code).</description>
+        <externalId>false</externalId>
+        <label>Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>2006 IPMC</fullName>
+                    <default>true</default>
+                    <label>2006 IPMC</label>
+                </value>
+                <value>
+                    <fullName>2006 IBC</fullName>
+                    <default>false</default>
+                    <label>2006 IBC</label>
+                </value>
+                <value>
+                    <fullName>2006 IRC</fullName>
+                    <default>false</default>
+                    <label>2006 IRC</label>
+                </value>
+                <value>
+                    <fullName>City</fullName>
+                    <default>false</default>
+                    <label>City</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__Dangerous__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This value can be pushed to the violation object for reporting and prioritization.</description>
+        <externalId>false</externalId>
+        <label>Dangerous</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Section Text from Municipality Code Book</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MUSW__Estimated_Cost__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This value can be pushed to the violation object for fine creation.</description>
+        <externalId>false</externalId>
+        <label>Estimated Cost</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__First_Reinspection__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allows a different timeframe for a first reinspection versus a subsequent reinspection. This field only has an impact if it is referenced in the Violation Days_to_Correct__c formula.</description>
+        <externalId>false</externalId>
+        <label>First Reinspection</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Second_Reinspection__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allows a different timeframe for a first reinspection versus a subsequent reinspection. This field only has an impact if it is referenced in the Violation Days_to_Correct__c formula.</description>
+        <externalId>false</externalId>
+        <label>Second Reinspection</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__SectionDescription__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specific section within the Code Book.</description>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Section__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Section number within the Code Book.</description>
+        <externalId>false</externalId>
+        <label>Section Number</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Short_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Short Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__WIP_Reinspection__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allows a different timeframe for a first reinspection versus a subsequent reinspection. This field only has an impact if it is referenced in the Violation Days_to_Correct__c formula.</description>
+        <externalId>false</externalId>
+        <label>WIP Reinspection</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_Reinspections__c</fullName>
+        <externalId>false</externalId>
+        <formula>If(MUSW__First_Reinspection__c &lt; 1 || ISBLANK(MUSW__First_Reinspection__c ), 0, 
+If(MUSW__Second_Reinspection__c &lt; 1 || ISBLANK(MUSW__Second_Reinspection__c), 1,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No. Reinspections</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Ordinance</label>
+    <listViews>
+        <fullName>MUSW__All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Description__c</columns>
+        <columns>MUSW__Section__c</columns>
+        <columns>MUSW__SectionDescription__c</columns>
+        <columns>MUSW__Citation_Amount__c</columns>
+        <columns>MUSW__Estimated_Cost__c</columns>
+        <columns>MUSW__Dangerous__c</columns>
+        <columns>MUSW__Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Paragraph_Approval_Queue_Violation_Type</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Paragraph Approval Queue</label>
+        <queue>Paragraph_Approval_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Ordinances</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>DIS</fullName>
+        <active>true</active>
+        <description>DIS Ordinances</description>
+        <label>DIS</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submit for Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Code__c</picklist>
+            <values>
+                <fullName>2006 IBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2006 IPMC</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2006 IRC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>City</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>MUSW__Condition</fullName>
+        <active>true</active>
+        <description>Condition Description Condition Description Condition Description Condition Description Condition Description Condition Description Condition Description Condition Description</description>
+        <label>Condition</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submit for Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Code__c</picklist>
+            <values>
+                <fullName>City</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>MUSW__Ordinance</fullName>
+        <active>true</active>
+        <label>Ordinance</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submit for Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Code__c</picklist>
+            <values>
+                <fullName>2006 IBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2006 IPMC</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2006 IRC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>City</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>MUSW__Standard_Comment</fullName>
+        <active>true</active>
+        <label>Standard Comment</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submit for Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Code__c</picklist>
+            <values>
+                <fullName>2006 IBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2006 IPMC</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2006 IRC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>City</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Paragraph</fullName>
+        <active>true</active>
+        <description>Paragraph</description>
+        <label>Paragraph</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submit for Approval</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Code__c</picklist>
+            <values>
+                <fullName>2006 IBC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2006 IPMC</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2006 IRC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>City</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>MUSW__Short_Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MUSW__Section__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MUSW__Active__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__Short_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__Section__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__Active__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>MUSW__Short_Description__c</searchFilterFields>
+        <searchFilterFields>MUSW__Section__c</searchFilterFields>
+        <searchFilterFields>MUSW__Active__c</searchFilterFields>
+        <searchResultsAdditionalFields>MUSW__Short_Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MUSW__Section__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MUSW__Active__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

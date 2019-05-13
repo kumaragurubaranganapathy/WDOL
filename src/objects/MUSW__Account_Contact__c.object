@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Junction object representing business associations</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Applicant_Cust_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Applicant Cust Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Associate_Status__c</fullName>
+        <description>Associate Status between Account and Contact</description>
+        <externalId>false</externalId>
+        <label>Associate Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>First_Name__c</fullName>
+        <description>Used for SoS Integration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used for SoS Integration</inlineHelpText>
+        <label>First Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name__c</fullName>
+        <description>Used for SoS Integration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used for SoS Integration</inlineHelpText>
+        <label>Last Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the Account.</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Associates</relationshipLabel>
+        <relationshipName>Account_Contacts</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__BG_Account_Cart_Access__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Specifies if the contact has access to pay for the Account&apos;s Cart.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify if the contact has access to pay for the Account&apos;s Cart.</inlineHelpText>
+        <label>Account Cart Access</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the Contact.</description>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Associations</relationshipLabel>
+        <relationshipName>Account_Contacts</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Middle_Name__c</fullName>
+        <description>Used for SoS Integration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used for SoS Integration</inlineHelpText>
+        <label>Middle Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recalculate_Sharing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Recalculating Sharing when this is checked to true</description>
+        <externalId>false</externalId>
+        <label>Recalculate Sharing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <description>Release</description>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <description>Used for SoS Integration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used for SoS Integration</inlineHelpText>
+        <label>Title</label>
+        <length>128</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Account Contact</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Contact__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>ACX-{00000000}</displayFormat>
+        <label>Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Account Contacts</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>
