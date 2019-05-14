@@ -20,7 +20,7 @@ public class DOL_ePaymentSessionTransferDetails {
     public String emailAddress {get; set;}
     public String phoneNumber {get; set;}
     
-    public String returnValue {get; set;}
+    public String returnValue {get; set;} // setting ReceiptId in returnValue
     public String returnURL {get; set;}
     public String SFDCId {get; set;}
     public List<String> SFDCfeeIds {get; set;}
@@ -102,10 +102,11 @@ public class DOL_ePaymentSessionTransferDetails {
         sessionDetailsMap.put('phoneNumber', this.phoneNumber);
         sessionDetailsMap.put('returnURL', this.returnURL);
         sessionDetailsMap.put('SFDCId',this.SFDCId);
-        sessionDetailsMap.put('SFDCfeeId',DOL_AppUtility.getString(this.SFDCfeeIds) );
+        sessionDetailsMap.put('SFDCfeeId',String.join(this.SFDCfeeIds,DOL_AppConstants.ePaymentUrlListValuesSeperator) );
         sessionDetailsMap.put('SFDCappId', ''+this.SFDCappId);
         sessionDetailsMap.put('SFDClicId', ''+this.SFDClicId);
+        sessionDetailsMap.put('returnValue',this.returnValue);
         return sessionDetailsMap;
     }
-    
+
 }

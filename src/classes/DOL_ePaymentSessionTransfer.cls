@@ -7,7 +7,7 @@ public class DOL_ePaymentSessionTransfer {
             Map<String,String> sessionDetailsMap = sessionTransferDetails.getSessionDetailsMap();
             String sessionDetailForEncryption = '';
             for(String key : sessionDetailsMap.keySet()){
-                sessionDetailForEncryption += key+'='+sessionDetailsMap.get(key)+'|';
+                sessionDetailForEncryption += key+'='+sessionDetailsMap.get(key)+DOL_AppConstants.ePaymentSessionValuesSeperator;
             }
             system.debug('session Details for encrypt ' +sessionDetailForEncryption );
             String encryptedSessionDetailString = CryptoUtility.getEncryptedString('AES256', 

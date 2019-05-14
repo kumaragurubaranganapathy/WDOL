@@ -1,6 +1,6 @@
 public class DOL_ePaymentReturnSession {
 	
-    public String ReturnValue {get; private set;}
+    public String ReturnValue {get; private set;} // getting receiptId in Return Value
     public String TransactionConfirmationID { get; private set;}
     public String UserID {get; private set;}
     public String BillerProductCode {get; private set;}
@@ -21,11 +21,14 @@ public class DOL_ePaymentReturnSession {
     public String IsPayorRegistered { get; private set; }
     public String Email { get; private set; }
     public String SFDCId { get; private set; }
-    public String SFDCfeeId { get; private set; }
+    public String SFDCfeeId { get; private set; } // coma seperated feeId
     public String SFDCappId { get; private set; }
     public String SFDClicId { get; private set; }
     
+    public List<String> sfdcFeeIds {get; private set;}
+
     public DOL_ePaymentReturnSession(){}
+    
     
     public void mapDataFromSessionString(String sessionString){
         List<String> sessionDataList = sessionString.split('&');
@@ -62,5 +65,13 @@ public class DOL_ePaymentReturnSession {
 		SFDCfeeId = sessionDataMap.get('SFDCfeeId');
 		SFDCappId = sessionDataMap.get('SFDCappId');
 		SFDClicId = sessionDataMap.get('SFDClicId');
+
+        sfdcFeeIds = new List<String>();
+        system.debug(' SFDCfeeId '+SFDCfeeId);
+        if(SFDCfeeId != null && SFDCfeeId != ''){
+            sfdcFeeIds = SFDCfeeId.split(DOL_AppConstants.ePaymentUrlListValuesSeperator);
+        }
+        system.debug('return value '+ReturnValue);     
     }
+
 }
