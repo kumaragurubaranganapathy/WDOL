@@ -228,13 +228,13 @@ public with sharing class CartController
                     receiptId=tempReceiptId;
                     cart.BGBK__Process_DateTime__c = System.now();
                     // create a ePayment Response
-                    Epayment_Response__c ePaymentResp = new Epayment_Response__c();
-                    ePaymentResp.Cart_Id__c = ePaymentReturnSession.SFDCId;
-                    ePaymentResp.Epayment_Conformation_Id__c = ePaymentReturnSession.TransactionConfirmationID;
-                    ePaymentResp.Fee_Ids__c = String.join(feeIdList,'\r\n');
-                    ePaymentResp.Receipt_Id__c =  receiptId;
-                    Id tempId = DOL_Dao.save(ePaymentResp);
-                    system.debug('Epayment_Response__c created id = '+tempId);     
+                    //Epayment_Response__c ePaymentResp = new Epayment_Response__c();
+                    //ePaymentResp.Cart_Id__c = ePaymentReturnSession.SFDCId;
+                    //ePaymentResp.Epayment_Conformation_Id__c = ePaymentReturnSession.TransactionConfirmationID;
+                    //ePaymentResp.Fee_Ids__c = String.join(feeIdList,'\r\n');
+                    //ePaymentResp.Receipt_Id__c =  receiptId;
+                    //Id tempId = DOL_Dao.save(ePaymentResp);
+                    //system.debug('Epayment_Response__c created id = '+tempId);     
                     processEPayment();
                 }
                 else{
