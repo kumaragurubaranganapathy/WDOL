@@ -1,4 +1,4 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="LnP_WizardApexController">
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global" controller="LnP_WizardApexController">
     <aura:attribute name="appTypeQues" type="List"/>
     <aura:attribute name="eliTypeQues" type="List"/>
     <aura:attribute name="board" type="String" default="Architects Board"/>
@@ -13,9 +13,12 @@
     <aura:attribute name="radiooptions" type="List" default="[
                                                              {'label': 'Yes', 'value': 'Yes'},
                                                              {'label': 'No', 'value': 'No'}]"/>
+   
+    <aura:attribute name="header" type="Boolean" default="false"/>
     <aura:attribute name="accounts" type="Object[]"/>
     <aura:attribute name="testOptions" type="List" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  
     <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
@@ -87,7 +90,8 @@
             <div id="eliQuesDiv" class = "slds-small-size_1-of-1 slds-medium-size_1-of-2">
                 <aura:iteration items="{!v.eliTypeQues}" var="question" indexVar="questionIndex">
                     <div class = "{!(v.eliQuesNo == (questionIndex + 1) || lessthan((questionIndex + 1),v.eliQuesNo))?'questions':'slds-hide'+' slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1'}">
-                        <lightning:radioGroup class="radio" name="{!questionIndex + '-' + question.quesId}" label="{!question.quesBody}" aura:id="eliRadios"
+                        <ui:outputRichText class="slds-text-longform slds-form-element__label"  value="{!question.quesBody}"/>
+                        <lightning:radioGroup class="radio" name="{!questionIndex + '-' + question.quesId}"  aura:id="eliRadios"
                                               options="{!v.radiooptions }"  onchange="{!c.showOrHideEliQuestion}"/>
                     </div>
                 </aura:iteration>
