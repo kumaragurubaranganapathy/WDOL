@@ -29,7 +29,7 @@
     <actionOverrides>
         <actionName>New</actionName>
         <content>MUSW__LicensePageDefaults</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
@@ -162,6 +162,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>YEAR(TODAY() ) - YEAR( Date_of_Birth__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>App_Submitted_Date__c</fullName>
         <description>App Submitted Date</description>
         <externalId>false</externalId>
@@ -211,66 +225,59 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <valueName>General Application</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <valueName>Comity</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
-                <valueName>Broker-Restricted</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
-                <valueName>Non-Broker</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -316,6 +323,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Area_Code__c</fullName>
+        <description>Area code of image processed</description>
+        <externalId>false</externalId>
+        <label>Area Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AttestationFullName__c</fullName>
@@ -629,6 +649,58 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary Certified General</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>State Licensed Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <valueName>Landscape Architect</valueName>
             </valueSettings>
@@ -653,16 +725,9 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Professional Land Surveyor</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -673,48 +738,24 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified General Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>State Licensed Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified Residential</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary State Licensed</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -759,22 +800,6 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <valueSettings>
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Professional Engineer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -793,64 +818,12 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <restricted>true</restricted>
             <valueSetName>Credential</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <valueName>Temporary Certified Residential</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <valueName>Temporary State Licensed</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <valueName>Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <valueName>Certified General Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <valueName>Certificate of Removal Registration</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <valueName>Geologist in Training</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
                 <valueName>Academic Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <valueName>Cemetery</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
@@ -865,6 +838,10 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>State Licensed Appraiser</valueName>
             </valueSettings>
@@ -873,44 +850,84 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
                 <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
                 <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
                 <valueName>Landscape Architect</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <valueName>Funeral Director Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
                 <valueName>Funeral Establishment</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Crematory</controllingFieldValue>
                 <valueName>Crematory</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
@@ -921,24 +938,36 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <valueName>Funeral Director</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <valueName>Embalmer</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <valueName>Geologist in Training</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
                 <valueName>Land Surveyor in Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <valueName>Certificate of Removal Registration</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -1082,20 +1111,6 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>External_Id__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <description>External Id of the record</description>
-        <externalId>true</externalId>
-        <label>External Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>External_Source__c</fullName>
         <description>External Source System from which this data is converted</description>
         <externalId>false</externalId>
@@ -1166,6 +1181,16 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <formula>IF((TODAY()&gt;MUSW__Expiration_Date__c &amp;&amp; TODAY()&lt;= Late_Renewal_Eligible_End_Date__c &amp;&amp; ( ISPICKVAL(MUSW__Status__c, &apos;Inactive&apos;) || ISPICKVAL(MUSW__Status__c, &apos;Late Renewal&apos;) || ISPICKVAL(MUSW__Status__c, &apos;Hold&apos;))), TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Is Late Renewal Eligible?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_License_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is License Active</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -2122,6 +2147,16 @@ Military_Waiver__c))))))))))))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Paper_Application__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Paper Application</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Pending_Audit__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Pending Audit</description>
@@ -2809,33 +2844,6 @@ Military_Waiver__c))))))))))))</formula>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Appraiser_Trainee_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Appraiser Trainee Queue</label>
-        <queue>Appraiser_Trainee_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Camping_Resort_Company_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Camping Resort Company Queue</label>
-        <queue>Camping_Resort_Company_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Camping_Resort_Salesperson_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Camping Resort Salesperson Queue</label>
-        <queue>Camping_Resort_Salesperson_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Certified_General_Appraiser_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>Certified General Appraiser Queue</label>
@@ -2879,18 +2887,22 @@ Military_Waiver__c))))))))))))</formula>
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
+        <columns>Credential__c</columns>
         <columns>LAST_UPDATE</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>Number_of_Units__c</columns>
         <columns>MUSW__Applicant__c</columns>
         <columns>MUSW__Status__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>Credential__c</columns>
         <columns>Credential_Type__c</columns>
         <columns>MUSW__Total_Balance__c</columns>
         <columns>Application_Method__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Issue_Date__c</field>
+            <operation>notEqual</operation>
+        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>
@@ -2928,16 +2940,6 @@ Military_Waiver__c))))))))))))</formula>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Notarty_Public</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <label>Notarty Public</label>
     </listViews>
     <listViews>
         <fullName>Notary_Public_License2</fullName>
@@ -2980,24 +2982,6 @@ Military_Waiver__c))))))))))))</formula>
         <filterScope>Queue</filterScope>
         <label>RBS - Queue</label>
         <queue>RBS_Queue</queue>
-    </listViews>
-    <listViews>
-        <fullName>RBS_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>RBS Queue</label>
-        <queue>RBS_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Real_Estate_Appraiser_Courses_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Real Estate Appraiser Courses Queue</label>
-        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_All</fullName>
@@ -3127,15 +3111,6 @@ Military_Waiver__c))))))))))))</formula>
         <queue>State_Licensed_Appraiser_Queue</queue>
     </listViews>
     <listViews>
-        <fullName>State_Licensed_Appraiser_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>State Licensed Appraiser Queue</label>
-        <queue>State_Licensed_Appraiser_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Temporary_Certified_General_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>Temporary Certified General Queue</label>
@@ -3172,24 +3147,6 @@ Military_Waiver__c))))))))))))</formula>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Timeshare_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Timeshare Queue</label>
-        <queue>Timeshare_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Timeshare_Salesperson_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Timeshare Salesperson Queue</label>
-        <queue>Timeshare_Salesperson_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>UDC_Professions</fullName>
         <booleanFilter>(1 OR 2 OR 3) AND 4</booleanFilter>
         <columns>NAME</columns>
@@ -3218,6 +3175,20 @@ Military_Waiver__c))))))))))))</formula>
             <value>10/10/2018</value>
         </filters>
         <label>UDC Professions</label>
+    </listViews>
+    <listViews>
+        <fullName>date</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Date_of_Birth__c</columns>
+        <columns>Age__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Date_of_Birth__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>date</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Number</label>
@@ -3265,6 +3236,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Examination</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3324,10 +3299,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Cemeteries</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3426,10 +3397,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -3443,6 +3410,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3625,6 +3596,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -3666,10 +3641,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4004,6 +3975,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -4041,10 +4016,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4481,6 +4452,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -4537,10 +4512,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Cemeteries</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4639,10 +4610,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -4656,6 +4623,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4700,10 +4671,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4838,6 +4805,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -4858,10 +4829,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Geologist in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>In State Collection Agency</fullName>
                 <default>false</default>
             </values>
@@ -4879,14 +4846,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5217,6 +5176,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -5254,10 +5217,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5694,6 +5653,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -5727,61 +5690,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Application_Type__c</picklist>
-            <values>
-                <fullName>Appraisal Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisers - Real Estate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resorts</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cemeteries</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineers</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funerals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveyors</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5848,10 +5756,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -5865,6 +5769,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6047,6 +5955,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -6088,10 +6000,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6426,6 +6334,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -6463,10 +6375,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6903,6 +6811,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -6936,65 +6848,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Application_Type__c</picklist>
-            <values>
-                <fullName>Appraisal Management Companies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisers - Real Estate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resorts</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cemeteries</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineers</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funerals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveyors</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7061,10 +6914,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -7078,6 +6927,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7260,6 +7113,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -7280,10 +7137,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Geologist in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>In State Collection Agency</fullName>
                 <default>false</default>
             </values>
@@ -7301,14 +7154,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7639,6 +7484,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -7676,10 +7525,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8116,6 +7961,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -8168,10 +8017,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Cemeteries</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8270,10 +8115,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -8287,6 +8128,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8469,6 +8314,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -8510,10 +8359,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8852,6 +8697,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -8889,10 +8738,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9329,6 +9174,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -9385,10 +9234,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Cemeteries</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9487,10 +9332,6 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -9504,6 +9345,10 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9686,6 +9531,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -9727,10 +9576,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10065,6 +9910,10 @@ Military_Waiver__c))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -10102,10 +9951,6 @@ Military_Waiver__c))))))))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
