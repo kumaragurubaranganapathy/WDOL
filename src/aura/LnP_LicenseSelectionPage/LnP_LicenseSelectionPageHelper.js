@@ -102,7 +102,7 @@
                           //for(var i=0; i<eliChild.length; i++){
                           //eliChild[0].classList.remove("slds-hide");
                           //}
-                      }), 500);
+                      }), 1000);
                     }
                  } 
             });
