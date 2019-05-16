@@ -899,11 +899,11 @@ public with sharing class CartController
     {
      System.debug(' fees '+ fees);
      System.debug(' receipt '+ receiptVOs);
-     if (totalBalance > 0 && !canPayPartial)
+    /* if (totalBalance > 0 && !canPayPartial) Padma. To avoid unecessary error message
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Insufficient funds. Tender at least the Amount owing.'));
             return;
-        }
+        } */
         if (String.isBlank(accountSelected))
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
