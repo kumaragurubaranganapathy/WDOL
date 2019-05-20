@@ -72,22 +72,28 @@ public class LnP_WizardApexController {
         }
         return LabelMap;
 	}
+    
+    
     @AuraEnabled    
-    public static List<Account> fetchAccountList(String Board, String LicenseType){
+    public static AccountWrapper fetchAccountList(String Board, String LicenseType){
         List<Account>  lstAccount = new  List<Account>();
         system.debug('SELECT  IndividualBusinessType__c,Application_Type__c,Credential_Type__c FROM License_Type__mdt where Application_Type__c = :'+Board+'  and  Credential_Type__c =: '+LicenseType+'');
         List<License_Type__mdt> lstLicenseAccount =[SELECT  IndividualBusinessType__c,Application_Type__c,Credential_Type__c FROM License_Type__mdt where Application_Type__c = :Board  and  Credential_Type__c =:LicenseType Limit 1];
         system.debug('printlstLicenseAccount'+lstLicenseAccount);
-        string licenseAccountType ='';
+        //string licenseAccountType ='';
+        AccountWrapper acctwrapper = new AccountWrapper();
         if(!lstLicenseAccount.isEmpty()){
-            licenseAccountType = lstLicenseAccount[0].IndividualBusinessType__c;
+              acctwrapper.accountType =  lstLicenseAccount[0].IndividualBusinessType__c;
         }
-        system.debug(lstLicenseAccount);
-        if(licenseAccountType == 'Business'){
+        system.debug(lstLicenseAccount); 
+        //acctwrapper.accountType = licenseAccountType;
+        acctwrapper.lstAccount = getAccountList();
+        /*if(licenseAccountType == 'Business'){
            lstAccount = getAccountList();
            system.debug('getList'+ lstAccount); 
-        }
-        return lstAccount;
+        }*/
+        system.debug('acctwrapper'+acctwrapper);
+        return acctwrapper;
     }
    
     private static List<Account> getAccountList(){        
@@ -126,6 +132,7 @@ public class LnP_WizardApexController {
     public static Id startAnApplication(String board, String licenseType, String applicationType,String account){
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         system.debug('applicationType : '+applicationType);
@@ -174,7 +181,8 @@ public class LnP_WizardApexController {
         Id getContactId = '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
-        }        
+        }   
+        MUSW__License2__c lic = [Select id,RecordType.name,MUSW__Primary_Licensee__c,Application__c FROM MUSW__License2__c WHERE id =:licId];
         MUSW__Application2__c application = new MUSW__Application2__c();
         application.Application_Type__c = board; 
         application.Credential_Type__c = licenseType; 
@@ -184,14 +192,15 @@ public class LnP_WizardApexController {
         if(isRenewal != null && isRenewal != ''){
             application.isRenewal__c = Boolean.valueOf(isRenewal);   
         }
-        application.MUSW__Account__c = account;
+        if(lic.recordType.name == 'Business') {
+            application.MUSW__Account__c = lic.MUSW__Primary_Licensee__c;
+        }
         try{
             insert application;
         }
         catch(Exception e){
             HandleException.LogException(e,'LnP_WizardApexController','startAnApplication');
-        }        
-        MUSW__License2__c lic = [Select id, Application__c FROM MUSW__License2__c WHERE id =:licId];
+        }
         if(lic!=null)
         {
             lic.Application__c = application.Id;
@@ -220,7 +229,30 @@ public class LnP_WizardApexController {
         {
             insert lstupdateParcel;
         }
-        //Background Information
+        
+        List<BGCK__Answer__c> lstAnswer = [SELECT id,Name,BGCK__Valid__c,Answer_Text__c,Question__c,Question_Section__c,License__c,Application_BG__c FROM BGCK__Answer__c WHERE License__c=:licId ];
+        List<BGCK__Answer__c> lstUpdateAnswer = new List<BGCK__Answer__c>();
+        if(!lstAnswer.isEmpty())
+        {
+            for(BGCK__Answer__c ans : lstAnswer )
+            {
+                BGCK__Answer__c answer = new BGCK__Answer__c();
+                answer.Application_BG__c = application.Id;
+				answer.Name  = ans.Name;
+				answer.BGCK__Valid__c = ans.BGCK__Valid__c;
+				answer.Answer_Text__c = ans.Answer_Text__c;
+				answer.Question__c = ans.Question__c;
+                                
+                lstUpdateAnswer.add(answer);
+            }
+        }
+
+        if(!lstUpdateAnswer.isEmpty())
+        {
+            insert lstUpdateAnswer;
+        }
+        
+        /*//Background Information
         List<LnP_BackgroundSection__c> bgckList = new List<LnP_BackgroundSection__c>();
         for(LnP_BackgroundSection__c bgck  : [select id,RecordTypeId,Application_BG__c ,Name_of_Institution__c,Degree__c,Major__c,Minor__c,Start_Date__c,End_date__c,State__c,Job_Title__c,Country__c,City__c,Employer__c,Zip_code__c,County__c,Total_Hours__c,Street_Address__c,Provider__c,Name_of_Course__c,Trainer_License__c,Credits__c,Hours__c FROM LnP_BackgroundSection__c WHERE Application_BG__c =:licId and RecordTypeID != null]){
             LnP_BackgroundSection__c bgSc = new LnP_BackgroundSection__c();
@@ -252,7 +284,7 @@ public class LnP_WizardApexController {
         }
         if(!bgckList.isEmpty()){
             insert bgckList;
-        }
+        }*/
         
         return application.Id;
     }
@@ -267,6 +299,11 @@ public class LnP_WizardApexController {
          } 
           
          return mapJSON;
+    }
+    
+    public class accountWrapper{
+       @AuraEnabled public String accountType {get;set;}
+       @AuraEnabled public List<Account> lstAccount {get;set;}
     }
 
 }

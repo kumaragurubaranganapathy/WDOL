@@ -7,7 +7,7 @@
         //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
         
         $A.util.removeClass(component.find("licenseType"), 'slds-hide');
-        $A.util.removeClass(component.find("credentialType"), 'slds-hide');
+        $A.util.removeClass(component.find("credentialType"), 'slds-hide');	
         $A.util.removeClass(component.find("getApplicationMethod"), 'slds-hide');
         
         eliTypeGridDiv.classList.add("slds-hide");
@@ -82,7 +82,8 @@
                     console.log('eliQuesList ' + JSON.stringify(eliQuesList));
 		
                     component.set("v.isDirectProceed",false);
-                    helper.fetchAccountList(component, event, helper);
+                    helper.fetchAccountList(component, event, helper);                   
+                    
                     helper.hideOrShowSpinner(component, event, helper);
                     if(applicationMethod){  
                       window.setTimeout(
@@ -249,6 +250,8 @@
         var optionJSONArr=[];
         var eliQuestions= component.find('eliRadios');
         var account = sessionStorage.getItem("accountRecordID");
+      // var account = '001r000000DQcLt';
+        console.log('@@@@@@@'+account);
         //eliQuestions.forEach(eliQuestions => {
         if(eliQuestions != undefined){
             if(component.get("v.isDirectProceed") == false){
@@ -281,16 +284,7 @@
                     $A.getCallback(response => {
 						applicationId=response;
 						sessionStorage.setItem("applicationId", applicationId);
-						console.log('applicationId '+applicationId);
-						var accURL=window.location.href;
-						var accUrlShort = accURL.slice(0,accURL.lastIndexOf("/"));
-						accUrlShort = accUrlShort+"/apply-for-license";//+ applicationId;
-						console.log('URL of a particular account: ' + accUrlShort);
-							var urlEvent = $A.get("e.force:navigateToURL");
-							urlEvent.setParams({
-								"url": accUrlShort
-							});
-							urlEvent.fire();
+						window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'apply-for-license/';
 						}),
 						$A.getCallback(errors => {
 						}),
@@ -332,13 +326,16 @@
                 $A.enqueueAction(action);
             })).then(
                 $A.getCallback(function(result){
-                    component.set("v.accounts", result);
-                    if(component.get("v.accounts") != '' ){
+                    console.log('result',JSON.stringify(result));
+                    var accwrapper = result;
+                    
+                    component.set("v.accounts", accwrapper.lstAccount);
+                    if(accwrapper.accountType == 'Business' ){
                         console.log("component.get"+component.get("v.accounts"));
                         component.set("v.showAccountDropdown",true);
                         //component.find("button1").set('v.disabled',true);
                     } else {
-                        component.set("v.showAccountDropdown",false);
+                       component.set("v.showAccountDropdown",false);
                         //component.find("button1").set('v.disabled',false);
                     }
                 })
