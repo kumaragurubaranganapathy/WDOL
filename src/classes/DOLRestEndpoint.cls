@@ -3,7 +3,7 @@
 ** Description   	: DOLRestEndpoint act as an entry point to the application and divert the request with json to respective APEX
                       class based on the input of header REQUESTTYPE.
 ** Version          : 1.0
-**-------------------------------------------------------------------------------------------------------------------------------
+**-------------------------------------
 ** Revision History:
 **---------------------------
 ** [Laltu Banerjee]: Created
@@ -13,21 +13,28 @@
 global class DOLRestEndpoint {
 
     @HttpPost
-    global static void postRequest(){
+    global static DOL_RestResponse postRequest(){
+        system.debug('Inside DOLRestEndpoint postRequest');
         RestRequest req = RestContext.request;
-        RestResponse resp = RestContext.response;
+        DOL_RestResponse resp = new DOL_RestResponse();
+        //RestResponse resp = RestContext.response;
         String jsonBody;
         String requestType;
         try{
             jsonBody = req.requestBody.toString();
+            system.debug('body '+jsonBody);
             requestType = req.headers.get('REQUESTTYPE');
+            system.debug('requestType '+requestType);
             HTTPRestResponse output = processRequest(jsonBody,requestType);
-            resp.statusCode = output.getStatusCode();
-            resp.responseBody = Blob.valueOf('Logs :- '+output.getLogs()+' error :- '+output.geterrorMsgs());
+            //resp.log = 'Logs :- '+output.getLogs()+' error :- '+output.geterrorMsgs();
+            //resp.statusCode = ''+output.getStatusCode();
+            resp.statusCode = ''+output.getStatusCode();
+            resp.log = 'Logs :- '+output.getLogs()+' error :- '+output.geterrorMsgs();
         }catch(Exception error){
-            resp.statusCode = 400;
-            resp.responseBody = Blob.valueOf('error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString());
+            resp.statusCode = '400';
+            resp.log = 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
         }
+        return resp;
     }
 
     private static HTTPRestResponse processRequest(String jsonBody, String requestType){
@@ -41,5 +48,10 @@ global class DOLRestEndpoint {
             output.setStatusCode(400);
         }
         return output;
+    }
+    
+    global class DOL_RestResponse{
+        String log {get; set;}
+        String statusCode {get; set;}
     }
 }

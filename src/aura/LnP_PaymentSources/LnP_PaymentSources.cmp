@@ -1,0 +1,88 @@
+<aura:component controller="LnP_ProgramType" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,lightning:actionOverride,flexipage:availableForRecordHome,force:hasRecordId" access="global">    
+    <aura:attribute name="paymentType" type="MUSW__Receipt__c" default= "{'sobjectType': 'MUSW__Receipt__c',
+                                                                         'MUSW__Check_Number__c' : '', 
+                                                                         'MUSW__Amount_Tendered__c' : '',
+                                                                         'Number_of_payment_sources__c' : '',
+                                                                         'Payment_Source_Total__c' : '',
+                                                                         }"/>
+    <aura:attribute name="industryMap" type="Map"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="isDisabled" type="Boolean" default="true" />
+   
+    <aura:attribute name="receiptRec" type="MUSW__Receipt__c" />
+    <aura:attribute name="insertedReceiptList" type="List" access="public"  />
+    
+    <aura:attribute name="recieptList" type="MUSW__Receipt__c[]"/>
+   <aura:attribute name="receiptDetails" type="Date" />
+    <aura:attribute name="validationNumber" type="Integer" />     
+    <aura:attribute name="stepNumber" type="String" access="public"/>
+    
+    <!-- added by rishap -->
+    <aura:attribute name="numOfPaymentSources" type="Integer" access="public" default="0"/>
+     <aura:attribute name="paymentSourceTotal" type="Integer"  access="public" default="0" />
+    
+ <aura:registerEvent name="toastEvt" type="c:LnP_ToastMessage"/> 
+    
+    <lightning:card>
+        <lightning:layout >
+            <div><lightning:input   label="Validation Number" value="{!v.validationNumber.Validation_number__c}"/></div>&nbsp;
+            <div><lightning:input  aura:id="numOfPaymentSources" disabled="true" label="Number of Payment Sources" value="{!v.numOfPaymentSources}"/></div>&nbsp;
+            <div><lightning:input  disabled="true" label="Number of Documents" /></div>
+        </lightning:layout>
+        <lightning:layout >
+            <div><lightning:input   label="Date" value="{!v.receiptDetails.Date_Today_s__c}"/></div>&nbsp;
+            <div><lightning:input  aura:id="paymentSourceTotal"  disabled="true" label="Payment Source Total" value="{!v.paymentSourceTotal}"/></div>&nbsp;
+            <div><lightning:input  disabled="true" label="Document Total" /></div>
+        </lightning:layout><br/>
+        <lightning:layout >
+             
+             <div class="slds-p-top_large">1</div>
+            <div><lightning:input label="Sequence Number" disabled="true" value="001"></lightning:input></div>&nbsp;
+            <div>
+                <lightning:select aura:id="paymentType" value="{!v.paymentType.MUSW__Payment_Method__c}" name="defaultProgramType"   label="Payment Method" onchange="{!c.enableAddButton}">
+                    <option value="">Select an Option</option>
+                    <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
+                        <!--<option text="{!ind.value}" value="{!ind.key}" selected="{!ind.key==v.defaultProgramType.Default_program_type__c}"/> -->
+                        <option value="{!ind.value}">{!ind.value}</option> 
+                    </aura:iteration>
+                </lightning:select></div>&nbsp;
+            <div><lightning:input aura:id="number" label="Number" onchange="{!c.enableAddButton}" value="{!v.paymentType.MUSW__Check_Number__c}"></lightning:input></div>&nbsp;
+            <div><lightning:input aura:id="amountWP" label="Amount" onchange="{!c.enableAddButton}" value="{!v.paymentType.MUSW__Amount_Tendered__c}"></lightning:input></div>&nbsp; 
+            <lightning:button disabled="{!v.isDisabled}" variant="brand" label="PRINT" onclick="{!c.addNewRow}"/>
+         </lightning:layout>
+       
+        <!---adding new row functionlaity-->
+               <table><tbody>      
+                    <aura:iteration items="{!v.recieptList}" var="rec" indexVar="index">
+                        <tr>
+                            <td class="slds-p-top_large"> 
+                                {!index + 2}
+                            </td>
+                           <lightning:layout >
+            <div><lightning:input label="Sequence Number" disabled="true" value="{!'00' + (index+2)}"></lightning:input></div>&nbsp;
+            <div>
+                <lightning:select aura:id="paymentTypeDR"  name="defaultProgramType"   label="Payment Type" >
+                    <option value="">Select an Option</option>
+                    <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
+                        <option value="{!ind.value}">{!ind.value}</option> 
+                    </aura:iteration>
+                </lightning:select></div>&nbsp;
+                  <div><lightning:input aura:id="numberAfterRowAdded" label="Number"  ></lightning:input></div>&nbsp;
+            <div><lightning:input aura:id="test" label="Amount" ></lightning:input></div>&nbsp;          
+                               <lightning:button  aura:id="secondPrintButton" variant="brand" label="PRINT" onclick="{!c.addNewRow}"/><br/>  
+                                </lightning:layout> 
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+       
+        <div class="slds-col">
+            
+            <lightning:button variant="brand" label="BACK" onclick="{! c.goToPaymentSourcePage}"/>
+            <lightning:button variant="brand" label="CANCEL" onclick="{!c.gotoListView}"/>
+        <lightning:button disabled="{!v.isDisabled}" aura:id="test" variant="brand" label="NEXT" onclick="{! c.gotoURL }"></lightning:button>
+        </div>
+        
+    </lightning:card>
+    
+</aura:component>

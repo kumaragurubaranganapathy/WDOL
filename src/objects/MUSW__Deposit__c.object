@@ -10,9 +10,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>DepositPageDefaults</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -28,9 +26,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>DepositPageDefaults</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -42,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Deposit_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -109,6 +109,17 @@
         <label>Deposit_Search</label>
     </fieldSets>
     <fields>
+        <fullName>Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>BGBK__Cart_Cashier__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
@@ -137,6 +148,39 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Deposits</relationshipLabel>
+        <relationshipName>Deposits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Date_Today_s__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date_Today&apos;s</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Deposit_AP__c</fullName>
         <externalId>false</externalId>
         <formula>&quot;Deposit_AP&quot;</formula>
@@ -161,6 +205,76 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Document_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Document type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>original</fullName>
+                    <default>false</default>
+                    <label>original</label>
+                </value>
+                <value>
+                    <fullName>renewal</fullName>
+                    <default>false</default>
+                    <label>renewal</label>
+                </value>
+                <value>
+                    <fullName>maintenance request</fullName>
+                    <default>false</default>
+                    <label>maintenance request</label>
+                </value>
+                <value>
+                    <fullName>misc</fullName>
+                    <default>false</default>
+                    <label>misc</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Form_number__c</fullName>
+        <externalId>false</externalId>
+        <label>Form number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>BC-638-151</fullName>
+                    <default>false</default>
+                    <label>BC-638-151</label>
+                </value>
+                <value>
+                    <fullName>DS-232-232</fullName>
+                    <default>false</default>
+                    <label>DS-232-232</label>
+                </value>
+                <value>
+                    <fullName>OP-232-543</fullName>
+                    <default>false</default>
+                    <label>OP-232-543</label>
+                </value>
+                <value>
+                    <fullName>AS-620-209</fullName>
+                    <default>false</default>
+                    <label>AS-620-209</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>License__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -172,6 +286,241 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>License_type__c</fullName>
+        <externalId>false</externalId>
+        <label>License type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Notary Public</fullName>
+                    <default>false</default>
+                    <label>Notary Public</label>
+                </value>
+                <value>
+                    <fullName>Geologist</fullName>
+                    <default>false</default>
+                    <label>Geologist</label>
+                </value>
+                <value>
+                    <fullName>Geologist in Training</fullName>
+                    <default>false</default>
+                    <label>Geologist in Training</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Salesperson</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Registered Appraiser Trainee</fullName>
+                    <default>false</default>
+                    <label>Registered Appraiser Trainee</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Trainee</fullName>
+                    <default>false</default>
+                    <label>Appraiser Trainee</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Salesperson</fullName>
+                    <default>false</default>
+                    <label>Timeshare Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Company</fullName>
+                    <default>false</default>
+                    <label>Timeshare Company</label>
+                </value>
+                <value>
+                    <fullName>Architect</fullName>
+                    <default>false</default>
+                    <label>Architect</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Company</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Company</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Course</fullName>
+                    <default>false</default>
+                    <label>Appraiser Course</label>
+                </value>
+                <value>
+                    <fullName>Certified General Appraiser</fullName>
+                    <default>false</default>
+                    <label>Certified General Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Certificate of Removal Registration</fullName>
+                    <default>false</default>
+                    <label>Certificate of Removal Registration</label>
+                </value>
+                <value>
+                    <fullName>Academic Intern</fullName>
+                    <default>false</default>
+                    <label>Academic Intern</label>
+                </value>
+                <value>
+                    <fullName>Temporary Certified General</fullName>
+                    <default>false</default>
+                    <label>Temporary Certified General</label>
+                </value>
+                <value>
+                    <fullName>Engineer in Training</fullName>
+                    <default>false</default>
+                    <label>Engineer in Training</label>
+                </value>
+                <value>
+                    <fullName>Professional Engineer</fullName>
+                    <default>false</default>
+                    <label>Professional Engineer</label>
+                </value>
+                <value>
+                    <fullName>State Licensed Appraiser</fullName>
+                    <default>false</default>
+                    <label>State Licensed Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Appraisal Management Company</fullName>
+                    <default>false</default>
+                    <label>Appraisal Management Company</label>
+                </value>
+                <value>
+                    <fullName>Appraisal Controlling Person</fullName>
+                    <default>false</default>
+                    <label>Appraisal Controlling Person</label>
+                </value>
+                <value>
+                    <fullName>On-site Wastewater Designer</fullName>
+                    <default>false</default>
+                    <label>On-site Wastewater Designer</label>
+                </value>
+                <value>
+                    <fullName>On-site Wastewater Inspector</fullName>
+                    <default>false</default>
+                    <label>On-site Wastewater Inspector</label>
+                </value>
+                <value>
+                    <fullName>Certified Residential Appraiser</fullName>
+                    <default>false</default>
+                    <label>Certified Residential Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Landscape Architect</fullName>
+                    <default>false</default>
+                    <label>Landscape Architect</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Intern</fullName>
+                    <default>false</default>
+                    <label>Funeral Director Intern</label>
+                </value>
+                <value>
+                    <fullName>Funeral Establishment</fullName>
+                    <default>false</default>
+                    <label>Funeral Establishment</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Intern</fullName>
+                    <default>false</default>
+                    <label>Embalmer Intern</label>
+                </value>
+                <value>
+                    <fullName>Crematory</fullName>
+                    <default>false</default>
+                    <label>Crematory</label>
+                </value>
+                <value>
+                    <fullName>Cremated Remains Disposition Permit</fullName>
+                    <default>false</default>
+                    <label>Cremated Remains Disposition Permit</label>
+                </value>
+                <value>
+                    <fullName>Prearrangement Funeral Services</fullName>
+                    <default>false</default>
+                    <label>Prearrangement Funeral Services</label>
+                </value>
+                <value>
+                    <fullName>Funeral Establishment Branch</fullName>
+                    <default>false</default>
+                    <label>Funeral Establishment Branch</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director</fullName>
+                    <default>false</default>
+                    <label>Funeral Director</label>
+                </value>
+                <value>
+                    <fullName>Embalmer</fullName>
+                    <default>false</default>
+                    <label>Embalmer</label>
+                </value>
+                <value>
+                    <fullName>Land Surveyor in Training</fullName>
+                    <default>false</default>
+                    <label>Land Surveyor in Training</label>
+                </value>
+                <value>
+                    <fullName>Professional Land Surveyor</fullName>
+                    <default>false</default>
+                    <label>Professional Land Surveyor</label>
+                </value>
+                <value>
+                    <fullName>Cemetery</fullName>
+                    <default>false</default>
+                    <label>Cemetery</label>
+                </value>
+                <value>
+                    <fullName>Architect Firm</fullName>
+                    <default>false</default>
+                    <label>Architect Firm</label>
+                </value>
+                <value>
+                    <fullName>Engineering Corporations</fullName>
+                    <default>false</default>
+                    <label>Engineering Corporations</label>
+                </value>
+                <value>
+                    <fullName>Land Surveying Corporations</fullName>
+                    <default>false</default>
+                    <label>Land Surveying Corporations</label>
+                </value>
+                <value>
+                    <fullName>Land Surveying LLC</fullName>
+                    <default>false</default>
+                    <label>Land Surveying LLC</label>
+                </value>
+                <value>
+                    <fullName>In State Collection Agency</fullName>
+                    <default>false</default>
+                    <label>In State Collection Agency</label>
+                </value>
+                <value>
+                    <fullName>Out State Collection Agency</fullName>
+                    <default>false</default>
+                    <label>Out State Collection Agency</label>
+                </value>
+                <value>
+                    <fullName>Temporary Certified Residential</fullName>
+                    <default>false</default>
+                    <label>Temporary Certified Residential</label>
+                </value>
+                <value>
+                    <fullName>Temporary State Licensed</fullName>
+                    <default>false</default>
+                    <label>Temporary State Licensed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>MUSW__Account__c</fullName>
@@ -321,11 +670,217 @@
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
+    <fields>
+        <fullName>Professional_code__c</fullName>
+        <externalId>false</externalId>
+        <label>Professional code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Program type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Funerals</fullName>
+                    <default>false</default>
+                    <label>Funerals</label>
+                </value>
+                <value>
+                    <fullName>cemeteries</fullName>
+                    <default>false</default>
+                    <label>cemeteries</label>
+                </value>
+                <value>
+                    <fullName>engineers</fullName>
+                    <default>false</default>
+                    <label>engineers</label>
+                </value>
+                <value>
+                    <fullName>land surveyors</fullName>
+                    <default>false</default>
+                    <label>land surveyors</label>
+                </value>
+                <value>
+                    <fullName>on-site wastewater</fullName>
+                    <default>false</default>
+                    <label>on-site wastewater</label>
+                </value>
+                <value>
+                    <fullName>collection agencies</fullName>
+                    <default>false</default>
+                    <label>collection agencies</label>
+                </value>
+                <value>
+                    <fullName>geologists</fullName>
+                    <default>false</default>
+                    <label>geologists</label>
+                </value>
+                <value>
+                    <fullName>architects</fullName>
+                    <default>false</default>
+                    <label>architects</label>
+                </value>
+                <value>
+                    <fullName>landscape architects</fullName>
+                    <default>false</default>
+                    <label>landscape architects</label>
+                </value>
+                <value>
+                    <fullName>camping resorts</fullName>
+                    <default>false</default>
+                    <label>camping resorts</label>
+                </value>
+                <value>
+                    <fullName>appraisers-real estate</fullName>
+                    <default>false</default>
+                    <label>appraisers-real estate</label>
+                </value>
+                <value>
+                    <fullName>timeshares</fullName>
+                    <default>false</default>
+                    <label>timeshares</label>
+                </value>
+                <value>
+                    <fullName>notaries public</fullName>
+                    <default>false</default>
+                    <label>notaries public</label>
+                </value>
+                <value>
+                    <fullName>appraisal management companies</fullName>
+                    <default>false</default>
+                    <label>appraisal management companies</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sequence_number__c</fullName>
+        <externalId>false</externalId>
+        <label>Sequence number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>pending</fullName>
+                    <default>false</default>
+                    <label>pending</label>
+                </value>
+                <value>
+                    <fullName>completed</fullName>
+                    <default>false</default>
+                    <label>completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Validation_number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Validation number</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Deposits</relationshipLabel>
+        <relationshipName>Deposits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>wadol_Professional_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(  License_type__c  ),
+&quot;Architect&quot;,&quot;20810&quot;,
+&quot;Camping Resort Company&quot;,&quot;27706&quot;,
+&quot;Camping Resort Salesperson&quot;,&quot;27708&quot;,
+&quot;Cemetery&quot;,&quot;21701&quot;,
+&quot;Professional Engineer&quot;,&quot;23201&quot;,
+&quot;Professional Land Surveyor&quot;,&quot;23203&quot;,
+&quot;Embalmer Intern&quot;,&quot;24002&quot;,
+&quot;Funeral Director&quot;,&quot;24003&quot;,
+&quot;Funeral Director Intern&quot;,&quot;24004&quot;,
+&quot;Funeral Establishment&quot;,&quot;24005&quot;,
+&quot;Prearrangement Funeral Services&quot;,&quot;24006&quot;,
+&quot;Funeral Establishment Branch&quot;,&quot;24008&quot;,
+&quot;Geologist&quot;,&quot;29940&quot;,
+&quot;Landscape Architect&quot;,&quot;24901&quot;,
+&quot;Notary Public&quot;,&quot;25601&quot;,
+&quot;On-site Wastewater Designer&quot;,&quot;23251&quot;,
+&quot;On-site Wastewater Inspector&quot;,&quot;23252&quot;,
+&quot;Certified General Appraiser&quot;,&quot;27011&quot;,  
+&quot;State Licensed Appraiser&quot;,&quot;27016&quot;,
+&quot;Certified Residential Appraiser&quot;,&quot;27017&quot;,
+&quot;Appraisal Management Company&quot;,&quot;27030&quot;,
+&quot;Timeshare Company&quot;,&quot;21804&quot;,
+&quot;Timeshare Salesperson&quot;,&quot;21805&quot;,
+&quot; &quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>wadol_Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Type</valueSetName>
+        </valueSet>
+    </fields>
     <label>Deposit</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Deposit_Records_From_Customer_Envelope</fullName>
+        <columns>NAME</columns>
+        <columns>Form_number__c</columns>
+        <columns>Program_type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Amount__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>Deposit Records From Customer Envelope</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Deposit Number</label>

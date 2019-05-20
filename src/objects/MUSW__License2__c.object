@@ -221,62 +221,61 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <controllingField>Credential__c</controllingField>
+            <controllingField>Credential_Type__c</controllingField>
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Architect Firm</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
                 <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <valueName>General Application</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <valueName>Comity</valueName>
             </valueSettings>
         </valueSet>
@@ -1181,16 +1180,6 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <formula>IF((TODAY()&gt;MUSW__Expiration_Date__c &amp;&amp; TODAY()&lt;= Late_Renewal_Eligible_End_Date__c &amp;&amp; ( ISPICKVAL(MUSW__Status__c, &apos;Inactive&apos;) || ISPICKVAL(MUSW__Status__c, &apos;Late Renewal&apos;) || ISPICKVAL(MUSW__Status__c, &apos;Hold&apos;))), TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Is Late Renewal Eligible?</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Is_License_Active__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Is License Active</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -2437,6 +2426,27 @@ Military_Waiver__c))))))))))))</formula>
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Renewal_Reminder_Email_Text__c</fullName>
+        <description>This field is used in email templates to dynamically display the paragraphs.</description>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;If you don’t renew your license before it expires, you’ll need to apply for a new license.&quot;,
+&quot;Architects&quot;, &quot;If you don’t renew within 30 days after your license expiration date, you’ll owe a late fee in addition to your renewal fee.&quot;,
+&quot;Landscape Architects&quot;, &quot;If you don’t renew within 30 days after your license expiration date, you’ll owe a late fee in addition to your renewal fee.&quot;,
+&quot;Engineers&quot;, &quot;If you don’t renew within 90 days after your license expiration date, you’ll owe a late fee in addition to your renewal fee.&quot;,
+&quot;Geologist&quot;, &quot;If you don’t renew within 90 days after your license expiration date, you’ll owe a late fee in addition to your renewal fee.&quot;,
+&quot;Land Surveyors&quot;, &quot;If you don’t renew within 90 days after your license expiration date, you’ll owe a late fee in addition to your renewal fee.&quot;,
+&quot;On-site Wastewater&quot;, &quot;If you don’t renew within 90 days after your license expiration date, you’ll owe a late fee in addition to your renewal fee.&quot;,
+&quot;Timeshares&quot;, &quot;If you don’t renew within 6 months after your license expiration date, you’ll need to apply for a new license.&quot;,
+&quot;If you don’t renew your license before it expires, you’ll owe a late fee in addition to your renewal fee.&quot;)</formula>
+        <label>Renewal Reminder Email Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Renewal_Window__c</fullName>
         <externalId>false</externalId>
         <formula>CASE( Credential__c, &quot;Manufactured Homes Salesperson&quot;, 4,&quot;Manufactured Homes Installer&quot;, 4,&quot;Manufactured Homes Dealer&quot;, 4,&quot;Manufactured Homes Manufacturer&quot;, 4, &quot;Soil Tester&quot;, 4,&quot;Soil Erosion Inspector&quot;, 4, &quot;UDC Inspection Agency&quot;, 4, &quot;UDC Electrical Inspector&quot;, 4, &quot;UDC HVAC Inspector&quot;, 4, &quot;UDC Plumbing Inspector&quot;, 4, &quot;UDC Construction Inspector&quot;, 4, &quot;Dwelling Contractor&quot;, 1, &quot;Dwelling Contractor Qualifier&quot;, 2, &quot;Dwelling Contractor Restricted&quot;, 1, &quot;Delegated Agent - Commercial Building&quot;, 5, &quot;Delegated Agent - Fire Supression/Alarm Systems&quot;, 5, &quot;Delegated Agent - Plumbing&quot;, 5, &quot;Delegated Agent - POWTS&quot;, 5, &quot;Delegated Agent - Elevator&quot;, 5, &quot;Delegated Agent - Boiler&quot;, 5, &quot;Delegated Agent - Other&quot;, 5, &quot;Manufactured Homes Community Permit&quot;, 2, 0)</formula>
@@ -2507,6 +2517,18 @@ Military_Waiver__c))))))))))))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Security_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Security Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2899,12 +2921,7 @@ Military_Waiver__c))))))))))))</formula>
         <columns>Application_Method__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>MUSW__Issue_Date__c</field>
-            <operation>notEqual</operation>
-        </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Manufactured_Home_Converted</fullName>
