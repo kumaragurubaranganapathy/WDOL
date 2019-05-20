@@ -1,4 +1,4 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global" controller="LnP_WizardApexController">
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName,lightning:isUrlAddressable" access="global" controller="LnP_WizardApexController">
     <aura:attribute name="appTypeQues" type="List"/>
     <aura:attribute name="eliTypeQues" type="List"/>
     <aura:attribute name="board" type="String" default="Architects Board"/>
@@ -16,9 +16,9 @@
    
     <aura:attribute name="header" type="Boolean" default="false"/>
     <aura:attribute name="accounts" type="Object[]"/>
+     <aura:attribute name="conid" type="Id"/>
     <aura:attribute name="testOptions" type="List" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-  
     <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
@@ -81,7 +81,6 @@
         <!--<lightning:inputField class="appTypeFieldClass slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1" label="Application Type" fieldName="ApplicationType__c" aura:id = "appTypeField" value="" disabled="{!v.appTypeFieldDisabled}"/>-->
         <!-- </div>
         </div> -->
-        
         <div id="eliTypeGridDiv" class = "slds-hide slds-grid card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">
             <div id="eliTextDiv" class="slds-small-size_1-of-1 slds-medium-size_1-of-2">
                 <h2>Eligibility</h2>
