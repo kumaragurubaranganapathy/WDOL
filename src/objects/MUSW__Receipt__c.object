@@ -365,18 +365,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Card_Authorized__c</fullName>
-        <description>Card Authorization</description>
-        <externalId>false</externalId>
-        <label>Card Authorized</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Convenience_Fee__c</fullName>
         <externalId>false</externalId>
         <label>Convenience Fee</label>
@@ -386,81 +374,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Date_Today_s__c</fullName>
-        <externalId>false</externalId>
-        <formula>TODAY()</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Date_Today&apos;s</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Effective_Date__c</fullName>
-        <description>Effective date from US Bank</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Estimated effective date from US Bank</inlineHelpText>
-        <label>Effective Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Intake_Method__c</fullName>
-        <externalId>false</externalId>
-        <label>Intake Method</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Portal</fullName>
-                    <default>false</default>
-                    <label>Portal</label>
-                </value>
-                <value>
-                    <fullName>Counter</fullName>
-                    <default>false</default>
-                    <label>Counter</label>
-                </value>
-                <value>
-                    <fullName>Validation Room</fullName>
-                    <default>false</default>
-                    <label>Validation Room</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Last_4_digits_of_Credit_Card_or_ACH__c</fullName>
-        <description>Last four digits of the credit card number or ACH account number</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Last four digits of the credit card number or ACH account number sent from payment gateway</inlineHelpText>
-        <label>Last 4 digits of Credit Card or ACH</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MUSW__Amount_Available__c</fullName>
@@ -780,8 +693,13 @@
                 <sorted>false</sorted>
                 <value>
                     <fullName>Cash</fullName>
-                    <default>true</default>
+                    <default>false</default>
                     <label>Cash</label>
+                </value>
+                <value>
+                    <fullName>Check</fullName>
+                    <default>true</default>
+                    <label>Check</label>
                 </value>
                 <value>
                     <fullName>Credit Card</fullName>
@@ -789,16 +707,11 @@
                     <label>Credit Card</label>
                 </value>
                 <value>
-                    <fullName>ACH</fullName>
+                    <fullName>Debit</fullName>
                     <default>false</default>
-                    <label>ACH</label>
+                    <label>Debit</label>
                 </value>
-                <value>
-                    <fullName>Lockbox</fullName>
-                    <default>false</default>
-                    <label>Lockbox</label>
-                </value>
-                <value>
+				<value>
                     <fullName>Vitalcheck</fullName>
                     <default>false</default>
                     <label>Vitalcheck</label>
@@ -901,48 +814,11 @@
         <type>Summary</type>
     </fields>
     <fields>
-        <fullName>Number_of_payment_sources__c</fullName>
-        <externalId>false</externalId>
-        <label>Number of payment sources</label>
-        <length>250</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Payee__c</fullName>
         <description>Payee</description>
         <externalId>false</externalId>
         <label>Payee</label>
         <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Payer_First_Name__c</fullName>
-        <description>Credit Card/ACH payer first name</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Credit Card payer first name from payment gateway</inlineHelpText>
-        <label>Payer First Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Payer_Last_Name__c</fullName>
-        <description>Credit Card/ACH payer last name</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Credit Card/ACH payer last name from payment gateway</inlineHelpText>
-        <label>Payer Last Name</label>
-        <length>100</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -971,74 +847,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Payment_Number__c</fullName>
-        <externalId>false</externalId>
-        <label>Payment Number</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Payment_Source_Total__c</fullName>
-        <externalId>false</externalId>
-        <label>Payment Source Total</label>
-        <length>250</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Payment_amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Payment amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Payment_type__c</fullName>
-        <externalId>false</externalId>
-        <label>Payment type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>cash</fullName>
-                    <default>false</default>
-                    <label>cash</label>
-                </value>
-                <value>
-                    <fullName>check</fullName>
-                    <default>false</default>
-                    <label>check</label>
-                </value>
-                <value>
-                    <fullName>money order</fullName>
-                    <default>false</default>
-                    <label>money order</label>
-                </value>
-                <value>
-                    <fullName>voucher</fullName>
-                    <default>false</default>
-                    <label>voucher</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Remitter__c</fullName>
@@ -1070,18 +878,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Sequence_number__c</fullName>
-        <externalId>false</externalId>
-        <label>Sequence number</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
@@ -1135,62 +931,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>Transaction_Confirmation_ID__c</fullName>
-        <description>Transaction confirmation from US Bank</description>
-        <externalId>false</externalId>
-        <label>Transaction Confirmation ID</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>US_Bank_Payment_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>US Bank Payment Status</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Processed</fullName>
-                    <default>false</default>
-                    <label>Processed</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Validation_number__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Validation number</label>
-        <referenceTo>Customer_Envelope__c</referenceTo>
-        <relationshipLabel>Receipts</relationshipLabel>
-        <relationshipName>Receipts</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>VitalChek__c</fullName>
-        <externalId>false</externalId>
-        <label>VitalChek</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Receipt</label>
     <listViews>
         <fullName>MUSW__All2</fullName>
@@ -1200,7 +940,6 @@
         <columns>MUSW__Check_Number__c</columns>
         <columns>MUSW__Effective_Date__c</columns>
         <columns>MUSW__Receipt_Paid_By__c</columns>
-        <columns>Payment_type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -1213,33 +952,24 @@
     </nameField>
     <pluralLabel>Receipts</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>MUSW__Iss_Track_No__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Payment_Method__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Amount_Tendered__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Amount_Available__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>MUSW__Iss_Track_No__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>MUSW__Payment_Method__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Amount_Tendered__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__Payment_Method__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__Paid_By__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Amount_Available__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>CREATEDBY_USER</lookupDialogsAdditionalFields>
-        <searchFilterFields>MUSW__Iss_Track_No__c</searchFilterFields>
-        <searchFilterFields>MUSW__Payment_Method__c</searchFilterFields>
-        <searchFilterFields>MUSW__Amount_Tendered__c</searchFilterFields>
-        <searchFilterFields>MUSW__Amount_Available__c</searchFilterFields>
-        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
         <searchFilterFields>NAME</searchFilterFields>
-        <searchResultsAdditionalFields>MUSW__Iss_Track_No__c</searchResultsAdditionalFields>
+        <searchFilterFields>MUSW__Amount_Tendered__c</searchFilterFields>
+        <searchFilterFields>MUSW__Payment_Method__c</searchFilterFields>
+        <searchFilterFields>MUSW__Effective_Date__c</searchFilterFields>
+        <searchFilterFields>MUSW__Paid_By__c</searchFilterFields>
+        <searchFilterFields>MUSW__Amount_Available__c</searchFilterFields>
         <searchResultsAdditionalFields>MUSW__Payment_Method__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>MUSW__Amount_Tendered__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>MUSW__Amount_Available__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
-    <sharingReasons>
-        <fullName>Insert_Receipt_Share__c</fullName>
-        <label>Insert Receipt Share</label>
-    </sharingReasons>
     <validationRules>
         <fullName>MUSW__Amount_Available_less_than_Remaining</fullName>
         <active>true</active>
