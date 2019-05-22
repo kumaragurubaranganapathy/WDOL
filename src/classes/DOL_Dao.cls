@@ -10,6 +10,12 @@ public class DOL_Dao {
         return receipt;
     }
 
+    public MUSW__Receipt__c getReceiptByTransactionId(String paymentTransactionId){
+        List<MUSW__Receipt__c> receipt = [select id from MUSW__Receipt__c where MUSW__Payment_Gateway_Transaction_Number__c =: paymentTransactionId ];
+        if(receipt != null && receipt.size() > 0)
+            return receipt.get(0);
+        return null;
+    }
     public static Id save(Sobject input){
         Database.SaveResult result = Database.insert(input,false);
         if(result.isSuccess()){
