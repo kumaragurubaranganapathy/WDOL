@@ -1,5 +1,6 @@
 public class LnP_ApplyForLicenseWrapper {
     public String sectionName;
+    public String recordType;
     public List<MapLabelToFields> labelFieldsMap = new List<MapLabelToFields>();
     public String icon;
     public String subheader;    
@@ -33,6 +34,9 @@ public class LnP_ApplyForLicenseWrapper {
         public String fieldType;
         public Id parentQuestionId;
         public String submissionDetails;
+        public String answerId;
+        public String messageTriggerResponse;
+        public String message;
         public List<String> fieldValueOptions;
         public List<MapRadioButtons> radioValueOptions = new List<MapRadioButtons>();
         public Boolean isGenericSub;
