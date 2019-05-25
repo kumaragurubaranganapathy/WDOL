@@ -14,4 +14,19 @@ public class DOL_AppUtility {
         return outputString;
     }
     
+    //Do not delete this wrapper 
+    //Added by Sumeet Kanjilal for processing flow of Journal 
+    //Wrapper scenario in Finance Application related US- 
+    public class JournalWrapper
+    {
+        public BGBK__Item__c objItemsData {get;set;}
+        public Decimal iTotalAmount {get;set;}
+        
+        public JournalWrapper(BGBK__Item__c objItemsData, Decimal iTotalAmount)
+        {
+            this.objItemsData = objItemsData;
+            this.iTotalAmount = iTotalAmount;
+        }
+    }
+    
 }
