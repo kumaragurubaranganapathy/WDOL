@@ -105,10 +105,21 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Error_Message__c</fullName>
+        <description>To add the error message that needs to be displayed on client side.</description>
+        <externalId>false</externalId>
+        <label>Error Message</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>Unique External ID</description>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <inlineHelpText>Unique External ID</inlineHelpText>
         <label>External Id</label>
         <length>20</length>
@@ -241,6 +252,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Regex_Validation__c</fullName>
+        <description>To add the regex validation formula to do client validations.</description>
+        <externalId>false</externalId>
+        <label>Regex Validation</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Required__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Is this required?</description>
@@ -289,13 +311,19 @@
     <label>Application Field</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>Object_Name__c</columns>
         <columns>NAME</columns>
+        <columns>Application_Method__c</columns>
         <columns>Label__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>Type__c</columns>
+        <columns>Credential_Type__c</columns>
         <columns>Validator__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>External_Id__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Field Name</label>
