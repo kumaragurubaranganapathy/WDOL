@@ -10,9 +10,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>MasterFeePageDefaults</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -28,9 +26,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>MasterFeePageDefaults</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -80,14 +76,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>AFRS_Revenue_Code__c</fullName>
+        <fullName>AR_date__c</fullName>
         <externalId>false</externalId>
-        <label>AFRS Revenue Code</label>
-        <length>255</length>
+        <label>AR date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Account__c</fullName>
@@ -127,7 +121,7 @@
         <externalId>false</externalId>
         <label>Agency Number</label>
         <precision>18</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -138,7 +132,7 @@
         <externalId>false</externalId>
         <label>Agency</label>
         <length>200</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -147,7 +141,7 @@
         <fullName>Application_Method__c</fullName>
         <externalId>false</externalId>
         <label>Application Method</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -155,290 +149,329 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>General Application</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>Reciprocity</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>Comity</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>Endorsement</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>Reinstatement</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>Renewal</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Geologist in Training</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
-                <valueName>Broker-Restricted</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
-                <valueName>Non-Broker</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
-                <valueName>All</valueName>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
+                <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
+                <valueName>Fine</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -446,7 +479,7 @@
         <fullName>Application_Type__c</fullName>
         <externalId>false</externalId>
         <label>Application Type</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -479,7 +512,7 @@
         <externalId>false</externalId>
         <label>Base</label>
         <precision>12</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -509,7 +542,7 @@
         <fullName>Credential_Type__c</fullName>
         <externalId>false</externalId>
         <label>License Type</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -517,64 +550,12 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveying Corporations</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveying LLC</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect Firm</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -601,12 +582,98 @@
                 <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect Firm</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Prearrangement Funeral Services</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveying Corporations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveying LLC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -627,10 +694,6 @@
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Embalmer Intern</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -656,111 +719,19 @@
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Engineering Corporations</valueName>
             </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
         <fullName>Credential__c</fullName>
         <externalId>false</externalId>
         <label>Credential</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <controllingField>Credential_Type__c</controllingField>
             <restricted>true</restricted>
             <valueSetName>Credential</valueSetName>
-            <valueSettings>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <valueName>Engineering Corporations</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <valueName>Land Surveying Corporations</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <valueName>Land Surveying LLC</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <valueName>In State Collection Agency</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <valueName>Out State Collection Agency</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <valueName>Temporary Certified Residential</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <valueName>Temporary State Licensed</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <valueName>Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <valueName>Certified General Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <valueName>Certificate of Removal Registration</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <valueName>Geologist in Training</valueName>
-            </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
                 <valueName>Academic Intern</valueName>
@@ -776,6 +747,10 @@
             <valueSettings>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <valueName>Professional Engineer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
@@ -796,10 +771,6 @@
             <valueSettings>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
                 <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
@@ -854,8 +825,88 @@
                 <valueName>Cemetery</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
+                <valueName>Engineering Corporations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
+                <valueName>Land Surveying Corporations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
+                <valueName>Land Surveying LLC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
+                <valueName>In State Collection Agency</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <valueName>Out State Collection Agency</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
                 <valueName>Architect Firm</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <valueName>Geologist in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <valueName>Certificate of Removal Registration</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -946,9 +997,21 @@
         <fullName>Effective_Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Effective Start Date</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Endorsement_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Endorsement Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Endorsement_Type</valueSetName>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Expedited_Service_Fee__c</fullName>
@@ -963,7 +1026,7 @@
         <description>Fee Calculation Type list</description>
         <externalId>false</externalId>
         <label>Fee Calculation Type</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -1021,7 +1084,7 @@
         <fullName>Fee_Type__c</fullName>
         <externalId>false</externalId>
         <label>Fee Type</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -1105,6 +1168,14 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Interpretive Determination?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Endorsement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Endorsement</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1254,7 +1325,7 @@
         <externalId>false</externalId>
         <label>Portal Name</label>
         <length>200</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -1271,11 +1342,10 @@
         <fullName>Profession_Code__c</fullName>
         <externalId>false</externalId>
         <label>Profession Code</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
+        <length>18</length>
+        <required>true</required>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1314,7 +1384,7 @@
         <externalId>false</externalId>
         <label>Revenue Code</label>
         <length>255</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -1693,32 +1763,87 @@
     </fields>
     <label>Master Fee List</label>
     <listViews>
-        <fullName>License_Fee</fullName>
+        <fullName>All_Late_fee</fullName>
         <columns>NAME</columns>
-        <columns>License_Type__c</columns>
-        <columns>Fee_Type__c</columns>
-        <columns>Fee_Calculation_Type__c</columns>
-        <columns>Base__c</columns>
+        <columns>Portal_Name__c</columns>
         <columns>Fee_Formula_Amount__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>Fee_Calculation_Type__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Application_Method__c</columns>
         <columns>Active__c</columns>
+        <columns>Base__c</columns>
+        <columns>Effective_Start_Date__c</columns>
+        <columns>Effective_End_Date__c</columns>
+        <columns>Agency__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>License_Type__c</field>
-            <operation>notEqual</operation>
+            <field>is_Late_Renewal__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Late fee</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>HZ</fullName>
+        <columns>NAME</columns>
+        <columns>Credential__c</columns>
+        <columns>Permit_Type__c</columns>
+        <columns>Flat_Amount__c</columns>
+        <columns>Fee_Name__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Fee_Formula_Amount__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>HZ</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>License_Fee</fullName>
+        <columns>NAME</columns>
+        <columns>Fee_Type__c</columns>
+        <columns>Fee_Calculation_Type__c</columns>
+        <columns>Fee_Formula_Amount__c</columns>
+        <columns>Active__c</columns>
+        <columns>Flat_Amount__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential__c</field>
+            <operation>equals</operation>
+            <value>Manufactured Homes Certificate of Title</value>
         </filters>
         <label>License Fee</label>
     </listViews>
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
-        <columns>Credential__c</columns>
-        <columns>Fee_Formula_Amount__c</columns>
-        <columns>RECORDTYPE</columns>
         <columns>Application_Method__c</columns>
+        <columns>Portal_Name__c</columns>
+        <columns>Profession_Code__c</columns>
         <columns>Application_Type__c</columns>
+        <columns>Fee_Type__c</columns>
+        <columns>Fee_Calculation_Type__c</columns>
+        <columns>Credential_Type__c</columns>
         <columns>Active__c</columns>
+        <columns>Fee_Formula_Amount__c</columns>
+        <columns>Base__c</columns>
+        <columns>AFRS_Cash_Code__c</columns>
+        <columns>Effective_Start_Date__c</columns>
+        <columns>Effective_End_Date__c</columns>
+        <columns>Agency__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Permit_Fee</fullName>
@@ -1736,6 +1861,32 @@
             <operation>notEqual</operation>
         </filters>
         <label>Permit Fee</label>
+    </listViews>
+    <listViews>
+        <fullName>Test</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Method__c</columns>
+        <columns>Portal_Name__c</columns>
+        <columns>Profession_Code__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>Fee_Type__c</columns>
+        <columns>Fee_Calculation_Type__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Active__c</columns>
+        <columns>Fee_Formula_Amount__c</columns>
+        <columns>Base__c</columns>
+        <columns>AFRS_Cash_Code__c</columns>
+        <columns>Effective_Start_Date__c</columns>
+        <columns>Effective_End_Date__c</columns>
+        <columns>Agency__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Method__c</field>
+            <operation>equals</operation>
+            <value>Reinstatement</value>
+        </filters>
+        <label>Test</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Master Fee List Name</label>
@@ -1783,6 +1934,10 @@
             </values>
             <values>
                 <fullName>Examination</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1849,10 +2004,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Engineers</fullName>
                 <default>false</default>
             </values>
@@ -1878,6 +2029,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1961,6 +2116,10 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2143,6 +2302,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -2184,10 +2347,6 @@
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2250,10 +2409,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>1000 - 2000 gpd</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>1000 gpd or less</fullName>
                 <default>false</default>
             </values>
@@ -2279,7 +2434,78 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Endorsement_Type__c</picklist>
+            <values>
+                <fullName>Agricultural %26 Biological</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Building Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Civil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fire Protection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Metallurgical and Materials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining and Mineral Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naval Architect%2FMarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nuclear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Petroleum%C2%A0%C2%A0</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Fee_Calculation_Type__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Fee Based</fullName>
                 <default>false</default>
@@ -2329,945 +2555,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>License_Type__c</picklist>
-            <values>
-                <fullName>Acupuncturist %28ACU%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Cosmetologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Esthetician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Hair Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Manicurist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aesthetician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aesthetician Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aesthetician Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Anesthesiologist Assistant %28AA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approved Training Agency %28ATA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect - Firm %28ARC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect - Individual %28ARC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Assistant Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Associate Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Athletic Trainer %28AT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Audiologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Audiologist - Temporary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Student</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barbershop</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boutique Service Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boutique Service Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Branch Office Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Building Department Certification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Business Facility Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CPE Sponsor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Authorization-Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Conceded Eminence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Embalmer Apprenticeship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Funeral Director Apprenticeship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Pharmacy Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Public Accountant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Public Accountant REG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chair Rental</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemical Dependency Counselor Assistant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemical Dependency Counselor Assistant Preliminary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clinical Research Faculty Certficate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clinical Research Faculty Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Community Health Worker %28CHW%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Coronal Polishing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetic Therapist %28CT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetologist Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetology Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetology%2FBarbering Establishment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetology%2FBarbering School</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Courtesy Card Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory Operator Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DPM Visiting Faculty</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dental Hygienist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dentist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dialysis Technician %28DT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dialysis Technician Intern %28DTI%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dietitian%2FNutritionist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Doctor of Medicine %28MD%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Doctor of Osteopathic Medicine %28DO%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Doctor of Podiatric Medicine %28DPM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dual</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrologist Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrologist Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalming Facility</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineer Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Esthetic Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Esthetic Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Esthetician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Exempt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Expanded Function Dental Auxiliary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FIRM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Home</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Genetic Counselor %28GC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Genetic Counselor %28GC%29 - Special Activity Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Design Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Designer Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Health Department Certification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hearing Aid Dispenser Temporary Hearing Aid Dispenser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent Contractor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Installer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architect - Individual %28ARC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Chemical Dependency Counselor II</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Chemical Dependency Counselor III</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Independent Chemical Dependency Counselor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Orthotist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Pedorthist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Practical Nurse %28LPN%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Practical Nurse - Temporary %28IP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Prosthetist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Prosthetist-Orthotist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Branch School</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Continuing Education License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Resident%27s License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Teaching License - DDS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Teaching License - RDH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Veterinary License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Veterinary Resident License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MD Training Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Main Office Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Managing License %28MN%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manicuring Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manicuring Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manicurist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Broker Secondary Location</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Dealer Secondary Location</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Park Operator</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Sales Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufacturer - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufacturer - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Massage Therapist %28MT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Master Barber</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Master Barber Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Gas Dispenser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Associated Key Employee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Dispensary - Certificate of Operation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Dispensary - Provisional</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Key Employee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Support Employee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medication Aide %28MA-C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail Technician Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail Technician Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Natural Hair Styling Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Natural Hair Stylist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Natural Hair Stylist Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non Resident Pharmacy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occupational Therapist %28OT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occupational Therapy Assistant %28OTA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio Certified Prevention Consultant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio Certified Prevention Specialist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio Certified Prevention Specialist Assistant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oral Health Access Supervision Permit - Dentist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oral Health Access Supervision Permit - Hygienist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oriental Medicine %28OM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcer - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcer - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcing Facility-Distributor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcing Facility-Pharmacy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Peer Review Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy - Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy - Wholesale</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Intern - Foreign Graduate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Intern - Graduate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Technician Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physical Therapist %28PT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physical Therapist Assistant %28PTA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physician Assistant %28PA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Practicing License %28COS%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Provisional Graduate License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Accountant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Accountant REG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Radiographer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Radiologist Assistant %28RA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Real Estate Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Applicant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Nurse %28RN%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Nurse - Temporary %28IR%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Pharmacy Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Sanitarian %28RS%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Veterinary Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repackager - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repackager - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Retail Non Pharmacy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sanitarian In Training %28SIT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>School</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shop Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Activity Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Speech-Language Pathologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Surveyor Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tanning Facility</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tax Consulting Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telemedicine %28DO%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telemedicine %28MD%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Dentist Volunteer Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Event Salon License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Hearing Aid Dispenser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Speech%2FLanguage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Vet Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Clinic - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Clinic - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Clinic - Sole Practitioner%2FDentist - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - EMS - LIMITED - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - EMS - LIMITED - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - LIMITED Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - Veterinary Medicine - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Medical Gas - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Non-Resident Pharmacy - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Non-Resident Pharmacy - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Non-Resident Pharmacy - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Office-Based Opioid Treatment - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Opioid Treatment Program - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pain Management Clinic - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy Supplied Contingency Stock - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy Supplied Contingency Stock - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third-Party Logistics - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third-Party Logistics - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28DO%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28DPM %29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28DPM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28MD%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Veterinary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Visiting Clinical Professional Development Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Visiting Medical Faculty Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volunteer Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volunteer Certificate %28M-VC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volunteer Certificate %28VC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesale Malt Beverage and Wine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler - Category 3</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>MHC_Application_Type__c</picklist>
             <values>
                 <fullName>Change in Ownership</fullName>
@@ -3283,10 +2570,6 @@
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renewal</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3418,10 +2701,6 @@
         </picklistValues>
         <picklistValues>
             <picklist>Type_of_Individual_Site_Design__c</picklist>
-            <values>
-                <fullName>Component Manual</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Holding Tank</fullName>
                 <default>false</default>
@@ -3608,10 +2887,6 @@
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
-                <fullName>Additional Secured Party</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>All</fullName>
                 <default>false</default>
             </values>
@@ -3636,19 +2911,15 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Endorsement</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Examination</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>General Application</fullName>
+                <fullName>Fine</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>New Title Application</fullName>
+                <fullName>General Application</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3661,26 +2932,6 @@
             </values>
             <values>
                 <fullName>Reinstatement</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renewal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Replacement Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transfer due to Death of Current Owner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transfer due to Repossession</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3732,6 +2983,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3802,10 +3057,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -3819,6 +3070,10 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4001,6 +3256,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -4042,10 +3301,6 @@
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4137,7 +3392,78 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Endorsement_Type__c</picklist>
+            <values>
+                <fullName>Agricultural %26 Biological</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Building Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Civil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fire Protection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Metallurgical and Materials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining and Mineral Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naval Architect%2FMarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nuclear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Petroleum%C2%A0%C2%A0</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Fee_Calculation_Type__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Fee Based</fullName>
                 <default>false</default>
@@ -4170,14 +3496,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Exam Passed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Exam Passed Reinstatement</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Permit Renewal</fullName>
                 <default>false</default>
             </values>
@@ -4187,945 +3505,6 @@
             </values>
             <values>
                 <fullName>Service Request</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>License_Type__c</picklist>
-            <values>
-                <fullName>Acupuncturist %28ACU%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Cosmetologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Esthetician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Hair Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Advanced Manicurist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aesthetician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aesthetician Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aesthetician Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Anesthesiologist Assistant %28AA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Approved Training Agency %28ATA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect - Firm %28ARC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect - Individual %28ARC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Assistant Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Associate Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Athletic Trainer %28AT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Audiologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Audiologist - Temporary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Student</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barber Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barbershop</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boutique Service Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boutique Service Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Branch Office Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Building Department Certification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Business Facility Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CPE Sponsor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Authorization-Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Conceded Eminence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Embalmer Apprenticeship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Funeral Director Apprenticeship</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Pharmacy Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Public Accountant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Public Accountant REG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chair Rental</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemical Dependency Counselor Assistant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemical Dependency Counselor Assistant Preliminary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clinical Research Faculty Certficate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clinical Research Faculty Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Community Health Worker %28CHW%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Coronal Polishing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetic Therapist %28CT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetologist Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetology Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetology%2FBarbering Establishment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetology%2FBarbering School</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Courtesy Card Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory Operator Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DPM Visiting Faculty</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dental Hygienist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dentist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dialysis Technician %28DT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dialysis Technician Intern %28DTI%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dietitian%2FNutritionist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Doctor of Medicine %28MD%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Doctor of Osteopathic Medicine %28DO%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Doctor of Podiatric Medicine %28DPM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dual</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrologist Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrologist Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalming Facility</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineer Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Esthetic Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Esthetic Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Esthetician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Exempt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Expanded Function Dental Auxiliary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FIRM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Home</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Genetic Counselor %28GC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Genetic Counselor %28GC%29 - Special Activity Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Design Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Designer Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Health Department Certification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hearing Aid Dispenser Temporary Hearing Aid Dispenser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent Contractor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Installer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architect - Individual %28ARC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Chemical Dependency Counselor II</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Chemical Dependency Counselor III</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Independent Chemical Dependency Counselor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Orthotist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Pedorthist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Practical Nurse %28LPN%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Practical Nurse - Temporary %28IP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Prosthetist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Licensed Prosthetist-Orthotist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Branch School</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Continuing Education License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Resident%27s License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Teaching License - DDS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Teaching License - RDH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Veterinary License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Limited Veterinary Resident License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MD Training Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Main Office Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Managing License %28MN%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manicuring Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manicuring Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manicurist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Broker Secondary Location</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Dealer Secondary Location</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Park Operator</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Home Sales Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufacturer - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufacturer - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Massage Therapist %28MT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Master Barber</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Master Barber Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Gas Dispenser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Associated Key Employee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Dispensary - Certificate of Operation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Dispensary - Provisional</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Key Employee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medical Marijuana Support Employee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medication Aide %28MA-C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail Technician Apprentice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail Technician Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Natural Hair Styling Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Natural Hair Stylist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Natural Hair Stylist Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Non Resident Pharmacy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occupational Therapist %28OT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occupational Therapy Assistant %28OTA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio Certified Prevention Consultant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio Certified Prevention Specialist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio Certified Prevention Specialist Assistant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oral Health Access Supervision Permit - Dentist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oral Health Access Supervision Permit - Hygienist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oriental Medicine %28OM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcer - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcer - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcing Facility-Distributor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outsourcing Facility-Pharmacy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Peer Review Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy - Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy - Wholesale</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Intern - Foreign Graduate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Intern - Graduate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pharmacy Technician Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physical Therapist %28PT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physical Therapist Assistant %28PTA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physician Assistant %28PA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Practicing License %28COS%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Provisional Graduate License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Accountant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Accountant REG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Radiographer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Radiologist Assistant %28RA%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Real Estate Instructor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Applicant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Nurse %28RN%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Nurse - Temporary %28IR%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Pharmacy Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Sanitarian %28RS%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Veterinary Technician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repackager - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Repackager - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Retail Non Pharmacy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sanitarian In Training %28SIT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>School</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shop Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Activity Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Speech-Language Pathologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Surveyor Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tanning Facility</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tax Consulting Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telemedicine %28DO%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Telemedicine %28MD%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Dentist Volunteer Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Event Salon License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Hearing Aid Dispenser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Speech%2FLanguage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Vet Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Clinic - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Clinic - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Clinic - Sole Practitioner%2FDentist - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - EMS - LIMITED - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - EMS - LIMITED - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - LIMITED Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Facility - Veterinary Medicine - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Medical Gas - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Non-Resident Pharmacy - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Non-Resident Pharmacy - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Non-Resident Pharmacy - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Office-Based Opioid Treatment - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Opioid Treatment Program - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pain Management Clinic - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy - LIMITED Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy Supplied Contingency Stock - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Terminal - Pharmacy Supplied Contingency Stock - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third-Party Logistics - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third-Party Logistics - Category 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28DO%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28DPM %29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28DPM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Training Certificate %28MD%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Veterinary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Visiting Clinical Professional Development Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Visiting Medical Faculty Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volunteer Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volunteer Certificate %28M-VC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volunteer Certificate %28VC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesale Malt Beverage and Wine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler - Category 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler - Category 3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5464,5 +3843,13 @@
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Allow_user_to_input_Only_till_4_digits</fullName>
+        <active>true</active>
+        <description>This validation rule would prevent user to enter more than 4 digits in the base field</description>
+        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),LEN(TEXT(Base__c))&gt;4)</errorConditionFormula>
+        <errorDisplayField>Base__c</errorDisplayField>
+        <errorMessage>You are not allowed to enter more than 4 digits.</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
