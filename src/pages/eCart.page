@@ -1,0 +1,266 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : eCart
+** Description      : Cart page for the portal
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**																			
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page controller="ECart_CC" action="{!onPageLoad}"
+           standardStylesheets="false" sidebar="false" showHeader="false"
+           docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false">
+    <html lang='en'>
+        
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <title>Cart</title>
+            <c:Resources />  
+            
+        </head>
+        
+        <body class="internal">
+            <!-- Include header -->
+            <c:Header />
+            
+            <main id="cart">
+                <div class="container headerMain">
+                    <div id="internal-header"> <!-- start white header -->
+                        <h1 escape="false"> {!IF(con != null, con.Name + "&#39;s Cart", "Your Cart")} </h1>
+                    </div>
+                </div> <!-- end the top white header -->
+                
+                
+                <section class="below-the-fold">
+                    <div class="container">
+                        <div>
+                            <b>PLEASE DO NOT USE THE BROWSER'S BACK BUTTON AS THAT MAY OVERWRITE YOUR DATA.</b> <br/>
+                            To continue paying, select the fees you wish to pay and then press the continue button.
+                        </div>
+                		<apex:form id="cartForm" styleClass="animated-form">
+                            <apex:messages styleClass="alert alert-danger"/>
+                            
+                            <apex:outputPanel layout="none" id="pb" rendered="{!activeTab == 'fees'}">
+                                <div class="row">
+                                    <ol class="breadcrumb" aria-label="Breadcrumb">
+                                        <li tabindex="0" class="active"><span>ITEMS</span></li>
+                                        <li tabindex="0"><span>CHECKOUT</span></li>
+                                        <li tabindex="0"><span>CONFIRMATION</span></li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="form-group">
+                                            <apex:outputLabel value="Pay For: " for="payFor"/>
+                                            <apex:selectList value="{!selectedPayForOption}" Id="payFor" size="1" >
+                                                <apex:selectOptions value="{!payForOptions}"/>
+                                                <apex:actionSupport event="onchange" reRender="pb" action="{!resetFeeList}" oncomplete="selectedPayFor();" />
+                                            </apex:selectList>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <apex:outputPanel styleClass="row" rendered="{!fees.size > 0}" layout="block">
+                                	<div class="selectAllItems">
+                                        <input id='selectall' type="checkbox" checked="checked"/> 
+                                        <label for="selectall"><b>Select All</b></label>
+                                    </div>
+                                    <apex:dataTable value="{!fees}" var="feeWrap" styleClass="table feeTable">
+                                        <apex:column >
+                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	                                            <div class="panel-sm panel-default">
+	                                                <div class="panel-heading" role="tab" id="headingOne">
+	                                                    <span class="panel-title" id="test">
+	                                                        <apex:inputCheckbox id="parentChk" value="{!feeWrap.checked}" styleClass="parent-fee notallselected"/> 
+	                                                        <apex:outputLabel value="{!feeWrap.headerText}" for="parentChk" id="test1"></apex:outputLabel>
+	                                                    </span>
+	                                                </div>
+	                                            </div>
+	                                            <div class="panel-body " role="tabpanel" aria-labelledby="headingOne">
+	                                                <div class="panel-body">
+                                            			<apex:dataTable value="{!feeWrap.lstFee}" var="fee" styleClass="table innerFeesTable">
+                                                            <apex:column >
+                                                                <apex:outputtext style="display:none;" value="{!fee.MUSW__Outstanding_Fee__c}" html-data-amount="{!fee.MUSW__Outstanding_Fee__c}" styleClass="select-fee1 HideColumn"/>
+                                                            </apex:column>
+                                                            
+                                                            <apex:repeat value="{!$ObjectType.MUSW__Fee__c.FieldSets.BGBK__Fee_Basic}" var="ff">                
+                                                                <apex:column headerValue="{!ff.label}" >
+                                                                    <apex:outputField value="{!fee[ff]}" />
+                                                                </apex:column>
+                                                            </apex:repeat>
+	                                                    </apex:dataTable>
+                                                    </div>
+                                                 </div>
+                                             </div>
+                                        </apex:column>
+                                    </apex:dataTable>
+                                </apex:outputPanel>
+                                <div class="row">
+                                    <apex:commandButton value="Continue" action="{!continueToCheckout}" styleClass="btn btn-primary" reRender="cartForm" onclick="NOTIFICATIONS.spinnerStart();" oncomplete="NOTIFICATIONS.spinnerStop();" />
+                                    <span class="total-text"> Total Due:</span> <span class="money">$</span><span id="total-amount">0.00</span>
+                                    <span class="tAmount hiddenText"></span>
+                                </div>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!activeTab == 'checkout'}" layout="block">
+                                <div class="row">
+                                    <ol class="breadcrumb" aria-label="Breadcrumb">
+                                        <li tabindex="0"><apex:commandLink action="{!backToItems}">ITEMS</apex:commandLink></li>
+                                        <li tabindex="0" class="active"><span>CHECKOUT</span></li>
+                                        <li tabindex="0"><span>CONFIRMATION</span></li>
+                                    </ol>
+                                </div>
+                                
+                                <apex:outputText value="Total Amount: {0, number, currency}">
+                                    <apex:param value="{!totalAmount}"/>
+                                </apex:outputText>
+                                <apex:outputPanel id="processRegion" layout="block">
+                                    <p class="redirected">You will be redirected to a payment gateway to complete this transaction</p>
+                                    <apex:commandButton value="Back" action="{!backToItems}" styleClass="btn btn-tertiary" />
+                                    <apex:commandButton value="Continue" disabled="{!totalAmount<=0}" action="{!redirectToPaymentGateway}" styleClass="btn btn-primary btn-space" reRender="paymentOuterPanel" onclick="NOTIFICATIONS.spinnerStart();" oncomplete="submitPayment();" />
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </apex:form>
+                	</div>
+                </section>
+            </main>            
+            
+            <!-- Hidden form for payment submission. Only render this form after the user has clicked on Continue to Payment Gateway -->
+            <apex:outputPanel id="paymentOuterPanel">
+            	<apex:outputPanel id="paymentInnerPanel" rendered="{!renderPaymentForm}">
+		            <form id="paymentSubmitForm" action="{!paymentGatewaySettings.Endpoint__c}" method="post">
+						<input type="hidden" id="productCode" name="productCode" value="{!paymentGatewaySettings.Product_Code__c}" />
+						<input type="hidden" id="amountDue" name="amountDue" value="{!totalAmount}" />
+						<input type="hidden" id="ShoppingCartID" name="ShoppingCartID" value="{!receiptId}" />
+						<input type="hidden" id="billerId" name="billerId" value="{!paymentGatewaySettings.Biller_Id__c}" />
+						<input type="hidden" id="billerGroupId" name="billerGroupId" value="{!paymentGatewaySettings.Biller_Group_Id__c}" />
+                        <input type="hidden" name="SpecialEventCode" value="XXXXX" />
+                        <input type="hidden" name="TaxAmount" value="XXXXX" />
+                        <input type="hidden" name="UserID" value="XXXXX" />
+						
+						<input type="hidden" id="disallowLogin" name="disallowLogin" value="N" />
+					</form>
+				</apex:outputPanel>
+			</apex:outputPanel>
+            
+            <c:Footer />
+            
+            <script>
+            $(document).ready(function() {
+                $('input').prop('checked', false);
+                $('.container').on('change', '.select-fee1', function() {
+                    var totalAmount = 0;
+                    $('.select-fee1').filter(":checked").each(function() {
+                        totalAmount += +$(this).data('amount');
+                        //add it up and then TODO put an ID on the total span and use $ .html (var ) on change
+                    });
+                    
+                   var totalcheck1= $('#total-amount').html(totalAmount.toFixed(2));
+                });
+                $('.container').on('change', '.select-fine', function() {
+                    var totalAmount = 0;
+                    $('.select-fee1').filter(":checked").each(function() {
+                        totalAmount += +$(this).data('amount');
+                        //add it up and then TODO put an ID on the total span and use $ .html (var ) on change
+                    });
+                    
+                    $('#total-amount').html(totalAmount.toFixed(2));
+                    
+                });
+                
+                
+                $('.container').on('change','.parent-fee',function(){
+                    if($(this).is(':checked')){
+                        var selectfee = $(this).closest("#accordion").find('.select-fee1');
+                        var totalAmount = parseFloat($('#total-amount').text());
+                        $.each(selectfee,function(i,val) {                 
+                            totalAmount = totalAmount+parseFloat($(val).text());
+                            //add it up and then TODO put an ID on the total span and use $ .html (var ) on change
+                        });
+                        var totalcheck = $('#total-amount').html(parseFloat(totalAmount).toFixed(2));
+                        $('.tAmount').html("total amount due is $" + totalAmount.toFixed(2)).attr('aria-live','polite');
+                    }
+                    else{
+                        $(this).closest("#accordion").find('.parent-fee').prop('checked', false);
+                        var selectfee = $(this).closest("#accordion").find('.select-fee1');
+                        var totalAmount = 0;
+                        var totalAmount = parseFloat($('#total-amount').text());
+                        
+                        $.each(selectfee,function(i,val) {                 
+                            totalAmount = totalAmount-parseFloat($(val).text());
+                            //add it up and then TODO put an ID on the total span and use $ .html (var ) on change
+                        });
+                        $('#total-amount').html(totalAmount.toFixed(2));
+                        $('.tAmount').html("total amount due is $" + totalAmount.toFixed(2)).attr('aria-live','polite');
+                    }
+                });
+                selectedPayFor();
+            });
+            
+            function selectedPayFor(){
+                $('input').prop('checked', false);
+                $('.notallselected').change(function () {
+                    if ($(this).prop('checked')) {
+                        
+                    }
+                    else {
+                        $('#selectall').prop('checked', false);
+                    }
+                });
+                
+                $('#selectall').change(function () {
+                    
+                    if ($(this).prop('checked')) {
+                        $('.parent-fee').prop('checked', true);
+                        var selectfee = $(".select-fee1");
+                        var totalAmount = 0;
+                        //parseFloat($('#total-amount').text());
+                        $.each(selectfee,function(i,val) { 
+                            c = totalAmount+parseFloat($(val).text());
+                            $(val).closest(".yourclaassname")
+                            totalAmount = c;
+                            //add it up and then TODO put an ID on the total span and use $ .html (var ) on change
+                        });
+                        $('#total-amount').html(parseFloat(totalAmount).toFixed(2));
+                    }
+                    else {
+                        $('.parent-fee').prop('checked', false);
+                        var selectfee = $(".select-fee1");
+                        var totalAmount = 0;
+                        $('#total-amount').html(totalAmount.toFixed(2));
+                        
+                    }
+                    $('.tAmount').html("total amount due is $" + totalAmount.toFixed(2)).attr('aria-live','polite');
+                });
+                
+                $('#selectall').trigger('change');
+            }
+            
+            function submitPayment(){
+            	var receiptId = $("#ShoppingCartID").val();
+            	
+            	if(receiptId != null && receiptId != "" && receiptId != "undefined"){
+            		$("#paymentSubmitForm").submit();
+            	}else{
+            		NOTIFICATIONS.spinnerStop();
+            		alert("There was some error. Please contact your system administrator.");
+            	}
+            }
+            </script>
+        </body>
+        
+    </html>
+</apex:page>

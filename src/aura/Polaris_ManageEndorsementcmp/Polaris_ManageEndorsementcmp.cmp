@@ -1,0 +1,148 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="Polaris_MangeEndorsementCntrl">
+    <aura:attribute name="section" type="List"/>
+	<aura:attribute name ="recordId" type="String" />
+    <aura:attribute name ="licenseType" type="String" />
+    <aura:attribute name ="manageEndorsement" type="String" />
+    <aura:attribute name ="board" type="String" />
+    <aura:attribute name ="applicationMethod" type="String" />
+    <aura:attribute name ="requestId" type="String" />
+    <aura:attribute name="endorsementList" type="List"/>
+    <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+    <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
+    <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
+    <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
+    <aura:attribute name="serverStatus" type="string" default="fail" description="On submit success check the server status before redirection to dashboard"/>    
+	<aura:attribute name="licenseWrapper" type="LnP_ApplyForLicenseWrapper[]"/>    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
+    </aura:if>
+    <div class="content-wrapper">
+        <span class="page-info">Manage Endorsement</span>
+        <lightning:card title="Endorsement Details">
+        <p class="slds-p-horizontal_small">
+            <table>
+            <thead>
+                <th>Endorsement Type</th>
+                <th>Status</th>
+                <th>Date Requested</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.endorsementList}" var="doc">
+                    <tr>
+                        <td>{!doc.Endorsement_Type__c}</td>
+                        <td>{!doc.Status__c}</td>
+                        <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
+                        <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Remove" onclick="{!c.remove}"/></td>
+                    </tr>              
+                </aura:iteration>        
+            </tbody>
+        </table>
+        </p>
+    </lightning:card>
+        <lightning:button variant="brand" label="Add Endorsement" title="Add Endorsement" onclick="{! c.showAddRecord }" class="slds-m-vertical_large addRecbtn"/>
+        <!-- <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
+    <div class="slds-grid slds-wrap">
+        <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
+            <div class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
+            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+            <aura:if isTrue="{!question.fieldType=='Picklist'}">                                                   
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                    <lightning:select name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
+                        <aura:iteration items="{!question.fieldValueOptions}" var="option">
+                            <option value="{!option}">{!option}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!question.fieldType=='Radio'}">
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                    <lightning:radioGroup name="{!section.sectionName+questionItem}"
+                                          label="{!question.label}"
+                                          options="{!question.radioValueOptions}"
+                                          value="{!question.value}"
+                                          type="radio"
+                                          onchange="{!c.showDependentQuestions}"/>
+                </div>
+                
+            </aura:if>
+            <aura:if isTrue="{!question.fieldType=='Yes_No'}">
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                    <lightning:radioGroup name="{!section.sectionName+questionItem}"
+                                          label="{!question.label}"
+                                          options="{!question.radioValueOptions}"
+                                          value="{!question.value}"
+                                          type="radio"
+                                          onchange="{!c.showDependentQuestions}"/>
+                </div>
+            </aura:if>
+            
+            
+            <aura:if isTrue="{!question.fieldType=='Checkbox'}">
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                    <lightning:checkboxGroup name="{!section.sectionName+questionItem}"
+                                             label="{!question.label}"
+                                             options="{!question.radioValueOptions}"
+                                             value="{!question.multiValues}"
+                                             onchange="{!c.showDependentQuestions}"/>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!question.fieldType=='Text'}">
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                    <lightning:input name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                </div>
+            </aura:if> 
+            <aura:if isTrue="{!question.fieldType=='Textarea'}">
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                    <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
+                        <ui:inputTextArea label="{!question.label}"  value="{!question.value}" rows="5" />
+                    </div>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!question.fieldType=='Date'}">
+                <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                    <lightning:input type="date" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                </div>
+            </aura:if>
+            
+            
+            
+        </aura:iteration>
+    </div>
+    </aura:iteration>
+        <div class="slds-grid slds-m-top_xx-large button-section">
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }"  class="slds-show pull-right btn btn-lnp"/>
+        </div>-->
+    </div>
+     <!-- Pop up start -->
+    <aura:if isTrue="{!v.isOpen}">             
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- pop up header-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2>{!v.popupHeader}</h2>
+                </header>
+                <!-- pop up body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>{!v.popupBody}</p>
+                </div>
+                <!-- pop up footer -->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" 
+                                      label="OK"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <!-- pop up end -->
+</aura:component>

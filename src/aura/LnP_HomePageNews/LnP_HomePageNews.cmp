@@ -1,0 +1,52 @@
+<!-- *************************************************************************
+Component Name : LnP_HomePageNews
+Created By : Srujan Keskar
+Creation Date : 22-Jan-2019
+
+Modification Log
+
+Name			Date			Issue
+_______________________________________________________________
+
+*******************************************************************************-->
+<aura:component controller = "Lnp_CommonHeader_AC" implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="customLblMap" type="Map" />
+    <aura:attribute name="newsItems" type="Object[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
+    <div class="main-wrapper">
+        <div class="news-title-wrapper">
+            <span class="news-main-title">
+                {!v.customLblMap.LnP_News_Header}
+            </span>
+            <span class="view-button">
+                <a href="javascript:void(0)">{!v.customLblMap.LnP_View_All}</a>
+            </span>
+        </div>
+        <div class="news-main-wrapper">
+            <lightning:layout class="slds-wrap">
+                <aura:iteration items="{!v.newsItems}" var="news">
+                    <lightning:layoutItem class="news-wrapper" size="12" mediumDeviceSize="12" largeDeviceSize="4">
+                        <div class="news-title">
+                            <a href="javascript:void(0)">
+                                {!news.title}
+                                <!--<c:LnP_TrimLines content="{!news.title}" noOfLines="1" />-->
+                            </a>
+                        </div>
+                        <div class="more-news slds-show_large">
+                            <div class="news">
+                                <!--{!news.content}-->
+                                <c:LnP_TrimLines content="{!news.content}" noOfLines="3" />
+                            </div>
+                            <div class="read-more-wrapper">                            
+                                <span class="read-more-text"><a class="link-style" href="javascript:void(0)">{!v.customLblMap.LnP_Read_More}</a></span>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>                
+                </aura:iteration>
+            </lightning:layout>
+        </div>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,48 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : PermitParcel
+** Description      : displays address options according to the Permit flag 
+**					  (User Story: 78 - Associate addresses to a Credential Type)
+** Version          : 1.0
+** Built By         : Srikanth Kottam
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:page standardController="MUSW__Permit_Parcel__c" extensions="PermitParcel_CC">
+<apex:form >
+    <apex:sectionHeader title="New Plan Review/PTO Address" subtitle="Plan Review/PTO Address Edit"/>
+<apex:pageBlock title="Plan Review/PTO Address Edit" id="pb">
+    <apex:pageMessages />
+    <apex:pageBlockButtons >
+        <apex:commandButton value="Cancel" action="{!cancel}"/>
+        <apex:commandButton value="Save" action="{!savePermitAddress}"/>
+    </apex:pageBlockButtons>
+    <apex:pageBlockSection title="Plan Review/PTO">
+        <apex:outputField value="{!MUSW__Permit_Parcel__c.MUSW__Permit2__c}"/>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Address Information" columns="1">
+        <apex:selectList id="mailingAddress" size="1" required="true" value="{!mailingAddressId}" label="Mailing Address">
+            <apex:selectOption itemLabel="Select a Mailing Plan Review/PTO Address" itemValue=""/>
+            <apex:selectOptions value="{!addressOptions}"/>
+        </apex:selectList>
+        <apex:inputCheckbox label="Use as Public Address" onchange="if(this.checked) document.getElementById('{!$Component.publicAddress}').value = document.getElementById('{!$Component.mailingAddress}').value;" />
+        <apex:selectList id="publicAddress" size="1" required="true" value="{!publicAddressId}" label="Public Address">
+            <apex:selectOption itemLabel="Select a Public Plan Review/PTO Address" itemValue=""/>
+            <apex:selectOptions value="{!addressOptions}"/>
+        </apex:selectList>
+        <apex:selectList id="physicalAddress" size="1" value="{!physicalAddressId}" label="Physical Address">
+            <apex:selectOption itemLabel="Select a Physical Plan Review/PTO Address" itemValue=""/>
+            <apex:selectOptions value="{!addressOptions}"/>
+        </apex:selectList>
+    </apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

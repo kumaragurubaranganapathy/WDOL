@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This is part of the application design on the portal.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Application_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Method</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Method</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Application_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Class_Name__c</fullName>
+        <description>Boostrap style for field</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Boostrap style for field</inlineHelpText>
+        <label>Class Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Field_Styles</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Credential_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>License Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Error_Message__c</fullName>
+        <description>To add the error message that needs to be displayed on client side.</description>
+        <externalId>false</externalId>
+        <label>Error Message</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Unique External ID</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Unique External ID</inlineHelpText>
+        <label>External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Label__c</fullName>
+        <description>This is the label for the field which appears on the portal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the label for the field which appears on the portal.</inlineHelpText>
+        <label>Label</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Reciprocity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>License Reciprocity</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Reinstatement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this related to license reinstatement?</description>
+        <externalId>false</externalId>
+        <label>License Reinstatement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this related to a license renewal?</description>
+        <externalId>false</externalId>
+        <label>License Renewal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this related to a license?</description>
+        <externalId>false</externalId>
+        <label>License</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Object_Name__c</fullName>
+        <description>Objects on portal</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Objects on portal</inlineHelpText>
+        <label>Object Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Objects_on_portal</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Order_Number__c</fullName>
+        <description>Order  Number of the field</description>
+        <externalId>false</externalId>
+        <label>Order Number</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent__c</fullName>
+        <description>This is the subsection where the field is found.</description>
+        <externalId>false</externalId>
+        <label>Parent</label>
+        <referenceTo>Application_Subsection__c</referenceTo>
+        <relationshipName>Fields</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Permit_Reinstatement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this for permit reinstatement?</description>
+        <externalId>false</externalId>
+        <label>Permit Reinstatement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>is this related to a permit renewal?</description>
+        <externalId>false</externalId>
+        <label>Permit Renewal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this related to a permit?</description>
+        <externalId>false</externalId>
+        <label>Permit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Read_Only__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this a read-only field?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this a read-only field?</inlineHelpText>
+        <label>Read Only</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Regex_Validation__c</fullName>
+        <description>To add the regex validation formula to do client validations.</description>
+        <externalId>false</externalId>
+        <label>Regex Validation</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this required?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this required?</inlineHelpText>
+        <label>Required?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Service_Request__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Service Request</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>These are the field options for fields shown on the portal</description>
+        <externalId>false</externalId>
+        <inlineHelpText>These are the field options for fields shown on the portal</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Field_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Validator__c</fullName>
+        <description>Validation for the created field</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Validation for the created field</inlineHelpText>
+        <label>Validator</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Field_Validator</valueSetName>
+        </valueSet>
+    </fields>
+    <label>Application Field</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Label__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Type__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Validator__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Field Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Application Fields</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
