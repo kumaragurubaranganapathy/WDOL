@@ -1,16 +1,14 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="Polaris_RenewLicenseController">
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="Polaris_ServiceRequestController">
     <aura:attribute name="section" type="List"/>
-    <aura:attribute name="licID" type="String"/>
-    <aura:attribute name="RenewReinstate" type="String"/>
     <aura:attribute name="currentTab" type="Integer" default="1"/>
     <aura:attribute name="totalTabs" type="Integer" default="1"/>
-    <aura:attribute name="licenseType" type="String" default="licenseType"/>
-    <aura:attribute name="board" type="String" default="board"/>
-    <aura:attribute name="applicationType" type="String" default="applicationType"/>
+    <aura:attribute name="licenseType" type="String" default="Notary Public"/>
+    <aura:attribute name="board" type="String" default="Notary Public"/>
+    <aura:attribute name="applicationType" type="String" default="Service Request - Name Change"/>
     <aura:attribute name="flowType" type="String" default="License"/>
     <aura:attribute name="licenseWrapper" type="LnP_ApplyForLicenseWrapper[]"/>
     <aura:attribute name="value" type="List" default="option1"/>
-    <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="applicationId" type="Id" default="a2pr00000006ga7"/>
     <aura:handler name ="LnP_PassValues" event="c:LnP_PassValues" action="{!c.handlePassValuesEvent}"/>
     <aura:handler name="LnP_setCurrTabEvent" event="c:LnP_setCurrTabEvent" action="{!c.getCurrTab}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -25,7 +23,7 @@
     <aura:attribute name="attestationStatus" type="String" default="false" description="attestation validation flag" />
     <aura:attribute name="attestationError" type="String" default="" description="Attestation error message"/>
     <aura:attribute name="attValidation" type="Boolean" default="true"/>
-    <aura:attribute name="attestValue" type="String"/>
+    <aura:attribute name="attestValue" type="String" default=""/>
     <aura:attribute name="AttFlagForsubmit" type="Boolean" default="false"/>
     <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
     <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
@@ -35,10 +33,14 @@
     <aura:registerEvent name="LnP_getAttJSON" type="c:LnP_getAttJSON"/>
     <aura:attribute name="currentUser" type="User" /> 
     <aura:attribute name="showMessage" type="Boolean" default="false" />
-    <aura:attribute name="showNotaryEndo" type="Boolean" default="false" />
     <aura:attribute name="title" type="String" /> 
+    <aura:attribute name="showEndoMessage" type="Boolean" default="false" />
+    <aura:attribute name="endoMessage" type="String" />
+    <aura:attribute name="showNotaryEndo" type="Boolean" default="false" />
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+    <aura:attribute name="declarationFlag" type="Boolean" default="false" />
     <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
+    
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -49,18 +51,20 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-        <span class="page-info">You are applying for {!v.RenewReinstate} of <span class="italic">{!v.licenseType}</span> under <span class="italic">{!v.board}</span> <!--by <span class="italic">{!v.applicationType}</span>--></span>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
+        <aura:if isTrue="{!v.showEndoMessage}">
+            <ui:message title="Warning" severity="warning" closable="true">
+                {!v.endoMessage}
+            </ui:message>
+        </aura:if>
         <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
-            
             <aura:if isTrue="{!and(or(section.sectionName=='Personal Information',section.sectionName=='Business Information'), v.currentTab==section.tabIndex)}">
                 <div class="personal-info">
                     <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
                 </div>
                 <aura:set attribute="else">
                     <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap personal-info':'slds-hide'}">
-                        <aura:if isTrue="{!and((section.sectionName=='Background Information' ), v.currentTab==section.tabIndex)}">
-                            <!--c:LnP_BackgroundQuestionSection  section ="{!section}" varSection="{!varSection}" currentTab= "{!v.currentTab}"></c:LnP_BackgroundQuestionSection--> 
+                        <aura:if isTrue="{!and((section.sectionName=='Qualifying Information' ), v.currentTab==section.tabIndex)}">
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
                                     <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
@@ -69,21 +73,13 @@
                                         <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 
                                     </aura:if>
                                 </div>
-                            </aura:iteration>                            
+                            </aura:iteration>
                             <aura:set attribute="else">
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="reviewHeading">QUESTIONS REVIEW</div><br/>
-                                        <!-- <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes">
-                                <label style="font-weight: 600;">{!varRes + 1}. {!responses.question}</label><br></br>
-        <p><aura:if isTrue="{!responses.answer != null}">
-                                   <i>{!responses.answer}</i><br></br> 
-                                    <aura:set attribute="else">
-                                        <h1 style="color:Red;"><i>You Have Not Answered this question.<br></br></i></h1>
-                                    </aura:set>  
-                                </aura:if></p>
-                               </aura:iteration> --> 
+                                        
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
@@ -133,9 +129,10 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+<div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                            <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
-                                            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                            <!--<div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
+                                            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
                                             <div class="slds-form-element">
                                                 <div class="slds-form-element__control">
                                                     <div class="slds-checkbox certificate-checkbox">
@@ -150,9 +147,25 @@
                                         </aura:iteration> 
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
                                     </div>
+                                    
+                                    <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                      <div class="reviewHeading declaration">DECLARATION</div><br/>
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-checkbox declaration-checkbox">
+                                                    <input type="checkbox" name="Declaration" id="declaration" onchange="{!c.onDeclarationChange}"/>
+                                                    <label class="slds-checkbox__label" for="declaration">
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label">{!$Label.c.Declaration}</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <div id="AttestationValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="reviewHeading attestation">ATTESTATION</div><br/>
-                                        <div class="attestBody">Attest before proceeding.</div>
+                                        <div class="reviewHeading attestation">SIGNATURE</div><br/>
+                                        <div class="attestBody">Declare before proceeding.</div>
                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
                                             <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                             (<span>{!v.currentUser.Name}</span>)
@@ -183,8 +196,8 @@
                                             </aura:iteration>
                                         </ui:inputSelect> 
                                     </div-->
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
-                                                        <lightning:select name="{!questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <lightning:select name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 <option value="{!option}">{!option}</option>
                                                             </aura:iteration>
@@ -192,18 +205,19 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Radio'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
-                                                        <lightning:radioGroup name="{!questionItem}"
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <lightning:radioGroup name="{!section.sectionName+questionItem}"
                                                                               label="{!question.label}"
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
                                                                               onchange="{!c.showDependentQuestions}"/>
                                                     </div>
+                                                    
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Yes_No'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
-                                                        <lightning:radioGroup name="{!questionItem}"
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <lightning:radioGroup name="{!section.sectionName+questionItem}"
                                                                               label="{!question.label}"
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
@@ -212,9 +226,10 @@
                                                     </div>
                                                 </aura:if>
                                                 
+                                                
                                                 <aura:if isTrue="{!question.fieldType=='Checkbox'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
-                                                        <lightning:checkboxGroup name="{!questionItem}"
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <lightning:checkboxGroup name="{!section.sectionName+questionItem+'checkbox'}"
                                                                                  label="{!question.label}"
                                                                                  options="{!question.radioValueOptions}"
                                                                                  value="{!question.multiValues}"
@@ -222,20 +237,20 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
-                                                        <lightning:input name="{!question.label}" label="{!question.label}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <lightning:input name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if> 
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
-                                                            <ui:inputTextArea label="{!question.label}"  value="{!question.value}" rows="5"/>
+                                                            <ui:inputTextArea label="{!question.label}"  value="{!question.value}" rows="5" />
                                                         </div>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
-                                                        <lightning:input type="date" name="{!question.label}" label="{!question.label}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <lightning:input type="date" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">
@@ -266,11 +281,8 @@
                                         </div>
                                     </aura:set>
                                 </aura:if>
-                            </aura:set>                            
+                            </aura:set>
                         </aura:if>
-                        <aura:if isTrue="{!and((section.sectionName=='Endorsement' ), v.currentTab==section.tabIndex)}">                                
-                            <c:Polaris_EndorsementRenewCmp recordId = "{!v.applicationId}"/>
-                        </aura:if>                            
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
@@ -282,7 +294,6 @@
                                 </div>
                             </aura:iteration>
                         </aura:if>
-                        
                     </div>
                 </aura:set>
             </aura:if>
@@ -321,5 +332,4 @@
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
-    <!-- pop up end -->
 </aura:component>

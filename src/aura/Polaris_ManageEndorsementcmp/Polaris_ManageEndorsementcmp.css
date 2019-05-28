@@ -7,6 +7,8 @@
 .THIS .slds-form-element__label{
     font-size: 14px; 
     color:t(LnGFormGray);
+    word-break: normal;
+    overflow-wrap: normal;
 }
 .THIS .section{
     font-size: 18px;
@@ -177,6 +179,7 @@
 }
 .THIS .tile-wrap{
     display:flex;
+    flex-wrap: wrap;
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
@@ -191,7 +194,7 @@
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
-.THIS .checkbox-error{
+.THIS .error{
     color:t(LnGErrorMsg);
 }
 .THIS .btn-lnp[disabled], 

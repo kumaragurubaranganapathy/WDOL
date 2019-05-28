@@ -12,7 +12,7 @@ public class Polaris_ApplyForLicenseService {
     public static List<Question__c> fetchQuestionsDetails(String applicationType, String credentialType, String applicationMethod) {
         system.debug('board : '+applicationType+'licenseType : '+credentialType+ 'applicationType: '+applicationMethod);
         List<Question__c> lstQuestions =  new List<Question__c>();        
-        String str  = 'Select Id,Name,Triggering_Parent_Answer__c,Qualifying_Response__c,Has_Any_Submission__c,Submission_Title__c,Application_Type__c,Question_Body__c,Data_Type__c,Possible_Responses__c,Credential__c,Application_Method__c,Order_Number__c,Has_dependent_questions__c,	Parent_Question__c,	Record_Type_Name__c,Section__c,	Sub_Header__c,	Sub_Sub_Header__c,	Section_Order__c,QuestionFieldAPI__c, QuestionObjectName__c FROM Question__c where Application_Type__c =\'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \''+applicationMethod +'\' AND status__c=\'Active\' AND record_type_name__c != \'Eligibility Questions\' AND Parent_Object_API_Name__c = \'MUSW__License2__c\' ORDER BY  Sub_Sub_Header__c,Order_Number__c ASC';
+        String str  = 'Select Id,Name,Triggering_Parent_Answer__c,Qualifying_Response__c,Has_Any_Submission__c,Submission_Title__c,Application_Type__c,Question_Body__c,Data_Type__c,Possible_Responses__c,Credential__c,Application_Method__c,Order_Number__c,Has_dependent_questions__c,	Parent_Question__c,	Record_Type_Name__c,Section__c,	Sub_Header__c,	Sub_Sub_Header__c,	Section_Order__c,QuestionFieldAPI__c, QuestionObjectName__c,Message__c,MessageTriggerResponse__c FROM Question__c where Application_Type__c =\'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \''+applicationMethod +'\' AND status__c=\'Active\' AND record_type_name__c != \'Eligibility Questions\' AND Parent_Object_API_Name__c = \'MUSW__License2__c\' ORDER BY  Sub_Sub_Header__c,Order_Number__c ASC';
         system.debug('str1223'+str);
         lstQuestions = Utilityclass_withsharing.queryRecords(Str);
         system.debug('lstQuestions123'+lstQuestions);
@@ -47,7 +47,7 @@ public class Polaris_ApplyForLicenseService {
     {
         system.debug('board : '+applicationType+'licenseType : '+credentialType+ 'applicationType: '+applicationMethod);
         List<Application_Field__c> lstApplicationFields = new List<Application_Field__c>();
-        String Str = 'SELECT Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c FROM Application_Field__c where Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' ORDER BY Order_Number__c ASC';
+        String Str = 'SELECT Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c,Regex_Validation__c,Error_Message__c FROM Application_Field__c where Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' ORDER BY Order_Number__c ASC';
         system.debug('Str '+Str);
         lstApplicationFields = Utilityclass_withsharing.queryRecords(Str);
         return lstApplicationFields;
@@ -64,6 +64,7 @@ public class Polaris_ApplyForLicenseService {
     public static List<MUSW__Application2__c> fetchApplications(String appId)
     {
         List<MUSW__Application2__c> lstApplication =new List<MUSW__Application2__c>();
+        system.debug('id : '+appId);
         String appCondition = 'Id=\''+appId+'\'';
        // String strApp = 'Select Id,MUSW_Account__c,Stage__c, Application_Type__c,  Board__c, License_Type__c, (Select Id, Contact__c, Account__c, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW_Application2__c where '+appCondition;
         String strApp = 'Select MUSW__Applicant__c,Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, Form_JSON__c from MUSW__Application2__c where '+appCondition;

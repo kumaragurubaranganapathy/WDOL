@@ -1,6 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
-        console.log('inside init');
+        console.log('Inside DoInit');
         helper.setApplicationType(component, event, helper);
         helper.fetchDataFromServer(component, event, helper);       
     },
@@ -12,8 +12,20 @@
         
        // helper.checkMandatory(component, event, helper);
       
+
 	},
-    onCheckboxChange: function(component, event, helper) {
+    
+    onDeclarationChange: function(component, event, helper){
+        if(component.get("v.declarationFlag") ==  false){
+            component.set("v.declarationFlag", true);
+        } else{
+            component.set("v.declarationFlag", false);
+        }
+        helper.onCheckboxChange(component, event, helper);
+    
+	},
+    
+    onCheckboxChange: function(component, event, helper) {        
 		helper.onCheckboxChange(component, event, helper);
 	},
     onAttestationChange: function(component, event, helper) {
@@ -39,5 +51,8 @@
     //Close popup 
     closeModel: function(component, event, helper) {
 		helper.closeModel(component, event);
+	},
+    certificateCheckbox: function(component, event, helper) {
+		helper.certificateCheckbox(component, event);
 	}
 })
