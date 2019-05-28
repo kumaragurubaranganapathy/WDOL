@@ -8,7 +8,7 @@ DEVELOPER                          DATE                     DESCRIPTION
 ================================================================================
 Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
 ================================================================================= -->
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="LnP_comHeaderPublicFormsApexController">
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" access="global" controller="LnP_comHeaderPublicFormsApexController">
     <aura:attribute name="listItems" type="String" default=" "/>
     <aura:attribute name="itemsList" type="List"/>
     <aura:attribute name="startIndex" type="Integer" default="0"/>
@@ -18,7 +18,10 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     <aura:attribute name="pageTitle" type="String"/>
     <aura:attribute name="labelMap" type="Object"/>
     <aura:attribute name="showBurgerIconList" type="Boolean" default="false"/>
-    
+    <aura:attribute name="header" type="Boolean" default="false"/>
+    <aura:attribute name="headerfromsession" type="Boolean" default="false" />
+    <aura:attribute name="contactRecId" type="Id" />
+    <aura:attribute name="conIdfromsession" type="Id" />
     <c:LnP_ServerActionService aura:id="server"/>
     <aura:registerEvent name="appEvent" type="c:LnP_VerticalNavEvent"/>
     
@@ -33,7 +36,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
         </div> -->
         <div class="slds-grid header-wrapper">
             <div aura:id="hamburger-menu" class="mobile-menu" style="display:none;" onclick="{!c.toggleMenu}">
-            	<span></span>
+                <span></span>
                 <span></span>
                 <span></span>
             </div>
@@ -44,16 +47,21 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
             </div>
             <div aura:id="global-menu" class="slds-size-12-of-12 slds-large-size_9-of-12 menu-wrapper">
                 <div class="slds-grid">
-                    <div class="slds-size_12-of-12 slds-large-size_5-of-12">
+                    <div class="slds-size_12-of-12 slds-large-size_7-of-12">
                         <div role="navigation" aria-labelledby="nav1" class="slds-col">                   
                             <ul id="nav1" class="nav-links">
                                 <aura:iteration items="{!v.itemsList}" var="item">
-                                    <li><a href="{!item.value}">{!item.key}</a></li>
+                                    <aura:if isTrue="{!or(v.header, v.headerfromsession)}">
+                                        <li></li>
+                                        <aura:set attribute="else">
+                                            <li><a href="{!item.value}">{!item.key}</a></li>
+                                        </aura:set>
+                                    </aura:if>
                                 </aura:iteration>  
                             </ul>
                         </div>
                     </div>
-                    <div class="slds-size_12-of-12 slds-large-size_5-of-12 login-wrapper">
+                    <div class="slds-size_12-of-12 slds-large-size_3-of-12 login-wrapper">
                         <aura:if isTrue="{!v.userType=='Guest'}">
                             <div class="register-div">
                                 <img class="logo-style" src="{!$Resource.LnP_Icons+'/LnP_Icons/Register.svg'}" alt="register" />
@@ -64,7 +72,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                 <a class="link-style" href="{!$Label.c.Polaris_Portal_Home+'login/'}" onclick="{!c.loginUser}">Login</a>
                             </div>
                             <!--<aura:set attribute="else">
-                            	<div class="user-wrapper">
+                             <div class="user-wrapper">
                                     <img src="{!$Resource.LnP_Icons+'/LnP_Icons/search.svg'}" class="logo-style" />
                                     <img src="{!$Resource.LnP_Icons+'/LnP_Icons/bell.svg'}" class="logo-style" />
                                     <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.svg'}" class="logo-style" />
@@ -80,7 +88,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                         </div>
                         <aura:if isTrue="{!v.userType!='Guest'}">
                             <div class="slds-size_4-of-12 slds-large-size_1-of-12">
-                            	<lightning:buttonMenu iconName="utility:down" alternativeText="Settings" iconSize="large" onselect="{!c.handleMenuSelect}" class="account-dropdown">
+                                <lightning:buttonMenu iconName="utility:down" alternativeText="Settings" disabled="{!or(v.header, v.headerfromsession)}" iconSize="large" onselect="{!c.handleMenuSelect}" class="account-dropdown">
                                     <lightning:menuItem label="Profile" value="Profile"/>
                                     <lightning:menuItem label="Manage Business" value="Manage Business" />
                                     <lightning:menuItem label="Logout" value="Logout"/>
