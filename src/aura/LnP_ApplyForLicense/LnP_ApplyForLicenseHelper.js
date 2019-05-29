@@ -143,7 +143,7 @@
         var attRes = [];
         for (var key in tabsList) {
             if (tabsList.hasOwnProperty(key)) {
-                if(tabsList[key].sectionName =='Background Questions'  ){
+                if(tabsList[key].sectionName =='License Information'  ){
                     for (var question in tabsList[key].labelFieldsMap){
                         if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
                             a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
@@ -199,9 +199,9 @@
         var response = event.getSource().get("v.value").trim();
         //alert(response);
         var questionNumber = '';
-        if(event.getSource().get("v.name").includes('Background Questions'))
+        if(event.getSource().get("v.name").includes('License Information'))
         {
-             questionNumber = event.getSource().get("v.name").split('Background Questions')[1];
+             questionNumber = event.getSource().get("v.name").split('License Information')[1];
         }
         else 
         {          
@@ -343,7 +343,7 @@
         }
     },
     toEnableSubmitButtonCheck: function(component, event, helper) {
-        var totalCheckbox = document.getElementsByClassName("certificate-checkbox")
+        var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
         var counter = 0;
         for(var i=0; i < totalCheckbox.length; i++ ){
             if(document.getElementById('cert'+i).checked === true){
@@ -369,7 +369,7 @@
         }        
     },
     checkboxValidation: function(component, event){
-        var totalCheckbox = document.getElementsByClassName("certificate-checkbox")
+        var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
         var counter = 0;
         for(var i=0; i < totalCheckbox.length; i++ ){
             if(document.getElementById('cert'+i).checked === true){
