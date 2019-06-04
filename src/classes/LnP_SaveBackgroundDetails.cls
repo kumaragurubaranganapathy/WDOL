@@ -1,10 +1,10 @@
 public class LnP_SaveBackgroundDetails {
     @AuraEnabled
     public static List<SObject> returnIds(String  ObjectName, String applicationId, String recordTypeID ){
-      String appCondition = 'Application_Bg__c =\''+applicationId+'\'';
+      String appCondition = 'Application_BG__c =\''+applicationId+'\'';
       String query= 'Select id from ' + ObjectName + ' where ' + appCondition +'AND RecordTypeId = \'' +recordTypeID + '\'';
       System.debug('query '+query);
-      List<SObject> lId = Database.query(query);
+        List<SObject> lId = Database.query(query);
       System.debug('lId>______ '+lId);  
         return lId;
     }

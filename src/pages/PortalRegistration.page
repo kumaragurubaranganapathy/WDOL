@@ -47,7 +47,7 @@
                                 <p class="p-padding">
                                     Register here for a new Washington account as a new Applicant.
                                 </p>
-                                <!--<p>		***Dharan Shah --- COMMENTED this as the requirement is not to have SSN on the New User Account Page --- 03/27***
+                                <!--<p>     ***Dharan Shah --- COMMENTED this as the requirement is not to have SSN on the New User Account Page --- 03/27***
                                     Your social security number is required for accurate identification under federal law (42 U.S.C. §666.)
                                 </p>-->
                                 <p>
@@ -153,7 +153,7 @@
                                             <div class="col-sm-6">
                                                 <div class="animated-input-group  requiredElement">
                                                     <label for="confirmEmail"  class="InputLabel top-label">Confirm Email</label>
-                                                    <input type="text" id="confirmEmail" class="form-control" aria-required="true"/>
+                                                    <input type="text" id="confirmEmail" class="form-control" html-aria-required="true"/>
                                                     <span class="bottomShade"></span>
                                                 </div>
                                             </div>
@@ -221,15 +221,16 @@
                 //if($("#noSSNcheckbox").prop("checked") == true ){
                 
                     global_validator = NEWUSER_REG.bindValidations($('#new-user-reg-form'),'no_ssn') ;
+                    console.log('global_validator::'+global_validator);
                 //USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val() , $("#bday").val());
-                USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val());
+                //USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val());
                 
-             /*   }else
+           //}else
               
-                {
-                    global_validator = NEWUSER_REG.bindValidations($('#new-user-reg-form'));
-                }
-*/
+           //   {
+                // global_validator = NEWUSER_REG.bindValidations($('#new-user-reg-form'));
+           //   }  
+        
                 //alert(typeof global_validator);
                 //Perform validation with callback
                 
@@ -274,7 +275,7 @@
                     );
                     
                     MODAL_UTILITY.openModalWithOptions(modalContent , 'SSN Confirmation');
-                //}else	
+                //}else 
                 //{
                 //    USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val() , $("#bday").val());
                 //}
@@ -407,10 +408,11 @@
                 
                 var fieldObject =
                     {
-                        /* onValidationSuccess : function()
+                         onValidationSuccess : function()
                         {
-                            NEWUSER_REG.showSSNConfirmation();
-                        },*/
+                            //NEWUSER_REG.showSSNConfirmation();
+                             USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val());
+                        },
                         
                         form: contForm ,
                         defaultStyle: function (element, isValid) {

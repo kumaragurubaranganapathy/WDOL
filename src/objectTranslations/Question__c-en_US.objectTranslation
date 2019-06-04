@@ -58,6 +58,10 @@
         <name>Compliance_Field_API_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Create Endorsement Record --></label>
+        <name>Create_Endorsement_Record__c</name>
+    </fields>
+    <fields>
         <label><!-- License Type --></label>
         <name>Credential_Type__c</name>
     </fields>
@@ -86,6 +90,114 @@
         <name>End_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Endorsement Type --></label>
+        <name>Endorsement_Type__c</name>
+        <picklistValues>
+            <masterLabel>Agricultural &amp; Biological</masterLabel>
+            <translation><!-- Agricultural &amp; Biological --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Systems</masterLabel>
+            <translation><!-- Building Systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cemetery Pre-arrangement Sales</masterLabel>
+            <translation><!-- Cemetery Pre-arrangement Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cemetery Pre-arrangement Sales Exemption</masterLabel>
+            <translation><!-- Cemetery Pre-arrangement Sales Exemption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemical</masterLabel>
+            <translation><!-- Chemical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Civil</masterLabel>
+            <translation><!-- Civil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control Systems</masterLabel>
+            <translation><!-- Control Systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crematory</masterLabel>
+            <translation><!-- Crematory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical</masterLabel>
+            <translation><!-- Electrical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eletronic Notary</masterLabel>
+            <translation><!-- Eletronic Notary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering</masterLabel>
+            <translation><!-- Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering Geologist</masterLabel>
+            <translation><!-- Engineering Geologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environmental</masterLabel>
+            <translation><!-- Environmental --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire Protection</masterLabel>
+            <translation><!-- Fire Protection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Funeral Pre-arrangement Contract</masterLabel>
+            <translation><!-- Funeral Pre-arrangement Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hydrogeologist</masterLabel>
+            <translation><!-- Hydrogeologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial</masterLabel>
+            <translation><!-- Industrial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Land Surveying</masterLabel>
+            <translation><!-- Land Surveying --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mechanical</masterLabel>
+            <translation><!-- Mechanical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metallurgical and Materials</masterLabel>
+            <translation><!-- Metallurgical and Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mining and Mineral Processing</masterLabel>
+            <translation><!-- Mining and Mineral Processing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Naval Architect/Marine</masterLabel>
+            <translation><!-- Naval Architect/Marine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nuclear</masterLabel>
+            <translation><!-- Nuclear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petroleum</masterLabel>
+            <translation><!-- Petroleum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Structural Engineer</masterLabel>
+            <translation><!-- Structural Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supervisor</masterLabel>
+            <translation><!-- Supervisor --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Expected Answer Parent Field Value Map --></label>
         <name>Expected_Answer_Parent_Field_Value_Map__c</name>
     </fields>
@@ -108,6 +220,14 @@
     <fields>
         <label><!-- Legal Background Question --></label>
         <name>Legal_Background_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- MessageTriggerResponse --></label>
+        <name>MessageTriggerResponse__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>Message__c</name>
     </fields>
     <fields>
         <label><!-- Mulesoft External Id --></label>
@@ -258,13 +378,17 @@
         </sections>
     </layouts>
     <recordTypes>
-        <label><!-- Background Information --></label>
+        <label><!-- Qualifying Information --></label>
         <name>Background_Information</name>
     </recordTypes>
     <recordTypes>
         <description><!-- Record type used for Background question type --></description>
-        <label><!-- Background Questions --></label>
+        <label><!-- License Information --></label>
         <name>Background_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Course Information --></label>
+        <name>Course_Information</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Educational Background Questions --></label>

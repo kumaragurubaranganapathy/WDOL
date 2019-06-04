@@ -91,9 +91,151 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <fields>
+        <fullName>Cash_Register__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cash Register</label>
+        <referenceTo>Cash_Register__c</referenceTo>
+        <relationshipLabel>Payment Batches</relationshipLabel>
+        <relationshipName>Payment_Batches</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cashier_name__c</fullName>
+        <externalId>false</externalId>
+        <label>Cashier name</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Convenience_fees__c</fullName>
+        <externalId>false</externalId>
+        <label>Convenience fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opening_Balance__c</fullName>
+        <externalId>false</externalId>
+        <label>Opening Balance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Startup__c</fullName>
+        <externalId>false</externalId>
+        <label>Startup</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Subtotal__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total__c - Startup__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Subtotal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Cash_In_Register_PB__c</fullName>
+        <externalId>false</externalId>
+        <formula>Cash_Register__r.Total_Cash_in_Register_CC__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cash In Register</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_check_credit_card__c +  Total_Cash_In_Register_PB__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_check_credit_card__c</fullName>
+        <externalId>false</externalId>
+        <label>Total check + Credit card</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_credit_card__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_credit_card_receipts__c - Convenience_fees__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total credit card</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_credit_card_receipts__c</fullName>
+        <externalId>false</externalId>
+        <label>Total credit card receipts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
     <label>Payment Batch</label>
     <listViews>
         <fullName>BGBK__All</fullName>
+        <columns>NAME</columns>
+        <columns>Cash_Register__c</columns>
+        <columns>Convenience_fees__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Opening_Balance__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Startup__c</columns>
+        <columns>Subtotal__c</columns>
+        <columns>Total__c</columns>
+        <columns>Total_Cash_In_Register_PB__c</columns>
+        <columns>Total_check_credit_card__c</columns>
+        <columns>Total_credit_card__c</columns>
+        <columns>Total_credit_card_receipts__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

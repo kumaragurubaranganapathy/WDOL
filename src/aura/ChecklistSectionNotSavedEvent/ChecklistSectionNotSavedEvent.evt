@@ -1,5 +1,0 @@
-<aura:event type="APPLICATION" description="Event is called when the user clicks save button but responses are not saved to the server (either because user skipped a required question, or because of server-side issue)">
-	<aura:attribute name="message" type="String" default=""/>
-	<aura:attribute name="sectionNumber" type="Integer" />
-	<aura:attribute name="id" type="String" />
-</aura:event>

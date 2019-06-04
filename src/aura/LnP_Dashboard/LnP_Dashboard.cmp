@@ -15,8 +15,11 @@
     <aura:attribute name="viewMoreApplicationBoolean" type="Boolean" default="false"/>
     <aura:attribute name="licenses" type="List"/>
     <aura:attribute name="licensesToIterate" type="List" description="Duplicate of licenses list for having view more option"/>
+    <aura:attribute name="BusinessLicenseToIterate" type="List" />
     <aura:attribute name="viewMoreLicensesBoolean" type="Boolean" default="false"/>
     <aura:attribute name="bottomCardListHeader" type="List"/>
+    <aura:attribute name="BusinessLicense" type="List" />
+    <aura:attribute name="viewMoreBusinessLicensesBoolean" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div aura:id="body">
         <c:LnP_ServerActionService aura:id="server"/>
@@ -47,6 +50,9 @@
                                             <aura:iteration items="{!v.licensesToIterate}" var="dataCell" indexVar="ind">
                                                 <tr class="slds-hint-parent">
                                                     <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.Name}</div>
+                                                    </td>
+                                                    <td role="gridcell">
                                                         <div class="slds-truncate bottom-card-font-size">{!dataCell.type}</div>
                                                     </td>
                                                     <td role="gridcell" class="slds-hide">
@@ -70,14 +76,26 @@
                                                                 <aura:if isTrue="{!dataCell.status == 'Generate Fee'}">
                                                                     <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/lightningwashington/cart?id='+dataCell.Id}"  target="_blank">Go to cart</a>
                                                                 	<aura:set attribute="else">
-                                                                        <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/SaveIncompleteApplication?applicationType='+dataCell.board+'&amp;pid='+dataCell.Id}"  target="_blank">Download PDF</a>
+                                                                        <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
+                                                                            <lightning:menuItem value="{!join(',','PDF',dataCell.board,dataCell.Id)}" label="Download PDF" />
+                                                                            <lightning:menuItem value="{!join(',','Endorsement',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" label="Manage Endorsement" />
+                                                                        </lightning:buttonMenu>
+                                                                        <!--<a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/SaveIncompleteApplication?applicationType='+dataCell.board+'&amp;pid='+dataCell.Id}"  target="_blank">Download PDF</a>-->
+                                                                        <!--<lightning:button variant="base" label="Manage Endorsement" title="Manage Endorsement" value="{!join(',','Manage Endorsement',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}"  class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick = "{!c.manageEndorsement}"/>-->
                                                                 	</aura:set>
                                                                 </aura:if>
                                                                 <!-- a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href=""  target="_blank" onclick="{!c.openExistingApp}">View More</a-->
                                                             </aura:set>
                                                         </aura:if>
                                                     </td>
-                                                </tr> 
+                                                    
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.expiryDate}</div>
+                                                    </td>
+                                                    <td>
+                                                    	<lightning:button variant="base" label="Manage License" value="{!dataCell.Id}" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.manageLicense}"/>
+                                                	</td>
+                                                 </tr> 
                                             </aura:iteration>
                                         </tbody>
                                     </table>
@@ -86,8 +104,73 @@
                                     </div>
                                 </div>
                             </lightning:tab>
-                            <lightning:tab class="tab-style" label="Business" title="2nd tab extended title">
-                                Business <br/>                                
+                            <lightning:tab class="tab-style" label="Business" title="Business License">                        
+                                <div class="slds-card__body">
+                                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover" role="grid">
+                                        <thead>                                                                                   
+                                            <tr class="slds-line-height_reset">
+                                                <aura:iteration items="{!v.bottomCardListHeader}" var="item">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate col">{!item}</div>
+                                                    </th>
+                                                </aura:iteration>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.BusinessLicenseToIterate}" var="dataCell" indexVar="ind">
+                                                <tr class="slds-hint-parent">
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.Name}</div>
+                                                    </td>
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.type}</div>
+                                                    </td>
+                                                    <td role="gridcell" class="slds-hide">
+                                                      <div class = "slds-truncate bottom-card-font-size">{!dataCell.renewal}</div>
+                                                    </td>
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.status}</div>
+                                                    </td>
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.date}</div>
+                                                    </td>
+                                                    <td role="gridcell">
+                                                        <aura:if isTrue="{!(dataCell.renewal == 'true' || dataCell.lateRenewal == 'true' || dataCell.reinstate == 'true')? true : false}">
+                                                                <aura:if isTrue="{!(dataCell.renewal == 'true' || dataCell.lateRenewal == 'true')}">
+                                                                    <lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>
+                                                                </aura:if>
+                                                                <aura:if isTrue="{!dataCell.reinstate}">
+                                                                    <lightning:button variant="base" label="Reinstate" title="Reinstate" value="{!join(',','Reinstatement',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}"  class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick = "{!c.renewLicense}"/>
+                                                                </aura:if>
+                                                            <aura:set attribute="else">
+                                                                <aura:if isTrue="{!dataCell.status == 'Generate Fee'}">
+                                                                    <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/lightningwashington/cart?id='+dataCell.Id}"  target="_blank">Go to cart</a>
+                                                                	<aura:set attribute="else">
+                                                                        <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
+                                                                            <lightning:menuItem value="{!join(',','PDF',dataCell.board,dataCell.Id)}" label="Download PDF" />
+                                                                            <lightning:menuItem value="{!join(',','Endorsement',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" label="Manage Endorsement" />
+                                                                        </lightning:buttonMenu>
+                                                                       
+                                                                	</aura:set>
+                                                                </aura:if>
+                                                            </aura:set>
+                                                        </aura:if>
+                                                    </td>
+                                                    
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.expiryDate}</div>
+                                                    </td>
+                                                    <td>
+                                                    	<lightning:button variant="base" label="Manage License" value="{!dataCell.Id}" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.manageLicense}"/>
+                                                	</td>
+                                                 </tr> 
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                    <div class="slds-align_absolute-center">
+                                    	<a href="javascript:void(0)" class="{!v.viewMoreBusinessLicensesBoolean?'slds-show':'slds-hide'}" onclick="{!c.viewMoreBusLicenses}">View More</a>
+                                    </div>
+                                </div>
                             </lightning:tab>
                             <lightning:tab class="tab-style" label="Applications" id="tab3">
                                 <div class="slds-card__body">
@@ -103,7 +186,10 @@
                                         </thead>
                                         <tbody>
                                             <aura:iteration items="{!v.applicationToIterate}" var="dataCell" indexVar="ind">
-                                                <tr class="slds-hint-parent">                                                    
+                                                <tr class="slds-hint-parent">  
+                                                    <td role="gridcell">
+                                                        <div class="slds-truncate bottom-card-font-size">{!dataCell.Name}</div>
+                                                    </td>
                                                     <td role="gridcell">
                                                         <div class="slds-truncate bottom-card-font-size">{!dataCell.type}</div>
                                                     </td>

@@ -911,5 +911,24 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
         return str != null ? str.replace('\r\n', ' ').replace('\n', ' ').escapeHtml4() : str;
     }
     
+      @AuraEnabled
+      public static Boolean getTotalBalance(Id licId){
+        Boolean noFees;
+        List<Renewal_Application__c> licList = [select Id,Total_Balance__c from Renewal_Application__c where Id=:licId];
+        if(!licList.isEmpty() && licList[0].Total_Balance__c == 0){
+            noFees = true;
+        }else{
+            noFees = false;
+        }
+        
+        if(noFees){
+            licList[0].No_Fee_Required__c = noFees;
+            update licList[0];
+        }
+        
+        return noFees;
+    
+    }
+    
     
 }

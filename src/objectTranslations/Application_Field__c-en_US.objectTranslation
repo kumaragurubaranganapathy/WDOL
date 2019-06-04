@@ -26,6 +26,10 @@
         <name>Credential_Type__c</name>
     </fields>
     <fields>
+        <label><!-- Error Message --></label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
         <help><!-- Unique External ID --></help>
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
@@ -81,6 +85,10 @@
         <help><!-- Is this a read-only field? --></help>
         <label><!-- Read Only --></label>
         <name>Read_Only__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regex Validation --></label>
+        <name>Regex_Validation__c</name>
     </fields>
     <fields>
         <help><!-- Is this required? --></help>

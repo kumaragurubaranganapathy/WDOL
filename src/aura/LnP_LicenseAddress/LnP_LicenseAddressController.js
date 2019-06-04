@@ -58,6 +58,23 @@
         for(var i=0; i<elements.length; i++) {
             elements[i].classList.remove('slds-hide');
         }
-    }          
+    },
+    
+    onCountySelect : function(component, event, helper){
+        var valCounty = event.getSource().get("v.value");
+        component.set("v.selectedValue", valCounty);
+    },
+    
+    onStateChange : function(component, event, helper) {
+        if(component.get("v.parcel.State_Province__c") != null && component.get("v.parcel.City__c") != null){
+           helper.countyFetchHelper(component, event, helper);
+        }
+	},
+    
+    onCityChange : function(component, event, helper){
+        if(component.get("v.parcel.City__c") != null && component.get("v.parcel.State_Province__c") != null){
+        	helper.countyFetchHelper(component, event, helper);
+        }
+    },
     
 })

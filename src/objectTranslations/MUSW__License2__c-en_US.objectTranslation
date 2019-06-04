@@ -107,6 +107,22 @@
         <name>Client_ID__c</name>
     </fields>
     <fields>
+        <label><!-- Clock Hours - Continuing Education --></label>
+        <name>Clock_Hours_Continuing_Education__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clock Hours - Pre-Qualifying --></label>
+        <name>Clock_Hours_Pre_Qualifying__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clock Hours - Qualifying Elective --></label>
+        <name>Clock_Hours_Qualifying_Elective__c</name>
+    </fields>
+    <fields>
+        <label><!-- Clock Hours --></label>
+        <name>Clock_Hours__c</name>
+    </fields>
+    <fields>
         <label><!-- Co-owner Name --></label>
         <name>Co_owner_Name__c</name>
     </fields>
@@ -121,6 +137,38 @@
     <fields>
         <label><!-- Community Name --></label>
         <name>Community_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Name --></label>
+        <name>Course_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Number --></label>
+        <name>Course_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Status --></label>
+        <name>Course_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canceled</masterLabel>
+            <translation><!-- Canceled --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Course Title --></label>
+        <name>Course_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Topic --></label>
+        <name>Course_Topic__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Type --></label>
+        <name>Course_Type__c</name>
     </fields>
     <fields>
         <label><!-- Credential Ce Audit Eligible --></label>
@@ -155,6 +203,22 @@
         <name>Date_of_Birth__c</name>
     </fields>
     <fields>
+        <label><!-- Delivery Method --></label>
+        <name>Delivery_Method__c</name>
+        <picklistValues>
+            <masterLabel>Classroom</masterLabel>
+            <translation><!-- Classroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On-line (Distance Education)</masterLabel>
+            <translation><!-- On-line (Distance Education) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar (One-time Events)</masterLabel>
+            <translation><!-- Seminar (One-time Events) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Effective Date of Bond --></label>
         <name>Effective_Date_of_Bond__c</name>
     </fields>
@@ -162,6 +226,18 @@
         <help><!-- Applicant/Licensee Email --></help>
         <label><!-- Email --></label>
         <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event City --></label>
+        <name>Event_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event Date --></label>
+        <name>Event_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event State --></label>
+        <name>Event_State__c</name>
     </fields>
     <fields>
         <label><!-- Expedited Service Fee --></label>
@@ -208,6 +284,10 @@
     <fields>
         <label><!-- Is Late Renewal Eligible? --></label>
         <name>Is_Late_Renewal_Eligible__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is License Active --></label>
+        <name>Is_License_Active__c</name>
     </fields>
     <fields>
         <label><!-- Is Reinstatement Eligible? --></label>
@@ -354,7 +434,7 @@
     <fields>
         <label><!-- Licensee --></label>
         <name>MUSW__Primary_Licensee__c</name>
-        <relationshipLabel><!-- Licenses --></relationshipLabel>
+        <relationshipLabel><!-- Licenses (Licensee) --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- This license is the main license for the Licensee or this License No. identifies the Licensee --></help>
@@ -401,10 +481,6 @@
         <picklistValues>
             <masterLabel>Generate Fee</masterLabel>
             <translation><!-- Generate Fee --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Review</masterLabel>
-            <translation><!-- In Review --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In-Review</masterLabel>
@@ -642,6 +718,11 @@
         <name>Profession_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Provider/School Name --></label>
+        <name>Provider_School_Name__c</name>
+        <relationshipLabel><!-- Licenses (Provider/School Name) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Public Address --></label>
         <name>Public_Address_Formula__c</name>
     </fields>
@@ -729,6 +810,10 @@
         <name>Section_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Security Code --></label>
+        <name>Security_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- Send information to ASC --></label>
         <name>Send_information_to_ASC__c</name>
     </fields>
@@ -805,14 +890,68 @@
         <name>Yes_Label__c</name>
     </fields>
     <layouts>
+        <layout>Appraiser Course Layout</layout>
+        <sections>
+            <label><!-- Approved Licensure Levels --></label>
+            <section>Approved Licensure Levels</section>
+        </sections>
+        <sections>
+            <label><!-- Course Details --></label>
+            <section>Course Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Business License Layout</layout>
         <sections>
             <label><!-- Action Items --></label>
             <section>Action Items</section>
         </sections>
         <sections>
+            <label><!-- Attestation Information --></label>
+            <section>Attestation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
             <label><!-- Financials --></label>
             <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Course Information Layout</layout>
+        <sections>
+            <label><!-- Approved Licensure Levels --></label>
+            <section>Approved Licensure Levels</section>
+        </sections>
+        <sections>
+            <label><!-- Course Details --></label>
+            <section>Course Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
         </sections>
     </layouts>
     <layouts>
@@ -826,10 +965,147 @@
             <section>Financials</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>RBS Business License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Attestation Information --></label>
+            <section>Attestation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RBS Individual License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Attestation Information --></label>
+            <section>Attestation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RE Business License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Attestation Information --></label>
+            <section>Attestation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RE Individual License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Attestation Information --></label>
+            <section>Attestation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- for Business Type License --></description>
         <label><!-- Business --></label>
         <name>Business</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This is the record type for Course Information --></description>
+        <label><!-- Course --></label>
+        <name>Course</name>
     </recordTypes>
     <recordTypes>
         <description><!-- This is the record type for all Delegated Agent --></description>

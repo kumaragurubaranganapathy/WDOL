@@ -17,16 +17,24 @@
         <name>New_Edit_Fees</name>
     </fieldSets>
     <fields>
-        <label><!-- AFRS AR Code --></label>
+        <label><!-- xAFRS AR Code --></label>
         <name>AFRS_AR_Code__c</name>
     </fields>
     <fields>
-        <label><!-- AFRS Cash Code --></label>
+        <label><!-- xAFRS Cash Code --></label>
         <name>AFRS_Cash_Code__c</name>
     </fields>
     <fields>
         <label><!-- AFRS Revenue Code --></label>
         <name>AFRS_Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- AR Date --></label>
+        <name>AR_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- ARed --></label>
+        <name>ARed__c</name>
     </fields>
     <fields>
         <label><!-- Acc AR Code --></label>
@@ -93,8 +101,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Agency Number --></label>
+        <name>Agency_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency --></label>
         <name>Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Method --></label>
+        <name>Application_Method__c</name>
     </fields>
     <fields>
         <label><!-- Application Type --></label>
@@ -167,12 +183,22 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Endorsement --></label>
+        <name>Endorsement__c</name>
+        <relationshipLabel><!-- Fees --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
     </fields>
     <fields>
         <label><!-- Fine --></label>
         <name>Fine__c</name>
+        <relationshipLabel><!-- Fees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Inspection --></label>
+        <name>Inspection__c</name>
         <relationshipLabel><!-- Fees --></relationshipLabel>
     </fields>
     <fields>
@@ -336,16 +362,340 @@
         <label><!-- Type --></label>
         <name>MUSW__Type__c</name>
         <picklistValues>
-            <masterLabel>APP - Application</masterLabel>
-            <translation><!-- APP - Application --></translation>
+            <masterLabel>DC - Application Fee</masterLabel>
+            <translation><!-- DC - Application Fee --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ISP - Inspection</masterLabel>
-            <translation><!-- ISP - Inspection --></translation>
+            <masterLabel>DC - Credential Fee</masterLabel>
+            <translation><!-- DC - Credential Fee --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>REV - Plan Review</masterLabel>
-            <translation><!-- REV - Plan Review --></translation>
+            <masterLabel>DC - Late Renewal Fee</masterLabel>
+            <translation><!-- DC - Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC - Renewal Fee</masterLabel>
+            <translation><!-- DC - Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC Fine</masterLabel>
+            <translation><!-- DC Fine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCQ - Application Fee</masterLabel>
+            <translation><!-- DCQ - Application Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCQ - Credential Fee</masterLabel>
+            <translation><!-- DCQ - Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCQ - Late Renewal Fee</masterLabel>
+            <translation><!-- DCQ - Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCQ - Renewal Fee</masterLabel>
+            <translation><!-- DCQ - Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCR -  Renewal Fee</masterLabel>
+            <translation><!-- DCR -  Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCR - Application Fee</masterLabel>
+            <translation><!-- DCR - Application Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCR - Credential Fee</masterLabel>
+            <translation><!-- DCR - Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCR - Late Renewal Fee</masterLabel>
+            <translation><!-- DCR - Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCR - Renewal Fee</masterLabel>
+            <translation><!-- DCR - Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCR - Renewal Late Fee</masterLabel>
+            <translation><!-- DCR - Renewal Late Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expedited Service Fee</masterLabel>
+            <translation><!-- Expedited Service Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine</masterLabel>
+            <translation><!-- Fine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</masterLabel>
+            <translation><!-- Holding Tank Component Manual, Ver.2.0, SBD-10855-P --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interpretive Determination Report</masterLabel>
+            <translation><!-- Interpretive Determination Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lien Copy Fee</masterLabel>
+            <translation><!-- Lien Copy Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF - Installer App Fee</masterLabel>
+            <translation><!-- MNF - Installer App Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF - Installer Renewal Fee</masterLabel>
+            <translation><!-- MNF - Installer Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Community Expansion</masterLabel>
+            <translation><!-- MNF Community Expansion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Community Late Renewal</masterLabel>
+            <translation><!-- MNF Community Late Renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Community Late Renewal over 2 yrs</masterLabel>
+            <translation><!-- MNF Community Late Renewal over 2 yrs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Community New License</masterLabel>
+            <translation><!-- MNF Community New License --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Community Permit Revision Fee</masterLabel>
+            <translation><!-- MNF Community Permit Revision Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Community Renewal</masterLabel>
+            <translation><!-- MNF Community Renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Dealer Branch Fee</masterLabel>
+            <translation><!-- MNF Dealer Branch Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Dealer Late Renewal Fee</masterLabel>
+            <translation><!-- MNF Dealer Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Dealer Renewal Fee</masterLabel>
+            <translation><!-- MNF Dealer Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Installer Late Renewal Fee</masterLabel>
+            <translation><!-- MNF Installer Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Installer Renewal Fee</masterLabel>
+            <translation><!-- MNF Installer Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Manufacturer App Fee</masterLabel>
+            <translation><!-- MNF Manufacturer App Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Manufacturer Late Renewal Fee</masterLabel>
+            <translation><!-- MNF Manufacturer Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Manufacturer Renewal Fee</masterLabel>
+            <translation><!-- MNF Manufacturer Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Permit Revision Fee</masterLabel>
+            <translation><!-- MNF Permit Revision Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Salesperson App Fee</masterLabel>
+            <translation><!-- MNF Salesperson App Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Salesperson Late Renewal Fee</masterLabel>
+            <translation><!-- MNF Salesperson Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNF Salesperson Renewal Fee</masterLabel>
+            <translation><!-- MNF Salesperson Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscellaneous Review</masterLabel>
+            <translation><!-- Miscellaneous Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscellaneous Review - Additional Fee</masterLabel>
+            <translation><!-- Miscellaneous Review - Additional Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NSF Fee</masterLabel>
+            <translation><!-- NSF Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS Consultation</masterLabel>
+            <translation><!-- POWTS Consultation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS Sanitary Permit</masterLabel>
+            <translation><!-- POWTS Sanitary Permit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS application for review, petition for variance</masterLabel>
+            <translation><!-- POWTS application for review, petition for variance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS application for review, petition for variance Revision Fee</masterLabel>
+            <translation><!-- POWTS application for review, petition for variance Revision Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Component Manual Design</masterLabel>
+            <translation><!-- POWTS-Component Manual Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Component Manual Review</masterLabel>
+            <translation><!-- POWTS-Component Manual Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Experimental System</masterLabel>
+            <translation><!-- POWTS-Experimental System --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Holding Tank Individual Site Design</masterLabel>
+            <translation><!-- POWTS-Holding Tank Individual Site Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Pit Privy Fee</masterLabel>
+            <translation><!-- POWTS-Pit Privy Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Soil Saturation Determination Report</masterLabel>
+            <translation><!-- POWTS-Soil Saturation Determination Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS-Vault Privy Fee</masterLabel>
+            <translation><!-- POWTS-Vault Privy Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rehab &amp; Recycle Fee</masterLabel>
+            <translation><!-- Rehab &amp; Recycle Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Revision to previously approved plan</masterLabel>
+            <translation><!-- Revision to previously approved plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Application fee</masterLabel>
+            <translation><!-- SP-Application fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Exam fee</masterLabel>
+            <translation><!-- SP-Exam fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Initial Credential Fee</masterLabel>
+            <translation><!-- SP-Initial Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Late Renewal Fee</masterLabel>
+            <translation><!-- SP-Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Reinstatement Application Fee</masterLabel>
+            <translation><!-- SP-Reinstatement Application Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Reinstatement Credential Fee</masterLabel>
+            <translation><!-- SP-Reinstatement Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Reinstatement Exam Fee</masterLabel>
+            <translation><!-- SP-Reinstatement Exam Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Reinstatement Fee</masterLabel>
+            <translation><!-- SP-Reinstatement Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Reinstatement Late Renewal Fee</masterLabel>
+            <translation><!-- SP-Reinstatement Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SP-Renewal Fee</masterLabel>
+            <translation><!-- SP-Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soil Based Individual Site Design At Grade</masterLabel>
+            <translation><!-- Soil Based Individual Site Design At Grade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soil Saturation Determination Report</masterLabel>
+            <translation><!-- Soil Saturation Determination Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplemental Fee</masterLabel>
+            <translation><!-- Supplemental Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Title Application</masterLabel>
+            <translation><!-- Title Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Title Replacement Fee</masterLabel>
+            <translation><!-- Title Replacement Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Application Fee</masterLabel>
+            <translation><!-- UDC-Application Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Credential Fee</masterLabel>
+            <translation><!-- UDC-Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Current Certificate Application Fee</masterLabel>
+            <translation><!-- UDC-Current Certificate Application Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Current Certificate Credential Fee</masterLabel>
+            <translation><!-- UDC-Current Certificate Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Exam Fee</masterLabel>
+            <translation><!-- UDC-Exam Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Late Renewal Fee</masterLabel>
+            <translation><!-- UDC-Late Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Proof of Current Certificate Credential Fee</masterLabel>
+            <translation><!-- UDC-Proof of Current Certificate Credential Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Reinstatement Application Fee</masterLabel>
+            <translation><!-- UDC-Reinstatement Application Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Reinstatement Exam Fee</masterLabel>
+            <translation><!-- UDC-Reinstatement Exam Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Reinstatement Fee</masterLabel>
+            <translation><!-- UDC-Reinstatement Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Reinstatement Late Fee</masterLabel>
+            <translation><!-- UDC-Reinstatement Late Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Renewal Fee</masterLabel>
+            <translation><!-- UDC-Renewal Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC-Renewal Fee With Late CE</masterLabel>
+            <translation><!-- UDC-Renewal Fee With Late CE --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -356,6 +706,10 @@
         <label><!-- Product --></label>
         <name>Product__c</name>
         <relationshipLabel><!-- Fees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Profession Code --></label>
+        <name>Profession_Code__c</name>
     </fields>
     <fields>
         <label><!-- Project --></label>
@@ -423,15 +777,15 @@
         <name>Revenue_Code__c</name>
     </fields>
     <fields>
-        <label><!-- TMS AR Code --></label>
+        <label><!-- xTMS AR Code --></label>
         <name>TMS_AR_Code__c</name>
     </fields>
     <fields>
-        <label><!-- TMS Cash Code --></label>
+        <label><!-- xTMS Cash Code --></label>
         <name>TMS_Cash_Code__c</name>
     </fields>
     <fields>
-        <label><!-- TMS Revenue Code --></label>
+        <label><!-- xTMS Revenue Code --></label>
         <name>TMS_Revenue_Code__c</name>
     </fields>
     <fields>
@@ -442,6 +796,14 @@
         <label><!-- All --></label>
         <name>All</name>
     </recordTypes>
+    <sharingReasons>
+        <label><!-- Create Fee by Delegate --></label>
+        <name>Create_Fee_by_Delegate</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- Insert Fee Share --></label>
+        <name>Insert_Fee_Share</name>
+    </sharingReasons>
     <validationRules>
         <errorMessage><!-- Cannot change the Amount of an Invoiced Fee. Void invoice before changing the Fee Amount --></errorMessage>
         <name>BGBK__Fee_Invoiced_lock_Amount</name>

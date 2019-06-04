@@ -5,6 +5,7 @@
                                                                  'Street__c' : '',
                                                                  'City__c' : '',
                                                                  'State_Province__c' : '',
+                                                                 'County__c' : '',
                                                                  'Country__c' : '',
                                                                  'Zip_Postal_Code__c' : '', 
                                                                  'Application_BG__c':''
@@ -13,6 +14,7 @@
     <aura:attribute name="LicenseAddressList" type="List"/>
     <aura:attribute name="state" type="String"/>
     <aura:attribute name="city" type="String"/>
+    <aura:attribute name="county" type="List"/>
     <aura:attribute name="selAddress" type="String"/>
     <aura:attribute name="lstAddress" type="SOD_Autocomplete_Wrapper" />
     <aura:attribute name="showResults" type="Boolean" default="false" />
@@ -23,7 +25,7 @@
     <aura:attribute name="checkBox" type="Boolean" default="false"/>
     <aura:attribute name="sObjParcel" type="String" default="LnP_Parcel__c"/>
     <aura:attribute name="addressTypeOptions" type="List" default="[ {'label': '--None--', 'value': '--None--'},
-                                                                   {'label': 'US Addresss', 'value': 'US Address'},
+                                                                   {'label': 'US Address', 'value': 'US Address'},
                                                                    {'label': 'Existing Address', 'value': 'Existing Address'}]"/>
     <aura:attribute name="typeOfAddress" type="String" />
     <aura:attribute name="existingAddr" type="String" />
@@ -40,6 +42,7 @@
                             <div class="record" title="Address">
                                 {!address.Street__c},<br/>
                                 {!address.City__c}, {!address.State_Province__c}, <br/>
+                                {!address.County__c},<br/>
                                 {!address.Zip_Postal_Code__c},<br/>
                                 {!address.Country__c}
                              <ui:outputText value="{!address.Id}" class="slds-hide addressId" aura:id="addressId"/>
@@ -57,7 +60,7 @@
         </aura:if>
     </div>
     
-    <lightning:button class="slds-m-top_xx-large address-btn" variant="brand" label="+ Address" onclick="{!c.addAddress}"/>
+    <lightning:button class="slds-m-top_xx-large address-button" variant="brand" label="+ Address" onclick="{!c.addAddress}"/>
     <lightning:layout class="address-wrapper">
        <div class="addressTypeSelection slds-hide slds-size_12-of-12 slds-medium-size_4-of-12">
             <lightning:select name="select1" label="Type of address" required="true" value="{!v.typeOfAddress}" onchange="{!c.onSelect}">
@@ -73,13 +76,13 @@
                 <lightning:select name="existingAdd" label="Choose one" required="true" value="{!v.existingAddr}" onchange="{!c.selectExistingAddress}">
                     <option value="--None--" >--None--</option>
                     <aura:iteration items="{!v.LicenseAddressList}" var="address" >
-                        <option value="{!address.Street__c+','+address.City__c+','+address.State_Province__c+','+address.Country__c+','+address.Zip_Postal_Code__c}" >{!address.Street__c}, {!address.City__c}, {!address.State_Province__c},{!address.Country__c},{!address.Zip_Postal_Code__c}</option>
+                        <option value="{!address.Street__c+','+address.City__c+','+address.State_Province__c+','+address.County__c+','+address.Country__c+','+address.Zip_Postal_Code__c}" >{!address.Street__c}, {!address.City__c}, {!address.State_Province__c},{!address.County__c},{!address.Country__c},{!address.Zip_Postal_Code__c}</option>
                     </aura:iteration>
                     
                 </lightning:select>
             </div>
         </aura:if>  
-       <!-- <aura:if isTrue="{!v.typeOfAddress == 'US Address'}"> --> 
+       <aura:if isTrue="{!v.typeOfAddress == 'US Address'}"> 
             <div id = "usAddr" class = "usAddress">
                 <lightning:select name="addressType" aura:id="addressType" label="Address Type" required="true" value="{!v.parcel.Address_Type__c}" class="slds-size_5-of-12 address-fields">
                     <aura:iteration items="{!v.addressDType}" var="addType">
@@ -95,16 +98,24 @@
                     </aura:iteration>                
                 </ul>
                 
-                <lightning:input name="city" label="City" value="{!v.parcel.City__c}" required="true" class="slds-size_5-of-12 address-fields"/>
-                <lightning:input name="state" label="State/Province" value="{!v.parcel.State_Province__c}" required="true" class="slds-size_5-of-12 address-fields"/>
+                <lightning:input name="city" label="City" value="{!v.parcel.City__c}" required="true" class="slds-size_5-of-12 address-fields" onblur="{!c.onCityChange}"/>
+                <lightning:input name="state" label="State/Territory/Province" value="{!v.parcel.State_Province__c}" required="true" class="slds-size_5-of-12 address-fields" onblur="{!c.onStateChange}"/>
+                <lightning:select aura:id="county" name="county" label="County" value="{!v.selectedValue}" required="true" class="slds-size_5-of-12 address-fields" onchange="{!c.onCountySelect}"> 
+                	<aura:iteration items="{!v.county}" var="eachCounty">
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                    </aura:iteration>
+           		</lightning:select>
                 <lightning:input name="country" label="Country" value="{!v.parcel.Country__c}" required="true" class="slds-size_5-of-12 address-fields"/>
                 <lightning:input name="zip" label="Zip/Postal Code" value="{!v.parcel.Zip_Postal_Code__c}" required="true" class="slds-size_5-of-12 address-fields"/>
             </div>
-        <!--</aura:if>-->
+        </aura:if>
         <div class="slds-grid">
             <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.saveAddress}" class="save-btn"/>
             <lightning:button variant="brand" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancelAddress}" class="slds-m-left_medium save-btn"/>
     	</div>
         </div>
     </lightning:layout>
+    
+   <!--<c:Dol_AddressVerificationCmp applicationId="{!v.applicationId}"/>-->
+
     </aura:component>

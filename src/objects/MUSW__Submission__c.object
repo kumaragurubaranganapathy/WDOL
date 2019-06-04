@@ -510,9 +510,9 @@
         <formula>IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
 	If(OR(ISNULL( MUSW__Application2__c ), MUSW__Application2__c = &quot;&quot;), 
 		IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
-	&quot;&quot;, HYPERLINK( &quot;../&quot; &amp; MUSW__License2__c, MUSW__License2__r.Name ,&quot;_parent&quot; )), 
-	HYPERLINK( &quot;../&quot; &amp; MUSW__Application2__c,MUSW__Application2__r.Name,&quot;_parent&quot; )), 
-	HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_parent&quot; ))</formula>
+	&quot;&quot;, HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp;&quot;/&quot;&amp;MUSW__License2__r.Id, MUSW__License2__r.Name ,&quot;_parent&quot; )), 
+	HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp;&quot;/&quot;&amp;MUSW__Application2__r.Id,MUSW__Application2__r.Name,&quot;_parent&quot; )), 
+	HYPERLINK( LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp;&quot;/&quot;&amp;MUSW__Permit2__r.Id,MUSW__Permit2__r.Name,&quot;_parent&quot; ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Related To</label>
         <required>false</required>

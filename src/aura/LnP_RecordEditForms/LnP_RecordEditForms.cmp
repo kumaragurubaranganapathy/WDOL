@@ -27,10 +27,10 @@
                                             <div class="recItem">
                                                 <label>{!rec.label}</label>
                                                 <div class="{!itemRow + 'showHide fieldItem'}">
-                                                    <lightning:outputfield fieldName="{!rec.fieldName}" variant="label-hidden"/>
+                                                    <lightning:outputfield fieldName="{!rec.fieldName}" class="label-hidden" variant="label-hidden"/>
                                                 </div>
                                                 <div class="{!itemRow + 'showHide fieldItem slds-hide'}">
-                                                    <lightning:inputfield fieldName="{!rec.fieldName}" variant="label-hidden"/>
+                                                    <lightning:inputfield fieldName="{!rec.fieldName}" class="label-hidden"/>
                                                 </div>
                                             </div>
                                         </lightning:layoutItem>
@@ -66,19 +66,19 @@
             </aura:iteration>
         </div>
         
-        <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="addRecbtn"/>
+        <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
         
         <div class="{!v.objectRecordType +'addRecord slds-hide full-width'}">
             
             <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}">
                 <div class="">
-                    <h2>recordTypeId={!v.objectRecordType}</h2>
+                    
                     <lightning:messages />
                     <div class="slds-grid slds-wrap row">
                         <aura:iteration items="{!v.recordList}" var="rec">
                             <div class="slds-col slds-size_4-of-12 recItem">
                                 <label>{!rec.label}</label>
-                                <lightning:inputfield fieldName="{!rec.fieldName}" aura:id="inputCmp" variant="label-hidden"/>                            	
+                                <lightning:inputfield fieldName="{!rec.fieldName}" aura:id="inputCmp" class="label-hidden"/>                            	
                             </div>
                         </aura:iteration>
                         <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/> 

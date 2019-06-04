@@ -14,6 +14,7 @@
            <lightning:fileUpload name="file"
                                  label= "{!v.labelQuesions}"
                                  multiple="true"
+                                 disabled="false"
                                  type="file"
                                  accept="{!v.accept}"
                                  recordId="{!v.appID}"

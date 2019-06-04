@@ -58,7 +58,7 @@ public class Polaris_DynamicSQL {
     
     @AuraEnabled
     public static List<SObject> generateQueryWithGenericOR(String objectName, List<String> lstFieldsName, 
-    Map<String,String> mapValues, Map<String, String> mapORValues){
+    Map<String,String> mapValues, Map<String, String> mapORValues, Boolean bIsStatusIncluded){
         system.debug('inside');
         system.debug('mapValues'+mapValues);
         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
@@ -77,7 +77,7 @@ public class Polaris_DynamicSQL {
             sqlObj.Operator = '=';
             orcreterias.add(sqlObj);
         }
-        
+        Map<String, SObject> mapAllRec = new Map<String, SObject>();
         //system.debug('criterias'+criterias);
         String whereClause = '';
         if(orcreterias <> null && !orcreterias.isEmpty())
@@ -91,9 +91,10 @@ public class Polaris_DynamicSQL {
         //List<SObject>  lstRecords  = new List<SObject> () ;
         lstRecords = Utilityclass_withsharing.queryRecords(query); 
         
-        if(!lstRecords.isEmpty())
+        if(!bIsStatusIncluded && !lstRecords.isEmpty())
         {
             List<SObject>  lstTempRecords = new List<SObject>();
+            Set<SObject> setAllRec = new Set<SObject>();
             lstTempRecords.addAll(lstRecords);
             lstRecords = new List<SObject>();
             if(objectName == 'MUSW__License2__c')
@@ -105,8 +106,59 @@ public class Polaris_DynamicSQL {
                     lstRecords.add(oData);
                 }
             }
-            
+            else if(objectName == 'LnP_Parcel__c')
+            {
+                List<LnP_Parcel__c> lstSSData = (List<LnP_Parcel__c>)lstTempRecords;
+                for(LnP_Parcel__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.License__r.MUSW__Status__c))
+                    {
+                        if(oData.License__c <> null && oData.License__r.Name <> null)
+                        {
+                            if(mapAllRec <> null && mapAllRec.get(oData.License__r.Name) <> null)
+                            {
+                            }
+                            else
+                            {
+                                mapAllRec.put(oData.License__r.Name, oData);
+                            }
+                        }
+                    }
+                }
+            }
+            if(mapAllRec <> null && !mapAllRec.isEmpty())
+            lstRecords.addAll(mapAllRec.values());
         }
+        else if(bIsStatusIncluded)
+        {
+            if(objectName == 'LnP_Parcel__c')
+            {
+                List<SObject>  lstTempRecords = new List<SObject>();
+                lstTempRecords.addAll(lstRecords);
+                lstRecords = new List<SObject>();
+                List<LnP_Parcel__c> lstSSData = (List<LnP_Parcel__c>)lstTempRecords;
+                for(LnP_Parcel__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.License__r.MUSW__Status__c))
+                    {
+                        if(oData.License__c <> null && oData.License__r.Name <> null)
+                        {
+                            if(mapAllRec <> null && mapAllRec.get(oData.License__r.Name) <> null)
+                            {
+                            }
+                            else
+                            {
+                                mapAllRec.put(oData.License__r.Name, oData);
+                            }
+                        }
+                    }
+                }
+            }
+            if(mapAllRec <> null && !mapAllRec.isEmpty())
+            lstRecords.addAll(mapAllRec.values());
+        }
+            
+            
         return   lstRecords; 
     } 
     
@@ -125,6 +177,7 @@ public class Polaris_DynamicSQL {
         }
         //system.debug('criterias'+criterias);
         String whereClause = generateWhereQuery(creterias);
+        Map<String, SObject> mapAllRec = new Map<String, SObject>();
         String fieldNames  = String.join(lstFieldsName, ' ,');
         String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
         SYSTEM.debug('QUERY'+query);
@@ -145,6 +198,56 @@ public class Polaris_DynamicSQL {
                     if(Label.SearchStatusFilter.contains(oData.MUSW__Status__c))
                     lstRecords.add(oData);
                 }
+            }
+            else if(objectName == 'LnP_Parcel__c')
+            {
+                List<LnP_Parcel__c> lstSSData = (List<LnP_Parcel__c>)lstTempRecords;
+                for(LnP_Parcel__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.License__r.MUSW__Status__c))
+                    {
+                        if(oData.License__c <> null && oData.License__r.Name <> null)
+                        {
+                            if(mapAllRec <> null && mapAllRec.get(oData.License__r.Name) <> null)
+                            {
+                            }
+                            else
+                            {
+                                mapAllRec.put(oData.License__r.Name, oData);
+                            }
+                        }
+                    }
+                }
+            }
+            if(mapAllRec <> null && !mapAllRec.isEmpty())
+            lstRecords.addAll(mapAllRec.values());
+        }
+        else if(bIsStatusIncluded)
+        {
+            if(objectName == 'LnP_Parcel__c')
+            {
+                List<SObject>  lstTempRecords = new List<SObject>();
+                lstTempRecords.addAll(lstRecords);
+                lstRecords = new List<SObject>();
+                List<LnP_Parcel__c> lstSSData = (List<LnP_Parcel__c>)lstTempRecords;
+                for(LnP_Parcel__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.License__r.MUSW__Status__c))
+                    {
+                        if(oData.License__c <> null && oData.License__r.Name <> null)
+                        {
+                            if(mapAllRec <> null && mapAllRec.get(oData.License__r.Name) <> null)
+                            {
+                            }
+                            else
+                            {
+                                mapAllRec.put(oData.License__r.Name, oData);
+                            }
+                        }
+                    }
+                }
+                if(mapAllRec <> null && !mapAllRec.isEmpty())
+                lstRecords.addAll(mapAllRec.values());
             }
             
         }
@@ -171,6 +274,7 @@ public class Polaris_DynamicSQL {
         List<SObject>  lstRecords  = new List<SObject> () ;
         //List<SObject>  lstRecords  = new List<SObject> () ;
         lstRecords = Utilityclass_withsharing.queryRecords(query); 
+        system.debug('lstRecords----'+lstRecords);
         return   lstRecords; 
     } 
     
@@ -193,5 +297,115 @@ public class Polaris_DynamicSQL {
             picklistValues.add(aPickListValue.getValue()); 
         }
         return picklistValues;
+    }
+    @AuraEnabled
+    public static Map<String,List<String>> fetchMetaDataValues(){
+         Map<String, List<String>> PicklistValueMap = new Map <String, List<String>>();
+         List<Course_Catalog_Search__mdt> lstValues = new List<Course_Catalog_Search__mdt>();
+         
+        lstValues = [SELECT License_Type__c,Program_Type__c FROM Course_Catalog_Search__mdt];
+        for(Course_Catalog_Search__mdt val : lstValues ){
+            List<String> LicenseTypeVal = new List<String>();
+			
+            if(val.License_Type__c != ''){
+               LicenseTypeVal = val.License_Type__c.split(';'); 
+                system.debug('LicenseTypeVal==='+LicenseTypeVal);
+            }
+            PicklistValueMap.put(val.Program_Type__c,LicenseTypeVal);
+            system.debug('PicklistValueMap---'+PicklistValueMap);
+        }
+         return PicklistValueMap;
+    }
+    
+    @AuraEnabled
+    public static List<SObject> generateQueryWithORparent(String objectName, List<String> lstFieldsName, 
+    Map<String,String> mapValues, Boolean bIsStatusIncluded){
+        system.debug('inside');
+        system.debug('mapValues'+mapValues);
+        List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
+        for (String attributeName : mapValues.keyset()) {
+            Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
+            sqlObj.FieldName = attributeName;
+            sqlObj.FieldValue = mapValues.get(attributeName);
+            sqlObj.Operator = '=';
+            creterias.add(sqlObj);
+        }
+        //system.debug('criterias'+criterias);
+        String whereClause = generateWhereQuery(creterias);
+        Map<String, SObject> mapAllRec = new Map<String, SObject>();
+        String fieldNames  = String.join(lstFieldsName, ' ,');
+        String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+        SYSTEM.debug('QUERY'+query);
+        List<SObject>  lstRecords  = new List<SObject> () ;
+        //List<SObject>  lstRecords  = new List<SObject> () ;
+        lstRecords = Utilityclass_withsharing.queryRecords(query); 
+        
+        if(!bIsStatusIncluded && !lstRecords.isEmpty())
+        {
+            List<SObject>  lstTempRecords = new List<SObject>();
+            lstTempRecords.addAll(lstRecords);
+            lstRecords = new List<SObject>();
+            if(objectName == 'MUSW__License2__c')
+            {
+                List<MUSW__License2__c> lstSSData = (List<MUSW__License2__c>)lstTempRecords;
+                for(MUSW__License2__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.MUSW__Status__c))
+                    lstRecords.add(oData);
+                }
+            }
+            else if(objectName == 'LnP_Parcel__c')
+            {
+                List<LnP_Parcel__c> lstSSData = (List<LnP_Parcel__c>)lstTempRecords;
+                for(LnP_Parcel__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.License__r.Related_License__r.MUSW__Status__c))
+                    {
+                        if(oData.License__c <> null && oData.License__r.Related_License__r.Name <> null)
+                        {
+                            if(mapAllRec <> null && mapAllRec.get(oData.License__r.Related_License__r.Name) <> null)
+                            {
+                            }
+                            else
+                            {
+                                mapAllRec.put(oData.License__r.Related_License__r.Name, oData);
+                            }
+                        }
+                    }
+                }
+            }
+            if(mapAllRec <> null && !mapAllRec.isEmpty())
+            lstRecords.addAll(mapAllRec.values());
+        }
+        else if(bIsStatusIncluded)
+        {
+            if(objectName == 'LnP_Parcel__c')
+            {
+                List<SObject>  lstTempRecords = new List<SObject>();
+                lstTempRecords.addAll(lstRecords);
+                lstRecords = new List<SObject>();
+                List<LnP_Parcel__c> lstSSData = (List<LnP_Parcel__c>)lstTempRecords;
+                for(LnP_Parcel__c oData : lstSSData)
+                {
+                    if(Label.SearchStatusFilter.contains(oData.License__r.Related_License__r.MUSW__Status__c))
+                    {
+                        if(oData.License__c <> null && oData.License__r.Related_License__r.Name <> null)
+                        {
+                            if(mapAllRec <> null && mapAllRec.get(oData.License__r.Related_License__r.Name) <> null)
+                            {
+                            }
+                            else
+                            {
+                                mapAllRec.put(oData.License__r.Related_License__r.Name, oData);
+                            }
+                        }
+                    }
+                }
+                if(mapAllRec <> null && !mapAllRec.isEmpty())
+                lstRecords.addAll(mapAllRec.values());
+            }
+            
+        }
+        return   lstRecords; 
     }
 }

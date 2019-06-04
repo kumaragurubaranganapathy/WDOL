@@ -38,6 +38,7 @@
     <aura:attribute name="showNotaryEndo" type="Boolean" default="false" />
     <aura:attribute name="title" type="String" /> 
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+    <aura:attribute name="declarationFlag" type="Boolean" default="false"/>
     <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
     <force:recordData
                       fields="Name, Email, UserType"
@@ -133,9 +134,10 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                        <div class="certifications headings">Certifications</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                            <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
-                                            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                            <!--<div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
+                                            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
                                             <div class="slds-form-element">
                                                 <div class="slds-form-element__control">
                                                     <div class="slds-checkbox certificate-checkbox">
@@ -150,9 +152,24 @@
                                         </aura:iteration> 
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
                                     </div>
+                                    <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                        <div class="declaration headings">Declaration</div><br/>
+                                          <div class="slds-form-element">
+                                              <div class="slds-form-element__control">
+                                                  <div class="slds-checkbox declaration-checkbox">
+                                                      <input type="checkbox" name="Declaration" id="declaration" onchange="{!c.onDeclarationChange}"/>
+                                                      <label class="slds-checkbox__label" for="declaration">
+                                                          <span class="slds-checkbox_faux"></span>
+                                                          <span class="sentences">{!$Label.c.Declaration}</span>
+                                                      </label>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+   
                                     <div id="AttestationValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="reviewHeading attestation">ATTESTATION</div><br/>
-                                        <div class="attestBody">Attest before proceeding.</div>
+                                        <div class="attestation attestation">Signature</div><br/>
+                                        <div class="attestBody sentences">Attest before proceeding.</div>
                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
                                             <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                             (<span>{!v.currentUser.Name}</span>)

@@ -8,20 +8,6 @@
         <shortDescription>General Application</shortDescription>
         <value>General Application</value>
     </labels>
-	    <labels>
-        <fullName>Polaris_Portal_LicenseLookup</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Polaris_Portal_LicenseLookup</shortDescription>
-        <value>https://dev-polaris.cs32.force.com/lightningwashington/s/license-lookup</value>
-    </labels>
-	<labels>
-        <fullName>Endorsement_RecordType</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Endorsement_RecordType</shortDescription>
-        <value>012r00000007M4sAAE</value>
-    </labels>
     <labels>
         <fullName>API_Account</fullName>
         <categories>Object Api</categories>
@@ -850,6 +836,14 @@
         <value>Date of Receipt</value>
     </labels>
     <labels>
+        <fullName>Declaration</fullName>
+        <categories>WA-Lightning</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Declaration</shortDescription>
+        <value>I certify, under penalty of perjury in the state of Washington, that all the information I’ve provided in this application and any associated documents is true, complete, and correct.</value>
+    </labels>
+    <labels>
         <fullName>ERS_Post_Expiration</fullName>
         <categories>ERS</categories>
         <language>en_US</language>
@@ -870,7 +864,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Education_RecordType</shortDescription>
-        <value>012r00000007JzS</value>
+        <value>012r00000007LqiAAE</value>
     </labels>
     <labels>
         <fullName>Eligible_Not_Pub</fullName>
@@ -893,6 +887,13 @@
         <protected>false</protected>
         <shortDescription>Capture User Defined logs into error logging framework Values: Yes/No</shortDescription>
         <value>true</value>
+    </labels>
+    <labels>
+        <fullName>Endorsement_RecordType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Endorsement_RecordType</shortDescription>
+        <value>012r00000007M4sAAE</value>
     </labels>
     <labels>
         <fullName>Err_Cannot_change_System_Number</fullName>
@@ -1067,7 +1068,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Experience_RecordType</shortDescription>
-        <value>012r00000007Gzl</value>
+        <value>012r00000007LqjAAE</value>
     </labels>
     <labels>
         <fullName>Export_Date</fullName>
@@ -2711,6 +2712,13 @@ wish to work in a Delaware Pharmacy to attain required hours of pre-licensure ex
         <value>OLCC License Number</value>
     </labels>
     <labels>
+        <fullName>Organization_Wide_EmailAddress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Organization Wide EmailAddress</shortDescription>
+        <value>niinani@deloitte.com</value>
+    </labels>
+    <labels>
         <fullName>PR_ServiceRequestConfirmation</fullName>
         <categories>ServiceRequestConfirmation</categories>
         <language>en_US</language>
@@ -2793,35 +2801,49 @@ wish to work in a Delaware Pharmacy to attain required hours of pre-licensure ex
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Polaris_Portal_Dashboard</shortDescription>
-        <value>https://ci-ci-polaris.cs32.force.com/lightningwashington/s/dashboard</value>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/s/dashboard</value>
+    </labels>
+    <labels>
+        <fullName>Polaris_Portal_Education</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Polaris_Portal_Education</shortDescription>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/s/course-search</value>
     </labels>
     <labels>
         <fullName>Polaris_Portal_ForgotPassword</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Polaris_Portal_ForgotPassword</shortDescription>
-        <value>https://ci-ci-polaris.cs32.force.com/lightningwashington/s/ForgotPassword</value>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/s/ForgotPassword</value>
     </labels>
     <labels>
         <fullName>Polaris_Portal_Home</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Polaris_Portal_Home</shortDescription>
-        <value>https://ci-ci-polaris.cs32.force.com/lightningwashington/s/</value>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/s/</value>
+    </labels>
+    <labels>
+        <fullName>Polaris_Portal_LicenseLookup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Polaris_Portal_LicenseLookup</shortDescription>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/s/license-lookup</value>
     </labels>
     <labels>
         <fullName>Polaris_Portal_Registration</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Polaris_Portal_Registration</shortDescription>
-        <value>https://ci-ci-polaris.cs32.force.com/lightningwashington/s/portal-registration</value>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/s/portal-registration</value>
     </labels>
     <labels>
         <fullName>Polaris_Portal_URL</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Polaris_Portal_URL</shortDescription>
-        <value>https://ci-ci-polaris.cs32.force.com/lightningwashington/</value>
+        <value>https://qa-qa-polaris.cs32.force.com/lightningwashington/</value>
     </labels>
     <labels>
         <fullName>ProfileFieldAccessCheck</fullName>
@@ -3029,6 +3051,14 @@ wish to work in a Delaware Pharmacy to attain required hours of pre-licensure ex
         <value>LnP_ReviewnSubmit.svg</value>
     </labels>
     <labels>
+        <fullName>Review_upload</fullName>
+        <categories>WA-Lightning</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review_upload</shortDescription>
+        <value>Your application isn’t complete once submitted as you will be required to upload documents via third party</value>
+    </labels>
+    <labels>
         <fullName>SR_Manage_Affiliations</fullName>
         <categories>Service Request</categories>
         <language>en_US</language>
@@ -3229,6 +3259,13 @@ wish to work in a Delaware Pharmacy to attain required hours of pre-licensure ex
         <value>Yes</value>
     </labels>
     <labels>
+        <fullName>SearchStatusFilter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SearchStatusFilter</shortDescription>
+        <value>Active, Inactive, Expired, Suspended, Revoked, Canceled</value>
+    </labels>
+    <labels>
         <fullName>St_Busy</fullName>
         <categories>Status</categories>
         <language>en_US</language>
@@ -3305,7 +3342,7 @@ wish to work in a Delaware Pharmacy to attain required hours of pre-licensure ex
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>STR_All Permits and plan review</shortDescription>
-        <value>Plan Review;Manufactured Homes Communities</value>
+        <value>Plan Review;Manufactured Homes Communities;Cemeteries;</value>
     </labels>
     <labels>
         <fullName>Str_All_Topics</fullName>
@@ -4372,7 +4409,7 @@ wish to work in a Delaware Pharmacy to attain required hours of pre-licensure ex
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Training_RecordType</shortDescription>
-        <value>012r00000007JmY</value>
+        <value>012r00000007LqkAAE</value>
     </labels>
     <labels>
         <fullName>UN_Account_Owner</fullName>

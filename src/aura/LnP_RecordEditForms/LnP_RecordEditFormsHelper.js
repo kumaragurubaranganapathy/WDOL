@@ -39,6 +39,7 @@
         $A.enqueueAction(action);
     },
     setData : function(component, event, helper) {
+        
         if(component.get('v.sObj') != null) {
         var sectionName = component.get('v.sectionName');
         var obj = component.get('v.sObj');
@@ -58,8 +59,12 @@
                 dataList = response.getReturnValue();
                 var sectionList = component.get('v.sectionList');
                 sectionList = sectionList.labelFieldsMap;
+                
                 for(var i=0;i<sectionList.length;i++){
                     if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'LnP_BackgroundSection__c' && obj=='LnP_BackgroundSection__c'){
+                        recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
+                    }
+                    else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Endorsement__c' && obj=='Endorsement__c'){
                         recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
                     }
                 }

@@ -67,6 +67,10 @@
                 <field>Service_Request_Type__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Has_dependent_questions__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>External_Id_of_Parent__c</field>
             </layoutItems>
@@ -77,6 +81,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Attachment_Required__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Create_Endorsement_Record__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -123,6 +131,22 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Chevron_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Sub_Sub_Header__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Section__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Section_Order__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>QuestionObjectName__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -259,7 +283,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002Pz22</masterLabel>
+        <masterLabel>00hr0000002QEnO</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

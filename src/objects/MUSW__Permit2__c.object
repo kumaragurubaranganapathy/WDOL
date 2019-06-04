@@ -165,11 +165,6 @@
             <controllingField>Permit_Type__c</controllingField>
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
-            <valueSettings>
-                <controllingFieldValue>POWTS Experimental System</controllingFieldValue>
-                <controllingFieldValue>POWTS Component Manual Review</controllingFieldValue>
-                <valueName>General Application</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -2303,14 +2298,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             <controllingField>Program_Area__c</controllingField>
             <restricted>true</restricted>
             <valueSetName>Permit_Type</valueSetName>
-            <valueSettings>
-                <controllingFieldValue>POWTS</controllingFieldValue>
-                <valueName>POWTS Component Manual Review</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS</controllingFieldValue>
-                <valueName>POWTS Experimental System</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -2717,14 +2704,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Revision or Renewal</label>
                 </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>POWTS Component Manual Review</controllingFieldValue>
-                <valueName>New Review</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS Component Manual Review</controllingFieldValue>
-                <valueName>Revision or Renewal</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -2862,10 +2841,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -2933,6 +2908,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -2974,6 +2953,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3594,13 +3577,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Plan Review</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Permit_Type__c</picklist>
-            <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3809,10 +3785,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -3880,6 +3852,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -3921,6 +3897,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4541,13 +4521,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Plan Review</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Permit_Type__c</picklist>
-            <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4756,10 +4729,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -4827,6 +4796,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -4868,6 +4841,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5488,13 +5465,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Plan Review</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Permit_Type__c</picklist>
-            <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5703,10 +5673,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -5774,6 +5740,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -5815,6 +5785,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6435,13 +6409,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Plan Review</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Permit_Type__c</picklist>
-            <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6650,10 +6617,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -6721,6 +6684,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -6762,6 +6729,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7382,13 +7353,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Plan Review</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Permit_Type__c</picklist>
-            <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7605,6 +7569,14 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <searchResultsAdditionalFields>MUSW__Alert_Indicator__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>Create_Permit_Delegate__c</fullName>
+        <label>Create Permit - Delegate</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>Insert_PermitShare__c</fullName>
+        <label>Insert PermitShare</label>
+    </sharingReasons>
     <visibility>Public</visibility>
     <webLinks>
         <fullName>Letter</fullName>

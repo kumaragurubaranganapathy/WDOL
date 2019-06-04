@@ -46,6 +46,9 @@ public class Dol_AddressValidationService {
 		validatedAddress.street = address.getChildElement('Address1', 'urn:mdWebServiceAddress').getText();
         validatedAddress.street2 = address.getChildElement('Suite', 'urn:mdWebServiceAddress').getText();
         System.debug('suite2'+validatedAddress.street2);
+        if(Dol_IntegrationUtil.isBlank(validatedAddress.street2)){
+            validatedAddress.street2 = null;
+        }
        	validatedAddress.city = address.getChildElement('City', 'urn:mdWebServiceAddress').getChildElement('Name', 'urn:mdWebServiceAddress').getText();
        	validatedAddress.state = address.getChildElement('State', 'urn:mdWebServiceAddress').getChildElement('Abbreviation', 'urn:mdWebServiceAddress').getText();
         String zipRange ;
@@ -100,15 +103,16 @@ public class Dol_AddressValidationService {
 	public static Boolean saveAddress(string selectedAddress,Boolean isAptInfo, String parentId){
 		Boolean success = false;
         String addres1;
-        String aptInfo;
+        String aptInfo = '';
         String city;
         String state;
         String zip;
         String country;
         
-        try{
+       // try{
             if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
                 selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
+                system.debug('selectedAddress='+selectedAddress);
                 List<String> Addresslist = selectedAddress.split(',');
                 if(Dol_IntegrationUtil.isNotempty(Addresslist)){
                     addres1 = Addresslist[0] != null ? Addresslist[0].trim() : '';
@@ -121,18 +125,20 @@ public class Dol_AddressValidationService {
                     }
                      //if address line 2 is NOT null
                     else if(isAptInfo){
+                        aptInfo = Addresslist[1] != null ? Addresslist[1].trim() : '';
                         city = Addresslist[2] != null ? Addresslist[2].trim() : '';
                         state = Addresslist[3] != null ? Addresslist[3].trim() : '';
                         zip = Addresslist[4] != null ? Addresslist[4].trim() : '';
                         country = Addresslist[5] != null ? Addresslist[5].trim() : '';
                     }
                 }
-                List<MUSW__Parcel__c> existingParcel = [SELECT id,MUSW__Primary_Contact__c from MUSW__Parcel__c where MUSW__Street2__c =:addres1 AND MUSW__City__c=:city AND MUSW__State__c=:state AND MUSW__Post_Zip_Code__c=:zip AND Country__c=:country Limit 1];
+                List<MUSW__Parcel__c> existingParcel = [SELECT id,MUSW__Primary_Contact__c,MUSW__Unit__c from MUSW__Parcel__c where MUSW__Street2__c =:addres1 AND MUSW__City__c=:city AND MUSW__State__c=:state AND MUSW__Post_Zip_Code__c=:zip AND Country__c=:country Limit 1];
                 if(Dol_IntegrationUtil.isNotempty(existingParcel)){
                     if(Dol_IntegrationUtil.isNotBlank(parentId)){
                         String sObjectName = getObjAPI(parentId) ;
                         if(sObjectName == 'Contact'){
                         	existingParcel[0].MUSW__Primary_Contact__c = parentId;
+                            existingParcel[0].MUSW__Unit__c = aptInfo;
                         }
                         upsert existingParcel[0];
                         success = true;
@@ -141,6 +147,7 @@ public class Dol_AddressValidationService {
                 else{
                     MUSW__Parcel__c parcel = new MUSW__Parcel__c();
                     parcel.MUSW__Street2__c = addres1;
+                    parcel.MUSW__Unit__c = aptInfo;
                     parcel.MUSW__City__c = city;
                     parcel.MUSW__State__c = state;
                     parcel.MUSW__Post_Zip_Code__c = zip;
@@ -163,10 +170,10 @@ public class Dol_AddressValidationService {
                     } 
                   }
             	}
-            }catch(Exception e){
+            /*}catch(Exception e){
             System.debug('Dol_AddressValidationService - Exception: '+e);
             DebugErrorLoggger.LogError(e, '', '','Dol_AddressValidationService','saveAddress','saveAddress Method failed');  
-        }
+        }*/
 		
 		return success;
 	}

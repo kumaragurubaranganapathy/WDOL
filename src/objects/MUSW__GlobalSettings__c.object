@@ -110,6 +110,17 @@ eg. lastname, mailingstreet</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MUSW__Generate_Documents_as_Files__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>By default, documents are generated as Salesforce Attachments (unchecked). Checking this option will generate documents as Salesforce Files.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>By default, documents are generated as Salesforce Attachments (unchecked). Checking this option will generate documents as Salesforce Files.</inlineHelpText>
+        <label>Generate Documents as Files</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>MUSW__Organization_Country__c</fullName>
         <defaultValue>&quot;US&quot;</defaultValue>
         <deprecated>false</deprecated>

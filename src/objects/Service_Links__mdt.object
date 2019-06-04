@@ -10,6 +10,14 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Auto_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Auto Approved</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Credential_Type__c</fullName>
         <externalId>false</externalId>
         <fieldManageability>DeveloperControlled</fieldManageability>
@@ -390,6 +398,14 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Questions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Questions</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Service_Request_Type__c</fullName>

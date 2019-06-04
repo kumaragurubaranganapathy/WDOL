@@ -3,12 +3,12 @@
         // getValueFromPaymentSource();
         debugger;           
         
-        helper.addDepositRecord(component, event);
+        
         
         var action = component.get("c.getProgramType");
         var action1 = component.get("c.getFormNumber");
-        var action2 = component.get("c.getDepositInfo");
-        var action3 = component.get("c.getValidationNumberInfo");
+       var action2 = component.get("c.getDependency");
+       // var action3 = component.get("c.getValidationNumberInfo");
         
         var ShowNewResultValue = event.getParam("PassResult");
         
@@ -20,6 +20,7 @@
                 for(var key in result){
                     industryMap.push({key: key, value: result[key]});
                 }
+                console.log("IndustryMap : " + industryMap);
                 component.set("v.industryMap", industryMap);
             }
         });
@@ -31,30 +32,38 @@
                 for(var key in result){
                     formnum.push({key: key, value: result[key]});
                 }
+                  console.log("formnum : " + formnum);
                 component.set("v.formnum", formnum);
             }
         });
         
-        action2.setCallback(this, function(response) {
+        action2.setParams({
+             "objDetail" : component.get("v.programType"),
+             "contrfieldApiName" : "wadol_Program_Type__c",
+             "depfieldApiName" : "Form_number__c"
+        });
+       action2.setCallback(this, function(response) {
             var state = response.getState();
-            console.log('the data is' +response.getReturnValue());
+            console.log('the data is' +JSON.stringify(response.getReturnValue()));           
             if (state === "SUCCESS") {
-                component.set("v.depositDetails",response.getReturnValue());
+                component.set("v.industryFormMap",response.getReturnValue());               
+                helper.addDepositRecord(component, event);  
             }
         });
         
-        action3.setCallback(this, function(response) {
+      /*  action3.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 component.set("v.validationNumber",response.getReturnValue());
             }
-        });
+        });*/
         
         
         $A.enqueueAction(action);
         $A.enqueueAction(action1);
-        $A.enqueueAction(action2);
-        $A.enqueueAction(action3);
+       $A.enqueueAction(action2);
+       // $A.enqueueAction(action3);
+      
        
     },
     addNewRow_ : function(component,event,helper){

@@ -56,7 +56,7 @@ public class Polaris_ApplyForLicenseService {
     public static List<MUSW__Master_Submission_List__c>fetchMasterSubmissionDetails(String applicationType, String credentialType, String applicationMethod)
     {
         List<MUSW__Master_Submission_List__c> lstMasterSubmission = new List<MUSW__Master_Submission_List__c>();
-        String Str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\')';
+        String Str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\') ORDER BY  CreatedDate ASC';
         lstMasterSubmission = Utilityclass_withsharing.queryRecords(Str);
         return lstMasterSubmission;
     }

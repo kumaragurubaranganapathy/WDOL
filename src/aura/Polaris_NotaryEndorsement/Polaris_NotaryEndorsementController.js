@@ -1,11 +1,11 @@
 ({
-	 doinit : function(component, event, helper){
+    doinit : function(component, event, helper){
         var sectionList = component.get("v.sectionList");
-         console.log('List : ',JSON.stringify(sectionList));
-		helper.setData(component, event, helper);
-         
-         //alert(component.get("v.ProviderList").length);
-	},
+        console.log('List : ',JSON.stringify(sectionList));
+        helper.setData(component, event, helper);
+        
+        //alert(component.get("v.ProviderList").length);
+    },
     
     showAddRecord : function(component, event, helper) {       
         
@@ -33,8 +33,11 @@
         helper.removeHelper(component, event, helper);
     },
     
-    addDetails : function(component, event, helper) {     
-        helper.setSelectedValue(component, event, helper);       
+    addDetails : function(component, event, helper) {
+        if(component.get("v.effectiveDate")!= null)
+        {
+            helper.setSelectedValue(component, event, helper); 
+        }        	      
     },
     
     handleCancel: function(component, event, helper) {     
@@ -45,6 +48,6 @@
         }
         var addRecordBtn = component.find('APdetails');
         $A.util.removeClass(addRecordBtn,'slds-hide');
-
+        
     },
 })

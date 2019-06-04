@@ -16,9 +16,11 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onAfterDelete() {}
     public void onAfterInsert() {
         //This method is to run the automation rules
+        system.debug('just entered');
         BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
         
-        /*Calling the after method to create submissions*/        
+        /*Calling the after method to create submissions*/  
+        system.debug('isnide after insert method');
         afterMethod();
     }
     public void onAfterUndelete() {}
@@ -74,7 +76,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
 * Method to update sumission records based on answers in License records         
 * Fetching old and new values for the License if any
 */
-        
+        system.debug('inside after method');
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
         List<MUSW__License2__c> licensesForFeeWaiver = new List<MUSW__License2__c>();
@@ -82,6 +84,9 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         //Map<String, String> credentialApplicationMethodMap = new Map<String, String>();
         Set<String> credentialInPendingStatusSet = new Set<String>();
         Set<String> applicationMethodSet = new Set<String>();
+        Set<MUSW__License2__c> setLicense = new Set<MUSW__License2__c>();
+        setLicense.addAll(triggerNew);
+        List<Endorsement__c> listEndorsement = [SELECT id,License__c,Status__c FROM Endorsement__c where License__c IN:setLicense AND Status__c='Pending Add' ];
         System.debug('trigger size'+triggerNew.size());
         for(Integer i = 0; i < triggerNew.size(); i++) {
             System.debug('in for loop');
@@ -102,9 +107,17 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                 credentialInPendingStatusSet.add(licenseNew.Credential__c);
                 applicationMethodSet.add(licenseNew.Application_Method__c);
             }
+            if(licenseNew.MUSW__Status__c == 'Active')
+            {
+                for(Endorsement__c endo:listEndorsement)
+                {
+                    endo.Status__c = 'Active';
+                }
+            }
             
         }
-        
+        system.debug('listEndorsement : '+listEndorsement);
+        update listEndorsement;
         if(licensesInPendingStatusMap.size() > 0) {
             System.debug('in if size > 0 ');
             
@@ -251,6 +264,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     }
     
     public void beforeMethod() {
+        system.debug('inside before method');
         //Verify if Total Fee was updated correctly
         Map<Id, Decimal> MapLicenseTotalFee = new Map<Id, Decimal>();
         if (trigger.isUpdate) {
@@ -341,7 +355,7 @@ Return Type    : void
 Parameter      : Nil
 *********************************************************************************/
     public void Notificationdate() {
-        
+        system.debug('inside Notificationdate method');
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
         Map<String, List<Email_Reminder_Setting__mdt>> mapTypeVsCriteria = Email_Utility.getEmailCriteriaMap(label.Str_Credential);
@@ -388,11 +402,13 @@ Parameter      : Nil
     Parameter      : Nil
     *********************************************************************************/
     Private Void DRESequence(){
+        system.debug('inside DRESequence method');
         String actionType = (Trigger.isUpdate) ? 'Update':
             ((Trigger.isInsert) ? 'Insert' : 'Delete');
         Boolean isSeqNumberChangeReq = false;
                 for (sObject sobj : Trigger.New) {
                     MUSW__License2__c lic = (MUSW__License2__c) sobj;
+                    system.debug('inside for loop:' +lic.id);
                     MUSW__License2__c oldLic = (MUSW__License2__c)Trigger.OldMap.get(lic.Id);
                     //Status was changed AND old Status is Not Active
                     if (Trigger.Old != null && oldLic.MUSW__Status__c != lic.MUSW__Status__c &&  oldLic.MUSW__Status__c != 'Active') {

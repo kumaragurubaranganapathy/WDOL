@@ -38,9 +38,9 @@
     handleRowAction : function(component, event, helper) {
 		var action = event.getParam('action');
         var row = event.getParam('row');
-        var licenseId = row.Name;
+        var licenseId = row.License__r.Name;
         var licenseRecordId = row.Id;
-        var relatedLicense = row.Related_License__c;
+        var relatedLicense = row.License__r.Related_License__c;
         var licenseType = row.recordType;
         component.set("v.licenseRecordType", licenseType);
         switch (action.name) {
@@ -58,6 +58,9 @@
                 break;
         }
 	},
+    mobileViewDetails : function(component, event, helper){
+        var licenseId = event.target.id;
+    },
     handleSort : function(component,event,helper){
         var sortBy = event.getParam("fieldName");
         var sortDirection = event.getParam("sortDirection");

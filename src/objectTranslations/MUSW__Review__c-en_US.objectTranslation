@@ -46,22 +46,6 @@
         <name>Application_Type__c</name>
     </fields>
     <fields>
-        <label><!-- Appraisal Reports Request Sent --></label>
-        <name>Appraisal_Reports_Request_Sent__c</name>
-    </fields>
-    <fields>
-        <label><!-- Appraisal Reports USPAP Compliant --></label>
-        <name>Appraisal_Reports_USPAP_Compliant__c</name>
-    </fields>
-    <fields>
-        <label><!-- Appraiser Experience Log Approved --></label>
-        <name>Appraiser_Experience_Log_Approved__c</name>
-    </fields>
-    <fields>
-        <label><!-- Appraiser Qualifying Education Approved --></label>
-        <name>Appraiser_Qualifying_Education_Approved__c</name>
-    </fields>
-    <fields>
         <label><!-- Appraiser Specific Qualifying Education --></label>
         <name>Appraiser_Specific_Qualifying_Education__c</name>
     </fields>
@@ -72,10 +56,6 @@
     <fields>
         <label><!-- Approval to take Exam letter Returned – --></label>
         <name>Approval_to_take_Exam_letter_Returned__c</name>
-    </fields>
-    <fields>
-        <label><!-- Approved Course Number --></label>
-        <name>Approved_Course_Number__c</name>
     </fields>
     <fields>
         <label><!-- Assignment (reports request) letter emai --></label>
@@ -230,10 +210,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Course Details --></label>
-        <name>Course_Details__c</name>
-    </fields>
-    <fields>
         <label><!-- Current License/Certification --></label>
         <name>Current_License_Certification__c</name>
         <picklistValues>
@@ -263,30 +239,6 @@
         <picklistValues>
             <masterLabel>Not Met</masterLabel>
             <translation><!-- Not Met --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Date Application Received --></label>
-        <name>Date_Application_Received__c</name>
-    </fields>
-    <fields>
-        <label><!-- Dealer Affiliation --></label>
-        <name>Dealer_Affiliation__c</name>
-        <picklistValues>
-            <masterLabel>Accepted</masterLabel>
-            <translation><!-- Accepted --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Denied</masterLabel>
-            <translation><!-- Denied --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>N/A</masterLabel>
-            <translation><!-- N/A --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -338,12 +290,13 @@
         <name>Effective_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Estimated Completion Time(Hours) --></label>
-        <name>Estimated_Completion_Time_Hours__c</name>
+        <label><!-- Endorsement --></label>
+        <name>Endorsement__c</name>
+        <relationshipLabel><!-- Reviews --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Exam Approval Generated --></label>
-        <name>Exam_Approval_Generated__c</name>
+        <label><!-- Estimated Completion Time(Hours) --></label>
+        <name>Estimated_Completion_Time_Hours__c</name>
     </fields>
     <fields>
         <label><!-- Exam Pass Letter Received? --></label>
@@ -402,14 +355,6 @@
         <name>Exp_in_other_States_Verify_in_good_st__c</name>
     </fields>
     <fields>
-        <label><!-- Experience Hours : Non Residential --></label>
-        <name>Experience_Hours_Non_Residential__c</name>
-    </fields>
-    <fields>
-        <label><!-- Experience Hours:  Residential --></label>
-        <name>Experience_Hours_Residential__c</name>
-    </fields>
-    <fields>
         <label><!-- Experience Hours:  Total Full Months --></label>
         <name>Experience_Hours_Total_Full_Months__c</name>
     </fields>
@@ -450,22 +395,6 @@
         <name>Fee_validated_license_issued__c</name>
     </fields>
     <fields>
-        <label><!-- Felony Conviction Review --></label>
-        <name>Felony_Conviction_Review__c</name>
-        <picklistValues>
-            <masterLabel>Met</masterLabel>
-            <translation><!-- Met --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>N/A</masterLabel>
-            <translation><!-- N/A --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Not Met</masterLabel>
-            <translation><!-- Not Met --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Felony Review --></label>
         <name>Felony_Review__c</name>
         <picklistValues>
@@ -498,6 +427,10 @@
         <name>Insurance_Policy_Number__c</name>
     </fields>
     <fields>
+        <label><!-- License Record Type --></label>
+        <name>License_Record_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- License Type --></label>
         <name>License_Type__c</name>
     </fields>
@@ -505,26 +438,6 @@
         <label><!-- License --></label>
         <name>License__c</name>
         <relationshipLabel><!-- Reviews --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Lien Release --></label>
-        <name>Lien_Release__c</name>
-        <picklistValues>
-            <masterLabel>Accepted</masterLabel>
-            <translation><!-- Accepted --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Denied</masterLabel>
-            <translation><!-- Denied --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>N/A</masterLabel>
-            <translation><!-- N/A --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- Application --></label>
@@ -617,16 +530,16 @@
         <name>Marked_Exp_Log_file_with_Approved_4_Ex__c</name>
     </fields>
     <fields>
+        <label><!-- Military --></label>
+        <name>Miliatary__c</name>
+    </fields>
+    <fields>
         <label><!-- NOTE PROBLEMS &amp; THE EFFORTS MADE TO RESO --></label>
         <name>NOTE_PROBLEMS_THE_EFFORTS_MADE_TO_RESO__c</name>
     </fields>
     <fields>
         <label><!-- New Label --></label>
         <name>New_Label__c</name>
-    </fields>
-    <fields>
-        <label><!-- Out-of-State Experience Approved --></label>
-        <name>Out_of_State_Experience_Approved__c</name>
     </fields>
     <fields>
         <label><!-- Passed Embalmer Sciences Exam --></label>
@@ -669,22 +582,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Proof of Licensure --></label>
-        <name>Proof_of_Licensure__c</name>
-        <picklistValues>
-            <masterLabel>N/A</masterLabel>
-            <translation><!-- N/A --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>No</masterLabel>
-            <translation><!-- No --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Yes</masterLabel>
-            <translation><!-- Yes --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Proposed or Current Ordinance --></label>
         <name>Proposed_or_Current_Ordinance__c</name>
         <picklistValues>
@@ -710,8 +607,29 @@
         <relationshipLabel><!-- Reviews --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Request --></label>
+        <name>Request__c</name>
+        <relationshipLabel><!-- Reviews --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Requested Appraisal Reports received --></label>
         <name>Requested_Appraisal_Reports_received__c</name>
+    </fields>
+    <fields>
+        <label><!-- Review Sub-Status --></label>
+        <name>Review_SubStatus__c</name>
+        <picklistValues>
+            <masterLabel>FE Approved</masterLabel>
+            <translation><!-- FE Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PE Approved</masterLabel>
+            <translation><!-- PE Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PE/FE Approved</masterLabel>
+            <translation><!-- PE/FE Approved --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Checklist Type --></label>
@@ -766,29 +684,249 @@
         <name>Status2__c</name>
     </fields>
     <fields>
-        <label><!-- Title Review --></label>
-        <name>Title_Review__c</name>
-        <picklistValues>
-            <masterLabel>Accepted</masterLabel>
-            <translation><!-- Accepted --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Denied</masterLabel>
-            <translation><!-- Denied --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>N/A</masterLabel>
-            <translation><!-- N/A --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Validate Fee --></label>
         <name>Validate_Fee__c</name>
     </fields>
+    <layouts>
+        <layout>Certified General Appraiser</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Delegated Agent</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Dwelling Contractor</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Dwelling Contractor Qualifier</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Information --></label>
+            <section>Credential Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Embalmer</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inspection Agency</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>License Review Layout</layout>
+        <sections>
+            <label><!-- Background --></label>
+            <section>Background</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Manufactured Home</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Manufactured Home Plan Review</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>POWTS</layout>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Soil Erosion Inspector</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Soil Professions</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Soil Tester</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>State Licensed Appraiser</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UDC Credential</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UDC Inspectors</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- Certified General Appraiser --></description>
         <label><!-- Certified General Appraiser --></label>
@@ -858,6 +996,10 @@
         <label><!-- UDC Inspectors --></label>
         <name>UDC_Inspectors</name>
     </recordTypes>
+    <webLinks>
+        <label><!-- Assign_to_me --></label>
+        <name>Assign_to_me</name>
+    </webLinks>
     <webLinks>
         <label><!-- Checklist --></label>
         <name>Checklist</name>

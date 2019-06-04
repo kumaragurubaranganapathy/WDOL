@@ -39,13 +39,38 @@
         <name>End_Time__c</name>
     </fields>
     <fields>
+        <label><!-- Form JSON --></label>
+        <name>Form_JSON__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Requests --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Permit / Plan Review --></label>
         <name>Permit_Plan_Review__c</name>
         <relationshipLabel><!-- Requests --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Profession --></label>
+        <name>Profession__c</name>
+    </fields>
+    <fields>
         <label><!-- Resource Name --></label>
         <name>Resource_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Request Type --></label>
+        <name>Service_Request_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stage --></label>
+        <name>Stage__c</name>
     </fields>
     <fields>
         <label><!-- Start Time --></label>
@@ -55,16 +80,16 @@
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
-            <masterLabel>Canceled</masterLabel>
-            <translation><!-- Canceled --></translation>
+            <masterLabel>Approve</masterLabel>
+            <translation><!-- Approve --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Eligible</masterLabel>
-            <translation><!-- Eligible --></translation>
+            <masterLabel>Deny</masterLabel>
+            <translation><!-- Deny --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Scheduled</masterLabel>
-            <translation><!-- Scheduled --></translation>
+            <masterLabel>Under Review</masterLabel>
+            <translation><!-- Under Review --></translation>
         </picklistValues>
     </fields>
     <layouts>

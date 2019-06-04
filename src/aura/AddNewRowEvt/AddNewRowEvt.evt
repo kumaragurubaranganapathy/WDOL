@@ -2,4 +2,6 @@
 <aura:event type="COMPONENT" description="Use For Add New Row" >
 
     <aura:attribute type="MUSW__Deposit__c" name="depositInstance" />
+    <aura:attribute type="MUSW__Receipt__c" name="receiptInstance" />
+    <aura:attribute type="String" name="callType" />
 </aura:event>

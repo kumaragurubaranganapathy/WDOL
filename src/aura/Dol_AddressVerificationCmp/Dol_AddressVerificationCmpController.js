@@ -30,7 +30,7 @@
            
         var originalAddress = street+', '+city+', '+state+', '+zip+', '+country;
         if(street2!= null && street2!= undefined && street2!= ''){
-            var isAddress2 = component.set("v.isAddress2" , true);
+            var isAddress2 = component.set("v.isOriginalAdd2" , true);
             originalAddress += ', '+street2;
         }
        // originalAddress= originalAddress+ ', '+city+', '+state+', '+zip+', '+country;
@@ -89,15 +89,19 @@
                     	component.set("v.outputAddress" , addr);
                     	component.set("v.isAddAddressClicked" , true);
                         var suggestedAddress = '';
+                       
                         
-                        if(addr.street2 != null && addr.street2 != '' && addr.street2 != undefined){
+                        if(addr.street2 !== null && addr.street2 !== '' && addr.street2 !== undefined){
+                           component.set("v.issuggestedAdd2" , true);
                            suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country+', '+addr.street2;
-                            console.log("addr.street2=="+addr.street2);
+                           console.log("addr.street2=="+addr.street2);
                         }
                         else {
+                           component.set("v.issuggestedAdd2" , false);
                            suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country;
-                            console.log("addr.street2**"+addr.street2);
+                           console.log("addr.street2**"+addr.street2);
                         }
+                        console.log("issuggestedAdd2"+component.get("v.issuggestedAdd2"));
                         console.log("suggestedAddress"+suggestedAddress);
                         component.set("v.suggestedAddress" , suggestedAddress);
                         helper.highlight (component, helper,suggestedAddress, originalAddress);
@@ -119,13 +123,26 @@
         console.log('radiobutton');
         var selectedAddress = document.querySelector('input[name="locations"]:checked').value;
         component.set("v.userSelectedAddr" , selectedAddress);
-        selectedAddress = EncodingUtil.urlDecode(selectedAddress, 'UTF-8');        
         console.log('selectedAddress'+selectedAddress);
+        if(selectedAddress == 'SuggestedAddress'){
+           var addr = component.get("v.issuggestedAdd2");
+            console.log('addr=='+addr);
+             component.set("v.isAddress2" , addr);
+        }
+        if(selectedAddress == 'OriginalAddress'){
+           var addr = component.get("v.isOriginalAdd2");
+            console.log('addr=='+addr);
+             component.set("v.isAddress2" , addr);
+        }
+         var isaddress2 = component.get("v.isAddress2");
+        console.log('isaddress2'+isaddress2);
     },
     onsaveAddress : function(component ,event, helper) {
+        console.log('onsaave');
         var address; 
         var recordId = component.get("v.recordId");
         var isAptInfo = component.get("v.isAddress2");
+         console.log('isAptInfo'+isAptInfo);
         var selectedAddress = component.get("v.userSelectedAddr");
         
         if(selectedAddress === 'OriginalAddress'){
@@ -143,9 +160,17 @@
          	console.log("Spinner" + component.get("v.Spinner"));
         	action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
+                var isSave = actionResult.getReturnValue();
+                console.log("isSave=="+ isSave);
                 component.set("v.Spinner", false);
                 component.set("v.isAddAddressClicked",false);
-                helper.showToast(component, event, "Success!", "success", "Your address Entry has been successfully created.");
+                if(isSave === true){
+                   helper.showToast(component, event, "Success!", "success", "Your address Entry has been successfully created."); 
+                }
+                if(isSave === false){
+                   helper.showToast(component, event, "Error!", "Error", "Error on saving your address Entry."); 
+                }
+                
                 helper.setDefaultFields(component);
                 $A.get('e.force:refreshView').fire();;
                 

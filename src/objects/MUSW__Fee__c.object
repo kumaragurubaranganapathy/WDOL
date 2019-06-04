@@ -94,13 +94,18 @@
     <fieldSets>
         <fullName>BGBK__Fee_Basic</fullName>
         <availableFields>
+            <field>BGBK__Due_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
             <field>RecordTypeId</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </availableFields>
         <description>Fee Payment Correction page (corrects either fees or payments)</description>
         <displayedFields>
-            <field>MUSW__License1__c</field>
+            <field>MUSW__License2__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -131,11 +136,6 @@
         </displayedFields>
         <displayedFields>
             <field>MUSW__Outstanding_Fee__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>BGBK__Due_Date__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -260,7 +260,7 @@
         <fullName>AFRS_AR_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLAR&quot;</defaultValue>
         <externalId>false</externalId>
-        <label>AFRS AR Code</label>
+        <label>xAFRS AR Code</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -272,7 +272,7 @@
         <fullName>AFRS_Cash_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLCH&quot;</defaultValue>
         <externalId>false</externalId>
-        <label>AFRS Cash Code</label>
+        <label>xAFRS Cash Code</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -291,6 +291,24 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AR_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>AR Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ARed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ARed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Acc_AR_Code__c</fullName>
@@ -387,6 +405,108 @@
                     <label>5212000</label>
                 </value>
             </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community New License</controllingFieldValue>
+                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
+                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
+                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
+                <valueName>4732000</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
+                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
+                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
+                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
+                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
+                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
+                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
+                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
+                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
+                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
+                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
+                <valueName>4733000</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
+                <valueName>4656000</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Application fee</controllingFieldValue>
+                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
+                <controllingFieldValue>DC Fine</controllingFieldValue>
+                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
+                <valueName>4730000</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
+                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
+                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
+                <controllingFieldValue>Title Application</controllingFieldValue>
+                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
+                <valueName>4655000</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
+                <valueName>5212000</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
+                <valueName>4990000</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -417,7 +537,108 @@
                     <label>PLANREV</label>
                 </value>
             </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community New License</controllingFieldValue>
+                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
+                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Application fee</controllingFieldValue>
+                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Title Application</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
+                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
+                <valueName>CREDENT</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
+                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
+                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
+                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
+                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
+                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
+                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
+                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
+                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
+                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
+                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
+                <valueName>PLANREV</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
+                <valueName>EXAM</valueName>
+            </valueSettings>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Agency_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Agency__c</fullName>
@@ -429,6 +650,19 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Application_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Method</valueSetName>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
@@ -462,6 +696,91 @@
                     <label>22100</label>
                 </value>
             </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
+                <controllingFieldValue>MNF Community New License</controllingFieldValue>
+                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
+                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
+                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
+                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
+                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
+                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
+                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
+                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Application fee</controllingFieldValue>
+                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
+                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Title Application</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
+                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
+                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
+                <controllingFieldValue>NSF Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
+                <controllingFieldValue>DC Fine</controllingFieldValue>
+                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
+                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
+                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
+                <valueName>22100</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -615,7 +934,105 @@
                     <label>1652100000</label>
                 </value>
             </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
+                <controllingFieldValue>MNF Community New License</controllingFieldValue>
+                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
+                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
+                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
+                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
+                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
+                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
+                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
+                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Application fee</controllingFieldValue>
+                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
+                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>Title Application</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
+                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
+                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
+                <controllingFieldValue>NSF Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
+                <controllingFieldValue>DC Fine</controllingFieldValue>
+                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
+                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
+                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
+                <valueName>1652100000</valueName>
+            </valueSettings>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Endorsement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Endorsement</label>
+        <referenceTo>Endorsement__c</referenceTo>
+        <relationshipLabel>Fees</relationshipLabel>
+        <relationshipName>Fees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>External_Id__c</fullName>
@@ -637,6 +1054,19 @@
         <externalId>false</externalId>
         <label>Fine</label>
         <referenceTo>Fine__c</referenceTo>
+        <relationshipLabel>Fees</relationshipLabel>
+        <relationshipName>Fees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Inspection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Inspection</label>
+        <referenceTo>MUSW__Inspection__c</referenceTo>
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
@@ -1100,19 +1530,424 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>ISP - Inspection</fullName>
+                    <fullName>DCQ - Credential Fee</fullName>
                     <default>false</default>
-                    <label>ISP - Inspection</label>
+                    <label>DCQ - Credential Fee</label>
                 </value>
                 <value>
-                    <fullName>APP - Application</fullName>
+                    <fullName>DCQ - Renewal Fee</fullName>
                     <default>false</default>
-                    <label>APP - Application</label>
+                    <label>DCQ - Renewal Fee</label>
                 </value>
                 <value>
-                    <fullName>REV - Plan Review</fullName>
+                    <fullName>MNF - Installer App Fee</fullName>
                     <default>false</default>
-                    <label>REV - Plan Review</label>
+                    <label>MNF - Installer App Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF - Installer Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF - Installer Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>DCQ - Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>DCQ - Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>DC - Application Fee</fullName>
+                    <default>false</default>
+                    <label>DC - Application Fee</label>
+                </value>
+                <value>
+                    <fullName>DC - Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>DC - Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>DC - Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>DC - Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>DC - Credential Fee</fullName>
+                    <default>false</default>
+                    <label>DC - Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>DCR - Application Fee</fullName>
+                    <default>false</default>
+                    <label>DCR - Application Fee</label>
+                </value>
+                <value>
+                    <fullName>DCR - Credential Fee</fullName>
+                    <default>false</default>
+                    <label>DCR - Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>DCR -  Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>DCR -  Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>DCR - Renewal Late Fee</fullName>
+                    <default>false</default>
+                    <label>DCR - Renewal Late Fee</label>
+                </value>
+                <value>
+                    <fullName>DCR - Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>DCR - Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Application fee</fullName>
+                    <default>false</default>
+                    <label>SP-Application fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Initial Credential Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Initial Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Reinstatement Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Reinstatement Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Reinstatement Application Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Reinstatement Application Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Reinstatement Exam Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Reinstatement Exam Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Reinstatement Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Reinstatement Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Reinstatement Credential Fee</fullName>
+                    <default>false</default>
+                    <label>SP-Reinstatement Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Application Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Application Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Exam Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Exam Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Credential Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Proof of Current Certificate Credential Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Proof of Current Certificate Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Renewal Fee With Late CE</fullName>
+                    <default>false</default>
+                    <label>UDC-Renewal Fee With Late CE</label>
+                </value>
+                <value>
+                    <fullName>UDC-Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Reinstatement Late Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Reinstatement Late Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Reinstatement Application Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Reinstatement Application Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Reinstatement Exam Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Reinstatement Exam Fee</label>
+                </value>
+                <value>
+                    <fullName>UDC-Current Certificate Application Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Current Certificate Application Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Manufacturer App Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Manufacturer App Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Dealer Branch Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Dealer Branch Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Salesperson App Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Salesperson App Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Community Late Renewal</fullName>
+                    <default>false</default>
+                    <label>MNF Community Late Renewal</label>
+                </value>
+                <value>
+                    <fullName>MNF Community New License</fullName>
+                    <default>false</default>
+                    <label>MNF Community New License</label>
+                </value>
+                <value>
+                    <fullName>MNF Community Expansion</fullName>
+                    <default>false</default>
+                    <label>MNF Community Expansion</label>
+                </value>
+                <value>
+                    <fullName>MNF Community Renewal</fullName>
+                    <default>false</default>
+                    <label>MNF Community Renewal</label>
+                </value>
+                <value>
+                    <fullName>MNF Community Permit Revision Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Community Permit Revision Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Installer Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Installer Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Installer Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Installer Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Dealer Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Dealer Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Dealer Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Dealer Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Manufacturer Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Manufacturer Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Manufacturer Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Manufacturer Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Salesperson Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Salesperson Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Salesperson Late Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Salesperson Late Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous Review - Additional Fee</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous Review - Additional Fee</label>
+                </value>
+                <value>
+                    <fullName>Revision to previously approved plan</fullName>
+                    <default>false</default>
+                    <label>Revision to previously approved plan</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Holding Tank Individual Site Design</fullName>
+                    <default>false</default>
+                    <label>POWTS-Holding Tank Individual Site Design</label>
+                </value>
+                <value>
+                    <fullName>Soil Based Individual Site Design At Grade</fullName>
+                    <default>false</default>
+                    <label>Soil Based Individual Site Design At Grade</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Vault Privy Fee</fullName>
+                    <default>false</default>
+                    <label>POWTS-Vault Privy Fee</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Pit Privy Fee</fullName>
+                    <default>false</default>
+                    <label>POWTS-Pit Privy Fee</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Component Manual Design</fullName>
+                    <default>false</default>
+                    <label>POWTS-Component Manual Design</label>
+                </value>
+                <value>
+                    <fullName>Title Replacement Fee</fullName>
+                    <default>false</default>
+                    <label>Title Replacement Fee</label>
+                </value>
+                <value>
+                    <fullName>Lien Copy Fee</fullName>
+                    <default>false</default>
+                    <label>Lien Copy Fee</label>
+                </value>
+                <value>
+                    <fullName>SP-Exam fee</fullName>
+                    <default>false</default>
+                    <label>SP-Exam fee</label>
+                </value>
+                <value>
+                    <fullName>Expedited Service Fee</fullName>
+                    <default>false</default>
+                    <label>Expedited Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Title Application</fullName>
+                    <default>false</default>
+                    <label>Title Application</label>
+                </value>
+                <value>
+                    <fullName>Supplemental Fee</fullName>
+                    <default>false</default>
+                    <label>Supplemental Fee</label>
+                </value>
+                <value>
+                    <fullName>Rehab &amp; Recycle Fee</fullName>
+                    <default>false</default>
+                    <label>Rehab &amp; Recycle Fee</label>
+                </value>
+                <value>
+                    <fullName>Soil Saturation Determination Report</fullName>
+                    <default>false</default>
+                    <label>Soil Saturation Determination Report</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous Review</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous Review</label>
+                </value>
+                <value>
+                    <fullName>NSF Fee</fullName>
+                    <default>false</default>
+                    <label>NSF Fee</label>
+                </value>
+                <value>
+                    <fullName>DC Fine</fullName>
+                    <default>false</default>
+                    <label>DC Fine</label>
+                </value>
+                <value>
+                    <fullName>DCQ - Application Fee</fullName>
+                    <default>false</default>
+                    <label>DCQ - Application Fee</label>
+                </value>
+                <value>
+                    <fullName>DCR - Renewal Fee</fullName>
+                    <default>false</default>
+                    <label>DCR - Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>Interpretive Determination Report</fullName>
+                    <default>false</default>
+                    <label>Interpretive Determination Report</label>
+                </value>
+                <value>
+                    <fullName>MNF Community Late Renewal over 2 yrs</fullName>
+                    <default>false</default>
+                    <label>MNF Community Late Renewal over 2 yrs</label>
+                </value>
+                <value>
+                    <fullName>UDC-Reinstatement Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Reinstatement Fee</label>
+                </value>
+                <value>
+                    <fullName>MNF Permit Revision Fee</fullName>
+                    <default>false</default>
+                    <label>MNF Permit Revision Fee</label>
+                </value>
+                <value>
+                    <fullName>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</fullName>
+                    <default>false</default>
+                    <label>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</label>
+                </value>
+                <value>
+                    <fullName>POWTS Consultation</fullName>
+                    <default>false</default>
+                    <label>POWTS Consultation</label>
+                </value>
+                <value>
+                    <fullName>POWTS application for review, petition for variance</fullName>
+                    <default>false</default>
+                    <label>POWTS application for review, petition for variance</label>
+                </value>
+                <value>
+                    <fullName>UDC-Current Certificate Credential Fee</fullName>
+                    <default>false</default>
+                    <label>UDC-Current Certificate Credential Fee</label>
+                </value>
+                <value>
+                    <fullName>POWTS Sanitary Permit</fullName>
+                    <default>false</default>
+                    <label>POWTS Sanitary Permit</label>
+                </value>
+                <value>
+                    <fullName>POWTS application for review, petition for variance Revision Fee</fullName>
+                    <default>false</default>
+                    <label>POWTS application for review, petition for variance Revision Fee</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Soil Saturation Determination Report</fullName>
+                    <default>false</default>
+                    <label>POWTS-Soil Saturation Determination Report</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Component Manual Review</fullName>
+                    <default>false</default>
+                    <label>POWTS-Component Manual Review</label>
+                </value>
+                <value>
+                    <fullName>POWTS-Experimental System</fullName>
+                    <default>false</default>
+                    <label>POWTS-Experimental System</label>
+                </value>
+                <value>
+                    <fullName>Fine</fullName>
+                    <default>false</default>
+                    <label>Fine</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1140,6 +1975,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Profession_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Profession Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Project__c</fullName>
@@ -1194,6 +2040,98 @@
                     <label>16500P2PLLC</label>
                 </value>
             </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community New License</controllingFieldValue>
+                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
+                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
+                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
+                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
+                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
+                <valueName>16500P2MHPL</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
+                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
+                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
+                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
+                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
+                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
+                <controllingFieldValue>SP-Application fee</controllingFieldValue>
+                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
+                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
+                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
+                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
+                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
+                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
+                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
+                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
+                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
+                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
+                <valueName>16500P2PSSP</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
+                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
+                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
+                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
+                <valueName>16500P2UDCP</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
+                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
+                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
+                <controllingFieldValue>Title Application</controllingFieldValue>
+                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
+                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
+                <valueName>16500P2MHTL</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -1306,6 +2244,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <fields>
         <fullName>Revenue_Code__c</fullName>
+        <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
         <externalId>false</externalId>
         <label>Revenue Code</label>
         <length>200</length>
@@ -1319,7 +2258,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <fullName>TMS_AR_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLAR&quot;</defaultValue>
         <externalId>false</externalId>
-        <label>TMS AR Code</label>
+        <label>xTMS AR Code</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1331,7 +2270,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <fullName>TMS_Cash_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLCH&quot;</defaultValue>
         <externalId>false</externalId>
-        <label>TMS Cash Code</label>
+        <label>xTMS Cash Code</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1343,7 +2282,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <fullName>TMS_Revenue_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLRV&quot;</defaultValue>
         <externalId>false</externalId>
-        <label>TMS Revenue Code</label>
+        <label>xTMS Revenue Code</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1364,6 +2303,25 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <label>Fee</label>
     <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>Related_To__c</columns>
+        <columns>MUSW__Fee_Paid__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>MUSW__License1__c</columns>
+        <columns>MUSW__License__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>TMS_Revenue_Code__c</columns>
+        <columns>TMS_Cash_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>License_Assignment_Queue_Fee</fullName>
         <filterScope>Queue</filterScope>
         <label>License Assignment Queue</label>
@@ -1371,6 +2329,34 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Outstanding_Fees</fullName>
+        <columns>Related_To__c</columns>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount__c</columns>
+        <columns>MUSW__Outstanding_Fee__c</columns>
+        <columns>AFRS_AR_Code__c</columns>
+        <columns>AFRS_Cash_Code__c</columns>
+        <columns>TMS_AR_Code__c</columns>
+        <columns>TMS_Cash_Code__c</columns>
+        <columns>TMS_Revenue_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Outstanding_Fee__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>Outstanding Fees</label>
+    </listViews>
+    <listViews>
+        <fullName>test123</fullName>
+        <columns>NAME</columns>
+        <columns>Related_To__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <nameField>
         <displayFormat>{0000000}</displayFormat>
@@ -1431,6 +2417,89 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Application_Method__c</picklist>
+            <values>
+                <fullName>Additional Secured Party</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Broker-Restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Course Completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Current Federal License</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Current State License</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Endorsement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examination</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Title Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reciprocity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinstatement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Replacement Title</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer due to Death of Current Owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer due to Repossession</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
@@ -1478,6 +2547,14 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1539,15 +2616,331 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <picklistValues>
             <picklist>MUSW__Type__c</picklist>
             <values>
-                <fullName>APP - Application</fullName>
+                <fullName>DC - Application Fee</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>ISP - Inspection</fullName>
+                <fullName>DC - Credential Fee</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>REV - Plan Review</fullName>
+                <fullName>DC - Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DC - Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DC Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCQ - Application Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCQ - Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCQ - Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCQ - Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCR - Application Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCR - Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCR - Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCR - Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DCR - Renewal Late Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expedited Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interpretive Determination Report</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lien Copy Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF - Installer App Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF - Installer Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Community Expansion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Community Late Renewal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Community Late Renewal over 2 yrs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Community New License</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Community Permit Revision Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Community Renewal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Dealer Branch Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Dealer Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Dealer Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Installer Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Installer Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Manufacturer App Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Manufacturer Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Manufacturer Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Permit Revision Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Salesperson App Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Salesperson Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MNF Salesperson Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miscellaneous Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miscellaneous Review - Additional Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NSF Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS Consultation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS Sanitary Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS application for review%2C petition for variance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS application for review%2C petition for variance Revision Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Component Manual Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Component Manual Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Experimental System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Holding Tank Individual Site Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Pit Privy Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Soil Saturation Determination Report</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS-Vault Privy Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rehab %26 Recycle Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revision to previously approved plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Application fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Exam fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Initial Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Reinstatement Application Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Reinstatement Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Reinstatement Exam Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Reinstatement Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Reinstatement Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SP-Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soil Based Individual Site Design At Grade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soil Saturation Determination Report</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supplemental Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Replacement Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Application Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Current Certificate Application Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Current Certificate Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Exam Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Late Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Proof of Current Certificate Credential Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Reinstatement Application Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Reinstatement Exam Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Reinstatement Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Reinstatement Late Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Renewal Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UDC-Renewal Fee With Late CE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1608,6 +3001,14 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <searchResultsAdditionalFields>MUSW__Receipt_Number__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>Create_Fee_by_Delegate__c</fullName>
+        <label>Create Fee by Delegate</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>Insert_Fee_Share__c</fullName>
+        <label>Insert Fee Share</label>
+    </sharingReasons>
     <validationRules>
         <fullName>BGBK__Fee_Invoiced_lock_Amount</fullName>
         <active>true</active>

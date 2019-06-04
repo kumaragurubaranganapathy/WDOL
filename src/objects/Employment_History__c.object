@@ -50,10 +50,10 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -584,6 +584,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -625,6 +629,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1977,6 +1985,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -2018,6 +2030,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>

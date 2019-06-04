@@ -33,10 +33,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Auto_Renew__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Renewal_Status__c</field>
             </layoutItems>
             <layoutItems>
@@ -68,6 +64,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Auto_Renew__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -103,9 +103,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Question_Body__c</fields>
+        <fields>Question__c</fields>
         <fields>Answer_Text__c</fields>
-        <relatedList>Answer__c.Renewal_Application__c</relatedList>
+        <fields>BGCK__Question__c</fields>
+        <relatedList>BGCK__Answer__c.Renewal_Reinstatement_Application__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -170,6 +171,10 @@
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Endorsement__c.Renewal_Reinstatement_Application__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -178,7 +183,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002Pz23</masterLabel>
+        <masterLabel>00hr0000002QEnP</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

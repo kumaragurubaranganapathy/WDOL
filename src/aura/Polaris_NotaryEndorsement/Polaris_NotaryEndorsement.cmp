@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     
-    <aura:attribute name="sectionList" type ="List"/>
+    <aura:attribute name="sectionList" type ="LnP_ApplyForLicenseWrapper"/>
     <aura:attribute name="applicationId" type="Id"/>
     <aura:attribute name="selectionString" type="String[]" default="[]"/>
     <aura:attribute name="SelectedMultiValues" type="String[]" default="[]"/>
@@ -26,12 +26,12 @@
                 <th></th>
             </thead>
             <tbody>
-                <aura:iteration items="{!v.ProviderList}" var="doc">
+                <aura:iteration items="{!v.ProviderList}" var="doc" indexVar="index">
                     <tr>
                         <td>{!doc.proname}</td>
                         <td class="slds-m-left_xx-large">{!doc.effdate}</td>
                         <td class="slds-m-left_xx-large">{!doc.pDetails}</td>
-                        <td> <lightning:button aura:id="button" value="{!doc.number}" label="Remove" onclick="{!c.remove}"/></td>
+                        <td> <lightning:button aura:id="button" value="{!index}" label="Remove" onclick="{!c.remove}"/></td>
                     </tr>              
                 </aura:iteration>        
             </tbody>

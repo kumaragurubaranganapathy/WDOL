@@ -15,6 +15,8 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
         /*If the triggers have been disabled, then do not call the trigger handler*/
         return;
     }
+    
+    system.debug('inside trigger');
     //if(Fee_Waiver.lictrgexcflg){return;}
     /*If the triggers have not been disabled, then call the trigger handler which then executes the required
         code based on before/after insert/update/delete/undelete condition*/
@@ -24,9 +26,15 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
    if(trigger.isBefore && trigger.isupdate){
         List<MUSW__License2__c> licList = new List<MUSW__License2__c>();
         for(MUSW__License2__c lic : trigger.new){
-            if(lic.MUSW__Status__c != trigger.oldMap.get(lic.id).MUSW__Status__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+            //padma.commented to update renewal date when issuedate changes
+            //if(lic.MUSW__Status__c != trigger.oldMap.get(lic.id).MUSW__Status__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+            if(lic.MUSW__Expiration_Date__c != trigger.oldMap.get(lic.id).MUSW__Expiration_Date__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+                system.debug('inside if nazneen' +lic);
+                system.debug('inside trigger nazneen1' +lic.id);
                 licList.add(lic);
             }
+            
+           system.debug('outside if n loop nazneen' +licList);
         }
         if(!licList.isEmpty()){
             WA_License_utility.updateRenewalFields(licList);

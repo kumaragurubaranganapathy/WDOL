@@ -20,10 +20,6 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <recipients>
-            <recipient>niinani@deloitte.com.wadolbuspro.prod</recipient>
-            <type>user</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Payment_For_License</template>
     </alerts>

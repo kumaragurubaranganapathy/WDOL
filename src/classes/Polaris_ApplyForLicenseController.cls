@@ -267,6 +267,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 
                 
             }
+            //Created for Course Information Section
+            /*else if(section == 'Course Information' && !lstApps.isEmpty()){
+                licenseWrapper.personalInfoObjectName = 'MUSW__License2__c';
+                licenseWrapper.accountId = lstApps[0].MUSW__Account__c;
+                licenseWrapper.fieldJson = jsonApplicationFields;
+            } *///end
             else if(section =='Business Information' &&  !lstApps.isEmpty())
             {
                 licenseWrapper.personalInfoObjectName = 'Account'; 
@@ -329,7 +335,7 @@ return parser;
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFieldTemp = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         //List<string> lstMandatorySubSections= new  List<string>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-            if(objWrapper.sectionName.contains('Questions')){
+            if(objWrapper.sectionName.contains('License Information')){
                 system.debug('Inside section=Question');
                 listFields = objWrapper.labelFieldsMap;
                 system.debug('List Fields '+listFields);
@@ -446,7 +452,7 @@ return parser;
         List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
             system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
-            if(objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement')){
+            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement')){
                 listFields.addAll(objWrapper.labelFieldsMap);
             }
             if(objWrapper.sectionName.contains('Attachments')){
@@ -651,7 +657,7 @@ return parser;
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
             objWrapper.sectionError = false;
             lstMandatorySubsection= new List<String> ();
-            if(objWrapper.sectionName.contains('Questions') && questionsIncomplete==true){
+            if(objWrapper.sectionName.contains('License Information') && questionsIncomplete==true){
                 objWrapper.sectionError = true;
             } 
             if(objWrapper.sectionName.contains('Attachments') && submissionsIncomplete == true){
@@ -695,6 +701,7 @@ return parser;
         List<MUSW__License2__c> licenseID;
         // string applicationId2 = string.valueOf(applicationId).substring(0, 15);
         setapplicationId.add(applicationId);
+        System.debug('setapplicationId::'+setapplicationId);
         String appCondition = 'Id=\''+applicationId+'\'';
         // String strApp = 'Select Id, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
         String strApp = 'Select Id, Stage__c, Form_JSON__c, Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
@@ -849,7 +856,10 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
         Id individualRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Universal_Default_License_Record_Type').getRecordTypeId();
         // List<MUSW_Application2__c> applicationList = [SELECT Id,Application_Type__c,Board__c,License_Type__c,MUSW__Account__c,MUSW__Applicant__c FROM MUSW__Application2__c where id IN: appId];
         
-        
+        System.debug('lstLisence::'+lstLisence);
+        System.debug('businessRT::'+businessRT);
+        System.debug('individualRT::'+individualRT);
+
         List<MUSW__Application2__c> applicationList = [Select Id,MUSW__Account__c,Stage__c, Application_Type__c, MUSW__Applicant__c, Application_Method__c, Credential_Type__c from MUSW__Application2__c where id IN: appId];
         for(MUSW__Application2__c application : applicationList){
             MUSW__License2__c  mstLicense =  new MUSW__License2__c();

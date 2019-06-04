@@ -55,8 +55,8 @@
         }
     },
     searchWithNum : function(component, event) {
-        var objectApi =  'MUSW__License2__c';
-        var fieldsList = ['MUSW__Applicant__r.Name','Name','Credential_Type__c','MUSW__Status__c','Sub_Status__c','MUSW__Applicant__r.Birth_City__c','Related_License__c','RecordType.Name'];
+        var objectApi =  'LnP_Parcel__c';
+        var fieldsList = ['License__r.MUSW__Applicant__r.Name','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c','License__r.Related_License__c','License__r.RecordType.Name'];
         var professionValue =  component.find("Profession").get("v.value");
         var licenseNumberValue = component.find("licenseNumber").get("v.value");
         var searchOneArray=[];
@@ -70,14 +70,15 @@
         }
         if(searchOneArray.length!=0){
             var criteria = {
-                "Application_Type__c":professionValue,
-                "Name":licenseNumberValue,
+                "License__r.Application_Type__c":professionValue,
+                "License__r.Name":licenseNumberValue,
             }
-            var action = component.get("c.generateQuery");
+            var action = component.get("c.generateQueryWithOR");
             action.setParams({
                 'objectName':objectApi,
                 'lstFieldsName':fieldsList,
-                'mapValues':criteria
+                'mapValues':criteria,
+                'bIsStatusIncluded':false,
             });
             action.setCallback(this, function(response){
                 var state = response.getState();
@@ -86,26 +87,40 @@
                     if(rows.length!=0){
                         for (var i = 0; i < rows.length; i++) { 
                             var row = rows[i]; 
-                            if (row.MUSW__Applicant__r) {
-                                if(row.MUSW__Applicant__r.Name){
-                                    row.ApplicantName = row.MUSW__Applicant__r.Name;
+                            if (row.License__r) {
+                                if(row.License__r.MUSW__Applicant__r){
+                                    if(row.License__r.MUSW__Applicant__r.Name){
+                                    	row.licenseApplicantName = row.License__r.MUSW__Applicant__r.Name;
+                                    }
                                 }
-                                if(row.MUSW__Applicant__r.Birth_City__c){
-                                    row.ApplicantCity = row.MUSW__Applicant__r.Birth_City__c;
+                                if(row.License__r.Name){
+                                    row.licenseNumber = row.License__r.Name;
                                 }
-                            }
-                            if(row.RecordType){
-                                row.recordType = row.RecordType.Name;
-                            }
+                                if(row.License__r.Credential_Type__c){
+                                    row.licenseType = row.License__r.Credential_Type__c;
+                                }
+                                if(row.License__r.MUSW__Status__c){
+                                    row.licenseStatus = row.License__r.MUSW__Status__c;
+                                }
+                                if(row.License__r.Credential_Type__c){
+                                    row.licenseSubStatus = row.License__r.Sub_Status__c;
+                                }
+                                if(row.License__r.RecordType){
+                                    row.recordType = row.License__r.RecordType.Name;
+                                }
+                                if(row.License__r.Id){
+                                    row.Id = row.License__r.Id;
+                                }
+                          	}
                         } 
                         component.set('v.columns', [
                             {label: 'Type', fieldName: 'recordType', type: 'Name', sortable : true},
-                            {label: 'Name', fieldName: 'ApplicantName', type: 'Name', sortable : true},
-                            {label: 'License Number', fieldName: 'Name', type: 'Number', sortable : true},
-                            {label: 'License Type', fieldName: 'Credential_Type__c', type: 'Picklist', sortable : true},
-                            {label: 'Status', fieldName: 'MUSW__Status__c', type: 'Picklist', sortable : true},
-                            {label: 'Sub Status', fieldName: 'Sub_Status__c', type: 'Picklist', sortable : true},
-                            {label: 'City', fieldName: 'ApplicantCity', type: 'Text', sortable : true},
+                            {label: 'Name', fieldName: 'licenseApplicantName', type: 'Name', sortable : true},
+                            {label: 'License Number', fieldName: 'licenseNumber', type: 'Number', sortable : true},
+                            {label: 'License Type', fieldName: 'licenseType', type: 'Picklist', sortable : true},
+                            {label: 'Status', fieldName: 'licenseStatus', type: 'Picklist', sortable : true},
+                            {label: 'Sub Status', fieldName: 'licenseSubStatus', type: 'Picklist', sortable : true},
+                            {label: 'City', fieldName: 'City__c', type: 'Text', sortable : true},
                             {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                              { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                         ]);
@@ -160,8 +175,8 @@
         if(licenseId != "" && licenseId != undefined){
             component.set("v.licenseId", licenseId);
             var selectedTab = component.get("v.selectedTabId");
-            var objectApi =  'MUSW__License2__c';
             if(licenseType == "Business"){
+                var objectApi =  'MUSW__License2__c';
                 component.set("v.licenseNameToDisplayDetails", "Business License Details");
                 var fieldsList = ['Name',
                                   'Credential_Type__c',
@@ -175,29 +190,34 @@
                                   'MUSW__Issue_Date__c',
                                   'Application_Type__c',
                                   'MUSW__Expiration_Date__c'];
+                var criteria = {
+                    "Name":licenseId
+                }
             } else {
+                var objectApi =  'LnP_Parcel__c';
                 component.set("v.licenseNameToDisplayDetails", "Professional License Details");
-                var fieldsList = ['Name',
-                                  'Credential_Type__c',
-                                  'MUSW__Status__c',
-                                  'MUSW__Applicant__r.Name',
-                                  'Original_Issue_Date__c',
-                                  'Sub_Status__c',
-                                  'MUSW__Applicant__r.Birth_City__c',
-                                  'MUSW__Issue_Date__c',
-                                  'MUSW__Applicant__r.State_of_residency__c',
-                                  'MUSW__Expiration_Date__c',
-                                  'Application_Type__c',
-                                  'MUSW__Applicant__r.Birth_Country__c'];
+                var fieldsList = ['License__r.Name',
+                                  'License__r.Credential_Type__c',
+                                  'License__r.MUSW__Status__c',
+                                  'License__r.MUSW__Applicant__r.Name',
+                                  'License__r.Original_Issue_Date__c',
+                                  'License__r.Sub_Status__c',
+                                  'City__c',
+                                  'License__r.MUSW__Issue_Date__c',
+                                  'State_Province__c',
+                                  'License__r.MUSW__Expiration_Date__c',
+                                  'License__r.Application_Type__c',
+                                  'Country__c'];
+                var criteria = {
+                    "License__r.Name":licenseId
+                }
             }            
-            var criteria = {
-                "Name":licenseId
-            }
-            var action = component.get("c.generateQuery");
+            var action = component.get("c.generateQueryWithOR");
             action.setParams({
                 'objectName':objectApi,
                 'lstFieldsName':fieldsList,
                 'mapValues':criteria,
+                'bIsStatusIncluded':false,
             });
      		action.setCallback(this, function(response){
             var state = response.getState();
@@ -241,26 +261,27 @@
     },
     fetchParentLicenses : function(component, event, helper, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
-            var objectApi =  'MUSW__License2__c';
-            var fieldsList = ['Related_License__r.MUSW__Applicant__r.Full_Name__c',
-                              'Related_License__r.Name',
-                              'Related_License__r.Credential_Type__c',
-                              'Related_License__r.MUSW__Status__c',
-                              'Related_License__r.Sub_Status__c',
-                              'Related_License__r.MUSW__Applicant__r.Birth_City__c' ];
+            var objectApi =  'LnP_Parcel__c';
+            var fieldsList = ['License__r.Related_License__r.MUSW__Applicant__r.Full_Name__c',
+                              'License__r.Related_License__r.Name',
+                              'License__r.Related_License__r.Credential_Type__c',
+                              'License__r.Related_License__r.MUSW__Status__c',
+                              'License__r.Related_License__r.Sub_Status__c',
+                              'City__c' ];
             var criteria = {
-                "Id":licenseRecordId
+                "License__r.Id":licenseRecordId
             }
-            var action = component.get("c.generateQuery");
+            var action = component.get("c.generateQueryWithORparent");
             action.setParams({
                 'objectName':objectApi,
                 'lstFieldsName':fieldsList,
                 'mapValues':criteria,
+                'bIsStatusIncluded':false,
             });
      		action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
-                var result = response.getReturnValue();     
+                var result = response.getReturnValue(); 
                 component.set("v.licenseRelationData", result);
                 component.set("v.parent", true);
             }else{
@@ -272,16 +293,17 @@
     },
     fetchChildLicenses : function(component, event, helper, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
-            var objectApi =  'MUSW__License2__c';
-            var fieldsList = ['MUSW__Applicant__r.Name','Name','Credential_Type__c','MUSW__Status__c','Sub_Status__c','MUSW__Applicant__r.Birth_City__c'];
+            var objectApi =  'LnP_Parcel__c';
+            var fieldsList = ['License__r.MUSW__Applicant__r.Name','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c'];
             var criteria = {
-                "Related_License__c":licenseRecordId
+                "License__r.Related_License__c":licenseRecordId
             }
-            var action = component.get("c.generateQuery");
+            var action = component.get("c.generateQueryWithOR");
             action.setParams({
                 'objectName':objectApi,
                 'lstFieldsName':fieldsList,
                 'mapValues':criteria,
+                'bIsStatusIncluded':false,
             });
      		action.setCallback(this, function(response){
             var state = response.getState();
@@ -298,12 +320,12 @@
     },
     searchWithDetails : function(component, event) {
         var selectedTab = component.get("v.selectedTabId");
-        var objectApi =  'MUSW__License2__c';
+        var objectApi =  'LnP_Parcel__c';
         var searchTwoArray=[];
         var toastEvent = $A.get("e.force:showToast");
         if(selectedTab == "tab1"){
  			component.set("v.licenseNameToDisplay", "Professional License");
-			var fieldsList = ['MUSW__Applicant__r.Name','Name','Credential_Type__c','MUSW__Status__c','Sub_Status__c','MUSW__Applicant__r.Birth_City__c','RecordType.Name'];            
+			var fieldsList = ['License__r.MUSW__Applicant__r.Name','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c','License__r.RecordType.Name'];            
             var firstName = component.find("firstName").get("v.value");
             var middleName = component.find("middleName").get("v.value");
             var lastName = component.find("lastName").get("v.value");
@@ -311,7 +333,8 @@
             var city = component.find("city").get("v.value");
             var country = component.find("country").get("v.value");
             var licenseType = component.find("licenseType").get("v.value");
-			var endorsementType = "";            
+			var endorsementType = "";
+			var licenseStatusBoolean = false;            
             if(firstName!= "" && firstName.trim()!= "" && firstName.trim().length!= ""){
                 searchTwoArray.push({label:"First Name", value:firstName});
             }
@@ -323,12 +346,13 @@
             }
             if(licenseStatus!= ""){
                 searchTwoArray.push({label:"License Status", value:licenseStatus});
+                licenseStatusBoolean = true;
             }
             if(city!= "" && city.trim()!= "" && city.trim().length!= ""){
                 searchTwoArray.push({label:"City", value:city});
             }
             if(country!= ""){
-                searchTwoArray.push({label:"Country", value:country});
+                searchTwoArray.push({label:"County", value:country});
             }
             if(licenseType!= ""){
                 searchTwoArray.push({label:"License Type", value:licenseType});
@@ -338,21 +362,21 @@
             }
             if(searchTwoArray.length!=0){
                 var criteria = {
-                    "MUSW__Applicant__r.FirstName":firstName,
-                    "MUSW__Applicant__r.MiddleName":middleName,
-                    "MUSW__Applicant__r.LastName":lastName,
-                    "MUSW__Status__c":licenseStatus,
-                    "MUSW__Applicant__r.Birth_City__c":city,
-                    "MUSW__Applicant__r.Birth_Country__c":country,
-                    "Credential_Type__c":licenseType,
-                    "RecordType.Name":"Individual",
-                    "Endorsements__r.Endorsement_Type__c":endorsementType
+                    "License__r.MUSW__Applicant__r.FirstName":firstName,
+                    "License__r.MUSW__Applicant__r.MiddleName":middleName,
+                    "License__r.MUSW__Applicant__r.LastName":lastName,
+                    "License__r.MUSW__Status__c":licenseStatus,
+                    "City__c":city,
+                    "County__c":country,
+                    "License__r.Credential_Type__c":licenseType,
+                    "License__r.RecordType.Name":"Individual"
                 }
-                var action = component.get("c.generateQuery");
+                var action = component.get("c.generateQueryWithOR");
                 action.setParams({
                     'objectName':objectApi,
                     'lstFieldsName':fieldsList,
                     'mapValues':criteria,
+                    'bIsStatusIncluded':licenseStatusBoolean
                 });
                 action.setCallback(this, function(response){
                     var state = response.getState();
@@ -361,25 +385,39 @@
                         if(rows.length!=0){
                             for (var i = 0; i < rows.length; i++) { 
                                 var row = rows[i]; 
-                                if (row.MUSW__Applicant__r) {
-                                    if(row.MUSW__Applicant__r.Name){
-                                        row.ApplicantName = row.MUSW__Applicant__r.Name;
+                                if (row.License__r) {
+                                    if(row.License__r.MUSW__Applicant__r){
+                                        if(row.License__r.MUSW__Applicant__r.Name){
+                                            row.licenseApplicantName = row.License__r.MUSW__Applicant__r.Name;
+                                        }
                                     }
-                                    if(row.MUSW__Applicant__r.Birth_City__c){
-                                        row.ApplicantCity = row.MUSW__Applicant__r.Birth_City__c;
+                                    if(row.License__r.Name){
+                                        row.licenseNumber = row.License__r.Name;
                                     }
-                                }
-                                if(row.RecordType){
-                                    row.recordType = row.RecordType.Name;
+                                    if(row.License__r.Credential_Type__c){
+                                        row.licenseType = row.License__r.Credential_Type__c;
+                                    }
+                                    if(row.License__r.MUSW__Status__c){
+                                        row.licenseStatus = row.License__r.MUSW__Status__c;
+                                    }
+                                    if(row.License__r.Credential_Type__c){
+                                        row.licenseSubStatus = row.License__r.Sub_Status__c;
+                                    }
+                                    if(row.License__r.RecordType){
+                                        row.recordType = row.License__r.RecordType.Name;
+                                    }
+                                    if(row.License__r.Id){
+                                        row.Id = row.License__r.Id;
+                                    }
                                 }
                             } 
                             component.set('v.columns', [
-                                {label: 'Name', fieldName: 'ApplicantName', type: 'Name', sortable : true},
-                                {label: 'License Number', fieldName: 'Name', type: 'Number', sortable : true},
-                                {label: 'License Type', fieldName: 'Credential_Type__c', type: 'Picklist', sortable : true},
-                                {label: 'Status', fieldName: 'MUSW__Status__c', type: 'Picklist', sortable : true},
-                                {label: 'Sub Status', fieldName: 'Sub_Status__c', type: 'Picklist', sortable : true},
-                                {label: 'City', fieldName: 'ApplicantCity', type: 'Text', sortable : true},
+                                {label: 'Name', fieldName: 'licenseApplicantName', type: 'Name', sortable : true},
+                                {label: 'License Number', fieldName: 'licenseNumber', type: 'Number', sortable : true},
+                                {label: 'License Type', fieldName: 'licenseType', type: 'Picklist', sortable : true},
+                                {label: 'Status', fieldName: 'licenseStatus', type: 'Picklist', sortable : true},
+                                {label: 'Sub Status', fieldName: 'licenseSubStatus', type: 'Picklist', sortable : true},
+                                {label: 'City', fieldName: 'City__c', type: 'Text', sortable : true},
                                 {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
@@ -427,14 +465,15 @@
             }
         } else {
             component.set("v.licenseNameToDisplay", "Business License");
-            var fieldsList = ['MUSW__Primary_Licensee__r.Name','MUSW__Primary_Licensee__r.Doing_Business_As_1__c','UBI_Number__c','Name','Credential_Type__c','MUSW__Status__c','Sub_Status__c','MUSW__Applicant__r.Birth_City__c','RecordType.Name'];
+            var fieldsList = ['License__r.MUSW__Primary_Licensee__r.Name','License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c','License__r.UBI_Number__c','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c','License__r.RecordType.Name'];
             var businessName = component.find("businessName").get("v.value");
             var ubiNumber = component.find("ubiNumber").get("v.value");
             var licenseStatusBusiness = component.find("licenseStatusBusiness").get("v.value");
             var cityBusiness = component.find("cityBusiness").get("v.value");
             var countryBusiness = component.find("countryBusiness").get("v.value");
             var licenseTypeBusiness = component.find("licenseTypeBusiness").get("v.value");
-			var endorsementType = "";         
+			var endorsementType = "";
+            var licenseStatusBoolean = false; 
             if(businessName!= "" && businessName.trim()!= "" && businessName.trim().length!= ""){
                 searchTwoArray.push({label:"Business Name/Doing Business As", value:businessName});
             }
@@ -443,12 +482,13 @@
             }
             if(licenseStatusBusiness!= ""){
                 searchTwoArray.push({label:"License Status", value:licenseStatusBusiness});
+                licenseStatusBoolean = true;
             }
             if(cityBusiness!= "" && cityBusiness.trim()!= "" && cityBusiness.trim().length!= ""){
                 searchTwoArray.push({label:"City", value:cityBusiness});
             }
             if(countryBusiness!= ""){
-                searchTwoArray.push({label:"Country", value:countryBusiness});
+                searchTwoArray.push({label:"County", value:countryBusiness});
             }
             if(licenseTypeBusiness!= ""){
                 searchTwoArray.push({label:"License Type", value:licenseTypeBusiness});
@@ -458,18 +498,17 @@
             }
             if(searchTwoArray.length!=0){
                 var criteria = {
-                    "UBI_Number__c":ubiNumber,
-                    "MUSW__Status__c":licenseStatusBusiness,
-                    "MUSW__Applicant__r.Birth_City__c":cityBusiness,
-                    "MUSW__Applicant__r.Birth_Country__c":countryBusiness,
-                    "Credential_Type__c":licenseTypeBusiness,
-                    "RecordType.Name":"Business",
-                    "Endorsements__r.Endorsement_Type__c":endorsementType
+                    "License__r.UBI_Number__c":ubiNumber,
+                    "License__r.MUSW__Status__c":licenseStatusBusiness,
+                    "City__c":cityBusiness,
+                    "County__c":countryBusiness,
+                    "License__r.Credential_Type__c":licenseTypeBusiness,
+                    "License__r.RecordType.Name":"Business",
                 }
                 if(businessName!= "" && businessName.trim()!= "" && businessName.trim().length!= ""){
                     var criteriaOR = {
-                        "MUSW__Primary_Licensee__r.Name":businessName,
-                        "MUSW__Primary_Licensee__r.Doing_Business_As_1__c":businessName,
+                        "License__r.MUSW__Primary_Licensee__r.Name":businessName,
+                        "License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c":businessName,
                     }
                     var action = component.get("c.generateQueryWithGenericOR");
                     action.setParams({
@@ -477,13 +516,15 @@
                         'lstFieldsName':fieldsList,
                         'mapValues':criteria,
                         'mapORValues':criteriaOR,
+                        'bIsStatusIncluded':licenseStatusBoolean,
                     });
                 } else {
-                    var action = component.get("c.generateQuery");
+                    var action = component.get("c.generateQueryWithOR");
                     action.setParams({
                         'objectName':objectApi,
                         'lstFieldsName':fieldsList,
                         'mapValues':criteria,
+                        'bIsStatusIncluded':licenseStatusBoolean,
                     });
                 }                
                 action.setCallback(this, function(response){
@@ -493,32 +534,45 @@
                         if(rows.length!=0){
                             for (var i = 0; i < rows.length; i++) { 
                                 var row = rows[i]; 
-                                if (row.MUSW__Applicant__r) {
-                                    if(row.MUSW__Applicant__r.Birth_City__c){
-                                        row.ApplicantCity = row.MUSW__Applicant__r.Birth_City__c;
+                                if (row.License__r) {
+                                    if(row.License__r.MUSW__Primary_Licensee__r.Name){
+                                        row.businessName = row.License__r.MUSW__Primary_Licensee__r.Name;
+                                    }
+                                    if(row.License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c){
+                                        row.DoingBusinessAs = row.License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c;
+                                    }
+                                    if(row.License__r.UBI_Number__c){
+                                        row.ubiNumber = row.License__r.UBI_Number__c;
+                                    }
+                                    if(row.License__r.Name){
+                                        row.licenseNumber = row.License__r.Name;
+                                    }
+                                    if(row.License__r.Credential_Type__c){
+                                        row.licenseType = row.License__r.Credential_Type__c;
+                                    }
+                                    if(row.License__r.MUSW__Status__c){
+                                        row.licenseStatus = row.License__r.MUSW__Status__c;
+                                    }
+                                    if(row.License__r.Credential_Type__c){
+                                        row.licenseSubStatus = row.License__r.Sub_Status__c;
+                                    }
+                                    if(row.License__r.RecordType){
+                                        row.recordType = row.License__r.RecordType.Name;
+                                    }
+                                    if(row.License__r.Id){
+                                        row.Id = row.License__r.Id;
                                     }
                                 }
-                                if(row.MUSW__Primary_Licensee__r){
-                                    if(row.MUSW__Primary_Licensee__r.Name){
-                                        row.ApplicantName = row.MUSW__Primary_Licensee__r.Name;
-                                    }
-                                    if(row.MUSW__Primary_Licensee__r.Doing_Business_As_1__c){
-                                        row.DoingBusinessAs = row.MUSW__Primary_Licensee__r.Doing_Business_As_1__c;
-                                    }
-                                }
-                                if(row.RecordType){
-                                    row.recordType = row.RecordType.Name;
-                                }
-                            } 
+                            }
                             component.set('v.columns', [
-                                {label: 'Business Name', fieldName: 'ApplicantName', type: 'Text', sortable : true},
+                                {label: 'Business Name', fieldName: 'businessName', type: 'Text', sortable : true},
                                 {label: 'Doing Business As', fieldName: 'DoingBusinessAs', type: 'Text', sortable : true},
-                                {label: 'UBI Number', fieldName: 'UBI_Number__c', type: 'Number', sortable : true},
-                                {label: 'License Number', fieldName: 'Name', type: 'Number', sortable : true},
-                                {label: 'License Type', fieldName: 'Credential_Type__c', type: 'Picklist', sortable : true},
-                                {label: 'Status', fieldName: 'MUSW__Status__c', type: 'Picklist', sortable : true},
-                                {label: 'Sub Status', fieldName: 'Sub_Status__c', type: 'Picklist', sortable : true},
-                                {label: 'City', fieldName: 'ApplicantCity', type: 'Text', sortable : true},
+                                {label: 'UBI Number', fieldName: 'ubiNumber', type: 'Number', sortable : true},
+                                {label: 'License Number', fieldName: 'licenseNumber', type: 'Number', sortable : true},
+                                {label: 'License Type', fieldName: 'licenseType', type: 'Picklist', sortable : true},
+                                {label: 'Status', fieldName: 'licenseStatus', type: 'Picklist', sortable : true},
+                                {label: 'Sub Status', fieldName: 'licenseSubStatus', type: 'Picklist', sortable : true},
+                                {label: 'City', fieldName: 'City__c', type: 'Text', sortable : true},
                                 {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
@@ -620,9 +674,15 @@
         lineDivider =  '\n';
  
         // in the keys valirable store fields API Names as a key 
-        // this labels use in CSV file header  
-        keys = ['ApplicantName','Name','Credential_Type__c','MUSW__Status__c','Sub_Status__c','ApplicantCity' ];
-        
+        // this labels use in CSV file header
+        var tabValue = component.get("v.licenseNameToDisplay");
+        if(tabValue == "License"){
+            keys = ['recordType','licenseApplicantName','licenseNumber','licenseType','licenseStatus','licenseSubStatus','City__c'];
+        } else if(tabValue == "Professional License"){
+            keys = ['licenseApplicantName','licenseNumber','licenseType','licenseStatus','licenseSubStatus','City__c'];
+        } else if(tabValue == "Business License"){
+            keys = ['businessName','DoingBusinessAs','ubiNumber','licenseNumber','licenseType','licenseStatus','City__c'];
+        }               
         csvStringResult = '';
         csvStringResult += keys.join(columnDivider);
         csvStringResult += lineDivider; 

@@ -181,6 +181,26 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Create_Endorsement_Record__c</fullName>
+        <externalId>false</externalId>
+        <formula>Question__r.Create_Endorsement_Record__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Create Endorsement Record</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Endorsement_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Question__r.Endorsement_Type__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Endorsement Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Inspection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -218,6 +238,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Question_Order__c</fullName>
+        <externalId>false</externalId>
+        <formula>Question__r.Order_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Question Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Question_Section__c</fullName>
         <externalId>false</externalId>
         <formula>Question__r.Section__c</formula>
@@ -248,6 +281,18 @@
         <referenceTo>Renewal_Application__c</referenceTo>
         <relationshipLabel>Answers</relationshipLabel>
         <relationshipName>Answers1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Answers</relationshipLabel>
+        <relationshipName>Answers</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>

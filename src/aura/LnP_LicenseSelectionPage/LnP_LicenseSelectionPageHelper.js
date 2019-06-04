@@ -5,13 +5,11 @@
         //var eliTextDiv = document.getElementById("eliTextDiv");
         //var eliQuesDiv = document.getElementById("eliQuesDiv");
         //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
-        
-        $A.util.removeClass(component.find("licenseType"), 'slds-hide');
-        $A.util.removeClass(component.find("credentialType"), 'slds-hide');	
+        console.log("inside reset::");
+        $A.util.removeClass(component.find("licenseType"), 'slds-hide');	
         $A.util.removeClass(component.find("getApplicationMethod"), 'slds-hide');
-        
-        eliTypeGridDiv.classList.add("slds-hide");
-        //proceedButtonDiv.classList.add("slds-hide");        
+        console.log("inside reset12::");
+        eliTypeGridDiv.classList.add("slds-hide");       
         component.find("button1").set('v.disabled',true);
     },
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
@@ -236,8 +234,9 @@
        //console.log('proceedButtonDiv ' + proceedButtonDiv);
        component.find("button1").set('v.disabled',false);
     },
-    startApplicationHelper : function(component, event, helper){
+   startApplicationHelper : function(component, event, helper){
         // To disable button on click.
+        var applicationId = "";
         let button = event.getSource();
     	button.set('v.disabled',true);
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
@@ -271,30 +270,49 @@
                 }
             }
         }
-        var applicationId = '';
+        console.log("till here ::");
+        
         if(!notEligible){
             try{
-                const server = component.find('server');
-                const startAnApplication = component.get('c.startAnApplication');
-                server.callServer(
-                    startAnApplication,{board: component.get("v.board"),
-										licenseType: component.get("v.licenseType"),
-										applicationType: applicationMethod,
-                                        account :account},"",
-                    $A.getCallback(response => {
-						applicationId=response;
-						sessionStorage.setItem("applicationId", applicationId);
-						window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'apply-for-license/';
-						}),
-						$A.getCallback(errors => {
-						}),
-						false,""
-					);
-        } 
-        catch(e){
-            console.error('Error Stack Message for showApplication Helper' + e.stack);	
-        }
-        }
+			return new Promise($A.getCallback(function(resolve, reject) {
+				console.log('inside eligible::');
+          		 var applicationId =''; 
+                var startAnApplication = component.get('c.startAnApplication');
+                startAnApplication.setParams({"board": component.get("v.board"),
+										"licenseType" : component.get("v.licenseType"),
+										"applicationType" : component.find("getApplicationMethod").get("v.value"),
+                                        "account" : sessionStorage.getItem("accountRecordID")});
+            		console.log('inside params::');
+                    startAnApplication.setCallback(this, function(actionResult){
+					    var state = actionResult.getState();
+						 if (state === "SUCCESS"){
+                            console.log('inside  startAn Application::');
+							resolve(actionResult.getReturnValue());
+                              
+						}
+        		});
+             $A.enqueueAction(startAnApplication);
+             })).then(
+                $A.getCallback(function(result){   
+               sessionStorage.setItem("header","true");
+                sessionStorage.setItem("applicationId",result);           
+                console.log("result::"+ result);
+                console.log('121233' + sessionStorage.getItem("applicationId"));
+                console.log('test::'+sessionStorage.getItem("header"));
+                var urlEvent = $A.get("e.force:navigateToURL");
+                var str = "/lightningwashington/s/apply-for-license";
+                urlEvent.setParams({
+                    "url": str
+                });
+                //console.log(str);
+                urlEvent.fire();
+                    
+      		}));
+            }    
+            catch(e){
+            console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+        	}
+			}
 		
     },
     hideOrShowSpinner: function(component, event, helper){
@@ -334,7 +352,11 @@
                         console.log("component.get"+component.get("v.accounts"));
                         component.set("v.showAccountDropdown",true);
                         //component.find("button1").set('v.disabled',true);
-                    } else {
+                        
+                    } else if(accwrapper.accountType == 'Course'){
+                        console.log("component.get"+component.get("v.accounts"));
+                        component.set("v.showAccountDropdown",true);
+                    }else {
                        component.set("v.showAccountDropdown",false);
                         //component.find("button1").set('v.disabled',false);
                     }

@@ -338,6 +338,7 @@ public with sharing class CartController
             addReceipt();
             receiptVOs[0].pmtMethodSelected = pmtMethods[0].getValue();
             // update cart amount
+            system.debug('the value of cart is' +cart);
             cart.BGBK__Total_Amount__c = m_totalOwed;
             update cart;
             
@@ -394,7 +395,7 @@ public with sharing class CartController
                 }
 
                 //don't include Deposit if multiple payment methods where initial payment method is not Deposit
-              /*  if(m_settings.BGBK__Allow_Pay_By_Deposit__c && deposits.size() == 0 && receiptVOs.size() <= 1){
+               if(m_settings.BGBK__Allow_Pay_By_Deposit__c && deposits.size() == 0 && receiptVOs.size() <= 1){
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
 
@@ -402,14 +403,14 @@ public with sharing class CartController
                 if(!isPortalUser && canSelectReceipt)
                 {
                     pmtMethods.add(new Selectoption('Other', 'Existing Receipt'));
-                }*/
+                }
             }
-            /*else //multiple payment methods where initial paymenth method is Deposit
+            else //multiple payment methods where initial paymenth method is Deposit
             {  
                 if(m_settings.BGBK__Allow_Pay_By_Deposit__c && deposits.size() == 0){
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
-            }*/
+            }
             return pmtMethods;
         }
         set;
@@ -626,6 +627,7 @@ public with sharing class CartController
         rs.add(r);
         ReceiptVO newReceiptVO = new ReceiptVO(r, r.MUSW__Amount_Tendered__c, m_rs);
         newReceiptVO.pmtMethodSelected=pmtSelected;
+        system.debug('the value of newReceiptVO' +newReceiptVO);
         receiptVOs.add(newReceiptVO);
         // if there more than one receipt(so multiple payment methods) we hide all the gateway payment methods
         if(receiptVOs.size() > 1)
@@ -873,7 +875,7 @@ public with sharing class CartController
                 } else {        
                     // this call is made for testing the clean receipt method.      
                     // Within the org, it should throw a exception, so it will go to the catch, but can't be handled via tests.     
-                    cleanReceiptsAfterPaymentFail(receiptVOs);      
+                    //cleanReceiptsAfterPaymentFail(receiptVOs);      
             }
             MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
             rs.clear();
@@ -889,7 +891,7 @@ public with sharing class CartController
         }
         catch (Exception e)
         {
-            cleanReceiptsAfterPaymentFail(receiptVOs);
+            //cleanReceiptsAfterPaymentFail(receiptVOs);
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()));
             return;
         }
@@ -913,6 +915,7 @@ public with sharing class CartController
         for (Integer i=0; i<receiptVOs.size(); i++)
         {
             ReceiptVO rvo = receiptVOs[i];
+            system.debug('nazneen' +rvo);
             if (rvo.r.MUSW__Payment_Method__c == 'Deposit' && rvo.payableReceipt.MUSW__Deposit__c == null)
             {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select a deposit.'));
@@ -941,13 +944,18 @@ public with sharing class CartController
         // apply waives
         update fees;
         
+       //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
+       BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id]; 
+       
+        system.debug('the values of cartForIMCheck' +cartForIMCheck);
         // reset receipt list based on VO list
         rs.clear();
         Map<MUSW__Receipt__c, Decimal> rsAmt = new Map<MUSW__Receipt__c, Decimal>();
-       // system.debug('receiptVOs6789'+receiptVOs);
+        system.debug('receiptVOs6789'+receiptVOs);
         for (ReceiptVO rvo : receiptVOs)
         {
             MUSW__Receipt__c receipt = rvo.r;
+            system.debug('the rvo fields are:' +rvo);
             // update only new receipts, leave exisiting receipts
             if(receipt.Id == null){
               if(receipt.MUSW__Amount_Tendered__c == null || receipt.MUSW__Amount_Tendered__c == 0){
@@ -958,12 +966,22 @@ public with sharing class CartController
               }
             }                       
             receipt.BGBK__Cart__c = cart.Id;
+           
+           //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
+            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null){ 
+            receipt.Intake_Method__c='Counter';
+                }
+            else{
+                 receipt.Intake_Method__c='Portal';
+            }
             //rsAmt.put(receipt, rvo.amount);
             if(rvo.pmtMethodSelected != 'Deposit')                
                 rs.add(receipt);
+                
         }
 
         if(!rs.isEmpty()){
+            system.debug('nazneen--->' +rs);
             upsert rs;
         }
 
@@ -1026,6 +1044,9 @@ public with sharing class CartController
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
         receipt.BGBK__Cart__c = m_cs.getCart().Id;
         receipt.Status__c = 'Draft';
+       // receipt.Intake_Method__c = 'Portal';
+        
+        system.debug('inside redirectToPaymentGateway ');
         
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
@@ -1036,7 +1057,7 @@ public with sharing class CartController
         receipt.MUSW__Amount_Tendered__c = totalSelected;
         receipt.Selected_Fees__c = String.join(feeIds, ',');
         receipt.MUSW__Payment_Method__c = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;
-        
+       
         insert receipt;
         
         receiptId = receipt.Id;
@@ -1046,6 +1067,10 @@ public with sharing class CartController
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
         receipt.BGBK__Cart__c = m_cs.getCart().Id;
         receipt.Status__c = 'Draft';
+        //receipt.Intake_Method__c = 'Portal';
+      
+        system.debug('inside createReceiptForPaymentGateway');
+        
         
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
@@ -1721,6 +1746,7 @@ public with sharing class CartController
                                                                     feeIds,
                                                                     isPortalUser);
         sessionTransferDetails.returnValue = receiptId;
+        sessionTransferDetails.SFDClicId = receiptId;
         encryptedSessionInfo = DOL_ePaymentSessionTransfer.getEncryptedSessionString(sessionTransferDetails);
         
         PageReference pageRef = new PageReference(paymentGatewaySettings.Endpoint__c);

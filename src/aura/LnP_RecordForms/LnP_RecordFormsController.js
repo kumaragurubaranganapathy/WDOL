@@ -11,6 +11,7 @@
         var fieldsJSON ="";
         if(objectName == "Contact"){
             recordId  = component.get("v.section.contactId");
+            
         } else {
             if(savedAccountId == null && accountRecordId != null) {
                  component.set("v.section.accountId",accountRecordId);
@@ -24,11 +25,15 @@
         
         for(var i=0; i<fieldApaiName.length; i++ )
         {
-            opts.push({"apiname":fieldApaiName[i].Name});
+            opts.push({"apiname":fieldApaiName[i].Name,"label":fieldApaiName[i].Label__c});
         }
         component.set("v.fieldsList", opts);
         component.set("v.objectApiName",objectName);
         component.set("v.recordId",recordId);
+        if(recordId != null || recordId != ""){
+            component.set("v.renderFlag",true);
+        }
+        console.log("recordId::"+recordId);
        
 	},
 })

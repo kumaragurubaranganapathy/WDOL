@@ -72,8 +72,8 @@
                            <!-- <c:LnP_BackgroundQuestionSection  section ="{!section}" varSection="{!varSection}" currentTab= "{!v.currentTab}"></c:LnP_BackgroundQuestionSection--> 
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
-                                <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
-                                <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
+                                <div class="{!(question.questionSection!='null')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
                                 <aura:if isTrue ="{!question.questionSection!='null'}">
                                     <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 
                                 </aura:if>
@@ -83,7 +83,7 @@
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="reviewHeading">QUESTIONS REVIEW</div><br/>
+                                        <div class="headings underline">Questions Review</div><br/>
                                         <!-- <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes">
                                 <label style="font-weight: 600;">{!varRes + 1}. {!responses.question}</label><br></br>
         <p><aura:if isTrue="{!responses.answer != null}">
@@ -95,9 +95,10 @@
                                </aura:iteration> --> 
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
-                                            <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
-                                                <div>
-                                                    <ui:inputText disabled = "true" value="{!responses.question}"/>
+                                            <div class = "slds-size--1-of-2 slds-small-size--1-of-1 ques">
+                                                <div class="quesclr">
+                                                  <!--  <ui:inputText disabled = "true" value="{!responses.question}"/>-->
+                                                    {!responses.question}
                                                 </div>
                                                 <!-- <p> -->  
                                                 <aura:if isTrue="{!responses.answer != null}"> 
@@ -121,7 +122,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="reviewHeading">MANDATORY SUBMISSIONS REVIEW</div><br/>
+                                        <div class="headings">Mandatory Submissions Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
@@ -142,7 +143,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
+                                        <div class="certifications headings">Certifications</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                             <!--<div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                             <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
@@ -152,7 +153,7 @@
                                                   <input type="checkbox" name="{!'cert'+questionItem}" id="{!'cert'+questionItem}" onchange="{!c.onCheckboxChange}"/>
                                                   <label class="slds-checkbox__label" for="{!'cert'+questionItem}">
                                                     <span class="slds-checkbox_faux"></span>
-                                                    <span class="slds-form-element__label">{!question.label}</span>
+                                                    <span class="sentences">{!question.label}</span>
                                                   </label>
                                                 </div>
                                               </div>
@@ -162,25 +163,30 @@
                                     </div>
                                     
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                      <div class="reviewHeading declaration">DECLARATION</div><br/>
+                                      <div class="declaration headings">Declaration</div><br/>
                                         <div class="slds-form-element">
                                             <div class="slds-form-element__control">
                                                 <div class="slds-checkbox declaration-checkbox">
                                                     <input type="checkbox" name="Declaration" id="declaration" onchange="{!c.onDeclarationChange}"/>
                                                     <label class="slds-checkbox__label" for="declaration">
                                                         <span class="slds-checkbox_faux"></span>
-                                                        <span class="slds-form-element__label">{!$Label.c.Declaration}</span>
+                                                        <span class="sentences">{!$Label.c.Declaration}</span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="slds-form-element__control">
+                                                <div >
+                                                 <span class="sentences">{!$Label.c.Review_upload}</span>
+                                                </div>
+                                            </div>
                                     
                                     <div id="AttestationValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="reviewHeading attestation">SIGNATURE</div><br/>
-                                        <div class="attestBody">Declare before proceeding.</div>
+                                        <div class="attestation headings">Signature</div><br/>
+                                        <div class="attestBody sentences">Attest before proceeding.</div>
                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
-                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
+                                            <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                            (<span>{!v.currentUser.Name}</span>)
                                         </div>
                                         <aura:if isTrue="{!v.showMessage}">
@@ -197,10 +203,10 @@
                                         </div>
                                     </div>
                                     <aura:set attribute="else">
-                                        <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap':'slds-hide'}">
+                                        <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap questions':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <div class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
-                                                <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                                <div class="{!(question.questionSection!='null')?'headings sectionwidth':'slds-hide'}">{!question.questionSection}</div>
+                                                <div class="{!(question.questionSection!='null')?'sentences sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                         <ui:inputSelect label="{!question.label}" value="{!question.value}" change="{!c.showDependentQuestions}">
@@ -315,9 +321,9 @@
             </aura:if>
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section">
-            <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp'}"/>
+            <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp back-button slds-m-left_medium'}"/>
             <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->

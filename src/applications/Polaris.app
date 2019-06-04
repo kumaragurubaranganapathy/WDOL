@@ -7,6 +7,7 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Polaris</label>
     <tabs>MUSW__License2__c</tabs>
+    <tabs>MUSW__Review__c</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>Application_Page__c</tabs>
@@ -18,4 +19,6 @@
     <tabs>BGCK__Checklist_Version__c</tabs>
     <tabs>BGCK__Choice__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
+    <tabs>Master_ConfigData_Listing__c</tabs>
+    <tabs>Master_Exam_List__c</tabs>
 </CustomApplication>

@@ -1,4 +1,0 @@
-<aura:event type="COMPONENT" description="Fired when the user has selected a value for the lookup, passing at its parameters the Id of the record the user picked, and the instanceId of the current Lookup component (so that this event is handled by the proper parent)." access="global">
-	<aura:attribute name="sObjectId" type="Id" required="true" description="The Id of the selected SObject" access="global"/>
-	<aura:attribute name="instanceId" type="String" required="true" description="The id to identify the correct instance of the component" access="global"/>
-</aura:event>

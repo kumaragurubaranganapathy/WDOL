@@ -165,7 +165,7 @@
        // if(enteredAttestText==userName)
         //debugger;
         this.checkboxValidation(component, event);
-        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true")
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true)
         {         
             
             var action = component.get("c.callCompositeAPI");
@@ -309,7 +309,7 @@
 	},
     onCheckboxChange: function(component, event){
         this.toEnableSubmitButtonCheck(component, event);
-        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"){
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"  && component.get("v.declarationFlag") == true){
             component.set("v.submitButtonDisable", "false");
         }
         else {
@@ -318,7 +318,7 @@
     },
     onAttestationChange: function(component, event, helper) {
 		this.toEnableSubmitButtonCheck(component, event);
-        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"){
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"  && component.get("v.declarationFlag") == true){
             component.set("v.submitButtonDisable", "false");
         }
         else {

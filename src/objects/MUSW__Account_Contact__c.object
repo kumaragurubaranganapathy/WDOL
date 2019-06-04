@@ -57,6 +57,14 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Account_Admin__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Account Admin</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Applicant_Cust_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
@@ -88,8 +96,22 @@
                     <default>false</default>
                     <label>Inactive</label>
                 </value>
+                <value>
+                    <fullName>Pending Active</fullName>
+                    <default>false</default>
+                    <label>Pending Active</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>First_Name__c</fullName>
@@ -167,6 +189,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Ownership_Percentage__c</fullName>
+        <externalId>false</externalId>
+        <label>Ownership Percentage</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Recalculate_Sharing__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Recalculating Sharing when this is checked to true</description>
@@ -187,6 +219,44 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Resend_Invitation_Date__c</fullName>
+        <defaultValue>NOW()</defaultValue>
+        <externalId>false</externalId>
+        <label>Resend Invitation Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Governing Persons</fullName>
+                    <default>false</default>
+                    <label>Governing Persons</label>
+                </value>
+                <value>
+                    <fullName>Administrator</fullName>
+                    <default>false</default>
+                    <label>Administrator</label>
+                </value>
+                <value>
+                    <fullName>Controlling person</fullName>
+                    <default>false</default>
+                    <label>Controlling person</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Title__c</fullName>
         <description>Used for SoS Integration</description>
         <externalId>false</externalId>
@@ -198,17 +268,24 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>isAdminContact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isAdminContact</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>resend_Invitation__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND( ISPICKVAL(Associate_Status__c, &apos;Pending Active&apos;),NOW()- Resend_Invitation_Date__c &gt;= 7 ), true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>resend Invitation</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Account Contact</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Contact__c</columns>
-        <columns>MUSW__Account__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <displayFormat>ACX-{00000000}</displayFormat>
         <label>Number</label>

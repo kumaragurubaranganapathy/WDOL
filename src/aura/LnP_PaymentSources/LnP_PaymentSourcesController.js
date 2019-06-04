@@ -1,6 +1,9 @@
 ({
 
       doInit : function(component, event, helper) {
+          
+          helper.addReceiptRecord(component, event);
+          
         var action = component.get("c.getPayment");
         var action1 = component.get("c.getReceiptInfo");
         var action2 = component.get("c.getValidationNumberInfo");
@@ -8,11 +11,11 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 var result = response.getReturnValue();
-                var industryMap = [];
+                var paymentMethodMap = [];
                 for(var key in result){
-                    industryMap.push({key: key, value: result[key]});
+                    paymentMethodMap.push({key: key, value: result[key]});
                 }
-                component.set("v.industryMap", industryMap);
+                component.set("v.paymentMethodMap", paymentMethodMap);
             }
         });
           
@@ -41,11 +44,7 @@
         var currentStep = component.get("v.stepNumber");
         currentStep = '3';
         component.set("v.stepNumber",currentStep);
-      /*  var resultData = $A.get("e.c:Result");
-        //alert("paymentSourceTotal"+'Result'+resultData);
-        resultData.setParams({"PassResult" : paymentSourceTotal, "NewResult" : 44});
-        //alert("after setting params"+resultData);
-        resultData.fire();*/
+     
     },
     
      enableAddButton : function(component,event,helper){
@@ -59,10 +58,8 @@
     },
   
     
-    addNewRow : function(component,event,helper){
-       debugger;
-         helper.addReceiptRecord(component, event);
-        helper.updateFields(component, event);
+    addNewRow_ : function(component,event,helper){
+       debugger;        
         helper.saveRecieptList(component,event);
     },
    

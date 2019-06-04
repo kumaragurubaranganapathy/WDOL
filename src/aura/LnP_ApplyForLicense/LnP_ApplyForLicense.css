@@ -10,17 +10,13 @@
     word-break: normal;
     overflow-wrap: normal;
 }
-.THIS .section{
-    font-size: 18px;
-    color:t(LnGFormTitleColor);
-    margin: 0 0 0 25px;
-    padding-bottom:10px;
+.THIS .sectionwidth{
     width:100%;
+    height:30px;
+    border-bottom:0.5px solid #1b1c1a;
 }
 .THIS .sectiondetail{
-    margin: 0 0 25px 25px;    
-    color: t(LnGFormGray);  
-    width:100%;
+    margin-top:25px;     
 }
 .THIS .slds-radio .slds-form-element__label{
 	font-size: 14px;
@@ -77,11 +73,11 @@
     font-size:14px;    
 }
 .THIS .revAndSubCompletionFont{
-    margin:8px 0 20px 12px;
+    margin:8px 0 20px 0;
     color: t(LnGFormTitleColor);
     font-size:14px;  
-    padding:5px 10px;
-    background-color: rgb(233, 234, 236);    
+    padding:5px 0;
+    background-color: token(white);    
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -97,6 +93,9 @@
 }
 .THIS .field-item.attest{
     padding:10px 0 25px;
+}
+.THIS .field-item{
+    padding-left: 0;
 }
 .THIS .attestBody{
     font-size:14px;
@@ -141,19 +140,7 @@
     margin: 0 40px;
 }
 
-.THIS .personal-info{    
-    margin: 20px auto;
-    padding: 30px 10px;    
-    border-radius: 8px;
-  	box-shadow: 3px 3px 12px 0 rgba(208, 208, 208, 0.5);
-    background:t(LnGBackgroundGray);
-    display: flex;
-    flex-direction: column;    
-}
-
-.THIS .btn-wrapper{  
-    
-    
+.THIS .btn-wrapper{      
     margin:20px auto;           
     display: flex;
     justify-content: space-between;
@@ -200,4 +187,16 @@
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
+}
+.THIS .personal-info {
+    display:block;
+    width:96%;
+    max-width:872px;
+    margin:0px auto;
+}
+.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show{
+  margin:10px;
+}
+.THIS .ques .quesclr{
+    background-color:token(questxt);
 }

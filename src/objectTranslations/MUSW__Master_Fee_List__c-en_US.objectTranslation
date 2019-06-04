@@ -121,6 +121,10 @@
         <name>Effective_Start_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Endorsement Type --></label>
+        <name>Endorsement_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Expedited Service Fee --></label>
         <name>Expedited_Service_Fee__c</name>
     </fields>
@@ -207,6 +211,10 @@
     <fields>
         <label><!-- Interpretive Determination? --></label>
         <name>Interpretive_Determination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Endorsement --></label>
+        <name>Is_Endorsement__c</name>
     </fields>
     <fields>
         <label><!-- License --></label>
@@ -505,4 +513,8 @@
         <label><!-- Permit --></label>
         <name>Permit</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to enter more than 4 digits. --></errorMessage>
+        <name>Allow_user_to_input_Only_till_4_digits</name>
+    </validationRules>
 </CustomObjectTranslation>

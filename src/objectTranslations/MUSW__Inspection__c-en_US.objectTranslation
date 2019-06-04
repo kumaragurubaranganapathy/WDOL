@@ -142,7 +142,7 @@
         <name>Inspection_Start_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Inspector Name --></label>
+        <label><!-- Inspector/Auditor Name --></label>
         <name>Inspector_Name__c</name>
     </fields>
     <fields>
@@ -255,8 +255,16 @@
             <translation><!-- Approval --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Completed</masterLabel>
             <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Violation</masterLabel>
@@ -275,20 +283,60 @@
         <label><!-- Type --></label>
         <name>MUSW__Type__c</name>
         <picklistValues>
-            <masterLabel>Building</masterLabel>
-            <translation><!-- Building --></translation>
+            <masterLabel>Administrative</masterLabel>
+            <translation><!-- Administrative --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Food and Beverage</masterLabel>
-            <translation><!-- Food and Beverage --></translation>
+            <masterLabel>Annual</masterLabel>
+            <translation><!-- Annual --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Plumbing</masterLabel>
-            <translation><!-- Plumbing --></translation>
+            <masterLabel>Check Rides</masterLabel>
+            <translation><!-- Check Rides --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SYSTEM TEST</masterLabel>
-            <translation><!-- SYSTEM TEST --></translation>
+            <masterLabel>Classroom Observation</masterLabel>
+            <translation><!-- Classroom Observation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complaint</masterLabel>
+            <translation><!-- Complaint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exam Observation</masterLabel>
+            <translation><!-- Exam Observation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Examiner</masterLabel>
+            <translation><!-- Examiner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial</masterLabel>
+            <translation><!-- Financial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Follow-up Inspection</masterLabel>
+            <translation><!-- Follow-up Inspection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Risk</masterLabel>
+            <translation><!-- High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record</masterLabel>
+            <translation><!-- Record --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reinspection</masterLabel>
+            <translation><!-- Reinspection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skills Observation</masterLabel>
+            <translation><!-- Skills Observation --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -332,9 +380,28 @@
         <name>Requested_DateTime__c</name>
     </fields>
     <fields>
+        <label><!-- Secondary Inpsector/Auditor --></label>
+        <name>Secondary_Inpsector_Auditor__c</name>
+    </fields>
+    <fields>
         <label><!-- Streets of adequate width --></label>
         <name>Streets_of_adequate_width__c</name>
     </fields>
+    <recordTypes>
+        <description><!-- Annual Inspections --></description>
+        <label><!-- Annual --></label>
+        <name>Annual</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Bail Bond Agencies --></description>
+        <label><!-- Bail Bond Agency --></label>
+        <name>Bail_Bond_Agency</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Body Art/Piercing/Tattoo --></description>
+        <label><!-- Body Art/Piercing/Tattoo --></label>
+        <name>Body_Art_Piercing_Tattoo</name>
+    </recordTypes>
     <recordTypes>
         <label><!-- Building --></label>
         <name>Building</name>
@@ -344,12 +411,52 @@
         <name>Codes_Zoning</name>
     </recordTypes>
     <recordTypes>
+        <description><!-- Inspections for Combative Sports --></description>
+        <label><!-- Combative Sports --></label>
+        <name>Combative_Sports</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Commercial Driver License --></description>
+        <label><!-- Commercial Driver License --></label>
+        <name>Commercial_Driver_License</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Cosmetology Salons --></description>
+        <label><!-- Cosmetology Salons --></label>
+        <name>Cosmetology_Salons</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Cosmetology Schools --></description>
+        <label><!-- Cosmetology Schools --></label>
+        <name>Cosmetology_Schools</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- Credential --></label>
         <name>Credential</name>
     </recordTypes>
     <recordTypes>
+        <description><!-- Inspections for Driver Training Schools --></description>
+        <label><!-- Driver Training Schools --></label>
+        <name>Driver_Training_Schools</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Funeral/Cemetery/Crematory --></description>
+        <label><!-- Funeral/Cemetery/Crematory --></label>
+        <name>Funeral_Cemetery_Crematory</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Motorcycles --></description>
+        <label><!-- Motorcycle --></label>
+        <name>Motorcycle</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- Permit --></label>
         <name>Permit</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Real Estate --></description>
+        <label><!-- Real Estate --></label>
+        <name>Real_Estate</name>
     </recordTypes>
     <webLinks>
         <label><!-- Checklist --></label>

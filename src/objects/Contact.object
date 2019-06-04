@@ -678,35 +678,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Last_4_Social__c</fullName>
-        <externalId>false</externalId>
-        <label>Last 4 Social</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>LeadSource</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>License_ID__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <description>External Id of the record - Foreign Key used for Data Conversion</description>
-        <externalId>true</externalId>
-        <inlineHelpText>External Id of the record - Foreign Key used for Data Conversion</inlineHelpText>
-        <label>License ID</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>true</unique>
     </fields>
     <fields>
         <fullName>MUSW__Account_Relationship__c</fullName>
@@ -1211,7 +1186,6 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>UID__c</fullName>
-        <description>Captures the Universal Identifier Number</description>
         <externalId>false</externalId>
         <label>UID</label>
         <length>100</length>
@@ -5835,16 +5809,5 @@ CASE( MUSW__AlertCode__c,
         <showsStatus>false</showsStatus>
         <url>{!URLFOR( $SControl.MUSW__UpdateAlerts, Contact.Id, [tableName=&quot;Contact&quot;, recordID=Contact.Id])}</url>
         <width>400</width>
-    </webLinks>
-    <webLinks>
-        <fullName>View_PII_Info</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>View PII Info</masterLabel>
-        <openType>sidebar</openType>
-        <page>Contact_PII_Information</page>
-        <protected>false</protected>
     </webLinks>
 </CustomObject>

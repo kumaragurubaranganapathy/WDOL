@@ -1,0 +1,51 @@
+<!-- LnP_PaymentSourcesChildRowCmp  -->
+
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- Child Lightning Component for Create New Row Instance-->
+    
+    <!-- attributes -->
+   <aura:attribute name="receiptRec" type="MUSW__Receipt__c" default= "{'sobjectType': 'MUSW__Receipt__c',
+                                                                         'MUSW__Check_Number__c' : '', 
+                                                                         'MUSW__Amount_Tendered__c' : ''                                                                        
+                                                                         }"/>
+    
+    <aura:attribute name="paymentMethodMap" type="Map"/>   
+    <aura:attribute name="formnum" type="Map"/>   
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:attribute name="printDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="cloneDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="defaultProgramType" type="String" access="public"  />
+    
+<!-- handlers -->
+    <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    
+    <!-- Table Row -->   
+    <tr class="slds-text-title_caps">
+        <td> 
+            {!'00' + (v.rowIndex + 1)}
+        </td>
+        <td>
+            <lightning:select aura:id="paymentMethod" value="{!v.receiptRec.MUSW__Payment_Method__c}" name="paymentMethod" onchange="{!c.enablePrintButton}" >
+                <option value="">Select an Option</option>
+                <aura:iteration items="{!v.paymentMethodMap}" var="ind" indexVar="key">
+                    <option value="{!ind.value}">{!ind.value}</option> 
+                </aura:iteration>
+            </lightning:select>
+            
+        </td>
+        <td>
+            <lightning:input aura:id="checkNumber"  onchange="{!c.enablePrintButton}" value="{!v.receiptRec.MUSW__Check_Number__c}"
+                             type="text" ></lightning:input>
+        </td>
+        <td>            
+          <lightning:input aura:id="receiptAmount"  onchange="{!c.enablePrintButton}" value="{!v.receiptRec.MUSW__Amount_Tendered__c}"
+                           type="number" formatter="currency" step="0.01"></lightning:input>
+        </td>
+        <td>          
+                <lightning:button disabled="{!v.printDisabled}" variant="brand" label="Print and New" onclick="{!c.AddNewRow}"/>
+                <lightning:button  disabled="{!v.cloneDisabled}" variant="brand" label="Print and Clone" onclick="{!c.Duplicate_AddNewRow}"/>
+                <lightning:button  variant="brand" label="Update and Print" onclick=""/>
+        </td> 
+    </tr>
+</aura:component>

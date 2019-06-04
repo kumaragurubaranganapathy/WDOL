@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Letter</customButtons>
+    <customButtons>Send_Email_to_Applicant</customButtons>
+    <excludeButtons>Delete</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -26,7 +28,7 @@
                 <field>Credential_Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Credential__c</field>
             </layoutItems>
             <layoutItems>
@@ -93,6 +95,30 @@
                 <behavior>Edit</behavior>
                 <field>Pre_License_Number__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Qualified_By__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Qualified_Thru__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Client_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>License_Application__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Reinstatement_Eligible_Start_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Application__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -130,6 +156,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Is_Late_Renewal_Eligible__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Security_Code__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -220,6 +250,10 @@
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Send_information_to_ASC__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -249,7 +283,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Question_Body__c</fields>
+        <fields>Question__c</fields>
         <fields>Answer_Text__c</fields>
         <relatedList>Answer__c.License__c</relatedList>
     </relatedLists>
@@ -278,10 +312,11 @@
         <fields>Name_of_Institution__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_date__c</fields>
-        <fields>Degree__c</fields>
         <fields>Major__c</fields>
         <fields>State__c</fields>
         <fields>Country__c</fields>
+        <fields>Exam_Type__c</fields>
+        <fields>RECORDTYPE</fields>
         <relatedList>Education_History__c.License__c</relatedList>
         <sortField>End_date__c</sortField>
         <sortOrder>Desc</sortOrder>
@@ -334,6 +369,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>MUSW__Amount__c</fields>
+        <fields>MUSW__Available_Amount__c</fields>
         <relatedList>MUSW__Deposit__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -348,8 +385,6 @@
     </relatedLists>
     <relatedLists>
         <excludeButtons>MailMerge</excludeButtons>
-        <excludeButtons>RequestUpdate</excludeButtons>
-        <excludeButtons>SendEmail</excludeButtons>
         <excludeButtons>ViewAll</excludeButtons>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.TYPE</fields>
@@ -382,13 +417,34 @@
         <fields>MUSW__Alert_Indicator__c</fields>
         <relatedList>MUSW__License2__c.Related_License__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>LnP_Parcel__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <relatedList>LnP_BackgroundSection__c.License_Bg__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Endorsement_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>Date_Requested_for_Adding_Endorsement__c</fields>
+        <fields>Date_Granted__c</fields>
+        <relatedList>Endorsement__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Request__c.License__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002QBNV</masterLabel>
+        <masterLabel>00hr0000002QEpz</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

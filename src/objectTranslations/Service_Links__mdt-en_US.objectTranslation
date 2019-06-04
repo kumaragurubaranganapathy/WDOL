@@ -13,6 +13,10 @@
         <name>Application__c</name>
     </fields>
     <fields>
+        <label><!-- Auto Approved --></label>
+        <name>Auto_Approved__c</name>
+    </fields>
+    <fields>
         <label><!-- Credential Type --></label>
         <name>Credential_Type__c</name>
         <picklistValues>
@@ -243,6 +247,10 @@
             <masterLabel>POWTS</masterLabel>
             <translation><!-- POWTS --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Questions --></label>
+        <name>Questions__c</name>
     </fields>
     <fields>
         <label><!-- Service Request Type --></label>

@@ -18,10 +18,7 @@
        helper.showNotAppTypeEliQuestionsHelper(component, event, helper); 
     },
     startApplication : function(component, event, helper){
-        //window.setTimeout(
-        //$A.getCallback(function() {
-            helper.startApplicationHelper(component, event, helper);
-        //}), 2000);       
+            helper.startApplicationHelper(component, event, helper);    
     },
     firePassValueEvent : function (component, event, helper){
         console.log("SD");

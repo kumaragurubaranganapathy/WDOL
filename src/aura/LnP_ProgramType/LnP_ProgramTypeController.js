@@ -1,7 +1,8 @@
 ({
         doInit : function(component, event, helper) {
+            debugger;
         var action = component.get("c.getDefaultProgramType");
-        var action1 = component.get("c.getcustomerEnvelopeInfo");
+        //var action1 = component.get("c.getcustomerEnvelopeInfo");
         var action2 = component.get("c.getValidationNumberInfo");
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -15,23 +16,23 @@
             }
         });
         
-            action1.setCallback(this, function(response) {
+           /* action1.setCallback(this, function(response) {
                 var state = response.getState();
                 console.log('the data is' +response.getReturnValue());
                  if (state === "SUCCESS") {
                      component.set("v.customerEnvelopDetails",response.getReturnValue());
                  }
             });
-            
+*/            
                action2.setCallback(this, function(response) {
                 var state = response.getState();
                  if (state === "SUCCESS") {
-                     component.set("v.validationNumber",response.getReturnValue());
+                     component.set("v.customerEnvelopeRec",response.getReturnValue());
                  }
             });
             
              $A.enqueueAction(action); 
-             $A.enqueueAction(action1);
+          //   $A.enqueueAction(action1);
             $A.enqueueAction(action2);
         },
     

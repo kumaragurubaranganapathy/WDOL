@@ -162,6 +162,20 @@
     </fields>
     <label>Error Log</label>
     <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Component__c</columns>
+        <columns>Error_Description__c</columns>
+        <columns>Error_Detail__c</columns>
+        <columns>Error_Record_Id__c</columns>
+        <columns>Error_Severity__c</columns>
+        <columns>SObject__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>dev_to_uat_error_logs</fullName>
         <columns>NAME</columns>
         <columns>Error_Description__c</columns>

@@ -9,7 +9,7 @@ public with sharing class LnP_LicenseAddressApexController {
         }
     
         //system.debug('hey !!');
-        ListAddress = [select Id,Address_Type__c, Street__c, City__c,State_Province__c, Country__c, Zip_Postal_Code__c,Application_BG__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
+        ListAddress = [select Id,Address_Type__c, Street__c, City__c,State_Province__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
         system.debug('ListAddress'+ListAddress);
         return ListAddress;
     }
@@ -26,6 +26,35 @@ public with sharing class LnP_LicenseAddressApexController {
         }
         return options;
     }
+    
+    @AuraEnabled
+    public static List<selectOption> getCountyValue(String state, String city){
+        List<selectOption> selectCounty = new List<selectOption>();
+        String stateValue = State;
+        String cityValue = City;
+        List<LnP_City_County_Map__mdt> cityCountyMap = new List<LnP_City_County_Map__mdt>();
+        cityCountyMap = [SELECT MasterLabel, City__c, County__c FROM LnP_City_County_Map__mdt];
+
+        LnP_Parcel__c par = new LnP_Parcel__c();
+        if(stateValue != 'Washington'){
+            selectOption sel = new selectOption();
+            sel.label = 'Out Of State';
+            sel.value = 'Out Of State';
+            selectCounty.add(sel);
+        }
+        else {
+            for(LnP_City_County_Map__mdt mapItem : cityCountyMap){
+                if(mapItem.City__c == cityValue){
+                    selectOption sel = new selectOption();
+           			sel.label = mapItem.County__c;
+            		sel.value = mapItem.County__c;
+            		selectCounty.add(sel);
+                }
+            }
+        }
+        return selectCounty;
+    }
+    
     /*
     @AuraEnabled
     public static List<String> objectFields(String selectedObject){
@@ -157,11 +186,17 @@ public with sharing class LnP_LicenseAddressApexController {
             Catch(Exception e){
                 System.debug('---EXCEPTION---'+e.getMessage());
             }
-          listAddress = [select id,Address_Type__c, Street__c, City__c,State_Province__c, Country__c, Zip_Postal_Code__c,Application_BG__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
+          listAddress = [select id,Address_Type__c, Street__c, City__c,State_Province__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
         } else{
             
         }
         return listAddress;
+    }
+    
+    public class selectOption{
+        
+        @AuraEnabled public string label;
+        @AuraEnabled public string value;
     }
     
 }

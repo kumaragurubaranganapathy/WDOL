@@ -215,7 +215,7 @@
                     <default>false</default>
                     <label>Limited Liability Company</label>
                 </value>
-				<value>
+                <value>
                     <fullName>LLC</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
@@ -839,9 +839,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>UBI_Status__c</fullName>
-        <description>UBI Status - SoS Integration</description>
         <externalId>false</externalId>
-        <inlineHelpText>UBI Status - SoS Integration</inlineHelpText>
         <label>UBI Status</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -899,8 +897,10 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <listViews>
         <fullName>AllAccounts</fullName>
+        <columns>ACCOUNT.CREATED_DATE</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>Email__c</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
         <columns>ACCOUNT.TYPE</columns>

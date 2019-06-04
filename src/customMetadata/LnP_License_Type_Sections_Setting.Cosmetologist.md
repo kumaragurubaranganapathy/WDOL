@@ -18,4 +18,12 @@
         <field>Sections__c</field>
         <value xsi:type="xsd:string">Personal Information,Endorsement on License Questions,Background Questions</value>
     </values>
+    <values>
+        <field>Service_Request_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>flag__c</field>
+        <value xsi:nil="true"/>
+    </values>
 </CustomMetadata>

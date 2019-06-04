@@ -8,7 +8,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
         setId.add(renewreinstate.id);
     }
     
-    List<Answer__c> ansList = [select id,Answer_Text__c,Question__c,Renewal_Application__c,Question_Body__c from Answer__c where Renewal_Application__c IN:setId AND Question__r.Legal_Background_Question__c = TRUE AND Question__r.Data_Type__c = 'Yes_No' ];
+    List<BGCK__Answer__c> ansList = [select id,Answer_Text__c,Question__c,Renewal_Reinstatement_Application__c from BGCK__Answer__c where Renewal_Reinstatement_Application__c IN:setId AND Question__r.Section__c = 'Legal Background Questions' AND Question__r.Data_Type__c = 'Yes_No' ];
     system.debug('ansList---'+ansList);
     
     Map<id,Boolean> reneUpdate = new Map<id,Boolean>();
@@ -18,8 +18,8 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
        for(Renewal_Application__c rene : renewReinstateList ){
             Integer numberOfQue = 0;
             Integer numberOfNo = 0;
-            for(Answer__c ans : ansList){
-                if(ans.Renewal_Application__c == rene.Id){
+            for(BGCK__Answer__c ans : ansList){
+                if(ans.Renewal_Reinstatement_Application__c == rene.Id){
                     numberOfQue++;
                     if(ans.Answer_Text__c == 'No'){
                         numberOfNo++;

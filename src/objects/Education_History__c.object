@@ -53,7 +53,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -393,6 +393,14 @@
         <fullName>Exam_Approval_Expiry_Date__c</fullName>
         <externalId>false</externalId>
         <label>Exam Approval Expiry Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Exam_Pass_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Exam Pass Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1058,14 +1066,26 @@
         <columns>License__c</columns>
         <columns>Name_of_Institution__c</columns>
         <columns>Major__c</columns>
-        <columns>Degree__c</columns>
-        <columns>Start_Date__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Exams</fullName>
+        <columns>NAME</columns>
+        <columns>Exam_Type__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Exam_Result_Expiry_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Education_History__c.Exam</value>
+        </filters>
+        <label>Exams</label>
     </listViews>
     <nameField>
         <displayFormat>EDUH-{000000}</displayFormat>
@@ -1081,6 +1101,10 @@
             <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1125,6 +1149,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2343,6 +2371,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -2359,7 +2391,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2435,6 +2475,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -2467,6 +2515,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>State Licensed Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -2495,6 +2551,10 @@
             <picklist>Program_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2539,6 +2599,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2848,6 +2912,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -2889,6 +2957,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4107,6 +4179,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -4123,7 +4199,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4199,6 +4283,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -4231,6 +4323,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>State Licensed Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -4259,6 +4359,10 @@
             <picklist>Program_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4303,6 +4407,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4592,6 +4700,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -4633,6 +4745,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5851,6 +5967,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -5867,7 +5987,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5943,6 +6071,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -5975,6 +6111,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>State Licensed Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -6003,6 +6147,10 @@
             <picklist>Program_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6047,6 +6195,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6356,6 +6508,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -6397,6 +6553,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7615,6 +7775,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -7631,7 +7795,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7707,6 +7879,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -7739,6 +7919,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>State Licensed Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -7767,6 +7955,10 @@
             <picklist>Program_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7811,6 +8003,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8120,6 +8316,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -8161,6 +8361,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9379,6 +9583,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -9395,7 +9603,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9471,6 +9687,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -9503,6 +9727,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>State Licensed Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -9531,6 +9763,10 @@
             <picklist>Program_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9575,6 +9811,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>

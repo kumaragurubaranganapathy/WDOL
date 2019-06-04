@@ -36,6 +36,8 @@ public class DE_LandingPageCustomLabels {
         mapCommonHeaderLabels.put('Professional','Professional;'+System.Label.Polaris_Portal_Dashboard+',');
         mapCommonHeaderLabels.put('License Lookup','License Lookup;'+System.Label.Polaris_Portal_LicenseLookup+',');
         mapCommonHeaderLabels.put('Education','Education;'+System.Label.Polaris_Portal_Education+',');
+        //testing new dashboard
+        mapCommonHeaderLabels.put('New Dashbord','New Dashbord;https://dev-polaris.cs32.force.com/lightningwashington/s/newdashboard,');
         //mapCommonHeaderLabels.put('File a Complaint','File a Complaint;https://deloittelnp.force.com/s/file-a-complaint,');
         //mapCommonHeaderLabels.put('Log In','Log In;#,');
         return mapCommonHeaderLabels ;

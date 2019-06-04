@@ -13,6 +13,10 @@
         <name>Receipt_Confirmation</name>
     </fieldSets>
     <fields>
+        <label><!-- ACH BillerBusinessDate --></label>
+        <name>ACH_BillerBusinessDate__c</name>
+    </fields>
+    <fields>
         <label><!-- Cart --></label>
         <name>BGBK__Cart__c</name>
         <relationshipLabel><!-- Receipts --></relationshipLabel>
@@ -39,8 +43,54 @@
         <name>Batch_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Card Authorized --></label>
+        <name>Card_Authorized__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Convenience Fee --></label>
         <name>Convenience_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date_Today&apos;s --></label>
+        <name>Date_Today_s__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Estimated effective date from US Bank --></help>
+        <label><!-- Effective Date --></label>
+        <name>Effective_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initiation Date and Time --></label>
+        <name>Initiation_Date_and_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Intake Method --></label>
+        <name>Intake_Method__c</name>
+        <picklistValues>
+            <masterLabel>Counter</masterLabel>
+            <translation><!-- Counter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portal</masterLabel>
+            <translation><!-- Portal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation Room</masterLabel>
+            <translation><!-- Validation Room --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Last four digits of the credit card number or ACH account number sent from payment gateway --></help>
+        <label><!-- Last 4 digits of Credit Card or ACH --></label>
+        <name>Last_4_digits_of_Credit_Card_or_ACH__c</name>
     </fields>
     <fields>
         <label><!-- Amount Remaining --></label>
@@ -156,16 +206,44 @@
             <translation><!-- Cash --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Check</masterLabel>
-            <translation><!-- Check --></translation>
+            <masterLabel>Check/Cashier&apos;s Check</masterLabel>
+            <translation><!-- Check/Cashier&apos;s Check --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Credit Card</masterLabel>
-            <translation><!-- Credit Card --></translation>
+            <masterLabel>Deposit</masterLabel>
+            <translation><!-- Deposit --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Debit</masterLabel>
-            <translation><!-- Debit --></translation>
+            <masterLabel>Inter-agency Payment</masterLabel>
+            <translation><!-- Inter-agency Payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lockbox</masterLabel>
+            <translation><!-- Lockbox --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misc - Unknown</masterLabel>
+            <translation><!-- Misc - Unknown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Money Order</masterLabel>
+            <translation><!-- Money Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NCR</masterLabel>
+            <translation><!-- NCR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reapplied Payment</masterLabel>
+            <translation><!-- Reapplied Payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vitalcheck</masterLabel>
+            <translation><!-- Vitalcheck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Voucher</masterLabel>
+            <translation><!-- Voucher --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -190,6 +268,22 @@
         <name>MUSW__Refunded__c</name>
     </fields>
     <fields>
+        <label><!-- Status --></label>
+        <name>MUSW__Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiated</masterLabel>
+            <translation><!-- Initiated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Successful</masterLabel>
+            <translation><!-- Successful --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Receipt No. --></label>
         <name>MUSW__Track_No__c</name>
     </fields>
@@ -202,8 +296,22 @@
         <name>Number_of_Payment_Records__c</name>
     </fields>
     <fields>
+        <label><!-- Number of payment sources --></label>
+        <name>Number_of_payment_sources__c</name>
+    </fields>
+    <fields>
         <label><!-- Payee --></label>
         <name>Payee__c</name>
+    </fields>
+    <fields>
+        <help><!-- Credit Card payer first name from payment gateway --></help>
+        <label><!-- Payer First Name --></label>
+        <name>Payer_First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Credit Card/ACH payer last name from payment gateway --></help>
+        <label><!-- Payer Last Name --></label>
+        <name>Payer_Last_Name__c</name>
     </fields>
     <fields>
         <label><!-- Payment Batch --></label>
@@ -212,6 +320,38 @@
     <fields>
         <label><!-- Payment Gateway Transaction Fee --></label>
         <name>Payment_Gateway_Transaction_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Number --></label>
+        <name>Payment_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Source Total --></label>
+        <name>Payment_Source_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment amount --></label>
+        <name>Payment_amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment type --></label>
+        <name>Payment_type__c</name>
+        <picklistValues>
+            <masterLabel>cash</masterLabel>
+            <translation><!-- cash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>check</masterLabel>
+            <translation><!-- check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>money order</masterLabel>
+            <translation><!-- money order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>voucher</masterLabel>
+            <translation><!-- voucher --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Remitter --></label>
@@ -224,6 +364,14 @@
     <fields>
         <label><!-- Selected Fees --></label>
         <name>Selected_Fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sequence number --></label>
+        <name>Sequence_number__c</name>
+    </fields>
+    <fields>
+        <label><!-- SessionTransferDate --></label>
+        <name>SessionTransferDate__c</name>
     </fields>
     <fields>
         <label><!-- Status --></label>
@@ -253,6 +401,39 @@
         <label><!-- System Text --></label>
         <name>System_Text__c</name>
     </fields>
+    <fields>
+        <label><!-- Transaction Confirmation ID --></label>
+        <name>Transaction_Confirmation_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- USBankpaymentmode --></label>
+        <name>USBankpaymentmode__c</name>
+    </fields>
+    <fields>
+        <label><!-- US Bank Payment Status --></label>
+        <name>US_Bank_Payment_Status__c</name>
+        <picklistValues>
+            <masterLabel>Processed</masterLabel>
+            <translation><!-- Processed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Settled</masterLabel>
+            <translation><!-- Settled --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Validation number --></label>
+        <name>Validation_number__c</name>
+        <relationshipLabel><!-- Receipts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- VitalCheck Number --></label>
+        <name>VitalCheck_Number__c</name>
+    </fields>
+    <sharingReasons>
+        <label><!-- Insert Receipt Share --></label>
+        <name>Insert_Receipt_Share</name>
+    </sharingReasons>
     <validationRules>
         <errorMessage><!-- Cannot adjust Receipt Amount greater than what is Remaining. Increase Receipt or reduce Rejected Amount or increase Available Amount (delete payments) --></errorMessage>
         <name>MUSW__Amount_Available_less_than_Remaining</name>

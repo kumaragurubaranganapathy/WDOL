@@ -710,7 +710,7 @@
         
         private static Map<integer,GeoResult> getBusiessAddressesFromService(RawAddress rAddress  , Map<integer,GeoResult> masterAddressMap )
         {
-            try{
+            /*try{
                 // Instantiate a new http object
                 Http h = new Http();
                 String url = '';
@@ -804,7 +804,7 @@
                 System.debug(result.addressLine1);
             }catch(Exception ex){
                 system.debug(ex.getMessage());
-            }
+            }*/
             
             return masterAddressMap ;
         }

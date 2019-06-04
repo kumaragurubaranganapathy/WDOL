@@ -142,6 +142,10 @@
         <label><!-- TMS Revenue Code --></label>
         <name>TMS_Revenue_Code__c</name>
     </fields>
+    <sharingReasons>
+        <label><!-- Create Fee Payment By Delegate --></label>
+        <name>Create_Fee_Payment_By_Delegate</name>
+    </sharingReasons>
     <validationRules>
         <errorMessage><!-- Applied Payment amount must be less than or equal to the Fee Amount --></errorMessage>
         <name>BGBK__Payment_greater_than_Fee_Amount</name>

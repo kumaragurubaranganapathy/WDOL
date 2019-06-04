@@ -3,38 +3,41 @@
     <aura:attribute name="defaultProgramType" type="String" access="public"  />
     <aura:attribute name="industryMap" type="Map"/>
     <aura:attribute name="isDisabled" type="Boolean" default="true" />
-    <aura:attribute name="customerEnvelopDetails" type="Date" /> 
-     <aura:attribute name="validationNumber" type="Integer" /> 
+   <!--  <aura:attribute name="customerEnvelopDetails" type="Date" />  -->
+    <aura:attribute name="customerEnvelopeRec" type="Customer_Envelope__c" access="public"/> 
     <aura:attribute name="stepNumber" type="String" access="public"/>
     
-    <lightning:layout >
-        <div><lightning:input  disabled="true" label="Validation Number" value="{!v.validationNumber.Validation_number__c}"/></div>&nbsp;
+    <lightning:layout class="slds-align_absolute-center">
+        <div><lightning:input  disabled="true" label="Validation Number" value="{!v.customerEnvelopeRec.Validation_number__c}"/></div>&nbsp;
         <div><lightning:input  disabled="true" label="Number of Payment Sources" /></div>&nbsp;
         <div><lightning:input  disabled="true" label="Number of Documents" /></div>
     </lightning:layout>
     
-    <lightning:layout >
-        <div><lightning:input  disabled="true" label="Date" value="{!v.customerEnvelopDetails.Date_Today_s__c}"/></div>&nbsp;
+    <lightning:layout class="slds-align_absolute-center">
+        <div><lightning:input  disabled="true" label="Date" value="{!v.customerEnvelopeRec.Date_Today_s__c}"/></div>&nbsp;
         <div><lightning:input  disabled="true" label="Payment Source Total" /></div>&nbsp;
         <div><lightning:input  disabled="true" label="Document Total" /></div>
     </lightning:layout><br/>
     
-        <lightning:layout >
-            <div>
-                <lightning:select aura:id="defaultPgmType" value="{!v.defaultProgramType}" name="defaultProgramType"   label="Default Program Type" onchange="{!c.enableNextButton}">
-                    <option value="">Select an Option</option>
-                    <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
-                        <!--<option text="{!ind.value}" value="{!ind.key}" selected="{!ind.key==v.defaultProgramType.Default_program_type__c}"/> -->
-                        <option value="{!ind.value}">{!ind.value}</option> 
-                    </aura:iteration>
-                </lightning:select> </div>&nbsp;
-            <div><lightning:input label="Validation Number" disabled="true" value="{!v.validationNumber.Validation_number__c}"></lightning:input></div>&nbsp;
-            <div><lightning:input label="Date" disabled="true" value="{!v.customerEnvelopDetails.Date_Today_s__c}"></lightning:input></div> 
-        </lightning:layout>
-        
-    <div class="slds-col">
-        <lightning:button variant="brand" label="CANCEL" onclick="{! c.gotoListView }"/>
-        <lightning:button  disabled="{!v.isDisabled}" aura:id="test" variant="brand" label="NEXT" onclick="{! c.gotoURL }" />
-    </div>
+    <lightning:layout class="slds-align_absolute-center" >
+        <div>
+            <lightning:select aura:id="defaultPgmType" value="{!v.defaultProgramType}" name="defaultProgramType"   label="Default Program Type" onchange="{!c.enableNextButton}">
+                <option value="">Select an Option</option>
+                <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
+                    <!--<option text="{!ind.value}" value="{!ind.key}" selected="{!ind.key==v.defaultProgramType.Default_program_type__c}"/> -->
+                    <option value="{!ind.value}">{!ind.value}</option> 
+                </aura:iteration>
+            </lightning:select> </div>&nbsp;
+        <div><lightning:input label="Validation Number" disabled="true" value="{!v.customerEnvelopeRec.Validation_number__c}"></lightning:input></div>&nbsp;
+        <div><lightning:input label="Date" disabled="true" value="{!v.customerEnvelopeRec.Date_Today_s__c}"></lightning:input></div> 
+    </lightning:layout>
+    
+    <lightning:layout >
+        <div class="slds-col slds-align_absolute-center slds-m-top_small">
+            
+            <lightning:button variant="brand" label="CANCEL" onclick="{! c.gotoListView }"/>
+            <lightning:button  disabled="{!v.isDisabled}" aura:id="test" variant="brand" label="NEXT" onclick="{! c.gotoURL }" />
+        </div>
+    </lightning:layout>
     
 </aura:component>

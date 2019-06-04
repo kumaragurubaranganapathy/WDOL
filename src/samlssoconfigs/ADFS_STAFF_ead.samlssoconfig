@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>http://ead.sts.wa.gov/adfs/services/trust</issuer>
+    <loginUrl>https://ead.sts.wa.gov/adfs/ls/</loginUrl>
+    <name>POLARIS Staff</name>
+    <oauthTokenEndpoint>https://wadolbuspro--qa.my.salesforce.com/services/oauth2/token</oauthTokenEndpoint>
+    <redirectBinding>true</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P1t0000000Gmrt</requestSigningCertId>
+    <salesforceLoginUrl>https://wadolbuspro--qa.my.salesforce.com</salesforceLoginUrl>
+    <samlEntityId>https://wadolbuspro.my.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <singleLogoutBinding>RedirectBinding</singleLogoutBinding>
+    <singleLogoutUrl>https://ead.sts.wa.gov/adfs/ls/</singleLogoutUrl>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDMTCCAhmgAwIBAgIQVz5UHyLFM6pDf3Sa4PlAtTANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDExtUb2tlblNpZ25pbmctZWFkLnN0cy53YS5nb3YwHhcNMTIxMDAxMDgwMDAwWhcNMzIxMDAxMDgwMDAwWjAmMSQwIgYDVQQDExtUb2tlblNpZ25pbmctZWFkLnN0cy53YS5nb3YwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7ksGEdMEmk3//GyFUuJN52dt3978jVlq9wB9OmWEYqWDmhGk3VoWDJ2iQVunlbFu6wxPcuYjXKH87lULvNNGwrvoVORVSg0uw65dMBK3dXbfdPbiLf/LAGkwzOmkfS8OEeX5LT4bfDFLCDuWThyHNGbiNJYkl4zSHdnmrk4kHUnB2WTJOVLVjFJ+uLAYLvTpOxVemZCCUYY4Nh7Ox6Tx5FhA0dUY8GPl0J4KYA+Zos+GPUtFann1MO0TZy3zAFI9xHyYj5rfT4VpX2rN0PHFChvXR/YZ70VMxHrAkbYTT2sXQvknF5QyuQAZ4HM1qgRcFoIkZ/iN68iths86My5/PAgMBAAGjWzBZMFcGA1UdAQRQME6AEF+Xbral6Q+ZpOl2ZO9+opmhKDAmMSQwIgYDVQQDExtUb2tlblNpZ25pbmctZWFkLnN0cy53YS5nb3aCEFc+VB8ixTOqQ390muD5QLUwDQYJKoZIhvcNAQELBQADggEBAFOatP6ptufqLN1jNggdiowMQoms+wr84ipKizpCtWFTXteGhmy0HVMiCE3u0Sd5xmG0l6qAf0Krmd0aY4R+wbtHEgq1/2s/9lmvY5mtKfiQ5I3+Vlmu2TzgCW3ruvhz1ptf6flwlVFfF5wm2RxaV5R/NKyvCGkphX40hIf1ghK7B+R/xC2M3e+zTSVGYr6DHBfrTDlG/cXdoqAJ3cG80l1FTK7hqZsJlu/9YAV+xu0K2lVfubu5z3G+zA/SaHqEgow2SJOmkBrfvc90d0wMMia4B9VwKnUIsoBYn0klUZmv+cZNBW14HyybL/B5G6X1Z/fgQHmvnjluVXT7XowXE0I=</validationCert>
+</SamlSsoConfig>

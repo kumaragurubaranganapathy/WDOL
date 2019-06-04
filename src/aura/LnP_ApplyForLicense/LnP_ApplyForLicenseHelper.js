@@ -31,6 +31,7 @@
                 component.set("v.section",sectionList);
                 console.log("resultWrapper", JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
+                
                 this.hideSpinner(component, event);
             }else{
                 window.location.href = "./error";
@@ -43,6 +44,7 @@
         var applicationType = sessionStorage.getItem("applicationType");
         var board = sessionStorage.getItem("board");
         var applicationId = sessionStorage.getItem("applicationId");
+        console.log('applicationId::'+applicationId);
         var recordID =  sessionStorage.getItem("accountRecordID");
         var flowType = sessionStorage.getItem("flowType");
         var objectName = "";
@@ -66,6 +68,7 @@
         component.set("v.recordId",recordID);
         component.set("v.objectName",objectName);
         sessionStorage.clear();
+          
     },
     goToPreviousTab : function(component, event, helper) {
         component.set("v.AttFlagForsubmit","false");
@@ -121,6 +124,13 @@
                 console.log('licenseWrapper ' + JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
+                var tabsList = component.get("v.licenseWrapper");
+            var currentTab = component.get("v.currentTab");
+        
+        if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
+        {
+            component.set("v.showNotaryEndo",true);
+        }
                 // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
             } else {
                 //handle error as well
@@ -202,6 +212,10 @@
         if(event.getSource().get("v.name").includes('License Information'))
         {
              questionNumber = event.getSource().get("v.name").split('License Information')[1];
+        }
+        else if(event.getSource().get("v.name").includes('Questions'))
+        {
+            questionNumber = event.getSource().get("v.name").split('Questions')[1];
         }
         else 
         {          
@@ -301,23 +315,44 @@
     closeModel: function(component, event) {
         component.set("v.isOpen", false);
         var id = component.get("v.storeServerValue");
+        var noFees;
+        component.set("v.loadingSpinner", true);
         if(component.get("v.serverStatus") == "success"){
+        try{
+			return new Promise($A.getCallback(function(resolve, reject) {
                     var action = component.get("c.getTotalBalance");
                     action.setParams({"licId" : id });
                     action.setCallback(this, function(actionResult){
                         var state = actionResult.getState();
                         if (state === "SUCCESS"){
-                            var noFees = actionResult.getReturnValue();
-                            if(noFees){
-                                window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/dashboard';
-                            }else{
-                            	window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;        
-                            }
-                            
+                            console.log("state::"+state);
+                            noFees = actionResult.getReturnValue();
+                            resolve(actionResult.getReturnValue());
+                            console.log("state::"+state);
                         }
                         
                     });
             	$A.enqueueAction(action);
+                 })).then(
+                		$A.getCallback(function(result){ 
+                        var str = '';
+                         component.set("v.loadingSpinner", false);
+                        if(noFees){
+                                str ='/dashboard';
+                            var urlEvent = $A.get("e.force:navigateToURL");
+                            urlEvent.setParams({
+                                "url": str
+                            });
+                            urlEvent.fire();
+                       
+                        }else{
+                             window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
+                          } 
+                }));
+            	}    
+                catch(e){
+                console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+        	}
     }},
                                
     certificateCheckbox: function(component, event){

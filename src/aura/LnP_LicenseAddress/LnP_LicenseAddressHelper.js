@@ -33,6 +33,27 @@
         }
     },
     
+    countyFetchHelper : function(component, event){
+		var getState = component.get("v.parcel.State_Province__c");
+        var getCity = component.get("v.parcel.City__c");
+        var action = component.get("c.getCountyValue");
+
+        action.setParams({state : getState, city : getCity});
+        action.setCallback(this,function(response){
+            var state = response.getState();
+            if(state === "SUCCESS"){
+                var result = response.getReturnValue();
+                component.set("v.selectedValue",result[0].value);
+                component.set("v.county",result);
+            }
+            else{
+                alert('failed');
+            }
+        });
+        $A.enqueueAction(action); 
+    },
+        
+    
     selectAddress : function(component, event){
         try{
             var addValue = event.currentTarget.dataset.index;
@@ -55,7 +76,8 @@
     
     saveAddressHelper : function(component, event, helper) {
         var address = component.get("v.parcel");
-        if(address.City__c==''||address.State_Province__c==''||address.Country__c==''||address.Zip_Postal_Code__c==''||address.Street__c==''||address.Address_Type__c==''){
+        address.County__c = component.get("v.selectedValue");
+        if(address.City__c==''||address.State_Province__c==''||address.County__c==''||address.Country__c==''||address.Zip_Postal_Code__c==''||address.Street__c==''||address.Address_Type__c==''){
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title": "Missing fields!",
@@ -80,6 +102,7 @@
         component.set("v.parcel.Street__c","");
         component.set("v.parcel.City__c","");
         component.set("v.parcel.State_Province__c","");
+        component.set("v.parcel.County__c","");
         component.set("v.parcel.Country__c","");
         component.set("v.parcel.Zip_Postal_Code__c","");
         component.set("v.parcel.Address_Type__c","--None--");
@@ -102,6 +125,7 @@
                 component.set("v.parcel.Street__c","");
                 component.set("v.parcel.City__c","");
                 component.set("v.parcel.State_Province__c","");
+                component.set("v.parcel.County__c","");
                 component.set("v.parcel.Country__c","");
                 component.set("v.parcel.Zip_Postal_Code__c","");
                 component.set("v.parcel.Address_Type__c","--None--");
@@ -126,8 +150,9 @@
             component.set("v.parcel.Street__c",addlist[0]);
             component.set("v.parcel.City__c",addlist[1]);
             component.set("v.parcel.State_Province__c",addlist[2]);
-            component.set("v.parcel.Zip_Postal_Code__c",addlist[4]);
-            component.set("v.parcel.Country__c",addlist[3]); 
+            component.set("v.parcel.County__c",addlist[3]); 
+            component.set("v.parcel.Zip_Postal_Code__c",addlist[5]);
+            component.set("v.parcel.Country__c",addlist[4]); 
             component.set('v.parcel.Application_BG__c', applicationId);
         }
         catch(e){

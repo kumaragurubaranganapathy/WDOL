@@ -5,30 +5,39 @@
         console.log('educationRecordType'+educationRecordType);
         var trainingRecordType = $A.get('$Label.c.Training_RecordType').toString();
         var experienceRecordType = $A.get('$Label.c.Experience_RecordType').toString();
+        var endorsementRecordType = $A.get('$Label.c.Endorsement_RecordType').toString();
         var recordType = '';
-        component.set('v.sObj','LnP_BackgroundSection__c');
-        if(sectionName=='Qualifying Education'){
-            
-           // if(component.get('v.objectRecordType') !=null) {
-                //console.log("type of "+ typeof(educationRecordType)) ;
-               recordType='';
-               recordType = educationRecordType; 
-          //  }
-
-        }
-       else if(sectionName=='Qualifying Training'){
-           recordType='';
-            recordType =trainingRecordType;
-        }  
-        else if(sectionName=='Qualifying Experience' ){
+        if(sectionName=='Endorsement'){
+            component.set('v.sObj','Endorsement__c');
             recordType='';
-            recordType =experienceRecordType;
+            recordType =endorsementRecordType;
+        }
+        else{
+            component.set('v.sObj','LnP_BackgroundSection__c');
+            if(sectionName=='Qualifying Education'){
+                
+                // if(component.get('v.objectRecordType') !=null) {
+                //console.log("type of "+ typeof(educationRecordType)) ;
+                recordType='';
+                recordType = educationRecordType; 
+                //  }
+                
+            }
+            else if(sectionName=='Qualifying Training'){
+                recordType='';
+                recordType =trainingRecordType;
+            }  
+                else if(sectionName=='Qualifying Experience' ){
+                    recordType='';
+                    recordType =experienceRecordType;
+                }
         }
         component.set('v.objectRecordType',recordType);
+        
         helper.setData(component, event, helper);
     },   
     handleSuccess : function(component, event, helper) {
-
+        
         var toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             "title": "Success!",
@@ -37,8 +46,8 @@
         });
         //toastEvent.fire();
         
-		helper.hideAddRecord(component, event, helper);
-		helper.setData(component, event, helper);
+        helper.hideAddRecord(component, event, helper);
+        helper.setData(component, event, helper);
         
     },
     handleError : function(component, event, helper) { 
@@ -54,20 +63,20 @@
     },
     handleCancel : function(component, event, helper) {
         //helper.showHide(component);
-		helper.hideAddRecord(component, event, helper);
+        helper.hideAddRecord(component, event, helper);
         event.preventDefault();
     },
     handleHiddenCancel : function(component, event, helper) {
-		var editNo = '';
+        var editNo = '';
         var parentDiv = event.target.parentNode;
-       	editNo =  parentDiv.id;
+        editNo =  parentDiv.id;
         helper.editRecordHelper(component, event, helper, editNo);
-		//event.preventDefault();
+        //event.preventDefault();
     },
     editRecord : function(component, event, helper) {
         //helper.showHide(component);//
         var className = '';
-		var editNo = '';
+        var editNo = '';
         /*className = event.target.class;
         console.log('DeditNo ' + className);*/
         //editNo = $(event.target).parent().attr('id');
@@ -78,27 +87,27 @@
         
         //console.log('editNo ' + id);
         //editNo = '1';
-       	editNo =  parentDiv.id;
+        editNo =  parentDiv.id;
         helper.editRecordHelper(component, event, helper, editNo);
         //event.preventDefault();
     },
     deleteRecord : function(component, event, helper) {
         var parentDiv = event.target.parentNode;
         var editClassNo = parentDiv.className;
-		helper.deleteRecordHelper(component, event, helper, editClassNo);
-	},
-	showAddRecord : function(component, event, helper) {
-		var className = component.get('v.objectRecordType');
-		className = className+'addRecord';
+        helper.deleteRecordHelper(component, event, helper, editClassNo);
+    },
+    showAddRecord : function(component, event, helper) {
+        var className = component.get('v.objectRecordType');
+        className = className+'addRecord';
         var addRecord = document.getElementsByClassName(className);
-		for (var i = 0; i < addRecord.length; ++i) {
-			var item = addRecord[i];  
-			item.classList.remove('slds-hide');
-		}
+        for (var i = 0; i < addRecord.length; ++i) {
+            var item = addRecord[i];  
+            item.classList.remove('slds-hide');
+        }
     },
     getRecord : function(component, event, helper) {
-		helper.getRecordHelper(component, event);
-	},
+        helper.getRecordHelper(component, event);
+    },
     validate : function(component, event, helper) {
         var inputCmp = component.find("inputCmp");
         var errorFound = false;
@@ -120,8 +129,8 @@
             event.preventDefault();
         }else{
             console.log('no errors!');
-             //component.find("editForm").submit();
+            //component.find("editForm").submit();
         }
     },
-
+    
 })

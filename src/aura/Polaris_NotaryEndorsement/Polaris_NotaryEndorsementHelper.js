@@ -81,11 +81,26 @@
         var sectionName = component.get('v.sectionName');
         var removeNumber = event.getSource().get("v.value");       
          arrayList.splice(removeNumber,1);
-        component.set("v.ProviderList",arrayList);
-         var sectionList = component.get('v.sectionList');
+        component.set("v.ProviderList",arrayList);       
+        var sectionList = component.get('v.sectionList');
+        
         //sectionList = sectionList.labelFieldsMap;
-       
-        for(var i=0;i<sectionList.labelFieldsMap.length;i++)
+        /*for(var j=0;j<sectionList.length;j++)
+        {
+            for(var i=0;i<sectionList[j].labelFieldsMap.length;i++)       
+            {            
+                
+                if(sectionList[j].labelFieldsMap[i].questionSectionClass == sectionName && sectionList[j].labelFieldsMap[i].fieldObjName == 'Endorsement__c' && sectionList[j].labelFieldsMap[i].fieldType == 'Picklist' 
+                   && sectionList[j].labelFieldsMap[i].multiValues.length !=0)
+                {  
+                    sectionList[j].labelFieldsMap[i].multiValues.splice(removeNumber,1);
+                    
+                }
+                
+            }
+        }*/
+        
+        for(var i=0;i<sectionList.labelFieldsMap.length;i++)       
         {            
             
             if(sectionList.labelFieldsMap[i].questionSectionClass == sectionName && sectionList.labelFieldsMap[i].fieldObjName == 'Endorsement__c' && sectionList.labelFieldsMap[i].fieldType == 'Picklist' 
@@ -95,8 +110,7 @@
                 
             }
             
-        }
-        component.set('v.sectionList',sectionList);
-        
+        }        
+        component.set('v.sectionList',sectionList);        
     },
 })

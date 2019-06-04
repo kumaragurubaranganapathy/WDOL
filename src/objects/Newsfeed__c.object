@@ -93,12 +93,6 @@
                 <valueName>General Application</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <valueName>Comity</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
                 <valueName>Broker-Restricted</valueName>
             </valueSettings>
@@ -319,14 +313,6 @@
             <controllingField>Program_Area__c</controllingField>
             <restricted>true</restricted>
             <valueSetName>Permit_Type</valueSetName>
-            <valueSettings>
-                <controllingFieldValue>POWTS</controllingFieldValue>
-                <valueName>POWTS Component Manual Review</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS</controllingFieldValue>
-                <valueName>POWTS Experimental System</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -588,10 +574,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -655,6 +637,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -699,6 +685,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -734,6 +724,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -750,7 +744,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -763,10 +765,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -830,6 +828,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -859,6 +865,14 @@
             </values>
             <values>
                 <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1214,10 +1228,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -1281,6 +1291,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -1325,6 +1339,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -1360,6 +1378,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -1376,7 +1398,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1389,10 +1419,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1456,6 +1482,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -1485,6 +1519,14 @@
             </values>
             <values>
                 <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1840,10 +1882,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -1907,6 +1945,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -1951,6 +1993,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -1986,6 +2032,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -2002,7 +2052,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2015,10 +2073,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2082,6 +2136,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -2111,6 +2173,14 @@
             </values>
             <values>
                 <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2466,10 +2536,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -2533,6 +2599,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -2577,6 +2647,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -2612,6 +2686,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -2628,7 +2706,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2641,10 +2727,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2708,6 +2790,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -2737,6 +2827,14 @@
             </values>
             <values>
                 <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3092,10 +3190,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -3159,6 +3253,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -3203,6 +3301,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -3238,6 +3340,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -3254,7 +3360,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3267,10 +3381,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3334,6 +3444,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -3363,6 +3481,14 @@
             </values>
             <values>
                 <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3718,10 +3844,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -3785,6 +3907,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -3829,6 +3955,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -3864,6 +3994,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Camping Resort Company</fullName>
                 <default>false</default>
             </values>
@@ -3880,7 +4014,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3893,10 +4035,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3960,6 +4098,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Licensed Home Inspector Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -3989,6 +4135,14 @@
             </values>
             <values>
                 <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed</fullName>
                 <default>false</default>
             </values>
             <values>

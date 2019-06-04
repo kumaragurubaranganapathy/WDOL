@@ -19,6 +19,9 @@
                     default="{ 'sobjectType': 'MUSW__Parcel__c'}" />
     <aura:attribute name="isAddressDiff" type="Boolean" default="false"/>
     <aura:attribute name="isAddress2" type="Boolean" default="false"/>
+    <aura:attribute name="issuggestedAdd2" type="Boolean" default="false"/>
+    <aura:attribute name="isOriginalAdd2" type="Boolean" default="false"/>
+    
     
     
     <aura:handler name="init" action="{!c.doinit}" value="{!this}"/>

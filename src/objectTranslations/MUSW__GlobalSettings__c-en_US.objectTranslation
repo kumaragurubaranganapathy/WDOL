@@ -44,6 +44,11 @@ eg. lastname, mailingstreet --></help>
         <name>MUSW__Formula_Evaluator_Class__c</name>
     </fields>
     <fields>
+        <help><!-- By default, documents are generated as Salesforce Attachments (unchecked). Checking this option will generate documents as Salesforce Files. --></help>
+        <label><!-- Generate Documents as Files --></label>
+        <name>MUSW__Generate_Documents_as_Files__c</name>
+    </fields>
+    <fields>
         <help><!-- eg US, CANADA, etc. --></help>
         <label><!-- Organization Country --></label>
         <name>MUSW__Organization_Country__c</name>

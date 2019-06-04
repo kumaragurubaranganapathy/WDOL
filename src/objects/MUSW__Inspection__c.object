@@ -404,8 +404,9 @@
     </fields>
     <fields>
         <fullName>Inspector_Name__c</fullName>
+        <description>Primary Inspector or Auditor assigned to the Inspection.</description>
         <externalId>false</externalId>
-        <label>Inspector Name</label>
+        <label>Inspector/Auditor Name</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -777,6 +778,16 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <default>false</default>
                     <label>In Violation</label>
                 </value>
+                <value>
+                    <fullName>Denied</fullName>
+                    <default>false</default>
+                    <label>Denied</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -795,24 +806,74 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Building</fullName>
+                    <fullName>Complaint</fullName>
                     <default>false</default>
-                    <label>Building</label>
+                    <label>Complaint</label>
                 </value>
                 <value>
-                    <fullName>Plumbing</fullName>
+                    <fullName>Reinspection</fullName>
                     <default>false</default>
-                    <label>Plumbing</label>
+                    <label>Reinspection</label>
                 </value>
                 <value>
-                    <fullName>Food and Beverage</fullName>
+                    <fullName>Other</fullName>
                     <default>false</default>
-                    <label>Food and Beverage</label>
+                    <label>Other</label>
                 </value>
                 <value>
-                    <fullName>SYSTEM TEST</fullName>
+                    <fullName>High Risk</fullName>
                     <default>false</default>
-                    <label>SYSTEM TEST</label>
+                    <label>High Risk</label>
+                </value>
+                <value>
+                    <fullName>Follow-up Inspection</fullName>
+                    <default>false</default>
+                    <label>Follow-up Inspection</label>
+                </value>
+                <value>
+                    <fullName>Check Rides</fullName>
+                    <default>false</default>
+                    <label>Check Rides</label>
+                </value>
+                <value>
+                    <fullName>Exam Observation</fullName>
+                    <default>false</default>
+                    <label>Exam Observation</label>
+                </value>
+                <value>
+                    <fullName>Record</fullName>
+                    <default>false</default>
+                    <label>Record</label>
+                </value>
+                <value>
+                    <fullName>Skills Observation</fullName>
+                    <default>false</default>
+                    <label>Skills Observation</label>
+                </value>
+                <value>
+                    <fullName>Classroom Observation</fullName>
+                    <default>false</default>
+                    <label>Classroom Observation</label>
+                </value>
+                <value>
+                    <fullName>Annual</fullName>
+                    <default>false</default>
+                    <label>Annual</label>
+                </value>
+                <value>
+                    <fullName>Administrative</fullName>
+                    <default>false</default>
+                    <label>Administrative</label>
+                </value>
+                <value>
+                    <fullName>Financial</fullName>
+                    <default>false</default>
+                    <label>Financial</label>
+                </value>
+                <value>
+                    <fullName>Examiner</fullName>
+                    <default>false</default>
+                    <label>Examiner</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -918,6 +979,19 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Secondary_Inpsector_Auditor__c</fullName>
+        <description>Secondary Inspector or Auditor assigned to Inspection.</description>
+        <externalId>false</externalId>
+        <label>Secondary Inpsector/Auditor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Streets_of_adequate_width__c</fullName>
         <externalId>false</externalId>
         <label>Streets of adequate width</label>
@@ -952,6 +1026,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <columns>MUSW__Due_Date__c</columns>
         <columns>MUSW__Permit__c</columns>
         <columns>MUSW__Parcel__c</columns>
+        <columns>County__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>MUSW__On_Itinerary__c</field>
@@ -1004,7 +1079,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             <value>he</value>
         </filters>
         <label>All not on Itinerary</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Number</label>
@@ -1016,6 +1090,836 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
+        <fullName>Annual</fullName>
+        <active>true</active>
+        <description>Annual Inspections</description>
+        <label>Annual</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Bail_Bond_Agency</fullName>
+        <active>true</active>
+        <description>Inspections for Bail Bond Agencies</description>
+        <label>Bail Bond Agency</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Body_Art_Piercing_Tattoo</fullName>
+        <active>true</active>
+        <description>Inspections for Body Art/Piercing/Tattoo</description>
+        <label>Body Art/Piercing/Tattoo</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>Building</fullName>
         <active>true</active>
         <label>Building</label>
@@ -1023,6 +1927,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1067,6 +1975,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1143,25 +2055,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>MUSW__Type__c</picklist>
-            <values>
-                <fullName>Building</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Food and Beverage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Plumbing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SYSTEM TEST</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1215,6 +2108,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -1256,6 +2153,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1336,21 +2237,1130 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>MUSW__Type__c</picklist>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Combative_Sports</fullName>
+        <active>true</active>
+        <description>Inspections for Combative Sports</description>
+        <label>Combative Sports</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
             <values>
                 <fullName>Building</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Food and Beverage</fullName>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Plumbing</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Commercial_Driver_License</fullName>
+        <active>true</active>
+        <description>Inspections for Commercial Driver License</description>
+        <label>Commercial Driver License</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Cosmetology_Salons</fullName>
+        <active>true</active>
+        <description>Inspections for Cosmetology Salons</description>
+        <label>Cosmetology Salons</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Cosmetology_Schools</fullName>
+        <active>true</active>
+        <description>Inspections for Cosmetology Schools</description>
+        <label>Cosmetology Schools</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1404,6 +3414,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -1445,6 +3459,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1553,21 +3571,848 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>MUSW__Type__c</picklist>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Driver_Training_Schools</fullName>
+        <active>true</active>
+        <description>Inspections for Driver Training Schools</description>
+        <label>Driver Training Schools</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
             <values>
                 <fullName>Building</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Food and Beverage</fullName>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Plumbing</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Funeral_Cemetery_Crematory</fullName>
+        <active>true</active>
+        <description>Inspections for Funeral/Cemetery/Crematory</description>
+        <label>Funeral/Cemetery/Crematory</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Motorcycle</fullName>
+        <active>true</active>
+        <description>Inspections for Motorcycles</description>
+        <label>Motorcycle</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
+            <values>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1621,6 +4466,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Appraisers - Real Estate</fullName>
                 <default>false</default>
             </values>
@@ -1662,6 +4511,10 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1770,21 +4623,284 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>MUSW__Type__c</picklist>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Streets_of_adequate_width__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Real_Estate</fullName>
+        <active>true</active>
+        <description>Inspections for Real Estate</description>
+        <label>Real Estate</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Checklist_Type__c</picklist>
+            <values>
+                <fullName>Business - Other Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MHC Inspection checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Home Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Optional Questions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS INSPECTION REPORT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant Checklist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYSTEM TEST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subquestions Checklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
             <values>
                 <fullName>Building</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Food and Beverage</fullName>
+                <fullName>Codes %2F Zoning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Plumbing</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Priority__c</picklist>
             <values>
-                <fullName>SYSTEM TEST</fullName>
+                <fullName>1 Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 Normal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>3 High</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Violation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1833,7 +4949,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <customTabListAdditionalFields>MUSW__Priority__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
         <excludedStandardButtons>Accept</excludedStandardButtons>
-        <listViewButtons>MUSW__Add_to_Itinerary</listViewButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>MUSW__Type__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Due_Date__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Priority__c</lookupDialogsAdditionalFields>
@@ -1852,17 +4968,18 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <searchResultsAdditionalFields>MUSW__Priority__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>OWNER.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
     <webLinks>
         <fullName>Checklist</fullName>
         <availability>online</availability>
         <displayType>button</displayType>
-        <linkType>javascript</linkType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
         <masterLabel>Checklist</masterLabel>
-        <openType>onClickJavaScript</openType>
+        <openType>replace</openType>
         <protected>false</protected>
-        <url>window.location=&apos;/BGCK/QuestionChecklist2.app?pid={!MUSW__Inspection__c.Id}&apos;</url>
+        <url>/BGCK/QuestionChecklist2.app?pid={!MUSW__Inspection__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>Letter</fullName>

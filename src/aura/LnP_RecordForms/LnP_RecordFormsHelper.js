@@ -1,5 +1,5 @@
 ({
-	helperMethod : function() {
+	createAccountContact : function(component, event, helper) {
 		
 	}
 })

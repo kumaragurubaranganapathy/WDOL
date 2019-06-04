@@ -14,11 +14,11 @@ _______________________________________________________________
     
     <aura:attribute name="picklistList" type="List" default="[{'objectApi':'MUSW__License2__c', 'fieldsName':'Application_Type__c', 'auraAttr':'v.professionOptions'},
                                                               {'objectApi':'MUSW__License2__c', 'fieldsName':'MUSW__Status__c', 'auraAttr':'v.licenseStatusOptions'},
-                                                              {'objectApi':'Contact', 'fieldsName':'Birth_Country__c', 'auraAttr':'v.countryOptions'},
+                                                              {'objectApi':'LnP_Parcel__c', 'fieldsName':'County__c', 'auraAttr':'v.countryOptions'},
                                                               {'objectApi':'MUSW__License2__c', 'fieldsName':'Credential_Type__c', 'auraAttr':'v.licenseTypeOptions'},
                                                               {'objectApi':'Endorsement__c', 'fieldsName':'Endorsement_Type__c', 'auraAttr':'v.endorsementOptions'},
                                                               {'objectApi':'MUSW__License2__c', 'fieldsName':'MUSW__Status__c', 'auraAttr':'v.licenseStatusOptionsBusiness'},
-                                                              {'objectApi':'Contact', 'fieldsName':'Birth_Country__c', 'auraAttr':'v.countryOptionsBusiness'},
+                                                              {'objectApi':'LnP_Parcel__c', 'fieldsName':'County__c', 'auraAttr':'v.countryOptionsBusiness'},
                                                               {'objectApi':'MUSW__License2__c', 'fieldsName':'Credential_Type__c', 'auraAttr':'v.licenseTypeOptionsBusiness'},
                                                               {'objectApi':'Endorsement__c', 'fieldsName':'Endorsement_Type__c', 'auraAttr':'v.endorsementOptionsBusiness'}]" />
 	<aura:attribute name="professionOptions" type="List" />
@@ -132,7 +132,7 @@ _______________________________________________________________
                                 <lightning:input aura:id="city" label="City" placeholder="Enter City"
                                                  class="field-item slds-small-size_6-of-12 slds-medium-size_3-of-12 slds-p-around_large"
                                                  name="city"/> 
-                                <lightning:select class="field-item slds-small-size_6-of-12 slds-medium-size_3-of-12 slds-p-around_large" name="Country" label="Country" aura:id="country" value="">
+                                <lightning:select class="field-item slds-small-size_6-of-12 slds-medium-size_3-of-12 slds-p-around_large" name="County" label="County" aura:id="country" value="">
                                     <option text="Select an Option" value=""/>
                                     <aura:iteration items="{!v.countryOptions}" var="option">
                                         <option text="{!option}" value="{!option}"/>
@@ -181,7 +181,7 @@ _______________________________________________________________
                                 <lightning:input aura:id="cityBusiness" label="City" placeholder="Enter City"
                                                  class="field-item slds-small-size_6-of-12 slds-medium-size_3-of-12 slds-p-around_large"
                                                  name="city"/> 
-                                <lightning:select class="field-item slds-small-size_6-of-12 slds-medium-size_3-of-12 slds-p-around_large" name="Country" label="Country" aura:id="countryBusiness" value="">
+                                <lightning:select class="field-item slds-small-size_6-of-12 slds-medium-size_3-of-12 slds-p-around_large" name="County" label="County" aura:id="countryBusiness" value="">
                                     <option text="Select an Option" value=""/>
                                     <aura:iteration items="{!v.countryOptionsBusiness}" var="option">
                                         <option text="{!option}" value="{!option}"/>
@@ -272,110 +272,124 @@ _______________________________________________________________
                 </div>
                  <aura:iteration items="{!v.detailData}" var="item">
                     <div class="card table-border">
-                        <div class="slds-grid slds-p-around_small bottom-border">            
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="slds-form-element__label text-style">License Number</div>
-                                <div class="slds-form-element__control">:{!item.Name}</div>
-                            </div>
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="slds-form-element__label text-style">License Type</div>
-                                <div class="slds-form-element__control">:{!item.Credential_Type__c}</div>
-                            </div>
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="slds-form-element__label text-style">Status</div>
-                                <div class="slds-form-element__control">:{!item.MUSW__Status__c}</div>
-                            </div>
-                        </div>
                         <aura:if isTrue="{!v.licenseRecordType == 'Business'?'false':'true'}">
+                            <div class="slds-grid slds-p-around_small bottom-border">            
+                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                    <div class="slds-form-element__label text-style">License Number&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.Name}</div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                    <div class="slds-form-element__label text-style">License Type&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.Credential_Type__c}</div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                    <div class="slds-form-element__label text-style">Status&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.MUSW__Status__c}</div>
+                                </div>
+                            </div>
                             <div class="slds-grid slds-p-around_small slds-wrap">
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Name</div>
-                                    <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Name}</div>
+                                    <div class="slds-form-element__label text-style">Name&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.MUSW__Applicant__r.Name}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">First Issue Date</div>
-                                    <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
+                                    <div class="slds-form-element__label text-style">First Issue Date&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.Original_Issue_Date__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Sub-status</div>
-                                    <div class="slds-form-element__control">:{!item.Sub_Status__c}</div>
+                                    <div class="slds-form-element__label text-style">Sub-status&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.Sub_Status__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">City</div>
-                                    <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Birth_City__c}</div>
+                                    <div class="slds-form-element__label text-style">City&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.City__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Current Issue Date</div>
-                                    <div class="slds-form-element__control">:{!item.MUSW__Issue_Date__c}</div>
+                                    <div class="slds-form-element__label text-style">Current Issue Date&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.MUSW__Issue_Date__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Discipline</div>
+                                    <div class="slds-form-element__label text-style">Discipline&nbsp;:</div>
                                     <div class="slds-form-element__control"></div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">State</div>
-                                    <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.State_of_residency__c}</div>
+                                    <div class="slds-form-element__label text-style">State&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.State_Province__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Expiration Date</div>
-                                    <div class="slds-form-element__control">:{!item.MUSW__Expiration_Date__c}</div>
+                                    <div class="slds-form-element__label text-style">Expiration Date&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.MUSW__Expiration_Date__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Program</div>
-                                    <div class="slds-form-element__control">:{!item.Application_Type__c}</div>
+                                    <div class="slds-form-element__label text-style">Program&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.License__r.Application_Type__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="slds-form-element__label text-style">Country</div>
-                                    <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Birth_Country__c}</div>
+                                    <div class="slds-form-element__label text-style">Country&nbsp;:</div>
+                                    <div class="slds-form-element__control">{!item.Country__c}</div>
                                 </div>
                             </div>
                             <aura:set attribute="else">
+                                <div class="slds-grid slds-p-around_small bottom-border">            
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                        <div class="slds-form-element__label text-style">License Number&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.Name}</div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                        <div class="slds-form-element__label text-style">License Type&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.Credential_Type__c}</div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                        <div class="slds-form-element__label text-style">Status&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.MUSW__Status__c}</div>
+                                    </div>
+                                </div>
    								<div class="slds-grid slds-p-around_small slds-wrap">
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="slds-form-element__label text-style">Business Name</div>
-                                        <div class="slds-form-element__control">:{!item.MUSW__Primary_Licensee__r.Name}</div>
+                                        <div class="slds-form-element__label text-style">Business Name&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.MUSW__Primary_Licensee__r.Name}</div>
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="slds-form-element__label text-style">Doing business as</div>
-                                        <div class="slds-form-element__control">:{!item.MUSW__Primary_Licensee__r.Doing_Business_As_1__c}</div>
+                                        <div class="slds-form-element__label text-style">Doing business as&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.MUSW__Primary_Licensee__r.Doing_Business_As_1__c}</div>
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="slds-form-element__label text-style">Phone</div>
-                                        <div class="slds-form-element__control">:{!item.Phone__c}</div>
+                                        <div class="slds-form-element__label text-style">Phone&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.Phone__c}</div>
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="slds-form-element__label text-style">First Issue Date</div>
-                                        <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
+                                        <div class="slds-form-element__label text-style">First Issue Date&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.Original_Issue_Date__c}</div>
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="slds-form-element__label text-style">Sub-status</div>
-                                        <div class="slds-form-element__control">:{!item.Sub_Status__c}</div>
+                                        <div class="slds-form-element__label text-style">Sub-status&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.Sub_Status__c}</div>
                                     </div>
                                     
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="slds-form-element__label text-style">Address</div>
-                                        <div class="slds-form-element__control">:{!item.Owner_Address__c}</div>
+                                        <div class="slds-form-element__label text-style">Address&nbsp;:</div>
+                                        <div class="slds-form-element__control">{!item.Owner_Address__c}</div>
                                     </div>           
                                     <div class="slds-col slds-size_2-of-3">
                                         <div class="slds-grid">
                                         	<div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="slds-form-element__label text-style">Current Issue Date</div>
-                                                <div class="slds-form-element__control">:{!item.MUSW__Issue_Date__c}</div>
+                                                <div class="slds-form-element__label text-style">Current Issue Date&nbsp;:</div>
+                                                <div class="slds-form-element__control">{!item.MUSW__Issue_Date__c}</div>
                                             </div>
                                             <div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="slds-form-element__label text-style">Program</div>
-                                                <div class="slds-form-element__control">:{!item.Application_Type__c}</div>
+                                                <div class="slds-form-element__label text-style">Program&nbsp;:</div>
+                                                <div class="slds-form-element__control">{!item.Application_Type__c}</div>
                                             </div>
                                         </div>
                                         <div class="slds-grid">
                                         	<div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="slds-form-element__label text-style">Expiration Date</div>
-                                                <div class="slds-form-element__control">:{!item.MUSW__Expiration_Date__c}</div>
+                                                <div class="slds-form-element__label text-style">Expiration Date&nbsp;:</div>
+                                                <div class="slds-form-element__control">{!item.MUSW__Expiration_Date__c}</div>
                                             </div>
                                             <div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="slds-form-element__label text-style">Discipline</div>
+                                                <div class="slds-form-element__label text-style">Discipline&nbsp;:</div>
                                                 <div class="slds-form-element__control"></div>
                                             </div>
                                         </div>
@@ -424,22 +438,22 @@ _______________________________________________________________
                                             <aura:iteration items="{!v.licenseRelationData}" var="item">
                                                 <tr class="slds-hint-parent">
                                                     <td data-label="Name">
-                                                        <div class="slds-truncate">{!v.parent ? item.Related_License__r.MUSW__Applicant__r.Full_Name__c : item.MUSW__Applicant__r.Name}</div>
+                                                        <div class="slds-truncate">{!v.parent ? item.License__r.Related_License__r.MUSW__Applicant__r.Full_Name__c : item.License__r.MUSW__Applicant__r.Name}</div>
                                                     </td>
                                                     <td data-label="License Number">
-                                                        <div class="slds-truncate">{!v.parent ? item.Related_License__r.Name : item.Name}</div>
+                                                        <div class="slds-truncate">{!v.parent ? item.License__r.Related_License__r.Name : item.License__r.Name}</div>
                                                     </td>
                                                     <td data-label="License Type">
-                                                        <div class="slds-truncate">{!v.parent ? item.Related_License__r.Credential_Type__c : item.Credential_Type__c}</div>
+                                                        <div class="slds-truncate">{!v.parent ? item.License__r.Related_License__r.Credential_Type__c : item.License__r.Credential_Type__c}</div>
                                                     </td>
                                                     <td data-label="Status">
-                                                        <div class="slds-truncate">{!v.parent ? item.Related_License__r.MUSW__Status__c : item.MUSW__Status__c}</div>
+                                                        <div class="slds-truncate">{!v.parent ? item.License__r.Related_License__r.MUSW__Status__c : item.License__r.MUSW__Status__c}</div>
                                                     </td>
                                                     <td data-label="Sub Status">
-                                                        <div class="slds-truncate">{!v.parent ? item.Related_License__r.Sub_Status__c : item.Sub_Status__c}</div>
+                                                        <div class="slds-truncate">{!v.parent ? item.License__r.Related_License__r.Sub_Status__c : item.License__r.Sub_Status__c}</div>
                                                     </td>
                                                     <td data-label="City">
-                                                        <div class="slds-truncate">{!v.parent ? item.Related_License__r.MUSW__Applicant__r.Birth_City__c : item.MUSW__Applicant__r.Birth_City__c}</div>
+                                                        <div class="slds-truncate">{!v.parent ? item.City__c : item.City__c}</div>
                                                     </td>
                                                 </tr>
                                             </aura:iteration>
