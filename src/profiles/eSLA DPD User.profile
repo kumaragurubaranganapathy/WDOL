@@ -19337,7 +19337,7 @@
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>BGCK__Question__c.Background_Information</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>

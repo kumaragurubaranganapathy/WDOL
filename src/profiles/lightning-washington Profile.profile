@@ -18081,9 +18081,9 @@
         <layout>LnP_BackgroundSection__c-LnP_BackgroundSection Layout</layout>
         <recordType>LnP_BackgroundSection__c.Qualifying_Training</recordType>
     </layoutAssignments>
-    <layoutAssignments>
+  <!--  <layoutAssignments>
         <layout>LnP_City_County_Map__mdt-LnP_City_County_Map Layout</layout>
-    </layoutAssignments>
+    </layoutAssignments>   -->
     <layoutAssignments>
         <layout>LnP_Custom_Exception__c-Custom Exception Layout</layout>
     </layoutAssignments>
