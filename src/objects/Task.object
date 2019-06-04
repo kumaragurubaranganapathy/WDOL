@@ -468,7 +468,7 @@
         </filters>
         <label>ENCODED:{!FilterNames.Task_CompletedTasks}</label>
     </listViews>
-    <listViews>
+ <!--   <listViews>
         <fullName>DelegatedTasks</fullName>
         <columns>SUBJECT</columns>
         <columns>WHO_NAME</columns>
@@ -481,7 +481,7 @@
         <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Delegated</filterScope>
         <label>ENCODED:{!FilterNames.Task_DelegatedTasks}</label>
-    </listViews>
+    </listViews> -->
     <listViews>
         <fullName>OpenTasks</fullName>
         <columns>SUBJECT</columns>
@@ -540,7 +540,7 @@
         </filters>
         <label>ENCODED:{!FilterNames.Task_OverdueTasks}</label>
     </listViews>
-    <listViews>
+  <!--  <listViews>
         <fullName>RecurringTasks</fullName>
         <columns>SUBJECT</columns>
         <columns>WHO_NAME</columns>
@@ -558,7 +558,7 @@
             <value>1</value>
         </filters>
         <label>ENCODED:{!FilterNames.Task_RecurringTasks}</label>
-    </listViews>
+    </listViews>    -->
     <listViews>
         <fullName>TodaysTasks</fullName>
         <columns>SUBJECT</columns>
@@ -588,7 +588,7 @@
         </filters>
         <label>ENCODED:{!FilterNames.z_TodaysTasks}</label>
     </listViews>
-    <listViews>
+ <!--   <listViews>
         <fullName>UnscheduledTasks</fullName>
         <columns>SUBJECT</columns>
         <columns>WHO_NAME</columns>
@@ -615,7 +615,7 @@
             <operation>equals</operation>
         </filters>
         <label>ENCODED:{!FilterNames.Task_UnscheduledTasks}</label>
-    </listViews>
+    </listViews>    -->
     <recordTypes>
         <fullName>Inspection_Task</fullName>
         <active>true</active>
