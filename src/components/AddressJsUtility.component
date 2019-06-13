@@ -1,0 +1,2620 @@
+<!--**
+* User Story: 135 - Mailing Address on Portal
+* Name: AddressJsUtility
+* Type: Visual Force Component
+* Description: To display US Address, Military Address and International Address as part of initial application submission
+* Date:        Developer/Company                    Description
+* ---------------------------------------------------------------------------------------------------------------------------------------- *
+* 07/09/2018   Sharad Maheshwari/Deloitte           Initial Creation
+**-->
+<apex:component allowDML="true" controller="AddressJSUtility_CC" layout="block">
+   
+    <script type="text/javascript">
+    var bus_global_address_init_started  = false ;
+    var bus_global_address_List_loading_started = true ;
+    ;JQ_ID_UTILITY = 
+        {
+        escVFId : function(myid)
+        {
+            return '#' + myid.replace(/(:|\.)/g,'\\\\$1');
+        }
+    }   
+    
+    ;ADDRESS_UTILITY = 
+        {
+        
+        processBusinessAddressDeleteRMResult : function(result,event,primaryCaller)
+        {
+            
+            var mainComponent = $(primaryCaller.target).closest(".business_address_main_container"); 
+            if(event.type != "exception")
+            {
+                
+                if(result.isSuccess == true )
+                {
+                    if(mainComponent.find("#ComponentUsageFlag").val() =="LicenseApplication" || mainComponent.find("#ComponentUsageFlag").val() =="PermitApplication")
+                    { 
+                        ADDRESS_UTILITY.redrawAddressComponentAfterDeletion(result);
+                    }else
+                    {
+                        if(result.rmParam.PrimaryEntityType == 'Account')
+                        {
+                            var dataMap = new Object();
+                            dataMap[result.rmParam.accountId] = result.parcelRecords ;
+                            ADDRESS_UTILITY.prepareAddressRowsForAll(dataMap);
+                        }else if(result.rmParam.PrimaryEntityType == 'Contact' )
+                        {
+                            var dataMap = new Object();
+                            dataMap[result.rmParam.contactId] = result.parcelRecords ;
+                            ADDRESS_UTILITY.prepareAddressRowsForAll(dataMap);
+                            ADDRESS_UTILITY.manageCheckBoxesForProfile(dataMap);
+                        }
+                    }
+                }else
+                {
+                    MODAL_UTILITY.errorMessageModal(result.message);
+                }
+            }else
+            {
+                MODAL_UTILITY.errorMessageModal(event.message);
+            }
+            
+            // Stop the magic spinner at end
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        redrawBusinessAddressList : function(result, currentComponent)
+        {
+            
+            $(".business_address_main_container").each(function(index,val){
+                var eachComponent = $(val) ;
+                if(eachComponent.attr("id") != currentComponent.attr("id") )
+                {
+                    ADDRESS_UTILITY.prepareBusinessAddressListForEachComponent(result.parcelRecords , eachComponent.find(".ReadOnlybusinessAddress"));
+                }
+            });
+        },
+        
+        checkForUseThisAddressAsCallback : function (result , compContext , primaryCaller ) 
+        {
+            if(compContext.find("#use_this_address_as_checkbox").prop("checked") == true )
+            { 
+                var callBackHandler = compContext.find("#JavascriptHandlerOnSaveAsClickfunctionName").val() ;
+                if(callBackHandler.length > 5 )
+                {
+                    try
+                    {
+                        ADDRESS_UTILITY.reEnableAddAddressPanel(primaryCaller);
+                        
+                        var callBackParameter = new Object() ;
+                        callBackParameter.parcelId = result.addressRecord.Id ;
+                        callBackParameter.contextAddressType = compContext.find("#business_address_type").val() ;
+                        callBackParameter.primaryEntityType = compContext.find("#PrimaryEntityTypeFlag").val();
+                        
+                        callBackParameter.contextContactId = compContext.find("#BusinessContactId").val();
+                        callBackParameter.contextAccountId = compContext.find("#BusinessAccountId").val();
+                        console.log('here 1::');
+                        window[callBackHandler](callBackParameter );
+                    }catch(er)
+                    {
+                        MODAL_UTILITY.errorMessageModal(er.message , 'System Error');
+                    }
+                }
+            }else
+            {
+                ADDRESS_UTILITY.loadBusinessAddressList();
+                ADDRESS_UTILITY.reEnableAddAddressPanel(primaryCaller);
+            }
+            
+        },
+        
+        reinitComponentForAddressChange : function(component)
+        {
+            var parcelRecords = JSON.parse(component.find("#parcel_records_list").val() ) ;
+            var licenseParcel = JSON.parse(component.find("#selected_license_parcel").val()) ;
+            
+            component.find("#add_address_btn_container").find("#addAddressBtn").show() ;
+            component.find("#license_address_success_panel").empty();
+            
+            ADDRESS_UTILITY.prepareBusinessAddressListForEachComponent(parcelRecords , component.find(".ReadOnlybusinessAddress") );
+            
+            
+            component.find(".SingleSelectAddressTypeCheckBox").each(function(index,val)
+                                                                    {
+                                                                        if($(val).attr("id") == licenseParcel.MUSW__Parcel__c)
+                                                                        {
+                                                                            $(val).prop("checked",true) ;
+                                                                        }
+                                                                    });
+            
+        },
+        
+        reinitComponentForPermitAddressChange : function(component)
+        {
+            var parcelRecords = JSON.parse(component.find("#parcel_records_list").val() ) ;
+            var permitParcel = JSON.parse(component.find("#selected_license_parcel").val()) ;
+            
+            component.find("#add_address_btn_container").find("#addAddressBtn").show() ;
+            component.find("#license_address_success_panel").empty();
+            
+            ADDRESS_UTILITY.prepareBusinessAddressListForEachComponent(parcelRecords , component.find(".ReadOnlybusinessAddress") );
+            
+            
+            component.find(".SingleSelectAddressTypeCheckBox").each(function(index,val)
+                                                                    {
+                                                                        if($(val).attr("id") == permitParcel.MUSW__Parcel__c)
+                                                                        {
+                                                                            $(val).prop("checked",true) ;
+                                                                        }
+                                                                    });
+            
+        },
+        /*//-------------NOT BEING USED ANYWHERE----Commented by Sharad
+        handleLicensOperationRMResult : function(result,component , addressOperationMode)
+        {
+            
+            component.find("#component_license_hidden_div").remove() ;
+            
+            if(result.isSuccess == true)
+            {
+                var componentType = component.find("#business_address_type").val() ;
+                var primaryEntityType = component.find("#PrimaryEntityTypeFlag").val() ;
+                var lpJunction = ADDRESS_UTILITY.getMatchingLPJunctionRecord(result.licenseParcels , componentType , primaryEntityType) ;
+                console.log('lpJunction::'+lpJunction);
+                if(lpJunction != null ) 
+                {
+                    var parcel = ADDRESS_UTILITY.getParcelRecordFromList(result.parcelRecords , lpJunction.MUSW__Parcel__c) ;
+                    console.log('parcel::'+ parcel);
+                    if(parcel != null )
+                    {
+                        var successPanel = component.find("#license_address_success_panel") ;
+                        successPanel.empty() ;
+                        
+                        var successMessage = $("<div class='savedSuccess'>").append(
+                            $("<span>").addClass("glyphicon glyphicon-ok-sign").attr("aria-hidden",true) ,
+                            $("<span>").html("ADDRESS SAVED SUCCESSFULLY") );
+                       
+                        var addressHtml = ADDRESS_UTILITY.prepareOnlyAddressHtml(parcel) ;
+                        var hiddenInfo = $("<div>").attr("id","component_license_hidden_div").append
+                        (
+                            $("<input>").attr({"id":"selected_license_parcel","type":"hidden"}).val(JSON.stringify(lpJunction)) ,
+                            $("<input>").attr({"id":"parcel_records_list","type":"hidden"}).val(JSON.stringify(result.parcelRecords)) 
+                        );
+                        var changeButton = $("<button>").addClass("btn btn-primary btn-very-small").attr({"type":"button", "id":"changeAddressBtn"})
+                        .append(
+                            $("<span>").addClass("glyphicon glyphicon-pencil"),
+                            $("<span>").html("USE DIFFERENT ADDRESS")
+                        ).on("click",function(e)
+                             {
+                                 
+                                 ADDRESS_UTILITY.reinitComponentForAddressChange(component);
+                             }) ;
+                        
+                        successPanel.append(
+                            $("<div>").addClass("col-sm-7").append(successMessage , addressHtml) ,
+                            $("<div>").addClass("col-sm-3").css("top","30px").append( changeButton )
+                        );
+                        
+                        // Put hidden info inside component 
+                        
+                        component.append(hiddenInfo) ;
+                        // Hide other sections 
+                        component.find(".ReadOnlybusinessAddress").empty() ;
+                        component.find("#add_address_btn_container").find("#addAddressBtn").hide() ;
+                        component.find("#save_as_address_btn_container").find("#save_as_address_button_element").remove() ;
+                        component.find("#save_as_address_btn_container_for_junction").find("#save_as_address_button_element_for_junction").remove() ;               
+                    }
+                }
+                
+                if(addressOperationMode == 'UseThisAddressAs')
+                {
+                    ADDRESS_UTILITY.redrawBusinessAddressList(result , component ) ; 
+                }
+                
+                NOTIFICATIONS.spinnerStop() ; 
+            }else
+            {
+                NOTIFICATIONS.spinnerStop() ;
+                MODAL_UTILITY.errorMessageModal(result.message);
+            }
+            
+            
+        },*/
+        
+        
+        
+        getMatchingLPJunctionRecord : function(lpJunctins , componentType , primaryEntityTypeFlag)
+        {
+            var lpJunction = null ;
+            if(primaryEntityTypeFlag == 'Account' || primaryEntityTypeFlag == "Contact" )
+            {
+                if(componentType == 'Physical')
+                {
+                    $(lpJunctins).each(function(index,val)
+                                       {
+                                           if(val.Physical__c == true )
+                                           {
+                                                console.log('inside physical address::' + val);
+                                               lpJunction = val ;
+                                               return ;
+                                               
+                                           }
+                                           console.log('here 2::');
+                                       });
+                }else if(componentType =='Mailing')
+                {
+                    $(lpJunctins).each(function(index,val)
+                                       {
+                                           if(val.Mailing__c == true )
+                                           {
+                                               lpJunction = val ;
+                                               return ;
+                                           }
+                                       });
+                }else if(componentType == 'Public')
+                {
+                    $(lpJunctins).each(function(index,val)
+                                       {
+                                           if(val.Public__c == true )
+                                           {
+                                               lpJunction = val ;
+                                               return ;
+                                           }
+                                       });
+                }else if(componentType =='Primary')
+                {
+                    $(lpJunctins).each(function(index,val)
+                                       {
+                                           if(val.Primary__c == true )
+                                           {
+                                               lpJunction = val ;
+                                               return ;
+                                           }
+                                       });
+                }
+            }
+            
+            return lpJunction ;
+        },
+        
+        getMatchingPPJunctionRecord : function(ppJunct , componentType , primaryEntityTypeFlag)
+        {
+            var ppJunction = null ;
+            if(primaryEntityTypeFlag == 'Account' || primaryEntityTypeFlag == "Contact" )
+            {
+                if(componentType == 'Physical')
+                {
+                    $(ppJunct).each(function(index,val)
+                                       {
+                                           if(val.Physical_Address__c == true )
+                                           {
+                                               ppJunction = val ;
+                                               return ;
+                                           }
+                                           console.log('inside here 3::');
+                                       });
+                }else if(componentType =='Mailing')
+                {
+                    $(ppJunct).each(function(index,val)
+                                       {
+                                           if(val.Mailing__c == true )
+                                           {
+                                               ppJunction = val ;
+                                               return ;
+                                           }
+                                       });
+                }else if(componentType == 'Public')
+                {
+                    $(ppJunct).each(function(index,val)
+                                       {
+                                           if(val.Public__c == true )
+                                           {
+                                               ppJunction = val ;
+                                               return ;
+                                           }
+                                       });
+                }else if(componentType =='Primary')
+                {
+                    $(ppJunct).each(function(index,val)
+                                       {
+                                           if(val.Primary__c == true )
+                                           {
+                                               ppJunction = val ;
+                                               return ;
+                                           }
+                                       });
+                }
+            }
+            
+            return ppJunction ;
+        },
+        
+        getParcelRecordFromList : function(parcelRecords , parcelId)
+        {
+            
+            var parcel = null ;
+            $(parcelRecords).each(function(index,val){
+                if(val.parcel.Id == parcelId )
+                {
+                    parcel = val.parcel ;
+                    return ;
+                }
+            });
+            
+            return parcel ;
+        },
+        
+        SaveAsAddressOnJunctionHandler : function(immediateCaller)
+        {
+            var compContext = $(immediateCaller.target).closest(".business_address_main_container") ;
+            var chckboxRegion = compContext.find(".ReadOnlybusinessAddress") ;
+            
+            if(chckboxRegion.find(".SingleSelectAddressTypeCheckBoxForJunction:checked").length == 0) 
+            {
+                MODAL_UTILITY.errorMessageModal('Please Select at least one ' + compContext.find("#business_address_type").val()  + ' address to proceed .') ;
+            }else
+            {
+                var selAddress = chckboxRegion.find(".SingleSelectAddressTypeCheckBoxForJunction:checked") ;
+                
+                var EditRMInput = new Object();
+                EditRMInput.contextParcelId = selAddress.attr("id") ;
+                EditRMInput.contextAddressType = compContext.find("#business_address_type").val();
+                EditRMInput.primaryEntityType = compContext.find("#PrimaryEntityTypeFlag").val();
+                EditRMInput.accountId = compContext.find("#BusinessAccountId").val(); 
+                EditRMInput.contactId = compContext.find("#BusinessContactId").val();
+                console.log('inside here 5::');
+                ADDRESS_UTILITY.saveAddressAsOnEntity(EditRMInput);
+            }
+        },
+        
+        SaveAsAddressHandler : function(immediateCaller)
+        {
+            var compContext = $(immediateCaller.target).closest(".business_address_main_container") ;
+            var chckboxRegion = compContext.find(".ReadOnlybusinessAddress") ;
+            
+            if(chckboxRegion.find(".SingleSelectAddressTypeCheckBox:checked").length == 0) 
+            {
+                MODAL_UTILITY.errorMessageModal('Please Select at least one ' + compContext.find("#business_address_type").val()  + ' address to proceed .') ;
+            }else
+            {
+                var selAddress = chckboxRegion.find(".SingleSelectAddressTypeCheckBox:checked") ;
+                
+                var callBackHandler = compContext.find("#JavascriptHandlerOnSaveAsClickfunctionName").val() ;
+                
+                if(callBackHandler.length > 5 )
+                {
+                    try
+                    {
+                        var callBackParameter = new Object() ;
+                        callBackParameter.parcelId = selAddress.attr("id") ;
+                        callBackParameter.contextAddressType = compContext.find("#business_address_type").val() ;
+                        callBackParameter.primaryEntityType = compContext.find("#PrimaryEntityTypeFlag").val() ;
+                        
+                        callBackParameter.contextContactId = compContext.find("#BusinessContactId").val();
+                        callBackParameter.contextAccountId = compContext.find("#BusinessAccountId").val();
+                        //callBackParameter.permitId = compContext.find("#CurrentPermitId").val();
+                        console.log('inside here 6::');
+                        window[callBackHandler](callBackParameter);
+                    }catch(er)
+                    {
+                        MODAL_UTILITY.errorMessageModal(er.message , 'System Error , Save As context');
+                    }
+                }
+            } 
+        },
+        
+        
+        reEnableAddAddressPanel : function(primaryCaller)
+        {
+            var contextElement = $(primaryCaller.target).closest(".business_address_main_container") ;
+            bootbox.hideAll();
+            contextElement.find("#business-address-container").empty() ;
+            contextElement.find("#addAddressBtn").show();
+        },
+        
+        processRemoteMethodExecutionResult : function (result,event,rawaddress , primaryCaller , secondaryCaller )
+        {
+            
+            var contextPanel  = $(primaryCaller.target).closest(".business_address_main_container") ;
+            
+            if(event.type != 'exception')
+            {
+                if(result.isSuccess == true  && result.isMatchingAddressFound  == true )
+                {
+                    //Address has been saved to database
+                    if(contextPanel.find("#refreshAddressListOnSaveFlag").val() == 'true')
+                    {
+                        console.log('inside 7::');
+                        ADDRESS_UTILITY.checkForUseThisAddressAsCallback(result , contextPanel , primaryCaller ) ;
+                    }else
+                    {
+                        console.log('inside 8:::');
+                        ADDRESS_UTILITY.prepareSuccessPanel(result.addressRecord  , primaryCaller , true );
+                    }
+                }else if(result.isSuccess === true  && result.isMatchingAddressFound  === false )
+                {
+                    ADDRESS_UTILITY.prepareMultiAddressOptions(result.geoAddresses , rawaddress , primaryCaller , ADDRESS_UTILITY.validGeoAddressSelected ) ;
+                    NOTIFICATIONS.spinnerStop();
+                }else
+                {
+                    if(secondaryCaller == null )
+                    {
+                        NOTIFICATIONS.spinnerStop();
+                        MODAL_UTILITY.errorMessageModal(result.message , 'Error(s) ');
+                    }else
+                    {
+                        NOTIFICATIONS.spinnerStop();
+                        MODAL_UTILITY.errorMessageModal(result.message , 'Error(s)');
+                    }
+                }
+            }else
+            {
+                NOTIFICATIONS.spinnerStop();
+                MODAL_UTILITY.errorMessageModal(event.message , 'System Error');
+            }
+            
+        },
+        
+        prepareSuccessPanel : function(addressRecord , primaryCaller ,bShowSuccessMessage)
+        {
+            var contextElement = $(primaryCaller.target).closest(".business_address_main_container") ;
+            bootbox.hideAll();
+            contextElement.find("#business-address-container").empty() ;
+            console.log('inside success panel::');
+            var addressRow =  ADDRESS_UTILITY.prepareSuccessPanelForBusAddress(addressRecord  , bShowSuccessMessage ,true, false, ADDRESS_UTILITY.loadAddressForm ) ;
+            contextElement.find("#business-address-container").append(addressRow) ;
+            console.log('inside here 9::');
+            var pa = contextElement.find("#javascriptCallbackFunction").val() ;
+            if(pa != '' && pa.length > 10 )
+            {
+                try
+                {
+                    window[pa]();
+                }catch(er)
+                {
+                    MODAL_UTILITY.errorMessageModal(er.message , 'System Error in callback');
+                }
+            }
+            
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        prepareAddressListHeader : function(addressDataSection )
+        {
+            var mainComponent = addressDataSection.closest(".business_address_main_container") ;
+            
+            var listCol_0, listCol_1  ,listCol_2 , listCol_3 , listCol_4 , listCol_5;
+            
+            
+            if(mainComponent.find("#IncludeSingleSelectTypeCheckBoxForJunctionFlag").val() == 'true')
+            {
+                listCol_0 = $("<div>").append(mainComponent.find("#business_address_type").val()) ;
+            }
+            
+            
+            if(mainComponent.find("#IncludeSingleSelectTypeCheckBoxFlag").val() == 'true')
+            {
+                listCol_1 = $("<div>").append(mainComponent.find("#business_address_type").val()) ;
+            }
+            
+            
+            if(mainComponent.find("#EnableDeleteFlag").val() == 'true')
+            {
+                listCol_5 = $("<div>").append(' ') ;
+            }
+            
+            
+            
+            var columnDefs = mainComponent.find("#addressListColumnDefinations").val();
+            
+            $(columnDefs.split(',')).each(function(index,val)
+                                          {
+                                              if(val== 'AddressType')
+                                              {
+                                                  listCol_2 = $("<div>").append('Address Type') ;
+                                              }
+                                              //          else if(val=="AddressName")
+                                              //          {
+                                              //              listCol_3 = $("<div>").append('Address Name') ;
+                                              //          }
+                                              else if(val=="Address")
+                                              {
+                                                  listCol_3 = $("<div>").append('Address') ; 
+                                              }
+                                          });
+            
+            
+            var columnWidthDef = mainComponent.find("#BusinessAddressListColWidthDefinationData").val() ;
+            
+            var definationArray = columnWidthDef.split(',') ;
+            
+            try
+            {
+                if(typeof definationArray[0] != 'undefined' && typeof listCol_0 != "undefined")
+                {
+                    listCol_0.addClass(definationArray[0]) ;
+                }
+                
+                if(typeof definationArray[1] != 'undefined' && typeof listCol_1 != "undefined")
+                {
+                    listCol_1.addClass(definationArray[1]) ;
+                }
+                
+                if(typeof definationArray[2] != 'undefined' && typeof listCol_2 != "undefined")
+                {
+                    //alert(definationArray[2]);
+                    listCol_2.addClass(definationArray[2]) ;
+                }
+                
+                if(typeof definationArray[3] != 'undefined' && typeof listCol_3 != "undefined")
+                {
+                    listCol_3.addClass(definationArray[3]) ;
+                }
+                
+                if(typeof definationArray[4] != 'undefined' && typeof listCol_4 != "undefined")
+                {
+                    listCol_4.addClass(definationArray[4]) ;
+                }
+                
+                if(typeof definationArray[5] != 'undefined' && typeof listCol_5 != "undefined")
+                {
+                    listCol_5.addClass(definationArray[5]) ;
+                }
+            }catch(er)
+            {
+                MODAL_UTILITY.errorMessageModal('List header configuration issue ' + er.message , 'Configuration Error (Address component)');
+            }
+            
+            return $("<div>").addClass("row addressHeader")
+            .append
+            (
+                listCol_0,
+                listCol_1,
+                listCol_2 , 
+                listCol_3 , 
+                listCol_4 ,
+                listCol_5 
+            ) ;
+        },
+        
+        prepareEachAddressListRow : function(addressDataSection ,val)
+        {
+            var mainComponent = addressDataSection.closest(".business_address_main_container") ;
+            
+            var columnDefs = mainComponent.find("#addressListColumnDefinations").val();
+            
+            var ParcelRecord = val ;
+            //debugger;
+            if(ParcelRecord.parcel == null )
+            {
+                return false ;
+            }
+            
+            var businessAddressTypeText = ADDRESS_UTILITY.getBusinessAddressType(ParcelRecord.parcelAccount) ;
+            
+            
+            if(mainComponent.find("#apply_business_address_type_filter").val() == 'true')
+            {
+                if(businessAddressTypeText  != mainComponent.find("#business_address_type").val() )
+                {
+                    return null ;
+                } 
+            }
+            
+            var listCol_0 ,listCol_1  ,listCol_2 , listCol_3 , listCol_4 , listCol_5;
+            var addressHiddenInfo = $("<input>").attr({"type":"hidden","id":"hidden_parcel_information"}).val(JSON.stringify(ParcelRecord)) ;
+            
+            if(mainComponent.find("#IncludeSingleSelectTypeCheckBoxForJunctionFlag").val() == 'true')
+            {
+                listCol_0 = $("<div>").append(
+                    $("<input>").attr({"type" :"checkbox","id":ParcelRecord.parcel.Id }).addClass("SingleSelectAddressTypeCheckBoxForJunction")
+                    .on("change",function(e)
+                        {
+                            if(this.checked)
+                            {
+                                var fullComponent = $(e.target).closest(".business_address_main_container") ;
+                                fullComponent.find(".SingleSelectAddressTypeCheckBoxForJunction").not(this).removeAttr("checked");
+                            }
+                        })
+                ) ;
+            }
+            
+            
+            if(mainComponent.find("#IncludeSingleSelectTypeCheckBoxFlag").val() == 'true')
+            {
+                listCol_1 = $("<div>").append(
+                    $("<input>").attr({"type" :"checkbox","id":ParcelRecord.parcel.Id,"aria-label":"Select to save this address" }).addClass("SingleSelectAddressTypeCheckBox")
+                    .on("change",function(e)
+                        {
+                            if(this.checked)
+                            {
+                                var fullComponent = $(e.target).closest(".business_address_main_container") ;
+                                fullComponent.find(".SingleSelectAddressTypeCheckBox").not(this).removeAttr("checked");
+                            }
+                        })
+                ) ;
+            }
+            
+            
+            if(mainComponent.find("#EnableDeleteFlag").val() == 'true')
+            {
+                listCol_5 = $("<div>").append
+                (
+                    $("<button>").addClass("squareIconBtnAddr existingAddreesDel").attr({"type":"button", "aria-label":"Delete address"}).click(function(e)
+                                                                                                               {
+                                                                                                                   ADDRESS_UTILITY.handleBusinessAddressDelete(e) ;
+                                                                                                               }).append($("<span>").addClass("glyphicon glyphicon-trash").attr("aria-hidden",true)) 
+                ) ;
+            }
+            
+            
+            $(columnDefs.split(',')).each(function(index,val)
+                                          {
+                                              if(val== 'AddressType')
+                                              {
+                                                  listCol_2 = $("<div>").append(businessAddressTypeText);
+                                              }
+                                              //          else if(val=="AddressName")
+                                              //          {
+                                              //              listCol_3 = $("<div>").append(ParcelRecord.parcel.Comments__c) ;                
+                                              //          }
+                                              else if(val=="Address")
+                                              {
+                                                  listCol_3 = $("<div>").append(
+                                                      ADDRESS_UTILITY.prepareOnlyAddressHtml(ParcelRecord.parcel)
+                                                  ) ;
+                                              }
+                                          });
+            
+            
+            var columnWidthDef = mainComponent.find("#BusinessAddressListColWidthDefinationData").val() ;
+            
+            try
+            {
+                var definationArray = columnWidthDef.split(',') ;
+                
+                
+                if(typeof definationArray[0] != 'undefined' && typeof listCol_0 != "undefined")
+                {
+                    listCol_0.addClass(definationArray[0]) ;
+                }
+                
+                if(typeof definationArray[1] != 'undefined' && typeof listCol_1 != "undefined")
+                {
+                    listCol_1.addClass(definationArray[1]) ;
+                }
+                
+                
+                if(typeof definationArray[2] != 'undefined' && typeof listCol_2 != "undefined")
+                {
+                    listCol_2.addClass(definationArray[2]) ;
+                }
+                
+                if(typeof definationArray[3] != 'undefined' && typeof listCol_3 != "undefined")
+                {
+                    listCol_3.addClass(definationArray[3]) ;
+                }
+                
+                if(typeof definationArray[4] != 'undefined' && typeof listCol_4 != "undefined")
+                {
+                    listCol_4.addClass(definationArray[4]) ;
+                }
+                
+                if(typeof definationArray[5] != 'undefined' && typeof listCol_5 != "undefined")
+                {
+                    listCol_5.addClass(definationArray[5]) ;
+                }
+            }catch(er)
+            {
+                MODAL_UTILITY.errorMessageModal(er.message , 'Configuration Error (Address component)');
+            }
+            
+            var eachRow = $("<div>").addClass("row eachBusinessAddressRow")
+            .append(
+                addressHiddenInfo,
+                listCol_0,
+                listCol_1,
+                listCol_2 , 
+                listCol_3 , 
+                listCol_4 ,
+                listCol_5
+            ) ;
+            
+            return eachRow ;
+            
+        },
+        
+        handleBusinessAddressDelete : function(primaryCaller)
+        {
+            MODAL_UTILITY.openDeleteConfirmationModal( 
+                "Are you sure you want to delete selected address ?",
+                "Address Delete Confirmation ",
+                primaryCaller ,
+                ADDRESS_UTILITY.handleBusinessAddressDeleteRM ) ;
+        },
+        
+        prepareRMInputForBusinessAddressDeletion : function(primaryCaller)
+        {
+            var contextParcel = JSON.parse($(primaryCaller.target).closest(".eachBusinessAddressRow").find("#hidden_parcel_information").val() );
+            
+            var fullComponent = $(primaryCaller.target).closest(".business_address_main_container") ; ;
+            
+            var BusinessAddressRMIn = new Object() ;
+            BusinessAddressRMIn.accountId   = fullComponent.find("#BusinessAccountId").val() ; 
+            BusinessAddressRMIn.contactId   = fullComponent.find("#BusinessContactId").val() ;
+            BusinessAddressRMIn.PrimaryEntityType  = fullComponent.find("#PrimaryEntityTypeFlag").val() ;
+            BusinessAddressRMIn.parcelId = contextParcel.parcel.Id ;
+            BusinessAddressRMIn.contextLicenseId = fullComponent.find("#CurrentLicenseId").val() ;
+            BusinessAddressRMIn.contextPermitId = fullComponent.find("#CurrentPermitId").val() ;
+            
+            
+            return BusinessAddressRMIn ;
+            
+        },
+        
+        
+        handleBusinessAddressDeleteRM : function(primaryCaller)
+        {
+            var rmIn = ADDRESS_UTILITY.prepareRMInputForBusinessAddressDeletion(primaryCaller) ;
+            
+            NOTIFICATIONS.spinnerStart();
+            
+            Visualforce.remoting.Manager.invokeAction
+            (
+                '{!$RemoteAction.AddressJSUtility_CC.deleteBusinessAddress}',
+                rmIn,
+                function(result, event)
+                {
+                    ADDRESS_UTILITY.processBusinessAddressDeleteRMResult(result,event,primaryCaller) ;
+                },
+                {escape:true}
+            );
+        },
+        
+        
+        prepareSaveAsButtonForJunctionHtml : function(addressDataSection)
+        {
+            var buttonHtml ;
+            var eachComponent = addressDataSection.closest(".business_address_main_container") ;
+            
+            if(
+                eachComponent.find("#IncludeSingleSelectTypeCheckBoxForJunctionFlag").val() == 'true' 
+                && 
+                eachComponent.find("#ShowSaveAsAddressButtonForJunctionFlag").val() == 'true'
+                &&
+                ( 
+                    eachComponent.find("#business_address_type").val() =='Primary' ||
+                    eachComponent.find("#business_address_type").val() =='Mailing' ||
+                    eachComponent.find("#business_address_type").val() =='Public' ||
+                    eachComponent.find("#business_address_type").val() =='Physical' 
+                )
+            )
+            {
+                buttonHtml = $("<input>").attr(
+                    {
+                        "value":"Save As " + eachComponent.find("#business_address_type").val() , 
+                        "id" : "save_as_address_button_element_for_junction",
+                        "type" : "button"
+                    }
+                ).addClass("btn btn-secondary btn-very-small")
+                .on("click",function(e)
+                    {
+                        ADDRESS_UTILITY.SaveAsAddressOnJunctionHandler(e);
+                    }); 
+            }
+            
+            return buttonHtml ;
+        },
+        
+        prepareSaveAsButtonHtml : function(addressDataSection)
+        {
+            var buttonHtml ;
+            var eachComponent = addressDataSection.closest(".business_address_main_container") ;
+            
+            if(
+                eachComponent.find("#IncludeSingleSelectTypeCheckBoxFlag").val() == 'true' 
+                && 
+                eachComponent.find("#ShowSaveAddressAsButtonFlag").val() == 'true'
+                &&
+                ( 
+                    eachComponent.find("#business_address_type").val() =='Primary' ||
+                    eachComponent.find("#business_address_type").val() =='Mailing' ||
+                    eachComponent.find("#business_address_type").val() =='Public' ||
+                    eachComponent.find("#business_address_type").val() =='Physical' 
+                )
+            )
+            {
+                buttonHtml = $("<input>").attr(
+                    {
+                        "value":"Save As " + eachComponent.find("#business_address_type").val() , 
+                        "id" : "save_as_address_button_element",
+                        "type" : "button"
+                    }
+                ).addClass("btn btn-secondary btn-very-small")
+                .on("click",function(e)
+                    {
+                        ADDRESS_UTILITY.SaveAsAddressHandler(e);
+                    }); 
+            }
+            
+            return buttonHtml ;
+            
+        },
+        
+        prepareBusinessAddressListForEachComponent : function(parcelRecords , eachComponent)
+        {
+            
+            // Empty section 
+            eachComponent.empty() ;
+            // Empty save as button
+            eachComponent.closest(".business_address_main_container").find("#save_as_address_btn_container").empty();
+            eachComponent.closest(".business_address_main_container").find("#save_as_address_btn_container_for_junction").empty();
+            
+            eachComponent.append(ADDRESS_UTILITY.prepareAddressListHeader(eachComponent)) ;
+            
+            var mainComponentTemp = eachComponent.closest(".business_address_main_container") ;
+            
+            // Special condition here 
+            
+            if(eachComponent.hasClass("business_address_main_container"))
+            {
+                mainComponentTemp = eachComponent ;
+            }
+            
+            var rowLimit = mainComponentTemp.find("#NumberOfAddressRowsFlag").val() * 1 ;
+            var showAllAddressFlag = mainComponentTemp.find("#ShowViewAllAddressLinkFlag").val() == 'true' ;
+            var primaryEntityType = mainComponentTemp.find("#PrimaryEntityTypeFlag").val();
+            
+            
+            $(parcelRecords).each(function(index,value)
+                                  {
+                                      if(eachComponent.find(".eachBusinessAddressRow").length < rowLimit)
+                                      {
+                                          eachComponent.append(ADDRESS_UTILITY.prepareEachAddressListRow(eachComponent,value));
+                                      }else
+                                      {
+                                          return ;
+                                      }
+                                  });
+            //TODO--businessmanyaddress does not exists in market offering- not sure if this section is ever being used
+            if(eachComponent.find(".eachBusinessAddressRow").length > 0 )
+            {
+                if(showAllAddressFlag && primaryEntityType =='Contact')
+                {
+                    eachComponent.append(
+                        $("<div>").addClass("row viewAllLink").append(
+                            $("<a>").attr({"href":"/profilemanyaddress", "target":"_self"}).html("View All")
+                        )
+                    );
+                }else if(showAllAddressFlag && primaryEntityType =='Account')
+                {
+                    eachComponent.append(
+                        $("<div>").addClass("row viewAllLink").append(
+                            $("<a>").attr({"href":"/businessmanyaddress", "target":"_self"}).html("View All")
+                        )
+                    );
+                }
+                
+                
+                eachComponent.closest(".business_address_main_container").find("#save_as_address_btn_container").html(
+                    ADDRESS_UTILITY.prepareSaveAsButtonHtml(eachComponent)
+                );
+                
+                eachComponent.closest(".business_address_main_container").find("#save_as_address_btn_container_for_junction").html(
+                    ADDRESS_UTILITY.prepareSaveAsButtonForJunctionHtml(eachComponent)
+                );
+                
+                // BALA TODO
+            }else
+            {
+                eachComponent.empty() ;
+            }
+        },
+        
+        prepareAddressRowsForAll : function(dataMap)
+        {
+            //debugger;
+            for(var key in dataMap)
+            {
+                var businessAccountId = key ;
+                
+                var parcelRecords = dataMap[key] ;
+                var addressDataSection = $(".ReadOnlybusinessAddress[id='"+ businessAccountId +"']") ;
+                
+                if(addressDataSection.length > 0 )  // Means address component is placed multiple time for same account ID
+                {
+                    $(addressDataSection).each(function(index,val)
+                                               {
+                                                   if(parcelRecords.length > 0 )
+                                                   {
+                                                       var eachComponent = $(val) ;
+                                                       ADDRESS_UTILITY.prepareBusinessAddressListForEachComponent(parcelRecords , eachComponent);
+                                                   }
+                                               });
+                }else
+                {
+                    addressDataSection.empty();
+                    //ADDRESS_UTILITY.prepareBusinessAddressListForEachComponent(parcelRecords , addressDataSection);
+                }
+            }
+            
+            NOTIFICATIONS.spinnerStop();
+        } , 
+        
+        
+        manageFormFieldElements : function(addressForm , addressRecord)
+        {
+            var currentAddressType = "US Address" ;
+            var selectedState = 'WA';
+            var selectedCounty = 'Monroe';
+            var isCountyRowAvailable = true ;
+            if(addressRecord != null )
+            {
+                //populate common fields
+                addressForm.find("#bus_addressName").val(addressRecord.Comments__c) ;
+                
+                if(addressRecord.Country__c =="United States" && addressRecord.Is_This_A_Military_Address__c == true )
+                {
+                    currentAddressType = "Military Address" ;
+                    addressForm.find("#bus_addressStreetOne_mil").val(addressRecord.MUSW__Street2__c) ;
+                    addressForm.find("#bus_addressCityMil").val(addressRecord.MUSW__City__c) ;
+                    addressForm.find("#bus_addressState_mil").val(addressRecord.MUSW__State__c) ;
+                    addressForm.find("#bus_addresszip_mil").val(addressRecord.MUSW__Post_Zip_Code__c) ;
+                    isCountyRowAvailable = false ;
+                }else if(addressRecord.Country__c =="United States" && addressRecord.Is_This_A_Military_Address__c == false )
+                {
+                    currentAddressType = "US Address" ;
+                    selectedState = addressRecord.MUSW__State__c ;
+                    selectedCounty = addressRecord.County__c ;
+                    addressForm.find("#bus_businessName").val(addressRecord.Business_Name__c) ;
+                    addressForm.find("#bus_addressStreetOne").val(addressRecord.MUSW__Street2__c) ;
+                    addressForm.find("#bus_addressCity").val(addressRecord.MUSW__City__c) ;
+                    addressForm.find("#bus_addressState").val('WA');
+                    addressForm.find("#bus_addresszip").val(addressRecord.MUSW__Post_Zip_Code__c) ;
+                    addressForm.find("#bus_addressCounty").val(addressRecord.County__c) ;
+                    
+                    isCountyRowAvailable  = selectedState == 'WA' ? true : false ;
+                    
+                }else
+                {
+                    selectedState = null ;
+                    currentAddressType = "International Address" ;
+                    addressForm.find("#bus_addressInt").val(addressRecord.International_Address__c) ;
+                    addressForm.find("#bus_intCountry").val($("<textarea/>").html($("<textarea/>").html(addressRecord.Country__c).text()).text()) ;
+                    isCountyRowAvailable = false ;
+                }
+            }
+            
+            addressForm.find("#bus_addressType").val(currentAddressType) ;
+            
+            // Populate all fields
+            
+            if(currentAddressType == "US Address" )
+            {
+                addressForm.find(".bus_for_int_only , .for_us_mil_only").hide() ;
+                addressForm.find(".bus_us_only").show() ;
+                
+            }else if(currentAddressType == "Military Address" )
+            {
+                addressForm.find(".bus_for_int_only , .bus_us_only").hide() ;
+                addressForm.find(".for_us_mil_only").show() ;
+            }else if(currentAddressType == "International Address")
+            {
+                addressForm.find(".for_us_mil_only , .bus_us_only").hide() ;
+                addressForm.find(".bus_for_int_only").show() ;
+            }
+            
+            if(isCountyRowAvailable == true )
+            {
+                addressForm.find(".us_county_row").show() ;
+            }else
+            {
+                addressForm.find(".us_county_row").hide() ;
+            }
+            
+            return addressForm ;
+            
+        },
+        
+        /*
+        @Utility function to prepare complete address form dynamically
+        It creates address form based on configurations and address records
+        It apply validations and form animations for basic input elements
+    */
+        
+        prepareFullAddressForm : function(addressConfig ,addressRecord , addAddressBtnCaller , SaveHandler , CancelHandler)
+        {
+            var addressForm = $("<div>").addClass("geo_address_edit_form");
+            var addressTypeStr = $(addAddressBtnCaller.target).closest(".business_address_main_container").find("#business_address_type").val();
+            // Logic to include conditional checkbox for - Use This address as 
+            if($(addAddressBtnCaller.target).closest(".business_address_main_container").find("#IncludeUseThisAddressAsCheckBoxFlag").val() == 'true')
+            {
+                addressForm.append(
+                    $("<div>").addClass("row")
+                    .append(
+                        $("<div>").addClass("col-sm-8")
+                        /*.append(
+                            $("<div>").addClass("animated-input-group")*/
+                            .append
+                            (
+                                $("<div>").addClass("col-sm-1 col-sm-small").append
+                                (
+                                    $("<input>").attr({"type":"checkbox", "id":"use_this_address_as_checkbox","aria-labelledby":"type"+addressTypeStr}).addClass("UseThisAddressAsCheckboxSingle SingleSelectAddressTypeCheckBox")
+                                    .on("change",function(e)
+                                        {
+                                            if(this.checked)
+                                            {
+                                                var fullComponent = $(e.target).closest(".business_address_main_container") ;
+                                                fullComponent.find(".SingleSelectAddressTypeCheckBox").not(this).removeAttr("checked");
+                                            }
+                                        })
+                                ),
+                                $("<div>").addClass("col-sm-10").append
+                                (
+                                    $("<label>").attr({"for":"use_this_address_as_checkbox","id":"type"+addressTypeStr}).addClass("InputLabelForCheckbox").html("Use this address as " + $(addAddressBtnCaller.target).closest(".business_address_main_container").find("#business_address_type").val())
+                                )
+                            )
+                        /* )*/
+                    )
+                );
+            }
+            
+            
+            // Logic to include conditional checkbox for - Use This address as FOR JUNCTION ONLY
+            
+            if($(addAddressBtnCaller.target).closest(".business_address_main_container").find("#IncludeUseThisAddressAsCheckBoxFlagForJunction").val() == 'true')
+            {
+                addressForm.append(
+                    $("<div>").addClass("row")
+                    .append(
+                        $("<div>").addClass("col-sm-8")
+                        .append(
+                            $("<div>").addClass("animated-input-group")
+                            .append
+                            (
+                                $("<div>").addClass("col-sm-1 col-sm-small").append
+                                (
+                                    $("<input>").attr({"type":"checkbox", "id":"use_this_address_as_checkbox_for_junction"}).addClass("UseThisAddressAsCheckboxSingle SingleSelectAddressTypeCheckBoxForJunction")
+                                    .on("change",function(e)
+                                        {
+                                            if(this.checked)
+                                            {
+                                                var fullComponent = $(e.target).closest(".business_address_main_container") ;
+                                                fullComponent.find(".SingleSelectAddressTypeCheckBoxForJunction").not(this).removeAttr("checked");
+                                            }
+                                        })
+                                ),
+                                $("<div>").addClass("col-sm-10").append
+                                (
+                                    $("<label>").attr("for","use_this_address_as_checkbox_for_junction").addClass("InputLabelForCheckbox").html("Use this address as " + $(addAddressBtnCaller.target).closest(".business_address_main_container").find("#business_address_type").val())
+                                )
+                            )
+                        )
+                    )
+                );
+            }
+            
+            // Business address type selection will available only for NEW address
+            if(addressRecord == null )
+            {
+                if($(addAddressBtnCaller.target).closest(".business_address_main_container").find("#IncludeBusinessAddressTypeDropDownFlag").val() == 'true')
+                {
+                    var addressOptions = $(addAddressBtnCaller.target).closest(".business_address_main_container").find("#BusinessAddressTypeOptionsFlag").val() ;
+                    var businessAddressType = [] ;
+                    $(addressOptions.split(',')).each(function(index,val){
+                        businessAddressType.push(val);
+                    });
+                    
+                    
+                    var accountAddressType = $("<select>").attr({"id":"accountAddressType"});
+                    $(businessAddressType).each(function(index,val){
+                        accountAddressType.append($("<option>").attr({ "value": val }).text(val)) ;
+                    });
+                    
+                    
+                    addressForm.append(
+                        $("<div>").addClass("row")
+                        .append(
+                            $("<div>").addClass("col-sm-6")
+                            .append(
+                                $("<div>").addClass("animated-input-group")
+                                .append(
+                                    $("<label>").attr("for","accountAddressType").addClass("InputLabel").html("Address Type"),
+                                    accountAddressType,
+                                    $("<span>").addClass("bottomShade")
+                                )
+                            )
+                        )
+                    );
+                    
+                }
+            }
+            
+            
+            // create addressTypeSelect
+            var addressType = $("<select>").attr({"id":"bus_addressType"});
+            $(addressConfig.addressTypeOptions).each(function(index,val){
+                addressType.append($("<option>").attr({ "value": val }).text(val)) ;
+            });
+            
+            addressType.on("change",function(e)
+                           {
+                               if($(this).val() =="US Address")
+                               {
+                                   $(e.target).closest(".geo_address_edit_form").find(".bus_for_int_only , .for_us_mil_only").hide() ;
+                                   $(e.target).closest(".geo_address_edit_form").find(".bus_us_only").show() ;
+                               }else if($(this).val() =="Military Address")
+                               {
+                                   $(e.target).closest(".geo_address_edit_form").find(".bus_for_int_only , .bus_us_only").hide() ;
+                                   $(e.target).closest(".geo_address_edit_form").find(".for_us_mil_only").show() ;
+                               }else if($(this).val() == "International Address")
+                               {
+                                   $(e.target).closest(".geo_address_edit_form").find(".for_us_mil_only , .bus_us_only").hide() ;
+                                   $(e.target).closest(".geo_address_edit_form").find(".bus_for_int_only").show() ;
+                               }
+                           });
+            
+            //Add address type row
+            addressForm.append(
+                $("<div>").addClass("row")
+                .append(
+                    $("<div>").addClass("col-sm-6")
+                    .append(
+                        $("<div>").addClass("animated-input-group")
+                        .append(
+                            $("<label>").attr("for","bus_addressType").addClass("InputLabel").html("Address Format"),
+                            addressType,
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            // Create address Name row
+            //addressForm.append(
+            //  $("<div>").addClass("row")
+            //  .append(
+            //      $("<div>").addClass("col-sm-12")
+            //      .append(
+            //          $("<div>").addClass("animated-input-group requiredElement")
+            //          .append(
+            //              $("<label>").attr("for","bus_addressName").addClass("InputLabel").html("Address Name"),
+            //              $("<input>").addClass("form-control").attr("id","bus_addressName"),
+            //              $("<span>").addClass("bottomShade")
+            //          )
+            //      )
+            //  )
+            //);
+            
+            
+            
+            // Create address Street address 1 row
+            addressForm.append(
+                $("<div>").addClass("row bus_us_only").append(
+                    $("<div>").addClass("col-sm-10").append(
+                        $("<div>").addClass("animated-input-group requiredElement").append(
+                            $("<label id='streetAddr'>").attr("for","bus_addressStreetOne").addClass("InputLabel").html("Street Address Line 1"),
+                            $("<input>").addClass("form-control").attr({"id":"bus_addressStreetOne", "aria-required":"true","aria-labelledby":"streetAddr"}),
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            
+            // Create address Street address 1 row
+            addressForm.append(
+                $("<div>").addClass("row for_us_mil_only").append(
+                    $("<div>").addClass("col-sm-10").append(
+                        $("<div>").addClass("animated-input-group requiredElement").append(
+                            $("<label>").attr("for","bus_addressStreetOne_mil").addClass("InputLabel").html("Military Street Address Line 1"),
+                            $("<input>").addClass("form-control").attr({"id":"bus_addressStreetOne_mil", "aria-required":"true"}),
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            // Create address Street address 2 row for MILITARY
+            addressForm.append(
+                $("<div>").addClass("row for_us_mil_only").append(
+                    $("<div>").addClass("col-sm-10").append(
+                        $("<div>").addClass("animated-input-group").append(
+                            $("<label>").attr("for","bus_addressStreetTwo_mil").addClass("InputLabel").html("Military Street Address Line 2"),
+                            $("<input>").addClass("form-control").attr("id","bus_addressStreetTwo_mil"),
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            // Create address Street address 2 row for US ADDRESS
+            addressForm.append(
+                $("<div>").addClass("row bus_us_only").append(
+                    $("<div>").addClass("col-sm-10").append(
+                        $("<div>").addClass("animated-input-group").append(
+                            $("<label id='streetAddrTwo'>").attr("for","bus_addressStreetTwo").addClass("InputLabel").html("Street Address Line 2"),
+                            $("<input>").addClass("form-control").attr({"id":"bus_addressStreetTwo","aria-labelledby":"streetAddrTwo"}),
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            // Create city state and Zip row
+            var cityZipStateRow = $("<div>").addClass("row bus_us_only");
+            
+            // Create address state select list
+            var addressState = $("<select>").attr({"id":"bus_addressState","aria-labelledby":"addState"});
+            $(addressConfig.stateList).each(function(index,val){
+                if(val=="WA"){ 
+                    addressState.append($("<option selected='selected'>").attr({ "value": val }).text(val)) ;
+                } else {
+                    addressState.append($("<option>").attr({ "value": val }).text(val)) ;
+                }
+            });
+            
+            addressState.on("change",function(e)
+                            {
+                                if($(this).val() == 'WA')
+                                {
+                                    $(e.target).closest(".geo_address_edit_form").find("#bus_addressCounty").val('Monroe');
+                                    $(e.target).closest(".geo_address_edit_form").find(".us_county_row").show() ;
+                                }else
+                                {
+                                    $(e.target).closest(".geo_address_edit_form").find("#bus_addressCounty").val('');
+                                    $(e.target).closest(".geo_address_edit_form").find(".us_county_row").hide() ;
+                                }
+                            });
+            
+            // Adding City , state and zip to main row
+            cityZipStateRow.append(
+                $("<div>").addClass("col-sm-4").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label id='addCity'>").attr("for","bus_addressCity").addClass("InputLabel").html("City"),
+                        $("<input>").addClass("form-control").attr({"id":"bus_addressCity", "aria-required":"true","aria-labelledby":"addCity"}),
+                        $("<span>").addClass("bottomShade")
+                    )
+                ),
+                $("<div>").addClass("col-sm-3").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label id='addState'>").attr("for","bus_addressState").addClass("InputLabel").html("State"),
+                        addressState.attr("aria-required", "true"),
+                        $("<span>").addClass("bottomShade")
+                    )
+                ),
+                $("<div>").addClass("col-sm-3").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label id='addZip'>").attr("for","bus_addresszip").addClass("InputLabel").html("Zip Code"),
+                        $("<input>").addClass("form-control").attr({"id":"bus_addresszip", "aria-required":"true","aria-labelledby":"addZip"}),
+                        $("<span>").addClass("bottomShade")
+                    )
+                )
+            );
+            
+            addressForm.append(cityZipStateRow);
+            
+            // Create County list
+            var countySelectList = $("<select>").attr({"id":"bus_addressCounty","aria-labelledby":"addCounty"});
+            $(addressConfig.countyList).each(function(index,val){
+                countySelectList.append($("<option>").attr({ "value": val }).text(val)) ;
+            });
+            
+            addressForm.append(
+                $("<div>").addClass("row us_county_row bus_us_only").append(
+                    $("<div>").addClass("col-sm-7").append(
+                        $("<div>").addClass("animated-input-group").append(
+                            $("<label id='addCounty'>").attr("for","bus_addressCounty").addClass("InputLabel").html("County"),
+                            countySelectList,
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            
+            var intAddress = $("<div>").addClass("row bus_for_int_only").append(
+                $("<div>").addClass("col-sm-10").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label>").attr("for","bus_addressInt").addClass("InputLabel").html("International Address"),
+                        $("<textarea>").addClass("form-control").attr({"id":"bus_addressInt", "aria-required":"true"}),
+                        $("<span>").addClass("bottomShade")
+                    )
+                )
+            );
+            
+            addressForm.append(intAddress) ;
+            
+            // Create International Country dropdown
+            var intCountryOptions  = $("<select>").attr("id","bus_intCountry") ;
+            $(addressConfig.intCntrList).each(function(index,val){
+                intCountryOptions.append($("<option>").attr({ "value": val }).text($("<textarea/>").html($("<textarea/>").html(val).text()).text())) ;
+            });
+            
+            addressForm.append(
+                $("<div>").addClass("row bus_for_int_only")
+                .append(
+                    $("<div>").addClass("col-sm-6")
+                    .append(
+                        $("<div>").addClass("animated-input-group requiredElement")
+                        .append(
+                            $("<label>").attr("for","bus_intCountry").addClass("InputLabel").html("Country"),
+                            intCountryOptions.attr("aria-required", "true"),
+                            $("<span>").addClass("bottomShade")
+                        )
+                    )
+                )
+            );
+            
+            var mil_cityZipStateRow = $("<div>").addClass("row mil_city_state_zip for_us_mil_only");
+            
+            // Create address state select list
+            var milState = $("<select>").attr({"id":"bus_addressState_mil"});
+            $(addressConfig.milStateOptions).each(function(index,val){
+                milState.append($("<option>").attr({ "value": val }).text(val)) ;
+            });
+            
+            var milCity = $("<select>").attr({"id":"bus_addressCityMil"});
+            $(addressConfig.milCityOptions).each(function(index,val){
+                milCity.append($("<option>").attr({ "value": val }).text(val)) ;
+            });
+            
+            // Add City
+            mil_cityZipStateRow.append(
+                
+                $("<div>").addClass("col-sm-4").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label>").attr("for","bus_addressCityMil").addClass("InputLabel").html("City"),
+                        milCity.attr("aria-required", "true"),
+                        $("<span>").addClass("bottomShade")
+                    )
+                ),
+                
+                $("<div>").addClass("col-sm-3").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label>").attr("for","bus_addressState_mil").addClass("InputLabel").html("State"),
+                        milState.attr("aria-required", "true"),
+                        $("<span>").addClass("bottomShade")
+                    )
+                ),
+                
+                $("<div>").addClass("col-sm-3").append(
+                    $("<div>").addClass("animated-input-group requiredElement").append(
+                        $("<label>").attr("for","bus_addresszip_mil").addClass("InputLabel").html("Zip Code"),
+                        $("<input>").addClass("form-control").attr({"id":"bus_addresszip_mil", "aria-required":"true"}),
+                        $("<span>").addClass("bottomShade")
+                    )
+                )
+                
+            );
+            
+            addressForm.append(mil_cityZipStateRow);
+            
+            
+            // Create button row
+            
+            var btnRow = $("<section>").append(
+                $("<div>").addClass("row").append(
+                    $("<div>").addClass("col-sm-12").append(
+                        $("<input>").attr({"type":"button"}).on("click",function(e)
+                                                                {
+                                                                    if(typeof CancelHandler === "function" )
+                                                                    {
+                                                                        var parameters = new Array(addressRecord ,$(e.target).closest(".geo_address_edit_form"), e , addAddressBtnCaller ) ;
+                                                                        CancelHandler(parameters) ;
+                                                                    }
+                                                                }).addClass("btn btn-tertiary").val("Cancel"),
+                        
+                        $("<input>").attr({"type":"button"}).on("click",function(e)
+                                                                {
+                                                                    if(typeof SaveHandler === "function")
+                                                                    {
+                                                                        var parameters = new Array($(e.target).closest(".business_address_main_container") , e ,  addAddressBtnCaller ) ;
+                                                                        SaveHandler(parameters) ;
+                                                                    }
+                                                                }).addClass("btn btn-primary btn-space").val("Save")
+                    )
+                )
+            );
+            addressForm.append(btnRow);
+            
+            addressForm = ADDRESS_UTILITY.manageFormFieldElements(addressForm,addressRecord);
+            
+            addressForm.bindAnimatedForm();
+            
+            var fieldObject =
+                {
+                    form: addressForm ,
+                    defaultStyle: function (element, isValid) {
+                        element.closest(".animated-input-group").find("span.errorHidden").remove();
+                        isValid
+                        ? element.closest(".animated-input-group").removeClass("errorElement").find("span.errorHidden").remove()
+                        : element.closest(".animated-input-group").addClass("errorElement").find("label").prepend("<span class='errorHidden'>error</span>");
+                    },
+                    fields : [
+                        //{
+                        //  id          : "bus_addressName",
+                        //  required    : true ,
+                        //  name        : "Address name" ,
+                        //  watch       : true
+                        //},
+                        {
+                            id          : "bus_addressStreetOne" ,
+                            required    : true ,
+                            name        : "Street Address Line 1" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressCity",
+                            required    : true ,
+                            name        : "Address City" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressState",
+                            required    : true ,
+                            name        : "Address State" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addresszip",
+                            required    : true ,
+                            name        : "Address Zip Code" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressCityMil",
+                            required    : true ,
+                            name        : "Address City" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressState_mil",
+                            required    : true ,
+                            name        : "Address State" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addresszip_mil",
+                            required    : true ,
+                            validator   :"Zip" ,
+                            name        : "Address Zip Code" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressInt" ,
+                            required    : true ,
+                            name        : "International address" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_intCountry",
+                            required    : true ,
+                            name        : "Address Country" ,
+                            watch       : true
+                        }
+                        
+                    ]
+                    
+                };
+            
+            var validator = new ValidationEngine(fieldObject);
+            // validator.runValidations();
+            
+            // Binding validations ends
+            return addressForm ;
+            
+        },
+        
+        validateAndPrepareRawAddress : function(addressForm)
+        {
+            var fieldObject ;
+            var validator ;
+            var isFormValid = true ;
+            // We will add Global Error validation later on
+            var RawAddress = new Object() ;
+            
+            RawAddress.addressType      = addressForm.find("#bus_addressType").val() ;
+            
+            RawAddress.addressName      = addressForm.find("#bus_addressName").val() ;
+            
+            RawAddress.businessAddressType =  addressForm.find("#business_address_type").val()  ;
+            
+            if(addressForm.find("#use_this_address_as_checkbox_for_junction").length == 1)
+            {
+                RawAddress.saveAsaAddressOnEntityFlag = addressForm.find("#use_this_address_as_checkbox_for_junction").prop("checked") ;
+            }
+            
+            //Overide address type value if user provided it 
+            if(addressForm.find("#accountAddressType").length == 1 )
+            {
+                RawAddress.businessAddressType      = addressForm.find("#accountAddressType").val() ;
+            }
+            
+            RawAddress.BusinessAccountId   =  addressForm.find("#BusinessAccountId").val() ;    
+            RawAddress.EnableAutoLinkingWithAccount   =  addressForm.find("#EnableAutoLinkingWithAccountFlag").val() ;
+            
+            // Contact specific fields 
+            RawAddress.BusinessContactId   =  addressForm.find("#BusinessContactId").val() ;    
+            RawAddress.EnableAutoLinkingWithContact   =  addressForm.find("#EnableAutoLinkingWithContactFlag").val() ;
+            
+            if(RawAddress.addressType  == "US Address")
+            {
+                //RawAddress.businessName     = addressForm.find("#bus_businessName").val() ;
+                RawAddress.addressLine1     = addressForm.find("#bus_addressStreetOne").val() ;
+                RawAddress.addressLine2     = addressForm.find("#bus_addressStreetTwo").val() ;
+                RawAddress.city             = addressForm.find("#bus_addressCity").val() ;
+                RawAddress.state            = addressForm.find("#bus_addressState").val() ;
+                RawAddress.zipCode          = addressForm.find("#bus_addresszip").val() ;
+                RawAddress.addressCounty    = addressForm.find("#bus_addressCounty").val() ;
+                RawAddress.addressCountry   = "United States" ;
+                
+                fieldObject = {
+                    form: addressForm ,
+                    defaultStyle: function (element, isValid) {
+                        element.closest(".animated-input-group").find("span.errorHidden").remove();
+                        isValid
+                        ? element.closest(".animated-input-group").removeClass("errorElement").find("span.errorHidden").remove()
+                        : element.closest(".animated-input-group").addClass("errorElement").find("label").prepend("<span class='errorHidden'>error</span>");
+                    },
+                    fields : [
+                        //  {
+                        //      id          : "bus_addressName",
+                        //      required    : true ,
+                        //      name        : "Address name" ,
+                        //      watch       : true
+                        //  },
+                        {
+                            id          : "bus_addressStreetOne" ,
+                            required    : true ,
+                            name        : "Street Address Line 1" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressCity",
+                            required    : true ,
+                            name        : "Address City" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressState",
+                            required    : true ,
+                            name        : "Address State" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addresszip",
+                            required    : true ,
+                            validator   :"Zip",
+                            name        : "Address Zip Code" ,
+                            watch       : true
+                        }
+                    ]
+                };
+                
+            }else if(RawAddress.addressType  == "Military Address")
+            {
+                RawAddress.militaryFlag = true ;
+                RawAddress.addressLine1     = addressForm.find("#bus_addressStreetOne_mil").val() ;
+                RawAddress.addressLine2     = addressForm.find("#bus_addressStreetTwo_mil").val() ;
+                RawAddress.city             = addressForm.find("#bus_addressCityMil").val() ;
+                RawAddress.state            = addressForm.find("#bus_addressState_mil").val() ;
+                RawAddress.zipCode          = addressForm.find("#bus_addresszip_mil").val() ;
+                RawAddress.addressCountry = "United States" ;
+                
+                
+                fieldObject = {
+                    form: addressForm ,
+                    defaultStyle: function (element, isValid) {
+                        element.closest(".animated-input-group").find("span.errorHidden").remove();
+                        isValid
+                        ? element.closest(".animated-input-group").removeClass("errorElement").find("span.errorHidden").remove()
+                        : element.closest(".animated-input-group").addClass("errorElement").find("label").prepend("<span class='errorHidden'>error</span>");
+                    },
+                    fields : [
+                        //{
+                        //  id          : "bus_addressName",
+                        //  required    : true ,
+                        //  name        : "Address name" ,
+                        //  watch       : true
+                        //},
+                        {
+                            id          : "bus_addressStreetOne_mil" ,
+                            required    : true ,
+                            name        : "Military Street Address Line 1" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressCityMil",
+                            required    : true ,
+                            name        : "Military Address City" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addressState_mil",
+                            required    : true ,
+                            name        : "Military Address State" ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_addresszip_mil",
+                            required    : true ,
+                            validator   : "Zip" ,
+                            name        : "Military Address Zip Code" ,
+                            watch       : true
+                        }
+                    ]
+                };
+                
+            }else if(RawAddress.addressType  == "International Address")
+            {
+                
+                RawAddress.IntAddress       = addressForm.find("#bus_addressInt").val() ;
+                RawAddress.addressCountry = addressForm.find("#bus_intCountry").val() ;
+                
+                fieldObject = {
+                    form: addressForm ,
+                    defaultStyle: function (element, isValid) {
+                        element.closest(".animated-input-group").find("span.errorHidden").remove();
+                        isValid
+                        ? element.closest(".animated-input-group").removeClass("errorElement").find("span.errorHidden").remove()
+                        : element.closest(".animated-input-group").addClass("errorElement").find("label").prepend("<span class='errorHidden'>error</span>");
+                    },
+                    fields : [
+                        //{
+                        //  id          : "bus_addressName",
+                        //  required    : true ,
+                        //  name        : "Address name" ,
+                        //  watch       : true
+                        //},
+                        {
+                            id          : "bus_addressInt" ,
+                            required    : true ,
+                            name        : "International  Address " ,
+                            watch       : true
+                        },
+                        {
+                            id          : "bus_intCountry",
+                            required    : true ,
+                            name        : "Address Country" ,
+                            watch       : true
+                        }
+                    ]
+                };
+            }
+            
+            
+            // Perform validations and handle results
+            formValidator = new ValidationEngine(fieldObject);
+            // formValidator.runValidations();
+            if(formValidator.errors().length > 0 )
+            {
+                isFormValid = false ;
+                MODAL_UTILITY.errorMessageModal(formValidator.errorHtml(), "Error(s) on Address form ") ;
+            }
+            
+            if(addressForm.find("#hidden_parcel_record_container").length == 1 )  // Means this is edit mode
+            {
+                if(addressForm.find("#hidden_parcel_record_container").find("#hidden_parcel_record").length == 1 )
+                {
+                    var addressRecord = JSON.parse(addressForm.find("#hidden_parcel_record_container").find("#hidden_parcel_record").val()) ;
+                    RawAddress.parcelId = addressRecord.Id ;
+                }
+            }
+            
+            return new Array(isFormValid,RawAddress) ;
+        },
+        
+        
+        prepareMultiAddressOptions : function(availableOptions, rawaddress , primaryCaller, validAddressSelectHandler)
+        {
+            var tableData = $("<table>").addClass("table").append(
+                $("<thead>").append($("<tr>").append(
+                    $("<th>").html("Street Address"),
+                    $("<th>").html("City"),
+                    $("<th>").html("State"),
+                    $("<th>").html("Zip Code"),
+                    $("<th>").html("County"),
+                    $("<th>").html("Validated")
+                ))
+            );
+            var addressCounter = 0;
+            $(availableOptions).each(function(index,val){
+                addressCounter = addressCounter + 1;
+                tableData.append($("<tbody>").append(
+                    $("<tr>").addClass("addressRow").append(
+                        
+                        $("<td>").append(
+                            $("<input>").attr({"type":"hidden","id":"geoAddressRecord"}).val(JSON.stringify(val)) ,
+                            $("<span>").addClass("data-container-sel").append(
+                                $("<a>").addClass("actionlink").attr("href","").html(val.addressLine1).click(function(e)
+                                                                                                             {
+                                                                                                                 
+                                                                                                                 e.preventDefault();
+                                                                                                                 if(typeof validAddressSelectHandler == "function")
+                                                                                                                 {
+                                                                                                                     var parameters = new Array
+                                                                                                                     (
+                                                                                                                         JSON.parse( $(e.target).closest(".addressRow").find("#geoAddressRecord").val() ) ,
+                                                                                                                         primaryCaller ,
+                                                                                                                         e
+                                                                                                                     ) ;
+                                                                                                                     validAddressSelectHandler(parameters) ;
+                                                                                                                 }
+                                                                                                                 
+                                                                                                             })
+                            )),
+                        $("<td>").addClass("city").html(val.city),
+                        $("<td>").addClass("state").html(val.state),
+                        $("<td>").addClass("zipcode").html(val.zipCode),
+                        $("<td>").addClass("addresscounty").html(val.addressCounty),
+                        $("<td>").html(  val.validated ? ($("<span>").addClass("glyphicon glyphicon-ok").attr("aria-hidden","true")) :(""))
+                    )
+                ));
+            });
+            //$Label.Str_GeoAddressMessageToDisplay;//
+            var geoAddressMessageToDisplay = "Multiple addresses have been found based on the information you provided. Please select the correct address from the options below.";
+            if(addressCounter == 1){
+                //$Label.Str_GeoAddressInvalidMessageToDisplay;//
+                geoAddressMessageToDisplay= "The address you entered could not be validated, please correct the address and re-validate. If you believe the address you entered is correct, you can proceed with the address you have entered.";
+            }
+            var mainContainer = $("<div>").attr("id","modal_multiopt_container").append(
+                $("<p>").html(geoAddressMessageToDisplay),
+                $("<div>").addClass("row gError").attr("id","validAddressSelectError").css("display","none"),
+                tableData
+            );
+            
+            MODAL_UTILITY.openModalWithOptions(mainContainer , "Geo Validated Address Options ");
+        },
+        
+        prepareOnlyAddressHtml : function(addressRecord)
+        {
+            if(addressRecord == null || typeof addressRecord =="undefined")
+            {
+                return false ;
+            }
+            
+            
+            var addressRow = $("<div>").addClass("addressRow") ;
+            var countySection = ''  ;
+            if(typeof addressRecord.County__c !=="undefined")
+            {
+                if(addressRecord.County__c !== 'Out of State' && addressRecord.County__c !="" )
+                {
+                    countySection = $("<span>") ;
+                    countySection.append(
+                        
+                        $("<span>").addClass("county").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.County__c).text()).text()),
+                        $("<br>")
+                    ) ;
+                }
+            }
+            
+            
+            if(addressRecord.Country__c === 'United States' )
+            {
+                $("<textarea/>").html($("<textarea/>").html(addressRecord.Country__c).text()).text()
+                addressRow.append(
+                    $("<span>").addClass("businessName").html($("<textarea/>").html($("<textarea/>").html(addressRecord.Business_Name__c).text()).text()),
+                    $("<br>") ,
+                    $("<span>").addClass("streetaddress").html($("<textarea/>").html($("<textarea/>").html(addressRecord.MUSW__Street2__c).text()).text()),
+                    $("<br>") ,
+                    $("<span>").addClass("city").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.MUSW__City__c).text()).text()) ,
+                    "&nbsp;",
+                    $("<span>").addClass("state").html($("<textarea/>").html($("<textarea/>").html(addressRecord.MUSW__State__c).text()).text()),
+                    "&nbsp;",
+                    $("<span>").addClass("zipcode").html(addressRecord.MUSW__Post_Zip_Code__c),
+                    $("<br>"),
+                    countySection ,
+                    $("<span>").addClass("country").html(addressRecord.Country__c)
+                ) ;
+            }else
+            {
+                addressRow.append
+                (
+                    
+                    $("<span>").addClass("intaddress").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.International_Address__c).text()).text()),
+                    $("<br>"),
+                    $("<span>").addClass("country").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.Country__c).text()).text())
+                ) ;
+            }
+            return addressRow ;
+            
+        },
+        
+        prepareSuccessPanelForBusAddress : function(addressRecord  , bShowSuccessMessage , bShowEditBtn , bShowNameSection, editAddressHandler)
+        {
+            console.log('inside prepare success::');
+            var addressRow = $("<div>").addClass("addressRow successMessageContainer") ;
+            var successMessage ='' ;
+            if(bShowSuccessMessage === true )
+            {
+                successMessage = $("<div class='savedSuccess'>").append(
+                    $("<span>").addClass("glyphicon glyphicon-ok-sign").attr("aria-hidden",true) ,
+                    $("<span>").html("ADDRESS SAVED SUCCESSFULLY"));
+            }
+            
+            addressRow.append(successMessage) ;
+            
+            var countySection = ''  ;
+            if(typeof addressRecord.County__c !=="undefined")
+            {
+                if(addressRecord.County__c !== 'Out of State' && addressRecord.County__c !="" )
+                {
+                    
+                    
+                    countySection = $("<span>") ;
+                    countySection.append(
+                        $("<span>").addClass("county").html($("<textarea/>").html($("<textarea/>").html(addressRecord.County__c).text()).text()),
+                        $("<br>")
+                    ) ;
+                }
+            }
+            
+            // Add Address name - - actually took out this field on 8/12/2016
+            
+            if(bShowNameSection == true )
+            {
+                addressRow.append(
+                    $("<span>").html(addressRecord.Comments__c).css("font-weight","bold"),
+                    $("<br>")
+                );
+            }
+            
+            
+            
+            
+            if(addressRecord.Country__c === 'United States' )
+            {
+                addressRow.append(
+                    $("<span>").addClass("streetaddress").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.MUSW__Street2__c).text()).text()),
+                    $("<br>") ,
+                    $("<span>").addClass("city").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.MUSW__City__c).text()).text()) ,
+                    "&nbsp;",
+                    $("<span>").addClass("state").html(addressRecord.MUSW__State__c),
+                    "&nbsp;",
+                    $("<span>").addClass("zipcode").html(addressRecord.MUSW__Post_Zip_Code__c),
+                    $("<br>"),
+                    countySection ,
+                    $("<span>").addClass("country").html(addressRecord.Country__c ))
+            }else
+            {
+                addressRow.append(
+                    $("<span>").addClass("intaddress").html($("<textarea/>").html($("<textarea/>").html(addressRecord.International_Address__c).text()).text()),
+                    $("<br>"),
+                    $("<span>").addClass("country").html( $("<textarea/>").html($("<textarea/>").html(addressRecord.Country__c).text()).text()))
+            }
+            var editIcon = '' ;
+            
+            if(bShowEditBtn == true )
+            {
+                editIcon= $("<div>").addClass("row")
+                .append(
+                    $("<br>"),
+                    $("<button>").attr("type","button").addClass("btn btn-primary btn-very-small")
+                    .append(
+                        $("<span>").addClass("glyphicon glyphicon-pencil"),
+                        " Edit"
+                    )
+                    .on("click",function(e)
+                        {
+                            
+                            if(typeof editAddressHandler == "function")
+                            {
+                                var address = JSON.parse($(e.target).closest(".successMessageContainer").find("#hidden_parcel_record").val()) ;
+                                editAddressHandler(addressRecord, e);
+                            }
+                        })
+                ) ;
+            }
+            
+            var hiddenInfo = $("<input>").attr({"type":"hidden","id" : "hidden_parcel_record"}).val(JSON.stringify(addressRecord));
+            addressRow.append(hiddenInfo,editIcon);
+            
+            return addressRow ;
+        },
+        
+        getBusinessAddressType : function(junctionRec )
+        {
+            var retRes = '' ;
+            if(typeof junctionRec != "undefined")
+            {
+                if(junctionRec.Mailing__c == true )
+                {
+                    retRes = 'Mailing' ;
+                }else if(junctionRec.Public__c == true )
+                {
+                    retRes = 'Public' ;
+                }else if (junctionRec.Primary__c == true )
+                {
+                    retRes = 'Primary' ;
+                }else if (junctionRec.Physical__c == true )
+                {
+                    retRes = 'Physical' ;
+                }
+            }
+            
+            return retRes ;
+        },
+        
+        loadBusinessAddressList : function()
+        {
+            
+            var accountIds = [] ;
+            var contactIds = [] ;
+            var primaryEntityType ;
+            $(".business_address_main_container").each(function(index,val)
+                                                       {
+                                                           primaryEntityType = $(val).find("#PrimaryEntityTypeFlag").val() ;
+                                                           
+                                                           if($(val).find("#show_Business_Address_List_Flag").val() == 'true' && $(val).find("#PrimaryEntityTypeFlag").val() =="Account" )
+                                                           {
+                                                               accountIds.push($(val).find("#BusinessAccountId").val()) ;
+                                                           }else if ($(val).find("#show_Business_Address_List_Flag").val() == 'true' && $(val).find("#PrimaryEntityTypeFlag").val() =="Contact"  )
+                                                           {
+                                                               contactIds.push($(val).find("#BusinessContactId").val()) ;
+                                                           }
+                                                       });
+            
+            
+            if(accountIds.length > 0  || contactIds.length > 0)
+            {
+                
+                NOTIFICATIONS.spinnerStart();
+                
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.AddressJSUtility_CC.getBusinessAddressListOnLoad}',
+                    accountIds,
+                    contactIds,
+                    primaryEntityType ,
+                    function(result, event)
+                    {
+                        
+                        if(result.isSuccess == true )
+                        {
+                            ADDRESS_UTILITY.prepareAddressRowsForAll(result.dataMap);
+                            ADDRESS_UTILITY.manageCheckBoxesForProfile(result.dataMap);
+                            bus_global_address_List_loading_started = false ;
+                        }
+                    },
+                    {escape : true}
+                );
+            }
+            
+        },
+        loadAddressConfigurations : function()
+        {
+            
+            if(bus_global_address_init_started == true )
+                return false ;
+            
+            bus_global_address_init_started = true ;
+            
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.AddressJSUtility_CC.getPartialConfigurationsOnLoad}',
+                function(result, event)
+                {
+                    
+                    $("body").find("#global-business-address-configuration").remove() ;
+                    
+                    // Store important information into hidden vars
+                    var hiddenConfig = $("<input>").attr({"type":"hidden","id":"global-business-address-configuration"}).val(JSON.stringify(result)) ;
+                    $("body").append(hiddenConfig);
+                    // Hidden info ends
+                    
+                    //Load add address Buttons
+                    ADDRESS_UTILITY.manageAddAddressButtons();
+                    
+                    bus_global_address_init_started = false ;
+                    // So it will get called for rerender 
+                },
+                {escape:true}
+            );
+            
+        } ,
+        
+        
+        
+        saveBusinessAddressRM : function(rawAddress , primaryCaller)
+        {
+            
+            NOTIFICATIONS.spinnerStart();
+            /*update the record */
+            var pageUrl = window.location.href;
+            var pageName = pageUrl.split("?");
+            pageName =pageName[0].split("/");
+            pageName =  pageName[pageName.length-1].toLowerCase();
+            if(pageName == "changeAddress"){
+                if($("#hidden_parcel_record").val() != undefined){
+                    var parcel = JSON.parse($("#hidden_parcel_record").val());
+                    rawAddress.parcelId= parcel.Id;             
+                }
+            }
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.AddressJSUtility_CC.saveBusinessAddress}',
+                rawAddress,
+                function(result, event)
+                {
+                    ADDRESS_UTILITY.processRemoteMethodExecutionResult(result,event,rawAddress ,primaryCaller,null) ;
+                },
+                {escape : true }
+            );
+        },
+        
+        
+        validGeoAddressSelected : function(params)
+        {
+            
+            
+            if(params.length == 3 )
+            {
+                var geoAddress = params[0];
+                var saveBtnCaller = params[1] ;
+                var validAddressLinkCaller = params[2] ;
+                
+                NOTIFICATIONS.spinnerStart();
+                /*update the record */
+                var pageUrl = window.location.href;
+                var pageName = pageUrl.split("?");
+                pageName =pageName[0].split("/");
+                pageName =  pageName[pageName.length-1].toLowerCase();
+                if(pageName == "changeAddress"){
+                    if($("#hidden_parcel_record").val() != undefined){
+                        var parcel = JSON.parse($("#hidden_parcel_record").val());
+                        geoAddress.sfdcID= parcel.Id;               
+                    }
+                }
+                Visualforce.remoting.Manager.invokeAction
+                (
+                    '{!$RemoteAction.AddressJSUtility_CC.saveSelectedGeoCodedAddress}',
+                    geoAddress,
+                    function(result, event)
+                    {
+                        ADDRESS_UTILITY.processRemoteMethodExecutionResult(result,event,null ,saveBtnCaller , validAddressLinkCaller ) ;
+                        
+                    },
+                    {escape : true }
+                );
+                
+            }
+        },
+        
+        
+        loadAddressForm : function(addressRecord , addAddressBtnCaller)
+        {
+            
+            var contextContainer = $(addAddressBtnCaller.target).closest(".business_address_main_container") ;
+            if(addressRecord != null )
+            {
+                // Remove all hidden records from context form
+                contextContainer.find(".hidden_parcel_record_container").remove() ;
+                contextContainer.append
+                (
+                    $("<div>").addClass("hidden_parcel_record_container")
+                    .append
+                    (
+                        $("<input>").attr({"type":"hidden", "id" : "hidden_parcel_record"}).val(JSON.stringify(addressRecord))
+                    )
+                );
+            }
+            
+            var addressConfig = JSON.parse($("#global-business-address-configuration").val()) ;
+            
+            var addressForm = ADDRESS_UTILITY.prepareFullAddressForm
+            (
+                addressConfig ,
+                addressRecord ,
+                addAddressBtnCaller ,
+                ADDRESS_UTILITY.SaveAddressFormHandler ,
+                ADDRESS_UTILITY.cancelAddressFormHandler
+            ) ;
+            
+            
+            // Add some additional classes to form here and ID attribute
+            addressForm.attr("id","business_Address_edit_container") ;
+            // Append form to main container
+            contextContainer.find("#addAddressBtn").hide() ;
+            contextContainer.find("#business-address-container").empty();
+            contextContainer.find("#business-address-container").append(addressForm) ;
+        },
+        
+        cancelAddressFormHandler : function(params)
+        {
+            // First parameter is addressRecord ,
+            // second parameter is addressForm  ,
+            // Third parameter is immediate caller  (Cancel button click )
+            // Fourth is initails caller due to which this address form is created (Add+ button click )
+            
+            if(params.length == 4 )
+            {
+                var addressRecord = params[0] ;
+                var addressForm = params[1] ;
+                var cancelBtnCaller = params[2] ;
+                var addAddressbtnCaller = params[3] ;
+                
+                if(addressRecord == null )
+                {
+                    $(cancelBtnCaller.target).closest("#business_Address_edit_container").remove() ;
+                    $(addAddressbtnCaller.target).closest(".business_address_main_container").find("#addAddressBtn").show() ;
+                }else
+                {
+                    // Edit address handling
+                    var oldAddressRecord =JSON.parse($(cancelBtnCaller.target).closest(".business_address_main_container").find("#hidden_parcel_record").val() ) ;
+                    ADDRESS_UTILITY.prepareSuccessPanel(oldAddressRecord , cancelBtnCaller,  false );
+                }
+            }
+        },
+        
+        SaveAddressFormHandler : function(params)
+        {
+            // There must be 3 parameters with below sequence
+            // Param 1 -- address form
+            // Param 2 -- currentCaller
+            // Param 3 -- originalCaller  ( Due to which this form genereated )
+            
+            if(params.length == 3 )
+            {
+                var addressForm = params[0] ;
+                var saveBtnCaller = params[1] ;
+                var addAddressBtnCaller = params[2] ;
+                var retRes = ADDRESS_UTILITY.validateAndPrepareRawAddress(addressForm) ;
+                
+                if(typeof retRes[0] == "boolean" && retRes[0] == false )
+                {
+                    return false ;
+                }
+                
+                ADDRESS_UTILITY.saveBusinessAddressRM(retRes[1],saveBtnCaller);
+            }
+        },
+        
+        hitRemoteMethodCallForEditMode : function(EditRMInput)
+        {
+            NOTIFICATIONS.spinnerStart();
+            
+            if(EditRMInput.licenseId != null && EditRMInput.licenseId != ''){
+                
+                Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.AddressJSUtility_CC.getLicenseBusinessAddressDetails}',
+                EditRMInput,
+                function(result, event)
+                {
+                    console.log('inside hitRemote::');
+                    ADDRESS_UTILITY.processLicenseEditRemoteMethodResult(result, event);
+                },
+                {escape : true}
+            );
+            }else if(EditRMInput.permitId != null && EditRMInput.permitId != ''){
+            
+            
+            
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.AddressJSUtility_CC.getPermitBusinessAddressDetails}',
+                EditRMInput,
+                function(result, event)
+                {
+                    ADDRESS_UTILITY.processLicenseEditRemoteMethodResult(result, event);
+                },
+                {escape : true}
+            );
+            }
+        },
+        
+        
+        configureComponnetForEditMode : function()
+        {
+            var totalComponentInEditMode = 0 ;
+            //ExecutionModeFlag
+            var EditRMInput = new Object() ;
+            var primaryEntityType = '' ;
+            $(".business_address_main_container").each(function(index,val)
+                                                       {
+                                                           var eachComponent = $(val) ;
+                                                           
+                                                           if(eachComponent.find("#ExecutionModeFlag").val() == 'Edit' )
+                                                           {
+                                                               EditRMInput.accountId = eachComponent.find("#BusinessAccountId").val() ;
+                                                               EditRMInput.licenseId = eachComponent.find("#CurrentLicenseId").val() ;
+                                                               EditRMInput.permitId = eachComponent.find("#CurrentPermitId").val() ;
+                                                               EditRMInput.contactId = eachComponent.find("#BusinessContactId").val() ;
+                                                               EditRMInput.primaryEntityType = eachComponent.find("#PrimaryEntityTypeFlag").val() ;
+                                                               
+                                                               totalComponentInEditMode ++ ;
+                                                           }   
+                                                       });
+            
+            if(totalComponentInEditMode == 0 )
+            {
+                return false ;
+            }
+            
+            
+            if(  (EditRMInput.accountId != "" || EditRMInput.contactId != "" ) && (EditRMInput.licenseId != ""||EditRMInput.permitId != "") )
+            {
+                ADDRESS_UTILITY.hitRemoteMethodCallForEditMode(EditRMInput);
+            }
+            
+        }, 
+        
+        manageAddAddressButtons : function()
+        {
+            
+            $(".business_address_main_container").each(function(index,val)
+                                                       {
+                                                           var addAddressButton = $("<button>").addClass("btn btn-primary btn-very-small add_new_address_button").attr({"type":"button", "id":"addAddressBtn"})
+                                                           .append(
+                                                               $("<span>").addClass("glyphicon glyphicon-plus"),
+                                                               $("<span>").html("Add Address")
+                                                           )
+                                                           .on("click",function(e)
+                                                               {
+                                                                   ADDRESS_UTILITY.loadAddressForm(null,e) ;
+                                                               });
+                                                           
+                                                           if($(val).find("#show_add_address_button").val() == 'true')
+                                                           {
+                                                               // Add  button only if it is not available for component
+                                                               $(val).find("#add_address_btn_container").html(addAddressButton);
+                                                           }
+                                                           
+                                                       });
+        },
+        
+        processLicenseEditRemoteMethodResult : function(result,event)
+        {
+            //alert(event.type);
+            
+            if(event.type !="exception")
+            {
+                if(result.isSuccess == true )
+                {
+                    
+                    $("body").find("#global-business-address-configuration").remove() ;
+                    // Store important information into hidden vars
+                    var hiddenConfig = $("<input>").attr({"type":"hidden","id":"global-business-address-configuration"}).val(JSON.stringify(result.addressConfig)) ;
+                    $("body").append(hiddenConfig);
+                    ADDRESS_UTILITY.manageAddAddressButtons();
+                    console.log('inside processLicenseEdit::');
+                    ADDRESS_UTILITY.paintAddressComponentForEditMode(result,true);
+                }else
+                {
+                    MODAL_UTILITY.errorMessageModal(result.message);
+                }
+            }else
+            {
+                MODAL_UTILITY.errorMessageModal(event.message);
+            }
+            
+            NOTIFICATIONS.spinnerStop() ;
+        },
+        
+        paintAddressComponentForEditMode : function(result , keepSuccessMessage)
+        {
+            
+            $(".business_address_main_container").each(function(index,val)
+                                                       {
+                                                           var component = $(val) ;
+                                                           component.find("#component_license_hidden_div").remove() ;
+                                                           
+                                                           var componentType = component.find("#business_address_type").val() ;
+                                                           var primaryEntityType = component.find("#PrimaryEntityTypeFlag").val() ;
+                                                          console.log('lpJunction::' );
+                                                           var lpJunction = ADDRESS_UTILITY.getMatchingLPJunctionRecord(result.licenseParcels , componentType , primaryEntityType) ;
+                                                           console.log('lpJunction::after::'+ lpJunction);
+                                                           var ppJunction = ADDRESS_UTILITY.getMatchingPPJunctionRecord(result.permitParcels , componentType , primaryEntityType) ;
+                                                           
+                                                           
+                                                           if(lpJunction == null && ppJunction == null){
+                                                               // License Parcel junction and Permit Parcel is not available , 
+                                                               // Draw business address list 
+                                                               ADDRESS_UTILITY.prepareBusinessAddressListForEachComponent(result.parcelRecords , component.find(".ReadOnlybusinessAddress"));
+                                                           }else if(lpJunction == null && ppJunction != null){
+                                                               //License parcel junction is available , paint success panel
+                                                               var parcel = ADDRESS_UTILITY.getParcelRecordFromList(result.parcelRecords , ppJunction.MUSW__Parcel__c) ;
+                                                               var successPanel = component.find("#license_address_success_panel") ;
+                                                               successPanel.empty() ;
+                                                               
+                                                               var successMessage ;
+                                                               if(keepSuccessMessage == true )
+                                                               { 
+                                                                   successMessage = $("<div class='savedSuccess'>").append
+                                                                   (
+                                                                       $("<span>").addClass("glyphicon glyphicon-ok-sign").attr("aria-hidden",true),
+                                                                       $("<span>").html("ADDRESS SAVED SUCCESSFULLY")
+                                                                   );
+                                                               }
+                                                               
+                                                               var addressHtml ;
+                                                               if(parcel != null )
+                                                               {
+                                                                   addressHtml = ADDRESS_UTILITY.prepareOnlyAddressHtml(parcel) ;
+                                                               }
+                                                               var hiddenInfo ;
+                                                               if(parcel != null )
+                                                               {
+                                                                   hiddenInfo = $("<div>").attr("id","component_license_hidden_div").append
+                                                                   (
+                                                                       $("<input>").attr({"id":"selected_license_parcel","type":"hidden"}).val(JSON.stringify(ppJunction)) ,
+                                                                       $("<input>").attr({"id":"parcel_records_list","type":"hidden"}).val(JSON.stringify(result.parcelRecords)) 
+                                                                   );
+                                                               }   
+                                                               var changeButton;
+                                                               if(parcel != null )
+                                                               {
+                                                                   changeButton  = $("<button>").addClass("btn btn-primary btn-very-small").attr({"type":"button", "id":"changeAddressBtn"})
+                                                                   .append
+                                                                   (
+                                                                       $("<span>").addClass("glyphicon glyphicon-pencil"),
+                                                                       $("<span>").html("USE DIFFERENT ADDRESS")
+                                                                   ).on("click",function(e)
+                                                                        {
+                                                                            ADDRESS_UTILITY.reinitComponentForPermitAddressChange(component);
+                                                                        }) ;
+                                                               }       
+                                                               
+                                                               var addressName ;
+                                                               /*if(parcel != null )
+                    {
+                    addressName  = $("<div>").append(
+                             $("<span>").html(parcel.Comments__c).css("font-weight","bold"),
+                            $("<br>")
+                            );
+                    }*/
+                                                               successPanel.append(
+                                                                   $("<div>").addClass("col-sm-7").append(successMessage , addressName , addressHtml) ,
+                                                                   $("<div>").addClass("col-sm-3").append( changeButton )
+                                                               );
+                                                               
+                                                               // Put hidden info inside component 
+                                                               
+                                                               component.append(hiddenInfo) ;
+                                                               // Hide other sections 
+                                                               component.find(".ReadOnlybusinessAddress").empty() ;
+                                                               component.find("#add_address_btn_container").find("#addAddressBtn").hide() ;
+                                                               component.find("#save_as_address_btn_container").find("#save_as_address_button_element").remove() ;
+                                                               component.find("#save_as_address_btn_container").find("#save_as_address_button_element_for_junction").remove() ;                
+
+                                                               
+                                                           }else if(lpJunction != null && ppJunction == null){
+                                                               //License parcel junction is available , paint success panel
+                                                               console.log('inside lpJunction::');
+                                                               var parcel = ADDRESS_UTILITY.getParcelRecordFromList(result.parcelRecords , lpJunction.MUSW__Parcel__c) ;
+                                                               var successPanel = component.find("#license_address_success_panel") ;
+                                                               successPanel.empty() ;
+                                                               
+                                                               var successMessage ;
+                                                               if(keepSuccessMessage == true )
+                                                               { 
+                                                                   console.log('inside keepSuccessMessage::'+ keepSuccessMessage);
+                                                                   successMessage = $("<div class='savedSuccess'>").append
+                                                                   (
+                                                                       $("<span>").addClass("glyphicon glyphicon-ok-sign").attr("aria-hidden",true),
+                                                                       $("<span>").html("ADDRESS SAVED SUCCESSFULLY")
+                                                                   );
+                                                               }
+                                                               
+                                                               var addressHtml ;
+                                                               if(parcel != null )
+                                                               {
+                                                                   addressHtml = ADDRESS_UTILITY.prepareOnlyAddressHtml(parcel) ;
+                                                                   console.log('inside addressHtml::' + addressHtml);
+                                                               }
+                                                               var hiddenInfo ;
+                                                               if(parcel != null )
+                                                               {
+                                                                   hiddenInfo = $("<div>").attr("id","component_license_hidden_div").append
+                                                                   (
+                                                                       $("<input>").attr({"id":"selected_license_parcel","type":"hidden"}).val(JSON.stringify(lpJunction)) ,
+                                                                       $("<input>").attr({"id":"parcel_records_list","type":"hidden"}).val(JSON.stringify(result.parcelRecords)) 
+                                                                   );
+                                                               }   
+                                                               var changeButton;
+                                                               if(parcel != null )
+                                                               {
+                                                                 console.log('inside changeButton::');
+                                                                   changeButton  = $("<button>").addClass("btn btn-primary btn-very-small").attr({"type":"button", "id":"changeAddressBtn"})
+                                                                   .append
+                                                                   (
+                                                                       $("<span>").addClass("glyphicon glyphicon-pencil"),
+                                                                       $("<span>").html("USE DIFFERENT ADDRESS")
+                                                                   ).on("click",function(e)
+                                                                        {
+                                                                            ADDRESS_UTILITY.reinitComponentForAddressChange(component);
+                                                                        }) ;
+                                                               }       
+                                                               
+                                                               var addressName ;
+                                                               /*if(parcel != null )
+                    {
+                    addressName  = $("<div>").append(
+                             $("<span>").html(parcel.Comments__c).css("font-weight","bold"),
+                            $("<br>")
+                            );
+                    }*/
+                                                               successPanel.append(
+                                                                   $("<div>").addClass("col-sm-7").append(successMessage , addressName , addressHtml) ,
+                                                                   $("<div>").addClass("col-sm-3").append( changeButton )
+                                                               );
+                                                               
+                                                               // Put hidden info inside component 
+                                                               
+                                                               component.append(hiddenInfo) ;
+                                                               // Hide other sections 
+                                                               component.find(".ReadOnlybusinessAddress").empty() ;
+                                                               component.find("#add_address_btn_container").find("#addAddressBtn").hide() ;
+                                                               component.find("#save_as_address_btn_container").find("#save_as_address_button_element").remove() ;
+                                                               component.find("#save_as_address_btn_container").find("#save_as_address_button_element_for_junction").remove() ;                
+                                                              console.log('end::');
+                                                           }
+                                                       });
+            
+        },
+        handleCallbackFromLicenseOperation : function(callBackParameter )
+        {
+            
+            var EditRMInput = new Object();
+            
+            EditRMInput.accountId = callBackParameter.accountId ;
+            EditRMInput.licenseId = callBackParameter.licenseId ;
+            EditRMInput.contactId = callBackParameter.contactId ;
+            
+            EditRMInput.isLPJobRemaining = callBackParameter.isLPJobRemaining ;
+            EditRMInput.contextParcelId = callBackParameter.parcelId ;
+            EditRMInput.contextAddressType = callBackParameter.contextAddressType ;
+            EditRMInput.primaryEntityType = callBackParameter.primaryEntityType ;
+            
+            console.log('inside handleCallback::');
+            ADDRESS_UTILITY.hitRemoteMethodCallForEditMode(EditRMInput);
+        },
+        
+        handleCallbackFromPermitOperation : function(callBackParameter )
+        {
+            
+            var EditRMInput = new Object();
+            
+            EditRMInput.accountId = callBackParameter.accountId ;
+            EditRMInput.permitId = callBackParameter.permitId ;
+            EditRMInput.contactId = callBackParameter.contactId ;
+            
+            EditRMInput.isPPJobRemaining = callBackParameter.isPPJobRemaining ;
+            EditRMInput.contextParcelId = callBackParameter.parcelId ;
+            EditRMInput.contextAddressType = callBackParameter.contextAddressType ;
+            EditRMInput.primaryEntityType = callBackParameter.primaryEntityType ;
+            
+            
+            ADDRESS_UTILITY.hitRemoteMethodCallForEditMode(EditRMInput);
+        },
+        
+        redrawAddressComponentAfterDeletion : function(result)
+        {
+            $(".addressSuccessPanel").empty();
+            $(".business_address_edit_container_holder").empty() ;
+            
+            ADDRESS_UTILITY.manageAddAddressButtons();
+            console.log('inside redraw::');
+            ADDRESS_UTILITY.paintAddressComponentForEditMode(result,true);
+        },
+        
+        saveAddressAsOnEntity : function(EditRMInput)
+        {
+            NOTIFICATIONS.spinnerStart();
+            
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.AddressJSUtility_CC.saveAsAddressOnEntity}',
+                EditRMInput,
+                function(result, event)
+                {
+                    console.log('inside data');
+                    ADDRESS_UTILITY.processSaveAsAddressRemoteMethodResult(result,event);
+                },
+                {escape : true}
+            );
+            
+            
+        },
+        
+        
+        processSaveAsAddressRemoteMethodResult : function(result,event)
+        {
+            if(event.type != 'exception')
+            {
+                if(result.isSuccess == true )
+                {
+                    ADDRESS_UTILITY.prepareAddressRowsForAll(result.dataMap);
+                    ADDRESS_UTILITY.manageCheckBoxesForProfile(result.dataMap);
+                    MODAL_UTILITY.errorMessageModal('Primary address has been saved successfully. ');
+                }else
+                {
+                    MODAL_UTILITY.errorMessageModal(event.message);
+                }
+            }else
+            {
+                MODAL_UTILITY.errorMessageModal(event.message);
+            }
+            
+            NOTIFICATIONS.spinnerStop() ;
+        },
+        
+        manageCheckBoxesForProfile : function(result)
+        {
+            
+            $(".business_address_main_container").each(function(index,val)
+                                                       {
+                                                           var eachComponent = $(val) ;
+                                                           if(
+                                                               eachComponent.find("#business_address_type").val() =="Primary" 
+                                                               &&  eachComponent.find("#ComponentUsageFlag").val() =="ContactProfile" )
+                                                           {
+                                                               
+                                                               var junction = ADDRESS_UTILITY.getCorrectParcelContact
+                                                               (
+                                                                   result,
+                                                                   eachComponent.find("#business_address_type").val(),
+                                                                   eachComponent.find("#BusinessContactId").val()
+                                                               ) ;
+                                                               
+                                                               if(junction != null && junction.parcel != null )
+                                                               {
+                                                                   var parcelId = junction.parcel.Id ;
+                                                                   $(".SingleSelectAddressTypeCheckBoxForJunction[id='"+ parcelId +"']").prop("checked",true) ;
+                                                               }
+                                                           }
+                                                       });
+        },
+        getCorrectParcelContact : function(result,addressType,profileId)
+        {
+            var junction = null ;
+            
+            for(var eachRec in result)
+            {
+                if(profileId == eachRec)
+                {
+                    if(addressType =='Primary')
+                    {
+                        $(result[eachRec]).each(function(index,val)
+                                                {
+                                                    if(val.parcelContact != null )
+                                                    {
+                                                        if(val.parcelContact.MUSW__Primary__c == true)
+                                                        {
+                                                            junction = val ;
+                                                            return false ;
+                                                        }
+                                                    }
+                                                });
+                    }
+                }
+            }
+            return junction ;
+        }
+        
+        
+        
+    }
+    
+    $(document).ready(function()
+                      {
+                          var totalComponentInNewMode = 0 ;
+                          $(".business_address_main_container").each(function(index,val)
+                                                                     {
+                                                                         var eachComponent = $(val) ;
+                                                                         
+                                                                         if(eachComponent.find("#ExecutionModeFlag").val() == 'New' )
+                                                                         {
+                                                                             totalComponentInNewMode++ ;
+                                                                         }
+                                                                     });
+                          
+                          
+                          if(totalComponentInNewMode > 0 )
+                          {
+                              ADDRESS_UTILITY.loadAddressConfigurations();
+                              ADDRESS_UTILITY.loadBusinessAddressList();
+                          }
+                          
+                          ADDRESS_UTILITY.configureComponnetForEditMode();
+                          
+                      });
+    </script>
+    
+</apex:component>

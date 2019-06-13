@@ -1,0 +1,584 @@
+<apex:component layout="block">
+    <apex:attribute name="DesignatedAgentList" type="String" description="Affiliations records"/>
+    <apex:attribute name="parentId" type="string" description="license Id" />
+    <apex:attribute name="servId" type="string" description="license Id" />
+    <apex:attribute name="compLabel" type="String" description="Label"/>
+    <apex:attribute name="license" type="MUSW__License2__c" description="license"/>
+    <apex:attribute name="compDesc" type="String" description="Description"/>
+    <apex:attribute name="affiliationObject" type="Affiliation__c" description="Affiliation object"/>
+    <div class="col-sm-3 col-md-3">
+        <h2>{!compLabel}</h2>
+        <p><apex:outputText value="{!compDesc}" escape="false" /></p>
+    </div>
+    <div class="labeloverflowing col-sm-5 col-sm-offset-1 col-md-5 no-padding">
+        <!-- Display list of records -->
+        <div class="home">
+            <div class="BusinessOwnersList">
+                <div class="row">
+                    <ul class="list-style-none" id="BusinessOwnersListDAC">
+                        <!-- Attach existing rows here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Record entry form -->
+        <div class="row ownersFormSectionDAC" style="display:none" id="ownersFormSectionEditContainerDAC">
+            <form class="animated-form">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group-inanimated required">
+                            <apex:outputLabel value="Type of Affiliation" styleClass="" for="typeofAffDAC" />
+                            <apex:inputField value="{!affiliationObject.Type__c}" styleClass="form-control" id="typeofAffDAC" html-aria-required="true" >
+                                <apex:actionsupport event="onchange" rerender="allowtosave" oncomplete="showHide()"/>
+                            </apex:inputField>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group-inanimated required">
+                            <label for="NameDac" id="NameLabel">First Name</label>
+                            <input class="form-control" id="NameDac" aria-required="true"/>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group-inanimated required">
+                            <label for="LastNameDAC" id="LastNameLabel">Last Name</label>
+                            <input class="form-control" id="LastNameDAC" aria-required="true"/>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group-inanimated required">
+                            <label for="CredentialNumberDAC" id="CredentialNumberLabel">Credential Number</label>
+                            <input class="form-control" id="CredentialNumberDAC" aria-required="true" />
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="extraSection">
+                    <div class="row">
+                        <div class="col-sm-6" >
+                            <div class="form-group-inanimated required">
+                                <label for="contactEmailDAC" id="contactEmailLabel">Email</label>
+                                <input class="form-control" id="contactEmailDAC" type="email" aria-required="true" />
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated required">
+                                <apex:outputLabel value="Phone" styleClass="" for="phoneNumberDAC" />
+                                <apex:inputField id="phoneNumberDAC" styleClass="form-control"  html-aria-required="true" value="{!affiliationObject.Contact_s_Phone__c}"/> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group-inanimated required">
+                                <label for="addressDAC" id="addressLabel">Street Address</label>
+                                <input type="text" class="form-control" id="addressDAC" aria-required="true"/>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group-inanimated required">
+                                <label for="cityDAC" id="cityLabel">City</label>
+                                <input type="text" class="form-control" id="cityDAC" aria-required="true"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group-inanimated required">
+                                <label for="stateDAC" id="stateLabel">State</label>
+                                <select class="selectPicker" id="stateDAC" aria-required="true">
+                                    <option value=""></option>
+                                    <!-- Append picklist values here -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group-inanimated required">
+                                <label for="zipCodeDAC" id="zipCodeLabel">ZipCode</label>
+                                <input type="text" class="form-control" maxlength="5" id="zipCodeDAC" aria-required="true" />
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated required">
+                                <label class="top-label" for="startdateDAC" id="startDateLabel">Start Date <span class="hiddenText">(MM/DD/YYYY)</span></label>
+                                <input type="text" class="form-control customDateNow" id="startdateDAC" aria-required="true"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated ">
+                                <label class="top-label" for="enddateDAC" id="endDateLabel">End Date <span class="hiddenText">(MM/DD/YYYY)</span></label>
+                                <input type="text" class="form-control customDateNow" id="enddateDAC"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row addOwnerBtnDAC">
+                    <div class="col-sm-11 btn-paddingMid">
+                        <input type="button" class="btn btn-tertiary cancelOwnerDAC" value="Cancel" id="affiliationCancel1" />
+                        <input type="button" class="btn btn-primary btn-space" value="Save" id="ownersFormSectionDAC" />
+                    </div>
+                </div>
+                <div id="OwnerListDivDAC" style="display: none; ">
+                    <apex:outputLabel value="{!DesignatedAgentList}"/>
+                </div>                    
+                
+            </form>
+        </div>
+        <div class="row addOwnerSectionDAC">
+            <input type="button" class="btn btn-secondary" value="Add Individual" id="addOwnerSectionDAC"/>
+        </div>
+    </div>
+    <section class="row"></section>
+    <script>
+    // Initialize everything
+    var recordsOwnersDAC = '';
+    var OwnerstateListDAC = '';
+    var validationMapper = {};
+    var currentRecordId='';
+    var editBusinessownerrecordDAC='';
+    sforce.connection.sessionId = '{!$Api.Session_ID}';
+    
+    function showHide(){
+        if($("[id$='typeofAffDAC']").val()=="Primary Enforcement Contact"){
+            $('#extraSection').show();
+        }
+        else 
+        {
+            $('#extraSection').hide();
+        }
+    }
+    // On page load
+    $(function() {
+        DELEGATEDAGENTCOMP.loadEvents();
+        DELEGATEDAGENTCOMP.getStatePicklist();
+        DELEGATEDAGENTCOMP.getRecords();
+    });
+    
+    DELEGATEDAGENTCOMP = {
+        /* Build Validation Object */ 
+        /* Convert date for UI */
+        dateConverter: function(currDate) {
+            var utcDateNow = ''; 
+            if(currDate != null) {
+                utcDateNow = new DateUtility().toDisplay(currDate); 
+            }
+            return utcDateNow;
+        },
+        
+        BuildValidationObject: function() {
+            validationMapper.businessownersDAC = {};
+            validationMapper.businessownersDAC.validationObject = {
+                fields:[
+                    {
+                        id:"NameDac",
+                        required: "true",
+                        name: "First Name",
+                        watch: true
+                    },
+                    {
+                        id:"LastNameDAC",
+                        required: "true",
+                        name: "Last Name",
+                        watch: true
+                    },
+                    {
+                        id:"phoneNumberDAC",
+                        name: "Phone",
+                        validator: "Phone",
+                        watch: true,
+                        event: "change",
+                        required: "true",
+                    },
+                    {
+                        id:"contactEmailDAC",
+                        required: "true",
+                        name: "Email",
+                        validator: "Email",
+                        watch: true
+                    },{
+                        id:"CredentialNumberDAC",
+                        name: "Credential Number",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"addressDAC",
+                        name: "Address",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"cityDAC",
+                        name: "City",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"stateDAC",
+                        name: "State",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"zipCodeDAC",
+                        name: "Zip Code",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"typeofAffDAC",
+                        name: "Type",
+                        watch: true,
+                        required: "true"
+                    },
+                    {
+                        id:"startdateDAC",
+                        required: true,
+                        name: "Start Date",
+                        validator: "Date",
+                        watch: true
+                    },
+                    {
+                        id:"enddateDAC",
+                        required: false,
+                        name: "End Date",
+                        validator: "Date",
+                        watch: true
+                    }
+                ]
+            }
+            validationMapper.businessownersDAC.validationObject2 = {
+                fields:[
+                    {
+                        id:"NameDac",
+                        required: "true",
+                        name: "Name",
+                        watch: true
+                    },
+                    {
+                        id:"LastNameDAC",
+                        required: "true",
+                        name: "Last Name",
+                        watch: true
+                    },
+                    {
+                        id:"CredentialNumberDAC",
+                        name: "Credential Number",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"typeofAffDAC",
+                        name: "Type",
+                        watch: true,
+                        required: "true"
+                    }
+                ]
+            }
+            validationMapper.businessownersDAC.validator = new ValidationEngine(validationMapper.businessownersDAC.validationObject);
+            validationMapper.businessownersDAC.validator2 = new ValidationEngine(validationMapper.businessownersDAC.validationObject2);
+        },
+        
+        /* Load all JQuery events */
+        loadEvents: function() {
+            
+            /* Event - Click 'Add Affiliation' for loading new form */
+            $("#addOwnerSectionDAC").on("click", function() {
+                DELEGATEDAGENTCOMP.BuildValidationObject();
+                $(".ownersFormSectionDAC").show();
+                $(".addOwnerSectionDAC").hide();
+                $(".addOwnerBtnDAC").show();
+            });
+            
+            
+            $("#ownersFormSectionDAC").on("click", function() {
+                if($("[id$='typeofAffDAC']").val()=="{!$Label.Str_Primary_Enforcement_Contact}"){
+                    if(validationMapper.businessownersDAC.validator.errors().length <= 0){
+                        $("#ownersFormSectionDAC").prop("disabled",true);
+                        DELEGATEDAGENTCOMP.saveRecord();
+                        $("#ownersFormSectionDAC").prop("disabled",false);
+                    } else {
+                        MODAL_UTILITY.errorMessageModal(validationMapper.businessownersDAC.validator.errorHtml());
+                    }
+                }
+                else{
+                    if(validationMapper.businessownersDAC.validator2.errors().length <= 0){
+                        $("#ownersFormSectionDAC").prop("disabled",true);
+                        DELEGATEDAGENTCOMP.saveRecord();
+                        $("#ownersFormSectionDAC").prop("disabled",false);
+                    } else {
+                        MODAL_UTILITY.errorMessageModal(validationMapper.businessownersDAC.validator2.errorHtml());
+                    }
+                    
+                }
+            });
+            
+            
+            $(".cancelOwnerDAC").on("click", function() {
+                DELEGATEDAGENTCOMP.clearUI();
+            });
+        },
+        
+        /* To manage css for animation*/
+        manageAnimatedFormCss : function()
+        {
+            var editForm = $("#ownersFormSectionEditContainerDAC") ;
+            editForm.find("input[type='text']").each(function(index,val)
+                                                     {
+                                                         if($(val).val() != '' )
+                                                         {
+                                                             $(val).closest(".form-group").find("label").removeClass().addClass("animated") ;
+                                                         }
+                                                     });
+        },
+        
+        /* Function - dynamic events */
+        loadDynamicEvents: function() {
+            
+            $('.navbar').mouseover(function(event) {
+                $(this).find('.navbar-tool').show();
+            });
+            
+            //mouse out of navbar
+            $('.navbar').mouseout(function(event) {
+                $(this).find('.navbar-tool').hide();
+            });
+            
+            $(".editBusinessOwnerButton").on("click", function() {
+                // Get current Id
+                DELEGATEDAGENTCOMP.clearUI();
+                currentRecordId = $(this).attr("Id");
+                currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+                // Loop through list
+                
+                $.each(recordsOwnersDAC, function(i, val) {
+                    // Once record is found
+                    if(val.Id == currentRecordId) {
+                        editBusinessownerrecordDAC=val;
+                        // Load other values     
+                        
+                        $('#NameDac').val(val.Contact_s_Name__c);
+                        $('#LastNameDAC').val(val.Contact_s_Last_Name__c);
+                        $("#startdateDAC").val(DELEGATEDAGENTCOMP.dateConverter(val.Start_Date__c));
+                        if(val.End_Date__c!=null&&val.End_Date__c!=''){
+                            $("#enddateDAC").val(DELEGATEDAGENTCOMP.dateConverter(val.End_Date__c));
+                        }
+                        $('select[id$=typeofAffDAC]').val(val.Type__c);
+                        $("#addressDAC").val(val.Contact_s_Street_Address__c);
+                        $("#cityDAC").val(val.Contact_s_City__c );
+                        $("#stateDAC").val(val.Contact_s_state__c);
+                        $("#zipCodeDAC").val(val.Contact_s_Zip_code__c);
+                        $("#contactEmailDAC").val(val.Contact_s_Email__c);
+                        $("#CredentialNumberDAC").val(val.Contact_s_Credential_Number__c);
+                        $('input[id$=phoneNumberDAC]').val(val.Contact_s_Phone__c);                      
+                        DELEGATEDAGENTCOMP.manageAnimatedFormCss();
+                    }
+                    //   showHide();
+                });
+                
+                // Show-hide UI
+                DELEGATEDAGENTCOMP.BuildValidationObject();
+                $(".ownersFormSectionDAC").show();
+                $(".addOwnerSectionDAC").hide();
+                $(".addOwnerBtnDAC").show();                
+            });
+            
+        },
+        
+        /* Function - For querying picklist records */
+        getStatePicklist: function() {
+            
+            // Picklist markup
+            var innerHtmlStateList = '';
+            // Get object description
+            var result = sforce.connection.describeSObject("{!$Label.API_Affiliation}");
+            
+            // Get picklist array
+            for (var i=0; i < result.fields.length; i++) {
+                var rt = result.fields[i];
+                if(rt.name == 'Contact_s_state__c') {
+                    OwnerstateListDAC = rt.getArray("picklistValues");
+                }
+            }
+            
+            // Add picklist values to markup
+            $.each(OwnerstateListDAC, function(i, val) {
+                innerHtmlStateList += '<option value="' + val.value + '">' + val.label + '</option>';
+            });
+            
+            // Append markup
+            $("#stateDAC").append(innerHtmlStateList);
+        },
+        /* Function - For querying records */
+        getRecords: function() {
+            
+            // Get data from
+            recordsOwnersDAC = $("#OwnerListDivDAC").text();
+            recordsOwnersDAC = JSON.parse(recordsOwnersDAC);
+            
+            // Call markup injection method if records are received
+            if(recordsOwnersDAC != null) {
+                // Inject markup
+                DELEGATEDAGENTCOMP.loadRecords();
+                
+                // Show section
+                $(".BusinessOwnersListDAC").show();
+            }
+        },
+        /* Function - Populate Existing records */
+        loadRecords: function() {
+            
+            // Clear affiliation records from UI
+            $("#BusinessOwnersListDAC").empty();
+            
+            // Build markup
+            var innerHtmlOwner =''; 
+            $.each(recordsOwnersDAC, function( i, val ) {
+                
+                
+                // If institution name in other field
+                var Name = (val.Contact_s_Name__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Name__c;
+                var LastName = (val.Contact_s_Last_Name__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Last_Name__c;
+                var typeofAff = (val.Type__c+"")== "undefined" ? "&nbsp;" : val.Type__c;
+                var address = (val.Contact_s_Street_Address__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Street_Address__c;
+                var city = (val.Contact_s_City__c+"")== "undefined" || (val.Contact_s_City__c)== ""? "&nbsp;" : val.Contact_s_City__c;
+                var state = (val.Contact_s_state__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_state__c;
+                var zipCode = (val.Contact_s_Zip_code__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Zip_code__c;
+                var Name = (val.Contact_s_Name__c+"")== "undefined" ?  "&nbsp;" : val.Contact_s_Name__c;
+                var phone = (val.Contact_s_Phone__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Phone__c;
+                var credentialNumber = (val.Contact_s_Credential_Number__c +"")== "undefined" ? "&nbsp;" : val.Contact_s_Credential_Number__c ;                
+                // Add markup
+                
+                if(typeofAff=='Primary Enforcement Contact'){
+                    innerHtmlOwner += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9"><h5>'+Name+'  '+LastName+'</h5></div><div class="col-sm-3"><button type="button" class="btn-square-icon editBusinessOwnerButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil"></span></button></div></div><div class="row"><div class="col-sm-12">Status : '+val.Status__c+'</div><div class="col-sm-12">Type  : '+typeofAff+'</div><div class="col-sm-12">Credential Number : '+credentialNumber+'</div><div class="col-sm-12">Phone : '+phone+'</div><div class="col-sm-12">Address : '+address+'</div><div class="col-sm-12">'+city+ '  '+state+'  ' +zipCode+'</div></div></li>';
+                }
+                else{
+                    innerHtmlOwner += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9"><h5>'+Name+'  '+LastName+'</h5></div><div class="col-sm-3"><button type="button" class="btn-square-icon editBusinessOwnerButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil"></span></button></div></div><div class="row"><div class="col-sm-12">Status : '+val.Status__c+'</div><div class="col-sm-12">Type  : '+typeofAff+'</div><div class="col-sm-12">Credential Number : '+credentialNumber+'</div></div></li>';
+                    
+                }
+            });
+            
+            // Append records where the current user is the Supervisee 
+            $("#BusinessOwnersListDAC").append(innerHtmlOwner);
+            
+            // Load jquery events
+            DELEGATEDAGENTCOMP.loadDynamicEvents();
+            
+            // Stop spinner
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        /* Function - Save a record */
+        saveRecord: function() {
+            // Start spinner
+            NOTIFICATIONS.spinnerStart();
+            // Initialize affiliation object            
+            var affiliationObjdac = new sforce.SObject("{!$Label.API_Affiliation}");
+            //affiliationObjdac.Application_Type__c=licGlobalObj.applicationType;
+            if(editBusinessownerrecordDAC!=''&&editBusinessownerrecordDAC!=null){
+                affiliationObjdac.Id=editBusinessownerrecordDAC.Id;
+            }
+            if($("[id$='typeofAffDAC']").val()=="{!$Label.Str_Primary_Enforcement_Contact}"){
+                affiliationObjdac.Start_Date__c = new DateUtility().toUTC($("#startdateDAC").val());
+                if($("#enddateDAC").val()!=null&&$("#enddateDAC").val()!='') {
+                    affiliationObjdac.End_Date__c = new DateUtility().toUTC($("#enddateDAC").val());
+                }
+                else{
+                    affiliationObjdac.End_Date__c = null;
+                }
+            }
+            
+            affiliationObjdac.Credential__c  =licGlobalObj.licenseId;
+            affiliationObjdac.Contact_s_Name__c = $("#NameDac").val();
+            affiliationObjdac.Contact_s_Last_Name__c = $("#LastNameDAC").val();
+            affiliationObjdac.Contact_s_Street_Address__c = $("#addressDAC").val();
+            affiliationObjdac.Contact_s_City__c = $("#cityDAC").val();
+            affiliationObjdac.Contact_s_state__c = $('#stateDAC').val();
+            affiliationObjdac.Contact_s_Zip_code__c = $("#zipCodeDAC").val();
+            affiliationObjdac.Status__c = 'Pending';
+            affiliationObjdac.RecordTypeId='{!affiliationObject.RecordTypeId}';
+            affiliationObjdac.Type__c=   $('select[id$=typeofAffDAC]').val();
+            affiliationObjdac.Contact_s_Credential_Number__c  = $("#CredentialNumberDAC").val() ;
+            affiliationObjdac.Contact_s_Phone__c = $('input[id$=phoneNumberDAC]').val(); 
+            affiliationObjdac.Contact_s_Email__c= $("#contactEmailDAC").val();
+            if(affiliationObjdac != null) {
+                var newInsert = false;
+                try {
+                    if(affiliationObjdac.Id == undefined) {
+                        newInsert = true;
+                    }
+                    var result = sforce.connection.upsert("Id", [affiliationObjdac]);
+                    
+                    if(result!=null&&result[0].success == 'true') {                 
+                        affiliationObjdac.Id = result[0].id;
+                        
+                        if(newInsert == false) {
+                            var dacArray = [];
+                            $.each(recordsOwnersDAC, function(i, val) {
+                                dacArray.push(val.Id);
+                            });
+                            recordsOwnersDAC.splice(dacArray.indexOf(affiliationObjdac.Id), 1);
+                        }
+                        if(recordsOwnersDAC==null)
+                        {
+                            recordsOwnersDAC=[];  
+                        }
+                        recordsOwnersDAC.push(affiliationObjdac);
+                        DELEGATEDAGENTCOMP.loadRecords();
+                        DELEGATEDAGENTCOMP.clearUI();
+                    }
+                    else {
+                        if(result==null&&event.message=='Page not allowed for the profile'){
+                            window.location.href='/Dashboard';
+                        }
+                        MODAL_UTILITY.errorMessageModal('Error saving record. ' + result[0].errors.message);
+                    }
+                }
+                catch(e) {
+                    // Show error
+                    MODAL_UTILITY.errorMessageModal('Error saving record. ' + e);
+                }
+                
+            }
+            
+            // Stop spinner
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        /* Function - Delete a record */
+        clearUI : function() {
+            // Clear input fields
+            $("#NameDac").val('')
+            $('#LastNameDAC').val('');
+            $("#contactEmailDAC").val('');
+            $("#addressDAC").val('');
+            $("#cityDAC").val('');
+            $("#startdateDAC").val('');
+            $("#enddateDAC").val('');
+            // Clear input fields
+            $('input[id$=phoneNumberDAC]').val('');
+            $("#stateDAC").val('');
+            $("#zipCodeDAC").val('');
+            $("#CredentialNumberDAC").val('')
+            editBusinessownerrecordDAC=null;
+            $("#zipCodeDAC").val('');  
+            $('select[id$=typeofAffDAC]').val('');
+            currentRecordId='';
+            // Show-hide
+            $(".ownersFormSectionDAC").hide();
+            $(".addOwnerBtnDAC").hide();
+            $(".addOwnerSectionDAC").show();
+            
+        }
+        
+    } 
+    </script>
+</apex:component>

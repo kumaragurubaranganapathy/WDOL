@@ -1,0 +1,97 @@
+.THIS {
+}
+.THIS .form-wrapper{
+    background-color:t(LnGWhite);
+    border-radius: 5px;
+  	border: solid 1.5px #e3e4ea;
+}
+.THIS label{
+    font-size: 14px;
+    color:t(LnGFormGray);
+    font-style:normal;
+}
+.THIS .record-wrapper{
+    margin: 25px;
+}
+.THIS .recItem{
+    padding: 10px 10px
+}
+.THIS.edu-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    width:100%;
+}
+.THIS.recordDetail{
+    margin: 1rem 2.5rem; 
+    font-style: italic;
+    color: grey;        
+    width: -webkit-fill-available;
+}
+.THIS .hideButtonStyle{
+    text-align: center;
+    padding-top: 25px;
+}
+.THIS i{
+    font-size: 19px;
+    cursor: pointer;
+    padding: 3px;
+}
+.THIS i:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5);
+  color: black;
+}
+.THIS .fieldItem{
+    width: 40%;
+    float: right;
+}
+.THIS .addRecord{
+    width: 100%;
+}
+.THIS .button-style{
+    background: #ffffff;
+    color: #4c65f2;
+    padding: 4px 20px;
+    border-radius: 50px;
+    font-size:14px;
+    margin-right: 20px;
+}
+.THIS .edit-btn{
+    padding-top:10px;
+}
+.THIS.addRecbtn{    
+    background: #fff;
+    color: #4c65f2;
+    border: 1px solid #d4d4d4;
+    height: 40px;
+    border-radius: 50px;
+    margin: 0 25px 25px 25px;
+    font-size: 14px;
+}
+.THIS .submit-btn{
+    background: t(LnGPrimaryColor);
+    color: t(LnGWhite);
+    border: 1px solid #d4d4d4;    
+    border-radius: 50px;
+    margin: 25px;
+    padding: 4px 20px;
+    font-size: 14px;
+}
+.THIS.full-width{
+    width: 100%;
+}
+.THIS .slds-input{
+    border: none;
+    border-radius:0;
+    background:t(LnGBackgroundGray);
+    font-size:14px;
+    color:t(LnGFormTitleColor);
+    border-bottom: 1px solid #d4d4d4;   
+}
+.THIS .mandatory-icon{
+    color: red;
+}
+.THIS .label-hidden label.slds-form-element__label {
+    display: none;
+}

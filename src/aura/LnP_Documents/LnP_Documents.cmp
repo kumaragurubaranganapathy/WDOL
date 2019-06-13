@@ -1,0 +1,89 @@
+<aura:component controller="LnP_ProgramType" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,lightning:actionOverride" access="global">    
+    
+    <aura:attribute name="programType" type="MUSW__Deposit__c" default= "{'sobjectType':'MUSW__Deposit__c',
+                                                                         'Amount__c': '',
+                                                                         'Form_number__c':'',
+                                                                         'wadol_Program_Type__c':''
+                                                                         }"/>
+    
+    <aura:attribute name="industryMap" type="Map"/>   
+    <aura:attribute name="formnum" type="Map"/>     
+    <aura:attribute name="depositList" type="List" />
+    <aura:attribute name="isDisabled" type="Boolean" default="true" />
+    <aura:attribute name="isDisabledSubmit" type="Boolean" default="true" />
+    <aura:attribute name="validationNumber" type="Integer" /> 
+    <aura:attribute name="customerEnvelopeRec" type="Customer_Envelope__c" access="public"/> 
+   
+    
+    <!-- added by rishap -->
+    <aura:attribute name="numOfPaymentSources" type="Integer" access="public" />
+    <aura:attribute name="paymentSourceTotal" type="Integer" access="public" />
+    <aura:attribute name="stepNumber" type="String"/>
+    <aura:attribute name="insertedReceiptList" type="List" access="public" default="[]"/>
+    <aura:attribute name="depositRec" type="MUSW__Deposit__c" />
+    <aura:attribute name="insertedDepositList" type="List" access="public" default="[]"/>
+    <aura:attribute name="defaultProgramType" type="String" access="public"  />
+    <aura:attribute name="amountDifference" type="Integer"/>
+    <aura:attribute name="industryFormMap" type="Map" />  
+    <aura:attribute name="parentRecordId" type="String"  access="public"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="AddRowEvt" event="c:AddNewRowEvt" action="{!c.addNewRow_}"/>
+    <aura:registerEvent name="toastEvt" type="c:LnP_ToastMessage"/> 
+    
+    <lightning:card >
+        <lightning:layout class="slds-align_absolute-center">
+            <div><lightning:input  disabled="true" label="Validation Number" value="{!v.customerEnvelopeRec.Validation_number__c}"/></div>&nbsp;
+            <div><lightning:input  disabled="true" label="Number of Payment Sources" value="{!v.numOfPaymentSources}"/></div>&nbsp;
+            <div><lightning:input aura:id="numberOfDocuments" disabled="true" label="Number of Documents" value="0"/></div>
+        </lightning:layout>
+        
+        <lightning:layout class="slds-align_absolute-center">
+            <div><lightning:input  disabled="true" label="Date" value="{!v.customerEnvelopeRec.Date_Today_s__c}"/></div>&nbsp;
+            <div><lightning:input  disabled="true" label="Payment Source Total" value="{!v.paymentSourceTotal}" /></div>&nbsp;
+            <div><lightning:input  aura:id="documentTotal" disabled="true" label="Document Total" value="0" /></div>
+        </lightning:layout><br/>
+        
+        
+        <!-- rishap's new component -->
+        <!--Table Part-->   
+        <lightning:layout >        
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer"> 
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Sequence Number">Sequence Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Program Type">Program Type</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Form Number">Form Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Amount">Amount</div>
+                        </th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <aura:iteration items="{!v.depositList}" var="item" indexVar="index">
+                        <c:LnP_DocumentsChildRowCmp depositRec="{#item}" rowIndex="{!index}" industryMap="{!v.industryMap}" 
+                                           formnum="{!v.formnum}" defaultProgramType="{!v.defaultProgramType}" amountDifference="{!v.amountDifference}"
+                                                    paymentSourceTotal = "{#v.paymentSourceTotal}" industryFormMap="{!v.industryFormMap}"/>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <br/>
+        </lightning:layout>
+        <!-- rishap's new component -->   
+        
+        <lightning:layout >
+            <div class="slds-col slds-align_absolute-center slds-m-top_small">
+                <lightning:button variant="brand" label="BACK" onclick="{! c.goToPaymentSourcePage}"/>
+                <lightning:button variant="brand" label="CANCEL" onclick="{!c.gotoListView}"/>
+                <lightning:button variant="brand" name="submit_close" label="SUBMIT AND CLOSE" onclick="{! c.saveCustomerEnvelopeRecord}" disabled="{!v.isDisabledSubmit}"/>
+                <lightning:button variant="brand" name="submit_next" label="SUBMIT AND NEXT" onclick="{! c.goToCustomerEnvelopePage}" disabled="{!v.isDisabledSubmit}"/>
+            </div>
+        </lightning:layout>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,232 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : ReviewAndSubmitNoAffidavit
+** Description      : Review & Submit Attestation
+** Version          : 1.0
+** Built By         : Srikanth Kottam
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Akosa Okwudiafor/Deloitte    07/02/2018              1.0                 Initial Creation
+** Rinku patel/Deloitte         08/08/2018                                  UI changes
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component layout="block" controller="QuestionsForSubmissionctrl">
+    <apex:attribute name="currRecord" description="Current SObject record" type="SObject"/>
+    <apex:attribute name="legalText" description="Legal text" type="String"/>
+    <apex:attribute name="affidavitLink" description="Affidavit link" type="String"/>
+    <apex:attribute name="AttestationFirstName" description="Attestation First Name" type="string"/>
+    <apex:attribute name="AttestationLastName" description="Attestation Last Name" type="string"/>
+    <apex:attribute name="contactRecord" description="Current Contact Record" type="SObject"/>
+    <div class="applicationReviewInProgress" style="display: none;">
+     <apex:attribute name="queList2" assignTo="{!oData}" default="" description="test2" type="QuestionAnswerObj" />
+        
+    </div>
+    <div class="applicationReviewComplete">
+        <div class="reviewInProgress" style="display: none;">
+            <section class="row">
+                <div class="col-sm-4 col-md-4">
+                    <!-- Component heading -->
+                    <h2>Application Review</h2>
+                    <!-- Component description -->
+                    <p>Please wait a few moments while we review your application for errors or missing data.</p>
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <!-- Display list of records -->
+                    <div class="row">
+                        <p></p>
+                    </div>            
+                </div>
+            </section>
+        </div>
+       
+        <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <!-- Component heading -->
+                    <h2>Questions Review</h2>
+                    </div>
+                <div class="col-sm-8 col-md-8">
+                    <!-- Display list of records -->
+                    <div class="row">
+                    <apex:outputPanel id="refreshMust">
+                        <apex:repeat rendered="{!lstDataVal <> null && lstDataVal.size > 0}" value="{!lstDataVal}" var="qData">
+                           <apex:outputText escape="true" value="Question "/> <apex:outputText style="background-color:#D3D3D3;height:120%;" styleClass="form-control" label="Question : " escape="false" value="{!qData.questionBody}"/><br/>
+                            <apex:outputText value="Answer "/> <apex:outputText style="background-color:#D3D3D3" label="Answer : {!qData.answerText} " styleClass="form-control" value="{!qData.answerText}"/><br/>
+                            <apex:outputText rendered="{!qData.answerComment <> null && qData.answerComment <> ''}" value="Answer Comment  "/> <apex:outputText style="background-color:#D3D3D3" styleClass="form-control" label="Answer Comment : " rendered="{!qData.answerComment <> null && qData.answerComment <> ''}" value="{!qData.answerComment}"/><br/>
+                        
+                        </apex:repeat></apex:outputPanel>
+                    </div>
+                </div>
+        </div>
+       
+        
+        <div class="reviewedErrors" style="display: block;">
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <!-- Component heading -->
+                    <h2>Application Review</h2>
+                    <!-- Component description -->
+                    <p>We've reviewed your application and have found the following errors. Please correct these errors and review your application again.</p>                    
+                </div>
+                <div class="col-sm-8 col-md-8" id="appendErrorList">
+                    <!-- Display list of errors --> 
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <!-- Component heading -->
+                    <p>&nbsp;</p>
+                    <!-- Component description -->
+                    <p></p>
+                </div>
+                <div class="col-sm-8 col-md-8 btn-paddingMid">
+                    <!-- Display list of records -->
+                    
+                        <input type="button" class="btn btn-tertiary saveAndLater" value="Save & Finish Later"/>
+                        <!-- <input type="button" class="btn btn-primary" value="Review Again" id="applicationReviewAgain"></input> -->
+                              
+                </div>
+            </div>
+        </div>
+        <div class="reviewedComplete" style="display: none;">
+            <section class="row">
+                <div class="col-sm-4 col-md-4">                    
+                    <!-- Component heading -->
+                    <h2>Application Review</h2>                    
+                    <!-- Component description -->
+                    <p></p>
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <!-- Display list of records -->
+                    <div class="row appCompleted">
+                        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><span>Completed</span>
+                    </div>            
+                </div>
+            </section>
+            <section class="row"></section>
+            <section class="row">
+                <div class="col-sm-4 col-md-4">
+                    <!-- Component heading -->
+                    <h2>Declaration</h2>                    
+                    <!-- Component description -->                    
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <p>I certify, under penalty of perjury in the state of Washington, that all the information I’ve provided in this application and any associated documents is true, complete, and correct.</p>
+                </div>
+            </section>
+            <section class="row"></section>
+            <section class="row">
+                <div class="col-sm-4 col-md-4">
+                    <!-- Component heading -->
+                    <h2>Attestation</h2>
+                    <!-- Component description -->
+                    <!-- <p>{!legalText}</p> -->
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <form class="animated-form">
+                        <!-- Display list of records -->
+                        <div class="row">
+                            <apex:outputLabel value="{!legalText}" escape="false"/>
+                            <p>Consent to Electronic Signature</p>
+                            <div class="col-sm-2 eSignCheck">
+                                <apex:inputField value="{!currRecord['Attestation__c']}" id="iAttest"/>
+                                <span>&nbsp;</span><apex:outputLabel for="iAttest" value="I accept"/>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">&nbsp;</div>
+                            <div class="col-sm-8 no-padding">
+                                <!-- <div class="form-group"> -->
+                                    <apex:outputLabel value="Type your First Name and Last Name as they appear on the application to sign electronically" for="eSignature"/>
+                                    <apex:inputField value="{!currRecord['AttestationFullName__c']}" styleClass="form-control" id="eSignature"/>
+                                <!-- </div> -->
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <p class="nameAttest">({!AttestationFirstName} {!AttestationLastName})</p>
+                        </div>
+                        <!-- Display list of records -->  
+                    </form>  
+                </div>
+            </section>
+            <section class="row"></section>
+            <section class="row">
+                <div class="col-sm-4 col-md-4">
+                    <h2>Submit Your Application</h2>
+                </div>
+                <div class="col-sm-8 col-md-8">
+                   <p> After clicking the ‘Submit’ button below, you will no longer be able to change this application.
+                   <b> PLEASE DO NOT USE THE BROWSER'S BACK BUTTON AS THAT MAY OVERWRITE YOUR DATA. </b>
+                       If you want to return to your application, simply log out and log back in. </p>
+                    <div class="row">
+                        <p>If this application requires payment you will be prompted to begin the payment process. You must complete the payment process before the board will review your application.  If this application does not require payment, you will be navigated back to the eLicense home page and the board will review your application.</p>
+                    </div>
+                    <div class="top-padding">
+                        <input type="button" class="btn btn-tertiary saveAndLater" value="Save AND Finish Later"/>
+                        <input type="button" class="btn btn-primary" value="Submit" id="applicationFinalSubmit" />
+                    </div>            
+                </div>
+            </section>
+        </div>
+        <section class="row"></section>
+    </div>
+    <div class="submissionConfirmation" style="display: none;">
+        <section class="row">
+            <div class="col-sm-4 col-md-4">
+                <h2>Application Pending</h2>
+                <p>Your application is not yet submitted. If there is a fee associated to your application you must select ‘Make Payment’ and proceed through the cart to finish processing the application. If there are multiple fees associated to your application you must select and pay for all fees in order for the application to be considered submitted.</p>
+                <br/>
+                <p>To submit an application with no associated fee, please simply select the ‘Back to Dashboard’ button.</p>
+            </div>
+            <div class="col-sm-8 col-md-8">
+                <div class="row">
+                    <input type="button" class="btn btn-tertiary" value="Print Confirmation" id="applicationPrintConfirmation" />
+                    <input type="button" class="btn btn-primary" value="Make Payment" id="applicationMakePayment" style="display: none;" />
+                    <input type="button" class="btn btn-primary" value="Back to Dashboard" id="applicationToDashboard" style="display: none;" />
+                </div>            
+            </div>
+        </section>
+    </div>
+    <section class="row"></section>
+    
+    <apex:inputHidden id="newData" value="{!oData}"/>
+    <apex:actionFunction name="refreshRequired" rerender="refreshMust"/>
+
+    <!-- Javasctipt -->
+    <apex:includeScript value="{!$Resource.JS_ReviewSubmitComp}" />
+    <!-- Javasctipt -->
+
+    <script type="text/javascript">
+    // Global variables
+    var isErrors = false;
+    var shouldReviewAgain = false;
+
+    // Document load
+    $(function() {
+        REVIEWCOMPNS.loadEvents();
+                 var checkSR = "{!$Label.Str_Service_Request}";
+            if(licGlobalObj.applicationType == checkSR){
+                $('.saveAndLater').hide();
+            } else {
+                $('.saveAndLater').show();
+            }
+    });
+    
+     function changeDataAccordingly(givenDataValue)
+    {
+        if(givenDataValue)
+        {
+            $("[id$='newData']").val(givenDataValue);
+            refreshRequired();
+            
+        }
+    }
+    </script>
+</apex:component>
