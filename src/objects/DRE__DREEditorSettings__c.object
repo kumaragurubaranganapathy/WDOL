@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Customizes DRE/DTE editors</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>DRE__Enable_Inner_Scope__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If selected the DRE Rule Editor will show a secondary scoping method under Actions by which you can perform nested repeats over children or global records</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected the DRE Rule Editor will show a secondary scoping method under Actions by which you can perform nested repeats over children or global records</inlineHelpText>
+        <label>Enable Inner Scope</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DRE__Enable_Quick_Entry_Mode__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If selected the Editors will switch to a data entry based layout. For example the field dropdown list no longer shows</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected the Editors will switch to a data entry based layout. For example the field dropdown list no longer shows</inlineHelpText>
+        <label>Enable Quick Entry Mode</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DRE__Show_API_Names__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If selected the Editors will show API names for objects and fields instead of their labels</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected the Editors will show API names for objects and fields instead of their labels</inlineHelpText>
+        <label>Show API Names</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DRE__Show_DRE_Objects__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If selected the DRE Rule Editor will display DRE/DTE objects (including the packaged ones). Also the DRE Config page will make certain DRE/DTE objects available for enabling (the packaged triggers are already enabled and cannot be configured)</description>
+        <externalId>false</externalId>
+        <label>Show DRE Objects</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DRE__Show_Tooltips__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Show Tooltips</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DRE__Theme_Version__c</fullName>
+        <defaultValue>1.0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Theme Version</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>DRE Editor Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

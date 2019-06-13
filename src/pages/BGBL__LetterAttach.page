@@ -1,0 +1,227 @@
+<apex:page controller="BGBL.LetterAttachController">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <apex:slds />
+    <body onLoad="preparePage()">
+    <apex:includeScript value="{!URLFOR($Resource.MUSW__jQuery183,'jquery-1.8.3.js')}" />
+    
+
+    <div class="slds-scope">
+    <!-- Caution : The encType handled by the letter engine server is multipart/form-data -->
+    <apex:form id="changeTemplateLetter" enctype="multipart/form-data" styleClass="slds-p-around--large">
+        <apex:sectionHeader title="Generate Document" id="l">
+            <apex:pageMessages escape="false" id="msg"/>
+        </apex:sectionHeader>
+        <apex:commandLink action="{!goBack}" value="{!parentRecordName}" />
+        <!-- Caution : input fields used for the letter generator, after submitting the form -->
+        <input id="OrgId" name="OrgId" type="hidden" value="{!$Organization.Id}" /> 
+        <input id="OrgName" name="OrgName" type="hidden" value="{!$Organization.Name}" />
+        <input id="SessionId" name="SessionId" type="hidden" value="{!$API.Session_ID}" /> 
+        <input id="ApiServerUrl" name="ApiServerUrl" type="hidden" value="{!$Api.Partner_Server_URL_350}" />
+        <input id="saveDocumentasFile" name="saveDocumentasFile" type="hidden" value="{!$Setup.BGBL__Letter_Single__c.BGBL__Save_Generated_Document_as_File__c}" />
+        <input id="BatchLetterName" name="ParentBatchLetterName" type="hidden" value="License Renewal" /> 
+        <input id="BatchLetterId" name="ParentBatchLetterId" type="hidden" value="" /> 
+        <input id="JobId" name="JobId" type="hidden" value="" /> 
+        
+        <input id="TemplateId" name="TemplateId" type="hidden" value="0" /> 
+        
+        <input id="OutputType" name="OutputType" type="hidden" value="doc" /> 
+        <input id="OverrideParams" name="OverrideParams" type="hidden" value="" /> 
+        <input id="recid" name="recid" type="hidden" value="" /> 
+        <input id="IterateChildIds" name="IterateChildIds" type="hidden" value="" /> 
+        <input id="referrerUrl" name="referrerUrl" type="hidden" value="" />
+        <input id="ParentQueryIds" name="ParentQueryIds" type="hidden" value="" />
+
+        <apex:outputPanel id="LetterFields" rendered="{!!keepPolling}" layout="block" styleClass="slds-card">
+            <div class="slds-card__header">
+                <h2 class="slds-text-heading--medium">Letter Template</h2>
+                <apex:pageMessages />
+            </div>
+            
+            <div class="slds-card__body slds-grid slds-grid--align-center" draggable="false" >
+                <div class="slds-size--3-of-4 slds-medium-size--2-of-3 slds-large-size--1-of-3 slds-text-align--center">
+                    <apex:selectList size="1" value="{!selectedTemplateLetterId}" id="templateList" multiselect="false" onChange="RefreshCCList()" onclick="onChangeEvent(this.value)" styleClass="slds-select">
+                        <apex:selectOptions value="{!letterTemplateList}"/>
+                    </apex:selectList>
+                   
+                    <br/><br/>
+                    <apex:selectList size="5" id="ccList" multiselect="true" styleClass="{!if(copyList.size>0,'slds-select','hidden')}"  style="margin: 20 20 20 20;">
+                        <apex:selectOptions value="{!copyList}"/>
+                    </apex:selectList>
+                    
+                    <apex:actionFunction name="RefreshCCList" rerender="ccList" />
+                     
+                    <br/><br/>
+                    <apex:outputPanel >
+                        <apex:commandButton id="requestBtn" value="Request" style="center" onclick="createJob()" rerender="changeTemplateLetter" styleClass="{!if($User.UITheme == 'Theme3', '','slds-button slds-button--brand') }"/>
+                        <apex:actionFunction name="afterValidation" rerender="changeTemplateLetter" action="{!batchJobPoll}"/>
+                    </apex:outputPanel>
+                </div>  
+            </div>  
+        </apex:outputPanel>
+   
+        <apex:outputPanel rendered="{!keepPolling}">
+                <apex:pageMessages />
+                <apex:actionPoller rendered="{!jobId != null}" action="{!batchJobPoll}" interval="5" reRender="msg,LetterFields,progressStatus" />
+
+                <div class="preloader2"/>
+        </apex:outputPanel>
+    </apex:form>
+    <div id="errorSection" class="hidden slds-p-around--large slds-text-color--error slds-text-align--center"> 
+        <span id = "errorMsg" name = "errorMsg" class="slds-text-heading--small">&nbsp;Letter generation failed. Please contact system administrator for details.</span>
+    </div>  
+    <div id="autorun" class="hidden slds-text-align--center slds-text-heading--small">   
+        <div class="slds-m-vertical--small">
+            <span >Processing </span><span id = "letterLabel" name = "letterLabel">{!letterTemplateName}</span><span>&nbsp;letter, please wait...</span> 
+            <span >Status : &nbsp;<apex:outputText id="progressStatus" value="{!currentJobStatus}" /></span> 
+        </div>
+         
+        <img id="waitingdots" src="/img/waiting_dots.gif" alt="Please wait..." width="196" height="20" title="Please wait..." /> 
+     
+        <div class="slds-m-vertical--small">...when completed, you will be redirected to this new letter</div> 
+    </div>
+    <DIV id="divDebugHeader" style="display:none"> 
+        <hr/> 
+        <b>Debug Mode</b> 
+    </DIV> 
+    <DIV id="divDebug" style="display: none"></DIV> 
+    <div id="responseErrors"></div>
+    </div>
+    </body>
+    <script>
+
+        window.onload=function()
+        {
+            var letterJob = '{!$CurrentPage.parameters.jobId}';
+            if(letterJob != ''){
+                $("#autorun").show();
+            }
+        };
+
+        function preparePage() 
+        {
+            // hide the message boxes 
+            $("#errorSection").hide();
+            $("#autorun ").hide();
+            $("#save").removeAttr('disabled'); 
+            $("#letter").removeAttr('disabled'); 
+            $("#childRecords").removeAttr('disabled');
+
+            // If an attachment come as parameter, it is a redirection from the letterGenerator, so i can redirect and close the window
+            /*var attachmentId = '{!$CurrentPage.parameters.attachmentId}';
+            if(attachmentId != '')    {
+                var path = window.location.protocol + "//" + window.location.host + "/"; 
+                window.opener.location = path+attachmentId; 
+                window.close(); 
+            } */
+        }
+
+        // Function used to give to the hidden input field TemplateId, the Id of the current selection
+        function onChangeEvent(letterId)
+        {
+            document.getElementById("TemplateId").value = letterId;
+        }
+
+        // Function used to call the controller to generate the batch letter, and if success send it to the letterGenerator
+        function createJob()
+        {
+            var paramId = '{!$CurrentPage.parameters.pId}';
+            $("#autorun ").show();
+            var templateId = document.getElementById('{!$Component.changeTemplateLetter.templateList}').value;
+
+            var childError = false;
+            // Child iterating
+            var children = "";
+            if (document.getElementById('{!$Component.changeTemplateLetter.ccList}')) {
+                var options = document.getElementById('{!$Component.changeTemplateLetter.ccList}').options; 
+                if (options) { 
+                 for (var i=0; i<options.length; i++) 
+                 { 
+                 if (options[i].selected) 
+                     children += "," + options[i].value; 
+                 } 
+                 children = children.replace(",", ""); 
+                if(options.length>0 && children == "")
+                    childError = true;
+                              
+                }
+            }
+
+            var errorMsg = "";
+            if(templateId == '0') {
+                errorMsg = "Please select a letter template";
+                $("#errorMsg").html(errorMsg);
+                $("#autorun").hide();  
+                $("#errorSection").show();
+                return;
+            } else if(childError) {
+                errorMsg = "Please select a copy item";
+                $("#errorMsg").html(errorMsg);
+                $("#autorun").hide();  
+                $("#errorSection").show();
+                return;
+            } else {
+                $("#errorSection").hide(); 
+            }
+            
+            BGBL.LetterAttachController.createBLJ(paramId, templateId, children, function(result, event) {
+                // receive result as Map as key value
+                if (result) {
+                    //set form fields for submittal
+                    document.getElementById("JobId").value = result.jobId; 
+                    document.getElementById("recid").value = paramId; 
+                    document.getElementById("TemplateId").value = result.mergeTemplateId;
+                    document.getElementById("BatchLetterName").value = result.batchLetterName;
+                    document.getElementById('letterLabel').innerHTML = result.letterLabel;
+                    document.getElementById("BatchLetterId").value = result.batchLetterId;
+                    document.getElementById("OutputType").value = result.outputType;
+                    document.getElementById("OverrideParams").value = result.override;
+                    document.getElementById("referrerUrl").value = document.URL;
+                    document.getElementById("IterateChildIds").value = children;    
+                    document.getElementById("ParentQueryIds").value = '\'' + paramId + '\'';
+
+                    
+                    try {
+                        // VisualForce pages have a action that points to the page itself. To go to the lettergenerator, I modify the form action, and submit the form, so no need of ajax call again
+                        document.getElementById('{!$Component.changeTemplateLetter}').action = "{!letterEngineURL}";
+                        document.getElementById('{!$Component.changeTemplateLetter}').submit();
+                        document.getElementById('{!$Component.changeTemplateLetter.requestBtn}').disabled = true;
+                        // let some time to submit than go the same page, with a polling mode by the jobId
+                        setTimeout(function(){ 
+                            if ('{!$User.UIThemeDisplayed}'  == 'Theme4d') {
+                                sforce.one.navigateToURL("/apex/BGBL__LetterAttach?jobId=" + result.jobId + '&pid=' + paramId);
+                            } else {
+                                window.location = window.location.protocol + "//" + window.location.host + "/apex/BGBL__LetterAttach?jobId=" + result.jobId + '&pid=' + paramId; 
+                            }
+                        },5000);
+                    } 
+                    catch(err){ 
+                        alert(errorMsg); 
+                    } 
+                } else {
+                    var errorMsg = "Letter job record creation failed"; 
+                    if(result != null) {
+                        if(result[0].errors != null && result[0].errors.message != null) {
+                            errorMsg+=" Error:"+result[0].errors.message; 
+                        } 
+                    }
+                    if(event != null) {
+                        errorMsg += " due to "+event.message;
+                    }
+                    errorMsg += ". Please contact system administrator. ";
+
+                    $("#errorMsg").html(errorMsg); 
+                    $("#errorSection").show(); 
+                    $("#autorun").hide(); 
+                    document.getElementById("save").disabled = "disabled"; 
+                    document.getElementById("letter").disabled = "disabled"; 
+                    document.getElementById("childRecords").disabled = "disabled"; 
+                    return;
+                }
+            });
+        }
+    </script>
+</apex:page>

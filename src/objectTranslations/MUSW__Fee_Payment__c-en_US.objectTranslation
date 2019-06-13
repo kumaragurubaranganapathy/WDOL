@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Fee Payment Basic --></label>
+        <name>BGBK__Fee_Payment_Basic</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Feebasic --></label>
+        <name>BGBK__Feebasic</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Invoice Basic --></label>
+        <name>BGBK__Invoice_Basic</name>
+    </fieldSets>
+    <fields>
+        <label><!-- AFRS Cash Code --></label>
+        <name>AFRS_Cash_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Revenue Code --></label>
+        <name>AFRS_Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity --></label>
+        <name>Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appropriation --></label>
+        <name>Appropriation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cart --></label>
+        <name>BGBK__Cart__c</name>
+        <relationshipLabel><!-- Fee Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Invoice --></label>
+        <name>BGBK__Invoice__c</name>
+        <relationshipLabel><!-- Fee Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Payment --></label>
+        <name>BGBK__Payment__c</name>
+        <relationshipLabel><!-- Fee Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Budget Period --></label>
+        <name>Budget_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee AR Code --></label>
+        <name>Fee_AR_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Cash Code --></label>
+        <name>Fee_Cash_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Type --></label>
+        <name>Fee_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Amount --></label>
+        <name>MUSW__Fee_Amount__c</name>
+    </fields>
+    <fields>
+        <help><!-- Outstanding amount of Fee as of now --></help>
+        <label><!-- Fee Current Amount Outstanding --></label>
+        <name>MUSW__Fee_Current_Amount_Outstanding__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee --></label>
+        <name>MUSW__Fee__c</name>
+        <relationshipLabel><!-- Applied Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Paid Date --></label>
+        <name>MUSW__Paid_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Amount --></label>
+        <name>MUSW__Payment_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt Amount Available --></label>
+        <name>MUSW__Receipt_Amount_Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt Amount Tendered --></label>
+        <name>MUSW__Receipt_Amount_Tendered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt --></label>
+        <name>MUSW__Receipt__c</name>
+        <relationshipLabel><!-- Fees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Paid By --></label>
+        <name>Paid_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Source --></label>
+        <name>Payment_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt - Amount Remaining --></label>
+        <name>Receipt_Amount_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Number --></label>
+        <name>Record_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related to --></label>
+        <name>Related_to__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS Cash Code --></label>
+        <name>TMS_Cash_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS Revenue Code --></label>
+        <name>TMS_Revenue_Code__c</name>
+    </fields>
+    <sharingReasons>
+        <label><!-- Create Fee Payment By Delegate --></label>
+        <name>Create_Fee_Payment_By_Delegate</name>
+    </sharingReasons>
+    <validationRules>
+        <errorMessage><!-- Applied Payment amount must be less than or equal to the Fee Amount --></errorMessage>
+        <name>BGBK__Payment_greater_than_Fee_Amount</name>
+    </validationRules>
+</CustomObjectTranslation>

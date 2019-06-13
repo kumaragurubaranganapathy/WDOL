@@ -1,0 +1,290 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : DataExporter_page
+** Description      : As a system admin user, I want to be able to load data from one particular sandbox to another sandbox.
+** Version          : 2.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<!-- This only renders if the user is a System Adminstrator-->
+<apex:page Controller="DataExporter" standardStylesheets="false" sidebar="false" showHeader="false"  docType="html-5.0"  >
+    
+    <head>
+        <title>Data Importer</title>
+        <meta charset="utf-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"/>
+      <c:Resources LoadAddressUtility="false" LoadDataTables="false" LoadAjaxToolkit="false" />       
+    </head>
+    
+    
+    <!-- This only renders in a sandbox rendered="{!(inSandBox)}" rendered="{!(inSandBox)}-->
+    <apex:form >
+        <br/>
+        <div class="container-fluids" >
+            <div  class="panel  panel-default">
+                <div class="panel-body">
+                    <div  class="header">
+                        <h2>
+                            <b>E-License Admin-  Data Importer</b>
+                        </h2>
+                    </div>
+                    <br/>
+                    <div class="col-md-12 "> 
+                        <div class="row ">
+                            <div class="col-xs-12 col-md-3">   </div>
+                            <apex:outputPanel id="loginmessage" rendered="{!(!userloggedin)}">
+                                <div class="col-xs-12 col-md-4 ">
+                                    <br/>                                   
+                                    <div class="form-group">
+                                        <label for="sourceOrg">The url of the Source Org that Data is to be  Loaded from:</label>       
+                                        <apex:input required="true" styleClass="form-control" value="{!sourceOrg}" type="text" id="sourceOrg" html-placeholder="Enter Source Url eg elicense-releasepoc.cs32.my.salesforce.com"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Username of the Source Org that Data is to be  Loaded from:</label>
+                                        <apex:input type="email" required="true" styleClass="form-control" value="{!Email}" id="email" html-placeholder="Enter email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Password of the Source Org that Data is to be  Loaded from :</label>
+                                        <apex:inputSecret styleClass="form-control" required="true" value="{!password}" id="pwd" html-placeholder="Enter Password"/>
+                                    </div>
+                                    <apex:commandButton styleClass="btn form-control btn-default" action="{!logIntoSourceOrg}" reRender="" value="Login" id="logintoorg" />                                    
+                                    <apex:outputPanel rendered="{!failedLogin=='Login failed.'}">
+                                        <br/>
+                                        <div class="alert alert-danger span4 offset-4">
+                                            <strong>  <p class="text-center">{!failedLogin}</p> </strong>    
+                                        </div>
+                                    </apex:outputPanel>
+                                </div>                                                                
+                            </apex:outputPanel>                            
+                        </div>
+                    </div>
+                    <br/>
+                    <!-- This is the container that has the selectbox for the fields , the user has the option of selecting , unselecting , selecting all and unselect all field options.-->
+                    <apex:outputPanel rendered="{!(userloggedin)}">
+                        <div class="row" id="fieldsList">
+                            <div class="col-xs-12 col-md-3">
+                                <label class="control-label" for="fieldsCollection">
+                                    Choose the Objects to be Loaded into this Org.:
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-md-4">                                
+                                <div class="table-responsive excessborder">                             
+                                    <apex:panelGrid columns="12" id="fieldsCollection">
+                                        <apex:selectList id="unSelectedFields" style="height:150px;width:150px" value="{!selecteditems}" styleClass="selected form-control  " multiselect="true" >
+                                            <apex:selectOptions value="{!unSelectedValues}" />
+                                        </apex:selectList>
+                                        <apex:panelGroup >
+                                            <br/>
+                                            <apex:commandButton styleClass="btn btn-primary btnsize" action="{!selectClick}" reRender="waytomaskfields, fieldsCollection,messagePanel,maskingWayAndField"  value=">" id="movebutton" />
+                                            <br/><br/>
+                                            <apex:commandButton styleClass="btn btn-primary btnsize" action="{!unSelectClick}"  reRender="waytomaskfields, fieldsCollection,messagePanel,maskingWayAndField" value="<" id="removebutton" />
+                                            <br/><br/>
+                                            <apex:commandButton styleClass="btn btn-primary btnsize doublearrow" action="{!selectAllClick}" reRender="waytomaskfields, fieldsCollection,messagePanel,maskingWayAndField" value=">>" id="moveallbutton" />
+                                            <br/><br/>
+                                            <apex:commandButton styleClass="btn btn-primary btnsize doublearrow" action="{!unSelectAllClick}" reRender="waytomaskfields, fieldsCollection,maskingWayAndField" value="<<" id="removeallbutton" />
+                                        </apex:panelGroup>
+                                        <apex:selectList id="selectedFields" style="height:150px;width:150px"  styleClass="selected form-control" value="{!deSelectedItems}" multiselect="true"  size="12">
+                                            <apex:selectOptions value="{!SelectedValues}" />
+                                        </apex:selectList>
+                                    </apex:panelGrid>
+                                    <apex:actionFunction name="placeholder" />
+                                </div>     
+                                <apex:outputPanel id="apexfunctionality">
+                                    <apex:actionFunction name="allObjects" action="{!returnAllObjects}"  rerender="fieldsCollection,messagePanel,maskingWayAndField"/>
+                                    <apex:actionFunction oncomplete="continueExporting();" name="reloadedotherobjects" reRender="exporting,exporting1,messagePanel" action="{!dataloading}" rendered="{! (!Objectslistempty)}" />
+                                </apex:outputPanel>                               
+                                <apex:outputText id="exporting" style="display:none" value="{! (!Objectslistempty)}"  />
+                            </div>
+                        </div>
+              
+                    <br/>
+                    <br/>
+                    <!-- This is the container for the submit button and the alerts based on the form submission.-->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header alert-danger " >
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Warning!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>The Selected Object(s) will be purged from this Org. </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <apex:actionFunction name="dataloading"   oncomplete="continueExporting();"  reRender="apexjobs,messagePanel,fieldsCollection,exporting" action="{!objectsToBeImported}"  />
+                                    <apex:commandButton onclick="hidingmodal();" rendered="{!(userloggedin)}" oncomplete="continueExporting();" styleClass="btn btn-primary"  reRender="apexjobs,messagePanel,fieldsCollection,exporting" action="{!objectsToBeImported}" value="Import" id="loadingeobject" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="myModal1" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header alert-danger " >
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Important!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p> Please ensure the metatadata in both sandboxes are the same for the objects imported through this tool.</p>
+                                </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <apex:outputPanel id="messagePanel" rendered="{!(userloggedin)}">
+                                <apex:panelGroup >                                   
+                                    <button type="button" id="importbutton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Import</button> 
+                                    <br/>
+                                    <h5>
+                                        <br/>
+                                        <apex:outputPanel rendered="{!successMessage!=''}">
+                                            <div class="alert alert-success">
+                                                <strong>  <p class="text-center">
+                                                    {!successMessage}
+                                                    </p> </strong>
+                                            </div>
+                                        </apex:outputPanel>                                        
+                                        <apex:outputPanel rendered="{!failedMessage!=''}">
+                                            <div class="alert alert-danger span4 offset-4">
+                                                <strong>  <p class="text-center">
+                                                    {!failedMessage}
+                                                    </p> </strong>    
+                                            </div>
+                                        </apex:outputPanel>
+                                    </h5>
+                                </apex:panelGroup>                                
+                            </apex:outputPanel>                           
+                        </div>
+                    </div>
+                              </apex:outputPanel>
+                </div>
+            </div>            
+        </div>
+    </apex:form>
+    
+    <!-- This is the container only runs when the page is accessed in any environment apart from the sandbox rendered="{!(!insandbox)}"-->
+    <apex:outputPanel rendered="{!(!insandbox)}">
+        <br/>
+        <div class="container-fluid" >
+            <div  class="panel panel-default">
+                <div class="panel-body">
+                    <div class="header">
+                        <h2>
+                            <b>E License Admin</b>
+                        </h2>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3">
+                            <apex:outputText value="This is a Production org, and this feature is inaccessible."/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:outputPanel>
+    <script>    
+    
+    function hidingmodal(){
+        $('#myModal').modal('hide');
+        $('#importbutton').prop('disabled', true);
+         $('.btn').prop('disabled', true);
+    }
+    function continueExporting()
+    {
+        console.log('reloadedotherobjects() ;');
+        
+        $('.modal-backdrop').hide();
+        var selectedItem  = $("[id$='exporting']")[0];
+        if(selectedItem.innerHTML=='false'){
+            $('#importbutton').prop('disabled', false);
+             $('.btn').prop('disabled', false);
+            return null;
+            
+        }
+        else{
+            $('#importbutton').prop('disabled', true);
+             $('.btn').prop('disabled', true);
+            console.log('reloadedotherobjects() ;');
+            reloadedotherobjects() ;
+        }
+    }
+    $( document ).ready(function() {
+        allObjects() ;
+        //$('#myModal1').modal('show');
+    });    
+    </script>
+    <style>       
+        .panel{
+        background-color:#f1f0ed;
+        }
+        .header {
+        border-bottom:solid 2px black;
+        } 
+        .btnsize{
+        width:35px;
+        }
+        .doublearrow{
+        padding-left:10px;
+        }
+        .selected{
+        width:200px
+        }
+        .displayformobile{
+        display:none;
+        }
+        @media only screen and (max-width: 480px) {
+        .hideformobile{
+        display:none;
+        }
+        .displayformobile{
+        display:inline;
+        }
+        } 
+        @media screen and (max-width: 767px){
+        .excessborder {
+        border: 0px;
+        }
+        }
+        .table {
+        table-layout: fixed;
+        word-wrap: break-word;
+        }
+        .table-bordered td, .table-bordered th{
+        border-color: black !important;
+        }
+        th{
+        white-space: normal;
+        }
+        .btn-primary {
+        background-color: #3b6280;
+        border-color: #294459;
+        font-weight: bold;
+        }
+        body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+        background: #3b6280;
+        color:#fff;
+        font-weight: bold;
+        }
+    </style>
+</apex:page>

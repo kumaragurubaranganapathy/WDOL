@@ -1,0 +1,94 @@
+<apex:page controller="BGBK.MockPaymentFormController">
+	<apex:form >
+	    <apex:pageBlock title="Welcome To Payment Gateway Mock Testing">
+	        <style>
+	            body .bPageBlock .pbBody .brown .pbSubheader{
+	                background-color:#844949;
+	            }
+	        </style>
+	        <apex:pageblockbuttons id="topBtns" location="top">
+		        <apex:commandButton action="{!save}" value="Process Payment" id="submit"/>
+		        <apex:commandButton action="{!back}" value="Cancel" id="back"/>
+	        </apex:pageblockbuttons>
+	        <apex:outputPanel styleClass="brown" layout="block">
+			    <apex:pageBlockSection title="Credit Card Information" columns="1" id="creditInfo">
+			        <center>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!maskedCustomerCardNumber}" id="maskedCustomerCardNumber"  label="Credit Card Number"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!nameonCard}" id="nameonCard"  label="Name on Card"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!expirationDate}" id="expirationDate"  label="Expiration date"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!ccvNum}" id="ccvNum"  label="CCV Number"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:outputtext value="{!totalAmount}" id="totalAmount"  label="Amount Due"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!amt}" id="amount"  label="Payment Amount"/>
+			            </apex:pageBlockSection>
+			        </center>
+			     </apex:pageBlockSection>
+		    	<apex:pageBlockSection title="Debug - Input Parameters" columns="1" id="debug">
+		    	<script>twistSection(document.getElementById('img_{!$Component.debug}'));</script>
+			        <center>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!accountNumber}" label="Account Number"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!amountDue}" label="Amount Due"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!dueDate}" label="Due Date"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!emailAddress}" label="Email Address"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!misc}" label="Misc"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!source}" label="Source Call"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                <apex:outputtext value="{!transactionDetails}" label="Transaction Details"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!gatewayTransactionId}" id="gatewayTransactionId" label="Gateway Transaction Id"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+					        <apex:selectList id="chooseTStatus" value="{!transactionStatus}" size="1" label="Transaction Status">
+					            <apex:selectOption itemValue="true" itemLabel="Success"/>
+					            <apex:selectOption itemValue="false" itemLabel="Error"/>
+					        </apex:selectList>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+					        <apex:selectList id="chooseCard" value="{!cCardType}" size="1" label="Card Type">
+					            <apex:selectOption itemValue="Visa" itemLabel="Visa"/>
+					            <apex:selectOption itemValue="MasterCard" itemLabel="MasterCard"/>
+					            <apex:selectOption itemValue="Other" itemLabel="Other"/>
+					        </apex:selectList>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+					        <apex:selectList id="chooseCard" value="{!paymentType}" size="1" label="Payment Type">
+					            <apex:selectOption itemValue="C" itemLabel="Credit Card"/>
+					            <apex:selectOption itemValue="D" itemLabel="MasterCard"/>
+					            <apex:selectOption itemValue="E" itemLabel="Bank Account"/>
+					        </apex:selectList>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!routingTransitNumber}" id="routingTransitNumber"  label="Routing Transit Number"/>
+			            </apex:pageBlockSection>
+			            <apex:pageBlockSection columns="1">
+			                	<apex:inputText value="{!convenienceFeeAmount}" id="convenienceFeeAmount"  label="Convenience Fee Amount"/>
+			            </apex:pageBlockSection>
+			        </center>
+	        	</apex:pageBlockSection>
+        	</apex:outputPanel>
+	     </apex:pageBlock>
+     </apex:form>
+</apex:page>

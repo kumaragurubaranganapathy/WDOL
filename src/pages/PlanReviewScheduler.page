@@ -1,0 +1,649 @@
+<!--
+**************************************************************************************************************
+**************************************************************************************************************
+** Name                	: Schedulereview
+** Description      	: Scheduler components for reviews
+** Version             	: 2.0
+** Built By             : Akosa Okwudiafor
+**-----------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                         Date                    Version                Description
+**-----------------------------------------------------------------------------------------------------------
+**Akosa Okwudiafor				   12/6/2017					1.0                Initial Implementation
+**
+** Review Log:
+**---------------
+** Reviewer                  Date           Version               Description
+**-----------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************
+-->
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false" id="page" controller="PlanReviewSchedulerCC">
+    <html lang='en'>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <c:Resources />  
+            <title>Review Scheduler</title>
+            <apex:outputPanel id="dynamicScriptPanel" layout="block">
+                <script>
+                function goToDashboard(){
+                    window.location = '/Dashboard';
+                }
+                
+                function callScheduler() {
+                    startSpinner();
+                    $( "td" ).each(function( index ) {
+                        var a =$('td[id$=calendardates]')[index].children[1];
+                        a.innerHTML='';
+                    });
+                    allslots=[];
+                    htmldates=[];
+                    getslots($("[id$='resourceId']").val(),$("[id$='selectedcounty']").val());
+                    $('#showCalendar').show();
+                    //$('#schedulereview').hide();
+                    //$('#schedulereview2').hide();
+                    //$('#schedulereview3').hide();
+                    //  $('#searchPanel').hide();
+                }
+                
+                function callconfirmation() {
+                    startSpinner();
+                    confirmation();   
+                }
+                function startSpinner(){
+                    NOTIFICATIONS.spinnerStart();
+                }
+                
+                function stopSpinner(){
+                    NOTIFICATIONS.spinnerStop();
+                }
+                </script>
+            </apex:outputPanel>           
+        </head>
+        
+        <body class="internal">
+            <c:Header />
+            <main class="scheduler">
+                
+                
+                <div class="container headerMain">
+                    <div id="internal-header">
+                        <h1>Schedule your Review</h1>
+                    </div>
+                </div> 
+                <section class="below-the-fold">
+                    <apex:outputPanel styleclass="container" id="container" layout="block">
+                        <strong><apex:pageMessages id="mssg" escape="false" rendered="{!isError}" /> </strong>                       
+                        <apex:form styleClass="animated-form" id="myform" rendered="{!!isError}">
+                            <div class="row">                  
+                                <div class="col-sm-4 no-padding">
+                                    <h2 class="section-header">
+                                        Schedule a review
+                                    </h2>
+                                    <p>This is a service request to schedule a review</p>
+                                    <p>Please refresh the page to see the latest option after clicking on show available times.</p>
+                                </div>
+                                <div class="col-sm-7">      
+                                    <apex:outputPanel layout="block">
+                                        <h3 class="row-padding">Based on the application, this is the expected plan review time: {!permit.Review_Hours_Based_on_Answers__c } Hours</h3>
+                                        
+                                        <div class="row" id="searchPanel">
+                                            <div class="col-sm-4 no-padding">
+                                                <apex:outputPanel rendered="{!!previousScheduledreview&&permit.Review_Hours_Based_on_Answers__c!=0}" layout="block">
+                                                    <apex:outputLabel value="Search Option" for="searchoption" id="searchoptionLabel" />
+                                                    <apex:selectList value="{!searchtype}" id="searchoption" size="1">
+                                                        <apex:selectOptions value="{!items}"/>
+                                                        <apex:actionsupport event="onchange" rerender="moreinformation,searchall,countySearch" />
+                                                    </apex:selectList>
+                                                </apex:outputPanel>
+                                            </div>
+                                            <apex:outputPanel id="moreinformation" layout="block" styleClass="col-sm-7 no-padding">
+                                                <apex:outputPanel rendered="{!searchtype==$Label.Str_Times_by_Office}" layout="block">
+                                                    <div class="col-sm-6 no-padding">
+                                                        <apex:outputLabel value="Office" for="selectedcounty" id="countyLabel" />
+                                                        <apex:selectList id="selectedcounty" value="{!county}" size="1">
+                                                            <apex:selectOptions id="County" value="{!Counties}"/>
+                                                            <apex:actionsupport event="onchange" rerender="countySearch" />
+                                                        </apex:selectList>
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-5 resourceSearcher btn-paddingInline" >
+                                                        <input type="button" class="btn btn-primary" value="Show Available Times" onclick="callScheduler();"  id="schedulereview3" html-data-dismiss="modal" /> 
+                                                    </div>
+                                                    
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!searchtype==$Label.Str_Search_for_Reviewer}" layout="block">
+                                                    <div class="col-sm-6 no-padding">  
+                                                        <label for="individualName" id="Reviewer's Name">Reviewer's Name</label>
+                                                        <input type="text" class="form-control" id="individualName"/>
+                                                        <apex:inputText style="display:none" id="resourceId" value="{!rscId}"/>
+                                                    </div>
+                                                    <div class="col-sm-5 resourceSearcher btn-paddingInline"  style="display:none">
+                                                        <input type="button" class="btn btn-primary" value="Show Available Times" onclick="callScheduler();"  id="schedulereview2" html-data-dismiss="modal" /> 
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel id="searchall" layout="block" styleClass="col-sm-4 btn-paddingInline">
+                                                <apex:outputPanel rendered="{!searchtype==$Label.Str_All_Available_Times||previousScheduledreview}" layout="block">
+                                                    <input type="button" class="btn btn-primary" value="Show Available Times" onclick="callScheduler();"  id="schedulereview" html-data-dismiss="modal" /> 
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel id="showScheduler" layout="block">
+                                        <br/>
+                                        <apex:actionFunction name="confirmation" action="{!confirm}"/>
+                                        <apex:actionFunction name="setslot" action="{!setThisTimeSlotAsFinal}" rerender="">
+                                            <apex:param name="timeslot" value="" />
+                                        </apex:actionFunction>
+                                        <!--rendered="{!showscheduler}"-->
+                                        <div id="showCalendar" style="display:none">
+                                            <apex:outputPanel id="panelshowScheduler" layout="block">   
+                                                <div id="selectedreviewTime" ></div>
+                                                <div class="monthBar">
+                                                    <a role="button" href="javascript:;" id="back" onclick="moveBack();" class="glyphicon glyphicon-chevron-left navigationBack" ><span class="hiddenText"> Calendar control Previous</span></a>
+                                                    <span id="currentCalendarMonth"></span>
+                                                    <a role="button" href="javascript:;" id='forward' onclick="moveForward();" class="glyphicon glyphicon-chevron-right navigationNext" ><span class="hiddenText"> Calendar control Next</span></a>
+                                                </div>
+                                                
+                                                <table class="table table-bordered schedulerTable" cellspacing="0" width="100%">
+                                                    <caption class="hiddenText">Calendar to schedule an review for the month of <span id="currMonth"></span></caption>
+                                                    <thead class="header">
+                                                        <tr>
+                                                            <th class="dayoftheweek">Sunday</th> 
+                                                            <th class="dayoftheweek">Monday</th> 
+                                                            <th class="dayoftheweek">Tuesday</th> 
+                                                            <th class="dayoftheweek">Wednesday</th> 
+                                                            <th class="dayoftheweek">Thursday</th> 
+                                                            <th class="dayoftheweek">Friday</th>
+                                                            <th class="dayoftheweek">Saturday</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="calendarbody">
+                                                        
+                                                        
+                                                        <tr id="datePlaceholder"></tr>
+                                                    </tbody>
+                                                </table>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </apex:outputPanel>
+                                    
+                                </div> 
+                            </div>                                
+                        </apex:form>
+                    </apex:outputPanel>
+                    
+                    
+                    <script>
+                    $(document).ready(function() {
+                        
+                        
+                        $("body").delegate('#individualName','keyup',function(){
+                            $('.resourceSearcher').hide();
+                            $('#individualName').autocomplete({
+                                minLength: 3,
+                                scroll: true,
+                                source: function(request, response) {
+                                    accountsList = [];
+                                    var currentSearchTerm =  '%'+request.term + '%';
+                                    var waiting = [];
+                                    waiting.push("Searching. Please wait...");
+                                    response(waiting);
+                                    Visualforce.remoting.Manager.invokeAction(
+                                        '{!$RemoteAction.PlanReviewSchedulerCC.getResource}', 
+                                        currentSearchTerm,'{!permit.Application_Type__c}', 
+                                        function(result, event){
+                                            if (event.status) {
+                                                recordsAccount = result;
+                                                if(recordsAccount.length > 0){
+                                                    // Create array and collect picklist values markup
+                                                    $.each(recordsAccount, function(i, val) {
+                                                        // Concatenate markup
+                                                        var obj = {};
+                                                        obj.label = val.User__r.Name;
+                                                        obj.value =val.User__r.Id;
+                                                        accountsList.push(obj);
+                                                    });
+                                                    var results = $.ui.autocomplete.filter(accountsList, request.term);
+                                                    results = results.slice(0, 20);
+                                                    response(results);
+                                                }
+                                                else{
+                                                    waiting = [];
+                                                    waiting.push("No result found.");
+                                                    response(waiting);                               
+                                                }
+                                                // Append picklist values markup
+                                            }else if (event.type === 'exception') {
+                                            } else {
+                                            }
+                                            
+                                        }, 
+                                        {escape: true}
+                                    );
+                                    
+                                },
+                                focus: function(event, ui){
+                                    event.preventDefault();
+                                },
+                                select: function( event, ui )  {
+                                    event.preventDefault();
+                                                    if(ui.item.value!='No result found.'){
+                                    $(this).val(ui.item ? ui.item : "");
+                                    $("#individualName").val(ui.item.label);
+                                    $("[id$='resourceId']").val(ui.item.value);
+                                    $('.resourceSearcher').show();
+                                    $(this).blur();
+                                                        }
+                                                    else {
+                    $('#individualName').val('');
+                    }
+                                }
+                            });
+                        });
+                    });
+                    
+                    
+                    var allslots=[];
+                    var monthcounter=0;
+                    var backonce=false;
+                    var htmldates=[];
+                    var today = new Date();
+                    var todayyear=today.getFullYear();
+                    var todaymonth=(today.getMonth()+1);
+                    var todayday=today.getDate();
+                    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; //puts month names into an array that's easily accessible by the JavaScript date value
+                    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; //used for getting the short day name and then mapping it to the beginning of the month
+                    var d = new Date();
+                    var currentMonth = d.getMonth(); //gets the number of days in the month
+                    var nextMonth = d.getMonth()+1!=12? d.getMonth()+1: 0 ; 
+                    var previousMonth =  d.getMonth()!=-1? d.getMonth()-1:11; //gets last month in case month does not start on a sunday
+                    var currentYear = d.getFullYear(); //gets the full year (i.e. 2017)
+                    $("#back").hide();
+                    
+                    
+                    var firstDay = new Date(currentYear, currentMonth, 1).toString().split(' '); //calculates the first day by getting the day name from the date
+                    firstDay = dayNames.indexOf(firstDay[0]); //changes the value of firstDay to a number 
+                    var totalDaysLastMonth = daysInMonth(currentMonth-1, currentYear); //calculates the total days in the last month
+                    var totalDays = daysInMonth(currentMonth, currentYear); //calculates the total days in the current month
+                    var weeksInMonth = Math.ceil(totalDays/7); //calculates the number of weeks in a month and rounds up. 
+                    if(firstDay >= 4){ //checks if the month starts on a Friday or Saturday. If it does, an extra week needs to be added
+                        //  weeksInMonth++;
+                        if(firstDay==4||totalDays==28||totalDays==29){
+                            weeksInMonth= 5;
+                        }
+                        else if(firstDay==5&&totalDays==30){
+                            weeksInMonth= 5;
+                        }
+                            else{
+                                weeksInMonth= 6;
+                            }
+                    }
+                    var currentDayToDisplay = 0; //placeholder variable for the for loops that create the calendar
+                    var listOfAvailableSlots = '{!AvailableSlotsWithResCombination2}';
+                    
+                    var htmlToDisplay = "";
+                    //changes the header month on page load
+                    $("#currentCalendarMonth, #currMonth").text(monthNames[currentMonth]);
+                    currentMonth++;
+                    for(i = 0; i < weeksInMonth; i++){
+                        var styleToApply = "currentMonthStyle"; //alternatively pastNextMonthStyle
+                        htmlToDisplay += "<tr>";
+                        var newstyle=''
+                        for(j = 0; j < 7; j++){
+                            //var currentDayToDisplay = (i*7) + (j+1);
+                            if(i == 0 && j < firstDay){
+                                currentDayToDisplay = totalDaysLastMonth - (firstDay - (j+1));
+                                styleToApply = "pastNextMonthStyle";
+                            }
+                            else if(i == 0 && j == firstDay){
+                                currentDayToDisplay = 1;
+                                styleToApply = "currentMonthStyle";
+                            }
+                                else if((i+1 >= weeksInMonth) && (currentDayToDisplay > totalDays)){
+                                    currentDayToDisplay = 1;
+                                    styleToApply = "pastNextMonthStyle";
+                                }
+                            if(currentMonth==todaymonth&&currentDayToDisplay==todayday&&styleToApply=='currentMonthStyle')
+                                newstyle = "currentday";
+                            else
+                                newstyle = "";
+                            
+                            if(styleToApply=='currentMonthStyle')
+                                htmlToDisplay += "<td tabindex='0' id='calendardates' class='"+ newstyle +"'>"+"<div class='"+ styleToApply +"'>"+ currentDayToDisplay + "</div><div class='reviewTime' id='"+currentMonth + "-" + currentDayToDisplay +"'></div></td>";
+                            else
+                                htmlToDisplay += "<td tabindex='0' id='calendardates'  class='"+ newstyle +"'>"+"<div class='"+ styleToApply +"'>"+ currentDayToDisplay + "</div><div class='reviewTime' id='"+currentMonth + "-" + currentDayToDisplay+'-'+styleToApply +"'></div></td>";
+                            
+                            
+                            currentDayToDisplay++;
+                        }
+                        htmlToDisplay += "</tr>";
+                    }
+                    $("#datePlaceholder").replaceWith("" + htmlToDisplay);
+                    
+                    function moveForward(){ 
+                        if(monthcounter==0&&backonce){
+                            currentMonth++;
+                        }
+                        monthcounter++;
+                        $("#back").show();
+                        var dates= new Date(currentYear, currentMonth, 1)
+                        firstDay = new Date(currentYear, currentMonth, 1).toString().split(' '); 
+                        previousMonth = dates.getMonth(); 
+                        firstDay = dayNames.indexOf(firstDay[0]);
+                        totalDaysLastMonth = daysInMonth(currentMonth-1, currentYear);
+                        totalDays = daysInMonth(currentMonth, currentYear); 
+                        weeksInMonth = Math.ceil(totalDays/7);
+                        if(firstDay >= 4){ //checks if the month starts on a Friday or Saturday. If it does, an extra week needs to be added
+                            if(firstDay==4||totalDays==28||totalDays==29){
+                                weeksInMonth= 5;
+                            }
+                            else if(firstDay==5&&totalDays==30){
+                                weeksInMonth= 5;
+                            }
+                                else{
+                                    weeksInMonth= 6;
+                                }
+                        }
+                        currentDayToDisplay = 0;
+                        var htmlToDisplay = "";
+                        if(currentMonth==12){
+                            $("#currentCalendarMonth, #currMonth").text(monthNames[0]);
+                        }
+                        else {                                
+                            $("#currentCalendarMonth, #currMonth").text(monthNames[currentMonth]);
+                        }
+                        currentMonth = previousMonth+1;
+                        if(currentMonth==1){
+                            currentYear++; 
+                        }
+                        
+                        for(i = 0; i < weeksInMonth; i++){
+                            var styleToApply = "currentMonthStyle"; //alternatively pastNextMonthStyle
+                            htmlToDisplay += "<tr>";
+                            for(j = 0; j < 7; j++){
+                                if(i == 0 && j < firstDay){
+                                    currentDayToDisplay = totalDaysLastMonth - (firstDay - (j+1));
+                                    styleToApply = "pastNextMonthStyle";
+                                }
+                                else if(i == 0 && j == firstDay){
+                                    currentDayToDisplay = 1;
+                                    styleToApply = "currentMonthStyle";
+                                }
+                                    else if((i+1 >= weeksInMonth) && (currentDayToDisplay > totalDays)){
+                                        currentDayToDisplay = 1;
+                                        styleToApply = "pastNextMonthStyle";
+                                    }
+                                
+                                if(currentMonth==todaymonth&&currentDayToDisplay==todayday&&styleToApply=='currentMonthStyle')
+                                    newstyle = "currentday";
+                                else
+                                    newstyle = "";
+                                
+                                if(styleToApply=='currentMonthStyle')
+                                    htmlToDisplay += "<td tabindex='0'  id='calendardates'  class='"+ newstyle +"'>"+"<div class='"+ styleToApply +"'>"+ currentDayToDisplay + "</div><div class='reviewTime' id='"+currentMonth + "-" + currentDayToDisplay +"'></div></td>";
+                                else
+                                    htmlToDisplay += "<td tabindex='0'  id='calendardates'  class='"+ newstyle +"'>"+"<div class='"+ styleToApply +"'>"+ currentDayToDisplay + "</div><div class='reviewTime' id='"+currentMonth + "-" + currentDayToDisplay+'-'+styleToApply +"'></div></td>";
+                                
+                                currentDayToDisplay++;
+                            }
+                            htmlToDisplay += "</tr>";
+                        }
+                        $("#calendarbody").empty();
+                        $("#calendarbody").append(htmlToDisplay );
+                        var month = currentMonth;
+                        if(allslots!=null){
+                            for(i=0;i<allslots.length;i++){
+                                var partsOfStr = allslots[i].split('-');
+                                var part1 =  partsOfStr[0];
+                                
+                                if(part1==month||part1==12&&month==0)
+                                {
+                                    if(month==0){
+                                        $('#' + month+'-'+partsOfStr[1]).append(htmldates[i]);     
+                                    }
+                                    else{
+                                        $('#' + allslots[i]).append(htmldates[i]);     
+                                    }
+                                }
+                            }
+                            if(allslots.length>0) { 
+                                noAvailableTime();
+                            }
+                            
+                        }
+                        if(monthcounter==3){
+                            $("#forward").hide();
+                        }
+                    }
+                    
+                    function moveBack(){ 
+                        $("#forward").show();
+                        monthcounter--;
+                        backonce=true;
+                        currentMonth = previousMonth-1;
+                        var d2 = new Date();
+                        var currentYear2 = d.getFullYear();
+                        if(currentMonth<0||currentMonth==10){
+                            
+                            currentYear--;
+                            if(currentYear<currentYear2){
+                                currentYear=currentYear2
+                            }
+                            if(currentMonth!=10){
+                                currentMonth=11;
+                            }
+                        }
+                        
+                        var holder=previousMonth;
+                        if(holder==0){
+                            holder=12;
+                        }
+                        var dates= new Date(currentYear, currentMonth, 1)
+                        firstDay = new Date(currentYear, currentMonth, 1).toString().split(' '); 
+                        previousMonth = dates.getMonth(); 
+                        firstDay = dayNames.indexOf(firstDay[0]);
+                        totalDaysLastMonth = daysInMonth(currentMonth-1, currentYear);
+                        totalDays = daysInMonth(currentMonth, currentYear); 
+                        weeksInMonth = Math.ceil(totalDays/7);
+                        if(firstDay >= 4){ //checks if the month starts on a Friday or Saturday. If it does, an extra week needs to be added
+                            if(firstDay==4||totalDays==28||totalDays==29){
+                                weeksInMonth= 5;
+                            }
+                            else if(firstDay==5&&totalDays==30){
+                                weeksInMonth= 5;
+                            }
+                                else{
+                                    weeksInMonth= 6;
+                                }
+                        }
+                        currentDayToDisplay = 0;
+                        var htmlToDisplay = "";
+                        $("#currentCalendarMonth, #currMonth").text(monthNames[currentMonth]);
+                        for(i = 0; i < weeksInMonth; i++){
+                            var styleToApply = "currentMonthStyle"; //alternatively pastNextMonthStyle
+                            htmlToDisplay += "<tr>";
+                            for(j = 0; j < 7; j++){
+                                if(i == 0 && j < firstDay){
+                                    currentDayToDisplay = totalDaysLastMonth - (firstDay - (j+1));
+                                    styleToApply = "pastNextMonthStyle";
+                                }
+                                else if(i == 0 && j == firstDay){
+                                    currentDayToDisplay = 1;
+                                    styleToApply = "currentMonthStyle";
+                                }
+                                    else if((i+1 >= weeksInMonth) && (currentDayToDisplay > totalDays)){
+                                        currentDayToDisplay = 1;
+                                        styleToApply = "pastNextMonthStyle";
+                                    }
+                                
+                                if(holder==todaymonth&&currentDayToDisplay==todayday&&styleToApply=='currentMonthStyle')
+                                    newstyle = "currentday";
+                                else
+                                    newstyle = "";
+                                
+                                if(styleToApply=='currentMonthStyle')
+                                    htmlToDisplay += "<td tabindex='0' id='calendardates' class='"+ newstyle +"'>"+"<div class='"+ styleToApply +"'>"+ currentDayToDisplay + "</div><div class='reviewTime' id='"+holder + "-" + currentDayToDisplay +"'></div></td>";
+                                else
+                                    htmlToDisplay += "<td tabindex='0'  id='calendardates' class='"+ newstyle +"'>"+"<div class='"+ styleToApply +"'>"+ currentDayToDisplay + "</div><div class='reviewTime' id='"+holder + "-" + currentDayToDisplay+'-'+styleToApply +"'></div></td>";
+                                
+                                
+                                
+                                currentDayToDisplay++;
+                            }
+                            htmlToDisplay += "</tr>";
+                        }
+                        $("#calendarbody").empty();
+                        $("#calendarbody").append(htmlToDisplay );
+                        var month = holder;
+                        if(allslots!=null){
+                            for(i=0;i<allslots.length;i++){
+                                var partsOfStr = allslots[i].split('-');
+                                var part1 =  partsOfStr[0];
+                                
+                                if(part1==month)
+                                {
+                                    $('#' + allslots[i]).append(htmldates[i]);                            
+                                }
+                            }
+                            
+                            if(allslots.length>0) { 
+                                noAvailableTime();
+                            }
+                            
+                        }
+                        if(monthcounter==0){
+                            $("#back").hide();
+                        }
+                    }
+                    
+                    function noAvailableTime(){
+                        $('.reviewTime').each(function() {
+                            if($(this).is(':empty')){
+                                if($(this).html().length == 0){
+                                    $(this).append('<span class="hiddenText">No available time</span>');
+                                }
+                            }
+                        });
+                    }
+                    
+                    function daysInMonth(month,year) {
+                        return new Date(year, month+1, 0).getDate();
+                    }
+                    
+                    function convertTo12HourTime(fullTime){
+                        var returnTime;
+                        var splitTime = fullTime.split(":");
+                        var h = parseInt(splitTime[0]);
+                        var morningAfternoon = "AM"; 
+                        if(h > 12){
+                            h = Math.abs(12 - h);
+                            morningAfternoon = "PM";
+                            returnTime = h + ":" + splitTime[1] + morningAfternoon;
+                        }
+                        else{
+                            morningAfternoon = "AM";
+                            returnTime = h + ":" + splitTime[1] + morningAfternoon;
+                        }
+                        
+                        return returnTime;
+                    }
+                    
+                    function setTimeSlotAsFinal(selectedTime){
+                        if(selectedTime!=null){
+                            var reviewtime = selectedTime.split(',');
+                            setslot(reviewtime[1]);
+                            MODAL_UTILITY.openConfirmationModal('Selected review Date:  ' +reviewtime[0],'Schedule Review',null,callconfirmation);
+                        }
+                    }
+                    
+                    function initialdates(){
+                        if(allslots!=null){
+                            for(i=0;i<allslots.length;i++){
+                                var partsOfStr = allslots[i].split('-');
+                                var part1 =  partsOfStr[0];
+                                $('#' + allslots[i]).append(htmldates[i]);                            
+                            }
+                            
+                        }
+                    }
+                    </script>
+                    <apex:form >
+                        <apex:actionFunction name="getslots" action="{!schedulereview}" rerender="showslots" oncomplete="stopSpinner();initialdates();noAvailableTime();">
+                            <apex:param name="myParam" value=""/>
+                            <apex:param name="myParam1" value=""/>
+                        </apex:actionFunction>
+                        <apex:outputPanel id="showslots"> 
+                            <apex:repeat rendered="{!AvailableSlotsWithResCombination2!=null}" value="{!AvailableSlotsWithResCombination2}" var="slotstest">
+                                
+                                <script>
+                                var slotid='{!slotstest.id}';
+                                var dateToSplit = new Date("{!slotstest.Start_Time__c}");
+                                var splitDate = dateToSplit.toString().split(" ");
+                                var divToUpdate;
+                                if(dateToSplit.getMonth()!=0){
+                                    if(monthNames[dateToSplit.getMonth()-1].startsWith(splitDate[1])){
+                                        if(splitDate[2].startsWith("0")){
+                                            splitDate[2] = splitDate[2].replace("0", "");
+                                            divToUpdate = dateToSplit.getMonth() + "-" + splitDate[2];
+                                        }
+                                        else{
+                                            divToUpdate = dateToSplit.getMonth() + "-" + splitDate[2];
+                                        }
+                                        allslots.push(divToUpdate);
+                                        htmldates.push("<a href='#' class='availableSlot' onclick='setTimeSlotAsFinal(\""+ dateToSplit.getMonth() + "/" + splitDate[2] + "/" + splitDate[3] + " at "+ convertTo12HourTime(splitDate[4]) +','+ slotid+"\");'>" + convertTo12HourTime(splitDate[4]) + "</a>");
+                                        $('#' + divToUpdate).append("<a href='#' class='availableSlot' onclick='setTimeSlotAsFinal(\""+ dateToSplit.getMonth() + "/" + splitDate[2] + "/" + splitDate[3] + " at "+ convertTo12HourTime(splitDate[4])+','+ slotid+"\");'>" + convertTo12HourTime(splitDate[4]) + "</a>");
+                                    }
+                                    else{
+                                        if(splitDate[2].startsWith("0")){
+                                            splitDate[2] = splitDate[2].replace("0", "");
+                                            divToUpdate = (dateToSplit.getMonth()+1) + "-" + splitDate[2];
+                                        }
+                                        else{
+                                            divToUpdate =  (dateToSplit.getMonth()+1) + "-" + splitDate[2]; + "-" + splitDate[2];
+                                        }
+                                        var test= (dateToSplit.getMonth()+1);
+                                        allslots.push(divToUpdate);
+                                        htmldates.push("<a href='#' class='availableSlot' onclick='setTimeSlotAsFinal(\""+ test + "/" + splitDate[2] + "/" + splitDate[3] +','+ slotid+"\");'><span class='hiddenText'>Click</span> Select</a>");
+                                        $('#' + divToUpdate).empty();
+                                        $('#' + divToUpdate).append("<a href='#' class='availableSlot'  onclick='setTimeSlotAsFinal(\""+ test + "/" + splitDate[2] + "/" + splitDate[3] +','+ slotid+ +"\");'><span class='hiddenText'>Click </span>Select</a>");                                        
+                                    }
+                                }
+                                else{
+                                    if(splitDate[2].startsWith("0")){
+                                        splitDate[2] = splitDate[2].replace("0", "");
+                                        divToUpdate = (dateToSplit.getMonth()+1) + "-" + splitDate[2];
+                                    }
+                                    else{
+                                        divToUpdate =  (dateToSplit.getMonth()+1) + "-" + splitDate[2]; + "-" + splitDate[2];
+                                        
+                                    }
+                                    var test= (dateToSplit.getMonth()+1);
+                                    allslots.push(divToUpdate);
+                                    htmldates.push("<a href='#' class='slot' onclick='setTimeSlotAsFinal(\""+ test + "/" + splitDate[2] + "/" + splitDate[3] +','+ slotid+"\");'><span class='hiddenText'>Click</span> Select</a><br />");
+                                    $('#' + divToUpdate).empty();
+                                    $('#' + divToUpdate).append("<a href='#' class='slot'  onclick='setTimeSlotAsFinal(\""+ test + "/" + splitDate[2] + "/" + splitDate[3]+','+ slotid+ +"\");'><span class='hiddenText'>Click </span> Select </a><br />");
+                                    
+                                    
+                                }
+                                </script>
+                            </apex:repeat>
+                        </apex:outputPanel>
+                    </apex:form>
+                    <!-- end container -->
+                </section>
+                
+                <!-- end the grey below the fold wrapper -->
+            </main>
+            <c:Footer />
+            <!-- Footer goes before the end of body -->
+        </body>
+        
+    </html>
+</apex:page>
