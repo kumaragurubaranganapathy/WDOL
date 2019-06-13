@@ -1,1 +1,0 @@
-@isTest private class DRE2Test_BGBK_Bill_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('BGBK__Bill__c'); } }
