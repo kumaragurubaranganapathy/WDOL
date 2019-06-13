@@ -1,0 +1,68 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : PageSubSectionPrintComp
+** Description      : To print subsection in license portal application
+** Version          : 2.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Rinku Patel                  01/23/2018                  2.0             Added Comment block on top of the page
+**																			
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component >
+    <!-- Attributes -->
+    <apex:attribute name="subSectionName" description="subSection Name" type="String" required="true"/>
+    <apex:attribute name="subSectionDesc" description="subSection Description" type="String" required="false"/>
+    <apex:attribute name="fieldList" description="Field List" type="Application_Field__c[]" required="true"/>
+    <apex:attribute name="currRecord" description="License2 object" type="SObject" required="true"/>
+    <apex:attribute name="contactRecord" description="Contact object" type="Contact"/>
+    <apex:attribute name="accountRecord" description="Account object" type="Account"/>
+    <!-- Attributes -->
+    <!-- Sub-section left container -->
+    <div class="col-sm-4 col-md-4">
+        <p><strong>{!subSectionName}</strong></p>
+        <p>{!subSectionDesc}</p>
+    </div>
+    <!-- Sub-section left container -->
+    <!-- Sub-section center container -->
+    <div class="col-sm-8 col-md-8">
+        <apex:repeat value="{!fieldList}" var="fld">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <apex:outputText value="{!fld.Label__c}"/>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <!-- Field -->
+                    <apex:outputField value="{!currRecord[fld.Name]}" rendered="{!IF(CONTAINS(fld.Object_Name__c, 'Main Object'), true, false)}"></apex:outputField>
+                    <apex:outputText value="No Response" rendered="{!IF(CONTAINS(fld.Object_Name__c, 'Main Object'), true, false)&&currRecord[fld.Name]==''}"></apex:outputText>
+                    <!-- Field -->
+                    
+                    <!-- Field -->
+                    <apex:outputField value="{!contactRecord[fld.Name]}" rendered="{!IF(CONTAINS(fld.Object_Name__c, 'Contact'), true, false)}"></apex:outputField>
+                    <apex:outputText value="No Response" rendered="{!IF(CONTAINS(fld.Object_Name__c, 'Contact'), true, false)&&contactRecord[fld.Name]==''}"></apex:outputText>
+                    <!-- Field -->
+                    
+                    <!-- Field -->
+                    <apex:outputField value="{!accountRecord[fld.Name]}" rendered="{!IF(CONTAINS(fld.Object_Name__c, 'Account'), true, false)&&accountRecord[fld.Name]!=''}"></apex:outputField>
+                    <apex:outputText value="No Response" rendered="{!IF(CONTAINS(fld.Object_Name__c, 'Account'), true, false)&&accountRecord[fld.Name]==''}"></apex:outputText> 
+                    <!-- Field -->
+                </div>
+            </div>
+        </apex:repeat>
+    </div>
+    <!-- Sub-section center container -->
+    <!-- Sub-section right container -->
+    <!-- <div class="col-sm-2 col-md-2">
+<span>&nbsp;</span>
+</div> -->
+    <!-- Sub-section right container -->
+    <section class="row">&nbsp;</section>
+</apex:component>

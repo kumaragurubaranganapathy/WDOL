@@ -1,0 +1,38 @@
+<apex:page controller="BGBK.DepositTransferController">
+    <c:BlockIndicator />            
+    <apex:form id="transferForm">
+        <apex:sectionHeader title="" subtitle="Transfer Deposit">
+            <apex:pageMessages id="msg"></apex:pageMessages>
+            <div id='errorMsg'></div>
+        </apex:sectionHeader>
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!goBack}" value="Back" />
+                <apex:commandButton action="{!transferDeposit}" onclick="showPreLoader();" value="Transfer" disabled="{!amountAvailable=0}" reRender="transferForm" oncomplete="goBack('{!transferSuccess}');"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1">
+                <apex:outputText label="Available Amount" value="{!amountAvailable}" id="amountAval"/>
+                <apex:inputText label="Transfer Amount" value="{!transferAmount}" id="amount"/>
+                <apex:inputField value="{!depositDestination.MUSW__Deposit__c}" id="deposit"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+    <script>
+
+        var pid = "{!pid}";
+        function goBack(success) {
+            if (success !== "true"){
+                hidePreLoader();
+                return;
+            }
+    
+            if ('{!$User.UIThemeDisplayed}'  == 'Theme4d') {
+                // force the page to refresh (otherwise outdated info is cached and displayed)
+                sforce.one.back(true);
+            } else {
+                window.parent.location = '/' + pid;
+            }
+        }
+    </script>
+</apex:page>

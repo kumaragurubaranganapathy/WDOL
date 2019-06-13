@@ -1,0 +1,100 @@
+.THIS {
+}
+.THIS .typeofaddress{
+    padding: 0px;
+    font-size: 16px;
+    color:t(LnGFormTitleColor);
+}
+.THIS .address-wrap{
+    display:flex;  
+    margin: 20px 0;
+}
+.THIS .action-buttons{
+    display:flex;
+    justify-content:flex-end;
+}
+.THIS .tile{
+    padding:20px;
+}
+.THIS .tile .typeofaddress .address-title{
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+}
+.THIS .address{
+    border-radius: 4px;
+    box-shadow: 3px 3px 12px 0 #e3e4ea;
+    border: solid 1px #eff1ff;
+    margin: 0 1rem 2rem 0;
+}
+.THIS .record{
+	font-size:14px;
+    padding: 15px 0px;
+    color:t(LnGFormTitleColor);
+    
+}
+.THIS.address-btn{
+    height:35px;
+    background : t(LnGWhite);
+    color:t(LnGPrimaryColor);    
+    border-radius : 50px;
+    margin: 0 0 15px 25px;
+    border-color: t(LnGButtonGrayBorder);
+}
+.THIS .field-style{
+    padding: 0 20px 20px 0;
+}
+.THIS .field-style:last-of-type{
+    paddin-bottom:0;
+}
+.THIS .addressTypeSelection{    
+    /*padding: 0 25px 0 0;*/
+}
+
+.THIS.addressDetail{
+    /*padding: 0 0 0 25px;*/
+}
+.THIS .save-btn{
+    background: #4c65f2;
+    color: #ffffff;
+    padding: 4px 35px;
+    border-radius: 50px;
+}
+.THIS.addAddress{
+    padding: 15px 0 0 25px;
+}
+.THIS .wrap-fields{
+    display:flex;
+    flex-wrap:wrap;
+}
+.THIS.addAddress .usAddress{
+    padding: 0 0 15px 0;
+}
+.THIS .arrow-style{     
+    position:relative; 
+    cursor:pointer;
+}
+.THIS .left{    
+    left:0;
+    padding-top:0.5rem; 
+    transform:rotate(90deg);
+}
+.THIS .right{    
+    right:0;
+    transform:rotate(-90deg);
+    padding-top:0.5rem;  
+    
+}
+.THIS .arrows-wrapper{
+    display:flex;
+    position:relative;
+    align-items:center;
+}
+.THIS .address-cards{
+    padding: 0.75rem 1.5rem;
+    border-left: solid 1px #eff1ff;
+    border-right: solid 1px #eff1ff;
+    overflow-x:hidden;
+}
+.THIS .highlight {
+    background-color: red;
+}

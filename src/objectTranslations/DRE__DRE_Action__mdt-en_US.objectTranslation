@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Apex Class Name --></label>
+        <name>DRE__Apex_Class_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Custom processor lookup (optional) --></help>
+        <label><!-- DRE Action Processor --></label>
+        <name>DRE__DRE_Action_Processor__c</name>
+        <relationshipLabel><!-- DRE Actions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>DRE__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scopable --></label>
+        <name>DRE__IsScopable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Source --></label>
+        <name>DRE__Object_Source__c</name>
+        <picklistValues>
+            <masterLabel>All</masterLabel>
+            <translation><!-- All --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Filtered Except Record</masterLabel>
+            <translation><!-- Filtered Except Record --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Filtered Only</masterLabel>
+            <translation><!-- Filtered Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record Only</masterLabel>
+            <translation><!-- Record Only --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Requires Attributes --></label>
+        <name>DRE__Requires_Attributes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>DRE__Type__c</name>
+        <picklistValues>
+            <masterLabel>Automation</masterLabel>
+            <translation><!-- Automation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Display</masterLabel>
+            <translation><!-- Display --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Roll-Up Summary</masterLabel>
+            <translation><!-- Roll-Up Summary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation</masterLabel>
+            <translation><!-- Validation --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

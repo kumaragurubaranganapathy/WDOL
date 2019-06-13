@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sandbox Refresh PII Masking</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sandbox Refresh PII Maskings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Field Name --></label>
+        <name>FieldName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masking String --></label>
+        <name>MaskingString__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masking --></label>
+        <name>Masking__c</name>
+        <picklistValues>
+            <masterLabel>1. NULL</masterLabel>
+            <translation><!-- 1. NULL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2. APPEND BEGINNING</masterLabel>
+            <translation><!-- 2. APPEND BEGINNING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3. APPEND END</masterLabel>
+            <translation><!-- 3. APPEND END --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4. APPEND BOTH</masterLabel>
+            <translation><!-- 4. APPEND BOTH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5. REPLACE DOMAIN</masterLabel>
+            <translation><!-- 5. REPLACE DOMAIN --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>ObjectName__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

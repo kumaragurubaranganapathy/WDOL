@@ -1,0 +1,62 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name                	: Licenses_Custom_Related_List_On_Contact
+** Description     		: Display License Applicants details
+** Version            	: 1.0
+** Built By             : 
+**-----------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                         Date                    Version                      Description
+**----------------------------------------------------------------------------------------------------------------
+** 
+**
+** Review Log:
+**---------------
+** Reviewer                  Date           Version               Description
+**---------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:page standardcontroller="Contact" extensions="Licenses_Custom_RL_Controller_CC" >
+    <apex:tabPanel switchType="client" selectedTab="licenses" id="licensesPanel">
+    	<apex:tab label="Credentials" name="licenses" id="tabLicenses">
+			<apex:pageBlock id="theBlock" title="Credentials">
+                <apex:pageBlockTable value="{!lstLicense}" var="lic">
+                    <apex:column headerValue="Credential Number">
+                        <apex:outputLink value="/{!lic.id}" id="nameLink" target="blank">{!lic.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="Credential" value="{!lic.Credential__c}"/>
+                    <apex:column headerValue="Expiration Date" value="{!lic.MUSW__Expiration_Date__c}"/>
+                    <apex:column headerValue="Status" value="{!lic.MUSW__Status__c}"/> 
+                    <apex:column headerValue="Issue Date" value="{!lic.MUSW__Issue_Date__c}"/>
+                </apex:pageBlockTable>
+              </apex:pageBlock>	
+        </apex:tab>
+   		<apex:tab label="Plan Reviews" name="planReviews" id="tabPlanReviews">
+            <apex:pageBlock id="thePRBlock" title="Plan Reviews">
+                <apex:pageBlockTable value="{!lstPlanReviews}" var="per">
+                    <apex:column headerValue="Plan Review Number">
+                        <apex:outputLink value="/{!per.Id}" id="nameLink" target="blank">{!per.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="Plan Review Type" value="{!per.Permit_Type__c}"/>
+                    <apex:column headerValue="Expiration Date" value="{!per.MUSW__Expiration_Date__c}"/>
+                    <apex:column headerValue="Status" value="{!per.MUSW__Status__c}"/> 
+                    <apex:column headerValue="Issue Date" value="{!per.MUSW__Issue_Date__c}"/>
+                </apex:pageBlockTable>
+              </apex:pageBlock>
+        </apex:tab>
+    	<apex:tab label="Permits" name="permits" id="tabPermits">
+            <apex:pageBlock id="thePermitBlock" title="Permits to Operate">
+                <apex:pageBlockTable value="{!lstPermits}" var="per">
+                    <apex:column headerValue="Permit Number">
+                         <apex:outputLink value="/{!per.Id}" id="nameLink" target="blank">{!per.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="Permit Type" value="{!per.Permit_Type__c}"/>
+                    <apex:column headerValue="Expiration Date" value="{!per.MUSW__Expiration_Date__c}"/>
+                    <apex:column headerValue="Status" value="{!per.MUSW__Status__c}"/> 
+                    <apex:column headerValue="Issue Date" value="{!per.MUSW__Issue_Date__c}"/>
+                </apex:pageBlockTable>
+              </apex:pageBlock>
+        </apex:tab>
+    </apex:tabPanel>
+ </apex:page>

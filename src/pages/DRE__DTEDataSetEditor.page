@@ -1,0 +1,140 @@
+<apex:page standardController="DRE__DTE_Data_Set__c" tabStyle="DRE__DTE_Data_Set__c" extensions="DRE.DTEDataSetEditorController" sidebar="false" id="p">
+    <apex:variable value="{!$ObjectType.DRE__DTE_Data_Set__c.Label}" var="dsLabel"/>
+    <apex:variable value="{!SUBSTITUTE(SUBSTITUTE($ObjectType.DRE__DTE_Data_Group__c.Label, 'Test ', ''), 'DTE ', '')}" var="dgLabel"/>
+    
+    <apex:outputPanel id="headerPanel">
+        <apex:sectionHeader title="{!dsLabel}" subtitle="{!IF(DRE__DTE_Data_Set__c.Id = null, 'New ' & dsLabel, DRE__DTE_Data_Set__c.Name)}"/>
+    </apex:outputPanel>
+    
+    <apex:composition template="DRE__DREEditorComposition">
+        
+        <apex:define name="buttons">
+            <apex:commandButton action="{!save}" value="Save" styleClass="pageButton" reRender="groupPanels,scriptPanel,headerPanel,msg,msgBottom" status="loader"/>
+            <apex:commandButton action="{!newRecord}" value="New" styleClass="pageButton" reRender="msg" immediate="true" rendered="{!canCreate}" status="loader"/>
+            <apex:commandButton action="{!validate}" value="{!IF(isAsyncJobRunning, 'Validating...', 'Validate')}" styleClass="pageButton" reRender="f,refreshPanel,msg,msgBottom" rendered="{!DRE__DTE_Data_Set__c.Id != null && canEdit}" disabled="{!isAsyncJobRunning}" status="loader"/>
+            <apex:commandButton action="{!cloneRecord}" value="Clone" styleClass="pageButton" reRender="msg" immediate="true" rendered="{!DRE__DTE_Data_Set__c.Id != null && canCreate}" status="loader"/>
+            <apex:commandButton action="{!deleteRecord}" value="Delete" styleClass="pageButton" reRender="msg" immediate="true" rendered="{!DRE__DTE_Data_Set__c.Id != null}" status="loader"/>
+            <apex:commandButton action="{!cancel}" value="Back" styleClass="pageButton" immediate="true" status="loader"/>
+        </apex:define>
+        
+        <apex:define name="details">
+            <c:DREEditor_Detail object="{!DRE__DTE_Data_Set__c}" id="detailPanel">
+                <tr>
+                    <td> <h2>{!dsLabel} Name</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DTE_Data_Set__c.Name}" style="width:70%" required="true"/> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td> <h2>Description</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DTE_Data_Set__c.DRE__Description__c}" style="width:70%"/> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </c:DREEditor_Detail>
+        </apex:define>
+        
+        <apex:define name="group1">
+            <c:DREEditor_Group title="{!IF(dataGroups.size = 0, 'Add ' & dgLabel, dgLabel)}s" addButtonAction="{!addDataGroup}" addButtonTitle="Add {!dgLabel}" isEditable="{!canEditChild1Group}" hasRows="{!dataGroups.size > 0}" id="group1Panel">
+                <apex:repeat value="{!dataGroups}" var="dg" id="group1Repeat">
+                    
+                    <tr><td style="padding:0px">
+                        <apex:variable value="{!dg.dataGroup.DRE__Operation__c = 'Create'}" var="isCreate"/>
+                        <apex:variable value="{!dg.dataGroup.DRE__Operation__c = 'Update'}" var="isUpdate"/>
+                        <apex:composition template="DRE__DREEditorInnerComposition" rendered="{!dg.canView}">
+                            <apex:define name="innerGroupHeader">
+                                <tr class="innerTable-header-row innerTable-header-row-corrected">
+                                    <td>
+                                        <apex:inputField value="{!dg.dataGroup.DRE__Operation__c}">
+                                            <apex:actionSupport event="onchange" reRender="group1Panel" status="loader"/>
+                                        </apex:inputField>
+                                        <apex:selectList value="{!dg.operationSubTypeSelected}" size="1" rendered="{!canEditChild1Group && isCreate}">
+                                            <apex:selectOptions value="{!dg.operationSubTypes}"/>
+                                            <apex:actionSupport event="onchange" reRender="group1Panel" status="loader"/>
+                                        </apex:selectList>
+                                    </td>
+                                    <td>
+                                        <c:DREObjectPickerLink objectName="{!IF(isUpdate, createdObjects_Str, IF(!isCreate || dg.operationSubTypeSelected = 'related', createdObjectsNoChildren_Str, ''))}" 
+                                                               selectRoot="{!IF(!isCreate || dg.operationSubTypeSelected != 'related', true, false)}" 
+                                                               drillRoot="{!IF(isCreate && dg.operationSubTypeSelected = 'related', true, false)}" 
+                                                               showAllObjects="{!IF(isCreate && dg.operationSubTypeSelected != 'related', true, false)}" 
+                                                               groupObject="{!dg.dataGroup}" 
+                                                               groupObjectSelected="{!dg.objectSelected}" 
+                                                               showChildren="true" 
+                                                               showGlobal="false" 
+                                                               selectLookups="true"
+                                                               isEditable="{!canEditChild1Group}"/>
+                                        <apex:outputPanel rendered="{!dg.objectSelected != null}">
+                                            &nbsp;&nbsp;x&nbsp;&nbsp;
+                                            <apex:inputField value="{!dg.dataGroup.DRE__Object_Count__c}" style="width:3em" rendered="{!dg.dataGroup.DRE__Object_Relationship__c = 'Children'}"/>
+                                            <apex:outputField value="{!dg.dataGroup.DRE__Object_Count__c}" rendered="{!dg.dataGroup.DRE__Object_Relationship__c != 'Children'}"/>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!dg.childrenSize > 0}">
+                                            <h2>With values</h2>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td class="groupButtons">
+                                        <apex:commandLink action="{!dg.addData}" title="Add Field" reRender="group1Panel,msg,msgBottom" status="loader" rendered="{!dg.objectSelected != null && canEditChild1Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'add2.png')}" height="20" width="20"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink action="{!removeChild1Group}" title="Remove Group" styleClass="margin-right" reRender="group1Panel,group2Panel,msg,msgBottom" status="loader" rendered="{!canDeleteChild1Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'delete.png')}" height="20" width="20"/>
+                                            <apex:param name="groupUid" assignTo="{!groupUid}" value="{!dg.uid}"/>
+                                        </apex:commandLink>
+                                    </td>
+                                </tr>
+                            </apex:define>
+                            
+                            <apex:define name="innerGroupBody">
+                                <apex:repeat value="{!dg.data}" var="d" id="dataRepeat">
+                                    <tr>
+                                        <td> </td>
+                                        <td> 
+                                            <apex:selectList value="{!dg.data[d].Field__c}" size="1" style="width:100%" rendered="{!canEditChild1Group && !quickEntryEnabled}">
+                                                <apex:selectOptions value="{!dg.fieldList}"/>
+                                            </apex:selectList>
+                                            <apex:inputField value="{!dg.data[d].Field__c}" style="width:95%" rendered="{!canEditChild1Group && quickEntryEnabled}"/>
+                                            <apex:outputField value="{!dg.data[d].Field__c}" rendered="{!!canEditChild1Group}"/>
+                                        </td>
+                                        <td> </td>
+                                        <td>
+                                            <c:DREInputFormulaLink objectName="{!dg.dataGroup.DRE__Object_Name__c}" 
+                                                                   rowObject="{!dg.data[d]}"
+                                                                   style="width:80%" 
+                                                                   showChildren="false"
+                                                                   showAddFieldButton="false"
+                                                                   isEditable="{!canEditChild1Group}"
+                                                                   id="dataValueComponent"/>
+                                        </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td class="groupInnerButtons">
+                                            <apex:commandLink action="{!dg.removeChild}" reRender="group1Panel,msg,msgBottom" status="loader" rendered="{!canEditChild1Group}">
+                                                <apex:image url="{!URLFOR($Resource.DRE__Icons, 'clear_dark.png')}" height="16" width="16"/>
+                                                <apex:param name="childUID" assignTo="{!dg.childUID}" value="{!d}"/>
+                                            </apex:commandLink>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                            </apex:define>
+                        </apex:composition>
+                        
+                    </td></tr>
+                </apex:repeat>
+            </c:DREEditor_Group>
+        </apex:define>
+        
+        <apex:define name="relatedLists">
+            <apex:relatedList list="DTE_Plan_Data_Sets__r" title="References" id="planList"/>
+        </apex:define>
+        
+    </apex:composition>
+    
+    <apex:form >
+        <c:DREEditor_AsyncRefresh isAsyncJobRunning="{!isAsyncJobRunning}" refreshAction="{!updateMessage}" reRender="f,msg,msgBottom"/>
+    </apex:form>
+</apex:page>

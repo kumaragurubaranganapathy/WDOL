@@ -1,0 +1,1 @@
+trigger DRE2_MUSW_Fee_c on MUSW__Fee__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_MUSW_Fee_c', new DRETriggerHandler()); }

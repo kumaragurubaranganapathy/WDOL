@@ -1,0 +1,120 @@
+.THIS {
+}
+.THIS .slds-path__item{
+    min-width: 0;
+}
+.THIS .slds-path__title{
+    overflow:inherit;white-space: inherit;
+}
+.THIS .icon{
+    vertical-align: middle;
+    height: 50px;
+}
+.THIS .slds-path__nav{
+   margin: 0 135px;
+}
+.THIS .subsubheader{    
+    color: t(LnGFormTitleColor);
+    font-size:14px;
+}
+.THIS .active-path{
+    border-top: 1px solid #2f853d;
+}
+.THIS .is-not-current{
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    /*filter: grayscale(100%);*/
+    opacity: 0.3;
+}
+.THIS .is-complete{
+    border: 3px solid green;
+    box-shadow: 0px 0px 20px green;
+}
+.THIS .outer-circle {
+	background: #eff1ff;
+	border-radius: 50%;
+	height:27px;
+	width:27px;
+    position: relative;
+    box-shadow: 0 0 0 5px #215393;
+    margin:10px;
+}
+.THIS .red-circle {
+  height: 27px;
+  width: 27px;
+  background: #eff1ff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #e2574c;
+  margin:10px;
+}
+@media t(mqSmall){
+	.THIS .icon{
+        height: 40px;
+	}
+	.THIS hr {
+		width: 20px;
+		margin: 20px 0;                    
+	}
+	.THIS .inactive-path-title{
+		display: none;
+	}
+	.THIS .is-not-current{
+		display: none;
+	}
+	.THIS .is-complete-path{
+		display: none;
+	}
+	.THIS .slds-path__nav{
+   		margin: 0 10px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+	.THIS hr {
+		width: 45px;
+		margin: 32px 0;
+	}
+    .THIS .is-complete-path{
+		display: none;
+	}
+	.THIS .inactive-path-title{
+		display: none;
+	}
+	.THIS .is-not-current{
+		display: none;
+	}
+}
+.THIS .inactive-path-title{
+   text-overflow: ellipsis;   
+   color: token(darkgrey);
+   font-size: 14px;
+}
+.THIS .active-path-title{
+   text-overflow: ellipsis;   
+   color: token(LnGFormTitleColor);
+   font-size: 14px;
+   font-weight:bold;
+}
+.THIS .is-complete-path{
+   text-overflow: ellipsis;   
+   color: token(LnGFormTitleColor);
+   font-size: 14px;
+}
+@media t(mqLarge){
+  .THIS hr {
+    width: 100px;                    
+  }
+  .THIS .mobile-tab-view{
+	display:none;
+  }
+}
+.THIS hover{
+   cursor: pointer; 
+}
+.THIS img{
+   cursor: pointer; 
+}
+.THIS span{
+   cursor: pointer; 
+}
+.THIS .mandatory-fields{
+    padding:0 0 20px;
+}

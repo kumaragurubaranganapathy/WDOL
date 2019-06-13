@@ -1,0 +1,742 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Generating Document</title>
+<!--<link href="/sCSS/26.0/sprites/1351189248000/Theme3/default/ie8/elements.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css"/>-->
+<link href="/sCSS/26.0/sprites/1351189248000/Theme3/default/ie8/common.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css"/>
+<!--<link href="/sCSS/26.0/sprites/1350325584000/Theme3/ie8/dStandard.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css"/>-->
+<link href="/sCSS/26.0/sprites/1351189248000/Theme3/default/ie8/extended.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css"/>   
+<script src="/soap/ajax/17.0/connection.js"></script>
+<script src="{!URLFOR('/resource/1339718692000/BGBK__jQuery172','jquery-1.3.2.min.js')}" /></script>
+
+ <script language="javascript" type="text/javascript">
+
+
+
+window.moveBy(200,100);
+
+var result = null;
+var recs = [];
+var job = null;
+var BLrec = null;
+var parentName = "";
+var additionalObjects = [];
+var letterRequestUrl = null;
+
+
+function init()
+{
+	
+	document.getElementById("copy").style.display = "none";
+	
+	lgm.href.getParameters();
+	// if redirected from letter's engine and operation was successful
+	
+	if(lgm.href.param["error"] != null && lgm.href.param["error"] == "false")	{
+		var attachmentId = lgm.href.param["attachmentId"];
+		if(attachmentId != null)	{
+			var path = window.location.protocol + "//" + window.location.host + "/";
+			window.opener.location = path+attachmentId;
+            window.close();
+		}
+	}
+	// using custom setting to set the end point of single letter request
+	letterRequestUrl = "{!$Setup.BGBL__Letter_Single__c.BGBL__Letter_Request_Endpoint__c}";
+	if(letterRequestUrl != null && letterRequestUrl.length > 0) {
+		$("#frmBL").attr("action",letterRequestUrl);
+	}
+	
+	
+	job = new sforce.SObject("BGBL__Batch_Letter_Job__c");
+	
+	//if autorun a specific letter, else prompt
+	if ((lgm.href.param["BLId"] != null) || (lgm.href.param["BLName"] != null)) //autorun for a specific letter
+	{
+		document.getElementById("autorun").style.visibility = "visible";
+		document.getElementById("prompt").style.visibility = "hidden";
+		if (lgm.href.param["BLId"] != null) 
+		{
+			result = sforce.connection.query("select Id, Name, BGBL__File_Name_Prefix__c, BGBL__Merge_Template__c, BGBL__Output_Type_Short__c from BGBL__Batch_Letter__c where id = '" + lgm.href.param["BLId"] + "'");
+		} else if (lgm.href.param["BLName"] != null) 
+		{
+			result = sforce.connection.query("select Id, Name, BGBL__File_Name_Prefix__c, BGBL__Merge_Template__c, BGBL__Output_Type_Short__c from BGBL__Batch_Letter__c where Name = '" + lgm.href.param["BLName"] + "'");
+		} 
+
+		BLrec = result.getArray("records");
+
+		createBLJ();
+
+	} else //prompt
+	{ 
+		
+		//document.getElementById("prompt").style.display = "inline";
+		document.getElementById("prompt").style.visibility = "visible";
+		document.getElementById("autorun").style.visibility = "hidden";
+		
+		//find object api name based on eid token 
+		var dgRetrieve= getRequestedObjectList();
+		
+		parentName = getObjectNameFromId(lgm.href.param["eid"],dgRetrieve);
+			
+		
+		// validation so that object now configured to generate letters, get proper message.
+		if(parentName == null || dgRetrieve.indexOf(parentName) < 0)	{
+			
+			
+			parentName = ((parentName==null||parentName.length == 0)?"This object":parentName);
+			$("#errorMsg").html(parentName+" is not configured to generate letters. Please contact your System Administrator."); 
+			$("#errorSection").show();
+			document.getElementById("save").disabled = "disabled";
+			return;
+		}
+		
+		//get letters configured to run for this parent 
+		
+		result = sforce.connection.query("select BGBL__Select_Fields__c, BGBL__Child_Iterate_Query__c, BGBL__Attachment_To_Object__c, BGBL__Batch_Letter__r.Id, BGBL__Batch_Letter__r.Name, BGBL__Batch_Letter__r.BGBL__Output_Type_Short__c, BGBL__Query__r.BGBL__Object_Name__c, BGBL__Query__r.BGBL__Object_Fields__c, BGBL__Query__r.BGBL__LIMIT_Filter__c, BGBL__Query__r.BGBL__ORDER_BY_Direction_Short__c, BGBL__Query__r.BGBL__ORDER_BY_Filter__c, BGBL__Query__r.BGBL__WHERE_Filter__c from BGBL__Applied_Query__c where ((BGBL__Attachment_To_Object__c = true and BGBL__Query__r.BGBL__Object_Name__c = '" + parentName + "') or BGBL__Child_Iterate_Query__c = true ) and BGBL__Batch_Letter__r.BGBL__Trigger_Only__c != true order by BGBL__Attachment_To_Object__c DESC, BGBL__Batch_Letter__r.Name");
+		//alert(result);
+		var pickList = document.getElementById('letter');
+
+		if (result.size == 1) recs[0] = result.records;
+		else recs = result.records;
+		
+		pickList[0] = new Option("");
+		for (var i=0;i<recs.length;i++) {
+			// populate dropdown with letters that are supposed to be attached to the object
+			if (recs[i]["BGBL__Attachment_To_Object__c"] == "true") {
+				pickList[i+1] = new Option(recs[i]["BGBL__Batch_Letter__r"]["Name"]);
+				pickList[i+1].label = recs[i]["BGBL__Batch_Letter__r"]["Name"];
+				pickList[i+1].value = recs[i]["BGBL__Batch_Letter__r"]["Id"];
+			}
+			//else break; // notice order by BGBL__Attachment_To_Object__c
+		}
+	}
+	
+	document.getElementById("referrerUrl").value = document.URL;
+	// if letter comes back with an error, set the screen similar as before with error message
+	if(lgm.href.param["error"] != null && lgm.href.param["error"] == "true"){
+		var letterId = lgm.href.param["letterId"];
+		if(letterId != null)	{
+			$("#letter").val(letterId);
+			letter_onchange(recs, letterId);			
+		}
+		$("#errorSection").show();
+	}
+}
+
+if(!Array.indexOf){
+	   Array.prototype.indexOf = function(obj){
+	      for(var i=0; i<this.length; i++){
+	         if(this[i]===obj){
+	            return i;
+	         }
+	      }
+	      return -1;
+	   }
+}
+function createBLJ()
+{
+	//set overrides and create job
+	job.BGBL__Batch_Letter__c = BLrec[0]["Id"];
+	document.getElementById("BatchLetterId").value = BLrec[0]["Id"];
+	job.BGBL__Status__c = "Single Letter Job Started";
+	job.BGBL__Single_Letter_Job__c = true;
+	job.BGBL__Output_Type__c = lgm.href.param["OutputType"];
+	if (job.BGBL__Output_Type__c == null) { //use default if not specified
+		job.BGBL__Output_Type__c = BLrec[0]["BGBL__Output_Type_Short__c"]; //doc is default if not specified
+	}
+	document.getElementById("OutputType").value =job.BGBL__Output_Type__c;
+	if (lgm.href.param["Override"] != null) {
+		job.BGBL__Override_Parameters__c = lgm.href.param["Override"].replace("eid", lgm.href.param["eid"]);
+	} else //single letter is default for this screen at this time
+	{
+		
+		job.BGBL__Override_Parameters__c = "WHERE Id= 'eid'".replace("eid", lgm.href.param["eid"]);
+		job.BGBL__Parent_Query_Ids__c = "'eid'".replace("eid", lgm.href.param["eid"]);
+	}
+ 
+	document.getElementById("OverrideParams").value = job.BGBL__Override_Parameters__c;
+	document.getElementById("ParentQueryIds").value = job.BGBL__Parent_Query_Ids__c;
+	//set children
+	var children = "";
+	if (document.getElementById("childRecords")) 
+	{
+		var options = document.getElementById("childRecords").options;
+		if (options) 
+		{
+			for (var i=0; i<options.length; i++) 
+			{
+				if (options[i].selected)
+					children += "," + options[i].value;
+			}
+			children = children.replace(",", "");
+			
+			//job.BGBL__Child_Iterate_Ids__c = children;
+			document.getElementById("IterateChildIds").value = children;
+		}
+	}
+	
+	var result = sforce.connection.create([job]);
+	// is job creation fails, prevent user to request letter
+	if(result == null || result[0].success == "false")	{
+		var errorMsg = "Letter job record creation failed. Please contact system administrator.";
+		if(result[0].errors != null && result[0].errors.message != null) errorMsg+=" Error:"+result[0].errors.message;
+		$("#errorMsg").html(errorMsg);
+		$("#errorSection").show();
+		$("#autorun").hide();
+		document.getElementById("save").disabled = "disabled";
+		document.getElementById("letter").disabled = "disabled";
+		document.getElementById("childRecords").disabled = "disabled";
+		return;
+	}
+	//indicate letter name
+	document.getElementById('letterLabel').innerHTML = BLrec[0]["Name"];; 
+
+	//set form fields for submittal
+	document.getElementById("JobId").value = result[0].id;
+	document.getElementById("recid").value = lgm.href.param["eid"];
+	document.getElementById("TemplateId").value = BLrec[0]["BGBL__Merge_Template__c"];
+	document.getElementById("BatchLetterName").value = BLrec[0]["BGBL__File_Name_Prefix__c"];
+	var errorMsg = "There was an error in transmitting your letter request. Please click \"Request\" button to try again. If this persists please contact your System Administrator.";
+	try {
+		var frm = document.getElementById("frmBL");
+		frm.submit();
+		// if no response within 5 minutes, show user message to try again.
+    	setTimeout(function(){
+                $("#errorMsg").html(errorMsg);
+				$("#errorSection").show();
+				$("#autorun").hide();
+				$("#save").removeAttr('disabled');
+				$("#letter").removeAttr('disabled');
+				$("#childRecords").removeAttr('disabled');
+                document.execCommand('Stop');
+            
+        },300000); 
+     }
+     catch(err){
+     	alert(errorMsg);
+     }
+}
+
+function getRequestedObjectList()
+{
+	// validating custom settings
+	var additionalObjectsSettings = "{!$Setup.BGBL__Letter_Single__c.BGBL__Request_Objects_Additional__c}";
+	
+	if(additionalObjectsSettings != null && additionalObjectsSettings.length > 0) {
+		
+		//additionalObjects = additionalObjectsSettings.trim().split(",");
+		additionalObjects = additionalObjectsSettings.replace(/^\s+|\s+$/g,'').split(",");
+		
+	}	
+	
+	//get info on the tables that link to BG letters
+	//var objectList=["MUSW__Complaint2__c","MUSW__Application2__c","MUSW__License2__c"].concat(((additionalObjectsSettings!=null)?additionalObjects:"")); 
+	
+	var objectList=["MUSW__Permit2__c","MUSW__Complaint2__c","MUSW__Application2__c","MUSW__License2__c"].concat(((additionalObjectsSettings!=null)?additionalObjects:"")); 
+	
+	return objectList;
+}
+
+function getObjectNameFromId(id, dgRetrieve) 
+{
+	var objectName = "";	
+	//var dgRetrieve=["MUSW__Permit2__c","MUSW__Complaint2__c","MUSW__Application2__c","MUSW__License2__c"].concat(((additionalObjectsSettings!=null)?additionalObjects:"")); 
+	//var dgRetrieve= getRequestedObjectList();
+	
+	//get all objects this user has access to
+	var result = sforce.connection.describeGlobal();
+	var sobjects = result.getArray("sobjects");
+	var permObjs = ',';
+	for (var i=0; i<sobjects.length; i++) 
+	{
+			permObjs=permObjs+sobjects[i].name+',';
+	}
+	//remove objects don't have perms to (need view and deployed at least)
+	for (var i=0; i<dgRetrieve.length; i++) 
+	{
+		if (permObjs.indexOf(','+ dgRetrieve[i]+',') < 0) 
+		{
+			dgRetrieve.remove(i);
+			i--;
+		}
+	}
+	//alert(dgRetrieve);
+
+	var letterTables = sforce.connection.describeSObjects(dgRetrieve);
+
+	for (var i=0; i<letterTables.length; i++) 
+	{
+		if (letterTables[i].keyPrefix == id.substring(0,3))
+			objectName = letterTables[i].name;
+	}
+	return objectName;
+}
+
+/************************************************************************************
+**	Screen Events
+************************************************************************************/
+function submit_onclick() 
+{
+	var pickList = document.getElementById('letter');
+	
+	if (pickList[pickList.selectedIndex].value == "")
+	{
+		alert ("Please select a template before clicking Request");
+		return;
+	}
+	document.getElementById("save").disabled = "disabled";
+	document.getElementById("letter").disabled = "disabled";
+	document.getElementById("childRecords").disabled = "disabled";
+	
+	result = sforce.connection.query("select Id, Name, BGBL__File_Name_Prefix__c, BGBL__Merge_Template__c, BGBL__Output_Type_Short__c from BGBL__Batch_Letter__c where id = '" + pickList[pickList.selectedIndex].value + "'");
+	
+	BLrec = result.getArray("records");
+	
+	document.getElementById("autorun").style.visibility = "visible";
+	createBLJ();
+
+}
+
+function letter_onchange(recs, letterId) 
+{
+	
+	try {
+	
+		var pickList2 = document.getElementById('childRecords');	
+		enableUI();		
+		//defaults
+		pickList2.innerHTML = "";
+		document.getElementById("copy").style.display = "none";
+		pickList2.size = 1;
+		
+		// contruct query
+		var childrenQuery, childFields, childFieldLabels="", childLookupName;
+		for (var i=0;i<recs.length;i++) 
+		{
+			if (recs[i]["BGBL__Child_Iterate_Query__c"] == "true" && recs[i]["BGBL__Batch_Letter__r"]["Id"] == letterId) 
+			{
+				//get lookup field
+				var childDesc = sforce.connection.describeSObject(recs[i]["BGBL__Query__r"]["BGBL__Object_Name__c"]);			
+				//var objectReferencedBy = getObjectReferrencedBy(childDesc);
+				childFields = recs[i]["BGBL__Select_Fields__c"];			
+				var queryFields = recs[i]["BGBL__Query__r"]["BGBL__Object_Fields__c"];
+				// get the child iterate field names with label
+				var cFlds = childFields.replace(/\s/g, "").split(",");
+				var qFlds = queryFields.replace(/\s/g, "").split(",");
+				var parentMap = {}
+				parentMap[childDesc.name]=false;
+				
+				for(var k=0 ,count=0 ; k<cFlds.length;k++)	{
+					
+					var found = false;
+					for(var l=0;l<qFlds.length;l++){
+						
+						if(qFlds[l].toLowerCase() == cFlds[k].toLowerCase()) {
+							var fieldParts = cFlds[k].replace(/\s/g, "").split(".");
+							//alert(fieldParts.length);
+							var fieldlabel=null;
+							
+							
+							if(fieldParts.length == 1)	{
+								if(parentMap[childDesc.name] == false)	{
+									fieldlabel = (childDesc.label == null?"":childDesc.label);
+									/* not showing field label now
+										var field = getFieldOfObject(fieldParts[0], childDesc);
+										fieldlabel+=" "+( field== null?"":field.label);
+									*/
+									parentMap[childDesc.label] = true;
+									//alert(parentMap[childDesc.label]);
+								}
+							}
+							else if(fieldParts.length >= 2)	{
+								var parentFieldName = fieldParts[fieldParts.length-2].replace("__r","__c");
+								if(parentMap[parentFieldName] == null || parentMap[parentFieldName] == false ){
+									var parentField = getFieldOfObject(parentFieldName, childDesc);	
+									if(parentField != null) {
+										fieldlabel=parentField.label;
+										//alert(fieldlabel);
+										parentMap[parentFieldName] = true;
+									}
+								}
+							}
+							/* Previously done - showing missing objects and field labels
+							// supporting up to two levels , ie MUSW__Contact__c.Name
+					
+							else if(fieldParts.length == 2)	{
+								
+								var parentFieldName = fieldParts[0].replace("__r","__c");
+								var parentField = getFieldOfObject(parentFieldName, childDesc);			
+								if(parentField!= null && parentField.type == "reference")	{
+									var ObjName = parentField.referenceTo;
+									// need to optimize this query. Using it for testing purposes
+									var ObjDesc = sforce.connection.describeSObject(ObjName);			
+									//alert(ObjDesc);
+									fieldlabel = (ObjDesc.label == null?"":ObjDesc.label);
+									var field = getFieldOfObject(fieldParts[1], ObjDesc);
+									fieldlabel+=" "+( field== null?"":field.label);
+								}
+							}
+							
+							
+							*/	
+							if(fieldlabel != null && fieldlabel.length > 0){						
+								if(count != 0) childFieldLabels+=" , ";
+								childFieldLabels+=fieldlabel;
+								count++;
+								
+							}
+						}
+						
+					}
+					
+				}
+				for (var j=0; j<childDesc.fields.length; j++) 
+				{
+					//alert("Name: "+childDesc.fields[j].name+" "+childDesc.fields[j].type+" "+ childDesc.fields[j].referenceTo+" "+childDesc.fields[j].relationshipName);
+					if (childDesc.fields[j].type == "reference" && childDesc.fields[j].referenceTo == parentName)
+					{
+						childLookupName = childDesc.fields[j].relationshipName.replace("__r","__c");
+						break;
+					}
+					
+				}
+				
+				if (childLookupName == null) throw "unknown child iterate parent";
+				// provide error message is child iterate query field is blank or does not contain id
+				if(recs[i]["BGBL__Query__r"]["BGBL__Object_Fields__c"] == null)
+				{
+					$("#errorMsg").html("Letter query associated with copy records does not have any fields. Please contact system administrator for details."); 
+					$("#errorSection").show();
+					document.getElementById("save").disabled = "disabled";
+					document.getElementById("copy").style.display = "block";
+					return;
+				}
+				else if(recs[i]["BGBL__Query__r"]["BGBL__Object_Fields__c"].toLowerCase().indexOf('id') < 0)
+				{
+					$("#errorMsg").html("Letter query associated with copy records does not have Id field which is required. Please contact system administrator for details. ");
+					$("#errorSection").show();
+					document.getElementById("save").disabled = "disabled";
+					document.getElementById("copy").style.display = "block";
+					return;
+				}
+				childrenQuery = "select " + recs[i]["BGBL__Query__r"]["BGBL__Object_Fields__c"] + " from " + recs[i]["BGBL__Query__r"]["BGBL__Object_Name__c"] + " where " + childLookupName + " = '" + lgm.href.param["eid"] + "'";
+				
+				//alert(childrenQuery);
+				if (recs[i]["BGBL__Query__r"]["BGBL__WHERE_Filter__c"] != null) 
+				{
+					childrenQuery += " and (" + recs[i]["BGBL__Query__r"]["BGBL__WHERE_Filter__c"] + ")";
+				}
+				if (recs[i]["BGBL__Query__r"]["BGBL__ORDER_BY_Filter__c"] != null) 
+				{
+					childrenQuery += " order by " + recs[i]["BGBL__Query__r"]["BGBL__ORDER_BY_Filter__c"];
+					
+					if (recs[i]["BGBL__Query__r"]["BGBL__ORDER_BY_Direction_Short__c"] != "0" && recs[i]["BGBL__Query__r"]["BGBL__ORDER_BY_Direction_Short__c"] != null) 
+					{
+						childrenQuery += " " + recs[i]["BGBL__Query__r"]["BGBL__ORDER_BY_Direction_Short__c"];
+					}
+				}
+				if (recs[i]["BGBL__Query__r"]["BGBL__LIMIT_Filter__c"] != null) 
+				{
+					childrenQuery += " limit " + recs[i]["BGBL__Query__r"]["BGBL__LIMIT_Filter__c"];
+				}
+				
+				;
+			}
+		}
+		
+		// get children and populate list
+		if (childrenQuery != null && childFields != null) 
+		{
+			var result2 = sforce.connection.query(childrenQuery);
+			//alert(result2);
+			var recs2 = [];
+			// if child query does not return any result, not letting client to proceed
+			if(result2== null || result2.size == 0)	
+			{
+				$("#errorMsg").html("No Copies found. Need at least one "+childFieldLabels+"."); //eg. Contact Name, Mailing <object label> Field label 1, Field label 2
+				$("#errorSection").show();
+				document.getElementById("save").disabled = "disabled";
+				document.getElementById("copy").style.display = "block";
+				return;
+			}
+			else if (result2.size == 1) recs2[0] = result2.records;
+			else recs2 = result2.records;
+			
+			var flds = childFields.replace(/\s/g, "").split(",");
+			//alert(flds);
+			var label;
+			
+			//pickList2[i] = new Option("<All>", null);
+			
+			var maxLength = 0;
+			
+			for (var i=0;i<recs2.length;i++) 
+			{
+				label = "";
+				for (var j=0;j<flds.length;j++) 
+				{
+					if (flds[j].indexOf(".") > -1) 
+					{
+						// check if child iterate records is blank (ie no contact found for complaint but asked in child iterate field) or child iterate field is not present
+						/*
+						if(recs2[i][flds[j].split(".")[0]] == null || recs2[i][flds[j].split(".")[0]][flds[j].split(".")[1]] == null)	
+						{
+							alert(recs2[i]);
+							var message = "A "+childFieldLabels+" lookup is missing in the "+ parentName + " record or  "+flds[j].split(".")[1]+" field value is missing in "+ childFieldLabels +".";
+							//if(if(recs2[i][flds[j].split(".")[0]] != null &&  recs2[i][flds[j].split(".")[0]]['Name'] != null) message+=" Record Name: "+ recs2[i][flds[j].split(".")[0]]['Name'] +".";
+							$("#errorMsg").html(message); 
+							$("#errorSection").show();
+							document.getElementById("save").disabled = "disabled";
+							document.getElementById("copy").style.display = "block";
+							return;
+						}*/
+						if(recs2[i][flds[j].split(".")[0]] == null )	
+						{
+							//fieldlabel = (childDesc.label == null?"":childDesc.label);
+							//alert(fieldlabel);
+							var message = "A "+childFieldLabels+" lookup is missing in the "+ parentName + " record .";
+							$("#errorMsg").html(message); 
+							$("#errorSection").show();
+							document.getElementById("save").disabled = "disabled";
+							document.getElementById("copy").style.display = "block";
+							return;
+						}
+						if(recs2[i][flds[j].split(".")[0]][flds[j].split(".")[1]] != null )	label += ", " + recs2[i][flds[j].split(".")[0]][flds[j].split(".")[1]];
+						
+					}
+					else 
+					{
+						// check if child iterate field is not present
+						/*
+						if(recs2[i][flds[j]] == null)
+						{
+							$("#errorMsg").html(flds[j]+" field value is missing in "+ childFieldLabels +"."); 
+							$("#errorSection").show();
+							document.getElementById("save").disabled = "disabled";
+							document.getElementById("copy").style.display = "block";
+							return;
+						
+						}
+						*/
+						if(recs2[i][flds[j]] != null) label += ", " + recs2[i][flds[j]];
+					}
+				}
+				label = label.replace(", ", "");
+				
+				pickList2[i] = new Option(label, recs2[i]["Id"]);
+				
+				if (maxLength < label.length)
+					maxLength = label.length;
+			}
+			
+			pickList2[0].selected = true;
+			
+			pickList2.size = Math.min(recs2.length,5);
+	
+			var widthPerc = Math.min(parseInt((0.50 * maxLength)/ 25),.75); //50% covers 25 characters. set new width to max characters (max perc at 75% (leave room for label)
+			//alert (maxLength+ 'width '+widthPerc);
+			pickList2.width=(100*widthPerc)+"%";
+			document.getElementById("copy").style.display = "block";
+			
+		}
+	}
+    catch(err){
+     	alert(err);
+     	// disabling the request generating buttons as some error has happened 
+     	document.getElementById("save").disabled = "disabled";
+		document.getElementById("copy").style.display = "block";
+		return;
+    }
+}
+
+// method to get the label 
+function getFieldOfObject(fieldName, sfObject)
+{
+	if(sfObject.fields.length > 0 && fieldName!= null)	{
+		for(var i=0; i< sfObject.fields.length; i++){
+			if(sfObject.fields[i].name == fieldName){
+				return sfObject.fields[i];
+			}
+		}
+		
+	}
+	
+	return null;
+}
+// method to enable user interface to request letter
+function enableUI()
+{
+	$("#errorSection").hide();
+	$("#save").removeAttr('disabled');
+	$("#letter").removeAttr('disabled');
+	$("#childRecords").removeAttr('disabled');
+}
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+/**FROM lgmCOMMON**/
+lgm = function() {
+};
+
+lgm.href = function() {
+};
+
+lgm.href.param = new Array();
+
+// grab list of parameters after "?" in this scontrol URL
+// requires global variable - lgm.href.param 
+lgm.href.getParameters = function() 
+{
+	var startTagStartPos= window.location.href.indexOf("?")+1;
+	var startTagEndPos = window.location.href.length;
+	var paramList = window.location.href.substring(startTagStartPos, startTagEndPos);
+
+	//replace "+" signs
+	paramList = lgm.string.replaceAll(paramList,"+", " ");
+	paramList = paramList; 
+	paramList = paramList + "&";
+	
+	//build hash table of parameters
+	while (paramList.indexOf("&") != -1) 
+	{
+		startTagStartPos = paramList.indexOf("=");
+		startTagEndPos = paramList.indexOf("&");
+
+		
+		var paramKey = paramList.substring(0,startTagStartPos);
+		var paramValue = paramList.substring(startTagStartPos + 1,startTagEndPos);
+		
+		lgm.href.param[paramKey] = unescape(paramValue); //if fields passed in as params have comma's or & in them, these need to be reverted back to normal
+		paramList = paramList.substring(paramList.indexOf("&") + 1, paramList.length);
+
+	}
+	
+	return true;
+}
+
+lgm.string = function() {
+};
+
+lgm.string.replaceAll = function (replaceString, replaceFindValue, replaceValue) {
+	var intIndexOfMatch = replaceString.indexOf(replaceFindValue);
+	while (intIndexOfMatch != -1)
+	{
+		// Relace out the current instance.
+		replaceString = replaceString.replace(replaceFindValue, replaceValue);
+	
+		// Get the index of any next matching substring.
+		intIndexOfMatch = replaceString.indexOf(replaceFindValue);
+	}
+
+	return replaceString;
+}
+	
+    </script>
+</head>
+<body onload="init()">
+<!--MAY BE OVERWRITTEN BY LETTER SINGLE CUSTOM SETTING IF NOT BLANK
+  <form id="frmBL" name="frmBL" action="https://lettersingle.mybasicgov.com/RunBatchMergeJob/SingleLetter.aspx" method="post" enctype="multipart/form-data">
+   https://testletter.mybasicgov.com/RunBatchMergeJob/SingleLetter.aspx
+<!--TODO use this ip for server testing 
+   <form id="frmBL" name="frmBL" 
+action="http://54.85.179.216/RunBatchMergeJob/SingleLetter.aspx" method="post" enctype="multipart/form-data">
+<!-- use this for dev local testing
+  <form id="frmBL" name="frmBL" action="http://localhost/RunBatchMergeJob/SingleLetter.aspx" method="post"  enctype="multipart/form-data">
+   
+<!--PRODUCTION -->
+       <form id="frmBL" name="frmBL" action="https://lettersingle.mybasicgov.com/RunBatchMergeJob/SingleLetter.aspx" method="post" enctype="multipart/form-data">
+  
+        <input id="OrgId" name="OrgId" type="hidden" value="{!$Organization.Id}" />
+        <input id="OrgName" name="OrgName" type="hidden" value="{!$Organization.Name}" />
+        <input id="SessionId" name="SessionId" type="hidden" value="{!API.Session_ID}" />
+        <input id="ApiServerUrl" name="ApiServerUrl" type="hidden" value="{!$Api.Partner_Server_URL_350}" />
+        <input id="BatchLetterName" name="ParentBatchLetterName" type="hidden" value="License Renewal" />
+<!--
+        <input id="BatchLetterId" name="ParentBatchLetterId" type="hidden" value="a06A0000000668x" />
+-->
+        <input id="BatchLetterId" name="ParentBatchLetterId" type="hidden" value="a06A0000000683K" />
+        <input id="JobId" name="JobId" type="hidden" value="" />
+
+        <input id="TemplateId" name="TemplateId" type="hidden" value="a07A0000000BvgT" />
+
+ <!--       <input id="TemplateId" name="TemplateId" type="hidden" value="a07A0000000C0Rm" />-->
+        <input id="OutputType" name="OutputType" type="hidden" value="pdf" />
+		<input id="OverrideParams" name="OverrideParams" type="hidden" value="WHERE Id='{!Account.Id}'" />
+<input id="ParentQueryIds" name="ParentQueryIds" type="hidden" value="" />
+		<input id="recid" name="recid" type="hidden" value="{!Account.Id}" />
+		<input id="IterateChildIds" name="IterateChildIds" type="hidden" value="" />
+		<input id="referrerUrl" name="referrerUrl" type="hidden" value="" />
+
+		<div id="prompt" visibility= "hidden" >
+			<table id ="tprompt" width="100%" style= "padding:10px 2px 10px 2px; text-align:center; font-size: 10pt; font-weight: bold; color:#333;">
+				<tr>
+				  <td><span align=center class="mainTitle">Letter</span></td>
+				</tr>
+				<tr>   
+					<td>
+						<span>Template:&nbsp;</span><select id = "letter"  required="required" onchange="javascript:letter_onchange(recs, this.value);"  name = "letter" style = "width:50%;align:center"></select>
+				  	</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div id="copy" style="display:none">
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy:&nbsp;</span><select id = "childRecords"  required="required" multiple="multiple" size="1" name = "childRecords" style = "width:50%;align:center" ></select>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>   
+					<td>
+						<input id = "save" align="center" Name = "save" class="btn" style="margin:5px 2px 2px 20px;" type=button value="Request" onClick="javascript:submit_onclick();" disable = "false">
+				  	</td>
+				</tr>
+			</table>
+		</div>
+		<div id="errorSection">
+			<table width="100%" style= "padding:0px 0px 0px 0px; text-align:center; font-size: 10pt; font-weight: bold; color:#333;">
+				<tr>
+				  <td align=center >
+					<font style="color:red"><span id = "errorMsg" name = "errorMsg">&nbsp;Letter generation failed. Please contact system administrator for details.</span><font>
+				  </td>
+				</tr>				
+			</table>
+		</div>
+<script>document.getElementById('errorSection').style.display = 'none';</script>
+		<div id="autorun">
+			<table id ="tautorun" width="100%" style= "padding:0px 0px 0px 0px; text-align:center; font-size: 10pt; font-weight: bold; color:#333;">
+				<tr>
+				  <td align=center >
+					<span >Processing </span><span id = "letterLabel" name = "letterLabel"></span><span>&nbsp;letter, please wait...</span>
+				  </td>
+				</tr>
+				<tr>
+				  <td>&nbsp;</td>
+				</tr>
+				<tr>
+				  <td align=center>
+					<img id="waitingdots" src="/img/waiting_dots.gif" alt="Please wait..." width="196" height="20" title="Please wait..." />
+				  </td>
+				</tr>
+			
+				<tr>
+				  <td align=center >
+					<span >...when completed, you will be redirected to this new letter</span>
+				  </td>
+				</tr>
+			</table>
+		</div>
+<script>document.getElementById('autorun').style.display = 'none';</script>
+           <DIV id="divDebugHeader" style="display:none"> 
+<hr/> 
+<b>Debug Mode</b> 
+</DIV> 
+<DIV id="divDebug" style="display: none"></DIV>     
+    </form>
+
+</body>
+</html>

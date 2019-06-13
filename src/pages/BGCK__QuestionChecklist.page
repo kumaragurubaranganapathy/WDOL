@@ -1,0 +1,396 @@
+<apex:page controller="BGCK.QuestionChecklistController" id="p" showHeader="{!showHeader}" sidebar="{!showSidebar}" tabStyle="BGCK__Page__c">
+    <div id="preloader2" style="visibility:hidden;"></div>
+    <apex:sectionHeader title="Checklist" subtitle="{!pageName}">
+        <apex:outputLink style="text-decoration:none;" value="/{!pid}" rendered="{!!isPortalUser}">&lt;&lt;Back to {!parentRecordName}</apex:outputLink>
+        <apex:pagemessages />
+    </apex:sectionHeader>
+    <apex:form id="f">
+        <apex:pageBlock id="pb">
+            <!-- <apex:outputLink style="font-size: 2em;font-weight: normal; color:#63a4c5;" value="/{!pid}">{!parentRecordName}</apex:outputLink> -->
+            <apex:pageblockbuttons id="btn" >
+                 <apex:commandButton value="Save & Complete" action="{!save}" rendered="{!((pageNumber==paVOs.size && pageType=='Wizard') || pageType!='Wizard') && isEditMode}" reRender="f,pb,pat,pbt" onclick="var con = confirm('You are going to submit the checklist!'); if(con == false) return; this.disabled=true; this.className = 'btnDisabled';document.getElementById('preloader2').style.visibility='visible';" 
+                     oncomplete="document.getElementById('preloader2').style.visibility='hidden';this.disabled=false;this.className = 'btn';" id="btnSave"/>
+                 <apex:commandButton value="Save" action="{!savePartial}" rendered="{!((pageNumber==paVOs.size && pageType=='Wizard') || pageType!='Wizard') && isEditMode}" reRender="f,pb,pat,pbt" onclick="this.disabled=true; this.className = 'btnDisabled';document.getElementById('preloader2').style.visibility='visible';" 
+                     oncomplete="document.getElementById('preloader2').style.visibility='hidden';this.disabled=false;this.className = 'btn';" id="btnSave2"/>
+                 <apex:commandbutton value="Cancel" action="{!cancel}"  immediate="true"/>                
+            </apex:pageblockbuttons>
+            
+            <apex:repeat value="{!paVOs}" var="paVO" id="pat" >
+                <apex:outputPanel rendered="{!(paVO.paIndex == pageNumber && pageType=='Wizard') || pageType=='Section'}">
+                    <apex:pageBlockSection title="{!paVO.pageName}" />
+                    
+                    <apex:pageBlocktable value="{!paVO.pQavos}" var="qaVO" id="pbt" >
+                        <apex:column headerValue="Answer" id="Answer" style="width:10%;vertical-align:top;" >
+                            <apex:selectRadio value="{!qaVO.selectedAnswer}" onchange="getMatchingSubs('{!paVO.pId}','{!qaVO.question.id}',getSelectedAnswers(this));" rendered="{!(qaVO.question.Question_Type__r.Type__c='Radio Button') && ((qaVO.question.Question_Type__r.Default_Value__c!=null && qaVO.answer.Name =null)  &&  qaVO.selectedAnswer = null && (qaVO.question.Id = currentQId  && qaVO.isChanged) || isEditMode = true )  }" id="qqRadio">
+                                <apex:selectOptions value="{!qaVO.answerTypes}"/>
+                            </apex:selectRadio>
+                            <apex:selectCheckboxes id="qqMultiChecks" value="{!qaVO.selectedAnswers}" onchange="getMatchingSubs('{!paVO.pId}','{!qaVO.question.id}',getSelectedAnswers(this));" rendered="{!(qaVO.question.Question_Type__r.BGCK__Type__c='Checkbox - Horizontal') && (( qaVO.selectedAnswers.size = 0 && qaVO.question.id = currentQId  && qaVO.answer.Name=null && qaVO.isChanged)|| isEditMode = true)}">                    
+                                <apex:selectOptions value="{!qaVO.answerTypes}"/>
+                            </apex:selectCheckboxes>
+                            
+                            <apex:selectList id="qqSelectLists" size="1" multiselect="false" value="{!qaVO.selectedAnswer}" onchange="getMatchingSubs('{!paVO.pId}','{!qaVO.question.id}',getSelectedAnswers(this),this.id);" rendered="{!(qaVO.question.Question_Type__r.BGCK__Type__c='Picklist') && (( qaVO.selectedAnswer = null && qaVO.question.Id = currentQId  && qaVO.answer.Name=null && qaVO.isChanged)|| isEditMode = true)}">
+                                <apex:selectOptions value="{!qaVO.answerTypes}"/>
+                            </apex:selectList>
+                       
+                            <apex:inputText value="{!qaVO.conditionalAnswer}" onblur="getMatchingSubs('{!paVO.pId}','{!qaVO.question.id}',getSelectedAnswers(this));" 
+                                rendered="{!(qaVO.isNumberType) && (qaVO.conditionalAnswer = null && (qaVO.question.id = currentQId  && qaVO.isChanged)|| isEditMode = true)}" id="qqText"/>
+                                                                                                                                     
+                            <apex:inputText value="{!qaVO.conditionalAnswer}" onblur="getMatchingSubs('{!paVO.pId}','{!qaVO.question.id}',getSelectedAnswers(this));" onfocus="DatePicker.pickDate(false,'p:f:pb:pat:{!paVO.paIndex}:pbt:{!qaVO.queIndex}:qDate', false);" 
+                                rendered="{!qaVO.question.Question_Type__r.BGCK__Type__c='Date' && (qaVO.conditionalAnswer = null || (qaVO.question.id = currentQId  || qaVO.isChanged)|| isEditMode = true)}" id="qqDate"/>
+                           
+                            <!-- display error message-->                    
+                            <apex:image value="/img/func_icons/remove12_on.gif" 
+                            rendered="{!qaVO.isValidAnswer!=null && (qaVO.isChanged || isClickSaved|| isEditMode = true) && isPartialSave = false}"/>
+                            <apex:outputText value="{!qaVO.isValidAnswer}" 
+                            rendered="{!qaVO.isValidAnswer!=null && (qaVO.isChanged || isClickSaved|| isEditMode = true)&& isPartialSave = false}"/>
+                           
+                            <!--<apex:image value="/img/func_icons/remove12_on.gif" rendered="{!qaVO.isValidAnswer!=null && qaVO.isChanged && qaVO.isNumberType}"/>
+                            <apex:outputText value="{!qaVO.isValidAnswer}" rendered="{!qaVO.isValidAnswer!=null && qaVO.isChanged && qaVO.isNumberType}"/>
+                            -->
+                            
+                            <!--display mode-->
+                            <apex:outputText value="{!qaVO.selectedAnswer}" rendered="{!(qaVO.selectedAnswer!=null && qaVO.answer.Name!=null && !qaVO.isChanged && qaVO.question.Id!=currentQId)&& isEditMode = false}"/>
+                            <apex:repeat value="{!qaVO.selectedAnswers}" var="answer" rendered="{!(qaVO.selectedAnswers!=null && qaVO.selectedAnswers.size>0 && qaVO.answer.Name!=null && !qaVO.isChanged && qaVO.question.Id!=currentQId && isEditMode = false) }">
+                                <apex:outputText value="{!answer}" />
+                                <apex:outputText value=""/>
+                            </apex:repeat>
+                            <apex:outputText value="{!qaVO.conditionalAnswer}" rendered="{!qaVO.conditionalAnswer !=null && qaVO.answer.Name!=null && !qaVO.isChanged && qaVO.question.Id!=currentQId && isEditMode = false}"/>
+                            <apex:outputText value=" " rendered="{!qaVO.question.Id != currentQId&& isEditMode = false}"/>
+                            
+                            <!--Comment Edit link becuase James said they should not edit submitted checklist -->
+
+                            <!--<apex:commandLink value="Edit" id="theCommandLink" reRender="pbt" rendered="{!qaVO.answer.Name!=null && !qaVO.isChanged && qaVO.question.Id!=currentQId}">
+                                <apex:param name="qIndex" value="{!qaVO.question.Id}" assignTo="{!currentQId}"/>
+                            </apex:commandLink>-->
+                            
+                        </apex:column>
+                        
+                        <apex:column headerValue="Question" style="width:80%;vertical-align:top;">
+                            <apex:outputField Value="{!qaVO.question.BGCK__Body__c}" rendered="{!qaVO.Question.BGCK__Question__c = null}"/>
+                            <!--<apex:outputPanel rendered="{!qaVO.Question.BGCK__Question__c = null}">
+                                <table>
+                                <tr><td><apex:outputField Value="{!qaVO.question.BGCK__Body__c}"/></td>
+                                <td><img src="/img/alohaSkin/help_orange.png" title ="{!qaVO.question.Question_Tip__c}" style="{!if(qaVO.question.Question_Tip__c!=null,'display:block','display:none')}"/></td>
+                                </tr></table>
+                            </apex:outputPanel>-->
+                            <apex:selectCheckboxes layout="pageDirection" value="{!qaVO.selectedAnswers}" rendered="{!(qaVO.question.Question_Type__r.BGCK__Type__c='Checkbox - Vertical') && (qaVO.selectedAnswers.size = 0 || qaVO.question.id = currentQId  || qaVO.answer.Name=null || qaVO.isChanged)}">
+                                <apex:selectOptions value="{!qaVO.answerTypes}"/>
+                            </apex:selectCheckboxes>
+                            
+                            
+                            <!--Start only display the answered subquestion if the question answer is the criteria of subquestion-->
+                            <apex:pageBlocktable value="{!qaVO.subQaVOs}" var="subQ" rendered="{!(qaVO.subQaVOs.size > 0 && qaVO.isSubCriteriaPassed && qaVO.answer.Name!=null && qaVO.question.Id!=currentQId && isEditMode = false) }" id="subQsAnswer">
+                            <apex:column style="width:20%;vertical-align:top;">
+
+
+                                <!--display answer mode - view mode-->
+
+                                <apex:outputText value="{!subQ.selectedAnswer}" rendered="{!(subQ.selectedAnswer!=null && subQ.answer.Name!=null && subQ.isSubCriteriaPassed)}"/>
+                                <apex:repeat value="{!subQ.selectedAnswers}" var="answer" rendered="{!(subQ.selectedAnswers.size>0 && subQ.answer.Name!=null && subQ.isSubCriteriaPassed )  }">
+                                    <apex:outputText value="{!answer}" />
+                                    <apex:outputText value=" "/>
+                                </apex:repeat>
+
+                                <apex:outputText value="{!subQ.conditionalAnswer}" rendered="{!subQ.conditionalAnswer !=null && subQ.answer.Name!=null && subQ.isSubCriteriaPassed }"/>
+                                <apex:outputText value=" " rendered="{!subQ.question.Id != currentQId}"/>
+                            </apex:column>
+                             <apex:column style="width:70%;vertical-align:top;">
+                                    <apex:outputfield Value="{!subQ.question.BGCK__Body__c}" rendered="{!subQ.isSubCriteriaPassed}"/>
+                                </apex:column>
+                            </apex:pageBlocktable>
+
+                            <!--End display subquestion answer -->
+        
+                            <!-- display the sub questions questions and answers - edit mode -->
+                            <apex:pageBlockSection id="subQsPbs" rendered="{!qaVO.subQaVOs.size > 0 && isEditMode = true}" columns="1" html-data-jsid="subQsPbs" html-data-jsparentqid="{!qaVO.question.Id}">
+                                <apex:repeat value="{!qaVO.subQaVOs}" var="subQ" id="subQs">
+
+                                <apex:pageBlockSection columns="2" html-data-jssubqid="{!subQ.question.id}" html-data-jsid="subQRow">
+                                    <apex:outputPanel style="width:20%" >
+                                        <!-- use this to store subQ Id (used for rendering the appropriate subQ when a choice is selected) -->
+                                        <apex:inputHidden value="{!subQ.question.id}" id="hiddenSubQId" html-data-jsid="hiddenSubQId" html-data-jssubqid="{!subQ.question.id}"/>
+                                        <apex:inputText onblur="" value="{!subQ.conditionalAnswer}" rendered="{!subQ.isNumberType}"/>
+                                        <apex:inputText value="{!subQ.conditionalAnswer}" onfocus="DatePicker.pickDate(false,'p:f:pb:pat:{!paVO.paIndex}:pbt:{!qaVO.queIndex}:subQs:{!subQ.queIndex}:subQ', false);" 
+                                            rendered="{!subQ.question.Question_Type__r.BGCK__Type__c='Date'}" id="subQ"/>
+                                        <apex:image value="/img/func_icons/remove12_on.gif" rendered="{!subQ.isValidAnswer!=null}"/>
+                                        <apex:outputText value="{!subQ.isValidAnswer}" rendered="{!subQ.isValidAnswer!=null}"/>
+                                        <apex:selectRadio style="vertical-align:text-top;" value="{!subQ.selectedAnswer}"  onchange="" rendered="{!subQ.question.Question_Type__r.BGCK__Type__c='Radio Button'}">
+                                            <apex:selectOptions value="{!subQ.answerTypes}"/>
+                                        </apex:selectRadio>
+                                        <apex:selectCheckboxes style="vertical-align:text-top;" id="multiChecks" onchange="" value="{!subQ.selectedAnswers}" rendered="{!(subQ.question.Question_Type__r.BGCK__Type__c='Checkbox - Horizontal')}">
+                                            <apex:selectOptions value="{!subQ.answerTypes}"/>
+                                        </apex:selectCheckboxes>
+                                        <apex:selectList id="selectLists" onchange="" size="1" multiselect="false" value="{!subQ.selectedAnswer}"  rendered="{!subQ.question.Question_Type__r.BGCK__Type__c='Picklist'}">
+                                            <apex:selectOptions value="{!subQ.answerTypes}"/>
+                                        </apex:selectList>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel style="width:80%">
+                                        <apex:outputfield Value="{!subQ.question.BGCK__Body__c}" rendered="true"/>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                                </apex:repeat>
+                            </apex:pageBlockSection>
+                        </apex:column>
+                        <apex:column style="width:10%;vertical-align:top;" headerValue="Comments" rendered="{!qaVO.Question.BGCK__Question__c = null}"><apex:inputTextArea disabled="{!isEditMode = false}" value="{!qaVO.answer.BGCK__Comments__c}" onClick="commentClick(this,this.value,'{!qaVO.Question.Id}');" rows="1" id="qComment" richText="false"/>
+                        </apex:column>
+                    </apex:pageBlocktable>
+                    <br/>
+                    <apex:commandButton style="float:left;clear:both;margin-top:-5px;" value="Previous" action="{!getPreviousPage}" rendered="{!pageType=='Wizard' && pageNumber >1}" reRender="f,pb,pat"/>
+                    <apex:commandbutton style="float:right;clear:both;margin-top:-5px;" value="Next"  action="{!getNextPage}" rendered="{!pageType=='Wizard' && pageNumber < paVOs.size}" reRender="f,pb,pat"/>
+                </apex:outputPanel>
+            </apex:repeat>
+            <apex:pagemessages />
+
+            <script>
+                function getSelectedAnswers(element)
+                {
+                    var answerString = '';
+                    if(element.tagName == 'INPUT' && (element.type == 'radio' || element.type == 'checkbox'))
+                    {
+                       var prefix = element.id.substring(0,element.id.length-1);
+                       //find the parent TR which includes all answers
+                       var grandParent = document.getElementById(element.id).parentNode.parentNode;
+                       var childs = grandParent.children;
+                       var grandChilds = [];
+                       for(var i = 0; i < childs.length; i++)
+                       {
+                           var tempList = childs[i].children;
+                           for(var j = 0; j < tempList.length; j ++)
+                           {
+                               if(tempList[j].tagName == 'INPUT')
+                               {
+                                   grandChilds.push(tempList[j]);
+                               }
+                           }
+                       }
+                       for(var i = 0; i < grandChilds.length; i++)
+                       {
+                           if(grandChilds[i].id.indexOf(prefix) != -1 && grandChilds[i].checked == true)
+                           {
+                               answerString+=grandChilds[i].value;
+                               answerString+=',';
+                           }
+                       } 
+                       answerString = answerString.substring(0, answerString.length - 1);
+                    } else if(element.tagName == 'SELECT')
+                    {
+                        answerString = element.options[element.selectedIndex].value;
+                    } else if(element.tagName == 'INPUT' && element.type == 'text')
+                    {
+                        answerString = element.value;
+                    }
+                    return answerString;
+                }
+                        
+                function showSubQuestion(parentQuestionId,subQsIds)
+                {   
+                    // get wrapper table of all subquestions
+            
+                    var subQTableEl = document.querySelector("[data-jsid='subQsPbs'][data-jsparentqid='" + parentQuestionId+ "']");
+                    if (subQsIds === '' && subQTableEl) {
+                        // if no subQIds to show, and the sub q wrapper table exists
+                        subQTableEl.style.display = "none";
+                        
+                    } else {
+                        // show the subq wrapper table, then iterate through its rows
+                        subQsIds = subQsIds.split(',');
+                        if (subQTableEl) {
+                            subQTableEl.style.display = "table";
+                            var allSubs = subQTableEl.querySelectorAll("[data-jsid='subQRow']");
+                            for (var i=0;i<allSubs.length;i++) {
+                                // if row is for a relevant subquestion, then show it, else hide
+                                if (subQsIds.includes(allSubs[i].dataset.jssubqid)) {
+                                    allSubs[i].style.display = "block";
+                                } else {
+                                    allSubs[i].style.display = "none";
+                                }
+                            }  
+                        }
+
+                    }
+                }
+                
+               function getMatchingSubs(pid, qid, selectedAnswers) {
+                    BGCK.QuestionChecklistController.getMatchingSubs(pid, qid, selectedAnswers, null, function(result, event){
+                        if (event.status)
+                        {
+                            var resultString = result.split(';'); 
+                            // 1st element is subIds (comma separated), 2nd element in parent q id
+                            showSubQuestion(resultString[1], resultString[0]);
+                        }
+                    });
+                }
+                
+                function hideOrShowQuestionLoad()
+                {
+                    //Hide all sub questions at first
+                    var allListElements = document.getElementsByTagName('div');
+                    for(var i = 0; i < allListElements.length; i++)
+                    {
+                        if(allListElements[i].id.indexOf(':subQs') != -1 && allListElements[i].id.indexOf(':subQsAnswer') == -1 && allListElements[i].id.indexOf('div') == -1)
+                        {
+                            allListElements[i].style.display='none';
+                        }
+                    }
+                    
+                    //Show some subQs when reRender the page after click Save
+                    var allInputElements = document.getElementsByTagName('INPUT');
+                    for(var i = 0; i < allInputElements.length; i++)
+                    {
+                        if((allInputElements[i].type == 'radio' || allInputElements[i].type == 'checkbox') && allInputElements[i].checked == true)
+                        {
+                            allInputElements[i].onchange();
+                        }
+                        
+                        if(allInputElements[i].type == 'text' && allInputElements[i].value != '')
+                        {
+                            allInputElements[i].onblur();
+                        }
+                    }
+                    
+                    var allSelectElements = document.getElementsByTagName('SELECT');
+                    for(var i = 0; i < allSelectElements.length; i++)
+                    {
+                        if(allSelectElements[i].options[allSelectElements[i].selectedIndex].value != '')
+                        {
+                            allSelectElements[i].onchange();
+                        }
+                    }
+                }
+                hideOrShowQuestionLoad();
+            </script>
+        </apex:pageBlock>
+        <apex:actionFunction name="getValJS" reRender="pbt"/>
+        <apex:actionFunction name="getValidateJS" reRender="subQs"/>
+        <apex:actionFunction name="getCurrentCtsJS"  action="{!doCurrentCts}" reRender="sc">
+            <apex:param name="qIndex" value="" assignTo="{!currentCommentId}"/>
+        </apex:actionFunction>
+        <!--<apex:actionFunction name="getCurrentCtJS"  action="{!doCurrentCt}" >
+            <apex:param name="qIndex" value="" assignTo="{!currentCtId}"/>
+        </apex:actionFunction>-->
+        <style>
+            #preloader2 
+            {
+              top: 50%;
+              left: 50%;
+              margin-top: image-height/2;
+              margin-left: image-width/2;
+              width:33px; height:30px; margin:0; padding:0;     
+              background:#fff 
+                url('/img/loading32.gif')
+                no-repeat center center;
+                position:absolute;
+                z-index:999;
+            }
+        </style>
+       
+     </apex:form>
+     <apex:form id="cf">
+     <div id="popComment" style="position:absolute;display:none;top: 50%;left: 50%;margin-left: -200px; // 1/2 width;margin-top: 40px;">
+        <apex:pageBlock title="My Comments" mode="edit" id="pbc">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" title="Save changes" onClick="copy(); return false;"/>
+                <apex:commandButton value="Cancel" title="Cancel changes" onClick="cancel(); return false;"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection showHeader="false" title="My Content Section" columns="1" id="s">
+                <apex:inputField value="{!aEntry.BGCK__Comments__c}" label="" id="f" styleClass="commentBox" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" id="sc" >            
+                <apex:repeat value="{!currentCts}" var="ct">
+                    <apex:CommandLink value="{!ct.Name}" reRender="sc" action="{!doCurrentCt}" oncomplete="doCurrentComment('{!currentLongComment}')" >
+                        <apex:param name="ctIndex" value="{!ct.Id}" assignTo="{!currentCtId}"/>
+                    </apex:CommandLink>                    
+                </apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        </div>
+        </apex:form>
+        
+            <script type="text/javascript">
+            var editorPopup = document.getElementById("popComment");
+            var currentCommentField;
+            var editorContentField;
+            var doc = document.documentElement, body = document.body;
+            
+            //assign the long comment to the richtext editor
+            function doCurrentComment(longComment)
+            {
+               editorContentField.innerHTML += "<br>"+longComment;                
+            }
+            
+            function commentClick(commentField, val,qId)
+            {
+                var ztop = (doc && doc.scrollTop  || body && body.scrollTop  || 0);
+                editorPopup.style.top =ztop+"px";
+                editorPopup.style.display="block"
+                getCurrentCtsJS(qId);
+                currentCommentField = commentField; 
+                editorContentField = document.getElementsByClassName('commentBox')[0];
+                editorContentField.value = val;
+            }
+            function copy()
+            {
+                currentCommentField.value = editorContentField.value;//get back is not richtext is content as plain text
+//                currentCommentField.value = editorContentField.innerHTML; //keep formatting
+                editorPopup.style.display = "none";
+            }
+
+            function cancel()
+            {
+                editorPopup.style.display = "none";
+            }
+
+
+            // https://tc39.github.io/ecma262/#sec-array.prototype.includes
+            if (!Array.prototype.includes) {
+              Object.defineProperty(Array.prototype, 'includes', {
+                value: function(searchElement, fromIndex) {
+
+                  // 1. Let O be ? ToObject(this value).
+                  if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                  }
+
+                  var o = Object(this);
+
+                  // 2. Let len be ? ToLength(? Get(O, "length")).
+                  var len = o.length >>> 0;
+
+                  // 3. If len is 0, return false.
+                  if (len === 0) {
+                    return false;
+                  }
+
+                  // 4. Let n be ? ToInteger(fromIndex).
+                  //    (If fromIndex is undefined, this step produces the value 0.)
+                  var n = fromIndex | 0;
+
+                  // 5. If n ≥ 0, then
+                  //  a. Let k be n.
+                  // 6. Else n < 0,
+                  //  a. Let k be len + n.
+                  //  b. If k < 0, let k be 0.
+                  var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+                  function sameValueZero(x, y) {
+                    return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+                  }
+
+                  // 7. Repeat, while k < len
+                  while (k < len) {
+                    // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+                    // b. If SameValueZero(searchElement, elementK) is true, return true.
+                    // c. Increase k by 1. 
+                    if (sameValueZero(o[k], searchElement)) {
+                      return true;
+                    }
+                    k++;
+                  }
+
+                  // 8. Return false
+                  return false;
+                }
+              });
+            }
+            </script>        
+</apex:page>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Batch Job Id --></label>
+        <name>DRE__Batch_Job_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch Randomize Percentage --></label>
+        <name>DRE__Batch_Randomize_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch Randomize Rounding Method --></label>
+        <name>DRE__Batch_Randomize_Rounding_Method__c</name>
+        <picklistValues>
+            <masterLabel>CEILING</masterLabel>
+            <translation><!-- CEILING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FLOOR</masterLabel>
+            <translation><!-- FLOOR --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Batch Size --></label>
+        <name>DRE__Batch_Size__c</name>
+    </fields>
+    <fields>
+        <help><!-- Maximum number of records this Batch Rule can process --></help>
+        <label><!-- Batch Threshold Maximum --></label>
+        <name>DRE__Batch_Threshold_Maximum__c</name>
+    </fields>
+    <fields>
+        <help><!-- The minimum number of records that must be returned by Batch Criteria before Rule could be processed --></help>
+        <label><!-- Batch Threshold Minimum --></label>
+        <name>DRE__Batch_Threshold_Minimum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>DRE__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective End Date --></label>
+        <name>DRE__Effective_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Start Date --></label>
+        <name>DRE__Effective_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event --></label>
+        <name>DRE__Event__c</name>
+        <picklistValues>
+            <masterLabel>Batched</masterLabel>
+            <translation><!-- Batched --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation><!-- Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Created or Edited</masterLabel>
+            <translation><!-- Created or Edited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deleted</masterLabel>
+            <translation><!-- Deleted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Edited</masterLabel>
+            <translation><!-- Edited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>However Impacted</masterLabel>
+            <translation><!-- However Impacted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit Test Event A</masterLabel>
+            <translation><!-- Unit Test Event A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit Test Event B</masterLabel>
+            <translation><!-- Unit Test Event B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Viewed</masterLabel>
+            <translation><!-- Viewed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Field Index --></label>
+        <name>DRE__Field_Index__c</name>
+    </fields>
+    <fields>
+        <label><!-- Filter Logic --></label>
+        <name>DRE__Filter_Logic__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>DRE__IsActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recalculated --></label>
+        <name>DRE__IsRecalculated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>DRE__Object_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>DRE__Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select to prevent duplicate runs of the same rule --></help>
+        <label><!-- Run Once --></label>
+        <name>DRE__Run_Once__c</name>
+    </fields>
+    <fields>
+        <help><!-- If selected this rule will be queued for async processing. Use this for heavy rules that don&apos;t need to be applied immediately. This is a great option for reducing CPU usage and preventing potential timeouts --></help>
+        <label><!-- Run in Bulk Mode --></label>
+        <name>DRE__Run_in_Bulk_Mode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>DRE__Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>DRE__Type__c</name>
+        <picklistValues>
+            <masterLabel>Automation</masterLabel>
+            <translation><!-- Automation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Batch</masterLabel>
+            <translation><!-- Batch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Display</masterLabel>
+            <translation><!-- Display --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Roll-Up Summary</masterLabel>
+            <translation><!-- Roll-Up Summary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation</masterLabel>
+            <translation><!-- Validation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unique Id --></label>
+        <name>DRE__Uid__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Configure --></label>
+        <name>DRE__Configure</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deploy_Download --></label>
+        <name>DRE__Deploy_Download</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deploy_Upload_All --></label>
+        <name>DRE__Deploy_Upload_All</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deploy_Upload_Selected --></label>
+        <name>DRE__Deploy_Upload_Selected</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_from_Template --></label>
+        <name>DRE__New_from_Template</name>
+    </webLinks>
+</CustomObjectTranslation>

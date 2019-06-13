@@ -1,0 +1,13 @@
+<apex:page >
+<script language="JavaScript" type="text/javascript">
+function submitSearchForm(){ 
+    var searchField = document.getElementById('advsearchfield'); 
+    document.advsrch.action = '/search/SearchResults?searchType=2&sen=0&setLast=1&str=' + searchField.value; 
+    return true; 
+} 
+</script> 
+
+<form name="advsrch" method="post" onsubmit="return submitSearchForm();" target="_parent">
+    <input class="searchTextBox" id="advsearchfield" maxlength="80" size="12" name="sbstr"/>&nbsp;<input class="btn" value=" Go! " type="submit"/>
+</form>
+</apex:page>
