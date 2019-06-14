@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Resource Week Availability</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Resource Week Availability</value>
+    </caseValues>
+    <fields>
+        <label><!-- Autorenewal --></label>
+        <name>Autorenewal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Backend User --></label>
+        <name>Backend_User__c</name>
+        <relationshipLabel><!-- Resource Week Availability --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Resource --></label>
+        <name>Resource__c</name>
+        <relationshipLabel><!-- Resource Week Availability --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Schedule Valid From --></label>
+        <name>Schedule_Valid_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Valid till --></label>
+        <name>Schedule_Valid_till__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

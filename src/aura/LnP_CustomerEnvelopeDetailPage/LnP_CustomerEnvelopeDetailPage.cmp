@@ -1,0 +1,113 @@
+<aura:component controller="LnP_CustomerEnvelopeDetailPageCtrl" description="LnP_CustomerEnvelopeDetailPage" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="Id" default=""/>
+    <aura:attribute name="depositList" type="List"/>
+    <aura:attribute name="disableSave" type="Boolean" default="true"/>
+    <aura:attribute name="totalDoc" type="Integer" default='0'/>
+    <aura:attribute name="completedDoc" type="Integer" default='0'/>
+    <aura:attribute name="noDeposit" type="Boolean" default="false" />
+    <aura:attribute name="newRecSaved" type="Set" />
+    
+    <aura:registerEvent name="toastEvt" type="c:LnP_ToastMessage"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    <aura:handler name="toastEvt" event="c:LnP_ToastMessage" action ="{!c.showToast}"/>
+    <aura:if isTrue="{!v.noDeposit}">
+        <div class="slds-page-header" >
+            <div class="slds-page-header__row slds-align_absolute-center">
+                <span>No Documents Found </span>
+            </div>
+        </div>
+        <aura:set attribute="else">
+            <div class="slds-box slds-theme_default">
+                <div class="slds-page-header" >
+                    
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-text-title_bold">
+                            <span>Documents</span>
+                        </div>
+                        <div class="slds-col slds-text-title_bold">
+                            <span>Updated Document {!v.completedDoc}/{!v.totalDoc}</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                    <aura:iteration items="{!v.depositList}" var="item" indexVar="recRow">
+                        <div class="slds-p-around_x-small">
+                            <div class="slds-box" id="{!recRow+'-box'}">
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col slds-text-title_bold ">
+                                        <span>Name: {!item.Name}</span>
+                                    </div>
+                                    <div class="slds-col slds-text-title_bold">
+                                        <span>Form number: {!item.Form_number__c}</span>
+                                    </div>
+                                    <div class="slds-col slds-text-title_bold">
+                                        <span><i class="slds-float_right" data-item="{!recRow}" onclick="{!c.panelOpen}">Open</i></span>
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                                <div class="slds-hide slds-p-around--medium" id="{!recRow}" aura:id="1">
+                                    
+                                    <lightning:recordEditForm
+                                                              onsuccess="{!c.handleOnSuccess}"
+                                                              recordId="{!item.Id}"
+                                                              objectApiName="MUSW__Deposit__c">
+                                        <!-- the messages component is for error messages -->
+                                        <lightning:messages />
+                                        <lightning:layout multipleRows="true">
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:outputField fieldName="Date__c" value="{!item.Date__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:outputField fieldName="Amount__c" value="{!item.Amount__c}"/>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField fieldName="License__c" value="{!item.License__c}" />
+                                                
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField required="true" fieldName="Document_type__c" value="{!item.Document_type__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField fieldName="wadol_Program_Type__c" value="{!item.wadol_Program_Type__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField fieldName="License_type__c" value="{!item.License_type__c}"/>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:outputField fieldName="Professional_code__c" value="{!item.Professional_code__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">                                
+                                                <lightning:inputField required="true" fieldName="Contact__c" value="{!item.Contact__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField required="true" fieldName="MUSW__Account__c" value="{!item.MUSW__Account__c}" />
+                                            </lightning:layoutItem>
+                                            
+                                            <lightning:layoutItem size="12" padding="around-small">
+                                                <div class="slds-float_right">
+                                                    
+                                                    <lightning:button name="{!recRow}" disabled="{!v.disabled}" variant="brand" type="submit" onclick="{!c.panelClose}" label="Save" />
+                                                </div>
+                                            </lightning:layoutItem>
+                                        </lightning:layout>
+                                    </lightning:recordEditForm>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </aura:iteration>
+                <div class="slds-clearfix">
+                    <div class="slds-float_right">
+                        <lightning:button variant="Neutral" label="Cancel" title="Cancel" onclick="{! c.handleCancel }"/>
+                        <lightning:button variant="brand" label="Submit" title="Submit" disabled="{!v.disableSave}" onclick="{! c.handleFormSubmit }"/>
+                    </div>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>
+    
+    
+</aura:component>

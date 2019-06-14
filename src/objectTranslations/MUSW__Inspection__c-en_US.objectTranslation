@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Itinerary View --></label>
+        <name>MUSW__Itinerary_View</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Request Details --></label>
+        <name>Request_Details</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Request Overview --></label>
+        <name>Request_Overview</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist Type --></label>
+        <name>Checklist_Type__c</name>
+        <picklistValues>
+            <masterLabel>Business - Other Checklist</masterLabel>
+            <translation><!-- Business - Other Checklist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lodging Checklist</masterLabel>
+            <translation><!-- Lodging Checklist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MHC Inspection checklist</masterLabel>
+            <translation><!-- MHC Inspection checklist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufactured Home Communities</masterLabel>
+            <translation><!-- Manufactured Home Communities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Optional Questions</masterLabel>
+            <translation><!-- Optional Questions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POWTS INSPECTION REPORT</masterLabel>
+            <translation><!-- POWTS INSPECTION REPORT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant Checklist</masterLabel>
+            <translation><!-- Restaurant Checklist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SYSTEM TEST</masterLabel>
+            <translation><!-- SYSTEM TEST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subquestions Checklist</masterLabel>
+            <translation><!-- Subquestions Checklist --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Checklist Version --></label>
+        <name>Checklist_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close Inspection --></label>
+        <name>Close_Inspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Community Address --></label>
+        <name>Community_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Community ID No --></label>
+        <name>Community_ID_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Community Name --></label>
+        <name>Community_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Community Owner --></label>
+        <name>Community_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Completed Date --></label>
+        <name>Completed_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- County/District --></label>
+        <name>County__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Violations --></label>
+        <name>Current_Violations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days to Next Inspection --></label>
+        <name>Days_to_Next_Inspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group --></label>
+        <name>Group__c</name>
+        <picklistValues>
+            <masterLabel>Building</masterLabel>
+            <translation><!-- Building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Codes / Zoning</masterLabel>
+            <translation><!-- Codes / Zoning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical</masterLabel>
+            <translation><!-- Electrical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mechanical</masterLabel>
+            <translation><!-- Mechanical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plumbing</masterLabel>
+            <translation><!-- Plumbing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Inspection Chain Closed --></label>
+        <name>Inspection_Chain_Closed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Followup Date --></label>
+        <name>Inspection_Followup_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Start Date --></label>
+        <name>Inspection_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspector/Auditor Name --></label>
+        <name>Inspector_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Closed --></label>
+        <name>IsClosed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Letter Generated --></label>
+        <name>Letter_Generated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alert --></label>
+        <name>MUSW__AlertCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alert --></label>
+        <name>MUSW__Alert_Indicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Closed Date --></label>
+        <name>MUSW__Closed_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complaint --></label>
+        <name>MUSW__Complaint2__c</name>
+        <relationshipLabel><!-- Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Completed Date --></label>
+        <name>MUSW__Completed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>MUSW__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>MUSW__Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration --></label>
+        <name>MUSW__Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equipment --></label>
+        <name>MUSW__Equipment__c</name>
+        <relationshipLabel><!-- Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Geolocation --></label>
+        <name>MUSW__Geolocation__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>MUSW__License2__c</name>
+        <relationshipLabel><!-- Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- On Itinerary --></label>
+        <name>MUSW__On_Itinerary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>MUSW__Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parcel --></label>
+        <name>MUSW__Parcel__c</name>
+        <relationshipLabel><!-- Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit__c</name>
+        <relationshipLabel><!-- Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Previous Inspection --></label>
+        <name>MUSW__Previous_Inspection__c</name>
+        <relationshipLabel><!-- Re-Inspections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>MUSW__Priority__c</name>
+        <picklistValues>
+            <masterLabel>1 Low</masterLabel>
+            <translation><!-- 1 Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 Normal</masterLabel>
+            <translation><!-- 2 Normal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 High</masterLabel>
+            <translation><!-- 3 High --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Scheduled Start Date --></label>
+        <name>MUSW__Scheduled_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>MUSW__Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>MUSW__Status__c</name>
+        <picklistValues>
+            <masterLabel>Approval</masterLabel>
+            <translation><!-- Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Violation</masterLabel>
+            <translation><!-- In Violation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scheduled</masterLabel>
+            <translation><!-- Scheduled --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>MUSW__Type__c</name>
+        <picklistValues>
+            <masterLabel>Administrative</masterLabel>
+            <translation><!-- Administrative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Annual</masterLabel>
+            <translation><!-- Annual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check Rides</masterLabel>
+            <translation><!-- Check Rides --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Classroom Observation</masterLabel>
+            <translation><!-- Classroom Observation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complaint</masterLabel>
+            <translation><!-- Complaint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exam Observation</masterLabel>
+            <translation><!-- Exam Observation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Examiner</masterLabel>
+            <translation><!-- Examiner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial</masterLabel>
+            <translation><!-- Financial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Follow-up Inspection</masterLabel>
+            <translation><!-- Follow-up Inspection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Risk</masterLabel>
+            <translation><!-- High Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record</masterLabel>
+            <translation><!-- Record --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reinspection</masterLabel>
+            <translation><!-- Reinspection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skills Observation</masterLabel>
+            <translation><!-- Skills Observation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number of Sites --></label>
+        <name>Number_of_Sites__c</name>
+        <picklistValues>
+            <masterLabel>1-20</masterLabel>
+            <translation><!-- 1-20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>101-175</masterLabel>
+            <translation><!-- 101-175 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>175+</masterLabel>
+            <translation><!-- 175+ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21-50</masterLabel>
+            <translation><!-- 21-50 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>51-100</masterLabel>
+            <translation><!-- 51-100 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pass/Fail --></label>
+        <name>Pass_Fail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Count --></label>
+        <name>Reinspection_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related To --></label>
+        <name>Related_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requested Date --></label>
+        <name>Requested_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Secondary Inpsector/Auditor --></label>
+        <name>Secondary_Inpsector_Auditor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Streets of adequate width --></label>
+        <name>Streets_of_adequate_width__c</name>
+    </fields>
+    <recordTypes>
+        <description><!-- Annual Inspections --></description>
+        <label><!-- Annual --></label>
+        <name>Annual</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Bail Bond Agencies --></description>
+        <label><!-- Bail Bond Agency --></label>
+        <name>Bail_Bond_Agency</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Body Art/Piercing/Tattoo --></description>
+        <label><!-- Body Art/Piercing/Tattoo --></label>
+        <name>Body_Art_Piercing_Tattoo</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Building --></label>
+        <name>Building</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Codes / Zoning --></label>
+        <name>Codes_Zoning</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Combative Sports --></description>
+        <label><!-- Combative Sports --></label>
+        <name>Combative_Sports</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Commercial Driver License --></description>
+        <label><!-- Commercial Driver License --></label>
+        <name>Commercial_Driver_License</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Cosmetology Salons --></description>
+        <label><!-- Cosmetology Salons --></label>
+        <name>Cosmetology_Salons</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Cosmetology Schools --></description>
+        <label><!-- Cosmetology Schools --></label>
+        <name>Cosmetology_Schools</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Credential --></label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Driver Training Schools --></description>
+        <label><!-- Driver Training Schools --></label>
+        <name>Driver_Training_Schools</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Funeral/Cemetery/Crematory --></description>
+        <label><!-- Funeral/Cemetery/Crematory --></label>
+        <name>Funeral_Cemetery_Crematory</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Motorcycles --></description>
+        <label><!-- Motorcycle --></label>
+        <name>Motorcycle</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Permit --></label>
+        <name>Permit</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inspections for Real Estate --></description>
+        <label><!-- Real Estate --></label>
+        <name>Real_Estate</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Checklist --></label>
+        <name>Checklist</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Letter --></label>
+        <name>Letter</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Add_to_Itinerary --></label>
+        <name>MUSW__Add_to_Itinerary</name>
+    </webLinks>
+</CustomObjectTranslation>

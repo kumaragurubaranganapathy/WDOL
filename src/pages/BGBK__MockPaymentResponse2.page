@@ -1,0 +1,56 @@
+<apex:page controller="BGBK.MockPaymentResponseController" action="{!PaymentResponseHandler}" sidebar="true" applyHtmlTag="true" applyBodyTag="false" contentType="text/html" >
+
+<script type="text/javascript">
+
+ var previousOnload = window.onload; 
+ window.onload = function() { 
+    if (previousOnload) { 
+        previousOnload(); 
+    } 
+    sendEmailJS();
+    //alert("Emailed");
+ } 
+
+</script>
+
+<apex:includeScript value="/support/console/26.0/integration.js"/>
+  
+    <apex:sectionHeader title="Payment Confirmation" id="h">
+            <apex:pageMessages id="msg"></apex:pageMessages>
+            <div id='errorMsg'></div>
+    </apex:sectionHeader>
+    <apex:form >
+	    <apex:pageBlock title="Payment Confirmation" id="cart_details" >
+	        <style>
+	            body .bPageBlock .pbBody .brown .pbSubheader{
+	                background-color:#844949;
+	            }
+	        </style>
+	        <apex:outputPanel styleClass="brown" layout="block">
+		        <apex:pageBlockSection title="Order Details" columns="1" id="cart_info" rendered="{!processSuccessful}">
+		            
+		                <c:CartConfirm cart="{!cart}" fees="{!fees}" invoices="{!invoices}" receipts="{!receipts}" emailAddress="{!payerContact.email}" totalAmount="{!lastPaymentAmount}" error="{!error}" />
+		                <apex:commandButton value="Print Receipt"  onClick="window.open('/apex/bgbk__CartPrint?cartId={!cart.Id}&email={!payerContact.email}');" rendered="{!processSuccessful}"/>                
+		                <apex:actionFunction name="sendEmailJS" action="{!sendEmail}" reRender=""/>        
+		         </apex:pageBlockSection>       
+		         <apex:pageBlockSection title="Payment Details" columns="1" id="payment_info">
+		            <apex:outputText label="Cart Name: ">{!result['CartName']}</apex:outputText>
+		            <apex:outputText label="Transaction ID: " rendered="{!processSuccessful}">{!paymentInfo.transactionID}</apex:outputText>
+		            <apex:outputText label="Transaction Status: " >{!paymentInfo.transactionStatus}</apex:outputText>
+		            <apex:outputText label="Error: " rendered="{!!processSuccessful}">{!error}</apex:outputText>            
+		            <apex:outputText label="Amount sent for processing: " >{!lastPaymentAmount}</apex:outputText>            
+		            <apex:outputText label="Transaction Fees : " rendered="{!processSuccessful}">{!gatewayTransactionFee}</apex:outputText>
+		            <apex:outputText label="Total Amount: " rendered="{!processSuccessful}">{!result['totalPaymentAmount']}</apex:outputText> 
+		            <!-- 
+		            <apex:outputText label="Email has been sent with the receipt to " rendered="{!hasEmailed}">{!payerContact.email} .</apex:outputText> 
+		             -->
+		         </apex:pageBlockSection>       
+	       </apex:outputPanel>
+	       		    <apex:pageblockbuttons id="topBtns" location="top" rendered="{!retUrlPresent}">
+			            <apex:commandButton value="Back" action="{!goBack}" rendered="{!retUrlPresent}" /> 
+			            <apex:commandButton value="Try Again" onClick="window.location('/apex/Cart?cartId={!cart.Id}');"  rendered="{!!processSuccessful}" />                     
+		            </apex:pageblockbuttons>
+	    </apex:pageBlock>    
+	</apex:form>
+        
+</apex:page>

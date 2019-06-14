@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Action Type --></label>
+        <name>DRE__Action_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- DRE Rule --></label>
+        <name>DRE__DRE_Rule__c</name>
+        <relationshipLabel><!-- Result Groups --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>DRE__IsActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Inner Scope Path --></label>
+        <name>DRE__Object_Inner_Scope_Path__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Inner Scope --></label>
+        <name>DRE__Object_Inner_Scope__c</name>
+        <picklistValues>
+            <masterLabel>Each</masterLabel>
+            <translation><!-- Each --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Earliest</masterLabel>
+            <translation><!-- Earliest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latest</masterLabel>
+            <translation><!-- Latest --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>DRE__Object_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Path --></label>
+        <name>DRE__Object_Path__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Relationship --></label>
+        <name>DRE__Object_Relationship__c</name>
+        <picklistValues>
+            <masterLabel>Children</masterLabel>
+            <translation><!-- Children --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lookup</masterLabel>
+            <translation><!-- Lookup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record</masterLabel>
+            <translation><!-- Record --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Object Scope Path --></label>
+        <name>DRE__Object_Scope_Path__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Scope --></label>
+        <name>DRE__Object_Scope__c</name>
+        <picklistValues>
+            <masterLabel>Each</masterLabel>
+            <translation><!-- Each --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Earliest</masterLabel>
+            <translation><!-- Earliest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latest</masterLabel>
+            <translation><!-- Latest --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remove From Recycle Bin --></label>
+        <name>DRE__Remove_From_Recycle_Bin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Id --></label>
+        <name>DRE__Uid__c</name>
+    </fields>
+</CustomObjectTranslation>

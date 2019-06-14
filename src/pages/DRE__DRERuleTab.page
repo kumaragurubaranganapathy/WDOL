@@ -1,0 +1,4 @@
+<apex:page tabStyle="DRE__DRE_Rule__c">
+    <c:DRETab objectType="DRE__DRE_Rule__c"/>
+    <apex:enhancedList type="DRE_Rule__c" height="800" customizable="true" rowsPerPage="200" oncomplete="toggleDeployButtons(false);" reRender="list" id="list"/>
+</apex:page>

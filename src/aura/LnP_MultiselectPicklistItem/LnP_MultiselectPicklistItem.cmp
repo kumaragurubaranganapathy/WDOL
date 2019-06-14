@@ -1,0 +1,27 @@
+<aura:component >
+    <aura:attribute name="itemObj" type="Object"/>
+    <aura:attribute name="singleSelectitem" type="Boolean" default="false"/>
+    <aura:attribute name="closePicklist" type="Object"/>
+    <aura:attribute name="optionID" type="Integer"/>
+    <aura:attribute name="options" type="Object[]"/>
+    <aura:attribute name="isOpen" type="Boolean"/>
+    <aura:attribute name="seloptionID" type="String"/>
+    <aura:attribute name="optionsSelected" type="String"/>
+    <aura:attribute name="listItemClass" type="String" default="slds-listbox__item" />
+    <aura:registerEvent name="OptionSelection" type="c:LnP_OptionSelectionEvent"/>
+    <li role="presentation" class="{!'slds-listbox__item '+((v.listItemClass == 'slds-listbox__item') ? '' : v.listItemClass)}" onblur="{!v.closePicklist}" tabindex="0" onclick="{!c.toggleselection}" onkeydown="{!c.toggleselection}">
+        <span class="{!'slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-media_center' + ((v.itemObj.isSelected) ? ' slds-is-selected' : '')}" role="option">
+            <span class="slds-media__figure" style="width: 20px;">
+            	<img src="{!$Resource.delawareSVGs + '/Icons/Tick.svg'}" alt="selected"/>    
+            </span>
+            <span class="slds-media__body">
+                <aura:if isTrue="{!v.itemObj.Value == undefined}">
+                    <span class="slds-truncate" title="{!v.itemObj.Name}">{!v.itemObj.Name}</span>
+                    <aura:set attribute="else">
+                        <span class="slds-truncate" title="{!v.itemObj.Value}">{!v.itemObj.Name}</span>
+                    </aura:set>
+                </aura:if>
+            </span>
+        </span>
+    </li>
+</aura:component>

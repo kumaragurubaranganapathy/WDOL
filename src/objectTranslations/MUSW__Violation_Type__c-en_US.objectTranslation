@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Approval Description --></label>
+        <name>Approval_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Status --></label>
+        <name>Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Approval</masterLabel>
+            <translation><!-- Pending Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit for Approval</masterLabel>
+            <translation><!-- Submit for Approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Days to correct --></label>
+        <name>Days_to_correct__c</name>
+    </fields>
+    <fields>
+        <label><!-- Abatement Requirement --></label>
+        <name>MUSW__Abatement_Requirement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>MUSW__Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Citation Amount --></label>
+        <name>MUSW__Citation_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Code Number --></label>
+        <name>MUSW__Code_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Code --></label>
+        <name>MUSW__Code__c</name>
+        <picklistValues>
+            <masterLabel>2006 IBC</masterLabel>
+            <translation><!-- 2006 IBC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2006 IPMC</masterLabel>
+            <translation><!-- 2006 IPMC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2006 IRC</masterLabel>
+            <translation><!-- 2006 IRC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>City</masterLabel>
+            <translation><!-- City --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Dangerous --></label>
+        <name>MUSW__Dangerous__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>MUSW__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estimated Cost --></label>
+        <name>MUSW__Estimated_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Reinspection --></label>
+        <name>MUSW__First_Reinspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Second Reinspection --></label>
+        <name>MUSW__Second_Reinspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>MUSW__SectionDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Number --></label>
+        <name>MUSW__Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Short Description --></label>
+        <name>MUSW__Short_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- WIP Reinspection --></label>
+        <name>MUSW__WIP_Reinspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- No. Reinspections --></label>
+        <name>No_Reinspections__c</name>
+    </fields>
+    <layouts>
+        <layout>Paragraph Layout</layout>
+        <sections>
+            <label><!-- Approval Section --></label>
+            <section>Approval Section</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- DIS Ordinances --></description>
+        <label><!-- DIS --></label>
+        <name>DIS</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Condition Description Condition Description Condition Description Condition Description Condition Description Condition Description Condition Description Condition Description --></description>
+        <label><!-- Condition --></label>
+        <name>MUSW__Condition</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ordinance --></label>
+        <name>MUSW__Ordinance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Standard Comment --></label>
+        <name>MUSW__Standard_Comment</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Paragraph --></description>
+        <label><!-- Paragraph --></label>
+        <name>Paragraph</name>
+    </recordTypes>
+</CustomObjectTranslation>

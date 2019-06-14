@@ -1,0 +1,95 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : SaveIncompleteApplication
+** Description      : Page to save application
+**					  User Story 276 -- Download Incomplete Application
+** Version          : 1.0
+** Built By         : Srikanth Kottam
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:page controller="ApplyForSobjectCtlr"
+    standardStylesheets="false" sidebar="false" showHeader="false"
+     cache="false" applyBodyTag="false" renderAs="pdf">
+  <html lang='en'>
+
+  <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+      <!-- Include script and CSS Files -->
+      <!--c:IncludeFilesComp /-->
+      <!-- Include script and CSS Files -->
+        
+        <apex:stylesheet value="{!URLFOR($Resource.ApplicationSavePdfCSS)}"/>
+        
+      <title>{!pageTitle}</title>
+
+  </head>
+
+  <body class="internal" style="background-repeat:repeat; background-image: url('{!URLFOR($Resource.Watermark2)}'); background-position: left top;">
+  
+    <div class="footer">
+            <apex:outputText style="font-weight: bold" value="Generation Date and Time: " />
+        <!--    <apex:outputText value="{0,date,MM/dd/yyyy h:mm a}">
+                <apex:param value="{!NOW()}" />
+            </apex:outputText> -->
+        
+          <apex:outputText value="{!evenDateStr}">
+               
+            
+         </apex:outputText>
+         
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:outputText style="font-weight: bold" value="Application Status: " /> &nbsp;
+            <apex:outputText value="{!applicationStatus}" />
+      </div>
+
+    <main>
+
+      <div style="text-align: center;">
+          <h1>{!pageTitle}</h1>
+      </div>
+      
+      <apex:form >
+        <section class="below-the-fold">
+          <div class="container">      
+            <section class='row'>
+              <div class="col-sm-10 col-sm-offset-1">
+                <div class="row">
+                  <!-- Page builder section -->
+                    <h3>Credential Type  - {!license_type} </h3>
+                
+                  <!-- <apex:outputText rendered="{!if(endorsrec.Status__c=='Submitted',true,false)}" style="font-weight: bold" value="Submitted Date: " />
+                  <apex:outputfield value="{!endorsrec.Submitted_Date__c}" rendered="{!if(endorsrec.Status__c=='Submitted',true,false)}" /> -->
+                
+                  <apex:outputText rendered="{!if(licenserec.MUSW__Status__c=='Submitted',true,false)}" style="font-weight: bold" value="Submitted Date: " />
+                  <apex:outputfield value="{!licenserec.App_Submitted_Date__c}" rendered="{!if(licenserec.MUSW__Status__c=='Submitted',true,false)}" />
+                  <div class="dynComp">
+                    <apex:dynamicComponent componentValue="{!printSections}" id="sections"/>
+                  </div>
+                  <!-- Page builder section -->
+                </div>
+              </div>
+            </section>
+            <!-- Space -->
+            <section class="row"></section>
+            <!-- Space -->
+          </div>
+        </section>
+      </apex:form>
+        
+  </main>
+</body>
+
+</html>
+</apex:page>

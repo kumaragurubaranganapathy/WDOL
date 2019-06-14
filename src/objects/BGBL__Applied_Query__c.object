@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Standard</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Queries required by letter including any unique instructions eg. order, parent query and attach</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>BGBL__Attachment_To_Object__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This assigned query object is the object the letter will attach to</inlineHelpText>
+        <label>Attach</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBL__Batch_Letter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Letter</label>
+        <referenceTo>BGBL__Batch_Letter__c</referenceTo>
+        <relationshipLabel>Applied Letter Queries</relationshipLabel>
+        <relationshipName>Applied_Queries</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>BGBL__Child_Iterate_Query__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>if true, each record returned by this query will result in a letter copy</inlineHelpText>
+        <label>Child Iterate Query</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBL__Execution_Order__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Required. query order of 1 is reserved for the primary query whose object can be attached the letter.</inlineHelpText>
+        <label>Order</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>BGBL__Iterate_Parent_Lookup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field API Name of the lookup to the primary parent (record being attached to).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field API Name of the lookup to the primary parent (record being attached to).</inlineHelpText>
+        <label>Iterate Parent Lookup</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBL__Object_Name_Alias__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Use when querying against the same object more than once.  For example, all Accounts are queried for address, but a specific Account is also queried to provide your organization&apos;s information for all letters (e.g., return address):  this field = &quot;MyOrg&quot;</inlineHelpText>
+        <label>Object Name (Alias)</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBL__Object_Name_Plural__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The parent&apos;s relationship name to this assigned query object. For custom fields, ensure to include pre &quot;MUSW__&quot; and postfix &quot;__r&quot;. eg. MUSW__listname__r. For standard objects use plural name, eg Tasks</inlineHelpText>
+        <label>Object Name (Plural)</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBL__Parent_Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Parent Query</label>
+        <referenceTo>BGBL__Query__c</referenceTo>
+        <relationshipName>Children_Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBL__Parent_Record_Type_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Parent RecordType name. Useful when recordtypes are distinct from one another, and configured letters do not make sense for other record types.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the record type on the parent record that this letter applies to. Only applicable on the primary applied query. Only impacts list of letters on manual request page. If blank, letter is available for all record types.</inlineHelpText>
+        <label>Parent Record Type Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBL__Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Query</label>
+        <referenceTo>BGBL__Query__c</referenceTo>
+        <relationshipName>Applied_Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBL__Select_Fields__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Field values to display when user chooses Iterate letter (letter with multiple copies). This field is case-sensitive and its values must be identical to the field API names. eg. MUSW__Contact__r.Name, MUSW__Contact__r.MailingStreet</inlineHelpText>
+        <label>Child Select Fields</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>BGBL__Track_No__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>Tracking Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Letter Applied Query</label>
+    <nameField>
+        <displayFormat>AQ-{0000}</displayFormat>
+        <label>Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Applied Letter Queries</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>BGBL__Query__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>BGBL__Parent_Query__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>BGBL__Execution_Order__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>BGBL__Attachment_To_Object__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>BGBL__Query__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>BGBL__Parent_Query__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>BGBL__Execution_Order__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>BGBL__Query__c</searchFilterFields>
+        <searchFilterFields>BGBL__Parent_Query__c</searchFilterFields>
+        <searchFilterFields>BGBL__Execution_Order__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>BGBL__Attachment_Save_batch_letter_required</fullName>
+        <active>true</active>
+        <description>Either Attach on first query or Save Batch file must be true when not an iterate query</description>
+        <errorConditionFormula>ISPICKVAL(BGBL__Execution_Order__c, &quot;1&quot;) &amp;&amp;  BGBL__Child_Iterate_Query__c == false &amp;&amp; BGBL__Attachment_To_Object__c  == false &amp;&amp;  BGBL__Batch_Letter__r.BGBL__Save_Batch_Letter__c == false</errorConditionFormula>
+        <errorMessage>Must Attach in applied query or Save Batch Letter</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>BGBL__Child_Iterate_Query_must_be_1</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(BGBL__Child_Iterate_Query__c ,  NOT(ISPICKVAL(BGBL__Execution_Order__c,&apos;1&apos;) ))</errorConditionFormula>
+        <errorMessage>Child Iterate Query must be specified as Order 1</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>BGBL__Child_Iterate_Query_must_not_have_parent</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(BGBL__Child_Iterate_Query__c , NOT(ISBLANK(BGBL__Parent_Query__c )))</errorConditionFormula>
+        <errorMessage>This is a Child Iterate Query, do not specify Parent Query</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>BGBL__Order_is_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(BGBL__Execution_Order__c, &quot;&quot;)</errorConditionFormula>
+        <errorMessage>Order is Required. Please indicate order in which this query should be run. If no other queries, indicate 1. If more than one, make sure each applied query is uniquely ordered (parents are first).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>BGBL__Parent_Query_without_relationship_name</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( NOT(ISBLANK(BGBL__Parent_Query__c )),ISBLANK( BGBL__Object_Name_Plural__c  ))</errorConditionFormula>
+        <errorDisplayField>BGBL__Object_Name_Plural__c</errorDisplayField>
+        <errorMessage>Object Name (Plural) is Required when Parent Query is specified. Eg. MUSW__Fees__r</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

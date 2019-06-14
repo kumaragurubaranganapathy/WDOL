@@ -1,0 +1,50 @@
+<apex:page controller="MUSW.BluebeamUserLoginController" action="{!checkPageParameters}" id="page">
+    
+    <apex:slds />
+    <div class="slds-scope">
+        <apex:form id="form" styleClass="slds-p-around--large">
+            <div>
+                <apex:commandButton action="{!initiateAuth}" value="Login to Bluebeam Studio" id="token" reRender="form" oncomplete="redirect('{!oauthUrl}','{!bbRedirectUrl}');"/>
+
+                <apex:actionFunction name="handleAuthCode" action="{!checkPageParameters}" rerender="form">
+                    <apex:param name="code" value=""/>
+                    <apex:param name="state" value=""/>
+                </apex:actionFunction>
+            </div>
+            
+            <apex:pageBlock id="formdata">  
+                <apex:outputPanel id="usercheck">
+                    <apex:messages id="mymessage" />                
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </apex:form>
+    </div>  
+
+    <script>
+        var popupWindow;
+        var bbUrl; // url for user to manually log in to bluebeam
+        var hubUrl; // url of the visualforce page on BG Hub, which handles redirect from BB and passes code back to this page.
+        window.addEventListener('message', handleMessage, false);
+
+        function redirect(url, redirectUrl ) {
+            // url is the full url to bluebeam
+            bbUrl = url;
+            hubUrl = redirectUrl;
+            popupWindow = window.open(hubUrl, "", "height=500,width=500");
+        }
+
+        function handleMessage(event) {
+            var data = event.data;
+            if (data === 'DONE') {
+                popupWindow.postMessage(bbUrl, hubUrl);
+            } else if (data && data.code) {
+   
+                code = data.code;
+                state = data.state;
+                // set these values as page parameters, so can be used by Controller to extract and update the oauth property
+                handleAuthCode(code, state);
+               popupWindow.close();
+            }
+        }
+    </script>   
+</apex:page>
