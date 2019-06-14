@@ -1,4 +1,0 @@
-<apex:page tabStyle="DRE__DTE_Data_Set__c">
-    <c:DRETab objectType="DRE__DTE_Data_Set__c"/>
-    <apex:enhancedList type="DTE_Data_Set__c" height="800" customizable="true" rowsPerPage="200" oncomplete="toggleDeployButtons(false);" reRender="list" id="list"/>
-</apex:page>
