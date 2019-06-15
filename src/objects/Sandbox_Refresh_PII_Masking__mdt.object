@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create a new batch interface using Apex to loop over sObjects defined in Custom Metadata
+
+Description: As a system admin user, I want to be able to execute a standard sObject batch to mask all the fields on the sObjects defined in a custom metadata. This functionality needs to be accessible via a Visualforce page through a custom button.</description>
+    <fields>
+        <fullName>FieldName__c</fullName>
+        <description>This field tracks the name of the field on the object for which the batch should mask the info.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Field Name</label>
+        <length>25</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MaskingString__c</fullName>
+        <description>This field will be a text field that will contain the masking string.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Masking String</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Masking__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Masking</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1. NULL</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>2. APPEND BEGINNING</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3. APPEND END</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>4. APPEND BOTH</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5. REPLACE DOMAIN</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ObjectName__c</fullName>
+        <description>This field tracks the name of the object for which the batch should run</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Object Name</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sandbox Refresh PII Masking</label>
+    <pluralLabel>Sandbox Refresh PII Maskings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

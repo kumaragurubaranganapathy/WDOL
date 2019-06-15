@@ -1,0 +1,26 @@
+<aura:component extends="BGCK:ChecklistMultiChoiceQuestion">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" description="On initialization, sets up the choices array and handles if the component should be in read mode."/>
+	<aura:handler event="aura:doneRendering" action="{!c.showSubQs}" description="Handles the showing of dependent questions if there is a response to this question when loaded."/>
+	<aura:handler event="BGCK:ChecklistSaveSectionEvent" action="{!c.saveAnswer}" description="Called when the user clicks the section's save button." />
+
+	<div class="slds-form-element__control slds-size--3-of-4">
+		<div class="slds-select_container slds-size--7-of-8">
+
+			<lightning:select disabled="{!v.isReadMode}" aura:id="bgck-select"
+						name="{!globalId + v.question.response.Id}"
+						class="hide-labels" label="Picklist"
+						value="{!v.question.response.Name}"
+						onchange="{!c.handleSubQuestions}"
+						>
+				<option value="" label=""></option>
+				<aura:iteration items="{!v.choices}" var="item">
+					<option value="{!item.Name}">{!item.BGCK__Display_Value__c || item.Name}</option>
+				</aura:iteration>
+			</lightning:select>
+
+		</div>
+	</div>
+
+
+
+</aura:component>

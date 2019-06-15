@@ -1,0 +1,30 @@
+<aura:component controller="BGCK.Checklist2AdminController">
+	
+	<aura:attribute name="questionType" type="BGCK__Question_Type__c" description="Question Type Record for this table row"/>
+	<aura:attribute name="fieldset" type="Object[]" description="Array of fieldset member objects"/>
+	<aura:attribute name="questionTypeValues" type="Object[]" description="Simplified array of version values, created in the doInit function."/>
+	<aura:attribute name="isViewMode" type="Boolean" default="false"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<tr>
+		<aura:iteration items="{!v.questionTypeValues}" var="item">
+			<td data-label="{!item.label}">
+				<div class="slds-truncate" title="{!item.value}">{!item.value}</div>
+			</td>
+		</aura:iteration>
+
+			<td class="slds-cell-shrink">
+				<button class="slds-button slds-button--neutral" onclick="{!c.clickViewQuestionType}" disabled="{!v.isViewMode}">
+					View
+				</button>
+				
+				<button class="slds-button slds-button--neutral" onclick="{!c.clickEditQuestionType}" disabled="{!v.isViewMode}">
+					Edit
+				</button>
+				
+				<button class="slds-button slds-button--neutral" onclick="{!c.clickDeleteQuestionType}" disabled="{!v.isViewMode}">
+					Delete
+				</button>
+			</td>
+	</tr>
+</aura:component>

@@ -1,0 +1,127 @@
+<apex:page standardController="Journal_Voucher__c" extensions="JVExtension" renderAs="pdf">
+   <!-- <apex:pageBlock title="{!Journal_Voucher__c.Document_Title__c}">-->
+        
+    <apex:pageBlock >
+        TMS JOURNAL VOUCHER
+        
+        <!--1st Table-->
+        <table border="1">
+            <tr>
+                <th>Agency Name</th>
+                <th>Agency No</th>
+            </tr>
+            
+            <apex:repeat value="{!Journal_Voucher__c}" var="jv">
+                <tr>
+                    <td>{!jv.Agency_Name__c	}</td>
+                    <td>{!jv.Agency_No__c}</td>
+                </tr>
+            </apex:repeat>
+            <tr>
+                <th>Document Date</th>
+                <th>Current Document Number</th>
+                <th>Ref. Document Number</th>
+                <th> Vendor Number</th>
+                <th>Payment Due Date</th>
+            </tr>
+            <apex:repeat value="{!Journal_Voucher__c}" var="jv">
+                <tr>
+                    <td>{!jv.Document_Date__c}</td>
+                    <td>{!jv.Current_Document_Number__c}</td>
+                    <td>{!jv.Ref_Document_Number__c}</td>
+                   <!-- <td>{!jv.Agency_No__c}</td>-->
+                    <td></td>
+                    <td></td>
+                   <!-- <td>{!jv.Date_of_Deposit__c}</td>-->
+                    
+                </tr>
+            </apex:repeat>
+            
+        </table>
+        <br/>
+       <!--2nd Table-->
+        <table border="1">
+            <tr>
+                <th>Ref Doc Suf</th>
+                <th>Trans Code</th>
+                <th>Agency No</th>
+                <th>Fund</th>
+                <th>Program Index</th>
+                <th>Major Group</th>
+                <th>Major Source</th>
+                <th>Sub Source</th>
+                <th>DR/CR</th>
+                <th>Amount</th>
+                <th>General Ledger Account</th>
+                <th>Subsidiary Account Debit</th>
+                <th>Subsidiary Account Credit</th>
+            </tr>
+            <apex:repeat value="{!jvd}" var="item">
+                <tr>
+                    <td>{!item.Reference_Document_Suffix__c}</td>
+                    <td>{!item.Transaction_Code__c}</td>
+                    <td>{!item.Agency__c}</td>
+                    <td>{!item.Fund__c}</td>
+                    <td>{!item.Program_Index__c}</td>
+                    <td>{!item.Major_Group__c}</td>
+                    <td>{!item.Major_Source__c}</td>
+                    <td>{!item.Sub_Source__c}</td>
+                    <td>{!item.Debit_Credit__c}</td>
+                    <td>{!item.Amount__c}</td>
+                    <td>{!item.General_Ledger_Account__c}</td>
+                    <td>{!item.Subsidiary_Account_Debit__c}</td>
+                    <td>{!item.Subsidiary_Account_Credit__c}</td>
+                </tr>
+            </apex:repeat>
+            
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Total: </td>
+                <td>{!Journal_Voucher__c.Amount__c}</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            
+        </table><br/><br/><br/><br/><br/><br/><br/>
+        
+        <!--3rd Table-->
+         <table border="1">
+             <tr>
+                <th>Explanation of Entry</th>
+                <th>Distribution</th>
+            </tr>
+            
+            <apex:repeat value="{!Journal_Voucher__c}" var="jv">
+                <tr>
+                    <td>{!jv.Explanation_of_Entry__c	}</td>
+                    <td>{!jv.Distribution__c}</td>
+                </tr>
+            </apex:repeat>
+             
+              <tr>
+                <th>Prepared By</th>
+                <th>Telephone Number</th>
+                <th>Date</th>
+                <th>Approved By</th>
+            </tr>
+            
+            <apex:repeat value="{!Journal_Voucher__c}" var="jv">
+                <tr>
+                    <td>{!jv.Prepared_By__c	}</td>
+                    <td>{!jv.Telephone_Number__c}</td>
+                     <td>{!jv.Prepared_by_Date__c}</td>
+                     <td>{!jv.Approved_By__c}</td>
+                </tr>
+            </apex:repeat>
+        </table>
+        
+    </apex:pageBlock>
+    
+</apex:page>

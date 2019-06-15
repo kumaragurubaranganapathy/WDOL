@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify applicant of violation and orders</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS</letterhead>
+    <name>POWTS Notice of Violation and Orders</name>
+    <style>freeForm</style>
+    <subject>POWTS Notice of Violations and Orders</subject>
+    <textOnly>NOTICE OF VIOLATIONS AND ORDERS
+
+
+
+CUST ID No. {!Contact.Client_Id__c}  Site ID No.
+
+Phone:  SITE ADDRESS:
+
+Site Contact:
+
+Contact Phone:
+
+Contact Fax:
+
+Contact Email:
+
+
+
+
+
+Regulated Objects:
+
+
+INVESTIGATION NOTES:
+
+
+
+This DEPARTMENT ORDER is issues as a result of an inspection on the above referenced site.
+
+
+
+The following violations were revealed:
+
+
+
+You are hereby ordered to have the installation corrected to conform to the indicated provisions of the Wisconsin Administrative Code and/or Wisconsin Statuses. This installation shall be corrected by the compliance date noted, and upon correction of violations I must be notified.  If you fail to comply, this order is enforceable in circuit court pursuant to s. 101.02(13), Stats., with forfeitures ranging from $10 to $100 per day for each violation.
+
+
+
+If you have any questions regarding this matter, please feel free to contact me at the number listed below.
+
+
+
+SPS 303.03 Permits any person affected by a rule of the department to petition for a variance of the rule.  The petition needs to establish equivalency to the rule, be provided on the form from the department and be submitted with accompanying fee and municipal recommendation.
+
+
+
+Ch. 101.02(6)(e) stats. Any employer or other person interested either because of ownership in or occupation of any property affected by any such order, or otherwise, may petition for a hearing on the reasonableness of any order of the department in the manner provided in this subchapter.
+
+
+
+INSPECTOR NAME:
+
+INVESTIGATION DATE:
+
+PHONE/WORK HOURS: ,
+
+
+E-MAIL:
+
+INVESTIGATION TYPE:
+
+SIGNATURE:
+
+
+DATE:
+
+INVESTIGATION SOURCE:
+
+COMPLIANCE DATE:
+
+Fee Required: (Invoice will be send Separately)
+
+PTO Expires:</textOnly>
+    <type>html</type>
+</EmailTemplate>

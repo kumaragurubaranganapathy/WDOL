@@ -1,0 +1,16 @@
+<aura:component >
+
+	
+
+	<aura:attribute name="sobject" type="String" default="" required="true"/>
+	<aura:attribute name="record" type="Object" />
+	<aura:attribute name="fieldset" type="Object[]" required="true"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.initForm}" />
+
+	
+		
+		{!v.body}
+	
+
+</aura:component>

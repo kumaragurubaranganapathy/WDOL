@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This Template will be used to send the Account Code to the Business Owner that will help them register an existing or new Business</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS</letterhead>
+    <name>Security Code Email-Business path</name>
+    <style>freeForm</style>
+    <subject>Business Security Code from eSLA</subject>
+    <textOnly>This message is automatically generated based upon a request for a security code submitted to the State of Wisconsin.
+
+*Please do not reply to this email*
+
+Dear {!Email_Notification__c.Param4__c}
+
+{!Email_Notification__c.Recipient_Contact__c} has requested your business  security code through the online licensing portal. Sharing the security code will give the requesting user access to the business licensing account which includes the ability to edit and delete data and make licensing payments on behalf of the business.
+
+If you authorize this request, please direct the user to log in to eSLA at https://esla.wi.gov/dashboard and take the following steps:
+
+Click your name in the top right hand corner
+Select “Manage Business”
+Expand the “Add Existing Business” section
+Enter your security code: {!Email_Notification__c.Param3__c}
+Click Submit
+
+
+Thank You,
+eSLA Team</textOnly>
+    <type>html</type>
+</EmailTemplate>

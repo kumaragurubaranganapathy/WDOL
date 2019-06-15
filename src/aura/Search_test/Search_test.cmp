@@ -1,0 +1,136 @@
+<!-- *************************************************************************
+        Component Name : Search_test
+        Created By : Lavanya Chinnaswamy
+        Creation Date : 21-Jan-2019
+        
+        Modification Log
+        
+        Name			Date			Issue
+        _______________________________________________________________
+        
+        *******************************************************************************-->
+<aura:component controller = "Lnp_CommonHeader_AC" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="customLblMap" type="Map" />
+    <ltng:require scripts="{!$Resource.jQuery_Lightning}"/>
+    <aura:attribute name="showLoadingSpinner" type="boolean" default="false" />
+    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+    <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg', '.png']"/> 
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="invalidRecord" type="boolean" default="false"/>
+    <aura:attribute name="fileId" type="String" />    
+    
+    <div class="main-wrapper">
+        
+        <lightning:layout class="complaint-outer-wrapper slds-wrap">
+            
+            <lightning:layoutItem class="license-find-wrapper" size="12" mediumDeviceSize="12" largeDeviceSize="4">
+                
+                <lightning:layout class="license-find">
+                    <lightning:layoutItem size="10">                       
+                        <div class="license-find-title">
+                            {!v.customLblMap.LnP_License_FindTitle}
+                        </div>                        
+                        <div class="license-find-subtitle">
+                            <div>
+                                {!v.customLblMap.LnP_License_FindSubtitle}
+                            </div>
+                            <!--<input class="slds-hide_large file" type="file" aura:id="file" name="image_uploads"  capture="{!v.capture}" accept="{!v.accept}" onchange="{!c.updateImage}"></input>-->
+                            <!-- <lightning:input type="file" label="upload image" onchange="{!c.handleUploadFinished}"  />-->
+                            <div class="slds-hide_large input-wrap">
+                                <lightning:input class="inputFile" aura:id="fileId" accept="{!v.accept}" onchange="{!c.handleFilesChange}" type="file" name="file" label="Upload Attachment" multiple="false" variant="label-hidden"/>
+                                <img class="cam-image" src="{!$Resource.LnP_Icons+'/LnP_Icons/Camera.svg'}" alt="camera" />
+                                
+                                
+                                
+                                <!-- <lightning:input aura:id="fileId" accept="{!v.accept}" onchange="{!c.handleFilesChange}" type="file" name="file" label="Upload Attachment" multiple="false"/>-->
+                                
+                                <aura:if isTrue="{!not(empty(v.recordId))}">
+                                    <li><a href="{!v.customLblMap.LnP_recordUrl+v.recordId}" target='blank'>The record exist.Click the link to see the record</a></li>
+                                    
+                                </aura:if>
+                                <aura:if isTrue="{!(v.invalidRecord)}">
+                                    <li>The record does not exist</li></aura:if>
+                                
+                                <div class="slds-text-body_small slds-text-color_error">{!v.fileName} </div>
+                                
+                                <aura:if isTrue="{!v.showLoadingSpinner}">
+                                    <div class="slds-text-body_small slds-text-color_error">Uploading... 
+                                        <img src="/auraFW/resources/aura/images/spinner.gif" class="spinner-img" alt="Loading"/>'
+                                    </div>
+                                </aura:if>                            
+                                
+                                <lightning:button class="save-button" variant="brand" onclick="{!c.doSave}">Save</lightning:button>
+                                <!-- <input class="slds-hide_large" type="file" id="photoFile" name="image_uploads"   accept="image/*"  onchange="{!c.updateImage}"></input>-->
+                            </div>
+                        </div>                                    
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="2">                        
+                        <img src="{!$Resource.LnP_Icons+'/LnP_Icons/search-main.svg'}" alt="search-icon" class="search-icon" />
+                    </lightning:layoutItem>
+                </lightning:layout>                            
+                <div class="search-license-wrapper">
+                    <lightning:input class="search-license slds-show_large" aura:id="enter-search" placeholder="Enter license number/name/type" name="enter-search" label="Search License" type="search" />        			
+                </div>                
+                <div class="search-location">  
+                    <a class="link-style" href="javascript:void(0)">{!v.customLblMap.LnP_SearchLocation}</a>
+                </div>
+            </lightning:layoutItem>
+            
+            <!--_____________________________________________________________________________________________-->     
+            <lightning:layoutItem size="12" mediumDeviceSize="12" largeDeviceSize="8" class="feedback-outer-wrapper">
+                <lightning:layout>
+                    <lightning:layoutItem size="10" class="feedback-wrapper">
+                        <lightning:layout class="outer-wrapper slds-wrap">
+                            <lightning:layoutItem size="12" largeDeviceSize="4">
+                                <div class="feedback-main-title">
+                                    {!v.customLblMap.LnP_Feedback_Main_Title}
+                                </div>
+                                <div class="feedback-subtitle">
+                                    {!v.customLblMap.LnP_Feedback_Subtitle}
+                                </div>                                                           
+                                <div class="complaint-text"> 
+                                    {!v.customLblMap.LnP_complaint_Text}
+                                </div>                                                         
+                                
+                                <div class="submit-complaint">                                                           
+                                    <span class="submit-text">
+                                        <a class="link-style" href="javascript:void(0)">{!v.customLblMap.LnP_Submit_Text}</a>
+                                    </span>                                   
+                                </div>                                
+                            </lightning:layoutItem> 
+                            
+                            <!--_________________________________________________________________________________-->
+                            <lightning:layoutItem class="feedback-div" size="12" largeDeviceSize="5">
+                                <div class="feedback-main-title hidden">
+                                    {!v.customLblMap.LnP_Feedback_Main_Title}
+                                </div>
+                                
+                                <div class="thoughts-title feedback-subtitle">
+                                    {!v.customLblMap.LnP_Thoughts_Title}
+                                </div>
+                                <div class="complaint-text">
+                                    {!v.customLblMap.LnP_Complaint_Text_Lastcolumn} 
+                                </div>
+                                
+                                <div class="">                                   
+                                    
+                                    <span class="submit-text">
+                                        <a class="link-style" href="javascript:void(0)">{!v.customLblMap.LnP_Provide_Feedback}</a> 
+                                    </span>                                    
+                                </div>
+                                
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="2">
+                        <img class="search-icon" alt="voice" src="{!$Resource.LnP_Icons +'/LnP_Icons/Review.svg'}"  />
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+    </div>
+    
+    
+</aura:component>

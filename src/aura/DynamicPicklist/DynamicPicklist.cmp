@@ -1,0 +1,7 @@
+<aura:component extends="ui:inputSelect" access="global" controller="BGCM.DynamicPicklistController">
+	
+	<aura:attribute name="sobjectName" type="String" access="global" description="API Name of the object this field is on."/>
+	<aura:attribute name="fieldName" type="String" access="global" description="API Name of a picklist or multipicklist component." />
+	<aura:attribute name="defaultValue" type="String" access="global" description="Default value of the field." />
+	<aura:attribute name="size" type="Integer" access="global" />
+</aura:component>

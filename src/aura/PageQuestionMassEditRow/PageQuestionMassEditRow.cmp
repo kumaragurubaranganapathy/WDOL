@@ -1,0 +1,21 @@
+<aura:component >
+	
+	<aura:attribute name="fieldsetMember" type="Object" />
+	<aura:attribute name="record" type="Object" />
+	<aura:attribute name="filled" type="Boolean" default="false"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	
+	<tr>
+		<td>
+			<!-- checkbox -->
+			<ui:inputCheckbox value="{!v.filled}" aura:id="checkbox"/>
+		</td>
+		<td>
+			{!v.fieldsetMember.label}
+		</td>
+		<td>
+			<!-- input field -->
+			{!v.body}
+		</td>
+	</tr>
+</aura:component>

@@ -1,0 +1,490 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : Application
+** Description      : New License Application process page
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Okwudiafor Akosa           6/29/2018                 1.0
+**                                                                          
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page Controller="ApplyForSobjectCtlr"
+           standardStylesheets="false" sidebar="false" showHeader="false"
+           docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false">
+    <html lang='en'>
+        
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <!-- Include script and CSS Files -->
+            <!-- <c:IncludeFilesComp />  Rinku commented - all files are listed in Resources.vfc-->
+            <!-- Include script and CSS Files -->
+            <title>{!pageTitle}</title>
+            <c:Resources />  
+            <script type="text/javascript">
+            NOTIFICATIONS.spinnerStart();
+            </script>
+            <apex:includeScript value="{!$Resource.PBarWidget}"/>
+            <apex:includeScript value="{!$Resource.JS_ApplyForSObject}"/>
+            
+        </head>
+        
+        <body class="internal">
+            <!-- Include header -->
+            <c:Header />
+            <c:AddressJsUtility />
+            <!-- Include header -->
+            
+            <main>
+               <script type="text/javascript">
+                // Create AJAX session
+                sforce.connection.sessionId = '{!$Api.Session_ID}';
+                
+                var isFirstInsert = true;
+                var isFirstRerender = true;
+                </script>
+                
+                <!-- Get configuration validation errors -->
+                <apex:outputPanel id="apexMsgs">
+                    <apex:messages id="apexMessages" style="display: none;"/>
+                    <!-- Javascript -->
+                    <script type="text/javascript">
+                    var errorMessages = '';
+                    errorMessages = $("[id$='apexMessages'] li").text();
+                    errorMessages = '';
+                    if((errorMessages != '') && (isFirstInsert)) {
+                        if(errorMessages.indexOf('CheckCertification') > 0) {
+                        }
+                        else {
+                            
+                            MODAL_UTILITY.openModalWithOptions(errorMessages);
+                        }
+                    }
+                    </script>
+                    <!-- Javascript -->
+                </apex:outputPanel>
+                <!-- Get configuration validation errors -->
+                
+                <!-- Page heading -->
+                <div class="container headerMain">
+                    <div id="internal-header" class="verify-license"> <!-- start white header -->
+                        <h1> 
+                            <apex:image url="{!URLFOR($Resource.DDStyle, '_assets/img_license_small.png')}" alt="stamp"/>{!pageTitle}
+                        </h1>
+                    </div>
+                </div> 
+                <!-- Page heading -->
+                
+                <apex:form styleClass="animated-form">
+                    
+                    <section class="below-the-fold">
+                        <div class="container">
+                            <div class="notification" aria-live="polite"></div>
+                            <!-- Progress bar -->
+                            <div id="progressBarWidget"/>
+                            <!-- Progress bar -->
+                            
+                            <!-- Main section -->
+                            <section class='row'> 
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="row">
+                                        <!-- Page builder section -->
+                                        
+                                        <div class="dynComp"> <!-- PageSubSectionComp.vfc for Personal information -->
+                                            
+                                                <apex:dynamicComponent componentValue="{!sections}" id="sections"/>
+                                            
+                                        </div>
+                                        
+                                        <!-- Page builder section -->
+                                    </div>
+                                    <div class="buttonGroupFooter row">
+                                        <div class="col-sm-3 col-md-3"></div>
+                                        <div class="col-sm-7 col-sm-offset-1 col-md-7 no-padding">
+                                            <!--<apex:commandButton styleClass="btn btn-tertiary saveAndLater" value="Save & Finish Later" rendered="{!IF(applicationType == $Label.Str_Service_Request, 'display: none;', '')}" />-->
+                                            <input type="button" class="btn btn-tertiary saveAndLater" id="saveAndLaterBtn" value="Save AND Finish Later"/>
+                                            <input type="button" class="btn btn-primary" id="saveAndContinue" value="Save and Continue"/>
+                                            &nbsp;&nbsp;
+                                            <apex:Commandlink rendered="{!applicationType != $Label.Str_Service_Request}" styleClass="btn btn-primary" target="_blank" action="{!saveToPdf}" 
+                                                              value="Download  Application" id="theButton"/> 
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Main section -->
+                            
+                            <!-- Spacing -->
+                            <section class="row"></section>
+                            <!-- Spacing -->
+                            
+                            <!-- Navigation buttons -->
+                            <section class='row'>
+                                
+                            </section> 
+                            <!-- Navigation buttons -->
+                            
+                            <!-- Action functions -->
+                            <apex:actionFunction name="saveAndContinue" action="{!saveRecord}"
+                                                 status="addrStatus"  oncomplete="PBAR.handleSaveAndContinue();changeDataAccordingly('{!queService}');"
+                                                 reRender="apexMsgs,pageDefinitionString, licenseGlobalData,attachmentData, licGlobalJsonString, currentRecordJsonString, pageDefinitionStringJS, questionsData">
+                                <apex:param assignTo="{!currentSection}" name="currentSection" value="" />
+                                <apex:param assignTo="{!nextSection}" name="nextSection" value="" />
+                            </apex:actionFunction>
+                            
+                            <apex:actionFunction name="saveAndContinue1" action="{!saveRecord}"
+                                                 status="addrStatus" oncomplete="PBAR.handleSaveAndContinue();stopAnimation();"
+                                                 reRender="apexMsgs,pageDefinitionString, licenseGlobalData,attachmentData, licGlobalJsonString, currentRecordJsonString, pageDefinitionStringJS, questionsData">
+                                <apex:param assignTo="{!currentSection}" name="currentSection" value="" />
+                                <apex:param assignTo="{!nextSection}" name="nextSection" value="" />
+                            </apex:actionFunction>
+                            <apex:actionFunction name="saveQuestions"
+                                                 oncomplete="questionupdate();reloadQuestions2();">
+                            </apex:actionFunction>
+                            
+                            
+                            
+                            <apex:actionFunction name="quickSave"
+                                                 onbeforedomupdate="checkquestions();"
+                                                 namespace="APPLYFORLICENSE"
+                                                 action="{!quickSave}"
+                                                 status="addrStatus"
+                                                 oncomplete="NOTIFICATIONS.spinnerStop();ACTIONS.displaySaveExitDialog();">
+                            </apex:actionFunction>
+                            <apex:actionFunction name="submitRecord"
+                                                 action="{!submitRecord}"
+                                                 oncomplete="REVIEWCOMPNS.afterSubmit();">
+                            </apex:actionFunction>
+                            <apex:actionFunction action="{!reloadAttachments}" name="reloadAttachments" reRender="attachmentData, licGlobalJsonString, currentRecordJsonString, pageDefinitionStringJS" oncomplete="ATTACHMENTCOMPNS.loadRecords();"/>
+                            <apex:actionFunction action="{!reloadQuestions}" name="reloadQuestions" reRender="questionsData, licGlobalJsonString, currentRecordJsonString, pageDefinitionStringJS"  />
+                            <apex:actionFunction action="{!reloadQuestions}" name="reloadQuestions2" reRender="questionsData, licGlobalJsonString, currentRecordJsonString, pageDefinitionStringJS" oncomplete="saveRecordAfterQuestions();" />
+                            <!-- Action functions -->
+                        </div>
+                    </section>
+                    
+                    
+                    <!--  BELOW CODE IS ADDED TO SUPPORT BUSINESS ADDRESS FUNCTIONALITY -->
+                    <!--  STARTS  -->
+                    
+                    <apex:actionFunction name="licenseQuickSaveForAddress_AF" action="{!licenseQuickSave}" rerender="licenseGlobalData,licGlobalJsonString,currentRecordJsonString,pageDefinitionStringJS,licAddressResultData,permitAddressResultData" status="addrStatus">
+                        <apex:param name="contextParcelIdParam" assignTo="{!contextParcelId}" value=""/>
+                        <apex:param name="contextAddressTypeParam" assignTo="{!contextAddressType}" value=""/>
+                        <apex:param name="primaryEntityTypeParameter" assignTo="{!primaryEntityTypeParam}" value=""/>
+                    </apex:actionFunction>
+                    <apex:Actionstatus id="addrStatus" onstart="NOTIFICATIONS.spinnerStart();" onstop="processLicenseAddressOpResult();"/>
+                    <apex:outputpanel id="licAddressResultData" style="display:none;">
+                        {!licAddrResult}
+                    </apex:outputpanel>
+                    <apex:outputpanel id="permitAddressResultData" style="display:none;">
+                        {!permitAddrResult}
+                    </apex:outputpanel>
+                    
+                    <!--  ENDS  -->
+                    <apex:actionFunction name="quickSaveForSecEmail" rerender="licenseGlobalData,licGlobalJsonString,currentRecordJsonString,pageDefinitionStringJS,licAddressResultData,permitAddressResultData"
+                                         action="{!quickSave}"
+                                         status="addrStatus"
+                                         oncomplete="NOTIFICATIONS.spinnerStop();EMAILCOMPNS.saveRecord();">
+                    </apex:actionFunction>
+                </apex:form>
+            </main>
+            
+            <!-- Footer section -->
+            <c:Footer />
+            <!-- Footer section -->
+            
+            <div style="display:none;">
+                
+                <div id="licGlobalString">
+                    <apex:outputText value="{!licenseGlobalDataAsJson}" id="licGlobalJsonString"/>
+                </div>
+                
+                <!-- <div id="currRecString" style="display: none;">
+<apex:outputText value="{!currentRecordSerialized}" id="currentRecordJsonString"/>
+</div> -->
+            </div>
+            <div style="display:none;">
+                <!-- Used for build the progress bar component only -->
+                <div id="validationString">
+                    <apex:outputText value="{!allSectionsAsListSerialized}" id="pageDefinitionString"/>
+                </div>
+                <!-- Used for build the progress bar component only -->
+                
+                <div id="jsonAtt">
+                    <apex:outputText value="{!attachmentsSerialized}" id="attachmentData"/>
+                </div>
+                
+                <div id="jsonQue">
+                    <apex:outputText value="{!questionsSerialized}" id="questionsData"/>
+                </div>
+                <div id="jsonExpiredAnswers">
+                    <apex:outputText value="{!deleteExpiredAnswers}" id="expiredAnswersData"/>
+                </div>
+                <!-- License object data -->
+                <apex:outputText value="{!licenseGlobalDataAsJson}"  id="licenseGlobalData"/>
+                <!-- License object data -->
+                
+                <!-- License javascript object data -->
+                <apex:outputPanel id="pageDefinitionStringJS">
+                    <script type="text/javascript">
+                    // var currRecObj = '';
+                    // try {
+                    //   currRecObj = JSON.parse($("#currRecString").text());
+                    // }
+                    // catch(e) {
+                    //   MODAL_UTILITY.errorMessageModal('Invalid data in currRecObj. Please check.');
+                    // }
+                    
+                    var licGlobalObj = '';
+                    try {
+                        licGlobalObj = JSON.parse($("#licGlobalString").text());
+                    }
+                    catch(e) {
+                        MODAL_UTILITY.errorMessageModal('Invalid data in licGlobalObj. Please check.');
+                    }
+                    
+                    var validationObj = '';
+                    try {
+                        validationObj = JSON.parse($("#validationString").text());
+                    }
+                    catch(e) {
+                        MODAL_UTILITY.errorMessageModal('Invalid data in validationObj. Please check.');
+                    }
+                    
+                    attachmentsList = $("#jsonAtt").text();
+                    try {
+                        attachmentsList = JSON.parse(attachmentsList);
+                    }
+                    catch(e) {}
+                    try{
+                        ATTACHMENTCOMPNS.loadRecords();
+                    }
+                    catch(e) {//console.log(e);
+                    }
+                    
+                    
+                    //QUESTIONSCOMPNS.getDepedentFields();
+                    questionsList = $("#jsonQue").text();
+                    answerList_ToBeDeleted = $("#jsonExpiredAnswers").text();
+                    try {
+                        questionsList = JSON.parse(questionsList);
+                        answerList_ToBeDeleted = JSON.parse(answerList_ToBeDeleted);
+                        
+                    }
+                    catch(e) {}
+                    if(typeof QUESTIONSCOMPNS !== 'undefined'){
+                        QUESTIONSCOMPNS.loadRecords();
+                    }
+                    // Stop spinner
+                    
+                    NOTIFICATIONS.spinnerStop();
+                    </script>
+                </apex:outputPanel>
+                <!-- License javascript object data -->
+            </div>
+            
+            <script>
+            // Global variables
+            var currentSec = 1;
+            var progressBarWidget;
+            var validationMapper = {};
+            var attachmentsList = '';
+            //var preventQuestiondbsave =true;
+            
+            
+            
+            
+            function questionupdate(){
+                $.each(validationObj, function(i, val) {
+                    $.each(val.subSectionObjMap, function(j, val2) {
+                        if (val2.componentName == 'QuestionAnswer') {
+                            QUESTIONSCOMPNS.saveRecords();  
+                            reloadQuestions();
+                            return
+                        }
+                    });
+                });
+            }
+            
+            function saveRecordAfterQuestions(){
+                var currentSection = 0;
+                currentSection = progressBarWidget.progressbar("getActiveSection");   
+                var nextSection1 = progressBarWidget.progressbar("getNextSection");
+                saveAndContinue1(currentSection, nextSection1);
+            }
+            
+            function checkquestions(){
+                if(questionsList!=answerList_ToBeDeleted)
+                {
+                    questionupdate();
+                }
+            }
+            var timerId = null;
+            function questionSpinner() {
+                NOTIFICATIONS.spinnerStart();
+            }
+            function startAnimation() {
+                timerId = setInterval(questionSpinner, 0.1);
+            }
+            function stopAnimation() {
+                clearInterval(timerId);
+                NOTIFICATIONS.spinnerStop();
+            }
+            
+            $(document).keypress(
+                function(event){
+                    if (event.which == '13') {
+                        event.preventDefault();
+                    }
+                });
+            
+            // On document ready
+            $(function() {
+                
+                $(".hasDatepicker").click(function() {
+                    $( this)[0].labels[0].classList.remove('InputLabel');
+                    $( this)[0].labels[0].classList.remove('InputLabel_In') ;
+                }); 
+                // Stop spinner
+                NOTIFICATIONS.spinnerStop();
+                
+                // Disable read-only fields
+                $(".read-only .form-control").attr("readonly", "readonly");
+                
+                // Bind animated form
+                $(".dynComp").bindAnimatedForm();
+                
+                // Initialize progressbar
+                progressBarWidget = $("#progressBarWidget").progressbar({
+                    navigate: function(event, data) {
+                        try {
+                            
+                            var item = $('.progress-bar').find('.active')
+                            if((progressBarWidget.progressbar("getReviewSection") != data.nextSection) || (!isFirstInsert)) {
+                                
+                                if(validationMapper.applicationFields.validator.errors().length <= 0) {
+                                    NOTIFICATIONS.spinnerStart();                                
+                                    saveAndContinue(data.currentSection, data.nextSection);
+                                }
+                                else {
+                                    
+                                    MODAL_UTILITY.errorMessageModal(validationMapper.applicationFields.validator.errorHtml());
+                                }
+                            }
+                            isFirstInsert = false;
+                        }catch(e) {MODAL_UTILITY.errorMessageModal(e);}
+                    }
+                });
+                // Show first section
+                $("#section1").show();
+                
+                // Hide suggested date
+                $(".dateFormat").hide();
+                
+                // Load events
+                APPLYFORSOBJECT.loadEvents();
+                
+                // Build validation object
+                APPLYFORSOBJECT.buildValidationObject();
+            });
+            
+            function updateForm() {
+                var reqOptions = [];
+                var subsectioname = '';
+                
+                //Checks if the function has been called by the change in the value of the picklist.
+                if (this.parentElement == null) {
+                    var requireditem = $('#military-service .req');
+                    var reqOption = [];
+                    
+                    $.each(requireditem, function(i, val) {
+                        reqOption[i] = val.childNodes[1].value;
+                    })
+                    
+                    if (reqOption[0] !== 'Yes' && reqOption[1] !== 'Yes') {
+                        $('#military-service div:not(.req)').addClass('hidden');
+                    }
+                    
+                    $('#military-service').find('.do_not_hide').parent().removeClass('hidden');
+                }
+                else {
+                    subsectioname = this.parentElement.id;
+                }
+                //Checks if the substatus is true
+                if (subsectioname === 'military-service') {
+                    subsectioname = this.parentElement.id;
+                    $secondaryFields = $('#' + subsectioname + ' div:not(.req)');
+                    var requireditems = $('#' + subsectioname + ' .req');
+                    
+                    $.each(requireditems, function(i, val) {
+                        reqOptions[i] = val.childNodes[1].value;
+                    })
+                    
+                    //Checks the value of the answered fields
+                    if (reqOptions[0] === 'Yes' || reqOptions[1] === 'Yes') {
+                        $secondaryFields.removeClass('hidden');
+                    } else {
+                        //Removes the value from the hidden fields
+                        $secondaryFields.addClass('hidden');
+                        $.each($secondaryFields, function(i, val) {
+                            val.childNodes[1].value='';
+                        })
+                    }
+                    
+                    $('#military-service').find('.do_not_hide').parent().removeClass('hidden');
+                }
+            }
+            
+            function updateDeclinedOption(){
+                var decline = $('.do_not_hide').is(':checked');
+                
+                if(decline == true){
+                    $('#military-service div:not(.req)').addClass('hidden');
+                    $('#military-service').find('.do_not_hide').parent().removeClass('hidden');
+                }
+                
+                var requireditem = $('#military-service .req');
+                var reqOption = [];
+                
+                $.each(requireditem, function(i, val) {
+                    if(decline == true){
+                        val.childNodes[1].value = '';
+                        val.childNodes[1].setAttribute("disabled", true);
+                    }else{
+                        val.childNodes[1].removeAttribute("disabled");
+                    }
+                });
+            }
+            
+            // Call our function on document load
+            updateForm();
+            updateDeclinedOption();
+            var checkType = "{!applicationType}";
+            var checkSR = "{!$Label.Str_Service_Request}";
+            if(checkType == checkSR){
+                $('#saveAndLaterBtn').hide();
+            } else {
+                $('#saveAndLaterBtn').show();
+            }
+            // Call our function whenever req select is changed
+            $('.req').change(updateForm);
+            $('.do_not_hide').click(updateDeclinedOption);
+            
+            $('.required, .requiredElement').find('.form-control').attr('aria-required','true');
+            
+            </script>
+            
+        </body>
+    </html>
+</apex:page>

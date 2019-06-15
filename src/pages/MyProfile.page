@@ -1,0 +1,1238 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : MyProfile
+** Description      : Profile page displaying personal information
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Rinku Patel/Deloitte			07/12/2018									UI changes 
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page controller="ProfileCntrlr"
+           standardStylesheets="false" sidebar="false" showHeader="false"
+           docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false" language="en_Us">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang='en'>
+        
+        <head>
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <title>Profile</title>
+            <c:Resources LoadAddressUtility="true"/>
+            <script type="text/javascript">
+            $(document).ready(function() {
+                $(".notification").html('');
+                $('.notification').append('<p>Loading completed</p>');
+            });
+            </script>
+        </head>
+        <body class="internal">
+            <div role="alert" aria-atomic="true" class="notification"></div>
+            <c:Header />
+            <main id="my_profile">
+                <div class="container headerMain">
+                    <div id="internal-header">
+                        <div class="col-md-2 profileCircle">{!LEFT(conObj.FirstName,1)}{!LEFT(conObj.LastName,1)}</div>
+                        <div class="col-md-6">
+                            <h1>{!conObj.FirstName} {!conObj.LastName}</h1>
+                            <p><strong>{!conObj.Email}</strong></p>
+                        </div>
+                    </div>
+                </div> <!--end white header -->
+                 
+                <section class="below-the-fold"> <!-- start grey section -->
+                    <div class="container">
+                        
+                        <apex:form styleClass="profileAnimatedForm animated-form" id="profileForm">
+                            
+                            <Apex:ActionStatus id="prfStat" onstart="NOTIFICATIONS.spinnerStart();" onstop="NOTIFICATIONS.spinnerStop();"/>
+                            <Apex:inputHidden value="{!pageMode}" id="pageModeHidden"/>
+                            
+                            <!-- Main section starts here  -->
+                            <div>
+                                <!-- Personal Information Section Starts  -->
+                                <section class="row profileSections" >
+                                    
+                                    <apex:outputpanel layout="block" style="display:none;" id="resultData">
+                                        <Apex:outputText value="{!ResultJSON}" id="resultJSON">
+                                        </Apex:outputText>
+                                    </apex:outputpanel>
+                                    
+                                    
+                                    <div id="hiddenBirthDate" style="display:none;">
+                                        <apex:outputText id="hiddenBirthDate" value="{0,date,MM/dd/yyyy}">
+                                            <apex:param value="{!conObj.BirthDate}" />
+                                        </apex:outputText>
+                                    </div>
+                                    
+                                    <!--  PROFILE NAME SECTION STARTS 4 COL  -->
+                                    
+                                    <div class="col-md-4 profileLeftColumn" id="profilePage_LeftSide">
+                                        <apex:outputpanel layout="block" styleClass="row" id="profileNameView">
+                                            
+                                            <h2>Personal Information </h2>
+                                            <p>
+                                                To add or revise your personal information, click the EDIT THIS INFORMATION link. Once you have made the desired updates, click the SAVE button. Note that fields with (*) are required.
+                                            </p>
+                                            <p>
+                                                Please be advised, should you change your email address this will also become your user ID. On future attempts to log into the eLicense portal the new email address will need to be entered into the Email field under the Existing User Login section.
+                                            </p>    
+                                            <div class="row">
+                                                <a href="#" id="profileEdit_pi" class="controls">
+                                                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                                                    Edit This Information</a>
+                                            </div>
+                                            <div class="row">
+                                                <a href="#" id="profileEdit" class="controls" onclick="location.href='/PortalForgotPassword';">
+                                                    <span aria-hidden="true" class="glyphicon glyphicon-lock"></span>
+                                                    Reset Your Password
+                                                </a>
+                                            </div>
+                                        </apex:outputpanel>
+                                        
+                                    </div>
+                                    <!--  PROFILE NAME SECTION ENDS  -->
+                                    
+                                    <!--  PROFILE PERSONAL INFO SECTION STARTS  -->
+                                    
+                                    <!--  READ ONLY SECTION  -->
+                                    
+                                    <apex:outputpanel layout="block" styleClass="col-md-6 profileReadPanel" id="profileReadPanel">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Title</label>
+                                                <span>{!IF(conObj.Title != '', conObj.Title, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>First Name </label>
+                                                <span>{!IF(conObj.FirstName != '', conObj.FirstName, '-')} </span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Last Name</label>
+                                                <span>{!IF(conObj.LastName != '', conObj.LastName, '-')}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Suffix </label>
+                                                <span>{!IF(conObj.Contact_Suffix__c != '', conObj.Contact_Suffix__c, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Middle Name </label>
+                                                <span> {!IF(conObj.MiddleName != '', conObj.MiddleName, '-')} </span>
+                                            </div>
+                                            
+                                            <div class="col-sm-4">
+                                                <label>Maiden Name</label>
+                                                <span>{!IF(conObj.Maiden_Name__c != '', conObj.Maiden_Name__c, '-')}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Email </label>
+                                                <span>{!IF(conObj.Email != '', conObj.Email, '-')}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Phone Number </label>
+                                                <span>{!IF(conObj.Phone != '', conObj.Phone, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Alt. Phone Number </label>
+                                                <span>{!IF(conObj.OtherPhone != '', conObj.OtherPhone, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Fax </label>
+                                                <span>{!IF(conObj.Fax != '', conObj.Fax, '-')}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Social Security Number </label>
+                                                <span>{!IF(conObj.Social_Security_Number_Encrypted__c != '', conObj.Social_Security_Number_Encrypted__c, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Birth Date </label>
+                                               <span>
+                                                    <apex:outputText value="{0,date,MM/dd/yyyy}" rendered="{!conObj.BirthDate != null}">
+                                                        <apex:param value="{!conObj.BirthDate}" />
+                                                    </apex:outputText>
+                                                    <apex:outputText value="-" rendered="{!conObj.BirthDate == null}">
+                                                    </apex:outputText>
+                                                </span> 
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Birth City </label>
+                                                <span>{!IF(conObj.Birth_City__c != '', conObj.Birth_City__c, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Birth State or Province  </label>
+                                                <span>{!IF(conObj.Birth_State_Province__c != '', conObj.Birth_State_Province__c, '-')}</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Birth Country </label>
+                                                <span>{!IF(conObj.Birth_Country__c != '', conObj.Birth_Country__c, '-')}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label>Gender </label>
+                                                <span>{!IF(conObj.Gender__c != '', conObj.Gender__c, '-')}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <apex:outputPanel >
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <label>Ethnicity </label>
+                                                    <span>{!IF(conObj.Ethnicity__c != '', conObj.Ethnicity__c, '-')}</span>
+                                                </div>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <label>Aliases </label>
+                                                <span>{!IF(conObj.Aliases__c != '', conObj.Aliases__c, '-')}</span>
+                                            </div>
+                                        </div>
+                                        
+                                    </apex:outputpanel>
+                                    
+                                    
+                                    <!--  READ ONLY SECTION ENDS  -->
+                                    
+                                    <apex:actionRegion >
+                                        
+                                        <!--  PROFILE PERSONAL INFO EDIT STARTS  -->
+                                        
+                                        <div class="col-md-6" id="profileEditPanel" style="display:none;">
+                                            <apex:actionFunction name="saveProfilePersonalInfo"
+                                                                 namespace="PROFILE_AF"
+                                                                 action="{!saveProfileData}"
+                                                                 rerender="profileReadPanel,resultData"
+                                                                 status="prfStat"
+                                                                 oncomplete="PROFILE.initFormPI();">
+                                                <apex:param name="BirthDate" value="" assignTo="{!birthDateString}"/>
+                                                <apex:param name="SectionName" value="" assignTo="{!currentSection}"/>
+                                            </apex:actionFunction>
+                                            
+                                            <apex:actionFunction name="updateUsername"
+                                                                 namespace="PROFILE_AF"
+                                                                 action="{!updateUsername}"
+                                                                 rerender="profileReadPanel,resultData"
+                                                                 status="prfStat"
+                                                                 oncomplete="PROFILE.checkUsernameUpdate();">
+                                            </apex:actionFunction>
+                                            
+                                            <div class="row" id="messagePanel"> <!-- Rinku to verify if this has to be removed -->
+                                                
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <!-- TODO Pull Real Data For Names -->
+                                                <div class="col-sm-4">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="firstName" value="First Name"></apex:outputLabel>
+                                                        <apex:inputText id="firstName" styleClass="form-control" html-readonly="readonly" value="{!conObj.FirstName}"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="middleName" value="Middle Name"></apex:outputLabel>
+                                                        <apex:inputText html-readonly="readonly" id="middleName" styleClass="form-control" value="{!conObj.MiddleName}"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="lastName" value="Last Name"></apex:outputLabel>
+                                                        <apex:inputText id="lastName" styleClass="form-control" html-readonly="readonly" value="{!conObj.LastName}"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="row">
+                                                
+                                                <div class="col-sm-6">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="suffix" value="Suffix"></apex:outputLabel>
+                                                        <apex:inputText id="suffix" value="{!conObj.Contact_Suffix__c}" styleClass="form-control"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-6">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="maidenName" value="Maiden Name"></apex:outputLabel>
+                                                        <apex:inputField id="maidenName" value="{!conObj.Maiden_Name__c}" styleClass="form-control"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- TODO Do we need this field. I don't see it in the proofs -->
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <apex:outputLabel for="title" value="Title"></apex:outputLabel>
+                                                        <apex:inputField id="title" value="{!conObj.Title}" styleClass="form-control"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group required">
+                                                        <apex:outputLabel for="email" value="Email" styleClass="InputLabel"></apex:outputLabel>
+                                                        <apex:inputField id="email" value="{!conObj.Email}" styleClass="form-control" html-aria-required="true" />
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group required">
+                                                        <apex:outputLabel for="mobilePhone" value="Phone" styleClass="InputLabel"></apex:outputLabel>
+                                                        <apex:inputField id="mobilePhone" value="{!conObj.Phone}" styleClass="form-control" html-name="mobilePhone" html-aria-required="true" />
+                                                        <span class="bottomShade"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-4">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="otherPhone" value="Alt. Phone Number"></apex:outputLabel>
+                                                        <apex:inputField id="otherPhone" value="{!conObj.OtherPhone}"  styleClass="form-control" />
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-4">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="fax" value="Fax"></apex:outputLabel>
+                                                        <apex:inputField id="fax" value="{!conObj.Fax}" styleClass="form-control"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group oh-custom-animated">
+                                                        <apex:outputLabel for="SSN" value="Social Security Number"></apex:outputLabel>
+                                                        <apex:inputText id="SSN" styleClass="form-control" html-readonly="readonly" value="{!conObj.Social_Security_Number_Encrypted__c	}"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group oh-custom-animated">
+                                                          <apex:outputLabel for="birthDate" value="Birth Date"></apex:outputLabel>
+                                                        <apex:inputText id="birthDate" styleClass="form-control" html-readonly="readonly" value="{!parsedDate}"/> 
+                                                    <!--   <input type="hidden" value="true" id="isvalid_date"/> 
+                                                         <label for="birthDate" class="animated"  html-readonly="readonly"> Birth Date</label>
+                                                        <input onchange="PROFILE.onchngeValidateDate(this) ;"  type="text" id="birthDate" class="form-control" aria-required="true" /> -->
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <apex:outputPanel layout="block" id="contryRow" styleClass="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group required oh-custom-animated">
+                                                        <apex:outputLabel for="birthCity" value="Birth City"></apex:outputLabel>
+                                                        <apex:inputField id="birthCity" value="{!conObj.Birth_City__c}" styleClass="form-control" html-aria-required="true" />
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-4 stateProvTwo">
+                                                    <div class="form-group-inanimated required">
+                                                        <apex:outputLabel for="birthStateProv" value="Birth State or Province"></apex:outputLabel>
+                                                        <apex:inputField id="birthStateProv" value="{!conObj.Birth_State_Province__c}" styleClass="form-control" html-aria-required="true" />
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-4">
+                                                    <div class="form-group required">
+                                                        <apex:outputLabel for="birthCountry" value="Birth Country"></apex:outputLabel>
+                                                        <apex:inputField id="birthCountry" value="{!conObj.Birth_Country__c}" styleClass="form-control" html-aria-required="true" />
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </apex:outputPanel>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group required" id="gender_form_group">
+                                                        <apex:outputLabel for="gender" value="Gender" StyleClass="animated"></apex:outputLabel>
+                                                        <apex:inputField id="gender" value="{!conObj.Gender__c}" styleClass="form-control" html-aria-required="true" />
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group required" id="ethnicity_form_group">
+                                                            <apex:outputLabel for="ethnicity" styleClass="animated" value="Ethnicity"></apex:outputLabel>
+                                                            <apex:inputField id="ethnicity" value="{!conObj.Ethnicity__c}" html-aria-required="true" />
+                                                            <span class=""></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                           
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <apex:outputLabel for="aliases" value="Aliases"></apex:outputLabel>
+                                                        <apex:inputField id="aliases" value="{!conObj.Aliases__c}" styleClass="form-control aliases_textarea"/>
+                                                        <span class=""></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-12 top-padding">
+                                                    
+                                                    <input type="button" id="profileEditCancel" class="btn btn-tertiary" value="Cancel"/>
+                                                    <input type="button" class="btn btn-primary profile_btns_myProfile" value="SAVE" id="saveprofile"  onclick="PROFILE.saveProfileData('personal_info');"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!--  PROFILE PERSONAL INFO EDIT ENDS   -->
+                                        
+                                    </apex:actionRegion>
+                                </section> <!-- Profile Address sections ENDS here  -->
+                                
+                                <apex:outputText >                                    
+                                    <div class="divider"></div>
+                                    <!--  MILITARY INFO SECTION STARTS  -->
+                                    <section class="row profileSections" id="MilitarySection" >
+                                        <div class="col-md-4 profileLeftColumn">
+                                            <h2>Military Information</h2>
+                                            <p>To add or revise military information for your profile, click the EDIT THIS INFORMATION link. Once you have made the desired updates, click the SAVE button. All fields with (*) are required.</p>
+                                            <div class="row">
+                                                <a href="#" id="profileEdit_milInfo" class="controls" >
+                                                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                                                    Edit This Information</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- MILITARY INFO READ ONLY SECTION STARTS HERE  -->
+                                            <apex:outputPanel layout="block" id="militaryInfoView" styleClass="militaryInfoView">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>Have you served in the Military? </label>
+                                                        <span>{!IF(conObj.Served_in_Military__c != '', conObj.Served_in_Military__c, '-')}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label>Has your spouse served in the Military?</label>
+                                                        <span>{!IF(conObj.Spouse_Served_in_the_Military__c != '', conObj.Spouse_Served_in_the_Military__c, '-')}</span>
+                                                    </div>
+                                                </div>
+                                                 
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>Still Serving in Military? </label>
+                                                        <span>{!IF(conObj.Still_Serving_in_Military__c != '', conObj.Still_Serving_in_Military__c, '-')}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label>Branch of Military Service </label>
+                                                        <span>{!IF(conObj.Branch_of_Military_Service__c != '', conObj.Branch_of_Military_Service__c, '-')}</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>Country of Military Service </label>
+                                                        <span>{!IF(conObj.Country_of_Military_Service__c != '', conObj.Country_of_Military_Service__c, '-')}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label>Start Date </label>
+                                                        <span>
+                                                            <apex:outputText value="{0,date,MM/dd/yyyy}" rendered="{!conObj.Start_Date_Military_Service__c != null}">
+                                                                <apex:param value="{!conObj.Start_Date_Military_Service__c}" />
+                                                            </apex:outputText>
+                                                            <apex:outputText value="-" rendered="{!conObj.Start_Date_Military_Service__c == null}">
+                                                            </apex:outputText>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>Honorable Discharge?</label>
+                                                        <span>{!IF(conObj.Honorable_Discharge__c != '', conObj.Honorable_Discharge__c, '-')}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label>End Date </label>
+                                                        <span>
+                                                            <apex:outputText value="{0,date,MM/dd/yy}" rendered="{!conObj.Start_Date_Military_Service__c != null}">
+                                                                <apex:param value="{!conObj.End_Date_Military_Service__c}" />
+                                                            </apex:outputText>
+                                                            <apex:outputText value="-" rendered="{!conObj.End_Date_Military_Service__c == null}">
+                                                            </apex:outputText>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </apex:outputPanel>
+                                            <!-- MILITARY INFO READ ONLY SECTION ENDS  HERE  -->
+                                            
+                                            <Apex:ActionRegion >
+                                                
+                                                <!-- MILITARY INFO EDIT SECTION STARTS  HERE  -->
+                                                
+                                                <div id="militaryInfoEdit" style="display:none;">
+                                                    <Apex:ActionFunction name="saveProfileMilitaryInfo"
+                                                                         namespace="PROFILE_AF"
+                                                                         action="{!saveProfileData}"
+                                                                         rerender="militaryInfoView,resultData"
+                                                                         status="prfStat"
+                                                                         oncomplete="PROFILE.initMilitarySection();">
+                                                        <apex:param name="SectionName" value="" assignTo="{!currentSection}"/>
+                                                        <apex:param name="MilStartDate" value="" assignTo="{!milStartDate}"/>
+                                                        <apex:param name="MilEndDate" value="" assignTo="{!milEndDate}"/>
+                                                    </Apex:ActionFunction>
+                                                    
+                                                    <div class="row" id="messagePanel"> <!--Rinku to check if this has to be removed -->
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <apex:outputLabel for="youservedinmilitary" value="Served In Military" StyleClass="InputLabel"/>
+                                                                <apex:inputField styleClass="form-control" id="youservedinmilitary" value="{!conObj.Served_in_Military__c}" onchange="PROFILE.prepareMilitaryValidator();" html-aria-required="true" />
+                                                                <span class=""></span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <apex:outputLabel for="spouseservedinmilitary" value="Spouse Served In Military" StyleClass="InputLabel"></apex:outputLabel>
+                                                                <apex:inputField styleClass="form-control" id="spouseservedinmilitary" value="{!conObj.Spouse_Served_in_the_Military__c}" html-aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row mil_info_yes">
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <apex:outputLabel for="stillservinginmil" value="Still Serving In Military" StyleClass="InputLabel"/>
+                                                                <apex:inputField styleClass="form-control" id="stillservinginmil" value="{!conObj.Still_Serving_in_Military__c}" onchange="PROFILE.prepareMilitaryValidator();" html-aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <apex:outputLabel for="branchOfMilService" value="Branch of Military Service" StyleClass="InputLabel"/>
+                                                                <apex:inputField styleClass="form-control" id="branchOfMilService" value="{!conObj.Branch_of_Military_Service__c}" html-aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row mil_info_yes">
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <apex:outputLabel for="countryOfmilService" value="Country of Military Service" StyleClass="InputLabel"/>
+                                                                <apex:inputField styleClass="form-control" id="countryOfmilService" value="{!conObj.Country_of_Military_Service__c}" html-aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <input type="hidden" value="true" id="isvalid_date"/>
+                                                                <label for="MilStartDate" class="InputLabel" >Start Date</label>
+                                                                <input type="text"  id="MilStartDate" class="form-control" aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row mil_info_yes mil_info_not_serving_now">
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <apex:outputLabel for="hondischarge" value="Honorable Discharge" StyleClass="InputLabel"/>
+                                                                <apex:inputField styleClass="form-control" id="hondischarge" value="{!conObj.Honorable_Discharge__c}" html-aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-sm-6">
+                                                            <div class="animated-input-group requiredElement">
+                                                                <label for="MilEndDate" class="InputLabel" >End Date</label>
+                                                                <input type="text"  id="MilEndDate" class="form-control" aria-required="true" />
+                                                                <span class="bottomShade"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row top-padding">
+                                                        <div class="col-sm-10">
+                                                            <input type="button" id="profileEdit_milInfo_cancel" class="btn btn-tertiary" value="Cancel"/>
+                                                            <input type="button" class="btn btn-primary profile_btns_myProfile" value="SAVE" id="saveprofile_mil"  onclick="global_mil_info_validator.performValidation();"/>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div id="hiddenMilDates" style="display:none;">
+                                                        
+                                                        <apex:outputText id="hiddenMilStartDate" value="{0,date,MM/dd/yy}">
+                                                            <apex:param value="{!conObj.Start_Date_Military_Service__c}" />
+                                                        </apex:outputText>
+                                                        <apex:outputText id="hiddenMilEndDate" value="{0,date,MM/dd/yy}">
+                                                            <apex:param value="{!conObj.End_Date_Military_Service__c}" />
+                                                        </apex:outputText>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!--  MILITARY INFO EDIT SECTION ENDS  -->
+                                            </Apex:ActionRegion>
+                                        </div>
+                                    </section>
+                                </apex:outputText>
+                                
+                                <!--  MILITARY INFO SECTION ENDS  -->
+                            </div>
+                            <!-- Main section ENDS here  -->
+                        </apex:form>
+                    </div> <!-- end main container-->
+                </section> <!-- end gray wrapper -->
+            </main>
+        </body>
+    <c:Footer />
+    </html>
+    
+    
+    <script type="text/javascript">
+    /*   $(function() {
+            $("#gender_form_group").removeClass("required");
+            $("#ethnicity_form_group").removeClass("required");
+    }); */
+    
+    var validationMapper = {};
+    validationMapper.myprofile = {};
+    
+    ;PROFILE = {
+        
+        handleCancel : function(event)
+        {
+            event.preventDefault() ;
+            $("#profileEditPanel").hide();
+            $(".profileReadPanel").show();
+        },
+        
+        handleEditPersonalInfo : function(event)
+        {
+            event.preventDefault();
+            $("#profileEditPanel").show();
+            $(".profileReadPanel").hide();
+            
+            // Close other edit panels , if they are open
+            $("#profilePage_LeftSide").find("div[id$='profileNameView']").show();
+            $("#profilePage_LeftSide").find("#ProfileNameEdit").hide();
+            $("#MilitarySection").find("#militaryInfoEdit").hide();
+            $("#MilitarySection").find(".militaryInfoView").show();
+        },
+        
+        editMilitaryInfo : function(event)
+        {
+            event.preventDefault();
+            $("#MilitarySection").find("#militaryInfoEdit").show();
+            $("#MilitarySection").find(".militaryInfoView").hide();
+            
+            //Close other panels if they are open
+            $("#profilePage_LeftSide").find("div[id$='profileNameView']").show();
+            $("#profilePage_LeftSide").find("#ProfileNameEdit").hide();
+            $("#profileEditPanel").hide();
+            $(".profileReadPanel").show();
+            PROFILE.prepareMilitaryValidator();
+        },
+        
+        cancelMilitaryInfoEdit : function(event)
+        {
+            event.preventDefault();
+            $("#MilitarySection").find("#militaryInfoEdit").hide();
+            $("#MilitarySection").find(".militaryInfoView").show();
+        },
+        
+        manageAnimatedFormStyles : function()
+        {
+            $(".profileAnimatedForm").find(".oh-custom-animated").each(function(index,val){
+                if($(val).find("input:text").val() != ''){
+                    $(val).find("label").addClass("animated");
+                }else{
+                    // do something later on.
+                }
+            });
+        },
+        
+        saveProfileData : function(sectionName)
+        {
+            // do some validations
+            var isFormValid = PROFILE.validateProfileForm($(".profileAnimatedForm") , sectionName ) ;
+            if(isFormValid === false ){
+                return false ;
+            }
+            //Break the flow for invalid form.
+            if(sectionName =='name_info')
+            {
+                PROFILE_AF.saveProfileName(sectionName);
+            }else if(sectionName =='military_info')
+            {
+                PROFILE_AF.saveProfileMilitaryInfo(
+                    sectionName,
+                    $("input[id='MilStartDate']").val(),
+                    $("input[id='MilEndDate']").val()
+                ) ;
+            }else if(sectionName ='personal_info')
+            {
+                PROFILE_AF.updateUsername();
+            }
+        },
+        
+        validateProfileForm : function(profileForm, sectionName )
+        {
+            var retRes = true ;
+            if(sectionName == 'personal_info'){
+                if(validationMapper.myprofile.validator.errors().length <= 0){
+                    retRes = true;
+                } else {
+                    retRes = false;
+                    MODAL_UTILITY.errorMessageModal(validationMapper.myprofile.validator.errorHtml());
+                }
+            } else if(sectionName == '{!$Label.Str_name_info}'){
+                
+                if(profileForm.find("input[id$='firstName']").val() == '' ) {
+                    profileForm.find("input[id$='firstName']").closest(".oh-custom-animated").addClass("error") ;
+                    retRes = false ;
+                }else{
+                    profileForm.find("input[id$='firstName']").closest(".oh-custom-animated").removeClass("error") ;
+                }
+                
+                if(profileForm.find("input[id$='lastName']").val() == '' )  {
+                    profileForm.find("input[id$='lastName']").closest(".oh-custom-animated").addClass("error") ;
+                    retRes = false ;
+                }else{
+                    profileForm.find("input[id$='lastName']").closest(".oh-custom-animated").removeClass("error") ;
+                }
+            }else if(sectionName =='{!$Label.Str_military_info}'){
+                if(validationMapper.mymilitaryprofile.validator.errors().length <= 0){
+                    retRes = true;
+                } else {
+                    retRes = false;
+                    MODAL_UTILITY.errorMessageModal(validationMapper.mymilitaryprofile.validator.errorHtml());
+                }
+            }
+            
+            return retRes ;
+        },
+        
+        initForm : function()
+        {
+            var startDate = 0 ;
+            if($("span[id$='hiddenBirthDate']").html() != ''){
+                startDate = new Date($("span[id$='hiddenBirthDate']").html()) ;
+            }
+            var myDt = $("input[id='birthDate']").datepicker({
+                maxDate : 0,
+                onSelect:function(){
+                    //PROFILE.onchngeValidateDate($("#birthDate"));
+                }
+            });
+            
+            if(startDate != 0 ){
+                //myDt.datepicker("setDate",startDate) ;
+            }
+            
+            /****** MIL END DATE ****/
+            var milEndDate = 0 ;
+            if($("span[id$='hiddenMilEndDate']").html() != ''){
+                milEndDate = new Date($("span[id$='hiddenMilEndDate']").html());
+            }
+            
+            var milEndDatePicker = $("input[id='MilEndDate']").datepicker({
+                maxDate : 0,
+                onSelect:function()
+                {
+                    $(this).parent().removeClass("errorElement") ;
+                    $(this).parent().find(".InputLabel").removeClass('InputLabel_Out').addClass('InputLabel_In');
+                }
+            });
+            
+            if(milEndDate != 0){
+                milEndDatePicker.datepicker("setDate",milEndDate) ;
+            }
+            
+            /***** MIL START DATE *****/
+            
+            var milStartDate = 0 ;
+            if($("span[id$='hiddenMilStartDate']").html() != ''){
+                milStartDate = new Date($("span[id$='hiddenMilStartDate']").html());
+            }
+            
+            var milStartDatePicker = $("input[id='MilStartDate']").datepicker({
+                maxDate : 0,
+                onSelect:function()
+                {
+                    $(this).parent().removeClass("errorElement") ;
+                    $(this).parent().find(".InputLabel").removeClass('InputLabel_Out').addClass('InputLabel_In');
+                }
+            });
+            
+            if(milStartDate != 0){
+                milStartDatePicker.datepicker("setDate",milStartDate) ;
+            }
+            
+            PROFILE.manageAnimatedFormStyles();
+        },
+        
+        initNamePanels : function()
+        {
+            var result = JSON.parse($("span[id$='resultJSON']").html()) ;
+            if(result.isSuccess)
+            {
+                $("#ProfileNameEdit").hide();
+            }else{
+                $("div[id$='profileNameView']").hide();
+                $("#ProfileNameEdit").show();
+                MODAL_UTILITY.errorMessageModal(result.errorMessage , 'Error(s)');
+            }
+            
+        },
+        
+        initMilitarySection : function()
+        {
+            var result = JSON.parse($("span[id$='resultJSON']").html()) ;
+            if(result.isSuccess){
+                $("#militaryInfoEdit").hide();
+            }else{
+                $(".militaryInfoView").hide();
+                $("#militaryInfoEdit").show();
+                MODAL_UTILITY.errorMessageModal(result.errorMessage , 'Error(s)');
+            }
+        },
+        
+        checkUsernameUpdate : function()
+        {
+            var result = JSON.parse($("span[id$='resultJSON']").html()) ;
+            
+            if(result.isSuccess){
+                $("#profileEditPanel").hide();
+                PROFILE_AF.saveProfilePersonalInfo(
+                    $("input[id='birthDate']").val(),
+                    "personal_info");
+            }else{
+                $(".profileReadPanel").hide();
+                $("#profileEditPanel").show();
+                MODAL_UTILITY.errorMessageModal(result.errorMessage , 'Error(s)');
+            }
+            
+        },
+        
+        initFormPI : function()
+        {
+            var result = JSON.parse($("span[id$='resultJSON']").html()) ;
+            
+            if(result.isSuccess){
+                $("#profileEditPanel").hide();
+            }else{
+                $(".profileReadPanel").hide();
+                $("#profileEditPanel").show();
+                MODAL_UTILITY.errorMessageModal(result.errorMessage , 'Error(s)');
+            }
+            
+        },
+        
+        onchngeValidateDate : function(ele)
+        {
+            $(ele).parent().find("#isvalid_date").val(true) ;
+            $(ele).closest(".required").removeClass("error");
+            var dateRec = new Date($(ele).val() ) ;
+            
+            if(dateRec =='Invalid Date'){
+                $(ele).closest(".required").addClass("error");
+                $(ele).parent().find("#isvalid_date").val(false) ;
+            }else{
+                if(dateRec > new Date())
+                {
+                    $(ele).closest(".required").addClass("error");
+                    $(ele).parent().find("#isvalid_date").val(false) ;
+                }
+            }
+        },        
+        
+        prepareMilitaryValidator : function()
+        {
+            global_mil_info_validator = null ;
+            
+            var milForm = $("#militaryInfoEdit");
+            
+            milForm.find(".mil_info_yes").hide();
+            milForm.find(".mil_info_not_serving_now").hide();
+            
+            milForm.find("errorElement").removeClass("errorElement") ;
+            
+            var still_serving_in_mil = 
+                {
+                    id:"stillservinginmil",
+                    required: false,
+                    name: "Still serving in Military",
+                    watch: true
+                } ;
+            
+            var branch_of_mil_serve =    
+                {
+                    id:"branchOfMilService",
+                    required:false,
+                    name: "Branch of Military Service",
+                    watch: true
+                } ;
+            
+            var country_mil_serve= 
+                {
+                    id:"countryOfmilService",
+                    required: false,
+                    name: "Country of Military Service",
+                    watch: true
+                };
+
+            var mil_start_date = 
+                {
+                    id:"MilStartDate",
+                    required:false,
+                    name: "Military Start Date",
+                    validator: "Date",
+                    watch: true
+                } ;
+            
+            var hon_discharge = 
+                {
+                    id:"hondischarge",
+                    required: false,
+                    name: "Honorable Discharge",
+                    watch: true
+                } ;
+            
+            var mil_end_date = 
+                {
+                    id:"MilEndDate",
+                    required: false,
+                    name: "Military End Date",
+                    validator: "Date",
+                    watch: true
+                } ;
+            
+            if(milForm.find("select[id$='youservedinmilitary']").val() == 'Yes')
+            {
+                still_serving_in_mil.required = true ;
+                branch_of_mil_serve.required = true ;
+                mil_start_date.required = true ;
+                country_mil_serve.required = true ;
+                mil_start_date.customValidator =  function(validator)
+                {
+                    var regex = validator.engineScope._regexMap["Date"];
+                    var milstartdate = validator.element.val() ;
+                    if (!regex.test(validator.element.val()))
+                    {
+                        validator.error = "Military Start Date is in an invalid format";
+                        validator.isValid = false;
+                    }else
+                    {
+                        var milStartDateVal = new Date(milstartdate);
+                        var todayDate = new Date() ;
+                        if(milStartDateVal > todayDate)
+                        {
+                            validator.error = "Military Start Date cannot be greater than today ";
+                            validator.isValid = false;
+                        }else
+                        {
+                            validator.isValid = true ;
+                            validator.error = "" ;
+                            // if end date is selected , validate against that
+                            var milEndDate = milForm.find("#MilEndDate").val() ;
+                            if(milEndDate != '')
+                            {
+                                var milEndDateValue = new Date(milEndDate) ;
+                                if(milStartDateVal > milEndDateValue)
+                                {
+                                    validator.error = "Military Start Date cannot be greater than Military End date ";
+                                    validator.isValid = false;
+                                }
+                            } 
+                        }
+                    }
+                } ;
+                
+                milForm.find(".mil_info_yes").show();
+                milForm.find(".mil_info_not_serving_now").hide();
+            }else
+            {
+                // clear some other fields
+                milForm.find("[id$='stillservinginmil']").val('');
+                milForm.find("[id$='branchOfMilService']").val(''); 
+                milForm.find("#MilStartDate").val('');
+                milForm.find("[id$='countryOfmilService']").val('');
+                milForm.find("[id$='hondischarge']").val('');
+                milForm.find("#MilEndDate").val('');
+            }
+            
+            if(milForm.find("select[id$='stillservinginmil']").val() == 'No')
+            {
+                hon_discharge.required = true ;
+                
+                mil_end_date.required = true ;
+                mil_end_date.customValidator =  function(validator)
+                {
+                    var regex = validator.engineScope._regexMap["Date"];
+                    var milenddate = validator.element.val() ;
+                    if (!regex.test(validator.element.val()))
+                    {
+                        validator.error = "Military End Date is in an invalid format";
+                        validator.isValid = false;
+                    }else
+                    {
+                        var milEndDateVal = new Date(milenddate);
+                        var todayDate = new Date() ;
+                        if(milEndDateVal > todayDate)
+                        {
+                            validator.error = "Military Start Date cannot be greater than today ";
+                            validator.isValid = false;
+                        }else
+                        {
+                            validator.isValid = true ;
+                            validator.error = "" ;
+                            // if end date is selected , validate against that
+                            var milStartDate = milForm.find("#MilStartDate").val() ;
+                            
+                            if(milStartDate != '')
+                            {
+                                var milStartDateValue = new Date(milStartDate) ;
+                                if(milStartDateValue > milEndDateVal)
+                                {
+                                    validator.error = "Military End Date cannot be smaller than Military Start date ";
+                                    validator.isValid = false;
+                                }
+                            } 
+                        }
+                    } 
+                } ;   
+                
+                milForm.find(".mil_info_not_serving_now").show();
+            }else
+            {
+                milForm.find("[id$='hondischarge']").val('');
+                milForm.find("#MilEndDate").val('');
+            } 
+            
+            var fieldList= 
+                [
+                    {
+                        id:"youservedinmilitary",
+                        required: true,
+                        name: "Served in Military",
+                        watch: true
+                    },
+                    {
+                        id:"spouseservedinmilitary",
+                        required: true,
+                        name: "Spouse Served in Military",
+                        watch: true
+                    },
+                    still_serving_in_mil,
+                    branch_of_mil_serve , 
+                    country_mil_serve ,
+                    mil_start_date ,
+                    hon_discharge,
+                    mil_end_date
+                ];
+            
+            var fieldObject =
+                {
+                    onValidationSuccess : function()
+                    {
+                        PROFILE_AF.saveProfileMilitaryInfo
+                        (
+                            'military_info',
+                            $("input[id='MilStartDate']").val(),
+                            $("input[id='MilEndDate']").val()
+                        ) ;
+                    },
+                    
+                    form: milForm ,
+                    
+                    defaultStyle: function (element, isValid) {
+                        element.closest(".animated-input-group").find("span.errorHidden").remove();
+                        isValid
+                        ? element.closest(".animated-input-group").removeClass("errorElement").find("span.errorHidden").remove()
+                        : element.closest(".animated-input-group").addClass("errorElement").find("label").prepend("<span class='errorHidden'>error</span>");
+                    },
+                    
+                    fields: fieldList
+                } ;
+            
+            milForm.bindAnimatedForm();
+            global_mil_info_validator = new ValidationEngine(fieldObject);
+        },
+        
+        registerBasicEvents : function()
+        {
+            $("#profileEdit_pi").click(function(e){
+                PROFILE.handleEditPersonalInfo(e);
+            }) ;            
+            
+            $("#profileEditCancel").click(function(e){
+                PROFILE.handleCancel(e);
+            }) ;            
+            
+            $("#profileEdit_milInfo").click(function(e){
+                PROFILE.editMilitaryInfo(e);
+            }) ;
+            
+            $("#profileEdit_milInfo_cancel").click(function(e){
+                PROFILE.cancelMilitaryInfoEdit(e);
+            }) ;
+        }                
+    }
+    
+    var global_mil_info_validator = null ;
+    $(document).ready(function()
+                      {
+                          PROFILE.initForm();
+                          PROFILE.registerBasicEvents();
+                          
+                          validationMapper.myprofile.validationObject = {
+                              fields:[
+                                  {
+                                      id:"email",
+                                      required: "true",
+                                      name: "Email",
+                                      watch: true,
+                                      validator:"Email"
+                                  },
+                                  {
+                                      id:"mobilePhone",
+                                      validator:"Phone",
+                                      required: "false",
+                                      name: "Phone",
+                                      watch: true
+                                  },
+                                  {
+                                      id:"otherPhone",
+                                      validator:"Phone",
+                                      name: "Other Phone",
+                                      watch: true
+                                  },
+                                  {
+                                      id:"birthDate",
+                                      validator:"Date",
+                                      required: "true",
+                                      name: "Birth Date",
+                                      watch: true
+                                  },
+                                  {
+                                      id:"birthCity",
+                                      required: "true",
+                                      name: "Birth City",
+                                      watch: true
+                                  },
+                                  {
+                                      id:"birthStateProv",
+                                      name: "Birth State Province",
+                                      watch: true,
+                                      event:"change blur",
+                                      customValidator: function(validator)
+                                      {
+                                          var selCountry = $("[id$='birthCountry']").val() ;
+                                          if(selCountry == 'United States' || selCountry == 'Canada')
+                                          {
+                                              if($("select[id$='birthStateProv']").val() == "" || $("select[id$='birthStateProv']").val().length == 0)
+                                              {
+                                                  validator.isValid = false;
+                                                  validator.error = 'Birth State / Province cannot be empty ' ;
+                                              }else
+                                              {
+                                                  validator.isValid = true;
+                                              }
+                                              
+                                          }else
+                                          {
+                                              validator.isValid = true;
+                                          }
+                                      }
+                                  },
+                                  {
+                                      id:"birthCountry",
+                                      required: true,
+                                      name: "Birth Country",
+                                      watch: true
+                                  },
+                                  {
+                                      id:"gender",
+                                      name: "Gender",
+                                      watch: true,
+                                      customValidator: function(validator){
+                                          
+                                          validator.isValid = true;
+                                          if($("select[id$='gender']").val() != "" || $("select[id$='gender']").val().length > 0 ) {
+                                              validator.isValid = true;
+                                          }
+                                              else if($("select[id$='gender']").val() == "" || $("select[id$='gender']").val().length == 0 ) {
+                                                  validator.isValid = false;
+                                                  validator.error = 'Gender cannot be empty ' ;
+                                              }
+                                      }
+                                  },
+                                  {
+                                      id:"ethnicity",
+                                      name: "Ethnicity",
+                                      watch: true,
+                                      customValidator: function(validator){
+                                              validator.isValid = true;
+                                         	  if($("select[id$='ethnicity']").val() != "" || $("select[id$='ethnicity']").val().length > 0 ) {
+                                              validator.isValid = true;
+                                          	  }
+                                              else if($("select[id$='ethnicity']").val() == "" || $("select[id$='ethnicity']").val().length == 0 ) {
+                                                  validator.isValid = false;
+                                                  validator.error = 'Ethnicity cannot be empty ' ;
+                                              }
+                                      }
+                                  }
+                              ]
+                          }
+                          
+                          validationMapper.myprofile.validator = new ValidationEngine(validationMapper.myprofile.validationObject);
+                          
+                                                 
+                      });
+    </script>
+</apex:page>

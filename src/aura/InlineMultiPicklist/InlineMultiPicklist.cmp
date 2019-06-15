@@ -1,0 +1,34 @@
+<aura:component >
+	
+	<aura:attribute name="value" type="String" />
+	<aura:attribute name="options" type="List" />
+	<aura:attribute name="name" type="String" />
+	<aura:attribute name="label" type="String" />
+	<aura:attribute name="required" type="Boolean" />
+	<aura:attribute name="doneRender" type="Boolean" default="false"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.init}" />
+	
+	<div style="cursor: pointer; width: 100%" onclick="{!c.clickEdit}" class="slds-grid slds-grid--align-spread">
+		<span>{!v.value}</span>
+		<lightning:icon iconName="utility:edit" title="Edit" alternativeText="Click To Edit" size="x-small"/>
+	</div>
+	<div class="slds-popover slds-popover--edit slds-hide" role="dialog" aura:id="edit-popover" style="position:absolute;top:0;left:0;">
+
+		<button class="slds-button slds-button--icon-small slds-float--left slds-popover__close slds-button--icon" title="Close dialog" onclick="{!c.clickEdit}">
+			<lightning:icon iconName="utility:close" alternativeText="Close" title="Close" class="slds-button__icon" size="small"/>
+		</button>
+		<div class="slds-popover__body">
+			<div class="slds-form-element slds-grid">
+				<label class="slds-form-element__label slds-form-element__label--edit slds-no-flex" for="test">
+					<span class="slds-assistive-text">{!v.label}</span>
+				</label>
+				<div class="slds-form-element__control slds-grow">
+					<select class="slds-select" multiple="true" size="4" onchange="{!c.handleChange}" aura:id="select">
+						{!v.body}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</aura:component>
