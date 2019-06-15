@@ -1,0 +1,53 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : ApplicationSubmitError
+** Description      : Application error page and redirect to dashboard
+** Version          : 2.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**                                                                          
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false" id="page" title="Error" >
+    <html lang='en'>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!-- Include script and CSS Files -->
+            <c:Resources />
+            <title>{!$CurrentPage.parameters.PageTitle}</title>
+        </head>
+                
+        <body class="internal">
+            <c:Header />
+            <main>
+                <div class="container">
+                    <div id="internal-header">
+                        <h1>{!$CurrentPage.parameters.PageHeading}</h1>
+                    </div>
+                    
+                    <section class="below-the-fold">
+                        <!-- start grey section -->
+                        <div class="container" style="text-align:center">
+                            <h3>Error: <b><apex:outputText value="{!$CurrentPage.parameters.ErrorMsg}" escape="false" /></b></h3>
+                            <br/>
+                            <apex:outputPanel rendered="{!$CurrentPage.parameters.PageHeading} != 'User On Hold'">
+                            	<input type="button" style="float:center" class="btn btn-primary" value="Go Back to Dashboard" onclick="window.location = '/Dashboard'" />
+                            </apex:outputPanel>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <c:Footer />
+        </body>
+    
+    </html>
+</apex:page>

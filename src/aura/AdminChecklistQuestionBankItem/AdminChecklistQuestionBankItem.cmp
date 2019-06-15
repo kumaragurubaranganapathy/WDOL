@@ -1,0 +1,26 @@
+<aura:component >
+	
+
+	<aura:attribute name="question" type="BGCK__Question__c" description="Question record"/>
+	<aura:attribute name="fieldset" type="Object[]" description="Array of fieldset objects. Fieldset name is BGCK__Question_Bank"/>
+	<aura:attribute name="values" type="Object[]" description="Simplified iterable array of label/name pairs for the properties of the question record"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.setupValues}" />
+
+	<div class="slds-grid slds-grid--align-spread slds-grid--vertical-align-center">
+		<div class="slds-grid slds-grid--vertical">
+			<div>{!v.question.Name}</div>
+		</div>
+		<span class="slds-type-focus slds-text-body--small" onclick="{!c.showQDetails}">
+			details
+		</span>
+
+
+	</div>
+
+		<div class="slds-hide slds-popover slds-nubbin--top-right slds-m-around--small slds-p-around--xx-small slds-size--3-of-4 question-details" aura:id="question-details">
+				<aura:iteration items="{!v.values}" var="item">
+					<p>{!item.label}: {!item.name}</p>
+				</aura:iteration>
+		</div>
+</aura:component>

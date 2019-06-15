@@ -1,0 +1,21 @@
+<aura:component extends="BGCK:ChecklistNumberAbstract">
+	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" description="Parse a previous string response into a number for display in this input, and set the component's maxlength attribute" />
+	<aura:handler event="aura:doneRendering" action="{!c.handleMax}" description="Converts the response's actual value into a number so that it displays back in the input. Sets up the components maxlength attribute, providing a fallback of 20 chars if no BGCK__Maximum_Length__c on the question type is provided (or is out of range)"/>
+	<aura:handler event="BGCK:ChecklistSaveSectionEvent" action="{!c.saveAnswer}" description="Gets the components maxlength and a reference to the input and passes to a helper function in the ChecklistNumberAbstract helper." />
+
+	<div class="slds-size--3-of-4">
+
+		<div class="slds-form-element__control">
+			
+			<lightning:input type="text" name="{!v.question.response.Id}"
+							 label="Currency" aura:id="bgck-currency"
+							 class="slds-text-heading--small slds-size--2-of-8 hide-labels bgck-currency"
+							 value="{!v.question.response.BGCK__Actual_Value2__c}"
+							 validity="{!v.validity}"
+							 disabled="{!v.isReadMode}"
+							 pattern="^\d*(\.\d{2}$)?"
+							 />
+		</div>
+	</div>
+</aura:component>

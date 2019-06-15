@@ -1,0 +1,149 @@
+.THIS.page-width {
+    width: 90%;
+    margin: 0px auto;
+}
+.THIS .slds-page-header {
+    font-size: 20px;
+    font-family: SourceSansPro-Regular;
+    color: t(portalBlack);
+    border-radius: 3px;
+    background: t(sectionBG);
+}
+.THIS .search-result .slds-th__action,.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
+    background: t(sectionBG);
+}
+.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
+    overflow-x:hidden;
+} 
+.THIS .search-result .slds-table th,.THIS .search-result .slds-table td {
+    padding: 4px 5px;
+}
+
+.THIS .color-black {
+    background-color: t(black);
+    border-color: t(black);
+}
+.THIS .breadcumb a {
+	color: t(black);
+}
+.THIS .color-white{
+    color: t(white);
+}
+.THIS .box-border{
+    border-radius: .25rem;
+    border: 1px solid #d4d4d4;
+}
+.THIS .slds-is-active{
+     background: #d4d4d4;
+}
+.THIS .button-border{
+    border: none;
+    color: black;
+    box-shadow: none;
+    text-decoration: underline;
+}
+.THIS .buttons-right{
+    text-align: right;
+}
+.THIS .button-float{
+    float: right;
+}
+.THIS .button-borders .slds-button{
+    border: none;
+    color: black;
+    box-shadow: none;
+    text-decoration: underline;
+}
+.THIS .bottom-border{
+    border-bottom: 1px solid #d4d4d4; 
+}
+.THIS .table-border{
+    border-radius: .25rem;
+    border: 1px solid #d4d4d4;
+}
+.THIS .bottom-border .row-margin{
+    margin-bottom :0;
+}
+.THIS .text-style{
+    font-weight: bold;
+}
+.THIS .text-size{
+    font-size: 12px;
+}
+.THIS .transform-text{
+    text-transform: capitalize;
+    letter-spacing: 0px;
+}
+.THIS .pagination-wrapper {
+    text-align:center;
+}
+.THIS .slds-is-active .slds-tabs_default__link{
+    text-decoration: none;
+}
+@media t(mqSmall){ 
+.THIS #data-table table.slds-table, .THIS #data-table table.slds-table {
+    width: 100% !important;
+    border: 0;
+}
+.THIS #data-table .slds-scrollable_y {
+    width: 100% !important;
+}
+.THIS #data-table table.slds-table thead, .THIS #data-table table.slds-table thead {
+    position: absolute!important;
+    margin: -1px!important;
+    border: 0!important;
+    padding: 0!important;
+    width: 1px!important;
+    height: 1px!important;
+    overflow: hidden!important;
+    clip: rect(0 0 0 0)!important;
+}
+.THIS #data-table table.slds-table tr, .THIS #data-table table.slds-table tr {
+    display: block;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    margin: 15px 0px;
+}
+.THIS #data-table .slds-table_header-fixed_container::before {
+    border: 0px;
+}
+.THIS #data-table table.slds-table .slds-button {
+    height: auto;
+    padding: 0px;
+    font-weight: 200;    
+}
+.THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover th, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover th {
+    background-color: inherit!important;
+    box-shadow: none!important;
+}
+.THIS #data-table table.slds-table th, .THIS #data-table table.slds-table td, .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table td {
+    display: block;
+    padding: 8px 15px;
+    max-width: 100%;
+    width: 100%;
+    clear: both;
+    white-space: normal;
+    overflow: hidden;
+    text-align: left;
+    border-top: 0px;
+}
+.THIS #data-table table.slds-table th, .THIS #data-table table.slds-table th {
+    border-top: 0;
+}
+.THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before {
+    padding-bottom: .25rem;
+}
+.THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before {
+    font-size: .75rem;
+    line-height: 1.25;
+    color: #696969;
+    text-transform: uppercase;
+    letter-spacing: .0625rem;
+    display: block;
+    padding-bottom: .25rem;
+    content: attr(data-label);
+}
+.THIS #data-table .slds-table_header-fixed_container {
+    padding: 0px;
+}
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify applicant their plan review has been scheduled v2</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS</letterhead>
+    <name>POWTS Plan Review Scheduled v2</name>
+    <style>freeForm</style>
+    <subject>Plan Review Schedule Confirmation</subject>
+    <textOnly>{!Today}
+
+
+
+Dear {!Request__c.Applicant_Full_name__c},
+
+
+
+This letter serves as a confirmation of your review appointment on {!DATEVALUE(Request__c.Start_Time__c)}.
+
+
+
+If You Need To Contact Us To Cancel, Reschedule, Or Correct Information:
+
+
+
+Please let us know via email to DspsSbPlanSchedule@wi.gov as soon as possible.
+
+
+
+To Monitor The Continued Status Of Your Plan:
+
+
+
+Plans status can be readily checked on your eSLA dashboard at https://eSLA.wi.gov.
+
+
+
+Sincerely,
+
+
+
+Department of Safety and Professional Services</textOnly>
+    <type>html</type>
+</EmailTemplate>

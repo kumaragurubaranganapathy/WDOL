@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS_Trades_Letterhead</letterhead>
+    <name>Exam Scheduled</name>
+    <style>freeForm</style>
+    <subject>Your Exam has been Scheduled</subject>
+    <textOnly>dspscredtrades@wi.gov Exam Registration start time:
+7:45 am (morning session)
+12:45 pm (afternoon session)
+
+Re: Credential Number: {!Exam__c.License__c}
+Customer ID: {!Exam__c.Customer_ID__c}
+
+EXAM NAME: {!Exam__c.Exam_Type__c}
+TIME (in hours):  {!Exam__c.Exam_Time__c}
+EXAM LENGTH: {!Exam__c.Exam_length__c}
+DATE: {!Exam__c.Exam_Date__c}
+LOCATION: {!Exam__c.Exam_Location__c}
+LOCATION ADDRESS: {!Exam_Schedule__c.Exam_Location_Address__c}
+
+Dear {!Exam__c.Contact__c},
+If you are late, you will not be able to start your exam until the proctors can check you in.  You will not receive extra time to complete your exam.
+
+****** Exam Start Time ******
+MORNING exams start promptly at 8:00 a.m. with registration beginning at 7:45 a.m.
+AFTERNOON exams start promptly at 1:00 p.m. with registration beginning at 12:45 p.m.
+
+PLEASE note: You MUST attend the session you pre-registered for.  Due to the high number of examinees and limited seating, there will be no exceptions.
+
+You must bring a photo id and this letter with you to the exam site. Please read and sign the honesty expectations form on the back side of this letter prior to arriving.
+
+You may NOT bring any cell phones, beepers, pagers or other communication devices.  Any calculator, including programmable, is acceptable as long as it does not include the ability to enter text (other than limited letters for certain math calculations).  These types of calculators are NOT ACCEPTABLE:  calculators with full alphabetical keyboards or the Personal Digital Assistants (PDA).  Please leave them in your vehicle or they will have to be left in care of the proctors.
+
+NO SCRATCH PAPER IS ALLOWED. You may write on your exam and exam envelope only.
+
+Please contact the Credentialing Unit for further questions about your exam.
+
+Due to a large volume of callers, you may be able to get a faster response to your questions by emailing us at dspscredtrades@wi.gov
+
+The department will not have supplies of any reference materials or other items you may need to complete the exam.  Reference materials and other items you should bring to the exam include: SPS 305 and SPS 316, Wisconsin Administrative Code and the 2017 National Electrical Code.; No. 2 pencils; eraser; and a solar- or battery-powered, silent calculator.
+
+This exam is open book.
+
+
+
+Copies of current National Electrical Codes may be purchased from the National Fire Protection Association, 800-344-3555.
+
+Current code development projects can be viewed here: http://dsps.wi.gov/sb/SB-CodeDevelopment.html
+
+Should you fail to appear at the scheduled time without giving notice to the Customer Service Center at least 2 business days in advance of the exam date, the department will consider that you have failed the exam and will require you to submit a re-examination application and another examination fee.
+
+If you are unable to attend the exam due to inclement weather, you must contact the Customer Service Center as soon as possible on the day of the scheduled exam.  If you are ill and cannot attend the exam, you must provide us with a written statement from your doctor if you want to apply to a future exam.
+
+You will be notified of passing or failure within 15 business days of the exam.  The minimum passing grade is 70%.
+
+These exams are held in accessible facilities.  If you have special needs or circumstances which may make communication or accessibility difficult at the exam, please contact us at least 10 days prior to the exam date.
+
+****** HONESTY EXPECTATIONS ******
+The examination is designed to determine your fitness for a credential. To enforce this policy on cheating, the exam proctor may search you or your belongings or ask you questions about your behavior. Proctors are required to observe all person taking an exam and to report or expel anyone observed cheating. Proctors may also monitor hallways, parking lots, and other areas in and around the building.
+
+Any effort to obtain assistance from any source other than those reference materials you are allowed to bring in will result in your exam being voided or you being asked to leave the exam center. If you are asked to leave or your exam is voided, you will be sent a written notice which informs you of your right to appeal the department’s decision and of the time period during which you will not be permitted to retake an examination.
+
+Your exam may be voided or you may be asked to leave the exam center for any of the following reasons or for any other conduct which undermines the validity of the examination process:
+
+Leaving the exam room for any reason other than going to the rest room. Leave exam packet(s) and answer sheet(s) face down on the table/desk before leaving.
+Creating a disturbance.
+Attempting to remove testing materials or notes from the exam room, including notes in code materials or other permitted references brought in with the examinee.
+Failing to turn in all pages of the exam, including cover sheets.
+Observing another examinee’s answer sheet.
+Talking with another examinee during the exam session, whether in or out of the exam room.
+Using or having in the examinee’s possession a telephone, cellular phone, pager, or any other electronic data storage or communications device.
+Failing to cooperate with the exam proctor.
+Failing to report the above conduct by any other examinee
+Failing to put your pencil down when time is called.
+
+Sign and date this information IN INK ONLY.  Your signature indicates that you understand the above policies, that you agree to cooperate in carrying them out, and that you have not obtained any outside assistance in completing your examination(s).
+
+
+
+_________________________ ______________________
+Signature Date</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,28 @@
+<aura:component extends="BGCK:ChecklistMultiChoiceQuestion" access="global">
+	
+	
+	<aura:handler event="BGCK:ChecklistSaveSectionEvent" action="{!c.saveAnswer}" description="Called when user presses Save button. Handles updating the response object." />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" description="When component is initialized."/>
+	<aura:handler event="aura:doneRendering" action="{!c.getChecked}" description="When rendering is completed, handles
+		displaying previously answered values in the UI"/>
+
+	<div class="slds-form-element__control" aura:id="checkbox">
+
+		<aura:iteration items="{!v.choices}" var="item">
+			
+			<label class="slds-checkbox" for="{!item.Name + 'globalId' + globalId}">
+				<input type="checkbox" name="{!globalId + v.question.response.Id}" 
+						value="{!item.Name}" id="{!item.Name + 'globalId' + globalId}"
+						onchange="{!c.handleSubQuestions}"
+                       	aura:id="bgck-checkbox"
+                       	disabled="{!v.isReadMode}"
+						/>
+				<span class="slds-checkbox--faux"></span>
+				<span class="slds-text-heading--small">{!item.BGCK__Display_Value__c || item.Name}</span>
+			</label>
+
+		</aura:iteration>
+	</div>
+
+
+</aura:component>

@@ -1,0 +1,94 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="LnP_SaveBackgroundDetails" access="global" > 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    
+    <aura:attribute name="recordId" type="Id" default="" />
+    <aura:attribute name="objectRecordType" type="String" default ="" />
+    <aura:attribute name="sObj" type="String" default=""/>
+    <aura:attribute name="dataRows" type="List" />
+    <aura:attribute name="recordList" type="List" />
+    <aura:attribute name="sectionList" type ="List"/>
+    <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="recId" type="Id"/>
+    <aura:attribute name="sectionName" type="String" default="Education"/>
+    <aura:attribute name="recordError" type="String" access="private"/>
+    
+    <aura:handler  name="init" value="{!this}" action="{!c.doinit}"/> 
+    <aura:if isTrue="{!v.sObj!=null}">
+        <div class="tile-wrap">
+            <aura:iteration items="{!v.dataRows}" var="item" indexVar="itemRow">
+                <div class="recordDetail slds-large-size_6-of-12">
+                    <lightning:recordEditForm aura:id="editFormDetails" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}" recordId="{!item.id}" onsuccess="{!c.handleSuccess}">
+                        <div class="">
+                            <div class="form-wrapper slds-wrap row">
+                                <lightning:layout class="slds-wrap">
+                                    <aura:iteration items="{!item.fields}" var="rec">
+                                        <lightning:layoutItem size="6">
+                                            <div class="recItem">
+                                                <label>{!rec.label}</label>
+                                                <div class="{!itemRow + 'showHide fieldItem'}">
+                                                    <lightning:outputfield fieldName="{!rec.fieldName}" class="label-hidden" variant="label-hidden"/>
+                                                </div>
+                                                <div class="{!itemRow + 'showHide fieldItem slds-hide'}">
+                                                    <lightning:inputfield fieldName="{!rec.fieldName}" class="label-hidden"/>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </aura:iteration> 
+                                    <div class="row">
+                                        <lightning:layoutItem size="2">
+                                            <div id= "{!itemRow}" class="{!item.id}">
+                                                <i class="fa" onclick="{!c.editRecord}">&#xf044;</i>
+                                                <i class="fa" onclick="{!c.deleteRecord}">&#xf014;</i>
+                                            
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </div>
+                                </lightning:layout>
+                            </div>
+                            <!-- <lightning:layout aura:id="editButtons" horizontalAlign="center" class="slds-m-top_large slds-hide"> -->
+                            <div id = "{!itemRow}" class="{!itemRow + 'showHide hideButtonStyle slds-hide'}">
+                                <!--<div class = "hideButtonStyle"> -->
+                                <lightning:button variant="brand" label="Submit" class="{!itemRow + ' btn-lnp'}" title="Submit" type="submit"/>
+                                <lightning:button variant="neutral" label="CANCEL" class='btn-lnp' title="Cancel" type="text" onclick="{!c.handleHiddenCancel}"/>
+                                <!-- <div id= "{!itemRow}" class="{!itemRow + 'showHide slds-hide'}"> -->
+                                <!--button type="Cancel" value="Cancel" onclick="{!c.handleHiddenCancel}">Cancel</button-->
+                                <!-- </div> -->
+                                <!-- </div> -->
+                            </div>  
+                            <!-- </lightning:layout> -->
+                        </div>
+                    </lightning:recordEditForm>
+                    <!--<div id= "{!itemRow}" class="{!itemRow + 'showHide slds-hide'}">
+                    <button type="Cancel" value="Cancel" onclick="{!c.handleHiddenCancel}">Cancel</button>
+                </div> -->
+                </div>      
+            </aura:iteration>
+        </div>
+        
+        <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        
+        <div class="{!v.objectRecordType +'addRecord slds-hide full-width'}">
+            
+            <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}">
+                <div class="">
+                    
+                    <lightning:messages />
+                    <div class="slds-grid slds-wrap row">
+                        <aura:iteration items="{!v.recordList}" var="rec">
+                            <div class="slds-col slds-size_4-of-12 recItem">
+                                <label>{!rec.label}</label>
+                                <lightning:inputfield fieldName="{!rec.fieldName}" aura:id="inputCmp" class="label-hidden"/>                            	
+                            </div>
+                        </aura:iteration>
+                        <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/> 
+                    </div>	
+                    <lightning:layout horizontalAlign="left" class="slds-m-top_large addRecbtn ">
+                        <lightning:button class="button-style" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                        <lightning:button class="button-style" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
+                    </lightning:layout>
+                </div>
+            </lightning:recordEditForm>
+        </div>
+    </aura:if>
+</aura:component>

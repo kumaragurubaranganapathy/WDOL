@@ -1,0 +1,20 @@
+<aura:component >
+	
+	<aura:attribute name="isVisible" type="Boolean" />
+	<aura:attribute name="message" type="String" />
+
+	<div role="dialog" tabindex="-1" aria-labelledby="header43" class="{!v.isVisible? 'slds-modal slds-fade-in-open ' : 'slds-modal'}">
+	  <div class="slds-modal__container">
+	    <div class="slds-modal__header">
+	      <h2 id="header43" class="slds-text-heading--medium">Something has gone wrong.</h2>
+	    </div>
+	    <div class="slds-modal__content slds-p-around--medium">
+	      <p>{!v.message}</p>
+	    </div>
+	    <div class="slds-modal__footer">
+	      <button class="slds-button slds-button--brand" onclick="{!c.clickBack}">Go Back</button>
+	    </div>
+	  </div>
+	</div>
+<div class="{!v.isVisible? 'slds-backdrop slds-backdrop--open' : 'slds-backdrop'}"></div>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event to pass an array of responses from the sub questions up to the parent ChecklistQuestions component so they can be saved to the server.">
+	<aura:attribute name="subResponses" type="BGCK__Answer__c[]" />
+	<aura:attribute name="parentQuestion" type="Integer" />
+</aura:event>

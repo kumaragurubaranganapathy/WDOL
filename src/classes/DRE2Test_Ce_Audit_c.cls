@@ -1,0 +1,1 @@
+@isTest private class DRE2Test_Ce_Audit_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Ce_Audit__c'); } }

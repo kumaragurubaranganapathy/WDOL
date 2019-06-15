@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This is part of the application design on the portal.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This indicates if the subsection should be shown.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Component_Name__c</fullName>
+        <description>Component Name</description>
+        <externalId>false</externalId>
+        <label>Component Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>This is the description that would appear on the portal</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>External Id</description>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>License_Reciprocity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>License Reciprocity</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Reinstatement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this for license reinstatement?</description>
+        <externalId>false</externalId>
+        <label>License Reinstatement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is related to any license renewal?</description>
+        <externalId>false</externalId>
+        <label>License Renewal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is the related to a license?</description>
+        <externalId>false</externalId>
+        <label>License</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Order_Number__c</fullName>
+        <description>Order Number</description>
+        <externalId>false</externalId>
+        <label>Order Number</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent__c</fullName>
+        <description>This is the section that the subsection is found</description>
+        <externalId>false</externalId>
+        <label>Parent</label>
+        <referenceTo>Application_Section__c</referenceTo>
+        <relationshipLabel>Application Subsections</relationshipLabel>
+        <relationshipName>Application_Subsections</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Permit_Reinstatement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>is this for Permit Reinstatement?</description>
+        <externalId>false</externalId>
+        <label>Permit Reinstatement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this related to permit renewal?</description>
+        <externalId>false</externalId>
+        <label>Permit Renewal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is this related to a permit?</description>
+        <externalId>false</externalId>
+        <label>Permit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>to make subsection required</inlineHelpText>
+        <label>Required</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Service_Request__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Service Request</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>Type of component</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Component_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Video_URL__c</fullName>
+        <description>This is the link to the video if a  video is needed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the link to the video if a  video is needed</inlineHelpText>
+        <label>Video URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <label>Application Subsection</label>
+    <listViews>
+        <fullName>All3</fullName>
+        <columns>NAME</columns>
+        <columns>Type__c</columns>
+        <columns>Component_Name__c</columns>
+        <columns>Parent__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>myView2</fullName>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>myView2</label>
+    </listViews>
+    <nameField>
+        <label>Subsection Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Application Subsections</pluralLabel>
+    <searchLayouts>
+        <searchFilterFields>Parent__c</searchFilterFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Component_Name__c</searchFilterFields>
+        <searchFilterFields>External_Id__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>
