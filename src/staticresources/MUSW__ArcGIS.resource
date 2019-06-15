@@ -1,1 +1,0 @@
-deprecated. GISResources.zip are used instead
