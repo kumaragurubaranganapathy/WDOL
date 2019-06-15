@@ -1,1 +1,0 @@
-@isTest private class DRE2Test_Endorsement_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Endorsement__c'); } }
