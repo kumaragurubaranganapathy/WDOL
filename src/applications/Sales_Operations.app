@@ -17,18 +17,18 @@
     <formFactors>Large</formFactors>
     <label>Sales Operations</label>
     <navType>Standard</navType>
-    <tab>standard-home</tab>
-    <tab>standard-Dashboard</tab>
-    <tab>standard-report</tab>
-    <tab>standard-Pricebook2</tab>
-    <tab>standard-Product2</tab>
-    <tab>standard-CollaborationGroup</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Pricebook2</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>BGCK__Checklist__c</tabs>
+    <tabs>BGCK__Checklist_Version__c</tabs>
+    <tabs>BGCK__Choice__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Sales_Operations_UtilityBar</utilityBar>
 </CustomApplication>
