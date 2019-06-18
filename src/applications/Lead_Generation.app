@@ -17,18 +17,18 @@
     <formFactors>Large</formFactors>
     <label>Lead Generation</label>
     <navType>Standard</navType>
-    <tab>standard-home</tab>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>standard-Lead</tab>
-    <tab>standard-Campaign</tab>
-    <tab>standard-CollaborationGroup</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Campaign</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>BGCK__Checklist__c</tabs>
+    <tabs>BGCK__Checklist_Version__c</tabs>
+    <tabs>BGCK__Choice__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Lead_Generation_UtilityBar</utilityBar>
 </CustomApplication>

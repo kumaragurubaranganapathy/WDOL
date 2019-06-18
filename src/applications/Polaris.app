@@ -4,16 +4,16 @@
     <description>Application for Polaris</description>
     <formFactors>Large</formFactors>
     <label>Polaris</label>
-    <tab>MUSW__License2__c</tab>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>Application_Page__c</tab>
-    <tab>MUSW__Application2__c</tab>
-    <tab>BGCK__Question__c</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <tabs>MUSW__License2__c</tab>
+    <tabs>standard-Account</tab>
+    <tabs>standard-Contact</tab>
+    <tabs>Application_Page__c</tab>
+    <tabs>MUSW__Application2__c</tab>
+    <tabs>BGCK__Question__c</tab>
+    <tabs>Education_History__c</tab>
+    <tabs>Dol_Batch_Monitor__c</tab>
+    <tabs>BGCK__Checklist__c</tab>
+    <tabs>BGCK__Checklist_Version__c</tab>
+    <tabs>BGCK__Choice__c</tab>
+    <tabs>Master_Expiration_Rule__c</tab>
 </CustomApplication>

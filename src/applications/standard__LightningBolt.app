@@ -2,12 +2,12 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <formFactors>Large</formFactors>
     <navType>Standard</navType>
-    <tab>standard-LightningBoltHome</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <tabs>standard-LightningBoltHome</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>BGCK__Checklist__c</tabs>
+    <tabs>BGCK__Checklist_Version__c</tabs>
+    <tabs>BGCK__Choice__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

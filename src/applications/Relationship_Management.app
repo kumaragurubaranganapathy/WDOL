@@ -17,20 +17,20 @@
     <formFactors>Large</formFactors>
     <label>Relationship Management</label>
     <navType>Standard</navType>
-    <tab>standard-home</tab>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>standard-Contract</tab>
-    <tab>standard-Event</tab>
-    <tab>standard-CollaborationGroup</tab>
-    <tab>standard-ContentNote</tab>
-    <tab>standard-Task</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Contract</tabs>
+    <tabs>standard-Event</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>standard-ContentNote</tabs>
+    <tabs>standard-Task</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>BGCK__Checklist__c</tabs>
+    <tabs>BGCK__Checklist_Version__c</tabs>
+    <tabs>BGCK__Choice__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Relationship_Management_UtilityBar</utilityBar>
 </CustomApplication>
