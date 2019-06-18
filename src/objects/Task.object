@@ -461,12 +461,12 @@
             <field>TASK.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
-        </filters> -->
+        </filters> 
         <filters>
             <field>ACTIVITY.TASK</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
+        </filters> -->
         <filters>
             <field>TASK.DUE_DATE</field>
             <operation>lessThan</operation>
@@ -477,11 +477,11 @@
     <listViews>
         <fullName>UpcomingEvents</fullName>
         <filterScope>Mine</filterScope>
-        <filters>
+    <!--    <filters>
             <field>ACTIVITY.TASK</field>
             <operation>equals</operation>
             <value>0</value>
-        </filters>
+        </filters> -->
         <filters>
             <field>TASK.DUE_DATE</field>
             <operation>greaterThan</operation>
