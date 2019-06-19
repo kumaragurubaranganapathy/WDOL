@@ -361,7 +361,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
         <compactLayoutAssignment>Affiliations</compactLayoutAssignment>
         <label>Delegated Agent Affiliation</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
