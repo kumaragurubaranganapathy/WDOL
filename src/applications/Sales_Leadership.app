@@ -12,24 +12,27 @@
     <brand>
         <headerColor>#0070D2</headerColor>
         <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>Monitor sales activity, and guide your team to help them meet and exceed sales targets.</description>
     <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Sales Leadership</label>
     <navType>Standard</navType>
-    <tab>standard-home</tab>
-    <tab>standard-Account</tab>
-    <tab>standard-Opportunity</tab>
-    <tab>standard-Lead</tab>
-    <tab>standard-Dashboard</tab>
-    <tab>standard-report</tab>
-    <tab>standard-CollaborationGroup</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>BGCK__Checklist__c</tabs>
+    <tabs>BGCK__Checklist_Version__c</tabs>
+    <tabs>BGCK__Choice__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Sales_Leadership_UtilityBar</utilityBar>
 </CustomApplication>

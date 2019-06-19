@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Service Console</label>
     <navType>Console</navType>
+    <setupExperience>service</setupExperience>
     <tabs>standard-Case</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>standard-Account</tabs>
@@ -16,4 +20,42 @@
     <tabs>Master_Expiration_Rule__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningService_UtilityBar</utilityBar>
+    <workspaceConfig>
+        <mappings>
+            <tab>BGCK__Checklist_Version__c</tab>
+        </mappings>
+        <mappings>
+            <tab>BGCK__Checklist__c</tab>
+        </mappings>
+        <mappings>
+            <tab>BGCK__Choice__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Dol_Batch_Monitor__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Education_History__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Master_Expiration_Rule__c</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Account</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Case</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Contact</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Dashboard</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Feed</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-report</tab>
+        </mappings>
+    </workspaceConfig>
 </CustomApplication>

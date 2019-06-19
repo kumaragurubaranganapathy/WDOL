@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-Case</defaultLandingTab>
-    <tab>standard-Case</tab>
-    <tab>standard-Solution</tab>
-    <tab>standard-Contact</tab>
-    <tab>standard-Account</tab>
-    <tab>standard-report</tab>
-    <tab>standard-Dashboard</tab>
-    <tab>standard-Chatter</tab>
-    <tab>standard-File</tab>
-    <tab>Education_History__c</tab>
-    <tab>Dol_Batch_Monitor__c</tab>
-    <tab>BGCK__Checklist__c</tab>
-    <tab>BGCK__Checklist_Version__c</tab>
-    <tab>BGCK__Choice__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <tabs>standard-Case</tabs>
+    <tabs>standard-Solution</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>BGCK__Checklist__c</tabs>
+    <tabs>BGCK__Checklist_Version__c</tabs>
+    <tabs>BGCK__Choice__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
 </CustomApplication>
