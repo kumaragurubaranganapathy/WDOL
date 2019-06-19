@@ -20,12 +20,12 @@ public class DOL_ePaymentSessionTransferDetails {
     public String emailAddress {get; set;}
     public String phoneNumber {get; set;}
     
-    public String returnValue {get; set;} // setting ReceiptId in returnValue
+    public String returnValue {get; set;} // setting ReceiptId in returnValue, setting From Cart Controller
     public String returnURL {get; set;}
-    public String SFDCId {get; set;}
+    public String SFDCId {get; set;} // setting CartId
     public List<String> SFDCfeeIds {get; set;}
-    public String SFDCappId {get; set;}
-    public String SFDClicId {get; set;}
+    public String SFDCappId {get; set;} // setting applicant Id
+    public String SFDClicId {get; set;} // setting receipt Id to get it return back in RTPC call, setting From Cart Controller
     
     public Boolean isPortalUser { get; private set;}
     
@@ -35,11 +35,8 @@ public class DOL_ePaymentSessionTransferDetails {
 	{
 		System.debug('input for ePaymentTransferDetails, productCode '+productCode+' totalDueAmountSelected '+totalDueAmountSelected+' paymentMethod '+paymentMethod+' relatedContactId '+relatedContactId+' cartId '+cartId+' sfdcFeeIds '+sfdcFeeIds);
 		this.productCode = productCode;
-		this.totalDueAmountSelected = totalDueAmountSelected;
-		if( paymentMethod.equalsIgnoreCase('credit card'))
-			this.paymentMethod = 'CC';
-        else
-            this.paymentMethod = paymentMethod;
+		this.totalDueAmountSelected = totalDueAmountSelected;		
+        this.paymentMethod = paymentMethod;
 		this.relatedContactId = relatedContactId;
 		this.SFDCId = cartId;
 		this.SFDCfeeIds = sfdcFeeIds;
@@ -51,10 +48,7 @@ public class DOL_ePaymentSessionTransferDetails {
         system.debug('input for ePayment Transfer productCode = '+productCode+' '+totalDueAmountSelected+' '+paymentMethod+' '+relatedContactId);
 		this.productCode = productCode;
 		this.totalDueAmountSelected = totalDueAmountSelected;
-        if( paymentMethod.equalsIgnoreCase('credit card'))
-			this.paymentMethod = 'CC';
-        else
-            this.paymentMethod = paymentMethod;
+        this.paymentMethod = paymentMethod;
 		this.relatedContactId = relatedContactId;
 	}
 
