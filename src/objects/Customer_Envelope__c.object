@@ -27,6 +27,7 @@
     <actionOverrides>
         <actionName>New</actionName>
         <content>LnP_CutomerEnvelope</content>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>LightningComponent</type>
     </actionOverrides>
@@ -54,6 +55,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -94,58 +96,72 @@
                 <value>
                     <fullName>Funerals</fullName>
                     <default>false</default>
+                    <label>Funerals</label>
                 </value>
                 <value>
                     <fullName>cemeteries</fullName>
                     <default>false</default>
+                    <label>cemeteries</label>
                 </value>
                 <value>
                     <fullName>engineers</fullName>
                     <default>false</default>
+                    <label>engineers</label>
                 </value>
                 <value>
                     <fullName>land surveyors</fullName>
                     <default>false</default>
+                    <label>land surveyors</label>
                 </value>
                 <value>
                     <fullName>on-site wastewater</fullName>
                     <default>false</default>
+                    <label>on-site wastewater</label>
                 </value>
                 <value>
                     <fullName>collection agencies</fullName>
                     <default>false</default>
+                    <label>collection agencies</label>
                 </value>
                 <value>
                     <fullName>geologists</fullName>
                     <default>false</default>
+                    <label>geologists</label>
                 </value>
                 <value>
                     <fullName>architects</fullName>
                     <default>false</default>
+                    <label>architects</label>
                 </value>
                 <value>
                     <fullName>landscape architects</fullName>
                     <default>false</default>
+                    <label>landscape architects</label>
                 </value>
                 <value>
                     <fullName>camping resorts</fullName>
                     <default>false</default>
+                    <label>camping resorts</label>
                 </value>
                 <value>
                     <fullName>appraisers-real estate</fullName>
                     <default>false</default>
+                    <label>appraisers-real estate</label>
                 </value>
                 <value>
                     <fullName>timeshares</fullName>
                     <default>false</default>
+                    <label>timeshares</label>
                 </value>
                 <value>
                     <fullName>notaries public</fullName>
                     <default>false</default>
+                    <label>notaries public</label>
                 </value>
                 <value>
                     <fullName>appraisal management companies</fullName>
                     <default>false</default>
+                    <label>appraisal management companies</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -212,14 +228,17 @@
                 <value>
                     <fullName>draft</fullName>
                     <default>false</default>
+                    <label>draft</label>
                 </value>
                 <value>
                     <fullName>pending</fullName>
                     <default>false</default>
+                    <label>pending</label>
                 </value>
                 <value>
                     <fullName>processed</fullName>
                     <default>false</default>
+                    <label>processed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -309,6 +328,7 @@
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
     <webLinks>
         <fullName>CREATE_NEW_CUSTOMER_ENVELOPE</fullName>
         <availability>online</availability>
