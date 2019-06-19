@@ -56,6 +56,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -466,18 +467,22 @@ Permit__r.Business_License__c
                 <value>
                     <fullName>Renewal</fullName>
                     <default>false</default>
+                    <label>Renewal</label>
                 </value>
                 <value>
                     <fullName>Expansion</fullName>
                     <default>false</default>
+                    <label>Expansion</label>
                 </value>
                 <value>
                     <fullName>Change in Ownership</fullName>
                     <default>false</default>
+                    <label>Change in Ownership</label>
                 </value>
                 <value>
                     <fullName>Other</fullName>
                     <default>false</default>
+                    <label>Other</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -550,22 +555,27 @@ FALSE)))))))</formula>
                 <value>
                     <fullName>1-20</fullName>
                     <default>false</default>
+                    <label>1-20</label>
                 </value>
                 <value>
                     <fullName>21-50</fullName>
                     <default>false</default>
+                    <label>21-50</label>
                 </value>
                 <value>
                     <fullName>51-100</fullName>
                     <default>false</default>
+                    <label>51-100</label>
                 </value>
                 <value>
                     <fullName>101-175</fullName>
                     <default>false</default>
+                    <label>101-175</label>
                 </value>
                 <value>
                     <fullName>175+</fullName>
                     <default>false</default>
+                    <label>175+</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -649,28 +659,34 @@ FALSE)))))))</formula>
                 <value>
                     <fullName>Renewal</fullName>
                     <default>false</default>
+                    <label>Renewal</label>
                 </value>
                 <value>
                     <fullName>Reinstatement</fullName>
                     <default>false</default>
+                    <label>Reinstatement</label>
                 </value>
                 <value>
                     <fullName>Renewal PTO</fullName>
                     <default>false</default>
+                    <label>Renewal PTO</label>
                 </value>
                 <value>
                     <fullName>Renewal Plan Review</fullName>
                     <default>false</default>
+                    <label>Renewal Plan Review</label>
                 </value>
                 <value>
                     <fullName>ReinstatementPTO</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>ReinstatementPTO</label>
                 </value>
                 <value>
                     <fullName>ReinstatementPlanReview</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>ReinstatementPlanReview</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -714,10 +730,12 @@ FALSE)))))))</formula>
                 <value>
                     <fullName>Account</fullName>
                     <default>false</default>
+                    <label>Account</label>
                 </value>
                 <value>
                     <fullName>Contact</fullName>
                     <default>false</default>
+                    <label>Contact</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1006,7 +1024,7 @@ FALSE)))))))</formula>
         <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
         <label>Business</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -1061,7 +1079,190 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential</picklist>
+            <picklist>Credential_Type__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist In Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credential__c</picklist>
             <values>
                 <fullName>Academic Intern</fullName>
                 <default>false</default>
@@ -1240,189 +1441,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential_Type</picklist>
-            <values>
-                <fullName>Academic Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Controlling Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Management Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cemetery</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Removal Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified General Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Residential Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cremated Remains Disposition Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineer in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment Branch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying LLC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveyor in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prearrangement Funeral Services</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Land Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>State Licensed Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified General</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified Residential</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary State Licensed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Salesperson</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>MHC_Application_Type__c</picklist>
             <values>
                 <fullName>Change in Ownership</fullName>
@@ -1465,7 +1483,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Program_Area</picklist>
+            <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
@@ -1503,7 +1521,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Renewal_Status</picklist>
+            <picklist>Renewal_Status__c</picklist>
             <values>
                 <fullName>Abandoned</fullName>
                 <default>false</default>
@@ -1579,7 +1597,7 @@ FALSE)))))))</formula>
         <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
         <label>Individual</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -1634,7 +1652,190 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential</picklist>
+            <picklist>Credential_Type__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist In Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credential__c</picklist>
             <values>
                 <fullName>Academic Intern</fullName>
                 <default>false</default>
@@ -1813,189 +2014,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential_Type</picklist>
-            <values>
-                <fullName>Academic Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Controlling Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Management Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cemetery</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Removal Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified General Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Residential Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cremated Remains Disposition Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineer in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment Branch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying LLC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveyor in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prearrangement Funeral Services</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Land Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>State Licensed Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified General</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified Residential</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary State Licensed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Salesperson</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>MHC_Application_Type__c</picklist>
             <values>
                 <fullName>Change in Ownership</fullName>
@@ -2038,7 +2056,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Program_Area</picklist>
+            <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
@@ -2076,7 +2094,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Renewal_Status</picklist>
+            <picklist>Renewal_Status__c</picklist>
             <values>
                 <fullName>Abandoned</fullName>
                 <default>false</default>
@@ -2152,7 +2170,7 @@ FALSE)))))))</formula>
         <description>Renewal/Reinstatement record type for all Manufactured Homes credentials/permits</description>
         <label>Manufactured Homes Renewal/Reinstatement</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -2207,7 +2225,190 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential</picklist>
+            <picklist>Credential_Type__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist In Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credential__c</picklist>
             <values>
                 <fullName>Academic Intern</fullName>
                 <default>false</default>
@@ -2378,189 +2579,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential_Type</picklist>
-            <values>
-                <fullName>Academic Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Controlling Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Management Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cemetery</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Removal Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified General Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Residential Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cremated Remains Disposition Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineer in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment Branch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying LLC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveyor in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prearrangement Funeral Services</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Land Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>State Licensed Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified General</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified Residential</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary State Licensed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Salesperson</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>MHC_Application_Type__c</picklist>
             <values>
                 <fullName>Change in Ownership</fullName>
@@ -2603,7 +2621,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Program_Area</picklist>
+            <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
@@ -2641,7 +2659,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Renewal_Status</picklist>
+            <picklist>Renewal_Status__c</picklist>
             <values>
                 <fullName>Complete</fullName>
                 <default>false</default>
@@ -2677,7 +2695,7 @@ FALSE)))))))</formula>
         <description>Renewal/Reinstatement record type for trades credential or Delegated Agent renewal</description>
         <label>Universal Default Renewal/Reinstatement</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -2732,7 +2750,190 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential</picklist>
+            <picklist>Credential_Type__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist In Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credential__c</picklist>
             <values>
                 <fullName>Academic Intern</fullName>
                 <default>false</default>
@@ -2911,189 +3112,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Credential_Type</picklist>
-            <values>
-                <fullName>Academic Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Controlling Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraisal Management Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architect Firm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Camping Resort Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cemetery</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certificate of Removal Registration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified General Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Residential Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cremated Remains Disposition Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Embalmer Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineer in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Director Intern</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Funeral Establishment Branch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geologist in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying LLC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveyor in Training</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landscape Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On-site Wastewater Inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out State Collection Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prearrangement Funeral Services</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Professional Land Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Registered Appraiser Trainee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>State Licensed Appraiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified General</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary Certified Residential</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Temporary State Licensed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timeshare Salesperson</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>MHC_Application_Type__c</picklist>
             <values>
                 <fullName>Change in Ownership</fullName>
@@ -3136,7 +3154,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Program_Area</picklist>
+            <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
@@ -3174,7 +3192,7 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Renewal_Status</picklist>
+            <picklist>Renewal_Status__c</picklist>
             <values>
                 <fullName>Abandoned</fullName>
                 <default>false</default>
@@ -3261,6 +3279,7 @@ FALSE)))))))</formula>
         <fullName>Insert_Renewal_Share__c</fullName>
         <label>Insert Renewal Share</label>
     </sharingReasons>
+    <visibility>Public</visibility>
     <webLinks>
         <fullName>Generate_Invoice</fullName>
         <availability>online</availability>

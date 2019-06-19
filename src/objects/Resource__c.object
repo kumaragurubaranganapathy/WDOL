@@ -47,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -113,46 +114,57 @@
                 <value>
                     <fullName>POWTS Individual Site Design</fullName>
                     <default>false</default>
+                    <label>POWTS Individual Site Design</label>
                 </value>
                 <value>
                     <fullName>POWTS Component Manual Design</fullName>
                     <default>false</default>
+                    <label>POWTS Component Manual Design</label>
                 </value>
                 <value>
                     <fullName>POWTS Petition for Variance</fullName>
                     <default>false</default>
+                    <label>POWTS Petition for Variance</label>
                 </value>
                 <value>
                     <fullName>POWTS Experimental System</fullName>
                     <default>false</default>
+                    <label>POWTS Experimental System</label>
                 </value>
                 <value>
                     <fullName>POWTS Miscellaneous Review</fullName>
                     <default>false</default>
+                    <label>POWTS Miscellaneous Review</label>
                 </value>
                 <value>
                     <fullName>POWTS Sanitary Permit</fullName>
                     <default>false</default>
+                    <label>POWTS Sanitary Permit</label>
                 </value>
                 <value>
                     <fullName>POWTS State-Owned Privy Registration</fullName>
                     <default>false</default>
+                    <label>POWTS State-Owned Privy Registration</label>
                 </value>
                 <value>
                     <fullName>POWTS Consultation</fullName>
                     <default>false</default>
+                    <label>POWTS Consultation</label>
                 </value>
                 <value>
                     <fullName>POWTS Component Manual Review</fullName>
                     <default>false</default>
+                    <label>POWTS Component Manual Review</label>
                 </value>
                 <value>
                     <fullName>POWTS Soil Saturation Determination</fullName>
                     <default>false</default>
+                    <label>POWTS Soil Saturation Determination</label>
                 </value>
                 <value>
                     <fullName>Manufactured Homes Community Permit</fullName>
                     <default>false</default>
+                    <label>Manufactured Homes Community Permit</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -239,7 +251,7 @@
         <active>true</active>
         <label>Manufactured Homes Communities</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -294,7 +306,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>County_for_POWTS</picklist>
+            <picklist>County__c</picklist>
             <values>
                 <fullName>Green Bay</fullName>
                 <default>false</default>
@@ -321,7 +333,7 @@
         <active>true</active>
         <label>POWTS</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -376,7 +388,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>County_for_POWTS</picklist>
+            <picklist>County__c</picklist>
             <values>
                 <fullName>Green Bay</fullName>
                 <default>false</default>
@@ -444,4 +456,5 @@
         <searchFilterFields>User__c</searchFilterFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
