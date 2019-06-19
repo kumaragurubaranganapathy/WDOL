@@ -56,6 +56,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -361,7 +362,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
         <compactLayoutAssignment>Affiliations</compactLayoutAssignment>
         <label>Delegated Agent Affiliation</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -416,22 +417,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>General_Status</picklist>
-            <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inactive</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>State_Provinces</picklist>
+            <picklist>Contact_s_state__c</picklist>
             <values>
                 <fullName>Alabama</fullName>
                 <default>false</default>
@@ -682,7 +668,22 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_Affiliation</picklist>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
             <values>
                 <fullName>Enforcement Contact</fullName>
                 <default>false</default>
@@ -693,7 +694,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_Co_Owner</picklist>
+            <picklist>Type_of_Co_owner__c</picklist>
             <values>
                 <fullName>AND</fullName>
                 <default>false</default>
@@ -710,7 +711,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
         <compactLayoutAssignment>Affiliations</compactLayoutAssignment>
         <label>Manufactured Homes Titling Affiliation</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -765,22 +766,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>General_Status</picklist>
-            <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inactive</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>State_Provinces</picklist>
+            <picklist>Contact_s_state__c</picklist>
             <values>
                 <fullName>Alabama</fullName>
                 <default>false</default>
@@ -1031,7 +1017,22 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_Affiliation</picklist>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
             <values>
                 <fullName>Co-Owner</fullName>
                 <default>false</default>
@@ -1058,7 +1059,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_Co_Owner</picklist>
+            <picklist>Type_of_Co_owner__c</picklist>
             <values>
                 <fullName>AND</fullName>
                 <default>false</default>
@@ -1075,7 +1076,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
         <compactLayoutAssignment>Affiliations</compactLayoutAssignment>
         <label>POWTS Affiliation</label>
         <picklistValues>
-            <picklist>Application_Type</picklist>
+            <picklist>Application_Type__c</picklist>
             <values>
                 <fullName>Appraisal Management Companies</fullName>
                 <default>false</default>
@@ -1130,22 +1131,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>General_Status</picklist>
-            <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inactive</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>State_Provinces</picklist>
+            <picklist>Contact_s_state__c</picklist>
             <values>
                 <fullName>Alabama</fullName>
                 <default>false</default>
@@ -1396,7 +1382,22 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_Affiliation</picklist>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
             <values>
                 <fullName>Designer</fullName>
                 <default>false</default>
@@ -1407,7 +1408,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_Co_Owner</picklist>
+            <picklist>Type_of_Co_owner__c</picklist>
             <values>
                 <fullName>AND</fullName>
                 <default>false</default>
@@ -1439,4 +1440,5 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
         <searchFilterFields>Contact_s_City__c</searchFilterFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
