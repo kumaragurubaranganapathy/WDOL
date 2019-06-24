@@ -237,10 +237,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Cash_at_End_of_Day__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Total_Cash_in_Register_CC__c</field>
             </layoutItems>
             <layoutItems>
@@ -252,8 +248,8 @@
                 <field>Day_s_Total_Receipts__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Over_short__c</field>
+                <behavior>Readonly</behavior>
+                <field>Over_Short__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

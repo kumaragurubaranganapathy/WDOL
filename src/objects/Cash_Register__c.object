@@ -47,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -91,10 +92,12 @@
                 <value>
                     <fullName>Main</fullName>
                     <default>false</default>
+                    <label>Main</label>
                 </value>
                 <value>
                     <fullName>Back-Up</fullName>
                     <default>false</default>
+                    <label>Back-Up</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -719,12 +722,14 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Over_short__c</fullName>
+        <fullName>Over_Short__c</fullName>
         <externalId>false</externalId>
-        <label>Over/short</label>
+        <formula>Multiplication100CC__c + Multiplication50CC__c + Multiplication20CC__c + Multiplication10CC__c + Multiplication5CC__c + Multiplication1CC__c + Multiplication050CC__c + Multiplication025CC__c + Multiplication010CC__c + Multiplication005CC__c+ Multiplication001CC__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Over/Short</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -744,10 +749,12 @@
                 <value>
                     <fullName>Main</fullName>
                     <default>false</default>
+                    <label>Main</label>
                 </value>
                 <value>
                     <fullName>Back-up</fullName>
                     <default>false</default>
+                    <label>Back-up</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -767,14 +774,17 @@
                 <value>
                     <fullName>Open</fullName>
                     <default>false</default>
+                    <label>Open</label>
                 </value>
                 <value>
                     <fullName>Close</fullName>
                     <default>false</default>
+                    <label>Close</label>
                 </value>
                 <value>
                     <fullName>Sent to Bank</fullName>
                     <default>false</default>
+                    <label>Sent to Bank</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -843,4 +853,5 @@
     <pluralLabel>Cash Registers</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

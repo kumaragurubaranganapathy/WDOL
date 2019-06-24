@@ -1,16 +1,16 @@
 public class LnP_WizardApexController {
-	
+    
     @AuraEnabled
-	public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName){
+    public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName){
         Map<String,Question__c> LabelMap = new Map<String,Question__c>();
         Map<String,String> questionMap = new Map<String,String>();
-		List<String> picklistValues = new List<String>();
+        List<String> picklistValues = new List<String>();
         system.debug('applicationType: '+ applicationType);
         list<Question__c> QuestionList = new list<Question__c>();
-		String condition = 'Application_Type__c = \''+Board+'\'';
-		String condition1 = 'Credential_Type__c = \''+LicenseType+'\'';
-		//Changes done for adding eligibility type
-		String condition3 = /*ApplicationType != '' ? 'Record_Type_Name__c = \'Application questions\'' : */'Record_Type_Name__c = \'Eligibility Questions\'';
+        String condition = 'Application_Type__c = \''+Board+'\'';
+        String condition1 = 'Credential_Type__c = \''+LicenseType+'\'';
+        //Changes done for adding eligibility type
+        String condition3 = /*ApplicationType != '' ? 'Record_Type_Name__c = \'Application questions\'' : */'Record_Type_Name__c = \'Eligibility Questions\'';
         String condition4 = 'Status__c = \'Active\'';
         String condition5 = 'Application_Method__c = \''+ApplicationType+'\'';
         String condition6 = 'Parent_Object_API_Name__c = \''+parentObjectAPIName+'\'';
@@ -26,26 +26,26 @@ public class LnP_WizardApexController {
             Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c,Expected_Answer_To_Show_Question__c,Parent_Question__c, hasEligibilityQuestions__c from LnP_Question1__c where '+condition+' AND '+condition1+' AND '+condition2+' AND '+condition3+' AND '+condition4+' ORDER BY Name ASC'; 
         }*/
         //String Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c,Expected_Answer_To_Show_Question__c,Parent_Question__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Name ASC';
-	
-		QuestionList = Utilityclass_withsharing.queryRecords(Str);
+    
+        QuestionList = Utilityclass_withsharing.queryRecords(Str);
         for(Question__c Ques : QuestionList){
             LabelMap.put(Ques.Id, Ques);
             system.debug('LabelMap---'+Ques);
         }
         return LabelMap;
-	}
+    }
     //For Renewal
     @AuraEnabled
-	public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName, String renewalReinstate){
+    public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName, String renewalReinstate){
         Map<String,Question__c> LabelMap = new Map<String,Question__c>();
         Map<String,String> questionMap = new Map<String,String>();
-		List<String> picklistValues = new List<String>();
+        List<String> picklistValues = new List<String>();
         system.debug('applicationType: '+ applicationType);
         list<Question__c> QuestionList = new list<Question__c>();
-		String condition = 'Application_Type__c = \''+Board+'\'';
-		String condition1 = 'Credential_Type__c = \''+LicenseType+'\'';
-		//Changes done for adding eligibility type
-		String condition3 = /*ApplicationType != '' ? 'Record_Type_Name__c = \'Application questions\'' : */'Record_Type_Name__c = \'Eligibility Questions\'';
+        String condition = 'Application_Type__c = \''+Board+'\'';
+        String condition1 = 'Credential_Type__c = \''+LicenseType+'\'';
+        //Changes done for adding eligibility type
+        String condition3 = /*ApplicationType != '' ? 'Record_Type_Name__c = \'Application questions\'' : */'Record_Type_Name__c = \'Eligibility Questions\'';
         String condition4 = 'Status__c = \'Active\'';
         String condition5 = 'Application_Method__c = \''+ApplicationType+'\'';
         String condition6 = 'Parent_Object_API_Name__c = \''+parentObjectAPIName+'\'';
@@ -64,14 +64,14 @@ public class LnP_WizardApexController {
          Str = 'Select Id, Eli_Ques_determines_App_Type__c, Name, Question_Body__c, Data_Type__c, Qualifying_Response__c,Possible_Responses__c, Application_Method__c, Parent_Question__c,Order_Number__c from Question__c where '+condition+' AND '+condition1+' AND '+condition5+' AND '+condition3+' AND '+condition4+' AND '+condition6+'  '+condition7+'ORDER BY Order_Number__c ASC';
         system.debug('str1'+str);
         
-	
-		QuestionList = Utilityclass_withsharing.queryRecords(Str);
+    
+        QuestionList = Utilityclass_withsharing.queryRecords(Str);
         for(Question__c Ques : QuestionList){
             LabelMap.put(Ques.Id, Ques);
             system.debug('LabelMap---'+Ques);
         }
         return LabelMap;
-	}
+    }
     
     
     @AuraEnabled    
@@ -113,16 +113,16 @@ public class LnP_WizardApexController {
         
         return [Select Id,Name From Account where id IN: setAcctId];
     }
-	
+    
     @AuraEnabled
     public static String fetchCnBLabels(String customLabelAPI, String board){
         Map<String, String> labelMap = new Map<String, String>();
         labelMap = LnP_AllBoardsLabels.fetchBoardLabel(board);
-		String var = labelMap.get(customLabelAPI);
+        String var = labelMap.get(customLabelAPI);
         return var;
     }
-	@AuraEnabled
-    public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){	
+    @AuraEnabled
+    public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){ 
         Map<String, List<String>> mapConDep = new Map<String, List<String>>();
         mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(sObj, conField, depField);
         system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
@@ -169,7 +169,7 @@ public class LnP_WizardApexController {
 
         return application.Id;
     }
-	//For renewal
+    //For renewal
     @AuraEnabled
     public static Id startRenewalApplication(String board, String licenseType, String applicationType,String account, String isRenewal,String licId){
         List<User> userInfoData = new  List<User>();
@@ -215,10 +215,10 @@ public class LnP_WizardApexController {
             {
                 LnP_Parcel__c parcel = new LnP_Parcel__c();
                 parcel.Application_BG__c = application.Id;
-				parcel.Address_Type__c  = par.Address_Type__c;
-				parcel.City__c = par.City__c;
-				parcel.Country__c = par.Country__c;
-				parcel.State_Province__c = par.State_Province__c;
+                parcel.Address_Type__c  = par.Address_Type__c;
+                parcel.City__c = par.City__c;
+                parcel.Country__c = par.Country__c;
+                parcel.State_Province__c = par.State_Province__c;
                 parcel.Street__c = par.Street__c;
                 parcel.Zip_Postal_Code__c = par.Zip_Postal_Code__c;
                 lstupdateParcel.add(parcel);
@@ -230,7 +230,7 @@ public class LnP_WizardApexController {
             insert lstupdateParcel;
         }
         
-        List<BGCK__Answer__c> lstAnswer = [SELECT id,Name,BGCK__Valid__c,Answer_Text__c,Question__c,Question_Section__c,License__c,Application_BG__c FROM BGCK__Answer__c WHERE License__c=:licId ];
+        List<BGCK__Answer__c> lstAnswer = [SELECT id,Name,BGCK__Valid__c,Answer_Text__c,QuestionDOL__c,Question_Section__c,License__c,Application_BG__c FROM BGCK__Answer__c WHERE License__c=:licId ];
         List<BGCK__Answer__c> lstUpdateAnswer = new List<BGCK__Answer__c>();
         if(!lstAnswer.isEmpty())
         {
@@ -238,10 +238,10 @@ public class LnP_WizardApexController {
             {
                 BGCK__Answer__c answer = new BGCK__Answer__c();
                 answer.Application_BG__c = application.Id;
-				answer.Name  = ans.Name;
-				answer.BGCK__Valid__c = ans.BGCK__Valid__c;
-				answer.Answer_Text__c = ans.Answer_Text__c;
-				answer.Question__c = ans.Question__c;
+                answer.Name  = ans.Name;
+                answer.BGCK__Valid__c = ans.BGCK__Valid__c;
+                answer.Answer_Text__c = ans.Answer_Text__c;
+                answer.QuestionDOL__c = ans.QuestionDOL__c;
                                 
                 lstUpdateAnswer.add(answer);
             }
@@ -274,7 +274,7 @@ public class LnP_WizardApexController {
             bgSc.Zip_code__c = bgck.Zip_code__c;
             bgSc.County__c = bgck.County__c;
             bgSc.Total_Hours__c = bgck.Total_Hours__c;
-            bgSc.Street_Address__c	= bgck.Street_Address__C;
+            bgSc.Street_Address__c  = bgck.Street_Address__C;
             bgSc.Provider__c = bgck.Provider__c;
             bgSc.Name_of_Course__c = bgck.Name_of_Course__c;
             bgSc.Trainer_License__c = bgck.Trainer_License__c;
@@ -288,9 +288,9 @@ public class LnP_WizardApexController {
         
         return application.Id;
     }
-	@AuraEnabled
+    @AuraEnabled
     public static Map<String,String> getAllStaticTexts(){
-		 Map<String, String> mapJSON = new Map<String, String>();
+         Map<String, String> mapJSON = new Map<String, String>();
          try{
            mapJSON = DE_LandingPageCustomLabels.getWizardStaticTexts(); 
          }

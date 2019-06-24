@@ -751,7 +751,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                 //Setup  for the populating the details
                 List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
                 // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
-                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,Question__r.Data_Type__c,Question__r.Endorsement_Type__c,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
+                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
                 system.debug('StrApp Query--->'+strAppOther);
                 appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
                 List<LnP_Parcel__c> lstParcels = new List<LnP_Parcel__c>();            
@@ -776,7 +776,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Notary Public'){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r)
                     {                    
-                        if((!ans.Create_Endorsement_Record__c) && ans.Question__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' )
+                        if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' )
                         {
                             providerName = ans.Answer_Text__c;
                         }
@@ -786,7 +786,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.License__c = licenseID[0].Id;                    
-                        if(ans.Create_Endorsement_Record__c && ans.Question__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
+                        if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
                         {
                             Endorsement__c endorsment = new Endorsement__c();
                             endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
@@ -802,7 +802,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                             endorsment.Created_for_New_Application__c = True;
                             lstEndorsements.add(endorsment);
                         }
-                        else if(ans.Create_Endorsement_Record__c && ans.Question__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.Question__r.Endorsement_Type__c!='Notary' )
+                        else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' )
                         {
                             Endorsement__c endorsment = new Endorsement__c();
                             endorsment.Endorsement_Type__c = ans.Answer_Text__c;

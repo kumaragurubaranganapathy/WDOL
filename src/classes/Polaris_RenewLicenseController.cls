@@ -783,7 +783,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Notary Public'){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r)
                     {                    
-                        if((!ans.Create_Endorsement_Record__c) && ans.Question__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' && ans.Question__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
+                        if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
                         {
                             providerName = ans.Answer_Text__c;
                         }
@@ -793,7 +793,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.Renewal_Reinstatement_Application__c = licenseID;                    
-                        if(ans.Create_Endorsement_Record__c && ans.Question__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes' && ans.Question__r.Parent_Object_API_Name__c== 'Renewal_Application__c')
+                        if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c')
                         {
                             Endorsement__c endorsment = new Endorsement__c();
                             endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
@@ -809,7 +809,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                             endorsment.Created_for_New_Application__c = True;
                             lstEndorsements.add(endorsment);
                         }
-                        else if(ans.Create_Endorsement_Record__c && ans.Question__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.Question__r.Endorsement_Type__c!='Notary' && ans.Question__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
+                        else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
                         {
                             Endorsement__c endorsment = new Endorsement__c();
                             endorsment.Endorsement_Type__c = ans.Answer_Text__c;
