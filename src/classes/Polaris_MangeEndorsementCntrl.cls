@@ -10,29 +10,29 @@ public class Polaris_MangeEndorsementCntrl {
         Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>> mapOnQuestions = new Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>>();
         
         String questionSection = '';
-        List<BGCK__Answer__c> lstAnswers = [SELECT id,Answer_Text__c,Question_Section__c,Question__c,Question__r.Sub_Sub_Header__c,Question__r.Possible_Responses__c,Question__r.Triggering_Parent_Answer__c,Question__r.Sub_Header__c,Question__r.Section__c,Question__r.Submission_Title__c,Question__r.Parent_Question__c,Question__r.Has_dependent_questions__c,Question__r.Data_Type__c,Question__r.Id,Question__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
+        List<BGCK__Answer__c> lstAnswers = [SELECT id,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
         for(BGCK__Answer__c answ : lstAnswers )
         {
             LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
-            labelToFields.label = answ.Question__r.Question_Body__c;
-            labelToFields.labelId = answ.Question__r.Id;
-            labelToFields.fieldType = answ.Question__r.Data_Type__c;
+            labelToFields.label = answ.QuestionDOL__r.Question_Body__c;
+            labelToFields.labelId = answ.QuestionDOL__r.Id;
+            labelToFields.fieldType = answ.QuestionDOL__r.Data_Type__c;
             labelToFields.answerId = answ.Id;
-            labelToFields.hasChild = answ.Question__r.Has_dependent_questions__c;
-            labelToFields.parentQuestionId = answ.Question__r.Parent_Question__c;
+            labelToFields.hasChild = answ.QuestionDOL__r.Has_dependent_questions__c;
+            labelToFields.parentQuestionId = answ.QuestionDOL__r.Parent_Question__c;
             //labelToFields.submissionDetails = answ.Question__r.Submission_Title__c;
-            labelToFields.questionSectionClass = answ.Question__r.Section__c;
-            if(questionSection == answ.Question__r.Section__c || answ.Question__r.Section__c==null)
+            labelToFields.questionSectionClass = answ.QuestionDOL__r.Section__c;
+            if(questionSection == answ.QuestionDOL__r.Section__c || answ.QuestionDOL__r.Section__c==null)
             {
                 labelToFields.questionSection ='null';
             }
             else
             {
-                labelToFields.questionSection = answ.Question__r.Section__c;
-                questionSection = answ.Question__r.Section__c;
-                labelToFields.questionSectionDetail = answ.Question__r.Sub_Header__c;
+                labelToFields.questionSection = answ.QuestionDOL__r.Section__c;
+                questionSection = answ.QuestionDOL__r.Section__c;
+                labelToFields.questionSectionDetail = answ.QuestionDOL__r.Sub_Header__c;
             }
-            if(answ.Question__r.Parent_Question__c != null)
+            if(answ.QuestionDOL__r.Parent_Question__c != null)
             {
                 labelToFields.isChild = true;
                 labelToFields.renderedOnUi = false;
@@ -44,14 +44,14 @@ public class Polaris_MangeEndorsementCntrl {
             }
             //labelToFields.fieldAPIName = answ.Question__r.QuestionFieldAPI__c;
             //labelToFields.fieldObjName = answ.Question__r.QuestionObjectName__c;
-            labelToFields.conditionalAnswer = answ.Question__r.Triggering_Parent_Answer__c;
-            if(answ.Question__r.Possible_Responses__c != null && answ.Question__r.Data_Type__c == 'Picklist')
+            labelToFields.conditionalAnswer = answ.QuestionDOL__r.Triggering_Parent_Answer__c;
+            if(answ.QuestionDOL__r.Possible_Responses__c != null && answ.QuestionDOL__r.Data_Type__c == 'Picklist')
             {
-                labelToFields.fieldValueOptions = answ.Question__r.Possible_Responses__c.split(';');
+                labelToFields.fieldValueOptions = answ.QuestionDOL__r.Possible_Responses__c.split(';');
             }
-            else if(answ.Question__r.Possible_Responses__c != null && (answ.Question__r.Data_Type__c == 'Radio'||answ.Question__r.Data_Type__c == 'Checkbox'||answ.Question__r.Data_Type__c == 'Yes_No'))
+            else if(answ.QuestionDOL__r.Possible_Responses__c != null && (answ.QuestionDOL__r.Data_Type__c == 'Radio'||answ.QuestionDOL__r.Data_Type__c == 'Checkbox'||answ.QuestionDOL__r.Data_Type__c == 'Yes_No'))
             { 
-                for(String radio : answ.Question__r.Possible_Responses__c.split(';')){
+                for(String radio : answ.QuestionDOL__r.Possible_Responses__c.split(';')){
                     LnP_ApplyForLicenseWrapper.MapRadioButtons radioMap = new LnP_ApplyForLicenseWrapper.MapRadioButtons();
                     radioMap.label = radio;
                     radioMap.value = radio;
@@ -63,7 +63,7 @@ public class Polaris_MangeEndorsementCntrl {
             {
                 for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest)
                 {
-                    if(req.body!=null && req.body.Question == answ.Question__r.Id)
+                    if(req.body!=null && req.body.Question == answ.QuestionDOL__r.Id)
                     {
                         if(req.body.Answer.contains(';'))
                         {
@@ -79,13 +79,13 @@ public class Polaris_MangeEndorsementCntrl {
                 }
             }
             
-            if(mapOnQuestions.containsKey(answ.Question__r.Sub_Sub_Header__c))
+            if(mapOnQuestions.containsKey(answ.QuestionDOL__r.Sub_Sub_Header__c))
             {
-                mapOnQuestions.get(answ.Question__r.Sub_Sub_Header__c).add(labelToFields);
+                mapOnQuestions.get(answ.QuestionDOL__r.Sub_Sub_Header__c).add(labelToFields);
             }
             else
             {
-                mapOnQuestions.put(answ.Question__r.Sub_Sub_Header__c,new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>{labelToFields});  
+                mapOnQuestions.put(answ.QuestionDOL__r.Sub_Sub_Header__c,new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>{labelToFields});  
             }
         }
         LnP_ApplyForLicenseWrapper licenseWrapper = new LnP_ApplyForLicenseWrapper();
@@ -130,13 +130,13 @@ public class Polaris_MangeEndorsementCntrl {
         application.Stage__c = 0;
         application.Service_Request_Type__c = 'Endorsement';
         application.Contact__c = getContactId;
-		application.License__c = licId;    
+        application.License__c = licId;    
         try{
           
             insert application;
         }
         catch(Exception e){
-			HandleException.LogException(e,'Polaris_MangeEndorsementCntrl','insertRequest');            
+            HandleException.LogException(e,'Polaris_MangeEndorsementCntrl','insertRequest');            
         }
         string appId = '';
         return appId = application.Id;
@@ -147,7 +147,7 @@ public class Polaris_MangeEndorsementCntrl {
     {
         List<BGCK__Answer__c> lstUpdateAnswers = new List<BGCK__Answer__c>();
         Set<String> setEndorsementType = new Set<String>();
-        List<BGCK__Answer__c> lstAnswers = [SELECT id,Endorsement_Type__c,Answer_Text__c,Question_Section__c,Question__c,Question__r.Sub_Sub_Header__c,Question__r.Possible_Responses__c,Question__r.Triggering_Parent_Answer__c,Question__r.Sub_Header__c,Question__r.Section__c,Question__r.Submission_Title__c,Question__r.Parent_Question__c,Question__r.Has_dependent_questions__c,Question__r.Data_Type__c,Question__r.Id,Question__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
+        List<BGCK__Answer__c> lstAnswers = [SELECT id,Endorsement_Type__c,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
