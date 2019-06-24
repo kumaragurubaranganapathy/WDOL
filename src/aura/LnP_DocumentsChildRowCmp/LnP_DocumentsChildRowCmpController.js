@@ -1,7 +1,13 @@
 ({
     doinit :  function(component, event, helper){
         debugger;
-      
+       //  Added this to show the selected element value.
+        var defaultProgramType = component.get("v.defaultProgramType");
+        if (defaultProgramType) {
+            var depositRec = component.get("v.depositRec");
+            depositRec.wadol_Program_Type__c = defaultProgramType;
+            component.set("v.defaultProgramType");
+        }
         helper.enablePrintButton(component,event);
         helper.getDependentFieldValuesOnLoad(component, event);       
         var _industryFormMap = component.get("v.industryFormMap");
@@ -33,6 +39,7 @@
                 // set the ControllerField variable values to country(controller picklist field)
                 component.set("v.listControllingValues", ControllerField);   
         }*/
+       
         
     },
     

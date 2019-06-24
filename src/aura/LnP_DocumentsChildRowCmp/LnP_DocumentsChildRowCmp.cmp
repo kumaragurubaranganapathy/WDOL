@@ -29,7 +29,6 @@
 <!-- handlers -->
     <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
     <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
-    
     <!-- Table Row -->   
     <tr class="slds-text-title_caps">
         <td> 
@@ -41,8 +40,7 @@
                 <lightning:select aura:id="programType" value="{!v.depositRec.wadol_Program_Type__c}" name="programType" onchange="{!c.onControllerFieldChange}" >
                     <option value="">Select an Option</option>
                     <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
-                        <option value="{!ind.value}" selected="{! v.defaultProgramType == ind.value? true : false}">{!ind.value}</option>
-                        
+                            <option text="{!ind.value}" value="{!ind.value}"/>
                     </aura:iteration>
                 </lightning:select>             
                 <aura:set attribute="else">

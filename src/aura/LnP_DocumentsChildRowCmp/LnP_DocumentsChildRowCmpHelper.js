@@ -47,7 +47,7 @@
         
         var controllerValueKey = event.getSource().get("v.value"); // get selected controller field value
         var depnedentFieldMap = component.get("v.industryFormMap");         
-        
+        console.log('controllerValueKey --> ' + controllerValueKey);
         if (controllerValueKey != '') {
             var ListOfDependentFields = depnedentFieldMap[controllerValueKey];
             
