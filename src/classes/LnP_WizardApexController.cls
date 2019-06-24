@@ -306,4 +306,23 @@ public class LnP_WizardApexController {
        @AuraEnabled public List<Account> lstAccount {get;set;}
     }
 
+@AuraEnabled
+    public  static String fetchInstructions(string Board, String LicenseType, String ApplicationType) {
+        //select id,Instructions__c from Newsfeed__c where Application_Method__c =''  and  Application_Type__c =  and Credential_Type__c =''
+         String result = '';
+        String condition1 = 'Application_Type__c = \''+Board+'\'';
+        String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
+        String condition3 = 'Application_Method__c = \''+ApplicationType+'\'';
+        list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
+        String Str = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
+        appInstructionList = Utilityclass_withsharing.queryRecords(Str);
+        if(!appInstructionList.isEmpty()){
+            result = appInstructionList[0].Instructions__c;
+        }
+        system.debug('@@@@result'+result);
+              
+        return result;
+       
+    }
+
 }
