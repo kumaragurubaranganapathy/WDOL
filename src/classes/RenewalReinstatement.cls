@@ -15,7 +15,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
         idDateMap.put(msl.id,msl.MUSW__Expiration_Date__c );
     }
     
-    List<BGCK__Answer__c> ansList = [select id,Answer_Text__c,Question__c,Renewal_Reinstatement_Application__c from BGCK__Answer__c where Renewal_Reinstatement_Application__c IN:setId AND Question__r.Section__c = 'Legal Background Questions' AND Question__r.Data_Type__c = 'Yes_No' ];
+    List<BGCK__Answer__c> ansList = [select id,Answer_Text__c,QuestionDOL__c,Renewal_Reinstatement_Application__c from BGCK__Answer__c where Renewal_Reinstatement_Application__c IN:setId AND QuestionDOL__r.Section__c = 'Legal Background Questions' AND QuestionDOL__r.Data_Type__c = 'Yes_No' ];
     system.debug('ansList---'+ansList);
     
     Map<id,Boolean> reneUpdate = new Map<id,Boolean>();
