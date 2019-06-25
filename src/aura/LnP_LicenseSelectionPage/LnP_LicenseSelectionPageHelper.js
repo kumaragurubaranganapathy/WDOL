@@ -2,14 +2,13 @@
     //To reset the values when there is change in program type....
     resetAttributesHelper :  function(component, event, helper){
         var eliTypeGridDiv = document.getElementById("eliTypeGridDiv");
-        //var eliTextDiv = document.getElementById("eliTextDiv");
-        //var eliQuesDiv = document.getElementById("eliQuesDiv");
-        //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
+        var appInstructions = document.getElementById("applicationInstuctionDiv");
         console.log("inside reset::");
         $A.util.removeClass(component.find("licenseType"), 'slds-hide');	
         $A.util.removeClass(component.find("getApplicationMethod"), 'slds-hide');
         console.log("inside reset12::");
-        eliTypeGridDiv.classList.add("slds-hide");       
+        eliTypeGridDiv.classList.add("slds-hide");  
+        appInstructions.classList.add("slds-hide"); 
         component.find("button1").set('v.disabled',true);
     },
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
@@ -17,18 +16,15 @@
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
         
-        //var appTypeGridDiv = document.getElementById("appTypeGridDiv");
-        //var appQuesDiv = document.getElementById("appQuesDiv");
-        //var appTypeDiv = document.getElementById("appTypeDiv");
-        //var appTypeTextDiv = document.getElementById("appTypeTextDiv");
         
         var eliTypeGridDiv = document.getElementById("eliTypeGridDiv");
         //var eliTextDiv = document.getElementById("eliTextDiv");
         //var eliQuesDiv = document.getElementById("eliQuesDiv");
 		//var proceedButtonDiv = document.getElementById("proceedButtonDiv");
-        
+        //Instructions
+        var appInstructions = document.getElementById("applicationInstuctionDiv");
         var parentObjectAPIName = '';
-        if(applicationMethod == 'General Application' || applicationMethod == 'Comity' ){
+        if(applicationMethod == 'General Application' || applicationMethod == 'Comity' || applicationMethod == 'Upgrade' ){
             parentObjectAPIName = 'MUSW__License2__c';
         } 
         
@@ -39,7 +35,7 @@
         //appQuesDiv.classList.add("slds-hide");
         //appTypeGridDiv.classList.add("slds-hide");
         eliTypeGridDiv.classList.add("slds-hide");
-        //proceedButtonDiv.classList.add("slds-hide");
+        appInstructions.classList.add("slds-hide");
         component.find("button1").set('v.disabled',true);
         //appTypeDiv.classList.add("slds-hide");
         //appTypeGridDiv.classList.add("slds-hide");
@@ -61,10 +57,11 @@
                 "LicenseType": licenseType, 
                 "ApplicationType": applicationMethod,
                 "parentObjectAPIName": parentObjectAPIName,
-            });
+            }); 
             action.setCallback(this, function(actionResult){
                 var state = actionResult.getState();
                 if (state === "SUCCESS"){
+                    this.fetchApplicationInstructionHelper(component,event,helper);
                     var response = actionResult.getReturnValue();
                     console.log('response ' + JSON.stringify(response));
                     for(var key in response){
@@ -80,8 +77,12 @@
                     console.log('eliQuesList ' + JSON.stringify(eliQuesList));
 		
                     component.set("v.isDirectProceed",false);
-                    helper.fetchAccountList(component, event, helper);                   
+                    if(applicationMethod=='Upgrade')
+                    {
+                        helper.fetchLicenseList(component, event, helper);
+                    }
                     
+                    helper.fetchAccountList(component, event, helper); 
                     helper.hideOrShowSpinner(component, event, helper);
                     if(applicationMethod){  
                       window.setTimeout(
@@ -91,11 +92,18 @@
                           if(eliQuesList.length == 0){
                               eliTypeGridDiv.classList.add("slds-hide");
                               //proceedButtonDiv.classList.remove("slds-hide");
-                              if(component.get("v.showAccountDropdown") == true){
+                              if(component.get("v.showAccountDropdown") == true || component.get("v.showLicenseDropdown") == true ){
                                   component.find("button1").set('v.disabled',true);
                               }else {
                                   component.find("button1").set('v.disabled',false);
+                                  eliTypeGridDiv.classList.add("slds-hide");
+                                  return false;
                               }                              
+                          }
+                          var instruction = component.get("v.instructions");
+                          console.log("appInstructions",instruction)
+                          if(instruction != '') {
+                              appInstructions.classList.remove("slds-hide");
                           }
                           //var eliChild = document.getElementById('eliQuesDiv').children;
                           //for(var i=0; i<eliChild.length; i++){
@@ -109,6 +117,31 @@
         }
     	}
 	},
+    
+    fetchApplicationInstructionHelper : function(component, event, helper) {
+        var board = component.find("board").get("v.value");
+        var licenseType = component.find("licenseType").get("v.value");
+        var applicationMethod = component.find("getApplicationMethod").get("v.value");
+        var action = component.get("c.fetchInstructions");
+        action.setParams({
+            "Board": board, 
+            "LicenseType": licenseType, 
+            "ApplicationType": applicationMethod,
+        });
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){ 
+                var response = actionResult.getReturnValue();
+                component.set("v.instructions",response);
+                console.log('heyy',response);
+            } else  {
+                 console.log('errorrrrr');
+            }
+            
+        });
+        $A.enqueueAction(action);
+        
+    },
     showOrHideQuestionHelper : function(component, event, helper) {        
 		var quesItem = event.getSource().get("v.name");
         var optionValue = event.getParam("value"); 
@@ -132,7 +165,7 @@
         //var appQuestions= component.find('appRadios');
         
         var eliQuestions= component.find('eliRadios');
-        eliQuestions.forEach(eliQuestions => {
+        eliQuestions.forEach(function(eliQuestions) {
             eliQuestions.set("v.value","");
         })
          
@@ -169,7 +202,7 @@
             component.set("v.quesNo",component.get("v.quesNo") + 1);
             var count = 0;
         	var appQuestions= component.find('appRadios');
-        	appQuestions.forEach(appQuestions => {
+        	appQuestions.forEach(function(appQuestions) {
                 console.log('loopValue ' + appQuestions.get("v.value"));
                 if(appQuestions.get("v.value") == 'No'){
     				count++;
@@ -235,6 +268,7 @@
        component.find("button1").set('v.disabled',false);
     },
    startApplicationHelper : function(component, event, helper){
+       console.log('inside startApplicationHelper');
         // To disable button on click.
         var applicationId = "";
         let button = event.getSource();
@@ -251,7 +285,7 @@
         var account = sessionStorage.getItem("accountRecordID");
       // var account = '001r000000DQcLt';
         console.log('@@@@@@@'+account);
-        //eliQuestions.forEach(eliQuestions => {
+        //eliQuestions.forEach(function(eliQuestions) {
         if(eliQuestions != undefined){
             if(component.get("v.isDirectProceed") == false){
                 for(var ii=0; ii<eliQuestions.length; ii++){
@@ -260,7 +294,7 @@
                         var toastEvent = $A.get("e.force:showToast");
                         toastEvent.setParams({
                             "title": "Error!",
-                            "message": "You are not eligible for this application.",
+                            "message": "You do not appear to meet the eligibility criteria for this profession at this time. Please do not apply until you meet all eligibility criteria.",
                             "type": "error"
                         });
                         toastEvent.fire();
@@ -281,7 +315,9 @@
                 startAnApplication.setParams({"board": component.get("v.board"),
 										"licenseType" : component.get("v.licenseType"),
 										"applicationType" : component.find("getApplicationMethod").get("v.value"),
-                                        "account" : sessionStorage.getItem("accountRecordID")});
+                                        "account" : sessionStorage.getItem("accountRecordID"),
+                                        "LicenseUpgradeRecordID" : sessionStorage.getItem("LicenseRecordID")
+                                             });
             		console.log('inside params::');
                     startAnApplication.setCallback(this, function(actionResult){
 					    var state = actionResult.getState();
@@ -294,19 +330,30 @@
              $A.enqueueAction(startAnApplication);
              })).then(
                 $A.getCallback(function(result){   
-               sessionStorage.setItem("header","true");
-                sessionStorage.setItem("applicationId",result);           
+                sessionStorage.setItem("header","true");
+                sessionStorage.setItem("applicationId",result);  
+                var contactRecId=component.get("v.contactRecId");
                 console.log("result::"+ result);
                 console.log('121233' + sessionStorage.getItem("applicationId"));
                 console.log('test::'+sessionStorage.getItem("header"));
+                   if(sessionStorage.getItem("header")){
+                        console.log('inside headertrue');
+                        sessionStorage.setItem("header","true");
+                        sessionStorage.setItem("applicationId",result); 
+                       sessionStorage.setItem("contactRecId",contactRecId); 
+                       window.location.href="https://dev-polaris.cs32.force.com/lightningwashington/s/apply-for-license";
+                    } 
+                else if(sessionStorage.getItem("header")){
                 var urlEvent = $A.get("e.force:navigateToURL");
+                console.log('%%%%%'+urlEvent);
                 var str = "/lightningwashington/s/apply-for-license";
+                console.log('$$$$$$'+str);
                 urlEvent.setParams({
                     "url": str
                 });
-                //console.log(str);
-                urlEvent.fire();
-                    
+
+               console.log('****'+str);//console.log(str);
+                    urlEvent.fire();}
       		}));
             }    
             catch(e){
@@ -319,7 +366,54 @@
         var spinner = component.find('spinner');
         $A.util.toggleClass(spinner, 'slds-hide');
     },
-        
+    fetchLicenseList  : function (component, event, helper){
+        var board=component.get("v.board");
+        var licenseType=component.get("v.licenseType");
+        var result ='';
+        try{
+            return new Promise($A.getCallback(function(resolve, reject) {
+                console.log('inside promise');
+                var action =  component.get('c.fetchLicenseList');
+                action.setParams({ "Board" : board, "LicenseType":licenseType });
+                console.log(action);
+                action.setCallback(this, function(response){
+                    console.log('inside callback');
+                    var state = response.getState();
+                    if(state==='SUCCESS'){
+                        resolve(response.getReturnValue());
+                        // alert('success'); 
+                        console.log(result);
+                        // window.open(approvedURl.substring(7,approvedURl.length));
+                    }
+                    
+                })
+                $A.enqueueAction(action);
+            })).then(
+                $A.getCallback(function(result){
+                    console.log('result',JSON.stringify(result));
+                    var licwrapper = result;
+                    
+                    component.set("v.licenses", licwrapper);
+                    if( licwrapper.length>0)
+                    {
+                        console.log("component.get license"+component.get("v.licenses"));
+                        component.set("v.showLicenseDropdown",true);
+                        //component.find("button1").set('v.disabled',true); 
+                    }                       
+                    else 
+                    {
+                       component.set("v.showLicenseDropdown",false);
+                        //component.find("button1").set('v.disabled',false);
+                    }
+                })
+            )
+            
+            
+        } 
+        catch(e){
+            console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+        }
+    },
     fetchAccountList : function (component, event, helper){
         var board=component.get("v.board");
         var licenseType=component.get("v.licenseType");
@@ -344,21 +438,46 @@
                 $A.enqueueAction(action);
             })).then(
                 $A.getCallback(function(result){
-                    console.log('result',JSON.stringify(result));
+                    console.log('result accounts list',JSON.stringify(result));
                     var accwrapper = result;
+                    var accountList = [];
+                    var courseList = [];
+                    var businessList = [];
                     
-                    component.set("v.accounts", accwrapper.lstAccount);
-                    if(accwrapper.accountType == 'Business' ){
-                        console.log("component.get"+component.get("v.accounts"));
-                        component.set("v.showAccountDropdown",true);
-                        //component.find("button1").set('v.disabled',true);
+                    accountList = accwrapper.lstAccount;
+                    console.log('accountList',accountList);
+                    if(accountList.length !== 0) {
+                        console.log('acc ',accountList[0].Course_Provider__c);
+                        for(var i in accountList){
+                            var accRecord = accountList[i];
+                            if(accRecord.Course_Provider__c){
+                                courseList.push(accRecord);
+                            }else{
+                                businessList.push(accRecord);
+                            }
+                        }
                         
-                    } else if(accwrapper.accountType == 'Course'){
-                        console.log("component.get"+component.get("v.accounts"));
-                        component.set("v.showAccountDropdown",true);
-                    }else {
-                       component.set("v.showAccountDropdown",false);
-                        //component.find("button1").set('v.disabled',false);
+                        if(accwrapper.accountType == 'Business'){
+                            component.set("v.accounts", businessList);
+                            console.log("component.get"+component.get("v.accounts"));
+                            //component.find("button1").set('v.disabled',true);
+                            
+                        } else if(accwrapper.accountType == 'Course' ){
+                            component.set("v.accounts", courseList);
+                            console.log("component.get"+component.get("v.accounts"));
+                            component.set("v.showAccountDropdown",true);
+                        }else {
+                            component.set("v.showAccountDropdown",false);
+                            //component.find("button1").set('v.disabled',false);
+                        }
+                    } else  {
+                        var toastEvent = $A.get("e.force:showToast");
+                        toastEvent.setParams({
+                            "title": "No business account!",
+                            "message": "Please create a business account."
+                        });
+                        toastEvent.fire();
+                        return false ;
                     }
                 })
             )
@@ -378,6 +497,17 @@
             component.find("button1").set('v.disabled',true);
         }
         sessionStorage.setItem("accountRecordID",pickerValue);
+    },
+    firePassLicenseValueEventHelper : function (component, event, helper){
+        var pickerValue = component.find("licensePickerId").get("v.value");
+        //component.set("LicenseUpgradeRecordID",pickerValue);
+        console.log("pickerValue"+pickerValue);
+        if(pickerValue != "--None--"){
+            component.find("button1").set('v.disabled',false);
+        }else {
+            component.find("button1").set('v.disabled',true);
+        }
+        sessionStorage.setItem("LicenseRecordID",pickerValue);
     },
     setApplicationTypeHelper : function (component, event, helper){
           var appTypeValue = component.find("appTypeField").get("v.value");  

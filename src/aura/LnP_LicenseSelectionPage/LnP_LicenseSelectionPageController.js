@@ -24,6 +24,9 @@
         console.log("SD");
         helper.firePassValueEventHelper(component, event, helper);
     },
+    firePassLicenseValueEvent : function (component, event, helper){
+    	helper.firePassLicenseValueEventHelper(component, event, helper);
+    },
     setApplicationType : function(component, event, helper){
         helper.firePassValueEventHelper(component, event, helper);
     }

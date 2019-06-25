@@ -1,6 +1,27 @@
 public class LnP_WizardApexController {
     
     @AuraEnabled
+    public static List<MUSW__License2__c> fetchLicenseList(String Board, String LicenseType)
+    {
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        Id getContactId;
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        Set<Id> setAcctId = new  Set<Id>();
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
+        }
+        Set<String>lstChildLicenseType = new Set<String>();
+        List<Upgrade_License__mdt> lstupgradeLicense = [SELECT id,Child_License_Type__c,Upgrade_License_Type__c FROM Upgrade_License__mdt where Upgrade_License_Type__c=:LicenseType];
+        for(Upgrade_License__mdt ul : lstupgradeLicense )
+        {
+            lstChildLicenseType.add(ul.Child_License_Type__c);
+        }
+        return [SELECT MUSW__Status__c,Credential_Type__c,Application_Type__c,Name,id FROM MUSW__License2__c where MUSW__Status__c='Active' AND MUSW__Applicant__c=:getContactId AND Credential_Type__c IN:lstChildLicenseType ];
+        
+    }
+    @AuraEnabled
     public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName){
         Map<String,Question__c> LabelMap = new Map<String,Question__c>();
         Map<String,String> questionMap = new Map<String,String>();
@@ -111,7 +132,7 @@ public class LnP_WizardApexController {
                    setAcctId.add(ac.MUSW__Account__r.Id);     
         }
         
-        return [Select Id,Name From Account where id IN: setAcctId];
+        return [Select Id,Name,Course_Provider__c From Account where id IN: setAcctId];
     }
     
     @AuraEnabled
@@ -129,7 +150,7 @@ public class LnP_WizardApexController {
         return mapConDep;
     }
     @AuraEnabled
-    public static Id startAnApplication(String board, String licenseType, String applicationType,String account){
+    public static Id startAnApplication(String board, String licenseType, String applicationType,String account,String LicenseUpgradeRecordID){
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -151,6 +172,9 @@ public class LnP_WizardApexController {
         
         application.MUSW_Account__c = account;*/
         
+        List<String> branchLicense = new List<String>();
+        branchLicense = System.Label.Branch_License_List.split(',');
+        
         MUSW__Application2__c application = new MUSW__Application2__c();
         application.Application_Type__c = board; 
         application.Credential_Type__c = licenseType; 
@@ -158,15 +182,19 @@ public class LnP_WizardApexController {
         application.Stage__c = 0;
         application.MUSW__Applicant__c = getContactId;
         application.MUSW__Account__c = account;
-        
+        application.Upgrading_License__c = LicenseUpgradeRecordID;
+        if(branchLicense.contains(licenseType)){
+            application.Branch_License__c = true;
+        }
         try{
-          
-            insert application;
+        
+           insert application;
+           system.debug('application---'+application.MUSW__Account__c);
         }
         catch(Exception e){
             HandleException.LogException(e,'LnP_WizardApexController','startAnApplication');
         }
-
+        system.debug('appId : '+application.Id);
         return application.Id;
     }
     //For renewal
@@ -295,7 +323,7 @@ public class LnP_WizardApexController {
            mapJSON = DE_LandingPageCustomLabels.getWizardStaticTexts(); 
          }
          catch(Exception e){
-            HandleException.LogException(e,'LnP_WizardApexController','getAllStaticTexts');
+            Polaris_CreateErrorLog_Exception.addError(e,'LnP_WizardApexController','getAllStaticTexts');
          } 
           
          return mapJSON;
@@ -305,8 +333,7 @@ public class LnP_WizardApexController {
        @AuraEnabled public String accountType {get;set;}
        @AuraEnabled public List<Account> lstAccount {get;set;}
     }
-
-@AuraEnabled
+    @AuraEnabled
     public  static String fetchInstructions(string Board, String LicenseType, String ApplicationType) {
         //select id,Instructions__c from Newsfeed__c where Application_Method__c =''  and  Application_Type__c =  and Credential_Type__c =''
          String result = '';

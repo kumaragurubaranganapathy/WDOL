@@ -85,7 +85,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         Set<MUSW__License2__c> setLicense = new Set<MUSW__License2__c>();
         setLicense.addAll(triggerNew);
         List<Endorsement__c> listEndorsement = [SELECT id,License__c,Status__c FROM Endorsement__c where License__c IN:setLicense AND Status__c='Pending Add' ];
-        System.debug('trigger size'+triggerNew.size());
+        Set<Id> parentSetLicenseId = new Set<Id>();
+		System.debug('trigger size'+triggerNew.size());
         for(Integer i = 0; i < triggerNew.size(); i++) {
             System.debug('in for loop');
             MUSW__License2__c licenseNew = triggerNew[i];
@@ -107,12 +108,24 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             }
             if(licenseNew.MUSW__Status__c == 'Active')
             {
+				parentSetLicenseId .add(licenseNew.Id);
                 for(Endorsement__c endo:listEndorsement)
-                {
+                {					
                     endo.Status__c = 'Active';
                 }
             }
             
+        }
+		if(parentSetLicenseId.size()>0)
+        {
+            
+            List<MUSW__License2__c> lstupdateChildLicenses = new List<MUSW__License2__c>();
+            for(MUSW__License2__c lic : [SELECT id,MUSW__Status__c,Upgraded_License__c FROM MUSW__License2__c where Upgraded_License__c IN: parentSetLicenseId ])
+            {
+                lic.MUSW__Status__c = 'Sunset';
+                lstupdateChildLicenses.add(lic);
+            }
+            update lstupdateChildLicenses;
         }
         system.debug('listEndorsement : '+listEndorsement);
         update listEndorsement;

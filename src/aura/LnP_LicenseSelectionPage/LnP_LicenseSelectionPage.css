@@ -94,3 +94,46 @@
 .THIS#proceedButtonDiv .slds-button--brand:disabled{
     background: t(LnGGrayText);
 }
+@media screen and (max-width:767px) {
+    .THIS.form-wrapper{
+        padding:16px;
+    }
+    .THIS .card-wrapper{
+        padding:16px;
+        margin-left:0;
+    }
+    .THIS .section-subtext{
+        padding-bottom:16px;
+        max-width:auto;
+    }
+    .THIS .slds-form-element__control{
+        width:auto;
+    }
+    .THIS .down-btn-wid{
+        width:100%;
+    }
+    .THIS .board-sel .slds-select_container:after{
+        top:10px;
+        right:30px;
+    }
+    .THIS .slds-select{
+        border:none;
+        border-radius:0;
+        border-bottom : solid 1px t(LnGPlaceholderText);
+        border-radius : none;    
+    }
+    .THIS .header-style{
+        padding-bottom:10px;
+    }
+    .THIS .prof-choice{
+        width:100%;
+    }
+
+    .THIS.proceed-btn {
+        display: block;
+        float: none;
+    }
+    .THIS .down-btn-wid {
+        width: 100%;
+    }
+}
