@@ -4,14 +4,21 @@
         var educationRecordType = $A.get('$Label.c.Education_RecordType').toString();
         console.log('educationRecordType'+educationRecordType);
         var trainingRecordType = $A.get('$Label.c.Training_RecordType').toString();
+        
         var experienceRecordType = $A.get('$Label.c.Experience_RecordType').toString();
         var endorsementRecordType = $A.get('$Label.c.Endorsement_RecordType').toString();
+        var providerRecordType = $A.get('$Label.c.Provider_RecordType').toString();
+        var educationHistoryRecordType = $A.get('$Label.c.EducationHistory_RecordType').toString();
         var recordType = '';
         if(sectionName=='Endorsement'){
-            component.set('v.sObj','Endorsement__c');
+            component.set('v.sObj','Electronic_Notary_Provider_Information__c');
             recordType='';
-            recordType =endorsementRecordType;
-        }
+            recordType = providerRecordType;
+        } else if(sectionName=='Course Details'){
+            component.set('v.sObj','Education_History__c');
+            recordType='';
+            recordType =educationHistoryRecordType;
+        }      
         else{
             component.set('v.sObj','LnP_BackgroundSection__c');
             if(sectionName=='Qualifying Education'){
@@ -31,13 +38,25 @@
                     recordType='';
                     recordType =experienceRecordType;
                 }
+                   
         }
         component.set('v.objectRecordType',recordType);
         
         helper.setData(component, event, helper);
     },   
+    
+    handleSubmit : function(component, event, helper) {
+        var fields = event.getParam("fields");
+        console.log('fields=== ' + JSON.stringify(fields));
+    },
+    
     handleSuccess : function(component, event, helper) {
-        
+        var payload = event.getParams().response;
+        console.log('payload.id=== ' + payload.id);
+        component.set("v.educationHistoryId", payload.id);
+        if(!$A.util.isEmpty(payload.id) || !$A.util.isUndefined(payload.id)){
+            helper.getLicenseData(component, event, helper);
+        }
         var toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             "title": "Success!",
@@ -129,7 +148,7 @@
             event.preventDefault();
         }else{
             console.log('no errors!');
-            //component.find("editForm").submit();
+            //component.find("editForm").onsubmit();
         }
     },
     

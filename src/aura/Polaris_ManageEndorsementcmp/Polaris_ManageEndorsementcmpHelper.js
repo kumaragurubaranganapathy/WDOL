@@ -1,6 +1,6 @@
 ({
     fetchDataFromServer : function(component, event, helper) {        
-        var manageEndorsement = sessionStorage.getItem("manageEndorsement");//endorsement
+        var manageEndorsement = sessionStorage.getItem("ServiceRequestType");//endorsement
         var recordID = sessionStorage.getItem("licId"); //Licence Id
         var board =sessionStorage.getItem("board"); //application type
         var licenseType =sessionStorage.getItem("licenseType"); // license type
@@ -40,6 +40,7 @@
         $A.enqueueAction(action);
     },
     removeHelper : function(component, event, helper) {
+        
         var action = component.get("c.removeEndorsement");
         
         action.setParams({            
@@ -63,14 +64,51 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
+                console.log(result);
                 component.set("v.endorsementList",result);
                 
             }
         });
         $A.enqueueAction(action);
     },
+    viewProviderHelper: function(component, event, helper) {
+        component.set("v.showProvider",false);
+        var action = component.get("c.fetchProvider");
+        action.setParams({            
+            "endoId": event.getSource().get("v.value"),
+        });
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                if(result.length>0)
+                {
+                    component.set("v.showProvider",true);
+                    component.set("v.providerList",result);
+                }
+                    
+               // helper.fetchEndorsement(component, event, helper);
+            }
+        });
+        $A.enqueueAction(action);    
+    },
+    deleteProviderHelper : function(component, event, helper) {
+         var action = component.get("c.removeProvider");
+        
+        action.setParams({            
+            "providerId": event.getSource().get("v.value"),
+        });
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                helper.viewProviderHelper(component, event, helper);
+                //do something
+            }
+        });
+        $A.enqueueAction(action);
+    },
     addEndorsemet : function(component, event, helper) {  
-        debugger;
+        
         var requestId='';
         var action = component.get("c.insertRequest");
         action.setParams({            
@@ -84,7 +122,7 @@
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
                 requestId = result;
-                sessionStorage.setItem("manageEndorsement", component.get("v.manageEndorsement"));                
+                sessionStorage.setItem("ServiceRequestType", component.get("v.manageEndorsement"));                
                 sessionStorage.setItem("board", component.get("v.board"));
                 sessionStorage.setItem("licenseType", component.get("v.licenseType"));
                 sessionStorage.setItem("applicationType", component.get("v.applicationMethod"));

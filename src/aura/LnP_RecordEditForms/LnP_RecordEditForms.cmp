@@ -12,7 +12,8 @@
     <aura:attribute name="recId" type="Id"/>
     <aura:attribute name="sectionName" type="String" default="Education"/>
     <aura:attribute name="recordError" type="String" access="private"/>
-    
+    <aura:attribute name="flowType" type="String" />
+    <aura:attribute name="educationHistoryId" type="String" />
     <aura:handler  name="init" value="{!this}" action="{!c.doinit}"/> 
     <aura:if isTrue="{!v.sObj!=null}">
         <div class="tile-wrap">
@@ -65,9 +66,12 @@
                 </div>      
             </aura:iteration>
         </div>
-        
-        <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
-        
+        <aura:if isTrue="{!v.sectionName !='Endorsement'}">
+            <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        </aura:if>
+        <aura:if isTrue="{!v.sectionName =='Endorsement'}">
+            <lightning:button variant="brand" label="+ Provider Information" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        </aura:if>
         <div class="{!v.objectRecordType +'addRecord slds-hide full-width'}">
             
             <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}">
@@ -76,16 +80,26 @@
                     <lightning:messages />
                     <div class="slds-grid slds-wrap row">
                         <aura:iteration items="{!v.recordList}" var="rec">
-                            <div class="slds-col slds-size_4-of-12 recItem">
+                            <div class="slds-col slds-size_4-of-12 field-size qfield-margin recItem">
                                 <label>{!rec.label}</label>
-                                <lightning:inputfield fieldName="{!rec.fieldName}" aura:id="inputCmp" class="label-hidden"/>                            	
+                                <aura:if isTrue="{!rec.required || rec.regex != 'null'}">
+                                	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="label-hidden"/>
+                                	<aura:set attribute="else">
+                                    	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden"/>
+                                    </aura:set>
+                                </aura:if>
                             </div>
                         </aura:iteration>
-                        <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/> 
+                        <aura:if isTrue="{!or(v.flowType =='Endorsement', v.flowType =='CE Audit')}">
+                            <lightning:inputfield fieldName="Request__c" value="{!v.applicationId}" class="slds-hide"/> 
+                            <aura:set attribute="else">
+                                <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/>
+                            </aura:set>
+                        </aura:if>
                     </div>	
                     <lightning:layout horizontalAlign="left" class="slds-m-top_large addRecbtn ">
-                        <lightning:button class="button-style" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
-                        <lightning:button class="button-style" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
+                        <lightning:button class="button-style cancel-button" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                        <lightning:button class="{!v.sectionName+' button-style add-button'}" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
                     </lightning:layout>
                 </div>
             </lightning:recordEditForm>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Application_BG__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application</label>
+        <referenceTo>MUSW__Application2__c</referenceTo>
+        <relationshipLabel>Electronic Notary Provider Information</relationshipLabel>
+        <relationshipName>Electronic_Notary_Provider_Information</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Endorsement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Endorsement</label>
+        <referenceTo>Endorsement__c</referenceTo>
+        <relationshipLabel>Electronic Notary Provider Information</relationshipLabel>
+        <relationshipName>Electronic_Notary_Provider_Information</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Provider_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Provider Name</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Docusign</fullName>
+                    <default>false</default>
+                    <label>Docusign</label>
+                </value>
+                <value>
+                    <fullName>DocVerify</fullName>
+                    <default>false</default>
+                    <label>DocVerify</label>
+                </value>
+                <value>
+                    <fullName>Pavaso</fullName>
+                    <default>false</default>
+                    <label>Pavaso</label>
+                </value>
+                <value>
+                    <fullName>Simplifile</fullName>
+                    <default>false</default>
+                    <label>Simplifile</label>
+                </value>
+                <value>
+                    <fullName>World Wide Notary</fullName>
+                    <default>false</default>
+                    <label>World Wide Notary</label>
+                </value>
+                <value>
+                    <fullName>CSC E-recording</fullName>
+                    <default>false</default>
+                    <label>CSC E-recording</label>
+                </value>
+                <value>
+                    <fullName>GNUPG (proprietary or in-house software)</fullName>
+                    <default>false</default>
+                    <label>GNUPG (proprietary or in-house software)</label>
+                </value>
+                <value>
+                    <fullName>Collier Technologies LLC (Orcas Island ISP)</fullName>
+                    <default>false</default>
+                    <label>Collier Technologies LLC (Orcas Island ISP)</label>
+                </value>
+                <value>
+                    <fullName>Rush</fullName>
+                    <default>false</default>
+                    <label>Rush</label>
+                </value>
+                <value>
+                    <fullName>Translate</fullName>
+                    <default>false</default>
+                    <label>Translate</label>
+                </value>
+                <value>
+                    <fullName>SnapDocs</fullName>
+                    <default>false</default>
+                    <label>SnapDocs</label>
+                </value>
+                <value>
+                    <fullName>Settleware</fullName>
+                    <default>false</default>
+                    <label>Settleware</label>
+                </value>
+                <value>
+                    <fullName>Oracle Textura Management</fullName>
+                    <default>false</default>
+                    <label>Oracle Textura Management</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Electronic Notary Provider Information</relationshipLabel>
+        <relationshipName>Electronic_Notary_Provider_Information</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Electronic Notary Provider Information</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Provider_Name__c</columns>
+        <columns>Effective_Date__c</columns>
+        <columns>Endorsement__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>Provider-{0000000}</displayFormat>
+        <label>Electronic Notary Provider Information Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Electronic Notary Provider Information</pluralLabel>
+    <recordTypes>
+        <fullName>Provider</fullName>
+        <active>true</active>
+        <label>Provider</label>
+        <picklistValues>
+            <picklist>Provider_Name__c</picklist>
+            <values>
+                <fullName>CSC E-recording</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collier Technologies LLC %28Orcas Island ISP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DocVerify</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Docusign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GNUPG %28proprietary or in-house software%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle Textura Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pavaso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rush</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Settleware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simplifile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SnapDocs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Translate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>World Wide Notary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Electronic_software_provider_not_blank</fullName>
+        <active>true</active>
+        <description>if Provider_Name__c is other then only electronic software provider should be filled.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL( Provider_Name__c,&apos;Other&apos;), 
+ISBLANK( Description__c) 
+)</errorConditionFormula>
+        <errorMessage>Please provide description</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

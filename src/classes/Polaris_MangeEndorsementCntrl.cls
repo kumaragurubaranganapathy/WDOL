@@ -100,8 +100,22 @@ public class Polaris_MangeEndorsementCntrl {
      @AuraEnabled
     public static List<Endorsement__c> insertEndorsement(String licId, String licenseType)
     {
-        return [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,License__c,Status__c FROM Endorsement__c where License__c =:licId ];
+        return [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,License_Type__c,License__c,Status__c FROM Endorsement__c where License__c =:licId AND Status__c!='Canceled' ];
     }
+    
+    @AuraEnabled
+    public static List<Electronic_Notary_Provider_Information__c> fetchProvider(String endoId)
+    {
+        return [SELECT id,Description__c,Effective_Date__c,Provider_Name__c FROM Electronic_Notary_Provider_Information__c where Endorsement__c =:endoId ];
+    }
+    
+    @AuraEnabled
+    public static Void removeProvider(String providerId)
+    {
+       Electronic_Notary_Provider_Information__c prov = [SELECT id,Description__c,Effective_Date__c,Provider_Name__c FROM Electronic_Notary_Provider_Information__c where Id =:providerId ];
+    	delete prov;
+    }
+    
     @AuraEnabled
     public static void removeEndorsement (String endoId)
     {

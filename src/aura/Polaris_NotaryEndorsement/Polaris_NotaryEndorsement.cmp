@@ -14,8 +14,11 @@
     <aura:attribute name="pDetails" type="String" default="" />
     <aura:attribute name="showProviderD" type="boolean" default="false"/>
     <aura:attribute name="recordList" type="List" />
-    <aura:handler  name="init" value="{!this}" action="{!c.doinit}"/> 
-    <aura:if isTrue="{!v.ProviderList.length!=0?'true':'false'}"> 
+    <aura:attribute name="flowType" type="String" />
+    <!--<aura:handler  name="init" value="{!this}" action="{!c.doinit}"/>-->
+    
+    <c:LnP_RecordEditForms sectionList ="{!v.sectionList}" sectionName="{!v.sectionName}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}"/> 
+    <!--<aura:if isTrue="{!v.ProviderList.length!=0?'true':'false'}"> 
     <lightning:card title="Provider Details">
         <p class="slds-p-horizontal_small">            
             <table>
@@ -49,12 +52,7 @@
         <div class="">            
             <lightning:messages />
             <div class="slds-grid slds-wrap row">
-                <!-- <aura:iteration items="{!v.recordList}" var="rec">
-                            <div class="slds-col slds-size_4-of-12 recItem">
-                                <label>{!rec.label}</label>
-                                <lightning:inputfield fieldName="{!rec.fieldName}" aura:id="inputCmp" class="label-hidden"/>                            	
-                            </div>
-                        </aura:iteration>-->
+                
                 <aura:iteration items="{!v.recordList}" var="question" indexVar="questionItem">
                     <aura:if isTrue="{!question.fieldType=='Picklist'}">                               
                         <lightning:select aura:id="picklist" name="{!questionItem}" label="{!question.label}" value="{!question.value}" required="true" onchange="{!c.selectChange}">
@@ -78,5 +76,5 @@
             </lightning:layout>
         </div>
         
-    </div>
+    </div>-->
 </aura:component>

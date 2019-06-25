@@ -799,9 +799,9 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                             endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
                             endorsment.License_Type__c = appListOtherDetils[0].Credential_Type__c;
                             //endorsment.Status__c = 'Pending Add';
-                            if(providerName!='' && appListOtherDetils[0].Credential_Type__c == 'Notary Public')
+                            if(appListOtherDetils[0].Credential_Type__c == 'Notary Public')
                             {
-                                endorsment.Electronic_Software_Provider__c = providerName;
+                                //endorsment.Electronic_Software_Provider__c = providerName;
                                 endorsment.Status__c = 'Active';
                             }
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
@@ -825,7 +825,16 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                     update lstAnswers;
                     system.debug('lstEndorsements'+lstEndorsements);
                     insert lstEndorsements;
-                    
+                    if(appListOtherDetils[0].Credential_Type__c == 'Notary Public' && lstEndorsements.size()>0)
+                    {
+                        List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Application_BG__c =:appListOtherDetils[0].Id];
+                        
+                        for(Electronic_Notary_Provider_Information__c provider : lstproviders)
+                        {
+                            provider.Endorsement__c = lstEndorsements[0].Id;
+                        }
+                        update lstproviders;
+                    }          
                     //add review record for endorsement
                     if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
                     {
