@@ -67,15 +67,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>AQB_Approval_Expiration_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>AQB Approval Expiration Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Additional_Address__c</fullName>
         <description>Additional Address from credential to be displayed on renewal application</description>
         <externalId>false</externalId>
@@ -86,30 +77,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Advertising_Fees__c</fullName>
-        <externalId>false</externalId>
-        <label># Advertising Fees</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Apartment_Units__c</fullName>
-        <externalId>false</externalId>
-        <label># Apartment Units</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -259,18 +226,6 @@ Permit__r.Business_License__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Camping_Resorts__c</fullName>
-        <externalId>false</externalId>
-        <label># Camping Resorts</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Co_owner_Name__c</fullName>
         <description>co-owner name to be displayed on renewal application</description>
         <externalId>false</externalId>
@@ -362,32 +317,6 @@ Permit__r.Business_License__c
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Course_Renewal_Delivery_Method__c</fullName>
-        <externalId>false</externalId>
-        <label>Course Renewal Delivery Method</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Distance / On-Line</fullName>
-                    <default>false</default>
-                    <label>Distance / On-Line</label>
-                </value>
-                <value>
-                    <fullName>Classroom (Instructor in room with students)</fullName>
-                    <default>false</default>
-                    <label>Classroom (Instructor in room with students)</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
         <fullName>Credential_Type__c</fullName>
         <description>Credential Type</description>
         <externalId>false</externalId>
@@ -441,16 +370,6 @@ Permit__r.Business_License__c
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Email__c</fullName>
-        <externalId>false</externalId>
-        <label>Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>External Id of the record</description>
@@ -483,50 +402,6 @@ Permit__r.Business_License__c
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>IDECC_Approval_Expiration_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>IDECC Approval Expiration Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Initial_Contracts__c</fullName>
-        <externalId>false</externalId>
-        <label># Initial Contracts</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Interval_fees__c</fullName>
-        <externalId>false</externalId>
-        <label># Interval fees</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>License_Account__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF( ISPICKVAL(Credential_Type__c , &apos;Engineering/Land Surveying Company&apos;) , TEXT(License__r.MUSW__Primary_Licensee__r.Business_Structure__c),&apos;&apos;)</formula>
-        <label>License Account</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License_Application__c</fullName>
@@ -670,30 +545,6 @@ FALSE)))))))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Number_of_Burials__c</fullName>
-        <externalId>false</externalId>
-        <label># of Burials</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Number_of_Cremations__c</fullName>
-        <externalId>false</externalId>
-        <label># of Cremations</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Number_of_Sites__c</fullName>
         <externalId>false</externalId>
         <label>Number of Sites</label>
@@ -800,62 +651,6 @@ FALSE)))))))</formula>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Phone__c</fullName>
-        <externalId>false</externalId>
-        <label>Phone</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Phone</type>
-    </fields>
-    <fields>
-        <fullName>Pieces_of_Personal_Property__c</fullName>
-        <externalId>false</externalId>
-        <label># Pieces of Personal Property</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Pre_Approval__c</fullName>
-        <externalId>false</externalId>
-        <label>Pre-Approval</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>AQB</fullName>
-                    <default>false</default>
-                    <label>AQB</label>
-                </value>
-                <value>
-                    <fullName>IDECC</fullName>
-                    <default>false</default>
-                    <label>IDECC</label>
-                </value>
-                <value>
-                    <fullName>USPAP Instructor</fullName>
-                    <default>false</default>
-                    <label>USPAP Instructor</label>
-                </value>
-                <value>
-                    <fullName>College</fullName>
-                    <default>false</default>
-                    <label>College</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Program_Area__c</fullName>
         <description>This is used for permit renewal.</description>
         <externalId>false</externalId>
@@ -867,31 +662,6 @@ FALSE)))))))</formula>
         <valueSet>
             <restricted>true</restricted>
             <valueSetName>Program_Area</valueSetName>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Provider_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Provider Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Primary</fullName>
-                    <default>false</default>
-                    <label>Primary</label>
-                </value>
-                <value>
-                    <fullName>Secondary</fullName>
-                    <default>false</default>
-                    <label>Secondary</label>
-                </value>
-            </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
@@ -1037,18 +807,6 @@ FALSE)))))))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Timeshare_Projects__c</fullName>
-        <externalId>false</externalId>
-        <label># Timeshare Projects</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Total_Balance__c</fullName>
         <description>Total_Fees__c - Total_Payments__c</description>
         <externalId>false</externalId>
@@ -1100,15 +858,6 @@ FALSE)))))))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Website__c</fullName>
-        <externalId>false</externalId>
-        <label>Website</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Url</type>
-    </fields>
-    <fields>
         <fullName>Years_Expired__c</fullName>
         <externalId>false</externalId>
         <formula>IF( NOT( ISBLANK( License__r.MUSW__Expiration_Date__c) ) ,
@@ -1138,34 +887,9 @@ FALSE)))))))</formula>
         <columns>Renewed_Date__c</columns>
         <columns>Renewal_Expiration_Date__c</columns>
         <columns>LAST_UPDATE</columns>
-        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Appraiser_Renewals</fullName>
-        <columns>NAME</columns>
-        <columns>Credential__c</columns>
-        <columns>Renewal_Reinstatement_Type__c</columns>
-        <columns>Permit_Type__c</columns>
-        <columns>Applicant__c</columns>
-        <columns>Renewal_Status__c</columns>
-        <columns>Renewed_Date__c</columns>
-        <columns>Renewal_Expiration_Date__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Credential__c</field>
-            <operation>equals</operation>
-            <value>Certified General Appraiser,State Licensed Appraiser,Certified Residential Appraiser</value>
-        </filters>
-        <filters>
-            <field>Renewal_Reinstatement_Type__c</field>
-            <operation>equals</operation>
-            <value>Renewal</value>
-        </filters>
-        <label>Appraiser Renewals</label>
     </listViews>
     <listViews>
         <fullName>Auto_Renewals</fullName>
@@ -1380,22 +1104,7 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Course_Renewal_Delivery_Method__c</picklist>
-            <values>
-                <fullName>Classroom %28Instructor in room with students%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Distance %2F On-Line</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1411,6 +1120,10 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1458,6 +1171,10 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -1471,10 +1188,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1657,10 +1370,6 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -1702,6 +1411,10 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1811,25 +1524,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Pre_Approval__c</picklist>
-            <values>
-                <fullName>AQB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>College</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IDECC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USPAP Instructor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
@@ -1845,253 +1539,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>POWTS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Provider_Type__c</picklist>
-            <values>
-                <fullName>Primary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Secondary</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Renewal_Reinstatement_Type__c</picklist>
-            <values>
-                <fullName>Reinstatement</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renewal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renewal PTO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renewal Plan Review</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Renewal_Status__c</picklist>
-            <values>
-                <fullName>Abandoned</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Complete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denied</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Failed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Generate Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In-Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Incomplete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Passed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Additional Qualifications</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Applicant Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submission Failed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submitted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waiting for Third Party Verification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Withdrawn</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Responsible_Party_Type__c</picklist>
-            <values>
-                <fullName>Account</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Contact</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Course</fullName>
-        <active>true</active>
-        <label>Course</label>
-        <picklistValues>
-            <picklist>Application_Type__c</picklist>
-            <values>
-                <fullName>Appraisers - Real Estate</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Course_Renewal_Delivery_Method__c</picklist>
-            <values>
-                <fullName>Classroom %28Instructor in room with students%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Distance %2F On-Line</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Credential_Type__c</picklist>
-            <values>
-                <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Credential__c</picklist>
-            <values>
-                <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>MHC_Application_Type__c</picklist>
-            <values>
-                <fullName>Change in Ownership</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Expansion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Renewal</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Number_of_Sites__c</picklist>
-            <values>
-                <fullName>1-20</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>101-175</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>175%2B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21-50</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>51-100</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Online_or_Paper_Application__c</picklist>
-            <values>
-                <fullName>Online</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Paper</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Pre_Approval__c</picklist>
-            <values>
-                <fullName>AQB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>College</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IDECC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USPAP Instructor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Program_Area__c</picklist>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes Communities</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Notary Public Commission</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Provider_Type__c</picklist>
-            <values>
-                <fullName>Primary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Secondary</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2249,22 +1696,7 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Course_Renewal_Delivery_Method__c</picklist>
-            <values>
-                <fullName>Classroom %28Instructor in room with students%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Distance %2F On-Line</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2331,6 +1763,10 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -2344,10 +1780,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2530,10 +1962,6 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -2575,6 +2003,10 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2684,25 +2116,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Pre_Approval__c</picklist>
-            <values>
-                <fullName>AQB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>College</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IDECC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USPAP Instructor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
@@ -2718,17 +2131,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>POWTS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Provider_Type__c</picklist>
-            <values>
-                <fullName>Primary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Secondary</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2831,11 +2233,10 @@ FALSE)))))))</formula>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Universal_Default_Renewal</fullName>
+        <fullName>Manufactured_Homes_Renewal_Reinstatement</fullName>
         <active>true</active>
-        <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
-        <description>Renewal/Reinstatement record type for trades credential or Delegated Agent renewal</description>
-        <label>Universal Default Renewal/Reinstatement</label>
+        <description>Renewal/Reinstatement record type for all Manufactured Homes credentials/permits</description>
+        <label>Manufactured Homes Renewal/Reinstatement</label>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
             <values>
@@ -2887,22 +2288,7 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Course_Renewal_Delivery_Method__c</picklist>
-            <values>
-                <fullName>Classroom %28Instructor in room with students%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Distance %2F On-Line</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2922,10 +2308,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Supervisor</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2973,6 +2355,10 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -2986,10 +2372,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3172,7 +2554,547 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MHC_Application_Type__c</picklist>
+            <values>
+                <fullName>Change in Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expansion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Number_of_Sites__c</picklist>
+            <values>
+                <fullName>1-20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>101-175</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>175%2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21-50</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>51-100</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Online_or_Paper_Application__c</picklist>
+            <values>
+                <fullName>Online</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Paper</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Program_Area__c</picklist>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Communities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public Commission</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POWTS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Renewal_Reinstatement_Type__c</picklist>
+            <values>
+                <fullName>Reinstatement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal PTO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal Plan Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Renewal_Status__c</picklist>
+            <values>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Generate Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Responsible_Party_Type__c</picklist>
+            <values>
+                <fullName>Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Universal_Default_Renewal</fullName>
+        <active>true</active>
+        <description>Renewal/Reinstatement record type for trades credential or Delegated Agent renewal</description>
+        <label>Universal Default Renewal/Reinstatement</label>
+        <picklistValues>
+            <picklist>Application_Type__c</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credential_Type__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist In Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credential__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3217,6 +3139,10 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3326,25 +3252,6 @@ FALSE)))))))</formula>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Pre_Approval__c</picklist>
-            <values>
-                <fullName>AQB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>College</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IDECC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USPAP Instructor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
@@ -3360,17 +3267,6 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>POWTS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Provider_Type__c</picklist>
-            <values>
-                <fullName>Primary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Secondary</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
