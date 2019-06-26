@@ -1,14 +1,5 @@
-/************************************************************************************************************
-** Name             : DOL_ePaymentRTPC
-** Description   	: Process Real Time Payment Conformation request from ePayment 
-** Version          : 1.0
-**-------------------------------------------------------------------------------------------------------------------------------
-** Revision History:
-**---------------------------
-** [Laltu Banerjee]: Created
-*************************************************************************************************************/
-public class DOL_ePaymentRTPC {
-
+global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sObject> {
+    
     public FeeVO[] feeVOs { get; set; }
     public InvoiceVO[] invoiceVOs { get; set; }
     public ReceiptVO[] receiptVOs { get; set; }
@@ -38,83 +29,116 @@ public class DOL_ePaymentRTPC {
     private Decimal m_totalOwed { get; set; }
     private BGBK.Payable[] payables {get; set;}
     private boolean processSuccessful { get; set; }
-    private DOL_ePaymentRTPCPOJO ePaymentRTPCData { get; set; }
+    private DOL_EpaymentRemittanceInput tempRemittanceInput { get; set; }
+    private EpaymentRemittanceData__c tempRecord {get; set; }
     private MUSW__Receipt__c receipt {get; set; }
+    private Map<String,String> parameterMap {get; set; }
 
-    //RTPC Input
     private String cartId = '',SFDCfeeIds='',SFDCappId='',receiptId = '';
-    
 
     private DOL_Dao dao = new DOL_Dao();
-    private HTTPRestResponse response = HTTPRestResponse.getInstance();
 
-    public  HTTPRestResponse processEpaymentRTPCRequest(String json){
-
-        Map<String,String> parameterMap = new Map<String,String>();
-        receipt = null;
-        try{
-            ePaymentRTPCData = DOL_ePaymentRTPCPOJO.parse(json);
-            // get the parameters.
-            List<DOL_ePaymentRTPCPOJO.Parameter> parameterList = ePaymentRTPCData.Parameter; 
-            for(DOL_ePaymentRTPCPOJO.Parameter parameter : parameterList ){
-                parameterMap.put(parameter.ParameterName,parameter.ParameterValue);
-            }
-            receiptId = parameterMap.get('SFDClicId');
-            cartId = parameterMap.get('SFDCId');
-            SFDCfeeIds = parameterMap.get('SFDCfeeIds');
-            SFDCappId = parameterMap.get('SFDCappId');
-
-            if(isNotNullOrBlank(receiptId)){
-                receipt = new MUSW__Receipt__c(id=receiptId);
-            }
-            if(receipt != null){
-                updateReceiptFromRTPCPojo(ePaymentRTPCData,receipt);
-                DOL_Dao.save(receipt);
-                if(! isPaymentRecorded()){
-                    initFinancialObject();
-                    processEpayment();
-                }
-                response.addLog('receipt updated successfully');
-                response.addLog('success');
-                response.setStatusCode(200);
-            }else{
-                response.addErrorMsg('ReceiptId not found , not able to process RTPC request');
-                response.setStatusCode(400);
-            }
-        }
-        catch(Exception error){
-            response.addErrorMsg('message :- '+error.getMessage());
-            response.addErrorMsg('StackTrace :- '+error.getStackTraceString());
-            response.setStatusCode(400);
-        }
-        return response;
+    global DOL_Epayment_ProcessRemittanceData(){
     }
 
+    global Database.QueryLocator start(Database.BatchableContext BC){
+        System.debug('DOL_Epayment_ProcessRemittanceData::start...');
+        return Database.getQueryLocator([ select id,Details__c,File_Name__c,Status__c,INFO__C from EpaymentRemittanceData__c where Status__c = 'Unprocessed' ]);
+    }
+    
+    global void execute(Database.BatchableContext BC, List<EpaymentRemittanceData__c> remittanceRecords){
+        
+        if(remittanceRecords != null && remittanceRecords.size() > 0){
+            Boolean isRecordProcessed;
+            for(EpaymentRemittanceData__c record : remittanceRecords){
+                tempRecord = record;
+                isRecordProcessed = false;
+                try{
+                    tempRemittanceInput = DOL_EpaymentRemittanceInput.parse(record.Details__c);
+                    receipt = null;
+                    parameterMap = new Map<String,String>();
+                    parameterMap.put(tempRemittanceInput.sfdcParameter1Name,tempRemittanceInput.sfdcParameter1Value);
+                    parameterMap.put(tempRemittanceInput.sfdcParameter2Name,tempRemittanceInput.sfdcParameter2Value);
+                    parameterMap.put(tempRemittanceInput.sfdcParameter3Name,tempRemittanceInput.sfdcParameter3Value);
+                    parameterMap.put(tempRemittanceInput.sfdcParameter4Name,tempRemittanceInput.sfdcParameter4Value);
 
-    private void updateReceiptFromRTPCPojo(DOL_ePaymentRTPCPOJO rtpcData, MUSW__Receipt__c receipt){
-        if(isNotNullOrBlank(rtpcData.ConfirmationId))
-            receipt.MUSW__Payment_Gateway_Transaction_Number__c = rtpcData.ConfirmationId;
-        if(isNotNullOrBlank(rtpcData.PaymentMethod)){
-            receipt.MUSW__Payment_Method__c = rtpcData.PaymentMethod;
+                    receiptId = parameterMap.get('SFDClicId');
+                    cartId = parameterMap.get('SFDCId');
+                    SFDCfeeIds = parameterMap.get('SFDCfeeIds');
+                    SFDCappId = parameterMap.get('SFDCappId');
+
+                    if(isNotNullOrBlank(receiptId)){
+                        receipt = new MUSW__Receipt__c(id=receiptId);
+                    }
+                    
+                    if(receipt != null){
+                        updateReceiptFromRemittanceInput(tempRemittanceInput,receipt);
+                        DOL_Dao.save(receipt);
+                        if(! isPaymentRecorded()){
+                            initFinancialObject();
+                            processEpayment();
+                        }
+                        isRecordProcessed = true;
+                        tempRecord.INFO__c += 'Record processed successfully';
+                    }
+                    else{
+                        tempRecord.INFO__c += 'Receipt Id not found or not valid';
+                    }
+                    
+                }catch(Exception error){
+                    tempRecord.INFO__c += 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
+                    System.debug('info '+record.INFO__c);
+                }
+                if(isRecordProcessed)
+                    tempRecord.Status__c = 'Processed';
+                else
+                    tempRecord.Status__c = 'Failed';
+            }
+            DOL_Dao.save(remittanceRecords);
+        }
+    }
+    
+    global void finish(Database.BatchableContext BC){   
+    
+    }
+
+    private void updateReceiptFromRemittanceInput(DOL_EpaymentRemittanceInput remittanceData, MUSW__Receipt__c receipt){
+        if(isNotNullOrBlank(remittanceData.transactionConfirmationId))
+            receipt.MUSW__Payment_Gateway_Transaction_Number__c = remittanceData.transactionConfirmationId;
+        if(isNotNullOrBlank(remittanceData.paymentMethod)){
+            receipt.MUSW__Payment_Method__c = remittanceData.paymentMethod;
             if(receipt.MUSW__Payment_Method__c == 'CC')
                 receipt.MUSW__Payment_Method__c = 'Credit Card';
         }
-        if(isNotNullOrBlank(rtpcData.PaymentAmount))
-            receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(rtpcData.PaymentAmount);
-        if(isNotNullOrBlank(rtpcData.PaymentEffectiveDate))
-            receipt.MUSW__Effective_Date__c = DOL_AppUtility.getDate(rtpcData.PaymentEffectiveDate,'YYYYMMDD');
-        if(isNotNullOrBlank(rtpcData.DueDate))
-            receipt.Date__c = DOL_AppUtility.getDate(rtpcData.DueDate,'YYYYMMDD');
-        if(isNotNullOrBlank(rtpcData.PayerFirstName))
-            receipt.Payer_First_Name__c = rtpcData.PayerFirstName;
-        if(isNotNullOrBlank(rtpcData.PayerLastName))
-            receipt.Payer_Last_Name__c = rtpcData.PayerLastName;
-        if(isNotNullOrBlank(rtpcData.LastFourAccountNumber))
-            receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(rtpcData.LastFourAccountNumber);
-        if(isNotNullOrBlank(rtpcData.CardType))
-            receipt.MUSW__Card_Type__c = rtpcData.CardType;
-        if(isNotNullOrBlank(rtpcData.PaymentAuthorization))
-            receipt.Card_Authorized__c = rtpcData.PaymentAuthorization;
+        if(isNotNullOrBlank(remittanceData.dueDate))
+            receipt.Date__c = DOL_AppUtility.getDate(remittanceData.dueDate,'YYYYMMDD');
+        if(isNotNullOrBlank(remittanceData.paymentAmount))
+            receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(remittanceData.paymentAmount);
+        if(isNotNullOrBlank(remittanceData.totalAmount))
+            receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(remittanceData.totalAmount);
+        if(isNotNullOrBlank(remittanceData.paymentEffectiveDate))
+            receipt.MUSW__Effective_Date__c = DOL_AppUtility.getDate(remittanceData.paymentEffectiveDate,'YYYYMMDD');
+        if(isNotNullOrBlank(remittanceData.billerBusinessDate))
+            receipt.ACH_BillerBusinessDate__c = DOL_AppUtility.getDate(remittanceData.billerBusinessDate,'YYYYMMDD');
+        if(isNotNullOrBlank(remittanceData.initiationDate) && isNotNullOrBlank(remittanceData.initiationTime))
+            receipt.Initiation_Date_and_Time__c = DOL_AppUtility.getDateTime(remittanceData.initiationDate+' '+remittanceData.initiationTime,'YYYYMMDD HHmmSS');
+        if(isNotNullOrBlank(remittanceData.paymentMethod))
+            receipt.MUSW__Payment_Method__c = remittanceData.paymentMethod;
+        if(isNotNullOrBlank(remittanceData.cardType))
+            receipt.MUSW__Card_Type__c = remittanceData.cardType;
+        if(isNotNullOrBlank(remittanceData.lastFourAccountNumber) && DOL_AppUtility.isValidDecimalValue(remittanceData.lastFourAccountNumber) )
+            receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(remittanceData.lastFourAccountNumber);
+        if(isNotNullOrBlank(remittanceData.paymentAuthorization))
+            receipt.Card_Authorized__c = remittanceData.paymentAuthorization;
+        if(isNotNullOrBlank(remittanceData.paymentStatus))
+            receipt.US_Bank_Payment_Status__c = remittanceData.paymentStatus;
+        if(isNotNullOrBlank(remittanceData.firstName))
+            receipt.Payer_First_Name__c = remittanceData.firstName;
+        if(isNotNullOrBlank(remittanceData.lastName))
+            receipt.Payer_Last_Name__c = remittanceData.lastName;
+        if(isNotNullOrBlank(remittanceData.companyName))
+            receipt.Company_Name__c = remittanceData.companyName;
+
     }
 
     private boolean isPaymentRecorded(){
@@ -177,7 +201,7 @@ public class DOL_ePaymentRTPC {
 
         rs = new MUSW__Receipt__c[]{};
         rs.add(receipt);
-        ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentRTPCData.PaymentAmount), m_rs);
+        ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(tempRemittanceInput.PaymentAmount), m_rs);
         newReceiptVO.pmtMethodSelected=receipt.MUSW__Payment_Method__c;
         receiptVOs.add(newReceiptVO);
         cart.BGBK__Process_DateTime__c = System.now();
@@ -202,19 +226,19 @@ public class DOL_ePaymentRTPC {
             processSuccessful = m_ps.processPayment(payables, rsAmt, accountSelected, cart.BGBK__Process_DateTime__c);
             if(processSuccessful){
                 if(cart.BGBK__Last_Payment_Amount__c == null)
-                    cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(ePaymentRTPCData.PaymentAmount);
+                    cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(tempRemittanceInput.PaymentAmount);
                 else
-                    cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentRTPCData.PaymentAmount);
+                    cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(tempRemittanceInput.PaymentAmount);
                 update cart;
             }else{
-                response.addErrorMsg('Payment is not processed successfully');
-                //cleanReceiptsAfterPaymentFail(receiptVOs);
+                 tempRecord.INFO__c += 'Payment is not processed successfully';
+                cleanReceiptsAfterPaymentFail(receiptVOs);
             }
 
         }catch(Exception error){
-            response.addErrorMsg('error occured '+error.getMessage());
-            response.addErrorMsg(' stack trace '+error.getStackTraceString());
-            //cleanReceiptsAfterPaymentFail(receiptVOs);
+            tempRecord.INFO__c += 'error occured '+error.getMessage();
+            //response.addErrorMsg(' stack trace '+error.getStackTraceString());
+            cleanReceiptsAfterPaymentFail(receiptVOs);
         }
 
     }
@@ -236,13 +260,34 @@ public class DOL_ePaymentRTPC {
         }
     }
 
+    @TestVisible private void cleanReceiptsAfterPaymentFail(ReceiptVO[] recVos)      
+    {       
+        Set<Id> recToInspectForDel = new Set<Id>();     
+        MUSW__Receipt__c[] recToDel = new MUSW__Receipt__c[]{};     
+        for(ReceiptVO rec : recVos){        
+            if(rec.pmtMethodSelected != 'Deposit' || rec.pmtMethodSelected != 'Other')      
+                recToInspectForDel.add(rec.r.Id);       
+        }       
+        if(recToInspectForDel.size() > 0) {     
+            MUSW__Receipt__c[] receiptsToDel = [SELECT Id, MUSW__Amount_Tendered__c,MUSW__Amount_Available__c FROM MUSW__Receipt__c WHERE ID in:recToInspectForDel];        
+            for(MUSW__Receipt__c receipt : receiptsToDel) {     
+                if(receipt.MUSW__Amount_Tendered__c == receipt.MUSW__Amount_Available__c)       
+                    recToDel.add(receipt);      
+            }       
+            if(recToDel.size() > 0){
+                delete recToDel;
+                //response.addLog('receipt Deleted due to payment failure');
+            }     
+        }       
+    }
+
     private static boolean isNotNullOrBlank(String input){
         if(input != null && input != '')
             return true;
         return false;
     }
 
-    // Inner Classes required for Payment transactions
+        // Inner Classes required for Payment transactions
     private class FeeVO
     {
         public MUSW__Fee__c f { get; set; }
@@ -322,5 +367,4 @@ public class DOL_ePaymentRTPC {
             isSelected      = true;
         }
     }
-
 }

@@ -1,3 +1,12 @@
+/************************************************************************************************************
+** Name             : DOL_ePaymentReturnSession
+** Description   	: Return session from ePayment passed here to reterive the details.
+** Version          : 1.0
+**-------------------------------------
+** Revision History:
+**---------------------------
+** [Laltu Banerjee]: Created
+*************************************************************************************************************/
 public class DOL_ePaymentReturnSession {
 	
     public String ReturnValue {get; private set;} // getting receiptId in Return Value
@@ -21,7 +30,7 @@ public class DOL_ePaymentReturnSession {
     public String IsPayorRegistered { get; private set; }
     public String Email { get; private set; }
     public String SFDCId { get; private set; }
-    public String SFDCfeeId { get; private set; } // coma seperated feeId
+    public String SFDCfeeId { get; private set; } // DOL_AppConstants.ePaymentUrlListValuesSeperator seperated feeId
     public String SFDCappId { get; private set; }
     public String SFDClicId { get; private set; }
     

@@ -1,19 +1,22 @@
 @isTest
 public class DOL_ePaymentSessionTransfer_Test {
-	private static String contactId;
-    @testSetUp
-    private static void testSetUp(){
-        Contact con = new Contact(lastName='sdfzDF');
-        insert con;
-        contactId = con.id;
-    }
+	
     @isTest
     public static void test(){
-        List<String> strList = new List<String>();
-        strList.add('sdfdf');
-        strList.add('sfsdf');
-        DOL_ePaymentSessionTransferDetails ePaymentSessionTransfer = new DOL_ePaymentSessionTransferDetails('productCode','234','CC',contactId,contactId,strList,true);
-        DOL_ePaymentSessionTransfer.getEncryptedSessionString(ePaymentSessionTransfer);
+        Contact con = TestUtility.getContact();
+        insert con;
+        List<String>  ids = new List<String>();
+        ids.add('0000001');
+        ids.add('0000002');
+        ids.add('000003');
         
+        DOL_ePaymentSessionTransferDetails detail = new DOL_ePaymentSessionTransferDetails(
+        											'product Code',
+        											'567','CC',con.id,'56666tyyy',ids,true);
+        DOL_ePaymentSessionTransferDetails detail2 = new DOL_ePaymentSessionTransferDetails(
+        											'product-code','564','CC',con.Id);
+        
+        String encryptedString = DOL_ePaymentSessionTransfer.getEncryptedSessionString(detail);
+        DOL_ePaymentSessionTransfer.decryptSessionData(encryptedString);
     }
 }

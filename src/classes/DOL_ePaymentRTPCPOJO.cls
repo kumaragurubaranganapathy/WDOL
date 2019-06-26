@@ -32,7 +32,8 @@ public class DOL_ePaymentRTPCPOJO {
 	public String PayerPhoneNumber;
 	public String PayerEmail;
 	public String LastFourAccountNumber;
-	public String BillerBusinessDate;
+	public String CardType;
+	public String PaymentAuthorization;
 
 	public class PaymentAddress {
 		public String StreetAddress1;
