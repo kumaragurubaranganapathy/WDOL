@@ -290,6 +290,93 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+		<fields>
+        <fullName>Respondent_First_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent First Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Respondent_Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent Last Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Respondent_License_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent License Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Respondent_Mailing_Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent Mailing Address</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Respondent_Phone_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent Phone Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+	<fields>
+        <fullName>Respondent_City__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Respondent_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Respondent Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>	
+    <fields>
+        <fullName>Review__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Review</label>
+        <referenceTo>MUSW__Review__c</referenceTo>
+        <relationshipLabel>Complaints</relationshipLabel>
+        <relationshipName>Complaints</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>Respondent_Business_Email__c</fullName>
         <externalId>false</externalId>
