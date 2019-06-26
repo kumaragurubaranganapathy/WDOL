@@ -303,7 +303,7 @@
         <label>Application Method</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -399,7 +399,7 @@
         <label>Program Type</label>
         <required>true</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -526,7 +526,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -648,7 +648,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <required>false</required>
         <scale>3</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -712,7 +712,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -910,7 +910,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <label>Course Title</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
@@ -961,7 +961,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <label>License Type</label>
         <required>true</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -1257,7 +1257,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <label>Effective Date of Bond</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -1378,7 +1378,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <label>Expiration Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -1389,7 +1389,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <label>Expiration Date of Bond</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -1650,7 +1650,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <label>License Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
         <unique>false</unique>
@@ -1676,7 +1676,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <label>License Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
     </fields>
@@ -1687,7 +1687,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -1756,7 +1756,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipName>License2s</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -1933,7 +1933,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <label>Expiration Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -1958,7 +1958,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <label>Issue Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -2017,7 +2017,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipName>License2s</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -2074,7 +2074,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <label>Renewed Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -2239,7 +2239,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <required>false</required>
         <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -2686,7 +2686,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -2810,6 +2810,68 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </valueSetDefinition>
         </valueSet>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Print_License_DES__c</fullName>
+        <externalId>false</externalId>
+        <label>Print License (DES)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Print_License_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Print License (Email)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Print_Renewal_Coupon__c</fullName>
@@ -3272,7 +3334,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <label>RFI Send Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -3295,7 +3357,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <label>RFP Send Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -3618,7 +3680,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -3718,7 +3780,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <relationshipName>Child_Accounts</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -4215,7 +4277,15 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <label>RBS - Queue</label>
         <queue>RBS_Queue</queue>
     </listViews>
-    
+    <listViews>
+        <fullName>RE_AMR_Queue_License2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RE AMR Queue</label>
+        <queue>RE_AMR_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_All</fullName>
         <columns>NAME</columns>
@@ -4820,10 +4890,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Appraiser Course</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Appraiser Supervisor</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5700,6 +5766,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6636,10 +6732,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <fullName>Appraiser Course</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Appraiser Supervisor</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Credential__c</picklist>
@@ -7366,6 +7458,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8383,10 +8505,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Appraiser Supervisor</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Appraiser Trainee</fullName>
                 <default>false</default>
             </values>
@@ -9252,6 +9370,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10193,10 +10341,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Appraiser Supervisor</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Appraiser Trainee</fullName>
                 <default>false</default>
             </values>
@@ -11074,6 +11218,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12015,10 +12189,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Appraiser Supervisor</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Appraiser Trainee</fullName>
                 <default>false</default>
             </values>
@@ -12888,6 +13058,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13877,10 +14077,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Appraiser Supervisor</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Appraiser Trainee</fullName>
                 <default>false</default>
             </values>
@@ -14754,6 +14950,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -15747,10 +15973,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Appraiser Supervisor</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Appraiser Trainee</fullName>
                 <default>false</default>
             </values>
@@ -16628,6 +16850,36 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_DES__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Print_License_Email__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
