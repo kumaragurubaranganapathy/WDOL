@@ -126,6 +126,45 @@
             <valueSetName>List_of_Countries</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Course_Completion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Completion Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Course_Hours_or_Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Hours or Units</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Course_Provider_or_School__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Provider or School</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Course_Name__c</fullName>
         <externalId>false</externalId>
@@ -417,6 +456,14 @@
             <valueSetName>Exam_Type</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>HSW__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>HSW</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Hours__c</fullName>
         <externalId>false</externalId>
@@ -615,6 +662,14 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>OSHA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>OSHA</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Other__c</fullName>
