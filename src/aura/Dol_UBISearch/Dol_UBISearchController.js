@@ -11,6 +11,9 @@
         if(ubiInput.includes('-')){
             ubiInput = ubiInput.split('-').join('');    // Remove dash (-) if mistakenly entered.
         }
+        if(ubiInput.includes(' ')){
+            ubiInput = ubiInput.split(' ').join('');    // Remove dash (space) if mistakenly entered.
+        }
         if(ubiInput.length > 2){
             var ubiInputwithDash = ubiInput.match(/.{1,3}/g).join('-');
         	//document.getElementById(element.id).value = finalVal;
@@ -24,16 +27,17 @@
         var valid = true;
         //601810719
         console.log('ubi.length**=='+ubi.length);
+        var ubiLength = ubi.length;
         console.log('accountId=='+accountId);
         if(ubi == '' || ubi == null){
             valid = false;
             helper.showToast(component, event, "Error!", "error", "UBI# can not be blank.");
         }
-        /*else if(ubi != '' || ubi != null && ubi.length != 11){
+        else if(ubi != '' && ubi != null && ubi.length < 11){
             valid = false;
             helper.showToast(component, event, "Error!", "error", "UBI# lenght can not be leass than 9 characters");
             
-        }*/
+        }
         
         var action = component.get("c.transformAndSave");
         action.setParams({
@@ -47,11 +51,12 @@
                 var result = actionResult.getReturnValue();
                 if(result == 'success'){
                     console.log('success==');
-                    helper.showToast(component, event, "Success!", "success", "Your serach result has has been updated successfully.");
+                    helper.showToast(component, event, "Success!", "success", "Your Search result has has been updated successfully.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
                 }
-                if(result == 'MismatchInactive'){
+                //follwoing two conditions have been removed as per User Story 1436
+                /*if(result == 'MismatchInactive'){
                     console.log('MismatchInactive==');
                     helper.showToast(component, event, "Warning!", "warning", "Business name is Mismatch and UBI Status is not Active");
                     helper.setDefaultFields(component);
@@ -62,12 +67,13 @@
                     helper.showToast(component, event, "Warning!", "warning", "Business name is Mismatch.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
-                }
+                }*/
                 if(result == 'Inactive'){
                     console.log('Inactive==');
                     helper.showToast(component, event, "Warning!", "warning", "UBI Status is not Active");
-                    helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
+                    helper.setDefaultFields(component);
+                    
                 }
                 if(result == 'UBI not found'){
                      console.log('UBI not found==');
@@ -87,7 +93,7 @@
                     console.log('error occoured==');
                     helper.showToast(component, event, "Error!", "error", "Error Occoured from SOS");
                     helper.setDefaultFields(component);
-                    //$A.get('e.force:refreshView').fire();
+                    $A.get('e.force:refreshView').fire();
                 }
             }
         });
