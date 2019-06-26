@@ -66,6 +66,18 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Education History</relationshipLabel>
+        <relationshipName>Education_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
         <description>This the application type of the credential.</description>

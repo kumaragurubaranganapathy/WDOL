@@ -87,4 +87,21 @@ public class Polaris_ApplyForLicenseService {
         }
         return lstLicense;
     }
+    public static List<List<LnP_JSONParser.CompositeRequest>> partition(List<LnP_JSONParser.CompositeRequest> lstString, integer chunkSize){
+        //system.debug('lstString'+lstString);
+        integer counter = 24; 
+        List<list<LnP_JSONParser.CompositeRequest>> result =new  List<list<LnP_JSONParser.CompositeRequest>>();
+       for (LnP_JSONParser.CompositeRequest lstdata : lstString) {
+            if (math.mod(counter,chunksize) == 0) {
+                result.add(new list<LnP_JSONParser.CompositeRequest>());
+                system.debug('gg'+counter);
+               
+            }
+            counter++;
+            result.get(result.size() - 1).add(lstdata); 
+        }
+        return result;
+        
+    }
+
 }

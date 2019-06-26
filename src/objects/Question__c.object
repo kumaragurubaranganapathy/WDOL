@@ -63,6 +63,28 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>Error_Message__c</fullName>
+        <externalId>false</externalId>
+        <label>Error Message</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Regex_Validation__c</fullName>
+        <externalId>false</externalId>
+        <label>Regex Validation</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Application_Method__c</fullName>
         <description>This refers to the application method being applied for- General Application, Examination, etc.</description>
