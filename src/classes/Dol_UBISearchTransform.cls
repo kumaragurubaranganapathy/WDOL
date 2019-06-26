@@ -30,20 +30,21 @@ public class Dol_UBISearchTransform {
                     if(Dol_IntegrationUtil.isNotBlank(accountId)){
                         selectedAccount = [select Id, Name from Account where id=:accountId limit 1];
                     }
-                    
-                     if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && !businessStatus.equalsIgnoreCase('active')){
+                    System.debug('selectedAccount'+selectedAccount);
+                    //follwoing two conditions have been removed as per User Story 1436
+                     /*if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && !businessStatus.equalsIgnoreCase('active')){
                         status = 'MismatchInactive';
                     }
                     
                     if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && businessStatus.equalsIgnoreCase('active')){
                         status = 'Mismatch';
-                    }
+                    }*/
                     
-                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name == businessName && !businessStatus.equalsIgnoreCase('active')){
+                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && !businessStatus.equalsIgnoreCase('active')){
                         status = 'Inactive';
                     }
         
-                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name.equalsIgnoreCase(businessName) && businessStatus.equalsIgnoreCase('active')){
+                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && businessStatus.equalsIgnoreCase('active')){
                         Map<String,Dol_SOSResponse.GoverningPersons> governingMap = new Map<String,Dol_SOSResponse.GoverningPersons>();
                         Map<String,MUSW__Account_Contact__c> accountConMap = new Map<String,MUSW__Account_Contact__c>();
                         List<Dol_SOSResponse.GoverningPersons> uniqueGovList = new List<Dol_SOSResponse.GoverningPersons>();
@@ -94,6 +95,9 @@ public class Dol_UBISearchTransform {
                                     newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
                                     newAccountCon.First_Name__c = govdetail.firstName != null ? govdetail.firstName.trim() : '' ;
                                     newAccountCon.MUSW__Account__c = accountId;
+                                    //Hardcording the Role and Status field as per user Story 1436.
+                                	newAccountCon.Role__c = 'Governing Persons';
+                                	newAccountCon.Status__c = 'Active';
                                     newAccountConList.add(newAccountCon);
                                 }
                         }else if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isEmpty(accountConList)){
@@ -104,6 +108,9 @@ public class Dol_UBISearchTransform {
                                 newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
                                 newAccountCon.First_Name__c = govdetail.firstName != null ? govdetail.firstName.trim() : '' ;
                                 newAccountCon.MUSW__Account__c = accountId;
+                                //Hardcording the Role and Status field as per user Story 1436.
+                                newAccountCon.Role__c = 'Governing Persons';
+                                newAccountCon.Status__c = 'Active';
                                 newAccountConList.add(newAccountCon);
                             } 
                          }
