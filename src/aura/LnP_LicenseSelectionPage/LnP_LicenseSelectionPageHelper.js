@@ -87,6 +87,20 @@
                     if(applicationMethod){  
                       window.setTimeout(
                       $A.getCallback(function() {
+						  var instruction = component.get("v.instructions");
+                          console.log("appInstructions",instruction)
+                          if(instruction != '') {
+                              appInstructions.classList.remove("slds-hide");
+                          }
+                          if(component.get("v.showAccountDropdown") == false) {
+                              component.find("button1").set('v.disabled',true);
+                              return false;
+                          } 
+                          if(component.get("v.accounts") != ''){
+                              $A.util.removeClass(component.find("accountPickerId"), 'slds-hide');
+                          } else {
+                              component.find("button1").set('v.disabled',true);
+                          }
                           eliTypeGridDiv.classList.remove("slds-hide");
                           component.set("v.eliQuesNo",1);
                           if(eliQuesList.length == 0){
