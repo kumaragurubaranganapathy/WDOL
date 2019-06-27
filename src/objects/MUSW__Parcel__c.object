@@ -1824,6 +1824,17 @@ CASE( MUSW__AlertCode__c,
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>IsParcelRecordUpdatedForASC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description></description>
+        <externalId>false</externalId>
+        <label>IsParcelRecordUpdatedForASC</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+
     <label>Parcel</label>
     <listViews>
         <fullName>MUSW__All</fullName>

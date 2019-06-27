@@ -1270,6 +1270,17 @@ CASE( MUSW__AlertCode__c,
         <type>Number</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>IsContactRecordUpdatedForASC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description></description>
+        <externalId>false</externalId>
+        <label>IsContactRecordUpdatedForASC</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+
     <listViews>
         <fullName>AllContacts</fullName>
         <columns>FULL_NAME</columns>
