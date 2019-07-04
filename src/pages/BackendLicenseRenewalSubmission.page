@@ -1,0 +1,14 @@
+<!--**
+* User Story: 124- Submission List Triggers 
+* Name: BackendLicenseRenewalSubmission
+* Type: Visual Force Page
+* Description: Used to display submission component for license renewals in backoffice
+* Date:        Developer/Company                 	Description
+* ---------------------------------------------------------------------------------------------------------------------------------------- *
+* 08/06/2018   Sharad Maheshwari/Deloitte           Initial Creation
+**-->
+<apex:page standardController="Renewal_Application__c" docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false">
+    <apex:outputpanel layout="block" >
+    	<c:BackendLicenseSubmission licenseId="{!Renewal_Application__c.Id}" permitId="{!Renewal_Application__c.Id}" renewalPTOFlag="{!IF((Renewal_Application__c.Renewal_Reinstatement_Type__c=='RenewalPTO'),'TRUE','FALSE')}" renewalFlag="{!IF((Renewal_Application__c.Renewal_Reinstatement_Type__c=='Renewal'),'TRUE','FALSE')}" reinstatementFlag="{!IF((Renewal_Application__c.Renewal_Reinstatement_Type__c=='Reinstatement'),'TRUE','FALSE')}"/>
+    </apex:outputpanel>    
+</apex:page>

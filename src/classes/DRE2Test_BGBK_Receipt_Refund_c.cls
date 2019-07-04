@@ -1,0 +1,1 @@
+@isTest private class DRE2Test_BGBK_Receipt_Refund_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('BGBK__Receipt_Refund__c'); } }

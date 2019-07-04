@@ -1,0 +1,86 @@
+<apex:page controller="BGBK.CartPrintController" renderAs="pdf" applyBodyTag="false" applyHtmlTag="false" showHeader="false">
+    <html>
+    <head>
+        <style type="text/css" media="print">
+        @page
+        {          
+            @top-left
+            {
+                content: element(header);
+            }
+            @bottom-right
+            {
+                content: element(footer);
+            }
+            margin:1in;
+        }
+        div.header
+        {
+            display: block;   
+            position: running(header);
+        }           
+        .cityName
+        {
+            font-size:16px;
+            font-weight:bold;
+        }
+        .citySubName
+        {
+            font-size:12px;
+            font-weight:bold;
+        }
+        div.footer
+        {
+            display: block;
+            position: running(footer);
+            height:200px;
+        }
+        
+        body {font-family:'Arial','Helvetica',sans-serif;font-size:11px; }
+        </style>
+    </head>
+    
+    <body>
+    <div class='header'>
+        <apex:insert name="CartPrintHeaderCustom">
+            <div name='hcontent' style='padding-top:4px;'>
+                <div  name='Main' style='valign:top;float:left;'> <span class='cityName'>{!$Organization.Name}</span>
+                </div>
+                <div name='Contact' style='font-size:11px;float:right;text-align:right;padding-top:10px;'>
+                   {!$Organization.Street} | {!$Organization.City}, {!$Organization.State} {!$Organization.PostalCode}<br/>
+                   <a href="{!websiteUrl}">{!websiteUrl}</a> | Tel: {!$Organization.Phone} | Fax: {!$Organization.Fax}<br/>              
+                   {!now()}
+                </div>
+                <div style='clear:both;'></div> 
+                <hr></hr>
+            </div>
+        </apex:insert>
+    </div>
+    
+    <div class='footer'>
+        <apex:insert name="CartPrintFooterCustom">
+            <hr></hr>       
+            <div style='float:left;'>
+               {!$Organization.Street}<br></br> 
+               {!$Organization.City}, {!$Organization.State}, {!$Organization.Country}, {!$Organization.PostalCode}
+            </div>
+            <!-- to be implemented on client-side (if needed)
+            <div style='float:right;'>
+               <img style='height:40px;' src="{!URLFOR($Resource.LetterImages, 'Mammoth_header.gif')}" />
+            </div>
+            -->
+            <div style='clear:both;'></div>
+        </apex:insert>
+    </div>
+    
+    <c:CartConfirm cart="{!cart}" receipts="{!rs}" fees="{!fees}" invoices="{!invoices}" deposits="{!deposits}" feePayments="{!feePayments}" depositPayments="{!depositPayments}" invoicePayments="{!invoicePayments}" payment="{!IF(pmt != null, pmt,null)}" paymentFailed="{!IF(pmt != null, paymentFailed , false)}" emailAddress="{!emailAddress}" totalAmount="{!totalAmount}"/>
+    
+    <br/><br/>
+    <div>
+        <apex:insert name="CartPrintBodyCustom">
+        Thank you for your transaction. We appreciate your business and look forward to serving you in the future.
+        </apex:insert>
+    </div>
+    </body>
+    </html>
+</apex:page>

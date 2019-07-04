@@ -1,0 +1,160 @@
+.THIS {
+}
+
+ .THIS ::placeholder{
+     font-size: 16px;
+     color: #c7c8c1;
+     font-style: oblique;
+}
+ .THIS .login-btn-padding{
+     padding-left:1.5rem;
+}
+ .THIS .sub-section{
+     margin-top: 50px;
+}
+ .THIS .control .slds-form-element__control .slds-checkbox{
+     padding: 20px;
+}
+
+ .THIS .header{
+     font-size: 25px;
+     font-weight: 700;
+}
+ .THIS .license-btn{
+     padding: 73px 0px 0 0;
+}
+ .THIS.page-header{
+     font-weight: 400;
+     color: token(blue);
+     font-size: 28px;
+     margin-left: 2%;
+}
+ .THIS .field-item{
+     padding: 0px 25px 25px 25px;
+}
+ .THIS .sectionIconBar{
+     text-align: center;
+}
+ .THIS .section{
+     padding: 0 30px;
+}
+ .THIS .login-form{
+      width: 400px;
+}
+ .THIS .button-section{
+     width: -webkit-fill-available;
+     padding: 50px;
+     margin-left: auto;
+     text-align: -webkit-auto;
+}
+ .THIS label{
+     font-size:16px;
+}
+ .THIS .slds-form-element__label{
+     padding:0;
+     font-size: 16px;
+}
+
+ .THIS .addList{
+     position:absolute;
+     z-index:1000;
+     background-color:white;
+     width: 342px;
+     height: 200px;
+     overflow: auto;
+     cursor:pointer;
+}
+ .THIS .footer-bottom-margin{
+     margin-bottom: 35px;
+}
+ .THIS .btn {
+     width:auto;
+}
+ .THIS .login-btn {
+     width:150px;
+     margin-top:1rem;
+}
+.THIS .errortext{
+    color:#c23934;
+    font-size: .75rem;
+    margin-top: .125rem;
+    display: block;
+    padding-left: 25px;
+}
+.THIS .slds-col.field-item:nth-child(2){
+    padding-bottom:0;
+}
+ @media only screen and (min-width: 768px) and (max-width: 1023px){
+     .THIS.page-header{
+         font-size: 35px;
+    }
+     .THIS .header{
+         font-size: 35px;
+    }
+     .THIS div{
+         font-size:14px;
+    }
+     .THIS .login-form {
+         width: 100% !important;
+    }
+     .THIS .footer-bottom-margin .slds-medium-size_1-of-2,.THIS .footer-bottom-margin .slds-medium-size--1-of-2 {
+         width: 50%;
+    }
+     .THIS .login-form-layout{
+         width:50%;
+    }
+}
+ @media t(mqSmall){
+     .THIS.page-header{
+         font-size: 21px;
+    }
+    .THIS .control .slds-form-element__control .slds-checkbox {
+         padding: 20px;
+         padding-left:0px;
+    }
+     .THIS select {
+         font-size:14px;
+    }
+     .THIS .cLnP_Path .active-path-title {
+         font-size: 12px;
+    }
+     .THIS .header{
+         font-size: 20px;
+    }
+     .THIS .slds-form-element__label {
+         font-size: 14px;
+    }
+     .THIS div{
+         font-size: 13px;
+    }
+     .THIS label {
+         font-size: 13px;
+    }
+     .THIS .slds-form-element__label {
+         font-size: 13px;
+    }
+     .THIS .license-btn{
+         padding: 30px 0px 0 0;
+    }
+     .THIS .field-item{
+         padding: 20px 0 0 0;
+    }
+     .THIS .login-form{
+         padding-bottom: 30px;
+         width: 100%;
+        
+    }
+     .THIS .btn{
+         width: 150px;
+         margin-top:5px;
+    }
+     .THIS .login-form-layout{
+         width:100%;
+    }
+     .THIS .login-btn-padding{
+         padding-left:0rem;
+    }
+     .THIS .footer-bottom-margin {
+         margin-bottom: 20px;
+    }
+}

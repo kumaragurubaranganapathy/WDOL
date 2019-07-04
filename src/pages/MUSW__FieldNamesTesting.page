@@ -1,0 +1,41 @@
+<apex:page controller="MUSW.FieldTestingController">
+<apex:slds />
+    <div class="slds-grid">
+        <div class="slds-col">
+            <div class="slds-m-bottom_small slds-border_bottom">Printing fields for MUSW__License2__c - retrived using BGCM.UtilitySObject.getFieldsFor() method</div>
+            <apex:repeat value="{!allBGCM}" var="f">
+                <div>{!f}</div>
+            </apex:repeat>
+        </div>
+        <div class="slds-col">
+            <div class="slds-m-bottom_small slds-border_bottom">Printing fields for MUSW__License2__c - retrieved using describe from BGCM.UtilitySObject.describeSObject and then getting fields with that Schema.DescribeSObjectResult.</div>
+            <apex:repeat value="{!mixed}" var="f">
+                <div>{!f}</div>
+            </apex:repeat>
+        </div>
+        <div class="slds-col">
+            <div class="slds-m-bottom_small slds-border_bottom">Printing fields for MUSW__License2__c - retrieved using only SF methods, no BGCM calls</div>
+            <apex:repeat value="{!allSF}" var="f">
+                <div>{!f}</div>
+            </apex:repeat>
+        </div>
+        <div class="slds-col">
+            <div class="slds-m-bottom_small slds-border_bottom">Printing fields for MUSW__License2__c - retrieved using only SF methods, but passing String object name to the global describe</div>
+            <apex:repeat value="{!allSF2}" var="f">
+                <div>{!f}</div>
+            </apex:repeat>
+        </div>
+
+    </div>
+
+    <div class="slds-grid">
+
+        <div class="slds-col">
+            <div class="slds-m-bottom_small slds-border_bottom">All object names from global describe</div>
+                <apex:repeat value="{!allObjNames}" var="f">
+                    <div>{!f}</div>
+                </apex:repeat>
+            
+        </div>
+    </div>
+</apex:page>

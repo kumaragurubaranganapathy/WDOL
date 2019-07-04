@@ -1,0 +1,74 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller = "Add_BusinessController" >
+   <aura:attribute name="MandatoryActionsApplicationsColumns" type="List" default="['REQUEST TYPE','REQUEST AGAINST ','DUE DATE']"/>
+   <aura:attribute name="CourseApplicationsColumns" type="List" default="['COURSE#','COURSE NAME','COURSE TYPE','LICENSURE LEVEL','DELIVERY METHOD','CLOCK HOURS','STATUS']" />
+   <aura:attribute name="courseList" type="List" />
+   <aura:attribute name="accountId" type="String" />
+   <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" />
+   <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+   <div class="slds-p-vertical_medium">
+      <aura:if isTrue="{!v.courseList.length!=0}">
+         <div style="height: 366px;">
+            <div style="height: 100%; position: relative;">
+               <div class="slds-scrollable_x" style="height: 100%;">
+                  <div class="slds-scrollable_y">
+                     <div>
+                        <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                           <thead>
+                              <tr class="slds-line-height_reset">
+                                 <aura:iteration items="{!v.CourseApplicationsColumns}" var="headerData">
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
+                                    </th>
+                                 </aura:iteration>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <aura:iteration items="{!v.courseList}" var="tableData" indexVar="ind"> 
+                                 <tr class="slds-hint-parent">
+                                    <td data-label="Course #" class="cell-style">
+                                       <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.displayCourseDetails}">{!tableData.Name}</a>
+                                    </td>
+                                    <td data-label="Course Name" class="cell-style">
+                                       <div class="slds-truncate">{!tableData.Course_Name__c}</div>
+                                    </td>
+                                    <td data-label="Course Type" class="cell-style">
+                                       <div class="slds-truncate">{!tableData.Course_Type__c}</div>
+                                    </td>
+                                    <td data-label="Delivery Method" class="cell-style">
+                                       <div class="slds-truncate">{!tableData.Delivery_Method__c}</div>
+                                    </td>
+                                    <td data-label="Licensure Level" class="cell-style">
+                                       <div class="slds-truncate">{!tableData.What_Licensure_Level__c}</div>
+                                    </td>
+                                    <td data-label="Clock Hours" class="cell-style">
+                                       <div class="slds-truncate">{!tableData.Clock_Hours__c}</div>
+                                    </td>
+                                    <td data-label="Status" class="cell-style">
+                                       <div class="slds-truncate">{!tableData.Status}</div>
+                                    </td>
+                                    <td data-label="actions" class="cell-style">
+                                        <div class="slds-truncate"   onclick ="{!c.editApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                       		data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
+                                          <lightning:button label="Edit" title="Neutral action"/>
+                                       </div>
+                                    </td>
+                                    <!--<td data-label="actions" class="cell-style">
+                                       <div class="slds-truncate" data-recordId = "{!tableData.id}">
+                                          <lightning:button label="Delete" title="Neutral action"/>
+                                       </div>
+                                    </td> -->
+                                 </tr>
+                              </aura:iteration>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <aura:set attribute="else">
+            <div class="slds-align_absolute-center">There are no course licenses</div>
+         </aura:set>
+      </aura:if>
+   </div>
+</aura:component>

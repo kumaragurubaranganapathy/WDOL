@@ -1,0 +1,154 @@
+.THIS.business-outer-wrapper{
+    padding: 1.25rem 6.75rem;
+}
+/*.THIS .license-outer-wrapper{
+    padding:40px 100px;
+    width:100%;
+}*/
+.THIS .page-title{
+    font-size:1.25rem;
+    color:t(LnGFormTitleColor);
+    font-weight:600;
+}
+.THIS .license-details-wrapper{
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border: solid 1px t(sectionBorder);
+}
+.THIS .details-header{
+    padding:16px 32px;   
+    border-bottom: solid 1px t(headerUnderline);
+}
+.THIS .header-item{
+    font-family: 'SalesforceSans';
+    font-size: 16px;
+    font-weight: 600;    
+    color: t(headerItemColor);
+}
+.THIS .info-date{
+    text-align:right;
+    padding-bottom:10px;
+}
+.THIS .details-body{
+    padding:20px 32px 0;
+}
+.THIS .name-details, .THIS .contact-details, .THIS .issue-details{
+    padding-bottom:27px;
+    font-family: 'SalesforceSans';
+    font-size: 12px;    
+    color: t(headerItemColor);
+}
+.THIS .issue-item, .THIS .contact-item{
+    padding-bottom:12px;
+}
+.THIS .section-wrapper{
+    padding-bottom:16px;
+}
+.THIS .section-header{  
+  font-size: 14px;
+  font-weight: bold;  
+  color: t(headerItemColor);
+  padding-bottom:8px;
+  border-bottom:solid 1px t(headerUnderline);
+}
+.THIS .field-style{
+    font-size:14px;
+    padding-bottom:10px;
+    display:flex;
+}
+.THIS .label-style{
+    font-weight:bold;
+    white-space:nowrap;
+}
+.THIS .business-name{
+    font-size:1.25rem;
+	color:t(primary);	
+    text-decoration:underline;
+}
+.THIS .biz-name-wrapper{
+    margin-bottom:0.5rem;
+}
+.THIS .biz-address{
+    padding-bottom:1rem;
+}
+.THIS .data-style{
+    word-break:break-word;
+}
+.THIS .business-det{
+    padding-top:10px;
+}
+.THIS .section-details{
+    padding-top:16px;
+}
+.THIS .options-wrapper{
+    padding-top:32px;
+}
+.THIS .sidebar-options li{
+    text-align:right;
+    padding-bottom:10px
+}
+.THIS .sidebar-options li a{
+    text-decoration:underline;
+    color:t(headertxt);
+}
+.THIS .tabs-wrapper{
+    padding-top:54px;
+}
+.THIS .Account-name{
+    font-size:24px;
+    font-weight:bold;    
+    padding-bottom:16px;
+}
+.THIS .biz-welcome{
+    text-align:right;
+}
+.THIS .sidebar-links .links-wrapper{
+    display:flex;
+    justify-content:flex-end;
+}
+.THIS .business-wrapper{
+    justify-content:space-between;   
+}
+.THIS .biz-ubi{
+    font-size:1rem;
+    color:t(LnGFormTitleColor);
+}
+.THIS .ubi-label{
+    font-weight:600;
+    padding-bottom:0.25rem;
+}
+.THIS .business-card{
+    margin-bottom:1.5rem;
+    width:32%;
+    border: solid 1px t(bizCardBorder);
+    padding: 1.75rem 1.5rem;
+}
+.THIS .biz-welcome{
+    padding-bottom:24px;
+}
+@media only screen and (max-width:767.9px){
+    .THIS .sidebar-options li{
+        text-align:left;
+    }
+    .THIS .license-outer-wrapper{
+        padding:16px;
+    }
+    .THIS .details-header{
+        padding:16px;
+    }
+    .THIS .details-body{
+        padding:16px;
+    }
+    .THIS .name-details{
+        padding-bottom:12px;
+    }
+    .THIS .phy-address{
+        padding-bottom:12px;
+    }
+    .THIS .header-item{
+        padding-bottom:12px;
+    }
+    .THIS .header-item:last-of-type{
+        padding-bottom:0;
+    }
+}

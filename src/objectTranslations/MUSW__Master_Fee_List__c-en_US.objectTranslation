@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- xAFRS AR Code --></label>
+        <name>AFRS_AR_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- xAFRS Cash Code --></label>
+        <name>AFRS_Cash_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Revenue Code --></label>
+        <name>AFRS_Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- AR date --></label>
+        <name>AR_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity --></label>
+        <name>Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency Number --></label>
+        <name>Agency_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Method --></label>
+        <name>Application_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Appropriation --></label>
+        <name>Appropriation__c</name>
+    </fields>
+    <fields>
+        <label><!-- BG Object --></label>
+        <name>BG_Object__c</name>
+    </fields>
+    <fields>
+        <label><!-- Base --></label>
+        <name>Base__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Period --></label>
+        <name>Budget_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Coupon --></label>
+        <name>Coupon__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>Credential_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Design Wastewater Flow (GPD) --></label>
+        <name>Design_Wastewater_Flow_GPD__c</name>
+        <picklistValues>
+            <masterLabel>1000 - 2000 gpd</masterLabel>
+            <translation><!-- 1000 - 2000 gpd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1000 gpd or less</masterLabel>
+            <translation><!-- 1000 gpd or less --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1001 - 2000 gpd</masterLabel>
+            <translation><!-- 1001 - 2000 gpd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2001 - 5000 gpd</masterLabel>
+            <translation><!-- 2001 - 5000 gpd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5000 - 10000 gpd</masterLabel>
+            <translation><!-- 5000 - 10000 gpd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5000 gpd or less</masterLabel>
+            <translation><!-- 5000 gpd or less --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&gt; 5000 gpd</masterLabel>
+            <translation><!-- &gt; 5000 gpd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>greater than 10000 gpd</masterLabel>
+            <translation><!-- greater than 10000 gpd --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Discount --></label>
+        <name>Discount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective End Date --></label>
+        <name>Effective_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Start Date --></label>
+        <name>Effective_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Endorsement Type --></label>
+        <name>Endorsement_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expedited Service Fee --></label>
+        <name>Expedited_Service_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Calculation Type --></label>
+        <name>Fee_Calculation_Type__c</name>
+        <picklistValues>
+            <masterLabel>Complex</masterLabel>
+            <translation><!-- Complex --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fee Based</masterLabel>
+            <translation><!-- Fee Based --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flat</masterLabel>
+            <translation><!-- Flat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tiered</masterLabel>
+            <translation><!-- Tiered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Item Based</masterLabel>
+            <translation><!-- Work Item Based --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Fee Formula Amount --></label>
+        <name>Fee_Formula_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Name --></label>
+        <name>Fee_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Type --></label>
+        <name>Fee_Type__c</name>
+        <picklistValues>
+            <masterLabel>Credential</masterLabel>
+            <translation><!-- Credential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credential Reinstatement</masterLabel>
+            <translation><!-- Credential Reinstatement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credential renewal</masterLabel>
+            <translation><!-- Credential renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exam Passed</masterLabel>
+            <translation><!-- Exam Passed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exam Passed Reinstatement</masterLabel>
+            <translation><!-- Exam Passed Reinstatement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permit Renewal</masterLabel>
+            <translation><!-- Permit Renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permit/Plan Review</masterLabel>
+            <translation><!-- Permit/Plan Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Request</masterLabel>
+            <translation><!-- Service Request --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Flat Amount --></label>
+        <name>Flat_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- GL Account --></label>
+        <name>GL_Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- High Tier Limit --></label>
+        <name>High_Tier_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interpretive Determination? --></label>
+        <name>Interpretive_Determination__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Endorsement --></label>
+        <name>Is_Endorsement__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License_Fees_Unit__c</name>
+        <relationshipLabel><!-- Master Fee List --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Units --></label>
+        <name>License_Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- Low Tier Limit --></label>
+        <name>Low_Tier_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- MHC Application Type --></label>
+        <name>MHC_Application_Type__c</name>
+        <picklistValues>
+            <masterLabel>Change in Ownership</masterLabel>
+            <translation><!-- Change in Ownership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expansion</masterLabel>
+            <translation><!-- Expansion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Newly Licensed Community</masterLabel>
+            <translation><!-- Newly Licensed Community --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Renewal</masterLabel>
+            <translation><!-- Renewal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Multiplier --></label>
+        <name>Multiplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Inactive Years --></label>
+        <name>Number_of_Inactive_Years__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Fee Type --></label>
+        <name>Parent_Fee_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit Type --></label>
+        <name>Permit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Portal Name --></label>
+        <name>Portal_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previously approved plan --></label>
+        <name>Previously_approved_plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profession Code --></label>
+        <name>Profession_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Area --></label>
+        <name>Program_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Replace Title --></label>
+        <name>Replace_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue Code --></label>
+        <name>Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revisions to Miscellaneous Reviews --></label>
+        <name>Revisions_to_Miscellaneous_Reviews__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Request Type --></label>
+        <name>Service_Request_Type__c</name>
+        <picklistValues>
+            <masterLabel>Ad Reviews</masterLabel>
+            <translation><!-- Ad Reviews --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Change Name</masterLabel>
+            <translation><!-- Change Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Change in Status</masterLabel>
+            <translation><!-- Change in Status --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Endorsement</masterLabel>
+            <translation><!-- Endorsement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exam Re-Application</masterLabel>
+            <translation><!-- Exam Re-Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>License History Request</masterLabel>
+            <translation><!-- License History Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manage Affiliations</masterLabel>
+            <translation><!-- Manage Affiliations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufactured Homes Title Modification</masterLabel>
+            <translation><!-- Manufactured Homes Title Modification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Priority Plan Review</masterLabel>
+            <translation><!-- Priority Plan Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Size Change</masterLabel>
+            <translation><!-- Project Size Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Health Emergency Plan Review</masterLabel>
+            <translation><!-- Public Health Emergency Plan Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relinquish Delegated Agent Status</masterLabel>
+            <translation><!-- Relinquish Delegated Agent Status --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request Duplicate Wall Certificate</masterLabel>
+            <translation><!-- Request Duplicate Wall Certificate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reschedule Exam</masterLabel>
+            <translation><!-- Reschedule Exam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit Additional Documentation</masterLabel>
+            <translation><!-- Submit Additional Documentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit Exam Results</masterLabel>
+            <translation><!-- Submit Exam Results --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdraw Application</masterLabel>
+            <translation><!-- Withdraw Application --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Soil Saturation Report? --></label>
+        <name>Soil_Saturation_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subtype --></label>
+        <name>Subtype__c</name>
+    </fields>
+    <fields>
+        <label><!-- xTMS AR Code --></label>
+        <name>TMS_AR_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- xTMS Cash Code --></label>
+        <name>TMS_Cash_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- xTMS Revenue Code --></label>
+        <name>TMS_Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Modification Request --></label>
+        <name>Title_Modification_Request__c</name>
+        <picklistValues>
+            <masterLabel>Title Surrender</masterLabel>
+            <translation><!-- Title Surrender --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Transfer to Spouse --></label>
+        <name>Transfer_to_Spouse__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trigger Status --></label>
+        <name>Trigger_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Component Manual review --></label>
+        <name>Type_of_Component_Manual_review__c</name>
+        <picklistValues>
+            <masterLabel>New Review</masterLabel>
+            <translation><!-- New Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Revision or Renewal</masterLabel>
+            <translation><!-- Revision or Renewal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type of Component manual --></label>
+        <name>Type_of_Component_manual__c</name>
+        <picklistValues>
+            <masterLabel>At-Grade Component Manual</masterLabel>
+            <translation><!-- At-Grade Component Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-ground Component Manual</masterLabel>
+            <translation><!-- In-ground Component Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mound Component Manual</masterLabel>
+            <translation><!-- Mound Component Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other - Please specify</masterLabel>
+            <translation><!-- Other - Please specify --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pressure Distribution Component Manual</masterLabel>
+            <translation><!-- Pressure Distribution Component Manual --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type of Submission --></label>
+        <name>Type_of_Individual_Site_Design__c</name>
+        <picklistValues>
+            <masterLabel>Component Manual</masterLabel>
+            <translation><!-- Component Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Holding Tank</masterLabel>
+            <translation><!-- Holding Tank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soil Based</masterLabel>
+            <translation><!-- Soil Based --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type of Plan Review --></label>
+        <name>Type_of_Plan_Review__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Soil Based Individual Site Desig --></label>
+        <name>Type_of_Soil_Based_Individual_Site_Desig__c</name>
+        <picklistValues>
+            <masterLabel>At Grade</masterLabel>
+            <translation><!-- At Grade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Constructed Wetlands</masterLabel>
+            <translation><!-- Constructed Wetlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drip-line</masterLabel>
+            <translation><!-- Drip-line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mound</masterLabel>
+            <translation><!-- Mound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Pressurized In-ground</masterLabel>
+            <translation><!-- Non-Pressurized In-ground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pressurize In-ground</masterLabel>
+            <translation><!-- Pressurize In-ground --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Use Group --></label>
+        <name>Use_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Type --></label>
+        <name>Work_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- external id --></label>
+        <name>external_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- is Late Renewal --></label>
+        <name>is_Late_Renewal__c</name>
+    </fields>
+    <layouts>
+        <layout>License Fees</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permit Fees</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Formula Builder --></label>
+            <section>Formula Builder</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- License Fees --></description>
+        <label><!-- License --></label>
+        <name>License</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Permit Fees --></description>
+        <label><!-- Permit --></label>
+        <name>Permit</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to enter more than 4 digits. --></errorMessage>
+        <name>Allow_user_to_input_Only_till_4_digits</name>
+    </validationRules>
+</CustomObjectTranslation>

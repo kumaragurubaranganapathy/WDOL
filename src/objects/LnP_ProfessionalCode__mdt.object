@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>License_Type__c</fullName>
+        <description>License Types for which Professional Code is to be mapped</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>License Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Appraisal Management Company</fullName>
+                    <default>true</default>
+                    <label>Appraisal Management Company</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Trainee</fullName>
+                    <default>false</default>
+                    <label>Appraiser Trainee</label>
+                </value>
+                <value>
+                    <fullName>Architect</fullName>
+                    <default>false</default>
+                    <label>Architect</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Company</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Company</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Salesperson</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Cemetery</fullName>
+                    <default>false</default>
+                    <label>Cemetery</label>
+                </value>
+                <value>
+                    <fullName>Certificate of Removal Registration</fullName>
+                    <default>false</default>
+                    <label>Certificate of Removal Registration</label>
+                </value>
+                <value>
+                    <fullName>Certified General Appraiser</fullName>
+                    <default>false</default>
+                    <label>Certified General Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Certified Residential Appraiser</fullName>
+                    <default>false</default>
+                    <label>Certified Residential Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Embalmer</fullName>
+                    <default>false</default>
+                    <label>Embalmer</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Intern</fullName>
+                    <default>false</default>
+                    <label>Embalmer Intern</label>
+                </value>
+                <value>
+                    <fullName>Engineering LLC</fullName>
+                    <default>false</default>
+                    <label>Engineering LLC</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director</fullName>
+                    <default>false</default>
+                    <label>Funeral Director</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Intern</fullName>
+                    <default>false</default>
+                    <label>Funeral Director Intern</label>
+                </value>
+                <value>
+                    <fullName>Funeral Establishment</fullName>
+                    <default>false</default>
+                    <label>Funeral Establishment</label>
+                </value>
+                <value>
+                    <fullName>Funeral Establishment Branch</fullName>
+                    <default>false</default>
+                    <label>Funeral Establishment Branch</label>
+                </value>
+                <value>
+                    <fullName>Geologist</fullName>
+                    <default>false</default>
+                    <label>Geologist</label>
+                </value>
+                <value>
+                    <fullName>Landscape Architect</fullName>
+                    <default>false</default>
+                    <label>Landscape Architect</label>
+                </value>
+                <value>
+                    <fullName>Notary Public</fullName>
+                    <default>false</default>
+                    <label>Notary Public</label>
+                </value>
+                <value>
+                    <fullName>On-site Wastewater Designer</fullName>
+                    <default>false</default>
+                    <label>On-site Wastewater Designer</label>
+                </value>
+                <value>
+                    <fullName>On-site Wastewater Inspector</fullName>
+                    <default>false</default>
+                    <label>On-site Wastewater Inspector</label>
+                </value>
+                <value>
+                    <fullName>Prearrangement Funeral Services</fullName>
+                    <default>false</default>
+                    <label>Prearrangement Funeral Services</label>
+                </value>
+                <value>
+                    <fullName>Professional Engineer</fullName>
+                    <default>false</default>
+                    <label>Professional Engineer</label>
+                </value>
+                <value>
+                    <fullName>Professional Land Surveyor</fullName>
+                    <default>false</default>
+                    <label>Professional Land Surveyor</label>
+                </value>
+                <value>
+                    <fullName>Regulatory Compliance Collection Agency</fullName>
+                    <default>false</default>
+                    <label>Regulatory Compliance Collection Agency</label>
+                </value>
+                <value>
+                    <fullName>Regulatory Compliance Collection Agency Out of State</fullName>
+                    <default>false</default>
+                    <label>Regulatory Compliance Collection Agency Out of State</label>
+                </value>
+                <value>
+                    <fullName>Regulatory Compliance Collection Branch Fee</fullName>
+                    <default>false</default>
+                    <label>Regulatory Compliance Collection Branch Fee</label>
+                </value>
+                <value>
+                    <fullName>Regulatory Compliance Collection Branch Out of State</fullName>
+                    <default>false</default>
+                    <label>Regulatory Compliance Collection Branch Out of State</label>
+                </value>
+                <value>
+                    <fullName>State Licensed Appraiser</fullName>
+                    <default>false</default>
+                    <label>State Licensed Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Company</fullName>
+                    <default>false</default>
+                    <label>Timeshare Company</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Salesperson</fullName>
+                    <default>false</default>
+                    <label>Timeshare Salesperson</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Profession_Code__c</fullName>
+        <description>Profession Code for each License Type</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Profession Code</label>
+        <length>5</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>LnP_ProfessionalCode</label>
+    <pluralLabel>LnP_ProfessionalCodes</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

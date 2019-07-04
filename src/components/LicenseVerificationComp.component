@@ -1,0 +1,515 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : LicenseVerificationComp
+** Description      : License Verification History Component
+** Version          : 
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component >
+    <apex:attribute name="lvfHistoryList" type="String" description="license verifcation history records"/>
+    <apex:attribute name="parentId" type="string" description="License Id" />
+    <apex:attribute name="compLabel" type="String" description="Label"/>
+    <apex:attribute name="compDesc" type="String" description="Description"/>
+    <apex:attribute name="lvfHistObject" type="License_Verification__c" description="lvfloyment history object"/>
+    
+    <div class="col-sm-3 col-md-3">
+        <!-- Component heading -->
+        <h2>{!compLabel}</h2>
+        <!-- Component heading -->
+        <!-- Component description -->
+        <p><apex:outputText escape="false" value="{!compDesc}"/></p>
+        <!-- Component description -->
+    </div>
+    <style>
+        
+        
+    </style>
+    <div class="labeloverflowing col-sm-5 col-sm-offset-1 col-md-5 no-padding">
+        <!-- Display list of records -->
+        <div class="row home">
+            <div class="lvfloymentHistoryList">
+                <div class="row">
+                    <ul class="list-style-none" id="lvfloymentHistoryList">
+                        <!-- Attach existing rows here -->
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Display list of records -->
+        <!-- Record entry form -->
+        <div class="row lvfHistoryFormSection" style="display:none" id="lvfHistoryFormSectionEditContainer">
+            <form class="animated-form">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group-inanimated required">
+                            <apex:outputLabel value="Credential Type" for="lvfHist_CredentialType" id="lvfHist_CredentialTypeLabel"/>
+                            <apex:inputField value="{!lvfHistObject.Credential_Type__c}" styleClass="form-control" id="lvfHist_CredentialType" html-aria-required="true"  />
+                            <input type="text" class="form-control" id="lvfCurrRecordId" style="display:none"/>
+                            <span></span> 
+                        </div>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group-inanimated required">
+                            <apex:outputLabel for="lvfHist_Credential" id="lvfHist_CredentialLabel">Credential</apex:outputLabel>
+                            <apex:inputField value="{!lvfHistObject.Credential__c}" styleClass="form-control" id="lvfHist_Credential" html-aria-required="true"> 
+                            </apex:inputField>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group-inanimated required">
+                            <label for="lvfHist_CredentialNumber"  id="lvfHist_CredentialNumberLabel">Credential Number</label>
+                            <input type="text" class="form-control" id="lvfHist_CredentialNumber" aria-required="true"/>                              
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group-inanimated required">
+                            <label for="lvfHist_Status"  id="lvfHist_StatusLabel">Status</label>
+                            <input type="text" class="form-control" id="lvfHist_Status" aria-required="true"/>
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group-inanimated required" >
+                            <label for="lvfHist_ExpDate" id="lvfHist_ExpDateLabel">Expiration Date <span class="hiddenText">(MM/DD/YYYY)</span></label>
+                            <input type="text" class="form-control customDateNow" id="lvfHist_ExpDate" aria-required="true"/>
+                            <span class=""></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group-inanimated required">
+                            <apex:outputLabel value="Country" for="lvfHist_Country" id="lvfHist_CountryLabel"/>
+                            <apex:inputField value="{!lvfHistObject.Country__c}" styleClass="form-control" id="lvfHist_Country" html-aria-required="true" />
+                            <span></span> 
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group-inanimated">
+                            <apex:outputLabel value="State" for="lvfHist_State" id="lvfHist_StateLabel"/>
+                            <apex:inputField value="{!lvfHistObject.State__c}" styleClass="form-control" id="lvfHist_State"/>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>   
+                <div class="row addlvfHistBtn" style="display:none">
+                    <div class="col-sm-11">
+                        <input type="button" class="btn btn-tertiary cancellvfHist" value="Cancel" id="lvfHistoryCancel1" />
+                        <input type="button" class="btn btn-primary btn-space" value="Add" id="lvfHistoryFormSection" />
+                    </div>
+                </div>
+                <div class="row updatelvfHistBtn" style="display:none">
+                    <div class="col-sm-11 btn-paddingMid">
+                        <input type="button" class="btn btn-tertiary cancellvfHist" value="Cancel" id="lvfHistoryCancel2" />
+                        <input type="button" class="btn btn-primary btn-space" value="Save" id="lvfHistorySave" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Record entry form -->
+        <!-- Button for new form -->
+        <div class="row addlvfHistorySection">
+            <input type="button" class="btn btn-secondary" value="Add License Verification" id="addlvfHistorySection"/>
+        </div>
+        <!-- Button for new form -->
+    </div>
+    <section class="row"></section>
+    
+    <div id="lvfHistoryJSON" style="display: none;">
+        <apex:outputText value="{!lvfHistoryList}"/>
+    </div>
+    <script>
+    // Initialize everything
+    var recordslvfHist = {};
+    
+    // On page load
+    $(function() {
+        LVFHISTORYCOMPNS.loadEvents();
+        LVFHISTORYCOMPNS.getRecords();
+    });
+    
+    
+    ;LVFHISTORYCOMPNS = {
+        
+        /* Convert date for UI */
+        dateConverter: function(currDate) {
+            var utcDateNow = ''; 
+            if(currDate != null) {
+                utcDateNow = new DateUtility().toDisplay(currDate); 
+            }
+            return utcDateNow;
+        },
+        
+        /* To manage css for animation*/
+        manageAnimatedFormCss : function()
+        {
+            var editForm = $("#lvfHistoryFormSectionEditContainer") ;
+            editForm.find("input[type='text']").each(function(index,val)
+                                                     {
+                                                         if($(val).val() != '' )
+                                                         {
+                                                             $(val).closest(".form-group").find("label").removeClass().addClass("animated") ;
+                                                         }
+                                                     });
+        },
+        
+        initializeUIValidator: function() {
+            validationMapper.lvfHistory = {};
+            validationMapper.lvfHistory.validationObject = {
+                fields:[
+                    {
+                        id:"lvfHist_ExpDate",
+                        required: true,
+                        name: "Expiration Date",
+                        validator: "Date",
+                        watch: true
+                    },
+                    {
+                        id:"lvfHist_Country",
+                        required: true,
+                        name: "Country",
+                        watch: true
+                    },
+                    {
+                        id:"lvfHist_CredentialNumber",
+                        required: true,
+                        name: "Credential Number",
+                        watch: true
+                    },
+                    {
+                        id:"lvfHist_Credential",
+                        name: "Credential",
+                        watch: true,
+                        customValidator: function(validator){
+                            if($("[id$='lvfHist_Credential']").val() == ''){
+                                validator.isValid = false;
+                                validator.error = 'Credential cannot be empty';
+                            }
+                            else{
+                                validator.isValid = true; 
+                                validator.error = '';
+                            }
+                        }
+                    },
+                    {
+                        id:"lvfHist_CredentialType",
+                        required: true,
+                        name: "Credential Type",
+                        watch: true
+                    },
+                    {
+                        id:"lvfHist_Status",
+                        required: true,
+                        name: "Status",
+                        watch: true
+                    },
+                ]
+                    }
+                    validationMapper.lvfHistory.validator = new ValidationEngine(validationMapper.lvfHistory.validationObject);
+                    },
+                    
+                    /* Load all JQuery events */
+                    loadEvents: function() {
+                    /* Event - Click 'Add' after filling new form */
+                    $("#lvfHistoryFormSection").on("click", function() {
+                    if(validationMapper.lvfHistory.validator.errors().length <= 0){
+                    LVFHISTORYCOMPNS.saveRecord();
+                    } else {
+                    MODAL_UTILITY.errorMessageModal(validationMapper.lvfHistory.validator.errorHtml());
+                    }
+                    });
+                    
+                    
+                    
+                    /* Event - Click 'Add lvfloyment' for loading new form */
+                    $("#addlvfHistorySection").on("click", function() {
+                    LVFHISTORYCOMPNS.initializeUIValidator();
+                    
+                    $(".lvfHistoryFormSection").show();
+                    $(".addlvfHistorySection").hide();
+                    $(".addlvfHistBtn").show();
+                    $(".updatelvfHistBtn").hide();
+                    $("#lvfHist_lvfloyer").focus();
+                    
+                    });
+                    
+                    /* Event - Cancel form */
+                    $(".cancellvfHist").on("click", function() {
+                    LVFHISTORYCOMPNS.clearUI();
+                    });
+                    
+                    /* Event - Save existing form */
+                    $("#lvfHistorySave").on("click", function() {
+                    LVFHISTORYCOMPNS.initializeUIValidator();
+                    if(validationMapper.lvfHistory.validator.errors().length <= 0){
+                    LVFHISTORYCOMPNS.saveRecord();
+                    } else {
+                    MODAL_UTILITY.errorMessageModal(validationMapper.lvfHistory.validator.errorHtml());
+                    }
+                    });
+                    },
+                    
+                    loadDynamicEvents: function() {
+                    
+                    /* Event - Edit existing form */
+                    $(".editLvfHistButton").on("click", function() {           
+                    // Start spinner
+                    NOTIFICATIONS.spinnerStart();           
+                    var currentRecordId = $(this).attr("id");
+                    currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+                    $.each(recordslvfHist, function(i, val) {
+                    if(val.Id == currentRecordId) {
+                    $("#lvfCurrRecordId").val(val.Id);
+                    $("#lvfHist_CredentialNumber").val(val.Credential_Number__c);
+                    $("#lvfHist_ExpDate").val(LVFHISTORYCOMPNS.dateConverter(val.Expiration_Date__c));
+                    $("[id$='lvfHist_Country']").val(val.Country__c);
+                    if(val.State__c !=''){
+                    var controllingField = $("[id$='lvfHist_Country']")[0];
+                controllingField.onchange();
+                $("[id$='lvfHist_State']").val(val.State__c);
+            }
+            $("[id$='lvfHist_CredentialType']").val(val.Credential_Type__c);
+            var controllingField1 = $("[id$='lvfHist_CredentialType']")[0];
+            controllingField1.onchange();
+            $("[id$='lvfHist_Credential']").val(val.Credential__c);
+            
+            $("#lvfHist_Status").val(val.Status__c);
+        }
+        
+        LVFHISTORYCOMPNS.manageAnimatedFormCss();
+    });
+    $(".addlvfHistBtn").hide();
+    $(".lvfHistoryFormSection").show();
+    $(".addlvfHistorySection").hide();
+    $(".updatelvfHistBtn").show();
+    
+    // Stop spinner
+    NOTIFICATIONS.spinnerStop();
+    });
+    
+    $(".deleteLvfButton").on("click", function() {
+        var currentRecordId = $(this).attr("id");
+        currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+        
+        // Delete confirmation
+        MODAL_UTILITY.openDeleteConfirmationModal('This record will be deleted. Are you sure?' , 'Delete Confirmation', currentRecordId, LVFHISTORYCOMPNS.deleteRecord);
+    });
+    },
+        
+        /* Function - For querying records */
+        getRecords : function() {      
+            // Get list
+            recordslvfHist = $("#lvfHistoryJSON").text();
+            
+            if(recordslvfHist.trim()=='')
+            {
+                recordslvfHist=null;
+            }
+            else{
+                recordslvfHist = JSON.parse(recordslvfHist);
+            }
+            if(recordslvfHist != null) {
+                LVFHISTORYCOMPNS.loadRecords();
+                
+                // Show section
+                $(".lvfloymentHistoryList").show();
+            }
+        },
+            
+            /* Function - Populate Existing records */
+            loadRecords : function() {       
+                // Clear lvfloyment history records from UI
+                $("#lvfloymentHistoryList").empty();
+                
+                // Build markup
+                var innerHtml = '';
+                var lvfInst = '';
+                
+                $.each(recordslvfHist, function( i, val ) {
+                    
+                    // Change date
+                    var expDate = LVFHISTORYCOMPNS.dateConverter(val.Expiration_Date__c);
+                    if(val.Verified__c=='{!$Label.ST_Yes}'){
+                        if(val.State__c!=null&&val.State__c!=undefined){
+                            innerHtml += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9">' + val.Country__c  + '</div><div class="col-sm-3"><button type="button" class="btn-square-icon editLvfHistButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></div></div><div class="col-sm-12">' + val.State__c + '</div><div class="col-sm-12">' + val.Credential__c + '</div></div></li>';
+                        }
+                        else{
+                            innerHtml += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9">' + val.Country__c  + '</div><div class="col-sm-3"><button type="button" class="btn-square-icon editLvfHistButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></div></div><div class="col-sm-12">' +  '</div><div class="col-sm-12">' + val.Credential__c + '</div></div></li>';
+                            
+                        }
+                    }
+                    else{
+                        if(val.State__c!=null&&val.State__c!=undefined){
+                            innerHtml += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9">' + val.Country__c  + '</div><div class="col-sm-3"><button type="button" class="btn-square-icon editLvfHistButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button type="button" aria-label="Delete Record" class="btn-square-icon"><span class="glyphicon glyphicon-trash deleteLvfButton" id="del' +  val.Id + '"></span></button></div></div><div class="col-sm-12">' + val.State__c + '</div><div class="col-sm-12">' + val.Credential__c + '</div></div></li>';
+                        }
+                        else{
+                            innerHtml += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9">' + val.Country__c  + '</div><div class="col-sm-3"><button type="button" class="btn-square-icon editLvfHistButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button type="button" aria-label="Delete Record" class="btn-square-icon"><span class="glyphicon glyphicon-trash deleteLvfButton" id="del' +  val.Id + '"></span></button></div></div><div class="col-sm-12">' +  '</div><div class="col-sm-12">' + val.Credential__c + '</div></div></li>';
+                            
+                        }
+                        
+                    }
+                });
+                
+                // Append educational history records
+                $("#lvfloymentHistoryList").append(innerHtml);
+                
+                // Reload jquery events
+                LVFHISTORYCOMPNS.loadDynamicEvents();
+            },
+                
+                saveRecord : function() {
+                    
+                    // Start spinner
+                    NOTIFICATIONS.spinnerStart();       
+                    // Initialize account and educational history objects
+                    
+                    var lvfHistObj = new sforce.SObject("{!$Label.API_License_Verification}");       
+                    // Add Employment History data
+                    if(licGlobalObj.licenseId!=null)
+                    {
+                        lvfHistObj.License__c = licGlobalObj.licenseId;
+                    }
+                    lvfHistObj.Contact__c = licGlobalObj.contactId;
+                    lvfHistObj.Status__c= $("#lvfHist_Status").val();
+                    lvfHistObj.Credential_Number__c= $("#lvfHist_CredentialNumber").val();
+                    lvfHistObj.Expiration_Date__c=  new DateUtility().toUTC($("#lvfHist_ExpDate").val());
+                    lvfHistObj.Country__c =$("[id$='lvfHist_Country']").val();
+                    lvfHistObj.State__c=$("[id$='lvfHist_State']").val();
+                    lvfHistObj.Credential__c=$("[id$='lvfHist_Credential']").val();
+                    lvfHistObj.Credential_Type__c= $("[id$='lvfHist_CredentialType']").val();
+                    if($("[id$='lvfHist_State']").val() != null&&$("[id$='lvfHist_State']").val().indexOf('_') < 0) {
+                        lvfHistObj.State__c = $("[id$='lvfHist_State']").val();
+                    } 
+                    else{
+                        lvfHistObj.State__c = null;
+                    }
+                    if(lvfHistObj.Verified__c==null){
+                        lvfHistObj.Verified__c='{!$Label.St_No}';
+                    }
+                    if($("#lvfCurrRecordId").val() != null) {
+                        lvfHistObj.Id = $("#lvfCurrRecordId").val();
+                    }
+                    if(lvfHistObj != null) {
+                        var newInsert = false;
+                        try {
+                            var result = sforce.connection.upsert("Id", [lvfHistObj]);
+                            
+                            if(result[0].success == 'true') {
+                                
+                                if(lvfHistObj.Id == '') {
+                                    newInsert = true;
+                                }
+                                
+                                lvfHistObj.Id = result[0].id;
+                                
+                                if(newInsert == false) {
+                                    var lvfArray = [];
+                                    $.each(recordslvfHist, function(i, val) {
+                                        lvfArray.push(val.Id);
+                                    });
+                                    recordslvfHist.splice(lvfArray.indexOf(lvfHistObj.Id), 1);
+                                }
+                                
+                                recordslvfHist.push(lvfHistObj);
+                                LVFHISTORYCOMPNS.loadRecords();
+                                
+                                // Update UI
+                                LVFHISTORYCOMPNS.clearUI();
+                                $(".lvfHistoryFormSection").hide();
+                                $(".addlvfHistBtn").hide();
+                                $(".updatelvfHistBtn").hide();
+                                $(".addlvfHistorySection").show();
+                            }
+                            else {
+                                // Show error
+                                MODAL_UTILITY.errorMessageModal('Error saving record. ' + result[0].errors.message);
+                            }
+                        }
+                        catch(e) {
+                            // Show error
+                            MODAL_UTILITY.errorMessageModal('Error saving record. ' + e);
+                        }
+                        
+                    }
+                    
+                    // Stop spinner
+                    NOTIFICATIONS.spinnerStop();
+                },
+                    
+                    /* Function - Delete a record */
+                    deleteRecord: function(currentRecordId) {
+                        
+                        // Start spinner
+                        NOTIFICATIONS.spinnerStart();
+                        var lvfdeleterecords=[];
+                        lvfdeleterecords.push(currentRecordId);
+                        // Delete record
+                        if(currentRecordId != null) {
+                            var result = sforce.connection.deleteIds(lvfdeleterecords);
+                            
+                            if(result!=null&&result[0].success == 'true') {
+                                
+                                var loc = 0;
+                                $.each(recordslvfHist, function(i, val) {
+                                    if(val.Id == currentRecordId) {
+                                        loc = i;
+                                    }
+                                });
+                                
+                                recordslvfHist.splice(loc, 1);
+                                LVFHISTORYCOMPNS.loadRecords();
+                                LVFHISTORYCOMPNS.clearUI();
+                            }
+                            else {
+                                // Show 
+                                if(result==null&&event.message=='Page not allowed for the profile'){
+                                    window.location.href='/Dashboard';
+                                }
+                                MODAL_UTILITY.errorMessageModal('Error deleting record. '+event.message);
+                            }
+                            
+                        }
+                        
+                        // Stop spinner
+                        NOTIFICATIONS.spinnerStop();
+                    },
+                        
+                        /* Function - Delete a record */
+                        clearUI : function() {
+                            // Clear input fields
+                            $("#lvfHist_CredentialNumber").val('');
+                            $("#lvfHist_Status").val('');
+                            $("[id$='lvfHist_Country']").val('');  
+                            $("[id$='lvfHist_Credential']").val('');  
+                            $("[id$='lvfHist_CredentialType']").val('');  
+                            $("[id$='lvfHist_State']").val('');  
+                            $("#lvfHist_ExpDate").val('')
+                            $("#lvfCurrRecordId").val('');
+                            // Show-hide
+                            $(".lvfHistoryFormSection").hide();
+                            $(".addlvfHistBtn").hide();
+                            $(".updatelvfHistBtn").hide();
+                            $(".addlvfHistorySection").show();
+                        },
+                            
+    }
+    </script>
+    
+</apex:component>

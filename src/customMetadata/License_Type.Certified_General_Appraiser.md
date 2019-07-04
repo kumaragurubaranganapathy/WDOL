@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Certified General Appraiser</label>
+    <protected>false</protected>
+    <values>
+        <field>Application_Type__c</field>
+        <value xsi:type="xsd:string">Appraisers - Real Estate</value>
+    </values>
+    <values>
+        <field>Credential_Type__c</field>
+        <value xsi:type="xsd:string">Certified General Appraiser</value>
+    </values>
+    <values>
+        <field>Credential__c</field>
+        <value xsi:type="xsd:string">Certified General Appraiser</value>
+    </values>
+    <values>
+        <field>Functional_Area__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>IndividualBusinessType__c</field>
+        <value xsi:type="xsd:string">Individual</value>
+    </values>
+    <values>
+        <field>Is_Available_for_Audit__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">MUSW__License2__c</value>
+    </values>
+    <values>
+        <field>Permit_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Program_Area__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RBS_RE__c</field>
+        <value xsi:type="xsd:string">RE</value>
+    </values>
+    <values>
+        <field>Record_type_Name__c</field>
+        <value xsi:type="xsd:string">Individual</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Condition --></label>
+        <name>DRE__Condition__c</name>
+        <picklistValues>
+            <masterLabel>Email was not sent</masterLabel>
+            <translation><!-- Email was not sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email was sent</masterLabel>
+            <translation><!-- Email was sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Error occurred</masterLabel>
+            <translation><!-- Error occurred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Records don&apos;t exist</masterLabel>
+            <translation><!-- Records don&apos;t exist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Records exist</masterLabel>
+            <translation><!-- Records exist --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DTE Plan --></label>
+        <name>DRE__DTE_Plan__c</name>
+        <relationshipLabel><!-- Assert Groups --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>DRE__IsActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>DRE__Object_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Path --></label>
+        <name>DRE__Object_Path__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Relationship --></label>
+        <name>DRE__Object_Relationship__c</name>
+        <picklistValues>
+            <masterLabel>Children</masterLabel>
+            <translation><!-- Children --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lookup</masterLabel>
+            <translation><!-- Lookup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record</masterLabel>
+            <translation><!-- Record --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unique Id --></label>
+        <name>DRE__Uid__c</name>
+    </fields>
+</CustomObjectTranslation>

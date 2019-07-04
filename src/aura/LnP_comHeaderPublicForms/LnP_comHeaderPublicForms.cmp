@@ -1,0 +1,139 @@
+<!--@AUTHOR: Sanghmitra Sahu/Tuhin Mazumder
+@Date: 01-Oct-2018 
+
+Description: Lightning component created for Public Forms Common Header. 
+
+MODIFICATION LOG:
+DEVELOPER                          DATE                     DESCRIPTION
+================================================================================
+Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
+================================================================================= -->
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" access="global" controller="LnP_comHeaderPublicFormsApexController">
+    <aura:attribute name="listItems" type="String" default=" "/>
+    <aura:attribute name="itemsList" type="List"/>
+     <aura:attribute name="itemsListtest" type="List"/>
+    <aura:attribute name="startIndex" type="Integer" default="0"/>
+    <aura:attribute name="endIndex" type="Integer" default="6"/>
+    <aura:attribute name="userType" type="String"/>
+    <aura:attribute name="userInitial" type="String"/>
+    <aura:attribute name="pageTitle" type="String"/>
+    <aura:attribute name="labelMap" type="Object"/>
+    <aura:attribute name="showBurgerIconList" type="Boolean" default="false"/>
+    <aura:attribute name="header" type="Boolean" default="false"/>
+    <aura:attribute name="headerfromsession" type="Boolean" default="false" />
+    <aura:attribute name="contactRecId" type="Id" />
+    <aura:attribute name="conIdfromsession" type="Id" />
+    <c:LnP_ServerActionService aura:id="server"/>
+    <aura:registerEvent name="appEvent" type="c:LnP_VerticalNavEvent"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <!--<c:LnP_CommonHeader itemsList="{!v.itemsList}" /> -->
+    <div class="slds-global-header slds-grid_align-spread">
+        <!--<div style="display: inline-block;float:left;"> 
+            <a href="https://licensedev-dedpr_community.cs32.force.com/delawareLnP"><img src="" class="header-Image" alt=""/></a>
+   <a class="burgerIcon" onclick="{!c.burgerIconOnClick}">
+             <img src="{!$Resource.delawareSVGs+'/Icons/LnP_BurgerIcon.svg'}" class="burger-icon-img" alt="burger icon" />
+            </a>
+        </div> -->
+        <div class="slds-grid header-wrapper">
+            <div aura:id="hamburger-menu" class="mobile-menu" style="display:none;" onclick="{!c.toggleMenu}">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="slds-size_12-of-12 slds-large-size_2-of-12 logo-wrapper">
+                <div class="logo-div">
+                   <!-- <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogo.svg'}" alt="logo" />-->
+                    <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+                    
+                </div>
+            </div>
+            <div aura:id="global-menu" class="slds-size-12-of-12 slds-large-size_10-of-12 menu-wrapper">
+                <lightning:layout >
+                <!-- <div class="slds-grid"> -->
+                    <div class="slds-size_12-of-12 slds-large-size_10-of-12">
+                        <div role="navigation" aria-labelledby="nav1" class="slds-col">                   
+                            <ul id="nav1" class="nav-links">
+                                <aura:iteration items="{!v.itemsList}" var="item">
+                                    <aura:if isTrue="{!or(v.header, v.headerfromsession)}">
+                                        <li></li>
+                                        <aura:set attribute="else">
+                                            <li><a href="{!item.value}">{!item.key}</a></li>
+                                        </aura:set>
+                                    </aura:if>
+                                </aura:iteration>
+                                <aura:if isTrue="{!v.itemsListtest.length?'true':'false'}">
+                                <li class="more-links" style="display:none">
+                                    <div>
+                                        <a href="JavaScript:Void(0);" class="morelinks" onclick="{!c.displayMoreLinks}" >More links</a>
+                                       	<div aura:id="moreLinks" class="morelinks-list slds-hide">    
+                                            <aura:iteration items="{!v.itemsListtest}" var="itemtest">
+                                                <aura:if isTrue="{!or(v.header, v.headerfromsession)}">
+                                                    <li></li>
+                                                    <aura:set attribute="else">
+                                                        <li><a href="{!itemtest.value}">{!itemtest.key}</a></li>
+                                                    </aura:set>       
+                                                </aura:if>
+                                            </aura:iteration>
+                                    	</div>
+                                   </div>
+                                </li>
+                                    <li class="links">
+                                         <div class="profile-menu-link">
+                                            <lightning:buttonMenu iconName="utility:down" label="More Links"  onselect="{!c.handleMenuSelectlink}">
+                                                 <aura:iteration items="{!v.itemsListtest}" var="itemtest">
+                                                <lightning:menuItem label="{!itemtest.key}" value="{!itemtest.value}"/>
+                                                </aura:iteration>
+                                            </lightning:buttonMenu>
+                                        </div>
+                                    </li>
+                                </aura:if>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <div class="slds-size_12-of-12 slds-large-size_2-of-12 login-wrapper"> -->
+                    <lightning:layoutItem size="12" smallDeviceSize="2" class="login-wrapper">
+                        <aura:if isTrue="{!v.userType=='Guest'}">
+                            <div class="register-div">
+                                <img class="logo-style" src="{!$Resource.LnP_Icons+'/LnP_Icons/Register.svg'}" alt="register" />
+                                <a class="link-style" href="{!$Label.c.Polaris_Portal_Registration}">Register</a>
+                            </div>
+                            <div class="login-div">
+                                <img class="logo-style" src="{!$Resource.LnP_Icons+'/LnP_Icons/Login.svg'}" alt="Login" />
+                                <a class="link-style" href="{!$Label.c.Polaris_Portal_Home+'login/'}" onclick="{!c.loginUser}">Login</a>
+                            </div>
+                            <aura:set attribute="else">
+                             <div class="user-wrapper">
+                                    <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/search.svg'}" class="logo-style" />-->
+                                    <img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style slds-m-horizontal_large" />
+                                    <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style  slds-m-horizontal_large" />
+                                    <img src="{!$Resource.LnP_Icons+'/LnP_Icons/login.png'}" alt="profile" class="logo-style slds-m-horizontal_large"/>
+                                 <!--  <div class="">
+                                        <img src="{!$Resource.LnP_Icons+'/LnP_Icons/login.png'}" class="{!v.pageTitle=='Login'?'login-Image':(v.userType!='Guest'?'slds-hide':'login-Image')}" alt="Log In"/>
+                                        <div id="profileImage" class="{!v.pageTitle=='Login'?'slds-hide':(v.userType!='Guest'?'slds-show':'slds-hide')}">{!v.userInitial}</div>
+                                    </div>-->
+                                 <div class="profile-menu-option" aura:id="profile-menu">
+                                    <aura:if isTrue="{!v.userType!='Guest'}">
+                                        <div class="profile-menu-inner slds-size_4-of-12 slds-large-size_12-of-12">
+                                            <lightning:buttonMenu iconName="utility:down" alternativeText="Settings" disabled="{!or(v.header, v.headerfromsession)}" onselect="{!c.handleMenuSelect}" class="account-dropdown">
+                                                <lightning:menuItem label="Profile" value="Profile"/>
+                                                <lightning:menuItem label="Manage Business" value="Manage Business" />
+                                                <lightning:menuItem label="Logout" value="Logout"/>
+                                            </lightning:buttonMenu>
+                                        </div>
+                                    </aura:if>                      
+                                 </div>
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </lightning:layoutItem>
+                    <!-- </div> -->
+                   <!--<div class="slds-grid slds-size_12-of-12 slds-large-size_2-of-12 profileMenu">
+                       
+                    </div>   -->               
+                <!-- </div> -->
+                </lightning:layout> 
+            </div>
+        </div>
+    </div>
+</aura:component>

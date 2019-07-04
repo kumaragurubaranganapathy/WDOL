@@ -1,0 +1,545 @@
+<apex:page controller="BGCK.ChecklistAdminController" showHeader="true" sidebar="true" id="p" >
+    
+    <apex:sectionHeader title="Checklists" subtitle="New/Edit Checklists">
+        <apex:pageMessages id="msg"/>
+    </apex:sectionHeader>
+    
+    <!-- MAIN CHECKLIST TABPANEL -->
+    <apex:form id="f">
+        
+        <apex:pageBlock id="pb" tabStyle="Page__c"><!--<apex:pageMessages id="msg2"/>-->
+            <apex:outputPanel styleClass="btn" onclick="createNewPageJS('','Page','');" rendered="{!paVOs.size==0}">New</apex:outputPanel>
+            <apex:repeat value="{!paVOs}" var="paVO" id="pat" >
+                <apex:pageBlockSection id="chkTitle" title="{!paVO.checklist.BGCK__Object_Value__c}  V {!paVO.checklist.BGCK__Current_Version__c} "/>
+                 <apex:pageMessage id="checklistMsg" rendered="{!paVO.isChkCommit == false}" escape="false" summary="This checklist has been changed since the previous version. You are now editing a new checklist version. When you are finished making changes, click &quot;Update Version&quot; to make your updates available to all staff." severity="warning"/>
+                <!--<apex:outputPanel style="color:red;" rendered="{!paVO.isChkCommit == false}">This checklist has been changed since the previous version. You are now editing a new checklist version. When you are finished making changes, click "Update Version" to make your updates available to all staff.</apex:outputPanel><br/>-->
+                <!--<apex:outputPanel style="color:red;" rendered="{!paVO.isMissingTitle == true}">Title page is missing for Checklist.</apex:outputPanel>-->
+                <apex:outputPanel style="float:right;" styleClass="btn" onclick="if({!isErrorMessage == true}) return false; saveChecklistJS('{!paVO.pageName}');">Update Version</apex:outputPanel>
+                
+                <!-- DOES NOT WORK: objects may have required fields, and the code doesn't know it needs to fill them in
+                <apex:outputPanel style="float:right;" styleClass="btn" onclick="createPreviewObjJS('{!paVO.pageName}', '{!paVO.checklist.Current_Version__c}')">Preview</apex:outputPanel>
+                -->
+                
+                <br/>
+                <br/>
+                <apex:pageBlocktable value="{!paVO.pages}" var="page" id="pa">
+                    <apex:column headerValue="Action">
+                        <apex:commandLink value="Edit" action="{!directToScreen}" id="theCommandLink" reRender="pageb" oncomplete="toggleDiv('block','blanket');toggleForm('block','pageDiv');">
+                            <apex:param name="pIndex" value="{!page.Id}" assignTo="{!currentPageId}"/>
+                            <apex:param name="pFilter" value="{!paVO.pageName}" assignTo="{!currentPageFilter}"/>
+                            <apex:param name="recordName" value="Page" assignTo="{!recordName}"/>
+                        </apex:commandLink>
+                        &nbsp;&nbsp;
+                        <apex:commandLink value="Del" action="{!deleteRecord}" rerender="f" onclick="if(!confirm('Are you sure?')){return false;}">
+                            <apex:param name="recordName" value="Page" assignTo="{!recordName}"/>
+                            <apex:param name="pIndex" value="{!page.Id}" assignTo="{!currentPageId}"/>
+                        </apex:commandLink>
+                    </apex:column>
+                    <apex:column headerValue="Type">
+                        <apex:outputField Value="{!page.BGCK__Type__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Order">
+                        <apex:outputField Value="{!page.BGCK__Order__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Name">
+                        <apex:outputField Value="{!page.Name}"/>
+                    </apex:column>
+                </apex:pageBlocktable>
+                <br/>
+                <apex:outputPanel style="float:right;" styleClass="btn" onclick="createNewPageJS('{!paVO.pageName}','Page','');">New Page</apex:outputPanel>
+                <br/>
+            </apex:repeat>
+        </apex:pageBlock>
+        
+        <style>
+        .bPageBlock .pbTitle { width: 40% }  /* center the page buttons */
+        .rich-tabpanel-content { font-size: 12px }
+        .rich-tab-header { font-size: 12px } /*set the tab header size to 12*/
+        </style>
+         
+        <apex:actionFunction name="createNewPageJS" reRender="f,pageForm" action="{!directToScreen}" oncomplete="toggleDiv('block','blanket');toggleForm('block','pageDiv');">
+             <apex:param name="pFilter" value="" assignTo="{!currentPageFilter}"/>
+             <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+             <apex:param name="newId" value="" assignTo="{!currentPageId}"/>
+        </apex:actionFunction>
+               
+        <apex:actionFunction name="createPreviewObjJS" action="{!createPreviewObj}" reRender="f" oncomplete="window.open('apex/QuestionCheckList?pid={!currentPreviewObjId}');deletePreviewObjJS();">
+            <apex:param name="pFilter" value="" assignTo="{!currentPageFilter}"/>
+            <apex:param name="currChkVer" value="" assignTo="{!currentChkVersion}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="saveChecklistJS" action="{!saveChecklist}" reRender="msg,f,pb" >
+            <apex:param name="chkName" value="" assignTo="{!checklistName}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="deletePreviewObjJS" action="{!deletePreviewObj}" reRender="f" />
+    </apex:form>
+    
+    <!-- BACKGROUND LOCK -->
+    <div id="blanket" style="display:none;" class="parentDisable" />
+    
+    <!-- PAGE-QUESTIONS FRAME -->
+    <apex:form id="pageForm">
+        <div id ="pageDiv" style="z-index:9002;width:50%;height:50%;position:absolute;display:none;top: 30%;left: 40%;margin-left: -200px;margin-top: -20px;">
+            <apex:pageBlock title="{!currentEditPage.Name}" id="pageb">
+                <apex:pagemessages />
+                <apex:tabPanel switchType="client" value="{!activeTab}" id="tab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab">
+                    <apex:tab label="Title/Section" name="Page" id="Page">
+                        <apex:pageBlockSection id="pgPBS" columns="2" >
+                            <apex:repeat value="{!$ObjectType.BGCK__Page__c.FieldSets.BGCK__Edit_Checklist_Page}" var="pageField" id="pgPBSRepeat">
+                                    <apex:inputField value="{!currentEditPage[pageField]}" rendered="{!pageField !='BGCK__Type__c' && pageField !='BGCK__Order__c'}"/>
+                                    <apex:pageBlockSectionItem helpText="{!$ObjectType.BGCK__Page__c.fields.BGCK__Type__c.InlineHelpText}" rendered="{!pageField ='BGCK__Type__c'}">
+                                        {!$ObjectType.BGCK__Page__c.fields.BGCK__Type__c.label} 
+                                        <apex:inputField value="{!currentEditPage[pageField]}" />
+                                    </apex:pageBlockSectionItem>
+
+                                    <!--
+                                    <apex:outputPanel rendered="{!pageField ='BGCK__Type__c'}" style="text-align:center" layout="block">
+                                        <apex:outputLabel value="Type"> &nbsp;&nbsp;&nbsp;&nbsp; </apex:outputLabel>
+                                        <apex:inputField value="{!currentEditPage[pageField]}"   />&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:helpIcon helpText="The first page for a new checklist should be of 'Title' type." />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </apex:outputPanel>
+                                    -->
+                                    <apex:inputField value="{!currentEditPage[pageField]}" id="pqOrder" required="true" rendered="{!pageField ='BGCK__Order__c'}"/>
+
+                                                                        
+                            </apex:repeat>
+                         </apex:pageBlockSection>
+                    </apex:tab>
+                    <apex:tab label="{!if(isQuestionChanged,'Questions *','Questions')}" name="Questions" id="Questions">
+                        <table>
+                        <tr>
+                        <td>
+                            <apex:pageBlockSection columns="2" id="questionField">
+                                <apex:inputField value="{!createNewPageQuestion['Question__c']}" rendered="{!createNewPageQuestion!=null}" id="newQuestion" onkeypress="return enter2Save(event)"/> 
+
+                            </apex:pageBlockSection>
+                        </td>
+                        <td>
+                            <apex:outputPanel styleClass="btn" onclick="savePageQuestionJS('PageQuestion');" rendered="{!createNewPageQuestion!=null}" id="newQuestionSave">Save</apex:outputPanel>
+                            <apex:outputPanel styleClass="btn" onclick="cancelAddExistingQuestionJS('Question');" rendered="{!createNewPageQuestion!=null}">Cancel</apex:outputPanel>
+                        </td>
+
+                        </tr>
+                        </table>
+                       <apex:outputPanel styleClass="btn" onclick="directToQuestionScreenJS('Question','');" rendered="{!createNewPageQuestion==null}">New</apex:outputPanel>
+                       <apex:outputPanel styleClass="btn" onclick=" addRowPageJS('Question');" rendered="{!createNewPageQuestion==null}">Add Existing</apex:outputPanel>
+                       <br/>
+                       <br/>
+                       <apex:pageBlocktable value="{!qvos}" var="qvo" id="qu" rendered="{!IF(createNewPageQuestion==null || qvos.size > 0, true, false)}">
+                           <apex:column headerValue="Action">
+                                <apex:commandLink value="Edit" action="{!directToScreen}" rerender="questionForm" oncomplete="addZindex('pageDiv','blanket');toggleForm('block','questionDiv');">
+                                    <apex:param name="qIndex" value="{!qvo.question.Id}" assignTo="{!currentQuestionId}"/>
+                                    <apex:param name="recordName" value="Question" assignTo="{!recordName}"/>
+                                </apex:commandLink>
+                                &nbsp;&nbsp;
+                                <apex:commandLink value="Del" action="{!deleteRecord}" rerender="pageb" oncomplete="toggleForm('block','pageDiv');" onclick="if(!confirm('Are you sure?')){return false;}">
+                                    <apex:param name="qIndex" value="{!qvo.question.Id}" assignTo="{!currentQuestionId}"/>
+                                    <apex:param name="recordName" value="Question" assignTo="{!recordName}"/>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column headerValue="Order" >
+                                <apex:outputText Value="{!qvo.questionOrder}" />
+                            </apex:column>
+                            <apex:column headerValue="Question Body">
+                                <apex:outputField Value="{!qvo.question.BGCK__Body__c}"/>
+                            </apex:column>
+                        </apex:pageBlocktable>
+
+                    </apex:tab>
+               </apex:tabPanel>
+               <apex:pageblockbuttons >
+                    <apex:outputPanel styleClass="btn" onclick="if(validateOrderField() == false) return false;savePageJS('Page','SaveAsPage');" rendered="{!currentPageId != null && createNewPageQuestion==null}">SaveAs</apex:outputPanel>
+                    <apex:outputPanel styleClass="btn" onclick="if(validateOrderField() == false) return false;savePageJS('Page','SavePage');" rendered="{!createNewPageQuestion==null}">Save</apex:outputPanel>
+                    <apex:outputPanel styleClass="btn" onclick="cancelPageJS('Page');" rendered="{!createNewPageQuestion==null}">Cancel</apex:outputPanel>
+               </apex:pageblockbuttons>
+           </apex:pageBlock>
+        </div>
+        <apex:actionFunction name="savePageJS" reRender="pageb,f"  action="{!save}"  oncomplete="if({!isErrorMessage}==false){reduceZindex('pageDiv','blanket');toggleDiv('none','blanket');toggleForm('none','pageDiv');};toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+            <apex:param name="action" value="" assignTo="{!action}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="savePageQuestionJS" reRender="pageb"  action="{!save}" oncomplete="toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+
+        <apex:actionFunction name="cancelAddExistingQuestionJS" reRender="pageb"  action="{!cancel}" oncomplete="toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="addRowPageJS"  reRender="pageb" action="{!addRow}" oncomplete="this.style.display='none';">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        <apex:actionFunction name="cancelPageJS" reRender="f,pageb" action="{!cancel}" oncomplete="reduceZindex('pageDiv','blanket');toggleDiv('none','blanket');toggleForm('none','pageDiv');toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="directToQuestionScreenJS" reRender="questionForm" action="{!directToScreen}" oncomplete="addZindex('pageDiv','blanket');toggleForm('block','questionDiv');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+            <apex:param name="newId" value="" assignTo="{!currentQuestionId}"/>
+        </apex:actionFunction>
+    </apex:form>
+   
+    <!-- QUESTION EDIT FRAME (Question Detail/SubQ list/Choices) -->
+    <apex:form id="questionForm">
+        <div id="questionDiv" style="z-index:9003;width:50%;height:50%;position:absolute;display:none;top: 30%;left: 40%;margin-left: -200px;margin-top: -20px;">
+            <apex:pageBlock title="{!IF(currentEditPage != null, currentEditPage.Name + '->', '')}{!IF(qvo.parentQuestion != null, qvo.parentQuestion.Name + '->', '')}{!qvo.question.Name}" id="questionpb">
+                <apex:pagemessages />
+                <apex:tabPanel onclick="document.getElementById('popQT').style.display='none';" switchType="client" value="{!activeTab}" id="qdetailtab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab">
+                    <apex:tab label="Question" name="Question" id="question" >
+                        <div style="width:100%;">
+                            <table style="margin-left:auto;margin-right:auto;">
+                                <tr>
+                                    <td style="align:right">
+                                    <apex:pageBlockSection columns="1">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="Question Type"/>
+                                            <apex:inputField value="{!qvo.question['BGCK__Question_Type__c']}" onchange="getChoicesJS()"/>                                        
+                                        </apex:pageBlockSectionItem>                                  
+                                    </apex:pageBlockSection>
+                                    </td><td style="align:left;vertical-align:middle">
+                                    <apex:outputPanel styleClass="btn" onclick="createNewQTJS();">New Question Type</apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr/>
+                        <apex:pageBlockSection columns="2" id="pbsQd">
+                            <apex:repeat value="{!$ObjectType.BGCK__Question__c.FieldSets.BGCK__Edit_Checklist_Question}" var="QuestionField">
+                                <!--do the inputtextarea for question body__c becuase richtext cannot rerender-->
+                                <apex:pageBlockSectionItem rendered="{!QuestionField ='BGCK__Body__c'}">
+                                    <apex:outputLabel value="Question Body" for="body" />
+                                    <apex:inputTextArea style="width:300px" value="{!qvo.bodyStr}" />
+                                </apex:pageBlockSectionItem>
+                                <apex:inputField value="{!qvo.question[QuestionField]}" rendered="{!QuestionField !='BGCK__Body__c' && QuestionField !='BGCK__Question_Type__c'}"/>                         
+                            </apex:repeat>
+                            <!--<apex:inputText label="TestOrder" value="{!pageQuestionOrder}"/>-->
+                            <apex:inputText label="Order" value="{!qvo.questionOrder}"/>
+                        </apex:pageBlockSection>
+                    </apex:tab>
+                    
+                    <apex:tab label="{!if((isSubQChoiceChanged&&(qvo.parentQuestion == null)) ||(!(qvo.parentQuestion == null) &&isChoiceChanged) ,'Choices *','Choices')}" name="Choices" id="Choices" >
+                        <apex:outputText rendered="{!qvo.question.BGCK__Question_Type__c = null}">Please choose Question Type first.</apex:outputText>
+                        <table>
+                        <tr>
+                        <td>
+                            <apex:pageBlockSection columns="2" rendered="{!currentNewChoice !=null}" id="pbsChoice">
+                                 <apex:inputField value="{!currentNewChoice['Answer_Type__c']}" id="newChoice" onkeypress="return enter2Save(event)"/>
+                            </apex:pageBlockSection>
+                        </td>
+                        <td>
+                            <apex:outputPanel styleClass="btn" onclick="saveJS('Choice');" rendered="{!currentNewChoice !=null}" id="newChoiceSave">Save</apex:outputPanel>
+                            <apex:outputPanel styleClass="btn" onclick="cancelAddExistingChoiceJS('Choice');" rendered="{!currentNewChoice !=null}">Cancel</apex:outputPanel>
+                        </td>
+
+                        </tr>
+                        </table>
+                        <apex:outputPanel styleClass="btn" onclick="directToChoiceScreenJS('Choice','');" rendered="{!qvo.question.BGCK__Question_Type__c != null && currentNewChoice ==null}">New</apex:outputPanel>
+                        <apex:outputPanel styleClass="btn" onclick="addRowJS('Choice');" rendered="{!qvo.question.BGCK__Question_Type__c != null && currentNewChoice ==null}">Add Existing</apex:outputPanel>
+                        <br/>
+                        <br/>
+                        <apex:pageBlocktable value="{!choices }" var="choice" rendered="{!IF(currentNewChoice==null || choices.size > 0, true, false)}">
+                            <apex:column headerValue="Action">
+                                <apex:commandLink value="Edit" action="{!directToScreen}" rerender="choiceForm" oncomplete="addZindex('questionDiv','blanket');toggleForm('block','choiceDiv');">
+                                    <apex:param name="choiceIndex" value="{!choice.Id}" assignTo="{!currentChoiceId}"/>
+                                    <apex:param name="recordName" value="Choice" assignTo="{!recordName}"/>
+                                </apex:commandLink>
+                                &nbsp;&nbsp;
+                                <apex:commandLink value="Del" action="{!deleteRecord}" rerender="questionpb" onclick="if(!confirm('Are you sure?')){return false;}">
+                                    <apex:param name="choiceIndex" value="{!choice.Id}" assignTo="{!currentChoiceId}"/>
+                                    <apex:param name="recordName" value="Choice" assignTo="{!recordName}"/>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:outputField Value="{!choice.Answer_Type__r.Name}"/>
+                            </apex:column>
+                        </apex:pageBlocktable>
+                    </apex:tab>
+                    
+                    <apex:tab label="{!if(isSubQuestionChanged,'Sub Question *','Sub Question')}" name="SubQuestion" id="SubQuestion" rendered="{!IF(qvo.parentQuestion == null, true, false)}" >
+                        <table>
+                        <tr>
+                        <td>
+                            <apex:pageBlockSection columns="2" id="subQuestionField">
+                                <apex:inputField value="{!createNewPageSubQuestion['SubQuestion__c']}" rendered="{!createNewPageSubQuestion!=null}" id="newSubQuestion" onkeypress="return enter2Save(event)"/>
+                            </apex:pageBlockSection>
+                        </td>
+                        <td>
+                            <apex:outputPanel styleClass="btn" onclick="savePageSubQuestionJS('PageSubQuestion');" rendered="{!createNewPageSubQuestion!=null}" id="newSubQuestionSave">Save</apex:outputPanel>
+                            <apex:outputPanel styleClass="btn" onclick="cancelAddExistingSubQuestionJS('SubQuestion');" rendered="{!createNewPageSubQuestion!=null}">Cancel</apex:outputPanel>
+                        </td>
+                        </tr>
+                        </table>
+                        <apex:outputPanel styleClass="btn" onclick="directToSubQScreenJS('SubQuestion','');" rendered="{!createNewPageSubQuestion==null}">New</apex:outputPanel>
+                        <apex:outputPanel styleClass="btn" onclick="addRowJS('SubQuestion');" rendered="{!createNewPageSubQuestion==null}">Add Existing</apex:outputPanel>
+                        <br/>
+                        <br/>
+                        <apex:pageBlocktable value="{!qvo.subQuestions}" var="subQuestion" id="sqList" rendered="{!IF(createNewPageSubQuestion==null || qvo.subQuestions.size > 0, true, false)}">
+                            <apex:column headerValue="Action">
+                                <apex:commandLink value="Edit" action="{!directToScreen}" rerender="f,questionForm" oncomplete="toggleForm('block','questionDiv');">
+                                    <apex:param name="subqIndex" value="{!subQuestion.Id}" assignTo="{!currentSubQuestionId}"/>
+                                    <apex:param name="recordName" value="SubQuestion" assignTo="{!recordName}"/>
+                                </apex:commandLink>
+                                &nbsp;&nbsp;
+                                <apex:commandLink value="Del" action="{!deleteRecord}" rerender="f,questionpb" onclick="if(!confirm('Are you sure?')){return false;}">
+                                    <apex:param name="subIndex" value="{!subQuestion.Id}" assignTo="{!currentSubQuestionId}"/>
+                                    <apex:param name="recordName" value="SubQuestion" assignTo="{!recordName}"/>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:outputField Value="{!subQuestion.BGCK__Body__c}"/>
+                            </apex:column>
+                        </apex:pageBlocktable>
+                    </apex:tab>
+                </apex:tabPanel>
+                
+                <apex:pageblockbuttons >
+                    <apex:outputPanel styleClass="btn" onclick="saveJS('{!recordName}','SaveAs{!recordName}');" rendered="{!(currentNewChoice ==null && createNewPageSubQuestion==null)&&(currentQuestionId != null && qvo.parentQuestion == null) || currentSubQuestionId != null}">SaveAs</apex:outputPanel>
+                    <apex:outputPanel styleClass="btn" onclick="saveJS('{!recordName}','Save{!recordName}');" rendered="{!currentNewChoice ==null && createNewPageSubQuestion==null}">Save</apex:outputPanel>
+                    <apex:outputPanel styleClass="btn" onclick="cancelJS('{!recordName}');" rendered="{!currentNewChoice ==null && createNewPageSubQuestion==null}">Cancel</apex:outputPanel>
+                </apex:pageblockbuttons>
+            </apex:pageblock>
+        </div>
+        
+        <apex:actionFunction name="saveJS" reRender="pageb,questionpb" action="{!save}" oncomplete="if ({!isErrorMessage}==false){if ('{!qvo}' != '') {toggleForm('block','questionDiv');}else {reduceZindex('questionDiv','blanket');toggleForm('none','questionDiv');}toggleForm('block','pageDiv');} else {toggleForm('block','questionDiv');} toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+            <apex:param name="action" value="" assignTo="{!action}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="savePageSubQuestionJS" reRender="questionpb" action="{!save}" oncomplete="toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+
+        <apex:actionFunction name="cancelAddExistingSubQuestionJS" reRender="questionpb"  action="{!cancel}" oncomplete="toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+
+        
+        <apex:actionFunction name="directToSubQScreenJS" reRender="questionpb" action="{!directToScreen}" oncomplete="toggleForm('block','questionDiv');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+            <apex:param name="newId" value="" assignTo="{!currentSubQuestionId}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="directToChoiceScreenJS" reRender="optionForm" action="{!directToScreen}" oncomplete="addZindex('questionDiv','blanket');toggleForm('block','optionDiv');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+            <apex:param name="newId" value="" assignTo="{!currentChoiceId}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="createNewQTJS" action="{!createNewQuestionType}" reRender="qtpb" oncomplete="addZindex('questionDiv','blanket');toggleForm('block','popQT');"/>
+         
+        <apex:actionFunction name="getChoicesJS" action="{!getNewChoices}" reRender="questionpb" oncomplete=""/>
+        
+        <apex:actionFunction name="addRowJS" reRender="questionpb" action="{!addRow}">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="cancelAddExistingChoiceJS" reRender="questionpb"  action="{!cancel}" oncomplete="toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        <apex:actionFunction name="cancelJS" reRender="pageb,questionForm" action="{!cancel}" oncomplete="if ('{!qvo}' != '') {toggleForm('block','questionDiv');}else {reduceZindex('questionDiv','blanket');toggleForm('block','pageDiv');}toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+    </apex:form>
+    
+    <!-- QT FRAME -->
+    <apex:form id="qtForm">
+        <!--<div id="popQT" style="width:50%;display:none;margin-left: auto;margin-right: auto;">-->
+        <div id="popQT" style="z-index:9004;width:50%;height:50%;position:absolute;display:none;top: 30%;left: 40%;margin-left: -200px;margin-top: -20px;">
+            <apex:pageBlock title="New Question Type" id="qtpb">
+                <apex:pagemessages />
+                <apex:pageblockbuttons >
+                    <apex:commandbutton action="{!saveQuestionType}" value="Save" reRender="qtpb,questionpb" oncomplete="if({!isErrorMessage}==false){document.getElementById('p:questionForm:questionpb:Choices_lbl').style.color='black';reduceZindex('popQT','blanket');toggleForm('none','popQT');}"/>
+                <apex:commandbutton action="{!cancelQuestionType}" value="Cancel"  reRender="questionpb" immediate="true" oncomplete="reduceZindex('popQT','blanket');toggleForm('none','popQT');"/>
+                   
+                </apex:pageblockbuttons>
+                <apex:pageBlockSection columns="2" id="choiceField">
+                    <!--display new question type fields-->
+                    <apex:repeat value="{!$ObjectType.BGCK__Question_Type__c.FieldSets.BGCK__Edit_Checklist_QuestionType}" var="QTField">
+                        <apex:inputField value="{!currentNewQuestionType[QTField]}"/>
+                    </apex:repeat>
+                 </apex:pageBlockSection>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+    
+    <!-- CHOICE DETAIL -->
+    <apex:form id="choiceForm">
+        <div id="choiceDiv" style="z-index:9004;width:50%;height:50%;position:absolute;display:none;top: 30%;left: 40%;margin-left: -200px;margin-top: -20px;">
+            <apex:pageBlock id="choicepb" title="{!IF(currentEditPage != null, currentEditPage.Name + '->', '')}{!IF(qvo.parentQuestion != null, qvo.parentQuestion.Name + '->', '')}{!IF(qvo.question != null, qvo.question.Name + '->', '')}{!currentEditChoice.Answer_Type__r.Name}">      
+                <apex:pagemessages />
+                <apex:tabPanel switchType="client" value="{!activeTab}" id="choiceTab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab">
+                    <apex:tab label="Choice" name="Choice" id="Choice">
+                        <apex:pageBlockSection columns="2" id="choiceField">
+                            <apex:inputField id="editChoice" value="{!currentEditChoice['Answer_Type__c']}" onkeypress="return enter2Save(event)"/>
+                        </apex:pageBlockSection>
+                    </apex:tab>
+                </apex:tabPanel>
+                <apex:pageblockbuttons >
+                    <apex:outputPanel id="editChoiceSave" styleClass="btn" onclick="saveChoiceJS('Choice');">Save</apex:outputPanel>
+                    <apex:outputPanel styleClass="btn" onclick="cancelChoiceJS('Choice');">Cancel</apex:outputPanel>
+                </apex:pageblockbuttons>
+            </apex:pageBlock>
+        </div>
+        <apex:actionFunction name="saveChoiceJS" reRender="choicepb,questionpb" action="{!save}" oncomplete="if({!isErrorMessage}==false){reduceZindex('choiceDiv','blanket');toggleForm('none','choiceDiv');}else{toggleForm('block','choiceDiv');}toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="cancelChoiceJS" reRender="questionpb" action="{!cancel}" oncomplete="reduceZindex('choiceDiv','blanket');toggleForm('none','choiceDiv');toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+    </apex:form>
+    
+    <!-- NEW CHOICE FRAME -->
+    <apex:form id="optionForm">
+        <div id="optionDiv" style="z-index:9004;width:50%;height:50%;position:absolute;display:none;top: 30%;left: 40%;margin-left: -200px;margin-top: -20px;">
+            <apex:pageBlock id="choiceATpb" title="{!currentNewoption.Name}">
+                <apex:pagemessages />
+                <apex:tabPanel switchType="client" value="{!activeTab}" id="choiceATTab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab" rendered="{!currentPageId != null || currentPageFilter != null}">
+                    <apex:tab label="Choice" name="Choice" id="ChoiceAT">
+                        <apex:pageBlockSection columns="2" id="pbsoption">
+                            <apex:repeat value="{!$ObjectType.BGCK__Answer_Type__c.FieldSets.BGCK__Edit_Checklist_AnswerType}" var="ATField" id="pbsOpionRepeat">
+                                <apex:inputField value="{!currentNewoption[ATField]}"  rendered="{!ATField != 'BGCK__Actual_Value__c'}"/>
+                                <apex:inputField value="{!currentNewoption[ATField]}" id="actualValue"  rendered="{!ATField == 'BGCK__Actual_Value__c'}" required="true"/>
+                            </apex:repeat>
+                        </apex:pageBlockSection>
+                    </apex:tab>
+                </apex:tabPanel>
+                <apex:pageblockbuttons >
+                    <apex:outputPanel styleClass="btn" onclick="if(validateActualValue() == false) return false;saveATJS('Choice');">Save</apex:outputPanel>
+                    <apex:outputPanel styleClass="btn" onclick="cancelATJS('Choice');">Cancel</apex:outputPanel>
+                </apex:pageblockbuttons>
+             </apex:pageBlock>
+        </div>
+         <apex:actionFunction name="saveATJS" reRender="choiceATpb,questionpb" action="{!save}" oncomplete="if ({!isErrorMessage}==false){reduceZindex('optionDiv','blanket');toggleForm('none','optionDiv');}toggleForm('none','popQT');">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="cancelATJS" reRender="questionpb" action="{!cancel}" oncomplete="reduceZindex('optionDiv','blanket');toggleForm('none','optionDiv');toggleForm('none','popQT');" immediate="true">
+            <apex:param name="recordName" value="" assignTo="{!recordName}"/>
+        </apex:actionFunction>
+    </apex:form>
+    
+    <style>   
+        .parentDisable
+        {
+            z-index:9001;
+            width:100%;
+            height:100%;
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            background-color: #111;
+            color: #aaa;
+            opacity: .45;
+            filter: alpha(opacity=50);     
+        }
+        .helpText
+        {
+            z-index:9002;
+        }
+    </style>
+    
+    <script>
+        function addZindex(div_id_from ,div_id_to)
+        {
+            var k = document.getElementById(div_id_from).style;
+            var tempZindex = Number(k.zIndex)+1;
+            document.getElementById(div_id_to).style.zIndex = tempZindex;
+        }
+        function reduceZindex(div_id_from ,div_id_to)
+        {
+            var k = document.getElementById(div_id_from).style;
+            var tempZindex = Number(k.zIndex)-1;
+            document.getElementById(div_id_to).style.zIndex = tempZindex;
+        }
+        function toggleDiv(displayStr,div_id) 
+        {
+            document.getElementById(div_id).style.display = displayStr;                 
+        }
+        function toggleForm(displayStr,div_id) 
+        {
+            document.getElementById(div_id).style.display = displayStr;                 
+        }
+        var confirmExit = true;
+        window.onbeforeunload=detectExit;
+        function detectExit(e) {
+            if (this.document.activeElement.href != null && (this.document.activeElement.href.indexOf('openLookup') > -1 || this.document.activeElement.href.indexOf('DatePicker') > -1)) confirmExit = false;
+            if (confirmExit) {
+                confirmExit = true;
+                return "Please make sure you click \'Update Version\' to submit changes!";
+            }
+            else confirmExit = true;
+        }
+        function validateOrderField(){
+            var pqOrderValue = document.getElementById('{!$Component.pageForm.pageb.pgPBS.pgPBSRepeat}:5:pqOrder').value;
+            if(pqOrderValue == null || pqOrderValue === ''){
+                alert('Order cannot be empty!');
+                return false;
+            }else{
+                return true;
+            }
+        }
+        function validateActualValue(){
+            var actualValue = document.getElementById('{!$Component.optionForm.choiceATpb.pbsoption.pbsOpionRepeat}:1:actualValue').value;
+            if(actualValue == null || actualValue === ''){
+                alert('Displayed Value cannot be empty!');
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        function enter2Save(ev){
+              if (window.event)
+              {
+                  ev=window.event;
+              }
+               
+              var keyCode;
+              if (ev.keyCode)
+              {
+                 keyCode=ev.keyCode;
+              }
+              else
+              {
+                 keyCode=ev.charCode;
+              }
+               
+              if (keyCode == 13)
+              {
+                 if (ev.target.id == '{!$Component.p.questionForm.questionpb.pbsChoice.newChoice}')
+                 {
+                    var ele=document.getElementById('{!$Component.p.questionForm.questionpb.newChoiceSave}');
+                    ele.click();
+                    return false;
+                 }
+                 else if (ev.target.id == '{!$Component.p.choiceForm.choicepb.choiceField.editChoice}')
+                 {
+                    //$( "#editChoiceSave" ).click();   //when jQuery is included
+                    var ele = document.getElementById('{!$Component.p.choiceForm.choicepb}').children[0].children[0].children[0].children[0].children[1].children[0];
+                    ele.click();
+                    return false;
+                 }
+                 else if(ev.target.id == '{!$Component.p.questionForm.questionpb.subQuestionField.newSubQuestion}')
+                 {
+                    var ele=document.getElementById('{!$Component.p.questionForm.questionpb.newSubQuestionSave}');
+                    ele.click();
+                    return false;
+                 }
+                 else if (ev.target.id == '{!$Component.p.pageForm.pageb.questionField.newQuestion}')
+                 {
+                    var ele = document.getElementById('{!$Component.p.pageForm.pageb.newQuestionSave}');
+                    ele.click();
+                    return false;
+                 }
+              }
+              else
+              {
+                 return true;
+              }        
+        }         
+          
+    </script>
+</apex:page>

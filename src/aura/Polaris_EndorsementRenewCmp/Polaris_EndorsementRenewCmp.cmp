@@ -1,0 +1,109 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName,lightning:isUrlAddressable" access="global" controller="Polaris_EndorsementRenewCntrl">
+    <aura:attribute name="endorsementList" type="List"/>
+    <aura:attribute name ="licenseType" type="String" />
+	<aura:attribute name ="endorsementID" type="String" />    
+    <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+    <aura:attribute name="showProvider" type="boolean" default="false"/>
+    <aura:attribute name ="providerList" type="List" />
+    <aura:attribute name="sectionList" type ="LnP_ApplyForLicenseWrapper"/>
+    <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="sectionName" type="String" />
+    <aura:attribute name="ProviderFields" type="String[]" default="['Provider_Name__c','Effective_Date__c','Description__c']" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
+    </aura:if>
+    <div class="field-item content-wrapper">
+        <lightning:card title="Endorsement Details">
+            <p class="slds-p-horizontal_small">
+                <table>
+                    <thead>
+                        <th>Endorsement Type</th>
+                        <th>Status</th>
+                        <th>Date Requested</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.endorsementList}" var="doc">
+                            <tr>
+                                <td>{!doc.Endorsement_Type__c}</td>
+                                <td>{!doc.Status__c}</td>
+                                <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
+                                <td>
+                                    <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
+                                        <aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
+                                            <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
+                                            <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
+                                        </aura:if>                                        
+                                        <lightning:menuItem value="{!join(',',doc.Id,'Renew')}" label="Renew" />
+                                        <lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove" />                                        
+                                    </lightning:buttonMenu></td>
+                            </tr>              
+                        </aura:iteration>        
+                    </tbody>
+                </table>
+            </p>
+        </lightning:card>
+        
+        <aura:if isTrue="{!v.showProvider}">    
+            <!--<c:LnP_RecordEditForms sectionList ="{!v.sectionList}" sectionName="{!v.sectionName}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}"/> -->
+            <lightning:card title="Provider Details">
+                <p class="slds-p-horizontal_small">
+                    <table>
+                        <thead>
+                            <th>Provider Name</th>
+                            <th>Effective Date</th>
+                            <th>Description</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.providerList}" var="doc">
+                                <tr>
+                                    <td>{!doc.Provider_Name__c}</td>
+                                    <td>{!doc.Effective_Date__c}</td>
+                                    <td>{!doc.Description__c}</td>
+                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" onclick="{!c.deleteProvider}"/> </td>
+                                </tr>              
+                            </aura:iteration>        
+                        </tbody>
+                    </table>
+                </p>
+            </lightning:card>
+        </aura:if>
+       
+        <aura:if isTrue="{!v.isModalOpen}">
+             
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Provider Details</h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--RecordEditForm for Adding Provider details-->
+                        <lightning:recordForm
+                            aura:id="providerForm"
+                            objectApiName="Electronic_Notary_Provider_Information__c"
+                            fields="{!v.ProviderFields}"
+                            columns="2"
+                            mode="edit"
+                            onsubmit="{!c.saveData}"
+                             onsuccess="{!c.handleSuccess}" 
+                            oncancel="{!c.closeModel}"                />
+                    </div>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+    </div>
+</aura:component>

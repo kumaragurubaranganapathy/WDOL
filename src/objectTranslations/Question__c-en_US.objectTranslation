@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Question</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Questions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Allow Multiple Question Groups --></label>
+        <name>Allow_Multiple_Question_Groups__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Method --></label>
+        <name>Application_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profession --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment Required --></label>
+        <name>Attachment_Required__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Chevron Type --></label>
+        <name>Chevron_Type__c</name>
+        <picklistValues>
+            <masterLabel>Course Information</masterLabel>
+            <translation><!-- Course Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial Guarantee</masterLabel>
+            <translation><!-- Financial Guarantee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Background</masterLabel>
+            <translation><!-- Legal Background --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Questions</masterLabel>
+            <translation><!-- Questions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Child Question Group --></label>
+        <name>Child_Question_Group__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please ensure that the field is on the object in the &quot;Parent Object Field API Name&quot; field. --></help>
+        <label><!-- Compliance Field API Name --></label>
+        <name>Compliance_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Type Question --></label>
+        <name>Course_Type_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Endorsement Record --></label>
+        <name>Create_Endorsement_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>Credential_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Type --></label>
+        <name>Data_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Style --></label>
+        <name>Display_Style__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Date --></label>
+        <name>Effective_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Eligibility questions determine appType --></label>
+        <name>Eli_Ques_determines_App_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Endorsement Type --></label>
+        <name>Endorsement_Type__c</name>
+        <picklistValues>
+            <masterLabel>Agricultural &amp; Biological</masterLabel>
+            <translation><!-- Agricultural &amp; Biological --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Systems</masterLabel>
+            <translation><!-- Building Systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cemetery Pre-arrangement Sales</masterLabel>
+            <translation><!-- Cemetery Pre-arrangement Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cemetery Pre-arrangement Sales Exemption</masterLabel>
+            <translation><!-- Cemetery Pre-arrangement Sales Exemption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemical</masterLabel>
+            <translation><!-- Chemical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Civil</masterLabel>
+            <translation><!-- Civil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Control Systems</masterLabel>
+            <translation><!-- Control Systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Crematory</masterLabel>
+            <translation><!-- Crematory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical</masterLabel>
+            <translation><!-- Electrical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eletronic Notary</masterLabel>
+            <translation><!-- Eletronic Notary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering</masterLabel>
+            <translation><!-- Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering Geologist</masterLabel>
+            <translation><!-- Engineering Geologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environmental</masterLabel>
+            <translation><!-- Environmental --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire Protection</masterLabel>
+            <translation><!-- Fire Protection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Funeral Pre-arrangement Contract</masterLabel>
+            <translation><!-- Funeral Pre-arrangement Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hydrogeologist</masterLabel>
+            <translation><!-- Hydrogeologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial</masterLabel>
+            <translation><!-- Industrial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Land Surveying</masterLabel>
+            <translation><!-- Land Surveying --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mechanical</masterLabel>
+            <translation><!-- Mechanical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metallurgical and Materials</masterLabel>
+            <translation><!-- Metallurgical and Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mining and Mineral Processing</masterLabel>
+            <translation><!-- Mining and Mineral Processing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Naval Architect/Marine</masterLabel>
+            <translation><!-- Naval Architect/Marine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nuclear</masterLabel>
+            <translation><!-- Nuclear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petroleum</masterLabel>
+            <translation><!-- Petroleum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Structural Engineer</masterLabel>
+            <translation><!-- Structural Engineer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Error Message --></label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Answer Parent Field Value Map --></label>
+        <name>Expected_Answer_Parent_Field_Value_Map__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id of Parent --></label>
+        <name>External_Id_of_Parent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Any Submission --></label>
+        <name>Has_Any_Submission__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has dependent questions? --></label>
+        <name>Has_dependent_questions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Background Question --></label>
+        <name>Legal_Background_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- MessageTriggerResponse --></label>
+        <name>MessageTriggerResponse__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mulesoft External Id --></label>
+        <name>Mulesoft_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Number --></label>
+        <name>Order_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Object API Name --></label>
+        <name>Parent_Object_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Object Field API Name --></label>
+        <name>Parent_Object_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Question --></label>
+        <name>Parent_Question__c</name>
+        <relationshipLabel><!-- Questions (Parent Question) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit Type --></label>
+        <name>Permit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Possible Responses --></label>
+        <name>Possible_Responses__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Question Version --></label>
+        <name>Previous_Question_Version__c</name>
+        <relationshipLabel><!-- Questions (Previous Question Version) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Program Area --></label>
+        <name>Program_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qualifying Response --></label>
+        <name>Qualifying_Response__c</name>
+    </fields>
+    <fields>
+        <label><!-- QuestionFieldAPI --></label>
+        <name>QuestionFieldAPI__c</name>
+    </fields>
+    <fields>
+        <label><!-- QuestionObjectName --></label>
+        <name>QuestionObjectName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Body --></label>
+        <name>Question_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Group --></label>
+        <name>Question_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question Sub Section --></label>
+        <name>Question_Sub_Section__c</name>
+        <relationshipLabel><!-- Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Set to true if this field is compliance related. Setting this field to true will mean that when the qualifying answer is the answer given, the compliance checkbox will be checked off on the parent object. --></help>
+        <label><!-- Question is Compliance Related? --></label>
+        <name>Question_is_Compliance_Related__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Name --></label>
+        <name>Record_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regex Validation --></label>
+        <name>Regex_Validation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Order --></label>
+        <name>Section_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Request Type --></label>
+        <name>Service_Request_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show For --></label>
+        <name>Show_For__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Header --></label>
+        <name>Sub_Header__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Sub Header --></label>
+        <name>Sub_Sub_Header__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submission Title --></label>
+        <name>Submission_Title__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please enter values (answers to this question) separated by a semicolon. --></help>
+        <label><!-- Triggering Comment Box Value --></label>
+        <name>Triggering_Comment_Box_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Field API Name --></label>
+        <name>Triggering_Field_API_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Field Value --></label>
+        <name>Triggering_Field_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggering Parent Answer --></label>
+        <name>Triggering_Parent_Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Version --></label>
+        <name>Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- isRequired --></label>
+        <name>isRequired__c</name>
+    </fields>
+    <layouts>
+        <layout>Question Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Question Inforamtion --></label>
+            <section>Question Inforamtion</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Qualifying Information --></label>
+        <name>Background_Information</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type used for Background question type --></description>
+        <label><!-- License Information --></label>
+        <name>Background_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Course Information --></label>
+        <name>Course_Information</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Educational Background Questions --></label>
+        <name>Educational_Background_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Eligibility Question Types --></description>
+        <label><!-- Eligibility Questions --></label>
+        <name>Eligibility_Questions</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- To store endorsements --></description>
+        <label><!-- Endorsement --></label>
+        <name>Endorsement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Financial Guarantee --></label>
+        <name>Financial_Guarantee</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Review and Submit --></label>
+        <name>Review_and_Submit</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
