@@ -1,1 +1,0 @@
-trigger DRE2_MUSW_Permit2_c on MUSW__Permit2__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_MUSW_Permit2_c', new DRETriggerHandler()); }
