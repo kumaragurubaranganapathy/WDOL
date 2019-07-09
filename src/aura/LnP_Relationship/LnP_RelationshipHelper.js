@@ -52,6 +52,7 @@
                 component.set("v.CurrentLicenseTableColumnsList",currentLicenseTableColumnData);
                 
                 component.set("v.CurrentLicenseTableDataList",currentLicenseTableHeaderData);
+                component.set("v.loadingSpinner",false);
                 if(component.get("v.sObjectName") == 'MUSW__Account_Contact__c'){
                    var Objectlist = component.get("v.CurrentLicenseTableDataList");
                    var countAdmin = 0;

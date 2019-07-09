@@ -174,7 +174,7 @@ public without sharing class Add_BusinessController {
         
         List<MUSW__License2__c> courseList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
                                               Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,
-                                              Course_Status__c,Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
+                                              Course_Status__c, Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                               Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND Ultimate_Parent_Account__c =:accountId];
@@ -267,11 +267,11 @@ public without sharing class Add_BusinessController {
          List<String> statusFilterList = new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
          Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
          List<SObject> columnDataList;
-         if(branch){
-            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c FROM MUSW__License2__c WHERE recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
+         if(branch){    
+            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c, Application_Method__c FROM MUSW__License2__c WHERE recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
              
          }else{
-            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c FROM MUSW__License2__c WHERE Ultimate_Parent_Account__c =:AccountId AND recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND isBranch_License__c= false ];
+            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c, Application_Method__c FROM MUSW__License2__c WHERE Ultimate_Parent_Account__c =:AccountId AND recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND isBranch_License__c= false ];
          }                           
          Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
          
@@ -286,9 +286,13 @@ public without sharing class Add_BusinessController {
    @AuraEnabled 
     public static MUSW__License2__c getLicenseData(String Id){
     
-    MUSW__License2__c  lic = [SELECT id, Name,Application_Method__c,MUSW__Issue_Date__c,Original_Issue_Date__c, Application_Type__c,Ultimate_Parent_Account__r.Email__c,Ultimate_Parent_Account__r.Business_Phone__c,Ultimate_Parent_Account__r.Name,Ultimate_Parent_Account__r.Doing_Business_As_1__c, Credential_Type__c, MUSW__Expiration_Date__c, MUSW__Status__c, Sub_Status__c, MUSW__Parcel__r.Address_Type__c,
+    List<MUSW__License2__c>  lic = [SELECT id, Name,Application_Method__c,MUSW__Issue_Date__c,Original_Issue_Date__c, Application_Type__c,Ultimate_Parent_Account__r.Email__c,Ultimate_Parent_Account__r.Business_Phone__c,Ultimate_Parent_Account__r.Name,Ultimate_Parent_Account__r.Doing_Business_As_1__c, Credential_Type__c, MUSW__Expiration_Date__c, MUSW__Status__c, Sub_Status__c, MUSW__Parcel__r.Address_Type__c,
     MUSW__Parcel__r.MUSW__Street__c,MUSW__Parcel__r.MUSW__City__c,MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Post_Zip_Code__c FROM MUSW__License2__c WHERE id=:Id limit 1];
-    return lic;
+        if(!lic.isEmpty()){
+            return lic[0];
+        }else{
+            return null;
+        }
     
     }
     
@@ -296,9 +300,12 @@ public without sharing class Add_BusinessController {
    @AuraEnabled 
     public static Endorsement__c getEndorsementData(String Id){
     
-    Endorsement__c  endorsementData = [SELECT id, Name,License__c,Endorsement_Type__c FROM Endorsement__c WHERE License__c=:Id limit 1];
-    return endorsementData;
-    
+    List<Endorsement__c> endorsementData = [SELECT id, Name,License__c,Endorsement_Type__c FROM Endorsement__c WHERE License__c=:Id limit 1];
+        if(!endorsementData.isEmpty()){
+            return endorsementData[0];
+        }else{
+          return null;
+        }
     }
     
     //method to get Address details 
@@ -306,8 +313,11 @@ public without sharing class Add_BusinessController {
     public static List<LnP_Parcel__c> getAddressData(String Id){
     
     List<LnP_Parcel__c>  addressData = [SELECT id, Name,Address_Type__c,Street__c,City__c,State__c,Zip_Postal_Code__c,License__c,is_Physical_and_Mailing_Address_Same__c FROM LnP_Parcel__c WHERE License__c=:Id limit 4];
-    return addressData;
-    
+    if(!addressData .isEmpty()){
+        return addressData;
+    }else{
+        return null;
+    }
     }
     
     // Method to update task status and related record on accept or declined of action.
@@ -496,7 +506,7 @@ public without sharing class Add_BusinessController {
     List<String> columnHeaderList;
     List<String> statusFilterList;
     if(sObjectName == 'MUSW__Account_Contact__c'){
-        columnHeaderList = new List<String>{'NAME','ROLE','ADMIN','DCP','EMAIL','STATUS','ACTIONS'};
+        columnHeaderList = new List<String>{'NAME','ROLE','ADMIN','DCP','EMAIL','STATUS'};
         statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
         sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted']; 
     }
@@ -695,8 +705,9 @@ public without sharing class Add_BusinessController {
         String accName = acc.Name;
         Boolean hasDCP = false;
         Set<String> statusSet = new Set<String>{'Confirmed','Active','Accepted'};
+        Set<String> roleSet = new Set<String>{'Controlling person','Designated Controlling Person'};
         if(accName.contains('Appraisal Management Company')){
-            List<MUSW__Account_Contact__c> accCon = [select id,Name from MUSW__Account_Contact__c where MUSW__Account__c =: accountId AND Status__c IN:statusSet AND Role__c =:'Controlling person' AND DCP__c = true ];
+            List<MUSW__Account_Contact__c> accCon = [select id,Name from MUSW__Account_Contact__c where MUSW__Account__c =: accountId AND Status__c IN:statusSet AND Role__c IN:roleSet  AND DCP__c = true ];
             hasDCP = (accCon.size() > 0) ? true :false;
         }
         return hasDCP;

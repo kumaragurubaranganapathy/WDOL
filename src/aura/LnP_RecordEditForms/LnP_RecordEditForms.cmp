@@ -37,7 +37,7 @@
                                         <lightning:layoutItem size="6">                                            
                                             <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
                                                 <div class="{!itemRow + 'showHide field-item'}">
-                                                    <lightning:outputfield label="{!rec.label}" aura:id="outputEditfield" fieldName="{!rec.fieldName}" class="edit-field" />
+                                                    <lightning:outputfield label="{!rec.label}" aura:id="outputEditfield" fieldName="{!rec.fieldName}" class="edit-field"  />
                                                 </div>
                                                 <div class="{!itemRow + 'showHide field-item slds-hide'}">                                                    
                                                     <lightning:inputfield label="{!rec.label}" name="{!itemRow}" aura:id="inputEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') + 'itemRow='+itemRow}" onchange="{!c.inputEditClick}"/>
@@ -92,9 +92,9 @@
                             <div class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide':'slds-col slds-size_12-of-12 field-size qfield-margin in-field recItem'):'slds-col slds-size_12-of-12 field-size qfield-margin recItem in-field')}">
                                 <label>{!rec.label}</label> 
                                 <aura:if isTrue="{!rec.required || rec.regex != null}">
-                                	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="label-hidden" />
+                                	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="label-hidden" onchange="{!c.test}"/>
                                 	<aura:set attribute="else">
-                                    	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="{!'label-hidden'+(rec.label=='Current'? ' checkbox-style':'')}" onchange="{!c.inputClick}"/>
+                                    	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden checkbox-style" onchange="{!c.inputClick}"/>
                                     </aura:set>
                                 </aura:if>
                             </div>

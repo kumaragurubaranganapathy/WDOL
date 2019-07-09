@@ -321,7 +321,7 @@
     <fields>
         <fullName>Day_s_Total_Receipts_del__c</fullName>
         <externalId>false</externalId>
-        <formula>Total_Cash_in_Register_CC__c</formula>
+        <formula>Total_Cash_in_Register_CC__c-Minus_startup_amount__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Day&apos;s Total Receipts</label>
         <precision>18</precision>
@@ -724,7 +724,7 @@
     <fields>
         <fullName>Over_Short__c</fullName>
         <externalId>false</externalId>
-        <formula>System_generated_cash_total__c- Total_Cash_in_Register_CC__c</formula>
+        <formula>System_generated_cash_total__c- Day_s_Total_Receipts_del__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Over/Short</label>
         <precision>18</precision>
@@ -804,9 +804,9 @@
         <fullName>System_generated_cash_total__c</fullName>
         <externalId>false</externalId>
         <label>System generated cash total</label>
-        <precision>18</precision>
+        <precision>13</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>

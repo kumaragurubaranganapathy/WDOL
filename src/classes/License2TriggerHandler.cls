@@ -450,7 +450,8 @@ Parameter      : Nil
                         MUSW.SequenceNumber.updateNumbers(Trigger.new, trigger.old);
                     }
                     //Added to restrict users from updating credential number- Bug#2488
-                    else if(Trigger.Old != null && oldLic.Name != lic.Name){
+                    //Added a condition to update sequence for appraiser course if provider is secondary
+                    else if(Trigger.Old != null && oldLic.Name != lic.Name && lic.Credential_Type__c != 'Appraiser Course'){
                         //throw an error message
                         sobj.addError(Label.Err_Number_cannot_be_changed);
                     }

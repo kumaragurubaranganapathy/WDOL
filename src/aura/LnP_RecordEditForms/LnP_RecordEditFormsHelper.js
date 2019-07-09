@@ -146,5 +146,20 @@
                 $A.util.removeClass(elem,'slds-hide');            
         }); */
         
+    },
+    test: function(component,event){ 
+      /*   console.log("in test");
+       var currElement = event.getSource().get('v.value'); 
+        var currfield=event.getSource().get('v.fieldName')
+        
+        if(currfield=="Start_date__c"){
+        var d = new Date(currElement);
+        var month = d.getMonth()+1;
+        var year =  d.getFullYear();
+        var formattedDate=month+","+year
+        event.getSource().set('v.value',formattedDate);  
+          console.log(formattedDate);
+        }*/
+       
     }
 })

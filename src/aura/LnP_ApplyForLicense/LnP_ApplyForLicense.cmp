@@ -326,16 +326,28 @@
                                                         <lightning:input type="date" name="{!section.sectionName+questionItem}"  value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if>
+                                                <!--<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                                <thead>
+                                                 <tr class="slds-line-height_reset">
+                                                   <th class="" scope="col">
+                                                    <div class="slds-truncate" title="Attachments">Attachments</div>
+                                                     </th>
+                                                    </tr></thead>-->
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">
+                                                    <!--<tbody>
+                                                 <tr class="slds-hint-parent"><th>-->
                                                     <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <!--<div><p>Test</p></div>-->
                                                         <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
+                                                        <!--<div><p>Test End</p></div>-->
                                                     </div>
                                                     <aura:if isTrue = "{!(question.multiValues.length == 0 &amp;&amp; question.isMandatorySub == true)}">
                                                         <div class="attValidationStyle slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1">
                                                             **Required Submission.
                                                         </div>
-                                                    </aura:if>
-                                                </aura:if>
+                                                       
+                                                     </aura:if> <!--</th></tr></tbody>-->
+                                                    </aura:if><!--</table>-->
                                                 
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.acknowledge)}">
                                                     <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">

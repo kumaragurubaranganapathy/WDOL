@@ -26,6 +26,7 @@
     },
     updateDepositList : function(component, event,_callType){
         debugger; 
+        component.set("v.showSpinner", true);
         var _depRecList = event.getParam("depositInstance");   
         console.log("_depRecList : "+JSON.stringify(_depRecList));
         var action = component.get("c.updateDepositRec");        
@@ -33,10 +34,12 @@
             "depList": _depRecList
         });
         action.setCallback(this, function(response) {
+            component.set("v.showSpinner", false);
             var state = response.getState();
             var _toastEvt = component.getEvent("toastEvt");
             _toastEvt.setParams({'state' : state , 'data' : 'Receipt record updated' });
             _toastEvt.fire();
+            
             if (state === "SUCCESS") {
                 console.log("updated Record " + JSON.stringify(response.getReturnValue()));
                 var updatedDepositRec = response.getReturnValue();
@@ -56,7 +59,8 @@
     },
     
     saveDepositList : function(component, event){
-        debugger;       
+        debugger;   
+            component.set("v.showSpinner", true);
         var _depRecList = event.getParam("depositInstance");    
         var _callType = event.getParam("callType");
         console.log("_depRecList : "+JSON.stringify(_depRecList));
@@ -68,13 +72,16 @@
             "depRecList" : _depRecList
         });        
         action.setCallback(this, function(response) {
-            var state = response.getState();           
-            if (state === "SUCCESS") {               
-                console.log('Deposit records saved successfully');               
-                var _toastEvt = component.getEvent("toastEvt");
+           
+            var state = response.getState();  
+             var _toastEvt = component.getEvent("toastEvt");
                 _toastEvt.setParams({'state' : state , 'data' : 'Deposit record created.' });
                 _toastEvt.fire();
+             component.set("v.showSpinner", false);
                 
+            if (state === "SUCCESS") {               
+                console.log('Deposit records saved successfully');               
+               
                 console.log("Response : Deposit List : " + JSON.stringify(response.getReturnValue()));
                 var returnDepositRec = response.getReturnValue();                
                 component.set("v.depositRec",returnDepositRec);
@@ -146,7 +153,7 @@
         
     },
     CreateCERecord :function(component, event){
-        
+        component.set("v.showSpinner", true);
         var eventName = event.getSource().get("v.name");
         console.log("eventName : "+eventName);
         debugger;
@@ -167,11 +174,13 @@
         });  
         action.setCallback(this, function(response){
             var state = response.getState();
-            if (state === "SUCCESS") {  
+            var _toastEvt = component.getEvent("toastEvt");
+            _toastEvt.setParams({'state' : state , 'data' : 'Customer Envelope record created.' });
+            _toastEvt.fire();
+            component.set("v.showSpinner", false);
+            
+            if (state === "SUCCESS") { 
                 console.log(JSON.stringify(response.getReturnValue()));
-                var _toastEvt = component.getEvent("toastEvt");
-                _toastEvt.setParams({'state' : state , 'data' : 'Customer Envelope record created.' });
-                _toastEvt.fire();
                 //redirect to List view
                 if(eventName === 'submit_close'){
                     this.gotoListView(component, event);

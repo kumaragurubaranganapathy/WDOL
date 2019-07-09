@@ -29,5 +29,10 @@
         });
         $A.enqueueAction(action);
         component.set("v.isOpen", false);
-    }
+    },
+ handleSuccess : function(component,event,helper){
+     var accntId = event.getParams().response.id;
+        component.set("v.accountId",accntId);
+        helper.addAccountContact(component,event,helper);
+ }
 })

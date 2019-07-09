@@ -14,20 +14,24 @@
     <aura:attribute name="adminCount" type="Integer" />
     <aura:attribute name="accountName" type="String" />
     <aura:attribute name="associateFlag" type="Boolean" default="false" />
+    <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
     <aura:attribute name="AssociationMessage" type="String" default="Are you sure you want to remove this relationship ? " />
+    <aura:attribute name="accountId" type="string" />
     <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" />
     <aura:handler event="c:RefreshComponentEvent" action="{!c.handleComponentEvent}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <div>
+        <aura:if isTrue="{!v.loadingSpinner}">
+            <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
+        </aura:if>
         <aura:if isTrue="{!v.sObjectName == 'MUSW__Account_Contact__c'}">
             <h1 class="table-title">Contacts and Owners</h1>
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
                 
                 <div style="height: auto;">
                     <div style="height: 100%; position: relative;">
-                        <div class="slds-scrollable_x" style="height: 100%;">
-                            <div class="slds-scrollable_y">
-                                <div>
+                        
+                                <div class="table-scroll">
                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                         <thead>
                                             <tr class="slds-line-height_reset">
@@ -36,17 +40,25 @@
                                                         <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
                                                     </th> 
                                                 </aura:iteration>
+                                                <th class="contact-button" scope="col"> 
+                                                	<!--<c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/> -->
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <aura:iteration items="{!v.CurrentLicenseTableDataList}" var="tableData" indexVar="ind">
                                                 <tr class="slds-hint-parent">    
                                                     <td data-label="Full_Name__c" class="cell-style">
-                                                        <div class="slds-truncate">{!tableData.Full_Name__c}
-                                                        </div>
+                                                        <aura:if isTrue="{!tableData.Full_Name__c}">
+                                                        <div class="slds-truncate">{!tableData.Full_Name__c}</div>
+                                                            <aura:set attribute="else">(None)</aura:set>
+                                                        </aura:if>
                                                     </td>
                                                     <td data-label="Role__c" class="cell-style">
-                                                        <div class="slds-truncate">{!tableData.Role__c}</div>
+                                                        <aura:if isTrue="{!tableData.Role__c}">
+                                                        	<div class="slds-truncate">{!tableData.Role__c}</div>
+                                                            <aura:set attribute="else">(None)</aura:set>
+                                                        </aura:if>
                                                     </td>
                                                     <td data-label="isAdminContact__c" class="cell-style">
                                                         <div class="slds-truncate"><lightning:input type="checkbox" name="input1" checked="{!tableData.isAdminContact__c}" disabled="true" /></div>
@@ -58,7 +70,10 @@
                                                         <div class="slds-truncate">{!tableData.Email__c}</div>
                                                     </td>
                                                     <td data-label="MUSW__Status__c" class="cell-style">
-                                                        <div class="slds-truncate">{!tableData.Status__c}</div>
+                                                        <aura:if isTrue="{!tableData.Status__c}">
+                                                        	<div class="slds-truncate">{!tableData.Status__c}</div>
+                                                            <aura:set attribute="else">(None)</aura:set>
+                                                        </aura:if>
                                                     </td>  
                                                     <td data-label="actions" class="cell-style action-cell">
                                                         <div class="slds-truncate">
@@ -77,9 +92,7 @@
                                                 </tr>  
                                             </aura:iteration>
                                         </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                    </table>                               
                         </div>
                     </div>
                 </div>
@@ -93,9 +106,8 @@
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
                 <div style="height: auto;">
                     <div style="height: 100%; position: relative;">
-                        <div class="slds-scrollable_x" style="height: 100%;">
-                            <div class="slds-scrollable_y">
-                                <div>
+                        
+                                <div class="table-scroll">
                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                         <thead>
                                             <tr class="slds-line-height_reset">
@@ -180,8 +192,7 @@
                                             </aura:iteration>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
+                               
                         </div>
                     </div>
                 </div>
@@ -233,16 +244,16 @@
                                               title="Cancel"
                                               onclick="{! c.closeModel }"/>
                             <aura:if isTrue="{!v.associateFlag == false}">
-                            <lightning:button variant="brand"
-                                              label="OK"
-                                              title="OK"
-                                              onclick="{!c.submitDetails}"/>
+                                <lightning:button variant="brand"
+                                                  label="OK"
+                                                  title="OK"
+                                                  onclick="{!c.submitDetails}"/>
                             </aura:if>
                             <aura:if isTrue="{!v.associateFlag}">
-                            <lightning:button variant="brand"
-                                              label="OK"
-                                              title="OK"
-                                              onclick="{!c.submit}"/>
+                                <lightning:button variant="brand"
+                                                  label="OK"
+                                                  title="OK"
+                                                  onclick="{!c.submit}"/>
                             </aura:if>
                         </footer>
                     </div>

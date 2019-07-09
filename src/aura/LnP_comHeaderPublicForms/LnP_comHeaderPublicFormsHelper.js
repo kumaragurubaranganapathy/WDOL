@@ -14,6 +14,7 @@
 
             var itemString = "";
             var urlList = [];
+            var urlListtest=[];
             var labelMap = [];
             var urlListone = [];
 
@@ -23,6 +24,7 @@
                 anAction, {}, "",
                 $A.getCallback(function(response) {
                     labelMap = response;
+                    console.log('In the menu page...'+JSON.stringify(labelMap));
                     for (var key in labelMap) {
                         var tempItemString1 = labelMap[key];
                         itemString = itemString + tempItemString1;
@@ -32,15 +34,24 @@
                         for (var index = 0; index < itemArray.length; index++) {
                             if (index != itemArray.length - 1) {
                                 var itemArrayItem = itemArray[index].split(';');
+                                if(itemArrayItem[0]=="To Do"||itemArrayItem[0]=="Professional Dashboard"||itemArrayItem[0]=="Business Dashboard"){
+                                    urlListtest.push({
+                                         value: itemArrayItem[1],
+                                         key: itemArrayItem[0]
+                                    });
+                                }
+                               
+                                else{
                                 urlList.push({
                                     value: itemArrayItem[1],
                                     key: itemArrayItem[0]
-                                });
+                                });}
+                               
                             }
                         }
                     }
 
-                    var urlListtest = urlList.splice(5);
+                    
                     component.set("v.itemsList", urlList);
                     component.set("v.itemsListtest", urlListtest);
                     component.set('v.labelMap', labelMap);
@@ -151,6 +162,10 @@
         if (selectedMenuItemValue == 'Manage Business') {
             window.open($A.get("$Label.c.Polaris_Portal_URL") + 's/add-business', "_blank");
         }
+    },
+     handleLogout: function(component, event) {
+      
+            window.location.replace($A.get("$Label.c.Polaris_Portal_URL") + 'secur/logout.jsp');
     },
     toggleMenu: function(component, event) {
         var menu = component.find('hamburger-menu');

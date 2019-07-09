@@ -7,10 +7,6 @@
         <value xsi:type="xsd:string">Business</value>
     </values>
     <values>
-        <field>Draft_Applications__c</field>
-        <value xsi:type="xsd:string">Draft,Withdrawn</value>
-    </values>
-    <values>
         <field>Draft_Applications_statuses__c</field>
         <value xsi:type="xsd:string">Draft,Withdrawn</value>
     </values>
@@ -22,10 +18,6 @@
         <field>License_Types__c</field>
         <value xsi:type="xsd:string">Appraisal Management Company,Appraiser Course,Camping Resort Company,Cemetery
 Crematory,Engineering/Land Surveying Company,Funeral Establishment,Funeral Establishment Branch,Timeshare Company</value>
-    </values>
-    <values>
-        <field>Pending_Applications__c</field>
-        <value xsi:type="xsd:string">Submitted,Submission Failed,Pending Payment,Pending Action,Pending Additional Qualifications</value>
     </values>
     <values>
         <field>Pending_Applications_statuses__c</field>

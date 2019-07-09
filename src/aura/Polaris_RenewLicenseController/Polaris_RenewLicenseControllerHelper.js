@@ -150,9 +150,12 @@
 			if (tabsList.hasOwnProperty(key)) {
 				if(tabsList[key].sectionName =='License Information'){
 					for (var question in tabsList[key].labelFieldsMap){
-                        if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
-                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
-                        }						
+                        if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].value != null ){
+                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value });
+                        } 
+                        else if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].multiValues != null){
+                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString() });
+                        }
 					}
 				}
                 else if(tabsList[key].sectionName =='Attachments'){
@@ -311,7 +314,7 @@
             if (state === "SUCCESS"){
                 var noFees = actionResult.getReturnValue();
                 if(noFees){
-                    window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/dashboard';
+                    window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/user-feedback';
                 }else{
                     window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;        
                 }

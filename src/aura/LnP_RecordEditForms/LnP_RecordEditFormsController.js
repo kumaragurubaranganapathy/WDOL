@@ -235,5 +235,8 @@
     },
     inputEditClick : function(component,event,helper){
     	helper.inputEditClick(component,event);
-	}    
+	},
+    test:function(component,event,helper){
+    	helper.test(component,event);
+	}
 })

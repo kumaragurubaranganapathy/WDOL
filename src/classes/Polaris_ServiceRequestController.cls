@@ -236,7 +236,7 @@ public class Polaris_ServiceRequestController {
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFieldTemp = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         //List<string> lstMandatorySubSections= new  List<string>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-            if(objWrapper.sectionName.contains('License Information')){
+            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Endorsement')){
                 system.debug('Inside section=Question');
                 listFields = objWrapper.labelFieldsMap;
                 system.debug('List Fields '+listFields);
@@ -613,20 +613,38 @@ public class Polaris_ServiceRequestController {
         String stringJSON = '';
         stringJSON = appList[0].Form_JSON__c;
         // System.debug('appList '+appList);
+        Boolean checkSuccess = false;
+        //Modified code for handling 25 subrequest governor limit
+        
+        LnP_JSONParser ansWrapper= Polaris_ServiceRequestController.getJSONWrapper(stringJSON);
+        List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
+        for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
+            requestDetailsList.add(req);
+        }
+        List<List<LnP_JSONParser.CompositeRequest>> compositeReq = Polaris_ServiceRequestService.partition(requestDetailsList,24);
         System.debug('appList[0].Stage__c '+appList[0].Stage__c);
         if(appList != null && appList.size()>0 && appList[0].Stage__c != -1){
+               for(List<LnP_JSONParser.CompositeRequest> record: compositeReq) {    
+               Map<String,List<LnP_JSONParser.CompositeRequest>> mapList = new  Map<String,List<LnP_JSONParser.CompositeRequest>>();
+               mapList.put('compositeRequest',record);
+               string strJsonForm = JSON.serialize(mapList);
+               strJsonForm = strJsonForm.replaceAll('\\bAnswer\\b', 'Answer_Text__c');
+               strJsonForm = strJsonForm.replaceAll('\\bQuestion\\b', 'QuestionDOL__c');
+               strJsonForm = strJsonForm.replaceAll('\\bApplication\\b', 'Request__c');
+               strJsonForm = strJsonForm.replaceAll('\\bMUSW_Application2\\b', 'Request__c');
+               strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
+               //stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
+               strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
             
-            system.debug('stringJSONfianl'+stringJSON);
-            stringJSON = stringJSON.replaceAll('\\bAnswer\\b', 'Answer_Text__c');
-            stringJSON = stringJSON.replaceAll('\\bQuestion\\b', 'QuestionDOL__c');
-            stringJSON = stringJSON.replaceAll('\\bApplication\\b', 'Request__c');
-            stringJSON = stringJSON.replaceAll('\\bMUSW_Application2\\b', 'Request__c');
-            stringJSON = stringJSON.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
-            // stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
-            stringJSON = stringJSON.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
+            strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
+            strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
+            strJsonForm = strJsonForm.replace('{,', '{'); //prevent opening brace from having a comma after it
+            strJsonForm = strJsonForm.replace(',}', '}'); //prevent closing brace from having a comma before it
+            strJsonForm = strJsonForm.replace('[,', '['); //prevent opening bracket from having a comma after it
+            strJsonForm = strJsonForm.replace(',]', ']');            
             // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
             
-            system.debug('stringJSON '+stringJSON);
+            system.debug('stringJSON '+strJsonForm);
             //stringJSON.replaceAll('Answer', 'Answer__c');
             system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
             HttpRequest req = new HttpRequest();
@@ -636,13 +654,18 @@ public class Polaris_ServiceRequestController {
             String sessionId=UserInfo.getSessionId();
             req.setHeader('Authorization', 'Bearer '+ sessionId);
             req.setHeader('Content-Type','application/json');
-            req.setBody(stringJSON);
+            req.setBody(strJsonForm);
+            req.setTimeout(60000);
             Http http = new Http();
             HTTPResponse res = http.send(req);
             System.debug('ResponseBody'+res.getBody());
             System.debug('Response ' + res.getStatusCode());
+            if(res.getStatusCode() == 200) {
+                checkSuccess = true;
+            }
             
-            if(res.getStatusCode() == 200 ) {
+        }
+            if(checkSuccess ) {
                 appList[0].Stage__c = -1;
                 appList[0].Status__c = 'Under Review';
                  appList[0].Description__c = description ;

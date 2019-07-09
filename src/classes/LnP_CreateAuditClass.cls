@@ -81,7 +81,7 @@ public class LnP_CreateAuditClass {
                 recordTypeId = recordTypeId,
                 Application_Type__c = renApp.Application_Type__c,
                 License__c = renApp.License__c,
-                MUSW__Status__c =  'Pending',
+                MUSW__Status__c =  'Audit Pending',
                 Review_Type__c = 'CE Audit',
                 License_Type__c = renApp.Credential_Type__c
             );
@@ -111,7 +111,7 @@ public class LnP_CreateAuditClass {
                 recordTypeId = recordTypeId,
                 Application_Type__c = licenseApp.Application_Type__c,
                 License__c = licenseApp.Id,
-                MUSW__Status__c = 'Pending',
+                MUSW__Status__c = 'Audit Pending',
                 Review_Type__c = 'CE Audit',
                 License_Type__c = licenseApp.Credential_Type__c
             );

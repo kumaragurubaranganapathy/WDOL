@@ -23,8 +23,9 @@
     <aura:attribute name="screenThree" type="Boolean" default="false"/>
     <aura:attribute name="todayDate" type="String" />
     <aura:attribute name="SelectedAccountDetails" type="Account"/>
-    <aura:attribute name = "ParcelObj" type ="List"/>
-    
+    <aura:attribute name ="ParcelObj" type ="List"/>
+    <aura:attribute name="mainAccountName" type="String" />
+    <aura:attribute name="branchExam" type="boolean" default="false" />
     <!-- Pending draft Application -->
     <aura:attribute name="CompletedRequestColumns" type="List" default="['REQUEST #','REQUEST TYPE','REQUEST AGAINST','STATUS', 'COMPLETION DATE']" />
     <aura:attribute name="CompletedRequestData" type="List" default="" />
@@ -34,7 +35,9 @@
     
     <aura:handler name="businessRefresh" event="c:RefreshEvent" action="{!c.handleComponentEvent}"/>
     <div class="business-outer-wrapper">
+        
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
+            <h1 class="screen-title">{!v.breadcrumbLabel}</h1>
             <lightning:breadcrumbs class="slds-p-vertical_x-small">
                 <lightning:breadcrumb class="transform-text breadcumb" label="Business Dashboard" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/>
                 <lightning:breadcrumb class="{!or(v.screenTwo,v.screenThree)?'transform-text breadcumb':'slds-hide'}" label="{!v.breadcrumbLabel}" href="javascrit:void(0)" onclick="{!c.navigateToScreenTwo}"/>
@@ -58,24 +61,6 @@
                                 <div class="biz-name-wrapper">
                                     <a href="javascript:void(0)" class="business-name" id="{!business.Id}" onclick="{!c.businessDetails}">{!business.Name}</a>
                                 </div>
-                                <!--<lightning:layout class="slds-wrap business-det">
-                                    <lightning:layoutItem size="12" mediumDeviceSize="8" class="">
-                                        <div class="field-style">
-                                            <div class="label-style">Doing Business As :</div>
-                                            <div class="data-style">{!business.Name}</div>
-                                        </div>
-                                        <div class="field-style">
-                                            <div class="label-style">UBI :</div>
-                                            <div class="data-style">{!business.UBI_Number__c}</div>
-                                        </div>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="">
-                                        <div class="field-style">
-                                            <div class="label-style">Email :</div>
-                                            <div class="data-style">{!business.Email__c}</div>
-                                        </div>
-                                    </lightning:layoutItem>
-                                </lightning:layout> -->
                                 <div class="biz-address">
                                     {!business.Email__c}
                                 </div>
@@ -93,7 +78,7 @@
                 </aura:if>
             </div>
         </aura:if>
-        
+        <!-- Course Tab -->
         <aura:if isTrue="{!v.courseDetail}">
             <div class="license-outer-wrapper" id = "coursedetailsdivid">
                 <lightning:layout class="slds-wrap">
@@ -116,19 +101,32 @@
                             <div class="details-body">
                                 <lightning:layout class="name-details slds-wrap">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
-                                        <span class="label-style">Business Name:</span> {!v.LicenseData.Ultimate_Parent_Account__r.Name}
+                                        <span class="label-style">Business Name:</span>
+                                            {!v.LicenseData.Ultimate_Parent_Account__r.Name}
                                     </lightning:layoutItem>
                                     <lightning:layoutItem size="12" mediumDeviceSize="8">
-                                        <span class="label-style">Doing Business As:</span> {!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}
+                                        <span class="label-style">Doing Business As:</span> 
+                                        <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}">
+                                        	{!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}
+                                            <aura:set attribute="else">(None)</aura:set>
+                                        </aura:if>                                                    
                                     </lightning:layoutItem>
                                 </lightning:layout>
                                 <lightning:layout class="contact-details slds-wrap">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
                                         <div class="contact-item">
-                                            <span class="label-style">Phone:</span> {!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}
+                                            <span class="label-style">Phone:</span>
+                                            <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}">
+                                                {!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}
+                                                <aura:set attribute="else">(None)</aura:set>
+                                            </aura:if>
                                         </div>
                                         <div class="contact-item">
-                                            <span class="label-style">Email:</span> {!v.LicenseData.Ultimate_Parent_Account__r.Email__c}
+                                            <span class="label-style">Email:</span>
+                                            <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Email__c}">
+                                            	{!v.LicenseData.Ultimate_Parent_Account__r.Email__c}
+                                                <aura:set attribute="else">(None)</aura:set>
+                                            </aura:if>
                                         </div>
                                     </lightning:layoutItem>
                                     
@@ -164,24 +162,44 @@
                                 <lightning:layout class="issue-details slds-wrap">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
                                         <div class="contact-item">
-                                            <span class="label-style">First Issue Date: </span> {!v.LicenseData.Original_Issue_Date__c}
+                                            <span class="label-style">First Issue Date: </span>
+                                            	<aura:if isTrue="{!v.LicenseData.Original_Issue_Date__c}">
+                                                    <lightning:formattedDateTime value="{!v.LicenseData.Original_Issue_Date__c}"/>
+                                                    <aura:set attribute="else">(None)</aura:set>
+                                            	</aura:if>
                                         </div>
                                         <div class="contact-item">
-                                            <span class="label-style">Current Issue Date: </span> {!v.LicenseData.MUSW__Issue_Date__c}
+                                            <span class="label-style">Current Issue Date: </span>
+                                            	<aura:if isTrue="{!v.LicenseData.MUSW__Issue_Date__c}">
+                                                    <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Issue_Date__c}"/>
+                                                	<aura:set attribute="else">(None)</aura:set>
+                                                </aura:if>
                                         </div>
                                         <div class="contact-item">
-                                            <span class="label-style">Expiration Date: </span> {!v.LicenseData.MUSW__Expiration_Date__c}
+                                            <span class="label-style">Expiration Date: </span>
+                                            	<aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
+                                                    <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}"/>
+                                                    <aura:set attribute="else">(None)</aura:set>
+                                                </aura:if>
                                         </div>                        
                                     </lightning:layoutItem>
                                     <lightning:layoutItem size="12" mediumDeviceSize="8">
                                         <div class="issue-item">
-                                            <span class="label-style">Sub-status: </span>{!v.LicenseData.Sub_Status__c}
+                                            <span class="label-style">Sub-status: </span>
+                                            <aura:if isTrue="{!v.LicenseData.Sub_Status__c}">
+                                                {!v.LicenseData.Sub_Status__c}
+                                                <aura:set attribute="else">(None)</aura:set>
+                                            </aura:if>
                                         </div>
                                         <div class="issue-item">
-                                            <span class="label-style">Discipline: </span>Yet to be mapped
+                                            <span class="label-style">Discipline: </span>(None)
                                         </div>
                                         <div class="issue-item">
-                                            <span class="label-style">Program: </span>{!v.LicenseData.Application_Type__c}
+                                            <span class="label-style">Program: </span>
+                                            <aura:if isTrue="{!v.LicenseData.Application_Type__c}">
+                                                {!v.LicenseData.Application_Type__c}
+                                                <aura:set attribute="else">(None)</aura:set>
+                                            </aura:if>
                                         </div>
                                     </lightning:layoutItem>                         
                                 </lightning:layout>
@@ -348,7 +366,10 @@
                                             </div>
                                             <div class="section-details">
                                                 <div class="issue-item">
-                                                    {!v.EndorsementData.Endorsement_Type__c}
+                                                    <aura:if isTrue="{!v.EndorsementData.Endorsement_Type__c}">
+                                                    	{!v.EndorsementData.Endorsement_Type__c}
+                                                        <aura:set attribute="else">(None)</aura:set>
+                                                    </aura:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -379,79 +400,32 @@
                 <lightning:tabset>
                     <aura:if isTrue="{!v.accountDetail}"> 
                         <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >
-                            <c:Course_LicenseScreen  accountId="{!v.selectedAccount}"/>
+                            <!--<c:Course_LicenseScreen  accountId="{!v.selectedAccount}"/> -->
                         </lightning:tab>
                         <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Licenses" id="Licenses" >
-                            <c:Business_LicenseScreen accountId="{!v.selectedAccount}" />
+                            <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" /> -->
                         </lightning:tab>
                     </aura:if>
-                    <aura:if isTrue="{!v.licenseDetail}">
+                    <aura:if isTrue="{!v.branchExam}">
                         <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Branches" id="Branches" >
-                            <c:Business_LicenseScreen accountId="{!v.selectedAccount}" licenseId="{!v.licenseId}" BranchLicenses="true"/>
+                          <!-- <c:Business_LicenseScreen accountId="{!v.selectedAccount}" licenseId="{!v.licenseId}" BranchLicenses="true"/> -->
                         </lightning:tab>
                     </aura:if>   
                     <lightning:tab class="tab-style" label="Relationships" onactive="{!c.setBreadCrumb}" id="Relationships" >
-                        <c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/>
-                        <br></br>                                                                                                                         
-                        <br></br> 
-                        <c:LnP_Relationship sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}" />  
-                        <aura:if isTrue="{!v.licenseDetail}">
-                            <c:LnP_Add_Association  parentLicense="{!v.licenseId}" />
-                            <br></br><br></br>
-                            <c:LnP_Relationship sObjectName="Associations__c" queryId="{!v.licenseId}" />
-                        </aura:if>  
+                        <!--<c:Polaris_Relationship selectedAccount="{!v.selectedAccount}" mainAccountName="{!v.mainAccountName}" licenseId="{!v.licenseId}" licenseDetail="{!v.licenseDetail}" />-->
                     </lightning:tab>
                     <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Draft Applications" id="Draft Applications" >
-                        <c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/>
+                        <!--<c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/> -->
                     </lightning:tab>
                     <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Pending Applications" id="Pending Applications" >
-                        <c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" />
+                        <!--<c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" /> -->
                     </lightning:tab>
                     <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Completed Requests" id="Completed Requests" >
-                        <div class="Completed-Requests">
-                            <aura:if isTrue="{!v.CompletedRequestData.length}">
-                                <div>**Below are the Maintenance Requests completed in last twelve months</div>
-                                <div class="data-table slds-p-vertical_medium">
-                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
-                                        <thead>
-                                            <tr class="slds-line-height_reset">
-                                                <aura:iteration items="{!v.CompletedRequestColumns}" var="headerData">
-                                                    <th class="" scope="col">
-                                                        <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
-                                                    </th> 
-                                                </aura:iteration>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                            <aura:iteration items="{!v.CompletedRequestData}" var="tableData" indexVar="ind">
-                                                <tr class="slds-hint-parent">
-                                                    <td data-label="Service_Request_Type__c">
-                                                        <div class="slds-truncate">{!tableData.name}</div>
-                                                    </td>        
-                                                    <td data-label="Service_Request_Type__c">
-                                                        <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
-                                                    </td>
-                                                    <td data-label="License_Type__c">
-                                                        <div class="slds-truncate">{!tableData.License_Type__c}</div>
-                                                    </td>
-                                                    <td data-label="LastModifiedDate">
-                                                        <div class="slds-truncate">{!tableData.endTime}</div>
-                                                    </td>  
-                                                </tr> 
-                                            </aura:iteration>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <aura:set attribute="else">
-                                    <div class="slds-align_absolute-center">You have no completed requests from past 12 months</div>
-                                </aura:set>
-                            </aura:if>
-                        </div>
+                        <!--<c:LnP_CompletedRequest CompletedRequestData="{!v.CompletedRequestData}" CompletedRequestColumns="{!v.CompletedRequestColumns}" /> -->
                     </lightning:tab>
-                    <aura:if isTrue="{!v.licenseDetail}">
+                    <aura:if isTrue="{!v.branchExam}">
                         <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Exam" id="Exam" >
-                            <c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/>
+                            <!--<c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/> -->
                         </lightning:tab>
                     </aura:if>
                 </lightning:tabset>

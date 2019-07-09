@@ -246,6 +246,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Alerts__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Number_of_Alerts__c &gt; 0 ,IMAGE(&quot;/resource/LnP_Icons/LnP_Icons/stop_Alerts.png&quot;,&quot;&quot;)+&quot;Read Alerts&quot;,&quot;No Alerts&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Alerts</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Alternate_Clock_Hours_Continuing_Educa__c</fullName>
         <externalId>false</externalId>
         <label>Alternate Clock Hours - Continuing Educa</label>
@@ -2450,6 +2462,16 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <inlineHelpText>Marks if applicant has requested a military waiver</inlineHelpText>
         <label>Military Waiver</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Military__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Military</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

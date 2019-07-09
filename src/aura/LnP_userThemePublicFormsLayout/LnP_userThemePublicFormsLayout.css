@@ -51,6 +51,7 @@
     .THIS .slds-grid .address{
         width:100%;
     }
+    
     .THIS .button-section .pull-right{
         margin-left:1%;
     }
@@ -88,6 +89,9 @@
     .THIS table.slds-table_bordered tbody td{
         border-right:none;
     }
+    .THIS .page-width .field-item .slds-form-element__control,.THIS .page-width .field-size .slds-form-element__control,.THIS .portal-registration-form-container .field-item .slds-form-element__control,.THIS .personal-info .field-size .slds-form-element__control{
+        width:100%;
+     }
 }
 
 .THIS {
@@ -167,8 +171,8 @@
     color:token(white);
 }
 /*fields label and input style*/
-.THIS .field-size label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
-,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label{
+.THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
+,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label{
     font-family: token(publicSansfontfamily);
     font-size: token(licensefontsize);
     line-height:1;
@@ -178,7 +182,7 @@
     padding:0px 0px 5px 0px;
 }
 
-.THIS .field-size div input, .THIS .field-size div select{
+.THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input{
     padding:0px 12px;
     box-sizing:border-box;
     border: solid 1px #5b616b;
@@ -218,7 +222,7 @@
     color: token(fieldclr);
     padding-bottom: 5px;
 }
-.THIS .licenseinp input::placeholder,.THIS .licensetab input::placeholder,.THIS .businesstab input::placeholder,.THIS .breadcumb a,.THIS .complaintSummary::placeholder,.THIS .slds-file-selector__text,.THIS .placeholTxt input::placeholder,.THIS .field-style input::placeholder{
+.THIS .licenseinp input::placeholder,.THIS .licensetab input::placeholder,.THIS .businesstab input::placeholder,.THIS .breadcumb a,.THIS .complaintSummary::placeholder,.THIS .slds-file-selector__text,.THIS .placeholTxt input::placeholder,.THIS .field-style input::placeholder,.THIS .userpswd1 input::placeholder{
     height: 22px;
     font-family: token(publicSansfontfamily);
     font-size: token(senfontsize);
@@ -277,6 +281,9 @@
 .THIS .text-style-val,.THIS .field-style-val{
     font-weight: t(txtfontweight);
   
+}
+.THIS *{
+    font-family: token(publicSansfontfamily);
 }
 
 .THIS .text-size{
@@ -376,7 +383,7 @@ color: token(placeholderColor);
 }
 /* review and submit declaration statements*/
 .THIS .sentences,.THIS .field-item .slds-text-longform{
-    height: 32px;
+    height: auto;
     font-family: token(publicSansfontfamily);
     font-size: token(senfontsize);
     font-weight: token(txtfontweight);
@@ -442,8 +449,7 @@ color: token(placeholderColor);
     border-bottom:none;
 }
 .THIS .slds-table_bordered.slds-table {
-    border-color:#5b616b;
-    
+    border-color:#5b616b;         
 }
 .THIS .slds-table_bordered.slds-table > thead > th{
     background-color:#eaeaea;
@@ -467,7 +473,11 @@ color: token(placeholderColor);
   
     padding:0.25rem 2.5rem;
 }
-
+.THIS .table-scroll {
+    max-width:100%;
+    max-height:100%;
+    overflow:auto;
+}
 .THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
     display:none;
 } 
@@ -526,4 +536,27 @@ color: token(placeholderColor);
     .THIS .slds-tabs_default__item{
         padding: 0 .75rem;
     } 
+    .THIS .cancel-button,.THIS .next-button{
+        display:block;
+        width:100%;
+        margin-bottom:6px;
+    }
+    .THIS .next-button{
+        margin-left:0;
+    }
+    .THIS .alignRight{
+        margin:0 auto;
+    }
+    .THIS .btnAlign{
+        padding:1rem;
+    }
+
+    .THIS .divBox .slds-tabs_default__overflow-button .slds-dropdown-trigger .slds-button{
+    font-family: t(publicSansfontfamily);
+    font-size: 1rem;    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:t(black);
+    }
 }

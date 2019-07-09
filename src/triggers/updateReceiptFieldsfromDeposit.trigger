@@ -3,16 +3,10 @@
 * @discription :    Update Agency Code and Voucher Number field from Deposit to Receipt
 */ 
 trigger updateReceiptFieldsfromDeposit on MUSW__Deposit__c (after insert, after update) {
-    if (Trigger.isInsert) {
-        if (Trigger.isBefore) {
-            // Process before insert
-        } else if (Trigger.isAfter) {
-            // Process after insert
-        }        
-    }
-    else if (Trigger.isUpdate) {
+ if (Trigger.isUpdate) {
         // Process after update
         if(Trigger.isAfter){
+             system.debug('!!!After update');
             List<MUSW__Payable_Receipt__c> paybelReceipt_currentDeposit = new List<MUSW__Payable_Receipt__c>([Select Id, 
                                                                                                               MUSW__Receipt__c, 
                                                                                                               MUSW__Deposit__c,MUSW__Receipt__r.Id,MUSW__Deposit__r.Id

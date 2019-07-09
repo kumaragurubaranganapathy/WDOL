@@ -10,10 +10,15 @@
     
     displayLicenseDetails : function(component,event){
         var licenseId = event.target.getAttribute("data-licenseId");
+        var primaryAccountId = event.target.getAttribute("data-accountId");
+        console.log("licenseId::"+licenseId);
+        console.log("primaryAccountId::"+primaryAccountId);
         component.set("v.licenseId",licenseId);
         var compEvent = component.getEvent("businessRefresh"); 
         compEvent.setParams({"LicenseId" : licenseId});
         compEvent.setParams({"displayLicenseDetails" : true});
+        compEvent.setParams({"primaryAccountId" : primaryAccountId});
+        compEvent.setParams({"isbranch":component.get("v.BranchLicenses")});
         compEvent.fire();
     },
     

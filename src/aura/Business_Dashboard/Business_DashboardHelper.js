@@ -59,7 +59,7 @@
     },
     
     setSelectedAccountData : function (component,event,helper,selectedAccountId) {
-        
+        console.log("inside selectedAccountData::");
         var action = component.get("c.getAccountData");
         
         action.setParams({'accountId': selectedAccountId});
@@ -72,14 +72,14 @@
                     
                     var accountMap = response.getReturnValue();
                     
-                     console.log('data::'+selectedAccountId+'   '+JSON.stringify(accountMap));
+                     console.log('dataAccount::'+selectedAccountId+'   '+JSON.stringify(accountMap));
                      
                     if(accountMap!=null){
                         
                         var accountvar = accountMap["Account"][0];
                         
                         component.set("v.SelectedAccountDetails",accountvar); 
-                        
+                        component.set("v.mainAccountName",accountMap["Account"][0].Name);
                         component.set("v.ParcelObj",accountMap);
                 
                 }
@@ -121,7 +121,7 @@
             if (state === "SUCCESS") {
                 
                 var data = response.getReturnValue();
-                console.log('data::'+data);
+                console.log('datalicense::'+data);
                 component.set("v.LicenseData",data); 
                 component.set("v.licenseDetail",true);
             }                          
@@ -153,7 +153,7 @@
             if (state === "SUCCESS") {
                 
                 var data = response.getReturnValue();
-                console.log('data::'+data);
+                console.log('dataEndorsement::'+data);
                 component.set("v.EndorsementData",data);
             }                          
         });
@@ -168,7 +168,7 @@
             if (state === "SUCCESS") {
                 
                 var data = response.getReturnValue();
-                console.log('data::'+data);
+                console.log('dataAddress::'+data);
                 component.set("v.AddressData",data);
             }                          
         });
@@ -179,6 +179,56 @@
         var acctId = component.get("v.SelectedAccountDetails.Id");
         var key = 'businesscontact' ;
         window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+acctId+'&par2='+key;
-	}
+	},
+    
+    handleActive : function(component,event,helper){
+         var tab = event.getSource();
+        switch (tab.get('v.id')) {
+            case 'Courses' :
+                var attr = {accountId: component.get("v.selectedAccount")};
+                this.injectComponent('c:Course_LicenseScreen',attr, tab);
+                break;
+            case 'Licenses' :
+                var attr = {accountId: component.get("v.selectedAccount")};
+                this.injectComponent('c:Business_LicenseScreen',attr, tab);
+                break;
+            case 'Relationships':
+                var attr = {selectedAccount : component.get("v.selectedAccount"), mainAccountName : component.get("v.mainAccountName"),licenseId:component.get("v.licenseId"), licenseDetail: component.get("v.licenseDetail")};
+                this.injectComponent('c:Polaris_Relationship',attr,tab);
+                break;
+            case 'Branches':
+                var attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true"};
+                this.injectComponent('c:Business_LicenseScreen',attr, tab);
+                break;
+            case 'Draft Applications':
+                var attr = {accountId: component.get("v.selectedAccount")};
+                this.injectComponent('c:BusinessDetails_DraftApplications',attr, tab);
+                break;
+            case 'Completed Requests':
+                var attr = {CompletedRequestData:component.get("v.CompletedRequestData"),CompletedRequestColumns : component.get("v.CompletedRequestColumns")};
+                this.injectComponent('c:LnP_CompletedRequest',attr, tab);
+                break;
+                
+            case 'Pending Applications':
+               var attr = {accountId: component.get("v.selectedAccount")};
+                this.injectComponent('c:BusinessDetails_PendingApplications',attr, tab);
+                break;
+            case 'Exam':
+                var attr = {licenseData: component.get("v.LicenseData")};
+                this.injectComponent('c:LnP_ExamReschedule',attr, tab);
+                break;
+        }
+    },
+    
+    injectComponent: function (name,attribute,target) {
+        $A.createComponent(name,attribute, function (contentComponent, status, error) {
+            if (status === "SUCCESS") {
+                target.set('v.body', contentComponent);
+            } else {
+                throw new Error(error);
+            }
+        });
+    }
+    
     
 })

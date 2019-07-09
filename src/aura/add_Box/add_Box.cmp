@@ -22,9 +22,9 @@
             <lightning:accordionSection name="{!v.title}" label="{!v.title}">
                <div class="slds-grid slds-wrap slds-grid--pull-padded	">
                     <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
-                   		<lightning:input name="securityCode" required="true" value="" label="Security Code" placeholer=" Enter Security Code"/>
+                   		<lightning:input name="securityCode" required="true" label="Security Code" placeholer=" Enter Security Code"/>
                    	</div>
-                   	<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3" style="padding-top: 23px;">
+                   	<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 box-padding">
                         <lightning:button variant="brand" label="SUBMIT" title="Neutral action" onclick="{! c.handleClick }"/>
               			<lightning:button variant="brand" label="OBTAIN SECURITY CODE" title="Neutral action" onclick="{! c.handleClick }"/>
                    	</div>

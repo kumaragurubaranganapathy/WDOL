@@ -58,7 +58,7 @@ public static List<User> fetchUserDetails () {
         String str = '';
         if(flowType == 'Endorsement')
         {
-            str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\')';
+            str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\') AND Service_Request__c = \''+flowType+'\'';
         }
         else
             str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Service_Request__c = \'' +flowType +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\')';
@@ -73,5 +73,22 @@ public static List<User> fetchUserDetails () {
         String strApp = 'Select Id,Application_Type__c,Profession__c, Stage__c, Service_Request_Type__c, License_Type__c, Form_JSON__c from Request__c where '+appCondition;
         lstApplication = Utilityclass_withsharing.queryRecords(strApp); 
         return lstApplication;
+    }
+    
+    public static List<List<LnP_JSONParser.CompositeRequest>> partition(List<LnP_JSONParser.CompositeRequest> lstString, integer chunkSize){
+        //system.debug('lstString'+lstString);
+        integer counter = 24; 
+        List<list<LnP_JSONParser.CompositeRequest>> result =new  List<list<LnP_JSONParser.CompositeRequest>>();
+       for (LnP_JSONParser.CompositeRequest lstdata : lstString) {
+            if (math.mod(counter,chunksize) == 0) {
+                result.add(new list<LnP_JSONParser.CompositeRequest>());
+                system.debug('gg'+counter);
+               
+            }
+            counter++;
+            result.get(result.size() - 1).add(lstdata); 
+        }
+        return result;
+        
     }
 }

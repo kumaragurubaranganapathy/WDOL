@@ -31,6 +31,14 @@
     <aura:handler name="AddRowEvt" event="c:AddNewRowEvt" action="{!c.addNewRow_}"/>
     <aura:registerEvent name="toastEvt" type="c:LnP_ToastMessage"/> 
     
+    <!-- spinner logic -->
+    <aura:attribute name="showSpinner" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.showSpinner}">
+        <div class="slds-spinner_container">
+            <lightning:spinner aura:id="spinner" variant="brand" size="medium"/>
+        </div>
+    </aura:if>
+    
     <lightning:card >
         <lightning:layout class="slds-align_absolute-center">
             <div><lightning:input  disabled="true" label="Validation Number" value="{!v.customerEnvelopeRec.Validation_number__c}"/></div>&nbsp;

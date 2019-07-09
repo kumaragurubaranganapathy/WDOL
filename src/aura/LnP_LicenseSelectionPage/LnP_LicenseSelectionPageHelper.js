@@ -12,6 +12,10 @@
         component.find("button1").set('v.disabled',true);
         component.set("v.proceedTemporaryLicense",false);
         $A.util.addClass(component.find("accountPickerId"), 'slds-hide');	
+        component.set("v.otherInstructions", []);
+        $A.util.addClass(component.find("reqDocTextDiv"), 'slds-hide');
+        
+        
     },
     restrictTemporaryLicenses : function(component,event,helper){
         var board = component.find("board").get("v.value");
@@ -24,24 +28,24 @@
         component.set("v.tempLicenses",tempLicenseList);
         if(board == 'Appraisers - Real Estate'){
             if(templicenseListArr.includes(licenseType)){
-				console.log('licenseType---'+licenseType);
-               
+                console.log('licenseType---'+licenseType);
+                
                 var action = component.get("c.validationForTemporaryLicenses");
-            //    component.set("v.spinner",true);
-              //  helper.hideOrShowSpinner(component, event, helper);
+                //    component.set("v.spinner",true);
+                //  helper.hideOrShowSpinner(component, event, helper);
                 action.setParams({
                     "Board": board, 
                     "LicenseType": licenseType, 
                     "ApplicationType": applicationMethod,
                     "parentObjectAPIName": parentObjectAPIName,
                 }); 
-               // component.set("v.isDirectProceed",false);
+                // component.set("v.isDirectProceed",false);
                 action.setCallback(this, function(actionResult){
                     var state = actionResult.getState();
                     var response = actionResult.getReturnValue();
                     if (state === "SUCCESS"){
-                      console.log('success');  
-                      console.log(response);
+                        console.log('success');  
+                        console.log(response);
                         if(response >= 3){
                             //component.set("v.isDirectProceed",true);
                             component.set("v.proceedTemporaryLicense",true);
@@ -51,11 +55,11 @@
                                 "message": "You have reached the maximum allowed 3 temporary permits for this calendar year.  Please contact the Washington Dept. of Licensing Appraiser's program if you have any questions.",
                                 "type": "error"
                             });
-                             toastEvent.fire();
+                            toastEvent.fire();
                         }
                         else{
-                           component.set("v.isDirectProceed",true);  
-                           component.set("v.proceedTemporaryLicense",false);
+                            component.set("v.isDirectProceed",true);  
+                            component.set("v.proceedTemporaryLicense",false);
                         }
                     }
                 });
@@ -65,7 +69,7 @@
     },
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
-		var board = component.find("board").get("v.value");
+        var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
         component.set("v.proceedTemporaryLicense",false);
@@ -74,7 +78,7 @@
         var eliTypeGridDiv = document.getElementById("eliTypeGridDiv");
         //var eliTextDiv = document.getElementById("eliTextDiv");
         //var eliQuesDiv = document.getElementById("eliQuesDiv");
-		//var proceedButtonDiv = document.getElementById("proceedButtonDiv");
+        //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
         //Instructions
         var appInstructions = document.getElementById("applicationInstuctionDiv");
         var parentObjectAPIName = '';
@@ -102,94 +106,94 @@
         var eliQuesList = []; 
         
         if(applicationMethod!=''){
-        if(licenseType != ''){
-            var action = component.get("c.questionForLicenceTyep");
-            component.set("v.spinner",true);
-            helper.hideOrShowSpinner(component, event, helper);
-            action.setParams({
-                "Board": board, 
-                "LicenseType": licenseType, 
-                "ApplicationType": applicationMethod,
-                "parentObjectAPIName": parentObjectAPIName,
-            }); 
-            action.setCallback(this, function(actionResult){
-                var state = actionResult.getState();
-                if (state === "SUCCESS"){
-                    var response = actionResult.getReturnValue();
-                    console.log('response ' + JSON.stringify(response));
-                    for(var key in response){
-                        if(response[key].Eli_Ques_determines_App_Type__c == true){
-                            appQuesList.push({"quesId" : key, "quesBody" : response[key].Question_Body__c, "appTypeQualifyingRes" : response[key].Qualifying_Response__c, "order" : response[key].Order_Number__c, "appTypeEliQues" : response[key].Eli_Ques_determines_App_Type__c, "applicationType" : response[key].Application_Method__c});
-                            component.set("v.appTypeQues",appQuesList);
+            if(licenseType != ''){
+                var action = component.get("c.questionForLicenceTyep");
+                component.set("v.spinner",true);
+                helper.hideOrShowSpinner(component, event, helper);
+                action.setParams({
+                    "Board": board, 
+                    "LicenseType": licenseType, 
+                    "ApplicationType": applicationMethod,
+                    "parentObjectAPIName": parentObjectAPIName,
+                }); 
+                action.setCallback(this, function(actionResult){
+                    var state = actionResult.getState();
+                    if (state === "SUCCESS"){
+                        var response = actionResult.getReturnValue();
+                        console.log('response ' + JSON.stringify(response));
+                        for(var key in response){
+                            if(response[key].Eli_Ques_determines_App_Type__c == true){
+                                appQuesList.push({"quesId" : key, "quesBody" : response[key].Question_Body__c, "appTypeQualifyingRes" : response[key].Qualifying_Response__c, "order" : response[key].Order_Number__c, "appTypeEliQues" : response[key].Eli_Ques_determines_App_Type__c, "applicationType" : response[key].Application_Method__c});
+                                component.set("v.appTypeQues",appQuesList);
+                            }
+                            else{
+                                eliQuesList.push({"quesId" : key, "quesBody" : response[key].Question_Body__c, "eliTypeQualifyingRes" : response[key].Qualifying_Response__c, "order" : response[key].Order_Number__c, "appTypeEliQues" : response[key].Eli_Ques_determines_App_Type__c, "applicationType" : response[key].Application_Method__c});
+                                component.set("v.eliTypeQues",eliQuesList);
+                            }
+                        }                    
+                        console.log('eliQuesList ' + JSON.stringify(eliQuesList));
+                        
+                        component.set("v.isDirectProceed",false);
+                        if(applicationMethod=='Upgrade')
+                        {
+                            helper.fetchLicenseList(component, event, helper);
                         }
-                        else{
-                            eliQuesList.push({"quesId" : key, "quesBody" : response[key].Question_Body__c, "eliTypeQualifyingRes" : response[key].Qualifying_Response__c, "order" : response[key].Order_Number__c, "appTypeEliQues" : response[key].Eli_Ques_determines_App_Type__c, "applicationType" : response[key].Application_Method__c});
-                            component.set("v.eliTypeQues",eliQuesList);
+                        
+                        helper.fetchAccountList(component, event, helper); 
+                        helper.fetchApplicationInstructionHelper(component,event,helper);
+                        if(board == 'Appraisers - Real Estate') {
+                            helper.restrictTemporaryLicenses(component,event,helper);
                         }
-                    }                    
-                    console.log('eliQuesList ' + JSON.stringify(eliQuesList));
-		
-                    component.set("v.isDirectProceed",false);
-                    if(applicationMethod=='Upgrade')
-                    {
-                        helper.fetchLicenseList(component, event, helper);
-                    }
-                    
-                    helper.fetchAccountList(component, event, helper); 
-                    helper.fetchApplicationInstructionHelper(component,event,helper);
-                    if(board == 'Appraisers - Real Estate') {
-                         helper.restrictTemporaryLicenses(component,event,helper);
-                    }
-                   
-                    helper.hideOrShowSpinner(component, event, helper);
-                    if(applicationMethod != ''){  
-                      window.setTimeout(
-                      $A.getCallback(function() {
-                          var instruction = component.get("v.instructions");
-                          console.log("appInstructions",instruction)
-                          if(component.get("v.proceedTemporaryLicense")==true){
-                              component.find("button1").set('v.disabled',true);
-                          } else {
-                              if(instruction != '') {
-                              appInstructions.classList.remove("slds-hide");
-                          }
-                          if(component.get("v.accounts") == '') {
-                              component.find("button1").set('v.disabled',true);
-                              return false;
-                          } 
-                          if(component.get("v.accounts") != ''){
-                              $A.util.removeClass(component.find("accountPickerId"), 'slds-hide');
-                          } else {
-                              component.find("button1").set('v.disabled',true);
-                          }
-                          eliTypeGridDiv.classList.remove("slds-hide");
-                          component.set("v.eliQuesNo",1);
-                          if(eliQuesList.length == 0){
-                              eliTypeGridDiv.classList.add("slds-hide");
-                              //proceedButtonDiv.classList.remove("slds-hide");
-                              if( component.get("v.showLicenseDropdown") == true ){
-                                  component.find("button1").set('v.disabled',true);
-                              }else {
-                                  component.find("button1").set('v.disabled',false);
-                                  eliTypeGridDiv.classList.add("slds-hide");
-                                  return false;
-                              }                              
-                          }
-
-                          }
-                          
-                          //var eliChild = document.getElementById('eliQuesDiv').children;
-                          //for(var i=0; i<eliChild.length; i++){
-                          //eliChild[0].classList.remove("slds-hide");
-                          //}
-                      }), 1000);
-                    }
-                 } 
-            });
-            $A.enqueueAction(action);
+                        
+                        helper.hideOrShowSpinner(component, event, helper);
+                        if(applicationMethod != ''){  
+                            window.setTimeout(
+                                $A.getCallback(function() {
+                                    var instruction = component.get("v.instructions");
+                                    console.log("appInstructions",instruction)
+                                    if(component.get("v.proceedTemporaryLicense")==true){
+                                        component.find("button1").set('v.disabled',true);
+                                    } else {
+                                        if(instruction != '') {
+                                            appInstructions.classList.remove("slds-hide");
+                                        }
+                                        if(component.get("v.accounts") == '') {
+                                            component.find("button1").set('v.disabled',true);
+                                            return false;
+                                        } 
+                                        if(component.get("v.accounts") != ''){
+                                            $A.util.removeClass(component.find("accountPickerId"), 'slds-hide');
+                                        } else {
+                                            component.find("button1").set('v.disabled',true);
+                                        }
+                                        eliTypeGridDiv.classList.remove("slds-hide");
+                                        component.set("v.eliQuesNo",1);
+                                        if(eliQuesList.length == 0){
+                                            eliTypeGridDiv.classList.add("slds-hide");
+                                            //proceedButtonDiv.classList.remove("slds-hide");
+                                            if( component.get("v.showLicenseDropdown") == true ){
+                                                component.find("button1").set('v.disabled',true);
+                                            }else {
+                                                component.find("button1").set('v.disabled',false);
+                                                eliTypeGridDiv.classList.add("slds-hide");
+                                                return false;
+                                            }                              
+                                        }
+                                        
+                                    }
+                                    
+                                    //var eliChild = document.getElementById('eliQuesDiv').children;
+                                    //for(var i=0; i<eliChild.length; i++){
+                                    //eliChild[0].classList.remove("slds-hide");
+                                    //}
+                                }), 1000);
+                        }
+                    } 
+                });
+                $A.enqueueAction(action);
+            }
         }
-    	}
-	},
+    },
     
     fetchApplicationInstructionHelper : function(component, event, helper) {
         var board = component.find("board").get("v.value");
@@ -205,18 +209,30 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){ 
                 var response = actionResult.getReturnValue();
-                component.set("v.instructions",response);
-                console.log('heyy',response);
+                console.log('Response::'+response);
+                component.set("v.instructions", response[0]);
+                console.log('First Instr::'+response[0]);
+                var tempList = [];
+                for(var j = 1; j < response.length; j++){
+                    tempList.push(response[j]);
+                }
+                if(tempList.length != undefined && tempList.length > 0){
+                    $A.util.removeClass(component.find("reqDocTextDiv"), 'slds-hide');
+                }
+                component.set("v.otherInstructions", tempList);
+                //console.log('heyy',response);
+                console.log('allInstructionsList::',tempList);
             } else  {
-                 console.log('errorrrrr');
+                console.log('errorrrrr');
             }
             
         });
         $A.enqueueAction(action);
         
     },
+    
     showOrHideQuestionHelper : function(component, event, helper) {        
-		var quesItem = event.getSource().get("v.name");
+        var quesItem = event.getSource().get("v.name");
         var optionValue = event.getParam("value"); 
         var quesItemSplit = quesItem.split("-");
         var quesIndex = parseInt(quesItemSplit[0]);
@@ -241,7 +257,7 @@
         eliQuestions.forEach(function(eliQuestions) {
             eliQuestions.set("v.value","");
         })
-         
+        
         /*for(var i=quesIndex;i<appQuestions.length;i++){
             if((i+1)!=appQuestions.length){
             	appQuestions[i+1].set("v.value","");
@@ -260,13 +276,13 @@
             if(component.get("v.eliTypeQues").length > 0){
                 console.log('eliTypeQuesLen ' + component.get("v.eliTypeQues").length);
                 //eliQuesDiv.classList.remove("slds-hide");
-            	//eliTextDiv.classList.remove("slds-hide");
-            	eliTypeGridDiv.classList.remove("slds-hide");
+                //eliTextDiv.classList.remove("slds-hide");
+                eliTypeGridDiv.classList.remove("slds-hide");
                 component.set("v.eliQuesNo",component.get("v.eliQuesNo") + 1);
             }
             else{
-              //proceedButtonDiv.classList.remove("slds-hide");
-              component.find("button1").set('v.disabled',false);
+                //proceedButtonDiv.classList.remove("slds-hide");
+                component.find("button1").set('v.disabled',false);
             }
         }
         else{
@@ -274,43 +290,43 @@
             appTypeMesDiv.classList.add('slds-hide');
             component.set("v.quesNo",component.get("v.quesNo") + 1);
             var count = 0;
-        	var appQuestions= component.find('appRadios');
-        	appQuestions.forEach(function(appQuestions) {
+            var appQuestions= component.find('appRadios');
+            appQuestions.forEach(function(appQuestions) {
                 console.log('loopValue ' + appQuestions.get("v.value"));
                 if(appQuestions.get("v.value") == 'No'){
-    				count++;
+                    count++;
                 }
-        	})
+            })
             
             if(appQuestions.length == count){
-            	appTypeDiv.classList.remove("slds-hide");
-            	appTypeMesDiv.classList.remove('slds-hide');
+                appTypeDiv.classList.remove("slds-hide");
+                appTypeMesDiv.classList.remove('slds-hide');
                 if(component.get("v.eliTypeQues").length > 0){
-                	eliTypeGridDiv.classList.remove("slds-hide");
-                	component.set("v.eliQuesNo",component.get("v.eliQuesNo") + 1);
-            	}
-            	//proceedButtonDiv.classList.remove("slds-hide");
-            	//component.set("v.appTypeFieldDisabled",false);
-            	component.find("appTypeField").set("v.value","");
-        	}
+                    eliTypeGridDiv.classList.remove("slds-hide");
+                    component.set("v.eliQuesNo",component.get("v.eliQuesNo") + 1);
+                }
+                //proceedButtonDiv.classList.remove("slds-hide");
+                //component.set("v.appTypeFieldDisabled",false);
+                component.find("appTypeField").set("v.value","");
+            }
             else{
                 component.find("button1").set('v.disabled',true);
-            	//proceedButtonDiv.classList.add("slds-hide");
-            	//eliQuesDiv.classList.add("slds-hide");
-            	//eliTextDiv.classList.add("slds-hide");
-            	eliTypeGridDiv.classList.add("slds-hide");
-            	appTypeDiv.classList.add("slds-hide");
-            	appTypeMesDiv.classList.add('slds-hide');
-        	}
+                //proceedButtonDiv.classList.add("slds-hide");
+                //eliQuesDiv.classList.add("slds-hide");
+                //eliTextDiv.classList.add("slds-hide");
+                eliTypeGridDiv.classList.add("slds-hide");
+                appTypeDiv.classList.add("slds-hide");
+                appTypeMesDiv.classList.add('slds-hide');
+            }
         }
     },
-            
+    
     showOrHideEliQuestionHelper : function(component, event, helper){
         //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
         var eliQuestions= component.find('eliRadios');
         if(eliQuestions.length != undefined){
             var answersMarked = eliQuestions.every(function eliQuestionAns(qes) {
-                return qes.get("v.value") != '' && qes.get("v.value") != undefined;
+                return qes.get("v.value") != 'No' && qes.get("v.value") != undefined;
             });
             if(component.get("v.eliQuesNo") >= eliQuestions.length && answersMarked){
                 component.find("button1").set('v.disabled',false);
@@ -330,22 +346,22 @@
         component.set("v.eliQuesNo",component.get("v.eliQuesNo") + 1);
     },
     showNotAppTypeEliQuestionsHelper : function(component, event, helper){
-       component.set("v.isDirectProceed",true);
-       $A.util.removeClass(component.find("noAppTypeQuesField"), 'slds-hide');
-       //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
-       var optionValue = event.getParam("value"); 
-       component.set("v.applicationType",optionValue);
-       console.log('Sd ' + optionValue);
-       //proceedButtonDiv.classList.remove("slds-hide");
-       //console.log('proceedButtonDiv ' + proceedButtonDiv);
-       component.find("button1").set('v.disabled',false);
+        component.set("v.isDirectProceed",true);
+        $A.util.removeClass(component.find("noAppTypeQuesField"), 'slds-hide');
+        //var proceedButtonDiv = document.getElementById("proceedButtonDiv");
+        var optionValue = event.getParam("value"); 
+        component.set("v.applicationType",optionValue);
+        console.log('Sd ' + optionValue);
+        //proceedButtonDiv.classList.remove("slds-hide");
+        //console.log('proceedButtonDiv ' + proceedButtonDiv);
+        component.find("button1").set('v.disabled',false);
     },
-   startApplicationHelper : function(component, event, helper){
-       console.log('inside startApplicationHelper');
+    startApplicationHelper : function(component, event, helper){
+        console.log('inside startApplicationHelper');
         // To disable button on click.
         var applicationId = "";
         let button = event.getSource();
-    	button.set('v.disabled',true);
+        button.set('v.disabled',true);
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
         sessionStorage.setItem("board", component.get("v.board"));
         sessionStorage.setItem("licenseType", component.get("v.licenseType"));
@@ -356,7 +372,7 @@
         var optionJSONArr=[];
         var eliQuestions= component.find('eliRadios');
         var account = sessionStorage.getItem("accountRecordID");
-      // var account = '001r000000DQcLt';
+        // var account = '001r000000DQcLt';
         console.log('@@@@@@@'+account);
         //eliQuestions.forEach(function(eliQuestions) {
         if(eliQuestions != undefined){
@@ -381,59 +397,59 @@
         
         if(!notEligible){
             try{
-			return new Promise($A.getCallback(function(resolve, reject) {
-				console.log('inside eligible::');
-          		 var applicationId =''; 
-                var startAnApplication = component.get('c.startAnApplication');
-                startAnApplication.setParams({"board": component.get("v.board"),
-										"licenseType" : component.get("v.licenseType"),
-										"applicationType" : component.find("getApplicationMethod").get("v.value"),
-                                        "account" : sessionStorage.getItem("accountRecordID"),
-                                        "LicenseUpgradeRecordID" : sessionStorage.getItem("LicenseRecordID")
-                                             });
-            		console.log('inside params::');
+                return new Promise($A.getCallback(function(resolve, reject) {
+                    console.log('inside eligible::');
+                    var applicationId =''; 
+                    var startAnApplication = component.get('c.startAnApplication');
+                    startAnApplication.setParams({"board": component.get("v.board"),
+                                                  "licenseType" : component.get("v.licenseType"),
+                                                  "applicationType" : component.find("getApplicationMethod").get("v.value"),
+                                                  "account" : sessionStorage.getItem("accountRecordID"),
+                                                  "LicenseUpgradeRecordID" : sessionStorage.getItem("LicenseRecordID")
+                                                 });
+                    console.log('inside params::');
                     startAnApplication.setCallback(this, function(actionResult){
-					    var state = actionResult.getState();
-						 if (state === "SUCCESS"){
+                        var state = actionResult.getState();
+                        if (state === "SUCCESS"){
                             console.log('inside  startAn Application::');
-							resolve(actionResult.getReturnValue());
-                              
-						}
-        		});
-             $A.enqueueAction(startAnApplication);
-             })).then(
-                $A.getCallback(function(result){   
-                sessionStorage.setItem("header","true");
-                sessionStorage.setItem("applicationId",result);  
-                var contactRecId=component.get("v.contactRecId");
-                console.log("result::"+ result);
-                console.log('121233' + sessionStorage.getItem("applicationId"));
-                console.log('test::'+sessionStorage.getItem("header"));
-                   if(sessionStorage.getItem("header")){
-                        console.log('inside headertrue');
+                            resolve(actionResult.getReturnValue());
+                            
+                        }
+                    });
+                    $A.enqueueAction(startAnApplication);
+                })).then(
+                    $A.getCallback(function(result){   
                         sessionStorage.setItem("header","true");
-                        sessionStorage.setItem("applicationId",result); 
-                       sessionStorage.setItem("contactRecId",contactRecId); 
-                       window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license';
-                    } 
-                else if(sessionStorage.getItem("header")){
-                var urlEvent = $A.get("e.force:navigateToURL");
-                console.log('%%%%%'+urlEvent);
-                var str = "/lightningwashington/s/apply-for-license";
-                console.log('$$$$$$'+str);
-                urlEvent.setParams({
-                    "url": str
-                });
-
-               console.log('****'+str);//console.log(str);
-                    urlEvent.fire();}
-      		}));
+                        sessionStorage.setItem("applicationId",result);  
+                        var contactRecId=component.get("v.contactRecId");
+                        console.log("result::"+ result);
+                        console.log('121233' + sessionStorage.getItem("applicationId"));
+                        console.log('test::'+sessionStorage.getItem("header"));
+                        if(sessionStorage.getItem("header")){
+                            console.log('inside headertrue');
+                            sessionStorage.setItem("header","true");
+                            sessionStorage.setItem("applicationId",result); 
+                            sessionStorage.setItem("contactRecId",contactRecId); 
+                            window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license';
+                        } 
+                        else if(sessionStorage.getItem("header")){
+                            var urlEvent = $A.get("e.force:navigateToURL");
+                            console.log('%%%%%'+urlEvent);
+                            var str = "/lightningwashington/s/apply-for-license";
+                            console.log('$$$$$$'+str);
+                            urlEvent.setParams({
+                                "url": str
+                            });
+                            
+                            console.log('****'+str);//console.log(str);
+                            urlEvent.fire();}
+                    }));
             }    
             catch(e){
-            console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
-        	}
-			}
-		
+                console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+            }
+        }
+        
     },
     hideOrShowSpinner: function(component, event, helper){
         var spinner = component.find('spinner');
@@ -475,7 +491,7 @@
                     }                       
                     else 
                     {
-                       component.set("v.showLicenseDropdown",false);
+                        component.set("v.showLicenseDropdown",false);
                         //component.find("button1").set('v.disabled',false);
                     }
                 })
@@ -575,11 +591,11 @@
                             });
                             toastEvent.fire();
                         }
-                        else {
-                            component.set("v.showAccountDropdown",true);
-                            component.set("v.accounts", null);
-                        }
-                          
+                            else {
+                                component.set("v.showAccountDropdown",true);
+                                component.set("v.accounts", null);
+                            }
+                        
                     }
                     
                 })
@@ -595,7 +611,7 @@
         var pickerValue = component.find("accountPickerId").get("v.value");
         var getEligibility = document.getElementById("eliTypeGridDiv").classList.contains('slds-hide');
         console.log("pickerValue"+pickerValue);
-          if(getEligibility) {
+        if(getEligibility) {
             if(pickerValue != "--None--"){
                 component.find("button1").set('v.disabled',false);
             } else {
@@ -607,19 +623,19 @@
                 toastEvent.fire();
                 component.find("button1").set('v.disabled',true);
             }
-          } else if(pickerValue != "--None--") {
-                   component.find("button1").set('v.disabled',false);              
-          } else {
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "Select Account!",
-                    "message": "Please select account to  proceed."
-                });
-                toastEvent.fire();
-                component.find("button1").set('v.disabled',true);
-
-          }
-
+        } else if(pickerValue != "--None--") {
+            component.find("button1").set('v.disabled',false);              
+        } else {
+            var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title": "Select Account!",
+                "message": "Please select account to  proceed."
+            });
+            toastEvent.fire();
+            component.find("button1").set('v.disabled',true);
+            
+        }
+        
         sessionStorage.setItem("accountRecordID",pickerValue);
     },
     firePassLicenseValueEventHelper : function (component, event, helper){
@@ -634,6 +650,6 @@
         sessionStorage.setItem("LicenseRecordID",pickerValue);
     },
     setApplicationTypeHelper : function (component, event, helper){
-          var appTypeValue = component.find("appTypeField").get("v.value");  
+        var appTypeValue = component.find("appTypeField").get("v.value");  
     }
 })

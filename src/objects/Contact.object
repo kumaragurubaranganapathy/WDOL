@@ -644,12 +644,11 @@
         <description>It is to store applicant ITIN number</description>
         <externalId>false</externalId>
         <label>ITIN</label>
-        <precision>9</precision>
+        <length>11</length>
         <required>false</required>
-        <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1076,7 +1075,7 @@ CASE( MUSW__AlertCode__c,
         <fullName>Social_Security_Number_Encrypted__c</fullName>
         <externalId>false</externalId>
         <label>SSN</label>
-        <length>170</length>
+        <length>9</length>
         <maskChar>asterisk</maskChar>
         <maskType>lastFour</maskType>
         <required>false</required>
@@ -1246,7 +1245,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Unique_ID_To_Provide__c</fullName>
         <externalId>false</externalId>
-        <label>Select personal ID</label>
+        <label>Select Personal ID</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1263,7 +1262,7 @@ CASE( MUSW__AlertCode__c,
                 <value>
                     <fullName>ITIN</fullName>
                     <default>false</default>
-                    <label>Individual Taxpayer ID Number (ITIN)</label>
+                    <label>Individual Taxpayer Identification Number (ITIN)</label>
                 </value>
                 <value>
                     <fullName>No_SSN_or_ITIN</fullName>

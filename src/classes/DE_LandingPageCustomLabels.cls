@@ -36,20 +36,30 @@ public class DE_LandingPageCustomLabels {
         
         Boolean isValidUser = isValidCommunityUser();
         mapCommonHeaderLabels.put('Home','Home;'+System.Label.Polaris_Portal_Home+',');
+        
         if(isValidUser){
-            mapCommonHeaderLabels.put('To Do','To Do;'+System.Label.Polaris_Portal_To_Do+',');
-        }
-        mapCommonHeaderLabels.put('License Lookup','License Lookup;'+System.Label.Polaris_Portal_LicenseLookup+',');
-        mapCommonHeaderLabels.put('Education','Education;'+System.Label.Polaris_Portal_Education+',');
-        mapCommonHeaderLabels.put('Complaints','Complaints;'+System.Label.Polaris_Portal_Complaint+',');
-        if(isValidUser){
-        	mapCommonHeaderLabels.put('Professional','Professional;'+System.Label.Polaris_Portal_Dashboard+',');
-        	mapCommonHeaderLabels.put('Business','Business;'+System.Label.Polaris_Portal_Business_Dashboard+',');
-        	//testing new dashboard
-        	mapCommonHeaderLabels.put('New Dashboard','New Dashboard;'+System.Label.Polaris_Portal_NewDashboard+',');
+            
+            mapCommonHeaderLabels.put('License Management','License Management;JavaScript:Void(0);,');
+            
+            //mapCommonHeaderLabels.put('Professional','Professional;'+System.Label.Polaris_Portal_Dashboard+',');
+            
+        	mapCommonHeaderLabels.put('To Do','To Do;'+System.Label.Polaris_Portal_To_Do+',');
+        	
+        	mapCommonHeaderLabels.put('Professional Dashboard','Professional Dashboard;'+System.Label.Polaris_Portal_NewDashboard+',');
+        	
+        	mapCommonHeaderLabels.put('Business Dashboard','Business Dashboard;'+System.Label.Polaris_Portal_Business_Dashboard+',');
+        	
             //user feedback link
-            mapCommonHeaderLabels.put('User Feedback','User Feedback;'+System.Label.Polaris_Portal_UserFeedback+',');
+            //mapCommonHeaderLabels.put('User Feedback','User Feedback;'+System.Label.Polaris_Portal_UserFeedback+',');
+        
         }
+        
+        mapCommonHeaderLabels.put('License Lookup','License Lookup;'+System.Label.Polaris_Portal_LicenseLookup+',');
+        
+        mapCommonHeaderLabels.put('Education','Education;'+System.Label.Polaris_Portal_Education+',');
+        
+        mapCommonHeaderLabels.put('Complaints','Complaints;'+System.Label.Polaris_Portal_Complaint+',');
+        
         
         //mapCommonHeaderLabels.put('File a Complaint','File a Complaint;https://deloittelnp.force.com/s/file-a-complaint,');
         //mapCommonHeaderLabels.put('Log In','Log In;#,');

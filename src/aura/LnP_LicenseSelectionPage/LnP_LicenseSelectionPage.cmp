@@ -22,10 +22,11 @@
     <aura:attribute name="licenses" type="Object[]"/>
     <aura:attribute name="conid" type="Id"/>
     <aura:attribute name="instructions" type="String" />
+    <aura:attribute name="otherInstructions" type="List"/>
     <aura:attribute name="testOptions" type="List" />
     <aura:attribute name="tempLicenses" type="List"/>
     
-     <aura:attribute name="proceedTemporaryLicense" type="Boolean" default="False" />
+    <aura:attribute name="proceedTemporaryLicense" type="Boolean" default="False" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
@@ -62,10 +63,27 @@
                 </aura:if>      
             </div>
         </div>
-        <div id="applicationInstuctionDiv" class = "slds-hide slds-grid card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">
+        <div id="applicationInstuctionDiv" class = "slds-hide card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">
             <div id="appTextDiv">
-                <h2>Application Instructions</h2>
+                <h2>Are You Ready?</h2>
+                <!--<h2>Application Instructions</h2>-->
                 <lightning:formattedRichText  class="slds-m-right_xx-large" value="{!v.instructions}"> </lightning:formattedRichText>
+            </div>
+            <div aura:id="reqDocTextDiv" class="slds-hide">
+                <h2 class="slds-m-top_large">Required documents for this Application</h2>
+                <ul>
+                    <aura:iteration items="{!v.otherInstructions}" var="instr">
+                        <li class="bullets">{!instr}</li>
+                    </aura:iteration>
+                </ul>
+            </div>    
+            <div id="necInstr">
+                <h2 class="slds-p-top_large">What you’ll need before you start</h2>
+                <ul>
+                    <li class="bullets">Visa, Mastercard, or American Express credit or debit card or e-check for payment of the license fee</li>
+                    <li class="bullets">Required documents listed above (if any), ready for upload</li>
+                    <li class="bullets">If needed, any legal background documents for the last 10 years, ready for upload</li>
+                </ul>
             </div>
         </div>
         <div id="eliTypeGridDiv" class = "slds-hide slds-grid card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">

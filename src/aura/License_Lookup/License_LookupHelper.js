@@ -651,9 +651,9 @@
                                         row.Sub_Status = "";
                                     }
                                     if(row.License__r.RecordType){
-                                        row.recordType = row.License__r.RecordType.Name;
+                                        row.Type = row.License__r.RecordType.Name;
                                     } else {
-                                        row.recordType = "";
+                                        row.Type = "";
                                     }
                                     if(row.License__r.Id){
                                         row.Id = row.License__r.Id;

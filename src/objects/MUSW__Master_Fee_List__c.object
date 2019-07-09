@@ -613,6 +613,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Business_Structure__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Structure</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Coupon__c</fullName>
         <externalId>false</externalId>
         <label>Coupon</label>
@@ -1864,13 +1874,14 @@
     </fields>
     <fields>
         <fullName>external_id__c</fullName>
+        <caseSensitive>true</caseSensitive>
         <externalId>true</externalId>
         <label>external id</label>
         <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>is_Late_Renewal__c</fullName>
@@ -2597,6 +2608,10 @@
             </values>
             <values>
                 <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronic Notary</fullName>
                 <default>false</default>
             </values>
             <values>

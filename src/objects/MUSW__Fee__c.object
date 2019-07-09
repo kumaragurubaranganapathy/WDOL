@@ -110,22 +110,22 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>MUSW__Type__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
             <field>portal_name__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Application_Method__c</field>
+            <field>Application_Type__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
             <field>License_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Application_Method__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -681,7 +681,7 @@
         <fullName>Application_Type__c</fullName>
         <description>Application Type</description>
         <externalId>false</externalId>
-        <label>Application Type</label>
+        <label>Program Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1073,6 +1073,32 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Fee_amount_for_labor_charge__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(MUSW__Type__c, &apos;Trust Expense - Staff Hours&apos;), ( $Setup.Trust_Fund_Setting__c.Hour_Rate__c  *  Labor_Hours__c )  + ($Setup.Trust_Fund_Setting__c.Hour_Rate__c  *  (Labor_Minutes__c  / 60)),0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fee amount for labor charge</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fee_amount_for_mileage__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(MUSW__Type__c, &apos;Trust Expense - Mileage&apos;),Mileage__c  *  $Setup.Trust_Fund_Setting__c.Mileage_Rate__c,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fee amount for mileage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Fine__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Fine</description>
@@ -1111,6 +1137,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Labor_Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Labor Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Labor_Minutes__c</fullName>
+        <externalId>false</externalId>
+        <label>Labor Minutes</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Legal_Action__c</fullName>
@@ -2032,8 +2082,53 @@
                     <default>false</default>
                     <label>DHP</label>
                 </value>
+                <value>
+                    <fullName>Miscellaneous</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous</label>
+                </value>
+                <value>
+                    <fullName>Trust - Prearrangement Funeral Services Deposit</fullName>
+                    <default>false</default>
+                    <label>Trust - Prearrangement Funeral Services Deposit</label>
+                </value>
+                <value>
+                    <fullName>Trust Expense - Mileage</fullName>
+                    <default>false</default>
+                    <label>Trust Expense - Mileage</label>
+                </value>
+                <value>
+                    <fullName>Trust Expense - Staff Hours</fullName>
+                    <default>false</default>
+                    <label>Trust Expense - Staff Hours</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Mileage__c</fullName>
+        <externalId>false</externalId>
+        <label>Mileage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Miscellaneous_Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Miscellaneous Fee</label>
+        <referenceTo>Miscellaneous_Fee__c</referenceTo>
+        <relationshipLabel>Fees</relationshipLabel>
+        <relationshipName>Fees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Product__c</fullName>
@@ -2497,7 +2592,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>portal_name__c</fullName>
         <externalId>false</externalId>
-        <label>portal name</label>
+        <label>Portal Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2682,11 +2777,19 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
+                <fullName>AMR</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Additional Secured Party</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>All</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Association</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3222,6 +3325,10 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
             <values>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Miscellaneous Review</fullName>
                 <default>false</default>
             </values>
@@ -3343,6 +3450,18 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
             <values>
                 <fullName>Title Replacement Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust - Prearrangement Funeral Services Deposit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust Expense - Mileage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust Expense - Staff Hours</fullName>
                 <default>false</default>
             </values>
             <values>

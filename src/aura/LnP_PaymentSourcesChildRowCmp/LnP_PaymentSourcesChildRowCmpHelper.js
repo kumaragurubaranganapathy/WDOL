@@ -10,7 +10,7 @@
             component.set("v.cloneDisabled", true);
             component.set("v.updateDisabled", false);
         }else if(component.get("v.rowIndex") == 0){
-            if( (number!='') && (amount!='')){
+            if( (number!='') && (amount!='') && (paymentType!='')){
                 component.set("v.printDisabled", false);
                 component.set("v.cloneDisabled",false);  
             }else{

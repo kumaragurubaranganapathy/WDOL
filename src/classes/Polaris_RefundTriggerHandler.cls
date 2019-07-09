@@ -11,7 +11,8 @@ public class Polaris_RefundTriggerHandler {
     public static void handleBeforeUpdate(List<BGBK__Refund2__c> newList, Map<Id,BGBK__Refund2__c> oldMap){
         Map<Id, BGBK__Refund2__c> rejectedStatements = new Map<Id, BGBK__Refund2__c>();
         List<MUSW__Receipt__c> receiptsToBeUpdated = new List<MUSW__Receipt__c>();
-        List<BGBK__Receipt_Refund__c> receiptRefundList = [Select id, BGBK__Refund2__c,BGBK__Receipt__c,BGBK__Receipt__r.MUSW__Amount_Refunded__c,BGBK__Receipt__r.MUSW__Amount_Available__c from BGBK__Receipt_Refund__c where BGBK__Refund2__c in: newList ];
+        List<BGBK__Receipt_Refund__c> receiptRefundsToBeUpdated = new List<BGBK__Receipt_Refund__c>();
+        List<BGBK__Receipt_Refund__c> receiptRefundList = [Select id, BGBK__Refund2__c,BGBK__Receipt__c,BGBK__Amount__c,BGBK__Receipt__r.MUSW__Amount_Refunded__c,BGBK__Receipt__r.MUSW__Amount_Available__c from BGBK__Receipt_Refund__c where BGBK__Refund2__c in: newList ];
         List<Group> queueList = [select Id, DeveloperNAME from Group where Type = 'Queue' AND DeveloperNAME In: QueueNames];
         Map<String,Id> QueueNameToIdMap = new Map<String,Id>();
         List<BGBK__Refund2__c> refundsToBeUpdated = new List<BGBK__Refund2__c>();
@@ -31,6 +32,10 @@ so we only have to use 1 SOQL query to do all checks.
                         MUSW__Receipt__c receipt = new MUSW__Receipt__c(Id=recRefund.BGBK__Receipt__c);
                         receipt.MUSW__Amount_Refunded__c = recRefund.BGBK__Receipt__r.MUSW__Amount_Refunded__c - ref.BGBK__Amount__c;
                         receipt.MUSW__Amount_Available__c = recRefund.BGBK__Receipt__r.MUSW__Amount_Available__c + ref.BGBK__Amount__c;
+                        recRefund.BGBK__Amount__c = recRefund.BGBK__Amount__c - ref.BGBK__Amount__c;
+                        // update the amount of receipt refund
+                        receiptRefundsToBeUpdated.add(recRefund);
+                        //update the refunded amount and available amount on receipt
                         receiptsToBeUpdated.add(receipt);
                     }
                 }
@@ -86,6 +91,9 @@ so we only have to use 1 SOQL query to do all checks.
         }
         if(receiptsToBeUpdated.size() > 0){
             update receiptsToBeUpdated;
+        }
+        if(receiptRefundsToBeUpdated.size() >0){
+            update receiptRefundsToBeUpdated;
         }
         
     }

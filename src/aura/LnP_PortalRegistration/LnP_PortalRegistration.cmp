@@ -17,6 +17,7 @@ _______________________________________________________________
     <aura:attribute name="specialChecker" type="boolean" default="false"/>
     <aura:attribute name="sameAsNameChecker" type="boolean" default="true"/>
     <aura:attribute name="passwordMsg" type="string" default="" />
+    <aura:attribute name="dateMsg" type="string" default="" />
     <aura:attribute name= "popupHeader" type="string" default=""/> 
     <aura:attribute name= "popupBody" type="string" default=""/>
     <aura:attribute name= "serverStatus" type="string" default="fail" />
@@ -28,6 +29,7 @@ _______________________________________________________________
     <aura:attribute name="validationObject" type="map" default="{'firstNameValidation': false,
                                                                 'lastNameValidation': false,
                                                                  'phoneNumberValidation': false,
+                                                                 'birthdateValidation': false,
                                                                  'emailValidation': false,
                                                                  'confirmEmailValidation': false,
                                                                  'passwordValidation': false,
@@ -45,38 +47,48 @@ _______________________________________________________________
         <!-- Start of form -->
         <form class="slds-form">
             <div class="slds-grid slds-wrap">
-                <div class="field-item slds-small-size_1-of-1 slds-medium-size_4-of-12">
+                <div class="field-item slds-small-size_1-of-1 slds-medium-size_12-of-12">
                     <div class="form-title">
                         Register here for a new Washington account as a new Applicant.
                     </div>
                 </div>
-                <div class="slds-small-size_1-of-1 slds-medium-size_8-of-12">
-                    <div class="slds-grid slds-wrap">
+                <div class="slds-small-size_1-of-1 slds-medium-size_12-of-12">
+                    <div class="slds-wrap">
                         <lightning:input aura:id="firstName" label="First Name"
                                          name="firstName"
-                                         class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12"
+                                         class="field-item slds-small-size_1-of-1"
                                          required="true"/>
                         <lightning:input aura:id="middleName"
-                                         class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12"
-                                         placeholder="Middle Name"
+                                         class="field-item slds-small-size_1-of-1"
+                                         label="Middle Name"
                                          name="middleName"/>
                     </div>
-                    <div class="slds-grid slds-wrap">
-                    <lightning:input aura:id="lastName" label="Last Name" class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12"
+                    <div class="slds-wrap">
+                    <lightning:input aura:id="lastName" label="Last Name" class="field-item slds-small-size_1-of-1"
                                      name="lastName" maxLength="50" required="true" />
                     
                     <lightning:input aura:id="phoneNumber" label="Phone Number"
-                                     name="phoneNumber" class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12"
+                                     name="phoneNumber" class="field-item slds-small-size_1-of-1"
                                      type="tel" required="true" maxLength='10' onchange="{!c.changepattern}" />
                     </div>
-                    <div class="slds-grid slds-wrap">
-                        <lightning:input  type="email" aura:id="email" label="Email" oncontextmenu="{! c.handleContext }"
-                                         name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$" class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12" required="true"/>
-                        <lightning:input type="email" aura:id="confirmEmail" label="Confirm Email" onpaste="{! c.handlePaste }" 
-                                         name="confirmEmail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$" class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12" required="true"/>
+                    <div class="slds-wrap">
+                        <lightning:input aura:id="birthdate" label="Date of Birth"
+                                         name="birthdate"
+                                         type="date"
+                                         onchange="{!c.dateValidation}"
+                                         class="field-item slds-small-size_1-of-1"
+                                         required="true"/>
+                      
                     </div>
-                    <div class="slds-grid slds-wrap">
-                        <div class="password-field field-item slds-small-size_1-of-1 slds-medium-size_6-of-12">
+                  <div class="field-item password-error">{!v.dateMsg}</div> 
+                    <div class="slds-wrap">
+                        <lightning:input  type="email" aura:id="email" label="Email" oncontextmenu="{! c.handleContext }"
+                                         name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="field-item slds-small-size_1-of-1" required="true"/>
+                        <lightning:input type="email" aura:id="confirmEmail" label="Confirm Email" onpaste="{! c.handlePaste }" 
+                                         name="confirmEmail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="field-item slds-small-size_1-of-1 " required="true"/>
+                    </div>
+                    <div class="slds-wrap">
+                        <div class="password-field field-item slds-small-size_1-of-1">
                         <lightning:input type="password" aura:id="password" placeholder="Password" oncontextmenu="{! c.handleContext }"
                                          name="password" class="" required="true" onchange="{!c.checkPassword}" onfocus="{!c.showPasswordChecker}" onblur="{!c.hidePasswordChecker}" label="Password"/>
                         <lightning:helptext class="help-text"
@@ -86,7 +98,7 @@ _______________________________________________________________
                         />
                         </div>
                         <lightning:input type="password" aura:id="confirmPassword" placeholder="Confirm Password" onpaste="{! c.handlePaste }" 
-                                         name="confirmPassword" class="field-item slds-small-size_1-of-1 slds-medium-size_6-of-12" required="true" onblur="{!c.confirmPassword}" label="Confirm Password"/>
+                                         name="confirmPassword" class="field-item slds-small-size_1-of-1" required="true" onblur="{!c.confirmPassword}" label="Confirm Password"/>
                     </div>
                     <div class="field-item password-error">{!v.passwordMsg}</div>                    
                     <div class="field-item submit-form">
@@ -104,6 +116,7 @@ _______________________________________________________________
                     </div>     
                 </div>
             </div>
+              
         </form>
         <!-- End of form -->
     </div>

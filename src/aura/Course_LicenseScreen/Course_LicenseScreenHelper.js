@@ -3,8 +3,7 @@
         var accountIdValue = component.get("v.accountId");
         console.log('acccount id value in fetch data ',accountIdValue)
         var action = component.get("c.getAllCourses");
-      
-          action.setParams({
+            action.setParams({
               accountId : component.get("v.accountId") 
           });
        action.setCallback(this, function(response) {
@@ -14,7 +13,9 @@
                 var data = response.getReturnValue();
                 console.log('return value '+response.getReturnValue());
                 console.log('course::'+ JSON.stringify(data));
+                console.log('**All Courses'+data);
                 component.set('v.courseList',data);
+                component.set("v.loadingSpinner",false);
                                
             }                          
         });

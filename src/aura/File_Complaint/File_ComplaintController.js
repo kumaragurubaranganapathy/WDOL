@@ -26,12 +26,7 @@
     cancelComplaint : function(component, event, helper) {
 		helper.cancelComplaint(component, event, helper);
 	},
-    closeModel: function(component, event, helper) {
-		helper.closeModel(component, event);
+    changepattern: function(component, event, helper) {
+		helper.changepattern(component, event);
 	},
-    handleUploadFinished: function (cmp, event) {
-        // This will contain the List of File uploaded data and status
-        var uploadedFiles = event.getParam("files");
-        alert("Files uploaded : " + uploadedFiles.length);
-    }
 })

@@ -1088,7 +1088,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
                         for(Endorsement__c endo :lstEndorsements){
                             MUSW__Review__c review = new MUSW__Review__c();
-                            review.Name = 'Endorsement Review';
+                            review.Name = 'Endorsement Review - ' + endo.License_Applicant__c + '/' + endo.License_Number__c;
                             review.License__c = licenseID[0].Id;
                             review.MUSW__Status__c = 'Pending';
                             review.Endorsement__c = endo.Id;
@@ -1131,6 +1131,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
         Id individualRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Universal_Default_License_Record_Type').getRecordTypeId();
         Id courseRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Course').getRecordTypeId();
+        Id mainLicenseRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Main_License_Account').getRecordTypeId();
+        Id branchLicenseRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch_License_Account').getRecordTypeId();
         //Get COurse Record TYpe Id
         // List<MUSW_Application2__c> applicationList = [SELECT Id,Application_Type__c,Board__c,License_Type__c,MUSW__Account__c,MUSW__Applicant__c FROM MUSW__Application2__c where id IN: appId];
         LnP_ProfessionalCode__mdt[] professionCodeMaps = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
@@ -1173,11 +1175,13 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         acc.Business_Phone__c  = application.MUSW__Account__r.Business_Phone__c;
                         acc.Extension__c  = application.MUSW__Account__r.Extension__c;
                         acc.Business_Website__c   = application.MUSW__Account__r.Business_Website__c;
+                        acc.RecordTypeId = mainLicenseRT ;
                         if(application.Branch_License__c){
                              acc.UBI_Number__c = application.MUSW__Account__r.UBI_Number__c;
                              mstLicense.Parent_License__c = application.Parent_License__c;
                              acc.Parentid = application.MUSW__Account__c;
                              mstLicense.isBranch_License__c = true;
+                             acc.RecordTypeId = branchLicenseRT;
                          }
                         //insert acc;
                         lstacc.add(acc);
@@ -1238,6 +1242,14 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                            system.debug(' in course info rec type filter');
                             String QuestionObjFieldAPIName = ans.QuestionDOL__r.QuestionFieldAPI__c;
                             system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
+                            if(QuestionObjFieldAPIName == 'Military__c'){
+                                system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                if(ans.Answer_Text__c == 'Yes')
+                                {
+                                   mstLicense.Military__c = true; 
+                                }
+                                
+                            }
                             if(QuestionObjFieldAPIName == 'Military_Spouse__c'){
                                 system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                 if(ans.Answer_Text__c == 'Yes')
@@ -1387,6 +1399,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         List<MUSW__Account_Contact__c> muswAccConList = new List<MUSW__Account_Contact__c>();
         User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
         for(Account acc : accList){
+        Id businessRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
+        if(acc.RecordTypeID == businessRT ){
              MUSW__Account_Contact__c ac = new MUSW__Account_Contact__c();
                 ac.MUSW__Account__c = acc.Id;
                 ac.MUSW__Contact__c = currentUser.ContactId;
@@ -1401,6 +1415,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 ac.Email__c = currentUser.email;
                 ac.Title__c = 'Administrator';
                 muswAccConList.add(ac);
+        }
         }
         try{
         if(!muswAccConList.isEmpty()){

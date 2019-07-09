@@ -320,7 +320,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_4</name>
-            <conditionLogic>(1 OR 2 OR 3 ) AND 3</conditionLogic>
+            <conditionLogic>(1 OR 2 ) AND 3</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -755,7 +755,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_5439432444</name>
+        <name>formula_11_myRule_10_A1_5888628891</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY())+1,3, 31) &gt;90,
@@ -774,7 +774,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_2073812804</name>
+        <name>formula_2_myRule_1_A1_9104119710</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY()),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )) &gt;90,
@@ -793,7 +793,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_1104448575</name>
+        <name>formula_5_myRule_4_A1_0850031287</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY()),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )) &gt;90,
@@ -812,7 +812,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_8428170791</name>
+        <name>formula_8_myRule_7_A1_6132780881</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY())+1,1, 31) &gt;90,
@@ -820,7 +820,7 @@
 	  DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, 1, 31 )
 	)</expression>
     </formulas>
-    <interviewLabel>Please_complete_1315-21_InterviewLabel</interviewLabel>
+    <interviewLabel>Please_complete_1315-22_InterviewLabel</interviewLabel>
     <label>Enterprise - Expiration Dates and Fees - Licenses with Set Expiration Date (Pre-Grace Period)5.</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1007,7 +1007,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_5439432444</elementReference>
+                <elementReference>formula_11_myRule_10_A1_5888628891</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -1136,7 +1136,7 @@
             </processMetadataValues>
             <field>Expiration_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_2073812804</elementReference>
+                <elementReference>formula_2_myRule_1_A1_9104119710</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1337,7 +1337,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_1104448575</elementReference>
+                <elementReference>formula_5_myRule_4_A1_0850031287</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -1502,7 +1502,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_8428170791</elementReference>
+                <elementReference>formula_8_myRule_7_A1_6132780881</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>

@@ -10,6 +10,9 @@
     confirmPassword: function(component, event, helper) {
         helper.confirmPassword(component, event);
     },
+    dateValidation: function(component, event, helper) {
+        helper.dateValidation(component, event);
+    },
     handlePaste: function(component, event, helper) {
         event.preventDefault(); 
     },    

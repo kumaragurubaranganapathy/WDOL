@@ -28,7 +28,7 @@
         component.set("v.accountContact",ctarget.getAttribute("data-whatid"));
         debugger;
         console.log("DCP::"+DCP);
-        if(acctName == 'Appraisal Management Companies' && designation == 'Controlling person' ){
+        if(acctName == 'Appraisal Management Companies' && (designation == 'Designated Controlling Person' || designation == 'Controlling person')){
             console.log("acctName::"+acctName);
             console.log( "v.accountContact"+ ctarget.getAttribute("data-whatid"));
             helper.insertRequest(component,event,helper); 

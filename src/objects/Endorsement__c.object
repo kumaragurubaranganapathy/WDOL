@@ -192,14 +192,14 @@
                     <label>Electrical</label>
                 </value>
                 <value>
+                    <fullName>Electronic Notary</fullName>
+                    <default>false</default>
+                    <label>Electronic Notary</label>
+                </value>
+                <value>
                     <fullName>Electronic Records Notary Public Endorsement</fullName>
                     <default>false</default>
                     <label>Electronic Records Notary Public Endorsement</label>
-                </value>
-                <value>
-                    <fullName>Eletronic Notary</fullName>
-                    <default>false</default>
-                    <label>Eletronic Notary</label>
                 </value>
                 <value>
                     <fullName>Engineering</fullName>
@@ -297,11 +297,33 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_Applicant__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Applicant_Full_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Applicant</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License_ID__c</fullName>
         <description>Foreign Key for Data Migration of Legacy Data</description>
         <externalId>false</externalId>
         <label>License ID</label>
         <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Number</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -616,11 +638,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Electronic Records Notary Public Endorsement</fullName>
+                <fullName>Electronic Notary</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Eletronic Notary</fullName>
+                <fullName>Electronic Records Notary Public Endorsement</fullName>
                 <default>false</default>
             </values>
             <values>

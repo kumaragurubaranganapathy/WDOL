@@ -94,6 +94,11 @@
 .THIS#proceedButtonDiv .slds-button--brand:disabled{
     background: t(LnGGrayText);
 }
+.THIS .bullets{
+    list-style:initial;
+    margin-left: 15px;
+}
+
 @media screen and (max-width:767px) {
     .THIS.form-wrapper{
         padding:16px;
@@ -136,4 +141,5 @@
     .THIS .down-btn-wid {
         width: 100%;
     }
+    
 }

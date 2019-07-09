@@ -19,3 +19,11 @@
 .THIS .txtalign{
     text-align:left;
 }
+.THIS .required.field-size.slds-form-element label::before {
+    content: '*';
+    color: t(LnGErrorMsg);
+    padding-right: 2px;
+}
+.THIS .required.field-size.slds-form-element label abbr.slds-required {
+    display: none;
+}

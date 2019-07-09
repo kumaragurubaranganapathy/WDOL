@@ -277,17 +277,17 @@
       var Renew_application_Id = ctarget.getAttribute("data-recordId");
   },
     
-   /* downloadDocument : function(component, event, helper) {
+   downloadDocument : function(component, event, helper) {
         console.log('Pending Application Button');
         var recordIdForPDF = event.getSource().get("v.value");
         console.log('recordIdForPDF== ' + recordIdForPDF);
         var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
-        var url = OrgURLForPDF+'apex/PDFGenerator?id=' + recordIdForPDF;
+        var url = OrgURLForPDF+'apex/Polaris_PDFGenerator?id=' + recordIdForPDF;
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": url
         });
         urlEvent.fire();
-    }*/
+    }
   
 })

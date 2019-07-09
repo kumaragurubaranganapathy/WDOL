@@ -49,7 +49,7 @@
         var licenseId = row.License__r.Name;
         var licenseRecordId = row.Id;
         var relatedLicense = row.License__r.Related_License__c;
-        var licenseType = row.recordType;
+        var licenseType = row.Type;
         component.set("v.licenseRecordType", licenseType);
         switch (action.name) {
             case 'view_details':

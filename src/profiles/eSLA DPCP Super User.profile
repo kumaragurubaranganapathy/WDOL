@@ -3098,6 +3098,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>LnP_CalculateSystemGeneratedAmountClass</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>LnP_CreateAuditClass</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -7238,6 +7242,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Payment__c.Miscellaneous_Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>BGBK__Payment__c.Receipt_Amount_Remaining__c</field>
         <readable>true</readable>
@@ -8155,6 +8164,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>BGCK__Page_Question__c.Checklist_type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BGCK__Page_Question__c.Credential__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11599,7 +11613,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Endorsement__c.License_Applicant__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Endorsement__c.License_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Endorsement__c.License_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14073,6 +14097,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Account_Contact__c.Applicant_Cust_Id__c</field>
         <readable>true</readable>
@@ -14104,7 +14133,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Historical__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__Account_Contact__c.Last_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.License__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14129,6 +14168,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Other_Position__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.OwnerType__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__Account_Contact__c.Ownership_Percentage__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14141,6 +14190,11 @@
         <editable>true</editable>
         <field>MUSW__Account_Contact__c.Recalculate_Sharing__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Related_Company_Name__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -14158,6 +14212,16 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Source_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Source_Table__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Account_Contact__c.Start_Date__c</field>
         <readable>true</readable>
@@ -14171,6 +14235,11 @@
         <editable>true</editable>
         <field>MUSW__Account_Contact__c.Title__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Account_Contact__c.Title_select__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -16043,6 +16112,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Deposit__c.Route_to_Miscellaneous_queue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Deposit__c.Sequence_number__c</field>
         <readable>false</readable>
@@ -16748,6 +16822,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee__c.Fee_amount_for_labor_charge__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee__c.Fee_amount_for_mileage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Fee__c.Fine__c</field>
         <readable>true</readable>
@@ -16761,6 +16845,16 @@
         <editable>false</editable>
         <field>MUSW__Fee__c.Inspection__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee__c.Labor_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee__c.Labor_Minutes__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -16930,6 +17024,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Fee__c.MUSW__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee__c.Mileage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee__c.Miscellaneous_Fee__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -17743,6 +17847,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Alerts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__License2__c.Alternate_Clock_Hours_Continuing_Educa__c</field>
         <readable>true</readable>
@@ -18346,6 +18455,11 @@
         <editable>true</editable>
         <field>MUSW__License2__c.Military_Waiver__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Military__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -19154,6 +19268,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__Master_Fee_List__c.Business_Structure__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__Master_Fee_List__c.Coupon__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -19180,7 +19299,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Master_Fee_List__c.Endorsement_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23719,6 +23838,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Master_ConfigData_Listing__c.Profession_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Master_ConfigData_Listing__c.Program_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -23980,6 +24104,36 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Master_Review_List__c.external_id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Miscellaneous_Fee__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Miscellaneous_Fee__c.Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Miscellaneous_Fee__c.Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Miscellaneous_Fee__c.Total_Fees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Miscellaneous_Fee__c.Total_Payments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Miscellaneous_Fee__c.Total_balance__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24584,11 +24738,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Portal_Dashboard_Settings__mdt.Draft_Applications__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Portal_Dashboard_Settings__mdt.Draft_Applications_statuses__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -24600,11 +24749,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Portal_Dashboard_Settings__mdt.License_Types__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Portal_Dashboard_Settings__mdt.Pending_Applications__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -25458,13 +25602,33 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Renewal_Application__c.Number_of_Burials__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Renewal_Application__c.Number_of_Cremations__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Renewal_Application__c.Number_of_Dispositions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Renewal_Application__c.Number_of_Entombments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Renewal_Application__c.Number_of_Internments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Renewal_Application__c.Number_of_Inurnments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -26723,7 +26887,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>User_Feedback__c.ProfCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -27361,6 +27525,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Master_Review_List__c-Review Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Miscellaneous_Fee__c-Miscellaneous Fee Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>NCR_File_Data__c-NCR File Data Layout</layout>
@@ -28816,6 +28983,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PlanReviewScheduler</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Polaris_PDFGenerator</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

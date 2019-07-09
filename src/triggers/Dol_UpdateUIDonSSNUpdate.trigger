@@ -1,3 +1,8 @@
+/* [Nibedita Swain/ July 8, 2019] 
+Convert SSN to UBI – this is now out of Release 1 as it was dependent on API.
+Workaround – Send SSN instead of UBI (This is tested and verified with ASC)
+Changes – We have to revert the code/Deactivate the trigger which was built for triggering this transaction from Salesforce
+*/
 trigger Dol_UpdateUIDonSSNUpdate on Contact (after update, after insert) {
     List<Id> contactWithNoSSN = new List<Id>();
     List<contact> contactWithNoSSNList = new List<contact>();

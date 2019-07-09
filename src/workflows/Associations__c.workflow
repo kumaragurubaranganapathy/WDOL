@@ -123,6 +123,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_License_Status_to_Invited</fullName>
+        <field>Status__c</field>
+        <literalValue>Invited</literalValue>
+        <name>Update License Status to Invited</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_status_to_No_response</fullName>
         <field>Status__c</field>
         <literalValue>No Response</literalValue>
@@ -140,6 +149,24 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Send email to parent and child license holder about Declination</fullName>
+        <actions>
+            <name>Send_email_to_Child_Licensee_about_Declination</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Send_email_to_Parent_Licensee_about_Declination</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Send email to parent and child license holder about acceptance</fullName>
         <actions>
@@ -206,5 +233,19 @@
             <timeLength>7</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>update status and child parent license email</fullName>
+        <actions>
+            <name>Update_Child_License_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>update_parent_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR( NOT (ISNULL(Parent_License__c))  ,NOT (ISNULL(Child_License__c)) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

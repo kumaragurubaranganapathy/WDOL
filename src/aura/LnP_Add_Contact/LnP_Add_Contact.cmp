@@ -5,11 +5,14 @@
     <aura:attribute name="accountEmail" type="string" />
     <aura:attribute name="accountName" type="String" />
     <aura:attribute name="designation" type="String" />
+    <aura:attribute name="mainAccountName" type="String" />
     <aura:attribute name="showform" type="Boolean" default="true" />
     <aura:attribute name="showMessage" type="Boolean" default="false" />
     <aura:attribute name="isDCP" type="Boolean" default="false" />
     <aura:attribute name="message" type="String" default="You cannot Add Another DCP on this Account" />
-    <aura:attribute name="fields" type="String[]" default="['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Title__c','Ownership_Percentage__c','Account_Admin__c','DCP__c']" />
+    <aura:attribute name="fields" type="String[]" default="['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Other_Position__c','Ownership_Percentage__c','Title_select__c']" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 	<aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
 
     <div class="slds-float_right">
@@ -39,7 +42,8 @@
                             mode="edit"
                             onsubmit="{!c.saveData}"
                             onsuccess="{!c.successData}"
-                            oncancel="{!c.closeModel}"                />
+                            oncancel="{!c.closeModel}" />
+                                                       
                         </aura:if>
                          <aura:if isTrue="{!v.showMessage}">
                     	<p>

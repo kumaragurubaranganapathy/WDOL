@@ -3,6 +3,11 @@
 		helper.getRecordTypeId(component,event,helper);
         helper.fetchData(component,event, helper);
 	},
+    
+    handleActive : function(component,event,helper){
+      helper.handleActive(component,event,helper);  
+    },
+    
     handleLicenseLink :  function(component,event,helper){
      var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
      window.open(link, "_self");
@@ -32,21 +37,30 @@
         var tab = event.getSource().get('v.id')
         console.log('test::'+ tab);
         component.set("v.breadcrumbLabel",tab); 
+        helper.handleActive(component,event,helper);
     },
     
     handleComponentEvent : function(component,event,helper){
         console.log("inside handleCompnent");
         
     	var refresh = event.getParam("refreshFlag");
-    	
+    	var isbranch = event.getParam("isbranch");
         var licenseId = event.getParam("LicenseId");
-        
+        var primaryAccountId = event.getParam("primaryAccountId");
+        console.log("licenseId::"+licenseId);
+        console.log("primaryAccountId::"+primaryAccountId);
+        component.set("v.selectedAccount",primaryAccountId);
+        helper.setSelectedAccountData(component,event,helper,primaryAccountId);
         var isDisplayCoursdetails = event.getParam("displayCourseDetails");
         
         var isdisplayLicenseDetails = event.getParam("displayLicenseDetails");
         
          console.log("isDisplayCoursdetails.........."+isDisplayCoursdetails);
-         
+        if(isbranch){
+            component.set("v.branchExam",false);
+        } else{
+            component.set("v.branchExam",true);
+        }
         if(refresh){
             
         	helper.fetchData(component,event,helper);  

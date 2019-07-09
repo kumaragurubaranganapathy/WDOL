@@ -105,17 +105,17 @@
                 </li>
                 
                 <aura:if isTrue="{!v.DisplaylicenseNumberBreadCrumb}">
-                    <li class="slds-breadcrumb__item slds-var-p-left_xx-small">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_xx-small">
                         <span>{!v.LicenseNumberBreadCrumb}</span>
                     </li>
                 </aura:if>
                 <aura:if isTrue="{!v.DisplayUploadDocumentsBreadCrumb}">
-                    <li class="slds-breadcrumb__item slds-var-p-left_xx-small">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_xx-small">
                         <span>attachments</span>
                     </li>
                 </aura:if>
                 <aura:if isTrue="{!v.DisplayAdditonalQulaificationsBreadCrumb}">
-                    <li class="slds-breadcrumb__item slds-var-p-left_xx-small">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_xx-small">
                         <span>qualifying information</span>
                     </li>
                 </aura:if>
@@ -141,15 +141,15 @@
                                 <div class="card table-border">
                                     <lightning:layout class="slds-wrap slds-p-around_small bottom-border">            
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">License Number:</div>
+                                            <div class="label-style text-style">License Number: </div>
                                             <div class="data-style">{!item.Name}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">License Type:</div>
+                                            <div class="label-style text-style">License Type: </div>
                                             <div class="data-style">{!item.Credential_Type__c}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">Status:</div>
+                                            <div class="label-style text-style">Status: </div>
                                             	<aura:if isTrue="{!item.MUSW__Status__c}">
                                             		<div class="data-style">{!item.MUSW__Status__c}</div>
                                                 		<aura:set attribute="else">
@@ -160,20 +160,20 @@
                                     </lightning:layout>
                                     <div class="slds-grid slds-p-around_small slds-wrap">
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">Name:</div>
+                                            <div class="slds-form-element__label text-style">Name: </div>
                                             <div class="slds-form-element__control">{!item.MUSW__Applicant__r.Name}</div>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">First Issue Date:</div>
+                                            <div class="slds-form-element__label text-style">First Issue Date: </div>
                                             	<aura:if isTrue="{!item.Original_Issue_Date__c}">
-                                            		<div class="slds-form-element__control">{!item.Original_Issue_Date__c}</div>
+                                            		<div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.Original_Issue_Date__c}"/></div>
                                                 		<aura:set attribute="else">
                                                     <div class="slds-form-element__control">(None)</div>
                                                 </aura:set>
                                         	</aura:if>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">Sub-status:</div>
+                                            <div class="slds-form-element__label text-style">Sub-status: </div>
                                              	<aura:if isTrue="{!item.Sub_Status__c}">
                                             <div class="slds-form-element__control">{!item.Sub_Status__c}</div>
                                                  <aura:set attribute="else">
@@ -182,7 +182,7 @@
                                             </aura:if>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">City:</div>
+                                            <div class="slds-form-element__label text-style">City: </div>
 												<aura:if isTrue="{!item.LnP_Parcels__r.records[0].City__c}">
                                             			<div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].City__c}</div>
 											   				<aura:set attribute="else">
@@ -191,11 +191,16 @@
                                         		</aura:if>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">Current Issue Date:</div>
-                                            <div class="slds-form-element__control">{!item.MUSW__Issue_Date__c}</div>
+                                            <div class="slds-form-element__label text-style">Current Issue Date: </div>
+                                            <aura:if isTrue="{!item.MUSW__Issue_Date__c}">
+                                                <div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.MUSW__Issue_Date__c}"/></div>
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-form-element__control">(None)</div>
+                                                    </aura:set>
+                                             </aura:if>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">State:</div>
+                                            <div class="slds-form-element__label text-style">State: </div>
                                             	<aura:if isTrue="{!item.LnP_Parcels__r.records[0].State_Province__c}">
                                             		<div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].State_Province__c}</div>
                                                 		<aura:set attribute="else">
@@ -204,16 +209,16 @@
                                                 </aura:if>                              
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">Expiration Date:</div>
+                                            <div class="slds-form-element__label text-style">Expiration Date: </div>
                                             	<aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
-                                            		<div class="slds-form-element__control">{!item.MUSW__Expiration_Date__c}</div>
+                                            		<div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.MUSW__Expiration_Date__c}"/></div>
                                                     	<aura:set attribute="else">
                                                     		<div class="slds-form-element__control">(None)</div>
                                                     	</aura:set>
                                             	</aura:if>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">Program:</div>
+                                            <div class="slds-form-element__label text-style">Program: </div>
                                             	<aura:if isTrue="{!item.Application_Type__c}">
                                             		<div class="slds-form-element__control">{!item.Application_Type__c}</div>
                                                     	<aura:set attribute="else">
@@ -222,7 +227,7 @@
                                             	</aura:if>
                                         </div>
                                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                            <div class="slds-form-element__label text-style">Country:</div>
+                                            <div class="slds-form-element__label text-style">Country: </div>
                                             <aura:if isTrue="{!item.LnP_Parcels__r.records[0].Country__c}">
                                             	<div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].Country__c}</div>
                                                 	<aura:set attribute="else">
@@ -263,7 +268,7 @@
                                                             Are you sure you want to dissociate the licensee?
                                                         </div>
                                                         <footer class="slds-modal__footer">
-                                                            <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemovePeerRelationShipModal}">Cancel</button>
+                                                            <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemovePeerRelationShipModal}">Back</button>
                                                             <button data-id= "{!v.removeAssociationtRelationId}" class="slds-button slds-button_brand" onclick="{!c.removeAssociationRelation}">OK</button>
                                                         </footer>
                                                     </div>
@@ -362,7 +367,7 @@
                                                             Are you sure you want to dissociate the licensee?
                                                         </div>
                                                         <footer class="slds-modal__footer">
-                                                            <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemoveBusinessRelationShipModal}">Cancel</button>
+                                                            <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemoveBusinessRelationShipModal}">Back</button>
                                                             <button data-id= "{!v.removeAssociationtRelationId}" class="slds-button slds-button_brand" onclick="{!c.removeAssociationRelation}">OK</button>
                                                         </footer>
                                                     </div>
@@ -531,13 +536,21 @@
                                                                     <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
                                                                 </td>
                                                                 <td data-label="EXPIRATION DATE" class="cell-style">
-                                                                    <div class="slds-truncate">{!tableData.MUSW__Expiration_Date__c}</div>
+                                                                    <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.MUSW__Expiration_Date__c}"/></div>
+                                                                            <aura:set attribute="else">
+                                                                                <div class="slds-truncate">(None)</div>
+                                                                            </aura:set>
+                                                                    </aura:if>
                                                                 </td>
                                                                 <td data-label="STATUS" class="cell-style">
                                                                     <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
                                                                 </td>  
                                                                 <td data-label="SUB-STATUS" class="cell-style">
-                                                                    <div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                    <aura:if isTrue="{!tableData.Sub_Status__c}">
+                                                                    	<div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>                                                                                
                                                                 </td>
                                                                 <td data-label="actions" class="cell-style action-cell">
                                                                     <div class="slds-truncate">
@@ -553,7 +566,7 @@
                                                                                     <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/lightningwashington/cart?id='+tableData.Id}"  target="_blank">Pay Fee</a>
                                                                                 </aura:if>
                                                                                 <aura:if isTrue="{!tableData.MUSW__Status__c == 'In Review' || tableData.MUSW__Status__c == 'Active'}">
-                                                                                    <lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>
+                                                                                    <!--<lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>-->
                                                                                 </aura:if>
                                                                             </aura:set>
                                                                         </aura:if>
@@ -586,7 +599,7 @@
                                                 Are you sure you want to dissociate the licensee?
                                             </div>
                                             <footer class="slds-modal__footer">
-                                                <button class="slds-button slds-button_neutral" onclick="{!c.closeRemoveAccountContactRelationModal}">Cancel</button>
+                                                <button class="slds-button slds-button_neutral" onclick="{!c.closeRemoveAccountContactRelationModal}">Back</button>
                                                 <button data-id= "{!v.removeAccountContactRelationId}" class="slds-button slds-button_brand" onclick="{!c.removeAccountContactRelation}">OK</button>
                                             </footer>
                                         </div>
@@ -625,10 +638,16 @@
                                                                     <div class="slds-truncate">{!tableData.Role__c}</div>
                                                                 </td>
                                                                 <td data-label="TITLE" class="cell-style">
-                                                                    <div class="slds-truncate">{!tableData.Title__c}</div>
+                                                                    <aura:if isTrue="{!tableData.Title__c}">
+                                                                    	<div class="slds-truncate">{!tableData.Title__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
                                                                 </td>
                                                                 <td data-label="PHONE" class="cell-style">
-                                                                    <div class="slds-truncate">{!tableData.MUSW__Account__r.Business_Phone__c}</div>
+                                                                    <aura:if isTrue="{!tableData.MUSW__Account__r.Business_Phone__c}">
+                                                                    	<div class="slds-truncate">{!tableData.MUSW__Account__r.Business_Phone__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
                                                                 </td>                                                                         
                                                                 <td data-label="EMAIL" class="cell-style">
                                                                     <div class="slds-truncate">{!tableData.MUSW__Account__r.Email__c}</div>
@@ -636,9 +655,8 @@
                                                                 <td data-label="actions" class="cell-style action-cell">
                                                                     <div class="slds-truncate">
                                                                         <aura:if isTrue="{!tableData.Status__c == 'Active'}">
-                                                                            
                                                                             <a data-index="{!ind}" data-id = "{!tableData.Id}" href="javascript:void(0)" style="text-decoration: underline;" onclick="{!c.openRemoveAccountContactRelationModal}">Separate</a>
-                                                                            
+                                                                            	<aura:set attribute="else">(None)</aura:set>
                                                                         </aura:if>
                                                                     </div>    
                                                                 </td>
@@ -697,7 +715,7 @@
                                                                         <div class="slds-truncate">{!tableData.Application_Method__c}</div>
                                                                     </td>
                                                                     <td data-label="LAST UPDATED" class="cell-style">
-                                                                        <div class="slds-truncate">{!tableData.editDate}</div>
+                                                                        <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
                                                                     </td>  
                                                                     <td data-label="actions" class="cell-style">
                                                                         <div class="slds-truncate"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
@@ -759,10 +777,10 @@
                                                                         <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
                                                                     </td>
                                                                     <td data-label="EXPIRATION DATE" class="cell-style">
-                                                                        <div class="slds-truncate">{!tableData.renexpirydate}</div>
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.Renewal_Expiration_Date__c}"/></div>
                                                                     </td>
                                                                     <td data-label="LAST UPDATED" class="cell-style">
-                                                                        <div class="slds-truncate">{!tableData.editDate}</div>
+                                                                        <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
                                                                     </td> 
                                                                     
                                                                     <td data-label="actions" class="cell-style">
@@ -822,7 +840,7 @@
                                                                         <div class="slds-truncate">{!tableData.License_Type__c}</div>
                                                                     </td>
                                                                     <td data-label="LastModifiedDate" class="cell-style">
-                                                                        <div class="slds-truncate">{!tableData.LastModifiedDate}</div>
+                                                                        <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
                                                                     </td>  
                                                                     <td data-label="ActionEdit" class="cell-style">
                                                                         <div class="slds-truncate" data-recordId = "{!tableData.id}">
@@ -892,7 +910,12 @@
                                                                         <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
                                                                     </td>
                                                                     <td data-label="SUB-STATUS">
-                                                                        <div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                        <aura:if isTrue="{!tableData.Sub_Status__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                        		<aura:set attribute="else">
+                                                                                    <div class="slds-truncate">(None)</div>
+                                                                        		</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="actions">
                                                                         <div class="slds-truncate">
@@ -953,22 +976,34 @@
                                                                         <div class="slds-truncate">{!tableData.License_Number__c}</div>
                                                                     </td>
                                                                     <td data-label="Credential_Type__c">
-                                                                        <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                        <aura:if isTrue="{!tableData.Credential_Type__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="License__r.Application_Method__c">
-                                                                        <div class="slds-truncate">{!tableData.License__r.Application_Method__c}</div>
+                                                                        <aura:if isTrue="{!tableData.License__r.Application_Method__c}">
+                                                                        	<div class="slds-truncate">{!tableData.License__r.Application_Method__c}</div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="Renewal_Expiration_Date__c">
-                                                                        <div class="slds-truncate">{!tableData.Renewal_Expiration_Date__c}</div>
+                                                                        <aura:if isTrue="{!tableData.Renewal_Expiration_Date__c}">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.Renewal_Expiration_Date__c}"/></div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="Renewal_Status__c">
-                                                                        <div class="slds-truncate">{!tableData.Renewal_Status__c}</div>
-                                                                    </td>
-                                                                    <td data-label="sub status">
-                                                                        <div class="slds-truncate"></div>
+                                                                        <aura:if isTrue="{!tableData.Renewal_Status__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Renewal_Status__c}</div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="Application_Type__c">
-                                                                        <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                        <aura:if isTrue="{!tableData.Application_Type__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                           	 <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>                                                                    
                                                                     <td data-label="actions">
                                                                         <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Generate Fee')||(tableData.Renewal_Status__c == 'Pending Payment')||(tableData.Renewal_Status__c == 'Payment Pending')}">
@@ -1018,16 +1053,28 @@
                                                             <aura:iteration items="{!v.PendingMaintananceRequestApplicationsDataList}" var="tableData" indexVar="ind">
                                                                 <tr class="slds-hint-parent">
                                                                     <td data-label="Name">
-                                                                        <div class="slds-truncate">{!tableData.Name}</div>
-                                                                    </td>        
+                                                                        <aura:if isTrue="{!tableData.Name}">
+                                                                        	<div class="slds-truncate">{!tableData.Name}</div>
+                                                                        		<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                     </td>        
                                                                     <td data-label="Request type">
-                                                                        <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
+                                                                        <aura:if isTrue="{!tableData.Service_Request_Type__c}">
+                                                                            <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
+                                                                        		<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="Request Against">
-                                                                        <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                        <aura:if isTrue="{!tableData.License_Type__c}">
+                                                                            <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                            	<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>
                                                                     <td data-label="Status">
-                                                                        <div class="slds-truncate">{!tableData.Status__c}</div>
+                                                                        <aura:if isTrue="{!tableData.Status__c}">
+                                                                            <div class="slds-truncate">{!tableData.Status__c}</div>
+                                                                        		<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
                                                                     </td>  
                                                                 </tr>  
                                                             </aura:iteration>
@@ -1070,16 +1117,28 @@
                                                         <aura:iteration items="{!v.CompletedMaintananceRequestApplicationsDataList}" var="tableData" indexVar="ind">
                                                             <tr class="slds-hint-parent">
                                                                 <td data-label="Service_Request_Type__c">
-                                                                    <div class="slds-truncate">{!tableData.name}</div>
+                                                                    <aura:if isTrue="{!tableData.name}">
+                                                                    	<div class="slds-truncate">{!tableData.name}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
                                                                 </td>        
                                                                 <td data-label="Service_Request_Type__c">
-                                                                    <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
-                                                                </td>
+                                                                    <aura:if isTrue="{!tableData.Service_Request_Type__c}">
+                                                                        <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                 </td>
                                                                 <td data-label="License_Type__c">
-                                                                    <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                    <aura:if isTrue="{!tableData.License_Type__c}">
+                                                                        <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
                                                                 </td>
                                                                 <td data-label="LastModifiedDate">
-                                                                    <div class="slds-truncate">{!tableData.endTime}</div>
+                                                                    <aura:if isTrue="{!tableData.endTime}">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.End_Time__c}"/></div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
                                                                 </td>  
                                                             </tr>  
                                                         </aura:iteration>

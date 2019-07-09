@@ -43,14 +43,14 @@ public class LnP_WizardApexController {
                        MUSW__Applicant__c FROM MUSW__License2__c WHERE MUSW__Applicant__c =: contactID AND Application_Type__c =: Board AND Credential_Type__c IN: tempLicenses AND CreatedDate = THIS_YEAR];
         
         system.debug('lstLicenses--'+lstLicenses);
-     /*   if(!lstLicenses.isEmpty()){
-            for(MUSW__License2__c lic : lstLicenses ){
-                if(lic.Credential_Type__c == ){
-                    lstTempLicenses.add(lic);
-                } 
-            } 
-        }*/
-      
+        /*   if(!lstLicenses.isEmpty()){
+for(MUSW__License2__c lic : lstLicenses ){
+if(lic.Credential_Type__c == ){
+lstTempLicenses.add(lic);
+} 
+} 
+}*/
+        
         system.debug('lstTempLicenses---'+lstTempLicenses);
         if(!lstLicenses.isEmpty()){
             noOfTempLicenses = lstLicenses.size();
@@ -369,36 +369,36 @@ insert bgckList;
         @AuraEnabled public string noAccount {get;set;}
     }
     @AuraEnabled
-    public  static String fetchInstructions(string Board, String LicenseType, String ApplicationType) {
-        //select id,Instructions__c from Newsfeed__c where Application_Method__c =''  and  Application_Type__c =  and Credential_Type__c =''
-        String result = '';
+    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType) {
+        List<String> result = new List<String>();
         String condition1 = 'Application_Type__c = \''+Board+'\'';
         String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
         String condition3 = 'Application_Method__c = \''+ApplicationType+'\'';
-        String condition4 = 'Fee_Calculation_Type__c = \'Flat\'';
+        String condition4 = 'Required__c = True'; 
         String condition5 = 'Active__c = True';
+        String condition6 = 'Default__c = True';
+        String condition7 = 'Object__c = \'MUSW__License2__c\'';
         list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
-        list<MUSW__Master_Fee_List__c> masterFeeListOnAppInstrList = new list<MUSW__Master_Fee_List__c>();
+        list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
         
-        String Str = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
-        appInstructionList = Utilityclass_withsharing.queryRecords(Str);
+        String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
+        appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
         
-        String Str2 = 'SELECT Id, Name, Base__c FROM MUSW__Master_Fee_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5;
-        masterFeeListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
-        system.debug('MFL Query::'+masterFeeListOnAppInstrList[0]);
+        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6 + ' AND ' + condition7;
+        masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
+        system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
         if(!appInstructionList.isEmpty()){
-            result = appInstructionList[0].Instructions__c;  
-            /*if(!masterFeeListOnAppInstrList.isEmpty()){
-                for(MUSW__Master_Fee_List__c fee : masterFeeListOnAppInstrList){
-                    result = result + ' ' + fee;
+            result.add(appInstructionList[0].Instructions__c);  
+            if(!masterSubListOnAppInstrList.isEmpty()){
+                for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
+                    result.add(subm.Name);
                 }
-            }*/
+            }
         }
         system.debug('@@@@result'+result);
         
         return result;
-        
     }
     
 }

@@ -41,7 +41,7 @@
                         	component.set("v.adminFlag",true);  
                         }
                         
-                    }else if(Objectlist[j].Role__c == 'Controlling person' && buttonName === 'remove' && accountName.includes("Appraisal Management Company") && Objectlist[j].DCP__c == true ){
+                    }else if(Objectlist[j].Role__c == 'Designated Controlling Person' && buttonName === 'remove' && accountName.includes("Appraisal Management Company") && Objectlist[j].DCP__c == true ){
 						console.log("inside Appraisal Mangement");
                         toRemove  = false;                    
                     }
@@ -69,7 +69,7 @@
             toastEvent.setParams({
                                 "type":"Error",
                                 "title": "Warning",
-                                "message": "You cannot remove Controlling person from this Account"
+                                "message": "You cannot remove Designated Controlling person from this Account"
                             });
              toastEvent.fire();
         }

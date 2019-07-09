@@ -348,7 +348,7 @@
             if (state === "SUCCESS") {
                 
                 var licenseData = JSON.parse(response.getReturnValue());
-                var licenseDataList = [];
+               /* var licenseDataList = [];
                 licenseData.forEach(function(element) {
                     if(element.MUSW__Issue_Date__c != null)
                     	element.MUSW__Issue_Date__c = $A.localizationService.formatDate(element.MUSW__Issue_Date__c, "MM-dd-yyyy");
@@ -359,8 +359,8 @@
                     licenseDataList.push(element);
                 });
                 console.log('licenseDataList= ',licenseDataList);
-                component.set("v.detailLicenseData",licenseDataList);
-                                
+                component.set("v.detailLicenseData",licenseDataList); */
+                component.set("v.detailLicenseData",licenseData);                
                 component.set("v.DisplayLicense_Details","true");
                 
                 component.set("v.DisplayDashboardHeader","false");
@@ -373,7 +373,7 @@
                 
                 console.log(JSON.stringify(licenseData));
                 
-                var options = { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit', hour:'2-digit', minute:'2-digit', timeZoneName : 'long'};
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', timeZoneName : 'long'};
                 
                 var currentDate = new Date();
                 

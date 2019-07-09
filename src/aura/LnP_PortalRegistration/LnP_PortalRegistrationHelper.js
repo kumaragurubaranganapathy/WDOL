@@ -1,13 +1,14 @@
 ({
 	clickCreate : function(component, event) {
         console.log('inside the click create');
-       component.set("v.spinner",true);
+       	component.set("v.spinner",true);
       
 		var action = component.get("c.registerNewCommunityUser");
         var firstName = component.find("firstName").get("v.value");
         var middleName = component.find("middleName").get("v.value");
         var lastName = component.find("lastName").get("v.value");
         var phoneNum = component.find("phoneNumber").get("v.value");
+        var birthdate = component.find("birthdate").get("v.value");
         var emailid = component.find("email").get("v.value");
         var password = component.find("password").get("v.value");
         var confirmpwd = component.find("confirmPassword").get("v.value");
@@ -19,8 +20,8 @@
             "phoneN": phoneNum,
             "email": emailid,
             "pwd": password,
-            "confirmpwd": confirmpwd
-            
+            "confirmpwd": confirmpwd,
+            "birthdate":birthdate
         });
 
         action.setCallback(this, function(a) {
@@ -113,9 +114,24 @@
             component.set("v.validationObject.confirmPasswordValidation", true);
         }
     },
+    dateValidation: function(component, event) {
+        var valueVal = component.find("birthdate").get("v.value");
+        var today = new Date();
+        var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+        compareDate = new Date(compareDate);
+        var enteredDate = new Date(valueVal);
+        if(enteredDate < compareDate){
+            component.set("v.dateMsg", "");
+            component.set("v.validationObject.birthdateValidation", true);
+        }else{
+            component.set("v.dateMsg", "Date must be prior to today's.");
+            component.set("v.validationObject.birthdateValidation", false);
+        }
+    },
     validateForm: function(component, event){
         component.find("firstName").showHelpMessageIfInvalid();
         component.find("lastName").showHelpMessageIfInvalid();
+        component.find("birthdate").showHelpMessageIfInvalid();
         component.find("email").showHelpMessageIfInvalid();
         var confirmEmail = component.find("confirmEmail");
         confirmEmail.showHelpMessageIfInvalid();
@@ -214,6 +230,7 @@
         component.find("middleName").set("v.value", "");
         component.find("lastName").set("v.value", "");
         component.find("phoneNumber").set("v.value", "");
+        component.find("birthdate").set("v.value", "");
         component.find("email").set("v.value", "");
         component.find("confirmEmail").set("v.value", "");
         component.find("password").set("v.value", "");
@@ -237,10 +254,10 @@
     },
     changepattern: function(component, event){
         var fieldval=component.find("phoneNumber").get("v.value");
-          if(fieldval.length==10){
-                    var trimmedNo = ('' + fieldval).replace(/\D/g, '');
-                    var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
-                    event.getSource().set('v.value',phone);    
-                }
+        if(fieldval.length==10){
+            var trimmedNo = ('' + fieldval).replace(/\D/g, '');
+            var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
+            event.getSource().set('v.value',phone);    
+        }
     }
 })

@@ -24,6 +24,7 @@
                 component.set("v.CurrentLicenseTableColumnsList",currentLicenseTableColumnData);
                 
                 component.set("v.CurrentLicenseTableDataList",currentLicenseTableHeaderData);
+                component.set("v.loadingSpinner",false);
                 console.log("currentLicenseTableColumnData::"+JSON.stringify(currentLicenseTableHeaderData));
             } else if (state === "ERROR") {
                 var errors = response.getError();                

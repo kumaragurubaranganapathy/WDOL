@@ -207,17 +207,7 @@
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Sole Proprietor</fullName>
-                    <default>false</default>
-                    <label>Sole Proprietor</label>
-                </value>
-                <value>
-                    <fullName>Partnership</fullName>
-                    <default>false</default>
-                    <label>Partnership</label>
-                </value>
+                <sorted>true</sorted>
                 <value>
                     <fullName>Corporation</fullName>
                     <default>false</default>
@@ -229,19 +219,24 @@
                     <label>Foreign Corporation</label>
                 </value>
                 <value>
-                    <fullName>Limited Liability Company</fullName>
-                    <default>false</default>
-                    <label>Limited Liability Company</label>
-                </value>
-                <value>
                     <fullName>Joint Stock Associations</fullName>
                     <default>false</default>
                     <label>Joint Stock Associations</label>
                 </value>
                 <value>
-                    <fullName>LLC</fullName>
+                    <fullName>Limited Liability Company</fullName>
                     <default>false</default>
-                    <label>LLC</label>
+                    <label>Limited Liability Company</label>
+                </value>
+                <value>
+                    <fullName>Partnership</fullName>
+                    <default>false</default>
+                    <label>Partnership</label>
+                </value>
+                <value>
+                    <fullName>Sole Proprietor</fullName>
+                    <default>false</default>
+                    <label>Sole Proprietor</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -388,7 +383,7 @@
         <fullName>Doing_Business_As_1__c</fullName>
         <description>Indicates the name they are doing business as (1)</description>
         <externalId>false</externalId>
-        <label>Doing Business As (1)</label>
+        <label>Doing Business As</label>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -410,7 +405,7 @@
     <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
-        <label>Email</label>
+        <label>Business Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -472,7 +467,7 @@
         <fullName>First_Name_Primary_Contact__c</fullName>
         <description>Primary Contact First Name</description>
         <externalId>false</externalId>
-        <label>First Name</label>
+        <label>Primary Contact First Name</label>
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -552,7 +547,7 @@
         <fullName>Last_Name_Primary_Contact__c</fullName>
         <description>Primary Contact Last Name</description>
         <externalId>false</externalId>
-        <label>Last Name</label>
+        <label>Primary Contact Last Name</label>
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -951,7 +946,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>UBI_Number__c</fullName>
         <externalId>false</externalId>
-        <label>UBI Number</label>
+        <label>UBI</label>
         <length>11</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

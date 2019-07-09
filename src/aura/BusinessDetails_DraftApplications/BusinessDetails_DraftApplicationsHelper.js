@@ -58,6 +58,7 @@
                 if(data != null && data != ''){
                    component.set("v.mandatoryListNotEmpty",true); 
                 }
+                component.set("v.loadingSpinner",false);
                 
         }
         });

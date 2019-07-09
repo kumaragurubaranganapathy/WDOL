@@ -5,6 +5,10 @@
         <name>Account_Admin__c</name>
     </fields>
     <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
         <label><!-- Applicant Cust Id --></label>
         <name>Applicant_Cust_Id__c</name>
     </fields>
@@ -43,9 +47,18 @@
         <name>Full_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Historical --></label>
+        <name>Historical__c</name>
+    </fields>
+    <fields>
         <help><!-- Used for SoS Integration --></help>
         <label><!-- Last Name --></label>
         <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Account Contacts --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Account --></label>
@@ -68,6 +81,14 @@
         <name>Middle_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Other Position(s) --></label>
+        <name>Other_Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- OwnerType --></label>
+        <name>OwnerType__c</name>
+    </fields>
+    <fields>
         <label><!-- Ownership Percentage --></label>
         <name>Ownership_Percentage__c</name>
     </fields>
@@ -78,6 +99,10 @@
     <fields>
         <label><!-- Recalculate Sharing --></label>
         <name>Recalculate_Sharing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Company Name --></label>
+        <name>Related_Company_Name__c</name>
     </fields>
     <fields>
         <label><!-- Release --></label>
@@ -95,13 +120,53 @@
             <translation><!-- Administrator --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Agency Principal</masterLabel>
+            <translation><!-- Agency Principal --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Controlling person</masterLabel>
             <translation><!-- Controlling person --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designated Architect</masterLabel>
+            <translation><!-- Designated Architect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designated Controlling Person</masterLabel>
+            <translation><!-- Designated Controlling Person --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designated Engineer</masterLabel>
+            <translation><!-- Designated Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designated Funeral Director</masterLabel>
+            <translation><!-- Designated Funeral Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Designated Land Surveyor</masterLabel>
+            <translation><!-- Designated Land Surveyor --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Governing Persons</masterLabel>
             <translation><!-- Governing Persons --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Qualified Agent</masterLabel>
+            <translation><!-- Qualified Agent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qualifying Principal</masterLabel>
+            <translation><!-- Qualifying Principal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Source Id --></label>
+        <name>Source_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Table --></label>
+        <name>Source_Table__c</name>
     </fields>
     <fields>
         <label><!-- Start Date --></label>
@@ -155,6 +220,94 @@
         <help><!-- Used for SoS Integration --></help>
         <label><!-- Title --></label>
         <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title_select__c</name>
+        <picklistValues>
+            <masterLabel>Chief Construction Officer</masterLabel>
+            <translation><!-- Chief Construction Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chief Executive Officer</masterLabel>
+            <translation><!-- Chief Executive Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chief Financial Officer</masterLabel>
+            <translation><!-- Chief Financial Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chief Investment Officer</masterLabel>
+            <translation><!-- Chief Investment Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chief Operations Officer</masterLabel>
+            <translation><!-- Chief Operations Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Controlling Interest</masterLabel>
+            <translation><!-- Controlling Interest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Controlling Person</masterLabel>
+            <translation><!-- Controlling Person --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Owner</masterLabel>
+            <translation><!-- Direct Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director</masterLabel>
+            <translation><!-- Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executive Vice President</masterLabel>
+            <translation><!-- Executive Vice President --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indirect Owner</masterLabel>
+            <translation><!-- Indirect Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager</masterLabel>
+            <translation><!-- Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Member</masterLabel>
+            <translation><!-- Member --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>President</masterLabel>
+            <translation><!-- President --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secretary</masterLabel>
+            <translation><!-- Secretary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shareholder</masterLabel>
+            <translation><!-- Shareholder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supervisory Committee Member</masterLabel>
+            <translation><!-- Supervisory Committee Member --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Treasurer</masterLabel>
+            <translation><!-- Treasurer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vice President</masterLabel>
+            <translation><!-- Vice President --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- invitation send date --></label>

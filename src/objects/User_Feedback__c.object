@@ -236,6 +236,19 @@ IF(ISPICKVAL(Grade__c,&apos;5&apos;), &quot;/resource/LnP_Icons/LnP_Icons/fivest
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>All_User_Feedback</fullName>
+        <columns>NAME</columns>
+        <columns>Type__c</columns>
+        <columns>ProfCode__c</columns>
+        <columns>Name__c</columns>
+        <columns>Submitted_On__c</columns>
+        <columns>Rating__c</columns>
+        <columns>Comments__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All User Feedback</label>
+    </listViews>
     <nameField>
         <label>User Feedback Name</label>
         <trackHistory>false</trackHistory>

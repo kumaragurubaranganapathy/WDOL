@@ -20,6 +20,6 @@
     </values>
     <values>
         <field>SubSection__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Physical Address,Mailing Address</value>
     </values>
 </CustomMetadata>

@@ -21,10 +21,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Draft Applications --></label>
-        <name>Draft_Applications__c</name>
-    </fields>
-    <fields>
         <label><!-- Draft Applications statuses --></label>
         <name>Draft_Applications_statuses__c</name>
     </fields>
@@ -37,12 +33,15 @@
         <name>License_Types__c</name>
     </fields>
     <fields>
-        <label><!-- Pending Applications --></label>
-        <name>Pending_Applications__c</name>
-    </fields>
-    <fields>
         <label><!-- Pending Applications statuses --></label>
         <name>Pending_Applications_statuses__c</name>
     </fields>
+    <layouts>
+        <layout>Portal Dashboard Settings Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

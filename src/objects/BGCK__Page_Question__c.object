@@ -124,6 +124,46 @@
         </displayedFields>
         <label>Master_page</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>Question_Field_set</fullName>
+        <description>Dynamic Checklists</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Application_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type_Crendential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Checklist_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__IsRequired__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Review_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Question Field set</label>
+    </fieldSets>
     <fields>
         <fullName>Application_Type__c</fullName>
         <externalId>false</externalId>
@@ -294,6 +334,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Credential__c</fullName>
+        <externalId>false</externalId>
+        <label>Credential</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>External_Id__c</fullName>
         <externalId>true</externalId>
         <label>External Id</label>
@@ -455,6 +508,7 @@
         <columns>BGCK__Order__c</columns>
         <columns>NAME</columns>
         <columns>BGCK__IsRequired__c</columns>
+        <columns>BGCK__Checklist_Version_Status__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>BGCK__Checklist_Version_Status__c</field>
@@ -462,6 +516,7 @@
             <value>Draft</value>
         </filters>
         <label>All Draft</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Name</label>

@@ -2,24 +2,23 @@
     width: 90%;
     margin: 0px auto;
 }
-.THIS .slds-page-header{
-    
-    
-    color: t(LnGFormTitleColor);
-    border-radius: 3px;
-    background: t(white);
-    height: 36px;
-    font-size: 24px;
-    font-weight: token(txtfontweight);
-    font-style: token(txtfontstyle);
-    line-height: normal;
-    margin-bottom:6%;
+.THIS .breadcumb a{
+    font-size:14px;
+    font-weight:500;
+}
+
+.THIS .button-borders .slds-table_header-fixed_container{
+    padding-top:0;
+}
+.THIS .sub-section-header{
+    display:none;
 }
 .THIS .slds-page-header h1{
-    font-family:t(merrifontfamily);
+    font-family:t(publicSansfontfamily);
 }
+
 .THIS .slds-page-header,.THIS .lightningBreadcrumbs div{
-    border-bottom: 1px solid #d6d7d9;
+
     padding-bottom:10px;
 }
 .THIS .slds-page-header{
@@ -34,29 +33,10 @@
 .THIS .lightningBreadcrumbs,.THIS .screen-two,.THIS .screen-three{
     padding:16px
 }
-.THIS .screen-two .slds-form-element__label,.THIS .screen-two .slds-form-element__control{
-    font-family: token(btnfontfamily);
-    font-size: token(btnfontsize);
-    font-weight: token(btnfontweight);
-    font-style: token(txtfontstyle); 
-    line-height: 2.47;
-    color:token(headerItemColor);
+.THIS .screen-two{
+    padding-top:0;
 }
-.THIS .screen-two .slds-form-element__label{
-    padding:0;
-    max-width:100%;
-}
-.THIS .screen-two .btnnrml{
-    font-weight: token(txtfontweight);
-} 
-.THIS .screen-two .slds-m-bottom_medium .sub-header{
-    font-family: t(btnfontfamily);
-    font-size: 20px;
-    font-weight: t(btnfontweight);
-    font-style: t(txtfontstyle);
-    line-height: normal;
-    color: t(black);
-}
+
 .THIS .slds-button_icon-bare .slds-button__icon{
     display:none;
 }
@@ -64,29 +44,34 @@
     text-transform:none;
 }
 .THIS .slds-is-sortable .slds-th__action:hover,.THIS .slds-is-sortable .slds-th__action:focus{
-    background:t(white);
+    background: #d6d7d9;
 }
 .THIS .slds-table th.slds-has-focus,.THIS .slds-has-focus,.THIS .slds-table th:focus{
     box-shadow:none;
-    background:t(white);
+    
 }
 
 .THIS table.slds-table_header-fixed tbody tr:first-child th, 
 .THIS table.slds-table_header-fixed tbody tr:first-child td{
     
-    border-right: solid 1px #5b616b;
+   
     border-top: solid 1px #5b616b;
 }
-.THIS .slds-hint-parent div{
-    
-    font-family: t(btnfontfamily);
-    font-size: 13px;
-    font-weight: t(txtfontweight);
-    font-style: t(txtfontstyle);
-    line-height: normal;
-    color: t(base);
-}
 
+.THIS .search-result .slds-cell-fixed{
+        background: #d6d7d9;
+    min-height:4rem;
+    position:static;
+      
+}
+.THIS .search-result .slds-has-focus .slds-th__action{
+     background: #d6d7d9;
+}
+.THIS .search-result .slds-table thead tr th:last-child div{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
 /*.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
 background: t(sectionBG);
@@ -98,7 +83,7 @@ background: t(sectionBG);
 padding: 4px 5px;
 }*/
 .THIS .slds-table tbody tr:hover td,.THIS .slds-table tbody tr:hover th{
-    background:t(white);
+     background: t(white);
 }
 
 .THIS .breadcumb a {
@@ -135,22 +120,18 @@ padding: 4px 5px;
 }
 .THIS .button-borders a,.THIS .slds-th__action{
     height: 18px;
-    font-family: token(btnfontfamily);
-    font-size: 14px;
+    font-family: token(publicSansfontfamily);
+    font-size: t(senfontsize);
     font-weight: t(btnfontweight);
     font-style: t(txtfontstyle);
     line-height: normal;
-    color: t(fieldclr);
+    color:token(LnGFormTitleColor);
     box-shadow:none;
 }
 .THIS .screen-three .buttons-right{
     text-align:right;
 }
-.THIS .btn-bg{
-    background-color:t(primary);
-    color:#fffffe;
-    height:42px;    
-}
+
 .THIS .bottom-border{
     border-bottom: 1px solid #d4d4d4; 
 }
@@ -161,28 +142,7 @@ padding: 4px 5px;
 .THIS .bottom-border .row-margin{
     margin-bottom :0;
 }
-.THIS .text-style,.THIS .field-style{
-    font-weight: t(btnfontweight);
-    display:inline-block;
-}
-.THIS .text-style-val,.THIS .field-style-val{
-    font-weight: t(txtfontweight);
-    display:inline-block;
-}
-.THIS .field-style,.THIS .field-style-val{
-    font-size:15px;
-    display:inline-block;
-}
-.THIS .text-size{
-    font-family: t(btnfontfamily);
-    font-size: 14px;
-    font-weight: t(txtfontweight);
-    font-style: t(txtfontstyle);
-    line-height: normal;
-    text-align: right;
-    color: t(headerItemColor);
-    
-}
+
 .THIS .transform-text{
     text-transform: capitalize;
     letter-spacing: 0px;
@@ -192,7 +152,7 @@ padding: 4px 5px;
 }
 .THIS .slds-is-active .slds-tabs_default__link{
     text-decoration: none;
-    font-family: token(btnfontfamily);
+    font-family: token(publicSansfontfamily);
     font-size: token(licensefontsize);
     font-weight: token(btnfontweight);
     font-style: token(txtfontstyle);
@@ -201,13 +161,69 @@ padding: 4px 5px;
 }
 
 .THIS .licenseinp{
-    width:45%;
+   
+    width:50%;
 }
+.THIS .screen-one .divBox{
+    padding:0;
+}
+.THIS .alignRight{
+    text-align:right;
+}
+
+    
+/*common style for tabs end*/
+ .THIS .screen-one ul{
+       background:t(LnGWhite);
+}  
+.THIS .divBox .slds-tabs_default__item.slds-is-active{
+    
+    font-weight: token(btnfontweight);
+    color:t(fieldclr);   
+    border-bottom: solid 2px #0071bc;
+    background:t(LnGWhite);;
+
+}
+.THIS .divBox .slds-tabs_default__item.slds-is-active .slds-tabs_default__link{
+   
+    text-decoration:none; 
+}
+.THIS .divBox .slds-tabs_default__item .slds-tabs_default__link{
+    font-family: t(publicSansfontfamily);
+    font-size: 1rem;    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:t(black);
+   
+}
+.THIS .divBox .slds-tabs_default__item {
+        border:none;
+   }
+
+@media screen and (min-width: 1280px){
+   .THIS .screen-one ul li:nth-child(-n+2){
+        width:50%
+    }
+    .THIS .divBox .slds-tabs_default__overflow-button{
+        visibility:hidden;
+        padding:0;
+    }
+   
+}
+/*common style for tabs end*/
 @media t(mqSmall){ 
     .THIS .licenseinp,.THIS .licensetab .field-item,.THIS .businesstab .field-item{
         width:100%;
     }
-    
+    .THIS .divBox .slds-tabs_default__overflow .slds-dropdown-trigger .slds-button{
+    font-family: t(publicSansfontfamily);
+    font-size: 1rem;    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:t(black);
+    }
     .THIS #data-table table.slds-table, .THIS #data-table table.slds-table {
         width: 100% !important;
         border: 0;

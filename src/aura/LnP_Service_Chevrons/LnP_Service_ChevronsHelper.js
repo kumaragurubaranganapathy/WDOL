@@ -341,7 +341,7 @@
                     if(amr.Generate_Fee__c ){
                         window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
                     }else{
-                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/business" ;
+                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback" ;
                     }
                             
                 }), 2000);

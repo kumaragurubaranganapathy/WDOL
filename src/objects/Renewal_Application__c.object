@@ -683,8 +683,11 @@ FALSE)))))))</formula>
     </fields>
     <fields>
         <fullName>Number_of_Burials__c</fullName>
+        <description>Total count of internments, entombments, and inurnments)</description>
         <externalId>false</externalId>
-        <label># of Burials</label>
+        <formula>Number_of_Entombments__c +  Number_of_Inurnments__c +  Number_of_Internments__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Number of Burials</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -696,7 +699,55 @@ FALSE)))))))</formula>
     <fields>
         <fullName>Number_of_Cremations__c</fullName>
         <externalId>false</externalId>
-        <label># of Cremations</label>
+        <label>Number of Cremations</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Dispositions__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Dispositions</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Entombments__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Entombments</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Internments__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Internments</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Inurnments__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Inurnments</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>

@@ -117,7 +117,7 @@
         <name>Application_Method__c</name>
     </fields>
     <fields>
-        <label><!-- Application Type --></label>
+        <label><!-- Program Type --></label>
         <name>Application_Type__c</name>
     </fields>
     <fields>
@@ -200,6 +200,14 @@
         <name>External_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Fee amount for labor charge --></label>
+        <name>Fee_amount_for_labor_charge__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee amount for mileage --></label>
+        <name>Fee_amount_for_mileage__c</name>
+    </fields>
+    <fields>
         <label><!-- Fine --></label>
         <name>Fine__c</name>
         <relationshipLabel><!-- Fees --></relationshipLabel>
@@ -213,6 +221,14 @@
         <label><!-- Inspection --></label>
         <name>Inspection__c</name>
         <relationshipLabel><!-- Fees --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Labor Hours --></label>
+        <name>Labor_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Labor Minutes --></label>
+        <name>Labor_Minutes__c</name>
     </fields>
     <fields>
         <label><!-- Legal Action --></label>
@@ -552,6 +568,10 @@
             <translation><!-- MNF Salesperson Renewal Fee --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Miscellaneous</masterLabel>
+            <translation><!-- Miscellaneous --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Miscellaneous Review</masterLabel>
             <translation><!-- Miscellaneous Review --></translation>
         </picklistValues>
@@ -676,6 +696,18 @@
             <translation><!-- Title Replacement Fee --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Trust - Prearrangement Funeral Services Deposit</masterLabel>
+            <translation><!-- Trust - Prearrangement Funeral Services Deposit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trust Expense - Mileage</masterLabel>
+            <translation><!-- Trust Expense - Mileage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trust Expense - Staff Hours</masterLabel>
+            <translation><!-- Trust Expense - Staff Hours --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>UDC-Application Fee</masterLabel>
             <translation><!-- UDC-Application Fee --></translation>
         </picklistValues>
@@ -727,6 +759,15 @@
             <masterLabel>UDC-Renewal Fee With Late CE</masterLabel>
             <translation><!-- UDC-Renewal Fee With Late CE --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mileage --></label>
+        <name>Mileage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Miscellaneous Fee --></label>
+        <name>Miscellaneous_Fee__c</name>
+        <relationshipLabel><!-- Fees --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Product --></label>
@@ -860,7 +901,7 @@
         <name>Voucher_for__c</name>
     </fields>
     <fields>
-        <label><!-- portal name --></label>
+        <label><!-- Portal Name --></label>
         <name>portal_name__c</name>
     </fields>
     <recordTypes>

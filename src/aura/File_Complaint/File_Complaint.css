@@ -3,6 +3,77 @@
     max-width: 892px;
     margin: 0px auto;
 }
+.THIS .page-header h1{
+  font-family: t(publicSansfontfamily);
+  font-size: 20px;
+  font-weight: 600;
+  font-style: t(txtfontstyle);
+  line-height: 1.48;
+  color: t(LnGFormTitleColor);
+}
+.THIS .page-content .heading{
+  font-family: t(publicSansfontfamily);
+  font-size: 17px;
+  font-weight: t(txtfontweight);
+  font-style: t(txtfontstyle);
+  line-height: normal;
+  color: t(fieldclr);
+}
+.THIS .success li {
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2em;
+  border-radius:5rem;
+  background: dodgerblue;
+  margin: 0 1em;
+  display: inline-block;
+  color: white;
+  position: relative;
+    box-shadow:0 0 0 1px red;
+    box-sizing:border-box;
+
+}
+
+.THIS .success li::before{
+  content:'';
+  position: absolute;
+  top: .9em;
+  left: -4em;
+  width: 4em;
+  height: .2em;
+  background: dodgerblue;
+  z-index: -1;
+}
+.THIS .success li:first-child::before {
+  display: none;
+}
+.THIS .success .test{
+position:absolute;
+display:flex;
+color:black;
+}
+.THIS .page-content .slds-input::placeholder{
+    font-style:t(txtfontstyle);
+}
+.THIS .complaint-summary .slds-textarea{
+    height:180px;
+}
+.THIS .fileupload .slds-file-selector__dropzone{
+    border:none
+}
+.THIS .fileupload .slds-form-element__label{
+    display:none;
+}
+.THIS .fileupload .slds-file-selector__button{
+    color:t(white);
+    background:t(primary);
+}
+.THIS .fileupload .slds-file-selector__text{
+    margin-left:1rem;
+    font-size:t(senfontsize);
+    color:t(placeholderColor);
+}
 .THIS .slds-form-element__control .slds-radio {
     display: inline-block;
 }
@@ -167,4 +238,24 @@
 }
 .THIS .mandatory-fields{
     padding:0 0 20px;
+}
+.THIS .confirmation-message {
+    text-align: center;
+    padding: 50px 0px;
+}
+.THIS .confirmation-content {
+    text-align: left;
+    padding-top: 30px;
+}
+.THIS .confirmation-content ol {
+    list-style: decimal;
+    margin-left: 15px;
+    padding: 10px 0px 15px;
+}
+.THIS .confirmation-content ul {
+    list-style: initial;
+    padding-left: 5px;
+}
+.THIS .confirmation-content ol ul li {
+    margin-left: 15px;
 }

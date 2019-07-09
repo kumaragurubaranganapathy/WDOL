@@ -7,12 +7,21 @@
     background: token(headerclr);
     padding: 1rem 3rem;
 }
+.THIS li.links {
+    position: relative;
+    bottom: 2px;
+}
+
+.THIS .dropdown__list li{
+    margin: 10px 10px 0 10px;
+    text-transform: uppercase;
+}
 .THIS .header-wrapper,  .THIS .menu-wrapper .slds-grid {
     align-items:flex-end;
 }
 .THIS .user-wrapper{
-    display:flex;
-    align-items:flex-end;
+    display: flex;    
+    width: 70%;
 }
 .THIS .burgerIcon{
     display: none;
@@ -20,6 +29,11 @@
 .THIS .logo-wrapper{
     display:flex;
     align-items:center;
+}
+.THIS .images-wrapper{
+    width:100%;
+    justify-content:space-between;
+    display:flex;
 }
 .THIS .logo{
     width:230px;
@@ -39,17 +53,12 @@
 }
 .THIS .nav-links{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
-.THIS li{
-    margin: 14px 10px 0 14px;
-    text-transform: uppercase;  
-}         
-
 .THIS .nav-links a, .THIS .login-wrapper a,.THIS .morelinks,.THIS .profile-menu-link .slds-button_neutral {
     color: token(headertxt);
-    font-family: token(btnfontfamily);
-    font-size: token(senfontsize);
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     line-height: normal;
@@ -64,11 +73,8 @@
     left:0;
 }
 .THIS .login-div{
-    padding-left:1.5rem;
+    display:flex;
     font-size:1rem;
-}
-.THIS .logo-style{
-    padding-right:5px;
 }
 .THIS .nav-links a:hover, .THIS .login-wrapper a:hover{
     font-weight:bold;
@@ -77,6 +83,9 @@
     width: 50px;
     float: right;    
     cursor: pointer;
+}
+.THIS .signin-logo{
+    padding-right:0.75rem;
 }
 .THIS #profileImage {
     width: 53px;
@@ -133,11 +142,15 @@
     padding:0;
     
 }
-.THIS .links{
-    margin-top:12px;
-}
 .THIS .slds-button:focus{
     box-shadow:none;
+}
+.THIS .nav-links-wrapper{
+    display:flex;
+    align-items:center;
+}
+.THIS .menu-wrapper{
+    width:100%;
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS.slds-global-header{
@@ -368,7 +381,7 @@
 }*/
 .THIS .profile-menu-option{
     position:relative;    
-    right:52px;
+    right:25px;
     width:24px;
     height:18px;
 }

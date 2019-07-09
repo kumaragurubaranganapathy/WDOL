@@ -125,7 +125,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1328,7 +1328,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1367,7 +1367,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1448,7 +1448,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1547,6 +1547,15 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Route_to_Miscellaneous_queue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Route to Miscellaneous queue</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Sequence_number__c</fullName>
@@ -1662,6 +1671,11 @@
     <label>Deposit</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount__c</columns>
+        <columns>MUSW__Available_Amount__c</columns>
+        <columns>MUSW__Paid_Amount__c</columns>
+        <columns>MUSW__Unpaid_Amount__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -1693,6 +1707,15 @@
         <filterScope>Mine</filterScope>
         <label>Deposit Records From Customer Envelope</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Miscellaneous_Deposit</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Miscellaneous</label>
+        <queue>Miscellaneous</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Notaries_Queue_Deposit</fullName>

@@ -58,7 +58,7 @@ public class LnP_PublicFormsApexController {
     public static String userlogin(string usrnm, string pwd){
     string loginMessage = '';
     string errorMsg = '';
-    string startUrl='/s/dashboard'; 
+    string startUrl='/s/to-do'; 
           try{
             PageReference lgn = Site.login(usrnm, pwd, startUrl);
             aura.redirect(lgn);

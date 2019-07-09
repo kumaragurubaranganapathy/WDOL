@@ -3,10 +3,10 @@
 *  @discription :    Update Agency Code and Voucher Number field from receipt to Fee
 */ 
 trigger updateFeeFieldsfromReceipt on MUSW__Receipt__c (after update,after insert) {
-   if (Trigger.isUpdate || Trigger.isInsert) {
+  if (Trigger.isUpdate) {
         // Process after update
         if(Trigger.isAfter){
-            
+            system.debug('!!!After update');
             List<MUSW__Fee_Payment__c> feePaymentforCurrentReceipt = new List<MUSW__Fee_Payment__c>([Select Id,
                                                                                                      MUSW__Receipt__c, 
                                                                                                      MUSW__Fee__c 
@@ -19,7 +19,7 @@ trigger updateFeeFieldsfromReceipt on MUSW__Receipt__c (after update,after inser
                 FeeIds.add(feepay.MUSW__Fee__c);
                 mapReceipttoFee.put(feepay.MUSW__Receipt__c, feepay.MUSW__Fee__c);                    
             }
-             system.debug('mapReceipttoFee : ' +mapReceipttoFee);
+            system.debug('mapReceipttoFee : ' +mapReceipttoFee);
             Map<Id,MUSW__Fee__c> updateFeeRec = new Map<Id,MUSW__Fee__c>([Select Id, 
                                                                           Agency_Code__c, 
                                                                           Voucher_Number__c 
@@ -35,7 +35,7 @@ trigger updateFeeFieldsfromReceipt on MUSW__Receipt__c (after update,after inser
                     finalFeesToUpdate.add(feeRec);
                 }
             }
-              system.debug('finalFeesToUpdate : ' +finalFeesToUpdate);
+            system.debug('finalFeesToUpdate : ' +finalFeesToUpdate);
             if(!finalFeesToUpdate.isEmpty()){
                 update finalFeesToUpdate;
             }

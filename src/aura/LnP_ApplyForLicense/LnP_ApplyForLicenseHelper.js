@@ -581,6 +581,19 @@
                                     errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                     return false;
                                 }
+                            } else if(item.Regex_Validation__c == "itin-validation"){
+                                var valueVal = fieldValuesWrapper[index].get("v.value");
+                                if(valueVal!="111-11-1111" && valueVal!="333-33-3333" && valueVal!="666-66-6666" && valueVal!="123-45-6789" && valueVal.charAt(0) != "9"){
+                                    if(valueVal.slice(4, 6) != "00" && valueVal.slice(7, 11)){
+                                        return true;
+                                    } else {
+                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                    	return false;
+                                    }
+                                } else {
+                                    errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                    return false;
+                                }
                             } else {
                                 var regexExp = new RegExp(item.Regex_Validation__c);
                                 var valueVal = fieldValuesWrapper[index].get("v.value");

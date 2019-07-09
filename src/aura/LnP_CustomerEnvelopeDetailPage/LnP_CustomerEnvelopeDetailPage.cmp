@@ -88,6 +88,9 @@
                                             <lightning:layoutItem size="5" padding="around-small">
                                                 <lightning:inputField required="true" fieldName="MUSW__Account__c" value="{!item.MUSW__Account__c}" />
                                             </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField required="true" fieldName="Route_to_Miscellaneous_queue__c" value="{!item.Route_to_Miscellaneous_queue__c}" />
+                                            </lightning:layoutItem>
                                             
                                             <lightning:layoutItem size="12" padding="around-small">
                                                 <div class="slds-float_right">

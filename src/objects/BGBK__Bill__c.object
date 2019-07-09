@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Invoice_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -421,5 +425,17 @@
         <showsStatus>false</showsStatus>
         <url>{!URLFOR( $SControl.MUSW__PrintAnythingDriver, BGBK__Bill__c.Id, [package=&quot;Printable Invoice&quot;])}</url>
         <width>700</width>
+    </webLinks>
+    <webLinks>
+        <fullName>Letter</fullName>
+        <availability>online</availability>
+        <description>1966</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Letter</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/BGBL__LetterAttach?pid={!BGBK__Bill__c.Id}</url>
     </webLinks>
 </CustomObject>
