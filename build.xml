@@ -1,4 +1,4 @@
-<project name="Code Backup Without Folders" default="TestDeploy">
+<project name="Code Backup Without Folders" default="TestDeploy" basedir="." xmlns:sf="antlib:com.salesforce>
 	<!--<property file="build.properties"/> -->
 	<property environment="env"/>
   <target name="TestDeploy">
