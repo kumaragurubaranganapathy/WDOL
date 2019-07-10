@@ -1,3 +1,7 @@
+<project name="Sample usage of Salesforce Ant tasks" default="TestDeploy" basedir="." xmlns:sf="antlib:com.salesforce">
+    <property environment="env"/>
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    </taskdef>
   <target name="TestDeploy">
 	<sf:deploy
 		  username="vagoel@deloitte.polaris.ci"
