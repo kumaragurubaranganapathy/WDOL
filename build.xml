@@ -1,6 +1,5 @@
-<project name="Polaris" default="deploy" xmlns:sf="antlib:com.salesforce" basedir=".">
-    <taskdef uri="antlib:com.salesforce"
-        resource="com/salesforce/antlib.xml"
+<project name="Polaris" default="deploy" basedir=".">
+    <taskdef
         classpath="${basedir}/build/ant-salesforce.jar"/>
    <!-- <property file="build.properties"/> -->
     <property environment="env"/>	
