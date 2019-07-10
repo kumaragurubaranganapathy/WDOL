@@ -1,7 +1,7 @@
 <project name="Code Backup Without Folders" default="retrieve" basedir="." xmlns:sf="antlib:com.salesforce">
 	<!--<property file="build.properties"/> -->
 	<property environment="env"/>
-  <target name="TestDeploy" rollbackOnError="true" logType="Debugonly" checkOnly="true" ignoreWarnings="true">
+  <target name="TestDeploy" checkOnly="true" ignoreWarnings="true">
 	<sf:deploy
 			username="vagoel@deloitte.polaris.ci"
 			password="Dpicms#1234"
