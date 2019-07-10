@@ -1,13 +1,7 @@
-<project name="Sample usage of Salesforce Ant tasks" default="deploy" basedir="." xmlns:sf="antlib:com.salesforce">
+<project name="Polaris" default="deploy" uri="antlib:com.salesforce>
 
    <!-- <property file="build.properties"/> -->
-    <property environment="env"/>
-    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
-        <classpath>
-            <pathelement location="../ant-salesforce.jar" />        	
-        </classpath>
-    </taskdef>
-	
+    <property environment="env"/>	
    <target name="deploy">
          <sf:deploy
           username="vagoel@deloitte.polaris.ci" 
