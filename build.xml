@@ -8,13 +8,12 @@
         </classpath>
     </taskdef>
 	
-   <target name="deploy" depends="deleteUnmigrateableFiles">
+   <target name="deploy">
          <sf:deploy
           username="vagoel@deloitte.polaris.ci" 
           password="Dpicms#1234Cy86FGzc8bdRGfKXpVdKnoMy" 
           serverurl="https://wadolbuspro--ci.my.salesforce.com"
           checkOnly="true"
-          logType="Debugonly"
           maxPoll="400" 
           rollbackOnError="true"
           ignoreWarnings="true"/>
