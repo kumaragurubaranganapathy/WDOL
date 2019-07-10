@@ -1,6 +1,7 @@
 <project name="Code Backup Without Folders" default="TestDeploy" basedir="." xmlns:sf="antlib:com.salesforce>
-	<!--<property file="build.properties"/> -->
-	<property environment="env"/>
+  <taskdef  uri="antlib:com.salesforce"
+	          resource="com/salesforce/antlib.xml"
+						classpath="{$basedir}/build/ant-salesforce.jar"/>
   <target name="TestDeploy">
 	<sf:deploy
 		  username="vagoel@deloitte.polaris.ci"
