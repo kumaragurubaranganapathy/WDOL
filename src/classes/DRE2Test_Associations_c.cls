@@ -1,1 +1,0 @@
-@isTest private class DRE2Test_Associations_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Associations__c'); } }
