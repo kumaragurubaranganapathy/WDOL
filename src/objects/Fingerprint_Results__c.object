@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Fingerprinting_Background_Results_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Applicant_Licensee_Name__c</fields>
+        <fields>Status__c</fields>
+        <label>Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>AMR__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>AMR</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
+        <relationshipName>Fingerprinting_Background_Results</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Agency__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>WSP</fullName>
+                    <default>false</default>
+                    <label>WSP</label>
+                </value>
+                <value>
+                    <fullName>FBI</fullName>
+                    <default>false</default>
+                    <label>FBI</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Applicant_Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; AMR__r.Contact__r.Id &amp;&apos;/view&apos;, AMR__r.Applicant_Full_name__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Applicant/Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Close_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Close Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
+        <relationshipName>Fingerprinting_Background_Results</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Fingerprint_Reject_Reason__c</fullName>
+        <description>Fingerprint Reject Reason</description>
+        <externalId>false</externalId>
+        <label>Fingerprint Reject Reason</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Smudged or Smeared Fingerprint</fullName>
+                    <default>false</default>
+                    <label>Smudged or Smeared Fingerprint</label>
+                </value>
+                <value>
+                    <fullName>Image Too Light</fullName>
+                    <default>false</default>
+                    <label>Image Too Light</label>
+                </value>
+                <value>
+                    <fullName>Image Too Dark</fullName>
+                    <default>false</default>
+                    <label>Image Too Dark</label>
+                </value>
+                <value>
+                    <fullName>Insufficient Pattern</fullName>
+                    <default>false</default>
+                    <label>Insufficient Pattern</label>
+                </value>
+                <value>
+                    <fullName>Sequence Error</fullName>
+                    <default>false</default>
+                    <label>Sequence Error</label>
+                </value>
+                <value>
+                    <fullName>Fingerprint Missing</fullName>
+                    <default>false</default>
+                    <label>Fingerprint Missing</label>
+                </value>
+                <value>
+                    <fullName>Corresponding Plain or Slap Fingerprint</fullName>
+                    <default>false</default>
+                    <label>Corresponding Plain or Slap Fingerprint</label>
+                </value>
+                <value>
+                    <fullName>Unable to Determine Sequence</fullName>
+                    <default>false</default>
+                    <label>Unable to Determine Sequence</label>
+                </value>
+                <value>
+                    <fullName>Fingerprint Not Black</fullName>
+                    <default>false</default>
+                    <label>Fingerprint Not Black</label>
+                </value>
+                <value>
+                    <fullName>Not Rolled in Center</fullName>
+                    <default>false</default>
+                    <label>Not Rolled in Center</label>
+                </value>
+                <value>
+                    <fullName>Overlapping Fingerprints</fullName>
+                    <default>false</default>
+                    <label>Overlapping Fingerprints</label>
+                </value>
+                <value>
+                    <fullName>Fingerprints Obscured</fullName>
+                    <default>false</default>
+                    <label>Fingerprints Obscured</label>
+                </value>
+                <value>
+                    <fullName>Electronic Distorted or Shadowed</fullName>
+                    <default>false</default>
+                    <label>Electronic Distorted or Shadowed</label>
+                </value>
+                <value>
+                    <fullName>Lotion/Retabs</fullName>
+                    <default>false</default>
+                    <label>Lotion/Retabs</label>
+                </value>
+                <value>
+                    <fullName>Quality Characteristic too Low</fullName>
+                    <default>false</default>
+                    <label>Quality Characteristic too Low</label>
+                </value>
+                <value>
+                    <fullName>Blank Fill in Written Response</fullName>
+                    <default>false</default>
+                    <label>Blank Fill in Written Response</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status_Date__c</fullName>
+        <description>Fingerprint Status Date</description>
+        <externalId>false</externalId>
+        <label>Status Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Fingerprint Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Cleared</fullName>
+                    <default>false</default>
+                    <label>Cleared</label>
+                </value>
+                <value>
+                    <fullName>Background Hit</fullName>
+                    <default>false</default>
+                    <label>Background Hit</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Fingerprinting/Background Results</label>
+    <nameField>
+        <displayFormat>FR - {00000}</displayFormat>
+        <label>Fingerprint Results Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Fingerprinting/Background  Results</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Agency__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Submitted_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Close_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Comments__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AMR__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
