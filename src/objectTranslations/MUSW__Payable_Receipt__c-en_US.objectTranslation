@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Deposit Basic --></label>
+        <name>BGBK__Deposit_Basic</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Payable Receipt Basic --></label>
+        <name>BGBK__Payable_Receipt_Basic</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Cart --></label>
+        <name>BGBK__Cart__c</name>
+        <relationshipLabel><!-- Payable Receipts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Amount Collected --></label>
+        <name>MUSW__Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deposit --></label>
+        <name>MUSW__Deposit__c</name>
+        <relationshipLabel><!-- Receipts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Receipt --></label>
+        <name>MUSW__Receipt__c</name>
+        <relationshipLabel><!-- Payables --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Source Payable Receipt --></label>
+        <name>MUSW__Source_Payable_Receipt__c</name>
+        <relationshipLabel><!-- Payable Receipts --></relationshipLabel>
+    </fields>
+    <webLinks>
+        <label><!-- Adjust_Deposit_Collection --></label>
+        <name>BGBK__Adjust_Deposit_Collection</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Refund --></label>
+        <name>BGBK__Refund</name>
+    </webLinks>
+</CustomObjectTranslation>

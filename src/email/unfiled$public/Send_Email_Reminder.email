@@ -1,0 +1,7 @@
+<messaging:emailTemplate subject="{!relatedTo.Subject__c}" recipientType="Contact" relatedToType="Email_Notification__c">
+<messaging:htmlEmailBody >
+
+<apex:outputText escape="false" value="{!relatedTo.Body__c}" />
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

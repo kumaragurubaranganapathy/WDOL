@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Address_Id --></label>
+        <name>Address_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address_Type --></label>
+        <name>Address_Type__c</name>
+        <picklistValues>
+            <masterLabel>AMUSEMENT</masterLabel>
+            <translation><!-- AMUSEMENT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHECK</masterLabel>
+            <translation><!-- CHECK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CONTACT</masterLabel>
+            <translation><!-- CONTACT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CUSTOMER REQUEST</masterLabel>
+            <translation><!-- CUSTOMER REQUEST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DO NOT USE</masterLabel>
+            <translation><!-- DO NOT USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOME</masterLabel>
+            <translation><!-- HOME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INSPECTION</masterLabel>
+            <translation><!-- INSPECTION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INSPECTIONS</masterLabel>
+            <translation><!-- INSPECTIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INVOICE</masterLabel>
+            <translation><!-- INVOICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOCATION OF HOME</masterLabel>
+            <translation><!-- LOCATION OF HOME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LPOCONTRACT</masterLabel>
+            <translation><!-- LPOCONTRACT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAILING ADDRESS</masterLabel>
+            <translation><!-- MAILING ADDRESS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MH</masterLabel>
+            <translation><!-- MH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MINE SAFETY</masterLabel>
+            <translation><!-- MINE SAFETY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OWNER</masterLabel>
+            <translation><!-- OWNER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UNDELIVERABLE</masterLabel>
+            <translation><!-- UNDELIVERABLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WORK</masterLabel>
+            <translation><!-- WORK --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Archive --></label>
+        <name>Archive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- County --></label>
+        <name>County__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cust_Id --></label>
+        <name>Cust_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the international address --></help>
+        <label><!-- International Address --></label>
+        <name>International_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsParcelRecordUpdatedForASC --></label>
+        <name>IsParcelRecordUpdatedForASC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is This A Military Address? --></label>
+        <name>Is_This_A_Military_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alert Code --></label>
+        <name>MUSW__AlertCode__c</name>
+    </fields>
+    <fields>
+        <help><!-- Click to view/add/update your alerts --></help>
+        <label><!-- Alert --></label>
+        <name>MUSW__Alert_Indicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alert Note --></label>
+        <name>MUSW__Alert__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessed Buildings Value --></label>
+        <name>MUSW__Assessed_Buildings_Values__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessed Land Value --></label>
+        <name>MUSW__Assessed_Land_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessed Value Total --></label>
+        <name>MUSW__Assessed_Value_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessor Owner Address --></label>
+        <name>MUSW__Assessor_Owner_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessor Owner City --></label>
+        <name>MUSW__Assessor_Owner_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessor Owner Name --></label>
+        <name>MUSW__Assessor_Owner_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessor Owner Post/Zip Code --></label>
+        <name>MUSW__Assessor_Owner_Post_Zip_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessor Owner State --></label>
+        <name>MUSW__Assessor_Owner_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessor Owner Street --></label>
+        <name>MUSW__Assessor_Owner_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Block --></label>
+        <name>MUSW__Block_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Square Feet, or Meters Squared --></help>
+        <label><!-- Building Floor Area --></label>
+        <name>MUSW__Building_Floor_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>MUSW__City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Land Use --></label>
+        <name>MUSW__Current_Land_Use__c</name>
+        <picklistValues>
+            <masterLabel>Current Land Use 1</masterLabel>
+            <translation><!-- Current Land Use 1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date Last Sold --></label>
+        <name>MUSW__Date_Last_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- District --></label>
+        <name>MUSW__District__c</name>
+        <picklistValues>
+            <masterLabel>District 1</masterLabel>
+            <translation><!-- District 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>District 2</masterLabel>
+            <translation><!-- District 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Fire District --></label>
+        <name>MUSW__Fire_Zone__c</name>
+        <picklistValues>
+            <masterLabel>Fire Zone 1</masterLabel>
+            <translation><!-- Fire Zone 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fire Zone 2</masterLabel>
+            <translation><!-- Fire Zone 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Flood Zone --></label>
+        <name>MUSW__Flood_Zone__c</name>
+        <picklistValues>
+            <masterLabel>Flood Zone 1</masterLabel>
+            <translation><!-- Flood Zone 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flood Zone 2</masterLabel>
+            <translation><!-- Flood Zone 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Geolocation --></label>
+        <name>MUSW__Geolocation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessed Improvement Value --></label>
+        <name>MUSW__Improvement_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latitude --></label>
+        <name>MUSW__Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Description --></label>
+        <name>MUSW__Legal_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>MUSW__Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Longitude --></label>
+        <name>MUSW__Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lot Size --></label>
+        <name>MUSW__Lot_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lot --></label>
+        <name>MUSW__Lot__c</name>
+    </fields>
+    <fields>
+        <label><!-- Map Reference --></label>
+        <name>MUSW__Map_Reference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parcel Number --></label>
+        <name>MUSW__Parcel_Number2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parcel Number Alternate --></label>
+        <name>MUSW__Parcel_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Parcel --></label>
+        <name>MUSW__Parent_Parcel__c</name>
+        <relationshipLabel><!-- Related Parcels --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Planning Area --></label>
+        <name>MUSW__Planning_Area__c</name>
+        <picklistValues>
+            <masterLabel>Planning Area 1</masterLabel>
+            <translation><!-- Planning Area 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning Area 2</masterLabel>
+            <translation><!-- Planning Area 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Post/Zip Code --></label>
+        <name>MUSW__Post_Zip_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact Name --></label>
+        <name>MUSW__Primary_Contact_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact --></label>
+        <name>MUSW__Primary_Contact__c</name>
+        <relationshipLabel><!-- Parcels --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Zoning --></label>
+        <name>MUSW__Primary_Zoning__c</name>
+        <picklistValues>
+            <masterLabel>C1 - Commercial Zoning Type I</masterLabel>
+            <translation><!-- C1 - Commercial Zoning Type I --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R1 - Residential Zoning Type I</masterLabel>
+            <translation><!-- R1 - Residential Zoning Type I --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R2 - Residential Zoning Type II</masterLabel>
+            <translation><!-- R2 - Residential Zoning Type II --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Secondary Zoning --></label>
+        <name>MUSW__Secondary_Zoning__c</name>
+        <picklistValues>
+            <masterLabel>C1 - Commercial Zoning Type I</masterLabel>
+            <translation><!-- C1 - Commercial Zoning Type I --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R1 - Residential Zoning Type I</masterLabel>
+            <translation><!-- R1 - Residential Zoning Type I --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R2 - Residential Zoning Type II</masterLabel>
+            <translation><!-- R2 - Residential Zoning Type II --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- State/ Prov. --></label>
+        <name>MUSW__State__c</name>
+        <picklistValues>
+            <masterLabel>AB</masterLabel>
+            <translation><!-- AB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AK</masterLabel>
+            <translation><!-- AK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL</masterLabel>
+            <translation><!-- AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ</masterLabel>
+            <translation><!-- AZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BC</masterLabel>
+            <translation><!-- BC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO</masterLabel>
+            <translation><!-- CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CT</masterLabel>
+            <translation><!-- CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE</masterLabel>
+            <translation><!-- DE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FL</masterLabel>
+            <translation><!-- FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation><!-- GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HI</masterLabel>
+            <translation><!-- HI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IA</masterLabel>
+            <translation><!-- IA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID</masterLabel>
+            <translation><!-- ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL</masterLabel>
+            <translation><!-- IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN</masterLabel>
+            <translation><!-- IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KS</masterLabel>
+            <translation><!-- KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY</masterLabel>
+            <translation><!-- KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MB</masterLabel>
+            <translation><!-- MB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME</masterLabel>
+            <translation><!-- ME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MI</masterLabel>
+            <translation><!-- MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN</masterLabel>
+            <translation><!-- MN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation><!-- MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NB</masterLabel>
+            <translation><!-- NB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC</masterLabel>
+            <translation><!-- NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ND</masterLabel>
+            <translation><!-- ND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE</masterLabel>
+            <translation><!-- NE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ</masterLabel>
+            <translation><!-- NJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NL</masterLabel>
+            <translation><!-- NL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NM</masterLabel>
+            <translation><!-- NM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NS</masterLabel>
+            <translation><!-- NS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NT</masterLabel>
+            <translation><!-- NT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NU</masterLabel>
+            <translation><!-- NU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NV</masterLabel>
+            <translation><!-- NV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY</masterLabel>
+            <translation><!-- NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OH</masterLabel>
+            <translation><!-- OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ON</masterLabel>
+            <translation><!-- ON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OR</masterLabel>
+            <translation><!-- OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA</masterLabel>
+            <translation><!-- PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PE</masterLabel>
+            <translation><!-- PE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QC</masterLabel>
+            <translation><!-- QC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RI</masterLabel>
+            <translation><!-- RI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC</masterLabel>
+            <translation><!-- SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD</masterLabel>
+            <translation><!-- SD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SK</masterLabel>
+            <translation><!-- SK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN</masterLabel>
+            <translation><!-- TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX</masterLabel>
+            <translation><!-- TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UT</masterLabel>
+            <translation><!-- UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT</masterLabel>
+            <translation><!-- VT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI</masterLabel>
+            <translation><!-- WI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV</masterLabel>
+            <translation><!-- WV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WY</masterLabel>
+            <translation><!-- WY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YT</masterLabel>
+            <translation><!-- YT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>MUSW__Street2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Direction --></label>
+        <name>MUSW__Street_Direction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Number --></label>
+        <name>MUSW__Street_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street Suffix --></label>
+        <name>MUSW__Street_Suffix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address --></label>
+        <name>MUSW__Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subdivision --></label>
+        <name>MUSW__Subdivision__c</name>
+        <picklistValues>
+            <masterLabel>Subdivision 1</masterLabel>
+            <translation><!-- Subdivision 1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tax Area --></label>
+        <name>MUSW__Tax_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit Type --></label>
+        <name>MUSW__Unit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>MUSW__Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year Built --></label>
+        <name>MUSW__Year_Built__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Account --></label>
+        <name>Primary_Account__c</name>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary --></label>
+        <name>Primary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Validated --></label>
+        <name>Validated__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Letter --></label>
+        <name>Letter</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- AddAlert --></label>
+        <name>MUSW__AddAlert</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ClearParcelAlertStatus --></label>
+        <name>MUSW__ClearParcelAlertStatus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Link_Attachment --></label>
+        <name>MUSW__Link_Attachment</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ViewLocationMap --></label>
+        <name>MUSW__ViewLocationMap</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_GIS_Map --></label>
+        <name>MUSW__View_GIS_Map</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_ParcelMap --></label>
+        <name>MUSW__View_ParcelMap</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_on_Map --></label>
+        <name>View_on_Map</name>
+    </webLinks>
+</CustomObjectTranslation>

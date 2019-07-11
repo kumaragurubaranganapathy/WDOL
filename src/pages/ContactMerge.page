@@ -1,0 +1,323 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : ContactMerge
+** Description      : Displays a search service on Contact object that takes Winner Contact ID
+                      and Loser Contact ID to Merge to Single Record.
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer					Date					Version				Description
+**------------------------------------------------------------------------------------------------------------------------
+**																			
+** Review Log:
+**---------------
+** Reviewer						Date					Version				Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page controller="ContactMerge_CC" sidebar="false" showHeader="true" standardStylesheets="true">
+    <apex:include pageName="StylePlugin_Header"/> 
+
+    <script>
+        function checkPreselectedContactidnt(){
+            var inputs = document.getElementsByName("Security_Code__c");
+            
+            for(i=0; i<inputs.length; i++){
+                if(inputs[i].checked){
+                    var values = inputs[i].id.split("=");
+                    selectedFieldvalue(values[0], values[1]);
+                }
+            }
+        }
+        
+        function Refresh(){
+            window.location.href = window.location.href;
+        }
+    </script>
+
+    <apex:pageblock title="Filter Duplicate Contacts" >
+        <apex:form id="searchForm" rendered="{!!SuccessfulMerge}">
+            <!-------------------------Filter Code by Aayush Kaistha -------------------->
+               <!--<apex:pageMessages />-->
+                <table style="width: 100%">
+                    <apex:variable var="index" value="{!0}" />
+                    <apex:repeat value="{!lstFilterOptions}" var="filterOption">
+                        <apex:variable var="index" value="{!index + 1}"/>
+                        <tr>
+                            <td width="2%">
+                                {!index}
+                            </td>
+                            <td width="20%">
+                                <apex:selectList label="Filter Field" value="{!filterOption.selectedField}" size="1">
+                                    <apex:selectOptions value="{!lstFieldNames}" />
+                                    
+                                    <apex:actionSupport event="onchange"
+                                        action="{!filterOptionChanged}" oncomplete="ren()"
+                                        reRender="null" status="counterStatus" >
+                                        <apex:param name="currentRow" assignTo="{!currentRow}" value="{!index - 1}" />
+                                    </apex:actionSupport>
+                                </apex:selectList>
+                            </td>
+                            <td width="10%">
+                                <apex:selectList value="{!filterOption.selectedOperator}" size="1">
+                                    <apex:selectOptions value="{!lstOperators}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="10%">
+                                <apex:inputText rendered="{!filterOption.selectedField == '' || filterOption.selectedField == $Label.API_Birth_State || filterOption.selectedField == $Label.API_Name || filterOption.selectedField == 'Birth_Country__c' || filterOption.selectedField == 'Birth_City__c' || filterOption.selectedField == 'Email' || filterOption.selectedField == 'LastName'}" value="{!filterOption.value}" />
+                                <apex:inputField id="filterValue" rendered="{!filterOption.selectedField != '' && filterOption.selectedField != $Label.API_Birth_State && filterOption.selectedField != $Label.API_Name && filterOption.selectedField != 'Birth_Country__c' && filterOption.selectedField != 'Birth_City__c' && filterOption.selectedField != 'Email' && filterOption.selectedField != 'LastName'}" value="{!filterOption.objContact[filterOption.selectedField]}" />
+                            </td>
+                            <td width="7%">
+                                <apex:commandLink action="{!addFilterOption}" value="Add Filter" />
+                            </td>
+                            <td>
+                                <apex:commandLink rendered="{!index > 1}" action="{!removeFilterOption}" value="Remove Filter" >
+                                    <apex:param name="currentRow" assignTo="{!currentRow}" value="{!index - 1}" />
+                                </apex:commandLink>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                    <apex:actionFunction name="ren" reRender="searchForm" />
+                </table>
+                <br/>
+                <br/>
+
+    Filter Logic:
+                <br/>
+                <apex:inputText value="{!filterLogic}" style="width: 75%" id="FormmatedFilterLogic"/>
+               <!-- <apex:commandButton value="Copy from Default Filter Logic" action="{!copyDefaultFilter}" /> -->
+                <br/>
+                <br/>
+                <apex:outputPanel id="errorText" >
+                    <apex:outputText style="color:#ff0000"  value="Please adjust the filter logic (above). If you have both &quot;and&quot; & &quot;or&quot; you must use parentheses. For example: (1 AND 2) OR 3." rendered="{!errorMsg}" escape="false" />
+               </apex:outputPanel>  
+                <apex:outputPanel id="noSearchText" >
+                    <apex:outputText style="color:#0000ff"  value="Your search returned no results. You can try to adjust the filters, the filter logic, and/or values and try again." rendered="{!noSearchResults}" />
+               </apex:outputPanel> 
+               <apex:outputPanel style="text-align:center;" layout="block">
+                <apex:commandButton value="Search" action="{!searchContacts}" reRender="contactList,errorText,noSearchText" status="blockInput" />
+               </apex:outputPanel>
+                 
+                <br/>
+                <br/>
+                
+                <!--<apex:outputText value="{!searchQuery}" />-->
+            <!-----------------------End of Filter Code by Aayush Kaistha ---------------->
+        </apex:form>
+    </apex:pageblock>
+    <br/>
+    <apex:pageblock title="Contact Merge" rendered="{!!SuccessfulMerge}">
+        <apex:form >
+            <apex:outputPanel id="contactList">
+                <apex:pageBlockSection title="Search Results" >
+                    
+                    <apex:pageBlockTable value="{!cwList}" var="cw" styleClass="SearchResultsTable" id="SearchResultsTable">
+                        <apex:column >
+                            <apex:facet name="header">Detail</apex:facet>
+                            <a href="/{!cw.con.Id}" target="_blank"><span class="glyphicon glyphicon-info-sign" title="" style="display:inline-block;margin-left:1%;position:relative;top:3px;"></span></a>
+                        </apex:column>
+                        
+                        <apex:column >
+                            <apex:facet name="header">Merge To</apex:facet>
+                            <input type="radio" onclick="selectMergeTo('{!cw.con.Id}');" name="radioGroup"/>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Merge From</apex:facet>
+                            <apex:outputpanel id="ChildContacts">
+                            <apex:outputPanel rendered="{!cw.con.IsMasterContact__c!=true}">
+                               <input type="checkbox" onclick="keepCount('{!cw.con.Id}', this, '{!cw.isTo}');" class="checkBoxGroup" name="checkboxGroup"/>  
+                            </apex:outputPanel>
+                            </apex:outputpanel>
+                        </apex:column>
+                        
+                        <apex:column headerValue="IsPortalUser">
+                            <apex:outputText style="text-decoration: {!IF(cw.isPortalUser != 'No', 'underline', '')}" escape="false" value="{!cw.IsPortalUser}" />
+                        </apex:column>
+                        
+                        <apex:repeat value="{!MergeTableFields}" var="c">
+                           <apex:column >          
+                                <apex:facet name="header">{!fieldLabelMap[c]}</apex:facet>
+                                <apex:outputField value="{!cw.con[c]}" />
+                           </apex:column>
+                            
+                        </apex:repeat>
+                    </apex:pageBlockTable>  
+                </apex:pageBlockSection>
+                <apex:outputpanel id="SelectedContactsButtonpanel" style="text-align:center;margin-left:40%;">
+                 <apex:commandButton action="{!ShowMergeTable}" value="Compare and Choose Fields for Merging" Id="ShowSelectedContacts" reRender="MergeTable,SelectedContactsButtonpanel" oncomplete="checkPreselectedContactidnt()" disabled="{!lockMergeTable}"/>
+                    <input type="button" class="btn" onclick="Refresh()" value="New Search" />
+                </apex:outputpanel>
+               
+            </apex:outputPanel>
+            <apex:actionFunction name="selectMergeTo" action="{!selectTo}" reRender="ChildContacts" >
+                <apex:param name="mergeTo" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="selectMergeFrom" action="{!selectFrom}" reRender="null" >
+                <apex:param name="mergeFrom" value="" />
+                <apex:param name="isChecked" value="" />
+            </apex:actionFunction>
+               <script type="text/javascript">
+                function keepCount(Id,e,isTo)
+                {
+                    
+                    j$ = jQuery.noConflict();
+                    //console.log(j$(e).prop("checked"));
+                    if(isTo=='true')
+                        {
+                             e.checked= false;
+                            j$('#ModalMessage').html('To and From cannot be the Same');
+                            j$('.modal-title').html('TO & From Conflict');
+                            j$('#myModal').modal('show');
+                        }
+                    else{
+
+                    if(j$('.checkBoxGroup:checked').length>2)
+                        {
+                            //alert('please choose only Two child contacts');
+                            //alert();
+                            //alert
+                            j$('#ModalMessage').html('please choose only Two child contacts');
+                            j$('.modal-title').html('Child Contact Limit Exceeded');
+                           	j$('#myModal').modal('show');
+                            e.checked= false;
+                            //selectMergeFrom(Id);
+                        }
+                    else{
+                        selectMergeFrom(Id,j$(e).prop("checked"));
+                        }
+                    }
+                    
+                }
+            </script>
+            <br/>
+          <!--  <apex:outputPanel >
+                    <apex:outputText style="color:#ff0000"  value="Error: Cannot merge Casino Contacts with Non Casino Contacts." rendered="{!mergeErrorforCasino}" escape="false" />
+            </apex:outputPanel>   -->
+            <apex:pageBlock title="Merge Table" id="MergeTable">
+                <table class="list" border="0" cellpadding="0" cellspacing="0" >
+                    <tr class="headerRow">
+                        <apex:repeat value="{!headWrap.values}" var="heading">
+                            <th class="headerRow ">
+                                {!heading}
+                            </th>
+                        </apex:repeat>
+                    </tr>
+                    <apex:variable var="freezeContactIdnt" value="false" /> <!-- Possible values are false,true,block -->
+                    <apex:repeat value="{!rowWrappers}" var="row">
+                        <tr >
+                            <td>
+                                {!row.fieldLabel}
+                            </td>
+                            <apex:repeat value="{!row.values}" var="value">
+                                <td style="padding-left:10px;">
+                                    
+                                    <apex:outputPanel rendered="{!AND(value != 'null', row.fieldName!= 'IsMasterContact__c', row.fieldName!= 'Security_Code__c')}">
+                                        <input type="radio" id="{!row.fieldName}={!value}" class="" onclick="selectedFieldvalue('{!row.fieldName}','{!value}')" name="{!row.fieldName}"/>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!value != 'null' && row.fieldName== 'Security_Code__c' && freezeContactIdnt != 'block'}">
+                                        <apex:outputPanel rendered="{!freezeContactIdnt == 'true' || (freezeContactIdnt == 'false' && NOT(ISNUMBER(value)))}">
+                                            <input type="radio" id="{!row.fieldName}={!value}" class="" onclick="selectedFieldvalue('{!row.fieldName}','{!value}')" name="{!row.fieldName}"/>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!value != 'null' && ISNUMBER(value) && freezeContactIdnt == 'false'}">
+                                            <input type="radio" id="{!row.fieldName}={!value}" class="" checked="checked" onclick="selectedFieldvalue('{!row.fieldName}','{!value}')" name="{!row.fieldName}"/>
+                                            <apex:variable var="freezeContactIdnt" value="true" />
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!row.fieldName== 'IsMasterContact__c' && value == 'true'}"> 
+                                        <apex:variable var="freezeContactIdnt" value="block" />
+                                        <!--<input type="checkbox" checked="{!IF(value!='true', 'checked', 'unchecked')}" disabled="true"/>-->
+                                    </apex:outputPanel>
+                                    <label for="{!row.fieldName}={!value}" style="display:inline-block;margin-left:20px;">{!IF(value == 'null', '', value)}</label>
+                                </td>
+                            </apex:repeat>
+                        </tr>
+                    </apex:repeat>
+                </table>
+                <apex:outputpanel style="text-align:center;margin-left:40%;">
+                    <apex:commandButton action="{!MergeSelectedContacts}" value="Merge Selected Contacts"/>
+                </apex:outputpanel>
+                <apex:actionFunction name="selectedFieldvalue" action="{!selectedFieldValue}" reRender="Test" >
+                    <apex:param name="fieldName" value="" />
+                    <apex:param name="fieldValue" value="" />
+                </apex:actionFunction>
+                <apex:outputpanel id="Test"></apex:outputpanel>
+            </apex:pageBlock>
+        </apex:form>
+        <script type="text/javascript">
+            j$ = jQuery.noConflict();
+            eTable = j$('.SearchResultsTable').DataTable({
+                "iDisplayLength": 20,
+                "oLanguage": {
+                    "sInfo": "Search Result(s): _TOTAL_ result(s)."
+                },
+                'bPaginate': false,
+                'sPaginationType': 'full_numbers',
+                'bFilter': false,
+                "columns": [
+                    { "bSortable": true, "bSearchable": true},
+                    { "bSortable": true, "bSearchable": true },
+                    { "bSortable": true, "bSearchable": true },
+                    { "bSortable": true, "bSearchable": true }
+                ],
+                "lengthMenu": [ [-1], ["All"] ],
+                "order": [[ 0, "asc" ]],
+                "columnDefs": [ {
+                    "targets": 1,
+                    "createdCell": function (td, cellData, rowData, row, col) {
+                    }
+                } ]
+            });
+        </script>
+    </apex:pageblock>
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p id="ModalMessage">Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <apex:outputpanel id="SuccessfulMerge" rendered="{!SuccessfulMerge}">
+            <input type="button" class="btn" onclick="Refresh()" value="New Search" /><br/>
+            <P>
+                Duplicate Contacts have been successfully Merged!!! 
+            </P>
+            <h2>
+                Archived Contacts are: 
+            </h2><br/>
+            <apex:repeat value="{!ArchivedContacts}" var="value">                            
+                Archived Contact is: <b><a href="/{!value}">{!value}</a></b><br/><br/>
+            </apex:repeat><br/><br/>
+            <h2>
+                Master Contact: 
+            </h2><br/>
+            
+                Master Contact is: <b><a href="/{!masterContact.id}">{!masterContact.id}</a></b><br/><br/>
+  </apex:outputpanel>
+  
+  <apex:actionStatus id="blockInput">
+        <apex:facet name="start">
+            <apex:outputPanel style="width: 100%; height: 100%;">
+                <div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background-color: black;filter:alpha(opacity=50);opacity:0.5; z-index: 1000">&nbsp;</div>
+                <div style="background-color: white; position: fixed; left: 50%; top: 50%; padding: 10px; z-index: 1001">
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." /> Please wait
+                </div>
+            </apex:outputPanel>
+        </apex:facet>
+    </apex:actionStatus>
+</apex:page>

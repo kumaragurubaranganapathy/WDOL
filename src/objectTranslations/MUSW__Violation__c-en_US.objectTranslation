@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Add/Edit Violations --></label>
+        <name>Add_Edit_Violations</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Abatement Requirement --></label>
+        <name>Abatement_Requirement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Details --></label>
+        <name>Additional_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cited Date --></label>
+        <name>Cited_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days to correct - User defined --></label>
+        <name>Days_to_correct_User_defined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days to correct --></label>
+        <name>Days_to_correct__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection --></label>
+        <name>Inspection__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Closed --></label>
+        <name>IsClosed__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License2__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Citation Amount --></label>
+        <name>MUSW__Citation_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cited By --></label>
+        <name>MUSW__Cited_By__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cited Date --></label>
+        <name>MUSW__Cited_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>MUSW__Comments_Long__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>MUSW__Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complaint --></label>
+        <name>MUSW__Complaint2__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Complaint --></label>
+        <name>MUSW__Complaint__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Compliance Due Date --></label>
+        <name>MUSW__Compliance_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Corrected Date --></label>
+        <name>MUSW__Corrected_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dangerous --></label>
+        <name>MUSW__Dangerous__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Days Till Corrected --></label>
+        <name>MUSW__Days_Till_Corrected__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Days Till Due --></label>
+        <name>MUSW__Days_Till_Due__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estimated Cost --></label>
+        <name>MUSW__Estimated_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection Number --></label>
+        <name>MUSW__Inspection_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>MUSW__Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parcel --></label>
+        <name>MUSW__Parcel__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>MUSW__Status__c</name>
+        <picklistValues>
+            <masterLabel>Corrected</masterLabel>
+            <translation><!-- Corrected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>MUSW__Type__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Ordinance --></label>
+        <name>Ordinance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>Permit2__c</name>
+        <relationshipLabel><!-- Violations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Letter --></label>
+        <name>Letter</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Binder --></label>
+        <name>MUSW__New_Binder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Edit_Violations --></label>
+        <name>New_Edit_Violations</name>
+    </webLinks>
+</CustomObjectTranslation>

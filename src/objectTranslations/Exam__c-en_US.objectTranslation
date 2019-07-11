@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Exam</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Exams</value>
+    </caseValues>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer ID --></label>
+        <name>Customer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam Date --></label>
+        <name>Exam_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam Location --></label>
+        <name>Exam_Location__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that exam is scheduled --></help>
+        <label><!-- Exam Schedule --></label>
+        <name>Exam_Schedule__c</name>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Exam Time --></label>
+        <name>Exam_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam Type --></label>
+        <name>Exam_Type__c</name>
+        <picklistValues>
+            <masterLabel>Soil Tester Exam</masterLabel>
+            <translation><!-- Soil Tester Exam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soil Tester Part 1</masterLabel>
+            <translation><!-- Soil Tester Part 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soil Tester Part 2</masterLabel>
+            <translation><!-- Soil Tester Part 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC Construction Inspector Exam</masterLabel>
+            <translation><!-- UDC Construction Inspector Exam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC Electrical Inspector Exam</masterLabel>
+            <translation><!-- UDC Electrical Inspector Exam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC HVAC Inspector Exam</masterLabel>
+            <translation><!-- UDC HVAC Inspector Exam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDC Plumbing Inspector Exam</masterLabel>
+            <translation><!-- UDC Plumbing Inspector Exam --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Exam length --></label>
+        <name>Exam_length__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Source --></label>
+        <name>External_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Exam Date --></label>
+        <name>Historical_Exam_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Military Waiver --></label>
+        <name>Military_Waiver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Packet --></label>
+        <name>Packet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>Permit__c</name>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renewal Application --></label>
+        <name>Renewal_Application__c</name>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Result --></label>
+        <name>Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Request --></label>
+        <name>Service_Request__c</name>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Special Accommodation Request --></label>
+        <name>Special_Accommodation_Request__c</name>
+    </fields>
+    <fields>
+        <help><!-- Status of the Exam --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Exam Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- There are no seats available for this Exam Schedule --></errorMessage>
+        <name>Seat_Unavailable</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- New_Exam --></label>
+        <name>New_Exam</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,117 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="LnP_SaveBackgroundDetails" access="global" > 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    
+    <aura:attribute name="recordId" type="Id" default="" />
+    <aura:attribute name="objectRecordType" type="String" default ="" />
+    <aura:attribute name="sObj" type="String" default=""/>
+    <aura:attribute name="dataRows" type="List" />
+    <aura:attribute name="recordList" type="List" />
+    <aura:attribute name="sectionList" type ="List"/>
+    <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="recId" type="Id"/>
+    <aura:attribute name="sectionName" type="String" default="Education"/>
+    <aura:attribute name="recordError" type="String" access="private"/>
+    <aura:attribute name="flowType" type="String" />
+    <aura:attribute name="educationHistoryId" type="String" />
+    <aura:attribute name="currentValue" type="Boolean" default="false" /><!-- added to check for Checkbox of "Current field -->
+    <aura:attribute name="currentEditValue" type="Boolean" default="false" /><!-- added to check for Checkbox of "Current field -->
+    <aura:attribute name="cardIndex" type="Integer" /><!-- added to check for card index -->
+    <aura:handler  name="init" value="{!this}" action="{!c.doinit}"/> 
+    <aura:if isTrue="{!v.sObj!=null}">
+        <div class="tile-wrap">
+            <aura:iteration items="{!v.dataRows}" var="item" indexVar="itemRow">
+                
+                <div class="recordDetail slds-large-size_6-of-12">
+                    <lightning:recordEditForm aura:id="editFormDetails" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}" recordId="{!item.id}" onsuccess="{!c.handleSuccess}">
+                        <div class="">
+                            <div class="form-wrapper slds-wrap row">                                
+                                <lightning:layout class="slds-wrap"> 
+                                    <!--{!v.currentEditValue} = currentEditValue<br></br>
+                                    {!itemRow} = itemRow<br></br>
+                                    {!v.cardIndex} = cardIndex<br></br>
+                                    {!(itemRow==v.cardIndex)} = itemRow==v.cardIndex<br></br>
+                                    {!and(v.currentEditValue,itemRow==v.cardIndex)} = (and(v.currentEditValue,itemRow==v.cardIndex)<br></br> -->
+                                    
+                                    <aura:iteration items="{!item.fields}" var="rec">
+                                        <lightning:layoutItem size="6">                                            
+                                            <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
+                                                <div class="{!itemRow + 'showHide field-item'}">
+                                                    <lightning:outputfield label="{!rec.label}" aura:id="outputEditfield" fieldName="{!rec.fieldName}" class="edit-field"  />
+                                                </div>
+                                                <div class="{!itemRow + 'showHide field-item slds-hide'}">                                                    
+                                                    <lightning:inputfield label="{!rec.label}" name="{!itemRow}" aura:id="inputEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') + 'itemRow='+itemRow}" onchange="{!c.inputEditClick}"/>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </aura:iteration> 
+                                    <div class="row">
+                                        <lightning:layoutItem size="2">
+                                            <div id= "{!itemRow}" class="{!item.id}">
+                                                <i class="fa" onclick="{!c.editRecord}">&#xf044;</i>
+                                                <i class="fa" onclick="{!c.deleteRecord}">&#xf014;</i>
+                                            
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </div>
+                                </lightning:layout>
+                            </div>
+                            <!-- <lightning:layout aura:id="editButtons" horizontalAlign="center" class="slds-m-top_large slds-hide"> -->
+                            <div id = "{!itemRow}" class="{!itemRow + 'showHide hideButtonStyle slds-hide'}">
+                                <!--<div class = "hideButtonStyle"> -->
+                                <lightning:button variant="brand" label="Submit" class="{!itemRow + ' btn-lnp'}" title="Submit" type="submit"/>
+                                <lightning:button variant="neutral" label="CANCEL" class='btn-lnp' title="Cancel" type="text" onclick="{!c.handleHiddenCancel}"/>
+                                <!-- <div id= "{!itemRow}" class="{!itemRow + 'showHide slds-hide'}"> -->
+                                <!--button type="Cancel" value="Cancel" onclick="{!c.handleHiddenCancel}">Cancel</button-->
+                                <!-- </div> -->
+                                <!-- </div> -->
+                            </div>  
+                            <!-- </lightning:layout> -->
+                        </div>
+                    </lightning:recordEditForm>
+                    <!--<div id= "{!itemRow}" class="{!itemRow + 'showHide slds-hide'}">
+                    <button type="Cancel" value="Cancel" onclick="{!c.handleHiddenCancel}">Cancel</button>
+                </div> -->
+                </div>      
+            </aura:iteration>
+        </div>
+        <aura:if isTrue="{!v.sectionName !='Endorsement'}">
+            <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        </aura:if>
+        <aura:if isTrue="{!v.sectionName =='Endorsement'}">
+            <lightning:button variant="brand" label="+ Provider Information" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        </aura:if>
+        <div class="{!v.objectRecordType +'addRecord slds-hide full-width'}">
+            
+            <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">
+                <div class="">
+                    
+                    <lightning:messages />
+                    <div class="slds-grid slds-wrap row">
+                        <aura:iteration items="{!v.recordList}" var="rec">
+                            <div class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide':'slds-col slds-size_12-of-12 field-size qfield-margin in-field recItem'):'slds-col slds-size_12-of-12 field-size qfield-margin recItem in-field')}">
+                                <label>{!rec.label}</label> 
+                                <aura:if isTrue="{!rec.required || rec.regex != null}">
+                                	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="label-hidden" onchange="{!c.test}"/>
+                                	<aura:set attribute="else">
+                                    	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden checkbox-style" onchange="{!c.inputClick}"/>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </aura:iteration>
+                        <aura:if isTrue="{!or(v.flowType =='Endorsement', v.flowType =='CE Audit')}">
+                            <lightning:inputfield fieldName="Request__c" value="{!v.applicationId}" class="slds-hide"/> 
+                            <aura:set attribute="else">
+                                <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/>
+                            </aura:set>
+                        </aura:if>
+                    </div>	
+                    <lightning:layout horizontalAlign="left" class="slds-m-top_large addRecbtn ">
+                        <lightning:button class="button-style cancel-button" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                        <lightning:button class="{!v.sectionName+' button-style add-button'}" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
+                    </lightning:layout>
+                </div>
+            </lightning:recordEditForm>
+        </div>
+    </aura:if>
+</aura:component>

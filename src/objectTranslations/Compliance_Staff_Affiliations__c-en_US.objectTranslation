@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Assigned Staff</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Assigned Staff</value>
+    </caseValues>
+    <fields>
+        <label><!-- Complaint --></label>
+        <name>Complaint__c</name>
+        <relationshipLabel><!-- Assigned Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Date Assigned --></label>
+        <name>Date_Assigned__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Completed --></label>
+        <name>Date_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inspection --></label>
+        <name>Inspection__c</name>
+        <relationshipLabel><!-- Assigned Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Investigator_Name__c</name>
+        <relationshipLabel><!-- Assigned Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+        <picklistValues>
+            <masterLabel>Secondary Staff</masterLabel>
+            <translation><!-- Secondary Staff --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Investigator Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

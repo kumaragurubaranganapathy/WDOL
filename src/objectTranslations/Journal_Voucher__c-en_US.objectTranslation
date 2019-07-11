@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Journal Voucher</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Journal Vouchers</value>
+    </caseValues>
+    <fields>
+        <label><!-- AFRS Interface Total Amount --></label>
+        <name>AFRS_Interface_Total_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS PDF Total Amount --></label>
+        <name>AFRS_PDF_Total_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Status --></label>
+        <name>AFRS_Status__c</name>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Processed</masterLabel>
+            <translation><!-- Not Processed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processed</masterLabel>
+            <translation><!-- Processed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agency Name --></label>
+        <name>Agency_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency No. --></label>
+        <name>Agency_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved By --></label>
+        <name>Approved_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- Mark as approved or not approved to send to AFRS or TMS. --></help>
+        <label><!-- Approved --></label>
+        <name>Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved by Date --></label>
+        <name>Approved_by_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Biennium Year --></label>
+        <name>Biennium_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Document Number --></label>
+        <name>Current_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Deposit --></label>
+        <name>Date_of_Deposit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution --></label>
+        <name>Distribution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Date --></label>
+        <name>Document_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Document Title --></label>
+        <name>Document_Title__c</name>
+        <picklistValues>
+            <masterLabel>CRJS</masterLabel>
+            <translation><!-- CRJS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journal Voucher</masterLabel>
+            <translation><!-- Journal Voucher --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Explanation of Entry --></label>
+        <name>Explanation_of_Entry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Month --></label>
+        <name>Fiscal_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Year --></label>
+        <name>Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- IAP Receipt --></label>
+        <name>IAP_Receipt__c</name>
+        <relationshipLabel><!-- Journal Vouchers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Journal Voucher Type --></label>
+        <name>Journal_Voucher_Type__c</name>
+        <picklistValues>
+            <masterLabel>Counter Funds Received</masterLabel>
+            <translation><!-- Counter Funds Received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portal Credit Card Pending JV</masterLabel>
+            <translation><!-- Portal Credit Card Pending JV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation Room Funds Suspense JV</masterLabel>
+            <translation><!-- Validation Room Funds Suspense JV --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number --></label>
+        <name>Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prepared By --></label>
+        <name>Prepared_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prepared by Date --></label>
+        <name>Prepared_by_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ref. Document Number --></label>
+        <name>Ref_Document_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund1 --></label>
+        <name>Refund1__c</name>
+        <relationshipLabel><!-- Journal Vouchers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Refund --></label>
+        <name>Refund__c</name>
+        <relationshipLabel><!-- Journal Vouchers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- TMS Status --></label>
+        <name>TMS_Status__c</name>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Processed</masterLabel>
+            <translation><!-- Not Processed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processed</masterLabel>
+            <translation><!-- Processed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Telephone Number --></label>
+        <name>Telephone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total --></label>
+        <name>Total__c</name>
+    </fields>
+    <layouts>
+        <layout>Journal Voucher Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Footer --></label>
+            <section>Footer</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+        <sections>
+            <label><!-- Header --></label>
+            <section>Header</section>
+        </sections>
+        <sections>
+            <label><!-- Interface Management --></label>
+            <section>Interface Management</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Journal Voucher Manual</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Footer --></label>
+            <section>Footer</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+        <sections>
+            <label><!-- Header --></label>
+            <section>Header</section>
+        </sections>
+        <sections>
+            <label><!-- Interface Management --></label>
+            <section>Interface Management</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- This record type is for batch type of JVs --></description>
+        <label><!-- Journal Voucher Automated --></label>
+        <name>Journal_Voucher_Automated</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type is for manual type of JVs --></description>
+        <label><!-- Journal Voucher Manual --></label>
+        <name>Journal_Voucher_Manual</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Generate_Pdf --></label>
+        <name>Generate_Pdf</name>
+    </webLinks>
+</CustomObjectTranslation>

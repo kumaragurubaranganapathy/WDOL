@@ -1,0 +1,62 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : StylePlugin_Header
+** Description      : Header include for CSS & JS files
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** 
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <!-- BOOTSTRAP -->
+    <apex:stylesheet value="{!URLFOR($Resource.Bootstrap, '/css/bootstrap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Bootstrap, '/css/bootstrap-theme.css')}"/>
+   <!--<apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/> -->
+    <apex:stylesheet value="{!URLFOR($Resource.Bootstrap_Font, 'Bootstrap_Font/font-awesome.min.css')}"/>
+    
+    
+    <!-- JQUERY -->
+    <!--apex:includeScript value="{!$Resource.JQueryMin}"/>-->
+    <!-- JQUERY, DATA TABLE and Masking--> 
+    <!-- <apex:stylesheet value="{!URLFOR($Resource.OH_Bootstrap, '/css/jquery-ui.css')}"/>  -->
+    <apex:stylesheet value="{!URLFOR($Resource.jQueryAndPlugins, '/jquery.dataTables.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQueryAndPlugins, '/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQueryAndPlugins, '/jquery-ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQueryAndPlugins, '/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQueryAndPlugins, '/jquery.dataTables.min.js')}"/>
+    <apex:includeScript value="{!$Resource.Mask}"/>
+
+    <!-- CSS CUSTOM -->
+    <apex:stylesheet value="{!URLFOR($Resource.Custom, 'OH_Custom.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Custom, 'form.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Custom, 'jquery-ui.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.TableStyling, 'OH_TableStyling.css')}"/>
+    
+    <!-- Datepicker files -->
+    <apex:includeScript value="{!URLFOR($Resource.Calendar,'calendar.js')}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.Calendar,'calendar_blue.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.DatepickerCustomcss,'datepickercustom.css')}" />
+	<apex:includeScript value="{!URLFOR($Resource.DatePickerFunctions,'DatePickerFunctions.js')}"/>
+    
+    
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</apex:page>

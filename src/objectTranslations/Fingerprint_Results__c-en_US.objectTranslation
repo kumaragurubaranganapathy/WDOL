@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Fingerprinting/Background Results</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Fingerprinting/Background  Results</value>
+    </caseValues>
+    <fields>
+        <label><!-- AMR --></label>
+        <name>AMR__c</name>
+        <relationshipLabel><!-- Fingerprinting/Background  Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agency --></label>
+        <name>Agency__c</name>
+        <picklistValues>
+            <masterLabel>FBI</masterLabel>
+            <translation><!-- FBI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WSP</masterLabel>
+            <translation><!-- WSP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Applicant/Licensee Name --></label>
+        <name>Applicant_Licensee_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close Date --></label>
+        <name>Close_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Fingerprinting/Background  Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fingerprint Reject Reason --></label>
+        <name>Fingerprint_Reject_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Blank Fill in Written Response</masterLabel>
+            <translation><!-- Blank Fill in Written Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corresponding Plain or Slap Fingerprint</masterLabel>
+            <translation><!-- Corresponding Plain or Slap Fingerprint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronic Distorted or Shadowed</masterLabel>
+            <translation><!-- Electronic Distorted or Shadowed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fingerprint Missing</masterLabel>
+            <translation><!-- Fingerprint Missing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fingerprint Not Black</masterLabel>
+            <translation><!-- Fingerprint Not Black --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fingerprints Obscured</masterLabel>
+            <translation><!-- Fingerprints Obscured --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Image Too Dark</masterLabel>
+            <translation><!-- Image Too Dark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Image Too Light</masterLabel>
+            <translation><!-- Image Too Light --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insufficient Pattern</masterLabel>
+            <translation><!-- Insufficient Pattern --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lotion/Retabs</masterLabel>
+            <translation><!-- Lotion/Retabs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Rolled in Center</masterLabel>
+            <translation><!-- Not Rolled in Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overlapping Fingerprints</masterLabel>
+            <translation><!-- Overlapping Fingerprints --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quality Characteristic too Low</masterLabel>
+            <translation><!-- Quality Characteristic too Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sequence Error</masterLabel>
+            <translation><!-- Sequence Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Smudged or Smeared Fingerprint</masterLabel>
+            <translation><!-- Smudged or Smeared Fingerprint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to Determine Sequence</masterLabel>
+            <translation><!-- Unable to Determine Sequence --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status Date --></label>
+        <name>Status_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Background Hit</masterLabel>
+            <translation><!-- Background Hit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cleared</masterLabel>
+            <translation><!-- Cleared --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submitted Date --></label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

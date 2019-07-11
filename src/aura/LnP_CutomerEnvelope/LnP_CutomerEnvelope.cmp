@@ -1,0 +1,19 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:isUrlAddressable,lightning:actionOverride" access="global">
+    <!--<lightning:button variant="brand" label="CREATE NEW CUSTOMER ENVELOPE" title="CREATE NEW CUSTOMER ENVELOPE" onclick="{!c.navigateToNewCustomerEnvelope}"/>-->
+    <aura:attribute name="stepNumber" type="String" default="0"/>
+    <aura:attribute name="numOfPaymentSources" type="Integer" access="public" default="0"/>
+    <aura:attribute name="paymentSourceTotal" type="Integer" access="public" default="0" />
+    <aura:attribute name="insertedReceiptList" type="List" access="public"  default="[]"/>
+    <aura:attribute name="defaultProgramType" type="String" />
+    <aura:attribute name="customerEnvelopeRec" type="Customer_Envelope__c" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    <aura:handler name="change" value="{!v.stepNumber}" action="{! c.assignSteps}" />
+    <aura:handler name="toastEvt" event="c:LnP_ToastMessage" action ="{!c.showToast}"/>
+    
+    <c:LnP_BreadCrumbs stepNumber = "{!v.stepNumber}" /><br/>  
+    <lightning:card aura:id="container">
+        {!v.body}
+        
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,32 @@
+<aura:component>
+    <aura:attribute name="percent" type="String" default="0" description="0 to 100" />    
+    <aura:attribute name="svg" type="String" default="" access="private" />
+     
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="slds-grid progress-ring-container slds-p-vertical_medium">
+    <div class="slds-size_2-of-12 slds-p-vertical_medium">
+        <div class="slds-progress-ring">
+            <div class="slds-progress-ring__progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{!v.percent}">            
+                <aura:unescapedHtml value="{!v.svg}" />            
+            </div>
+            <div class="slds-progress-ring__content"></div>
+        </div>
+    </div>
+    <div class="slds-size_10-of-12">
+    <lightning:select name="select" label="Percentage" required="true" onchange="{!c.percentageChange}">
+        <option value="0">choose one</option>
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="70">70%</option>
+        <option value="80">80%</option>
+        <option value="90">90%</option>
+        <option value="100">100%</option>
+    </lightning:select>
+    </div>
+    </div>
+</aura:component>

@@ -1,0 +1,1 @@
+@isTest private class DRE2Test_Renewal_Application_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Renewal_Application__c'); } }

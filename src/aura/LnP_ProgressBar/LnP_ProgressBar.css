@@ -1,0 +1,67 @@
+.THIS.progressDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+}
+.THIS.progressDiv .progressDiv-wrap{
+    display: flex;
+    margin: 0 0 0 5%;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item{
+    display:flex;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-divider{
+    height:1px;
+    border: solid 1px #e3e4ea;
+    width:95px;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress{
+    width:135px;
+    position: relative;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .progress-block{
+    display: flex;
+    justify-content: left; 
+    align-items: center;
+    padding:0 0 10px 0;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .progress-block .number{
+    display:none;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .progress-block .progress-error{
+    display:none;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .progress-block .progress-success{
+    display:none;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .progress-block .number .number-wrap{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    border-radius: 50%;
+    border: 1px solid black; 
+    justify-content: center;
+    align-items: center;
+    background-color: #eff1ff;
+    cursor:pointer;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .progress-block .progress-active .icon-active{
+    display:flex;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: #4c65f2;
+    cursor:pointer;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .heading {
+    text-align: center;
+    position: relative;
+    right: 20%;
+    width: 100px;
+}
+.THIS.progressDiv .progressDiv-wrap .progressDiv-wrap-item .progressDiv-wrap-item-progress .heading .heading-text{
+    cursor: pointer;
+}

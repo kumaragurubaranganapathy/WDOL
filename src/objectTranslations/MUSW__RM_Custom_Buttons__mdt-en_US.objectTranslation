@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- A relative URL path. --></help>
+        <label><!-- Button Action --></label>
+        <name>MUSW__Button_Action__c</name>
+    </fields>
+    <fields>
+        <help><!-- Text on the button that the end user will see. --></help>
+        <label><!-- Button Label --></label>
+        <name>MUSW__Button_Label__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>MUSW__Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- If not provided, all profiles will see this button. To restrict to specific profiles, admin user can provide a comma-separated list of profile names that will have access to this action button. --></help>
+        <label><!-- Profile Permissions --></label>
+        <name>MUSW__Profile_Permissions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Manage Setting --></label>
+        <name>MUSW__Record_Manage_Setting__c</name>
+        <relationshipLabel><!-- Record Manage Custom Actions --></relationshipLabel>
+    </fields>
+</CustomObjectTranslation>

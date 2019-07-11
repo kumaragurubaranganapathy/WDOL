@@ -1,0 +1,25 @@
+<!--@AUTHOR: Sanghmitra Sahu/Tuhin Mazumder
+@Date: 01-Oct-2018 
+
+Description: Lightning Theme component created for Landing Page(Home Page). 
+
+MODIFICATION LOG:
+DEVELOPER                          DATE                     DESCRIPTION
+================================================================================
+Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
+================================================================================= -->
+<aura:component  implements="forceCommunity:themeLayout">
+    
+    <aura:attribute name="search" type="Aura.Component[]"/>
+    <aura:attribute name="sidebarFooter" type="Aura.Component[]"/>
+    <ltng:require styles="{!$Resource.Lnp_communityStyles}" />
+
+    <div role="banner"> </div>
+    <c:LnP_HomeThemeHeader/>    
+    <div role="main">
+        <h1 class="slds-hide">Delaware L&amp;P</h1>
+        {!v.body}
+    </div>
+    <c:LnP_HomeThemeFooter/>   
+    
+</aura:component>

@@ -1,0 +1,117 @@
+<aura:component controller="LnP_CustomLabel_MetadataSearch" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="autopop" type="String"/> 
+    <aura:attribute name="emptyShow" type="Boolean" default="false"/> 
+    <aura:attribute name="listlabel" type="String"/>
+    <aura:attribute name="cValue" type="String"/>
+    <aura:attribute name="cSelect" type="String"/>
+    <aura:attribute name="searchList" type="list"/>
+    <aura:attribute name="bShowError" type="Boolean" default="false" />
+    <aura:attribute name="checkLength" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!-- Attribute Declration For Pagination -->
+    <aura:attribute name="data" type="list"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="String"/>
+    
+    <aura:attribute name="allData" type="List"/>
+    <aura:attribute name="currentPageNumber" type="Integer" default="1"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <aura:attribute name="totalPages" type="Integer" default="false"/>
+    <aura:attribute name="pageList" type="List" default="false"/>
+    
+    <!-- This attribute will hold the update records from data table-->
+    <aura:attribute name="updatedRecord" type="Object[]" />
+    <!-- Attribute Declration For Pagination End-->
+    
+    
+    <lightning:card title="Custom Label Search">
+        
+        <p class="slds-p-horizontal_small">
+            <div class="container">
+                <center>
+                    
+                    <div class="inPosition">
+                        <!--<lightning:input aura:id="Search" label="Custom Label" name="customLabel" value="{!v.autopop}" type="text" onchange="{!c.fetchCLN}"/><br/>-->
+                        <lightning:input aura:id="Search" label="" name="customLabel" value="{!v.cSelect}" placeholder="Enter keyword to search custom label" type="text" />
+                    </div>
+                    <div class="slds-p-top_large ">
+                        <lightning:button label="Search" onclick="{!c.fetchCLN}"/>
+                    </div>
+                </center>
+                
+                
+                <div class="slds-p-top_large ">
+                    <aura:if isTrue="{!v.emptyShow}">
+                        Please input some keyword in the Search Area.
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!v.checkLength}">
+                                No result.
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{!v.bShowError}">
+                                        We found too many matches, please refine your search.
+                                        <aura:set attribute="else">
+                                            
+                                            <!-- You must define keyField as 'Id' to save the record back in Salesforce
+ 'onsave' attribute will executed when user clicks on save button -->
+                                            
+                                            <lightning:layout multipleRows="true" horizontalAlign="center">
+                                                <lightning:layoutItem padding="around-small" size="12">
+                                                    <lightning:datatable
+                                                                         aura:id="clDataTable"
+                                                                         columns="{! v.columns }"
+                                                                         data="{! v.data }"
+                                                                         keyField="Id"
+                                                                         hideCheckboxColumn="true"/>
+                                                </lightning:layoutItem>
+                                                <lightning:layoutItem padding="around-small" flexibility="auto">
+                                                    <lightning:button label="First" iconName="utility:left" iconPosition="left"
+                                                                      onclick="{!c.onFirst}" disabled="{! v.currentPageNumber == 1}"/>
+                                                    <lightning:button iconName="utility:chevronleft" iconPosition="left"
+                                                                      onclick="{!c.onPrev}" disabled="{! v.currentPageNumber == 1}"/>
+                                                    <span class="slds-p-horizontal_x-small">
+                                                        <a onclick="{!c.processMe}" name="1" 
+                                                           class="{! (v.currentPageNumber == 1) ? 'selected' : ''}">1</a>
+                                                    </span>
+                                                    <span class="slds-p-horizontal_xxx-small">
+                                                        <a>...</a>
+                                                    </span>
+                                                    
+                                                    <aura:iteration items="{!v.pageList}" var="item">
+                                                        <span class="slds-p-horizontal_x-small">
+                                                            <a onclick="{!c.processMe}" name="{!item}"
+                                                               class="{! (v.currentPageNumber == item) ? 'selected' : ''}">{!item}</a>
+                                                        </span>
+                                                    </aura:iteration>
+                                                    
+                                                    <span class="slds-p-horizontal_xxx-small">
+                                                        <a>...</a>
+                                                    </span>
+                                                    <span class="slds-p-horizontal_x-small">
+                                                        <a onclick="{!c.processMe}" name="{!v.totalPages}"
+                                                           class="{! (v.currentPageNumber == v.totalPages) ? 'selected' : ''}">{!v.totalPages}</a>
+                                                    </span>
+                                                    <lightning:button iconName="utility:chevronright" iconPosition="right" 
+                                                                      disabled="{! v.currentPageNumber == v.totalPages}" onclick="{!c.onNext}"/>
+                                                    <lightning:button label="Last" iconName="utility:right" iconPosition="right" 
+                                                                      disabled="{! v.currentPageNumber == v.totalPages}" onclick="{!c.onLast}"/>
+                                                </lightning:layoutItem>
+                                            </lightning:layout>
+                                            
+                                            
+                                            
+                                        </aura:set>
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                    <!--<div>
+            <lightning:input aura:id="cValue" label="Value" name="cValue" value="{!v.cValue}" disabled="true"/>
+        </div>-->
+                </div>
+            </div>
+        </p>
+    </lightning:card>
+    
+</aura:component>

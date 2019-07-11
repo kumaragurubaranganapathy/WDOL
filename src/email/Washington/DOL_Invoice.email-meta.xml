@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>1966 : Invoice letter</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DOL Invoice</name>
+    <style>none</style>
+    <subject>Dept of Licensing – Invoice attached</subject>
+    <textOnly>Please see attached your invoice {!BGBK__Bill__c.Name} for . 
+
+We must receive your payment within 30 days of receipt of this notification. Pay your balance with our new online system!
+•	Go to [URL]. 
+•	Follow the directions on your invoice for payment requirements, 
+
+Need help? Department of Licensing www.dol.wa.gov</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

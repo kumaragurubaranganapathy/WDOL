@@ -1,0 +1,1 @@
+@isTest private class DRE2Test_Education_History_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Education_History__c'); } }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master ConfigData Listing</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Master ConfigData Listing</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Listing Type --></label>
+        <name>Listing_Type__c</name>
+        <picklistValues>
+            <masterLabel>Master Complaint Queue</masterLabel>
+            <translation><!-- Master Complaint Queue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Inspection Queue</masterLabel>
+            <translation><!-- Master Inspection Queue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Queue</masterLabel>
+            <translation><!-- Master Queue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscellaneous Queue</masterLabel>
+            <translation><!-- Miscellaneous Queue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Revenue Code</masterLabel>
+            <translation><!-- Product Revenue Code --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profession Code --></label>
+        <name>Profession_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Type --></label>
+        <name>Program_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Queue Id --></label>
+        <name>Queue_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Queue Name --></label>
+        <name>Queue_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue Account Code --></label>
+        <name>Revenue_Account_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Intake</masterLabel>
+            <translation><!-- Intake --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investigation</masterLabel>
+            <translation><!-- Investigation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re-Open</masterLabel>
+            <translation><!-- Re-Open --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Master ConfigData Listing Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Cart Search --></label>
+        <name>BGBK__CartSearch</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Account --></label>
+        <name>BGBK__Account__c</name>
+        <relationshipLabel><!-- Carts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Action --></label>
+        <name>BGBK__Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Batch --></label>
+        <name>BGBK__BG_Payment_Batch__c</name>
+        <relationshipLabel><!-- Carts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>BGBK__Contact__c</name>
+        <relationshipLabel><!-- Carts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Expiration Date --></label>
+        <name>BGBK__Expiration_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gateway Processing --></label>
+        <name>BGBK__Gateway_Processing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gateway Response --></label>
+        <name>BGBK__Gateway_Response__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Amount --></label>
+        <name>BGBK__Last_Payment_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Process Date --></label>
+        <name>BGBK__Process_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>BGBK__Status__c</name>
+        <picklistValues>
+            <masterLabel>Abandoned</masterLabel>
+            <translation><!-- Abandoned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Amount --></label>
+        <name>BGBK__Total_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>BGBK__Type__c</name>
+        <picklistValues>
+            <masterLabel>Account</masterLabel>
+            <translation><!-- Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cashier</masterLabel>
+            <translation><!-- Cashier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contact</masterLabel>
+            <translation><!-- Contact --></translation>
+        </picklistValues>
+    </fields>
+    <webLinks>
+        <label><!-- My_Cart --></label>
+        <name>BGBK__My_Cart</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Pay_Cart --></label>
+        <name>Pay_Cart</name>
+    </webLinks>
+</CustomObjectTranslation>

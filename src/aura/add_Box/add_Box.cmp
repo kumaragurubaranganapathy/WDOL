@@ -1,0 +1,92 @@
+<aura:component controller="Add_BusinessController">
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="recordTitle" type="String" />
+    <aura:attribute name="content" type="String" />
+    <aura:attribute name="boxtype" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordTypeID" type="String" />
+    <aura:attribute name="fields" type="String[]"  />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="errors" type="Object" default="[]"/>
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="activeSections" type="List" default="" />
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    <div class="slds-box">
+        <h1><b>{!v.title}</b></h1>
+        <p>{!v.content}</p> 
+        <aura:if isTrue="{!v.boxtype != 'getRecord'}" >
+        <lightning:accordion allowMultipleSectionsOpen="true" onsectiontoggle="{!c.handleSectionToggle}" aura:id="accordion" activeSectionName="{!v.activeSections}">
+         <aura:if isTrue="{!v.boxtype == 'existing'}">
+            <lightning:accordionSection name="{!v.title}" label="{!v.title}">
+               <div class="slds-grid slds-wrap slds-grid--pull-padded	">
+                    <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
+                   		<lightning:input name="securityCode" required="true" label="Security Code" placeholer=" Enter Security Code"/>
+                   	</div>
+                   	<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 box-padding">
+                        <lightning:button variant="brand" label="SUBMIT" title="Neutral action" onclick="{! c.handleClick }"/>
+              			<lightning:button variant="brand" label="OBTAIN SECURITY CODE" title="Neutral action" onclick="{! c.handleClick }"/>
+                   	</div>
+               </div>
+          </lightning:accordionSection> 
+          </aura:if>   
+          <aura:if isTrue="{!v.boxtype == 'new'}">
+            
+             <lightning:accordionSection name="{!v.title}" label="{!v.title}" >
+                <lightning:recordForm
+                    objectApiName="Account"
+                    fields="{!v.fields}"
+                    columns="2"
+                    recordTypeId="{!v.recordTypeID}"
+                    onsuccess="{!c.handleSuccess}" 
+                    oncancel="{!c.handleCancel}"
+                    />
+          		</lightning:accordionSection> 
+           </aura:if> 
+        </lightning:accordion>
+       </aura:if>
+       <aura:if isTrue="{!v.boxtype == 'getRecord'}">
+       		 <lightning:datatable
+                columns="{! v.columns }"
+                data="{! v.data }"
+                keyField="id"
+                errors="{! v.errors }"
+                hideCheckboxColumn="true"
+                onrowaction="{!c.handleRowAction}"
+                                  />
+       </aura:if> 
+        <aura:if isTrue="{!v.isOpen}">
+            
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!v.recordTitle}</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:recordForm
+                            objectApiName="Account"
+                            fields="{!v.fields}"
+                            columns="2"
+                            recordId="{!v.recordId}"
+                            onsuccess="{!c.handleSuccess}" 
+                            mode="Edit"
+                            oncancel ="{!c.closeModel}"
+                            />
+                    </div>
+                </div>
+            </section><br></br>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--###### MODAL BOX Part END Here ######-->
+
+        </aura:if>
+    </div>
+</aura:component>

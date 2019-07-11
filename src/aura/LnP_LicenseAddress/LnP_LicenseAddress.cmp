@@ -1,0 +1,258 @@
+<aura:component controller="LnP_LicenseAddressApexController" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="parcel" type="LnP_Parcel__c" default ="{
+                                                                 'sobjectType' : 'LnP_Parcel__c',
+                                                                 'Address_Type__c' : '',
+                                                                 'Street__c' : '',
+                                                                 'Unit__c' : '',
+                                                                 'City__c' : '',
+                                                                 'State__c' : '',
+                                                                 'County__c' : '',
+                                                                 'Country__c' : 'United States',
+                                                                 'Zip_Postal_Code__c' : '', 
+                                                                 'Application_BG__c':'',
+                                                                 'is_Physical_and_Mailing_Address_Same__c':'',
+                                                                 }"/>
+    <aura:attribute name="addressDType" Type="LnP_Parcel__c" />
+    <aura:attribute name="LicenseAddressList" type="List"/>
+    <aura:attribute name="state" type="String"/>
+    <aura:attribute name="city" type="String"/>
+    <aura:attribute name="county" type="List"/>
+    <aura:attribute name="selAddress" type="String"/>
+    <aura:attribute name="lstAddress" type="SOD_Autocomplete_Wrapper" />
+    <aura:attribute name="showResults" type="Boolean" default="false" />
+    <aura:attribute name="mydata" type="List"/>
+    <aura:attribute name="isHide" type="Boolean" default="false" />
+    <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="licenseId" type="String"/>
+    <aura:attribute name="checkBox" type="Boolean" default="false"/>
+    <aura:attribute name="sObjParcel" type="String" default="LnP_Parcel__c"/>
+    <aura:attribute name="addressTypeOptions" type="List" default="[ {'label': '--None--', 'value': '--None--'},
+                                                                   {'label': 'US Address', 'value': 'US Address'},
+                                                                   {'label': 'Existing Address', 'value': 'Existing Address'},
+                                                                   {'label': 'Non US Address', 'value': 'Non US Address'},
+                                                                   ]"/>
+    <aura:attribute name="typeOfAddress" type="String" />
+    <aura:attribute name="existingAddr" type="String" />
+    <aura:attribute name="isAddrVerification" type="String"/>
+    
+    
+    <aura:attribute name="outputAddress" type="Object" />
+    <aura:attribute name="originalAddress" type="String" />
+    <aura:attribute name="suggestedAddress" type="String" />
+    <aura:attribute name="Spinner" type="Boolean" default="false"/>
+    <aura:attribute name="isAddAddressClicked" type="Boolean" default="false"/>
+    <aura:attribute name="userSelectedAddr" type="String" />
+     <aura:attribute name="parcelObject" type="MUSW__Parcel__c" 
+                    default="{ 'sobjectType': 'MUSW__Parcel__c'}" />
+    <aura:attribute name="isAddressDiff" type="Boolean" default="false"/>
+    <aura:attribute name="isAddress2" type="Boolean" default="false"/>
+    <aura:attribute name="issuggestedAdd2" type="Boolean" default="false"/>
+    <aura:attribute name="isOriginalAdd2" type="Boolean" default="false"/>
+    <aura:attribute name="isRecordEditForms" type ="Boolean" default="false"/>
+    <aura:attribute name="isSelectedAddrTrue" type ="Boolean" default="false"/>
+    <aura:attribute name="stateList" type="List" />
+    <aura:attribute name="selectedAddressType" type="String" />
+    <aura:attribute name="defaultCountry" type="String" />
+    <aura:attribute name="affiliatedLoc" type="Boolean" default="false" />
+    
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="{!v.affiliatedLoc?'slds-hide':'addressDetail'}">
+        <aura:if isTrue="{!not(empty(v.LicenseAddressList))}">               
+            <div class="slds-grid slds-wrap">
+                <aura:iteration items="{!v.LicenseAddressList}" var="address" indexVar="itemRow">
+                    <div class="slds-col slds-size_4-of-12 address">
+                        <div class="tile">
+                            <div class="typeofaddress" title="Type of Address">
+                                <aura:if isTrue="{!address.is_Physical_and_Mailing_Address_Same__c}">
+                                   <span class="address-title">Physical/Mailing Address</span>
+                                    <aura:set attribute="else">
+                                      <span class="address-title">{!address.Address_Type__c}</span>
+                                    </aura:set>
+                                </aura:if> 
+                            </div>
+                            <div class="record" title="Address">
+                                {!address.Street__c}, <aura:if isTrue="{!not(empty(address.Unit__c))}">{!address.Unit__c},&nbsp;</aura:if> <br/>
+                                {!address.City__c}, {!address.State__c}, <br/>
+                                {!address.Zip_Postal_Code__c},<br/>
+                                {!address.Country__c},
+                             <ui:outputText value="{!address.Id}" class="slds-hide addressId" aura:id="addressId"/>
+                            </div>
+                            <div>
+                                <label for="scales"> is Physical &amp; Mailing Address Same</label>
+                            	<input type="checkbox" id="{!address.Id}" class="{!address.Application_BG__c}" checked="{!address.is_Physical_and_Mailing_Address_Same__c}" onclick="{!c.updateSameAdd}"/>
+                            </div>
+                            <div class="slds-grid action-buttons slds-m-bottom_small ">
+                                <div id= "{!address.Id}" class="{!address.Application_BG__c}" style="margin-left: 91%; margin-top: 1%;">
+                                    <lightning:buttonIcon name="{!address.Address_Type__c}" iconName="utility:delete" class="slds-col_bump-left" iconClass="slds-button__icon_hint" variant="bare" alternativeText="Delete Record" onclick="{!c.handleDelete}"/> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:iteration>
+            </div>
+            
+        </aura:if>
+    </div>
+    
+    <lightning:button class="slds-m-top_x-large address-button" variant="brand" label="{!v.affiliatedLoc?'+ Add Location':'+ Address'}" onclick="{!c.addAddress}"/>
+    <div class="slds-p-top_x-large address-wrapper">
+       <div class="addressTypeSelection slds-hide slds-size_12-of-12">
+            <lightning:select class="field-size" name="select1" label="Type of address" required="false" value="{!v.typeOfAddress}" onchange="{!c.onSelect}">
+                <aura:iteration items="{!v.addressTypeOptions}" var="addrType">
+                    <option value="{!addrType.value}" >{!addrType.label}</option>
+                </aura:iteration>
+            </lightning:select>			
+        </div> 
+    
+    <div class="addAddress slds-hide  slds-size_12-of-12">
+           
+        <aura:if isTrue="{!v.typeOfAddress == 'Existing Address'}"> 
+            <div class="existingAddress" >
+                <lightning:select name="addressType" aura:id="addressTypeExist" label="Address Type" required="true" value="{!v.parcel.Address_Type__c}" class="field-size field-margin address-fields">
+                    <aura:iteration items="{!v.addressDType}" var="addType">
+                        <option value="{!addType.value}" >{!addType.label}</option>
+                    </aura:iteration>
+                </lightning:select>
+                
+                <lightning:select class="field-size" name="existingAdd" label="Choose one" required="true" value="{!v.existingAddr}" onchange="{!c.selectExistingAddress}">
+                    <aura:iteration items="{!v.LicenseAddressList}" var="address" >
+                        <option value="{!address.Street__c+','+address.Unit__c+','+address.City__c+','+address.County__c+','+address.State__c+','+address.Country__c+','+address.Zip_Postal_Code__c}" >{!address.Street__c}, {!address.Unit__c}, {!address.City__c},{!address.County__c}, {!address.State__c},{!address.Country__c},{!address.Zip_Postal_Code__c}</option>
+                    </aura:iteration>                    
+                </lightning:select>
+            </div>
+        </aura:if>
+       <aura:if isTrue="{!v.typeOfAddress == 'US Address'}"> 
+            <div id="usAddr" class = "usAddress">
+                
+                <lightning:input name="desigEng" label="Enter Designated Engineer License No." value="" required="true" class="{!v.affiliatedLoc?'field-size address-fields field field-margin' : 'slds-hide'}" onblur=""/>
+                <lightning:input name="desigLS" label="Enter Designated Land Surveyor No." value="" required="true" class="{!v.affiliatedLoc?'field-size address-fields ' : 'slds-hide'}" onblur=""/>
+                
+                <lightning:select name="addressType" aura:id="addressType" label="Address Type" required="true" value="{!v.parcel.Address_Type__c}" class="field-size field-margin address-fields">
+                    <aura:iteration items="{!v.addressDType}" var="addType">
+                        <option value="{!addType.value}" >{!addType.label}</option>
+                    </aura:iteration>
+                </lightning:select>                                     
+                
+                
+                <lightning:input title="street" name="street" label="Street" value="{!v.parcel.Street__c}"  required="true" class="field-size address-fields"/>
+                <!-- commented by shiva:<ul class="{!v.showResults ? 'addList' : 'slds-hide'}">
+                    <aura:iteration items="{!v.lstAddress.suggestions}" var="gAddress">                                
+                        <li onclick="{!c.selectAddress}" data-index="{!gAddress.city+'_'+gAddress.state}" 
+                            data-text="{!gAddress.text}">{!gAddress.text}</li>
+                    </aura:iteration>                
+                </ul>-->
+                <lightning:input  name="Unit" label="Apartment No/Building No" value="{!v.parcel.Unit__c}"  required="false" class="field-size field-margin address-fields"/>
+                <lightning:input name="city" label="City" value="{!v.parcel.City__c}" required="true" class="field-size address-fields" onblur="{!c.onCityChange}"/>
+                
+                <lightning:select name="State" label="State/Territory/Province" value="{!v.parcel.State__c}" required="true" class="field-size address-fields rightsapce" onblur="{!c.onStateChange}"> 
+                     <aura:iteration items="{!v.stateList}" var="dplist">
+                         <option text="{!dplist.label}" value="{!dplist.value}"/>
+                     </aura:iteration>
+               	 </lightning:select>
+                
+                <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" required="false" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
+                	<aura:iteration items="{!v.county}" var="eachCounty">
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                    </aura:iteration>
+           		</lightning:select>
+                <lightning:input name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size field-margin address-fields" disabled="true"/>
+                <lightning:input name="zip" label="Zip/Postal Code" value="{!v.parcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            </div>
+        </aura:if>
+        
+       <!-- <aura:if isTrue="{!v.typeOfAddress == 'Non US Address'}"> 
+            <div id="NonusAddr" class = "NonusAddress">
+                
+                <lightning:input name="desigEng" label="Enter Designated Engineer License No." value="" required="true" class="{!v.affiliatedLoc?'field-size address-fields field field-margin' : 'slds-hide'}" onblur=""/>
+                <lightning:input name="desigLS" label="Enter Designated Land Surveyor No." value="" required="true" class="{!v.affiliatedLoc?'field-size address-fields ' : 'slds-hide'}" onblur=""/>
+                
+                <lightning:select name="addressType" aura:id="addressType" label="Address Type" required="true" value="{!v.parcel.Address_Type__c}" class="field-size field-margin address-fields">
+                    <aura:iteration items="{!v.addressDType}" var="addType">
+                        <option value="{!addType.value}" >{!addType.label}</option>
+                    </aura:iteration>
+                </lightning:select>                                     
+                
+                
+                <lightning:input title="street" name="street" label="Street" value="{!v.parcel.Street__c}"  required="true" class="field-size address-fields"/>
+                
+                <lightning:input  name="Unit" label="Apartment No/Building No" value="{!v.parcel.Unit__c}"  required="false" class="field-size field-margin address-fields"/>
+                <lightning:input name="city" label="City" value="{!v.parcel.City__c}" required="true" class="field-size address-fields" onblur="{!c.onCityChange}"/>
+                
+                <lightning:select name="State" label="State" value="{!v.parcel.State__c}" required="true" class="field-size address-fields rightsapce" onblur="{!c.onStateChange}"> 
+                     <aura:iteration items="{!v.stateList}" var="dplist">
+                         <option text="{!dplist.label}" value="{!dplist.value}"/>
+                     </aura:iteration>
+               	 </lightning:select>
+                
+                <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" required="false" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
+                	<aura:iteration items="{!v.county}" var="eachCounty">
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                    </aura:iteration>
+           		</lightning:select>
+                <lightning:input name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size field-margin address-fields" disabled="true"/>
+                <lightning:input name="zip" label="Zip/Postal Code" value="{!v.parcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            </div>
+        </aura:if>-->
+        <div class="slds-grid slds-p-top_x-large">
+            <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large next-button"/>
+            <lightning:button variant="brand" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
+    	</div>
+        </div>
+    </div>
+    <aura:if isTrue="{!v.isAddrVerification == 'YES'}"> 
+        <c:Dol_AddressVerificationCmp applicationId="{!v.applicationId}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.isAddAddressClicked}">
+        <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                    <aura:if isTrue = "{!v.isAddressDiff}">
+                        <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
+                    </aura:if>
+                  </div>
+                <div class="slds-modal__content slds-p-around--medium">
+               <fieldset class="slds-form-element">
+                <legend class="slds-form-element__legend slds-form-element__label"></legend>
+                <div class="slds-form-element__control slds-list_horizontal">
+                    <span class="slds-radio">
+                        <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
+                        <label class="slds-radio__label" for="original">
+                            <span class="slds-radio_faux"></span>
+                            <span class="slds-form-element__label">Original Address</span>
+                            <br/>
+                            <span id= "old" class="slds-form-element__label">{!v.originalAddress}</span>
+                        </label>
+                    </span>
+                   </div><br/>
+                  <div></div>
+                  <div class="slds-form-element__control slds-list_horizontal">
+                    <span class="slds-radio">
+                        <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
+                        <label class="slds-radio__label" for="suggested">
+                            <span class="slds-radio_faux"></span>
+                            <span class="slds-form-element__label">Suggested Address</span><br/>
+                            <span id= "new" class="slds-form-element__label"><aura:unescapedHtml value="{!v.suggestedAddress}" /></span>
+                        </label>
+                    </span>
+                </div>
+            </fieldset>
+                 <lightning:layout horizontalAlign="center">
+                        <lightning:layoutitem padding="around-small">
+                            <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                        </lightning:layoutitem>
+                    </lightning:layout>
+                </div>
+
+               <div class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}"/>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+   
+
+    </aura:component>

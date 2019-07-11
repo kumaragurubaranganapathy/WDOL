@@ -1,0 +1,864 @@
+<apex:page standardController="MUSW__Submission__c" recordSetVar="subs" extensions="MUSW.UploadFilesController" showHeader="{!showHeader}" sidebar="{!showSidebar}">
+        <apex:includeScript value="https://code.jquery.com/jquery-3.1.1.min.js" />
+        <script src="/soap/ajax/41.0/connection.js" type="text/javascript" />
+
+        <script type="text/javascript">
+            sforce.connection.sessionId = "{!GETSESSIONID()}";
+            // grab variables from controller
+            var parentId = '{!parentId}'; //set in controller to the id of submission(s) parent
+            var lookupField = '{!lookupField}'; // set in controller to be the field on Submission that is lookup to parent
+        </script>
+
+        <apex:includeScript value="{!$Resource.MUSW__fileupload}" />
+        <script src="https://use.fontawesome.com/075a131ce5.js"></script>
+        <apex:slds />
+
+        <style>
+
+            .checkbox {
+
+                width: 1rem;
+                height: 1rem;
+                display: inline-block;
+                position: relative;
+                vertical-align: middle;
+                border: 1px solid #dddbda;
+                border-radius: 0.125rem;
+                background: white;
+                transition: border 0.1s linear, background-color 0.1s linear;
+            }
+
+            .checkbox.true:after {
+                display: block;
+                content: '';
+                height: 0.25rem;
+                width: 0.5rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+                border-bottom: 2px solid #1589ee; 
+                border-left: 2px solid #1589ee;
+            }
+            button.trash, button.file {
+                border: none;
+                box-shadow: none;
+                font-size: 1.3rem;
+                background: transparent;
+                margin: 0 0.5rem 0 0.5rem;
+                padding: 0 0.5rem 0 0.5rem;
+                line-height: 0;
+                color: rgb(22, 50, 92);
+            }
+            button.trash:hover, button.file:hover, button.trash[disabled], button.file[disabled] {
+                opacity: 0.5;
+            }
+        </style>
+        <div class="slds-scope" >
+            <apex:outputPanel rendered="{!isEmbedded}">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.10/iframeResizer.contentWindow.min.js"/>
+            </apex:outputPanel>
+            <div class="long-upload-message slds-p-around_small slds-text-heading_small" style="display:none">
+                This upload may take several minutes. Please do not close this page or navigate away until the upload has completed.
+            </div>
+            <div class="slds-is-relative">
+            <!-- table to list submissions -->
+            <apex:form id="f" styleClass="slds-m-around_large">
+
+            <div class="slds-p-vertical_small">
+                <h3>{!parentLabel}</h3>
+                <button class="slds-button" onclick="return goBack(event);"><h2 class="slds-text-heading_medium">{!parentName}</h2></button>
+            </div>
+
+            <div class="slds-notify_container slds-is-relative messages" style="display:none">
+                <div class="slds-notify slds-notify_toast" role="alert">
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small insert-point"></h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="slds-text-title_caps">Submission Files</h2>
+            </div>
+            <table class="submissions-table slds-table slds-table_bordered slds-table_col-bordered slds-table_cell-buffer slds-no-row-hover" id="submission-table">
+                <thead>
+                    <tr>
+                        <th style="width:20%">Title</th>
+                        <th style="width:15%">Submission Date</th>
+                        <th style="width:5%">Required</th>
+                        <th style="width:60%">File</th>
+        
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!relatedSubmissions}" var="row">
+                        <tr data-fileid="{!row.fileId}" data-destination="{!row.destination}" data-submissionId="{!row.submission.Id}">
+                            <td>{!row.submission.Name}</td>
+                            <td class="submission-date">
+                                <!-- show date if date has been set -->
+                                <apex:outputText value="{0,date,yyyy/MM/dd}" rendered="{!NOT(ISNULL(row.submission.MUSW__Submission_DateTime__c))}">
+                                    <apex:param value="{!row.submission.MUSW__Submission_DateTime__c}"/>
+                                </apex:outputText>
+                            <!-- else show N/A -->
+                            <apex:outputText value="N/A" rendered="{!ISNULL(row.submission.MUSW__Submission_DateTime__c)}"/>
+                            </td>
+                            <td>
+                                <span class="slds-assistive-text">
+                                    {!IF(row.submission.MUSW__Required__c, 'required', 'not required')}
+                                </span>
+                                <div class="{!IF(row.submission.MUSW__Required__c, 'checkbox true', 'checkbox false')}"/>
+                            </td>
+                            <td>
+                                <!-- show link if file has a url set -->
+                                <apex:outputPanel styleClass="filename" rendered="{!NOT(ISNULL(row.viewUrl))}"><a href="{!row.viewUrl}" target="_blank">{!row.fileName}</a></apex:outputPanel>
+                                <!-- else just show the filename -->
+                                <apex:outputPanel styleClass="filename" rendered="{!ISNULL(row.viewUrl)}">{!row.fileName}
+                                    <apex:outputPanel rendered="{!NOT(ISNULL(row.submission.MUSW__BG_External_File_Id__c))}" >
+                                        <i class="fa fa-info-circle"></i>
+                                        <span class="slds-text-body_small">A link to view this file will be available once the upload has been processed.</span>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <span class="action slds-float_right">
+                                    <button class="trash" title="delete file">
+                                        <span class="slds-assistive-text">trash</span>
+                                        <i class="fa fa-trash" aria-hidden= "true"></i>
+                                    </button>
+                                    <button class="file">
+                                        <span class="slds-assistive-text">file</span>
+                                        <i class="fa fa-folder-open" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="file" data-submissionid="{!row.submission.Id}" 
+                                            data-destination="{!row.destination}" data-fileid="{!row.fileId}"
+                                            class="existing-submission slds-hide" onchange="handleFile(this);"/>
+                                </span>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                    <tr>
+                        <td colspan="4"><button class="slds-button slds-button_neutral" onclick="return addmore(event);">Add more</button><input type="file" class="slds-hide" id="add-more-files" multiple="true"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Note: If you upload a new file(s) to a submission with an existing file, then the original file(s) will be overwritten and cannot be retrieved.</p>
+            <apex:actionFunction action="{!setDateOnSubmissions}" name="updateSubmissions" rerender="none"> 
+                <apex:param name="subIds" value=""/>
+            </apex:actionFunction>
+
+            <!-- loading indicator -->
+            <div class="slds-spinner_container" id="spinner" style="display:none">
+                <div role="status" class="slds-spinner slds-spinner_medium">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+            </apex:form>
+
+            <div class="error-table" id="error-table" style="display:none">
+                <div class="insert"></div>
+            </div>
+            <div class="slds-text-align_center slds-m-vertical_large">
+                <button class="slds-button slds-button_neutral" onclick="return goBack(event);">Done</button>
+                <button class="slds-button slds-button_brand" onclick="return startUpload(event);">Upload</button>
+            </div>
+            
+            </div>
+        </div>
+        <script>
+            Visualforce.remoting.timeout = 120000;
+            var $j = jQuery.noConflict();
+            var $multiFile; // file input with multiple=true, for creating adhoc submissions
+            var $tbody; 
+            var $spinner; // loading indicator
+            var $toast;
+            var $messageInsert;
+            var $longUpload;
+            var bbProjectId; // Bluebeam project Id 
+            var adhocSubmissions = []; // SubmissionWrapper objects 
+            var helper = new UploadHelper();
+            var defaultFileLocation;
+            var retUrl;
+            var deleteConfirmMessage = "Are you sure you want to delete the uploaded file? This action cannot be undone.";
+
+            $j(document).ready(function(){
+                initialize();
+            });
+            
+            /**
+            * load jquery variables as needed, and delegate event handlers to buttons/inputs that will be dynamically generated. Can be called after 
+            * refreshing the submissions table, because that rerenders most of these DOM elements, so the variables need to be reset also
+            */
+            function initialize() {
+                $multiFile = $j('input#add-more-files');
+                $multiFile.on('change', handleMultiFiles);
+                $tbody = $j('.submissions-table tbody');
+                $toast = $j('.messages');
+                $messageInsert = $toast.find('.insert-point');
+                $spinner = $j('#spinner');
+                $spinner.hide();
+                bindEventHandlersToButtons();
+                $longUpload = $j('.long-upload-message');
+                
+                // disable trash buttons for submissions that don't have related files
+                var $tr = $tbody.find('tr');
+                $tr.each(function(){
+                    var $row = $j(this);
+                    var $filename = $row.find('.filename');
+                    if ($filename) {
+                        // check if filename is filled
+                        if (!$filename.text()) {
+                            $row.find('button.trash').attr('disabled', true);
+                        }
+                    }
+                });
+                defaultFileLocation  = '{!defaultFileLocationType}';
+                retUrl = '{!retUrl}';
+            }
+
+            /**
+            * Delegates event handling to file and trash buttons 
+            */
+            function bindEventHandlersToButtons() {
+                // do this now so don't have to add event handlers as the buttons get created;
+                $tbody.on('click', 'button.trash', deleteFile);
+                $tbody.on('click', 'button.file', clickFileInput);
+                $tbody.on('change', 'input.adhoc-file', handleAdhocFile);
+                $tbody.on('change', 'input.adhoc-submissionName', handleChangeSubName)
+            }
+
+            /**
+            * Click handler of the add more button. Opens the hidden file input that allows multiple file uploads
+            */
+            function addmore(event) {
+                event.preventDefault();
+                // find hidden file input and click it
+                $multiFile.click();
+            }
+            
+            /**
+            * Click handler for the trash button. Clears the files loaded into the file input on the same row. 
+            * this = the button being clicked
+            */
+            function deleteFile(event) {
+                if(!confirm(deleteConfirmMessage)){
+                    return false;
+                }
+                event.preventDefault();
+                
+                if (this.dataset.newsubindex !== undefined) {
+                    // this is an adhoc submission, so we are going to 'delete' the whole row
+                    // find item in adhocSubmissionsList, set deleted to true, null out the other stuff so we aren't storing
+                    var index = this.dataset.newsubindex;
+                    adhocSubmissions[index].deleted = true;
+                    adhocSubmissions[index].fileObj = null;
+                    adhocSubmissions[index].submission = null;
+                    // find tr in the table and remove from view
+                    var $trToDelete = $j('tr[data-newsubindex=' + index + ']');
+                    if ($trToDelete) {
+                        $trToDelete.remove();
+                    }
+
+                } else {
+                    // this is on an existing submissions, so we will just reset the file input and disable the trash button
+                    var input = $j(this).siblings('input[type=file]');
+                    if (input && input.length > 0) {
+                        input = input[0];
+                        $j(input).parent().find('button.trash').attr('disabled', true);
+                    } else {
+                        return;
+                    }
+                    if (input.files.length > 0) {
+                        // input has file loaded in, so hasn't been saved anywhere yet
+                        input.value = "";
+                        handleFile(input);
+                    } else {
+                        // this submission row has a file saved somewhere, so need to call controller method to delete its file
+                        handleDelete(input);
+                    }
+                }
+            }
+
+            /**
+            * Click handler for the file button. Triggers the click event on the hidden file input on the same row.
+            * this is the button being clicked
+            */
+            function clickFileInput(event) {
+                event.preventDefault();
+                $j(this).next().click(); 
+            }
+
+            /**
+            * Change handler for the multiple fileinput
+            * If the file(s) are valid, then creates a new submission row for each file
+            * this = file input
+            * this.files is FileList object 
+            */
+            function handleMultiFiles() {
+                var files = this.files;
+                if (files && files.length > 0) {
+                    for (var i=0; i<files.length;i++) {
+                        if (!helper.isFileSizeOkay(files[i],defaultFileLocation)) {
+
+                            var maxfileSize = (defaultFileLocation === BLUEBEAM) ? '300MB' : '25MB';
+                            window.alert('File ' + files[i].name + ' is too large. Max file size is ' + maxfileSize);
+                            
+                        } else if (!helper.isFileTypeOkay(files[i],defaultFileLocation)) {
+
+                            window.alert('File ' + files[i].name + ' is invalid file type.');
+                            
+                        } else {
+                            createNewSubmission(files[i]);
+                        }
+                    }
+                }
+            }
+
+            /**
+            * Takes a submission row and creates the html markup and places on the submissions table above the 'add more' button
+            * @param SubmissionWrapper row
+            * @return null
+            */
+            function addSubmissionToPage(row) {
+                
+                var index = row.index; // get 0 based index (last child is add more button);
+                var htmlString = '<tr data-newsubindex="' + index +'">';
+                // 1st cell is name
+                htmlString += '<td><input type="text" value="' + row.submission.Name + '" class="adhoc-submissionName slds-input" data-newsubindex="' + index + '" maxlength="80"/>';
+                // 2nd cell is date, which is blank right now
+                htmlString += '<td><span>N/A</span></td>';
+                // 3rd cell is required, which is false 
+                htmlString += '<td><span class="slds-assistive-text">false</span><div class="checkbox"/></td>'; 
+                // 4th cell is filename, and action buttons
+                htmlString += '<td><span class="filename">' + row.submission.Name + ' </span>';
+                htmlString += '<span class="action slds-float_right">';
+                // trash button 
+                htmlString += '<button class="trash" data-newsubindex="' + index + '">';
+                htmlString += '<span class="slds-assistive-text">trash</span><i class="fa fa-trash" aria-hidden="true"></i>';
+                htmlString += '</button>';
+                // file button
+                htmlString += '<button class="file">';
+                htmlString += '<span class="slds-assistive-text">file</span><i class="fa fa-folder-open" aria-hidden="true"></i>';
+                htmlString += '</button>';
+                // hidden file input
+                htmlString += '<input type="file" id="fileinput ' + index + '" data-newsubindex="' + index + '" class="adhoc-file slds-hide"/></span></td>';
+                htmlString += '</tr>';
+
+                $tbody.children('tr:last').before(htmlString);
+    
+            }
+
+            /**
+            * Change handler for file inputs on adhoc submission rows
+            */
+            function handleAdhocFile() {
+                var input = this;
+                handleFile(input);
+            }
+
+            /**
+            * Change handler for the text input on adhoc submission rows, lets user set the submission's Name
+            */
+            function handleChangeSubName() {
+                var submissionName = this.value;
+                var index = this.dataset.newsubindex;
+                adhocSubmissions[index].submission.Name = submissionName;
+            }
+
+            /**
+            * Takes in an input, and displays the file name (or clears the file name) from the span.filename on the same row.
+            * @param DOMElement input
+            */
+            function handleFile(input) {
+                var fileName = '';
+                var file;
+                var destination = input.dataset.destination;
+                if (input.files && input.files.length > 0) {
+                    file = input.files[0];
+                    fileName = file.name;
+                }
+                if (file) {
+                    if (!helper.isFileSizeOkay(file, destination)) {
+                        window.alert('File ' + fileName + ' is too large.');
+                        return;
+                    } 
+                    if (!helper.isFileTypeOkay(file, destination)) {
+                        window.alert('File ' + fileName + ' is an invalid type.');
+                        return;
+                    }
+                }
+                if (input.dataset.newsubindex !== undefined) {
+                    // need to replace the fileObj stored in adhocSubmissions
+                    var index = input.dataset.newsubindex;
+                    adhocSubmissions[index].fileObj = file;
+                    adhocSubmissions[index].submission.Name = fileName;
+                    // change the displayed name of the submission
+                    var $tr = $j('tr[data-newsubindex=' + index + ']');
+                    $tr.children().eq(0).text(fileName);
+                }
+                var $fileNameInsert = $j(input).parent().siblings('span.filename');
+                $fileNameInsert.text(fileName);
+
+                // enable the trash button now that there's a file on the row
+                if (fileName) {
+                    $j(input).parent().find('button.trash').attr('disabled', false);
+                }
+            }
+
+            /**
+            * Creates a new MUSW__Submission__c record for a file, then adds a new row to the adhocSubmissions list
+            * @param File fileObj
+            */
+            function createNewSubmission(fileObj) {
+
+                var newSub = new sforce.SObject("MUSW__Submission__c"); // namespace is required here
+                newSub.Name = fileObj.name.substring(0,80); // make sure isn't too long for SF name field
+                newSub.MUSW__Required__c = false;
+                newSub.MUSW__BG_File_Location_Type__c = (defaultFileLocation === BLUEBEAM) ? BLUEBEAM : SALESFORCE;
+                newSub[lookupField] = parentId; // link to parent record
+                var newRow = new helper.SubmissionWrapper(newSub, fileObj, adhocSubmissions.length);
+                adhocSubmissions.push(newRow);
+                addSubmissionToPage(newRow);
+            }
+            
+            /**
+            * Click handler for the upload button
+            * Does the following: 1. insert any adhoc submissions. 2. Reads files into Blobs and creates ContentVersion objects
+            * 3. Inserts ContentVersion objects 4. Uploads files to Bluebeam 5. Triggers update of submisison records (setting date to today)
+            * 6. Rerender list of submissions on the page
+            */
+            function startUpload(event) {
+                event.preventDefault();
+                // remove any prior error messages
+                resetMessages();
+                showSpinner();
+
+                // loop through file inputs
+                var $inputs = $j('input.existing-submission');
+                var salesforceDeferred = []; // FileReader Deferred promises for all files being uploaded to salesforce
+                var bluebeamInputs= []; // list of inputs where the file will be sent to bluebeam
+                var submissionPromise = null; // async creating submission records in salesforce
+
+                if (adhocSubmissions.length > 0) {
+                     
+                    // only adhoc submissions that haven't been deleted get added to the list of subsToInsert
+                    var subsToInsert = adhocSubmissions.reduce(function(result, sub){
+                        if (!sub.deleted) {
+                            //submission does not exist yet for ad-hoc upload so delete submission Id field
+                            delete sub.submission.Id; 
+                            result.push(sub.submission);
+                        }
+                        return result;
+                    },[]);
+                    if (subsToInsert && subsToInsert.length > 0) {
+                        submissionPromise = createSubmissions(subsToInsert);
+                    }
+                }
+
+                // after submissions inserted (or immediately if submissionPromise == null)
+                $j.when(submissionPromise).then(function(insertResult){
+                    // match the submission Ids to the local SubmissionWrapper objects, start the FileReader process for each SubmissionWrapper.fileObj
+                    if (insertResult){
+                        adhocSubmissions = adhocSubmissions.filter(function(sub){
+                            return !sub.deleted;
+                        });
+                        for (var i=0;i<insertResult.length;i++){
+                            var res = insertResult[i];
+                            if (res.success === "true" || res.success){
+                                adhocSubmissions[i].submission.Id = res.id;
+                                if (defaultFileLocation === SALESFORCE) {
+                                    // start process of uploading file to salesforce)
+                                    salesforceDeferred.push(helper.getDeferredFileReader(null, adhocSubmissions[i].fileObj, res.id));
+                                } else if (defaultFileLocation === BLUEBEAM) {
+                                    // mock the data structure of the other input HTML elements 
+                                    var input = {
+                                        dataset : {submissionid : adhocSubmissions[i].submission.Id },
+                                        files : [adhocSubmissions[i].fileObj]
+                                    };
+                                    bluebeamInputs.push(input);
+                                }    
+                            } else {
+                                var message = 'Creating new submission for a file you selected failed with this message:  ' + error;
+                                displayErrorMessage(message);
+                                console.log(error);
+                            }
+                        }
+                    }
+                    
+                    // iterate through the existing submissions' file inputs and split by destination
+                    $inputs.each(function(){
+                        if (this.files && this.files.length > 0) {
+                            if (this.dataset.destination === SALESFORCE) {
+                                salesforceDeferred.push(helper.getDeferredFileReader(this, this.files[0]));
+                            } else if (this.dataset.destination === BLUEBEAM) {
+                                bluebeamInputs.push(this);
+                            }
+                        } 
+                    });
+
+                    if (salesforceDeferred.length === 0 && bluebeamInputs.length === 0 && adhocSubmissions.length === 0) {
+                        // no files to upload
+                        hideSpinner();
+                        return;
+                    }
+
+                    if (salesforceDeferred.length === 0 && (bluebeamInputs.length > 0)) {
+                        // only uploading to bluebeam
+                        startBBProcess(bluebeamInputs);
+                    }
+
+                    if (salesforceDeferred.length > 0) {
+                        // once all the FileReader processes are complete
+                        $j.when.apply($j, salesforceDeferred).then(function(val){
+                            // val parameter is a bit odd
+                            // when only deferred is only 1 promise, val is the ContentVersion object
+                            // when deferred is > 1 promise, val is array of the both arguments from 1st resolved promise
+                            // when deferred is only 1 promise, arguments is single deep array
+                            // when deferred is > 1 promise, arguments is array of array of parameters from each resolved promise
+                            // so basically here are doing a bit of parsing of arguments, so that it can be handled consistently
+                            if (val.length !== 2) {
+                                arguments = [arguments];
+                            }
+                            
+                            // arguments is array of arrays. arguments[i][0] => ContentVersion object. arguments[i][1] => submissionId 
+                            var submissionsToUpdate = []; // list of submission.Id that need to be updated with date set to today
+                            var sfFileObjs = []; // list of ContentVersion (salesforce Files) to be inserted
+                            for(var i=0;i<arguments.length;i++) {
+                                sfFileObjs.push(arguments[i][0]);
+                                submissionsToUpdate.push(arguments[i][1]);
+                            }
+                            // insert Files to salesforce
+                            sforce.connection.create(sfFileObjs, {
+                                onSuccess: function(result){
+                                   
+                                    adhocSubmissions = []; // reset for future use
+                                    
+                                    // calls UploadFilesController.setDateOnSubmissions() 
+                                    updateSubmissions(submissionsToUpdate.join(','));
+
+                                    if (bluebeamInputs.length > 0) {
+                                        // now ready to start handling Bluebeam process
+                                        
+                                        startBBProcess(bluebeamInputs);
+                                        
+                                        
+                                    } else {
+                                        // all uploads are done, we can refresh page and hide loading indicator now
+                                        showSuccessMessage();
+                                        hideSpinner();
+                                        location.reload();
+                                    }
+                                },
+                                onFailure: function(error){
+                                    // creating SF files failed. 
+                                    // TODO: rollback - delete adhoc subs
+                                    deleteSubmissions();
+                                    hideSpinner();
+                                    // display error message
+                                    var message = 'Uploading files failed with the following message: ' + error;
+                                    displayErrorMessage(message);
+                                    console.log(error);
+                                }
+                            });
+                            
+                        },
+                            function(error){
+                                // error in the FileReader promises
+                                var message = 'An error occured when trying to upload your files. Please try again or contact your administrator for assistance.';
+                                displayErrorMessage(message);
+                                console.log(error);
+                        });
+                    }
+                }).fail(function(error){
+                    // creating adhoc submissions failed
+                    var message = 'Creating new submissions for the file(s) you selected failed with this message: ' + error;
+                    displayErrorMessage(message);
+                });
+            }
+
+            /**
+            * Inserts list of Submission__c records
+            * @param Submission__c[] submissions
+            * @return Deferred.promise()
+            */
+            function createSubmissions(submissions){
+                var def = $j.Deferred();
+                sforce.connection.create(submissions, {
+                    onSuccess: function(result){
+                        def.resolve(result);
+                    },
+                    onFailure: function(error){
+                        def.reject(error);
+                    }
+                });
+                return def.promise();
+            }
+
+            /**
+             * Rollback the adhoc submissions records on error of inserting files related to those submissions.
+             */
+            function deleteSubmissions(){
+                if (adhocSubmissions.length > 0) {
+                    var idsToDelete = adhocSubmissions.map(function(sub){
+                        return sub.submission.Id;
+                    });
+                    adhocSubmissions = []; // reset for retrying 
+                    // Because delete is a JavaScript keyword, use deleteIds instead of the API call delete.
+                    sforce.connection.deleteIds(idsToDelete, {
+                        onSuccess: function(){
+                            console.log('deleted submissions');
+                        },
+                        onFailure: function(){
+                            console.log('problem deleting submissions');
+                        }
+                    });
+                }
+            }
+
+            /*
+            * Takes all the inputs where destination = bluebeam and get upload Urls for each
+            * @param list of inputs
+            */
+            function startBBProcess(bluebeamInputs){
+                var submissionIds =[]; // submission Ids to send via remoteaction method 
+                var fileNames = []; // fileNames to sent via remote action method
+                var submissionFileObjs = {}; // map the submissionId to the File object
+                
+                $longUpload.show();
+                for (var i=0;i<bluebeamInputs.length;i++) {
+                    var input = bluebeamInputs[i];
+                    var name = input.files[0].name;
+                    fileNames.push(name);
+                    var subId = input.dataset.submissionid;
+                    submissionIds.push(subId);
+                    submissionFileObjs[subId] = input.files[0];
+                }
+
+                helper.getBluebeamUploadUrls(submissionIds, fileNames, parentId)
+                    .done(function(result){
+
+                        if (result.message = "Refresh Pending") {
+                            var retryInterval = 3000;
+                            // retry once in 3s
+                            setTimeout(function(){
+                                helper.getBluebeamUploadUrls(submissionIds, fileNames, parentId, true).done(function(result){
+                                    bbProjectId = result.projectId;
+                                    doBluebeamUploads(submissionFileObjs, result.fileInfos);
+                                }).fail(function(errorMsg){
+                                    displayErrorMessage(errorMsg);
+                                });
+                            }, retryInterval);
+
+                        } else {
+                            adhocSubmissions = [];
+                            bbProjectId = result.projectId;
+                            doBluebeamUploads(submissionFileObjs, result.fileInfos);
+                        }
+                        
+
+                    })
+                    .fail(function(errorMsg){
+                        displayErrorMessage(errorMsg);
+                    });
+
+            }
+            
+            /**
+            * Starts the actual uploading of each file to bluebeam's upload url (aws bucket)
+            * @param submissionFileObjs - key = submission Id, value = js File object
+            * @param fileInfos - list of UploadFilesController.FileVO (contains upload url etc.)
+            *
+            */
+            function doBluebeamUploads(submissionFileObjs, fileInfos) {
+                var bbAJAXRequests = [];
+                
+                // iterate through the fileInfos and create an ajax request for each
+                for (var i=0;i<fileInfos.length;i++) {
+                    var submissionId = fileInfos[i].submissionId;
+                    bbAJAXRequests.push(helper.doAjaxUploadFile(fileInfos[i], submissionFileObjs[submissionId]));
+                }
+
+                $j.when.apply($j, bbAJAXRequests).then(function(){
+                    
+                    // once all files have been uploaded, now have to confirm to bluebeam that they were uploaded
+                    var infos = new helper.BluebeamFileInfoVO(bbProjectId);
+                    infos.fileInfos = fileInfos;
+                    MUSW.UploadFilesController.confirmFileUploads(infos,
+                        function(result,event){
+                            if (event.status) {
+                                // now can refresh the list of submissions on the page and  hide the loading indicator
+                                waitForSubmissionCompletion(Object.keys(submissionFileObjs)).then(function(){
+                                    location.reload();
+                                },function(errorMessage)  {
+                                    console.log(errorMessage);
+                                    displayErrorMessage('Sorry, we were unable to automatically refresh your screen. Please manually refresh your browser window.');
+                                });
+                            } else {
+                                // there was an error confirming files with bluebeam
+                                var message = 'An issue occured when uploading your files, giving the following error: ' + event.message;
+                                displayErrorMessage(message);
+                                console.log(event);
+                            }
+                        }
+                    );
+                }, function(){
+                    // error uploading to aws
+                    var message = 'An issue occured when uploading your files, giving the following error: ' + arguments;
+                    console.log(arguments);
+                    displayErrorMessage(message);
+                })
+            }
+
+
+            function waitForSubmissionCompletion(bluebeamSubmissionIds){
+                var timeoutMessage = 'Timeout when checking bluebeam file upload';
+
+                if(bluebeamSubmissionIds &&  bluebeamSubmissionIds.length <= 0){
+                    return Promise.resolve();
+                }
+
+                var isTimeout = false;
+                //set timeout to be 30s
+                var timeoutPromise = new Promise(function(resolve, reject) {
+                    setTimeout(function(){
+                        isTimeout = true;
+                        reject(timeoutMessage);
+                    }, 30000     );
+                });
+
+                var getIsTimeout = function(){
+                    return isTimeout;
+                }
+                //chaining the checking promise and wait promise together so that the system will keep checking until the check result comes back or timed out
+                var chainedPromises = getTwoChainedPromises(getSubmissionCompletedProm, bluebeamSubmissionIds, getWaitProm, 5000, getIsTimeout);
+
+                return Promise.race([timeoutPromise, chainedPromises]);
+            }
+
+            /*
+            * This function chain and run two promises one after another until one of them is resolved with an {isDone: true} status or isTimeout is true
+            * promise1GetterFun: function defination to get the first promise to chain
+            * promise1Param: paramater to pass into promise1GetterFun
+            * promise2GetterFun: function defination to get the second promise to chain
+            * promise2Param: paramater to pass into promise@GetterFun
+            * isTimeoutFun: the function to get isTimeOut
+            */
+            function getTwoChainedPromises(promise1GetterFun, promise1Param,  promise2GetterFun, promise2Param, isTimeoutFun){
+                var promise1 = promise1GetterFun(promise1Param);
+                var promise2 = promise2GetterFun(promise2Param);
+                return promise1.then(function(result){
+                    if(result.isDone || isTimeoutFun()){
+                        return Promise.resolve();
+                    }else{
+                        return getTwoChainedPromises(promise2GetterFun, promise2Param, promise1GetterFun, promise1Param, isTimeoutFun);
+                    }
+                }, function(){
+                    return Promise.reject();
+                });
+            }
+
+            function getWaitProm(timeToWait){
+                var waitTime = new Promise(function(resolve, reject){
+                    setTimeout(resolve,timeToWait,{isDone:false});
+                })
+                return waitTime;
+            }
+
+            function getSubmissionCompletedProm(bluebeamSubmissionIds){
+                var connectionErrorMessage = 'Connection error happens when checking bluebeam submission.';
+                return new Promise(function(resolve, reject){
+                    var result =  sforce.connection.query('Select count() From MUSW__Submission__c Where MUSW__Link__c != null AND MUSW__Link__c != \'\' AND Id in (\'' + bluebeamSubmissionIds.join('\',\'') + '\')');
+                    if(result['done']==='true' && result['size'] && parseInt(result['size']) != 0){
+                        resolve({
+                            isDone : true
+                        });
+                    }else if(result['done']==='true' && result['size'] && parseInt(result['size']) == 0){
+                        resolve({
+                            isDone : false
+                        });
+                    }else {
+                        reject(connectionErrorMessage);
+                    }
+                });
+            }
+
+            function handleDelete($input) {
+                showSpinner();
+                var destination = $input.dataset.destination;
+                var submissionId = $input.dataset.submissionid;
+
+                MUSW.UploadFilesController.deleteFilesRelatedToSubmission(
+                    submissionId, destination,
+                    function(result,event) {
+                        if (event.status) {
+
+                            // files deleted, now need to update the view
+                            var subId = result;
+                            // find the tr for the submission
+                            var $tr = $j('tr[data-submissionid=' + subId + ']');
+                            $tr.find('.submission-date').text('N/A');
+                            $tr.find('.filename').text(null);
+                            hideSpinner();
+
+                        } else {
+                            var message = 'An error occured while deleting the file. ' + event.message;
+                            displayErrorMessage(message);
+                            console.log(event);
+                        }
+                    }
+                );
+            }
+
+            function showSuccessMessage() {
+                // disable trash and file buttons
+
+                var $trash = $j('button.trash');
+                $trash.attr('disabled', true);
+                var $file = $j('button.file');
+                $file.attr('disabled', true);
+
+                // show success message
+                $toast.children('.slds-notify_toast').addClass('slds-theme_success');
+                var message = "Upload Succeeded.";
+                $messageInsert.html(message);
+                $toast.show();
+            }
+
+            /** 
+            * Hide (or show) the loading indicator
+            */
+            function hideSpinner() {
+                $longUpload.hide();
+                $spinner.hide();
+                
+            } 
+            function showSpinner() {
+                $spinner.show();
+            }
+
+            /**
+             * Display an error message on page, and hide the loading spinner.
+             * @param String message
+             */
+            function displayErrorMessage(message) {
+                resetMessages();
+                $toast.children('.slds-notify_toast').addClass('slds-theme_error');
+                $messageInsert.html(message);
+                $toast.show();
+                hideSpinner();
+                
+            }
+
+            function resetMessages() {
+                $toast.hide();
+                $toast.children('.slds-notify_toast').removeClass('slds-theme_error').removeClass('slds-theme_success').removeClass('slds-theme_warning');
+                $messageInsert.html(null);
+            }
+
+            function goBack(event) {
+                event.preventDefault();
+                helper.handleGoBack(retUrl);
+            }
+
+        // Uses Font Awesome Icons by Dave Gandy - http://fontawesome.io
+        </script>
+</apex:page>
