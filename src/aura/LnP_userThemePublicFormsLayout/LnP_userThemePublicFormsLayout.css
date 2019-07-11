@@ -1,0 +1,562 @@
+@font-face{
+    font-family:'NotoSerif-Bold'; 
+    src:url('/lightningwashington/resource/Noto_Serif/Noto_Serif/NotoSerif-Bold.ttf');
+}
+@font-face{
+    font-family:'NotoSerif-Regular';
+    src:url('/lightningwashington/resource/Noto_Serif/Noto_Serif/NotoSerif-Regular.ttf');
+}
+@font-face{
+    font-family:'SourceSansPro-Regular';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+}
+@font-face{
+    font-family:'SourceSansPro-SemiBold';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-SemiBold.ttf');
+}
+@font-face{
+    font-family:'NotoSansTC-Regular';
+    src:url('/lightningwashington/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
+}
+@font-face{
+    font-family:'SourceSansPro-Italic';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Italic.ttf');
+}
+@font-face{
+    font-family:'Merriweather-Light';
+    src:url(/lightningwashington/resource/Merriweather/Merriweather-Light.ttf); /*1560421450000*/
+}
+@font-face{
+    font-family:'Merriweather-Regular';
+    src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf); /*1560421450000*/
+}
+@font-face{
+    font-family:'PublicSans-Regular';
+    src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf); /*1560421450000*/
+}
+@media t(mqSmall){
+    .THIS .body{
+        width: 100%;; 
+    }
+    .THIS .side-bar{
+        width: 100%;  
+    }
+    .THIS .slds-grid .field-size {
+        display: block;
+        width: 100%;
+    }
+    .THIS .slds-grid .multi-field:nth-child(odd){
+        margin-right:0;
+    }
+    .THIS .slds-grid .address{
+        width:100%;
+    }
+    
+    .THIS .button-section .pull-right{
+        margin-left:1%;
+    }
+    .THIS .content-wrapper{
+        margin:0 .5rem;
+    }
+    .THIS .background-section .sentences{
+        height:auto;
+    }
+    .THIS .personal-info .background-section{
+        padding:0;
+    }
+    .THIS .content-wrapper .buttonpos{
+        margin: 10% 0;
+        padding:0;
+        display:flex;
+        align-items:flex-end;
+        justify-content:flex-end;
+    }
+    .THIS .button-section .back-button{
+        margin-right:22%;
+    }
+    .THIS .button-section .slds-m-left_medium{
+        margin-left:0;
+    }
+    .THIS .personal-info .ques .quesclr{
+        height:auto;
+    }
+    .THIS .ques{
+        width:100%;
+    }
+    .THIS .personal-info .field-item{
+        padding:0;
+    } 
+    .THIS table.slds-table_bordered tbody td{
+        border-right:none;
+    }
+    .THIS .page-width .field-item .slds-form-element__control,.THIS .page-width .field-size .slds-form-element__control,.THIS .portal-registration-form-container .field-item .slds-form-element__control,.THIS .personal-info .field-size .slds-form-element__control{
+        width:100%;
+     }
+}
+
+.THIS {
+    min-height:100vh;
+}
+.THIS .themeContainer{
+    min-height:calc(100vh - 150px);
+}
+.THIS .body{
+    width: 75%;
+    background: #F0F0F0; 
+}
+.THIS .full-body{
+    width: 100%;
+}
+.THIS .side-bar{
+    width: 25%;  
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .THIS .body{
+        width: 100%;; 
+    }
+    .THIS .side-bar{
+        width: 100%;  
+    }
+}
+
+.THIS.theme-background{
+    background-color: token(white);
+    color: token(blue);
+}
+.THIS .button-section button {
+    background-color :token(primary);
+    border-radius: 5px;
+}
+/*added by sanjana*/
+.THIS .address-button, .THIS .slds-button_neutral{
+    height: 42px;
+    border-radius: 5px;
+    border: solid 2px #0872b9;
+    background-color: #ffffff;
+    color: token(primary);
+    font-family: token(publicSansfontfamily);
+    font-size: 15px;
+    font-weight: token(btnfontweight);
+    max-height: 3rem;
+}
+.THIS .cancel-button,.THIS .add-button {
+    width: 111px;
+    height: 42px;
+    border-radius: 5px;
+    border: solid 2px #0872b9;
+    background-color: #ffffff;
+    font-family: token(publicSansfontfamily);
+    font-size: 15px;
+    font-weight: token(btnfontweight);
+}
+.THIS .back-button{
+    width: 130px;
+    height: 42px;
+    border-radius: 5px;
+    border: solid 2px #0872b9;
+    background-color: #ffffff;
+    font-family: token(publicSansfontfamily);
+    font-size: 15px;
+    font-weight: token(btnfontweight);
+}
+
+.THIS .next-button {/* next or continue button*/
+    width: 130px;
+    height: 42px;
+    font-family: token(publicSansfontfamily);
+    font-size: token(btnfontsize);
+    font-weight:15px;
+    background-color :token(primary);
+    border-radius: 5px;
+    color:token(white);
+}
+/*fields label and input style*/
+.THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
+,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label{
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
+    line-height:1;
+    font-weight: token(btnfontweight);
+    color: token(LnGFormTitleColor);
+    margin:0px;
+    padding:0px 0px 5px 0px;
+}
+
+.THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input{
+    padding:0px 12px;
+    box-sizing:border-box;
+    border: solid 1px #5b616b;
+    box-shadow: none;
+    height: 42px;
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
+    font-weight: token(btnfontweight);
+    font-style: token(txtfontstyle);
+    color: token(fieldclr);
+    background-color:token(white);    
+}
+.THIS .field-size {
+    display: block;       
+    padding: 0px;
+    margin: 0 0 1.5rem;
+    box-sizing: border-box;
+}
+.THIS .field-item .slds-form-element__control{
+    width:50%;
+}
+.THIS .field-size .slds-form-element__control{
+    width:50%;
+}
+.THIS .field-item.review-item .slds-form-element__control{
+    width:auto; 
+}
+/*.THIS .field-size .slds-form-element_stacked:not([class*="slds-size"]){
+    width:auto;
+    flex-basis:auto;
+} */
+.THIS .screen-one .section-header{/*license lookup */
+    font-family: token(publicSansfontfamily);
+    font-size: token(btnfontsize);
+    line-height:1;
+    font-weight: token(txtfontweight);
+    color: token(fieldclr);
+    padding-bottom: 5px;
+}
+.THIS .licenseinp input::placeholder,.THIS .licensetab input::placeholder,.THIS .businesstab input::placeholder,.THIS .breadcumb a,.THIS .complaintSummary::placeholder,.THIS .slds-file-selector__text,.THIS .placeholTxt input::placeholder,.THIS .field-style input::placeholder,.THIS .userpswd1 input::placeholder{
+    height: 22px;
+    font-family: token(publicSansfontfamily);
+    font-size: token(senfontsize);
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    color: token(placeholderColor);
+}
+.THIS .sub-header,.THIS .sub-section,.THIS .subheader span{
+    font-family: token(publicSansfontfamily);
+    font-size: token(senfontsize);
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    color: token(subHeader);
+}
+.THIS .page-content .slds-checkbox .slds-form-element__label{
+  color:t(LnGFormTitleColor);
+  font-family: token(btnfontfamily);
+  font-size: t(senfontsize);
+  font-weight: t(txtfontweight);
+  font-style: t(txtfontstyle);
+  line-height: normal;
+}
+.THIS .page-content .slds-checkbox .slds-checkbox_faux{
+    border:1px solid #71767a;
+}
+.THIS select{
+    border: 1px solid #5b616b;
+    height:42px;
+    
+}
+.THIS .slds-page-header{
+    color: t(LnGFormTitleColor);
+    border-radius: 3px;
+    background: t(white);
+    height: 36px;
+    font-size: 20px;
+    font-weight:600;
+    font-style: token(txtfontstyle);
+    line-height: normal;
+}
+
+.THIS .text-style,.THIS .text-style-val,.THIS .field-style,.THIS .field-style-val{
+    font-family: token(publicSansfontfamily);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(headerItemColor);
+    font-size:15px;
+    display:inline-block;
+}
+.THIS .text-style,.THIS .field-style{
+    font-weight: t(btnfontweight);
+   
+}
+.THIS .text-style-val,.THIS .field-style-val{
+    font-weight: t(txtfontweight);
+  
+}
+.THIS *{
+    font-family: token(publicSansfontfamily);
+}
+
+.THIS .text-size{
+    font-family: t(publicSansfontfamily);
+    font-size: 14px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    text-align: center;
+    color: t(headerItemColor);
+    
+}
+.THIS .btn-bg{
+    background-color:t(primary);
+    color:#fffffe;
+    height:42px;    
+}
+
+/*.THIS select option{ 
+color: token(fieldclr) 
+}
+.THIS select option:first-child{
+color: token(placeholderColor);
+}*/
+.THIS .licenseinp .slds-input,.THIS .licensetab .slds-input,.THIS .businesstab .slds-input,.THIS .page-content .slds-input,.THIS .screen-one .section-form-container .slds-input{
+    border: 1px solid #5b616b;
+    height:42px;
+    box-shadow:none;
+    border-radius:unset;
+}
+/*.THIS .screen-one .slds-tabs_default__nav li:nth-child(n+2){
+    width:50%;
+    text-align:center;
+    padding:0;
+}    */
+.THIS .screen-two .slds-form-element__label,.THIS .screen-two .slds-form-element__control{
+    font-family: token(publicSansfontfamily);
+    font-size: token(senfontsize);
+    font-weight: token(btnfontweight);
+    font-style: token(txtfontstyle); 
+    line-height: 1.27;
+    color:token(LnGFormTitleColor);
+}
+.THIS .screen-two .slds-form-element__label{
+    padding:0;
+    max-width:100%;
+}
+.THIS .screen-two .btnnrml{
+    font-weight: token(txtfontweight);
+} 
+.THIS .screen-two .slds-m-bottom_medium .sub-header{
+    font-family: t(publicSansfontfamily);
+    font-size: 22px;
+    font-weight: 500;
+    font-style: t(txtfontstyle);
+    line-height: normal;
+     color:token(LnGFormTitleColor);
+}
+.THIS .slds-tabs_default__nav li a{
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    color: token(licensetxt);
+}
+.THIS .slds-tabs_default__nav .slds-is-active{
+    
+    color: token(licensetxt);
+}
+.THIS .modify-btn{
+    height: 29px;
+    font-family: token(publicSansfontfamily);
+    font-size: 16px;
+    font-weight: 500;
+    font-style: token(txtfontstyle);
+    line-height: 2.31;
+    color: token(primary);
+    border: none;
+    box-shadow: none;
+    text-decoration: underline;
+    padding-bottom:3rem;
+}
+.THIS .qfield-margin{
+    margin-bottom:0
+}
+/*.THIS .multi-field:nth-child(odd), .THIS .field-margin {
+    margin-right:10%;
+} */
+/* review and submit headings*/
+.THIS .fileupload .slds-form-input_label,.THIS .headings{
+    height: auto;
+    font-family: token(publicSansfontfamily);
+    font-size: token(btnfontsize);
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    color: token(fieldclr);
+}
+/* review and submit declaration statements*/
+.THIS .sentences,.THIS .field-item .slds-text-longform{
+    height: auto;
+    font-family: token(publicSansfontfamily);
+    font-size: token(senfontsize);
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    color: token(subHeader);
+}
+/* license information ques*/
+.THIS .questions .slds-form-element__legend{
+    font-family: token(publicSansfontfamily);
+    font-size: token(senfontsize);
+    font-weight: token(txtfontweight);;
+    font-style: token(txtfontstyle);
+    color: token(subHeader);
+    
+}
+.THIS .underline, .THIS .underlineblk .slds-input{
+    border-bottom:0.5px solid #1b1c1a;
+    background: #ffffff;
+}
+.THIS .personal-info .slds-input{
+    /* border-bottom:0.5px solid #1b1c1a*/
+    background: #ffffff;
+    box-shadow:none;
+    
+}
+.THIS .ques .quesclr{
+    color:token(LnGPlaceholderText);
+    height: auto;
+    font-family: token(publicSansfontfamily);
+    font-size: token(senfontsize);
+    font-weight: token(txtfontweight);;
+    font-style: token(txtfontstyle);
+    line-height: normal;
+}
+.THIS .slds-select{
+    border-radius:unset;
+}
+/* common style for tables */
+.THIS .slds-hint-parent div{
+    
+    font-family: t(publicSansfontfamily);
+    font-size: 16px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: 1.63;
+    color:token(LnGFormTitleColor);
+}
+.THIS .slds-th__action{
+    height: 18px;
+    font-family: token(publicSansfontfamily);
+    font-size: 13px;
+    font-weight: t(btnfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color:token(LnGFormTitleColor);
+    box-shadow:none;
+}
+.THIS .slds-table_bordered tbody td, .THIS .slds-table_bordered tbody th{    
+    /*border-right:solid 1px t(gray);
+    border-top: solid 1px t(gray);*/
+}
+.THIS .slds-table_header-fixed_container::before{
+    border-bottom:none;
+}
+.THIS .slds-table_bordered.slds-table {
+    border-color:#5b616b;         
+}
+.THIS .slds-table_bordered.slds-table > thead > th{
+    background-color:#eaeaea;
+}   
+.THIS .slds-table_bordered tbody tr > td:last-of-type,.THIS .slds-table_bordered tbody tr:first-child > td:last-of-type{
+    border-right:none;
+}
+.THIS .slds-table_bordered thead th div{
+    color:t(fieldclr);
+    font-size:	13px;
+}
+.THIS .slds-table thead th{
+    background-color:t(headerclr);
+}
+/* common style for tabs */
+.THIS .slds-tabs_default__link{
+    color:t(licensetxt);
+    font-size:15px;    
+}
+.THIS .slds-tabs_default__item{    
+  
+    padding:0.25rem 2.5rem;
+}
+.THIS .table-scroll {
+    max-width:100%;
+    max-height:100%;
+    overflow:auto;
+}
+.THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
+    display:none;
+} 
+.THIS .slds-tabs_default__item.slds-is-active{
+    
+    font-weight: token(btnfontweight);
+    color:t(fieldclr);   
+    border-bottom: solid 2px #0071bc;
+
+}
+.THIS .slds-tabs_default__item.slds-is-active .slds-tabs_default__link{
+   
+    text-decoration:none; 
+}
+.THIS .slds-tabs_default__item .slds-tabs_default__link{
+    font-family: t(publicSansfontfamily);
+    font-size: 1rem;    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.THIS .slds-tabs_default__link[tabindex="0"]:focus{
+    text-decoration:none;
+}
+.THIS .main-content .contentRegion{
+    padding:0;
+}
+/*common style for tabs */
+.THIS .slds-tabs_default__item{    
+    border : solid 1px t(actionPanelBG);
+    border-top-left-radius : 4px; 
+    border-top-right-radius : 4px; 
+    padding:0.25rem 2.5rem;
+}
+.THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
+    display:none;
+}
+.THIS .slds-tabs_default__item.slds-is-active{
+    background:t(primary);
+    color:t(LnGWhite);
+}
+.THIS .slds-tabs_default__item.slds-is-active .slds-tabs_default__link{
+    color:t(LnGWhite);
+    text-decoration:none;
+}
+.THIS .slds-tabs_default__item .slds-tabs_default__link{   
+    font-size: 1rem;    
+    color: t(actionPanelBG);
+    display:flex;
+    align-items:center;
+}
+
+/*common style for tabs end*/
+@media only screen and (max-width:767.9px){
+    .THIS .slds-tabs_default__item{
+        padding: 0 .75rem;
+    } 
+    .THIS .cancel-button,.THIS .next-button{
+        display:block;
+        width:100%;
+        margin-bottom:6px;
+    }
+    .THIS .next-button{
+        margin-left:0;
+    }
+    .THIS .alignRight{
+        margin:0 auto;
+    }
+    .THIS .btnAlign{
+        padding:1rem;
+    }
+
+    .THIS .divBox .slds-tabs_default__overflow-button .slds-dropdown-trigger .slds-button{
+    font-family: t(publicSansfontfamily);
+    font-size: 1rem;    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:t(black);
+    }
+}

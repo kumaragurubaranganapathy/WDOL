@@ -1,0 +1,71 @@
+@font-face{
+    font-family:'NotoSerif-Bold';
+    src:url('/lightningwashington/resource/Noto_Serif/Noto_Serif/NotoSerif-Bold.ttf');
+}
+@font-face{
+    font-family:'NotoSerif-Regular';
+    src:url('/lightningwashington/resource/Noto_Serif/Noto_Serif/NotoSerif-Regular.ttf');
+}
+@font-face{
+    font-family:'SourceSansPro-Regular';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+}
+@font-face{
+    font-family:'SourceSansPro-SemiBold';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-SemiBold.ttf');
+}
+@font-face{
+    font-family:'NotoSansTC-Regular'; 
+    src:url('/lightningwashington/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
+}
+@font-face{
+    font-family:'SourceSansPro-Italic';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Italic.ttf');
+}
+@font-face{
+    font-family:'Merriweather-Regular';
+    src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf); /*1560421450000*/
+}
+.THIS .header{
+    width:100%;
+}
+.THIS .main-content {
+    min-height:calc(100vh - 86px);
+}
+.THIS .main-content .contentRegion{
+    padding:0;
+}
+/*common style for table */
+.THIS .slds-table thead th{
+    background-color:#eaeaea;
+}
+/*common style for table */
+/*common style for tabs */
+.THIS .slds-tabs_default__item{    
+    border : solid 1px t(actionPanelBG);
+    border-top-left-radius : 4px; 
+    border-top-right-radius : 4px; 
+    padding:0.25rem 2.5rem;
+}
+.THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
+    display:none;
+}
+.THIS .slds-tabs_default__item.slds-is-active{
+    background:t(primary);
+    color:t(LnGWhite);
+}
+.THIS .slds-tabs_default__item.slds-is-active .slds-tabs_default__link{
+    color:t(LnGWhite);
+    text-decoration:none;
+}
+.THIS .slds-tabs_default__item .slds-tabs_default__link{
+    font-family: t(btnfontfamily);
+    font-size: 1rem;    
+    color: t(actionPanelBG);
+    display:flex;
+    align-items:center;
+}
+.THIS .slds-tabs_default__overflow-button{
+    display:none;
+}
+/*common style for tabs end*/

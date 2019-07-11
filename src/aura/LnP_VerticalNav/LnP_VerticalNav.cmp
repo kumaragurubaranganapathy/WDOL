@@ -1,0 +1,31 @@
+<!--@AUTHOR: Sanghmitra Sahu/Tuhin Mazumder
+@Date: 01-Oct-2018 
+
+Description: Lightning component created for Side Navigation for Dashboard Page. 
+
+MODIFICATION LOG:
+DEVELOPER                          DATE                     DESCRIPTION
+================================================================================
+Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
+================================================================================= -->
+<aura:component extends="forceCommunity:navigationMenuBase">
+    <aura:attribute name="menuList" type="List"/>
+    <aura:attribute name="activeMenu" type="String"/>
+    <aura:attribute name="showBurgerIconList" type="Boolean" default="false"/>
+    
+	<aura:handler event="c:LnP_VerticalNavEvent" action="{!c.handleApplicationEvent}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+   <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+       <ul class="{!(v.showBurgerIconList==true)?'show-nav':'hide-nav'}">
+           <aura:iteration items="{!v.menuList}" var="item">
+               <li class="{!(v.activeMenu==item.label? 'active-menu' : '')+' slds-navigation-list--vertical__action b-bottom'}">
+                   <a href="{!item.target}" class=" slds-text-link--reset">
+                       <img src="{!$Resource.delawareSVGs +'/Icons/'+ item.icon}" class="" alt="{!item.label}" />
+                       {!item.label}
+                   </a>
+               </li>
+           </aura:iteration>
+       </ul>
+   </div>
+</aura:component>

@@ -1,0 +1,63 @@
+<!-- LnP_ChildRowCmp -->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- Child Lightning Component for Create New Row Instance-->
+    
+    <!-- attributes -->
+    <aura:attribute name="depositRec" type="MUSW__Deposit__c" default= "{'sobjectType':'MUSW__Deposit__c',
+                                                                        'Amount__c': '',
+                                                                        'Form_number__c':'',
+                                                                        'wadol_Program_Type__c':''
+                                                                        }"/>
+    
+    <aura:attribute name="industryMap" type="Map"/>   
+    <aura:attribute name="formnum" type="Map"/>   
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:attribute name="printDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="defaultProgramType" type="String" access="public"  />
+    
+<!-- handlers -->
+    <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    
+    <!-- Table Row -->   
+    <tr class="slds-text-title_caps">
+        <td> 
+            {!'00' + (v.rowIndex + 1)}
+        </td>
+        <td>
+            <aura:if isTrue="{!v.rowIndex == 0}">
+                <lightning:select aura:id="programType" value="{!v.depositRec.wadol_Program_Type__c}" name="programType" onchange="{!c.enablePrintButton}" >
+                    <option value="">Select an Option</option>
+                    <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
+                        <option value="{!ind.value}" selected="{! if(v.defaultProgramType == ind.value,true,false)}">{!ind.value}</option> 
+                    </aura:iteration>
+                </lightning:select>
+                <aura:set attribute="else">
+                    <lightning:select aura:id="programType" value="{!v.depositRec.wadol_Program_Type__c}" name="programType" onchange="{!c.enablePrintButton}" >
+                        <option value="">Select an Option</option>
+                        <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">
+                            <option value="{!ind.value}">{!ind.value}</option> 
+                        </aura:iteration>
+                    </lightning:select>
+                </aura:set>
+            </aura:if>
+            
+        </td>
+        <td>
+            <lightning:select  aura:id="formNumber"  name="formNumber" value="{!v.depositRec.Form_number__c}" onchange="{!c.enablePrintButton}" >
+                <option value="">Select an Option</option>
+                <aura:iteration items="{!v.formnum}" var="ind" indexVar="key">
+                    <option value="{!ind.value}" >{!ind.value}</option> 
+                </aura:iteration>
+            </lightning:select>
+        </td>
+        <td>
+            
+            <lightning:input aura:id="amount" name="amount" value="{!v.depositRec.Amount__c}" 
+                             type="number" formatter="currency" step="0.01" onchange="{!c.enablePrintButton}"></lightning:input>
+        </td>
+        <td>          
+                <lightning:button disabled="{!v.printDisabled}" variant="brand" label="PRINT" onclick="{!c.AddNewRow}"/>
+        </td> 
+    </tr>
+</aura:component>

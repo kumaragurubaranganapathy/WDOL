@@ -1,0 +1,87 @@
+<aura:component controller="LnP_ProgramType" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,lightning:actionOverride,flexipage:availableForRecordHome,force:hasRecordId" access="global">    
+    <aura:attribute name="paymentType" type="MUSW__Receipt__c" default= "{'sobjectType': 'MUSW__Receipt__c',                                                                         
+                                                                         'MUSW__Check_Number__c' : '', 
+                                                                         'MUSW__Amount_Tendered__c' : ''
+                                                                         }"/>
+    <aura:attribute name="paymentMethodMap" type="Map"/>
+    <aura:attribute name="receiptDetails" type="Date" />   
+    <aura:attribute name="isDisabled" type="Boolean" default="true" />
+    
+     <aura:attribute name="receiptList" type="List"/>
+     <aura:attribute name="receiptRec" type="MUSW__Receipt__c" />    
+     <aura:attribute name="insertedReceiptList" type="List" access="public"  />  
+    
+    <aura:attribute name="stepNumber" type="String" access="public"/>
+    
+    <!-- added by rishap -->
+    <aura:attribute name="numOfPaymentSources" type="Integer" access="public" default="0"/>
+    <aura:attribute name="paymentSourceTotal" type="Integer"  access="public" default="0" />
+     <aura:attribute name="customerEnvelopeRec" type="Customer_Envelope__c" access="public"/> 
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="AddRowEvt" event="c:AddNewRowEvt" action="{!c.addNewRow_}"/>
+    <aura:registerEvent name="toastEvt" type="c:LnP_ToastMessage"/> 
+    
+    <!-- spinner logic -->
+    <aura:attribute name="showSpinner" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.showSpinner}">
+        <div class="slds-spinner_container">
+            <lightning:spinner aura:id="spinner" variant="brand" size="medium"/>
+        </div>
+    </aura:if>
+    
+    <lightning:card>
+        <lightning:layout class="slds-align_absolute-center" >
+            <div><lightning:input disabled="true"  label="Validation Number" value="{!v.customerEnvelopeRec.Validation_number__c}"/></div>&nbsp;
+            <div><lightning:input  aura:id="numOfPaymentSources" disabled="true" label="Number of Payment Sources" value="{!v.numOfPaymentSources}" /></div>&nbsp;
+            <div><lightning:input  disabled="true" label="Number of Documents" /></div>
+        </lightning:layout>
+        <lightning:layout class="slds-align_absolute-center" >
+            <div><lightning:input disabled="true"  label="Date" value="{!v.customerEnvelopeRec.Date_Today_s__c}"/></div>&nbsp;
+            <div><lightning:input  aura:id="paymentSourceTotal"  disabled="true" label="Payment Source Total" value="{!v.paymentSourceTotal}" /></div>&nbsp;
+            <div><lightning:input  disabled="true" label="Document Total" /></div>
+        </lightning:layout><br/>
+        
+        
+        <!-- rishap's new component -->
+        <!--Table Part-->   
+        <lightning:layout >        
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer"> 
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Sequence Number">Sequence Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Program Type">Payment Method</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Form Number">Payment Method Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Amount">Amount</div>
+                        </th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <aura:iteration items="{!v.receiptList}" var="item" indexVar="index">
+                        <c:LnP_PaymentSourcesChildRowCmp receiptRec="{#item}" rowIndex="{!index}" paymentMethodMap="{!v.paymentMethodMap}" />
+                        <br/>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <br/>
+        </lightning:layout>
+       
+        <lightning:layout >
+            <div class="slds-col slds-align_absolute-center slds-m-top_small">
+                
+                <lightning:button variant="brand" label="BACK" onclick="{! c.goToPaymentSourcePage}"/>
+                <lightning:button variant="brand" label="CANCEL" onclick="{!c.gotoListView}"/>
+                <lightning:button disabled="{!v.isDisabled}" aura:id="test" variant="brand" label="NEXT" onclick="{! c.gotoURL }"></lightning:button>
+            </div>
+        </lightning:layout>
+    </lightning:card>
+    
+</aura:component>

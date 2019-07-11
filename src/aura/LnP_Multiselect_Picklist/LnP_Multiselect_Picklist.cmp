@@ -1,0 +1,56 @@
+<!--*******************************************************************
+COMPONENT NAME: LnP_Multiselect_Picklist.cmp
+DESCRIPTION: Re-usable component for using a Multi-select picklist with pills.
+
+@AUTHOR: Kojashree
+@Date: 08-Jun-2017
+
+*********************************************************************-->
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="options" type="Object[]" default="[{Name: 'Option 1', isSelected: true}, {Name: 'Option 2', isSelected: false}, {Name: 'Option 3', isSelected: true} , {Name: 'Option 4', isSelected: false}]" />
+    <aura:attribute name="isOpen" type="Boolean" default="false" />
+    <aura:attribute name="singleSelect" type="Boolean" default="false" />
+    <aura:attribute name="showPills" type="Boolean" default="true" />
+    <aura:attribute name="showDropdown" type="Boolean" default="true" />
+    <aura:attribute name="multiselectLabel" type="String" default="Multiselect Picklist" />
+    <aura:attribute name="optionID" type="String" />
+    <aura:attribute name="listItemClass" type="String" default="slds-listbox__item" />
+    <aura:attribute name="seloptionID" type="String" />
+    <aura:attribute name="optionsSelected" type="String" default="" />
+    <aura:attribute name="customPlaceholder" type="String" default="null"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.options}" action="{!c.doInit}" />
+    
+    <div class="slds-clearfix">
+        <aura:if isTrue="{!v.showDropdown}">
+            <div class="slds-form-element slds-float--left slds-p-right--small select-box">
+                <div class="slds-form-element__control">
+                    <div class="slds-combobox_container slds-size_small">
+                        <div class="{!v.isOpen == true ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open' : 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger--click slds-combobox-picklist'}" aria-expanded="true">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" data-attr="phone" onclick="{!c.toggleOpen}">
+                                <!--<label class="slds-assistive-text">{!v.multiselectLabel}</label>-->
+                                <input type="text" class="{!($Browser.isIPhone == true) ? 'slds-input slds-combobox__input events-none placeholTxt' : 'slds-input slds-combobox__input placeholTxt'}" data-attr="notIphone" aria-label="{!v.multiselectLabel}" onclick="{!c.toggleOpen}" aria-activedescendant="{!v.seloptionID}" aria-controls="listbox-unique-id" autocomplete="off" placeholder="{!v.customPlaceholder=='null' ? 'Select an option' : v.customPlaceholder }" readonly="true" value="{!v.optionsSelected}" onkeydown="{!c.toggleOpen}" onblur="{!c.closePicklist}" />
+                                <!--<c:svgIcon svgPath="{!$Resource.ISD_LDSIcons + '/utility-sprite/svg/symbols.svg#chevrondown'}" containerClass="slds-input__icon slds-input__icon_right" category="utility" size="xx-small" name="chevrondown" class="icon-chevron" />-->
+                            	<lightning:icon iconName="utility:chevrondown" size="xx-small" class="icon-chevron slds-input__icon slds-input__icon_right" />
+                            </div>
+                            <div id="listbox-unique-id" class="listbox-wrapper" aura:id="listOptions" aria-label="Multi-select Picklist">
+                                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid ul-listbox" role="presentation" >
+                                    <aura:iteration items="{!v.options}" var="o" indexVar="indx">
+                                        <c:LnP_Multiselect_PicklistItem singleSelectitem="{!v.singleSelect}" itemObj="{!o}" options="{!v.options}" isOpen="{!v.isOpen}" optionID="{!indx}" seloptionID="{!v.seloptionID}" optionsSelected="{!v.optionsSelected}" closePicklist="{!c.closePicklist}" listItemClass="{!v.listItemClass}" />
+                                    </aura:iteration>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.showPills}">
+            <div class="slds-float--left parent-pill">
+                <aura:iteration items="{!v.options}" var="o" indexVar="indx">
+                    <c:LnP_LightningPillLDS class="{! 'slds-m-right--x-small custom-pill' + ((o.isSelected) ? ((indx == 0) ? ' pill-padding-btm' : '') : ' slds-hide')}" label="{!o.Name}" onremove="{!c.handleRemoveOnly}" name="{!indx}"/>
+                </aura:iteration>
+            </div>
+        </aura:if>
+    </div>
+</aura:component>
