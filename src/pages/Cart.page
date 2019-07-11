@@ -21,13 +21,14 @@
 <apex:commandbutton action="{!cancel}" value="Back" immediate="true"/>
 </apex:pageblockbuttons -->
             
+            <!---
             <apex:outputPanel id="totalPaymentPanel">
                 <apex:pageBlockSection columns="2" rendered="{!!isPortalUser}">
                     <apex:outputText label="Total Outstanding Balance" value="${!totalSelectedOutstanding}" id="totalOutstanding" style="font-size:150%;font-weight:bold;" />
                     <apex:outputText label="Total Payment Amount" value="${!totalPayment}" id="totalPayment" style="font-size:150%;font-weight:bold;" />
                 </apex:pageBlockSection>
             </apex:outputPanel>            
-            
+            --->
             
             <apex:tabPanel switchType="client" value="{!activeTab}" id="tab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab" rendered="{!feeVOs.size >= 0 || invoiceVOs.size >= 0}">
                 
@@ -282,6 +283,13 @@
                 <apex:variable var="index" value="{!0}"/>
                 <apex:tab label="Checkout" id="checkout" name="checkout" disabled="{!(activeTab != 'checkout' && activeTab != 'review') || processSuccessful }" onTabEnter="checkoutJS(getUnselectedItems());">
                     
+                    <apex:outputPanel id="totalPaymentPanel">
+                        <apex:pageBlockSection columns="2" rendered="{!!isPortalUser}">
+                            <apex:outputText label="Total Outstanding Balance" value="${!totalSelectedOutstanding}" id="totalOutstanding" style="font-size:150%;font-weight:bold;" />
+                            <apex:outputText label="Total Payment Amount" value="${!totalPayment}" id="totalPayment" style="font-size:150%;font-weight:bold;" />
+                        </apex:pageBlockSection>
+                    </apex:outputPanel>  
+                            
                     <apex:outputPanel rendered="{!isPortalUser}">
                         <p>Pay with a credit card.</p>
                     </apex:outputPanel>

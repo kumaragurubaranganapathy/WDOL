@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>License_Relationship_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -46,6 +50,7 @@
         <fullName>Associations_Compact_Layout</fullName>
         <fields>Name__c</fields>
         <fields>Child_Contact_Name__c</fields>
+        <fields>Parent_Contact_Name__c</fields>
         <fields>Association_Type__c</fields>
         <fields>Status__c</fields>
         <fields>Start_Date__c</fields>
@@ -361,6 +366,18 @@
         <length>255</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( &apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;  Parent_License__r.MUSW__Applicant__r.Id &amp;&apos;/view&apos;,  Parent_License__r.MUSW__Applicant__r.FirstName &amp; &quot; &quot;&amp; Parent_License__r.MUSW__Applicant__r.LastName  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Contact Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -1247,7 +1264,14 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Association_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Child_License__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Child_Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

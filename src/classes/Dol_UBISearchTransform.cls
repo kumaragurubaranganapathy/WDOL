@@ -32,19 +32,19 @@ public class Dol_UBISearchTransform {
                     }
                     System.debug('selectedAccount'+selectedAccount);
                     //follwoing two conditions have been removed as per User Story 1436
-                     /*if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && !businessStatus.equalsIgnoreCase('active')){
-                        status = 'MismatchInactive';
-                    }
-                    
-                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && businessStatus.equalsIgnoreCase('active')){
-                        status = 'Mismatch';
+                    /* if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && !businessStatus.equalsIgnoreCase('active')){
+                        status = 'MismatchInactive'+'-'+'businessName';
                     }*/
                     
-                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && !businessStatus.equalsIgnoreCase('active')){
+                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName ){
+                        status = 'Mismatch'+'***'+businessName+'***'+selectedAccount.name;
+                    }
+                    
+                   else if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && !businessStatus.equalsIgnoreCase('active')){
                         status = 'Inactive';
                     }
         
-                    if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && businessStatus.equalsIgnoreCase('active')){
+                    else if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && businessStatus.equalsIgnoreCase('active') && selectedAccount.name == businessName){
                         Map<String,Dol_SOSResponse.GoverningPersons> governingMap = new Map<String,Dol_SOSResponse.GoverningPersons>();
                         Map<String,MUSW__Account_Contact__c> accountConMap = new Map<String,MUSW__Account_Contact__c>();
                         List<Dol_SOSResponse.GoverningPersons> uniqueGovList = new List<Dol_SOSResponse.GoverningPersons>();

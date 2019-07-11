@@ -73,7 +73,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>(1 OR 3 OR 4 OR 5) AND 2</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -131,9 +131,102 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.LastModifiedDate</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
+                <operator>LessThanOrEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_4930828089</elementReference>
+                    <elementReference>formula_2_myRule_1_0129524728</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Withdrawn</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Under Review</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -214,9 +307,9 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.LastModifiedDate</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
+                <operator>LessThanOrEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_5_myRule_4_8757369875</elementReference>
+                    <elementReference>formula_5_myRule_4_7001481629</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -230,12 +323,12 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>DATETIMEVALUE(TODAY() - 30) </stringValue>
+                <stringValue>DATETIMEVALUE(TODAY()-30)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_4930828089</name>
+        <name>formula_2_myRule_1_0129524728</name>
         <dataType>DateTime</dataType>
-        <expression>DATETIMEVALUE(TODAY() - 30)</expression>
+        <expression>DATETIMEVALUE(TODAY()-30)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -244,11 +337,11 @@
                 <stringValue>DATETIMEVALUE(TODAY() - 120) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_8757369875</name>
+        <name>formula_5_myRule_4_7001481629</name>
         <dataType>DateTime</dataType>
         <expression>DATETIMEVALUE(TODAY() - 120)</expression>
     </formulas>
-    <interviewLabel>Application_DeleteExpiredDraft-1_InterviewLabel</interviewLabel>
+    <interviewLabel>Application_DeleteExpiredDraft-3_InterviewLabel</interviewLabel>
     <label>Application_DeleteExpiredDraft</label>
     <processMetadataValues>
         <name>ObjectType</name>

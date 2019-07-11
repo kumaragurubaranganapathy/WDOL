@@ -38,10 +38,22 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Endorsement_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Endorsement_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Licensee_Name__c</fields>
+        <fields>License__c</fields>
+        <fields>License_Status__c</fields>
+        <label>Endorsement Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To store specialties / endorsements of a license (individual / business)</description>
     <enableActivities>false</enableActivities>
@@ -85,7 +97,7 @@
     <fields>
         <fullName>Date_Granted__c</fullName>
         <externalId>false</externalId>
-        <label>Date Granted</label>
+        <label>First Issue Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -101,7 +113,7 @@
     <fields>
         <fullName>Date_Requested_for_Adding_Endorsement__c</fullName>
         <externalId>false</externalId>
-        <label>Date Requested for Adding Endorsement</label>
+        <label>Submitted Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -117,7 +129,7 @@
     <fields>
         <fullName>Effective_Date__c</fullName>
         <externalId>false</externalId>
-        <label>Effective Date</label>
+        <label>Current Issue Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -330,6 +342,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(License__r.MUSW__Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License_Type__c</fullName>
         <externalId>false</externalId>
         <label>License Type</label>
@@ -352,6 +375,17 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( &apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;  License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;,  License__r.MUSW__Applicant__r.FirstName &amp; &quot; &quot;&amp;License__r.MUSW__Applicant__r.LastName  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Name_of_Electronic_Software_Provider__c</fullName>
@@ -594,6 +628,7 @@
     <recordTypes>
         <fullName>Endorsement</fullName>
         <active>true</active>
+        <compactLayoutAssignment>Endorsement_Compact_Layout</compactLayoutAssignment>
         <label>Endorsement</label>
         <picklistValues>
             <picklist>Endorsement_Type__c</picklist>
@@ -1011,7 +1046,12 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Endorsement_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date_Requested_for_Adding_Endorsement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date_Granted__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Electronic_software_provider_not_blank</fullName>

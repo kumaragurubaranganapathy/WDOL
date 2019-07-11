@@ -965,7 +965,7 @@ listApp.add(applicationChild);*/
                         update lstproviders;
                     }          
                     //add review record for endorsement
-                    if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
+                    /*if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
                     {
                         List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
                         for(Endorsement__c endo :lstEndorsements){
@@ -978,7 +978,7 @@ listApp.add(applicationChild);*/
                         }              
                         
                         insert lstReview;
-                    }
+                    }*/
                 }
                 //end
                 List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>();            
@@ -1132,7 +1132,14 @@ mstLicense.RecordTypeId = businessRT;
         {
             if(endo.Status__c == 'Renew'){
                 endo.Renewal_Reinstatement_Application__c = lstLisence[0].Id;
-                endo.Status__c = 'Pending Add';
+                if(endo.Endorsement_Type__c=='Electronic Notary')
+                {
+                    endo.Status__c = 'Active';
+                }
+                else
+                {
+                    endo.Status__c = 'In-Review';
+                }                
             }
             
         }

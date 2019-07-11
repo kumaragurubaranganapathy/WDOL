@@ -217,6 +217,16 @@
 .THIS .error{
     color:t(LnGErrorMsg);
 }
+.THIS .validate {
+    position: relative;
+}
+.THIS .validate::before {
+    position: absolute;
+    content: "*";
+    color:t(LnGErrorMsg);
+    top: 0px;
+    left: -8px;
+}
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);

@@ -65,7 +65,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>AQB_Approval_Expiration_Date__c</fullName>
         <externalId>false</externalId>
@@ -133,7 +133,7 @@
         <referenceTo>Contact</referenceTo>
         <relationshipName>Renewal_Applications</relationshipName>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -143,7 +143,7 @@
         <externalId>false</externalId>
         <label>Application Type</label>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -419,7 +419,7 @@ Permit__r.Business_License__c
         <externalId>false</externalId>
         <label>Credential</label>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -575,7 +575,7 @@ Permit__r.Business_License__c
         <relationshipLabel>Renewal &amp; Reinstatement Applications</relationshipLabel>
         <relationshipName>Renewal_Applications</relationshipName>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -640,6 +640,26 @@ Permit__r.Business_License__c
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Military_Spouse__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Military_Spouse__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Military Spouse/Partner</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Military__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Military__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Military</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Model_Year__c</fullName>
@@ -972,7 +992,7 @@ FALSE)))))))</formula>
         <externalId>false</externalId>
         <label>Renewal Reinstatement Type</label>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -1111,7 +1131,7 @@ FALSE)))))))</formula>
     <fields>
         <fullName>Time_to_Renewal_Reinstatement__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - Renewed_Date__c, License__r.MUSW__Issue_Date__c - Renewed_Date__c)</formula>
+        <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - DATEVALUE(CreatedDate), Renewed_Date__c - DATEVALUE(CreatedDate))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Time to Renewal/Reinstatement</label>
         <precision>18</precision>
@@ -1156,7 +1176,7 @@ FALSE)))))))</formula>
         <precision>12</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1168,7 +1188,7 @@ FALSE)))))))</formula>
         <precision>12</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -4183,7 +4203,7 @@ FALSE)))))))</formula>
         <searchResultsAdditionalFields>Credential__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Permit__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>Read</sharingModel>
     <sharingReasons>
         <fullName>Create_Renewal_by_Delegate__c</fullName>
         <label>Create Renewal by Delegate</label>

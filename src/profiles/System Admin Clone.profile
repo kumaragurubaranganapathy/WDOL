@@ -1606,6 +1606,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>DOL_PDFDataDisplayController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DOL_SaveNCRData</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2738,6 +2742,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Dol_DeleteAttachmentFromSubmission</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Dol_DeleteAttachmentFromSubmission_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Dol_IntegrationUtil</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2763,6 +2775,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Dol_UBISearchTransform_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Dol_UploadDocumenttoSAN</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Dol_UploadDocumenttoSAN_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6502,6 +6522,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Associations__c.Parent_Contact_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Associations__c.Parent_License_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6559,6 +6584,16 @@
         <editable>false</editable>
         <field>Associations__c.resend_Invitation__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Bill__c.Account_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Bill__c.Account_Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -11017,6 +11052,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Education_History__c.Applicant_Licensee_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Education_History__c.Application_BG__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11626,6 +11666,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Endorsement__c.License_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Endorsement__c.License_Type__c</field>
         <readable>true</readable>
@@ -11634,6 +11679,11 @@
         <editable>true</editable>
         <field>Endorsement__c.License__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Endorsement__c.Licensee_Name__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -13828,6 +13878,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>LnP_Parcel__c.Address_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LnP_Parcel__c.Applicant_Licensee_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -16116,9 +16171,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>MUSW__Deposit__c.Sequence_number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -18117,6 +18172,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__License2__c.Deployed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__License2__c.Deployment_End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__License2__c.Deployment_Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__License2__c.Effective_Date_of_Bond__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -18456,9 +18526,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>MUSW__License2__c.Military__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -18523,6 +18593,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__License2__c.Number_of_Units__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Open_Complaint_Flag__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19797,6 +19872,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__Master_Submission_List__c.Order_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__Master_Submission_List__c.Permit_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20176,9 +20256,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Application_BG__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Parcel__c.Archive__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Canadian_provinces__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20461,6 +20551,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Melissa_Address_Verified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Parcel__c.Primary_Account__c</field>
         <readable>false</readable>
@@ -20484,6 +20579,16 @@
         <editable>false</editable>
         <field>MUSW__Parcel__c.Validated__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Zip_Postal_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.is_Physical_and_Mailing_Address_Same__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -22963,6 +23068,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Review__c.Miliatary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Review__c.Military_Spouse__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -25587,6 +25697,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Renewal_Application__c.Military_Spouse__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Renewal_Application__c.Military__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Renewal_Application__c.Model_Year__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -27424,6 +27544,9 @@
         <layout>LnP_Custom_Exception__c-Custom Exception Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>LnP_Education__c-LnP Education Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>LnP_Licence_Application__c-License Application Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -28841,6 +28964,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>LnP_Education__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>LnP_Licence_Application__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -30185,6 +30317,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>DOL_PDFGenerator</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>DRE2_BGCK_Answer_c</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -31189,6 +31325,16 @@
         <default>false</default>
         <recordType>MUSW__Master_Submission_List__c.Permit</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>MUSW__Parcel__c.Address</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>MUSW__Parcel__c.Affiliated_Location</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>

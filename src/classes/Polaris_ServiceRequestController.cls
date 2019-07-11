@@ -756,7 +756,7 @@ public class Polaris_ServiceRequestController {
                         update lstproviders;
                     }          
                     //add review record for endorsement
-                    if(appList[0].License_Type__c != 'Notary Public')
+                    /*if(appList[0].License_Type__c != 'Notary Public')
                     {
                         List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
                         for(Endorsement__c endo :lstEndorsements){
@@ -770,7 +770,7 @@ public class Polaris_ServiceRequestController {
                         }              
                         
                         insert lstReview;
-                    }
+                    }*/
                 }
                 List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>();            
                 if(appListOtherDetils[0].Submissions__r != null && appListOtherDetils[0].Submissions__r.size()>0){

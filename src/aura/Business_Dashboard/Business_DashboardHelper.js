@@ -81,6 +81,7 @@
                         component.set("v.SelectedAccountDetails",accountvar); 
                         component.set("v.mainAccountName",accountMap["Account"][0].Name);
                         component.set("v.ParcelObj",accountMap);
+                        component.set("v.isCourseProvider",accountMap["Account"][0].Course_Provider__c);
                 
                 }
             }
@@ -119,7 +120,7 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                
+                console.log('getLicenseDetails -- > return'+response);
                 var data = response.getReturnValue();
                 console.log('datalicense::'+data);
                 component.set("v.LicenseData",data); 
@@ -135,14 +136,15 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                
+                console.log('getCourseDetails -- > return'+response);
                 var data = response.getReturnValue();
-                console.log('data::'+data);
+                console.log('datalicense::'+data);
                 component.set("v.LicenseData",data); 
-                component.set("v.courseDetail",true);
+                component.set("v.licenseDetail",true);
             }                          
         });
         $A.enqueueAction(action);
+        console.log('helper.getCourseDetails --> '+JSON.stringify(action));
     },
     
     getEndorsementDetails : function(component,event,helper){

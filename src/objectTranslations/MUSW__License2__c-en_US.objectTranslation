@@ -298,6 +298,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Deployed --></label>
+        <name>Deployed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deployment End Date --></label>
+        <name>Deployment_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deployment Start Date --></label>
+        <name>Deployment_Start_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Effective Date of Bond --></label>
         <name>Effective_Date_of_Bond__c</name>
     </fields>
@@ -751,7 +763,7 @@
         <name>Marked_for_Deletion__c</name>
     </fields>
     <fields>
-        <label><!-- Military --></label>
+        <label><!-- Military Spouse/Partner --></label>
         <name>Military_Spouse__c</name>
     </fields>
     <fields>
@@ -838,6 +850,10 @@
     <fields>
         <label><!-- Number of Units --></label>
         <name>Number_of_Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- Open Complaint Flag --></label>
+        <name>Open_Complaint_Flag__c</name>
     </fields>
     <fields>
         <label><!-- Open Complaints --></label>
@@ -1377,6 +1393,14 @@
             <section>RFP Information</section>
         </sections>
         <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+        <sections>
             <label><!-- System Information --></label>
             <section>System Information</section>
         </sections>
@@ -1452,6 +1476,14 @@
         <sections>
             <label><!-- RFP Information --></label>
             <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
         </sections>
     </layouts>
     <layouts>

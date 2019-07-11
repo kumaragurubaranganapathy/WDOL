@@ -81,8 +81,69 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Application --></label>
+        <name>Application_BG__c</name>
+        <relationshipLabel><!-- Parcels --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Archive --></label>
         <name>Archive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Canadian provinces --></label>
+        <name>Canadian_provinces__c</name>
+        <picklistValues>
+            <masterLabel>Alberta</masterLabel>
+            <translation><!-- Alberta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>British Columbia</masterLabel>
+            <translation><!-- British Columbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manitoba</masterLabel>
+            <translation><!-- Manitoba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Brunswick</masterLabel>
+            <translation><!-- New Brunswick --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Newfoundland and Labrador</masterLabel>
+            <translation><!-- Newfoundland and Labrador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Northwest Territories</masterLabel>
+            <translation><!-- Northwest Territories --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nova Scotia</masterLabel>
+            <translation><!-- Nova Scotia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nunavut</masterLabel>
+            <translation><!-- Nunavut --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ontario</masterLabel>
+            <translation><!-- Ontario --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prince Edward Island</masterLabel>
+            <translation><!-- Prince Edward Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quebec</masterLabel>
+            <translation><!-- Quebec --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saskatchewan</masterLabel>
+            <translation><!-- Saskatchewan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yukon</masterLabel>
+            <translation><!-- Yukon --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Comments --></label>
@@ -630,6 +691,10 @@
         <name>MUSW__Year_Built__c</name>
     </fields>
     <fields>
+        <label><!-- Melissa Address Verified --></label>
+        <name>Melissa_Address_Verified__c</name>
+    </fields>
+    <fields>
         <label><!-- Primary Account --></label>
         <name>Primary_Account__c</name>
         <relationshipLabel><!-- Addresses --></relationshipLabel>
@@ -658,6 +723,22 @@
         <label><!-- Validated --></label>
         <name>Validated__c</name>
     </fields>
+    <fields>
+        <label><!-- Zip/Postal Code --></label>
+        <name>Zip_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- is Physical and Mailing Address Same --></label>
+        <name>is_Physical_and_Mailing_Address_Same__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Address --></label>
+        <name>Address</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Affiliated Location --></label>
+        <name>Affiliated_Location</name>
+    </recordTypes>
     <webLinks>
         <label><!-- Letter --></label>
         <name>Letter</name>

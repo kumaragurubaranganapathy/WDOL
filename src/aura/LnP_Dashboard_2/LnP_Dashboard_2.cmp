@@ -72,6 +72,7 @@
     <aura:attribute name ="DisplayLicense_Additional_Qualification" type ="Boolean" default = "false"/>
     <aura:attribute name ="isAuthenticatedUser" type="Boolean" default = "true"/>
     <aura:attribute name ="dsiplaySpinner" type ="Boolean" default = "false"/>
+    <aura:attribute name ="displayPendingLicense_Details" type = "Boolean" default ="false"/>
     
     <aura:attribute name = "displayRemoveAccountContactModal" type="Boolean" default = "false"/> 
     <aura:attribute name = "displayRemovePeerRelationShipModal" type="Boolean" default="false"/>
@@ -105,17 +106,17 @@
                 </li>
                 
                 <aura:if isTrue="{!v.DisplaylicenseNumberBreadCrumb}">
-                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_xx-small">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_small">
                         <span>{!v.LicenseNumberBreadCrumb}</span>
                     </li>
                 </aura:if>
                 <aura:if isTrue="{!v.DisplayUploadDocumentsBreadCrumb}">
-                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_xx-small">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_small">
                         <span>attachments</span>
                     </li>
                 </aura:if>
                 <aura:if isTrue="{!v.DisplayAdditonalQulaificationsBreadCrumb}">
-                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_xx-small">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_small">
                         <span>qualifying information</span>
                     </li>
                 </aura:if>
@@ -280,9 +281,8 @@
                                             <div class="table-name">Peer Licenses</div>    
                                             <div style="height:300px" class="slds-p-vertical_small">
                                                 <div style="height: 100%; position: relative;">
-                                                    <div class="slds-scrollable_x" style="height: 100%;">
-                                                        <div class="slds-scrollable_y">
-                                                            <div>
+                                                    <div class="table-scroll">
+                                                           
                                                                 <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                                     <thead>
                                                                         <tr class="slds-line-height_reset">
@@ -352,9 +352,7 @@
                                                                         </aura:iteration>
                                                                     </tbody>
                                                                 </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                            </div>                                                       
                                                 </div>
                                             </div>
                                         </div></aura:if>
@@ -436,6 +434,15 @@
                                 
                             </aura:if>
                         </div>
+                        <div>
+                            <aura:if isTrue="{!v.displayPendingLicense_Details}">
+                                <lightning:tabset  class="tabs-wrapper">
+                                    <lightning:tab class="tab-style" label="EXAM" id = "ExamTab_id">
+                                        <c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/>
+                                    </lightning:tab>
+                                </lightning:tabset>
+                            </aura:if>
+                        </div>
                     </lightning:layoutItem>
                     
                     <lightning:layoutItem padding="around-small">
@@ -505,9 +512,7 @@
                         <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
                             <div style="height: 366px;">
                                 <div style="height: 100%; position: relative;">
-                                    <div class="slds-scrollable_x" style="height: 100%;">
-                                        <div class="slds-scrollable_y">
-                                            <div>
+                                    <div class="table-scroll">
                                                 <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                     <thead>
                                                         <tr class="slds-line-height_reset">
@@ -565,9 +570,6 @@
                                                                                 <aura:if isTrue="{!tableData.MUSW__Status__c == 'Generate Fee'}">
                                                                                     <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/lightningwashington/cart?id='+tableData.Id}"  target="_blank">Pay Fee</a>
                                                                                 </aura:if>
-                                                                                <aura:if isTrue="{!tableData.MUSW__Status__c == 'In Review' || tableData.MUSW__Status__c == 'Active'}">
-                                                                                    <!--<lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>-->
-                                                                                </aura:if>
                                                                             </aura:set>
                                                                         </aura:if>
                                                                     </div>    
@@ -575,9 +577,7 @@
                                                             </tr>  
                                                         </aura:iteration>
                                                     </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                                </table>                                          
                                     </div>
                                 </div>
                             </div>
@@ -609,9 +609,7 @@
                             </aura:if>    
                             <div style="height: 366px;">
                                 <div style="height: 100%; position: relative;">
-                                    <div class="slds-scrollable_x" style="height: 100%;">
-                                        <div class="slds-scrollable_y">
-                                            <div>
+                                    <div class="table-scroll">
                                                 <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                     <thead>
                                                         <tr class="slds-line-height_reset">
@@ -664,8 +662,7 @@
                                                         </aura:iteration>
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                        </div>
+                                            
                                     </div>
                                 </div>
                             </div>
@@ -683,9 +680,7 @@
                                 <div class="table-name">New License Applications</div>    
                                 <div class="table-height">
                                     <div style="height: 100%; position: relative;">
-                                        <div class="slds-scrollable_x" style="height: 100%;">
-                                            <div class="slds-scrollable_y">
-                                                <div>
+                                        <div class="table-scroll">
                                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                         <thead>
                                                             <tr class="slds-line-height_reset">
@@ -733,8 +728,7 @@
                                                             </aura:iteration>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
+                                               
                                         </div>
                                     </div>
                                 </div>
@@ -745,9 +739,7 @@
                                 <div style="height:300px" class="slds-p-vertical_small">                               
                                     
                                     <div style="height: 100%; position: relative;">
-                                        <div class="slds-scrollable_x" style="height: 100%;">
-                                            <div class="slds-scrollable_y">
-                                                <div>
+                                        <div class="table-scroll">
                                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                         <thead>
                                                             <tr class="slds-line-height_reset">
@@ -799,8 +791,7 @@
                                                             </aura:iteration>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
+                                              
                                         </div>
                                     </div>
                                 </div>
@@ -811,9 +802,7 @@
                                 <div style="height:300px" class="slds-p-vertical_small">                               
                                     
                                     <div style="height: 100%; position: relative;">
-                                        <div class="slds-scrollable_x" style="height: 100%;">
-                                            <div class="slds-scrollable_y">
-                                                <div>
+                                        <div class="table-scroll">
                                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                         <thead>
                                                             <tr class="slds-line-height_reset">
@@ -856,8 +845,7 @@
                                                             </aura:iteration>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
+                                               
                                         </div>
                                     </div>
                                 </div>
@@ -875,9 +863,7 @@
                                 <div class="table-name">New License Applications</div>    
                                 <div style="height:300px" class="slds-p-vertical_small">
                                     <div style="height: 100%; position: relative;">
-                                        <div class="slds-scrollable_x" style="height: 100%;">
-                                            <div class="slds-scrollable_y">
-                                                <div>
+                                        <div class="table-scroll">
                                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                         <thead>
                                                             <tr class="slds-line-height_reset">
@@ -895,7 +881,9 @@
                                                             <aura:iteration items="{!v.PendingNewLicenseApplicationsDataList}" var="tableData" indexVar="ind">
                                                                 <tr class="slds-hint-parent">    
                                                                     <td data-label="APPLICATION#">
-                                                                        <div class="slds-truncate">{!tableData.Application_Number__c}</div>
+                                                                        <div class="slds-truncate">
+                                                                           <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayPendingLicenseDetails}">{!tableData.Application_Number__c}</a></u>
+                                                                        </div>
                                                                     </td>
                                                                     <td data-label="PROFESSION">
                                                                         <div class="slds-truncate">{!tableData.Application_Type__c}</div>
@@ -933,15 +921,15 @@
                                                                                 </div>    
                                                                             </aura:if>
                                                                         </div>  
-                                                                        
-                                                                        <!--<lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>-->
+                                                                        <aura:if isTrue="{!or(tableData.MUSW__Status__c == 'Submitted', tableData.MUSW__Status__c == 'In-Review', tableData.MUSW__Status__c == 'In Review')}">
+                                                                        <lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>
+																		</aura:if>
                                                                     </td>
                                                                 </tr>  
                                                             </aura:iteration>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
+                                               
                                         </div>
                                     </div>
                                 </div>
@@ -953,9 +941,7 @@
                                 <div style="height:300px" class="slds-p-vertical_small">                               
                                     
                                     <div style="height: 100%; position: relative;">
-                                        <div class="slds-scrollable_x" style="height: 100%;">
-                                            <div class="slds-scrollable_y">
-                                                <div>
+                                        <div class="table-scroll">
                                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                         <thead>
                                                             <tr class="slds-line-height_reset">
@@ -1023,8 +1009,7 @@
                                                             </aura:iteration>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
+                                                
                                         </div>
                                     </div>
                                 </div>
@@ -1036,9 +1021,7 @@
                                 <div style="height:300px" class="slds-p-vertical_small">                               
                                     
                                     <div style="height: 100%; position: relative;">
-                                        <div class="slds-scrollable_x" style="height: 100%;">
-                                            <div class="slds-scrollable_y">
-                                                <div>
+                                        <div class="table-scroll">
                                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                         <thead>
                                                             <tr class="slds-line-height_reset">
@@ -1080,8 +1063,7 @@
                                                             </aura:iteration>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
+                                               
                                         </div>
                                     </div>
                                 </div>
@@ -1100,9 +1082,7 @@
                             <div style="max-height: 300px;min-height: 177px;" class="slds-p-vertical_small">                               
                                 
                                 <div style="height: 100%; position: relative;">
-                                    <div class="slds-scrollable_x" style="height: 100%;">
-                                        <div class="slds-scrollable_y">
-                                            <div>
+                                    <div class="table-scroll">
                                                 <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                                                     <thead>
                                                         <tr class="slds-line-height_reset">
@@ -1145,8 +1125,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
-                                    </div>
+                                        
                                 </div>
                             </div>
                         </div>

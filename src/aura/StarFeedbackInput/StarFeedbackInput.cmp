@@ -3,6 +3,7 @@
     <aura:attribute name="value" type="Double" />
     <aura:attribute name="starValue" type="Double" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="getServerValue" type="string" default="" description="To get value of server response"/>
     <aura:attribute name="userfeedback" type="sObject" default="{'sobjectType': 'User_Feedback__c',
                                                                 'Comments__c': '',
                                                                 'Grade__c': ''
@@ -27,7 +28,7 @@
         <div class="buttons-wrapper">            
             
             <lightning:button class="button-style" label="Submit" title="submit" onclick="{! c.saveFeedback }"/>
-            <lightning:button  class="button-style cancel-btn" label="Skip" title="skip" onclick="{! c.cancelFeedback }"/>
+            <lightning:button  class="button-style cancel-btn" label="Skip" title="skip" onclick="{! c.skipFeedback }"/>
         </div>         
     </div>
 </aura:component>

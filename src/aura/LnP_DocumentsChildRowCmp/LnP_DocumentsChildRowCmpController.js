@@ -59,8 +59,12 @@
     AddNewRow : function(component, event, helper){
         debugger;
         // fire the AddNewRowEvt Lightning Event 
+       
         var currentAmount = component.find("amount");
         var _depositRec= component.get("v.depositRec");
+        var Today_date = new Date();
+       	_depositRec['Sequence_number__c'] = Number(component.get("v.rowIndex"))+1;
+		_depositRec['Date__c'] = Today_date;
         if(component.get("v.rowIndex") == 0){
            // _depositRec.wadol_Program_Type__c = component.get("v.defaultProgramType") ;
         }    
@@ -86,6 +90,9 @@
         // fire the AddNewRowEvt Lightning Event 
         var currentAmount = component.find("amount");
         var _depositRec= component.get("v.depositRec");
+        var Today_date = new Date();
+       	_depositRec['Sequence_number__c'] = Number(component.get("v.rowIndex"))+1;
+		_depositRec['Date__c'] = Today_date;
         if(component.get("v.rowIndex") == 0){
             _depositRec.wadol_Program_Type__c = component.get("v.defaultProgramType") ;
         }  

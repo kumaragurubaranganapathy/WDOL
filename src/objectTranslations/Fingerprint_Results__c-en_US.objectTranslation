@@ -115,7 +115,7 @@
         <name>Status_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Status --></label>
+        <label><!-- Fingerprint Status --></label>
         <name>Status__c</name>
         <picklistValues>
             <masterLabel>Background Hit</masterLabel>
@@ -138,5 +138,12 @@
         <label><!-- Submitted Date --></label>
         <name>Submitted_Date__c</name>
     </fields>
+    <layouts>
+        <layout>Fingerprint Results Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

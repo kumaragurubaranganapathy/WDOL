@@ -1323,6 +1323,36 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
+        <fullName>Deployed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Deployed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Deployment_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Deployment End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Deployment_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Deployment Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Effective_Date_of_Bond__c</fullName>
         <description>This field is created to capture the date from license</description>
         <externalId>false</externalId>
@@ -2450,7 +2480,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>Military_Spouse__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Military</label>
+        <label>Military Spouse/Partner</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2674,6 +2704,18 @@ Military_Waiver__c))))))))))))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Open_Complaint_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Open_Complaints__c &gt; 0,IMAGE(&quot;/resource/LnP_Icons/LnP_Icons/OpenCaseFlag.png&quot;,&quot;&quot;)+&quot;Open Case&quot;,&quot;No open case&quot;  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Open Complaint Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

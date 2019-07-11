@@ -21,16 +21,16 @@
                 var draftRenAppList = [];
                 for(var i = 0 ;i<appList.length;i++){
                     console.log('inside for ::'+ appList[i].MUSW__Status__c +' '+ appList[i].isRenewal__c + ' '+ appList[i].Credential_Type__c );
-                    if(appList[i].MUSW__Status__c == 'Pending' && appList[i].isRenewal__c == false && appList[i].Credential_Type__c != 'Apprasier Course'){
+                    if(appList[i].isRenewal__c == false && appList[i].Credential_Type__c != 'Apprasier Course'){
                         console.log('appList::'+ appList[i]);
                         draftAppList.push(appList[i]);
                         console.log(component.get("v.DraftNewLicenseApplications"));
                         component.set("v.draftListNotEmpty",true);
-                    }else if(appList[i].MUSW__Status__c == 'Pending' && appList[i].isRenewal__c == false && appList[i].Credential_Type__c =='Apprasier Course') {
+                    }else if(appList[i].isRenewal__c == false && appList[i].Credential_Type__c =='Apprasier Course') {
                          console.log('courseList::'+ appList[i]);
                         draftCourseAppList.push(appList[i]);
                         component.set("v.courseListNotEmpty",true);
-                    }else if(appList[i].MUSW__Status__c == 'Pending' && appList[i].isRenewal__c == true){
+                    }else if(appList[i].isRenewal__c == true){
                         console.log('renewalList::'+ appList[i]);
                         draftRenAppList.push(appList[i]);
                         component.set("v.renewalListNotEmpty",true);

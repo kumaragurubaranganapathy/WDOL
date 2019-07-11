@@ -214,6 +214,14 @@
         <name>Makes_of_Homes_to_be_Sold__c</name>
     </fields>
     <fields>
+        <label><!-- Military Spouse/Partner --></label>
+        <name>Military_Spouse__c</name>
+    </fields>
+    <fields>
+        <label><!-- Military --></label>
+        <name>Military__c</name>
+    </fields>
+    <fields>
         <label><!-- Model Year --></label>
         <name>Model_Year__c</name>
     </fields>
@@ -435,6 +443,25 @@
         <name>Years_Expired__c</name>
     </fields>
     <layouts>
+        <layout>Course Renewal Application Layout</layout>
+        <sections>
+            <label><!-- Course Details --></label>
+            <section>Course Details</section>
+        </sections>
+        <sections>
+            <label><!-- Course Provider Contact Information --></label>
+            <section>Course Provider Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Expiration Dates --></label>
+            <section>Expiration Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>RBS Renewal Application Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
@@ -455,6 +482,10 @@
             <label><!-- Financials --></label>
             <section>Financials</section>
         </sections>
+        <sections>
+            <label><!-- Project Size --></label>
+            <section>Project Size</section>
+        </sections>
     </layouts>
     <layouts>
         <layout>Renewal Application Layout</layout>
@@ -465,6 +496,10 @@
         <sections>
             <label><!-- Financials --></label>
             <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Project Size --></label>
+            <section>Project Size</section>
         </sections>
     </layouts>
     <recordTypes>

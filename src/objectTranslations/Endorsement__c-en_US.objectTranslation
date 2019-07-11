@@ -22,7 +22,7 @@
         <name>Created_for_New_Application__c</name>
     </fields>
     <fields>
-        <label><!-- Date Granted --></label>
+        <label><!-- First Issue Date --></label>
         <name>Date_Granted__c</name>
     </fields>
     <fields>
@@ -30,7 +30,7 @@
         <name>Date_Removed__c</name>
     </fields>
     <fields>
-        <label><!-- Date Requested for Adding Endorsement --></label>
+        <label><!-- Submitted Date --></label>
         <name>Date_Requested_for_Adding_Endorsement__c</name>
     </fields>
     <fields>
@@ -38,7 +38,7 @@
         <name>Date_Requested_for_Removing_Endorsement__c</name>
     </fields>
     <fields>
-        <label><!-- Effective Date --></label>
+        <label><!-- Current Issue Date --></label>
         <name>Effective_Date__c</name>
     </fields>
     <fields>
@@ -178,6 +178,10 @@
         <name>License_Number__c</name>
     </fields>
     <fields>
+        <label><!-- License Status --></label>
+        <name>License_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- License Type --></label>
         <name>License_Type__c</name>
     </fields>
@@ -185,6 +189,10 @@
         <label><!-- License --></label>
         <name>License__c</name>
         <relationshipLabel><!-- Endorsements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Licensee Name --></label>
+        <name>Licensee_Name__c</name>
     </fields>
     <fields>
         <label><!-- Name Electronic Software Provider --></label>
@@ -325,10 +333,6 @@
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Electronic Notary Provider Information --></label>
-            <section>Electronic Notary Provider Information</section>
         </sections>
     </layouts>
     <layouts>

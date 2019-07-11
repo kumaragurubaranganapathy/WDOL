@@ -6,7 +6,9 @@
     font-size:14px;
     font-weight:500;
 }
-
+.THIS .field-item.help-text{
+    padding-bottom:0.25rem;
+}
 .THIS .button-borders .slds-table_header-fixed_container{
     padding-top:0;
 }
@@ -160,7 +162,7 @@ padding: 4px 5px;
     color: token(licensetxt);
 }
 
-.THIS .licenseinp{
+.THIS .licenseinp, .THIS .select-help{
    
     width:50%;
 }
@@ -216,14 +218,7 @@ padding: 4px 5px;
     .THIS .licenseinp,.THIS .licensetab .field-item,.THIS .businesstab .field-item{
         width:100%;
     }
-    .THIS .divBox .slds-tabs_default__overflow .slds-dropdown-trigger .slds-button{
-    font-family: t(publicSansfontfamily);
-    font-size: 1rem;    
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:t(black);
-    }
+   
     .THIS #data-table table.slds-table, .THIS #data-table table.slds-table {
         width: 100% !important;
         border: 0;

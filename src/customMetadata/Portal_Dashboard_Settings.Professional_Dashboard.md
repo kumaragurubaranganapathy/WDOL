@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>Draft_Applications_statuses__c</field>
-        <value xsi:type="xsd:string">Draft,Withdrawn,Pending,In Review,In-Review,Under Review</value>
+        <value xsi:type="xsd:string">Draft,Withdrawn,Pending,In Review,In-Review</value>
     </values>
     <values>
         <field>License_Statuses__c</field>

@@ -1606,6 +1606,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>DOL_PDFDataDisplayController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DOL_SaveNCRData</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2738,6 +2742,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Dol_DeleteAttachmentFromSubmission</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Dol_DeleteAttachmentFromSubmission_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Dol_IntegrationUtil</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2763,6 +2775,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Dol_UBISearchTransform_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Dol_UploadDocumenttoSAN</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Dol_UploadDocumenttoSAN_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -6506,6 +6526,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Associations__c.Parent_Contact_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Associations__c.Parent_License_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6563,6 +6588,16 @@
         <editable>false</editable>
         <field>Associations__c.resend_Invitation__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Bill__c.Account_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Bill__c.Account_Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -11021,6 +11056,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Education_History__c.Applicant_Licensee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Education_History__c.Application_BG__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11630,6 +11670,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Endorsement__c.License_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Endorsement__c.License_Type__c</field>
         <readable>true</readable>
@@ -11637,6 +11682,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Endorsement__c.License__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Endorsement__c.Licensee_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13833,6 +13883,11 @@
         <editable>false</editable>
         <field>LnP_Parcel__c.Address_Type__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LnP_Parcel__c.Applicant_Licensee_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -16120,9 +16175,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>MUSW__Deposit__c.Sequence_number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -18121,6 +18176,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__License2__c.Deployed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__License2__c.Deployment_End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__License2__c.Deployment_Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__License2__c.Effective_Date_of_Bond__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -18460,9 +18530,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>MUSW__License2__c.Military__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -18527,6 +18597,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__License2__c.Number_of_Units__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Open_Complaint_Flag__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19800,6 +19875,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Master_Submission_List__c.Order_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Master_Submission_List__c.Permit_Type__c</field>
         <readable>false</readable>
@@ -20180,9 +20260,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Application_BG__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Parcel__c.Archive__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Canadian_provinces__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -20466,6 +20556,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__Parcel__c.Melissa_Address_Verified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__Parcel__c.Primary_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20487,6 +20582,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Parcel__c.Validated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.Zip_Postal_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Parcel__c.is_Physical_and_Mailing_Address_Same__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22967,6 +23072,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Review__c.Miliatary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Review__c.Military_Spouse__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -25591,6 +25701,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Renewal_Application__c.Military_Spouse__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Renewal_Application__c.Military__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Renewal_Application__c.Model_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -27088,11 +27208,11 @@
         <layout>Associations__c-Associations Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Associations__c-License Relationship Layout</layout>
+        <layout>Associations__c-Associations Layout</layout>
         <recordType>Associations__c.Designated_Person</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Associations__c-License Relationship Layout</layout>
+        <layout>Associations__c-Location Associations Layout</layout>
         <recordType>Associations__c.Location</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -27205,11 +27325,11 @@
         <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Education_History__c-Education History Layout</layout>
+        <layout>Education_History__c-Continuing Education History Layout</layout>
+        <recordType>Education_History__c.Continuing_Education</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Education_History__c-Education History Layout</layout>
-        <recordType>Education_History__c.Continuing_Education</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Education_History__c-Education History Layout</layout>
@@ -27220,12 +27340,12 @@
         <recordType>Education_History__c.Qualifying_Education</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Education_History__c-Education History Layout</layout>
-        <recordType>Education_History__c.Training</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Education_History__c-Exam Page Layout</layout>
         <recordType>Education_History__c.Exam</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Education_History__c-Training History Layout</layout>
+        <recordType>Education_History__c.Training</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Electronic_Notary_Provider_Information__c-Electronic Notary Provider Information Layout</layout>
@@ -27311,7 +27431,7 @@
         <layout>Fine__c-Fine Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Fingerprint_Results__c-Fingerprinting%2FBackground Results Layout</layout>
+        <layout>Fingerprint_Results__c-Fingerprint Results Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Global-Global Layout</layout>
@@ -27403,22 +27523,22 @@
         <layout>ListEmail-List Email Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>LnP_BackgroundSection__c-LnP_BackgroundSection Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>LnP_BackgroundSection__c-LnP_BackgroundSection Layout</layout>
+        <layout>LnP_BackgroundSection__c-Continuing Education</layout>
         <recordType>LnP_BackgroundSection__c.Continuing_Education</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>LnP_BackgroundSection__c-LnP_BackgroundSection Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LnP_BackgroundSection__c-Qualifying Education</layout>
         <recordType>LnP_BackgroundSection__c.Qualifying_Education</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>LnP_BackgroundSection__c-LnP_BackgroundSection Layout</layout>
+        <layout>LnP_BackgroundSection__c-Qualifying Experience</layout>
         <recordType>LnP_BackgroundSection__c.Qualifying_Experience</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>LnP_BackgroundSection__c-LnP_BackgroundSection Layout</layout>
+        <layout>LnP_BackgroundSection__c-Qualifying Training</layout>
         <recordType>LnP_BackgroundSection__c.Qualifying_Training</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -27429,6 +27549,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>LnP_Custom_Exception__c-Custom Exception Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LnP_Education__c-LnP Education Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>LnP_Licence_Application__c-License Application Layout</layout>
@@ -28663,6 +28786,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>DOL_PDFGenerator</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>DRE2_BGCK_Answer_c</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -29246,12 +29373,12 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Associations__c.Designated_Person</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>Associations__c.Location</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -29336,7 +29463,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Education_History__c.Qualifying_Education</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -29434,19 +29561,19 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>LnP_BackgroundSection__c.Qualifying_Education</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>LnP_BackgroundSection__c.Qualifying_Experience</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>LnP_BackgroundSection__c.Qualifying_Training</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
@@ -29667,6 +29794,16 @@
         <default>false</default>
         <recordType>MUSW__Master_Submission_List__c.Permit</recordType>
         <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>MUSW__Parcel__c.Address</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>MUSW__Parcel__c.Affiliated_Location</recordType>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>

@@ -116,7 +116,7 @@
     <fields>
         <fullName>AccountId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -211,7 +211,7 @@
     <fields>
         <fullName>Birthdate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Branch__c</fullName>
@@ -324,7 +324,7 @@
         <label>Contact Status</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -439,7 +439,7 @@
         <length>2</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -909,7 +909,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MobilePhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Municipality__c</fullName>
@@ -944,7 +944,7 @@ CASE( MUSW__AlertCode__c,
         <label>Other Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -966,7 +966,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Provider_Name__c</fullName>
@@ -1079,7 +1079,7 @@ CASE( MUSW__AlertCode__c,
         <maskChar>asterisk</maskChar>
         <maskType>lastFour</maskType>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>EncryptedText</type>
     </fields>
     <fields>

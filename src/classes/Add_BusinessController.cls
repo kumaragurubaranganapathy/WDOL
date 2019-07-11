@@ -39,7 +39,7 @@ public without sharing class Add_BusinessController {
             
             Map<String,List<Sobject>> mapOfSobjects= new Map<String,List<Sobject>>();
                                           
-            for(Account acc: [SELECT  Id,  Name,  Email__c,  Business_Phone__c,
+            for(Account acc: [SELECT  Id,  Name,  Email__c,  Business_Phone__c, Course_Provider__c,
                                              (SELECT Address_Type__c,Country__c,County__c,Id,MUSW__City__c,MUSW__District__c,
                                                       MUSW__Post_Zip_Code__c,MUSW__State__c,MUSW__Street2__c,MUSW__Street_Number__c,
                                                       MUSW__Street_Suffix__c,MUSW__Street__c,Name 
@@ -94,8 +94,9 @@ public without sharing class Add_BusinessController {
                 ac.Email__c = currentUser.email;
                 ac.Title__c = 'Administrator';
                     insert ac;
+                system.debug('ac234567'+ac);
                     return true;
-            }
+            } 
           }catch(Exception e){
                 System.debug(e.getMessage());
         }        return false;
@@ -169,15 +170,26 @@ public without sharing class Add_BusinessController {
      
     @AuraEnabled
     public static List<MUSW__License2__c> getAllCourses(String accountId){
+         
+         List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
+         
+         List<String> statusFilterList = new List<String>();
+         
+         if(!dashboardSettings.isEmpty()){
+             
+             statusFilterList = dashboardSettings.get(0).License_Statuses__c.split(',');
+         }  
+         
         system.debug('accountId---'+accountId);
         Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
         
-        List<MUSW__License2__c> courseList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
-                                              Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,
+        List<MUSW__License2__c> courseList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,MUSW__Status__c,
+                                              Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,MUSW__Primary_Licensee__c,
                                               Course_Status__c, Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
-                                              Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
+                                              Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,Is_Renewal_Eligible__c,
+                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
-                                              FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND Ultimate_Parent_Account__c =:accountId];
+                                              FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         
         return courseList;
     }
@@ -213,17 +225,25 @@ public without sharing class Add_BusinessController {
     
     @AuraEnabled
     public static List<MUSW__Application2__c> getAllApplications(String accountId){
+        
+        List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
+        List<String> statusFilterList = new List<String>();
+        if(!dashboardSettings.isEmpty()){
+            statusFilterList = dashboardSettings.get(0).Draft_Applications_statuses__c.split(',');    
+        }
+        
         system.debug('account id ---'+accountId);
         Id businessRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         system.debug('businessRecordTypeId---'+businessRecordTypeId);
         List<MUSW__Application2__c> applicationList = [SELECT Id, MUSW__Applicant__c,Application_Method__c,Application_Number__c,MUSW__Account__c,
-                                                      MUSW__Decision_Date__c,MUSW__Description__c,Geolocation__c,
-                                                      Attestation__c,Attestation_Date__c,MUSW__Completion_Date__c,License__c,
-                                                      License_ID__c,Credential_Type__c,Application_Type__c,Request_Type__c,MUSW__Account__r.RecordTypeId,
-                                                      MUSW__Status__c,Stage__c,Submitted_Date__c,MUSW__Type__c,MUSW__Total_Payments__c,
-                                                      MUSW__Total_Fees__c,MUSW__Total_Balance__c,Branch_License__c,isRenewal__c,LastModifiedDate,
-                                                      MUSW__Issued_Number__c,Parent_License__c,
-                                                      Reason_for_Submitting_Service_Request__c FROM MUSW__Application2__c WHERE MUSW__Account__c =: accountId  AND MUSW__Account__r.RecordTypeId =: businessRecordTypeId];
+                                                              MUSW__Decision_Date__c,MUSW__Description__c,Geolocation__c,
+                                                              Attestation__c,Attestation_Date__c,MUSW__Completion_Date__c,License__c,
+                                                              License_ID__c,Credential_Type__c,Application_Type__c,Request_Type__c,MUSW__Account__r.RecordTypeId,
+                                                              MUSW__Status__c,Stage__c,Submitted_Date__c,MUSW__Type__c,MUSW__Total_Payments__c,
+                                                              MUSW__Total_Fees__c,MUSW__Total_Balance__c,Branch_License__c,isRenewal__c,LastModifiedDate,
+                                                              MUSW__Issued_Number__c,Parent_License__c,
+                                                              Reason_for_Submitting_Service_Request__c 
+                                                       FROM MUSW__Application2__c WHERE MUSW__Status__c IN :statusFilterList AND MUSW__Account__c =: accountId];
         system.debug('applicationList--'+applicationList);
         
         return applicationList;
@@ -263,15 +283,25 @@ public without sharing class Add_BusinessController {
       public static String setBusinessLicenseTable(String AccountId,Boolean branch,String LicenseId){
         try{  
          
+         List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
+         
          List<String> columnHeaderList = new List<String>{'LICENSE#','LICENSE TYPE','EXPIRATION DATE','STATUS','SUB-STATUS'};
-         List<String> statusFilterList = new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
+         //List<String> statusFilterList = new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
+         
+         List<String> statusFilterList = new List<String>();
+         
+         if(!dashboardSettings.isEmpty()){
+             
+             statusFilterList = dashboardSettings.get(0).License_Statuses__c.split(',');
+         }  
+         
          Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
          List<SObject> columnDataList;
          if(branch){    
-            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c, Application_Method__c FROM MUSW__License2__c WHERE recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
+            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c,Application_Method__c FROM MUSW__License2__c WHERE recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
              
          }else{
-            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c, Application_Method__c FROM MUSW__License2__c WHERE Ultimate_Parent_Account__c =:AccountId AND recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND isBranch_License__c= false ];
+            columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c,Application_Method__c FROM MUSW__License2__c WHERE Ultimate_Parent_Account__c =:AccountId AND recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND isBranch_License__c= false ];
          }                           
          Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
          
@@ -567,10 +597,19 @@ public without sharing class Add_BusinessController {
     
     @AuraEnabled
      public static String pendingNewLicenseApplicationsTbl(String accountID){
-            try{  
+            try{ 
+                
+                List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
+         
+                 List<String> statusFilterList = new List<String>();
+         
+                 if(!dashboardSettings.isEmpty()){
+                     
+                     statusFilterList = dashboardSettings.get(0).Pending_Applications_statuses__c.split(',');
+                 } 
                 system.debug('accountID::'+accountID);
                 List<String> columnHeaderList = new List<String>{'APPLICATION#','PROFESSION','LICENSE TYPE','APPLICATION METHOD','STATUS','SUB-STATUS'};
-                List<String> statusFilterList = new List<String>{'In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
+                //List<String> statusFilterList = new List<String>{'In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();        
                 List<SObject> columnDataList = [Select id,Name,Application_Number__c,Application_Type__c,Credential_Type__c,Application_Method__c,MUSW__Status__c,Sub_Status__c
                                                         from MUSW__License2__c
@@ -587,10 +626,21 @@ public without sharing class Add_BusinessController {
         
     @AuraEnabled
      public static String fetchPendingCourseData(String accountID){
-            try{  
+            try{ 
+            
+            
+                List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
+         
+                 List<String> statusFilterList = new List<String>();
+         
+                 if(!dashboardSettings.isEmpty()){
+                     
+                     statusFilterList = dashboardSettings.get(0).Pending_Applications_statuses__c.split(',');
+                 }  
+                 
                  Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
                  List<String> columnHeaderList = new List<String>{'COURSE NAME','COURSE TYPE','LICENSURE LEVEL','DELIVERY METHOD','CLOCK HOURS', 'Status'};
-                 List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
+                 //List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                         
                  List<SObject> columnDataList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
                                                           Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,
@@ -612,8 +662,17 @@ public without sharing class Add_BusinessController {
     public static String PendingRenewApplicationsTable(String accountID){
         try{  
             
+            List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
+         
+                 List<String> statusFilterList = new List<String>();
+         
+                 if(!dashboardSettings.isEmpty()){
+                     
+                     statusFilterList = dashboardSettings.get(0).Pending_Applications_statuses__c.split(',');
+                 } 
+                 
             List<String> columnHeaderList = new List<String>{'LICENSE#','PROFESSION','LICENSE TYPE','EXPIRATION DATE','STATUS','SUB-STATUS','TYPE'};
-                List<String> statusFilterList = new List<String>{'Submitted','In-Review','Pending Payment','Payment Pending','Pending Additional Qualification','Pending Action'};
+            //List<String> statusFilterList = new List<String>{'Submitted','In-Review','Pending Payment','Payment Pending','Pending Additional Qualification','Pending Action'};
                     
                     List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c,format(Renewal_Expiration_Date__c),Renewal_Status__c,Application_Type__c
                                                     from Renewal_Application__c

@@ -57,6 +57,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Military__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Military_Spouse__c</field>
             </layoutItems>
             <layoutItems>
@@ -65,15 +69,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Renewal_Grace_Period_End_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Test_deployment_field__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Notice_for_License_Renewal_Sent__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -110,10 +106,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>License_Application__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Reinstatement_Eligible_Start_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -228,14 +220,6 @@
                 <field>Intern_End_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Number_of_Alerts__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Open_Complaints__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Selected_for_Audit__c</field>
             </layoutItems>
@@ -246,6 +230,26 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>license_specific_email_addresses__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Alerts__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Open_Complaint_Flag__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Deployed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Deployment_Start_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Deployment_End_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -271,12 +275,17 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MUSW__Renewal_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsTopToBottom</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Renewal Information</label>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Is_Renewal_Eligible__c</field>
@@ -285,8 +294,36 @@
                 <behavior>Readonly</behavior>
                 <field>Is_Late_Renewal_Eligible__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MUSW__Renewal_Date__c</field>
+            </layoutItems>
         </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Renewal_Grace_Period_End_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Notice_for_License_Renewal_Sent__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Reinstatement Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Reinstatement_Eligible_Start_Date__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -636,11 +673,23 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>MUSW__Type__c</fields>
+        <fields>MUSW__Street__c</fields>
+        <fields>MUSW__Status__c</fields>
+        <fields>MUSW__Closed_Date__c</fields>
+        <relatedList>MUSW__Complaint2__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <relatedList>Time_Frame__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Alert__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>MUSW__Account_Contact__c.License__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

@@ -21,6 +21,33 @@
         });
         $A.enqueueAction(action);
     },
+  /*   renewLicenseHelper : function(component, event, helper) {	  
+        var parcedValue = event.getSource().get("v.value").split(',');
+         console.log('parcedValue---'+parcedValue);
+        var renewReinstate = parcedValue[0];
+        var licID = parcedValue[1];
+        var board = parcedValue[2];
+        var licenseType = parcedValue[3];
+        var applicationType = parcedValue[4];                                
+        var licenseAppId = parcedValue[5];
+        var appIsRenewal = parcedValue[6];
+        
+        sessionStorage.setItem("licId", licID);
+        sessionStorage.setItem("licenseType", licenseType);
+        sessionStorage.setItem("board", board );
+        sessionStorage.setItem("applicationType", applicationType);
+        sessionStorage.setItem("applicationId", licenseAppId);                                      
+        if(appIsRenewal == 'true'){
+            sessionStorage.setItem("renewalReinstate", renewReinstate);
+            sessionStorage.setItem("flowType", "Application");
+            window.location.href='/lightningwashington/s/polaris-renewal';
+        } else{
+            sessionStorage.setItem("flowType", renewReinstate);
+            window.location.href='/lightningwashington/s/renewreinstate';
+        }
+        //sessionStorage.setItem("applicationId", "a020b00000laUUD");
+        // window.location.href='/lightningwashington/s/renewreinstate';                                                 	  
+    }, */
     
 
 })

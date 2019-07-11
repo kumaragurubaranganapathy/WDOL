@@ -38,10 +38,21 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Addresses_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Compact_Layout</fullName>
+        <fields>Address_Type__c</fields>
+        <fields>Applicant_Licensee_Name__c</fields>
+        <fields>License__c</fields>
+        <label>Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -99,12 +110,26 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Applicant_Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(License__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; License__r.MUSW__Applicant__r.Id &amp;&apos;/view&apos;,   License__r.Applicant_Full_Name__c  ),
+
+IF(License__c = NULL &amp;&amp;  Renewal_Reinstatement_Application__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; Renewal_Reinstatement_Application__r.Applicant__r.Id &amp;&apos;/view&apos;, Renewal_Reinstatement_Application__r.License__r.Applicant_Full_Name__c),
+
+HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; Request__r.Contact__r.Id &amp;&apos;/view&apos;,  Request__r.Contact__r.FirstName &amp; &quot; &quot; &amp;Request__r.Contact__r.LastName)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Applicant/Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Application</label>
         <referenceTo>MUSW__Application2__c</referenceTo>
-        <relationshipLabel>LnP_Parcels</relationshipLabel>
         <relationshipName>LnP_Parcels</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -116,7 +141,6 @@
         <externalId>false</externalId>
         <label>Application</label>
         <referenceTo>MUSW_Application2__c</referenceTo>
-        <relationshipLabel>Parcels</relationshipLabel>
         <relationshipName>LnP_Parcels</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -160,7 +184,6 @@
         <externalId>false</externalId>
         <label>License</label>
         <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>Parcels</relationshipLabel>
         <relationshipName>LnP_Parcels</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -180,7 +203,6 @@
         <externalId>false</externalId>
         <label>Renewal Reinstatement Application</label>
         <referenceTo>Renewal_Application__c</referenceTo>
-        <relationshipLabel>LnP_Parcels</relationshipLabel>
         <relationshipName>LnP_Parcels</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -192,7 +214,6 @@
         <externalId>false</externalId>
         <label>Request</label>
         <referenceTo>Request__c</referenceTo>
-        <relationshipLabel>LnP_Parcels</relationshipLabel>
         <relationshipName>LnP_Parcels</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -258,7 +279,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <label>LnP_Parcel</label>
+    <label>Addresses</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -268,10 +289,10 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>LnP_Parcel Name</label>
+        <label>Address Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>LnP_Parcels</pluralLabel>
+    <pluralLabel>Addresses</pluralLabel>
     <recordTypes>
         <fullName>Address</fullName>
         <active>true</active>
@@ -1262,7 +1283,15 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Address_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Street__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>City__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>County__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>State_Province__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zip_Postal_Code__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

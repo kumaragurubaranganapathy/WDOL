@@ -55,7 +55,11 @@
         
         var isdisplayLicenseDetails = event.getParam("displayLicenseDetails");
         
+        
          console.log("isDisplayCoursdetails.........."+isDisplayCoursdetails);
+         
+         console.log("isdisplayLicenseDetails.........."+isdisplayLicenseDetails);
+         
         if(isbranch){
             component.set("v.branchExam",false);
         } else{
@@ -65,7 +69,7 @@
             
         	helper.fetchData(component,event,helper);  
         	
-        }if(licenseId != null && licenseId !='' && isDisplayCoursdetails){
+        }if(licenseId != null && licenseId !='' && isDisplayCoursdetails === true){
             
             console.log("inside coursedetails......");
             
@@ -81,7 +85,7 @@
         	
             helper.getCourseDetails(component,event,helper);
         }
-        if(licenseId != null && licenseId !='' && isdisplayLicenseDetails){ 
+        if(licenseId != null && licenseId !='' && isdisplayLicenseDetails === true){ 
             
             console.log("inside licenseDetails......");
             

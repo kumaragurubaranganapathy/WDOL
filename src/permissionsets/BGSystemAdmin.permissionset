@@ -1600,6 +1600,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Associations__c.Parent_Contact_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Associations__c.Parent_License_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1656,6 +1661,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Associations__c.resend_Invitation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BGBK__Bill__c.Account_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BGBK__Bill__c.Account_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5850,6 +5865,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Education_History__c.Applicant_Licensee_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Education_History__c.Application_BG__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6405,12 +6425,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Endorsement__c.License_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Endorsement__c.License_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Endorsement__c.License__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Endorsement__c.Licensee_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8356,6 +8386,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>LnP_Parcel__c.Address_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LnP_Parcel__c.Applicant_Licensee_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12570,6 +12605,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__License2__c.Deployed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Deployment_End_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Deployment_Start_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__License2__c.Effective_Date_of_Bond__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12976,6 +13026,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__License2__c.Number_of_Units__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__License2__c.Open_Complaint_Flag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14250,6 +14305,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__Master_Submission_List__c.Order_No__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__Master_Submission_List__c.Permit_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14630,7 +14690,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__Parcel__c.Application_BG__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__Parcel__c.Archive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Parcel__c.Canadian_provinces__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14915,6 +14985,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__Parcel__c.Melissa_Address_Verified__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__Parcel__c.Primary_Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14936,6 +15011,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Parcel__c.Validated__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Parcel__c.Zip_Postal_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Parcel__c.is_Physical_and_Mailing_Address_Same__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -17366,6 +17451,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Review__c.Miliatary__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Review__c.Military_Spouse__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19911,6 +20001,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Renewal_Application__c.Makes_of_Homes_to_be_Sold__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Renewal_Application__c.Military_Spouse__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Renewal_Application__c.Military__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

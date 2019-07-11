@@ -9,8 +9,8 @@
     saveFeedback: function(component,event,helper) {
         helper.saveFeedbackForm(component,event);
     },
-    cancelFeedback : function(component,event,helper){
-        helper.cancelFeedback(component,event);
+    skipFeedback : function(component,event,helper){
+        helper.skipFeedback(component,event);
     }
         
 })

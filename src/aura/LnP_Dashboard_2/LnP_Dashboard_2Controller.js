@@ -236,6 +236,20 @@
         helper.fetchBusinessRelationShipRecords(component, event, helper,licenseId);
     },
         
+    dsiplayPendingLicenseDetails : function(component, event, helper){
+        
+        var isPendingLicense =true;
+
+        var licenseId = event.target.getAttribute("data-licenseId");
+        
+        component.set("v.licenseId",licenseId);
+        
+        helper.fetchLicenseDetails(component, event, helper, licenseId);
+                                            
+        helper.fetchEndorsementDetails(component, event, helper, licenseId);
+                                            
+        
+    },
     
     handleProfessionalBreadCrumb : function(component, event, helper){
         
@@ -282,7 +296,7 @@
         var recordIdForPDF = event.getSource().get("v.value");
         console.log('recordIdForPDF== ' + recordIdForPDF);
         var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
-        var url = OrgURLForPDF+'apex/Polaris_PDFGenerator?id=' + recordIdForPDF;
+        var url = OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF;
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": url

@@ -128,7 +128,7 @@
                                        'Grade__c':''
                                       }
                 component.set("v.userfeedback",newUserfeedback);
-                var str ='/dashboard';
+                var str ='/newdashboard';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
@@ -141,8 +141,8 @@
         //window.location.href='/lightningwashington/s/newdashboard';
         
     },
-    cancelFeedback : function(component,event) {
-        var str ='/dashboard';
+    skipFeedback : function(component,event) {
+        var str ='/newdashboard';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str

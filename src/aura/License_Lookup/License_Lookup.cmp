@@ -21,6 +21,13 @@ _______________________________________________________________
                                                              {'objectApi':'Endorsement__c', 'fieldsName':'Endorsement_Type__c', 'auraAttr':'v.endorsementOptionsBusiness'}]" />
     <aura:attribute name="picklistListLicenseType" type="List" default="[{'auraAttr':'v.licenseTypeOptions','licenseType':'Individual'},
                                                                         {'auraAttr':'v.licenseTypeOptionsBusiness','licenseType':'Business'}]" />
+    <aura:attribute name="licnseType" type="String[]" 
+                    default="[ 'Academic Intern','Appraisal Management Company','Appraiser Course', 'Appraiser Trainee','Architect','Camping Resort Company', 'Camping Resort Salesperson','Cemetery',
+                             'Certificate of Removal Registration','Certified General Appraiser','Certified Residential Appraiser','Cremated Remains Disposition Permit','Crematory','Embalmer','Embalmer Intern',
+                             'Engineer in Training','Engineering/Land Surveying Company','Funeral Director','Funeral Director Intern','Funeral Establishment','Funeral Establishment Branch','Geologist',
+                             'Geologist In Training','Land Surveyor in Training','Landscape Architect','Notary Public','On-site Wastewater Designer','On-site Wastewater Inspector','Out State Collection Agency',
+                             'Prearrangement Funeral Services','Professional Engineer','Professional Land Surveyor','Registered Appraiser Trainee','State Licensed Appraiser','Temporary Certified General',
+                             'Temporary Certified Residential','Temporary State Licensed','Timeshare Company','Timeshare Salesperson']"/>
     <aura:attribute name="professionOptions" type="List" />
     <aura:attribute name="licenseStatusOptions" type="List" />
     <aura:attribute name="countryOptions" type="List" />
@@ -67,6 +74,14 @@ _______________________________________________________________
     <div class="page-width">
         <div class="slds-page-header">
             <h1>License Lookup</h1>
+        </div>
+        <div class="slds-m-top_medium slds-m-horizontal_medium">
+            This search only provides information about the below license types we've issued. If you didn't find what you were looking for, you may want to check <a href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
+        </div>
+        <div class="slds-m-top_medium slds-m-horizontal_medium">
+            <aura:iteration items="{!v.licnseType}" var="eachLicense">
+         		<p>{!eachLicense}</p>
+       		</aura:iteration>        
         </div>
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <lightning:breadcrumbs class="boxsize">
@@ -139,12 +154,13 @@ _______________________________________________________________
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
-                                    <lightning:select class="field-item slds-p-around_medium" name="licenseType" label="License Type" aura:id="licenseType" value="">
+                                    <lightning:select class="field-item help-text slds-p-around_medium" name="licenseType" label="License Type" aura:id="licenseType" value="">
                                         <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.licenseTypeOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
+                                    <div class="slds-p-left_small slds-p-top_none select-help">(Select the specific license type you want to search. The licenses on this search are ONLY licenses issued by the Department of Licensing.)</div>
                                     <lightning:select class="field-item slds-p-around_medium" name="endorsementType" label="Endorsement Type" aura:id="endorsementType" value="">
                                         <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.endorsementOptions}" var="option">
@@ -186,12 +202,13 @@ _______________________________________________________________
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
-                                    <lightning:select class="field-item  slds-p-around_medium" name="licenseType" label="License Type" aura:id="licenseTypeBusiness" value="">
+                                    <lightning:select class="field-item help-text  slds-p-around_medium" name="licenseType" label="License Type" aura:id="licenseTypeBusiness" value="">
                                         <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.licenseTypeOptionsBusiness}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
+                                    <div class="slds-p-left_small slds-p-top_none select-help">(Select the specific license type you want to search.The licenses on this search are ONLY licenses issued by the Department of Licensing.)</div>
                                     <lightning:select class="field-item  slds-p-around_medium" name="endorsementType" label="Endorsement Type" aura:id="endorsementTypeBusiness" value="">
                                         <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.endorsementOptionsBusiness}" var="option">
@@ -203,7 +220,7 @@ _______________________________________________________________
                             <!-- End of form -->
                         </lightning:tab>
                     </lightning:tabset>
-                       <div class="slds-m-horizontal_x-large slds-m-vertical_medium alignRight">
+                       <div class="slds-m-horizontal_x-large slds-m-vertical_medium alignRight btnAlign">
                     <lightning:button class="cancel-button" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithDetails}"/>
                     <lightning:button class="next-button" variant="brand" type="submit" name="Search" label="Search" onclick="{!c.searchWithDetails}"/>
                 </div>

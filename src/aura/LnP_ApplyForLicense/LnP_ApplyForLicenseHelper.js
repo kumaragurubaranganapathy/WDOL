@@ -329,15 +329,17 @@
                                             tabsList[currentTab-1].labelFieldsMap[j].value = '';
                                             tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;
                                         }else{
+                                            var newVar;
                                             for(var l=0; l<subChildQuestionsArray.length ; l++){
-                                                if(tabsList[currentTab-1].labelFieldsMap[j+l].renderedOnUi){
-                                                    questionNumberId = tabsList[currentTab-1].labelFieldsMap[j+l].labelId;
+                                                newVar = subChildQuestionsArray[l];
+                                                if(tabsList[currentTab-1].labelFieldsMap[newVar].renderedOnUi){
+                                                    questionNumberId = tabsList[currentTab-1].labelFieldsMap[newVar].labelId;
                                                     response = '';
-                                                    tabsList[currentTab-1].labelFieldsMap[j+l].value = '';
-                                                    tabsList[currentTab-1].labelFieldsMap[j+l].renderedOnUi=false;
+                                                    tabsList[currentTab-1].labelFieldsMap[newVar].value = '';
+                                                    tabsList[currentTab-1].labelFieldsMap[newVar].renderedOnUi=false;
                                                 } else {
-                                                    tabsList[currentTab-1].labelFieldsMap[j+l].value = '';
-                                                    tabsList[currentTab-1].labelFieldsMap[j+l].renderedOnUi=false;
+                                                    tabsList[currentTab-1].labelFieldsMap[newVar].value = '';
+                                                    tabsList[currentTab-1].labelFieldsMap[newVar].renderedOnUi=false;
                                                 }
                                             }
                                         }   
@@ -569,21 +571,25 @@
                     if(item.Required__c){
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             if(item.Regex_Validation__c == "Date-Validation"){
-                                //var method = item.Regex_Validation__c;
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
-                                var today = new Date();
-                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                compareDate = new Date(compareDate);
-                                var enteredDate = new Date(valueVal);
-                                if(enteredDate < compareDate){
-                                    return true;
+                                if(valueVal != "" && valueVal != null){
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate < compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        return false;
+                                    }
                                 }else{
                                     errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                     return false;
                                 }
                             } else if(item.Regex_Validation__c == "itin-validation"){
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(valueVal!="111-11-1111" && valueVal!="333-33-3333" && valueVal!="666-66-6666" && valueVal!="123-45-6789" && valueVal.charAt(0) != "9"){
+                                if(valueVal!= "" && valueVal!="111-11-1111" && valueVal!="333-33-3333" && valueVal!="666-66-6666" && valueVal!="123-45-6789" && valueVal.charAt(0) != "9"){
                                     if(valueVal.slice(4, 6) != "00" && valueVal.slice(7, 11)){
                                         return true;
                                     } else {
@@ -616,7 +622,6 @@
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
                                 if(item.Regex_Validation__c == "Date-Validation"){
-                                    //var method = item.Regex_Validation__c;
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
                                     var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
@@ -709,7 +714,7 @@
                                 if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" && regexExp.test(valueVal)){
                                     return true;
                                 }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                     return false;
                                 }  
                             }
@@ -718,7 +723,7 @@
                             if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" ){
                                 return true;
                             } else {
-                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                 return false;
                             }  
                         }
@@ -734,7 +739,7 @@
                                     if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" && regexExp.test(valueVal)){
                                         return true;
                                     }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                         return false;
                                     }  
                                 }
@@ -774,15 +779,17 @@
                         if(item.regex != undefined && item.regex != ""){
                             if(item.regex == "Future Date"){
                                 var valueVal = item.value;
-                                var today = new Date();
-                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                compareDate = new Date(compareDate);
-                                var enteredDate = new Date(valueVal);
-                                if(enteredDate > compareDate){
-                                    return true;
-                                }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                    return false;
+                                if(valueVal!="" && valueVal!=null){
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate > compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }
                                 }
                             } else {
                                 var regexExp = new RegExp(item.regex);
@@ -809,12 +816,17 @@
                             if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" ){
                                 if(item.regex == "Future Date"){
                                     var valueVal = item.value;
-                                    var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                    compareDate = new Date(compareDate);
-                                    var enteredDate = new Date(valueVal);
-                                    if(enteredDate > compareDate){
-                                        return true;
+                                    if(valueVal != "" && valueVal != null){
+                                        var today = new Date();
+                                        var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        compareDate = new Date(compareDate);
+                                        var enteredDate = new Date(valueVal);
+                                        if(enteredDate > compareDate){
+                                            return true;
+                                        }else{
+                                            errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                            return false;
+                                        } 
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
@@ -853,10 +865,52 @@
                 });
                 toastEvent.fire();
             }            
-        }
-            else {
-                component.set("v.nextFlag", true);  
+        } else if(licenseWrapper[tabNumber].subheader == "Qualifying Information"){
+            var qualificationValidation = licenseWrapper[tabNumber].mandatorySubsection;
+            var qualificationValid = false;
+            var counter = 0;
+            if(qualificationValidation != null){
+                if(document.getElementsByClassName('tile-wrap').length != undefined && document.getElementsByClassName('tile-wrap').length != 0){
+                    var qualifications = document.getElementsByClassName('tile-wrap');
+                    for(var i=0; i<qualifications.length; i++){
+                        if(qualifications[i].firstElementChild != null){
+                            if(qualifications[i].firstElementChild.classList.contains('recordDetail')){
+                                counter = counter+1;
+                            }
+                        }
+                    }
+                    var mandatoryqualification = qualificationValidation.split(",");
+                    if(mandatoryqualification.length != undefined && mandatoryqualification.length !=0 && mandatoryqualification.length == counter){
+                        qualificationValid = true;
+                    } else {
+                        qualificationValid = false;
+                        errorMessage = "Please fill the mandatory sections";
+                    }
+                } else {
+                    qualificationValid = false;
+                    errorMessage = "Please fill the mandatory sections";
+                }
+            } else {
+                qualificationValid = true;
             }
+            
+            if(qualificationValid){
+                component.set("v.nextFlag", true);                    
+            }
+            else{
+                component.set("v.nextFlag", false);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": errorMessage,
+                    "type": "error"
+                });
+                toastEvent.fire();
+            }     
+        }
+        else {
+            component.set("v.nextFlag", true);  
+        }
     },    
     handleComponentEventHelper : function(component, event){
         var messageReceived = event.getParam("message");

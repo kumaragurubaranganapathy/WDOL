@@ -8,11 +8,11 @@
     </values>
     <values>
         <field>Draft_Applications_statuses__c</field>
-        <value xsi:type="xsd:string">Draft,Withdrawn</value>
+        <value xsi:type="xsd:string">Draft,Withdrawn,Pending,In Review,In-Review</value>
     </values>
     <values>
         <field>License_Statuses__c</field>
-        <value xsi:type="xsd:string">In Review,Abandoned,Denied,Active,Inactive,Expired,Suspended,Revoked,Canceled</value>
+        <value xsi:type="xsd:string">Abandoned,Denied,Active,Inactive,Expired,Suspended,Revoked,Canceled</value>
     </values>
     <values>
         <field>License_Types__c</field>
@@ -21,6 +21,6 @@ Crematory,Engineering/Land Surveying Company,Funeral Establishment,Funeral Estab
     </values>
     <values>
         <field>Pending_Applications_statuses__c</field>
-        <value xsi:type="xsd:string">Submitted,Submission Failed,Pending Payment,Pending Action,Pending Additional Qualifications</value>
+        <value xsi:type="xsd:string">Submitted,Submission Failed,Pending Payment,Pending Action,Pending Additional Qualifications,In Review,In-Review</value>
     </values>
 </CustomMetadata>

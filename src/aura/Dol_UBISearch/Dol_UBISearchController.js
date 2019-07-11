@@ -12,7 +12,7 @@
             ubiInput = ubiInput.split('-').join('');    // Remove dash (-) if mistakenly entered.
         }
         if(ubiInput.includes(' ')){
-            ubiInput = ubiInput.split(' ').join('');    // Remove  (space) if mistakenly entered.
+            ubiInput = ubiInput.split(' ').join('');    // Remove dash (space) if mistakenly entered.
         }
         if(ubiInput.length > 2){
             var ubiInputwithDash = ubiInput.match(/.{1,3}/g).join('-');
@@ -63,12 +63,24 @@
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
                 }
+                result.contains(Mismatch)
                 if(result == 'Mismatch'){
                     console.log('Mismatch==');
                     helper.showToast(component, event, "Warning!", "warning", "Business name is Mismatch.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
                 }*/
+                
+                if(result.includes('Mismatch')){
+                    console.log('Mismatch==');
+                    var businessName =  result.split('***')[1];
+                    var acctName =  result.split('***')[2];
+                    var errormsg = 'Business name '+businessName+' retrieved from SOS is not matching with Account Name '+acctName+'.';
+                    helper.showToast(component, event, "Warning!", "warning", errormsg);
+                    $A.get('e.force:refreshView').fire();
+                    helper.setDefaultFields(component);
+                    helper.closeQuickAction(component, event, helper);
+                }
                 if(result == 'Inactive'){
                     console.log('Inactive==');
                     helper.showToast(component, event, "Warning!", "warning", "UBI Status is not Active");

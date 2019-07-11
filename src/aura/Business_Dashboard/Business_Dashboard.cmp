@@ -8,6 +8,7 @@
     <aura:attribute name="accPhone" type="string" />
     <aura:attribute name="accUBI" type="String" />
     <aura:attribute name="accountDetail" type="boolean" />
+    <aura:attribute name="isCourseProvider" type="boolean" default="false"/>
     <aura:attribute name="licenseDetail" type="boolean" />
     <aura:attribute name="courseDetail" type="boolean" default="false"/>
     <aura:attribute name="licenseId" type="String" />
@@ -26,6 +27,7 @@
     <aura:attribute name ="ParcelObj" type ="List"/>
     <aura:attribute name="mainAccountName" type="String" />
     <aura:attribute name="branchExam" type="boolean" default="false" />
+    <!--<aura:registerEvent name="loadAccountName" type="c:LnP_FetchAccounId" />-->
     <!-- Pending draft Application -->
     <aura:attribute name="CompletedRequestColumns" type="List" default="['REQUEST #','REQUEST TYPE','REQUEST AGAINST','STATUS', 'COMPLETION DATE']" />
     <aura:attribute name="CompletedRequestData" type="List" default="" />
@@ -78,7 +80,7 @@
                 </aura:if>
             </div>
         </aura:if>
-        <!-- Course Tab -->
+
         <aura:if isTrue="{!v.courseDetail}">
             <div class="license-outer-wrapper" id = "coursedetailsdivid">
                 <lightning:layout class="slds-wrap">
@@ -89,7 +91,7 @@
                         <div class="license-details-wrapper">
                             <lightning:layout class="details-header slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
-                                    License Number: {!v.LicenseData.Name}
+                                    Course Number: {!v.LicenseData.Name}
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
                                     License Type: {!v.LicenseData.Credential_Type__c}
@@ -101,7 +103,7 @@
                             <div class="details-body">
                                 <lightning:layout class="name-details slds-wrap">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
-                                        <span class="label-style">Business Name:</span>
+                                        <span class="label-style">Provider:</span>
                                             {!v.LicenseData.Ultimate_Parent_Account__r.Name}
                                     </lightning:layoutItem>
                                     <lightning:layoutItem size="12" mediumDeviceSize="8">
@@ -203,16 +205,6 @@
                                         </div>
                                     </lightning:layoutItem>                         
                                 </lightning:layout>
-                                <div class="endorse-wrapper">
-                                    <div class="endorse-header">
-                                        Endorsements
-                                    </div>
-                                    <div class="endorse-details">
-                                        <div class="issue-item">
-                                            {!v.EndorsementData.Endorsement_Type__c}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             
                         </div>
@@ -398,36 +390,45 @@
             
             <aura:if isTrue="{!!v.courseDetail}">
                 <lightning:tabset>
-                    <aura:if isTrue="{!v.accountDetail}"> 
-                        <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >
-                            <!--<c:Course_LicenseScreen  accountId="{!v.selectedAccount}"/> -->
-                        </lightning:tab>
+                    <aura:if isTrue="{!v.accountDetail}">
+                        <aura:if isTrue = "{!v.isCourseProvider}"> 
+                            <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >
+                                <!--<c:Course_LicenseScreen  accountId="{!v.selectedAccount}"/>-->
+                                <!-- data is injected Dynamically-->
+                            </lightning:tab>
+                        </aura:if>
                         <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Licenses" id="Licenses" >
-                            <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" /> -->
+                            <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" />--> 
+                            <!-- data is injected Dynamically-->
                         </lightning:tab>
                     </aura:if>
                     <aura:if isTrue="{!v.branchExam}">
                         <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Branches" id="Branches" >
-                          <!-- <c:Business_LicenseScreen accountId="{!v.selectedAccount}" licenseId="{!v.licenseId}" BranchLicenses="true"/> -->
+                           <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" licenseId="{!v.licenseId}" BranchLicenses="true"/>--> 
+                           <!-- data is injected Dynamically-->
                         </lightning:tab>
                     </aura:if>   
                     <lightning:tab class="tab-style" label="Relationships" onactive="{!c.setBreadCrumb}" id="Relationships" >
                         <!--<c:Polaris_Relationship selectedAccount="{!v.selectedAccount}" mainAccountName="{!v.mainAccountName}" licenseId="{!v.licenseId}" licenseDetail="{!v.licenseDetail}" />-->
+                        <!-- data is injected Dynamically-->
                     </lightning:tab>
                     <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Draft Applications" id="Draft Applications" >
-                        <!--<c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/> -->
+                        <!--<c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/>-->
+                        <!-- data is injected Dynamically-->
                     </lightning:tab>
                     <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Pending Applications" id="Pending Applications" >
-                        <!--<c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" /> -->
+                        <!--<c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" />-->
+                        <!-- data is injected Dynamically-->
                     </lightning:tab>
                     <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Completed Requests" id="Completed Requests" >
-                        <!--<c:LnP_CompletedRequest CompletedRequestData="{!v.CompletedRequestData}" CompletedRequestColumns="{!v.CompletedRequestColumns}" /> -->
+                        <!--<c:LnP_CompletedRequest CompletedRequestData="{!v.CompletedRequestData}" CompletedRequestColumns="{!v.CompletedRequestColumns}" />-->
+                        <!-- data is injected Dynamically-->
                     </lightning:tab>
-                    <aura:if isTrue="{!v.branchExam}">
+                    <!--<aura:if isTrue="{!v.branchExam}">
                         <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Exam" id="Exam" >
-                            <!--<c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/> -->
+                            <c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/>
                         </lightning:tab>
-                    </aura:if>
+                    </aura:if>-->
                 </lightning:tabset>
             </aura:if>
         </aura:if>

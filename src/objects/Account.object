@@ -156,14 +156,14 @@
         <fullName>Bus_Id__c</fullName>
         <description>3 Digit Business ID (Part of 16 Digit UBI Number)</description>
         <externalId>false</externalId>
-        <inlineHelpText>3 Digit Business ID (Part of 16 Digit UBI Number)</inlineHelpText>
-        <label>Bus Id</label>
-        <precision>3</precision>
+        <inlineHelpText>3 Digit Business ID (Part of 16 Digit UBI Number)
+This can be found on your license document or using the license search feature at the Department of Revenue website.</inlineHelpText>
+        <label>Business ID</label>
+        <length>3</length>
         <required>false</required>
-        <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -184,7 +184,7 @@
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -194,7 +194,7 @@
         <label>Business Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Phone</type>
     </fields>
     <fields>
@@ -321,7 +321,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -370,7 +370,7 @@
         <length>2</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -398,7 +398,7 @@
         <label>Primary Contact Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -408,7 +408,7 @@
         <label>Business Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -471,7 +471,7 @@
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -551,7 +551,7 @@
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -573,14 +573,14 @@
         <fullName>Loc_Id__c</fullName>
         <description>4 Digit Location ID (Part of 16 Digit UBI Number)</description>
         <externalId>false</externalId>
-        <inlineHelpText>4 Digit Location ID (Part of 16 Digit UBI Number)</inlineHelpText>
-        <label>Loc Id</label>
-        <precision>4</precision>
+        <inlineHelpText>4 Digit Location ID (Part of 16 Digit UBI Number)
+This can be found on your license document or using the license search feature at the Department of Revenue website.</inlineHelpText>
+        <label>Location ID</label>
+        <length>4</length>
         <required>false</required>
-        <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -684,7 +684,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>NumberOfEmployees</fullName>
@@ -712,7 +712,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Phone_Primary_Contact__c</fullName>
@@ -721,7 +721,7 @@ CASE( MUSW__AlertCode__c,
         <label>Primary Contact Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Phone</type>
     </fields>
     <fields>
@@ -962,7 +962,7 @@ CASE( MUSW__AlertCode__c,
         <label>UBI Status</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -1020,10 +1020,12 @@ CASE( MUSW__AlertCode__c,
         <columns>ACCOUNT.RECORDTYPE</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
+        <columns>UBI_Number__c</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <label>All Accounts</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Converted_Account2</fullName>

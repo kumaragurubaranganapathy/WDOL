@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>LnP_Parcel</value>
+        <value>Addresses</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>LnP_Parcels</value>
+        <value>Addresses</value>
     </caseValues>
     <fields>
         <label><!-- Address Type --></label>
@@ -33,14 +33,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Applicant/Licensee Name --></label>
+        <name>Applicant_Licensee_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Application --></label>
         <name>Application_BG__c</name>
-        <relationshipLabel><!-- LnP_Parcels --></relationshipLabel>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Application --></label>
         <name>Application__c</name>
-        <relationshipLabel><!-- Parcels --></relationshipLabel>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- City --></label>
@@ -57,7 +61,7 @@
     <fields>
         <label><!-- License --></label>
         <name>License__c</name>
-        <relationshipLabel><!-- Parcels --></relationshipLabel>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Melissa Address Verified --></label>
@@ -66,12 +70,12 @@
     <fields>
         <label><!-- Renewal Reinstatement Application --></label>
         <name>Renewal_Reinstatement_Application__c</name>
-        <relationshipLabel><!-- LnP_Parcels --></relationshipLabel>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Request --></label>
         <name>Request__c</name>
-        <relationshipLabel><!-- LnP_Parcels --></relationshipLabel>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- State/Territory/Province --></label>
@@ -97,6 +101,13 @@
         <label><!-- is Physical and Mailing Address Same --></label>
         <name>is_Physical_and_Mailing_Address_Same__c</name>
     </fields>
+    <layouts>
+        <layout>LnP_Parcel Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- To store physical and mailing address --></description>
         <label><!-- Address --></label>

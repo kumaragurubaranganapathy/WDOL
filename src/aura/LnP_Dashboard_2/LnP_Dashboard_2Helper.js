@@ -337,6 +337,8 @@
         
         console.log("In fetchLicenseDetails....");
         
+        var isPendingLicense = component.get("v.displayPendingLicense_Details");
+        
         var action = component.get("c.fetchLicenseDetailsTable");
         
         action.setParams({"licenseId":licenseId});
@@ -360,7 +362,9 @@
                 });
                 console.log('licenseDataList= ',licenseDataList);
                 component.set("v.detailLicenseData",licenseDataList); */
-                component.set("v.detailLicenseData",licenseData);                
+                
+                component.set("v.detailLicenseData",licenseData);  
+                
                 component.set("v.DisplayLicense_Details","true");
                 
                 component.set("v.DisplayDashboardHeader","false");
@@ -379,7 +383,14 @@
                 
                 component.set("v.Lincese_Details_LastDate",currentDate.toLocaleDateString('en-US',options));
                 
-                this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);
+                if(!isPendingLicense){
+                    
+                  this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);  
+                  
+                }else{
+                    component.set("v.displayPendingLicense_Details","true");
+                }
+                
                 
             }else if (state === "ERROR") {
                 var errors = response.getError();

@@ -53,6 +53,8 @@
     <compactLayouts>
         <fullName>Compact_Layout</fullName>
         <fields>Name</fields>
+        <fields>Applicant_Licensee_Name__c</fields>
+        <fields>Review_Type__c</fields>
         <fields>MUSW__Due_Date__c</fields>
         <fields>MUSW__Status__c</fields>
         <label>Compact Layout</label>
@@ -140,9 +142,13 @@
     <fields>
         <fullName>Applicant_Licensee_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(License__c != NULL,  License__r.Applicant_Full_Name__c,
+        <formula>IF(License__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; License__r.MUSW__Applicant__r.Id &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
 
-IF(License__c = NULL,  Renewal_Application__r.License__r.Applicant_Full_Name__c,&quot;&quot;))</formula>
+IF(License__c = NULL &amp;&amp; Renewal_Application__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;Renewal_Application__r.Applicant__r.Id&amp;&apos;/view&apos;, Renewal_Application__r.License__r.Applicant_Full_Name__c),
+
+IF(Endorsement__c != NULL ,  HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/&apos;&amp; Endorsement__r.License__r.MUSW__Applicant__r.Id&amp;&apos;/view&apos;,Endorsement__r.License__r.Applicant_Full_Name__c ), 
+
+HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/&apos;&amp;Request__r.Contact__r.Id&amp;&apos;/view&apos;, Request__r.Contact__r.Full_Name__c))))</formula>
         <label>Applicant/Licensee Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1531,9 +1537,19 @@ N/A</description>
     <fields>
         <fullName>Miliatary__c</fullName>
         <externalId>false</externalId>
-        <formula>License__r.Military_Spouse__c</formula>
+        <formula>License__r.Military__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Military</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Military_Spouse__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Military_Spouse__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Military Spouse/Partner</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -2343,18 +2359,44 @@ N/A</description>
     <label>Review</label>
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Company Queue</value>
+        </filters>
         <label>Appraisal Management Company Queue</label>
-        <queue>Appraisal_Management_Company_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>Camping_Resorts_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Camping Resorts Queue</value>
+        </filters>
         <label>Camping Resorts Queue</label>
-        <queue>Camping_Resorts_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -2370,36 +2412,115 @@ N/A</description>
     </listViews>
     <listViews>
         <fullName>Notaries_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Notaries Queue</value>
+        </filters>
         <label>Notaries Queue</label>
-        <queue>Notaries_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>RBS_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>RBS Queue</value>
+        </filters>
         <label>RBS Queue</label>
-        <queue>RBS_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>RE_Appraisers_CE_Audit_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>MUSW__Type__c</columns>
+        <columns>MUSW__Due_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>MUSW__Application2__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>MUSW__Permit2__c</columns>
+        <columns>Plan_Review__c</columns>
+        <columns>MUSW__Related_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>MUSW__Review__c.CE_Audit_Review</value>
+        </filters>
+        <filters>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisers - Real Estate</value>
+        </filters>
+        <label>RE Appraisers - CE Audit Queue</label>
+    </listViews>
+    <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Real Estate Appraiser Courses Queue</value>
+        </filters>
         <label>Real Estate Appraiser Courses Queue</label>
-        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Real Estate Appraisers Queue</value>
+        </filters>
         <label>Real Estate Appraisers Queue</label>
-        <queue>Real_Estate_Appraisers_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -2424,9 +2545,22 @@ N/A</description>
     </listViews>
     <listViews>
         <fullName>Timeshare_Queue_Review</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Miliatary__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Timeshare Queue</value>
+        </filters>
         <label>Timeshare Queue</label>
-        <queue>Timeshare_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

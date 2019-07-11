@@ -9,6 +9,10 @@
         <value>Education History</value>
     </caseValues>
     <fields>
+        <label><!-- Applicant/Licensee Name --></label>
+        <name>Applicant_Licensee_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Application --></label>
         <name>Application_BG__c</name>
         <relationshipLabel><!-- Education History --></relationshipLabel>
@@ -240,6 +244,17 @@
         <name>Trainer_License__c</name>
     </fields>
     <layouts>
+        <layout>Continuing Education History Layout</layout>
+        <sections>
+            <label><!-- Continuing History Details --></label>
+            <section>Continuing History Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Education History Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
@@ -248,10 +263,6 @@
         <sections>
             <label><!-- Education History Details --></label>
             <section>Education History Details</section>
-        </sections>
-        <sections>
-            <label><!-- Education Institution Information --></label>
-            <section>Education Institution Information</section>
         </sections>
     </layouts>
     <layouts>
@@ -263,6 +274,21 @@
         <sections>
             <label><!-- Exam Details --></label>
             <section>Exam Details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Training History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Training History Details --></label>
+            <section>Training History Details</section>
         </sections>
     </layouts>
     <recordTypes>

@@ -403,7 +403,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         Boolean FGquestionsIncomplete = false;
         Boolean CIquestionsIncomplete = false;
         Boolean submissionsIncomplete = true;
-        Map<String,List<LnP_Parcel__c>> mapAddress = new  Map<String,List<LnP_Parcel__c>>();
+        Map<String,List<MUSW__Parcel__c>> mapAddress = new  Map<String,List<MUSW__Parcel__c>>();
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
@@ -488,7 +488,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions') || fieldMap.questionSectionClass.contains('Financial Guarantee') || fieldMap.questionSectionClass.contains('Endorsement') || fieldMap.questionSectionClass.contains('Course')){
                     count++;  
                 }
-                if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions')  ){
+                if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions') && fieldMap.isMandatoryQues ==true ){
                     questioncount++;
                 }
                 if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains('Financial Guarantee') ){
@@ -498,7 +498,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     CIquestioncount++;
                 }
                 //system.debug('fieldMap.renderedOnUi '+fieldMap.renderedOnUi);
-                if(fieldMap.questionSectionClass.contains('Questions')  && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                if(fieldMap.questionSectionClass.contains('Questions')  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
                     questionsAnswered++;
                 }
                 if(fieldMap.questionSectionClass.contains('Financial Guarantee') && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
@@ -685,12 +685,14 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         system.debug('mandatorySubsection098'+ mandatorySubSection);
                         if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                             if(mapAddress.isEmpty()){
-                                objWrapper.sectionError = true;
+                                //objWrapper.sectionError = true;
+                                objWrapper.sectionError = false;
                             }else{
                                 if(mandatorySubSection == 'Mailing Address' && (mapAddress.get('Physical Address') == null || !(mapAddress.get('Physical Address')[0].is_Physical_and_Mailing_Address_Same__c))){
                                     //if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
                                         system.debug('inside the mandatory'+mapAddress.get('Physical Address'));
-                                        objWrapper.sectionError = true;
+                                        //objWrapper.sectionError = true;
+                                    objWrapper.sectionError = false;
                                     //}
                                 }
                             }   
@@ -1046,7 +1048,6 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             //endorsment.Status__c = 'Pending Add';
                             if(appListOtherDetils[0].Credential_Type__c == 'Notary Public')
                             {
-                               // endorsment.Electronic_Software_Provider__c = providerName;
                                 endorsment.Status__c = 'Active';
                             }
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
@@ -1083,12 +1084,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     }                   
                     
                     //add review record for endorsement
-                    if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
+                    /*if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
                     {
                         List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
                         for(Endorsement__c endo :lstEndorsements){
                             MUSW__Review__c review = new MUSW__Review__c();
-                            review.Name = 'Endorsement Review - ' + endo.License_Applicant__c + '/' + endo.License_Number__c;
+                            review.Name = 'Endorsement Review - ' + licenseID[0].Applicant_Full_Name__c + '/' + licenseID[0].Name;
                             review.License__c = licenseID[0].Id;
                             review.MUSW__Status__c = 'Pending';
                             review.Endorsement__c = endo.Id;
@@ -1096,7 +1097,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         }              
                         
                         insert lstReview;
-                    }
+                    }*/
                 }
                 List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>(); 
                 if(appListOtherDetils[0].MUSW__Submissions__r != null && appListOtherDetils[0].MUSW__Submissions__r.size()>0){
@@ -1452,16 +1453,17 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
     }
     
     //Fetch all the addresses
-    public static Map<String, List<LnP_Parcel__c>> getAddresses (Set<Id> appId){
-        Map<String, List<LnP_Parcel__c>> mapAddress  =  new Map<String,List<LnP_Parcel__c>>();
-        List<LnP_Parcel__c> lstAddress  = [SELECT Id,is_Physical_and_Mailing_Address_Same__c, Address_Type__c, Application_BG__c,Application__c, City__c, County__c, Country__c, State_Province__c, Street__c, Zip_Postal_Code__c 
-                                           FROM LnP_Parcel__c WHERE Application_BG__c IN :appId];
+    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Set<Id> appId){
+        Map<String, List<MUSW__Parcel__c>> mapAddress  =  new Map<String,List<MUSW__Parcel__c>>();
+        List<MUSW__Parcel__c> lstAddress  = [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
+                                                      is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c from MUSW__Parcel__c 
+                                                      where Application_BG__c IN :appId];
         if(!lstAddress.isEmpty()){
-            for(LnP_Parcel__c parcelAddress : lstAddress) {
+            for(MUSW__Parcel__c parcelAddress : lstAddress) {
                 if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
                     mapAddress.get(parcelAddress.Address_Type__c).add(parcelAddress);
                 } else {
-                    mapAddress.put(parcelAddress.Address_Type__c, new List<LnP_Parcel__c>{parcelAddress});
+                    mapAddress.put(parcelAddress.Address_Type__c, new List<MUSW__Parcel__c>{parcelAddress});
                 }
             }
         }
