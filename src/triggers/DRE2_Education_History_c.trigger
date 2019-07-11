@@ -1,1 +1,0 @@
-trigger DRE2_Education_History_c on Education_History__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Education_History_c', new DRETriggerHandler()); }
