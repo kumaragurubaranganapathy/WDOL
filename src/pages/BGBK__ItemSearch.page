@@ -1,5 +1,0 @@
-<apex:page standardcontroller="BGBK__Payment_Batch__c" id="p" >
-
-     <apex:detail inlineEdit="true" oncomplete="updateBatchInfo()" rerender="block" />
-     <c:ItemSearch standardControllerObject="Payment_Batch__c" />
-</apex:page>

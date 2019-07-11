@@ -1,1 +1,0 @@
-@isTest private class DRE2Test_Master_ConfigData_Listing_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Master_ConfigData_Listing__c'); } }
