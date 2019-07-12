@@ -26,6 +26,14 @@ _______________________________________________________________
     <aura:attribute name="serverStatus" type="string" default=""/>
     <aura:attribute name ="portalURL" type ="String" default = "{!$Label.c.Polaris_Portal_Home}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name ="hasSecurityCode" type = "Boolean" default = "false" ></aura:attribute>
+    <aura:attribute name ="doesNotHaveSecurityCode" type = "Boolean" default = "false" ></aura:attribute>
+    <aura:attribute name="licenseTypeList" type="List" description="Holds the lists of licenseType"/>
+    <aura:attribute name="licenseColumnList" type="List" description="Holds the lists of licenseType"/>
+    <aura:attribute name="accountColumnList" type="List" description="Holds the lists ofaccount"/>
+    <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
+    <aura:attribute name="LicenseColumnListData" type="List" description="Holds the lists of accounts"/>
+    
     
     <div class="todo-wrapper">
         
@@ -45,11 +53,211 @@ _______________________________________________________________
                     
                 </lightning:layoutItem>
             </lightning:layout>
+            <lightning:layout class="intro-wrapper slds-wrap">
+                <lightning:layoutItem size="12" mediumDeviceSize="6" class="new-wrapper services">
+                    <div class="ser-title">
+                        Have an existing License?
+                    </div>
+                    <div class="ser-desc">
+                        Manage your license by linking it to your POLARIS profile.
+                    </div>
+                    <div class="ser-btn-wrapper slds-m-bottom_large">
+                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkProfLic}" label="LINK YOUR PROFESSIONAL LICENSE" /> 
+                    </div>
+                    <div class="ser-btn-wrapper">
+                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkBizLic}" label="LINK YOUR BUSINESS" />  
+                    </div>
+                </lightning:layoutItem>
+                <lightning:layoutItem aura:id ="professionalForm" padding="around-large" size="12" class="slds-hide new-wrapper slds-m-left_medium">
+                    <div class="ser-title">
+                        Link Your Professional License
+                    </div>
+                    <div class="">
+                        <a href="javascript:void(0)" class="license-link" onclick ="{!c.showSecurityCode}">I have a Security</a>
+                        |
+                        <a href ="javascript:void(0)"  class ="license-link" onclick ="{!c.hideSecurityCode}">I Don't Have a Security Token</a>
+                    </div>
+                    <div>
+                        <aura:if isTrue="{!v.hasSecurityCode}">
+                            <lightning:input aura:id="securityTokenId" label="Security Token"
+                                             name="securityToken"
+                                             value=""
+                                             required="true"/> 
+                            
+                        </aura:if>
+                        <aura:if isTrue = "{!v.doesNotHaveSecurityCode}">
+                            <div class="link-help">
+                                Search your professional license using the details below and link it to your account
+                            </div>
+                            <div class="token-wrapper">
+                                
+                                <lightning:select aura:id="securityToken" name="licenseType" label="License Type" variant="Brand"  class="">
+                                    <option value="--None--" text="--None--"/>    
+                                    <aura:iteration items="{!v.licenseTypeList}" var="licenseType">
+                                        <option value="{!licenseType}">{!licenseType}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                                <lightning:input aura:id="securityToken" label="License"
+                                                 name="license"
+                                                 value=""
+                                                 required="true"/>
+                                <lightning:input aura:id="securityToken" label="First Name"
+                                                 name="FirstName"
+                                                 value=""
+                                                 required="true"/>
+                                <lightning:input aura:id="securityToken" label="Last Name"
+                                                 name="lastName"
+                                                 value=""
+                                                 required="true"/>
+                                
+                                
+                                <lightning:input type ="Date" aura:id="securityToken" label="Date of Birth"
+                                                 name="DOB"
+                                                 value=""
+                                                 required="true"/>
+                                <lightning:input aura:id="securityToken" label="Last 4 digits of your SSN"
+                                                 name="ssn"
+                                                 value=""
+                                                 required="true"
+                                                 maxlength ="4"/>
+                            </div>
+                        </aura:if>
+                        <div id="buttonData" class ="slds-hide slds-float_right" style= "margin-top :20px">
+                            <button class="slds-button slds-button_neutral" onclick="{!c.cancelBusiness}">Cancel</button>
+                            <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.searchLicense}">Proceed</button>
+                            
+                        </div>
+                    </div>
+                </lightning:layoutItem>               
+                <lightning:layoutItem aura:id ="businessForm" size="12" class="slds-hide new-wrapper">
+                    <div class="ser-title link-title">
+                        Link your Business License with an Activation Code
+                    </div>
+                    <p class="link-help">If you have received an activation code in an email from Department of Licensing, you can enter it here.</p>
+                    <p class="link-help">If you would like to receive an activation code through email, please send your request with license number to loremipsum@domain.com</p>
+                    <p class="link-help">If you would like to receive an activation code through phone call, please call on XXX.XXX.XXXX and provide your license number</p>
+                    <div>
+                        
+                        <div class="token-wrapper">
+                            <lightning:input aura:id="securityTokenBusiness" label="Activation Code"
+                                             name="securityToken"
+                                             value=""
+                                             required="true"/> 
+                            
+                        </div>
+                        
+                        <div id="buttonDataBusiness" class ="slds-float_right" style= "margin-top :20px">
+                            <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
+                            <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.searchAccount}">Verify Code</button>
+                            
+                        </div>
+                    </div>
+                </lightning:layoutItem>               
+            </lightning:layout>
+            <lightning:layout class="slds-hide intro-wrapper" aura:id ="professionalLicenseDetails">
+                <lightning:layoutItem padding="around-large" class="new-wrapper services slds-m-left_medium">
+                    <div class="ser-title">
+                        Link Your Professional License
+                    </div>
+                    <div style="height:300px" class="slds-p-vertical_small"> 
+                        <div style="height: 100%; position: relative;">
+                            <div class="slds-scrollable_x" style="height: 100%;">
+                                <div class="slds-scrollable_y">
+                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <aura:iteration items="{!v.licenseColumnList}" var="headerData">
+                                                    <th class="" scope="col">
+                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                    </th> 
+                                                </aura:iteration>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.LicenseColumnListData}" var="tableData" indexVar="ind">
+                                                <tr>
+                                                    <td data-label="Name" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.MUSW__Applicant__r.Name}</div>
+                                                    </td>
+                                                    <td data-label="UBI" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.Name}</div>
+                                                    </td>
+                                                    <td data-label="UBI" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                    </td>
+                                                    <td data-label="UBI" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
+                                                    </td>
+                                                    <td data-label="UBI" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.Email__c}</div>
+                                                    </td>  
+                                                    'sfjdskg'{!tableData.MUSW__Applicant__c}
+                                                    <td data-label="actions" data-index="{!ind}"  class="cell-style action-cell">
+                                                        <a href= "javascript:void(0)" data-name="{!tableData.MUSW__Applicant__c}"  onclick= "{!c.linkLicenseToContact}">Link</a>
+                                                    </td>
+                                                </tr>
+                                            </aura:iteration>    
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:layoutItem>    
+                
+            </lightning:layout>
+            
+            <lightning:layout aura:id ="business" class="slds-hide intro-wrapper">
+                <lightning:layoutItem padding="around-large" size="12" class="new-wrapper services">
+                    <div class="ser-title">
+                        Link Your Business
+                    </div>
+                    <div class="">
+                        Is this your business ? Click "Link" to proceed
+                        If NOT go Back
+                    </div>
+                    <div style="height:300px" class="slds-p-vertical_small"> 
+                        <div style="height: 100%; position: relative;">
+                            <div class="slds-scrollable_x" style="height: 100%;">
+                                <div class="slds-scrollable_y">
+                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <aura:iteration items="{!v.accountColumnList}" var="headerData">
+                                                    <th class="" scope="col">
+                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                    </th> 
+                                                </aura:iteration>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.accountColumnListData}" var="tableData" indexVar="ind">
+                                                <tr>
+                                                    <td data-label="Name" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.Name}</div>
+                                                    </td>
+                                                    <td data-label="UBI" class="cell-style">
+                                                        <div class="slds-truncate">{!tableData.UBI_Number__c}</div>
+                                                    </td>
+                                                    <td data-label="actions" data-index="{!ind}"  class="cell-style action-cell">
+                                                        <a href= "javascript:void(0)" data-name="{!tableData.Id}"  onclick= "{!c.linkContactToAccount}">Link</a>
+                                                    </td>
+                                                </tr>
+                                            </aura:iteration>    
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:layoutItem>    
+            </lightning:layout>
+        </div>
+        
+        <aura:if isTrue="{!v.taskList}">
             <div class="intro-text">
                 {!v.taskList?'You have new tasks which need your attention':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'}
             </div>
-        </div>
-        <aura:if isTrue="{!v.taskList}">
             <aura:iteration items="{!v.taskList}" var="task">
                 <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
                     <div class="task-wrapper">                    
@@ -405,42 +613,42 @@ _______________________________________________________________
     <!-- pop up end -->
     
     <aura:if isTrue="{!v.isOpenExam}">
-                        
-                        <!--###### MODAL BOX Start######--> 
-                        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-                            <div class="slds-modal__container">
-                                <!-- ###### MODAL BOX HEADER Start ######-->
-                                <header class="slds-modal__header">
-                                    <lightning:buttonIcon iconName="utility:close"
-                                                          onclick="{! c.closeModelExamReschedule }"
-                                                          alternativeText="close"
-                                                          variant="bare-inverse"
-                                                          class="slds-modal__close"/>
-                                </header>
-                                <!--###### MODAL BOX BODY Part Start######-->
-                                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                                    <lightning:recordEditForm aura:id ="recordEditForm" 
-                                                              onsubmit="{!c.handleSubmitExamReschedule}"
-                                                              onsuccess="{!c.handleSuccessExamReschedule}"
-                                                              objectApiName="Request__c"
-                                                              >
-                                        <lightning:messages />
-                                        <lightning:inputField fieldName="License__c" value= "{!v.taskRecordForModel.Child_License_Name__c}" disabled = "true"/>
-                                        <lightning:inputField fieldName="Profession__c" value ="{!v.taskRecordForModel.Child_Profession__c}" disabled = "true"/>
-                                        <lightning:inputField fieldName="License_Type__c" value = "{!v.taskRecordForModel.Child_License_Type__c}" disabled = "true"/>
-                                        <lightning:inputField fieldName="Service_Request_Type__c" value = "Reschedule Exam" disabled ="true"/>
-                                        <lightning:inputField fieldName="Description__c" />
-                                        <lightning:inputField fieldName="Status__c" value ="Under Review" class="slds-hide"/>
-                                        <div class="slds-m-top_medium">
-                                            <lightning:button variant="brand" type="submit" name="save" label="Save" />
-                                        </div>
-                                    </lightning:recordEditForm>
-                                </div>
-                            </div>
-                        </section>
-                        <div class="slds-backdrop slds-backdrop_open"></div>
-                        <!--###### MODAL BOX Part END Here ######-->
-                        
-                    </aura:if>
+        
+        <!--###### MODAL BOX Start######--> 
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModelExamReschedule }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                </header>
+                <!--###### MODAL BOX BODY Part Start######-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:recordEditForm aura:id ="recordEditForm" 
+                                              onsubmit="{!c.handleSubmitExamReschedule}"
+                                              onsuccess="{!c.handleSuccessExamReschedule}"
+                                              objectApiName="Request__c"
+                                              >
+                        <lightning:messages />
+                        <lightning:inputField fieldName="License__c" value= "{!v.taskRecordForModel.Child_License_Name__c}" disabled = "true"/>
+                        <lightning:inputField fieldName="Profession__c" value ="{!v.taskRecordForModel.Child_Profession__c}" disabled = "true"/>
+                        <lightning:inputField fieldName="License_Type__c" value = "{!v.taskRecordForModel.Child_License_Type__c}" disabled = "true"/>
+                        <lightning:inputField fieldName="Service_Request_Type__c" value = "Reschedule Exam" disabled ="true"/>
+                        <lightning:inputField fieldName="Description__c" />
+                        <lightning:inputField fieldName="Status__c" value ="Under Review" class="slds-hide"/>
+                        <div class="slds-m-top_medium">
+                            <lightning:button variant="brand" type="submit" name="save" label="Save" />
+                        </div>
+                    </lightning:recordEditForm>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <!--###### MODAL BOX Part END Here ######-->
+        
+    </aura:if>
     
 </aura:component>

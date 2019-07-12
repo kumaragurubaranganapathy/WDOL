@@ -1,0 +1,172 @@
+<!--
+* name 		    : DOL_Professional_License_Linking
+* @description 	: To link license to  logged in users contact
+* @author 		: Mangesh
+* @date 		: 07/11/2019
+* MODIFICATION LOG:
+* DEVELOPER                     DATE                               DESCRIPTION
+_________________________________________________________________________________
+* Mangesh	      07/11/2019	      A Brief Desc about the Change
+-->
+
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" controller="DOL_License_Linking" >
+    
+    
+    <aura:attribute name="hasSecurityCode" type="Boolean" default="false" />
+    <aura:attribute name="doesNotHaveSecurityCode" type="Boolean" default="false" />
+    <aura:attribute name="licenseTypeList" type="List" description="Holds the lists of licenseType"/>
+    <aura:attribute name="licenseColumnList" type="List" description="Holds the lists of licenseType"/>
+    <aura:attribute name="LicenseColumnListData" type="List" description="Holds the lists of accounts"/>
+    <aura:attribute name="linkingScreen" type="Boolean" default="true" description="checks if linking screen or not"/>
+    <aura:attribute name="options" type="List" description="contains options for radio group" default="[
+                                                                                                       {'label': 'Email', 'value': 'Email'},
+                                                                                                       {'label': 'Mail', 'value': 'Mail'},
+                                                                                                       {'label': 'Phone', 'value': 'Phone'}
+                                                                                                       ]"/>
+    <aura:attribute name="value" type="String" default=""/>
+    <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" class="spinner-style" alternativeText="Page is loading..."/>
+    </aura:if>
+        <div class="prof-link-wrapper">
+        <aura:if isTrue="{!v.linkingScreen}">
+            
+            <div class="prof-link-title">
+                Link an existing professional profile
+            </div>
+            <!--<div class="">
+                <a href="javascript:void(0)" class="license-link" onclick ="{!c.showSecurityCode}">I have a Security</a>
+                |
+                <a href ="javascript:void(0)"  class ="license-link" onclick ="{!c.hideSecurityCode}">I Don't Have a Security Token</a>
+            </div> -->            
+            <div class="new-wrapper">
+                <div class="link-help">
+                    Link a professional license using below details
+                </div>
+                <p class="link-help">Search your professional license using the details below and link it to your account</p>                
+                
+                
+                <div class="token-wrapper details-search">
+                    <lightning:select aura:id="securityToken" name="licenseType" label="License Type" variant="Brand"  class="">
+                        <option value="" text="None"/>    
+                        <aura:iteration items="{!v.licenseTypeList}" var="licenseType">
+                            <option value="{!licenseType}">{!licenseType}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input aura:id="securityToken" label="License"
+                                     name="license"
+                                     value=""
+                                     />
+                    <lightning:input aura:id="securityToken" label="First Name"
+                                     name="FirstName"
+                                     value=""
+                                     required="true"/>
+                    <lightning:input aura:id="securityToken" label="Last Name"
+                                     name="lastName"
+                                     value=""
+                                     required="true"/>
+                    
+                    <lightning:input type ="Date" aura:id="securityToken" label="Date of Birth"
+                                     name="DOB"
+                                     value=""
+                                     required="true"/>
+                    <lightning:input aura:id="securityToken" label="Last 4 digits of your SSN"
+                                     name="ssn"
+                                     value=""
+                                     required="true"
+                                     maxlength ="4"/>
+                    
+                </div>
+                
+                <div id="buttonDataBusiness" class ="button-wrapper">
+                    <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
+                    <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.searchLicense2}">Search</button>
+                    
+                </div>                
+            </div>             
+            <div class="new-wrapper">
+                <div class="ser-title link-title">
+                    Link a professional license using an activation code
+                </div>
+                <p class="link-help">If you have received an activation code, enter it below.</p>
+                <p class="link-help">If you would like to request an activation code, please click <a href="javascript:void(0)" onclick="{!c.redirectRequest}">here</a></p>
+                
+                
+                
+                
+                <div class="token-wrapper">
+                    <lightning:input aura:id="securityTokenId" label="Activation Code"
+                                     name="securityToken"
+                                     value=""
+                                     required="true"
+                                     class="activation-code" /> 
+                    
+                </div>
+                
+                <div id="buttonDataBusiness" class ="button-wrapper">
+                    <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
+                    <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.searchLicense}">Verify Code</button>
+                    
+                </div>                
+            </div>
+        
+            
+            <aura:if isTrue="{!not(empty(v.LicenseColumnListData))}">
+                <div class="new-wrapper">
+                    <div class="ser-title">
+                        Confirm and link professional license
+                    </div>
+                    <p class="link-help">
+                        If this is your professional license, link it to your Polaris account
+                    </p>
+                    
+                    <aura:iteration items="{!v.LicenseColumnListData}" var="biz" indexVar="ind">
+                        <lightning:layout class="token-wrapper">                
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="biz-details">  
+                                 <span class="field-style">License:</span>
+                                {!biz.Name}
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="5" class="biz-details"> 
+                                    <span class="field-style">License Type:</span>
+                                <span class="data-style">{!biz.Credential_Type__c}</span>
+                                
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="4" class="biz-details">                        
+                                <span class="field-style">License Status:</span>
+                                <span class="data-style">{!biz.MUSW__Status__c}</span>
+                            </lightning:layoutItem>
+                            
+                        </lightning:layout>             
+                    </aura:iteration>
+                    <div id="buttonDataBusiness2" class ="button-wrapper">
+                        <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
+                        <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.linkLicenseToContact}">Link License</button>
+                        
+                    </div>  
+                </div>
+            </aura:if>
+            
+        <aura:set attribute="else">
+                <div class="biz-link-title">
+                    Request an activation code for linking a professional license
+                </div>
+                <div class="new-wrapper">
+                    <div class="ser-title link-title">
+                        Choose a method to receive an activation code
+                    </div>
+                    <div class="token-wrapper">
+                        <lightning:radioGroup name="radioGroup"                          
+                                              options="{! v.options }"
+                                              value="{! v.value }"
+                                              type="radio"
+                                              class="radio-style"               />
+                        
+                    </div>
+                </div>
+            </aura:set>    
+        </aura:if>
+    </div>
+</aura:component>

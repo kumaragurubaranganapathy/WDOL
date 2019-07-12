@@ -31,5 +31,7 @@
     },
     setApplicationType : function(component, event, helper){
         helper.firePassValueEventHelper(component, event, helper);
-    }
+    },
+    getAccountName : function(component, event, helper){
+        helper.getAccountName(component, event, helper);}
 })

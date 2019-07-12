@@ -1,5 +1,29 @@
 public class DOL_AppUtility {
 
+    /**
+    * @author: Mangesh Madhukar, A
+    * @method: isAuthenticatedUser
+    * @desc Checks if the user is authentiacted to access the system
+    * @param no params
+    * @return throws exception for non authenticated users.
+    * */
+    public static void isAuthenticatedUser() {
+        if (UserInfo.getUserType() == 'Guest') {
+            throw new AuthenticationException('*** You are not authenticated to access the system ***');
+        }        
+    }
+
+      /**
+    * @author: Mangesh Madhukar, A
+    * @method: isAllowedToAccess
+    * @desc Checks if the user is authorized to access sobject
+    * @param objType -- SObjectType 
+    * @return Boolean - true if allowed to access else false
+    * */
+    public static Boolean isAllowedToAccess(Schema.SObjectType objType) {     
+        return objType.getDescribe().isAccessible();
+    }
+
     public static String getDate(String inputformat){
         Datetime dt = Datetime.now();
         return dt.format(inputformat);
@@ -166,5 +190,7 @@ public class DOL_AppUtility {
             this.sItemIDs =sItemIDs;
         }
     }
+
+    public Class AuthenticationException extends Exception{}
     
 }

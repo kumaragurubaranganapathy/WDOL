@@ -133,7 +133,7 @@
                 <leftValueReference>myVariable_current.LastModifiedDate</leftValueReference>
                 <operator>LessThanOrEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_0129524728</elementReference>
+                    <elementReference>formula_2_myRule_1_6274459860</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -309,7 +309,7 @@
                 <leftValueReference>myVariable_current.LastModifiedDate</leftValueReference>
                 <operator>LessThanOrEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_5_myRule_4_7001481629</elementReference>
+                    <elementReference>formula_5_myRule_4_4822373813</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -326,7 +326,7 @@
                 <stringValue>DATETIMEVALUE(TODAY()-30)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_0129524728</name>
+        <name>formula_2_myRule_1_6274459860</name>
         <dataType>DateTime</dataType>
         <expression>DATETIMEVALUE(TODAY()-30)</expression>
     </formulas>
@@ -337,11 +337,11 @@
                 <stringValue>DATETIMEVALUE(TODAY() - 120) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_7001481629</name>
+        <name>formula_5_myRule_4_4822373813</name>
         <dataType>DateTime</dataType>
         <expression>DATETIMEVALUE(TODAY() - 120)</expression>
     </formulas>
-    <interviewLabel>Application_DeleteExpiredDraft-3_InterviewLabel</interviewLabel>
+    <interviewLabel>Application_DeleteExpiredDraft-4_InterviewLabel</interviewLabel>
     <label>Application_DeleteExpiredDraft</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -414,6 +414,42 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Is Abandoned ?</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Is_Abandoned__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
@@ -449,7 +485,7 @@
         <object>MUSW__Application2__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>

@@ -643,6 +643,7 @@
         <fullName>ITIN__c</fullName>
         <description>It is to store applicant ITIN number</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Individual Taxpayer Identification Number is issued by the IRS only to individuals who are required to have a US taxpayer identification number but do not have and are ineligible to obtain a Social Security Number (SSN).</inlineHelpText>
         <label>ITIN</label>
         <length>11</length>
         <required>false</required>
@@ -969,6 +970,42 @@ CASE( MUSW__AlertCode__c,
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
+        <fullName>Preferred_Method_of_Communication__c</fullName>
+        <description>Field to identify contact preferred method of communication</description>
+        <externalId>false</externalId>
+        <label>Preferred Method of Communication</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <label>Text</label>
+                </value>
+                <value>
+                    <fullName>Mail</fullName>
+                    <default>false</default>
+                    <label>Mail</label>
+                </value>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <label>Phone</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Provider_Name__c</fullName>
         <externalId>false</externalId>
         <label>Provider Name</label>
@@ -1074,6 +1111,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Social_Security_Number_Encrypted__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>If you have a Social Security Number (SSN), you are required by federal and state law to provide it for use in child support enforcement programs (42 U.S.C. 666(a)(13) and RCW 74.20A.320). May also be used for identification of records with similar names.</inlineHelpText>
         <label>SSN</label>
         <length>9</length>
         <maskChar>asterisk</maskChar>
@@ -3496,6 +3534,25 @@ CASE( MUSW__AlertCode__c,
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Preferred_Method_of_Communication__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Reason_for_No_SSN__c</picklist>
             <values>
                 <fullName>Foreign Applicant</fullName>
@@ -5746,6 +5803,25 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Method_of_Communication__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

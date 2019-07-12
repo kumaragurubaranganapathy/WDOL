@@ -267,6 +267,9 @@
                                         </ui:inputSelect> 
                                     </div-->
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <aura:if isTrue="{!question.helptext != null}">
+                                                            <lightning:helptext content="{!question.helptext}"/>
+                                                        </aura:if>
                                                         <lightning:select aura:id="{!(question.isMandatoryQues?'validate':'no-validate')}" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 <option value="{!option}">{!option}</option>
@@ -312,6 +315,12 @@
                                                         <lightning:input name="{!section.sectionName+questionItem}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if> 
+                                                <aura:if isTrue="{!question.fieldType=='number'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:input name="{!section.sectionName+questionItem}"  value="{!question.value}" type="number" min="{!question.minValue?question.minValue:''}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                    </div>
+                                                </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
@@ -387,7 +396,7 @@
             <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp back-button slds-m-left_medium'}"/>
             <lightning:button variant="brand" label="Save and Continue" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}"/>
             <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit and Proceed to Payment" title="Submit" onclick="{!c.submit}" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit and Continue" title="Submit" onclick="{!c.submit}" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->

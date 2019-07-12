@@ -84,6 +84,7 @@
         component.set("v.attestationError", "");
     },
     goToNextTab : function(component, event, helper) {
+        debugger;
         this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
             var curTab= component.get("v.currentTab");		
@@ -557,6 +558,7 @@
         }
     },
     checkFieldValidations : function(component, event){
+        debugger;
         var licenseWrapper = component.get("v.licenseWrapper");
         var tabNumber = component.get("v.currentTab") - 1;
         if(licenseWrapper[tabNumber].subheader == 'Personal Information' || licenseWrapper[tabNumber].subheader == 'Business Information') {
@@ -777,7 +779,7 @@
                 if(item.renderedOnUi){
                     if(item.isMandatoryQues){
                         if(item.regex != undefined && item.regex != ""){
-                            if(item.regex == "Future Date"){
+                            if(item.regex == "Future-Date"){
                                 var valueVal = item.value;
                                 if(valueVal!="" && valueVal!=null){
                                     var today = new Date();
@@ -790,8 +792,25 @@
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
                                     }
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                    return false;
                                 }
-                            } else {
+                            } else if(item.regex == "Policy-Amount"){
+                                var valueVal = item.value;
+                                if(valueVal!="" && valueVal!=null){
+                                    var minValue = parseInt(item.minValue);
+                                    if(valueVal >= minValue){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                    return false;
+                                }
+                            }else {
                                 var regexExp = new RegExp(item.regex);
                                 var valueVal = item.value;
                                 if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" && regexExp.test(valueVal)){
@@ -814,7 +833,7 @@
                         if(item.regex != undefined && item.regex != ""){
                             var valueVal = item.value;
                             if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" ){
-                                if(item.regex == "Future Date"){
+                                if(item.regex == "Future-Date"){
                                     var valueVal = item.value;
                                     if(valueVal != "" && valueVal != null){
                                         var today = new Date();
@@ -831,7 +850,21 @@
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
                                     } 
-                                } else {
+                                } else if(item.regex == "Policy-Amount"){
+                                    var valueVal = item.value;
+                                    if(valueVal!="" && valueVal!=null){
+                                        var minValue = parseInt(item.minValue);
+                                        if(valueVal >= minValue){
+                                            return true;
+                                        }else{
+                                            errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                            return false;
+                                        }
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }
+                                }else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
                                     if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != "" && regexExp.test(valueVal)){

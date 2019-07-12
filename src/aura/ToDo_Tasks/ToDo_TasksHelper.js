@@ -1,13 +1,24 @@
 ({
-	doInit : function(component, event, helper) {
-        
+    doInit : function(component, event, helper) {
         var action = component.get("c.getTodoList");
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();
-                component.set("v.taskList",result);
-                console.log('result::'+ JSON.stringify(result));
+                if(result == '') {
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "No result found!",
+                        "message": "No task to display",
+                        "type": "SUCCESS"
+                    });
+                    toastEvent.fire();
+                } else  {
+                    component.set("v.taskList",result);
+                }
+                
+                
+                ///console.log('result::'+ JSON.stringify(result));
             }else{
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -41,7 +52,7 @@
     },
     actionRequest : function(component, event, helper) {
         console.log('inside actionRequest');
-		var action = component.get("c.updateTask");
+        var action = component.get("c.updateTask");
         action.setParams({"taskId": component.get("v.taskId"),"subStatus": component.get("v.actionclicked")});
         action.setCallback(this, function(response){
             var state = response.getState();
@@ -64,22 +75,22 @@
                     //component.set("v.storeServerValue", result[0].Id);
                     component.set("v.isOpen", true);
                 }
-                else if(result=='Pay Fee Near Expiration')
-                {
-                    // Set popup property values before displayiong pop up.
-                    component.set("v.popupHeader", "License Relationship");
-                    component.set("v.popupBody", "Your license is going to expire in the next 120 days or less.  Are you sure you want to proceed with this payment as this relationship will need to be renewed before expiration date? Click on Ok to proceed for payment.");
-                    component.set("v.serverStatus", "success"); 
-                    //component.set("v.storeServerValue", result[0].Id);
-                    component.set("v.isOpen", true);
-                }
-                else{
-                     toastEvent.setParams({
-                        "title": "Error",
-                        "message": "Action not Completed",
-                        "type": "error"
-                    });
-                }
+                    else if(result=='Pay Fee Near Expiration')
+                    {
+                        // Set popup property values before displayiong pop up.
+                        component.set("v.popupHeader", "License Relationship");
+                        component.set("v.popupBody", "Your license is going to expire in the next 120 days or less.  Are you sure you want to proceed with this payment as this relationship will need to be renewed before expiration date? Click on Ok to proceed for payment.");
+                        component.set("v.serverStatus", "success"); 
+                        //component.set("v.storeServerValue", result[0].Id);
+                        component.set("v.isOpen", true);
+                    }
+                        else{
+                            toastEvent.setParams({
+                                "title": "Error",
+                                "message": "Action not Completed",
+                                "type": "error"
+                            });
+                        }
                 toastEvent.fire();
                 this.doInit(component,event,helper);
             }else{
@@ -95,7 +106,7 @@
         });
         $A.enqueueAction(action);  
     },
-   
+    
     insertRequest : function(component,event,helper){
         console.log("inside insertRequest::");
         
@@ -120,8 +131,8 @@
             }else{
                 console.log("error");
             }
-          }); 
-         $A.enqueueAction(action);         
+        }); 
+        $A.enqueueAction(action);         
     },
     //Close the modal popup and redirect to cart page
     closeModel: function(component, event) {
@@ -137,8 +148,8 @@
                 var id = response.getReturnValue();
                 console.log('id',id);
                 if(component.get("v.serverStatus") == "success"){
-                        window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                    }
+                    window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
+                }
             }else{
                 console.log("error");
             }
@@ -148,6 +159,21 @@
     
     proceedRequest: function(component, event, helper){
         
-    }
-    
+    },
+    linkProfLic : function(component,event){
+        var str ='/professional-license-linking';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    linkBizLic : function(component,event){
+        var str ='/business-license-linking';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    }                
 })

@@ -80,5 +80,13 @@
     closeModelExamReschedule : function(component, event, helper) {
         component.set("v.isOpenExam", false);
         
+    } ,
+    linkProfLic : function(component,event,helper){
+        helper.linkProfLic(component,event);
+    },
+    linkBizLic : function(component,event,helper){
+        helper.linkBizLic(component,event);
     }
+    
+ 
 })

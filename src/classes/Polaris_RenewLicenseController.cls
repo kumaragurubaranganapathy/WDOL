@@ -70,6 +70,7 @@ public class Polaris_RenewLicenseController {
         //Fetching Section
         List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();        
         lstSections = Polaris_RenewLicenseService.fetchSection(board,licenseType,renewReinstate);
+        
         if(!lstSections.isEmpty())
         {
             sections = lstSections[0].Sections__c;
@@ -815,7 +816,7 @@ listApp.add(applicationChild);*/
                 //Setup  for the populating the details
                 List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
                 //  String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c,(select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,License__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
-                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,QuestionDOL__r.QuestionFieldAPI__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
+                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.QuestionObjectName__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
                 system.debug('StrApp Query--->'+strAppOther);
                 appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
                 
@@ -852,11 +853,13 @@ listApp.add(applicationChild);*/
                 Renewal_Application__c RenewalObj = [SELECT Id FROM Renewal_Application__c WHERE Id=: licenseID ];
                 
                 // added for courses
-                if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Appraiser Course')
+                if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Appraiser Course'  )
                 {
                     List<String> preApproval = new List<String>();
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r)
-                    {                    
+                    {   if(ans.QuestionDOL__r.QuestionObjectName__c == 'Renewal_Application__c')  {
+                        
+                   
                         ans.Renewal_Reinstatement_Application__c = licenseID;   
                         // map course fields here
                         if(ans.QuestionDOL__r.RecordType.DeveloperName =='Course_Information'){
@@ -913,6 +916,7 @@ listApp.add(applicationChild);*/
                                 }
                             }
                         }
+                    }
                     }
                     system.debug('RenewalObj1234'+RenewalObj);
                     update RenewalObj;
@@ -1008,7 +1012,8 @@ listApp.add(applicationChild);*/
         // For Course Renewal Applications
         Id courseRT = SObjectType.Renewal_Application__c.getRecordTypeInfosBYDeveloperName().get('Course').getRecordTypeId();
         
-        List<MUSW__Application2__c> applicationList = [SELECT Id,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
+        List<MUSW__Application2__c> applicationList = [SELECT Id,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
+        system.debug('applicationList : '+applicationList);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
             mstLicense.Applicant__c = application.MUSW__Applicant__c;
@@ -1050,25 +1055,32 @@ mstLicense.RecordTypeId = businessRT;
             if(application.Answers1__r != null && application.Answers1__r.size()>0) {
                     for(BGCK__Answer__c ans : application.Answers1__r)
                     {  
-                       if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null)
+                        //updated field name from 'QuestionObjectName__c' to 'Parent_Object_API_Name__c'
+                       if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null && ans.QuestionDOL__r.Parent_Object_API_Name__c == 'Renewal_Application__c')
                         {   
                             mapValueToStr.put(ans.QuestionDOL__r.QuestionFieldAPI__c,ans.Answer_Text__c);
                         }
                     }
                 if(!mapValueToStr.isEmpty()) {
+                    System.debug('****Inside IF****');
                     for(String fieldName : mapValueToStr.keySet()){     
                         if(mapValueToStr.get(fieldName) != null) {
+                            system.debug('***fieldName***'+fieldName);
+                           // system.debug('fields.get(fieldName).getDescribe().getType();'+fields.get(fieldName).getDescribe().getType());
                             Schema.DisplayType targetType = fields.get(fieldName).getDescribe().getType();
+                            System.debug('***targetType***'+targetType);
                             string strFieldName = String.valueOf(targetType);
                             if(strFieldName == 'TEXTAREA' || strFieldName =='MULTIPICKLIST' || strFieldName == 'TEXT'  ) {
-                                mstLicense.put(fieldName,String.valueOf(mapValueToStr.get(fieldName)));    
+                                mstLicense.put(fieldName,String.valueOf(mapValueToStr.get(fieldName)));
+                                system.debug('***RenewalObj in if***'+mstLicense);
                             } else if(strFieldName == 'DOUBLE') {
                                 mstLicense.put(fieldName,Double.valueOf(mapValueToStr.get(fieldName))); 
-                                system.debug('RenewalObj'+mstLicense);
+                                system.debug('***RenewalObj in else if***'+mstLicense);
                             }    
                         }
 
                     }
+                    system.debug('***RenewalObj after for ends***'+mstLicense);
                 }
 
                 system.debug('Financial Guarantee if entered');
@@ -1139,7 +1151,8 @@ mstLicense.RecordTypeId = businessRT;
                 else
                 {
                     endo.Status__c = 'In-Review';
-                }                
+                }
+                
             }
             
         }

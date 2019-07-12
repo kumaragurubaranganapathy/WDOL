@@ -704,6 +704,17 @@ CASE( MUSW__AlertCode__c,
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>PIN__c</fullName>
+        <externalId>false</externalId>
+        <label>PIN</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ParentId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -946,6 +957,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>UBI_Number__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>This can be found on your license document or using the license search feature at the Department of Revenue website.</inlineHelpText>
         <label>UBI</label>
         <length>11</length>
         <required>false</required>
@@ -1023,9 +1035,9 @@ CASE( MUSW__AlertCode__c,
         <columns>UBI_Number__c</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Accounts</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Converted_Account2</fullName>

@@ -40,6 +40,42 @@ _______________________________________________________________
      <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
+           <div class="license-needs-wrapper">
+            <div class="license-needs-innerwrapper">
+                <lightning:layout class="license-list-wrapper">
+                    <lightning:layoutItem class="list-col" size="12" mediumDeviceSize="6">
+                        <h1 class="license-header">
+                            Don't have a SAW account?
+                        </h1>
+                        <p class="">
+                            What is SAW?
+                        </p>
+                        <p class="license-definition">
+                            We use SecureAccess Washington(SAW) to protect your personal information. You can use this username and password to access multiple government services.
+                        </p>
+                        <ul>
+                            <li>Dept. of Licensing(DOL)</li>
+                            <li>Dept. of Labour &amp; Industries (LNI)</li>
+                            <li>Employment Security Dept.(ESD)</li>
+                        </ul>
+                        <a class="slds-button help-button" target="_blank" href="https://test-secureaccess.wa.gov/public/saw/pub/displayRegister.do">Join now!</a>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem class="list-col" size="12" mediumDeviceSize="6">
+                        <h1 class="license-header">
+                            Already have a SAW account?
+                        </h1>
+                        <p class="license-definition">
+                            Use your Secure Access Washington (SAW) user ID and password to login.
+                        </p>
+                        <p>
+                            <a class="license-link" target="_blank" href="https://test-secureaccess.wa.gov/public/saw/pub/remindAndReset.do">Need Help!</a>
+                        </p>
+                        <a class="slds-button help-button" target="_blank" href="https://test-secureaccess.wa.gov/myFortress/saw/select.do">Login</a>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </div>
+        </div>
+ 
     <div class="portal-registration-form-container">
         <div class="internal-header">
             <h1>New Washington Account</h1>

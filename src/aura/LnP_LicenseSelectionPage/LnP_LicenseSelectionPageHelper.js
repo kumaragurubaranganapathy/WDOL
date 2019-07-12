@@ -332,14 +332,28 @@
                 component.find("button1").set('v.disabled',false);
             }
             else{
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Failure!",
+                    "message": "You do not appear to meet the eligibility criteria for this profession at this time.  Please do not apply until you meet all eligibility criteria ",
+                    "type": "Error"
+                });
+                toastEvent.fire();
                 component.find("button1").set('v.disabled',true);
             }
         }else {
             var valueMarked = eliQuestions.get("v.value");
-            if(valueMarked != '' && valueMarked != undefined ){
+            if(valueMarked != '' && valueMarked != undefined && valueMarked  == 'Yes' ){
                 component.find("button1").set('v.disabled',false);
             }
             else {
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Failure!",
+                    "message": "You do not appear to meet the eligibility criteria for this profession at this time.  Please do not apply until you meet all eligibility criteria ",
+                    "type": "Error"
+                });
+                toastEvent.fire();
                 component.find("button1").set('v.disabled',true);
             }
         }           
@@ -606,6 +620,10 @@
         catch(e){
             console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
         }
+    },
+    getAccountName : function (component, event, helper){
+        var AccountName = event.getParam("Show_AccountName");
+        component.set("v.Get_Result", AccountName);
     },
     firePassValueEventHelper : function (component, event, helper){
         var pickerValue = component.find("accountPickerId").get("v.value");

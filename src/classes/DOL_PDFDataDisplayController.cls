@@ -14,6 +14,7 @@ public with sharing class DOL_PDFDataDisplayController {
     public MUSW__License2__c licenseRecordData {get;set;}
     public List<Question__c> questionRecordList {get;set;}
     public List<MUSW__Parcel__c> addressRecordList {get;set;}
+    public RecordType recordtypeName{get;set;}
     public DOL_PDFDataDisplayController(ApexPages.StandardController stdController) {
         this.licenseData = (MUSW__License2__c)stdController.getRecord();
         system.debug('MUSW__License2__c: '+licenseData);
@@ -22,9 +23,11 @@ public with sharing class DOL_PDFDataDisplayController {
         addressRecordList = new List<MUSW__Parcel__c>();
         // query for getting specific License Data
         for(MUSW__License2__c licenseRecordInstance : [Select Id, Name, CreatedDate, Application_Type__c, Credential_Type__c, MUSW__Status__c,
-                                                       Application_Method__c, Sub_Status__c, Original_Issue_Date__c, MUSW__Applicant__r.Name,
-                                                       MUSW__Applicant__r.LastName, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.MiddleName,
-                                                       MUSW__Applicant__r.Contact_Suffix__c, MUSW__Applicant__r.ContactName__c, MUSW__Applicant__r.Birthdate,
+                                                       Ultimate_Parent_Account__r.Name, MUSW__Primary_Licensee__r.Name,
+                                                       Application_Method__c, Sub_Status__c, Original_Issue_Date__c, 
+                                                       MUSW__Applicant__r.Name,MUSW__Applicant__r.LastName, MUSW__Applicant__r.FirstName, 
+                                                       MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.Contact_Suffix__c, 
+                                                       MUSW__Applicant__r.ContactName__c, MUSW__Applicant__r.Birthdate,
                                                        MUSW__Applicant__r.Unique_ID_To_Provide__c, MUSW__Applicant__r.Social_Security_Number_Encrypted__c,
                                                        MUSW__Applicant__r.MobilePhone, MUSW__Applicant__r.OtherPhone, MUSW__Applicant__r.Email, 
                                                        MUSW__Applicant__r.ITIN__c, MUSW__Applicant__r.Other_Email__c, MUSW__Total_Fees__c, 
@@ -36,6 +39,8 @@ public with sharing class DOL_PDFDataDisplayController {
                                                            licenseRecordData = licenseRecordInstance;
                                                        }
         System.debug('licenseRecordData== ' + licenseRecordData);
+        recordtypeName = [Select Id, Name From RecordType Where Id = :licenseData.RecordTypeId LIMIT 1];
+        System.debug('recordtypeName==' + recordtypeName);
         if(String.isNotBlank(licenseRecordData.Application__r.Id)){
             for(MUSW__Parcel__c allAddressRecord : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, MUSW__Unit__c, 
                                                     MUSW__City__c,MUSW__State__c, Canadian_provinces__c, County__c, Country__c, Zip_Postal_Code__c,

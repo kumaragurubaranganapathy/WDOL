@@ -1,11 +1,23 @@
 .THIS.todo-wrapper{
     padding:86px 200px;
 }
+.THIS .table-width{
+    width:100%;
+}
 .THIS .task-wrapper{
     padding:12px 27px;
     margin-bottom:20px;
     border-radius: .25rem;
     border: 1px solid t(sectionBG);
+}
+.THIS .slds-form-element__control{
+    width:50%;
+}
+.THIS .new-wrapper{
+    margin:1rem 0;
+}
+.THIS .link-help{
+	padding-bottom:0.5rem;
 }
 .THIS .task-subject{
     padding-bottom:5px;
@@ -41,6 +53,14 @@
     border-radius: 5px;
     border: solid 1px t(servicesBorder);
     width:45%;
+}
+.THIS .ser-title.link-title{
+    padding-bottom:0.5rem;
+}
+.THIS .token-wrapper{
+    padding:1.5rem;
+    border-radius: 4px;
+    border: solid 1px #c5c5c5;
 }
 .THIS .additional-services{
     padding-top:30px;
