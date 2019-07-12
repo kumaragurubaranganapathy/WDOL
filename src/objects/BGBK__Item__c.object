@@ -343,40 +343,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Intake_Method__c</fullName>
-        <externalId>false</externalId>
-        <label>Intake Method</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Portal</fullName>
-                    <default>false</default>
-                    <label>Portal</label>
-                </value>
-                <value>
-                    <fullName>Counter</fullName>
-                    <default>false</default>
-                    <label>Counter</label>
-                </value>
-                <value>
-                    <fullName>Validation Room</fullName>
-                    <default>false</default>
-                    <label>Validation Room</label>
-                </value>
-                <value>
-                    <fullName>Lockbox</fullName>
-                    <default>false</default>
-                    <label>Lockbox</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Journal_Voucher_Detail_Grouping__c</fullName>
         <externalId>false</externalId>
         <formula>Transaction_Code__c &amp;
@@ -560,11 +526,6 @@ IF( BGBK__Amount__c &lt; 0,IF( Transaction_Code_Type__c == &quot;R&quot;,&quot;T
             <value>001,770</value>
         </filters>
         <filters>
-            <field>Intake_Method__c</field>
-            <operation>equals</operation>
-            <value>Counter</value>
-        </filters>
-        <filters>
             <field>Fund_GL__c</field>
             <operation>equals</operation>
             <value>3210,7110,4310</value>
@@ -578,49 +539,6 @@ IF( BGBK__Amount__c &lt; 0,IF( Transaction_Code_Type__c == &quot;R&quot;,&quot;T
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Items</pluralLabel>
-    <recordTypes>
-        <fullName>BGBK__AdminOnly</fullName>
-        <active>true</active>
-        <label>AdminOnly</label>
-        <picklistValues>
-            <picklist>BGBK__Type__c</picklist>
-            <values>
-                <fullName>Allocation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cash</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Refund</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Intake_Method__c</picklist>
-            <values>
-                <fullName>Counter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lockbox</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Validation Room</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
