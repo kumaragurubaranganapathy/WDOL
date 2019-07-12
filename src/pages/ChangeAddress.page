@@ -1,0 +1,200 @@
+<!--**
+* User Story: 
+* Name: ChangeAddress
+* Type: Visual Force Page
+* Description: Change Address page
+* Date:        Developer/Company                    Description
+* ---------------------------------------------------------------------------------------------------------------------------------------- *
+* 07/16/2018   Sharad Maheshwari/Deloitte           Initial Creation
+**-->
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false" id="page" controller="ChangeAddress_CC">
+    <html lang='en'>
+        
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <!-- Include script and CSS Files -->
+            <c:Resources LoadAddressUtility="true"/>
+            <title>Change License Address</title>
+            <script type="text/javascript">
+            function startSpinner(){
+                NOTIFICATIONS.spinnerStart();
+            }
+            function cancelConfirm(){
+                MODAL_UTILITY.openCancelConfirmationModal('Are you sure you want to cancel your request?', 'Are you sure?',null, goToDashboard);
+            }
+            
+            function serviceRequestPageFunction()
+            {
+                $("#btnAddressDone").show();
+                var parcel = JSON.parse($("#hidden_parcel_record").val());
+                createParcelContact(parcel.Primary_Account__c, parcel.MUSW__Primary_Contact__c, parcel.Id);
+            }
+            </script>
+            <apex:outputPanel id="dynamicScriptPanel">
+                <script>
+                function showMessage(){
+                    NOTIFICATIONS.spinnerStop();
+                    if({!isError}){
+                        //NOTIFICATIONS.showErrorMessage('Error occurred','{!errorMessage}',document.getElementById('messageBox'));
+                        MODAL_UTILITY.errorMessageModal('{!errorMessage}');
+                    }else{
+                        MODAL_UTILITY.successMessageModal('You have successfully changed your address. <br/><br/>Please note that if you hold multiple licenses, you must update the address on each license individually.','Success', null, goToDashboard);
+                    }
+                }
+                function goToDashboard(){
+                    window.location = '/Dashboard';
+                }
+                </script>
+            </apex:outputPanel>
+        </head>
+        
+        <body class="internal">
+            <c:Header />
+            <main>
+                <div class="container headerMain">
+                    <div id="internal-header"> <!-- start white header -->
+                        <h1><apex:image url="{!URLFOR($Resource.DDStyle, '_assets/img_license_small.png')}" alt="stamp"/> Change License Address</h1>
+                    </div>
+                </div> <!-- end the top white header -->
+                
+                <section class="below-the-fold">
+                    <!-- start grey section -->
+                    <div class="container">
+                        <apex:pageMessages id="messages" rendered="{!isError}"/>
+                        <apex:form styleClass="animated-form" id="form">
+                            <apex:actionFunction name="refreshAddressComponent" reRender="NewAddressSection" oncomplete="ADDRESS_UTILITY.loadAddressConfigurations();" />
+                            <apex:actionFunction name="createParcelContact" action="{!createParcelContact}" reRender="mailingAddress, publicAddress">
+                                <apex:param name="accountId" value="" />
+                                <apex:param name="contactId" value="" />
+                                <apex:param name="parcelId" value="" />
+                            </apex:actionFunction>
+                            
+                            <!--  HACK TO MAKE ENABLE ANIMATED FORM FOR FIRST APEX INPUT ELEMENT -->
+                            <apex:outputpanel style="display:none;">
+                                <input value=""/>
+                            </apex:outputpanel>
+                            <apex:outputpanel style="display:none;">
+                                <textarea value=""/>
+                            </apex:outputpanel>
+                            <!-- Change Address section -->
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3">
+                                            <h2 class="section-header">Select Address</h2>
+                                            <p>
+                                                Please select a Mailing and Public address for this application. The Mailing Address is the address where all mails will be sent. 
+                                                The Public Address is the address that will be publicly available on the Public Search page.
+                                            </p>
+                                        </div>
+                                        <div class="labeloverflowing col-sm-5 col-sm-offset-1 col-md-5 no-padding">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label for="licenseOrPermitNumberAdd" class="label-padding">Number</label>
+                                                    <input class="form-control" value="{!licenseOrPermitNumber}" id="licenseOrPermitNumberAdd" readonly="readonly" />
+                                                    <span> </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label for="applicationType" class="label-padding">Application Type</label>
+                                                    <input class="form-control" value="{!applicationType}" id="applicationType" readonly="readonly" />
+                                                    <span> </span>
+                                                </div>
+                                            </div>
+                                            <apex:outputPanel rendered="{!showMailingAddress}" layout="block" styleClass="row">
+                                                <div class="form-group">
+                                                    <apex:outputLabel value="Mailing Address" styleClass="" for="mailingAddress" />
+                                                    <apex:selectList id="mailingAddress" size="1" value="{!mailingAddressId}" label="Mailing Address" onchange="setPublicAddress();" styleClass="form-control">
+                                                        <apex:selectOption itemLabel="Select a Mailing License Address" itemValue=""/>
+                                                        <apex:selectOptions value="{!addressList}"/>
+                                                    </apex:selectList>
+                                                    <span></span>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!showPublicAddress}" layout="block" styleClass="row">
+                                                <div class="form-group">
+                                                    <apex:inputCheckbox id="usePublicAddress" styleClass="usePubAdd" onchange="setPublicAddress();" />
+                                                    <apex:outputLabel value="Use as Public Address" styleClass="" for="usePublicAddress" style="margin-left: 10px; margin-top: 20px;" />
+                                                </div>    
+                                            </apex:outputPanel>
+                                            
+                                            <!--apex:outputPanel rendered="{!showPhysicalAddress}" layout="block" styleClass="row">
+<div class="col-sm-10">
+<div class="form-group">
+<apex:outputLabel value="Physical Address" styleClass="" for="physicalAddress" />
+<apex:selectList id="physicalAddress" styleClass="form-control" size="1" value="{!physicalAddressId}" label="Physical Address">
+<apex:selectOption itemLabel="Select a Physical License Address" itemValue="" />
+<apex:selectOptions value="{!addressList}"/>
+</apex:selectList>
+<span></span>
+</div>
+</div>
+</apex:outputPanel-->
+                                            <apex:outputPanel rendered="{!showPublicAddress}" layout="block" styleClass="row">
+                                                <div class="form-group">
+                                                    <apex:outputLabel value="Public Address" styleClass="" for="publicAddress" />
+                                                    <apex:selectList id="publicAddress" styleClass="form-control" size="1" value="{!publicAddressId}" label="Public Address">
+                                                        <apex:selectOption itemLabel="Select a Public License Address" itemValue=""/>
+                                                        <apex:selectOptions value="{!addressList}"/>
+                                                    </apex:selectList>
+                                                    <span></span>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-3">&nbsp;</div>
+                                        <div class="labeloverflowing col-sm-6 col-sm-offset-1 col-md-6 no-padding">
+                                            <apex:outputPanel id="NewAddressSection" layout="block" styleClass="row">
+                                                <!--<p>Add New Address</p>-->
+                                                <c:BusinessAddress ShowAddAddressButton="true" id="addingNewAddressOnServiceRequest" 
+                                                                   JavaScriptCallbackHandler="serviceRequestPageFunction"
+                                                                   AccountId="{!accID}"
+                                                                   ContactId="{!conID}"
+                                                                   business_license="{!business_license}"/>
+                                                <div class="row">
+                                                    <input id="btnAddressDone" class="btn btn-primary" style="display: none;" type="button" value="Done" onclick="refreshAddressComponent();ADDRESS_UTILITY.loadAddressConfigurations();" />
+                                                </div>
+                                            </apex:outputPanel>
+                                            <section>
+                                                <div class="row">
+                                                    <!-- <a href="javascript:cancelConfirm();" class="btn cancel-link">Cancel</a> -->
+                                                    <a class="btn btn-tertiary" href="javascript:cancelConfirm();" type="button">cancel</a>
+                                                    <apex:commandButton styleClass="btn btn-primary btn-space" value="Submit" action="{!customSave}" reRender="messages,dynamicScriptPanel" onclick="startSpinner();" oncomplete="showMessage();"></apex:commandButton>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:form>
+                    </div>
+                    <!-- end container -->
+                </section>
+                <!-- end the grey below the fold wrapper -->
+            </main>
+            <c:Footer />
+            <!-- Footer goes before the end of body -->
+        </body>
+        
+    </html>
+    <script type="text/javascript">
+    function setPublicAddress(){
+        obj=$(".usePubAdd");
+        var mailingAdd = $("[id$='mailingAddress']").val();
+        if(obj.is(':checked')){
+            $("[id$='publicAddress']").val(mailingAdd);
+            var selIndex = $("[id$='publicAddress']")[0].selectedIndex;
+            $("[id$='publicAddress'] option").attr('disabled','disabled').find('option['+selIndex+']').removeAttr('disabled');
+            $("[id$='publicAddress']").attr('readonly', 'readonly');
+        } 
+        else {
+            $("[id$='publicAddress']").removeAttr('readonly').find('option').removeAttr('disabled');   
+        }
+    }
+    </script>
+    
+</apex:page>

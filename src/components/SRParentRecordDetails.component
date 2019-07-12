@@ -1,0 +1,67 @@
+<apex:component layout="block">
+    <apex:attribute name="parentObjectName" type="string" description="Parent Object Name (Permit, Credential)" />
+	<apex:attribute name="parentName" type="string" description="Parent Record Name (Credential Number)" />
+    <apex:attribute name="parentType" type="string" description="Parent Record Type (Credential Type)" />
+    <apex:attribute name="parentStatus" type="string" description="Parent Record Status (Active, etc)" />
+    <apex:attribute name="parentSubStatus" type="string" description="Parent Record Sub-Status" />
+    <apex:attribute name="applicantName" type="string" description="Applicant Name" />
+	<apex:attribute name="compLabel" type="String" description="Label"/>
+    <apex:attribute name="compDesc" type="String" description="Description"/>
+
+	<div class="col-sm-3 col-md-3">
+        <!-- Component heading -->
+        <h2>{!compLabel}</h2>
+        <!-- Component heading -->
+        <!-- Component description -->
+        <p><apex:outputText value="{!compDesc}" escape="false" /></p>
+        <!-- Component description -->
+    </div>
+    <div class="labeloverflowing col-sm-5 col-sm-offset-1 col-md-5 no-padding">
+       <!-- <div class="row home displayParentDetContainer start-flex">
+            <div class="col-md-11">-->
+        		<apex:outputPanel layout="block" rendered="{!applicantName != ''}" styleClass="row" id="displayApplicantName">
+                    <div class="form-group">
+                        <label for="applicantName" id="applicantNameLabel">Applicant Name</label>
+                        <input type="text" class="form-control" readonly="readonly" id="applicantName" value="{!applicantName}" />
+                        <span> </span>
+                    </div>
+                </apex:outputPanel>
+                <div class="row" id="displayCredentialNumber">
+                    <div class="form-group">
+                        <label for="credNumber" id="credNumberLabel">{!parentObjectName} Number</label>
+                        <input type="text" class="form-control" readonly="readonly" id="credNumber" value="{!parentName}" />
+                        <span> </span>
+                    </div>
+                </div>
+                <div class="row" id="displayCredentialType">
+                    <div class="form-group">
+                        <label for="credType" id="credTypeLabel">{!parentObjectName} Type</label>
+                        <input type="text" class="form-control" readonly="readonly" id="credType" value="{!parentType}" />
+                        <span> </span>
+                    </div>
+                </div>
+                <apex:outputPanel layout="block" rendered="{!parentStatus != ''}" styleClass="row" id="displayCredentialStatus">
+                    <div class="form-group">
+                        <label for="credStatus" id="credStatusLabel">{!parentObjectName} Status</label>
+                        <input type="text" class="form-control" readonly="readonly" id="credStatus" value="{!parentStatus}" />
+                        <span> </span>
+                    </div>
+                </apex:outputPanel>
+        		<apex:outputPanel layout="block" rendered="{!parentSubStatus != ''}" styleClass="row" id="displayCredentialSubStatus">
+                    <div class="form-group">
+                        <label for="credSubStatus" id="credSubStatusLabel">{!parentObjectName} Sub-Status</label>
+                        <input type="text" class="form-control" readonly="readonly" id="credSubStatus" value="{!parentSubStatus}" />
+                        <span> </span>
+                    </div>
+                </apex:outputPanel>
+           <!-- </div>
+        </div>-->
+    </div>
+    <!-- Sub-section center container -->
+    <!-- Sub-section right container -->
+    <div class="col-sm-2 col-md-2">
+        <span>&nbsp;</span>
+    </div>
+    <!-- Sub-section right container -->
+    <section class="row"></section>
+</apex:component>

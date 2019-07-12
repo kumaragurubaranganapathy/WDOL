@@ -1,0 +1,641 @@
+<apex:page standardController="DRE__DRE_Rule__c" tabStyle="DRE__DRE_Rule__c" extensions="DRE.DRERuleEditorController" sidebar="false" id="p">
+    <apex:variable value="{!$ObjectType.DRE__DRE_Rule__c.Label}" var="rLabel"/>
+    
+    <apex:outputPanel id="headerPanel">
+        <apex:sectionHeader title="{!rLabel}" subtitle="{!IF(DRE__DRE_Rule__c.Id = null, 'New ' & rLabel, DRE__DRE_Rule__c.Name)}"/>
+    </apex:outputPanel>
+    
+    <apex:composition template="DRE__DREEditorComposition">
+        
+        <apex:define name="buttons">
+            <apex:commandButton action="{!save}" value="Save" styleClass="pageButton" reRender="pb,groupPanels,scriptPanel,headerPanel,msg,msgBottom" disabled="{!isAsyncJobRunning}" status="loader"/>
+            <apex:commandButton action="{!runRollupRule}" value="Recalculate" styleClass="pageButton" reRender="pb" rendered="{!DRE__DRE_Rule__c.Id != null && isTypeRollup}" disabled="{!DRE__DRE_Rule__c.DRE__IsRecalculated__c}" status="loader"/>
+            <apex:commandButton action="{!runMassRule}" value="{!IF(isAsyncJobRunning, 'Running...', 'Run Batch')}" styleClass="pageButton" reRender="relatedLists,f,refreshPanel,msg,msgBottom" rendered="{!DRE__DRE_Rule__c.Id != null && isTypeMass}" disabled="{!isAsyncJobRunning}" status="loader"/>
+            <apex:commandButton onclick="toggleScheduleDialog(true); return false;" value="Schedule Batch" styleClass="pageButton" reRender="relatedLists,f,refreshPanel,msg,msgBottom" rendered="{!DRE__DRE_Rule__c.Id != null && isTypeMass}" disabled="{!isAsyncJobRunning}"/>
+            <apex:commandButton action="{!newRecord}" value="New" styleClass="pageButton" reRender="msg,msgBottom" immediate="true" rendered="{!canCreate}" status="loader"/>
+            <apex:commandButton action="{!cloneRecord}" value="Clone" styleClass="pageButton" reRender="msg,msgBottom" immediate="true" rendered="{!DRE__DRE_Rule__c.Id != null && canCreate}" status="loader"/>
+            <apex:commandButton action="{!deleteRecord}" value="Delete" styleClass="pageButton" reRender="msg,msgBottom" immediate="true" rendered="{!DRE__DRE_Rule__c.Id != null}" disabled="{!isAsyncJobRunning}" status="loader"/>
+            <apex:commandButton action="{!cancel}" value="Back" styleClass="pageButton" immediate="true" status="loader"/>
+        </apex:define>
+        
+        <apex:define name="details">
+            
+            <apex:variable value="{!IF(!isTypeMass, 'display:none', '')}" var="displayIfMass"/>
+            <apex:variable value="{!IF(isTypeMass, 'display:none', '')}" var="displayIfNotMass"/>
+            <apex:variable value="{!IF(isTypeMass, 'height:2em', '')}" var="setHeightIfMass"/>
+            <apex:variable value="{!IF(!$Setup.DRE__DREEditorSettings__c.DRE__Show_Tooltips__c, 'display:none', '')}" var="displayTooltip"/>
+            
+            <c:DREEditor_Detail object="{!DRE__DRE_Rule__c}" id="detailPanel">
+                <tr>
+                    <td> <h2>Rule Name</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DRE_Rule__c.Name}" style="width:70%" required="true"/> </td>
+                    <td> <h2>Type</h2> </td>
+                    <td>
+                        <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Type__c}" required="true">
+                            <apex:actionSupport event="onchange" action="{!setEvent_setupMassRule_resetResults}" reRender="pb" status="loader"/>
+                        </apex:inputField>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <h2>Description</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Description__c}" style="width:70%"/> </td>
+                    <td style="padding:0px">
+                        <table style="width:100%">
+                            <tr style="{!setHeightIfMass}">
+                                <td style="padding:1px 3px"> <h2>Active</h2> </td>
+                            </tr>
+                            <tr style="{!setHeightIfMass}">
+                                <td style="padding:1px 3px;{!displayIfMass}"> <h2>Batch Size</h2> </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="padding:0px">
+                        <table style="width:100%">
+                            <tr style="{!setHeightIfMass}">
+                                <td style="padding:1px 3px"> 
+                                    <apex:inputField value="{!DRE__DRE_Rule__c.DRE__IsActive__c}"/>
+                                </td>
+                            </tr>
+                            <tr style="{!setHeightIfMass}">
+                                <td style="padding:1px 3px;{!displayIfMass}"> 
+                                    <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Batch_Size__c}" style="width:6em"/>
+                                    <apex:inputHidden value="{!DRE__DRE_Rule__c.DRE__Batch_Job_Id__c}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr style="{!IF(isTypeMass || isTypeDisplay || isTypeRollup || isTypeValidation, 'display:none', '')}">
+                    <td> <h2>Rule Controls</h2> </td>
+                    <td>
+                        <div style="display:flex"> <!-- class="div-ruleControl" -->
+                            <div class="tooltip" style="display:flex;line-height:1.15rem;">
+                                <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Run_Once__c}" id="runOnceCheckbox"/><!-- styleClass="cb-ruleControl" -->
+                                <label for="p:composition:f:pb:detailPanel:c:runOnceCheckbox">
+                                    <span>Run Once</span>
+                                </label>
+                                <span class="tooltiptext" style="{!displayTooltip}">
+                                    Prevent this rule from evaluating more than once<br/>
+                                    Tip: DRE can run twice if in its first run records are created or updated
+                                </span>
+                            </div>
+                            <div class="tooltip" style="display:flex;line-height:1.15rem;padding-left:2rem;">
+                                <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Run_in_Bulk_Mode__c}" id="runBulkCheckbox"/> <!-- styleClass="cb-ruleControl" -->
+                                <label for="p:composition:f:pb:detailPanel:c:runBulkCheckbox">
+                                    <span>Run in Bulk Mode</span>
+                                </label>
+                                <span class="tooltiptext" style="{!displayTooltip}">
+                                    Run this rule in Bulk Mode (delayed execution)<br/>
+                                    This feature takes the load off of the CPU and minimizes chances of hitting timeout errors<br/><br/>
+                                    Tip: Use this for heavy rules that do not require immediate processing and do not impact next-in-line rules
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td> <h2>Order</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Order__c}" style="width:6em"/> </td>
+                </tr>
+                <tr style="{!displayIfNotMass}">
+                    <td> <h2>Effective Start Date</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Effective_Start_Date__c}"/> </td>
+                    <td> <h2>Effective End Date</h2> </td>
+                    <td> <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Effective_End_Date__c}"/> </td>
+                </tr>
+            </c:DREEditor_Detail>
+        </apex:define>
+        
+        <apex:define name="when">
+            
+            <!-- WHEN PANEL FOR NON-MASS RULES -->
+            <c:DREEditor_When id="whenPanel" rendered="{!!isTypeMass}">
+                <tr>
+                    <td> <h2>When</h2> </td>
+                    <td>
+                        <span style="float:left">
+                            <c:DRERequiredField object="{!DRE__DRE_Rule__c}" field="DRE__Object_Name__c" options="{!objectList}" reRender="groupPanels,msg,msgBottom,scriptPanel" isEditable="{!canEdit}"/>
+                        </span>&nbsp;&nbsp;
+                        <apex:outputLink value="{!$Page.DRE__DREConfig}?retUrl={!$CurrentPage.URL}" rendered="{!canEdit}">Don't see an object?</apex:outputLink>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <c:DRERequiredField object="{!DRE__DRE_Rule__c}" field="DRE__Event__c" reRender="groupPanels,msg,msgBottom,scriptPanel"/>
+                    </td>
+                </tr>
+            </c:DREEditor_When>
+            
+            <!-- MASS RULE SETTINGS -->
+            <c:DREEditor_Group title="Batch Settings" isEditable="false" hasRows="true" showHeader="false" rowBackgroundColor="#fff" rendered="{!isTypeMass}" id="massPanel">
+                <tr><td style="padding:0px">
+                    
+                    <apex:composition template="DRE__DREEditorInnerComposition">
+                        <apex:define name="innerGroupHeader">
+                            <tr class="innerTable-header-row innerTable-header-row-corrected">
+                                <td> <h2>Query for</h2> </td>
+                                <td> <c:DRERequiredField object="{!DRE__DRE_Rule__c}" field="DRE__Object_Name__c" options="{!objectList}" reRender="massPanel,groupPanels,msg,msgBottom,scriptPanel" isEditable="{!canEdit}"/> </td>
+                                <td>
+                                    <apex:outputPanel rendered="{!massFilterGroup.childrenSize > 0}">
+                                        <h2>Matching this criteria</h2>
+                                    </apex:outputPanel>
+                                </td>
+                                <td></td>
+                                <td style="padding-left:5px">
+                                    <apex:outputText rendered="{!massFilterGroup.childrenSize > 0}">Active</apex:outputText>
+                                </td>
+                                <td class="groupButtons">
+                                    <apex:commandLink title="Randomize Batch" reRender="massPanel,msg,msgBottom" rendered="{!!isMassRandomized}" status="loader">
+                                        <apex:image url="{!URLFOR($Resource.DRE__Icons, 'random.png')}" height="20" width="20"/>
+                                        <apex:param name="isMassRandomized" assignTo="{!isMassRandomized}" value="true"/>
+                                    </apex:commandLink>
+                                    <apex:commandLink action="{!massFilterGroup.addFilter}" title="Add Filter" styleClass="margin-right" reRender="massPanel,msg,msgBottom" status="loader" rendered="{!canEditChild1Group && massFilterGroup.objectSelected != null}">
+                                        <apex:image url="{!URLFOR($Resource.DRE__Icons, 'add2.png')}" height="20" width="20"/>
+                                    </apex:commandLink>
+                                </td>
+                            </tr>
+                        </apex:define>
+                        
+                        <apex:define name="innerGroupBody">
+                            <apex:repeat value="{!massFilterGroup.filters}" var="f" id="filterRepeat">
+                                <tr>
+                                    <td> </td>
+                                    <td> 
+                                        <apex:selectList value="{!massFilterGroup.filters[f].Field__c}" size="1" style="width:100%" rendered="{!canEditChild1Group && !quickEntryEnabled}">
+                                            <apex:selectOptions value="{!massFilterGroup.fieldList}"/>
+                                        </apex:selectList>
+                                        <apex:inputField value="{!massFilterGroup.filters[f].Field__c}" style="width:95%" rendered="{!canEditChild1Group && quickEntryEnabled}"/>
+                                        <apex:outputField value="{!massFilterGroup.filters[f].Field__c}" rendered="{!!canEditChild1Group}"/>
+                                    </td>
+                                    <td> 
+                                        <apex:inputField value="{!massFilterGroup.filters[f].Operator__c}" style="width:100%" id="filterOperator">
+                                            <apex:actionSupport event="onchange"
+                                                                onsubmit="
+                                                                          var newVal = document.getElementById(this.id).value;
+                                                                          var oldVal = '{!massFilterGroup.filters[f].Operator__c}';
+                                                                          if (newVal == 'CHANGED' || newVal == 'NOT CHANGED' || oldVal == 'CHANGED' || oldVal == 'NOT CHANGED') refreshGroup1(); 
+                                                                          return false;
+                                                                          "/>
+                                        </apex:inputField>
+                                    </td>
+                                    <td>
+                                        <c:DREInputFormulaLink objectName="{!DRE__DRE_Rule__c.DRE__Object_Name__c}" 
+                                                               rowObject="{!massFilterGroup.filters[f]}"
+                                                               style="width:80%" 
+                                                               showChildren="false"
+                                                               showSoql="true"
+                                                               isEditable="{!canEditChild1Group}"
+                                                               id="filterValueComponent"
+                                                               rendered="{!canEditChild1Group && massFilterGroup.filters[f].Operator__c != 'CHANGED' && massFilterGroup.filters[f].Operator__c != 'NOT CHANGED'}"/>
+                                    </td>
+                                    <td>
+                                        <apex:inputField value="{!massFilterGroup.filters[f].Type__c}" style="display:none"/>
+                                    </td>
+                                    <td style="padding-left:5px">
+                                        <c:DREInputField object="{!massFilterGroup.filters[f]}" field="DRE__IsActive__c" isEditable="{!massFilterGroup.filterGroup.DRE__IsActive__c}"/>
+                                    </td>
+                                    <td class="groupInnerButtons">
+                                        <apex:commandLink action="{!massFilterGroup.removeChild}" reRender="massPanel,msg,msgBottom" status="loader" rendered="{!canEditChild1Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'clear_dark.png')}" height="16" width="16"/>
+                                            <apex:param name="childUID" assignTo="{!massFilterGroup.childUID}" value="{!f}"/>
+                                        </apex:commandLink>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                        </apex:define>
+                        
+                        <apex:define name="innerGroupFooter">
+                            <tr style="{!IF(!isMassRandomized, 'display:none', '')}">
+                                <td> <h2 class="labelFont">Randomize by</h2> </td>
+                                <td> <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Batch_Randomize_Percentage__c}" style="width:6em"/>&nbsp;% </td>
+                            </tr>
+                            <tr style="{!IF(!isMassRandomized, 'display:none', '')}">
+                                <td> <h2 class="labelFont">With rounding mode</h2> </td>
+                                <td> <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Batch_Randomize_Rounding_Method__c}"/> </td>
+                            </tr>
+                            <tr style="{!IF(!isMassRandomized, 'display:none', '')}">
+                                <td> <h2 class="labelFont">If record count is at least</h2> </td>
+                                <td>
+                                    <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Batch_Threshold_Minimum__c}"/>
+                                </td>
+                            </tr>
+                            <tr style="{!IF(!isMassRandomized, 'display:none', '')}">
+                                <td> <h2 class="labelFont">Run batch capped at </h2> </td>
+                                <td>
+                                    <apex:inputField value="{!DRE__DRE_Rule__c.DRE__Batch_Threshold_Maximum__c}"/>&nbsp;records
+                                </td>
+                            </tr>
+                        </apex:define>
+                    </apex:composition>
+                    
+                </td></tr>
+            </c:DREEditor_Group>
+        </apex:define>
+        
+        <apex:define name="group1">
+            <c:DREEditor_Group title="{!IF(normalFilterGroups.size = 0, 'Add Criteria', 'Criteria')}" addButtonAction="{!addFilterGroup}" addButtonTitle="Add Object" isEditable="{!canEditChild1Group}" hasRows="{!normalFilterGroups.size > 0}" rendered="{!canViewChild1Group && ((DRE__DRE_Rule__c.DRE__Object_Name__c != null) || normalFilterGroups.size > 0)}" id="group1Panel">
+                <apex:repeat value="{!normalFilterGroups}" var="fg" id="group1Repeat">
+                    <tr><td style="padding:0px">
+                        
+                        <apex:composition template="DRE__DREEditorInnerComposition">
+                            <apex:define name="innerGroupHeader">
+                                <tr class="innerTable-header-row innerTable-header-row-corrected">
+                                    <td>
+                                        <h2>{!IF(fg.uid = firstChild1GroupUID, 'If', 'And')}</h2>&nbsp;&nbsp;
+                                        <apex:selectList value="{!fg.filterGroup.DRE__Condition__c}" size="1" rendered="{!canEditChild1Group}">
+                                            <apex:selectOptions value="{!fg.conditionList}"/>
+                                        </apex:selectList>
+                                        <apex:outputField value="{!fg.filterGroup.DRE__Condition__c}" styleClass="regularFont" rendered="{!!canEditChild1Group}"/>
+                                    </td>
+                                    <td>
+                                        <!-- Need to include DRE__Event__c for the controller -->
+                                        <c:DREObjectPickerLink objectName="{!DRE__DRE_Rule__c.DRE__Object_Name__c}," 
+                                                               groupObject="{!fg.filterGroup}" 
+                                                               groupObjectSelected="{!fg.objectSelected}" 
+                                                               drillRoot="{!IF(DRE__DRE_Rule__c.DRE__Type__c = 'Roll-Up Summary', false, true)}"
+                                                               showGlobal="{!IF(DRE__DRE_Rule__c.DRE__Type__c = 'Roll-Up Summary', false, true)}"
+                                                               showChildren="{!DRE__DRE_Rule__c.DRE__Event__c != null}" 
+                                                               selectLookups="true"
+                                                               isEditable="{!canEditChild1Group}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!fg.childrenSize > 0}">
+                                            <h2>Matching this criteria</h2>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td></td>
+                                    <td style="padding-left:5px">
+                                        <c:DREToggleLink object="{!fg.filterGroup}" isEditable="{!canEditChild1Group}" reRender="group1Panel" showLoader="true" rendered="{!fg.childrenSize > 0}"/>
+                                    </td>
+                                    <td class="groupButtons">
+                                        <apex:commandLink action="{!fg.addFilter}" title="Add Filter" reRender="group1Panel,msg,msgBottom" status="loader" rendered="{!canEditChild1Group && fg.objectSelected != null}" oncomplete="validateRowLimitJS();">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'add2.png')}" height="20" width="20"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink action="{!removeChild1Group}" title="Remove Group" styleClass="margin-right" reRender="group1Panel,group2Panel,msg,msgBottom" status="loader" rendered="{!canDeleteChild1Group}" oncomplete="validateRowLimitJS();">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'delete.png')}" height="20" width="20"/>
+                                            <apex:param name="groupUid" assignTo="{!groupUid}" value="{!fg.uid}"/>
+                                        </apex:commandLink>
+                                    </td>
+                                </tr>
+                            </apex:define>
+                            
+                            <apex:define name="innerGroupBody">
+                                <apex:repeat value="{!fg.filters}" var="f" id="filterRepeat">
+                                    <tr>
+                                        <td> </td>
+                                        <td> 
+                                            <apex:selectList value="{!fg.filters[f].Field__c}" size="1" style="width:100%" rendered="{!canEditChild1Group && !quickEntryEnabled}">
+                                                <apex:selectOptions value="{!fg.fieldList}"/>
+                                            </apex:selectList>
+                                            <apex:inputField value="{!fg.filters[f].Field__c}" style="width:95%" rendered="{!canEditChild1Group && quickEntryEnabled}"/>
+                                            <apex:outputField value="{!fg.filters[f].Field__c}" rendered="{!!canEditChild1Group}"/>
+                                        </td>
+                                        <td> 
+                                            <apex:inputField value="{!fg.filters[f].Operator__c}" style="width:100%" id="filterOperator">
+                                                <apex:actionSupport event="onchange"
+                                                                    onsubmit="
+                                                                              var newVal = document.getElementById(this.id).value;
+                                                                              var oldVal = '{!fg.filters[f].Operator__c}';
+                                                                              if (newVal == 'CHANGED' || newVal == 'NOT CHANGED' || oldVal == 'CHANGED' || oldVal == 'NOT CHANGED') refreshGroup1(); 
+                                                                              return false;
+                                                                              "/>
+                                            </apex:inputField>
+                                        </td>
+                                        <td>
+                                            <c:DREInputFormulaLink objectName="{!DRE__DRE_Rule__c.DRE__Object_Name__c}" 
+                                                                   rowObject="{!fg.filters[f]}"
+                                                                   style="width:80%" 
+                                                                   showChildren="false"
+                                                                   isEditable="{!canEditChild1Group}"
+                                                                   id="filterValueComponent"
+                                                                   rendered="{!canEditChild1Group && fg.filters[f].Operator__c != 'CHANGED' && fg.filters[f].Operator__c != 'NOT CHANGED'}"/>
+                                        </td>
+                                        <td>
+                                            <apex:inputField value="{!fg.filters[f].Type__c}" style="display:none"/>
+                                        </td>
+                                        <td style="padding-left:3px">
+                                            <c:DREInputField object="{!fg.filters[f]}" field="DRE__IsActive__c" isEditable="{!fg.filterGroup.DRE__IsActive__c}"/>
+                                        </td>
+                                        <td class="groupInnerButtons">
+                                            <apex:commandLink action="{!fg.removeChild}" reRender="group1Panel,msg,msgBottom" status="loader" rendered="{!canEditChild1Group}" oncomplete="validateRowLimitJS();">
+                                                <apex:image url="{!URLFOR($Resource.DRE__Icons, 'clear_dark.png')}" height="16" width="16"/>
+                                                <apex:param name="childUID" assignTo="{!fg.childUID}" value="{!f}"/>
+                                            </apex:commandLink>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                            </apex:define>
+                        </apex:composition>
+                        
+                    </td></tr>
+                </apex:repeat>
+            </c:DREEditor_Group>
+        </apex:define>
+        
+        <apex:define name="group2">
+            <c:DREEditor_Group title="{!IF(resultGroups.size = 0, 'Add Actions', 'Actions')}" addButtonAction="{!addResultGroup}" addButtonTitle="Add Action" isEditable="{!canEditChild2Group}" hasRows="{!resultGroups.size > 0}" styleClass="groupHeaderAlt" rendered="{!canViewChild2Group && ((DRE__DRE_Rule__c.DRE__Object_Name__c != null) || resultGroups.size > 0)}" id="group2Panel">
+                <apex:repeat value="{!resultGroups}" var="rg" id="actionRepeat">
+                    <tr><td style="padding:0px">
+                        
+                        <apex:composition template="DRE__DREEditorInnerComposition">
+                            <apex:define name="innerGroupHeader">
+                                
+                                <!-- MAIN TABLE -->
+                                <tr class="innerTable-header-row innerTable-header-row-corrected">
+                                    <td>
+                                        <h2>{!IF(rg.uid = firstChild2GroupUID, 'Then', 'And')}</h2>&nbsp;&nbsp;
+                                        <apex:selectList value="{!rg.resultGroup.DRE__Action_Type__c}" size="1" rendered="{!canEditChild2Group}">
+                                            <apex:selectOptions value="{!actionList}"/>
+                                            <apex:actionSupport event="onchange" action="{!updateResultGroupObjects}" reRender="group2Panel,msg,msgBottom" status="loader">
+                                                <apex:param name="groupUid" assignTo="{!groupUid}" value="{!rg.uid}"/>
+                                            </apex:actionSupport>
+                                        </apex:selectList>
+                                        <apex:outputField value="{!rg.resultGroup.DRE__Action_Type__c}" styleClass="regularFont" rendered="{!!canEditChild2Group}"/>
+                                    </td>
+                                    <td>
+                                        <c:DREObjectPickerLink objectName="{!DRE__DRE_Rule__c.DRE__Object_Name__c}" 
+                                                               groupObject="{!rg.resultGroup}" 
+                                                               groupObjectSelected="{!rg.objectSelected}" 
+                                                               showChildren="true" 
+                                                               showGlobal="false"
+                                                               selectLookups="{!rg.resultGroup.DRE__Action_Type__c != 'CreateRecord'}"
+                                                               isEditable="{!canEditChild2Group}"
+                                                               rendered="{!rg.action.objectSource = 'All'}"/>
+                                        
+                                        <apex:selectList value="{!rg.resultGroup.DRE__Object_Path__c}" size="1" rendered="{!rg.action.objectSource = 'Filtered Only' && canEditChild2Group}">
+                                            <apex:selectOptions value="{!filterWithRecordList}"/>
+                                            <apex:actionSupport event="onchange" action="{!updateResultGroupObjects}" reRender="group2Panel,msg,msgBottom" status="loader">
+                                                <apex:param name="groupUid" assignTo="{!groupUid}" value="{!rg.uid}"/>
+                                            </apex:actionSupport>
+                                        </apex:selectList>
+                                        
+                                        <apex:selectList value="{!rg.resultGroup.DRE__Object_Path__c}" size="1" rendered="{!rg.action.objectSource = 'Filtered Except Record' && canEditChild2Group}">
+                                            <apex:selectOptions value="{!filterWithoutRecordList}"/>
+                                            <apex:actionSupport event="onchange" action="{!updateResultGroupObjects}" reRender="group2Panel,msg,msgBottom" status="loader">
+                                                <apex:param name="groupUid" assignTo="{!groupUid}" value="{!rg.uid}"/>
+                                            </apex:actionSupport>
+                                        </apex:selectList>
+                                        
+                                        <apex:outputText value="{!rg.objectSelected}" styleClass="regularFont" rendered="{!rg.action.objectSource = 'Record Only'}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!!rg.usingScope && rg.childrenSize > 0 && !rg.isDelete}">
+                                            <h2>With values</h2>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel styleClass="regularFont" rendered="{!!rg.usingScope && rg.isDuplicateCheck && rg.childrenSize > 0}">
+                                            Check Duplicate
+                                        </apex:outputPanel>
+                                        <c:DREToggleLink object="{!rg.resultGroup}" field="DRE__Remove_From_Recycle_Bin__c" isEditable="true" showLoader="true" rendered="{!!rg.usingScope && rg.isDelete}"
+                                                         trueValue="Hard Delete" falseValue="Soft Delete" 
+                                                         trueTitle="Click to keep deleted record in Recycle Bin" falseTitle="Click to remove deleted record from Recycle Bin"/>
+                                    </td>
+                                    <td style="padding-left:5px">
+                                        <c:DREToggleLink object="{!rg.resultGroup}" isEditable="{!canEditChild2Group}" showLoader="true" reRender="group2Panel" rendered="{!!rg.usingScope}"/>
+                                    </td>
+                                    <td class="groupButtons">
+                                        <apex:commandLink action="{!rg.addResult}" title="Add Row" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!rg.objectSelected != null && !rg.requiresAttributes && canEditChild2Group && !rg.isDelete}" oncomplete="validateRowLimitJS();">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'add2.png')}" height="20" width="20"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink title="Add Scope" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!filterChildList.size > 0 && rg.isScopable && !rg.usingScope && canEditChild2Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'filter.png')}" height="20" width="20"/>
+                                            <apex:param name="usingScope" assignTo="{!rg.usingScope}" value="true"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink title="Remove Scope" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!rg.usingScope && canEditChild2Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'unfilter.png')}" height="20" width="20"/>
+                                            <apex:param name="usingScope" assignTo="{!rg.usingScope}" value="false"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink action="{!removeChild2Group}" title="Remove Group" styleClass="margin-right" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!canEditChild2Group}" oncomplete="validateRowLimitJS();">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'delete.png')}" height="20" width="20"/>
+                                            <apex:param name="groupUid" assignTo="{!groupUid}" value="{!rg.uid}"/>
+                                        </apex:commandLink>
+                                    </td>
+                                </tr>
+                                
+                                <!-- SCOPE TABLE -->
+                                <tr class="innerTable-header-row innerTable-header-row-corrected" style="display:{!IF(rg.usingScope, 'table row', 'none')}">
+                                    <td>
+                                        <h2>Using</h2>&nbsp;&nbsp;
+                                        <apex:inputField value="{!rg.resultGroup.DRE__Object_Scope__c}"/>
+                                    </td>
+                                    <td>
+                                        <apex:selectList value="{!rg.resultGroup.DRE__Object_Scope_Path__c}" size="1" rendered="{!rg.usingScope && canEditChild2Group}">
+                                            <apex:selectOptions value="{!filterChildList}"/>
+                                        </apex:selectList>
+                                        <apex:outputText value="{!rg.resultGroup.DRE__Object_Scope_Path__c}" styleClass="regularFont" rendered="{!rg.usingScope && !canEditChild2Group}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!rg.childrenSize > 0 && !rg.usingInnerScope && !rg.isDelete}">
+                                            <h2>With values</h2>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel styleClass="regularFont" rendered="{!rg.isDuplicateCheck && rg.childrenSize > 0 && !rg.usingInnerScope}">
+                                            Check Duplicate
+                                        </apex:outputPanel>
+                                        <c:DREToggleLink object="{!rg.resultGroup}" field="DRE__Remove_From_Recycle_Bin__c" isEditable="true" showLoader="true" rendered="{!rg.usingScope && !rg.usingInnerScope && rg.isDelete}"
+                                                         trueValue="Hard Delete" falseValue="Soft Delete" 
+                                                         trueTitle="Click to keep deleted record in Recycle Bin" falseTitle="Click to remove deleted record from Recycle Bin"/>
+                                    </td>
+                                    <td style="padding-left:5px">
+                                        <c:DREToggleLink object="{!rg.resultGroup}" isEditable="{!canEditChild2Group}" showLoader="true" reRender="group2Panel" rendered="{!rg.usingScope && !rg.usingInnerScope && rg.childrenSize > 0}"/>
+                                    </td>
+                                    <td class="groupButtons">
+                                        <apex:commandLink title="Add Inner Scope" styleClass="margin-right-emptySpace" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!innerScopeEnabled && filterChildList.size > 0 && rg.usingScope && !rg.usingInnerScope && canEditChild2Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'filter.png')}" height="20" width="20"/>
+                                            <apex:param name="usingInnerScope" assignTo="{!rg.usingInnerScope}" value="true"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink title="Remove Inner Scope" styleClass="margin-right-emptySpace" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!innerScopeEnabled && rg.usingInnerScope && canEditChild2Group}">
+                                            <apex:image url="{!URLFOR($Resource.DRE__Icons, 'unfilter.png')}" height="20" width="20"/>
+                                            <apex:param name="usingInnerScope" assignTo="{!rg.usingInnerScope}" value="false"/>
+                                        </apex:commandLink>
+                                    </td>
+                                </tr>
+                                
+                                <!-- INNER SCOPE TABLE -->
+                                <tr class="innerTable-header-row innerTable-header-row-corrected" style="display:{!IF(rg.usingInnerScope, 'table row', 'none')}">
+                                    <td>
+                                        <h2>And Using</h2>&nbsp;&nbsp;
+                                        <apex:inputField value="{!rg.resultGroup.DRE__Object_Inner_Scope__c}"/>
+                                    </td>
+                                    <td>
+                                        <apex:selectList value="{!rg.resultGroup.DRE__Object_Inner_Scope_Path__c}" size="1" rendered="{!rg.usingInnerScope && canEditChild2Group}">
+                                            <apex:selectOptions value="{!filterChildList}"/>
+                                        </apex:selectList>
+                                        <apex:outputText value="{!rg.resultGroup.DRE__Object_Inner_Scope_Path__c}" styleClass="regularFont" rendered="{!rg.usingInnerScope && !canEditChild2Group}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!rg.childrenSize > 0 && !rg.isDelete}">
+                                            <h2>With values</h2>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel styleClass="regularFont" rendered="{!rg.isDuplicateCheck && rg.childrenSize > 0}">
+                                            Check Duplicate
+                                        </apex:outputPanel>
+                                        <c:DREToggleLink object="{!rg.resultGroup}" field="DRE__Remove_From_Recycle_Bin__c" isEditable="true" showLoader="true" rendered="{!rg.usingInnerScope && rg.isDelete}"
+                                                         trueValue="Hard Delete" falseValue="Soft Delete" 
+                                                         trueTitle="Click to keep deleted record in Recycle Bin" falseTitle="Click to remove deleted record from Recycle Bin"/>
+                                    </td>
+                                    <td style="padding-left:5px">
+                                        <c:DREToggleLink object="{!rg.resultGroup}" isEditable="{!canEditChild2Group}" showLoader="true" reRender="group2Panel" rendered="{!rg.usingInnerScope && rg.childrenSize > 0}"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </apex:define>
+                            
+                            <apex:define name="innerGroupBodyCols">
+                                <col style="width:15%"/> <col style="width:15%"/> <col style="width:40%"/> <col style="width:10%"/> <col style="width:10%"/> <col style="width:10%"/>
+                            </apex:define>
+                            
+                            <apex:define name="innerGroupBody">
+                                <apex:repeat value="{!rg.results}" var="r" id="resultRepeat" rendered="{!!rg.isDelete}">
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <apex:selectList value="{!rg.results[r].Field__c}" size="1" style="width:100%" rendered="{!!rg.requiresAttributes && canEditChild2Group && !quickEntryEnabled}">
+                                                <apex:selectOptions value="{!rg.fieldList}"/>
+                                            </apex:selectList>
+                                            <apex:inputText value="{!rg.results[r].Field__c}" style="width:95%" rendered="{!!rg.requiresAttributes && canEditChild2Group && quickEntryEnabled}"/>
+                                            <apex:outputText value="{!rg.results[r].Field__c}" rendered="{!!canEditChild2Group}"/>
+                                            <apex:outputText value="{!rg.actionAttributeMap[rg.results[r].Attribute__c].label}" rendered="{!rg.requiresAttributes}"/>
+                                        </td>
+                                        <td style="padding-bottom:0px">
+                                            <c:DREInputFormulaLink objectName="{!DRE__DRE_Rule__c.DRE__Object_Name__c}" 
+                                                                   rowObject="{!rg.results[r]}"
+                                                                   style="width:85%;height:1.05em;" 
+                                                                   placeholder="{!IF(rg.requiresAttributes, rg.actionAttributeMap[rg.results[r].Attribute__c].helpText, '')}"
+                                                                   showChildren="true"
+                                                                   showGlobal="true"
+                                                                   isEditable="{!canEditChild2Group}"
+                                                                   id="resultValueComponent"
+                                                                   rendered="{!rg.results[r].Attribute__c != rg.ATTRIBUTE_TEMPLATE}"/>
+                                            
+                                            <apex:outputPanel rendered="{!rg.results[r].Attribute__c = rg.ATTRIBUTE_TEMPLATE}">
+                                                <apex:outputPanel rendered="{!canEditChild2Group}">
+                                                    <apex:selectList value="{!rg.useTemplate}" size="1">
+                                                        <apex:selectOption itemValue="false" itemLabel="None"/>
+                                                        <apex:selectOption itemValue="true" itemLabel="Select"/>
+                                                        <apex:actionSupport event="onchange" action="{!rg.initActionAttributes}" reRender="group2Panel" status="loader"/>
+                                                    </apex:selectList>&nbsp;&nbsp;
+                                                    <apex:selectList value="{!rg.templateId}" size="1" rendered="{!rg.useTemplate}">
+                                                        <apex:selectOptions value="{!templateList}"/>
+                                                    </apex:selectList>
+                                                </apex:outputPanel>
+                                                
+                                                <apex:outputText value="{!rg.templateId}" rendered="{!!canEditChild2Group}"/>
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td>
+                                            <apex:outputPanel rendered="{!rg.isDuplicateCheck}">
+                                                <apex:inputField value="{!rg.results[r].Check_Duplicate__c}"/>
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td style="padding-left:5px">
+                                            <c:DREInputField object="{!rg.results[r]}" field="DRE__IsActive__c" isEditable="{!rg.resultGroup.DRE__IsActive__c}" rendered="{!!rg.requiresAttributes}"/>
+                                        </td>
+                                        <td class="groupInnerButtons">
+                                            <apex:commandLink action="{!rg.removeChild}" reRender="group2Panel,msg,msgBottom" status="loader" rendered="{!!rg.requiresAttributes && canDeleteChild2Group}" oncomplete="validateRowLimitJS();">
+                                                <apex:image url="{!URLFOR($Resource.DRE__Icons, 'clear_dark.png')}" height="16" width="16"/>
+                                                <apex:param name="childUID" assignTo="{!rg.childUID}" value="{!r}"/>
+                                            </apex:commandLink>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                            </apex:define>
+                        </apex:composition>
+                        
+                    </td></tr>
+                </apex:repeat>
+            </c:DREEditor_Group>
+        </apex:define>
+        
+        <apex:define name="relatedLists">
+            <apex:relatedList list="DRE_Event_Logs__r" title="Event Logs" rendered="{!!isMassRuleRunning}"/>
+            <apex:outputText value="Please wait..." style="font-size: 1.2em" rendered="{!isMassRuleRunning}"/>
+            
+            <apex:pageBlock title="Scheduled Jobs" rendered="{!isTypeMass && !isMassRuleRunning}" id="schedulesPb">
+                <apex:outputPanel id="schedulesPanel">
+                    <apex:form >
+                        <apex:pageBlockTable value="{!scheduleJobs}" var="job" rendered="{!scheduleJobs.size > 0}">
+                            <apex:column headerValue="Action">
+                                <apex:commandLink value="Abort" action="{!abortScheduleJob}" reRender="relatedLists,scriptPanelLocal,msg,msgBottom" status="loader">
+                                    <apex:param name="scheduleJobId" assignTo="{!scheduleJobId}" value="{!job.Id}"/>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column value="{!job.CronJobDetail.Name}"/>
+                            <apex:column value="{!job.PreviousFireTime}"/>
+                            <apex:column value="{!job.NextFireTime}"/>
+                            <apex:column value="{!job.EndTime}"/>
+                            <apex:column headerValue="Created By">
+                                <apex:outputLink value="/{!job.CreatedById}">
+                                    <apex:outputField value="{!job.CreatedBy.Name}"/>
+                                </apex:outputLink>,&nbsp;
+                                <apex:outputField value="{!job.CreatedDate}"/>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:form>
+                    
+                    <apex:outputPanel rendered="{!scheduleJobs.size = 0}">
+                        <table class="list" border="0" cellspacing="0" cellpadding="0"><tbody><tr class="headerRow"><th scope="col" class="noRowsHeader">No records to display</th></tr></tbody></table>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <!-- This will be moved by jQuery -->
+                <div style="float:right" id="jobStatusLink">
+                    <apex:outputLink value="/apexpages/setup/listAsyncApexJobs.apexp" target="blank">See Status of Already Executed Jobs</apex:outputLink>
+                </div>
+                
+                <script>
+                    $('#jobStatusLink').detach().appendTo($('[id$="schedulesPb"]').find('.pbTitle').next());
+                </script>
+            </apex:pageBlock>
+        </apex:define>
+        
+    </apex:composition>
+    
+    <apex:form >
+        <c:DREEditor_AsyncRefresh isAsyncJobRunning="{!isMassRuleRunning}" reRender="relatedLists,scriptPanel,scriptPanelLocal,progress,f,msg,msgBottom"/>
+        
+        <apex:actionFunction name="validateRowLimitJS" action="{!validateRowLimit}" reRender="msg,msgBottom"/>
+    </apex:form>
+    
+    <div id="scheduleDialog" style="display:none;" title="Schedule Batch Rule">
+        <c:DREScheduler ruleId="{!DRE__DRE_Rule__c.Id}"/>
+    </div>
+    
+    <div id="progressDialog" style="text-align:center;overflow:hidden;display:none;">
+        <c:DREProgressBar percentComplete="{!asyncJobProgressPercent}" id="progress"/>
+    </div>
+    
+    <apex:outputPanel id="scriptPanelLocal">
+        <script>
+            // override related list styling
+            $('[id$="relatedLists"] > .apexp').addClass('bRelatedList').removeClass('apexp');
+            
+            $(function()
+            {
+                if ({!isMassRuleRunning} == true)
+                    toggleProgressDialog(true);
+                else
+                    toggleProgressDialog(false);
+                
+                toggleScheduleDialog(false);
+            });
+        
+            function toggleProgressDialog(show)
+            {
+                if (show) $('#progressDialog').dialog({modal:true, minHeight:'initial', width:328}).siblings('.ui-dialog-titlebar').remove();
+                else if ($('#progressDialog').dialog('instance') != undefined && $('#progressDialog').dialog('isOpen'))
+                    $('#progressDialog').dialog('close');
+            }
+        
+            function toggleScheduleDialog(show)
+            {
+                if (show) $('#scheduleDialog').dialog({modal:true, minHeight:'initial', width:800});
+                else if ($('#scheduleDialog').dialog('instance') != undefined && $('#scheduleDialog').dialog('isOpen'))
+                    $('#scheduleDialog').dialog('close');
+            }
+        </script>
+    </apex:outputPanel>
+</apex:page>

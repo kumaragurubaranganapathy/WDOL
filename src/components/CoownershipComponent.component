@@ -1,0 +1,444 @@
+<apex:component layout="block">
+    <apex:attribute name="coOwnershipList" type="String" description="Affiliations records"/>
+    <apex:attribute name="parentId" type="string" description="permit Id" />
+    <apex:attribute name="servId" type="string" description="permit Id" />
+    <apex:attribute name="compLabel" type="String" description="Label"/>
+    <apex:attribute name="permit" type="MUSW__Permit2__c" description="permit"/>
+    <apex:attribute name="compDesc" type="String" description="Description"/>
+    <apex:attribute name="affiliationObject" type="Affiliation__c" description="Affiliation object"/>
+    <div class="col-sm-3 col-md-3 leftPanel">
+        <h2>{!compLabel}</h2>
+        <p><apex:outputText value="{!compDesc}" escape="false" /></p>
+    </div>
+    <div class="labeloverflowing col-sm-5 col-sm-offset-1 col-md-5 no-padding">
+        <!-- Display list of records -->
+        <div class="home">
+            <div class="BusinessOwnersList">
+                <div class="row">
+                    <ul class="list-style-none" id="BusinessOwnersListCO">
+                        <!-- Attach existing rows here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Record entry form -->
+        <div class="row ownersFormSectionCO" style="display:none" id="ownersFormSectionEditContainerCO">
+                <form class="animated-form">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group-inanimated required">
+                                <apex:outputLabel value="Co-Ownership" styleClass="" for="typeofAffCO" />
+                                <apex:inputField value="{!affiliationObject.Type_of_Co_owner__c}" styleClass="form-control" id="typeofAffCO" html-aria-required="true" />
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated required">
+                                <label for="NameCO" id="NameLabel">First Name</label>
+                                <input class="form-control" id="NameCO" aria-required="true" />
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated">
+                                <label for="MiddleNameCO" id="MiddleNameCOLabel">Middle Name</label>
+                                <input class="form-control" id="MiddleNameCO"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated required">
+                                <label for="LastNameCO" id="LastNameCOLabel">Last Name</label>
+                                <input class="form-control" id="LastNameCO" aria-required="true"/>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-inanimated required">
+                                <apex:outputLabel value="Phone" styleClass="" for="phoneNumberCO" />
+                                <apex:inputField id="phoneNumberCO" styleClass="form-control"  html-aria-required="true" value="{!affiliationObject.Contact_s_Phone__c}"/> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group-inanimated required">
+                                <label for="addressCO" id="addressLabel">Street Address</label>
+                                <input type="text" class="form-control" id="addressCO" aria-required="true"/>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <div class="form-group-inanimated required">
+                                <label for="cityCO" id="cityLabel">City</label>
+                                <input type="text" class="form-control" id="cityCO" aria-required="true"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group required">
+                                <label for="stateCO" id="stateLabel">State</label>
+                                <select class="selectPicker" id="stateCO" aria-required="true">
+                                    <option value=""></option>
+                                    <!-- Append picklist values here -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group-inanimated required">
+                                <label for="zipCodeCO" id="zipCodeLabel">ZipCode</label>
+                                <input type="text" class="form-control" maxlength="5" id="zipCodeCO" aria-required="true"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row addOwnerBtnCO">
+                        <div class="col-sm-11 btn-paddingMid">
+                            <input type="button" class="btn btn-tertiary cancelOwnerCO" value="Cancel" id="affiliationCancel1" />
+                            <input type="button" class="btn btn-primary btn-space" value="Save" id="ownersFormSectionCO" />
+                        </div>
+                    </div>
+                    <div id="CoOwnerListDiv" style="display: none; ">
+                        <apex:outputLabel value="{!coOwnershipList}"/>
+                    </div>  
+                </form>
+        </div>
+        <div class="row addOwnerSectionCO">
+            <input type="button" class="btn btn-secondary" value="Add Individual" id="addOwnerSectionCO"/>
+        </div>
+    </div>
+    <section class="row"></section>
+    <script>
+    // Initialize everything
+    var recordsOwnersCO = '';
+    var OwnerstateListCO = '';
+    var validationMapper = {};
+    var currentRecordId='';
+    var editBusinessownerrecordCO='';
+    sforce.connection.sessionId = '{!$Api.Session_ID}';
+    
+    // On page load
+    $(function() {
+        COOWNERSHIPCOMP.loadEvents();
+        COOWNERSHIPCOMP.getStatePicklist();
+        COOWNERSHIPCOMP.getRecords();
+    });
+    
+    COOWNERSHIPCOMP = {
+        /* Build Validation Object */         
+        BuildValidationObject: function() {
+            validationMapper.businessownersCO = {};
+            validationMapper.businessownersCO.validationObject = {
+                fields:[
+                    {
+                        id:"NameCO",
+                        required: "true",
+                        name: "First Name",
+                        watch: true
+                    },
+                    {
+                        id:"LastNameCO",
+                        required: "true",
+                        name: "Last Name",
+                        watch: true
+                    },
+                    {
+                        id:"phoneNumberCO",
+                        name: "Phone",
+                        validator: "Phone",
+                        watch: true,
+                        event: "change",
+                        required: "true"
+                    },{
+                        id:"addressCO",
+                        name: "Address",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"cityCO",
+                        name: "City",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"stateCO",
+                        name: "State",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"zipCodeCO",
+                        name: "Zip Code",
+                        watch: true,
+                        required: "true"
+                    },{
+                        id:"typeofAffCO",
+                        name: "Type",
+                        watch: true,
+                        required: "true"
+                    }
+                    
+                    
+                ]
+            }
+            validationMapper.businessownersCO.validator = new ValidationEngine(validationMapper.businessownersCO.validationObject);
+        },
+        
+        /* Load all JQuery events */
+        loadEvents: function() {
+            
+            /* Event - Click 'Add Affiliation' for loading new form */
+            $("#addOwnerSectionCO").on("click", function() {
+                COOWNERSHIPCOMP.BuildValidationObject();
+                $(".ownersFormSectionCO").show();
+                $(".addOwnerSectionCO").hide();
+                $(".addOwnerBtnCO").show();
+            });
+            
+            
+            $("#ownersFormSectionCO").on("click", function() {
+                    if(validationMapper.businessownersCO.validator.errors().length <= 0){
+                        $("#ownersFormSectionCO").prop("disabled",true);
+                        COOWNERSHIPCOMP.saveRecord();
+                        $("#ownersFormSectionCO").prop("disabled",false);
+                    } else {
+                        MODAL_UTILITY.errorMessageModal(validationMapper.businessownersCO.validator.errorHtml());
+                    }
+            });
+            
+            
+            $(".cancelOwnerCO").on("click", function() {
+                COOWNERSHIPCOMP.clearUI();
+            });
+        },
+        
+        /* To manage css for animation*/
+        manageAnimatedFormCss : function()
+        {
+            var editForm = $("#ownersFormSectionEditContainerCO") ;
+            editForm.find("input[type='text']").each(function(index,val)
+                                                     {
+                                                         if($(val).val() != '' )
+                                                         {
+                                                             $(val).closest(".form-group").find("label").removeClass().addClass("animated") ;
+                                                         }
+                                                     });
+        },
+        
+        /* Function - dynamic events */
+        loadDynamicEvents: function() {
+            
+            $('.navbar').mouseover(function(event) {
+                $(this).find('.navbar-tool').show();
+            });
+            
+            //mouse out of navbar
+            $('.navbar').mouseout(function(event) {
+                $(this).find('.navbar-tool').hide();
+            });
+            
+            $(".editBusinessOwnerButton").on("click", function() {
+                // Get current Id
+                currentRecordId = $(this).attr("id");
+                currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+                // Loop through list
+                $.each(recordsOwnersCO, function(i, val) {
+                    // Once record is found
+                    if(val.Id == currentRecordId) {
+                        editBusinessownerrecordCO=val;
+                        // Load other values
+                        $('#NameCO').val(val.Contact_s_Name__c);
+                        $('#LastNameCO').val(val.Contact_s_Last_Name__c);
+                        $('#MiddleNameCO').val(val.Contact_s_Middle_Name__c);
+                        $('select[id$=typeofAffCO]').val(val.Type_of_Co_owner__c);
+                        $("#addressCO").val(val.Contact_s_Street_Address__c);
+                        $("#cityCO").val(val.Contact_s_City__c );
+                        $("#stateCO").val(val.Contact_s_state__c);
+                        $("#zipCodeCO").val(val.Contact_s_Zip_code__c);
+                        $('input[id$=phoneNumberCO]').val(val.Contact_s_Phone__c);                      
+                        COOWNERSHIPCOMP.manageAnimatedFormCss();
+                    }
+                });
+                
+                // Show-hide UI
+                COOWNERSHIPCOMP.BuildValidationObject();
+                $(".ownersFormSectionCO").show();
+                $(".addOwnerSectionCO").hide();
+                $(".addOwnerBtnCO").show();                
+            });
+            
+        },
+        
+        /* Function - For querying picklist records */
+        getStatePicklist: function() {
+            
+            // Picklist markup
+            var innerHtmlStateList = '';
+            // Get object description
+            var result = sforce.connection.describeSObject("{!$Label.API_Affiliation}");
+            
+            // Get picklist array
+            for (var i=0; i < result.fields.length; i++) {
+                var rt = result.fields[i];
+                if(rt.name == 'Contact_s_state__c') {
+                    OwnerstateListCO = rt.getArray("picklistValues");
+                }
+            }
+            
+            // Add picklist values to markup
+            $.each(OwnerstateListCO, function(i, val) {
+                innerHtmlStateList += '<option value="' + val.value + '">' + val.label + '</option>';
+            });
+            
+            // Append markup
+            $("#stateCO").append(innerHtmlStateList);
+        },
+        /* Function - For querying records */
+        getRecords: function() {
+            
+            // Get data from
+            recordsOwnersCO = $("#CoOwnerListDiv").text();
+            recordsOwnersCO = JSON.parse(recordsOwnersCO);
+            
+            // Call markup injection method if records are received
+            if(recordsOwnersCO != null) {
+                // Inject markup
+                COOWNERSHIPCOMP.loadRecords();
+                
+                // Show section
+                $(".BusinessOwnersListCO").show();
+            }
+        },
+        /* Function - Populate Existing records */
+        loadRecords: function() {
+            
+            // Clear affiliation records from UI
+            $("#BusinessOwnersListCO").empty();
+            
+            // Build markup
+            var innerHtmlOwner =''; 
+            $.each(recordsOwnersCO, function( i, val ) {
+                
+                var Name = (val.Contact_s_Name__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Name__c;
+                var MiddleName = (val.Contact_s_Middle_Name__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Middle_Name__c;
+                var LastName = (val.Contact_s_Last_Name__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Last_Name__c;
+                var typeofAff = (val.Type_of_Co_owner__c+"")== "undefined" ? "&nbsp;" : val.Type_of_Co_owner__c;
+                var address = (val.Contact_s_Street_Address__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Street_Address__c;
+                var city = (val.Contact_s_City__c+"")== "undefined" || (val.Contact_s_City__c)== ""? "&nbsp;" : val.Contact_s_City__c;
+                var state = (val.Contact_s_state__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_state__c;
+                var zipCode = (val.Contact_s_Zip_code__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Zip_code__c;
+                var phone = (val.Contact_s_Phone__c+"")== "undefined" ? "&nbsp;" : val.Contact_s_Phone__c;      
+                // Add markup
+                
+                innerHtmlOwner += '<li class="addedlist"><div class="navbar"><div class="row"><div class="col-sm-9"><h5>'+Name+ '  '+ MiddleName+'  '+LastName+'</h5></div><div class="col-sm-3"><button type="button" class="btn-square-icon editBusinessOwnerButton" aria-label="Edit Record" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil"></span></button></div></div><div class="row"><div class="col-sm-12">Status : '+val.Status__c+'</div><div class="col-sm-12">Type  : '+typeofAff+'</div><div class="col-sm-12">Phone : '+phone+'</div><div class="col-sm-12">Address : '+address+'</div><div class="col-sm-12">'+city+ '  '+state+'  ' +zipCode+'</div></div></li>';
+            });
+            
+            // Append records where the current user is the Supervisee 
+            $("#BusinessOwnersListCO").append(innerHtmlOwner);
+            
+            // Load jquery events
+            COOWNERSHIPCOMP.loadDynamicEvents();
+            
+            // Stop spinner
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        /* Function - Save a record */
+        saveRecord: function() {
+            // Start spinner
+            NOTIFICATIONS.spinnerStart();
+            // Initialize affiliation object            
+            var affiliationObjCO = new sforce.SObject("{!$Label.API_Affiliation}");
+            affiliationObjCO.Application_Type__c=licGlobalObj.applicationType;
+            if(editBusinessownerrecordCO!=''&&editBusinessownerrecordCO!=null){
+                affiliationObjCO.Id=editBusinessownerrecordCO.Id;
+            }
+            
+            affiliationObjCO.Credential__c  =licGlobalObj.licenseId;
+            affiliationObjCO.Contact_s_Name__c = $("#NameCO").val();
+            affiliationObjCO.Contact_s_Last_Name__c = $("#LastNameCO").val();
+            affiliationObjCO.Contact_s_Middle_Name__c = $("#MiddleNameCO").val();
+            affiliationObjCO.Contact_s_Street_Address__c = $("#addressCO").val();
+            affiliationObjCO.Contact_s_City__c = $("#cityCO").val();
+            affiliationObjCO.Contact_s_state__c = $('#stateCO').val();
+            affiliationObjCO.Contact_s_Zip_code__c = $("#zipCodeCO").val();
+            affiliationObjCO.Status__c = 'Pending';
+            affiliationObjCO.RecordTypeId='{!affiliationObject.RecordTypeId}';
+            affiliationObjCO.Type_of_Co_owner__c=   $('select[id$=typeofAffCO]').val();
+            affiliationObjCO.Contact_s_Phone__c = $('input[id$=phoneNumberCO]').val(); 
+            if(affiliationObjCO != null) {
+                var newInsert = false;
+                try {
+                    if(affiliationObjCO.Id == undefined) {
+                        newInsert = true;
+                    }
+                    var result = sforce.connection.upsert("Id", [affiliationObjCO]);
+                    
+                    if(result!=null&&result[0].success == 'true') {                 
+                        affiliationObjCO.Id = result[0].id;
+                        
+                        if(newInsert == false) {
+                            var COArray = [];
+                            $.each(recordsOwnersCO, function(i, val) {
+                                COArray.push(val.Id);
+                            });
+                            recordsOwnersCO.splice(COArray.indexOf(affiliationObjCO.Id), 1);
+                        }
+                        if(recordsOwnersCO==null)
+                            {
+                                recordsOwnersCO=[];  
+                                }
+                        recordsOwnersCO.push(affiliationObjCO);
+                        COOWNERSHIPCOMP.loadRecords();
+                        COOWNERSHIPCOMP.clearUI();
+                    }
+                    else {
+                        // Show error
+                      if(result==null&&event.message=='Page not allowed for the profile'){
+                            window.location.href='/Dashboard';
+                        }
+                        MODAL_UTILITY.errorMessageModal('Error saving record. ' + result[0].errors.message);
+                    }
+                }
+                catch(e) {
+                    // Show error
+                    MODAL_UTILITY.errorMessageModal('Error saving record. ' + e);
+                }
+                
+            }
+            
+            // Stop spinner
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        /* Function - Delete a record */
+        clearUI : function() {
+            // Clear input fields
+            $("#NameCO").val('');
+            $("#MiddleNameCO").val('');
+            $("#LastNameCO").val('');
+            $("#addressCO").val('');
+            $("#cityCO").val('');
+            // Clear input fields
+            $("#stateCO").val('');
+            $("#zipCodeCO").val('');
+            $('input[id$=phoneNumberCO]').val(''); 
+            editBusinessownerrecordCO=null;
+            $("#zipCodeCO").val('');  
+            $('select[id$=typeofAffCO]').val('');
+            currentRecordId='';
+            // Show-hide
+            $(".ownersFormSectionCO").hide();
+            $(".addOwnerBtnCO").hide();
+            $(".addOwnerSectionCO").show();
+            
+        }
+        
+    } 
+    </script>
+</apex:component>

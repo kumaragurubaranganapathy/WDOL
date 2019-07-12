@@ -1,0 +1,45 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : Footer
+** Description      : Footer component 
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Rinku Patel/Deloitte         07/11/2018                                  UI changes 
+**                                                                          
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component layout="block" >    
+    <footer>
+        <div class="container">
+          <div class="row">
+            <!-- Tablet+ Nav -->
+            <div class="col-sm-12 col-xs-10 tablet-footer">
+              <ul class="footer-links">
+                  <li><a href="SupportPage">Support</a></li>
+                  <!--<li><a target="_blank" href="{!$Label.URL_RegistrationInstructionsLink}">Registration Guide</a></li>-->
+                  <li><a href="https://www.dol.wa.gov/contact.html">Contact</a></li>
+                  <li><a target="_blank" href="https://access.wa.gov">Privacy Notice</a></li> 
+                  <li><a target="_blank" href="https://access.wa.gov">access.wa.gov</a></li>
+                  <!--<li><a href="GeneralTerms">General Terms</a></li> -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-xs-10 tablet-footer">
+                &copy; {!YEAR(TODAY())} State of Washington.
+            </div> 
+          </div>
+          <div class="notification" role="alert" aria-atomic="true"></div>
+        </div>
+    </footer>
+</apex:component>

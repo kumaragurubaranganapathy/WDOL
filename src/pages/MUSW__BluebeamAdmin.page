@@ -1,0 +1,293 @@
+<apex:page controller="MUSW.BluebeamAdminController" showHeader="true" sidebar="true" action="{!autoRun}" id="BluebeamAdminPage">
+    <apex:includeScript value="https://code.jquery.com/jquery-3.1.1.min.js" />
+
+    <apex:form id="uploadForm">
+        <apex:pageBlock title="Bluebeam Studio Admin Controls">
+            <apex:pageBlock title="OAuth Controls">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton action="{!initiateOAuthProperties}" value="Login to Bluebeam" id="token" reRender="oauth"/>
+                    <apex:commandButton action="{!refreshOAuthProperties}" value="Update the session tokens" id="sessionTokens" reRender="mymessage"/>
+                    <apex:commandButton action="{!forceRefresh}" value="Force Refresh!" id="frefresh" reRender="mymessage"/>
+                    <apex:commandButton action="{!expireAccessToken}" value="Expire access token" id="fexpire" reRender="mymessage"/>
+                    <apex:commandButton action="{!invalidateAccessToken}" value="Invalidate Access token" id="fcorrupt" reRender="mymessage"/>
+                    <apex:commandButton action="{!startSchedule}" value="Start scheduler..." id="scheduler" reRender="mymessage"/>
+                    <apex:commandButton action="{!getOAuthUsers}" value="Get Bluebeam OAuth Users..." id="gboau" reRender="mymessage"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+            <apex:pageBlock title="Project Controls">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton action="{!projectList}" value="Get projects..." id="gproject" reRender="mymessage"/>
+                    <apex:commandButton action="{!createProject}" value="Create project" id="project" reRender="BluebeamIds"/>
+                    <apex:commandButton action="{!getProjectMetadata}" value="Get Project Details" id="getproject" reRender="mymessage"/>
+                    <apex:commandButton action="{!projectFileList}" value="get project file list..." id="getprojfiles" reRender="mymessage"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+            <apex:pageBlock title="Session Controls">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton action="{!createSession}" value="Create session" id="session" reRender="BluebeamIds"/>
+                    <apex:commandButton action="{!sessionUserList}" value="get session users..." id="getsessusers" reRender="mymessage"/>
+                    <apex:commandButton action="{!getSessionFiles}" value="get session files..." id="getsessfiles" reRender="mymessage"/>
+                    <apex:commandButton action="{!addUserToSession}" value="Add user..." id="addsessuser"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+            <apex:pageBlock title="File Controls">
+                <apex:pageBlockButtons location="top">
+                    <input type="file" id="file" accept=".pdf"/>
+                    <apex:commandButton value="Get file upload URL..." onclick="getFileUploadURL()" immediate="true" reRender="urlDetails"/>
+                    <apex:commandButton value="Upload File to URL..." onclick="uploadFiletoServer();return false;"/>
+                    <apex:commandButton action="{!confirmFileUpload}" value="Confirm Upload" id="confirm"/>
+                    <apex:commandButton action="{!addFiletoSession}" value="Check out file" id="checkout"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        <apex:actionFunction name="fileUploadURL" action="{!fileUploadURL}" reRender="urlDetails"> 
+            <apex:param id="filename" name="filename" value="" assignTo="{!filename}" /> 
+            <apex:param id="filesize" name="filesize" value="" assignTo="{!filesize}" /> 
+        </apex:actionFunction> 
+
+        <apex:actionFunction name="addUserToSession" action="{!addUserToSession}" reRender="usersFunctions"> 
+            <apex:param id="sessionEmail" name="sessionEmail" value="" assignTo="{!sessionEmail}" /> 
+        </apex:actionFunction> 
+
+            <apex:pageBlockSection id="formdata">
+                <apex:pageBlockSection id="BluebeamIds">
+                    <apex:inputText id="projectId" value="{!projectId}" label="Project Id:"/>
+                    <apex:inputText id="projectName" value="{!projectName}" label="Project Name:"/>
+
+                    <apex:inputText id="sessionId" value="{!sessionId}" label="Session Id:"/>
+                    <apex:inputText id="sessionName" value="{!sessionName}" label="Session Name:"/> 
+                    <apex:inputText id="fileId" value="{!fileId}" label="File Id:"/>    
+                    <apex:inputText id="userEmail" value="{!sessionEmail}" label="New Email:"/>
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection id="urlDetails">
+                    <apex:inputText id="ffileName" value="{!fileName}" label="FileName:" disabled="true"/>
+                    <apex:inputText id="ffileId" value="{!fileId}" label="File Id:" disabled="true"/>
+                    <apex:inputText id="fuploadUrl" value="{!uploadUrl}" label="Upload URL:" disabled="true"/>
+                    <apex:inputText id="fuploadContentType" value="{!uploadContentType}" label="Content Type" disabled="true"/>
+                </apex:pageBlockSection>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection id="uploadParamsSec">
+                <apex:outputPanel id="uploadParams">
+                    <!-- 
+                    <apex:actionFunction action="{!confirmFileUpload}" name="confirmFileUpload" reRender="mymessage"/>
+                    -->
+                    <script type='text/javascript'>
+                        uploadUrl = "{!JSENCODE(uploadUrl)}";
+                        fileId = "{!JSENCODE(fileId)}";
+                        uploadContentType = "{!JSENCODE(uploadContentType)}";
+                    </script>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+            <apex:messages id="mymessage"/>
+        </apex:pageBlock>
+    </apex:form>
+    <hr/>
+    <div class="bar" id="tb">
+        <div class="bar_fill" id="pb">
+            <div class="bar_fill_text" id="pt"></div>
+        </div>
+    </div>
+
+    <script>
+        var $j = jQuery.noConflict();
+        
+        // helper fields...
+        var fileField;
+        var file;
+        var filename;
+        var fileId;
+        var uploadUrl;
+        var uploadContentType;
+        var pdWidth;
+
+        function initProgressBar(){
+            pbWidth = $j(window).width() * 0.8;
+
+            $j('#tb').css('background', '#dce9f7');
+            $j('#tb').width(pbWidth);
+
+            $j('#pb').css('background', '#8ec252');
+            $j('#pb').width(0);
+            
+            $j('#pt').width(pbWidth);
+        }
+
+        function getFileUploadURL(){
+            fileField = document.getElementById('file');
+            file = fileField.files[0];
+            
+            filename = file.name; //fileField.value.split('\\').pop().split('/').pop();
+            filesize = file.size;
+
+            console.log('JS:getFileUploadURL()\nSource:\t' + filename + ' [' + filesize + ']');
+            fileUploadURL(filename, filesize);
+            console.log('JS:getFileUploadURL fetched URL!');
+
+        }
+
+        function chunkFile(file, callback){
+            // http://stackoverflow.com/questions/14438187/javascript-filereader-parsing-long-file-in-chunks
+            var fileSize            = file.size;
+            var chunkSize           = 64 * 1024;
+            var offset              = 0;
+            var self                = this;
+            var chunkReaderBlock    = null;
+
+            var readEventHandler = function(evt){
+                if (evt.target.error == null){
+                    offset += evt.target.result.length;
+                    callback(evt.target.result);
+                } else {
+                    console.log('read error: ' + evt.target.error);
+                    return;
+                }
+                if (offset >= fileSize) {
+                    console.log('Done reading file');
+                    return;
+                }
+
+                // get next chunk
+                chunkReaderBlock(offset, chunkSize, file);
+            }
+
+            chunkReaderBlock = function(_offset, length, _file){
+                var r = new FileReader();
+                var blob = _file.slice(_offset, length + _offset);
+                r.onload = readEventHandler;
+                r.readAsArrayBuffer(blob);
+            }
+
+            // kick off the process
+            chunkReaderBlock(offset, chunkSize, file);
+        }
+
+        function chunkCallback(blob){
+            console.log(blob);
+            document.getElementById('progressNumber').innerHTML = blob;
+        }
+
+        function testChunking(){
+            fileField = document.getElementById('file');
+            file = fileField.files[0];
+            
+            filename = file.name; //fileField.value.split('\\').pop().split('/').pop();
+
+            console.log('JS:testChunking()\nSource:\t' + filename);
+            console.log('Size:\t'+file.size);
+            if (file.size > (64 * 1024)){
+                console.log('Chunking file...')
+                chunkFile(file, chunkCallback);
+            } else {
+                console.log("file is less than 64k...");
+                chunkFile(file, chunkCallback);
+            }
+            document.getElementById('progressNumber').innerHTML = 'File has been chunked!';
+        }
+
+        function uploadFiletoServer() {
+            console.log('uploadFiletoServer...');
+            initProgressBar();
+
+            if (!file){
+                fileField = document.getElementById('file');
+                file = fileField.files[0];
+
+                filename = file.name; //fileField.value.split('\\').pop().split('/').pop();
+                fileId = 1234578;
+                uploadContentType = 'application/pdf';
+
+                jQuery('[id$=fileName]').val(filename);
+                jQuery('[id$=fileId]').val(fileId); 
+                jQuery('[id$=uploadContentType]').val(uploadContentType);
+
+                console.log('getting new file...');
+            } else {
+                console.log('...file already loaded!');
+                
+                fileId = jQuery('[id$=fileId]').val(); 
+                uploadContentType = jQuery('[id$=uploadContentType]').val();
+            }
+
+            $j( document ).ajaxError(function( event, request, settings ) {
+                console.log('AJAX Error:\nURL:\t'+settings.url+'\nData:');
+                console.log(settings.data);
+            });
+
+            //console.log('JS:putFile()\n>>Response: \nFileId:\t' + fileId + '\nUpload:\t' + uploadUrl + '\nType:\t' + uploadContentType);
+            uploadUrl = jQuery('[id$=uploadUrl]').val();
+
+            console.log('JS:uploadFiletoServer()\nFileId:\t' + fileId + '\nUpload:\t' + uploadUrl + '\nType:\t' + uploadContentType);
+
+            //*
+            $j.ajax({
+                //method: 'PUT',
+                type: 'PUT',
+                crossOrigin: true,
+                url: uploadUrl,
+                contentType: false,
+                processData: false,
+                data: file,
+                xhr: function (){
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = ~~(evt.loaded / evt.total);
+                            $j('#pb').width(percentComplete * pbWidth) //update progressbar percent complete
+                            $j('#pt').html(percentComplete + '%'); //update status text
+                        }
+                    }, false);
+
+                    xhr.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = ~~(evt.loaded / evt.total);
+                            $j('#pb').width(percentComplete * pbWidth); //update progressbar percent complete, use round down notation.
+                            $j('#pt').html(percentComplete + '%'); //update status text
+                        }
+                    }, false);
+
+                    return xhr;
+                },
+                beforeSend: function(xhr) {
+                    console.log('setting request headers');
+                    //
+                    xhr.setRequestHeader('Access-Control-Allow-Methods', 'PUT');
+                    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+
+                    xhr.setRequestHeader('Content-Type', uploadContentType);
+                    xhr.setRequestHeader('x-amz-server-side-encryption', 'AES256');
+                    
+                    console.log('About to send file...');
+                    console.log(xhr);
+                },
+                /*
+                Deprecation Notice: The jqXHR.success(), jqXHR.error(), and jqXHR.complete() callbacks are removed as of jQuery 3.0. You can use jqXHR.done(), jqXHR.fail(), and jqXHR.always() instead.
+                */
+                success: uploadComplete,
+                error: uploadFailed,
+                complete: ajaxComplete
+            });
+        }
+
+        function uploadComplete(data, ts, xhr) {
+        /* This event is raised when the server send back a response */
+            console.log("File Upload Complete. (" + ts + ")");
+            console.log(data);
+            console.log(xhr);
+            $j('#pt').html("File Upload Complete.");
+        }
+
+        function uploadFailed(evt) {
+            console.log("There was an error attempting to upload the file." + evt);
+            $j('#pt').html("File Upload Failed!");
+        }
+
+        function uploadCanceled(evt) {
+            console.log("The upload has been canceled by the user or the browser dropped the connection." + evt);
+            $j('#pt').html("File Upload was cancelled!");
+        }
+
+        function ajaxComplete(xhr, ts){
+            console.log("The AJAX call has finished! (" + ts + ")")
+        }
+    </script>
+</apex:page>

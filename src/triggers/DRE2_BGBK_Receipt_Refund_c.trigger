@@ -1,0 +1,1 @@
+trigger DRE2_BGBK_Receipt_Refund_c on BGBK__Receipt_Refund__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_BGBK_Receipt_Refund_c', new DRETriggerHandler()); }
