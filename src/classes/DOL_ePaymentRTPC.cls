@@ -2,7 +2,7 @@
 ** Name             : DOL_ePaymentRTPC
 ** Description   	: Process Real Time Payment Conformation request from ePayment 
 ** Version          : 1.0
-**-------------------------------------------------------------------------------------------------------------------------------
+**-----------------------------------------------------------------------------------------------------------
 ** Revision History:
 **---------------------------
 ** [Laltu Banerjee]: Created
@@ -49,7 +49,6 @@ public class DOL_ePaymentRTPC {
     private HTTPRestResponse response = HTTPRestResponse.getInstance();
 
     public  HTTPRestResponse processEpaymentRTPCRequest(String json){
-
         Map<String,String> parameterMap = new Map<String,String>();
         receipt = null;
         try{
@@ -61,11 +60,11 @@ public class DOL_ePaymentRTPC {
             }
             receiptId = parameterMap.get('SFDClicId');
             cartId = parameterMap.get('SFDCId');
-            SFDCfeeIds = parameterMap.get('SFDCfeeIds');
+            SFDCfeeIds = parameterMap.get('SFDCfeeId');
             SFDCappId = parameterMap.get('SFDCappId');
 
             if(isNotNullOrBlank(receiptId)){
-                receipt = new MUSW__Receipt__c(id=receiptId);
+                receipt = [select id from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
             }
             if(receipt != null){
                 updateReceiptFromRTPCPojo(ePaymentRTPCData,receipt);
@@ -86,6 +85,7 @@ public class DOL_ePaymentRTPC {
             response.addErrorMsg('message :- '+error.getMessage());
             response.addErrorMsg('StackTrace :- '+error.getStackTraceString());
             response.setStatusCode(400);
+            Polaris_CreateErrorLog_Exception.logApplicationError(error,'DOL_ePaymentRTPC','processEpaymentRTPCRequest');
         }
         return response;
     }
@@ -99,12 +99,14 @@ public class DOL_ePaymentRTPC {
             if(receipt.MUSW__Payment_Method__c == 'CC')
                 receipt.MUSW__Payment_Method__c = 'Credit Card';
         }
-        if(isNotNullOrBlank(rtpcData.PaymentAmount))
-            receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(rtpcData.PaymentAmount);
+        receipt.Status__c = 'Complete';
+        receipt.MUSW__Amount_Tendered__c = null; // Just to make sure MUSW__Amount_Tendered__c always updated to PaymentAmount inside ReceiptVo
+        /* if(isNotNullOrBlank(rtpcData.PaymentAmount))
+            receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(rtpcData.PaymentAmount); */
         if(isNotNullOrBlank(rtpcData.PaymentEffectiveDate))
-            receipt.MUSW__Effective_Date__c = DOL_AppUtility.getDate(rtpcData.PaymentEffectiveDate,'YYYYMMDD');
+            receipt.MUSW__Effective_Date__c = DOL_AppUtility.getDate(rtpcData.PaymentEffectiveDate,'YYYY-MM-DD');
         if(isNotNullOrBlank(rtpcData.DueDate))
-            receipt.Date__c = DOL_AppUtility.getDate(rtpcData.DueDate,'YYYYMMDD');
+            receipt.Date__c = DOL_AppUtility.getDate(rtpcData.DueDate,'YYYY-MM-DD');
         if(isNotNullOrBlank(rtpcData.PayerFirstName))
             receipt.Payer_First_Name__c = rtpcData.PayerFirstName;
         if(isNotNullOrBlank(rtpcData.PayerLastName))
@@ -174,7 +176,8 @@ public class DOL_ePaymentRTPC {
             totalSelectedOutstanding = tempOutstanding;
             // extract fees and receipt ends here
         }
-
+        
+        receipt.MUSW__Amount_Tendered__c = null;
         rs = new MUSW__Receipt__c[]{};
         rs.add(receipt);
         ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentRTPCData.PaymentAmount), m_rs);
