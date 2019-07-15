@@ -451,6 +451,16 @@ Permit__r.Business_License__c
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+        <fields>
+        <fullName>Description_of_Disposition__c</fullName>
+        <externalId>false</externalId>
+        <label>Description of Disposition</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
     <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
@@ -639,6 +649,37 @@ Permit__r.Business_License__c
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+        <fields>
+        <fullName>Methods_of_Disposition__c</fullName>
+        <externalId>false</externalId>
+        <label>Methods of Disposition</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Airplane</fullName>
+                    <default>false</default>
+                    <label>Airplane</label>
+                </value>
+                <value>
+                    <fullName>Boat</fullName>
+                    <default>false</default>
+                    <label>Boat</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Military_Spouse__c</fullName>
