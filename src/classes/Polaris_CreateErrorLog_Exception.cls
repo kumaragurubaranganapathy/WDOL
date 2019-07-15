@@ -28,6 +28,7 @@ public class Polaris_CreateErrorLog_Exception extends Exception {
         }
 
     }
+
     public static List<Polaris_Custom_Exception__c> createErrorLogs(Exception e,String cname,String cmethod) {
         List<Polaris_Custom_Exception__c> lstError = new List<Polaris_Custom_Exception__c>();
             String QueryLimit = '1. SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
@@ -58,6 +59,36 @@ public class Polaris_CreateErrorLog_Exception extends Exception {
             exc.DMLimit__c = DMLimit;
         lstError.add(exc);
         return lstError;
+    }
+
+    public static Id logApplicationError(Exception error,String className,String methodName){
+        try{
+            if(error != null ){
+            Polaris_Custom_Exception__c log = new Polaris_Custom_Exception__c();
+            log.Error_Message__c = error.getMessage();
+            log.Exception_Type__c = error.getTypeName();
+            log.LineNumber__c = error.getLineNumber();
+            log.Stack_Trace__c = error.getStackTraceString();
+            log.Class_Name__c = className;
+            log.Class_Method__c = methodName;
+            log.Log_Type__c = 'ERROR';
+            log.Source__c = 'Salesforce';
+            logToDB(log);
+            return log.Id;
+            }
+        }catch(Exception e){
+            System.debug(e);
+        }
+        return null;        
+    }
+
+    private static void logToDB(Polaris_Custom_Exception__c log){
+        log.QueryLimit__c = 'SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
+        log.DMLimit__c = 'Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
+        log.DMLStat__c = 'Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
+        log.CPUT_Limit__c = 'Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
+        log.Session_Id__c=UserInfo.getSessionId().substring(15);
+        insert log;
     }
 
 }

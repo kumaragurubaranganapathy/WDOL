@@ -245,6 +245,13 @@ public with sharing class CartController
                     updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
                     receiptId=tempReceiptId;
                     cart.BGBK__Process_DateTime__c = System.now();
+                    // Check whether Payment Record already created by RTPC
+                    if(! isPaymentRecorded(feeIdList)){
+                        processEPayment(); 
+                    }
+                    else{
+                        onPaymentConfirmation();
+                    }
                     // create a ePayment Response
                     //Epayment_Response__c ePaymentResp = new Epayment_Response__c();
                     //ePaymentResp.Cart_Id__c = ePaymentReturnSession.SFDCId;
@@ -253,7 +260,7 @@ public with sharing class CartController
                     //ePaymentResp.Receipt_Id__c =  receiptId;
                     //Id tempId = DOL_Dao.save(ePaymentResp);
                     //system.debug('Epayment_Response__c created id = '+tempId);     
-                    processEPayment();
+                   
                 }
                 else{
                     ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'ePayment Transaction is failed');
@@ -370,6 +377,18 @@ public with sharing class CartController
             // set the payables that might be needed for portal users
             preparePayables();
         }
+    }
+
+    private boolean isPaymentRecorded(List<String> feeIds){
+        DOL_Dao dao = new DOL_Dao();
+        boolean paymentRecordFound = false;
+        List<MUSW__Fee__c> fees = dao.getFeeAndFeePayment(feeIds);
+        if(fees != null && fees.size() > 0){
+        	List<MUSW__Fee_Payment__c> feePayments = fees.get(0).MUSW__Payments__r;
+            if(feePayments != null && feePayments.size() > 0)
+            	paymentRecordFound = true;
+        }
+        return paymentRecordFound;
     }
     
     /**
@@ -621,11 +640,13 @@ public with sharing class CartController
     public void updateReceipt(String receiptId, String transactionConformationId){
 
         Id conId = (con != null) ? con.Id : null;
-        MUSW__Receipt__c receipt = [select id,MUSW__Payment_Method__c,MUSW__Paid_By__c,MUSW__Receipt_Paid_by__c,BGBK__Cart__c,MUSW__Amount_Tendered__c from MUSW__Receipt__c where id =: receiptId];
+        MUSW__Receipt__c receipt = [select id,MUSW__Payment_Method__c,MUSW__Paid_By__c,MUSW__Receipt_Paid_by__c,BGBK__Cart__c,MUSW__Amount_Tendered__c from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
+        receipt.Status__c = 'Complete';
         receipt.MUSW__Paid_By__c=(a != null)?a.Id:null;
         receipt.MUSW__Receipt_Paid_by__c=conId;
-        receipt.Status__c='Complete';
+        
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = transactionConformationId;
+        receipt.MUSW__Amount_Tendered__c = null;
         //upsert receipt;
         system.debug('receipt updated');
         rs.add(receipt);
@@ -922,7 +943,25 @@ public with sharing class CartController
         
     }
 
-
+    public void onPaymentConfirmation(){
+        Map<MUSW__Receipt__c, Decimal> rsAmt = new Map<MUSW__Receipt__c, Decimal>();
+        for (ReceiptVO rvo : receiptVOs){
+            rsAmt.put(rvo.r, rvo.amount);
+        }
+        
+        Set<Id> feePaymentIds = new Set<Id>();
+        Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
+        populateFeeAndInvoicePayment(receipts, feePaymentIds);
+        depositPayments = populateDepositPayment(receipts);
+        MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
+        rs.clear();
+        for(MUSW__Receipt__c receipt : allCartReceipt){
+            if(receipt.id == receiptId){
+                rs.add(receipt);
+                break;
+            }
+        }
+    }
 
     /*Vinanthi :Added below method for US 1835*/
     public PageReference  TransferFee(){
@@ -1815,6 +1854,14 @@ public with sharing class CartController
         }
     }
 
+    /**
+    ** Name             : redirectToPaymentGateway
+    ** Input            : N/A
+    ** Functionality    : To redirect the user from salesforce to ePayment gateway
+    ** Return           : PageReference
+    ** Author           : Laltu Banerjee
+    ** Note             : This is called from cart.page in case of payment method 'Credit Card' and 'ACH'
+    */
     public PageReference redirectToPaymentGateway(){
         system.debug(''+isPortalUser);
         if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
@@ -1822,7 +1869,9 @@ public with sharing class CartController
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
             return null;
         }
+        // create receipt manually before proceding to payment gateway
         createReceiptForPaymentGateway();
+        // list of all selected feeIds
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
@@ -1830,8 +1879,11 @@ public with sharing class CartController
             }
         }
         String cartId = m_cs.getCart().Id;
+       
+        String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
+        // create the object DOL_ePaymentSessionTransferDetails with required parameter
         DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
-                                                                    String.valueOf(totalSelected),
+                                                                    paymentAmount,
                                                                     receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c,
                                                                     String.valueOf(con.Id),
                                                                     cartId,
@@ -1839,8 +1891,9 @@ public with sharing class CartController
                                                                     isPortalUser);
         sessionTransferDetails.returnValue = receiptId;
         sessionTransferDetails.SFDClicId = receiptId;
+        // get the encrypted string
         encryptedSessionInfo = DOL_ePaymentSessionTransfer.getEncryptedSessionString(sessionTransferDetails);
-        
+        // Create the PageReference and setting the params
         PageReference pageRef = new PageReference(paymentGatewaySettings.Endpoint__c);
         pageRef.getParameters().put('billerId',paymentGatewaySettings.Biller_Id__c);
         pageRef.getParameters().put('billerGroupId',paymentGatewaySettings.Biller_Group_Id__c);
