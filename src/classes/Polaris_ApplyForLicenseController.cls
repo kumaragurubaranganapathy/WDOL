@@ -685,14 +685,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         system.debug('mandatorySubsection098'+ mandatorySubSection);
                         if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                             if(mapAddress.isEmpty()){
-                                //objWrapper.sectionError = true;
-                                objWrapper.sectionError = false;
+                                objWrapper.sectionError = true;
                             }else{
-                                if(mandatorySubSection == 'Mailing Address' && (mapAddress.get('Physical Address') == null || !(mapAddress.get('Physical Address')[0].is_Physical_and_Mailing_Address_Same__c))){
+                                if(!mapAddress.containsKey('MAILING ADDRESS') || (!mapAddress.containsKey('PHYSICAL ADDRESS') && !mapAddress.get('MAILING ADDRESS')[0].is_Physical_and_Mailing_Address_Same__c)){
                                     //if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
-                                        system.debug('inside the mandatory'+mapAddress.get('Physical Address'));
-                                        //objWrapper.sectionError = true;
-                                    objWrapper.sectionError = false;
+                                        system.debug('inside the mandatory'+mapAddress.get('PHYSICAL ADDRESS'));
+                                        objWrapper.sectionError = true;
                                     //}
                                 }
                             }   
@@ -812,17 +810,23 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 //Setup  for the populating the details
                 List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
                 // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
-                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c,ContentDocumentId__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
+                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c,ContentDocumentId__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id FROM Parcels__r) from MUSW__Application2__c where '+appCondition;
                 system.debug('StrApp Query--->'+strAppOther);
                 system.debug('licenseID[0].Id --->'+licenseID[0].Id);
                 appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
-                List<LnP_Parcel__c> lstParcels = new List<LnP_Parcel__c>();            
-                if(appListOtherDetils[0].LnP_Parcels__r != null && appListOtherDetils[0].LnP_Parcels__r.size()>0){
-                    for(LnP_Parcel__c parcel : appListOtherDetils[0].LnP_Parcels__r){
-                        parcel.License__c = licenseID[0].Id; 
-                        lstParcels.add(parcel);
+                //List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
+                List<MUSW__License_Parcel__c> licenseParcelList = new List <MUSW__License_Parcel__c>();
+                if(appListOtherDetils[0].Parcels__r != null && appListOtherDetils[0].Parcels__r.size()>0 && !String.isBlank(licenseID[0].Id)){
+                    for(MUSW__Parcel__c parcelInstance : appListOtherDetils[0].Parcels__r){
+                        system.debug('parcelInstance==' + parcelInstance);
+                        MUSW__License_Parcel__c licenseParcelRecord = new MUSW__License_Parcel__c();
+                        licenseParcelRecord.MUSW__Parcel__c = parcelInstance.Id;
+                        licenseParcelRecord.MUSW__License2__c    = licenseID[0].Id;
+                        licenseParcelList.add(licenseParcelRecord);
+                        //parcel.License__c = licenseID[0].Id; 
+                        //lstParcels.add(parcel);
                     }
-                    update lstParcels;                
+                    upsert licenseParcelList;               
                 }
                 List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
                 if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
@@ -850,7 +854,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
 
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.License__c = LicenseObj.Id; 
-                        //ans.Question__c = ans.QuestionDOL__r.Question_Body__c;
+                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c;
                         system.debug('ans.QuestionDOL__r.RecordType.DeveloperName---'+ans.QuestionDOL__r.RecordType.DeveloperName);
                         system.debug('question body===' + ans.QuestionDOL__r.Question_Body__c);
                        
@@ -1038,8 +1042,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.License__c = licenseID[0].Id; 
-                        //ans.Question__c = ans.QuestionDOL__r.Question_Body__c;
-                        //System.debug('ans.Question__c==' + ans.Question__c);
+                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c;
+                        System.debug('ans.Question2__c==' + ans.Question2__c);
                         if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
                         {
                             Endorsement__c endorsment = new Endorsement__c();
