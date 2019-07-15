@@ -1121,9 +1121,11 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         }
         if(childlicenseRecordID!=null)
         {
-            MUSW__License2__c lic = [SELECT id,Upgraded_License__c FROM MUSW__License2__c where id=:childlicenseRecordID];
-            lic.Upgraded_License__c = licenseID[0].id;
-            update lic;
+            List<MUSW__License2__c> lic = [SELECT id,Upgraded_License__c FROM MUSW__License2__c where id=:childlicenseRecordID AND Application_Method__c =:'Upgrade'];
+            if(!lic.isEmpty()){
+                lic[0].Upgraded_License__c = licenseID[0].id;
+                update lic[0];
+            }
         }
         //Calling method to  store 3rd party
        /* if(!mapSubmissionToFile.isEmpty()){
@@ -1154,6 +1156,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 mstLicense.Application_Type__c = application.Application_Type__c;
                 mstLicense.Credential_Type__c = application.Credential_Type__c;
                 mstLicense.Application_Method__c = application.Application_Method__c;
+                mstLicense.App_Submitted_Date__c = System.today();
                 if(application.MUSW__Account__c!=null)
                 {
                     system.debug('application.Application_Type__c :'+application.Application_Type__c);

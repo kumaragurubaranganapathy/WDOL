@@ -216,9 +216,11 @@ application.MUSW_Account__c = account;*/
         application.Stage__c = 0;
         application.MUSW__Applicant__c = getContactId;
         application.MUSW__Account__c = account;
-        application.Upgrading_License__c = LicenseUpgradeRecordID;
         if(branchLicense.contains(licenseType)){
             application.Branch_License__c = true;
+            application.Parent_License__c = LicenseUpgradeRecordID;
+        }else{
+            application.Upgrading_License__c = LicenseUpgradeRecordID;
         }
         try{
             

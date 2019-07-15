@@ -379,7 +379,15 @@
                                 <apex:inputField label="Voucher Number" id="voucherCheckNumber" value="{!rvo.r.Voucher_Number__c}" />
                             </apex:pageBlockSection>
                         </apex:outputPanel>
-                        
+                        <!--Added by Vinanthi-->
+                        <apex:outputPanel id="PIN" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Pay by Employer'}">
+                            <apex:pageBlockSection columns="1" id="PINCheckout">
+                                <apex:inputField label="PIN" id="voucherCheckNumber" value="{!rvo.r.Cart_PIN__c}"
+                                />
+
+                            </apex:pageBlockSection>
+                        </apex:outputPanel>
+
                         <apex:outputPanel >
                             <apex:pageBlockSection columns="1" id="dynamicCheckOut">
                                 <apex:repeat value="{!receiptFields[rvo.pmtMethodSelected]}" var="field">           
@@ -421,17 +429,23 @@
 <apex:actionSupport event="onclick"  action="{!review}" reRender="tab,msg" oncomplete="document.getElementById('preloader2').style.visibility='hidden';"/>
 </apex:commandButton>
 -->
-                    
-                       <!-- Multiple Payment Option not required by State of WA--- Uncommenting this code as a part of 1986-->
-                    <apex:commandButton value="Add Payment Method" action="{!addReceipt}" reRender="tab,checkout,depositCheckout"  rendered="{!canPayMulti && !isGatewayRequiredforPaymentMethod}" />
-                    
+
+                    <!-- Multiple Payment Option not required by State of WA--- Uncommenting this code as a part of 1986-->
+                    <apex:commandButton value="Add Payment Method" action="{!addReceipt}" reRender="tab,checkout,depositCheckout"
+                        rendered="{!canPayMulti && !isGatewayRequiredforPaymentMethod && !isFeeTransfer}"
+                    />
+
                     <!-- 
 <apex:commandButton value="Process Payment" action="{!process}" reRender="tab,msg" rendered="{!hasCC = 'false'}" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"/>-->
-                    
-                    <apex:commandButton value="Proceed to Payment" status="BlockIndicator" action="{!process}" rendered="{!!isGatewayRequiredforPaymentMethod}" reRender="tab,msg"  oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"/>
-                   <!-- <BGBK:MockGatewayPayment cID="a1er0000000K1Av" returnUrl="https://dev-polaris.cs32.force.com/dashboard" contactEmail="mabhang@deloitte.com" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="290" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/>-->
-            <!--   <BGBK:MockGatewayPayment cID="{!cart.Id}" returnUrl="{!retUrl}" contactEmail="{!email}" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="{!totalPayment}" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/> -->
-                   
+                    <apex:commandButton value="Transfer Fee" status="BlockIndicator" action="{!TransferFee}"
+                        rendered="{!isFeeTransfer}" />
+                    <apex:commandButton value="Proceed to Payment" status="BlockIndicator" action="{!process}"
+                        rendered="{!(!isGatewayRequiredforPaymentMethod && !isFeeTransfer)}"
+                        reRender="tab,msg,totalPaymentPanel" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"
+                    />
+                    <!-- <BGBK:MockGatewayPayment cID="a1er0000000K1Av" returnUrl="https://dev-polaris.cs32.force.com/dashboard" contactEmail="mabhang@deloitte.com" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="290" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/>-->
+                    <!--   <BGBK:MockGatewayPayment cID="{!cart.Id}" returnUrl="{!retUrl}" contactEmail="{!email}" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="{!totalPayment}" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/> -->
+
                     <!--Uncomment this button if you want to  redirect o gateway -->
                     <!-- <apex:commandButton value="Process Payment" status="BlockIndicator" action="{!redirectToPaymentGateway}" rendered="{!isGatewayRequiredforPaymentMethod}" reRender="paymentFormPanel" oncomplete="submitPayment()"/> -->
                     <apex:commandButton value="Process ePayment" status="BlockIndicator" action="{!redirectToPaymentGateway}" rendered="{!isGatewayRequiredforPaymentMethod}" />
