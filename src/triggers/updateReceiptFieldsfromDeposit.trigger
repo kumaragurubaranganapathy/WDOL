@@ -2,7 +2,7 @@
 * @US       :   1966
 * @discription :    Update Agency Code and Voucher Number field from Deposit to Receipt
 */ 
-trigger updateReceiptFieldsfromDeposit on MUSW__Deposit__c (after insert, after update,before update) {
+trigger updateReceiptFieldsfromDeposit on MUSW__Deposit__c (after insert, after update) {
  if (Trigger.isUpdate) {
         // Process after update
         if(Trigger.isAfter){
@@ -45,21 +45,6 @@ trigger updateReceiptFieldsfromDeposit on MUSW__Deposit__c (after insert, after 
             system.debug('finalReceiptToUpdate : ' +finalReceiptToUpdate);
             if(!finalReceiptToUpdate.isEmpty())
                 update finalReceiptToUpdate;            
-        }
-        
-        if(Trigger.isBefore){
-            set<Id> depositIds =new Set<Id>();
-            for(MUSW__Deposit__c depositRec: Trigger.new){
-                MUSW__Deposit__c olddeposit = Trigger.oldMap.get(depositRec.Id);
-                
-                if(olddeposit.MUSW__Available_Amount__c != depositRec.MUSW__Available_Amount__c && depositRec.MUSW__Available_Amount__c < olddeposit.MUSW__Available_Amount__c && depositRec.Overshort_Amount__c != null){ 
-                   depositRec.Overshort_Amount__c = depositRec.MUSW__Available_Amount__c;
-                   depositRec.Overshort_Modified__c = True;
-                   depositRec.Over_short_Old_Amount__c = olddeposit.Overshort_Amount__c;
-                   depositRec.Previous_Overshort_Updated__c = True;
-                }   
-            }
-        
         }
     }
 }
