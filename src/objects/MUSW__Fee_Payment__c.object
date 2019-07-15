@@ -362,6 +362,28 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>DHP_Amount__c</fullName>
+        <description>Captures the DHP amount</description>
+        <externalId>false</externalId>
+        <label>DHP Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>DHPed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Captures if the fee payment is  DHPed or not</description>
+        <externalId>false</externalId>
+        <label>DHPed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Department__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(MUSW__Fee__r.Department__c)</formula>
@@ -385,30 +407,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Fee_AR_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Fee__r.Acc_AR_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Fee AR Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Fee_Cash_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Fee__r.Acc_Cash_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Fee Cash Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Fee_Type__c</fullName>
