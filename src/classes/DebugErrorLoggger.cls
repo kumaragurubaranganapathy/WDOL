@@ -53,13 +53,17 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
         if (e == null){errorType = 'Debug';}
         log_into_object(e,errorType,'Unmanaged',sObjectId,sObjectName,className,functionalityImpacted,additionalDetails,additionalDetails2);
     } //End Method
-
+    
     // Method to log errors for Salesforce custom errors
     public static void LogFatal(Exception e, String sObjectId, String sObjectName,String className,String functionalityImpacted, String additionalDetails){
         LogFatal(e, sObjectId, sObjectName,className,functionalityImpacted, additionalDetails, null);
     } //End Method
     
-    
+    public static void dolLogger(Dol_LoggerInput li){
+        log_into_object(li.e,li.errorType,li.SourcePackage,li.sObjectId,
+                        li.sObjectName,li.className,li.functionalityImpacted,
+                        li.additionalDetails,li.additionalDetails2);
+    }
     // Internal log error method
      private static void log_into_object(Exception e, String errorType, String SourcePackage,String sObjectId, String sObjectName, String className, String functionalityImpacted, String additionalDetails,String additionalDetails2){
         

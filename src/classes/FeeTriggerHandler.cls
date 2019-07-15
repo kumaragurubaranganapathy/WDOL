@@ -7,6 +7,7 @@
 * 08/22/2018   Srikanth Kottam/Deloitte          Initial Creation
 **/
 public class FeeTriggerHandler implements BGCM.ITriggerHandler{
+    public static boolean isTrue  = true;
 	public void onAfterDelete() {}
     public void onAfterInsert() {
         afterMethod();
@@ -22,15 +23,15 @@ public class FeeTriggerHandler implements BGCM.ITriggerHandler{
     
     public void afterMethod() {
         //This Method is called when already an AccountContact Record exists on an Account and Fee records get Created. This Record will be shared with the community Plus User
-        if(userinfo.getName()!='System Integration'){
+        if(userinfo.getName()!='System Integration' && isTrue){
         //FeeUsersharing controller = new FeeUsersharing();
         //controller.FeeSharing_RecordInsert(Trigger.New);
         //End of FeeUsersharing
-        
+        isTrue =false;
         //Share the Fee records when the Delegated Admin is the applicant
         FeeCreatedByDelegate DelegateController = new FeeCreatedByDelegate();
         System.debug('Entered fee trigger');
-        DelegateController.shareFeeRecords(Trigger.New);
+      //  DelegateController.shareFeeRecords(Trigger.New);
         System.debug('Entered fee trigger again');
         }
     } 

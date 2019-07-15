@@ -23,7 +23,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
         <!--a href="#main">Skip to main content</a>-->
         <div role="main" class="slds-grid slds-wrap themeContainer" id="main" tabindex="-1">
             <div class="{!(and(v.showSideNav==true)?'':'slds-hide')+' side-bar'}">
-                <c:LnP_VerticalNav/>
+               <c:LnP_VerticalNav/>
             </div>            
             <div class="{!(v.showSideNav==true)?'body':'full-body'}">
                 {!v.body}

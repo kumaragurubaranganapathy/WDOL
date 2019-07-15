@@ -110,14 +110,22 @@
                 <value>
                     <fullName>Active</fullName>
                     <default>false</default>
+                    <label>Active</label>
                 </value>
                 <value>
                     <fullName>Inactive</fullName>
                     <default>false</default>
+                    <label>Inactive</label>
                 </value>
                 <value>
                     <fullName>On Hold</fullName>
                     <default>false</default>
+                    <label>On Hold</label>
+                </value>
+                <value>
+                    <fullName>Out of Business</fullName>
+                    <default>false</default>
+                    <label>Out of Business</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -145,6 +153,20 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Bus_Id__c</fullName>
+        <description>3 Digit Business ID (Part of 16 Digit UBI Number)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>3 Digit Business ID (Part of 16 Digit UBI Number)
+This can be found on your license document or using the license search feature at the Department of Revenue website.</inlineHelpText>
+        <label>Business ID</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Business_Alias__c</fullName>
         <description>The account alias will be used to identify specific businesses if you manage multiple businesses with the same name.</description>
         <externalId>false</externalId>
@@ -162,7 +184,7 @@
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -172,7 +194,7 @@
         <label>Business Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Phone</type>
     </fields>
     <fields>
@@ -184,33 +206,37 @@
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Sole Proprietor</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Partnership</fullName>
-                    <default>false</default>
-                </value>
+                <sorted>true</sorted>
                 <value>
                     <fullName>Corporation</fullName>
                     <default>false</default>
+                    <label>Corporation</label>
                 </value>
                 <value>
                     <fullName>Foreign Corporation</fullName>
                     <default>false</default>
+                    <label>Foreign Corporation</label>
+                </value>
+                <value>
+                    <fullName>Joint Stock Associations</fullName>
+                    <default>false</default>
+                    <label>Joint Stock Associations</label>
                 </value>
                 <value>
                     <fullName>Limited Liability Company</fullName>
                     <default>false</default>
+                    <label>Limited Liability Company</label>
                 </value>
                 <value>
-                    <fullName>LLC</fullName>
+                    <fullName>Partnership</fullName>
                     <default>false</default>
-                    <isActive>false</isActive>
+                    <label>Partnership</label>
+                </value>
+                <value>
+                    <fullName>Sole Proprietor</fullName>
+                    <default>false</default>
+                    <label>Sole Proprietor</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -278,10 +304,10 @@
     </fields>
     <fields>
         <fullName>Cust_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
+        <caseSensitive>true</caseSensitive>
         <externalId>true</externalId>
-        <label>Cust_Id</label>
-        <length>60</length>
+        <label>Client ID</label>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -295,7 +321,7 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -344,7 +370,7 @@
         <length>2</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -357,7 +383,7 @@
         <fullName>Doing_Business_As_1__c</fullName>
         <description>Indicates the name they are doing business as (1)</description>
         <externalId>false</externalId>
-        <label>Doing Business As (1)</label>
+        <label>Doing Business As</label>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -372,17 +398,17 @@
         <label>Primary Contact Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Email</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
-        <label>Email</label>
+        <label>Business Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -441,13 +467,44 @@
         <fullName>First_Name_Primary_Contact__c</fullName>
         <description>Primary Contact First Name</description>
         <externalId>false</externalId>
-        <label>First Name</label>
+        <label>Primary Contact First Name</label>
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>How_to_Contact_the_Course_Provider__c</fullName>
+        <externalId>false</externalId>
+        <label>How to Contact the Course Provider?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Phone &amp; Extension</fullName>
+                    <default>false</default>
+                    <label>Phone &amp; Extension</label>
+                </value>
+                <value>
+                    <fullName>Website</fullName>
+                    <default>false</default>
+                    <label>Website</label>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Industry</fullName>
@@ -490,8 +547,36 @@
         <fullName>Last_Name_Primary_Contact__c</fullName>
         <description>Primary Contact Last Name</description>
         <externalId>false</externalId>
-        <label>Last Name</label>
+        <label>Primary Contact Last Name</label>
         <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_ID__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>External Id of the record - Foreign Key used for Data Conversion</description>
+        <externalId>true</externalId>
+        <inlineHelpText>External Id of the record - Foreign Key used for Data Conversion</inlineHelpText>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Loc_Id__c</fullName>
+        <description>4 Digit Location ID (Part of 16 Digit UBI Number)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>4 Digit Location ID (Part of 16 Digit UBI Number)
+This can be found on your license document or using the license search feature at the Department of Revenue website.</inlineHelpText>
+        <label>Location ID</label>
+        <length>4</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -599,7 +684,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>NumberOfEmployees</fullName>
@@ -619,6 +704,17 @@ CASE( MUSW__AlertCode__c,
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>PIN__c</fullName>
+        <externalId>false</externalId>
+        <label>PIN</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ParentId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -627,7 +723,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Phone_Primary_Contact__c</fullName>
@@ -636,8 +732,38 @@ CASE( MUSW__AlertCode__c,
         <label>Primary Contact Phone</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Provider_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Provider Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Appraiser Course Provider</fullName>
+                    <default>false</default>
+                    <label>Appraiser Course Provider</label>
+                </value>
+                <value>
+                    <fullName>Home Inspector Course Provider</fullName>
+                    <default>false</default>
+                    <label>Home Inspector Course Provider</label>
+                </value>
+                <value>
+                    <fullName>Real Estate School</fullName>
+                    <default>false</default>
+                    <label>Real Estate School</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Rating</fullName>
@@ -659,14 +785,17 @@ CASE( MUSW__AlertCode__c,
                 <value>
                     <fullName>Release 1</fullName>
                     <default>false</default>
+                    <label>Release 1</label>
                 </value>
                 <value>
                     <fullName>Release 2</fullName>
                     <default>false</default>
+                    <label>Release 2</label>
                 </value>
                 <value>
                     <fullName>Release 3</fullName>
                     <default>false</default>
+                    <label>Release 3</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -757,7 +886,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Type_of_Ownership__c</fullName>
-        <description>Account&apos;s ownership types list</description>
+        <description>DO NOT USE. This is same as &quot;Business Structure&quot; field. Account&apos;s ownership types list</description>
         <externalId>false</externalId>
         <label>Type of Ownership</label>
         <required>false</required>
@@ -770,46 +899,57 @@ CASE( MUSW__AlertCode__c,
                 <value>
                     <fullName>Company</fullName>
                     <default>false</default>
+                    <label>Company</label>
                 </value>
                 <value>
                     <fullName>Corporation</fullName>
                     <default>false</default>
+                    <label>Corporation</label>
                 </value>
                 <value>
                     <fullName>Government</fullName>
                     <default>false</default>
+                    <label>Government</label>
                 </value>
                 <value>
                     <fullName>Individual</fullName>
                     <default>false</default>
+                    <label>Individual</label>
                 </value>
                 <value>
                     <fullName>Limited Liability Company</fullName>
                     <default>false</default>
+                    <label>Limited Liability Company</label>
                 </value>
                 <value>
                     <fullName>Limited Partnership</fullName>
                     <default>false</default>
+                    <label>Limited Partnership</label>
                 </value>
                 <value>
                     <fullName>LTD</fullName>
                     <default>false</default>
+                    <label>LTD</label>
                 </value>
                 <value>
                     <fullName>Partnership</fullName>
                     <default>false</default>
+                    <label>Partnership</label>
                 </value>
                 <value>
                     <fullName>Professional Association</fullName>
                     <default>false</default>
+                    <label>Professional Association</label>
                 </value>
                 <value>
                     <fullName>Public School</fullName>
                     <default>false</default>
+                    <label>Public School</label>
                 </value>
                 <value>
                     <fullName>Sole Proprietorship</fullName>
                     <default>false</default>
+                    <label>Sole Proprietorship</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -817,8 +957,9 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>UBI_Number__c</fullName>
         <externalId>false</externalId>
-        <label>UBI Number</label>
-        <length>20</length>
+        <inlineHelpText>This can be found on your license document or using the license search feature at the Department of Revenue website.</inlineHelpText>
+        <label>UBI</label>
+        <length>11</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -833,7 +974,7 @@ CASE( MUSW__AlertCode__c,
         <label>UBI Status</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -842,14 +983,17 @@ CASE( MUSW__AlertCode__c,
                 <value>
                     <fullName>Active</fullName>
                     <default>false</default>
+                    <label>Active</label>
                 </value>
                 <value>
                     <fullName>Inactive</fullName>
                     <default>false</default>
+                    <label>Inactive</label>
                 </value>
                 <value>
                     <fullName>NA</fullName>
                     <default>false</default>
+                    <label>NA</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -888,8 +1032,10 @@ CASE( MUSW__AlertCode__c,
         <columns>ACCOUNT.RECORDTYPE</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
+        <columns>UBI_Number__c</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Accounts</label>
     </listViews>
@@ -932,11 +1078,11 @@ CASE( MUSW__AlertCode__c,
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
-        <fullName>Business_Account</fullName>
+        <fullName>Branch_License_Account</fullName>
         <active>true</active>
         <compactLayoutAssignment>Account_Compact_Layout</compactLayoutAssignment>
-        <description>Business Account</description>
-        <label>Business Account</label>
+        <description>Branch License Account</description>
+        <label>Branch License Account</label>
         <picklistValues>
             <picklist>AccountSource</picklist>
             <values>
@@ -990,6 +1136,10 @@ CASE( MUSW__AlertCode__c,
                 <fullName>Inactive</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Business_Structure__c</picklist>
@@ -1011,6 +1161,21 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Sole Proprietor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>How_to_Contact_the_Course_Provider__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone %26 Extension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1161,6 +1326,1226 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Provider_Type__c</picklist>
+            <values>
+                <fullName>Appraiser Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Inspector Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate School</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release__c</picklist>
+            <values>
+                <fullName>Release 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Release 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Release 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Investor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Press</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reseller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Ownership__c</picklist>
+            <values>
+                <fullName>Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Liability Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Proprietorship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UBI_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Business_Account</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Account_Compact_Layout</compactLayoutAssignment>
+        <description>Business Account</description>
+        <label>Business Account</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google AdWords</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Account_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Business_Structure__c</picklist>
+            <values>
+                <fullName>Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Liability Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Proprietor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>How_to_Contact_the_Course_Provider__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone %26 Extension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Provider_Type__c</picklist>
+            <values>
+                <fullName>Appraiser Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Inspector Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate School</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release__c</picklist>
+            <values>
+                <fullName>Release 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Release 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Release 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Investor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Press</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reseller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Ownership__c</picklist>
+            <values>
+                <fullName>Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Liability Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Proprietorship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UBI_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Course_Provider</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Account_Compact_Layout</compactLayoutAssignment>
+        <description>Course Provider</description>
+        <label>Course Provider</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google AdWords</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Account_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Business_Structure__c</picklist>
+            <values>
+                <fullName>Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Liability Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Proprietor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>How_to_Contact_the_Course_Provider__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone %26 Extension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Provider_Type__c</picklist>
+            <values>
+                <fullName>Appraiser Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Inspector Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate School</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release__c</picklist>
+            <values>
+                <fullName>Release 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Release 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Release 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Investor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Press</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reseller</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Ownership__c</picklist>
+            <values>
+                <fullName>Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Liability Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Proprietorship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UBI_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Main_License_Account</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Account_Compact_Layout</compactLayoutAssignment>
+        <description>Main License Account</description>
+        <label>Main License Account</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google AdWords</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Account_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Business_Structure__c</picklist>
+            <values>
+                <fullName>Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Limited Liability Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sole Proprietor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>How_to_Contact_the_Course_Provider__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone %26 Extension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Provider_Type__c</picklist>
+            <values>
+                <fullName>Appraiser Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Inspector Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate School</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1384,6 +2769,21 @@ CASE( MUSW__AlertCode__c,
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>How_to_Contact_the_Course_Provider__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone %26 Extension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -1530,6 +2930,21 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Provider_Type__c</picklist>
+            <values>
+                <fullName>Appraiser Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Inspector Course Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate School</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

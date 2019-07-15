@@ -75,6 +75,7 @@
         var TopicValue =  component.find("Topic").get("v.value")
         var StatusValue = component.find("Status").get("v.value");
         var DeliveryMethodValue = component.find("DeliveryMethod").get("v.value");
+        var courseRecordTypeVal = component.get("v.CourseRecordTypeId");
       //  var CourseNameValue = component.find("courseName").get("v.value");
        
         
@@ -112,21 +113,25 @@
         }
          if(DeliveryMethodValue!= ""){
             searchOneArray.push({label:"Delivery Method", value:DeliveryMethodValue});
+             if(DeliveryMethodValue == 'One-time event / Seminar'){
+                 component.set("v.showEvents", true);
+             }
         }
         console.log(searchOneArray);
         
         if(searchOneArray.length!=0){
             var criteria = {
-                "Application_Type__c" : ProgramValue,
+                "What_program_are_you_interested_in__c" : ProgramValue,
                 "Course_Type__c" : CourseTypeValue,
-                "Credential_Type__c" : licensureLevelValue,
+                "What_Licensure_Level__c" : licensureLevelValue,
                 "Provider_School_Name__c" : schoolNameValue,
                 "Course_Name__c" : courseNameValue,
                 "Course_Number__c" : courseNumberValue,
                 "Clock_Hours__c" : clockHoursValue,
                 "Course_Topic__c" : TopicValue,
                 "Course_Status__c" : StatusValue,
-                "Delivery_Method__c" : DeliveryMethodValue
+                "Delivery_Method__c" : DeliveryMethodValue,
+                "RecordTypeId" : courseRecordTypeVal 
             };
             var action = component.get("c.generateQuery");
             action.setParams({
@@ -150,7 +155,7 @@
                             {label: 'Provider/School', fieldName: 'Provider_School_Name__c', type: 'Text', sortable : true},
                             {label: 'Course Number', fieldName: 'Course_Number__c', type: 'Text', sortable : true},
                             {label: 'Course Type', fieldName: 'Course_Type__c', type: 'Picklist', sortable : true},
-                            {label: 'Licensure Levels', fieldName: 'Credential_Type__c', type: 'Picklist', sortable : true},
+                            {label: 'Licensure Levels', fieldName: 'What_Licensure_Level__c', type: 'Picklist', sortable : true},
                             {label: 'Delivery Method', fieldName: 'Delivery_Method__c', type: 'Picklist', sortable : true},
                             {label: 'Clock Hours', fieldName: 'Clock_Hours__c', type: 'Number', sortable : true},
                             {label: 'Course Status', fieldName: 'Course_Status__c', type: 'Picklist', sortable : true},
@@ -236,6 +241,8 @@
             var objectApi =  'MUSW__License2__c';
             component.set("v.courseNameToDisplayDetails", "Course Details");
             var fieldsList = ['Name',
+                              'What_Licensure_Level__c',
+                              'What_program_are_you_interested_in__c',
                                   'Credential_Type__c',
                                   'Application_Type__c',
                                   'Course_Type__c',

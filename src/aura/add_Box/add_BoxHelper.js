@@ -1,5 +1,5 @@
 ({
-	 fetchData: function (cmp,event,helper) {
+	 fetchData: function (cmp,event) {
         var action = cmp.get("c.getAllAccounts");
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -13,7 +13,7 @@
     },
     getRowActions: function (component, row, doneCallback) {
         var actions = [];
-        if (row['MUSW__Account_Contacts__r'] != undefined) {
+        if (row.MUSW__Account_Contacts__r !== undefined) {
             actions.push({
                 'label': 'Edit',
                 'iconName': 'utility:edit',
@@ -29,27 +29,27 @@
                 'iconName': 'utility:reject',
                 'name': 'No Actions'
             });
-            actions['disabled'] = 'true';
+            actions.disabled = 'true';
         }    
         setTimeout($A.getCallback(function(){
             doneCallback(actions);
         }), 200);
     },
     saveAccountContact : function(component,accId){
-        alert('inside saveAccount::');
-        var action = cmp.get("c.createAccountContactObject");
+        // alert('inside saveAccount::');
+        var action = component.get("c.createAccountContactObject");
         action.setParams({ aId : accId });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-               alert('success');
+            //    alert('success');
             }
             // error handling when state is "INCOMPLETE" or "ERROR"
         });
         $A.enqueueAction(action);
     },
     
-    handleCancel : function(component, event){
+    handleCancel : function(component){
         component.find("accordion").set('v.activeSectionName', ''); 
     }
 })

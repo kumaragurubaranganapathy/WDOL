@@ -50,7 +50,6 @@
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -146,6 +145,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Parcel_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Parcel__r.Name + &apos;, &apos; + TEXT(MUSW__Parcel__r.MUSW__State__c) + &apos;, &apos; + MUSW__Parcel__r.Zip_Postal_Code__c + &apos;, &apos; + TEXT(MUSW__Parcel__r.Country__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parcel Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Physical__c</fullName>

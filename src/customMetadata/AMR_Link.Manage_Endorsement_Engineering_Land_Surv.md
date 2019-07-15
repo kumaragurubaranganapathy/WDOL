@@ -3,12 +3,20 @@
     <label>Manage Endorsement</label>
     <protected>false</protected>
     <values>
+        <field>AMR_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>Application_Method__c</field>
         <value xsi:type="xsd:string">General Application</value>
     </values>
     <values>
         <field>Board__c</field>
         <value xsi:type="xsd:string">Engineers</value>
+    </values>
+    <values>
+        <field>Generate_Fee__c</field>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>License_Type__c</field>

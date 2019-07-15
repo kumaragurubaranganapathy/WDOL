@@ -40,7 +40,8 @@
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
     <aura:attribute name="declarationFlag" type="Boolean" default="false" />
     <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
-    
+    <aura:attribute name="amrData" type="AMR_Link__mdt" />
+    <aura:attribute name="Description" type="String" />
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -70,7 +71,7 @@
                                     <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                     <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
-                                        <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 
+                                        <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}"/> 
                                     </aura:if>
                                 </div>
                             </aura:iteration>
@@ -293,10 +294,16 @@
                                     <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                     <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
-                                        <c:Polaris_NotaryEndorsement sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" docList="{!question.multiValues}"/> 
+                                        <c:Polaris_NotaryEndorsement sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" docList="{!question.multiValues}" flowType="{!v.flowType}"/> 
                                     </aura:if>
                                 </div>
                             </aura:iteration>
+                        </aura:if>
+                        <aura:if isTrue="{!and((section.sectionName=='General Information' ),v.currentTab==section.tabIndex)}">
+                            <!--<span class="slds-form-element__label">License Number :</span> {!v.recordId}-->
+                            <span class="slds-form-element__label">License Type :</span> {!v.licenseType}
+                            <span class="slds-form-element__label">Service Request Type :</span> {!v.flowType}
+                            <span class="slds-form-element__label">Description :</span> <ui:inputTextArea value="{!v.Description}" rows="5" />
                         </aura:if>
                     </div>
                 </aura:set>

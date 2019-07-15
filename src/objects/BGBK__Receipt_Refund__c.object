@@ -112,11 +112,45 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Refund_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( BGBK__Refund2__r.Fee__c ), &apos;Suspense&apos;, &apos;Allocation&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Refund Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Refundee__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot;+BGBK__Refund2__r.BGBK__Contact__r.Id , BGBK__Refund2__r.BGBK__Contact__r.LastName + &quot;, &quot;+  BGBK__Refund2__r.BGBK__Contact__r.FirstName )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Refundee</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

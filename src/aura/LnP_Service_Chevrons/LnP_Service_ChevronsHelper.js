@@ -15,11 +15,12 @@
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
+            console.log("inside fetchData"+ state);
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
                 var resultWrapper = JSON.parse(result);
                 component.set("v.licenseWrapper",resultWrapper);
-                //alert(resultWrapper);
+                console.log("wrapper::"+JSON.stringify(resultWrapper));
                 
                 var sectionList = [];
                 for (var index = 0; index < resultWrapper.length; index++){
@@ -33,8 +34,10 @@
                 console.log("resultWrapper", JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
+                this.getAMRMetadata(component,event,helper);
             }else{
-                window.location.href = "./error";
+              //  window.location.href = "./error";
+               console.log("error" +  state);
             }
         });
         $A.enqueueAction(action);
@@ -46,24 +49,47 @@
         var board = sessionStorage.getItem("board");
         var applicationId = sessionStorage.getItem("requestId");
         //var recordID =  sessionStorage.getItem("accountRecordID");
-        var flowType = sessionStorage.getItem("manageEndorsement");
+        var flowType = sessionStorage.getItem("ServiceRequestType");
+        var recordId = sessionStorage.getItem("recordId");
         var objectName = "";
-        if(applicationId!=null){
+       /* if(applicationId!=null){
             //set licenseType, etc -> coming from dashboard
         }else{
             if(licenseType==null||applicationType==null||board==null){
                 window.location.href = "./error";
             }
-        }
+        }*/
         
         component.set("v.licenseType", licenseType);
         component.set("v.board", board);
         component.set("v.applicationType", applicationType);
         component.set("v.applicationId", applicationId);
         component.set("v.flowType", flowType);
-        
+        component.set("v.recordId", recordId);
         sessionStorage.clear();
     },
+    
+    getAMRMetadata : function(component,event,helper){
+        console.log("inside amr::");
+        var action = component.get("c.getMetadata");
+        action.setParams({"board" : component.get("v.board"),
+                          "ServiceRequestType" :  component.get("v.flowType"),
+                          "licenseType" :  component.get("v.licenseType")})
+         action.setCallback(this, function(actionResult){
+                var state = actionResult.getState();
+                console.log("state::"+state);
+                if (state === "SUCCESS"){
+                    var result = actionResult.getReturnValue();
+                    console.log("AMR::"+JSON.stringify(result));
+                    component.set("v.amrData",result);
+                }else{
+                    console.log("Error");
+                }
+                
+            });
+            $A.enqueueAction(action);
+    },
+    
     goToPreviousTab : function(component, event, helper) {
         component.set("v.AttFlagForsubmit","false");
         var tabNumber = component.get("v.currentTab");
@@ -172,7 +198,8 @@
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true")
         {                      
             var action = component.get("c.callCompositeAPI");
-            action.setParams({"applicationId" : component.get("v.applicationId")});
+            action.setParams({"applicationId" : component.get("v.applicationId"),
+                              "description" : component.get("v.Description")});
             this.showSpinner(component, event);
             //helper.AttestVal(component, event, helper);
             action.setCallback(this, function(actionResult){
@@ -204,9 +231,9 @@
         var response = event.getSource().get("v.value").trim();
         //alert(response);
         var questionNumber = '';
-        if(event.getSource().get("v.name").includes('Background Questions'))
+        if(event.getSource().get("v.name").includes('License Information'))
         {
-             questionNumber = event.getSource().get("v.name").split('Background Questions')[1];
+             questionNumber = event.getSource().get("v.name").split('License Information')[1];
         }
         else 
         {          
@@ -306,11 +333,17 @@
     closeModel: function(component, event) {
         component.set("v.isOpen", false);
         var id = component.get("v.storeServerValue");
+        var amr = component.get("v.amrData");
         console.log('id',id);
         if(component.get("v.serverStatus") == "success"){
             window.setTimeout(
                 $A.getCallback(function() {
-                    window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;        
+                    if(amr.Generate_Fee__c ){
+                        window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
+                    }else{
+                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback" ;
+                    }
+                            
                 }), 2000);
         }
     },
@@ -402,5 +435,23 @@
                 }
             }
         }
-    }        
+    },
+    
+    updateAffiliation : function(component,event,helper){
+        var action = component.get("c.updateAffiliation");
+        action.setParams({"requestId": component.get("v.applicationId") });
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            console.log("inside fetchData"+ state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result::'+result);
+            }else{
+              //  window.location.href = "./error";
+               console.log("error" +  state);
+            }
+        });
+        $A.enqueueAction(action);
+    }
+    
 })

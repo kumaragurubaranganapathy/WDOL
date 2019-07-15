@@ -23,4 +23,21 @@ public class Polaris_UtilityClass {
             return null;
         }
     }
+    
+    //Fetch  pickList Options
+    public static List<String> getPicklist(){
+        List<String> options = new List<String>();
+      //  Schema.SObjectType sobject = 
+      system.debug('inaise it');
+        {
+            Schema.DescribeFieldResult fieldResult = MUSW__License2__c.Credential_Type__c.getDescribe();
+            System.debug('fieldResult---->>> ' + fieldResult);
+            List<Schema.PicklistEntry> pList = fieldResult.getPicklistValues();
+            for (Schema.PicklistEntry p: pList) {
+                options.add(p.getLabel());
+            }
+            return options;
+            
+        }
+    }
 }

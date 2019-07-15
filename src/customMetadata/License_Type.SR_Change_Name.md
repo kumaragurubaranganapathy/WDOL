@@ -23,6 +23,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Is_Available_for_Audit__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
         <field>Object_Name__c</field>
         <value xsi:type="xsd:string">MUSW__Application2__c</value>
     </values>
@@ -32,6 +36,10 @@
     </values>
     <values>
         <field>Program_Area__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RBS_RE__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>

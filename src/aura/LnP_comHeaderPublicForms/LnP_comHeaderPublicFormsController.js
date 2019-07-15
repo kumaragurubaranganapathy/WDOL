@@ -19,10 +19,20 @@
     handleMenuSelect: function(component, event, helper){
         helper.handleMenuSelect(component, event);
     },
+    handleLogout: function(component, event, helper){
+        helper.handleLogout(component, event);
+    },
+    
     toggleMenu: function(component, event, helper){
         helper.toggleMenu(component, event);
     },
     toggleimg:function(component, event, helper){
         helper.toggleimg(component, event);
     },
+    displayMoreLinks:function(component, event, helper){
+         helper.displayMoreLinks(component, event);
+    },
+     handleMenuSelectlink:function(component, event, helper){
+         helper.handleMenuSelectlink(component, event);
+    }
 })

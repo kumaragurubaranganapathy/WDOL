@@ -125,6 +125,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_Type2__c</fullName>
+        <externalId>false</externalId>
+        <label>License Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>License_Type__c</fullName>
         <externalId>false</externalId>
         <label>License Type</label>
@@ -167,6 +180,19 @@
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
+        <fullName>Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Type</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>Record_Type_ID__c</fullName>
         <externalId>false</externalId>
         <label>Record Type ID</label>
@@ -181,6 +207,63 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Initial</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Initial</label>
+                </value>
+                <value>
+                    <fullName>Routine</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Routine</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Initial</fullName>
+                    <default>false</default>
+                    <label>Initial</label>
+                </value>
+                <value>
+                    <fullName>Routine</fullName>
+                    <default>false</default>
+                    <label>Routine</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Use_Group__c</fullName>

@@ -49,6 +49,7 @@
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -68,10 +69,12 @@
                 <value>
                     <fullName>General Application</fullName>
                     <default>false</default>
+                    <label>General Application</label>
                 </value>
                 <value>
                     <fullName>Comity</fullName>
                     <default>false</default>
+                    <label>Comity</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -620,4 +623,5 @@
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
 </CustomObject>

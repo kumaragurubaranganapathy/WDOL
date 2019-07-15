@@ -13,7 +13,7 @@ H ADARSH                        05-August-2018             Initial Creation
 public class HandleException extends Exception {
     public static void LogException(Exception e,String cname,String cmethod){
         try{
-            String QueryLimit = '1. SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
+           /* String QueryLimit = '1. SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
             String DMLimit = '2. Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
             String DMLStat = '3. Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
             String CPUT = '4. Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
@@ -35,7 +35,7 @@ public class HandleException extends Exception {
             exc.Browser__c=lh.Browser;
             exc.Source_IP_Address__c=lh.SourceIp;
             exc.Platform__c=lh.Platform;
-            database.insert(exc);
+            database.insert(exc);*/
         } catch (Exception exc) {
         }            
     } //end method 

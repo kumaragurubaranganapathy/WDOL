@@ -34,6 +34,86 @@
     </actionOverrides>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>AccountId__c</fullName>
+        <externalId>false</externalId>
+        <label>AccountId</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Business_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Child_License_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Child License Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Child_License_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Child License Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Child_License_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Child License Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Child_Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Child Licensee Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Child_Profession__c</fullName>
+        <externalId>false</externalId>
+        <label>Child Profession</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Designation__c</fullName>
+        <externalId>false</externalId>
+        <label>Designation</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Hours_to_Complete__c</fullName>
         <externalId>false</externalId>
         <label>Hours to Complete</label>
@@ -204,18 +284,22 @@ CASE( MUSW__AlertCode__c,
                 <value>
                     <fullName>Approved</fullName>
                     <default>false</default>
+                    <label>Approved</label>
                 </value>
                 <value>
                     <fullName>Denied</fullName>
                     <default>false</default>
+                    <label>Denied</label>
                 </value>
                 <value>
                     <fullName>Stayed</fullName>
                     <default>false</default>
+                    <label>Stayed</label>
                 </value>
                 <value>
                     <fullName>Tabled</fullName>
                     <default>false</default>
+                    <label>Tabled</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -269,6 +353,15 @@ CASE( MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Main_License_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Main License Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Miles_Travelled__c</fullName>
         <externalId>false</externalId>
         <label>Miles Travelled</label>
@@ -277,6 +370,82 @@ CASE( MUSW__AlertCode__c,
         <scale>0</scale>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_License_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent License Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_License_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent License Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent Licensee Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Profession__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent Profession</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sub_status__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub status</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                    <label>Accepted</label>
+                </value>
+                <value>
+                    <fullName>Declined</fullName>
+                    <default>false</default>
+                    <label>Declined</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>isDCP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isDCP</label>
+        <type>Checkbox</type>
     </fields>
     <listViews>
         <fullName>MyActivities</fullName>

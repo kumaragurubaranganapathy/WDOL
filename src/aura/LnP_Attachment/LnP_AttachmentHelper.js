@@ -36,6 +36,27 @@
             }
         })
         $A.enqueueAction(action);*/
+        var allowMultipleFilevar = component.get("v.allowMultipleFiles");
+        var submissionIdVar = component.get("v.appID");
+        
+        if(!allowMultipleFilevar && fileIds.length){
+            var action  = component.get("c.setContentId");
+            action.setParams({submissionId:submissionIdVar,docId : fileIds[0]});
+            action.setCallback(this, function(response) {
+                            var state = response.getState();
+            
+            if (state === "SUCCESS") { 
+                
+                var returnValue = response.getReturnValue();
+                console.log('handleUploadFinishedHelper..........'+returnValue);
+                
+            }else if (state === "ERROR") {
+                var errors = response.getError();
+                console.error(JSON.stringify(errors));
+            }
+            });
+            $A.enqueueAction(action);
+        }
     },
         deleteFile : function(component, event, helper) {
         var ctarget = event.currentTarget;
@@ -46,7 +67,6 @@
             var state = response.getState();
             var newList = [];
             if(state === 'SUCCESS'){
-                alert('Deleted Succesfully');
                 var uploadedFiles = component.get("v.uploadedFileList");
                 for(var i = 0; i<uploadedFiles.length; i++){
                     if(uploadedFiles[i] !== id_str){
@@ -60,5 +80,17 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+        showToast : function(component, event, helper,message,type) {
+        
+        var toastEvent = $A.get("e.force:showToast");
+        
+        toastEvent.setParams({
+            
+            "message": message,
+            
+            "type" : type
+        });
+        toastEvent.fire();
+    },
 })

@@ -15,14 +15,8 @@
 	},
     
     onDeclarationChange: function(component, event, helper){
-        if(component.get("v.declarationFlag") ==  false){
-            component.set("v.declarationFlag", true);
-        } else{
-            component.set("v.declarationFlag", false);
-        }
-        helper.onCheckboxChange(component, event, helper);
-    },
-    
+        helper.onDeclarationChange(component, event, helper);
+    },    
     onCheckboxChange: function(component, event, helper) {  
 		helper.onCheckboxChange(component, event, helper);
 	},
@@ -34,6 +28,9 @@
     },
      attestValue: function(component, event, helper) {        
         alert(event.getSource().get("v.value"));
+    },
+    SaveAndSubmit : function(component, event, helper){
+        helper.SaveAndSubmit(component, event, helper);
     },
     submit : function(component, event, helper) {        
         helper.submit(component, event, helper);
@@ -52,5 +49,10 @@
 	},
     certificateCheckbox: function(component, event, helper) {
 		helper.certificateCheckbox(component, event);
-	}
+	},
+    // Added by AD
+    handleComponentEvent: function (component, event, helper) {
+        helper.handleComponentEventHelper(component, event);
+        console.log("Event listener..." + event.getParam("message"));
+    }
 })

@@ -86,32 +86,33 @@ public class Polaris_DynamicSQL {
         
         complaint.Program_Type__c = (String)message.get('selectedProfession');
           complaint.Complaint_Submission_Agree__c  = (Boolean)message.get('agreeCheck');
+        complaint.Anonymous__c  = (Boolean)message.get('anonymous');
             complaint.MUSW__Description__c = (String)message.get('complaintSummary');
         complaint.MUSW__Status__c = 'Intake';
         if(pdata != null)
             {
-            complaint.Complainant_Individual_First_Name__c = (String)pdata.get('firstName');
-            complaint.Complainant_Individual_Last_Name__c= (String)pdata.get('lastName');
-            complaint.Complainant_Individual_License_Number__c= (String)pdata.get('licenseNumber');
-            complaint.Complainant_Individual_Email__c = (String)pdata.get('email');
-            complaint.Complainant_Individual_Phone__c = (String)pdata.get('phone');
-            complaint.Complainant_Individual_Mailing_Address__c = (String)pdata.get('address');
-            complaint.Complainant_Individual_City__c = (String)pdata.get('city');
-            complaint.Complainant_Individual_State__c = (String)pdata.get('state');
-            complaint.Complainant_Individual_County__c = (String)pdata.get('county');
+            complaint.Respondent_First_Name__c = (String)pdata.get('firstName');
+            complaint.Respondent_Last_Name__c= (String)pdata.get('lastName');
+            complaint.Respondent_License_Number__c= (String)pdata.get('licenseNumber');
+            complaint.Respondent_Email__c = (String)pdata.get('email');
+            complaint.Respondent_Phone_Number__c = (String)pdata.get('phone');
+            complaint.Respondent_Mailing_Address__c = (String)pdata.get('address');
+            complaint.Respondent_City__c = (String)pdata.get('city');
+            complaint.Respondent_State__c = (String)pdata.get('state');
+            complaint.Respondent_County__c = (String)pdata.get('county');
             }
         
             if(bdata != null)
             {
-            complaint.Complainant_Business_Name__c = (String)bdata.get('businessName');
-            complaint.Complainant_Doing_Business_As__c = (String)bdata.get('doingBusinessAs');
-            complaint.Complainant_Business_License_Number__c = (String)bdata.get('licenseNumber');
-            complaint.Complainant_Business_Email__c = (String)bdata.get('email');
-            complaint.Complainant_Business_Phone__c = (String)bdata.get('phone');
-            complaint.Complainant_Business_Mailing_Address__c = (String)bdata.get('address');
-            complaint.Complainant_Business_City__c = (String)bdata.get('city');
-            complaint.Complainant_Business_State__c = (String)bdata.get('state');
-            complaint.Complainant_Business_County__c = (String)bdata.get('county');   
+            complaint.Respondent_Business_Name__c = (String)bdata.get('businessName');
+            complaint.Respondent_Doing_Business_As__c = (String)bdata.get('doingBusinessAs');
+            complaint.Respondent_Business_License_Number__c = (String)bdata.get('licenseNumber');
+            complaint.Respondent_Business_Email__c = (String)bdata.get('email');
+            complaint.Respondent_Business_Phone__c = (String)bdata.get('phone');
+            complaint.Respondent_Business_Mailing_Address__c = (String)bdata.get('address');
+            complaint.Respondent_Business_City__c = (String)bdata.get('city');
+            complaint.Respondent_Business_State__c = (String)bdata.get('state');
+            complaint.Respondent_Business_County__c = (String)bdata.get('county');   
             }
             
             if(idata != null)

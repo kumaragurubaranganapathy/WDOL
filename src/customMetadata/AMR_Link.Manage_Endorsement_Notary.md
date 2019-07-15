@@ -3,12 +3,20 @@
     <label>Manage Endorsement</label>
     <protected>false</protected>
     <values>
+        <field>AMR_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>Application_Method__c</field>
         <value xsi:type="xsd:string">General Application</value>
     </values>
     <values>
         <field>Board__c</field>
         <value xsi:type="xsd:string">Notary Public</value>
+    </values>
+    <values>
+        <field>Generate_Fee__c</field>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>License_Type__c</field>
@@ -20,7 +28,7 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">Endorsement,Attachments,Review and Submit</value>
+        <value xsi:type="xsd:string">Endorsement,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>

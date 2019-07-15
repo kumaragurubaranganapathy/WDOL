@@ -48,11 +48,20 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -92,9 +101,40 @@
                 <value>
                     <fullName>Master Queue</fullName>
                     <default>false</default>
+                    <label>Master Queue</label>
+                </value>
+                <value>
+                    <fullName>Master Complaint Queue</fullName>
+                    <default>false</default>
+                    <label>Master Complaint Queue</label>
+                </value>
+                <value>
+                    <fullName>Product Revenue Code</fullName>
+                    <default>false</default>
+                    <label>Product Revenue Code</label>
+                </value>
+                <value>
+                    <fullName>Master Inspection Queue</fullName>
+                    <default>false</default>
+                    <label>Master Inspection Queue</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous Queue</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous Queue</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Profession_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Profession Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Program_Type__c</fullName>
@@ -129,6 +169,51 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Revenue_Account_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Revenue Account Code</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Intake</fullName>
+                    <default>false</default>
+                    <label>Intake</label>
+                </value>
+                <value>
+                    <fullName>Re-Open</fullName>
+                    <default>false</default>
+                    <label>Re-Open</label>
+                </value>
+                <value>
+                    <fullName>Investigation</fullName>
+                    <default>false</default>
+                    <label>Investigation</label>
+                </value>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
     <label>Master ConfigData Listing</label>
     <listViews>
         <fullName>All</fullName>
@@ -140,6 +225,11 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Master ConfigData Listing  Name</label>
         <type>Text</type>
@@ -147,4 +237,5 @@
     <pluralLabel>Master ConfigData Listing</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

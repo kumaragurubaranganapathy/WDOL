@@ -48,6 +48,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -93,6 +94,7 @@
                 <value>
                     <fullName>FEE-OIT-TRANS</fullName>
                     <default>false</default>
+                    <label>FEE-OIT-TRANS</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -125,90 +127,112 @@
                 <value>
                     <fullName>Architects Board</fullName>
                     <default>false</default>
+                    <label>Architects Board</label>
                 </value>
                 <value>
                     <fullName>Accountancy Board</fullName>
                     <default>false</default>
+                    <label>Accountancy Board</label>
                 </value>
                 <value>
                     <fullName>Board of Embalmers and Funeral Directors</fullName>
                     <default>false</default>
+                    <label>Board of Embalmers and Funeral Directors</label>
                 </value>
                 <value>
                     <fullName>Engineers and Surveyors Board</fullName>
                     <default>false</default>
+                    <label>Engineers and Surveyors Board</label>
                 </value>
                 <value>
                     <fullName>Board of Pharmacy</fullName>
                     <default>false</default>
+                    <label>Board of Pharmacy</label>
                 </value>
                 <value>
                     <fullName>Casino Control Commission</fullName>
                     <default>false</default>
+                    <label>Casino Control Commission</label>
                 </value>
                 <value>
                     <fullName>Chemical Dependency Professionals Board</fullName>
                     <default>false</default>
+                    <label>Chemical Dependency Professionals Board</label>
                 </value>
                 <value>
                     <fullName>Chiropractic Board</fullName>
                     <default>false</default>
+                    <label>Chiropractic Board</label>
                 </value>
                 <value>
                     <fullName>Cosmetology and Barber Board</fullName>
                     <default>false</default>
+                    <label>Cosmetology and Barber Board</label>
                 </value>
                 <value>
                     <fullName>Counselor, Social Worker &amp; MFT Board</fullName>
                     <default>false</default>
+                    <label>Counselor, Social Worker &amp; MFT Board</label>
                 </value>
                 <value>
                     <fullName>Dental Board</fullName>
                     <default>false</default>
+                    <label>Dental Board</label>
                 </value>
                 <value>
                     <fullName>Dept of Commerce Manufactured Homes</fullName>
                     <default>false</default>
+                    <label>Dept of Commerce Manufactured Homes</label>
                 </value>
                 <value>
                     <fullName>Medical Board</fullName>
                     <default>false</default>
+                    <label>Medical Board</label>
                 </value>
                 <value>
                     <fullName>Motor Vehicle Repair Board</fullName>
                     <default>false</default>
+                    <label>Motor Vehicle Repair Board</label>
                 </value>
                 <value>
                     <fullName>Nursing Board</fullName>
                     <default>false</default>
+                    <label>Nursing Board</label>
                 </value>
                 <value>
                     <fullName>Vision Professionals Board</fullName>
                     <default>false</default>
+                    <label>Vision Professionals Board</label>
                 </value>
                 <value>
                     <fullName>OTPTAT Board</fullName>
                     <default>false</default>
+                    <label>OTPTAT Board</label>
                 </value>
                 <value>
                     <fullName>Psychology Board</fullName>
                     <default>false</default>
+                    <label>Psychology Board</label>
                 </value>
                 <value>
                     <fullName>ODH Sanitarian Registration</fullName>
                     <default>false</default>
+                    <label>ODH Sanitarian Registration</label>
                 </value>
                 <value>
                     <fullName>Speech and Hearing Professionals Board</fullName>
                     <default>false</default>
+                    <label>Speech and Hearing Professionals Board</label>
                 </value>
                 <value>
                     <fullName>Veterinary Medical Board</fullName>
                     <default>false</default>
+                    <label>Veterinary Medical Board</label>
                 </value>
                 <value>
                     <fullName>Sanitarian Board</fullName>
                     <default>false</default>
+                    <label>Sanitarian Board</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -348,4 +372,5 @@ ISCHANGED(Name)</errorConditionFormula>
          ($ObjectType.FeeTable__c.Fields.Id , $ObjectType.FeeTable__c.Fields.Name, Name )))</errorConditionFormula>
         <errorMessage>Fee Table ID must be unique</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

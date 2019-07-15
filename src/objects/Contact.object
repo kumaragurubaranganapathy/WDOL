@@ -116,7 +116,7 @@
     <fields>
         <fullName>AccountId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -211,7 +211,7 @@
     <fields>
         <fullName>Birthdate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Branch__c</fullName>
@@ -324,7 +324,7 @@
         <label>Contact Status</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
@@ -439,7 +439,7 @@
         <length>2</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -643,8 +643,9 @@
         <fullName>ITIN__c</fullName>
         <description>It is to store applicant ITIN number</description>
         <externalId>false</externalId>
+        <inlineHelpText>The Individual Taxpayer Identification Number is issued by the IRS only to individuals who are required to have a US taxpayer identification number but do not have and are ineligible to obtain a Social Security Number (SSN).</inlineHelpText>
         <label>ITIN</label>
-        <length>20</length>
+        <length>11</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -656,6 +657,15 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IsContactRecordUpdatedForASC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IsContactRecordUpdatedForASC</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IsMasterContact__c</fullName>
@@ -900,7 +910,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MobilePhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Municipality__c</fullName>
@@ -935,7 +945,7 @@ CASE( MUSW__AlertCode__c,
         <label>Other Email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Email</type>
         <unique>false</unique>
     </fields>
@@ -957,7 +967,43 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Preferred_Method_of_Communication__c</fullName>
+        <description>Field to identify contact preferred method of communication</description>
+        <externalId>false</externalId>
+        <label>Preferred Method of Communication</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <label>Text</label>
+                </value>
+                <value>
+                    <fullName>Mail</fullName>
+                    <default>false</default>
+                    <label>Mail</label>
+                </value>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <label>Phone</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Provider_Name__c</fullName>
@@ -1065,12 +1111,13 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Social_Security_Number_Encrypted__c</fullName>
         <externalId>false</externalId>
-        <label>Social Security Number Encrypted</label>
+        <inlineHelpText>If you have a Social Security Number (SSN), you are required by federal and state law to provide it for use in child support enforcement programs (42 U.S.C. 666(a)(13) and RCW 74.20A.320). May also be used for identification of records with similar names.</inlineHelpText>
+        <label>SSN</label>
         <length>9</length>
         <maskChar>asterisk</maskChar>
         <maskType>lastFour</maskType>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>EncryptedText</type>
     </fields>
     <fields>
@@ -1234,6 +1281,36 @@ CASE( MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Unique_ID_To_Provide__c</fullName>
+        <externalId>false</externalId>
+        <label>Select Personal ID</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SSN</fullName>
+                    <default>false</default>
+                    <label>Social Security Number (SSN)</label>
+                </value>
+                <value>
+                    <fullName>ITIN</fullName>
+                    <default>false</default>
+                    <label>Individual Taxpayer Identification Number (ITIN)</label>
+                </value>
+                <value>
+                    <fullName>No_SSN_or_ITIN</fullName>
+                    <default>false</default>
+                    <label>I don&apos;t have an SSN or ITIN</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1255,6 +1332,19 @@ CASE( MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>license_specific_email_addresses__c</fullName>
+        <externalId>false</externalId>
+        <label>license specific email addresses</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>license_specific_email_addresses</valueSetName>
+        </valueSet>
     </fields>
     <fields>
         <fullName>security_code_length__c</fullName>
@@ -3444,6 +3534,25 @@ CASE( MUSW__AlertCode__c,
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Preferred_Method_of_Communication__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Reason_for_No_SSN__c</picklist>
             <values>
                 <fullName>Foreign Applicant</fullName>
@@ -3525,6 +3634,64 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Sole proprietor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unique_ID_To_Provide__c</picklist>
+            <values>
+                <fullName>ITIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No_SSN_or_ITIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SSN</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5640,6 +5807,25 @@ CASE( MUSW__AlertCode__c,
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Preferred_Method_of_Communication__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Reason_for_No_SSN__c</picklist>
             <values>
                 <fullName>Foreign Applicant</fullName>
@@ -5721,6 +5907,64 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Sole proprietor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unique_ID_To_Provide__c</picklist>
+            <values>
+                <fullName>ITIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No_SSN_or_ITIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SSN</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

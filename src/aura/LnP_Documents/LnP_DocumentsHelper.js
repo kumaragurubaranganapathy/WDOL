@@ -26,6 +26,7 @@
     },
     updateDepositList : function(component, event,_callType){
         debugger; 
+        component.set("v.showSpinner", true);
         var _depRecList = event.getParam("depositInstance");   
         console.log("_depRecList : "+JSON.stringify(_depRecList));
         var action = component.get("c.updateDepositRec");        
@@ -33,10 +34,12 @@
             "depList": _depRecList
         });
         action.setCallback(this, function(response) {
+            component.set("v.showSpinner", false);
             var state = response.getState();
             var _toastEvt = component.getEvent("toastEvt");
             _toastEvt.setParams({'state' : state , 'data' : 'Receipt record updated' });
             _toastEvt.fire();
+            
             if (state === "SUCCESS") {
                 console.log("updated Record " + JSON.stringify(response.getReturnValue()));
                 var updatedDepositRec = response.getReturnValue();
@@ -56,7 +59,8 @@
     },
     
     saveDepositList : function(component, event){
-        debugger;       
+        debugger;   
+            component.set("v.showSpinner", true);
         var _depRecList = event.getParam("depositInstance");    
         var _callType = event.getParam("callType");
         console.log("_depRecList : "+JSON.stringify(_depRecList));
@@ -68,13 +72,16 @@
             "depRecList" : _depRecList
         });        
         action.setCallback(this, function(response) {
-            var state = response.getState();           
-            if (state === "SUCCESS") {               
-                console.log('Deposit records saved successfully');               
-                var _toastEvt = component.getEvent("toastEvt");
+           
+            var state = response.getState();  
+             var _toastEvt = component.getEvent("toastEvt");
                 _toastEvt.setParams({'state' : state , 'data' : 'Deposit record created.' });
                 _toastEvt.fire();
+             component.set("v.showSpinner", false);
                 
+            if (state === "SUCCESS") {               
+                console.log('Deposit records saved successfully');               
+               
                 console.log("Response : Deposit List : " + JSON.stringify(response.getReturnValue()));
                 var returnDepositRec = response.getReturnValue();                
                 component.set("v.depositRec",returnDepositRec);
@@ -82,7 +89,7 @@
                 var _depositList = component.get("v.depositList"); 
                 _depositList.pop();
                 _depositList.push(returnDepositRec)   ;           
-                component.set("v.depositList", _depositList); 
+                //component.set("v.depositList", _depositList); 
                 
                 //populating parent list
                 _insertedDepositList.push(returnDepositRec);   
@@ -102,7 +109,7 @@
         var _insertedDepositList = component.get("v.insertedDepositList");
         var i,totalAmount = 0, _insertedDepositList_size = _insertedDepositList.length;
         for(i=0 ; i < _insertedDepositList_size ; i++){
-            totalAmount = totalAmount + _insertedDepositList[i].Amount__c;
+            totalAmount = totalAmount + Number(_insertedDepositList[i].Amount__c);
         }
         component.find("numberOfDocuments").set('v.value',_insertedDepositList_size);
         component.find("documentTotal").set('v.value', totalAmount);
@@ -123,7 +130,14 @@
                     component.set("v.depositList", _depositList);
                     break;
                 case 'CLONE' : component.set("v.amountDifference",(component.get("v.paymentSourceTotal") - component.find("documentTotal").get('v.value')));
-                    _depositList.push(component.get("v.programType"))   ;           
+                    var currentDepositRec = component.get("v.depositRec");
+                     var _programType = {'sobjectType':'MUSW__Deposit__c',
+                                        'Amount__c':  currentDepositRec.Amount__c,
+                                        'Form_number__c': currentDepositRec.Form_number__c,
+                                        'wadol_Program_Type__c': currentDepositRec.wadol_Program_Type__c
+                                       };
+                                 _depositList.push(_programType)   ;     
+                  //  _depositList.push(component.get("v.programType"))   ;    
                     component.set("v.depositList", _depositList);    
                     break;
                 case 'UPDATE' : console.log("In progress");
@@ -139,7 +153,7 @@
         
     },
     CreateCERecord :function(component, event){
-        
+        component.set("v.showSpinner", true);
         var eventName = event.getSource().get("v.name");
         console.log("eventName : "+eventName);
         debugger;
@@ -160,11 +174,13 @@
         });  
         action.setCallback(this, function(response){
             var state = response.getState();
-            if (state === "SUCCESS") {  
+            var _toastEvt = component.getEvent("toastEvt");
+            _toastEvt.setParams({'state' : state , 'data' : 'Customer Envelope record created.' });
+            _toastEvt.fire();
+            component.set("v.showSpinner", false);
+            
+            if (state === "SUCCESS") { 
                 console.log(JSON.stringify(response.getReturnValue()));
-                var _toastEvt = component.getEvent("toastEvt");
-                _toastEvt.setParams({'state' : state , 'data' : 'Customer Envelope record created.' });
-                _toastEvt.fire();
                 //redirect to List view
                 if(eventName === 'submit_close'){
                     this.gotoListView(component, event);

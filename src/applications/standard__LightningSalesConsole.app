@@ -61,6 +61,8 @@
     <tabs>BGCK__Checklist_Version__c</tabs>
     <tabs>BGCK__Choice__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
+    <tabs>Master_Exam_List__c</tabs>
+    <tabs>Master_ConfigData_Listing__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSalesConsole_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -78,6 +80,12 @@
         </mappings>
         <mappings>
             <tab>Education_History__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Master_ConfigData_Listing__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Master_Exam_List__c</tab>
         </mappings>
         <mappings>
             <tab>Master_Expiration_Rule__c</tab>

@@ -162,7 +162,7 @@ public class QuestionAnswerObj_Test {
         QuestionAnswerObj q3 = new QuestionAnswerObj('Service Request', 'Manufactured Homes Titling', 'Manufactured Homes Certificate of Title', 'Transfer of Ownership', 'Service_Request__c', sr.Id, 'Exam Re-Application');
         
         Question__c queObj = [Select Id, Data_Type__c, Application_type__c, Application_Method__c, Credential_Type__c, Credential__c, Permit_Type__c, Program_Area__c, 
-                             	 Parent_Question__c,Question_Body__c, Triggering_Field_API_Name__c, Parent_Object_API_Name__c, Triggering_Parent_Answer__c, 
+                                 Parent_Question__c,Question_Body__c, Triggering_Field_API_Name__c, Parent_Object_API_Name__c, Triggering_Parent_Answer__c, 
                                 External_Id__c, Triggering_Comment_Box_Value__c, Triggering_Field_Value__c, Possible_Responses__c 
                               From Question__c limit 1];
           

@@ -8,43 +8,84 @@
     <aura:attribute name="spinner" type="Boolean" default="False"/>
     <aura:attribute name="isDirectProceed" type="Boolean" default="False"/>
     <aura:attribute name="showAccountDropdown" type="Boolean" default="False"/>
+    <aura:attribute name="showLicenseDropdown" type="Boolean" default="False"/>
     <aura:attribute name="quesNo" type="Integer" default="0"/>
     <aura:attribute name="eliQuesNo" type="Integer" default="0"/>
     <aura:attribute name="radiooptions" type="List" default="[
                                                              {'label': 'Yes', 'value': 'Yes'},
                                                              {'label': 'No', 'value': 'No'}]"/>
-   
+    
     <aura:attribute name="header" type="Boolean" default="false"/>
     <aura:attribute name="contactRecId" type="Id" />
+    <aura:attribute name="LicenseUpgradeRecordID" type="String" />
     <aura:attribute name="accounts" type="Object[]"/>
+    <aura:attribute name="licenses" type="Object[]"/>
     <aura:attribute name="conid" type="Id"/>
+    <aura:attribute name="instructions" type="String" />
+    <aura:attribute name="otherInstructions" type="List"/>
     <aura:attribute name="testOptions" type="List" />
+    <aura:attribute name="tempLicenses" type="List"/>
+    <aura:attribute name="Get_Result" type="String" />
+    <aura:handler event="c:LnP_FetchAccounId" action="{!c.getAccountName}" />
+    <aura:attribute name="proceedTemporaryLicense" type="Boolean" default="False" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <c:LnP_ServerActionService aura:id="server"/> 
     <!-- Fetch the dropdown values basis the configuration  made in the MUSW__License2__c object  -->
-    <lightning:recordEditForm aura:id="recordViewForm" objectApiName="Question__c" >
+    <lightning:recordEditForm aura:id="recordViewForm" objectApiName="MUSW__License2__c" >
         <div class= "slds-grid card-wrapper slds-wrap slds-m-left_xx-large">
-            <div class="slds-m-top_xx-large slds-small-size_1-of-1 slds-medium-size_1-of-2">
-                <h2>License Selection</h2>
+            <div class="slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <h2 class="header-style">License Selection</h2>
                 <p class="slds-medium-size_11-of-12">Select the profession for which you are seeking a license. Next, select the specific license type from the Select a License dropdown.</p>
             </div>
-            <div class="slds-m-top_xx-large slds-small-size_1-of-1 slds-medium-size_1-of-2">
-                             
+            <div class="slds-small-size_1-of-1 slds-medium-size_1-of-2 prof-choice">
+                
                 <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}"/> 
                 <lightning:inputField aura:id="licenseType" class="slds-hide slds-m-vertical_large" label="Select a License Type" fieldName="Credential_Type__c" value="" />
                 <lightning:inputField aura:id="getApplicationMethod" class="application slds-hide slds-m-vertical_large" label="Application Method" fieldName="Application_Method__c" value="" onchange="{!c.fetchAppTypeEliQuestions}"/>
-                <aura:if isTrue="{!v.showAccountDropdown == true}">
+                <!--<div>Account: {!v.Get_Result}</div>-->
+                <aura:if isTrue="{!v.accounts.length > 0}">
                     <lightning:select aura:id="accountPickerId" name="" label="Select the Account" variant="Brand"  onchange="{!c.firePassValueEvent}" class="slds-m-vertical_large">
                         <option value="--None--" text="--None--"/>    
                         <aura:iteration items="{!v.accounts}" var="account">
                             <option value="{!account.Id}">{!account.Name}</option>
                         </aura:iteration>
                     </lightning:select>
-                </aura:if>                
+                </aura:if>  
                 
+                <aura:if isTrue="{!v.showLicenseDropdown == true}">
+                    <lightning:select aura:id="licensePickerId" name="" label="Select the License" variant="Brand"  onchange="{!c.firePassLicenseValueEvent}" class="slds-m-vertical_large">
+                        <option value="--None--" text="--None--"/>    
+                        <aura:iteration items="{!v.licenses}" var="lic">
+                            <option value="{!lic.Id}">{!lic.Name}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </aura:if>      
+            </div>
+        </div>
+        <div id="applicationInstuctionDiv" class = "slds-hide card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">
+            <div id="appTextDiv">
+                <h2>Are You Ready?</h2>
+                <!--<h2>Application Instructions</h2>-->
+                <lightning:formattedRichText  class="slds-m-right_xx-large" value="{!v.instructions}"> </lightning:formattedRichText>
+            </div>
+            <div aura:id="reqDocTextDiv" class="slds-hide">
+                <h2 class="slds-m-top_large">Required documents for this Application</h2>
+                <ul>
+                    <aura:iteration items="{!v.otherInstructions}" var="instr">
+                        <li class="bullets">{!instr}</li>
+                    </aura:iteration>
+                </ul>
+            </div>    
+            <div id="necInstr">
+                <h2 class="slds-p-top_large">What you’ll need before you start</h2>
+                <ul>
+                    <li class="bullets">Visa, Mastercard, or American Express credit or debit card or e-check for payment of the license fee</li>
+                    <li class="bullets">Required documents listed above (if any), ready for upload</li>
+                    <li class="bullets">If needed, any legal background documents for the last 10 years, ready for upload</li>
+                </ul>
             </div>
         </div>
         <div id="eliTypeGridDiv" class = "slds-hide slds-grid card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">
@@ -63,7 +104,7 @@
             </div>
         </div> 
     </lightning:recordEditForm>
-    <div id="proceedButtonDiv" class= "slds-m-top_xx-large slds-float_right slds-m-bottom_x-large">
+    <div id="proceedButtonDiv" class= "slds-m-top_xx-large slds-float_right slds-m-bottom_x-large proceed-btn">
         <lightning:Button class="down-btn-wid" aura:id="button1" label="Proceed" variant="Brand" onclick="{!c.startApplication}" disabled="true"/>
     </div>
 </aura:component>

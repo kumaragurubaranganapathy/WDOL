@@ -24,7 +24,11 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
    if(trigger.isBefore && trigger.isupdate){
         List<MUSW__License2__c> licList = new List<MUSW__License2__c>();
         for(MUSW__License2__c lic : trigger.new){
-            if(lic.MUSW__Status__c != trigger.oldMap.get(lic.id).MUSW__Status__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+            //padma.commented to update renewal date when issuedate changes
+            //if(lic.MUSW__Status__c != trigger.oldMap.get(lic.id).MUSW__Status__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+            if(lic.MUSW__Expiration_Date__c != trigger.oldMap.get(lic.id).MUSW__Expiration_Date__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+                licList.add(lic);
+            }else if(lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null && lic.Application_Type__c == 'Notary Public' && lic.MUSW__Issue_Date__c != trigger.oldMap.get(lic.id).MUSW__Issue_Date__c ){
                 licList.add(lic);
             }
         }

@@ -16,7 +16,8 @@
 	<div class="{!((v.showPath==false)? 'slds-hide':'slds-show')+' slds-path'}">
         <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
 			<span class="{!(((var+1)==v.currentTab)?'': 'slds-hide')+' '}">
-				<div class="subheader">{!tabPath.subheader}</div>
+                <!--<div class="subheader">{!tabPath.subheader}</div>-->
+                <div class="subheader">Application Form</div>
 				<div class="subsubheader">{!tabPath.subsubheader}</div>
 			</span>
 		</aura:iteration>
@@ -25,7 +26,7 @@
                     <div class="mandatory-fields">* For selected license type {!tabPath.mandatorySubsection} is mandatory</div>
             </aura:if>
         </aura:iteration>
-        <div class="slds-grid slds-path__track">
+        <div class="slds-grid slds-path__track pathwidth">
             <div class="slds-grid slds-path__scroller-container">
                 <div class="slds-path__scroller" role="application">
 					<ul class="slds-path__nav" role="listbox">
@@ -40,14 +41,18 @@
                                          </div>
                                     </div>
                                         <aura:set attribute="else">
-											<img id ="{!'TickIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/Tickgreen.svg'}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>
-										
+										<!--	<img id ="{!'TickIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/Tickgreen.svg'}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>-->
+										<div id ="{!'TickIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}">
+                                            <div class="green-circle" >
+                                                <div><img src="{!$Resource.LnP_Icons+'/LnP_Icons/right-click.svg'}" alt="success tick"/></div>
+                                            </div>
+                                         </div>
                                        
                                         </aura:set>
 									</aura:if>
 									<!--<img id ="{!'CurrIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/' + tabPath.icon}" class="{!(((var+1)==v.currentTab)?'is-current':(greaterthan((var+1),v.currentTab)==true?'is-not-current':'slds-hide'))+' icon'}" alt="{!tabPath.header+' icon'}"/>   -->                              
 									<div id ="{!'CurrIcon'+(var+1)}" class="{!(((var+1)==v.currentTab)?'is-current':(greaterthan((var+1),v.currentTab)==true?'is-not-current':'slds-hide'))+' icon'}">
-                                          <div class="outer-circle" >
+                                          <div class="outer-circle" >{!(var+1)}
                                          </div>
                                     </div>
                                     <!--<img id ="{!'MobIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/disabledmenu.svg'}" class="{!(greaterthan((var+1),v.currentTab)==true?'mobile-tab-view':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>-->
@@ -59,6 +64,7 @@
 							</aura:if>
 						</aura:iteration>
 					</ul>
+                    
                 </div>
             </div>   	
         </div>

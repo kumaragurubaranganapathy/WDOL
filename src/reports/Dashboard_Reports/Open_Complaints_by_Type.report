@@ -53,6 +53,8 @@
     <reportType>CustomEntity$MUSW__Complaint2__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>MUSW__Complaint2__c.MUSW__Closed_Date__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

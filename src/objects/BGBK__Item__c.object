@@ -55,6 +55,21 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Fee_Payment__c),
+  IF(ISNULL(BGBK__Fee__c),
+    &quot;240&quot;,
+    TEXT(BGBK__Fee__r.Agency_Number__c)
+  ),
+  TEXT(Fee_Payment__r.MUSW__Fee__r.Agency_Number__c))</formula>
+        <label>Agency</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BGBK__Amount__c</fullName>
         <deprecated>false</deprecated>
         <description>Transaction amount</description>
@@ -260,6 +275,17 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Debit_Credit__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( BGBK__Amount__c  &gt; 0, &quot;DR&quot;, IF (BGBK__Amount__c &lt; 0, &quot;CR&quot;, &quot;Amount is 0&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Debit Credit</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Deposit__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -317,38 +343,51 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Intake_Method__c</fullName>
+        <fullName>Journal_Voucher_Detail_Grouping__c</fullName>
         <externalId>false</externalId>
-        <label>Intake Method</label>
+        <formula>Transaction_Code__c &amp;
+IF(Transaction_Code_Type__c = &quot;R&quot;,&quot;-R&quot;,&quot;&quot;) &amp; &quot;-&quot; &amp;
+Agency__c &amp; &quot;-&quot; &amp;
+BGBK__Fund__r.Fund__c &amp; &quot;-&quot; &amp;
+Program_Index__c &amp;
+IF( BGBK__Fund__r.Accounting_System__c = &quot;AFRS&quot;, 
+    &quot;-&quot; &amp; 
+        BGBK__Fund__r.Major_Group__c &amp; &quot;-&quot; &amp;
+        BGBK__Fund__r.Major_Source__c &amp; &quot;-&quot; &amp;
+        BGBK__Fund__r.Sub_Source__c,
+    &quot;&quot;
+) &amp; &quot;-&quot; &amp;
+IF(BGBK__Amount__c &gt; 0, &quot;DR&quot;, &quot;CR&quot;) &amp;
+IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</formula>
+        <label>Journal Voucher Detail Grouping</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Portal</fullName>
-                    <default>false</default>
-                    <label>Portal</label>
-                </value>
-                <value>
-                    <fullName>Counter</fullName>
-                    <default>false</default>
-                    <label>Counter</label>
-                </value>
-                <value>
-                    <fullName>Validation Room</fullName>
-                    <default>false</default>
-                    <label>Validation Room</label>
-                </value>
-                <value>
-                    <fullName>Lockbox</fullName>
-                    <default>false</default>
-                    <label>Lockbox</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Journal_Voucher_Detail__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Journal Voucher Detail</label>
+        <referenceTo>Journal_Voucher_Detail__c</referenceTo>
+        <relationshipLabel>Items</relationshipLabel>
+        <relationshipName>Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Journal_Voucher__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Journal Voucher</label>
+        <referenceTo>Journal_Voucher__c</referenceTo>
+        <relationshipLabel>Items</relationshipLabel>
+        <relationshipName>Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Payable_Receipt__c</fullName>
@@ -393,6 +432,18 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Receipt_Refund__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Receipt Refund</label>
+        <referenceTo>BGBK__Receipt_Refund__c</referenceTo>
+        <relationshipLabel>Items</relationshipLabel>
+        <relationshipName>Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Target_Accounting_System__c</fullName>
@@ -475,11 +526,6 @@ IF( BGBK__Amount__c &lt; 0,IF( Transaction_Code_Type__c == &quot;R&quot;,&quot;T
             <value>001,770</value>
         </filters>
         <filters>
-            <field>Intake_Method__c</field>
-            <operation>equals</operation>
-            <value>Counter</value>
-        </filters>
-        <filters>
             <field>Fund_GL__c</field>
             <operation>equals</operation>
             <value>3210,7110,4310</value>
@@ -493,49 +539,6 @@ IF( BGBK__Amount__c &lt; 0,IF( Transaction_Code_Type__c == &quot;R&quot;,&quot;T
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Items</pluralLabel>
-    <recordTypes>
-        <fullName>BGBK__AdminOnly</fullName>
-        <active>true</active>
-        <label>AdminOnly</label>
-        <picklistValues>
-            <picklist>BGBK__Type__c</picklist>
-            <values>
-                <fullName>Allocation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cash</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Refund</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Intake_Method__c</picklist>
-            <values>
-                <fullName>Counter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lockbox</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Validation Room</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>

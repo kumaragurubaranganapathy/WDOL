@@ -38,13 +38,24 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Education_History_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Applicant_Licensee_Name__c</fields>
+        <fields>RecordTypeId</fields>
+        <label>Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This is an object used to store the education history of the user.</description>
-    <enableActivities>false</enableActivities>
+    <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -53,7 +64,21 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Applicant_Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(License__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
+
+IF(License__c = NULL &amp;&amp;  Renewal_Reinstatement_Application__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;Renewal_Reinstatement_Application__r.Applicant__r.Id&amp;&apos;/view&apos;, Renewal_Reinstatement_Application__r.License__r.Applicant_Full_Name__c),
+
+HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/&apos;&amp; Request__r.Contact__r.Id &amp;&apos;/view&apos;, Request__r.Contact__r.Full_Name__c)))</formula>
+        <label>Applicant/Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -102,6 +127,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Comment__c</fullName>
+        <description>Historical Comment</description>
+        <externalId>false</externalId>
+        <label>Comment</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>This is the contact related to the Education history</description>
@@ -127,10 +161,49 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Course_Completion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Completion Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Course_Hours_or_Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Hours or Units</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Course_Name__c</fullName>
         <externalId>false</externalId>
         <label>Course Name</label>
         <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Provider_or_School__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Provider or School</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Title</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -398,6 +471,14 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Exam_Pass_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Exam Pass Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Exam_Result_Expiry_Date__c</fullName>
         <externalId>false</externalId>
         <label>Exam Result Expiry Date</label>
@@ -416,6 +497,14 @@
             <restricted>true</restricted>
             <valueSetName>Exam_Type</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>HSW__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>HSW</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Hours__c</fullName>
@@ -617,6 +706,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>OSHA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>OSHA</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Other__c</fullName>
         <description>Other Institution name</description>
         <externalId>false</externalId>
@@ -668,6 +765,18 @@
         <externalId>false</externalId>
         <label>Renewal &amp; Reinstatement Application</label>
         <referenceTo>Renewal_Application__c</referenceTo>
+        <relationshipLabel>Education History</relationshipLabel>
+        <relationshipName>Education_History</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
         <relationshipLabel>Education History</relationshipLabel>
         <relationshipName>Education_History</relationshipName>
         <required>false</required>
@@ -2109,27 +2218,19 @@
                 <default>true</default>
             </values>
             <values>
-                <fullName>Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Diploma</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Doctoral</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>High School</fullName>
+                <fullName>High School%2FGED</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Master%27s</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Some College</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3873,27 +3974,19 @@
                 <default>true</default>
             </values>
             <values>
-                <fullName>Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Diploma</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Doctoral</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>High School</fullName>
+                <fullName>High School%2FGED</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Master%27s</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Some College</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5617,27 +5710,19 @@
                 <default>true</default>
             </values>
             <values>
-                <fullName>Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Diploma</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Doctoral</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>High School</fullName>
+                <fullName>High School%2FGED</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Master%27s</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Some College</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7381,27 +7466,19 @@
                 <default>true</default>
             </values>
             <values>
-                <fullName>Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Diploma</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Doctoral</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>High School</fullName>
+                <fullName>High School%2FGED</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Master%27s</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Some College</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9145,27 +9222,19 @@
                 <default>true</default>
             </values>
             <values>
-                <fullName>Certificate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Diploma</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Doctoral</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>High School</fullName>
+                <fullName>High School%2FGED</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Master%27s</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Some College</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9853,7 +9922,15 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Name_of_Institution__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Major__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>State__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

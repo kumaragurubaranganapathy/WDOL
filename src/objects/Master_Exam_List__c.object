@@ -47,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -296,6 +297,15 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Formula__c</fullName>
+        <externalId>false</externalId>
+        <label>Formula</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>License_Type__c</fullName>
         <externalId>false</externalId>
         <label>License Type</label>
@@ -466,10 +476,12 @@
                 <value>
                     <fullName>Direct Registration</fullName>
                     <default>false</default>
+                    <label>Direct Registration</label>
                 </value>
                 <value>
                     <fullName>By Exam</fullName>
                     <default>false</default>
+                    <label>By Exam</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -500,10 +512,12 @@
                 <value>
                     <fullName>Yes</fullName>
                     <default>false</default>
+                    <label>Yes</label>
                 </value>
                 <value>
                     <fullName>No</fullName>
                     <default>false</default>
+                    <label>No</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -522,26 +536,32 @@
                 <value>
                     <fullName>Pending</fullName>
                     <default>false</default>
+                    <label>Pending</label>
                 </value>
                 <value>
                     <fullName>Approved</fullName>
                     <default>false</default>
+                    <label>Approved</label>
                 </value>
                 <value>
                     <fullName>Approved with Conditions</fullName>
                     <default>false</default>
+                    <label>Approved with Conditions</label>
                 </value>
                 <value>
                     <fullName>Corrections Required</fullName>
                     <default>false</default>
+                    <label>Corrections Required</label>
                 </value>
                 <value>
                     <fullName>Denied</fullName>
                     <default>false</default>
+                    <label>Denied</label>
                 </value>
                 <value>
                     <fullName>Exam Approved</fullName>
                     <default>false</default>
+                    <label>Exam Approved</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -560,19 +580,30 @@
                 <value>
                     <fullName>FE Approved</fullName>
                     <default>false</default>
+                    <label>FE Approved</label>
                 </value>
                 <value>
                     <fullName>PE Approved</fullName>
                     <default>false</default>
+                    <label>PE Approved</label>
                 </value>
                 <value>
                     <fullName>PE/FE Approved</fullName>
                     <default>false</default>
+                    <label>PE/FE Approved</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <label>Master Exam List</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Exam_Record_Type_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Master Exam List Name</label>
         <type>Text</type>
@@ -580,4 +611,5 @@
     <pluralLabel>Master Exam Lists</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

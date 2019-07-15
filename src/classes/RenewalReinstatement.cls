@@ -15,7 +15,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
         idDateMap.put(msl.id,msl.MUSW__Expiration_Date__c );
     }
     
-    List<BGCK__Answer__c> ansList = [select id,Answer_Text__c,Question__c,Renewal_Reinstatement_Application__c from BGCK__Answer__c where Renewal_Reinstatement_Application__c IN:setId AND Question__r.Section__c = 'Legal Background Questions' AND Question__r.Data_Type__c = 'Yes_No' ];
+    List<BGCK__Answer__c> ansList = [select id,Answer_Text__c,QuestionDOL__c,Renewal_Reinstatement_Application__c from BGCK__Answer__c where Renewal_Reinstatement_Application__c IN:setId AND QuestionDOL__r.Section__c = 'Legal Background Questions' AND QuestionDOL__r.Data_Type__c = 'Yes_No' ];
     system.debug('ansList---'+ansList);
     
     Map<id,Boolean> reneUpdate = new Map<id,Boolean>();
@@ -41,6 +41,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
             if(rene.Renewal_Status__c == 'In-Review' && numberOfQue != 0 && (numberOfQue == numberOfNo)){
                 MUSW__License2__c license = new MUSW__License2__c(id= rene.License__c);
                 license.MUSW__Status__c = 'Active';
+                license.Application_Type__c = rene.Application_Type__c;
                 if(rene.License__r.Is_Late_Renewal_Eligible__c || rene.License__r.Is_Reinstatement_Eligible__c){
                 
                     license.MUSW__Issue_Date__c = System.today();
@@ -61,7 +62,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
         
         
         if(!licenseList.isEmpty()){
-            update licenseList;
+           update licenseList;
         }
         
         return autoIdRenwewalMap;

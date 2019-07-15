@@ -47,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -181,14 +182,17 @@
                 <value>
                     <fullName>Appraisers</fullName>
                     <default>false</default>
+                    <label>Appraisers</label>
                 </value>
                 <value>
                     <fullName>Real Estate</fullName>
                     <default>false</default>
+                    <label>Real Estate</label>
                 </value>
                 <value>
                     <fullName>Licensed Home Inspector</fullName>
                     <default>false</default>
+                    <label>Licensed Home Inspector</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -208,26 +212,32 @@
                 <value>
                     <fullName>Registered Trainee</fullName>
                     <default>false</default>
+                    <label>Registered Trainee</label>
                 </value>
                 <value>
                     <fullName>State Licensed</fullName>
                     <default>false</default>
+                    <label>State Licensed</label>
                 </value>
                 <value>
                     <fullName>Certified Residential</fullName>
                     <default>false</default>
+                    <label>Certified Residential</label>
                 </value>
                 <value>
                     <fullName>Certified General</fullName>
                     <default>false</default>
+                    <label>Certified General</label>
                 </value>
                 <value>
                     <fullName>Broker</fullName>
                     <default>false</default>
+                    <label>Broker</label>
                 </value>
                 <value>
                     <fullName>Managing Broker</fullName>
                     <default>false</default>
+                    <label>Managing Broker</label>
                 </value>
             </valueSetDefinition>
             <valueSettings>
@@ -269,4 +279,5 @@
     <pluralLabel>Courses</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

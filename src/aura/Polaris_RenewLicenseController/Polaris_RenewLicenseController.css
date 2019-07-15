@@ -4,25 +4,35 @@
 .THIS label{
     font-size: 16px;
 }
+.THIS .field-item .slds-input{
+    border:1px solid #5b616b;
+    height:42px;
+}
 .THIS .slds-form-element__label{
     font-size: 14px; 
     color:t(LnGFormGray);
+    word-break: normal;
+    overflow-wrap: normal;
 }
-.THIS .section{
-    font-size: 18px;
-    color:t(LnGFormTitleColor);
-    margin: 0 0 0 25px;
-    padding-bottom:10px;
+.THIS .sectionwidth{
     width:100%;
+    height:30px;
+    border-bottom:0.5px solid #d6d7d9;
 }
 .THIS .sectiondetail{
-    margin: 0 0 25px 25px;    
-    color: t(LnGFormGray);  
-    width:100%;
+    margin-top:25px;     
+}
+.THIS .field-item.attest-item{
+    padding-right:0;
 }
 .THIS .slds-radio .slds-form-element__label{
-	font-size: 14px;
+	font-size: 17px;
     color: token(LnGFormTitleColor);
+    font-family: token(publicSansfontfamily);
+}
+.THIS .slds-radio_faux{
+    width:20px;
+    height:20px;
 }
 .THIS .slds-checkbox .slds-form-element__label{
 	font-size: 14px;
@@ -61,6 +71,11 @@
     padding: 10px;
     padding-left: 30px;
 }
+.THIS .buttonpos{
+    margin:0 11%;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
 .THIS .pull-right{
     margin-left: auto;
     margin-right: 0;
@@ -72,17 +87,22 @@
 .THIS .revAndSubErrorFont{
     padding: 8px 0 20px 0;
     color: red;
-    font-size:14px;    
+    font-size:14px; 
+    font-family: token(publicSansfontfamily);
 }
 .THIS .revAndSubCompletionFont{
-    margin:8px 0 20px 12px;
-    color: t(LnGFormTitleColor);
+    margin:8px 0 20px 0;
+    color: t(fieldclr);
     font-size:14px;  
-    padding:5px 10px;
-    background-color: rgb(233, 234, 236);    
+    padding:5px 0;    
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: token(publicSansfontfamily);
+    font-size: token(btnfontsize);
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
 }
 .THIS .slds-input{
     border-top:none;
@@ -95,6 +115,9 @@
 }
 .THIS .field-item.attest{
     padding:10px 0 25px;
+}
+.THIS .field-item{
+    padding-left: 0;
 }
 .THIS .attestBody{
     font-size:14px;
@@ -139,19 +162,7 @@
     margin: 0 40px;
 }
 
-.THIS .personal-info{    
-    margin: 20px auto;
-    padding: 30px 10px;    
-    border-radius: 8px;
-  	box-shadow: 3px 3px 12px 0 rgba(208, 208, 208, 0.5);
-    background:t(LnGBackgroundGray);
-    display: flex;
-    flex-direction: column;    
-}
-
-.THIS .btn-wrapper{  
-    
-    
+.THIS .btn-wrapper{      
     margin:20px auto;           
     display: flex;
     justify-content: space-between;
@@ -160,11 +171,23 @@
 .THIS .page-heading{    
     margin: auto;     
 }
+.THIS .info{
+   
+    width: 96%;
+    margin: 0 auto;
+    max-width: 872px;
+}
 .THIS .subheader{
-    font-size:24px;
-    color:t(LnGFormTitleColor);
+    font-size:20px;
+     margin-left:9rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+    font-style: t(txtfontstyle);
+    line-height: 1.3;
+    color: t(LnGFormTitleColor);
 }
 .THIS .btn-lnp{
+    width:auto;
     background: #4c65f2;
     color: #ffffff;
     padding: .25rem 1rem;
@@ -173,10 +196,10 @@
 .THIS .background-section{
     background-color:t(white);
     margin: 20px 0px;
-    padding: 22px;
 }
 .THIS .tile-wrap{
     display:flex;
+    flex-wrap: wrap;
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
@@ -191,10 +214,64 @@
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
-.THIS .checkbox-error{
+.THIS .error{
     color:t(LnGErrorMsg);
 }
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
+}
+.THIS .personal-info {
+    display:block;
+    width:96%;
+    max-width:872px;
+    margin:0px auto;
+    padding-top:25px;
+}
+.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show{
+  margin:10px;
+}
+.THIS .licensetype a{
+    cursor:default;
+    text-transform: capitalize;
+    font-family: t(publicSansfontfamily);
+    font-size: t(btnfontsize);
+}
+.THIS .required.field-size.slds-form-element label::before {
+    content: '*';
+    color: t(LnGErrorMsg);
+    padding-right: 2px;
+}
+.THIS .required.field-size.slds-form-element label abbr.slds-required {
+    display: none;
+}
+@media only screen and (min-width: 768px)and (max-width: 1024px){
+    
+    .THIS .buttonpos{
+        
+      margin:0;
+        
+    }
+    .THIS .addRecbtn{
+        padding:5px;
+    }
+}
+
+@media t(mqSmall){
+
+    .THIS .buttonpos {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .THIS .buttonpos button {
+        width: 100%;
+        margin: 0 0 .5rem;
+        height: 42px;    
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .THIS .subheader {
+        margin-left: 0;
+    }
 }

@@ -21,13 +21,14 @@
 <apex:commandbutton action="{!cancel}" value="Back" immediate="true"/>
 </apex:pageblockbuttons -->
             
+            <!---
             <apex:outputPanel id="totalPaymentPanel">
                 <apex:pageBlockSection columns="2" rendered="{!!isPortalUser}">
                     <apex:outputText label="Total Outstanding Balance" value="${!totalSelectedOutstanding}" id="totalOutstanding" style="font-size:150%;font-weight:bold;" />
                     <apex:outputText label="Total Payment Amount" value="${!totalPayment}" id="totalPayment" style="font-size:150%;font-weight:bold;" />
                 </apex:pageBlockSection>
             </apex:outputPanel>            
-            
+            --->
             
             <apex:tabPanel switchType="client" value="{!activeTab}" id="tab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab" rendered="{!feeVOs.size >= 0 || invoiceVOs.size >= 0}">
                 
@@ -60,7 +61,7 @@
                         </script> 
                     </apex:repeat>
                     
-                    <!-- FEES -->
+                    <!-- FEES --> 
                     <apex:pageblockSection columns="1" title="Fees" collapsible="false" rendered="{!feeVOs.size > 0}">
                         <apex:pageBlocktable value="{!feeVOs}" var="fee" style="width:100%">
                             <apex:column headerValue="Pay" rendered="{!!isPortalUser}">
@@ -70,7 +71,8 @@
                                 <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll')" id="{!fee.f.Id}" rendered="{!!isPortalUser}"/>
                             </apex:column>
                             
-                            <apex:repeat value="{!$ObjectType.MUSW__Fee__c.FieldSets.BGBK__Fee_Basic}" var="ff">                
+                            <apex:repeat value="{!$ObjectType.MUSW__Fee__c.FieldSets.BGBK__Fee_Basic}" var="ff">  
+                                
                                 <apex:column headerValue="{!ff.label}" >
                                     <apex:outputField value="{!fee.f[ff]}" rendered="{!ff != 'MUSW__Amount_Waived__c'}"/>
                                     <apex:inputField value="{!fee.f[ff]}" rendered="{!ff  = 'MUSW__Amount_Waived__c'}"/>
@@ -129,10 +131,10 @@
                         <apex:pageBlockSection columns="1" id="totals">
                             <apex:outputText label="Total Selected" value="${!totalSelected}" id="totalSelected" style="font-weight:bold;font-size:1.5em;" styleClass="bg-float-right" />
                             <apex:outputPanel styleClass="btn" style="margin-left:18%" onclick="refreshTotalJS(getUnselectedItems());" rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel>
-                            <apex:selectList id="accounts" rendered="{!!isPortalUser}" value="{!accountSelected}" multiselect="false" size="1" label="Account" >
+                           <!--- <apex:selectList id="accounts" rendered="{!!isPortalUser}" value="{!accountSelected}" multiselect="false" size="1" label="Account" >
                                 <apex:selectOptions value="{!accounts}"/>
                                 <apex:actionSupport event="onchange" action="{!accountChanged}" reRender="tab,abandonBtn" />
-                            </apex:selectList>
+                            </apex:selectList> --->
                             <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Contact__c}" id="contact" >
                                 <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection" /> 
                             </apex:inputField>
@@ -281,6 +283,13 @@
                 <apex:variable var="index" value="{!0}"/>
                 <apex:tab label="Checkout" id="checkout" name="checkout" disabled="{!(activeTab != 'checkout' && activeTab != 'review') || processSuccessful }" onTabEnter="checkoutJS(getUnselectedItems());">
                     
+                    <apex:outputPanel id="totalPaymentPanel">
+                        <apex:pageBlockSection columns="2" rendered="{!!isPortalUser}">
+                            <apex:outputText label="Total Outstanding Balance" value="${!totalSelectedOutstanding}" id="totalOutstanding" style="font-size:150%;font-weight:bold;" />
+                            <apex:outputText label="Total Payment Amount" value="${!totalPayment}" id="totalPayment" style="font-size:150%;font-weight:bold;" />
+                        </apex:pageBlockSection>
+                    </apex:outputPanel>  
+                            
                     <apex:outputPanel rendered="{!isPortalUser}">
                         <p>Pay with a credit card.</p>
                     </apex:outputPanel>
@@ -364,7 +373,21 @@
                             </apex:pageBlockSection>
                         </apex:outputPanel>
                         
-                        
+                         <!--Added by Rishap-->
+                       <apex:outputPanel id="voucher" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Voucher'}" >
+                            <apex:pageBlockSection columns="1" id="voucherCheckCheckout">
+                                <apex:inputField label="Voucher Number" id="voucherCheckNumber" value="{!rvo.r.Voucher_Number__c}" />
+                            </apex:pageBlockSection>
+                        </apex:outputPanel>
+                        <!--Added by Vinanthi-->
+                        <apex:outputPanel id="PIN" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Pay by Employer'}">
+                            <apex:pageBlockSection columns="1" id="PINCheckout">
+                                <apex:inputField label="PIN" id="voucherCheckNumber" value="{!rvo.r.Cart_PIN__c}"
+                                />
+
+                            </apex:pageBlockSection>
+                        </apex:outputPanel>
+
                         <apex:outputPanel >
                             <apex:pageBlockSection columns="1" id="dynamicCheckOut">
                                 <apex:repeat value="{!receiptFields[rvo.pmtMethodSelected]}" var="field">           
@@ -406,20 +429,26 @@
 <apex:actionSupport event="onclick"  action="{!review}" reRender="tab,msg" oncomplete="document.getElementById('preloader2').style.visibility='hidden';"/>
 </apex:commandButton>
 -->
-                    
-                       <!-- Multiple Payment Option not required by State of WA--- Uncommenting this code as a part of 1986-->
-                    <apex:commandButton value="Add Payment Method" action="{!addReceipt}" reRender="tab,checkout,depositCheckout"  rendered="{!canPayMulti && !isGatewayRequiredforPaymentMethod}" />
-                    
+
+                    <!-- Multiple Payment Option not required by State of WA--- Uncommenting this code as a part of 1986-->
+                    <apex:commandButton value="Add Payment Method" action="{!addReceipt}" reRender="tab,checkout,depositCheckout"
+                        rendered="{!canPayMulti && !isGatewayRequiredforPaymentMethod && !isFeeTransfer}"
+                    />
+
                     <!-- 
 <apex:commandButton value="Process Payment" action="{!process}" reRender="tab,msg" rendered="{!hasCC = 'false'}" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"/>-->
-                    
-                    <apex:commandButton value="Proceed to Payment" status="BlockIndicator" action="{!process}" rendered="{!!isGatewayRequiredforPaymentMethod}" reRender="tab,msg"  oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"/>
-                   <!-- <BGBK:MockGatewayPayment cID="a1er0000000K1Av" returnUrl="https://dev-polaris.cs32.force.com/dashboard" contactEmail="mabhang@deloitte.com" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="290" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/>-->
-            <!--   <BGBK:MockGatewayPayment cID="{!cart.Id}" returnUrl="{!retUrl}" contactEmail="{!email}" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="{!totalPayment}" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/> -->
-                   
+                    <apex:commandButton value="Transfer Fee" status="BlockIndicator" action="{!TransferFee}"
+                        rendered="{!isFeeTransfer}" />
+                    <apex:commandButton value="Proceed to Payment" status="BlockIndicator" action="{!process}"
+                        rendered="{!(!isGatewayRequiredforPaymentMethod && !isFeeTransfer)}"
+                        reRender="tab,msg,totalPaymentPanel" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"
+                    />
+                    <!-- <BGBK:MockGatewayPayment cID="a1er0000000K1Av" returnUrl="https://dev-polaris.cs32.force.com/dashboard" contactEmail="mabhang@deloitte.com" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="290" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/>-->
+                    <!--   <BGBK:MockGatewayPayment cID="{!cart.Id}" returnUrl="{!retUrl}" contactEmail="{!email}" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="{!totalPayment}" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/> -->
+
                     <!--Uncomment this button if you want to  redirect o gateway -->
                     <!-- <apex:commandButton value="Process Payment" status="BlockIndicator" action="{!redirectToPaymentGateway}" rendered="{!isGatewayRequiredforPaymentMethod}" reRender="paymentFormPanel" oncomplete="submitPayment()"/> -->
-                    <apex:commandButton value="Process ePayment" status="BlockIndicator" action="{!setEncryptedSessionData}" rendered="{!isGatewayRequiredforPaymentMethod}" />
+                    <apex:commandButton value="Process ePayment" status="BlockIndicator" action="{!redirectToPaymentGateway}" rendered="{!isGatewayRequiredforPaymentMethod}" />
                     <!--Uncomment thsi button if you want to  use basic functionality with credit card textbox-->
                     <!--
                     <apex:commandButton value="Process Payment" rendered="{!isGatewayRequiredforPaymentMethod}" action="{!process}" reRender="tab,msg"  oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';" />  
@@ -447,10 +476,16 @@
                     </apex:outputPanel>
                     
                     <apex:outputPanel rendered="{!NOT(keepPolling)}">
+                        <!--Srujan - added for success mssg to be shown on confirmation tab start-->
+                        <div class="success-msg">
+                            Thank you for submission of your application.
+                        </div>
+                        <!--Srujan - added for success mssg to be shown on confirmation tab end-->
                         <BGBK:CartConfirm cart="{!cart}" fees="{!fees}" deposits="{!deposits}"
                                           invoices="{!invoices}" receipts="{!rs}" feePayments="{!feePayments}"
                                           depositPayments="{!depositPayments}" invoicePayments="{!invoicePayments}"
-                                          emailAddress="{!con.email}" totalAmount="{!totalSelected}" error="{!processResultCode}" rendered="{!activeTab = 'confirm'}" />
+                                          emailAddress="{!con.email}" totalAmount="{!totalSelected}" error="{!processResultCode}" rendered="{!activeTab = 'confirm'}" >
+                                          </BGBK:CartConfirm>
                         
                         <apex:commandButton value="Print Receipt" reRender="tab,msg" onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');" rendered="{!processSuccessful && receiptVOs.size>0}"/>
                         <apex:commandButton value="Back" action="{!backToItems}" />
@@ -494,6 +529,11 @@
             z-index:999;
             opacity:0.5;
             }
+            .success-msg {
+                padding-bottom:0.5rem;
+                font-size:1rem;
+            }
+            
         </style>
         
         <script>

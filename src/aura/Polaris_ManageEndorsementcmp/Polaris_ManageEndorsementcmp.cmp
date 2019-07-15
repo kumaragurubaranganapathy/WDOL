@@ -1,48 +1,124 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="Polaris_MangeEndorsementCntrl">
     <aura:attribute name="section" type="List"/>
-	<aura:attribute name ="recordId" type="String" />
+    <aura:attribute name ="recordId" type="String" />
     <aura:attribute name ="licenseType" type="String" />
     <aura:attribute name ="manageEndorsement" type="String" />
     <aura:attribute name ="board" type="String" />
     <aura:attribute name ="applicationMethod" type="String" />
+    <aura:attribute name ="endorsementID" type="String" />  
     <aura:attribute name ="requestId" type="String" />
+    <aura:attribute name ="providerList" type="List" />
     <aura:attribute name="endorsementList" type="List"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+    <aura:attribute name="disableRemove" type="boolean" default="true"/>
+    <aura:attribute name="showProvider" type="boolean" default="false"/>
+    <aura:attribute name="ProviderFields" type="String[]" default="['Provider_Name__c','Effective_Date__c','Description__c']" />
     <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
     <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
     <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
     <aura:attribute name="serverStatus" type="string" default="fail" description="On submit success check the server status before redirection to dashboard"/>    
-	<aura:attribute name="licenseWrapper" type="LnP_ApplyForLicenseWrapper[]"/>    
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="licenseWrapper" type="LnP_ApplyForLicenseWrapper[]"/>    
     
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
         <span class="page-info">Manage Endorsement</span>
+        
         <lightning:card title="Endorsement Details">
-        <p class="slds-p-horizontal_small">
-            <table>
-            <thead>
-                <th>Endorsement Type</th>
-                <th>Status</th>
-                <th>Date Requested</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <aura:iteration items="{!v.endorsementList}" var="doc">
-                    <tr>
-                        <td>{!doc.Endorsement_Type__c}</td>
-                        <td>{!doc.Status__c}</td>
-                        <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
-                        <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Remove" onclick="{!c.remove}"/></td>
-                    </tr>              
-                </aura:iteration>        
-            </tbody>
-        </table>
-        </p>
-    </lightning:card>
+            <p class="slds-p-horizontal_small">
+                <table>
+                    <thead>
+                        <th>Endorsement Type</th>
+                        <th>Status</th>
+                        <th>Date Requested</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.endorsementList}" var="doc">
+                            <tr>
+                                <td>{!doc.Endorsement_Type__c}</td>
+                                <td>{!doc.Status__c}</td>
+                                <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
+                                <td>
+                                    <aura:if isTrue="{!v.disableRemove}">
+                                    <lightning:button aura:id="button" value="{!doc.Id}" label="Remove" onclick="{!c.remove}"/> 
+                                    </aura:if>
+                                    &nbsp;&nbsp; 
+                                    <aura:if isTrue="{!doc.License_Type__c=='Notary Public'}">
+                                        <lightning:button aura:id="button" value="{!doc.Id}" label="View Providers" onclick="{!c.viewProvider}"/>
+                                        <lightning:button aura:id="button" value="{!doc.Id}" label="Add Providers" onclick="{!c.addProvider}"/>
+                                    </aura:if>
+                                </td>
+                            </tr>              
+                        </aura:iteration>        
+                    </tbody>
+                </table>
+            </p>
+        </lightning:card>
+        <aura:if isTrue="{!v.showProvider}">          
+            <lightning:card title="Provider Details">
+                <p class="slds-p-horizontal_small">
+                    <table>
+                        <thead>
+                            <th>Provider Name</th>
+                            <th>Effective Date</th>
+                            <th>Description</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.providerList}" var="doc">
+                                <tr>
+                                    <td>{!doc.Provider_Name__c}</td>
+                                    <td>{!doc.Effective_Date__c}</td>
+                                    <td>{!doc.Description__c}</td>
+                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" onclick="{!c.deleteProvider}"/> </td>
+                                </tr>              
+                            </aura:iteration>        
+                        </tbody>
+                    </table>
+                </p>
+            </lightning:card>
+        </aura:if>
+        
+         <aura:if isTrue="{!v.isModalOpen}">
+             
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeProviderModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Provider Details</h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--RecordEditForm for Adding Provider details-->
+                        <lightning:recordForm
+                            aura:id="providerForm"
+                            objectApiName="Electronic_Notary_Provider_Information__c"
+                            fields="{!v.ProviderFields}"
+                            columns="2"
+                            mode="edit"
+                            onsubmit="{!c.saveData}"
+                             onsuccess="{!c.handleSuccess}" 
+                            oncancel="{!c.closeProviderModel}"/>
+                    </div>
+                    
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
         <lightning:button variant="brand" label="Add Endorsement" title="Add Endorsement" onclick="{! c.showAddRecord }" class="slds-m-vertical_large addRecbtn"/>
+        
+        
         <!-- <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
     <div class="slds-grid slds-wrap">
         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
@@ -115,8 +191,9 @@
         <div class="slds-grid slds-m-top_xx-large button-section">
             <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }"  class="slds-show pull-right btn btn-lnp"/>
         </div>-->
+        
     </div>
-     <!-- Pop up start -->
+    <!-- Pop up start -->
     <aura:if isTrue="{!v.isOpen}">             
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">

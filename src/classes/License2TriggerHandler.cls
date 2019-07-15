@@ -32,7 +32,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             SObjectTriggerHandler handler = new SObjectTriggerHandler(Trigger.New,SObjectTriggerHandler.Action.BeforeInsert);
             handler.process();
         }else{
-            if(!test.isRunningTest()){
+            //if(!test.isRunningTest()){
             //Added to restrict users from updating credential number- Bug#2488
         List<MUSW__License2__c> triggerNew = Trigger.New;
         for (MUSW__License2__c newLicenseRecord : triggerNew) {        
@@ -44,7 +44,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         
         
             
-        }
+       // }
         }
         
         beforeMethod();
@@ -52,7 +52,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         //This is to generate Intial sequence number with "APP"
         MUSW.SequenceNumber.updateNumbers(Trigger.New, Trigger.Old);
         
-        Notificationdate();
+      //  Notificationdate();
     }
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {
@@ -66,47 +66,40 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         //This is to Update sequence number & Automation Rules
         DRESequence();
         
-        Notificationdate();
+      //  Notificationdate();
+      //  
     }
     
     public void afterMethod() {        
         /* 
-* Method to update sumission records based on answers in License records         
-* Fetching old and new values for the License if any
-*/
+          * Method to update sumission records based on answers in License records         
+          * Fetching old and new values for the License if any
+        */
         
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
         List<MUSW__License2__c> licensesForFeeWaiver = new List<MUSW__License2__c>();
         Map<Id, MUSW__License2__c> licensesInPendingStatusMap = new Map<Id, MUSW__License2__c>();
-        //Map<String, String> credentialApplicationMethodMap = new Map<String, String>();
         Set<String> credentialInPendingStatusSet = new Set<String>();
         Set<String> applicationMethodSet = new Set<String>();
         Set<MUSW__License2__c> setLicense = new Set<MUSW__License2__c>();
         setLicense.addAll(triggerNew);
         List<Endorsement__c> listEndorsement = [SELECT id,License__c,Status__c FROM Endorsement__c where License__c IN:setLicense AND Status__c='Pending Add' ];
         System.debug('trigger size'+triggerNew.size());
+        Set<Id> parentSetLicenseId = new Set<Id>();
+        Set<Id> childSetLicenseId = new Set<Id>();
         for(Integer i = 0; i < triggerNew.size(); i++) {
             System.debug('in for loop');
             MUSW__License2__c licenseNew = triggerNew[i];
             //get the license id to update submission list             
-            System.debug('license status '+ licenseNew.MUSW__Status__c);
-            if(licenseNew.MUSW__Status__c == '' || licenseNew.MUSW__Status__c == 'Pending') {
-                System.debug('license status is pending or blank');
-                
-                //If the license is in pending status- add it to the map
-                
-                licensesInPendingStatusMap.put(licenseNew.Id, licenseNew);
-                
-                /* If the license is in pending status- add the license type to the set to avoid 
-* duplciation/repetition of the same license type */
-                
-                //licenseTypesInPendingStatusSet.add(licenseNew.Credential_Type__c);
-                credentialInPendingStatusSet.add(licenseNew.Credential__c);
-                applicationMethodSet.add(licenseNew.Application_Method__c);
-            }
+            System.debug('license status '+ licenseNew.MUSW__Status__c);            
             if(licenseNew.MUSW__Status__c == 'Active')
             {
+                parentSetLicenseId .add(licenseNew.Id);
+                if(licenseNew.MUSW__Total_Balance__c == 0)
+                {
+                    childSetLicenseId.add(licenseNew.Id);
+                }
                 for(Endorsement__c endo:listEndorsement)
                 {
                     endo.Status__c = 'Active';
@@ -114,9 +107,50 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             }
             
         }
-        system.debug('listEndorsement : '+listEndorsement);
-        update listEndorsement;
-        if(licensesInPendingStatusMap.size() > 0) {
+        if(childSetLicenseId.size()>0)
+        {
+            List<Task> lstupdateTask = new List<Task>();
+            Set<Id> setAssociationTaskId = new Set<Id>();
+            List<Associations__c> lstupdateChildAssociation = new List<Associations__c>();
+            for(Associations__c association : [SELECT id,Child_License__c,Status__c FROM Associations__c WHERE Child_License__c IN:childSetLicenseId AND Status__c = 'Generate Fee' ])
+            {
+                association.Status__c = 'Active';
+                setAssociationTaskId.add(association.id);
+                lstupdateChildAssociation.add(association);
+                
+            }
+            for(Task ta : [SELECT id,Whatid,Status,Sub_status__c from task where Whatid IN:setAssociationTaskId])
+            {
+                ta.Status = 'Completed';
+                ta.Sub_status__c = 'Accepted';
+                lstupdateTask.add(ta);
+            }
+            if(lstupdateChildAssociation.size() > 0)
+            {
+                update lstupdateChildAssociation;
+            }
+            if(lstupdateTask.size() > 0)
+            {
+                update lstupdateTask;
+            }
+        }
+        if(parentSetLicenseId.size()>0)
+        {
+            
+            List<MUSW__License2__c> lstupdateChildLicenses = new List<MUSW__License2__c>();
+            for(MUSW__License2__c lic : [SELECT id,MUSW__Status__c,Upgraded_License__c FROM MUSW__License2__c where Upgraded_License__c IN: parentSetLicenseId ])
+            {
+                lic.MUSW__Status__c = 'Sunset';
+                lstupdateChildLicenses.add(lic);
+            }
+            update lstupdateChildLicenses;
+        }
+        if(!listEndorsement.isEmpty()){
+            system.debug('listEndorsement : '+listEndorsement);
+            update listEndorsement; 
+        }
+
+    /*   if(licensesInPendingStatusMap.size() > 0) {
             System.debug('in if size > 0 ');
             
             //Share the records based on custom setttings
@@ -142,13 +176,13 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                                                                        System.debug('in second for loop ');                                                                 
                                                                        List<MUSW__Master_Submission_List__c> tempSubmissionList = new List<MUSW__Master_Submission_List__c> ();
                                                                        /* if license type already exists in the map, then fetch the list of submission list
-* records associated with that license type*/
+* records associated with that license type
                                                                        if(licenseTypesSubmissionListMap.containsKey(masterSubmission.Credential__c)) {
                                                                            tempSubmissionList = licenseTypesSubmissionListMap.get(masterSubmission.Credential__c);
                                                                        }
                                                                        /*1. adding submission list for the license type in a list                                                      
 * 2. If the above 'if condition' was executed, then the new submission list record would be added to the
-* existing list */
+* existing list 
                                                                        tempSubmissionList.add(masterSubmission);
                                                                        //adding license type and corresponding list in a map
                                                                        licenseTypesSubmissionListMap.put(masterSubmission.Credential__c, tempSubmissionList);
@@ -257,11 +291,13 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                 delete submissionDeleteList;
             //}
             
-        }
+        }*/
         
     }
     
     public void beforeMethod() {
+        
+        
         //Verify if Total Fee was updated correctly
         Map<Id, Decimal> MapLicenseTotalFee = new Map<Id, Decimal>();
         if (trigger.isUpdate) {
@@ -274,12 +310,15 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             }
             
             // If Request for deletion is checked capture the Date which is used for reporting
+            
             list<MUSW__License2__c> triggerNew = trigger.new;
             for(MUSW__License2__c lic : triggerNew){
                 if(lic.Request_for_Deletion__c == true){
                     lic.Request_for_Deletion_Date__c = system.today();
                 }
+               
             }
+            
         }
         
         //Set the App Submitted Date
@@ -289,10 +328,10 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             if(trigger.Old != null){
                 licOld = (MUSW__License2__c)trigger.OldMap.get(lic.Id);
             }
-            if(lic.MUSW__Total_Fees__c > 0 && lic.MUSW__Total_Balance__c == 0 && lic.MUSW__Status__c == label.ST_Generate_Fee && (licOld == null || licOld.MUSW__Total_Balance__c > 0)){
+            /*if(lic.MUSW__Total_Fees__c > 0 && lic.MUSW__Total_Balance__c == 0 && lic.MUSW__Status__c == label.ST_Generate_Fee && (licOld == null || licOld.MUSW__Total_Balance__c > 0)){
                 lic.MUSW__Status__c = 'Submitted';
                 lic.App_Submitted_Date__c = Date.today();
-            }
+            }*/
             
             //Copy the application number to a new field only once
             if(licOld != null && String.isBlank(licOld.Application_Number__c)){
@@ -313,10 +352,10 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             if (lic.Id != null && feeAmt != null && lic.MUSW__Total_Fees__c != feeAmt) {
                 lic.MUSW__Total_Fees__c = feeAmt;
                 
-                if(lic.MUSW__Total_Fees__c == lic.MUSW__Total_Payments__c){
+                /*if(lic.MUSW__Total_Fees__c == lic.MUSW__Total_Payments__c){
                     lic.MUSW__Status__c = 'Submitted';
                     lic.App_Submitted_Date__c = Date.today();
-                }
+                }*/
             }
         } 
         
@@ -411,7 +450,8 @@ Parameter      : Nil
                         MUSW.SequenceNumber.updateNumbers(Trigger.new, trigger.old);
                     }
                     //Added to restrict users from updating credential number- Bug#2488
-                    else if(Trigger.Old != null && oldLic.Name != lic.Name){
+                    //Added a condition to update sequence for appraiser course if provider is secondary
+                    else if(Trigger.Old != null && oldLic.Name != lic.Name && lic.Credential_Type__c != 'Appraiser Course'){
                         //throw an error message
                         sobj.addError(Label.Err_Number_cannot_be_changed);
                     }

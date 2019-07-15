@@ -40,6 +40,8 @@
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
     <aura:attribute name="declarationFlag" type="Boolean" default="false"/>
     <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
+    <aura:attribute name="showEndoMessage" type="Boolean" default="false" />
+    <aura:attribute name="endoMessage" type="String" />
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -52,6 +54,11 @@
     <div class="content-wrapper">
         <span class="page-info">You are applying for {!v.RenewReinstate} of <span class="italic">{!v.licenseType}</span> under <span class="italic">{!v.board}</span> <!--by <span class="italic">{!v.applicationType}</span>--></span>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
+        <aura:if isTrue="{!v.showEndoMessage}">
+            <ui:message title="Warning" severity="warning" closable="true">
+                {!v.endoMessage}
+            </ui:message>
+        </aura:if>
         <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
             
             <aura:if isTrue="{!and(or(section.sectionName=='Personal Information',section.sectionName=='Business Information'), v.currentTab==section.tabIndex)}">
@@ -59,8 +66,13 @@
                     <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
                 </div>
                 <aura:set attribute="else">
+                    <aura:if isTrue="{!and(or(section.sectionName=='Course Information'), v.currentTab==section.tabIndex)}">
+                        <div class="personal-info">                    
+                            <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
+                        </div>
+                    </aura:if>
                     <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap personal-info':'slds-hide'}">
-                        <aura:if isTrue="{!and((section.sectionName=='Background Information' ), v.currentTab==section.tabIndex)}">
+                        <aura:if isTrue="{!and((section.sectionName=='Qualifying Information' ), v.currentTab==section.tabIndex)}">
                             <!--c:LnP_BackgroundQuestionSection  section ="{!section}" varSection="{!varSection}" currentTab= "{!v.currentTab}"></c:LnP_BackgroundQuestionSection--> 
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
@@ -218,8 +230,19 @@
                                                                               onchange="{!c.showDependentQuestions}"/>
                                                     </div>
                                                 </aura:if>
-                                                <aura:if isTrue="{!question.fieldType=='Yes_No'}">
+                                                <aura:if isTrue="{!and(question.fieldType=='Yes_No' , question.endorsementType==null)}">
                                                     <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:radioGroup name="{!questionItem}"                                                                              
+                                                                              options="{!question.radioValueOptions}"
+                                                                              value="{!question.value}"
+                                                                              type="radio"
+                                                                              onchange="{!c.showDependentQuestions}"/>
+                                                    </div>
+                                                </aura:if>
+                                                
+                                                <aura:if isTrue="{!and(question.fieldType=='Yes_No' , question.endorsementType!=null)}">
+                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value,  !question.renderedOnUi)?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:radioGroup name="{!questionItem}"                                                                              
                                                                               options="{!question.radioValueOptions}"
@@ -239,6 +262,12 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
+                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:input name="{!question.label}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                    </div>
+                                                </aura:if> 
+                                                <aura:if isTrue="{!question.fieldType=='number'}">
                                                     <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:input name="{!question.label}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
@@ -288,10 +317,12 @@
                                 </aura:if>
                             </aura:set>                            
                         </aura:if>
-                        <aura:if isTrue="{!and((section.sectionName=='Endorsement' ), v.currentTab==section.tabIndex)}">                                
-                            <c:Polaris_EndorsementRenewCmp recordId = "{!v.applicationId}"/>
+                        <aura:if isTrue="{!and((section.sectionName=='Endorsement' ), v.currentTab==section.tabIndex)}">  
+                     
+                            <c:Polaris_EndorsementRenewCmp sectionList ="{!section}" sectionName="Endorsement" applicationId = "{!v.applicationId}" recordId = "{!v.applicationId}"/>
                         </aura:if>                            
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">
+                                   
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
                                     <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
@@ -310,7 +341,8 @@
         <div class="slds-grid slds-m-top_xx-large button-section">
             <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp'}"/>
             <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+             <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit and Proceed to Payment" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->

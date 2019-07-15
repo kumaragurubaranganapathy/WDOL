@@ -77,6 +77,9 @@
                                                 <lightning:inputField fieldName="License_type__c" value="{!item.License_type__c}"/>
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField fieldName="Fine_Number__c" value="{!item.Fine_Number__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
                                                 <lightning:outputField fieldName="Professional_code__c" value="{!item.Professional_code__c}" />
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">                                
@@ -84,6 +87,9 @@
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
                                                 <lightning:inputField required="true" fieldName="MUSW__Account__c" value="{!item.MUSW__Account__c}" />
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="5" padding="around-small">
+                                                <lightning:inputField required="true" fieldName="Route_to_Miscellaneous_queue__c" value="{!item.Route_to_Miscellaneous_queue__c}" />
                                             </lightning:layoutItem>
                                             
                                             <lightning:layoutItem size="12" padding="around-small">

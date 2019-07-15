@@ -51,6 +51,14 @@
                 <behavior>Edit</behavior>
                 <field>Event_State__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Alerts__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Open_Complaint_Flag__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -128,13 +136,24 @@
         <fields>NAME</fields>
         <relatedList>Request__c.License__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Type__c</fields>
+        <fields>MUSW__Due_Date__c</fields>
+        <fields>MUSW__Priority__c</fields>
+        <fields>OWNER.ALIAS</fields>
+        <relatedList>MUSW__Inspection__c.MUSW__License2__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002Qcsi</masterLabel>
+        <masterLabel>00hr0000002Qda1</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -50,7 +50,6 @@
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -143,6 +142,17 @@
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <valueName>Comity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <valueName>Upgrade</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -431,6 +441,27 @@
         <type>Location</type>
     </fields>
     <fields>
+        <fullName>Is_Abandoned__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Abandoned ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_ID__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <externalId>false</externalId>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -623,6 +654,41 @@
                     <fullName>Under Review</fullName>
                     <default>false</default>
                     <label>Under Review</label>
+                </value>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Submission Failed</fullName>
+                    <default>false</default>
+                    <label>Submission Failed</label>
+                </value>
+                <value>
+                    <fullName>Pending Payment</fullName>
+                    <default>false</default>
+                    <label>Pending Payment</label>
+                </value>
+                <value>
+                    <fullName>Pending Action</fullName>
+                    <default>false</default>
+                    <label>Pending Action</label>
+                </value>
+                <value>
+                    <fullName>Pending Additional Qualification</fullName>
+                    <default>false</default>
+                    <label>Pending Additional Qualification</label>
+                </value>
+                <value>
+                    <fullName>Deleted</fullName>
+                    <default>false</default>
+                    <label>Deleted</label>
+                </value>
+                <value>
+                    <fullName>Abandoned</fullName>
+                    <default>false</default>
+                    <label>Abandoned</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1012,11 +1078,44 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>license_specific_email_addresses__c</fullName>
+        <externalId>false</externalId>
+        <label>license specific email addresses</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>license_specific_email_addresses</valueSetName>
+        </valueSet>
+    </fields>
     <label>Application</label>
+    <listViews>
+        <fullName>AMC_Applications</fullName>
+        <columns>NAME</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>MUSW__Type__c</columns>
+        <columns>MUSW__Applicant__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>MUSW__Parcel__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Company</value>
+        </filters>
+        <label>AMC Applications</label>
+    </listViews>
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
+        <columns>Application_Number__c</columns>
         <columns>Credential_Type__c</columns>
+        <columns>RECORDTYPE</columns>
         <columns>MUSW__Type__c</columns>
         <columns>MUSW__Applicant__c</columns>
         <columns>MUSW__Status__c</columns>
@@ -1120,6 +1219,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -1169,6 +1272,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1438,6 +1545,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -1537,11 +1648,23 @@
         <picklistValues>
             <picklist>MUSW__Status__c</picklist>
             <values>
+                <fullName>Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Complete</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1551,6 +1674,22 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Additional Qualification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submission Failed</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -1669,6 +1808,49 @@
             </values>
             <values>
                 <fullName>Title Surrender</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1716,6 +1898,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -1753,6 +1939,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1804,6 +1994,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1887,6 +2081,10 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2069,6 +2267,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -2160,7 +2362,15 @@
         <picklistValues>
             <picklist>MUSW__Status__c</picklist>
             <values>
+                <fullName>Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deleted</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2168,8 +2378,28 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Additional Qualification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submission Failed</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -2292,6 +2522,49 @@
             </values>
             <values>
                 <fullName>Title Surrender</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2339,6 +2612,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -2376,6 +2653,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2427,6 +2708,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2510,6 +2795,10 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2692,6 +2981,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -2783,7 +3076,15 @@
         <picklistValues>
             <picklist>MUSW__Status__c</picklist>
             <values>
+                <fullName>Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deleted</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2791,8 +3092,28 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Additional Qualification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submission Failed</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Withdrawn</fullName>
@@ -2903,6 +3224,49 @@
             </values>
             <values>
                 <fullName>Title Surrender</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2950,6 +3314,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -2987,6 +3355,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3038,6 +3410,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3121,6 +3497,10 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3303,6 +3683,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -3402,11 +3786,23 @@
         <picklistValues>
             <picklist>MUSW__Status__c</picklist>
             <values>
+                <fullName>Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Complete</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3416,6 +3812,22 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Additional Qualification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submission Failed</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -3577,6 +3989,49 @@
             </values>
             <values>
                 <fullName>Title Surrender</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3624,6 +4079,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Fine</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -3661,6 +4120,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3712,6 +4175,10 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3795,6 +4262,10 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3977,6 +4448,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -4076,11 +4551,23 @@
         <picklistValues>
             <picklist>MUSW__Status__c</picklist>
             <values>
+                <fullName>Abandoned</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Complete</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4090,6 +4577,22 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Additional Qualification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submission Failed</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -4251,6 +4754,49 @@
             </values>
             <values>
                 <fullName>Title Surrender</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>license_specific_email_addresses__c</picklist>
+            <values>
+                <fullName>RealEstate%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>architects%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>collection%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>dolbpdamc%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>engineers%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>funerals%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>geologist%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>landscape%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>notaries%40dol%2Ewa%2Egov</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>reappraisers%40dol%2Ewa%2Egov</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

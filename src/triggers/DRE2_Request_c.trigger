@@ -1,0 +1,1 @@
+trigger DRE2_Request_c on Request__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Request_c', new DRETriggerHandler()); }

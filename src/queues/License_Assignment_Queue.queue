@@ -2,6 +2,11 @@
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>License Assignment Queue</name>
+    <queueMembers>
+        <users>
+            <user>skanjilal@deloitte.com.wadolbuspro</user>
+        </users>
+    </queueMembers>
     <queueSobject>
         <sobjectType>FeeTable__c</sobjectType>
     </queueSobject>

@@ -1,9 +1,9 @@
-.THIS {
-}
 .THIS .field-item{
     padding: 0px 25px 25px 25px;           
 }
-
+.THIS .multi-field.remove-margin {
+    margin-right: 0px;
+}
 .THIS .slds-form-element__static{
 	font-size: 16px; 
 }
@@ -12,6 +12,9 @@
     color:t(LnGFormGray);
     
 }
+/*.THIS .input-multi-fields:nth-child(odd){
+    margin-right:10%; 
+} */  
 .THIS .slds-input, .THIS .slds-select{    
     border-top: none;
     border-left: none;
@@ -25,9 +28,20 @@
 .THIS .field-inline div{
     display: inline;
 }
+.THIS .field-adjust{
+    margin-right:10%;
+}
+.THIS .addedfield2{
+    margin-right:10%;
+}
+.THIS .addedfield1{
+    margin-right:0;
+}
 @media t(mqSmall){
     .THIS .field-inline div{
-    display: inline;
-}
-    
+        display: inline;
+    }
+    /* .THIS label.slds-form-element__label {
+        display: none;
+    } */
 }

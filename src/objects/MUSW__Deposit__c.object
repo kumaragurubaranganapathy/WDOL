@@ -105,13 +105,27 @@
         <label>Deposit_Search</label>
     </fieldSets>
     <fields>
+        <fullName>Agency_Code__c</fullName>
+        <description>1966</description>
+        <externalId>false</externalId>
+        <label>Agency Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Agency_Code</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Amount__c</fullName>
         <externalId>false</externalId>
         <label>Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -252,6 +266,17 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Fine_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Fine Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Form_number__c</fullName>
@@ -687,11 +712,6 @@
                     <label>TS-624-001</label>
                 </value>
                 <value>
-                    <fullName>DHP</fullName>
-                    <default>false</default>
-                    <label>DHP</label>
-                </value>
-                <value>
                     <fullName>Misc Payments</fullName>
                     <default>false</default>
                     <label>Misc Payments</label>
@@ -707,6 +727,12 @@
                     <default>false</default>
                     <isActive>false</isActive>
                     <label>BC-638-151</label>
+                </value>
+                <value>
+                    <fullName>DHP</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>DHP</label>
                 </value>
                 <value>
                     <fullName>DS-232-232</fullName>
@@ -774,25 +800,6 @@
             <valueSettings>
                 <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <valueName>LA-656-005</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
-                <controllingFieldValue>Manufactured Homes</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>DHP</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
@@ -904,39 +911,19 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>AR-636-002</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>AR-636-003</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>AR-636-004</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>AR-636-021</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>APR-622-188</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>APR-622-189</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>APR-622-190</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>APR-622-191</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1073,6 +1060,22 @@
             <valueSettings>
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>ENLS-651-031</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-188</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-189</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-190</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-191</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
@@ -1325,7 +1328,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1364,7 +1367,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1445,7 +1448,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -1546,6 +1549,15 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Route_to_Miscellaneous_queue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Route to Miscellaneous queue</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Sequence_number__c</fullName>
         <externalId>false</externalId>
         <label>Sequence number</label>
@@ -1594,6 +1606,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Voucher_Number__c</fullName>
+        <description>1966</description>
+        <externalId>false</externalId>
+        <label>Voucher #</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>wadol_Professional_Code__c</fullName>
@@ -1647,6 +1671,11 @@
     <label>Deposit</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount__c</columns>
+        <columns>MUSW__Available_Amount__c</columns>
+        <columns>MUSW__Paid_Amount__c</columns>
+        <columns>MUSW__Unpaid_Amount__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -1678,6 +1707,15 @@
         <filterScope>Mine</filterScope>
         <label>Deposit Records From Customer Envelope</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Miscellaneous_Deposit</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Miscellaneous</label>
+        <queue>Miscellaneous</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Notaries_Queue_Deposit</fullName>

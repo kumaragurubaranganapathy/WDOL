@@ -12,7 +12,7 @@ public class Polaris_ApplyForLicenseService {
     public static List<Question__c> fetchQuestionsDetails(String applicationType, String credentialType, String applicationMethod) {
         system.debug('board : '+applicationType+'licenseType : '+credentialType+ 'applicationType: '+applicationMethod);
         List<Question__c> lstQuestions =  new List<Question__c>();        
-        String str  = 'Select Id,Name,Triggering_Parent_Answer__c,Qualifying_Response__c,Has_Any_Submission__c,Submission_Title__c,Application_Type__c,Question_Body__c,Data_Type__c,Possible_Responses__c,Credential__c,Application_Method__c,Order_Number__c,Has_dependent_questions__c,	Parent_Question__c,	Record_Type_Name__c,Section__c,	Sub_Header__c,	Sub_Sub_Header__c,	Section_Order__c,QuestionFieldAPI__c, QuestionObjectName__c,Message__c,MessageTriggerResponse__c FROM Question__c where Application_Type__c =\'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \''+applicationMethod +'\' AND status__c=\'Active\' AND record_type_name__c != \'Eligibility Questions\' AND Parent_Object_API_Name__c = \'MUSW__License2__c\' ORDER BY  Sub_Sub_Header__c,Order_Number__c ASC';
+        String str  = 'Select Id,Name,isRequired__c,Regex_Validation__c,Error_Message__c,Triggering_Parent_Answer__c,Qualifying_Response__c,Has_Any_Submission__c,Submission_Title__c,Application_Type__c,Question_Body__c,Data_Type__c,Possible_Responses__c,Credential__c,Application_Method__c,Order_Number__c,Has_dependent_questions__c,	Parent_Question__c,	Record_Type_Name__c,Section__c,	Sub_Header__c,	Sub_Sub_Header__c,	Section_Order__c,QuestionFieldAPI__c, QuestionObjectName__c,Message__c,MessageTriggerResponse__c FROM Question__c where Application_Type__c =\'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \''+applicationMethod +'\' AND status__c=\'Active\' AND record_type_name__c != \'Eligibility Questions\' AND Parent_Object_API_Name__c = \'MUSW__License2__c\' ORDER BY  Sub_Sub_Header__c,Order_Number__c ASC';
         system.debug('str1223'+str);
         lstQuestions = Utilityclass_withsharing.queryRecords(Str);
         system.debug('lstQuestions123'+lstQuestions);
@@ -47,7 +47,7 @@ public class Polaris_ApplyForLicenseService {
     {
         system.debug('board : '+applicationType+'licenseType : '+credentialType+ 'applicationType: '+applicationMethod);
         List<Application_Field__c> lstApplicationFields = new List<Application_Field__c>();
-        String Str = 'SELECT Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c,Regex_Validation__c,Error_Message__c FROM Application_Field__c where Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' ORDER BY Order_Number__c ASC';
+        String Str = 'SELECT ValidationCriteria__c,Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c,Regex_Validation__c,Error_Message__c FROM Application_Field__c where Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' ORDER BY Order_Number__c ASC';
         system.debug('Str '+Str);
         lstApplicationFields = Utilityclass_withsharing.queryRecords(Str);
         return lstApplicationFields;
@@ -56,7 +56,8 @@ public class Polaris_ApplyForLicenseService {
     public static List<MUSW__Master_Submission_List__c>fetchMasterSubmissionDetails(String applicationType, String credentialType, String applicationMethod)
     {
         List<MUSW__Master_Submission_List__c> lstMasterSubmission = new List<MUSW__Master_Submission_List__c>();
-        String Str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\') ORDER BY  CreatedDate ASC';
+        String Str = 'Select Id,Order_No__c,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'MUSW__License2__c\' AND Show_For__c INCLUDES (\'License\',\'Credential\') ORDER BY  Order_No__c ASC';
+        system.debug('Str Submission : '+Str);
         lstMasterSubmission = Utilityclass_withsharing.queryRecords(Str);
         return lstMasterSubmission;
     }
@@ -87,4 +88,21 @@ public class Polaris_ApplyForLicenseService {
         }
         return lstLicense;
     }
+    public static List<List<LnP_JSONParser.CompositeRequest>> partition(List<LnP_JSONParser.CompositeRequest> lstString, integer chunkSize){
+        //system.debug('lstString'+lstString);
+        integer counter = 24; 
+        List<list<LnP_JSONParser.CompositeRequest>> result =new  List<list<LnP_JSONParser.CompositeRequest>>();
+       for (LnP_JSONParser.CompositeRequest lstdata : lstString) {
+            if (math.mod(counter,chunksize) == 0) {
+                result.add(new list<LnP_JSONParser.CompositeRequest>());
+                system.debug('gg'+counter);
+               
+            }
+            counter++;
+            result.get(result.size() - 1).add(lstdata); 
+        }
+        return result;
+        
+    }
+
 }

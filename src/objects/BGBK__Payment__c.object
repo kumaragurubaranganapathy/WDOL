@@ -667,6 +667,46 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Inspection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Inspection</label>
+        <referenceTo>MUSW__Inspection__c</referenceTo>
+        <relationshipLabel>Payments</relationshipLabel>
+        <relationshipName>Payments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Legal_Action__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used for fines and penalty from complaints</description>
+        <externalId>false</externalId>
+        <label>Legal Action</label>
+        <referenceTo>Action__c</referenceTo>
+        <relationshipLabel>Payments</relationshipLabel>
+        <relationshipName>Payments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Miscellaneous_Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Miscellaneous Fee</label>
+        <referenceTo>Miscellaneous_Fee__c</referenceTo>
+        <relationshipLabel>Payments</relationshipLabel>
+        <relationshipName>Payments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Receipt_Amount_Remaining__c</fullName>
         <externalId>false</externalId>
         <formula>BGBK__Receipt__r.MUSW__Amount_Available__c</formula>
@@ -718,6 +758,19 @@
         <externalId>false</externalId>
         <label>Renewal Application</label>
         <referenceTo>Renewal_Application__c</referenceTo>
+        <relationshipLabel>Payments</relationshipLabel>
+        <relationshipName>Payments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
         <relationshipLabel>Payments</relationshipLabel>
         <relationshipName>Payments</relationshipName>
         <required>false</required>
@@ -777,6 +830,13 @@
         <description>If payment amount is changed, and the parent receipt is filled in on this payment, and difference of the old amount to the new amount is greater than what is available on the receipt...error</description>
         <errorConditionFormula>AND( ISCHANGED(BGBK__Amount__c),   NOT(ISBLANK(BGBK__Receipt__c)), BGBK__Amount__c - PRIORVALUE(BGBK__Amount__c) &gt;    BGBK__Receipt__r.MUSW__Amount_Available__c)</errorConditionFormula>
         <errorMessage>Cannot increase Payment Amount greater than what is available on Receipt. Reduce Amount or cancel change.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Licensee_does_not_match_the_account</fullName>
+        <active>true</active>
+        <description>Validation to ensure Licensee matches the account on the Deposit</description>
+        <errorConditionFormula>NOT(ISBLANK( BGBK__Deposit__c)) &amp;&amp; (BGBK__Deposit__r.MUSW__Account__c  &lt;&gt;   BGBK__License2__r.MUSW__Primary_Licensee__c)</errorConditionFormula>
+        <errorMessage>Licensee does not match the account on the Deposit</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>

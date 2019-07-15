@@ -1,18 +1,27 @@
-/*@font-face{ 
+@font-face{ 
     font-family:'SourceSansPro-Regular';
     src:url('/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
-}*/
+}
 .THIS.slds-global-header{
     height: auto;
     background: token(headerclr);
     padding: 1rem 3rem;
 }
+.THIS li.links {
+    position: relative;
+    bottom: 2px;
+}
+
+.THIS .dropdown__list li{
+    margin: 10px 10px 0 10px;
+    text-transform: uppercase;
+}
 .THIS .header-wrapper,  .THIS .menu-wrapper .slds-grid {
     align-items:flex-end;
 }
 .THIS .user-wrapper{
-    display:flex;
-    align-items:flex-end;
+    display: flex;    
+    width: 70%;
 }
 .THIS .burgerIcon{
     display: none;
@@ -20,6 +29,11 @@
 .THIS .logo-wrapper{
     display:flex;
     align-items:center;
+}
+.THIS .images-wrapper{
+    width:100%;
+    justify-content:space-between;
+    display:flex;
 }
 .THIS .logo{
     width:230px;
@@ -35,23 +49,16 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    position:relative;
-   
-   
+    position:relative; 
 }
 .THIS .nav-links{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
-.THIS li{
-    margin: 14px 15px 0 14px;
-    text-transform: uppercase;  
-}         
-
-.THIS .nav-links a, .THIS .login-wrapper a{
+.THIS .nav-links a, .THIS .login-wrapper a,.THIS .morelinks,.THIS .profile-menu-link .slds-button_neutral {
     color: token(headertxt);
-    font-family: token(btnfontfamily);
-    font-size: token(senfontsize);
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     line-height: normal;
@@ -66,11 +73,8 @@
     left:0;
 }
 .THIS .login-div{
-    padding-left:1.5rem;
+    display:flex;
     font-size:1rem;
-}
-.THIS .logo-style{
-    padding-right:0.5rem;
 }
 .THIS .nav-links a:hover, .THIS .login-wrapper a:hover{
     font-weight:bold;
@@ -79,6 +83,9 @@
     width: 50px;
     float: right;    
     cursor: pointer;
+}
+.THIS .signin-logo{
+    padding-right:0.75rem;
 }
 .THIS #profileImage {
     width: 53px;
@@ -99,7 +106,52 @@
     align-items:center;
    
 }
+.THIS .more-links{
+    position:relative; 
+    display:flex;
+    align-items:center;
+}
+.THIS .morelinks-list{
+    z-index:1;
+    background-color: t(headerclr);
+}
+.THIS .morelinks-list{
+    top:25px;
+    position:absolute;
+    box-shadow: #d6d7d9 0px 2px 3px 0px;
+    border: 1px solid #d6d7d9;
+    background: t(white);
+    border-radius: 3%;
+}
 
+.THIS .morelinks-list li a{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .75rem;
+    white-space: nowrap;
+}
+.THIS .morelinks-list li:hover{
+    background-color:#f0f8ff;
+}
+.THIS .profile-menu-link .slds-button_neutral{
+    background: #d6d7d9;
+    border: none;
+    height:auto;
+    padding:0;
+    
+}
+.THIS .slds-button:focus{
+    box-shadow:none;
+}
+.THIS .nav-links-wrapper{
+    display:flex;
+    align-items:center;
+}
+.THIS .menu-wrapper{
+    width:100%;
+}
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS.slds-global-header{
         height: 3.125rem;
@@ -141,8 +193,14 @@
 @media only screen and (min-width: 1024px)and (max-width: 1024px){
     
     .THIS li{
-        margin: 14px 7px 0 14px; 
+        margin: 14px 2px 0 14px; 
     } 
+    .THIS .login-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative; 
+}
 }
 @media only screen and (max-width:1023px){
     .THIS .header-wrapper {
@@ -173,6 +231,17 @@
         transition-duration: 0.5s;
         -webkit-transition-duration: 0.5s;
     }
+
+    .THIS .mobile-menu.open span {
+        background-color: token(lightgray);
+        width: 1.25rem;
+    }
+
+    .THIS .mobile-menu.open {
+        left: auto;
+        right: 0;
+
+    }
     .THIS .mobile-menu span:nth-child(1) { 
         top: 0px; 
     }
@@ -190,12 +259,13 @@
     .THIS .menu-wrapper {
         display:none;
         width: 100%;
+        height: 100vh;
         flex-wrap:wrap;
         position: absolute;
-        top: calc(2rem + 26px);
+        top: 0;
         left: 0px;
         z-index:999;
-        background: token(LnGHeaderColor);
+        background: token(white);
         box-sizing: border-box;
     }
     .THIS .menu-wrapper.open {
@@ -222,16 +292,39 @@
     }
     .THIS ul.nav-links {
         display: block;
-        margin: 0px;
+        margin: 100px 0 0;
         padding: 0px;
     }
     .THIS ul.nav-links li{
-        margin: 1rem 0px 0px 1rem;
+        border-top: solid 1px token(navmenudevider);
+        margin: 0 1rem;
+        text-align: center;
+        padding: 1rem 0;
+    }
+    .THIS ul.nav-links li:last-child {
+        border-bottom: solid 1px token(navmenudevider);
+        margin-bottom: 1rem; 
+    }
+
+    .THIS .nav-links a {
+        color: #2b2826;
+        font-size: 13px;
     }
     .THIS .login-wrapper {
-        padding: 1rem 0px 2rem 1rem;
-        justify-content: flex-start;
+        /* padding: 1rem 0px 2rem 1rem;
+        justify-content: flex-start; */
+        display: block;
     }
+    .THIS .user-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; 
+    }
+
+    .THIS .login-wrapper .profile-menu-option {
+        position: absolute;
+    }
+
     .THIS .profileMenu {
         width: 15%;
         position: absolute;
@@ -254,6 +347,7 @@
         line-height: 30px;
         float: none;
     }
+    
 }
 @media t(mqSmall){    
     .THIS .burger-icon-img{
@@ -287,13 +381,14 @@
 }*/
 .THIS .profile-menu-option{
     position:relative;    
-    right:52px;
+    right:25px;
     width:24px;
     height:18px;
 }
 .THIS .profile-menu-inner{
     height:100%;
 }
+
 .THIS .account-dropdown{
     width:100%;
     height:100%;

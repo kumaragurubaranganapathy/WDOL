@@ -48,6 +48,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -294,6 +295,16 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>ValidationCriteria__c</fullName>
+        <externalId>false</externalId>
+        <label>ValidationCriteria</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Validator__c</fullName>
         <description>Validation for the created field</description>
         <externalId>false</externalId>
@@ -331,4 +342,5 @@
     <pluralLabel>Application Fields</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

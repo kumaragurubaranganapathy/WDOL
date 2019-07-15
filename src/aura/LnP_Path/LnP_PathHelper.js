@@ -15,7 +15,13 @@
         var attJSON = JSON.parse(attJSONString);*/
     	
     },
-    changeStringArray : function(){
+    changeStringArray : function(component, event, helper){
         console.log('hello');
+       
+    },
+    test : function(component, event, helper){
+        console.log('test');
+        var cmplength=component.get('v.path');
+        comsole.log(cmplength.length);
     }
 })

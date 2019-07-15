@@ -40,7 +40,7 @@
                 var result = response.getReturnValue();
                 var filteredResults = [];
                 for(var i=0; i<result.length; i++){
-                    if(result[i].Credential_Type__c != undefined && result[i].Credential_Type__c != "Appraiser Course" && filteredResults.indexOf(result[i].Credential_Type__c)==-1){
+                    if(result[i].Credential_Type__c != undefined && result[i].Credential_Type__c != "Appraiser Course" && result[i].Credential_Type__c != "Architect Firms" && filteredResults.indexOf(result[i].Credential_Type__c)==-1){
                         filteredResults.push(result[i].Credential_Type__c);
                     }
                 }
@@ -106,11 +106,16 @@
                 "License__r.Application_Type__c":professionValue,
                 "License__r.Name":licenseNumberValue,
             }
-            var action = component.get("c.generateQueryWithOR");
+            var criteriaOR = {
+                "1":'License__r.RecordType.Name=Individual',
+                "2":'License__r.RecordType.Name=Business',
+            }
+            var action = component.get("c.generateQueryWithGenericOR");
             action.setParams({
                 'objectName':objectApi,
                 'lstFieldsName':fieldsList,
                 'mapValues':criteria,
+                'mapORValues':criteriaOR,
                 'bIsStatusIncluded':false,
             });
             action.setCallback(this, function(response){
@@ -124,28 +129,46 @@
                                 if(row.License__r.MUSW__Applicant__r){
                                     if(row.License__r.MUSW__Applicant__r.Name){
                                     	row.Name = row.License__r.MUSW__Applicant__r.Name;
+                                    } else {
+                                        row.Name = "";
                                     }
+                                } else {
+                                    row.Name = "";
                                 }
                                 if(row.License__r.Name){
                                     row.License_Number = row.License__r.Name;
+                                } else {
+                                    row.License_Number = "";
                                 }
                                 if(row.License__r.Credential_Type__c){
                                     row.License_Type = row.License__r.Credential_Type__c;
+                                } else {
+                                    row.License_Type = "";
                                 }
                                 if(row.License__r.MUSW__Status__c){
                                     row.Status = row.License__r.MUSW__Status__c;
+                                } else {
+                                    row.Status = "";
                                 }
-                                if(row.License__r.Credential_Type__c){
+                                if(row.License__r.Sub_Status__c){
                                     row.Sub_Status = row.License__r.Sub_Status__c;
+                                } else {
+                                    row.Sub_Status = "";
                                 }
                                 if(row.License__r.RecordType){
                                     row.Type = row.License__r.RecordType.Name;
+                                } else {
+                                    row.Type = "";
                                 }
                                 if(row.License__r.Id){
                                     row.Id = row.License__r.Id;
+                                } else {
+                                    row.Id = "";
                                 }
                                 if(row.City__c){
                                     row.City = row.City__c;
+                                } else {
+                                    row.City = "";
                                 }
                           	}
                         } 
@@ -425,28 +448,46 @@
                                     if(row.License__r.MUSW__Applicant__r){
                                         if(row.License__r.MUSW__Applicant__r.Name){
                                             row.Name = row.License__r.MUSW__Applicant__r.Name;
+                                        } else {
+                                            row.Name = "";
                                         }
+                                    } else {
+                                        row.Name = "";
                                     }
                                     if(row.License__r.Name){
                                         row.License_Number = row.License__r.Name;
+                                    } else {
+                                        row.License_Number = "";
                                     }
                                     if(row.License__r.Credential_Type__c){
                                         row.License_Type = row.License__r.Credential_Type__c;
+                                    } else {
+                                        row.License_Type = "";
                                     }
                                     if(row.License__r.MUSW__Status__c){
                                         row.Status = row.License__r.MUSW__Status__c;
+                                    } else {
+                                        row.Status = "";
                                     }
-                                    if(row.License__r.Credential_Type__c){
+                                    if(row.License__r.Sub_Status__c){
                                         row.Sub_Status = row.License__r.Sub_Status__c;
+                                    } else {
+                                        row.Sub_Status = "";
                                     }
                                     if(row.License__r.RecordType){
                                         row.Type = row.License__r.RecordType.Name;
+                                    } else {
+                                        row.Type = "";
                                     }
                                     if(row.License__r.Id){
                                         row.Id = row.License__r.Id;
+                                    } else {
+                                        row.Id = "";
                                     }
                                     if(row.City__c){
                                         row.City = row.City__c;
+                                    } else {
+                                        row.City = "";
                                     }
                                 }
                             } 
@@ -546,8 +587,8 @@
                 }
                 if(businessName!= "" && businessName.trim()!= "" && businessName.trim().length!= ""){
                     var criteriaOR = {
-                        "License__r.MUSW__Primary_Licensee__r.Name":businessName,
-                        "License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c":businessName,
+                        "1":'License__r.MUSW__Primary_Licensee__r.Name='+businessName,
+                        "2":'License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c='+businessName,
                     }
                     var action = component.get("c.generateQueryWithGenericOR");
                     action.setParams({
@@ -576,33 +617,53 @@
                                 if (row.License__r) {
                                     if(row.License__r.MUSW__Primary_Licensee__r.Name){
                                         row.Business_Name = row.License__r.MUSW__Primary_Licensee__r.Name;
+                                    } else {
+                                        row.Business_Name = "";
                                     }
                                     if(row.License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c){
                                         row.Doing_Business_As = row.License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c;
+                                    } else {
+                                        row.Doing_Business_As = "";
                                     }
                                     if(row.License__r.UBI_Number__c){
                                         row.UBI_Number = row.License__r.UBI_Number__c;
+                                    } else {
+                                        row.UBI_Number = "";
                                     }
                                     if(row.License__r.Name){
                                         row.License_Number = row.License__r.Name;
+                                    } else {
+                                        row.License_Number = "";
                                     }
                                     if(row.License__r.Credential_Type__c){
                                         row.License_Type = row.License__r.Credential_Type__c;
+                                    } else {
+                                        row.License_Type = "";
                                     }
                                     if(row.License__r.MUSW__Status__c){
                                         row.Status = row.License__r.MUSW__Status__c;
+                                    } else {
+                                        row.Status = "";
                                     }
-                                    if(row.License__r.Credential_Type__c){
+                                    if(row.License__r.Sub_Status__c){
                                         row.Sub_Status = row.License__r.Sub_Status__c;
+                                    } else {
+                                        row.Sub_Status = "";
                                     }
                                     if(row.License__r.RecordType){
-                                        row.recordType = row.License__r.RecordType.Name;
+                                        row.Type = row.License__r.RecordType.Name;
+                                    } else {
+                                        row.Type = "";
                                     }
                                     if(row.License__r.Id){
                                         row.Id = row.License__r.Id;
+                                    } else {
+                                        row.Id = "";
                                     }
                                     if(row.City__c){
                                         row.City = row.City__c;
+                                    } else {
+                                        row.City = "";
                                     }
                                 }
                             }
@@ -723,7 +784,7 @@
         } else if(tabValue == "Professional License"){
             keys = ['Name','License_Number','License_Type','Status','Sub_Status','City'];
         } else if(tabValue == "Business License"){
-            keys = ['businessName','DoingBusinessAs','ubiNumber','licenseNumber','licenseType','licenseStatus','City__c'];
+            keys = ['Business_Name','Doing_Business_As','UBI_Number','License_Number','License_Type','Status','City'];
         }               
         csvStringResult = '';
         csvStringResult += keys.join(columnDivider);

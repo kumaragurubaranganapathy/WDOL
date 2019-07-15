@@ -59,7 +59,6 @@
     </miniLayout>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>External_Id__c</fields>
         <fields>Status__c</fields>
         <fields>Parent_Question__c</fields>
         <fields>Question_Body__c</fields>
@@ -67,8 +66,14 @@
         <fields>Order_Number__c</fields>
         <fields>Application_Method__c</fields>
         <fields>Credential_Type__c</fields>
+        <fields>Parent_Object_API_Name__c</fields>
         <fields>Show_For__c</fields>
         <relatedList>Question__c.Question_Sub_Section__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>BGCK__Body__c</fields>
+        <relatedList>BGCK__Question__c.Question_Sub_Section__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

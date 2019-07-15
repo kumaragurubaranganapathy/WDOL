@@ -7,7 +7,7 @@ public static void updateRenewalFields(List<MUSW__License2__c> licenseList){
     
     }
     List<MUSW__License2__c> licenseToUpdate = new List<MUSW__License2__c>();
-    List<Renewal_Reinstatement_Eligibility__c> reneList = [select id,Active__c,License_Type__c,Renewal_Grace_Period_N_Days_After_Expiry__c,Renewal_Eligible_N_Days_Before_Expiry__c,Program_Type__c,Credential_Or_Permit__c,Late_Ren_Eligible_Until_N_Days_After_Exp__c from Renewal_Reinstatement_Eligibility__c 
+    List<Renewal_Reinstatement_Eligibility__c> reneList = [select id,Active__c,License_Type__c,Renewal_Grace_Period_N_Days_After_Expiry__c,Renewal_Eligible_N_Days_Before_Expiry__c,Program_Type__c,Credential_Or_Permit__c,Late_Ren_Eligible_Until_N_Days_After_Exp__c,Reinstatement_Eligible_End_Date__c from Renewal_Reinstatement_Eligibility__c 
                                                            where Active__c = true 
                                                            and  Credential_Or_Permit__c = 'Credential'
                                                            and Program_Type__c IN: programList];
@@ -25,7 +25,11 @@ public static void updateRenewalFields(List<MUSW__License2__c> licenseList){
                }
                if(rerinsta.Late_Ren_Eligible_Until_N_Days_After_Exp__c!= null){
                    license.Late_Renewal_Eligible_End_Date__c = license.MUSW__Expiration_Date__c + rerinsta.Late_Ren_Eligible_Until_N_Days_After_Exp__c.intValue();
+                   license.Reinstatement_Eligible_Start_Date__c = license.MUSW__Expiration_Date__c + rerinsta.Late_Ren_Eligible_Until_N_Days_After_Exp__c.intValue();
                }
+               if(rerinsta.Reinstatement_Eligible_End_Date__c != null){
+                   license.Reinstatement_Eligibility_End_Date__c = license.MUSW__Expiration_Date__c + rerinsta.Reinstatement_Eligible_End_Date__c.intValue();
+              }
                licenseToUpdate.add(license);
            }
        
@@ -37,7 +41,7 @@ public static void updateRenewalFields(List<MUSW__License2__c> licenseList){
    
        if(!licenseToUpdate.isEmpty()){
            try{
-                   update licenseToUpdate;
+                //   update licenseToUpdate;
                }catch(Exception e){
                    System.debug(e.getmessage());
                }   

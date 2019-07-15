@@ -6,16 +6,19 @@
         
         var action = component.get("c.getDefaultProgramType");
         //var action1 = component.get("c.getcustomerEnvelopeInfo");
-       
+        
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                var result = response.getReturnValue();                
+                var result = response.getReturnValue();           
                 var industryMap = [];
                 if(result){
                     for(var key in result){
-                        industryMap.push({key: key, value: result[key]});
+                        if( key !== 'Delegated Municipality' && key !== 'Manufactured Homes' && key !== 'Program Unknown' && key !== 'Misc Payments'){
+                            industryMap.push({key: key, value: result[key]});
+                        }                        
                     }
+                    
                     component.set("v.industryMap", industryMap);
                 }
             }
@@ -44,15 +47,15 @@
             component.set("v.isDisabled", false);
         }
     },
-    /*  selectChange : function(component,event,helper){
-         var _SubmitandNext = component.find("SubmitandNext");
-          var _next = component.find("Next");
-        // by using $A.util.toggleClass add-remove slds-hide class
-      $A.util.toggleClass(_SubmitandNext, "slds-hide");
-          $A.util.toggleClass(_next, "slds-hide");
-  
-    },*/
     
+    selectChange: function(component,event,helper) {
+        //alert(JSON.stringify(component.get("v.customerEnvelopeRec")));
+      //var checkCmp = component.find("dhp");
+       // alert("checkCmp : "+checkCmp.get("v.value"));
+       // resultCmp = cmp.find("checkResult");
+       // resultCmp.set("v.value", ""+checkCmp.get("v.value"));
+        
+    },
     gotoURL:function(component,event,helper){
         debugger;
         console.log('Enter Here');

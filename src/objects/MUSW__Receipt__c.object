@@ -50,7 +50,6 @@
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -292,6 +291,41 @@
         <label>Receipt Confirmation</label>
     </fieldSets>
     <fields>
+        <fullName>ACH_BillerBusinessDate__c</fullName>
+        <externalId>false</externalId>
+        <label>ACH BillerBusinessDate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Agency_Code__c</fullName>
+        <description>1966</description>
+        <externalId>false</externalId>
+        <label>Agency Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Agency_Code</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Applicant_Name__c</fullName>
+        <description>Captures the applicant name</description>
+        <externalId>false</externalId>
+        <label>Applicant Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BGBK__Cart__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
@@ -377,6 +411,28 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Cart_PIN__c</fullName>
+        <externalId>false</externalId>
+        <label>Cart PIN</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Convenience_Fee__c</fullName>
         <externalId>false</externalId>
         <label>Convenience Fee</label>
@@ -386,6 +442,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>DHP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>US-1656</description>
+        <externalId>false</externalId>
+        <label>DHP?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Date_Today_s__c</fullName>
@@ -419,6 +485,37 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IAP_Doc__c</fullName>
+        <description>Captures IAP Doc number</description>
+        <externalId>false</externalId>
+        <label>IAP Doc#</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inactivate_License_Date__c</fullName>
+        <description>US-1656</description>
+        <externalId>false</externalId>
+        <label>Inactivate License Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Initiation_Date_and_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Initiation Date and Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Intake_Method__c</fullName>
         <externalId>false</externalId>
         <label>Intake Method</label>
@@ -449,6 +546,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>JV_Number__c</fullName>
+        <description>Captures JV number</description>
+        <externalId>false</externalId>
+        <label>JV Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Last_4_digits_of_Credit_Card_or_ACH__c</fullName>
         <description>Last four digits of the credit card number or ACH account number</description>
         <externalId>false</externalId>
@@ -460,6 +569,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Number__c</fullName>
+        <description>Captures License Number</description>
+        <externalId>false</externalId>
+        <label>License Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -813,6 +934,56 @@
                     <default>false</default>
                     <label>Deposit</label>
                 </value>
+                <value>
+                    <fullName>Lockbox</fullName>
+                    <default>false</default>
+                    <label>Lockbox</label>
+                </value>
+                <value>
+                    <fullName>Check/Cashier&apos;s Check</fullName>
+                    <default>false</default>
+                    <label>Check/Cashier&apos;s Check</label>
+                </value>
+                <value>
+                    <fullName>Money Order</fullName>
+                    <default>false</default>
+                    <label>Money Order</label>
+                </value>
+                <value>
+                    <fullName>Inter-agency Payment</fullName>
+                    <default>false</default>
+                    <label>Inter-agency Payment</label>
+                </value>
+                <value>
+                    <fullName>Voucher</fullName>
+                    <default>false</default>
+                    <label>Voucher</label>
+                </value>
+                <value>
+                    <fullName>Misc - Unknown</fullName>
+                    <default>false</default>
+                    <label>Misc - Unknown</label>
+                </value>
+                <value>
+                    <fullName>NCR - cash</fullName>
+                    <default>false</default>
+                    <label>NCR - cash</label>
+                </value>
+                <value>
+                    <fullName>NCR - check</fullName>
+                    <default>false</default>
+                    <label>NCR - check</label>
+                </value>
+                <value>
+                    <fullName>Reapplied Payment</fullName>
+                    <default>false</default>
+                    <label>Reapplied Payment</label>
+                </value>
+                <value>
+                    <fullName>Fine</fullName>
+                    <default>false</default>
+                    <label>Fine</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -937,6 +1108,16 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Override_25_Handling_Fee__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>US-1656</description>
+        <externalId>false</externalId>
+        <label>Override $25 Handling Fee</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Payee__c</fullName>
         <description>Payee</description>
         <externalId>false</externalId>
@@ -998,6 +1179,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Reason_for_DHP__c</fullName>
+        <description>US-1656</description>
+        <externalId>false</externalId>
+        <label>Reason for DHP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Remitter__c</fullName>
         <description>Remitter</description>
         <externalId>false</externalId>
@@ -1027,6 +1218,28 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sender_Agency__c</fullName>
+        <description>Captures Sender Agency Number</description>
+        <externalId>false</externalId>
+        <label>Sender Agency #</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sent_to_Collections__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>US-1657</description>
+        <externalId>false</externalId>
+        <label>Sent to Collections</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
@@ -1094,6 +1307,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>US_Bank_Payment_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>US Bank Payment Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Processed</fullName>
+                    <default>false</default>
+                    <label>Processed</label>
+                </value>
+                <value>
+                    <fullName>Settled</fullName>
+                    <default>false</default>
+                    <label>Settled</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Validation_number__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1127,6 +1364,31 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Voucher_Number__c</fullName>
+        <description>1966</description>
+        <externalId>false</externalId>
+        <label>Voucher #</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Overshort_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Captures Overshort amount</description>
+        <externalId>false</externalId>
+        <label>Overshort Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <label>Receipt</label>
     <listViews>

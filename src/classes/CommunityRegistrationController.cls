@@ -1,7 +1,7 @@
 public without sharing class CommunityRegistrationController {
     
     @AuraEnabled
-    public static string registerNewCommunityUser(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd) 
+    public static string registerNewCommunityUser(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd,string birthdate) 
     {
         List<User> existinguser = [Select ID,Username from User Where Username = :email Limit 1 ];
         String successmsg;
@@ -12,7 +12,7 @@ public without sharing class CommunityRegistrationController {
             Contact contactRecord ;
             
             try {
-                contactRecord = handleAccountContactCreation(firstN,middleN,lastN,phoneN,email,pwd,confirmpwd);
+                contactRecord = handleAccountContactCreation(firstN,middleN,lastN,phoneN,email,pwd,confirmpwd,birthdate);
             } catch (DMLException dmEx) {
                 successmsg = dmEx.getMessage();
                 for (Integer i = 0; i < dmEx.getNumDml(); i++) {
@@ -32,7 +32,7 @@ public without sharing class CommunityRegistrationController {
         
         return successmsg;
     }
-    public static Contact handleAccountContactCreation(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd) {
+    public static Contact handleAccountContactCreation(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd, String birthdate) {
         Contact retRes = null ;
         String passwordParameter = pwd;
         List<User> users = [Select Id FROM User WHERE Name =: System.Label.Admin_Name and isActive = true LIMIT 1  ] ;
@@ -45,7 +45,8 @@ public without sharing class CommunityRegistrationController {
             LastName = lastN,
             FirstName = firstN,
             Email = email,
-            AccountId = acc.Id 
+            AccountId = acc.Id,
+            Birthdate =Date.valueOf(birthdate)
         );
         
         insert retRes ;

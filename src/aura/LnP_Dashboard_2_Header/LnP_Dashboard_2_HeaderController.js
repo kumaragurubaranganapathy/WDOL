@@ -6,5 +6,11 @@
         var portal_Home_URL = component.get("v.portalURL");
         var licenseSelectionPage_URI = portal_Home_URL+'licenseSelectionPage';
     	window.open(licenseSelectionPage_URI, "_self");
-    }
+    },
+    updateContactInfo : function(component, event, helper) {
+		helper.updateContactInfo(component, event, helper);
+	},
+    /*updateAddress : function(component, event, helper) {
+		helper.updateAddress(component, event, helper);
+	}*/
 })

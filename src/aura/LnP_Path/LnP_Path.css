@@ -1,21 +1,63 @@
-.THIS {
-}
 .THIS .slds-path__item{
     min-width: 0;
+  margin-right:0;
+  
+}
+.THIS .success li {
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2em;
+  border-radius:5rem;
+  background: dodgerblue;
+  margin: 0 1em;
+  display: inline-block;
+  color: white;
+  position: relative;
+    box-shadow:0 0 0 1px red;
+    box-sizing:border-box;
+
+}
+
+.THIS .success li::before{
+  content:'';
+  position: absolute;
+  top: .9em;
+  left: -4em;
+  width: 4em;
+  height: .2em;
+  background: dodgerblue;
+  z-index: -1;
+}
+.THIS .success li:first-child::before {
+  display: none;
+}
+.THIS .success .test{
+position:absolute;
+display:flex;
+color:black;
 }
 .THIS .slds-path__title{
     overflow:inherit;white-space: inherit;
 }
 .THIS .icon{
     vertical-align: middle;
-    height: 50px;
+   /* height: 50px;*/
 }
 .THIS .slds-path__nav{
-   margin: 0 135px;
+   /*margin: 0 135px;*/
+    margin:0;
+}
+.THIS .pathwidth{
+    max-width: 65%;
+    margin: 0 auto;
+    margin-top:2rem;
 }
 .THIS .subsubheader{    
     color: t(LnGFormTitleColor);
     font-size:14px;
+    border-bottom:0.5px solid #d6d7d9;
+   
 }
 .THIS .active-path{
     border-top: 1px solid #2f853d;
@@ -36,7 +78,7 @@
 	width:27px;
     position: relative;
     box-shadow: 0 0 0 5px #215393;
-    margin:10px;
+    margin:10px 0;
 }
 .THIS .red-circle {
   height: 27px;
@@ -44,7 +86,14 @@
   background: #eff1ff;
   border-radius: 50%;
   box-shadow: 0 0 0 5px #e2574c;
-  margin:10px;
+  margin:10px ;
+}
+.THIS .green-circle{
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #2f853d;
+  margin:10px ;
 }
 @media t(mqSmall){
 	.THIS .icon{
@@ -52,7 +101,8 @@
 	}
 	.THIS hr {
 		width: 20px;
-		margin: 20px 0;                    
+		margin: 20px 0;
+        
 	}
 	.THIS .inactive-path-title{
 		display: none;
@@ -65,7 +115,11 @@
 	}
 	.THIS .slds-path__nav{
    		margin: 0 10px;
-	}
+  }
+  
+  .THIS .pathwidth {
+    width: 100%;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
 	.THIS hr {
@@ -100,7 +154,8 @@
 }
 @media t(mqLarge){
   .THIS hr {
-    width: 100px;                    
+    width: 65px;
+    margin: 1.5rem 0;
   }
   .THIS .mobile-tab-view{
 	display:none;

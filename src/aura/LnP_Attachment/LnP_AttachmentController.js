@@ -1,6 +1,6 @@
 ({
     handleUploadFinished : function(component, event, helper) {
-		helper.handleUploadFinishedHelper(component, event,helper);
+		helper.handleUploadFinishedHelper(component, event,helper);       
 	},
      deleteFile : function(component, event, helper) {
         helper.deleteFile(component,event);
@@ -12,6 +12,7 @@
              fileIds.push(file);
          });
         console.log('list12345678'+list);
+       
         component.set("v.uploadedFileList",list);
     }    
 })

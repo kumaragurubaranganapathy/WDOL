@@ -1,12 +1,12 @@
-global class Dol_RestAPIservice { 
+public class Dol_RestAPIservice { 
 
-    global static HttpResponse callSOSservice(String ubi) {
+    public static HttpResponse callSOSservice(String ubi) {
     
     HttpResponse res = new HttpResponse();
         try{
             HttpRequest req = new HttpRequest();
             String url = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/sosUbi?ubi='+ubi+'&format=json&version=2&callback=?';
-            req.setEndpoint(url);
+            req.setEndpoint('callout:DOL_Mule_API/v1/sosUbi?ubi='+ubi+'&format=json&version=2&callback=?');
             req.setMethod('GET');
             Http http = new Http();
 
@@ -27,14 +27,20 @@ global class Dol_RestAPIservice {
         }
         return res;
     }
+    
+    /* [Nibedita Swain/ July 8, 2019] 
+        Convert SSN to UBI – this is now out of Release 1 as it was dependent on API.
+        Workaround – Send SSN instead of UBI (This is tested and verified with ASC)
+        Changes – We have to revert the code which was built for triggering this transaction from Salesforce
+
     @Future(callout=true)
-    global static void callASCservice(String ssn , Id contactId) {   
+    public static void callASCservice(String ssn , Id contactId) {   
     HttpResponse res = new HttpResponse();
     
         try{
             HttpRequest req = new HttpRequest();
-            //https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/ssnUID?ssn=2341
-            req.setEndpoint('https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/ssnUID?ssn='+ssn);
+            //req.setEndpoint('https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/ssnUID?ssn='+ssn);
+            req.setEndpoint('callout:UID_and_UBI_Search/v1/ssnUID?ssn='+ssn);
             req.setMethod('GET');
             Http http = new Http();
 
@@ -57,6 +63,97 @@ global class Dol_RestAPIservice {
             System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
             DebugErrorLoggger.LogError(e, '', '','callASCservice','callASCservice','callASCservice Method failed');
         }
+    }*/
+    public static HttpResponse BackOfficeUploadToSAN(Dol_UploadDocumenttoSAN.UploadData uploadobj) {
+    
+    HttpResponse res = new HttpResponse();
+        try{
+            HttpRequest req = new HttpRequest();
+            req.setEndpoint('callout:DOL_Mule_API/v1/kofaxAdd');
+            req.setMethod('POST');
+            req.setHeader('content-type', 'application/json; charset=utf-8');
+            String requestPayload = json.serialize(uploadobj);
+            req.setBody(requestPayload);
+            system.debug('req**'+req.getBody());
+            Http http = new Http();
+
+            if(!Test.isRunningTest()) {
+                //hardcoding the  response.
+                res = http.send(req);
+                system.debug('res**'+res);
+                system.debug('res=='+res.getBody());
+                // res.setBody(Dol_SOSResponse_Test.mockSOSserviceResponse);
+                // res.setStatusCode(200);
+            }else {
+                res.setBody(Dol_SOSResponse_Test.mockSOSserviceResponse);
+                res.setStatusCode(200);
+            }
+        } catch (Exception e){
+            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            DebugErrorLoggger.LogError(e, '', '','BackOfficeUploadToSAN','BackOfficeUploadToSAN','BackOfficeUploadToSAN Method failed');
+        }
+        return res;
     }
     
+    public static HttpResponse BackOfficeDeleteFileURL(Dol_DeleteAttachmentFromSubmission.DeleteData deleteObj) {
+    
+    HttpResponse res = new HttpResponse();
+        try{
+            HttpRequest req = new HttpRequest();
+            req.setEndpoint('callout:DOL_Mule_API/v1/kofaxDelete');
+            req.setMethod('POST');
+            req.setHeader('content-type', 'application/json; charset=utf-8');
+            String requestPayload = json.serialize(deleteObj);
+            req.setBody(requestPayload);
+            system.debug('req**'+req.getBody());
+            Http http = new Http();
+
+            if(!Test.isRunningTest()) {
+                //hardcoding the  response.
+                res = http.send(req);
+                system.debug('res**'+res);
+                system.debug('res=='+res.getBody());
+                // res.setBody(Dol_SOSResponse_Test.mockSOSserviceResponse);
+                // res.setStatusCode(200);
+            }else {
+                res.setBody(Dol_SOSResponse_Test.mockSOSserviceResponse);
+                res.setStatusCode(200);
+            }
+        } catch (Exception e){
+            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            DebugErrorLoggger.LogError(e, '', '','BackOfficeDeleteFileURL','BackOfficeDeleteFileURL','BackOfficeDeleteFileURL Method failed');
+        }
+        return res;
+    }
+    
+    public static HttpResponse portalUploadToSAN(List<Dol_UploadDocumenttoSAN.UploadData> uploadobj) {
+    
+    HttpResponse res = new HttpResponse();
+        try{
+            HttpRequest req = new HttpRequest();
+            req.setEndpoint('callout:DOL_Mule_API/v1/kofaxUpload');
+            req.setMethod('POST');
+            req.setHeader('content-type', 'application/json; charset=utf-8');
+            String requestPayload = json.serialize(uploadobj);
+            req.setBody(requestPayload);
+            system.debug('req**'+req.getBody());
+            Http http = new Http();
+
+            if(!Test.isRunningTest()) {
+                //hardcoding the  response.
+                res = http.send(req);
+                system.debug('res**'+res);
+                system.debug('res=='+res.getBody());
+                // res.setBody(Dol_SOSResponse_Test.mockSOSserviceResponse);
+                // res.setStatusCode(200);
+            }else {
+                res.setBody(Dol_SOSResponse_Test.mockSOSserviceResponse);
+                res.setStatusCode(200);
+            }
+        } catch (Exception e){
+            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            DebugErrorLoggger.LogError(e, '', '','portalUploadToSAN','portalUploadToSAN','portalUploadToSAN Method failed');
+        }
+        return res;
+    }
 }

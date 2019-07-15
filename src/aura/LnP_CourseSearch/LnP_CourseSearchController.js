@@ -13,8 +13,8 @@
             auraAttr = picklistArray[i].auraAttr;
             helper.doInit(component, event, objectApi, fieldsName, auraAttr);
         }
-        //
-    /*    var objectApi =  'RecordType';
+       
+       var objectApi =  'RecordType';
         var SobjectTypeValue = 'MUSW__License2__c';
         var recordTypeName = 'Course';
         var fieldsList = ['Name','Id','SobjectType'];
@@ -48,7 +48,7 @@
                 toastEvent.fire();
             }
         });
-        $A.enqueueAction(action);  */
+        $A.enqueueAction(action);  
     },
     
     searchCourse : function(component, event, helper) {

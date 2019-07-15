@@ -12,7 +12,8 @@
             "board": board, 
             "licenseType": licenseType, 
             "applicationType": applicationType,
-            "flowType": flowType 
+            "flowType": flowType,
+            "licID": component.get("v.licID"),
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
@@ -122,6 +123,13 @@
                 console.log('licenseWrapper ' + JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
+                var tabsList = component.get("v.licenseWrapper");
+            var currentTab = component.get("v.currentTab");
+        
+        if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
+        {
+            component.set("v.showNotaryEndo",true);
+        }
                // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
             } else {
                 //handle error as well
@@ -140,11 +148,14 @@
        var certArray =[]; 
 	   for (var key in tabsList) {
 			if (tabsList.hasOwnProperty(key)) {
-				if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Endorsement' ){
+				if(tabsList[key].sectionName =='License Information'){
 					for (var question in tabsList[key].labelFieldsMap){
-                        if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
-                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
-                        }						
+                        if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].value != null ){
+                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value });
+                        } 
+                        else if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].multiValues != null){
+                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString() });
+                        }
 					}
 				}
                 else if(tabsList[key].sectionName =='Attachments'){
@@ -200,6 +211,7 @@
     },
 
     showDependentQuestionsHelper : function(component, event, helper){
+        component.set("v.showEndoMessage",false);
         component.set("v.showNotaryEndo",false);
         var response = event.getSource().get("v.value").trim();
        // alert(response);
@@ -210,6 +222,11 @@
          if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {
             component.set("v.showNotaryEndo",true);
+        }
+        if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
+        {            
+            component.set("v.showEndoMessage",true);
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
         }
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
@@ -297,7 +314,7 @@
             if (state === "SUCCESS"){
                 var noFees = actionResult.getReturnValue();
                 if(noFees){
-                    window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/dashboard';
+                    window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/user-feedback';
                 }else{
                     window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;        
                 }

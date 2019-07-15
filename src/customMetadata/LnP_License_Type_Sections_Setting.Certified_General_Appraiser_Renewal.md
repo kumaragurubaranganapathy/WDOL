@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">Personal Information,License Information,Attachments,Review and Submit</value>
+        <value xsi:type="xsd:string">Personal Information,Qualifying Information,License Information,Endorsement,Attachments,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>

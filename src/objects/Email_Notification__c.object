@@ -48,6 +48,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -178,10 +179,12 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
                 <value>
                     <fullName>Inactive</fullName>
                     <default>false</default>
+                    <label>Inactive</label>
                 </value>
                 <value>
                     <fullName>Closed</fullName>
                     <default>false</default>
+                    <label>Closed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -201,10 +204,12 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
                 <value>
                     <fullName>Expired</fullName>
                     <default>false</default>
+                    <label>Expired</label>
                 </value>
                 <value>
                     <fullName>Lapsed</fullName>
                     <default>false</default>
+                    <label>Lapsed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -354,22 +359,27 @@ Email__c
                 <value>
                     <fullName>Send Individual Security Code</fullName>
                     <default>false</default>
+                    <label>Send Individual Security Code</label>
                 </value>
                 <value>
                     <fullName>Send Business Security Code</fullName>
                     <default>false</default>
+                    <label>Send Business Security Code</label>
                 </value>
                 <value>
                     <fullName>Raw HTML Body</fullName>
                     <default>false</default>
+                    <label>Raw HTML Body</label>
                 </value>
                 <value>
                     <fullName>User Upgrade</fullName>
                     <default>false</default>
+                    <label>User Upgrade</label>
                 </value>
                 <value>
                     <fullName>Email with Attachments</fullName>
                     <default>false</default>
+                    <label>Email with Attachments</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -394,4 +404,5 @@ Email__c
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
 </CustomObject>

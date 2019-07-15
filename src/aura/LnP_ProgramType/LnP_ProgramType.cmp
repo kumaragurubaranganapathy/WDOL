@@ -11,11 +11,7 @@
     <lightning:layout class="slds-align_absolute-center">
         <div><lightning:input  disabled="true" label="Validation Number" value="{!v.customerEnvelopeRec.Validation_number__c}"/></div>&nbsp;
         <div><lightning:input  disabled="true" label="Number of Payment Sources" /></div>&nbsp;
-        <div><lightning:input  disabled="true" label="Number of Documents" /></div>
-    <!--     <div> 
-           <lightning:input type="checkbox" name="Hold" label="Hold"  aura:id="hold" class="slds-p-vertical_small" 
-                            Checked="{!v.customerEnvelopeRec.Hold_Status__c}" onchange="{!c.selectChange}"/>
-        </div> -->
+        <div><lightning:input  disabled="true" label="Number of Documents" /></div>    
     </lightning:layout>
     
     <lightning:layout class="slds-align_absolute-center">
@@ -26,8 +22,12 @@
     </lightning:layout><br/>
     
     <lightning:layout class="slds-align_absolute-center" >
+         <div> 
+           <lightning:input type="checkbox" name="DHP" label="DHP"  aura:id="dhp" class="slds-p-vertical_small" 
+                            checked="{!v.customerEnvelopeRec.DHP__c}" onchange="{!c.selectChange}"/>
+        </div>&nbsp;
         <div>
-            <lightning:select aura:id="defaultPgmType" value="{!v.defaultProgramType}" name="defaultProgramType"   label="Default Program Type" onchange="{!c.enableNextButton}">
+            <lightning:select aura:id="defaultPgmType" value="{!v.defaultProgramType}" name="defaultProgramType"   label="Default Profession Type" onchange="{!c.enableNextButton}">
                 <option value="">Select an Option</option>
                 <aura:iteration items="{!v.industryMap}" var="ind" indexVar="key">                    
                     <option value="{!ind.value}" selected="{!if(ind.value==v.defaultProgramType,true,false)}">{!ind.value}</option> 

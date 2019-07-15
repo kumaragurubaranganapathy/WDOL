@@ -38,20 +38,61 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Request_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>License__c</fields>
+        <fields>Status__c</fields>
+        <label>Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>false</enableActivities>
+    <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Contact</label>
+        <referenceTo>MUSW__Account_Contact__c</referenceTo>
+        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipName>Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipName>Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>Applicant_Full_name__c</fullName>
         <externalId>false</externalId>
@@ -59,6 +100,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Applicant Full name</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -67,8 +109,10 @@
         <fullName>Application_Type__c</fullName>
         <description>Application Type</description>
         <externalId>false</externalId>
-        <label>Application Type</label>
+        <label>Application Type (To be Deleted)</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -83,6 +127,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Assigned Resource User Id</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -97,6 +142,8 @@
         <relationshipLabel>Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -110,8 +157,21 @@
         <relationshipLabel>Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Duration__c</fullName>
@@ -119,6 +179,8 @@
         <externalId>false</externalId>
         <label>Duration</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -131,6 +193,8 @@
         <externalId>false</externalId>
         <label>End Time</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
@@ -139,6 +203,8 @@
         <externalId>false</externalId>
         <label>Form JSON</label>
         <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -148,6 +214,8 @@
         <externalId>false</externalId>
         <label>License Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -326,6 +394,8 @@
         <relationshipLabel>Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -339,6 +409,8 @@
         <relationshipLabel>Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -347,6 +419,8 @@
         <externalId>false</externalId>
         <label>Profession</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -355,12 +429,24 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Request_Applicant__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Applicant</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Resource_Name__c</fullName>
         <externalId>false</externalId>
         <formula>Assigned_Resource__r.User__r.FirstName &amp; &quot; &quot; &amp; Assigned_Resource__r.User__r.LastName</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Resource Name</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -368,8 +454,10 @@
     <fields>
         <fullName>Service_Request_Type__c</fullName>
         <externalId>false</externalId>
-        <label>Service Request Type</label>
+        <label>Request Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -384,6 +472,8 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -394,6 +484,8 @@
         <externalId>false</externalId>
         <label>Start Time</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
@@ -403,6 +495,8 @@
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -410,31 +504,53 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Approve</fullName>
+                    <fullName>Approved</fullName>
                     <default>false</default>
+                    <label>Approved</label>
                 </value>
                 <value>
                     <fullName>Deny</fullName>
                     <default>false</default>
+                    <label>Deny</label>
                 </value>
                 <value>
                     <fullName>Under Review</fullName>
                     <default>false</default>
+                    <label>Under Review</label>
+                </value>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Approve</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Approve</label>
                 </value>
                 <value>
                     <fullName>Canceled</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>Canceled</label>
                 </value>
                 <value>
                     <fullName>Eligible</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>Eligible</label>
                 </value>
                 <value>
                     <fullName>Scheduled</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>Scheduled</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -559,6 +675,24 @@
         <label>Matt Janzen&apos;s Reviews</label>
     </listViews>
     <listViews>
+        <fullName>RBS_Queue_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RBS Queue</label>
+        <queue>RBS_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RE_Queue_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RE Queue</label>
+        <queue>RE_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Tim_Vander_Leest_s_Reviews</fullName>
         <columns>Resource_Name__c</columns>
         <columns>Permit_Plan_Review__c</columns>
@@ -613,9 +747,16 @@
     <nameField>
         <displayFormat>REQ-{0000}</displayFormat>
         <label>Request Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Requests</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Service_Request_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

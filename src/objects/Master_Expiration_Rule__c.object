@@ -48,6 +48,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -74,18 +75,22 @@
                 <value>
                     <fullName>New Application</fullName>
                     <default>true</default>
+                    <label>New Application</label>
                 </value>
                 <value>
                     <fullName>Renewal Application</fullName>
                     <default>false</default>
+                    <label>Renewal Application</label>
                 </value>
                 <value>
                     <fullName>Late Renewal</fullName>
                     <default>false</default>
+                    <label>Late Renewal</label>
                 </value>
                 <value>
                     <fullName>Reinstatement Application</fullName>
                     <default>false</default>
+                    <label>Reinstatement Application</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -250,6 +255,46 @@
                 <valueName>Cemetery</valueName>
             </valueSettings>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Delivery_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery Method</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Distance / On-Line</fullName>
+                    <default>false</default>
+                    <label>Distance / On-Line</label>
+                </value>
+                <value>
+                    <fullName>One-time event / Seminar</fullName>
+                    <default>false</default>
+                    <label>One-time event / Seminar</label>
+                </value>
+                <value>
+                    <fullName>Ongoing event</fullName>
+                    <default>false</default>
+                    <label>Ongoing event</label>
+                </value>
+                <value>
+                    <fullName>Classroom (Instructor in room with students)</fullName>
+                    <default>false</default>
+                    <label>Classroom (Instructor in room with students)</label>
+                </value>
+                <value>
+                    <fullName>Substantial course changes to existing,active course</fullName>
+                    <default>false</default>
+                    <label>Substantial course changes to existing,active course</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
@@ -453,6 +498,40 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Pre_Approval__c</fullName>
+        <externalId>false</externalId>
+        <label>Pre-Approval</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AQB</fullName>
+                    <default>false</default>
+                    <label>AQB</label>
+                </value>
+                <value>
+                    <fullName>IDECC</fullName>
+                    <default>false</default>
+                    <label>IDECC</label>
+                </value>
+                <value>
+                    <fullName>USPAP Instructor</fullName>
+                    <default>false</default>
+                    <label>USPAP Instructor</label>
+                </value>
+                <value>
+                    <fullName>College</fullName>
+                    <default>false</default>
+                    <label>College</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Program_Type__c</fullName>
         <externalId>false</externalId>
         <label>Program Type</label>
@@ -496,4 +575,5 @@
     <pluralLabel>Master Expiration Rules</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

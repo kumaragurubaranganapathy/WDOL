@@ -62,6 +62,16 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>DHP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>US 1898 - sending Customer Envelope to DHP list view</description>
+        <externalId>false</externalId>
+        <label>DHP</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Date_Today_s__c</fullName>
         <externalId>false</externalId>
         <formula>TODAY()</formula>

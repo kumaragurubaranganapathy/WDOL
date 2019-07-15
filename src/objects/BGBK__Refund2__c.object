@@ -164,6 +164,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Fee</label>
+        <referenceTo>MUSW__Fee__c</referenceTo>
+        <relationshipLabel>Refunds</relationshipLabel>
+        <relationshipName>Refunds</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(    NOT(ISBLANK( Fee__c ))  ,TEXT(Fee__r.MUSW__License2__r.Application_Type__c), &apos;&apos;)</formula>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Refund_Reason__c</fullName>
         <externalId>false</externalId>
         <label>Refund Reason</label>
@@ -179,6 +203,59 @@
                     <fullName>Incorrect License</fullName>
                     <default>false</default>
                     <label>Incorrect License</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reissue_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Reissue Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reissue_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Reissue Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Undeliverable Warrant</fullName>
+                    <default>false</default>
+                    <label>Undeliverable Warrant</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Rejection_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Rejection Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Reissue</fullName>
+                    <default>false</default>
+                    <label>Reissue</label>
+                </value>
+                <value>
+                    <fullName>Incorrect Refund</fullName>
+                    <default>false</default>
+                    <label>Incorrect Refund</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -214,6 +291,16 @@
                     <fullName>Send Refund</fullName>
                     <default>false</default>
                     <label>Send Refund</label>
+                </value>
+                <value>
+                    <fullName>Sent to AFRS</fullName>
+                    <default>false</default>
+                    <label>Sent to AFRS</label>
+                </value>
+                <value>
+                    <fullName>Received from AFRS</fullName>
+                    <default>false</default>
+                    <label>Received from AFRS</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -262,11 +349,6 @@
                     <label>Released</label>
                 </value>
                 <value>
-                    <fullName>Released to AFRS</fullName>
-                    <default>false</default>
-                    <label>Released to AFRS</label>
-                </value>
-                <value>
                     <fullName>Issued in Error</fullName>
                     <default>false</default>
                     <label>Issued in Error</label>
@@ -280,6 +362,37 @@
                     <fullName>Long Term Debt</fullName>
                     <default>false</default>
                     <label>Long Term Debt</label>
+                </value>
+                <value>
+                    <fullName>Sent to AFRS</fullName>
+                    <default>false</default>
+                    <label>Sent to AFRS</label>
+                </value>
+                <value>
+                    <fullName>Received from AFRS</fullName>
+                    <default>false</default>
+                    <label>Received from AFRS</label>
+                </value>
+                <value>
+                    <fullName>Lost or Damaged</fullName>
+                    <default>false</default>
+                    <label>Lost or Damaged</label>
+                </value>
+                <value>
+                    <fullName>Undeliverable</fullName>
+                    <default>false</default>
+                    <label>Undeliverable</label>
+                </value>
+                <value>
+                    <fullName>Reissued</fullName>
+                    <default>false</default>
+                    <label>Reissued</label>
+                </value>
+                <value>
+                    <fullName>Released to AFRS</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Released to AFRS</label>
                 </value>
             </valueSetDefinition>
             <valueSettings>
@@ -314,19 +427,67 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Issued in Error</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Unclaimed Property</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Long Term Debt</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Sent to AFRS</controllingFieldValue>
+                <valueName>Sent to AFRS</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
+                <valueName>Received from AFRS</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
+                <valueName>Lost or Damaged</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
+                <valueName>Undeliverable</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Received from AFRS</controllingFieldValue>
+                <valueName>Reissued</valueName>
             </valueSettings>
         </valueSet>
     </fields>
     <label>Refund</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Appraisal_Management_Company_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Appraisal Management Company Queue</label>
+        <queue>Appraisal_Management_Company_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Camping_Resorts_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Camping Resorts Queue</label>
+        <queue>Camping_Resorts_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>Disbursement_Staff_Refund_Release_Refund2</fullName>
         <filterScope>Queue</filterScope>
@@ -348,6 +509,42 @@
         <label>Rejected Refunds</label>
     </listViews>
     <listViews>
+        <fullName>Notaries_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Notaries Queue</label>
+        <queue>Notaries_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RBS_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RBS Queue</label>
+        <queue>RBS_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Real_Estate_Appraiser_Courses_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Real Estate Appraiser Courses Queue</label>
+        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Real_Estate_Appraisers_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Real Estate Appraisers Queue</label>
+        <queue>Real_Estate_Appraisers_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Refunds_on_Hold</fullName>
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
@@ -357,6 +554,32 @@
             <value>Hold</value>
         </filters>
         <label>Refunds on Hold</label>
+    </listViews>
+    <listViews>
+        <fullName>Timeshare_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Timeshare Queue</label>
+        <queue>Timeshare_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Undeliverable</fullName>
+        <columns>NAME</columns>
+        <columns>Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>BGBK__Contact__c</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Undeliverable</value>
+        </filters>
+        <label>Undeliverable</label>
     </listViews>
     <nameField>
         <displayFormat>RFD-{000000}</displayFormat>

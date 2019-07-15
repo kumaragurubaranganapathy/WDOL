@@ -42,6 +42,11 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Submissions_Layout</fullName>
+        <fields>Name</fields>
+        <label>Submissions Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
     <description>Tracks online files</description>
@@ -179,6 +184,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Complaint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Complaint</label>
+        <referenceTo>MUSW__Complaint2__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>ContentDocumentId__c</fullName>
         <externalId>false</externalId>
         <label>ContentDocumentId</label>
@@ -233,6 +251,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Inspection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Inspection</label>
+        <referenceTo>MUSW__Inspection__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Is_Backend_Submission__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Checkbox to indicate whether it is backend submission or not</description>
@@ -241,6 +272,19 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legal_Activity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Hearing and Settlement</label>
+        <referenceTo>Legal_Activity__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>LicenseQuestionKey__c</fullName>
@@ -505,6 +549,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Profession_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Profession Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Related_To__c</fullName>
         <externalId>false</externalId>
         <formula>IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
@@ -519,6 +574,152 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SAN_Area_Code__c</fullName>
+        <description>Area code of image processed</description>
+        <externalId>false</externalId>
+        <label>SAN Area Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_Department_Code__c</fullName>
+        <description>Child departments under the areas</description>
+        <externalId>false</externalId>
+        <label>SAN Department Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_Image_Name__c</fullName>
+        <description>Name of the image</description>
+        <externalId>false</externalId>
+        <label>SAN Image Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_Image_Status__c</fullName>
+        <description>Status of the Image processed by KOFAX</description>
+        <externalId>false</externalId>
+        <label>SAN Image Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending Allocation</fullName>
+                    <default>false</default>
+                    <label>Pending Allocation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SAN_Image_Type__c</fullName>
+        <description>Business area of the image scanned</description>
+        <externalId>false</externalId>
+        <label>SAN Image Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Applications</fullName>
+                    <default>false</default>
+                    <label>Applications</label>
+                </value>
+                <value>
+                    <fullName>Renewal</fullName>
+                    <default>false</default>
+                    <label>Renewal</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous</label>
+                </value>
+                <value>
+                    <fullName>Supporting</fullName>
+                    <default>false</default>
+                    <label>Supporting</label>
+                </value>
+                <value>
+                    <fullName>Import Images</fullName>
+                    <default>false</default>
+                    <label>Import Images</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SAN_Image_URL__c</fullName>
+        <description>URL of the image on SAN</description>
+        <externalId>false</externalId>
+        <label>SAN Image URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_Submission__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox for SAN submission file</description>
+        <externalId>false</externalId>
+        <label>SAN Submission</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Service_Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Request Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Service_Request_Type</valueSetName>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Show_For_Credential_Reinstatement__c</fullName>
@@ -625,6 +826,24 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <columns>MUSW__License2__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Submission_Queue_Submission</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Submission Queue</label>
+        <queue>Submission_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Submissions_Queue_Submission</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Submissions Queue</label>
+        <queue>Submissions_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <nameField>
         <label>Title</label>

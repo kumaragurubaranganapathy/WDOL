@@ -67,6 +67,7 @@
                 helper.createDynamicCompInsideContainer(container, "c:LnP_PaymentSources", attributeMap);
                 break;
             case '3' : container.set("v.body", []);
+                console.log("Case 3 " + component.get("v.defaultProgramType"));
                 var attributeMap = {"stepNumber": component.getReference("v.stepNumber"),
                                     "insertedDepositList" : component.getReference("v.insertedDepositList"),
                                     "insertedReceiptList" : component.getReference("v.insertedReceiptList"),

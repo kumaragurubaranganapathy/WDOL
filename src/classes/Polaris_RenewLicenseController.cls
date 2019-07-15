@@ -1,5 +1,6 @@
 public class Polaris_RenewLicenseController {
     public static Contact currentContact {get;set;}
+    public static String liceseIDRenewal {get;set;}
     public static List<MUSW__Application2__c> lstApps {get;set;}
     public static String sections {get;set;}
     public static Map<String,String> mapMandatorySubsection {get;set;}
@@ -10,7 +11,7 @@ public class Polaris_RenewLicenseController {
     public static Map<String,String> mapSubsectionIcon {get;set;}
     
     @AuraEnabled(cacheable = true)
-    public static string fetchRenewalData( String appId, String renewReinstate, String board, String licenseType, String applicationType, String flowType)
+    public static string fetchRenewalData( String appId, String renewReinstate, String board, String licenseType, String applicationType, String flowType, String licID)
     {
         //Creating the conditions for fetching the data       
         Integer tabIndex = 1;
@@ -69,11 +70,14 @@ public class Polaris_RenewLicenseController {
         //Fetching Section
         List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();        
         lstSections = Polaris_RenewLicenseService.fetchSection(board,licenseType,renewReinstate);
+        
         if(!lstSections.isEmpty())
         {
             sections = lstSections[0].Sections__c;
         }
         List<String> lstOfSections = sections.split(',');
+        //Fetching endorsement from License
+        List <Endorsement__c> lstendo = Polaris_RenewLicenseService.fetchEndorsements(licID);
         //Fetching Applications by application id
         lstApps = new List<MUSW__Application2__c>();
         List<MUSW__Application2__c> lstTempApplication =new List<MUSW__Application2__c>();
@@ -158,6 +162,7 @@ ansWrapper = getJSONWrapper(lstLicenseApplication);
             labelToFields.submissionDetails = Ques.Submission_Title__c;
             labelToFields.questionSectionClass = Ques.Section__c;
             labelToFields.message = Ques.Message__c;
+            labelToFields.endorsementType=Ques.Endorsement_Type__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
             if(questionSection == Ques.Section__c || Ques.Section__c==null)
             {
@@ -179,6 +184,20 @@ ansWrapper = getJSONWrapper(lstLicenseApplication);
                 labelToFields.isChild = false;
                 labelToFields.renderedOnUi = true;
             }
+            //added code to remove endorsement questions
+            Integer countEndoQuesVisible = 0;
+            for(Endorsement__c endo : lstendo)
+            {
+                if(endo.Endorsement_Type__c == Ques.Endorsement_Type__c )
+                {
+                    countEndoQuesVisible++;   
+                }
+            }
+            if(countEndoQuesVisible!=0)
+            {
+                labelToFields.renderedOnUi = false;
+            }
+            
             labelToFields.fieldAPIName = Ques.QuestionFieldAPI__c;
             labelToFields.fieldObjName = Ques.QuestionObjectName__c;
             labelToFields.conditionalAnswer = Ques.Triggering_Parent_Answer__c;
@@ -260,6 +279,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 }              
                 
             }
+            //Created for Course Information Section
+            else if(section == 'Course Information' ){
+                licenseWrapper.personalInfoObjectName = 'Account';
+                licenseWrapper.accountId = lstApps[0].MUSW__Account__c;
+                licenseWrapper.fieldJson = jsonApplicationFields;
+            } //end
             else if(section =='Business Information' &&  !lstApps.isEmpty())
             {
                 licenseWrapper.personalInfoObjectName = 'Account'; 
@@ -404,6 +429,7 @@ return parser;
     @AuraEnabled 
     public static String insertApplication(String dataString, Integer tabNumber, Id appId, String Board, String LicenseType, String ApplicationType){
         Boolean questionsIncomplete = false;
+        Boolean FGquestionsIncomplete = false;
         Boolean submissionsIncomplete = true;
         Map<String,List<LnP_Parcel__c>> mapAddress = new  Map<String,List<LnP_Parcel__c>>();
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
@@ -414,6 +440,7 @@ return parser;
         System.debug('dataString---->'+dataString);
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
         Integer questionsAnswered=0;
+        Integer FGquestionsAnswered=0;
         String accountId='';
         if(!wrapperList.isEmpty()){
             accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
@@ -447,6 +474,7 @@ return parser;
         if(listFields.size()>0){
             Integer count = 0;
             Integer questioncount = 0;
+            Integer FGquestioncount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                 
                 if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
@@ -479,14 +507,20 @@ return parser;
                     requestDetailsList.add(requestDetails);
                 }
                 if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions') || fieldMap.questionSectionClass.contains('Financial Guarantee') || fieldMap.questionSectionClass.contains('Endorsement')){
-                  count++;  
+                    count++;  
                 }
                 if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions') ){
-                questioncount++;
+                    questioncount++;
+                }
+                if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains('Financial Guarantee') ){
+                    FGquestioncount++;
                 }
                 //system.debug('fieldMap.renderedOnUi '+fieldMap.renderedOnUi);
-                if( fieldMap.questionSectionClass.contains('Questions')  && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                if( fieldMap.questionSectionClass.contains('Questions')  && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && (fieldMap.value != null && fieldMap.value !='' || fieldMap.multiValues != null  ) ){
                     questionsAnswered++;
+                }
+                if(fieldMap.questionSectionClass.contains('Financial Guarantee') && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                    FGquestionsAnswered++;
                 }
             }
             //validationForQuestions:
@@ -494,6 +528,9 @@ return parser;
             system.debug('questionsAnswered '+questionsAnswered);
             if(questionsAnswered != questioncount ){
                 questionsIncomplete = true;
+            }
+            if(FGquestionsAnswered != FGquestioncount ){
+                FGquestionsIncomplete = true;
             }
         }
         if(submissionFields.size()>0){
@@ -669,6 +706,9 @@ listApp.add(applicationChild);*/
             if(objWrapper.sectionName.contains('License Information') && questionsIncomplete==true){
                 objWrapper.sectionError = true;
             }
+            if(objWrapper.sectionName.contains('Financial Guarantee') && FGquestionsIncomplete==true){
+                objWrapper.sectionError = true;
+            } 
             if(objWrapper.mandatorySubsection != null){
                 lstMandatorySubsection = objWrapper.mandatorySubsection.split(',') ;
                 if(lstMandatorySubsection != null){
@@ -705,6 +745,7 @@ listApp.add(applicationChild);*/
         List<MUSW__Application2__c> appList =new List<MUSW__Application2__c>();
         Set<Id>  setapplicationId =  new Set<Id> ();
         String licenseID;
+        Boolean checkSuccess = false;
         // string applicationId2 = string.valueOf(applicationId).substring(0, 15);
         setapplicationId.add(applicationId);
         String appCondition = 'Id=\''+applicationId+'\'';
@@ -715,48 +756,67 @@ listApp.add(applicationChild);*/
         system.debug('Applist In AController--->'+appList);
         String stringJSON = '';
         stringJSON = appList[0].Form_JSON__c;
+        //Modified code for handling 25 subrequest governor limit
+        LnP_JSONParser ansWrapper= Polaris_ApplyForLicenseController.getJSONWrapper(stringJSON);
+        List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
+        for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
+            requestDetailsList.add(req);
+        }
+        List<List<LnP_JSONParser.CompositeRequest>> compositeReq = Polaris_ApplyForLicenseService.partition(requestDetailsList,24);
         //  System.debug('appList '+appList);
         System.debug('appList[0].Stage__c '+appList[0].Stage__c);
         if(appList != null && appList.size()>0 && appList[0].Stage__c != -1){
-            /* if(appList[0].License_Application__r != null && appList[0].License_Application__r.size()>0){
-for(LnP_Licence_Application__c app : appList[0].License_Application__r){
-stringJSON = stringJSON + app.LnP_Form_JSON__c;
-}
-}*/
-            system.debug('stringJSONfianl'+stringJSON);
-            stringJSON = stringJSON.replaceAll('\\bAnswer\\b', 'Answer_Text__c');
-            stringJSON = stringJSON.replaceAll('\\bQuestion\\b', 'Question__c');
-            stringJSON = stringJSON.replaceAll('\\bApplication\\b', 'Application_BG__c');
-            stringJSON = stringJSON.replaceAll('\\bMUSW_Application2\\b', 'MUSW__Application2__c');
-            stringJSON = stringJSON.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
-            // stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
-            stringJSON = stringJSON.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
-            // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
+            for(List<LnP_JSONParser.CompositeRequest> record: compositeReq) {    
+                Map<String,List<LnP_JSONParser.CompositeRequest>> mapList = new  Map<String,List<LnP_JSONParser.CompositeRequest>>();
+                mapList.put('compositeRequest',record);
+                string strJsonForm = JSON.serialize(mapList);
+                strJsonForm = strJsonForm.replaceAll('\\bAnswer\\b', 'Answer_Text__c');
+                strJsonForm = strJsonForm.replaceAll('\\bQuestion\\b', 'QuestionDOL__c');
+                strJsonForm = strJsonForm.replaceAll('\\bApplication\\b', 'Application_BG__c');
+                strJsonForm = strJsonForm.replaceAll('\\bMUSW_Application2\\b', 'MUSW__Application2__c');
+                strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
+                stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
+                strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
+                
+                strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
+                strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
+                strJsonForm = strJsonForm.replace('{,', '{'); //prevent opening brace from having a comma after it
+                strJsonForm = strJsonForm.replace(',}', '}'); //prevent closing brace from having a comma before it
+                strJsonForm = strJsonForm.replace('[,', '['); //prevent opening bracket from having a comma after it
+                strJsonForm = strJsonForm.replace(',]', ']');            
+                // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
+                
+                system.debug('stringJSON '+strJsonForm);
+                //stringJSON.replaceAll('Answer', 'Answer__c');
+                system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
+                HttpRequest req = new HttpRequest();
+                String url = System.Label.CompositeAPIURL;
+                req.setEndpoint(url);
+                req.setMethod('POST');
+                String sessionId=UserInfo.getSessionId();
+                req.setHeader('Authorization', 'Bearer '+ sessionId);
+                req.setHeader('Content-Type','application/json');
+                req.setBody(strJsonForm);
+                req.setTimeout(60000);     
+                Http http = new Http();
+                HTTPResponse res = http.send(req);
+                System.debug('ResponseBody'+res.getBody());
+                System.debug('Response ' + res.getStatusCode());
+                if(res.getStatusCode() == 200) {
+                    checkSuccess = true;
+                }
+                
+            }
             
-            system.debug('stringJSON '+stringJSON);
-            //stringJSON.replaceAll('Answer', 'Answer__c');
-            system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
-            HttpRequest req = new HttpRequest();
-            String url = System.Label.CompositeAPIURL;
-            req.setEndpoint(url);
-            req.setMethod('POST');
-            String sessionId=UserInfo.getSessionId();
-            req.setHeader('Authorization', 'Bearer '+ sessionId);
-            req.setHeader('Content-Type','application/json');
-            req.setBody(stringJSON);
-            Http http = new Http();
-            HTTPResponse res = http.send(req);
-            System.debug('ResponseBody'+res.getBody());
-            System.debug('Response ' + res.getStatusCode());
             
-            if(res.getStatusCode() == 200 ) {
+            if(checkSuccess) {
                 appList[0].Stage__c = -1;
                 appList[0].MUSW__Status__c = 'Under Review';
                 licenseID =insertLisence(setapplicationId,renewReinstate);
                 //Setup  for the populating the details
                 List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
                 //  String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c,(select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,License__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
-                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,Question__r.Parent_Object_API_Name__c,Question__r.Data_Type__c,Question__r.Endorsement_Type__c,Question_Section__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
+                String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.QuestionObjectName__c from Answers1__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW__Application2__c where '+appCondition;
                 system.debug('StrApp Query--->'+strAppOther);
                 appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
                 
@@ -783,33 +843,105 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Notary Public'){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r)
                     {                    
-                        if((!ans.Create_Endorsement_Record__c) && ans.Question__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' && ans.Question__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
+                        if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
                         {
                             providerName = ans.Answer_Text__c;
                         }
                     }
                 }
                 system.debug('lstAnswers '+lstAnswers);
+                Renewal_Application__c RenewalObj = [SELECT Id FROM Renewal_Application__c WHERE Id=: licenseID ];
+                
+                // added for courses
+                if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Appraiser Course'  )
+                {
+                    List<String> preApproval = new List<String>();
+                    for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r)
+                    {   if(ans.QuestionDOL__r.QuestionObjectName__c == 'Renewal_Application__c')  {
+                        
+                   
+                        ans.Renewal_Reinstatement_Application__c = licenseID;   
+                        // map course fields here
+                        if(ans.QuestionDOL__r.RecordType.DeveloperName =='Course_Information'){
+                            String QuestionObjFieldAPIName = ans.QuestionDOL__r.QuestionFieldAPI__c;
+                            system.debug(' in course info rec type filter');
+                            if(QuestionObjFieldAPIName == 'Email__c'){
+                                system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                RenewalObj.Email__c = ans.Answer_Text__c;
+                            }
+                            if(QuestionObjFieldAPIName == 'Phone__c'){
+                                system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                RenewalObj.Phone__c = ans.Answer_Text__c;
+                            }  
+                            if(QuestionObjFieldAPIName == 'Website__c'){
+                                system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                RenewalObj.Website__c = ans.Answer_Text__c;
+                            }  
+                            if(QuestionObjFieldAPIName == 'IDECC_Approval_Expiration_Date__c'){
+                                system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                RenewalObj.IDECC_Approval_Expiration_Date__c = Date.valueOf(ans.Answer_Text__c);
+                            }
+                            if(QuestionObjFieldAPIName == 'Pre_Approval__c'){
+                                
+                                system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                if(ans.QuestionDOL__r.Question_Body__c == 'Is the Provider an accredited college?' && ans.Answer_Text__c == 'Yes')
+                                {
+                                    preApproval.add('College'); 
+                                }
+                                if(ans.QuestionDOL__r.Question_Body__c == 'When does your IDECC approval expire?' &&  ans.Answer_Text__c != '' )
+                                {
+                                    preApproval.add('IDECC');
+                                    
+                                }
+                                String preApprovalString ='';
+                                for(String str : preApproval)
+                                {
+                                    preApprovalString += str + ';' ;
+                                }
+                                // remove last additional comma from string
+                                
+                                preApprovalString = preApprovalString.subString(0,preApprovalString.length());
+                                
+                                system.debug('preApproval----> '+preApproval);
+                                
+                                RenewalObj.Pre_Approval__c = preApprovalString;
+                            }
+                            if(QuestionObjFieldAPIName == 'Delivery_Method__c'){
+                                if(ans.QuestionDOL__r.Question_Body__c == 'Is this is a Distance / On-line course?' && ans.Answer_Text__c == 'Yes')
+                                {
+                                    RenewalObj.Course_Renewal_Delivery_Method__c = 'Distance / On-Line';
+                                } else
+                                {
+                                    RenewalObj.Course_Renewal_Delivery_Method__c = 'Classroom (Instructor in room with students)';
+                                }
+                            }
+                        }
+                    }
+                    }
+                    system.debug('RenewalObj1234'+RenewalObj);
+                    update RenewalObj;
+                }
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.Renewal_Reinstatement_Application__c = licenseID;                    
-                        if(ans.Create_Endorsement_Record__c && ans.Question__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes' && ans.Question__r.Parent_Object_API_Name__c== 'Renewal_Application__c')
+                        if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c')
                         {
                             Endorsement__c endorsment = new Endorsement__c();
                             endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
                             endorsment.License_Type__c = appListOtherDetils[0].Credential_Type__c;
                             //endorsment.Status__c = 'Pending Add';
-                            if(providerName!='' && appListOtherDetils[0].Credential_Type__c == 'Notary Public')
+                            if(appListOtherDetils[0].Credential_Type__c == 'Notary Public')
                             {
-                                endorsment.Electronic_Software_Provider__c = providerName;
+                                //endorsment.Electronic_Software_Provider__c = providerName;
                                 endorsment.Status__c = 'Active';
                             }
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
+                            endorsment.License__c = liceseIDRenewal;
                             lstEndorsements.add(endorsment);
                         }
-                        else if(ans.Create_Endorsement_Record__c && ans.Question__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.Question__r.Endorsement_Type__c!='Notary' && ans.Question__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
+                        else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
                         {
                             Endorsement__c endorsment = new Endorsement__c();
                             endorsment.Endorsement_Type__c = ans.Answer_Text__c;
@@ -818,6 +950,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
+                            endorsment.License__c = liceseIDRenewal;
                             lstEndorsements.add(endorsment);
                         }
                         lstAnswers.add(ans);
@@ -825,9 +958,18 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                     update lstAnswers;
                     system.debug('lstEndorsements'+lstEndorsements);
                     insert lstEndorsements;
-                    
+                    if(appListOtherDetils[0].Credential_Type__c == 'Notary Public' && lstEndorsements.size()>0)
+                    {
+                        List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Application_BG__c =:appListOtherDetils[0].Id];
+                        
+                        for(Electronic_Notary_Provider_Information__c provider : lstproviders)
+                        {
+                            provider.Endorsement__c = lstEndorsements[0].Id;
+                        }
+                        update lstproviders;
+                    }          
                     //add review record for endorsement
-                    if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
+                    /*if(appListOtherDetils[0].Credential_Type__c != 'Notary Public')
                     {
                         List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
                         for(Endorsement__c endo :lstEndorsements){
@@ -840,19 +982,9 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
                         }              
                         
                         insert lstReview;
-                    }
+                    }*/
                 }
                 //end
-                
-               /* List<BGCK__Answer__c> lstAnswers = new List<BGCK__Answer__c>();  
-                system.debug('lstAnswers '+lstAnswers);
-                if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
-                    for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
-                        ans.Renewal_Reinstatement_Application__c = licenseID; 
-                        lstAnswers.add(ans);
-                    }
-                    update lstAnswers;                
-                }*/
                 List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>();            
                 if(appListOtherDetils[0].MUSW__Submissions__r != null && appListOtherDetils[0].MUSW__Submissions__r.size()>0){
                     for(MUSW__Submission__c submissions : appListOtherDetils[0].MUSW__Submissions__r){
@@ -873,10 +1005,15 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
     
     private static ID insertLisence(Set<Id> appId,String renewReinstate){
         List<Renewal_Application__c> lstLisence = new List<Renewal_Application__c>();
-        Id licID;
+        List<MUSW__License2__c> liceList = new List<MUSW__License2__c>();
+        //Id licID;
         Id businessRT = SObjectType.Renewal_Application__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
         Id individualRT = SObjectType.Renewal_Application__c.getRecordTypeInfosByDeveloperName().get('Individual').getRecordTypeId();
-        List<MUSW__Application2__c> applicationList = [SELECT Id,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c FROM MUSW__Application2__c where id IN: appId];
+        // For Course Renewal Applications
+        Id courseRT = SObjectType.Renewal_Application__c.getRecordTypeInfosBYDeveloperName().get('Course').getRecordTypeId();
+        
+        List<MUSW__Application2__c> applicationList = [SELECT Id,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
+        system.debug('applicationList : '+applicationList);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
             mstLicense.Applicant__c = application.MUSW__Applicant__c;
@@ -886,31 +1023,136 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
             //mstLicense.Application_Method__c = application.Application_Method__c;
             if(application.MUSW__Account__c!=null)
             {
-                mstLicense.RecordTypeId = businessRT;
+                /*if(application.MUSW__Account__r.Course_Provider__c){
+mstLicense.RecordTypeId = courseRT;
+}else{
+mstLicense.RecordTypeId = businessRT; 
+}*/
+                
             }
             else
             {
                 mstLicense.RecordTypeId = individualRT;
             }
+            
+            
+            
             mstLicense.Application__c = application.id;
             //mstLicense.MUSW__Applicant__c = application.MUSW_Applicant__c;
             //mstLicense.MUSW__Primary_Licensee__c = '001r000000Cax8Y';
-            licID = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
+            liceseIDRenewal = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
             mstLicense.Renewal_Status__c = 'Generate Fee';
-            mstLicense.License__c = licID;
-            mstLicense.Renewal_Reinstatement_Type__c =renewReinstate;
+            mstLicense.License__c = liceseIDRenewal;
+            mstLicense.Renewal_Reinstatement_Type__c = renewReinstate;
+            MUSW__License2__c lic = [SELECT Id, Bond_Number__c, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c FROM MUSW__License2__c where Id =: liceseIDRenewal];
+            //Added for pol
+            Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get('Renewal_Application__c').getDescribe().SObjectType.getDescribe().fields.getMap();
+            Map<String,String>  mapValueToStr =  new Map<String,String>();
+            
+
+            
+            //--------Added by Babita---------------
+            if(application.Answers1__r != null && application.Answers1__r.size()>0) {
+                    for(BGCK__Answer__c ans : application.Answers1__r)
+                    {  
+                        //updated field name from 'QuestionObjectName__c' to 'Parent_Object_API_Name__c'
+                       if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null && ans.QuestionDOL__r.Parent_Object_API_Name__c == 'Renewal_Application__c')
+                        {   
+                            mapValueToStr.put(ans.QuestionDOL__r.QuestionFieldAPI__c,ans.Answer_Text__c);
+                        }
+                    }
+                if(!mapValueToStr.isEmpty()) {
+                    System.debug('****Inside IF****');
+                    for(String fieldName : mapValueToStr.keySet()){     
+                        if(mapValueToStr.get(fieldName) != null) {
+                            system.debug('***fieldName***'+fieldName);
+                           // system.debug('fields.get(fieldName).getDescribe().getType();'+fields.get(fieldName).getDescribe().getType());
+                            Schema.DisplayType targetType = fields.get(fieldName).getDescribe().getType();
+                            System.debug('***targetType***'+targetType);
+                            string strFieldName = String.valueOf(targetType);
+                            if(strFieldName == 'TEXTAREA' || strFieldName =='MULTIPICKLIST' || strFieldName == 'TEXT'  ) {
+                                mstLicense.put(fieldName,String.valueOf(mapValueToStr.get(fieldName)));
+                                system.debug('***RenewalObj in if***'+mstLicense);
+                            } else if(strFieldName == 'DOUBLE') {
+                                mstLicense.put(fieldName,Double.valueOf(mapValueToStr.get(fieldName))); 
+                                system.debug('***RenewalObj in else if***'+mstLicense);
+                            }    
+                        }
+
+                    }
+                    system.debug('***RenewalObj after for ends***'+mstLicense);
+                }
+
+                system.debug('Financial Guarantee if entered');
+                for(BGCK__Answer__c ans : application.Answers1__r){                    
+                    if(ans.QuestionDOL__r.RecordType.DeveloperName == 'Financial_Guarantee'){
+                        //system.debug('after If : ans.Question__r.RecordType.DeveloperName::'+ans.Question__r.RecordType.DeveloperName);
+                        
+                        String quesBody = ans.QuestionDOL__r.Question_Body__c;
+                        String answerText = ans.Answer_Text__c;
+                        String stringToDate = '';
+                        if(quesBody == 'Bond Number'){
+                            lic.Bond_Number__c = String.valueOf(answerText);
+                        }
+                        
+                        if(quesBody == 'Surety Bond Company Name'){
+                            lic.Surety_Bond_Company_Name__c = String.valueOf(answerText);
+                        }
+                        
+                        if(quesBody == 'Policy Amount'){
+                            lic.Policy_Amount__c = String.valueOf(answerText);
+                        }
+                        
+                        if(quesBody == 'Effective Date of Bond'){
+                            stringToDate = String.valueOf(answerText);
+                            Integer year = Integer.valueOf(stringToDate.subString(0, 4));
+                            Integer month = Integer.valueOf(stringToDate.substring(5, 7));
+                            Integer day = Integer.valueOf(stringToDate.subString(8));
+                            Date d = Date.newInstance(year, month, day);
+                            
+                            lic.Effective_Date_of_Bond__c = d;
+                        }
+                        
+                        if(quesBody == 'Expiration Date of Bond'){
+                            stringToDate = String.valueOf(answerText);
+                            Integer year = Integer.valueOf(stringToDate.subString(0, 4));
+                            Integer month = Integer.valueOf(stringToDate.substring(5, 7));
+                            Integer day = Integer.valueOf(stringToDate.subString(8));
+                            Date d = Date.newInstance(year, month, day);
+                            
+                            lic.Expiration_Date_of_Bond__c = d;
+                        }
+                    }            
+                    
+                    
+                    
+                }
+            }
+            //---------Completed by Babita
+            
+            liceList.add(lic);
             lstLisence.add(mstLicense);
         }
         
         if(!lstLisence.isEmpty()){
             insert lstLisence;
+            update liceList;
         }
-        List<Endorsement__c> lstEndo = [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,Renewal_Reinstatement_Application__c,License__c,Status__c FROM Endorsement__c where  License__c =:licID];
+        
+        List<Endorsement__c> lstEndo = [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,Renewal_Reinstatement_Application__c,License__c,Status__c FROM Endorsement__c where  License__c =:liceseIDRenewal];
         for(Endorsement__c endo : lstEndo)
         {
             if(endo.Status__c == 'Renew'){
                 endo.Renewal_Reinstatement_Application__c = lstLisence[0].Id;
-                endo.Status__c = 'Pending Add';
+                if(endo.Endorsement_Type__c=='Electronic Notary')
+                {
+                    endo.Status__c = 'Active';
+                }
+                else
+                {
+                    endo.Status__c = 'In-Review';
+                }
+                
             }
             
         }
@@ -978,8 +1220,8 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
         return str != null ? str.replace('\r\n', ' ').replace('\n', ' ').escapeHtml4() : str;
     }
     
-      @AuraEnabled
-      public static Boolean getTotalBalance(Id licId){
+    @AuraEnabled
+    public static Boolean getTotalBalance(Id licId){
         Boolean noFees;
         List<Renewal_Application__c> licList = [select Id,Total_Balance__c from Renewal_Application__c where Id=:licId];
         if(!licList.isEmpty() && licList[0].Total_Balance__c == 0){
@@ -994,7 +1236,7 @@ stringJSON = stringJSON + app.LnP_Form_JSON__c;
         }
         
         return noFees;
-    
+        
     }
     
     

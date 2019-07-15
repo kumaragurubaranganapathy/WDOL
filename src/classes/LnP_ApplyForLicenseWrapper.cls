@@ -37,14 +37,18 @@ public class LnP_ApplyForLicenseWrapper {
         public String answerId;
         public String messageTriggerResponse;
         public String message;
+        public String regex;
+        public String errormsg;
+        public String endorsementType;
         public Boolean isMandatoryQues;
         public List<String> fieldValueOptions;
         public List<MapRadioButtons> radioValueOptions = new List<MapRadioButtons>();
         public Boolean isGenericSub;
         public Boolean isMandatorySub;
-        public List<MapRadioButtons> educationDetailsMap = new List<MapRadioButtons>();
-        
+        public List<MapRadioButtons> educationDetailsMap = new List<MapRadioButtons>();    
+       // public String validationCriteria;
     }
+    
     public class MapRadioButtons{
         public String label;
         public String value;

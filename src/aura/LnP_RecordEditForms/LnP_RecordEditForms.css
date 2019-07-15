@@ -5,16 +5,25 @@
     border-radius: 5px;
   	border: solid 1.5px #e3e4ea;
 }
-.THIS label{
-    font-size: 14px;
-    color:t(LnGFormGray);
-    font-style:normal;
+.THIS label,.THIS .edit-field .slds-form-element__label{
+  width: 137px;
+  height: 22px;
+  font-family: token(btnfontfamily);
+  font-size: token(btnfontsize);
+  font-weight: token(txtfontweight);
+  font-style: token(txtfontstyle);
+  line-height: normal;
+  color: token(fieldclr);
 }
+
 .THIS .record-wrapper{
     margin: 25px;
 }
 .THIS .recItem{
-    padding: 10px 10px
+    padding: 5px 0;
+}
+.THIS .addRecbtn{
+    padding:5px;
 }
 .THIS.edu-wrap{
     display:flex;
@@ -43,18 +52,13 @@
   color: black;
 }
 .THIS .fieldItem{
-    width: 40%;
-    float: right;
+    width: auto;    
 }
 .THIS .addRecord{
     width: 100%;
 }
 .THIS .button-style{
-    background: #ffffff;
-    color: #4c65f2;
     padding: 4px 20px;
-    border-radius: 50px;
-    font-size:14px;
     margin-right: 20px;
 }
 .THIS .edit-btn{
@@ -80,6 +84,7 @@
 }
 .THIS.full-width{
     width: 100%;
+    margin-top:5%;
 }
 .THIS .slds-input{
     border: none;
@@ -94,4 +99,33 @@
 }
 .THIS .label-hidden label.slds-form-element__label {
     display: none;
+}
+.THIS .recItem .slds-form-element__control{
+    padding-left:0;
+}
+.THIS .recItem .slds-input{
+  height: 42px;
+  border: solid 1px #5b616b;
+  background-color: token(white);
+}
+.THIS .recItem label{
+    margin-left:0.25rem;
+}
+.THIS .recItem .field-item{
+    padding:0;  
+}
+.THIS .in-field .slds-checkbox__label{
+    display:none;
+}
+.THIS .checkbox-style .slds-checkbox [type=checkbox] {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0;
+    /*clip: rect(0 0 0 0); */
+    opacity:0;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    pointer-events: auto;
 }

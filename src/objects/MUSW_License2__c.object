@@ -49,6 +49,7 @@
     <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -104,30 +105,37 @@
                 <value>
                     <fullName>Pending</fullName>
                     <default>true</default>
+                    <label>Pending</label>
                 </value>
                 <value>
                     <fullName>Under Review</fullName>
                     <default>false</default>
+                    <label>Under Review</label>
                 </value>
                 <value>
                     <fullName>Issued</fullName>
                     <default>false</default>
+                    <label>Issued</label>
                 </value>
                 <value>
                     <fullName>Delinquent</fullName>
                     <default>false</default>
+                    <label>Delinquent</label>
                 </value>
                 <value>
                     <fullName>Suspended</fullName>
                     <default>false</default>
+                    <label>Suspended</label>
                 </value>
                 <value>
                     <fullName>Cancelled</fullName>
                     <default>false</default>
+                    <label>Cancelled</label>
                 </value>
                 <value>
                     <fullName>Submitted</fullName>
                     <default>false</default>
+                    <label>Submitted</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -148,26 +156,32 @@
                 <value>
                     <fullName>Restaurant</fullName>
                     <default>false</default>
+                    <label>Restaurant</label>
                 </value>
                 <value>
                     <fullName>Liquor</fullName>
                     <default>false</default>
+                    <label>Liquor</label>
                 </value>
                 <value>
                     <fullName>Animal</fullName>
                     <default>false</default>
+                    <label>Animal</label>
                 </value>
                 <value>
                     <fullName>Contractor</fullName>
                     <default>false</default>
+                    <label>Contractor</label>
                 </value>
                 <value>
                     <fullName>Other</fullName>
                     <default>false</default>
+                    <label>Other</label>
                 </value>
                 <value>
                     <fullName>Business</fullName>
                     <default>false</default>
+                    <label>Business</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -210,4 +224,5 @@
         <searchResultsAdditionalFields>Expiration_Date__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

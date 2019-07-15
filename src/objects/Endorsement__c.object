@@ -38,17 +38,28 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Endorsement_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Endorsement_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Licensee_Name__c</fields>
+        <fields>License__c</fields>
+        <fields>License_Status__c</fields>
+        <label>Endorsement Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To store specialties / endorsements of a license (individual / business)</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -85,7 +96,7 @@
     <fields>
         <fullName>Date_Granted__c</fullName>
         <externalId>false</externalId>
-        <label>Date Granted</label>
+        <label>First Issue Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -101,7 +112,7 @@
     <fields>
         <fullName>Date_Requested_for_Adding_Endorsement__c</fullName>
         <externalId>false</externalId>
-        <label>Date Requested for Adding Endorsement</label>
+        <label>Submitted Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -117,7 +128,7 @@
     <fields>
         <fullName>Effective_Date__c</fullName>
         <externalId>false</externalId>
-        <label>Effective Date</label>
+        <label>Current Issue Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -139,9 +150,23 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
-                <sorted>false</sorted>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Agricultural &amp; Biological</fullName>
+                    <default>false</default>
+                    <label>Agricultural &amp; Biological</label>
+                </value>
+                <value>
+                    <fullName>Both Engineering Geologist and Hydrogeologist</fullName>
+                    <default>false</default>
+                    <label>Both Engineering Geologist and Hydrogeologist</label>
+                </value>
+                <value>
+                    <fullName>Building Systems</fullName>
+                    <default>false</default>
+                    <label>Building Systems</label>
+                </value>
                 <value>
                     <fullName>Cemetery Pre-arrangement Sales</fullName>
                     <default>false</default>
@@ -151,46 +176,6 @@
                     <fullName>Cemetery Pre-arrangement Sales Exemption</fullName>
                     <default>false</default>
                     <label>Cemetery Pre-arrangement Sales Exemption</label>
-                </value>
-                <value>
-                    <fullName>Crematory</fullName>
-                    <default>false</default>
-                    <label>Crematory</label>
-                </value>
-                <value>
-                    <fullName>Funeral Pre-arrangement Contract</fullName>
-                    <default>false</default>
-                    <label>Funeral Pre-arrangement Contract</label>
-                </value>
-                <value>
-                    <fullName>Electronic Records Notary Public Endorsement</fullName>
-                    <default>false</default>
-                    <label>Electronic Records Notary Public Endorsement</label>
-                </value>
-                <value>
-                    <fullName>Engineering Geologist</fullName>
-                    <default>false</default>
-                    <label>Engineering Geologist</label>
-                </value>
-                <value>
-                    <fullName>Hydrogeologist</fullName>
-                    <default>false</default>
-                    <label>Hydrogeologist</label>
-                </value>
-                <value>
-                    <fullName>Structural Engineer</fullName>
-                    <default>false</default>
-                    <label>Structural Engineer</label>
-                </value>
-                <value>
-                    <fullName>Agricultural &amp; Biological</fullName>
-                    <default>false</default>
-                    <label>Agricultural &amp; Biological</label>
-                </value>
-                <value>
-                    <fullName>Building Systems</fullName>
-                    <default>false</default>
-                    <label>Building Systems</label>
                 </value>
                 <value>
                     <fullName>Chemical</fullName>
@@ -208,9 +193,34 @@
                     <label>Control Systems</label>
                 </value>
                 <value>
+                    <fullName>Crematory</fullName>
+                    <default>false</default>
+                    <label>Crematory</label>
+                </value>
+                <value>
                     <fullName>Electrical</fullName>
                     <default>false</default>
                     <label>Electrical</label>
+                </value>
+                <value>
+                    <fullName>Electronic Notary</fullName>
+                    <default>false</default>
+                    <label>Electronic Notary</label>
+                </value>
+                <value>
+                    <fullName>Electronic Records Notary Public Endorsement</fullName>
+                    <default>false</default>
+                    <label>Electronic Records Notary Public Endorsement</label>
+                </value>
+                <value>
+                    <fullName>Engineering</fullName>
+                    <default>false</default>
+                    <label>Engineering</label>
+                </value>
+                <value>
+                    <fullName>Engineering Geologist</fullName>
+                    <default>false</default>
+                    <label>Engineering Geologist</label>
                 </value>
                 <value>
                     <fullName>Environmental</fullName>
@@ -223,9 +233,24 @@
                     <label>Fire Protection</label>
                 </value>
                 <value>
+                    <fullName>Funeral Pre-arrangement Contract</fullName>
+                    <default>false</default>
+                    <label>Funeral Pre-arrangement Contract</label>
+                </value>
+                <value>
+                    <fullName>Hydrogeologist</fullName>
+                    <default>false</default>
+                    <label>Hydrogeologist</label>
+                </value>
+                <value>
                     <fullName>Industrial</fullName>
                     <default>false</default>
                     <label>Industrial</label>
+                </value>
+                <value>
+                    <fullName>Land Surveying</fullName>
+                    <default>false</default>
+                    <label>Land Surveying</label>
                 </value>
                 <value>
                     <fullName>Mechanical</fullName>
@@ -258,27 +283,40 @@
                     <label>Petroleum</label>
                 </value>
                 <value>
-                    <fullName>Land Surveying</fullName>
+                    <fullName>Structural Engineer</fullName>
                     <default>false</default>
-                    <label>Land Surveying</label>
+                    <label>Structural Engineer</label>
                 </value>
                 <value>
-                    <fullName>Engineering</fullName>
+                    <fullName>Supervisor</fullName>
                     <default>false</default>
-                    <label>Engineering</label>
-                </value>
-                <value>
-                    <fullName>Both Engineering Geologist and Hydrogeologist</fullName>
-                    <default>false</default>
-                    <label>Both Engineering Geologist and Hydrogeologist</label>
-                </value>
-                <value>
-                    <fullName>Eletronic Notary</fullName>
-                    <default>false</default>
-                    <label>Eletronic Notary</label>
+                    <label>Supervisor</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Hours__c</fullName>
+        <description>Endorsement Hours</description>
+        <externalId>false</externalId>
+        <label>Hours</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Applicant__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Applicant_Full_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Applicant</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License_ID__c</fullName>
@@ -286,6 +324,28 @@
         <externalId>false</externalId>
         <label>License ID</label>
         <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(License__r.MUSW__Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Status</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -314,6 +374,17 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( &apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;  License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;,  License__r.MUSW__Applicant__r.FirstName &amp; &quot; &quot;&amp;License__r.MUSW__Applicant__r.LastName  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Name_of_Electronic_Software_Provider__c</fullName>
@@ -397,6 +468,17 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(License__r.Application_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Removed_Electronic_Software_Providers__c</fullName>
@@ -556,6 +638,7 @@
     <recordTypes>
         <fullName>Endorsement</fullName>
         <active>true</active>
+        <compactLayoutAssignment>Endorsement_Compact_Layout</compactLayoutAssignment>
         <label>Endorsement</label>
         <picklistValues>
             <picklist>Endorsement_Type__c</picklist>
@@ -600,11 +683,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Electronic Records Notary Public Endorsement</fullName>
+                <fullName>Electronic Notary</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Eletronic Notary</fullName>
+                <fullName>Electronic Records Notary Public Endorsement</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -973,7 +1056,12 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Endorsement_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date_Requested_for_Adding_Endorsement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date_Granted__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Electronic_software_provider_not_blank</fullName>

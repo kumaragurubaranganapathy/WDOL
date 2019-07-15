@@ -181,8 +181,9 @@ return customerEnvelpe;
         createPayableReceipt(recRecLstArr,depRecLstArr);
         
         customerEnvelopeRec.wadol_DefaultProgramType__c= programType; 
-        
+      
         if(lockBoxId !=null){
+            system.debug('inside if');
             customerEnvelopeRec.Lockbox_Envelope__c=lockBoxId;
         }
         update customerEnvelopeRec  ;

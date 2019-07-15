@@ -99,6 +99,7 @@
                         component.set("v.screenOne", false);
                         component.set("v.screenTwo", true);
                         component.set("v.screenThree", false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else {
                         // call server and set app id
                         var action = component.get("c.addComplaint");
@@ -112,6 +113,7 @@
                                 component.set("v.screenOne", false);
                                 component.set("v.screenTwo", true);
                                 component.set("v.screenThree", false);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
                             } else {
                                 component.set("v.loadingSpinner", false);
                                 var toastEvent = $A.get("e.force:showToast");
@@ -168,11 +170,12 @@
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
                 component.set("v.screenThree", true);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
-                    "message": "Please correct the error fields",
+                    "message": "Please fill the mandatory fields",
                     "type": "error"
                 });
                 toastEvent.fire();
@@ -186,23 +189,35 @@
             component.set("v.screenOne", false);
             component.set("v.screenTwo", true);
             component.set("v.screenThree", false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         if(tabIndex == 2){
             component.set("v.currentTab", 1);
             component.set("v.screenOne", true);
             component.set("v.screenTwo", false);
             component.set("v.screenThree", false);
+            component.set("v.anonymousComplaintCheckbox", false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 	},
     showOtherFields : function(component, event, helper) {
         var professionValue = component.find("Profession").get("v.value");
         if(professionValue != ""){
+            if(professionValue == "Engineers" || professionValue == "Land Surveyors"){
+                component.set("v.displayMessage", true);
+                component.set("v.anonymousComplaint", false);
+            }else{
+                component.set("v.displayMessage", false);
+                component.set("v.anonymousComplaint", true);
+            }
             component.set("v.professionalScreen", true);
             component.set("v.selectedProfession", professionValue);
         } else {
             component.set("v.professionalScreen", false);
             component.set("v.businessScreen", false);
             component.set("v.selectedProfession", "");
+            component.set("v.displayMessage", false);
+            component.set("v.anonymousComplaint", true);
         }
     },
     submitComplaint : function(component, event, helper) {
@@ -214,13 +229,15 @@
         var information = JSON.stringify(component.get("v.informationForm"));
         var complaintSummary = component.find('complaintSummary').get('v.value');
         var agreeCheck = component.get('v.agreeCheck');
+        var anonymous = component.get("v.anonymousComplaintCheckbox");
         var complaintWrapper = {
             'selectedProfession': selectedProfession,
             'professionalData': JSON.parse(professional),
             'businessData': JSON.parse(business),
             'information' : JSON.parse(information),
             'complaintSummary' : complaintSummary,
-            'agreeCheck' : agreeCheck
+            'agreeCheck' : agreeCheck,
+            'anonymous' : anonymous
         }
         console.log('complaintWrapper : ',JSON.stringify(complaintWrapper));
         var action = component.get("c.saveComplaint");
@@ -232,11 +249,15 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
+                var form = component.find("complaintApplication");
+                $A.util.addClass(form, 'slds-hide');
                 component.set("v.loadingSpinner", false);
                 component.set("v.isOpen", true);
                 component.set("v.complaintId", result);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 component.set("v.loadingSpinner", false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
@@ -278,8 +299,12 @@
             component.set('v.agreeCheck', false);
         }
 	},
-    closeModel: function(component, event) {
-        component.set("v.isOpen", false);
-        window.location.reload();
-    }        
+    changepattern: function(component, event){
+        var fieldval=event.getSource().get("v.value");
+          if(fieldval.length==10){
+              var trimmedNo = ('' + fieldval).replace(/\D/g, '');
+              var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
+              event.getSource().set('v.value',phone);    
+          }
+    }   
 })

@@ -183,7 +183,7 @@
     <fields>
         <fullName>Create_Endorsement_Record__c</fullName>
         <externalId>false</externalId>
-        <formula>Question__r.Create_Endorsement_Record__c</formula>
+        <formula>QuestionDOL__r.Create_Endorsement_Record__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Create Endorsement Record</label>
         <trackTrending>false</trackTrending>
@@ -192,7 +192,7 @@
     <fields>
         <fullName>Endorsement_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT( Question__r.Endorsement_Type__c )</formula>
+        <formula>TEXT( QuestionDOL__r.Endorsement_Type__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Endorsement Type</label>
         <required>false</required>
@@ -238,9 +238,31 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Question2__c</fullName>
+        <description>Question</description>
+        <externalId>false</externalId>
+        <label>Question2</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>QuestionDOL__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>QuestionDOL</label>
+        <referenceTo>Question__c</referenceTo>
+        <relationshipLabel>Answers</relationshipLabel>
+        <relationshipName>Answers2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Question_Order__c</fullName>
         <externalId>false</externalId>
-        <formula>Question__r.Order_Number__c</formula>
+        <formula>QuestionDOL__r.Order_Number__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Question Order</label>
         <precision>18</precision>
@@ -253,25 +275,13 @@
     <fields>
         <fullName>Question_Section__c</fullName>
         <externalId>false</externalId>
-        <formula>Question__r.Section__c</formula>
+        <formula>QuestionDOL__r.Section__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Question Section</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Question__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Question</label>
-        <referenceTo>Question__c</referenceTo>
-        <relationshipLabel>Answers</relationshipLabel>
-        <relationshipName>Answers2</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Renewal_Reinstatement_Application__c</fullName>
@@ -308,6 +318,14 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Violation__c</fullName>
+        <externalId>false</externalId>
+        <label>Violation</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <label>Answer</label>
     <nameField>

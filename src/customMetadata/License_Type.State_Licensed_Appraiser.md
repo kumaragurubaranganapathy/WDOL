@@ -23,6 +23,10 @@
         <value xsi:type="xsd:string">Individual</value>
     </values>
     <values>
+        <field>Is_Available_for_Audit__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
         <field>Object_Name__c</field>
         <value xsi:type="xsd:string">MUSW__License2__c</value>
     </values>
@@ -33,6 +37,10 @@
     <values>
         <field>Program_Area__c</field>
         <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RBS_RE__c</field>
+        <value xsi:type="xsd:string">RE</value>
     </values>
     <values>
         <field>Record_type_Name__c</field>

@@ -1,11 +1,13 @@
 ({
 	doInit : function(component, event, helper) {
- 
+       console.log('check if temporary license selected');
+     //  helper.restrictTemporaryLicenses(component,event,helper);
 	},
     resetAttributes :  function(component, event, helper){
         helper.resetAttributesHelper(component, event, helper);
     },
     fetchAppTypeEliQuestions : function(component, event, helper){
+       
     	helper.fetchAppTypeEliQuestionsHelper(component, event, helper);
 	},
     showOrHideQuestion : function(component, event, helper){
@@ -24,7 +26,12 @@
         console.log("SD");
         helper.firePassValueEventHelper(component, event, helper);
     },
+    firePassLicenseValueEvent : function (component, event, helper){
+    	helper.firePassLicenseValueEventHelper(component, event, helper);
+    },
     setApplicationType : function(component, event, helper){
         helper.firePassValueEventHelper(component, event, helper);
-    }
+    },
+    getAccountName : function(component, event, helper){
+        helper.getAccountName(component, event, helper);}
 })

@@ -47,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -91,10 +92,12 @@
                 <value>
                     <fullName>Main</fullName>
                     <default>false</default>
+                    <label>Main</label>
                 </value>
                 <value>
                     <fullName>Back-Up</fullName>
                     <default>false</default>
+                    <label>Back-Up</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -316,9 +319,9 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Day_s_Total_Receipts__c</fullName>
+        <fullName>Day_s_Total_Receipts_del__c</fullName>
         <externalId>false</externalId>
-        <formula>Date_Lookup__r.Total_Cash_In_Register_PB__c</formula>
+        <formula>Total_Cash_in_Register_CC__c-Minus_startup_amount__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Day&apos;s Total Receipts</label>
         <precision>18</precision>
@@ -719,12 +722,14 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Over_short__c</fullName>
+        <fullName>Over_Short__c</fullName>
         <externalId>false</externalId>
-        <label>Over/short</label>
+        <formula>System_generated_cash_total__c- Day_s_Total_Receipts_del__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Over/Short</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -744,10 +749,12 @@
                 <value>
                     <fullName>Main</fullName>
                     <default>false</default>
+                    <label>Main</label>
                 </value>
                 <value>
                     <fullName>Back-up</fullName>
                     <default>false</default>
+                    <label>Back-up</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -767,14 +774,17 @@
                 <value>
                     <fullName>Open</fullName>
                     <default>false</default>
+                    <label>Open</label>
                 </value>
                 <value>
                     <fullName>Close</fullName>
                     <default>false</default>
+                    <label>Close</label>
                 </value>
                 <value>
                     <fullName>Sent to Bank</fullName>
                     <default>false</default>
+                    <label>Sent to Bank</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -791,11 +801,90 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>System_generated_cash_total__c</fullName>
+        <externalId>false</externalId>
+        <label>System generated cash total</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_for_NCR_cash__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount for NCR-cash</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_for_NCR_check__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount for NCR-check</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_for_Vouchers__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount for Vouchers</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_of_Cash__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount of Cash</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_of_Cheque__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount of Cheque</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Total_Cash_in_Register_CC__c</fullName>
         <externalId>false</externalId>
         <formula>Multiplication100CC__c + Multiplication50CC__c + Multiplication20CC__c + Multiplication10CC__c + Multiplication5CC__c + Multiplication1CC__c + Multiplication050CC__c + Multiplication025CC__c + Multiplication010CC__c + Multiplication005CC__c+ Multiplication001CC__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cash in Register</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Payment_w_o_vouchers__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Amount_of_Cash__c + Total_Amount_of_Cheque__c + Total_from_Vitalcheck__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Payment w/o vouchers</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -814,6 +903,51 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_from_Vitalcheck__c</fullName>
+        <externalId>false</externalId>
+        <label>Total from Vitalcheck</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Validation_Room_Cash_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Validation Room Cash Total</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Validation_Room_Cheque_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Validation Room Cheque Total</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Validation_Room_Vitalcheck_Total__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Validation Room Vitalcheck Total</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>X20_Multiplication__c</fullName>
@@ -841,6 +975,93 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Cash Registers</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Cash_Register</fullName>
+        <active>true</active>
+        <label>Cash Register</label>
+        <picklistValues>
+            <picklist>Cash_Register__c</picklist>
+            <values>
+                <fullName>Back-Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Register__c</picklist>
+            <values>
+                <fullName>Back-up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Bank</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Validation_Room</fullName>
+        <active>true</active>
+        <description>for closing/balancing validation room</description>
+        <label>Validation Room</label>
+        <picklistValues>
+            <picklist>Cash_Register__c</picklist>
+            <values>
+                <fullName>Back-Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Register__c</picklist>
+            <values>
+                <fullName>Back-up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Bank</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

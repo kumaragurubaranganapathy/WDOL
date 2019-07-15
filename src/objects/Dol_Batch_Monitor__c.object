@@ -48,6 +48,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -88,18 +89,22 @@
                 <value>
                     <fullName>Daily once</fullName>
                     <default>false</default>
+                    <label>Daily once</label>
                 </value>
                 <value>
                     <fullName>Daily twice</fullName>
                     <default>false</default>
+                    <label>Daily twice</label>
                 </value>
                 <value>
                     <fullName>Weekly</fullName>
                     <default>false</default>
+                    <label>Weekly</label>
                 </value>
                 <value>
                     <fullName>Monthly</fullName>
                     <default>false</default>
+                    <label>Monthly</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -127,10 +132,12 @@
                 <value>
                     <fullName>Salesforce</fullName>
                     <default>false</default>
+                    <label>Salesforce</label>
                 </value>
                 <value>
                     <fullName>Mule System</fullName>
                     <default>false</default>
+                    <label>Mule System</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -148,10 +155,12 @@
                 <value>
                     <fullName>DOL SFT Location</fullName>
                     <default>false</default>
+                    <label>DOL SFT Location</label>
                 </value>
                 <value>
                     <fullName>Salesforce</fullName>
                     <default>false</default>
+                    <label>Salesforce</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -206,4 +215,5 @@
     <pluralLabel>Batch Monitors</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

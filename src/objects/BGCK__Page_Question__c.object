@@ -75,6 +75,41 @@
         <label>Page Question Basic</label>
     </fieldSets>
     <fieldSets>
+        <fullName>Inspection</fullName>
+        <description>Used to create page questions for Inspection</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Checklist_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Application_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type_Crendential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Record_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Violation__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Inspection</label>
+    </fieldSets>
+    <fieldSets>
         <fullName>Master_page</fullName>
         <description>Name</description>
         <displayedFields>
@@ -88,6 +123,46 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <label>Master_page</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Question_Field_set</fullName>
+        <description>Dynamic Checklists</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Application_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type_Crendential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credential__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Checklist_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__IsRequired__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Review_for__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Question Field set</label>
     </fieldSets>
     <fields>
         <fullName>Application_Type__c</fullName>
@@ -259,6 +334,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Credential__c</fullName>
+        <externalId>false</externalId>
+        <label>Credential</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>External_Id__c</fullName>
         <externalId>true</externalId>
         <label>External Id</label>
@@ -277,6 +365,31 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Record Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Inspection</fullName>
+                    <default>false</default>
+                    <label>Inspection</label>
+                </value>
+                <value>
+                    <fullName>Audit</fullName>
+                    <default>false</default>
+                    <label>Audit</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Review_for__c</fullName>
@@ -359,6 +472,14 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Violation__c</fullName>
+        <externalId>false</externalId>
+        <label>Violation</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
         <externalId>true</externalId>
         <label>Mulesoft Ext Id</label>
@@ -376,19 +497,18 @@
         <columns>BGCK__BG_Checklist_Name__c</columns>
         <columns>Type__c</columns>
         <columns>BGCK__Checklist_Version_Status__c</columns>
+        <columns>BGCK__Question__c</columns>
+        <columns>BGCK__Page__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>BGCK__Checklist_Version_Status__c</field>
-            <operation>equals</operation>
-            <value>Active</value>
-        </filters>
         <label>All Active</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>BGCK__All_Draft</fullName>
         <columns>BGCK__Order__c</columns>
         <columns>NAME</columns>
         <columns>BGCK__IsRequired__c</columns>
+        <columns>BGCK__Checklist_Version_Status__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>BGCK__Checklist_Version_Status__c</field>
@@ -396,6 +516,7 @@
             <value>Draft</value>
         </filters>
         <label>All Draft</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Name</label>

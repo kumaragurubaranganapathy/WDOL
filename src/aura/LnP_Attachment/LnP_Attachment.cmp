@@ -7,13 +7,15 @@
    <aura:attribute name="docList" type="List"/>
    <aura:attribute name="labelQuesions" type="String"/> 
    <aura:attribute name="appID" type="Id"/> 
+   <aura:attribute name="allowMultipleFiles" type = "boolean" default ="true"/>
    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
    
    <div>
        <p class="slds-p-horizontal_small">
            <lightning:fileUpload name="file"
+                                 class="fileupload"
                                  label= "{!v.labelQuesions}"
-                                 multiple="true"
+                                 multiple="{!v.allowMultipleFiles}"
                                  type="file"
                                  accept="{!v.accept}"
                                  recordId="{!v.appID}"
@@ -29,7 +31,7 @@
                     <div>
                         <div class="delete-button">
                             <div onclick="{!c.deleteFile}" data-value="{!file}">
-                                <lightning:button label="X" iconPosition="left"  variant="destructive" />
+                                <lightning:button label="X" iconPosition="left"  variant="destructive" onclick="{!c.deleteFile}"/>
                             </div>
                         </div>
                         <div class="" >

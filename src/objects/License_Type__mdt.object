@@ -57,17 +57,28 @@
                 <value>
                     <fullName>Business</fullName>
                     <default>true</default>
+                    <label>Business</label>
                 </value>
                 <value>
                     <fullName>Individual</fullName>
                     <default>false</default>
+                    <label>Individual</label>
                 </value>
                 <value>
                     <fullName>Course</fullName>
                     <default>false</default>
+                    <label>Course</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_Available_for_Audit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Is Available for Audit</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Object_Name__c</fullName>
@@ -102,6 +113,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>RBS_RE__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>RBS/RE</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>RBS</fullName>
+                    <default>true</default>
+                    <label>RBS</label>
+                </value>
+                <value>
+                    <fullName>RE</fullName>
+                    <default>false</default>
+                    <label>RE</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Record_type_Name__c</fullName>
         <externalId>false</externalId>
         <fieldManageability>DeveloperControlled</fieldManageability>
@@ -120,8 +155,11 @@
         <columns>NamespacePrefix</columns>
         <columns>IndividualBusinessType__c</columns>
         <columns>Record_type_Name__c</columns>
+        <columns>Is_Available_for_Audit__c</columns>
+        <columns>RBS_RE__c</columns>
         <filterScope>Everything</filterScope>
         <label>myView</label>
+        <language>en_US</language>
     </listViews>
     <pluralLabel>License Types</pluralLabel>
     <visibility>Public</visibility>

@@ -14,8 +14,8 @@
             component.set("v.isDisabled",false);
         }else{
             //next logic
-          component.find("numOfPaymentSources").set('v.value',0);
-          component.find("paymentSourceTotal").set('v.value',0);
+            component.find("numOfPaymentSources").set('v.value',0);
+            component.find("paymentSourceTotal").set('v.value',0);
             var _receiptList = component.get("v.receiptList");       
             _receiptList.push(component.get("v.paymentType"))   ;           
             component.set("v.receiptList", _receiptList); 
@@ -23,6 +23,7 @@
         
     },
     updateReceiptList : function(component, event,_callType){
+        component.set("v.showSpinner", true);
         var _recRecList = event.getParam("receiptInstance");
         console.log("_recRecList : "+JSON.stringify(_recRecList));
         var action = component.get("c.updateRecieptRec");        
@@ -34,6 +35,7 @@
             var _toastEvt = component.getEvent("toastEvt");
             _toastEvt.setParams({'state' : state , 'data' : 'Receipt record updated' });
             _toastEvt.fire();
+            component.set("v.showSpinner", false);
             if (state === "SUCCESS") {
                 console.log("updated Record " + JSON.stringify(response.getReturnValue()));
                 var updatedReceiptRec = response.getReturnValue();
@@ -56,6 +58,7 @@
     
     saveRecieptList : function(component, event){
         debugger;
+        component.set("v.showSpinner", true);
         var _recRecList = event.getParam("receiptInstance");
         //component.set("v.currentReceiptRec",_recRecList);
         var _callType = event.getParam("callType");
@@ -69,10 +72,12 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
+            var _toastEvt = component.getEvent("toastEvt");
+            _toastEvt.setParams({'state' : state , 'data' : 'Receipt record created.' });
+            _toastEvt.fire();
+            component.set("v.showSpinner", false);
             if (state === "SUCCESS") {
-                var _toastEvt = component.getEvent("toastEvt");
-                _toastEvt.setParams({'state' : state , 'data' : 'Receipt record created.' });
-                _toastEvt.fire();
+                
                 
                 console.log("Response : Receipt List : " + JSON.stringify(response.getReturnValue()));                
                 var returnReceiptRec = response.getReturnValue();                
@@ -81,7 +86,7 @@
                 var _receiptList = component.get("v.receiptList"); 
                 _receiptList.pop();
                 _receiptList.push(returnReceiptRec)   ;           
-                component.set("v.receiptList", _receiptList); 
+                // component.set("v.receiptList", _receiptList); 
                 
                 //populating record to parent list
                 _insertedReceiptList.push(returnReceiptRec);    
@@ -106,7 +111,7 @@
         var _insertedReceiptList = component.get("v.insertedReceiptList");
         var i,totalAmount = 0, _insertedReceiptList_size = _insertedReceiptList.length;
         for(i=0 ; i < _insertedReceiptList_size ; i++){
-            totalAmount = totalAmount + _insertedReceiptList[i].MUSW__Amount_Tendered__c ;
+            totalAmount = totalAmount + Number(_insertedReceiptList[i].MUSW__Amount_Tendered__c) ;
         }
         component.find("numOfPaymentSources").set('v.value',_insertedReceiptList_size);
         component.find("paymentSourceTotal").set('v.value', totalAmount);
@@ -121,14 +126,33 @@
         switch(_callType.toUpperCase()){
             case 'ADD' :  var _paymentType = {'sobjectType': 'MUSW__Receipt__c',
                                               'MUSW__Check_Number__c' : '', 
-                                              'MUSW__Amount_Tendered__c' : ''
+                                              'MUSW__Amount_Tendered__c' : '',
+                                              'IAP_Doc__c': '',
+                                              'Sender_Agency__c': '',
+                                              'License_Number__c' : '',
+                                              'Applicant_Name__c' : '',
+                                              'JV_Number__c' :''
                                              };
                 
                 _receiptList.push(_paymentType)   ;           
                 component.set("v.receiptList", _receiptList);
                 break;
-            case 'CLONE': 	_receiptList.push(component.get("v.paymentType"))   ;           
+            case 'CLONE':
+                var currentReceiptRec =  component.get("v.receiptRec");
+                var _paymentType = {'sobjectType': 'MUSW__Receipt__c',
+                                    'MUSW__Payment_Method__c': currentReceiptRec.MUSW__Payment_Method__c,
+                                    'MUSW__Check_Number__c' : currentReceiptRec.MUSW__Check_Number__c, 
+                                    'MUSW__Amount_Tendered__c' : currentReceiptRec.MUSW__Amount_Tendered__c,
+                                    'IAP_Doc__c' : currentReceiptRec.IAP_Doc__c,
+                                    'Sender_Agency__c' : currentReceiptRec.Sender_Agency__c,
+                                    'License_Number__c' : currentReceiptRec.License_Number__c,
+                                    'Applicant_Name__c' : currentReceiptRec.Applicant_Name__c,
+                                    'JV_Number__c' : currentReceiptRec.JV_Number__c
+                                   };
+                _receiptList.push(_paymentType)  ; 
+                console.log("IN CLONE : " + JSON.stringify(_receiptList));
                 component.set("v.receiptList", _receiptList); 
+                
                 break;
             case 'UPDATE' : console.log("in progress");
                 break;

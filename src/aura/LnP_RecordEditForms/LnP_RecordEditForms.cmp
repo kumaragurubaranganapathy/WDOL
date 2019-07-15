@@ -12,25 +12,35 @@
     <aura:attribute name="recId" type="Id"/>
     <aura:attribute name="sectionName" type="String" default="Education"/>
     <aura:attribute name="recordError" type="String" access="private"/>
-    
+    <aura:attribute name="flowType" type="String" />
+    <aura:attribute name="educationHistoryId" type="String" />
+    <aura:attribute name="currentValue" type="Boolean" default="false" /><!-- added to check for Checkbox of "Current field -->
+    <aura:attribute name="currentEditValue" type="Boolean" default="false" /><!-- added to check for Checkbox of "Current field -->
+    <aura:attribute name="cardIndex" type="Integer" /><!-- added to check for card index -->
     <aura:handler  name="init" value="{!this}" action="{!c.doinit}"/> 
     <aura:if isTrue="{!v.sObj!=null}">
         <div class="tile-wrap">
             <aura:iteration items="{!v.dataRows}" var="item" indexVar="itemRow">
+                
                 <div class="recordDetail slds-large-size_6-of-12">
                     <lightning:recordEditForm aura:id="editFormDetails" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}" recordId="{!item.id}" onsuccess="{!c.handleSuccess}">
                         <div class="">
-                            <div class="form-wrapper slds-wrap row">
-                                <lightning:layout class="slds-wrap">
+                            <div class="form-wrapper slds-wrap row">                                
+                                <lightning:layout class="slds-wrap"> 
+                                    <!--{!v.currentEditValue} = currentEditValue<br></br>
+                                    {!itemRow} = itemRow<br></br>
+                                    {!v.cardIndex} = cardIndex<br></br>
+                                    {!(itemRow==v.cardIndex)} = itemRow==v.cardIndex<br></br>
+                                    {!and(v.currentEditValue,itemRow==v.cardIndex)} = (and(v.currentEditValue,itemRow==v.cardIndex)<br></br> -->
+                                    
                                     <aura:iteration items="{!item.fields}" var="rec">
-                                        <lightning:layoutItem size="6">
-                                            <div class="recItem">
-                                                <label>{!rec.label}</label>
-                                                <div class="{!itemRow + 'showHide fieldItem'}">
-                                                    <lightning:outputfield fieldName="{!rec.fieldName}" class="label-hidden" variant="label-hidden"/>
+                                        <lightning:layoutItem size="6">                                            
+                                            <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
+                                                <div class="{!itemRow + 'showHide field-item'}">
+                                                    <lightning:outputfield label="{!rec.label}" aura:id="outputEditfield" fieldName="{!rec.fieldName}" class="edit-field"  />
                                                 </div>
-                                                <div class="{!itemRow + 'showHide fieldItem slds-hide'}">
-                                                    <lightning:inputfield fieldName="{!rec.fieldName}" class="label-hidden"/>
+                                                <div class="{!itemRow + 'showHide field-item slds-hide'}">                                                    
+                                                    <lightning:inputfield label="{!rec.label}" name="{!itemRow}" aura:id="inputEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') + 'itemRow='+itemRow}" onchange="{!c.inputEditClick}"/>
                                                 </div>
                                             </div>
                                         </lightning:layoutItem>
@@ -65,27 +75,40 @@
                 </div>      
             </aura:iteration>
         </div>
-        
-        <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
-        
+        <aura:if isTrue="{!v.sectionName !='Endorsement'}">
+            <lightning:button variant="brand" label="{!'+ '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        </aura:if>
+        <aura:if isTrue="{!v.sectionName =='Endorsement'}">
+            <lightning:button variant="brand" label="+ Provider Information" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+        </aura:if>
         <div class="{!v.objectRecordType +'addRecord slds-hide full-width'}">
             
-            <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}">
+            <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">
                 <div class="">
                     
                     <lightning:messages />
                     <div class="slds-grid slds-wrap row">
                         <aura:iteration items="{!v.recordList}" var="rec">
-                            <div class="slds-col slds-size_4-of-12 recItem">
-                                <label>{!rec.label}</label>
-                                <lightning:inputfield fieldName="{!rec.fieldName}" aura:id="inputCmp" class="label-hidden"/>                            	
+                            <div class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide':'slds-col slds-size_12-of-12 field-size qfield-margin in-field recItem'):'slds-col slds-size_12-of-12 field-size qfield-margin recItem in-field')}">
+                                <label>{!rec.label}</label> 
+                                <aura:if isTrue="{!rec.required || rec.regex != null}">
+                                	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="label-hidden" onchange="{!c.test}"/>
+                                	<aura:set attribute="else">
+                                    	<lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden checkbox-style" onchange="{!c.inputClick}"/>
+                                    </aura:set>
+                                </aura:if>
                             </div>
                         </aura:iteration>
-                        <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/> 
+                        <aura:if isTrue="{!or(v.flowType =='Endorsement', v.flowType =='CE Audit')}">
+                            <lightning:inputfield fieldName="Request__c" value="{!v.applicationId}" class="slds-hide"/> 
+                            <aura:set attribute="else">
+                                <lightning:inputfield fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/>
+                            </aura:set>
+                        </aura:if>
                     </div>	
                     <lightning:layout horizontalAlign="left" class="slds-m-top_large addRecbtn ">
-                        <lightning:button class="button-style" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
-                        <lightning:button class="button-style" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
+                        <lightning:button class="button-style cancel-button" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                        <lightning:button class="{!v.sectionName+' button-style add-button'}" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
                     </lightning:layout>
                 </div>
             </lightning:recordEditForm>

@@ -8,7 +8,8 @@
    ================================================================================
    Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
    ================================================================================= -->
-<aura:component implements="forceCommunity:availableForAllPageTypes" controller="LnP_DashboardApexController_2" access="global" >
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" controller="LnP_DashboardApexController_2" access="global" >
+    
     <aura:attribute name="widgetArray" type="List"/>
     <aura:attribute name="application" type="List"/>
     <aura:attribute name="applicationToIterate" type="List" description="Duplicate of application list for having view more option"/>
@@ -20,160 +21,1122 @@
     <aura:attribute name="bottomCardListHeader" type="List"/>
     <aura:attribute name="BusinessLicense" type="List" />
     <aura:attribute name="viewMoreBusinessLicensesBoolean" type="Boolean" default="false" />
-    <aura:attribute name="CurrentLicenseTableColumnsMap" type="Map"/>
-    <aura:attribute name="DraftLicenseTableColumnsMap" type="Map"/>
-    <aura:attribute name="DraftRenewLicenseTableColumnsMap" type="Map"/>
-    <aura:attribute name="DraftMaintanceRequestTableColumnsMap" type="Map"/>
+    <aura:attribute name="submission_id" type="Id"/>
+    
+    <aura:attribute name="uploadattachements" type="Aura.Component[]"/>
+    
+    <aura:attribute name="CurrentLicenseTableColumnsList" type="List"/>
+    <aura:attribute name="CurrentLicenseTableDataList" type="List"/>
+    
+    <aura:attribute name="DraftNewLicenseApplicationsColumnList" type="List"/>
+    <aura:attribute name="DraftNewLicenseApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="DraftRenewApplicationsColumnList" type="List"/>
+    <aura:attribute name="DraftRenewApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="DraftMaintananceRequestApplicationsColumnList" type="List"/>
+    <aura:attribute name="DraftMaintananceRequestApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="PendingNewLicenseApplicationsColumnList" type="List"/>
+    <aura:attribute name="PendingNewLicenseApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="PendingRenewApplicationsColumnList" type="List"/>
+    <aura:attribute name="PendingRenewApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="PendingMaintananceRequestApplicationsColumnList" type="List"/>
+    <aura:attribute name="PendingMaintananceRequestApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="CompletedMaintananceRequestApplicationsColumnList" type="List"/>
+    <aura:attribute name="CompletedMaintananceRequestApplicationsDataList" type="List"/>
+    
+    <aura:attribute name="ProfessionalRelationshipColumnList" type="List"/>
+    <aura:attribute name="ProfessionalRelationshipDataList" type="List"/>
+    
+    <aura:attribute name="PeerRelationTableColumnsList" type="List"/>
+    <aura:attribute name="PeerRelationTableDataList" type="List"/>
+    <aura:attribute name="IsCurrentLicenseParent" type="Boolean"/>
+    
+    <aura:attribute name="BusinessLicenseTableColumnsList" type="List"/>
+    <aura:attribute name="BusinessLicenseTableDataList" type="List"/>
+    
+    <aura:attribute name ="portalURL" type ="String" default = "{!$Label.c.Polaris_Portal_Home}"/>
+    
+    <aura:attribute name ="DisplayDashboardHeader" type ="Boolean" default = "true"/>
+    <aura:attribute name ="DisplayDashboardTabs" type ="Boolean" default = "true"/>
+    <aura:attribute name ="DisplaylicenseNumberBreadCrumb" type ="Boolean" default = "false"/>
+    <aura:attribute name ="DisplayLicense_Details" type ="Boolean" default = "false"/>
+    <aura:attribute name ="displayAssociationForm" type ="Boolean" default = "false"/>
+    <aura:attribute name ="DisplayUploadDocumentsBreadCrumb" type ="Boolean" default = "false"/>
+    <aura:attribute name ="DisplayLicense_Upload_documents" type ="Boolean" default = "false"/>
+    <aura:attribute name ="DisplayAdditonalQulaificationsBreadCrumb" type ="Boolean" default = "false"/>
+    <aura:attribute name ="DisplayLicense_Additional_Qualification" type ="Boolean" default = "false"/>
+    <aura:attribute name ="isAuthenticatedUser" type="Boolean" default = "true"/>
+    <aura:attribute name ="dsiplaySpinner" type ="Boolean" default = "false"/>
+    <aura:attribute name ="displayPendingLicense_Details" type = "Boolean" default ="false"/>
+    
+    <aura:attribute name = "displayRemoveAccountContactModal" type="Boolean" default = "false"/> 
+    <aura:attribute name = "displayRemovePeerRelationShipModal" type="Boolean" default="false"/>
+    <aura:attribute name = "displayRemoveBusinessRelationShipModal" type="Boolean" default="false"/>
+    
+    <aura:attribute name="Lincese_Details_LastDate" type="String"/>
+    <aura:attribute name="LicenseNumberBreadCrumb" type="String"/>
+    <aura:attribute name="detailLicenseData" type="List" />
+    <aura:attribute name="endorsementData" type="String[]"/>
+    <aura:attribute name="licenseRelationData" type="List" />
+    <aura:attribute name="parent" type="Boolean" default="false"/>
+    <aura:attribute name="Contact_id" type="String"/>
+    <aura:attribute name="setAssociationRecordTypeId" type="String"/>
+    <aura:attribute name="removeAccountContactRelationId" type="String"/>
+    <aura:attribute name="removeAssociationtRelationId" type="String"/>
+    <aura:attribute name="pendingLicenseId" type="Id"/>
+    <aura:attribute name ="relatedSobjectName" type = "String"/>
+    <aura:attribute name="sendData" type="object"/>
+    <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <div aura:id="body">
+    
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
+    </aura:if>
+    <div aura:id="body" class="dashboard-wrapper">
+        
+        <nav role="navigation" aria-label="Breadcrumbs">
+            <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+                <li class="slds-breadcrumb__item slds-var-p-right_xx-small">
+                    <a href="javascript:void(0);" class="breadcrumb-style" onclick = "{!c.handleProfessionalBreadCrumb}">Professional Dashboard</a>
+                </li>
+                
+                <aura:if isTrue="{!v.DisplaylicenseNumberBreadCrumb}">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_small">
+                        <span>{!v.LicenseNumberBreadCrumb}</span>
+                    </li>
+                </aura:if>
+                <aura:if isTrue="{!v.DisplayUploadDocumentsBreadCrumb}">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_small">
+                        <span>attachments</span>
+                    </li>
+                </aura:if>
+                <aura:if isTrue="{!v.DisplayAdditonalQulaificationsBreadCrumb}">
+                    <li class="slds-breadcrumb__item breadcrumb-style slds-var-p-left_small">
+                        <span>qualifying information</span>
+                    </li>
+                </aura:if>
+                
+            </ol>
+        </nav>
+        
         <c:LnP_ServerActionService aura:id="server"/>
-        <c:LnP_Dashboard_2_Header/>
-        <div class="slds-grid slds-wrap">
-            
-            <aura:iteration items="{!v.widgetArray}" var="widget" indexVar="var">
-                <div class="{!widget.class +' widget'}">                
-                    <div class="app-wrapper">
-                        <!--
-                        <div class="header b-bottom">
-                        -->
-                        <!--
-                            <img src="{!$Resource.delawareSVGs +'/Icons/'+ widget.icon}" alt="{!widget.header}"/>
-                            -->
-                        <!--
-                            <a href="{!$Label.c.Polaris_Portal_Home+'licenseSelectionPage'}" target="_self" class="{!((widget.header == 'All Applications')?'app':'slds-hide')}">+ &#160;Apply for New License</a>
-                         </div>
-                         -->                         
-                    </div>
-                    <aura:if isTrue="{!widget.header == 'All Applications'}">
-                        <lightning:tabset selectedTabId="tab3">
-                            <lightning:tab class="tab-style" label="Licenses" >
-                                <div style="height: 235px;">
-                                    <c:LnP_GenericDataTable setsObjectAPIToDataTable = "MUSW__License2__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'Name':'LICENSE#',
-                                                                                                                                            'Application_Type__c':'PROFESSION',
-                                                                                                                                            'Credential_Type__c':'LICENSE TYPE',
-                                                                                                                                            'MUSW__Expiration_Date__c':'EXPIRATION DATE',
-                                                                                                                                            'MUSW__Status__c':'STATUS',
-                                                                                                                                            'Sub_Status__c':'SUB-STATUS'
-                                                                                                                                            }" setSobjectBusinessFunction = "Current Licenses"/>
+        
+        <div id="LnP_Dashboard_2_HeaderCompId" class="header-wrapper">
+            <aura:if isTrue="{!v.DisplayDashboardHeader}">
+                <c:LnP_Dashboard_2_Header/>
+            </aura:if>    
+        </div>
+        
+        <aura:if isTrue="{!v.DisplayLicense_Details}">
+            <div id="detailLicenseDataid" class="license-details-wrapper">            
+                <lightning:layout horizontalAlign="spread">
+                    <lightning:layoutItem padding="around-small">
+                        <div>
+                            <div class="info-date">Information as of {!v.Lincese_Details_LastDate}</div>
+                            <aura:iteration items="{!v.detailLicenseData}" var="item">
+                                <div class="card table-border">
+                                    <lightning:layout class="slds-wrap slds-p-around_small bottom-border">            
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
+                                            <div class="label-style text-style">License Number: </div>
+                                            <div class="data-style">{!item.Name}</div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
+                                            <div class="label-style text-style">License Type: </div>
+                                            <div class="data-style">{!item.Credential_Type__c}</div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
+                                            <div class="label-style text-style">Status: </div>
+                                            	<aura:if isTrue="{!item.MUSW__Status__c}">
+                                            		<div class="data-style">{!item.MUSW__Status__c}</div>
+                                                		<aura:set attribute="else">
+                                                            <div class="data-style">(None)</div>
+                                                    	</aura:set>
+                                            </aura:if>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                    <div class="slds-grid slds-p-around_small slds-wrap">
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">Name: </div>
+                                            <div class="slds-form-element__control">{!item.MUSW__Applicant__r.Name}</div>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">First Issue Date: </div>
+                                            	<aura:if isTrue="{!item.Original_Issue_Date__c}">
+                                            		<div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.Original_Issue_Date__c}"/></div>
+                                                		<aura:set attribute="else">
+                                                    <div class="slds-form-element__control">(None)</div>
+                                                </aura:set>
+                                        	</aura:if>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">Sub-status: </div>
+                                             	<aura:if isTrue="{!item.Sub_Status__c}">
+                                            <div class="slds-form-element__control">{!item.Sub_Status__c}</div>
+                                                 <aura:set attribute="else">
+                                                     <div class="slds-form-element__control">(None)</div>
+                                                 </aura:set>
+                                            </aura:if>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">City: </div>
+												<aura:if isTrue="{!item.LnP_Parcels__r.records[0].City__c}">
+                                            			<div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].City__c}</div>
+											   				<aura:set attribute="else">
+                                            					<div class="slds-form-element__control">(None)</div>       
+                                               				</aura:set>
+                                        		</aura:if>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">Current Issue Date: </div>
+                                            <aura:if isTrue="{!item.MUSW__Issue_Date__c}">
+                                                <div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.MUSW__Issue_Date__c}"/></div>
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-form-element__control">(None)</div>
+                                                    </aura:set>
+                                             </aura:if>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">State: </div>
+                                            	<aura:if isTrue="{!item.LnP_Parcels__r.records[0].State_Province__c}">
+                                            		<div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].State_Province__c}</div>
+                                                		<aura:set attribute="else">
+                                                    		<div class="slds-form-element__control">(None)</div>
+                                                       </aura:set>
+                                                </aura:if>                              
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">Expiration Date: </div>
+                                            	<aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
+                                            		<div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.MUSW__Expiration_Date__c}"/></div>
+                                                    	<aura:set attribute="else">
+                                                    		<div class="slds-form-element__control">(None)</div>
+                                                    	</aura:set>
+                                            	</aura:if>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">Program: </div>
+                                            	<aura:if isTrue="{!item.Application_Type__c}">
+                                            		<div class="slds-form-element__control">{!item.Application_Type__c}</div>
+                                                    	<aura:set attribute="else">
+                                                        	<div class="slds-form-element__control">(None)</div>
+                                                    	</aura:set>
+                                            	</aura:if>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-form-element__label text-style">Country: </div>
+                                            <aura:if isTrue="{!item.LnP_Parcels__r.records[0].Country__c}">
+                                            	<div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].Country__c}</div>
+                                                	<aura:set attribute="else">
+                                                    	<div class="slds-form-element__control">(None)</div>
+                                               		</aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                    <aura:if isTrue="{!v.endorsementData.length != 0}">
+                                        <div class="">
+                                            <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
+                                            <div class="section-content slds-p-around_small">
+                                                <aura:iteration items="{!v.endorsementData}" var="item">
+                                                    <div class="section-list">{!item}</div>
+                                                </aura:iteration>
+                                            </div>
+                                        </div>
+                                    </aura:if>
                                 </div>
-                                <!-- copy and paste content from Table div UI code in dashboard2.docx-->
-                            </lightning:tab>
-                            <lightning:tab class="tab-style" label="RelationShips" title="Business License">                        
-                                Work In Progress
-                            </lightning:tab>
-                            <lightning:tab class="tab-style" label="Draft Applications" id="tab3">
+                            </aura:iteration>
+                        </div><br/><br/>
+                        <div>
+                            <aura:if isTrue="{!v.PeerRelationTableDataList.length != 0 || v.BusinessLicenseTableDataList.length != 0 || v.IsCurrentLicenseParent}">
                                 
-                                	<div style="height: 150px;" class="slds-m-vertical_xx-large">                                    
-                                    <c:LnP_GenericDataTable headerName ="New License" setsObjectAPIToDataTable = "MUSW__License2__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'Application_Type__c':'PROFESSION',
-                                                                                                                                            'Credential_Type__c':'LICENSE TYPE',
-                                                                                                                                            'Application_Method__c':'APPLICATION METHOD',
-                                                                                                                                            'LastModifiedDate'       :'LAST UPDATED' 
-                                                                                                                                            }" setSobjectBusinessFunction = "Draft License"/>
-                                </div><br/><br/>
+                                <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Relationships</div>
+                                <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                    <div class="slds-float_right slds-p-vertical_small" >
+                                        <lightning:button variant="brand" label="Add Licensee" title="Add Licensee" onclick="{!c.openAssociationForm}"/>
+                                    </div>
+                                </aura:if>
+                                <div class="section-content slds-p-around_small">
+                                    <aura:if isTrue="{!v.PeerRelationTableDataList.length != 0}">
+                                        <aura:if isTrue="{!v.displayRemovePeerRelationShipModal}">
+                                            <div style="height:640px">
+                                                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                                                    <div class="slds-modal__container">
+                                                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                                            Are you sure you want to dissociate the licensee?
+                                                        </div>
+                                                        <footer class="slds-modal__footer">
+                                                            <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemovePeerRelationShipModal}">Back</button>
+                                                            <button data-id= "{!v.removeAssociationtRelationId}" class="slds-button slds-button_brand" onclick="{!c.removeAssociationRelation}">OK</button>
+                                                        </footer>
+                                                    </div>
+                                                </section>
+                                                <div class="slds-backdrop slds-backdrop_open"></div>
+                                            </div>
+                                        </aura:if>          
+                                        <div class="slds-p-vertical_large">
+                                            <div class="table-name">Peer Licenses</div>    
+                                            <div style="height:300px" class="slds-p-vertical_small">
+                                                <div style="height: 100%; position: relative;">
+                                                    <div class="table-scroll">
+                                                           
+                                                                <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                                    <thead>
+                                                                        <tr class="slds-line-height_reset">
+                                                                            <aura:iteration items="{!v.PeerRelationTableColumnsList}" var="headerData">
+                                                                                <th class="" scope="col">
+                                                                                    <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                                </th> 
+                                                                            </aura:iteration>
+                                                                            <th class="" scope="col">
+                                                                                <div class="slds-truncate" title="action"></div>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <aura:iteration items="{!v.PeerRelationTableDataList}" var="tableData" indexVar="ind">
+                                                                            <tr class="slds-hint-parent">    
+                                                                                <td data-label="Name" class="cell-style">
+                                                                                    <div class="slds-truncate">
+                                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                                            {!tableData.Child_License__r.Applicant_Full_Name__c}
+                                                                                            <aura:set attribute="else">
+                                                                                                {!tableData.Parent_License__r.Applicant_Full_Name__c}
+                                                                                            </aura:set>
+                                                                                        </aura:if>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td data-label="PROFESSION" class="cell-style">
+                                                                                    <div class="slds-truncate">
+                                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                                            {!tableData.Child_License__r.Application_Type__c}
+                                                                                            <aura:set attribute="else">
+                                                                                                {!tableData.Parent_License__r.Application_Type__c}
+                                                                                            </aura:set>
+                                                                                        </aura:if>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td data-label="LICENSE TYPE" class="cell-style">
+                                                                                    <div class="slds-truncate">
+                                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                                            {!tableData.Child_License__r.Credential_Type__c}
+                                                                                            <aura:set attribute="else">
+                                                                                                {!tableData.Parent_License__r.Credential_Type__c} 
+                                                                                            </aura:set>
+                                                                                        </aura:if>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td data-label="EMAIL" class="cell-style">
+                                                                                    <div class="slds-truncate">
+                                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                                            {!tableData.Child_License__r.Email__c} 
+                                                                                            <aura:set attribute="else">
+                                                                                                {!tableData.Parent_License__r.Email__c} 
+                                                                                            </aura:set>
+                                                                                        </aura:if>
+                                                                                    </div>
+                                                                                </td>  
+                                                                                <td data-label="actions" class="cell-style action-cell">
+                                                                                    <div class="slds-truncate">
+                                                                                        <aura:if isTrue="{!tableData.Status__c == 'Active'}">
+                                                                                            
+                                                                                            <a data-index="{!ind}" data-id = "{!tableData.Id}" href="javascript:void(0)" style="text-decoration: underline;" onclick="{!c.opendisplayRemovePeerRelationShipModal}">Separate</a>
+                                                                                            
+                                                                                        </aura:if>
+                                                                                    </div>    
+                                                                                </td>
+                                                                            </tr>  
+                                                                        </aura:iteration>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>                                                       
+                                                </div>
+                                            </div>
+                                        </div></aura:if>
+                                    <aura:if isTrue="{!v.BusinessLicenseTableDataList.length != 0}">
+                                        <aura:if isTrue="{!v.displayRemoveBusinessRelationShipModal}">
+                                            <div style="height:640px">
+                                                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                                                    <div class="slds-modal__container">
+                                                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                                            Are you sure you want to dissociate the licensee?
+                                                        </div>
+                                                        <footer class="slds-modal__footer">
+                                                            <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemoveBusinessRelationShipModal}">Back</button>
+                                                            <button data-id= "{!v.removeAssociationtRelationId}" class="slds-button slds-button_brand" onclick="{!c.removeAssociationRelation}">OK</button>
+                                                        </footer>
+                                                    </div>
+                                                </section>
+                                                <div class="slds-backdrop slds-backdrop_open"></div>
+                                            </div>
+                                        </aura:if>      
+                                        <div class="slds-p-vertical_large">
+                                            <div class="table-name">Business Relationships</div>
+                                            <div style="height:300px" class="slds-p-vertical_small">                               
+                                                
+                                                <div style="height: 100%; position: relative;">
+                                                    <div class="slds-scrollable_x" style="height: 100%;">
+                                                        <div class="slds-scrollable_y">
+                                                            <div>
+                                                                <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                                    <thead>
+                                                                        <tr class="slds-line-height_reset">
+                                                                            <aura:iteration items="{!v.BusinessLicenseTableColumnsList}" var="headerData">
+                                                                                <th class="" scope="col">
+                                                                                    <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                                </th> 
+                                                                            </aura:iteration>
+                                                                            <th class="" scope="col">
+                                                                                <div class="slds-truncate" title="actionSeperate"></div>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <aura:iteration items="{!v.BusinessLicenseTableDataList}" var="tableData" indexVar="ind">
+                                                                            <tr class="slds-hint-parent">    
+                                                                                <td data-label="Name" class="cell-style">
+                                                                                    <div class="slds-truncate">{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Name}</div>
+                                                                                </td>
+                                                                                <td data-label="Application_Type__c" class="cell-style">
+                                                                                    <div class="slds-truncate">{!tableData.Association_Type__c}</div>
+                                                                                </td>
+                                                                                <td data-label="Credential_Type__c" class="cell-style">
+                                                                                    <div class="slds-truncate">{!tableData.Parent_License__r.Credential_Type__c}</div>
+                                                                                </td>
+                                                                                <td data-label="Renewal_Expiration_Date__c" class="cell-style">
+                                                                                    <div class="slds-truncate">{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c}</div>
+                                                                                </td>
+                                                                                <td data-label="lastupdateddate" class="cell-style">
+                                                                                    <div class="slds-truncate">{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Email__c}</div>
+                                                                                </td> 
+                                                                                <td data-label="actions" class="cell-style action-cell">
+                                                                                    <div class="slds-truncate">
+                                                                                        <aura:if isTrue="{!tableData.Status__c == 'Active'}">                                                                
+                                                                                            <a data-index="{!ind}" data-id = "{!tableData.Id}" href="javascript:void(0)" style="text-decoration: underline;" onclick="{!c.opendisplayRemoveBusinessRelationShipModal}">Separate</a>                                                                
+                                                                                        </aura:if>
+                                                                                    </div>    
+                                                                                </td>
+                                                                            </tr>  
+                                                                        </aura:iteration>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aura:if>
+                                </div>
                                 
-                                	<div style="height: 150px;" class="slds-m-vertical_xx-large">                                    
-                                    <c:LnP_GenericDataTable headerName ="Renewal" setsObjectAPIToDataTable = "Renewal_Application__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'License_Number__c':'LICENSE#',
-                                                                                                                                            'Application_Type__c':'PROFESSION',
-                                                                                                                                            'Credential_Type__c':'LICENSE TYPE',
-                                                                                                                                            'Renewal_Expiration_Date__c':'EXPIRATION DATE',
-                                                                                                                                            'LastModifiedDate':'LAST UPDATED'                                                 
-                                                                                                                                            }" setSobjectBusinessFunction = "Draft Renew License"/>
-                                </div><br/><br/>
-                                
-                                	<div style="height: 150px;" class="slds-m-vertical_xx-large">                                    
-                                    <c:LnP_GenericDataTable headerName ="Maintance request" setsObjectAPIToDataTable = "Request__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'License_Type__c':'REQUEST',
-                                                                                                                                            'Service_Request_Type__c':'REQUEST AGAINST',
-                                                                                                                                            'End_Time__c' : 'Due Date'                                                                                                                                                                                          
-                                                                                                                                            }" setSobjectBusinessFunction = "Draft Maintance Request"/>
-                                </div><br/><br/>
-                                
-                            </lightning:tab>
-                            <lightning:tab class="tab-style" label="Pending Applications">
-                                      
-                                	<div style="height: 150px;" class="slds-m-vertical_xx-large">                                    
-                                    <c:LnP_GenericDataTable headerName ="New License" setsObjectAPIToDataTable = "MUSW__License2__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'Application_Type__c':'PROFESSION',
-                                                                                                                                            'Credential_Type__c':'LICENSE TYPE',
-                                                                                                                                            'Application_Method__c':'APPLICATION METHOD',
-                                                                                                                                            'LastModifiedDate'       :'LAST UPDATED' 
-                                                                                                                                            }" setSobjectBusinessFunction = "Draft License"/>
-                                </div><br/><br/>
-                                
-                                	<div style="height: 150px;" class="slds-m-vertical_xx-large">                                    
-                                    <c:LnP_GenericDataTable headerName ="Renewal" setsObjectAPIToDataTable = "Renewal_Application__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'License_Number__c':'LICENSE#',
-                                                                                                                                            'Application_Type__c':'PROFESSION',
-                                                                                                                                            'Credential_Type__c':'LICENSE TYPE',
-                                                                                                                                            'Renewal_Expiration_Date__c':'EXPIRATION DATE',
-                                                                                                                                            'LastModifiedDate':'LAST UPDATED'                                                 
-                                                                                                                                            }" setSobjectBusinessFunction = "Draft Renew License"/>
-                                </div><br/><br/>
-                                
-                                	<div style="height: 150px;" class="slds-m-vertical_xx-large">                                    
-                                    <c:LnP_GenericDataTable headerName ="Maintance request" setsObjectAPIToDataTable = "Request__c" setSobjectColumnsToDataTable =  "{
-                                                                                                                                            'License_Type__c':'REQUEST',
-                                                                                                                                            'Service_Request_Type__c':'REQUEST AGAINST',
-                                                                                                                                            'End_Time__c' : 'Due Date'                                                                                                                                                                                          
-                                                                                                                                            }" setSobjectBusinessFunction = "Draft Maintance Request"/>
-                                </div><br/><br/>
-                            </lightning:tab>
-                            <lightning:tab class="tab-style" label="Completed Requests">
-                                Work In Progress
-                            </lightning:tab>
-                        </lightning:tabset>
-                        <!--<div class="slds-card__body">
-                        <table class="slds-table slds-table_cell-buffer slds-no-row-hover" role="grid">
-                            <thead>
-                                <tr class="slds-line-height_reset">
-                                    <aura:iteration items="{!v.bottomCardListHeader}" var="item">
-                                        <th scope="col">
-                                            <div class="slds-truncate col">{!item}</div>
-                                        </th>
-                                    </aura:iteration>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <aura:iteration items="{!v.application}" var="dataCell" indexVar="ind">
-                                    <tr class="slds-hint-parent">
-                                        <td role="gridcell">
-                                            <div class="slds-truncate bottom-card-font-size">{!dataCell.type}</div>
-                                        </td>
-                                        <td role="gridcell">
-                                            <div class="slds-truncate bottom-card-font-size">{!dataCell.status}</div>
-                                        </td>
-                                        <td role="gridcell">
-                                            <div class="slds-truncate bottom-card-font-size">{!dataCell.date}</div>
-                                        </td>
-                                        <td role="gridcell">
-                                            <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href=""  target="_blank" onclick="{!c.openExistingApp}">View More</a>
-                                        </td>
-                                    </tr>                                    
-                                </aura:iteration>
-                            </tbody>
-                        </table>
-                    </div> -->
+                            </aura:if>
+                        </div>
+                        <div>
+                            <aura:if isTrue="{!v.displayPendingLicense_Details}">
+                                <lightning:tabset  class="tabs-wrapper">
+                                    <lightning:tab class="tab-style" label="EXAM" id = "ExamTab_id">
+                                        <c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/>
+                                    </lightning:tab>
+                                </lightning:tabset>
+                            </aura:if>
+                        </div>
+                    </lightning:layoutItem>
+                    
+                    <lightning:layoutItem padding="around-small">
+                        <c:Polaris_AMRLink board="{!v.detailLicenseData[0].Application_Type__c}" licenseType="{!v.detailLicenseData[0].Credential_Type__c}" applicationMethod="{!v.detailLicenseData[0].Application_Method__c}" recordId="{!v.detailLicenseData[0].Id}"  />
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.displayAssociationForm}">
+            <div style="height:640px">
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.closeModalWindow}" data-displayattribute="displayAssociationForm">
+                                <lightning:icon iconName="utility:close" alternativeText="Doc image" variant="inverse"/>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <lightning:recordEditForm aura:id="recordEditForm"  objectApiName="Associations__c" density="Auto"  
+                                                      onsuccess="{!c.handleAssociationSubmissionSuccess}"
+                                                      onerror= "{!c.handleAssociationSubmissionError}" 
+                                                      recordTypeId="{!v.setAssociationRecordTypeId}">
+                                <lightning:messages />
+                                <lightning:inputField fieldName="Name__c" />
+                                <lightning:inputField fieldName="Association_Type__c" />
+                                <lightning:inputField fieldName="Child_License__c" />   
+                                <lightning:inputField fieldName="Status__c" value = "Invited" class="slds-hide"/>
+                                <lightning:inputField fieldName="Parent_License__c" value = "{!v.detailLicenseData[0].Id}"/>
+                                <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee"/>
+                            </lightning:recordEditForm>
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.dsiplaySpinner}">
+            <div>
+                <lightning:spinner alternativeText="Loading" size="large" />
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.DisplayLicense_Upload_documents}">
+            <div>
+                <lightning:layout>
+                    <lightning:layoutItem padding="around-small">
+                        <div>
+                            <c:LnP_Attachment appID="{!v.submission_id}" labelQuesions="Upload Pending Documents" allowMultipleFiles="false"/> 
+                        </div>
+                    </lightning:layoutItem>
+                    <div data-id="{!v.pendingLicenseId}">
+                        <lightning:button class="slds-m-top_small" label="Done" onclick="{!c.setLicenseToInReview}"/>
+                    </div>
+                </lightning:layout>
+            </div>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.DisplayLicense_Additional_Qualification}">
+            <c:LnP_PendingApplicationForm recordID = "{!v.pendingLicenseId}"/>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.DisplayDashboardTabs}">
+            <lightning:tabset selectedTabId="ProfessionalLicensesTab" class="tabs-wrapper">
+                <lightning:tab class="tab-style" label="Licenses" id = "ProfessionalLicensesTab">
+                    <div>
+                        <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
+                            <div style="height: 366px;">
+                                <div style="height: 100%; position: relative;">
+                                    <div class="table-scroll">
+                                                <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                    <thead>
+                                                        <tr class="slds-line-height_reset">
+                                                            <aura:iteration items="{!v.CurrentLicenseTableColumnsList}" var="headerData">
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                </th> 
+                                                            </aura:iteration>
+                                                            <th class="" scope="col">
+                                                                <div class="slds-truncate slds-cell-fixed" title="actions"></div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <aura:iteration items="{!v.CurrentLicenseTableDataList}" var="tableData" indexVar="ind">
+                                                            <tr class="slds-hint-parent">    
+                                                                <td data-label="Name" class="cell-style">
+                                                                    <div class="slds-truncate">
+                                                                       <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayLicenseDetails}">{!tableData.Name}</a></u>
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="PROFESSION" class="cell-style">
+                                                                    <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                </td>
+                                                                <td data-label="LICENSE TYPE" class="cell-style">
+                                                                    <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                </td>
+                                                                <td data-label="EXPIRATION DATE" class="cell-style">
+                                                                    <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.MUSW__Expiration_Date__c}"/></div>
+                                                                            <aura:set attribute="else">
+                                                                                <div class="slds-truncate">(None)</div>
+                                                                            </aura:set>
+                                                                    </aura:if>
+                                                                </td>
+                                                                <td data-label="STATUS" class="cell-style">
+                                                                    <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
+                                                                </td>  
+                                                                <td data-label="SUB-STATUS" class="cell-style">
+                                                                    <aura:if isTrue="{!tableData.Sub_Status__c}">
+                                                                    	<div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>                                                                                
+                                                                </td>
+                                                                <td data-label="actions" class="cell-style action-cell">
+                                                                    <div class="slds-truncate">
+                                                                        <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
+                                                                            <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c)}">
+                                                                                <lightning:button variant="brand" label="Renewal" value="{!join(',','Renewal',tableData.Id,tableData.Application_Type__c,tableData.Credential_Type__c,tableData.Application_Method__c,tableData.Application__c,tableData.Application__r.isRenewal__c)}" title="Renewal" onclick= "{!c.renewLicense}"/>
+                                                                            </aura:if>
+                                                                            <aura:if isTrue="{!tableData.Is_Reinstatement_Eligible__c}">
+                                                                                <lightning:button variant="brand" label="Reinstate" title="Reinstate" value="{!join(',','Reinstatement',tableData.Id,tableData.Application_Type__c,tableData.Credential_Type__c,tableData.Application_Method__c,tableData.Application__c,tableData.Application__r.isRenewal__c)}" onclick = "{!c.renewLicense}"/>
+                                                                            </aura:if>
+                                                                            <aura:set attribute="else">
+                                                                                <aura:if isTrue="{!tableData.MUSW__Status__c == 'Generate Fee'}">
+                                                                                    <a data-index="{!ind}"  class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="{!'/lightningwashington/cart?id='+tableData.Id}"  target="_blank">Pay Fee</a>
+                                                                                </aura:if>
+                                                                            </aura:set>
+                                                                        </aura:if>
+                                                                    </div>    
+                                                                </td>
+                                                            </tr>  
+                                                        </aura:iteration>
+                                                    </tbody>
+                                                </table>                                          
+                                    </div>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="slds-align_absolute-center">THERE ARE NO LICENSES TO DISPLAY</div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </lightning:tab>
+                
+                <lightning:tab class="tab-style" label="Relationships" id = "ProfessionalRelationshipsTab">                        
+                    <div>
+                        <aura:if isTrue="{!v.ProfessionalRelationshipDataList.length != 0}">
+                            <aura:if isTrue="{!v.displayRemoveAccountContactModal}">
+                                <div style="height:640px">
+                                    <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                                        <div class="slds-modal__container">
+                                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                                Are you sure you want to dissociate the licensee?
+                                            </div>
+                                            <footer class="slds-modal__footer">
+                                                <button class="slds-button slds-button_neutral" onclick="{!c.closeRemoveAccountContactRelationModal}">Back</button>
+                                                <button data-id= "{!v.removeAccountContactRelationId}" class="slds-button slds-button_brand" onclick="{!c.removeAccountContactRelation}">OK</button>
+                                            </footer>
+                                        </div>
+                                    </section>
+                                    <div class="slds-backdrop slds-backdrop_open"></div>
+                                </div>
+                            </aura:if>    
+                            <div style="height: 366px;">
+                                <div style="height: 100%; position: relative;">
+                                    <div class="table-scroll">
+                                                <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                    <thead>
+                                                        <tr class="slds-line-height_reset">
+                                                            <aura:iteration items="{!v.ProfessionalRelationshipColumnList}" var="headerData">
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                </th> 
+                                                            </aura:iteration>
+                                                            <th class="" scope="col">
+                                                                <div class="slds-truncate" title="actions">
+                                                                    
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                        <aura:iteration items="{!v.ProfessionalRelationshipDataList}" var="tableData" indexVar="ind">
+                                                            <tr class="slds-hint-parent">    
+                                                                <td data-label="NAME" class="cell-style">
+                                                                    <div class="slds-truncate">{!tableData.MUSW__Account__r.Name}</div>
+                                                                </td>
+                                                                <td data-label="ROLE" class="cell-style">
+                                                                    <div class="slds-truncate">{!tableData.Role__c}</div>
+                                                                </td>
+                                                                <td data-label="TITLE" class="cell-style">
+                                                                    <aura:if isTrue="{!tableData.Title__c}">
+                                                                    	<div class="slds-truncate">{!tableData.Title__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                </td>
+                                                                <td data-label="PHONE" class="cell-style">
+                                                                    <aura:if isTrue="{!tableData.MUSW__Account__r.Business_Phone__c}">
+                                                                    	<div class="slds-truncate">{!tableData.MUSW__Account__r.Business_Phone__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                </td>                                                                         
+                                                                <td data-label="EMAIL" class="cell-style">
+                                                                    <div class="slds-truncate">{!tableData.MUSW__Account__r.Email__c}</div>
+                                                                </td>
+                                                                <td data-label="actions" class="cell-style action-cell">
+                                                                    <div class="slds-truncate">
+                                                                        <aura:if isTrue="{!tableData.Status__c == 'Active'}">
+                                                                            <a data-index="{!ind}" data-id = "{!tableData.Id}" href="javascript:void(0)" style="text-decoration: underline;" onclick="{!c.openRemoveAccountContactRelationModal}">Separate</a>
+                                                                            	<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </div>    
+                                                                </td>
+                                                            </tr>  
+                                                        </aura:iteration>
+                                                    </tbody>
+                                                </table>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="slds-align_absolute-center">THERE ARE NO RELATIONSHIPS TO DISPLAY</div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </lightning:tab>
+                
+                <lightning:tab class="tab-style" label="Draft Applications" id="ProfessionalDraftApplicationsTab">
+                    <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0 || v.DraftRenewApplicationsDataList.length != 0 || v.DraftMaintananceRequestApplicationsDataList.length != 0}">
+                        <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0}">        
+                            <div class="">
+                                <div class="table-name">New License Applications</div>    
+                                <div class="table-height">
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="table-scroll">
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.DraftNewLicenseApplicationsColumnList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actionedit"></div>
+                                                                </th>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actiondelete"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.DraftNewLicenseApplicationsDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">    
+                                                                    <td data-label="PROFESSION" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="LICENSE TYPE" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="APPLICATION METHOD" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Application_Method__c}</div>
+                                                                    </td>
+                                                                    <td data-label="LAST UPDATED" class="cell-style">
+                                                                        <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
+                                                                    </td>  
+                                                                    <td data-label="actions" class="cell-style">
+                                                                        <div class="slds-truncate"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                                                             data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
+                                                                            <lightning:button label="Edit" title="Neutral action"/>
+                                                                            <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->
+                                                                        </div>    
+                                                                    </td>
+                                                                    <td data-label="actions" class="cell-style action-cell">
+                                                                        <div class="slds-truncate"   onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
+                                                                            <lightning:button label="Delete" variant="brand"/>
+                                                                        </div>    
+                                                                    </td>
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></aura:if>
+                        <aura:if isTrue="{!v.DraftRenewApplicationsDataList.length != 0}"> 
+                            <div class="slds-p-vertical_large">
+                                <div class="table-name">Renewal Applications</div>
+                                <div style="height:300px" class="slds-p-vertical_small">                               
+                                    
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="table-scroll">
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.DraftRenewApplicationsColumnList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actionedit"></div>
+                                                                </th>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actiondelete"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.DraftRenewApplicationsDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">    
+                                                                    <td data-label="Name" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.License__r.Name}</div>
+                                                                    </td>
+                                                                    <td data-label="PROFESSION" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="LICENSE TYPE" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="EXPIRATION DATE" class="cell-style">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.Renewal_Expiration_Date__c}"/></div>
+                                                                    </td>
+                                                                    <td data-label="LAST UPDATED" class="cell-style">
+                                                                        <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
+                                                                    </td> 
+                                                                    
+                                                                    <td data-label="actions" class="cell-style">
+                                                                        <div class="slds-truncate"   onclick ="{!c.editDraftRenewApplications}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                                                             data-board = "{!tableData.Application_Type__c}">
+                                                                            <lightning:button label="Edit" title="Neutral action"/>
+                                                                            <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->
+                                                                        </div>    
+                                                                    </td>
+                                                                    <td data-label="actions" class="cell-style action-cell">
+                                                                        <div class="slds-truncate"   onclick ="{!c.deleteDraftRenewApplications}" data-recordId = "{!tableData.Id}">
+                                                                            <lightning:button label="Delete" variant="brand"/>
+                                                                        </div>    
+                                                                    </td>
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                              
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></aura:if>
+                        <aura:if isTrue="{!v.DraftMaintananceRequestApplicationsDataList.length != 0}"> 
+                            <div class="slds-p-vertical_large">
+                                <div class="table-name">Maintanance Request Applications</div>
+                                <div style="height:300px" class="slds-p-vertical_small">                               
+                                    
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="table-scroll">
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.DraftMaintananceRequestApplicationsColumnList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actionedit"></div>
+                                                                </th>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actiondelete"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.DraftMaintananceRequestApplicationsDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">    
+                                                                    <td data-label="Service_Request_Type__c" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="License_Type__c" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="LastModifiedDate" class="cell-style">
+                                                                        <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
+                                                                    </td>  
+                                                                    <td data-label="ActionEdit" class="cell-style">
+                                                                        <div class="slds-truncate" data-recordId = "{!tableData.id}">
+                                                                            <lightning:button label="Edit" title="Neutral action"/>
+                                                                        </div>    
+                                                                    </td>
+                                                                    <td data-label="ActionDelete" class="cell-style action-cell">
+                                                                        <div class="slds-truncate"  data-recordId = "{!tableData.id}">
+                                                                            <lightning:button label="Delete" title="Neutral action"/>
+                                                                        </div>    
+                                                                    </td>
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></aura:if>
                         <aura:set attribute="else">
-                            <div class="content"></div>
+                            <div class="slds-align_absolute-center">THERE IS NO CONTENT TO DISPLAY</div>
                         </aura:set>
                     </aura:if>
-                    <!--<div class="btn-wrapper">
-                    <div class="app-btn">
-                        <a href="https://deloittelnp.force.com/s/licenseSelectionPage" target="_self" class="{!((widget.header == 'All Applications')?'':'slds-hide')}">+ &#160;New Application</a>
-                    </div>  
-                    <div class="renew-btn">
-                        <lightning:button class="down-btn-wid" aura:id="button1" label="Renew" onclick="{!c.renewApplication}"/>
-                    </div>
-                    
-                </div>-->
-                    <!-- <div class="slds-no-flex view-more">
-                    <a href="{!widget.url}" target="_blank" class="fontSize">View More...</a>
-                </div> -->
-                </div>           
-            </aura:iteration>
-        </div>
+                </lightning:tab>
+                
+                <lightning:tab class="tab-style" label="Pending Applications" id = "ProfessionalPendingApplicationsTab">
+                    <aura:if isTrue="{!v.PendingNewLicenseApplicationsDataList.length != 0 || v.PendingRenewApplicationsDataList.length != 0 || v.PendingMaintananceRequestApplicationsDataList.length != 0}">
+                        <aura:if isTrue="{!v.PendingNewLicenseApplicationsDataList.length != 0}">
+                            <div class="slds-p-vertical_large">
+                                <div class="table-name">New License Applications</div>    
+                                <div style="height:300px" class="slds-p-vertical_small">
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="table-scroll">
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.PendingNewLicenseApplicationsColumnList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actions"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.PendingNewLicenseApplicationsDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">    
+                                                                    <td data-label="APPLICATION#">
+                                                                        <div class="slds-truncate">
+                                                                           <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayPendingLicenseDetails}">{!tableData.Application_Number__c}</a></u>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td data-label="PROFESSION">
+                                                                        <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="LICENSE TYPE">
+                                                                        <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="APPLICATION METHOD">
+                                                                        <div class="slds-truncate">{!tableData.Application_Method__c}</div>
+                                                                    </td>
+                                                                    <td data-label="STATUS">
+                                                                        <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
+                                                                    </td>
+                                                                    <td data-label="SUB-STATUS">
+                                                                        <aura:if isTrue="{!tableData.Sub_Status__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                        		<aura:set attribute="else">
+                                                                                    <div class="slds-truncate">(None)</div>
+                                                                        		</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="actions">
+                                                                        <div class="slds-truncate">
+                                                                            <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment') ||(tableData.MUSW__Status__c == 'Payment Pending')}">
+                                                                                <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee" onclick= "{!c.redirectToCart}"/>
+                                                                            </aura:if>
+                                                                            <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending Additional Qualifications'}">
+                                                                                <div data-id = "{!tableData.Id}" data-relatedSobject = "License__c"  onclick="{!c.updateAdditionalQualification}">
+                                                                                    <lightning:button variant="brand" label="Update"  title="Update"/>
+                                                                                </div>
+                                                                            </aura:if>
+                                                                            <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending action'}">
+                                                                                <div  onclick="{!c.uploadpendingdocuments}" data-id="{!tableData.Id}" data-number="{!tableData.Name}">
+                                                                                    <lightning:button variant="brand" label="Upload Files"/>
+                                                                                </div>    
+                                                                            </aura:if>
+                                                                        </div>  
+                                                                        <aura:if isTrue="{!or(tableData.MUSW__Status__c == 'Submitted', tableData.MUSW__Status__c == 'In-Review', tableData.MUSW__Status__c == 'In Review')}">
+                                                                        <lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>
+																		</aura:if>
+                                                                    </td>
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.PendingRenewApplicationsDataList.length != 0}">
+                            <div class="slds-p-vertical_large">
+                                <div class="table-name">Renewal / Reinstatement Applications</div>
+                                <div style="height:300px" class="slds-p-vertical_small">                               
+                                    
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="table-scroll">
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.PendingRenewApplicationsColumnList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actionedit"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.PendingRenewApplicationsDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">    
+                                                                    <td data-label="License_Number__c">
+                                                                        <div class="slds-truncate">{!tableData.License_Number__c}</div>
+                                                                    </td>
+                                                                    <td data-label="Credential_Type__c">
+                                                                        <aura:if isTrue="{!tableData.Credential_Type__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="License__r.Application_Method__c">
+                                                                        <aura:if isTrue="{!tableData.License__r.Application_Method__c}">
+                                                                        	<div class="slds-truncate">{!tableData.License__r.Application_Method__c}</div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="Renewal_Expiration_Date__c">
+                                                                        <aura:if isTrue="{!tableData.Renewal_Expiration_Date__c}">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.Renewal_Expiration_Date__c}"/></div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="Renewal_Status__c">
+                                                                        <aura:if isTrue="{!tableData.Renewal_Status__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Renewal_Status__c}</div>
+                                                                            <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="Application_Type__c">
+                                                                        <aura:if isTrue="{!tableData.Application_Type__c}">
+                                                                        	<div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                           	 <aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>                                                                    
+                                                                    <td data-label="actions">
+                                                                        <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Generate Fee')||(tableData.Renewal_Status__c == 'Pending Payment')||(tableData.Renewal_Status__c == 'Payment Pending')}">
+                                                                            <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee" onclick= "{!c.redirectToCart}"/>
+                                                                        </aura:if>
+                                                                        <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending Additional Qualifications')}">
+                                                                            <div data-id = "{!tableData.Id}" data-relatedSobject = "Renewal_Reinstatement_Application__c"  onclick="{!c.updateAdditionalQualification}">
+                                                                                <lightning:button variant="brand" label="Update"  title="Update"/>
+                                                                            </div>
+                                                                        </aura:if>
+                                                                        <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending action')}">
+                                                                            <lightning:button variant="brand" label="Update Files" value="{!tableData.Id}"/>
+                                                                        </aura:if>  
+                                                                        <!--<lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.redirectToCart}"/>-->
+                                                                    </td>
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.PendingMaintananceRequestApplicationsDataList.length != 0}">
+                            <div class="slds-p-vertical_large">
+                                <div class="table-name">Maintanance Request Applications</div>
+                                <div style="height:300px" class="slds-p-vertical_small">                               
+                                    
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="table-scroll">
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.PendingMaintananceRequestApplicationsColumnList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.PendingMaintananceRequestApplicationsDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">
+                                                                    <td data-label="Name">
+                                                                        <aura:if isTrue="{!tableData.Name}">
+                                                                        	<div class="slds-truncate">{!tableData.Name}</div>
+                                                                        		<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                     </td>        
+                                                                    <td data-label="Request type">
+                                                                        <aura:if isTrue="{!tableData.Service_Request_Type__c}">
+                                                                            <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
+                                                                        		<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="Request Against">
+                                                                        <aura:if isTrue="{!tableData.License_Type__c}">
+                                                                            <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                            	<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>
+                                                                    <td data-label="Status">
+                                                                        <aura:if isTrue="{!tableData.Status__c}">
+                                                                            <div class="slds-truncate">{!tableData.Status__c}</div>
+                                                                        		<aura:set attribute="else">(None)</aura:set>
+                                                                        </aura:if>
+                                                                    </td>  
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aura:if>
+                        <aura:set attribute="else">
+                            <div class="slds-align_absolute-center">THERE IS NO CONTETNT TO DISPLAY</div>
+                        </aura:set>
+                    </aura:if>
+                </lightning:tab>
+                
+                <lightning:tab class="tab-style" label="Completed Requests" id = "ProfessionalCompletedRequestTab">
+                    <aura:if isTrue="{!v.CompletedMaintananceRequestApplicationsDataList.length !=0}">
+                        <div class="slds-p-vertical_large">
+                            <div class="comp-desc">**Below are the maintance requests completed in last twelve months</div>
+                            <div style="max-height: 300px;min-height: 177px;" class="slds-p-vertical_small">                               
+                                
+                                <div style="height: 100%; position: relative;">
+                                    <div class="table-scroll">
+                                                <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                    <thead>
+                                                        <tr class="slds-line-height_reset">
+                                                            <aura:iteration items="{!v.CompletedMaintananceRequestApplicationsColumnList}" var="headerData">
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                </th> 
+                                                            </aura:iteration>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <aura:iteration items="{!v.CompletedMaintananceRequestApplicationsDataList}" var="tableData" indexVar="ind">
+                                                            <tr class="slds-hint-parent">
+                                                                <td data-label="Service_Request_Type__c">
+                                                                    <aura:if isTrue="{!tableData.name}">
+                                                                    	<div class="slds-truncate">{!tableData.name}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                </td>        
+                                                                <td data-label="Service_Request_Type__c">
+                                                                    <aura:if isTrue="{!tableData.Service_Request_Type__c}">
+                                                                        <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                 </td>
+                                                                <td data-label="License_Type__c">
+                                                                    <aura:if isTrue="{!tableData.License_Type__c}">
+                                                                        <div class="slds-truncate">{!tableData.License_Type__c}</div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                </td>
+                                                                <td data-label="LastModifiedDate">
+                                                                    <aura:if isTrue="{!tableData.endTime}">
+                                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.End_Time__c}"/></div>
+                                                                        	<aura:set attribute="else">(None)</aura:set>
+                                                                    </aura:if>
+                                                                </td>  
+                                                            </tr>  
+                                                        </aura:iteration>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="slds-align_absolute-center">You have no completed requests from past 12 months</div>
+                        </aura:set>
+                    </aura:if> 
+                </lightning:tab>
+                
+            </lightning:tabset>
+        </aura:if>
+        
     </div>
 </aura:component>

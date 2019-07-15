@@ -10,6 +10,9 @@
     confirmPassword: function(component, event, helper) {
         helper.confirmPassword(component, event);
     },
+    dateValidation: function(component, event, helper) {
+        helper.dateValidation(component, event);
+    },
     handlePaste: function(component, event, helper) {
         event.preventDefault(); 
     },    
@@ -24,5 +27,8 @@
     },
     hidePasswordChecker: function(component, event, helper){
         helper.hidePasswordChecker(component, event);
+    },
+    changepattern: function(component, event, helper){
+        helper.changepattern(component, event);
     }
 })

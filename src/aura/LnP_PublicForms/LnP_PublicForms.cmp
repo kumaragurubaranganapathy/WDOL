@@ -10,7 +10,8 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
 ================================================================================= -->
 <aura:component implements="forceCommunity:availableForAllPageTypes" controller="LnP_PublicFormsApexController" access="global" >
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
- <aura:attribute name="pageHeader" type="String"/>
+ 	<aura:attribute name="pageHeader" type="String"/>
+    <aura:attribute name="errortext" type="String" default=""/>
     <aura:attribute name="sectionIcons" type="List"/>
     <aura:attribute name="currentTab" type="Integer" default="1"/>   
 	<aura:attribute name="section" type="List"/>
@@ -20,9 +21,12 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     <aura:attribute name="city" type="String"/> 
     <aura:attribute name="lstAddress" type="SOD_Autocomplete_Wrapper" />
     <aura:attribute name="showResults" type="Boolean" default="false" />
+    <aura:attribute name="spinner" type="Boolean" default="false"/>
     
     <c:LnP_ServerActionService aura:id="server"/>
-    
+     <aura:if isTrue="{!v.spinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
+    </aura:if>
     <span class="slds-hide page-header">{!v.pageHeader}</span>
 	<div  id="vv" class="slds-wrap">
       
@@ -65,24 +69,29 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
 												
 												<aura:set attribute="else">	
 													<aura:if isTrue="{!v.currentTab==2}">
-														<lightning:input aura:id="formFields2" required="{!item.required}" name="{!item.title}" label="{!item.title}" placeholder="{!item.placeholder}"
+														<lightning:input aura:id="formFields2" class="userpswd" required="{!item.required}" name="{!item.title}" label="{!item.title}" placeholder="{!item.placeholder}"
 														type="{!item.type}" pattern="{!item.pattern}" value="{!item.title=='City'?v.city:(item.title=='State'?v.state:'')}"/>
 														
 													<aura:set attribute="else">	
-														<lightning:input aura:id="formFieldsRest" required="{!item.required}" name="{!item.title}" label="{!item.title}" placeholder="{!item.placeholder}"
-														type="{!item.type}" pattern="{!item.pattern}" value="{!item.title=='City'?v.city:(item.title=='State'?v.state:'')}"/>
-													</aura:set>
+                                                        <span onkeypress="{!c.search}">
+                                                            
+														<lightning:input aura:id="formFieldsRest" class="userpswd1" required="{!item.required}" name="{!item.title}" label="{!item.title}" placeholder="{!item.placeholder}"
+														type="{!item.type}" pattern="{!item.pattern}" onkeyup="{!c.clearfields}" updateOn="keyup" value="{!item.title=='City'?v.city:(item.title=='State'?v.state:'')}"/>
+													     </span>
+                                                        </aura:set>
+                                                       
 													</aura:if>	
 												</aura:set>
 											</aura:if>
 										</aura:if>
 									</div>
+                                    
 								</aura:set>
 							</aura:if>
 						</aura:iteration>
-						
+						 <div class="errortext">{!v.errortext}</div>
 						</div>
-						
+						 
                         <div class="slds-show login-btn-padding">
                         	<lightning:button variant="brand" label="Login" title="Login" onclick="{!c.loginReq}" class="login-btn"/>
     					</div>

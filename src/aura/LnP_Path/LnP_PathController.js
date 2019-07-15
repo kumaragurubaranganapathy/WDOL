@@ -1,7 +1,8 @@
 ({
 	doinit : function(component, event, helper) {
-		//console.log('LnP_BackgroundInformation'+component.get("v.path"));
+		console.log("In do init");
 		helper.changeStringArray(component, event, helper);
+        helper.test(component, event, helper);
 	},
     setCurrTab : function(component, event, helper){
 		helper.setCurrTabHelper(component, event, helper);

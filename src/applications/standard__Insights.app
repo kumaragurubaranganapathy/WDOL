@@ -4,4 +4,6 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <tabs>Master_Exam_List__c</tabs>
+    <tabs>Master_ConfigData_Listing__c</tabs>
 </CustomApplication>

@@ -38,10 +38,32 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Employment_History_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Employment_History_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Contact__c</fields>
+        <fields>Employer__c</fields>
+        <fields>Total_Hours__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_date__c</fields>
+        <label>Employment History Compact Layout</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>Training_History_Compact_Layout</fullName>
+        <fields>Contact__c</fields>
+        <fields>Name_of_Course__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_date__c</fields>
+        <label>Training History Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object is used to store the Employment History</description>
     <enableActivities>false</enableActivities>
@@ -50,10 +72,10 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -576,6 +598,7 @@
     <recordTypes>
         <fullName>Default_Employment_History</fullName>
         <active>true</active>
+        <compactLayoutAssignment>Employment_History_Compact_Layout</compactLayoutAssignment>
         <label>Default Employment History</label>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -1969,6 +1992,7 @@
     <recordTypes>
         <fullName>Employment_Training_History</fullName>
         <active>true</active>
+        <compactLayoutAssignment>Training_History_Compact_Layout</compactLayoutAssignment>
         <label>Employment Training History</label>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -3359,7 +3383,15 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Employer__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Current__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Total_Hours__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>State__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

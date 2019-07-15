@@ -12,9 +12,12 @@
     <brand>
         <headerColor>#0070D2</headerColor>
         <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>Generate leads faster, and qualify and nurture prospects using best practices.</description>
     <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Lead Generation</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
@@ -29,6 +32,8 @@
     <tabs>BGCK__Checklist_Version__c</tabs>
     <tabs>BGCK__Choice__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
+    <tabs>Master_Exam_List__c</tabs>
+    <tabs>Master_ConfigData_Listing__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Lead_Generation_UtilityBar</utilityBar>
 </CustomApplication>

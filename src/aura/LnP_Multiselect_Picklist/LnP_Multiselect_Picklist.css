@@ -5,7 +5,18 @@
 .THIS .slds-listbox__option .slds-icon-utility-check {
     opacity: 0;
 }
-
+.THIS .slds-input{
+     border: 1px solid #5b616b;
+    height:42px;
+    box-shadow:none;
+    border-radius:unset;
+}
+.THIS .slds-size_small{
+    width:19rem;
+}
+.THIS .placeholTxt{
+    padding-left:10px;
+}
 .THIS .slds-listbox__option.slds-is-selected .slds-icon-utility-check {
     opacity: 1;
 }
@@ -21,8 +32,8 @@
 
 .THIS .slds-pill__label {
   /*  color: token(ISDColorPrimary);*/
-    font-family: 'Salesforce Sans Bold';
-    padding-left: 0.5rem;
+    font-family: t(publicSansfontfamily);
+    font-weight:normal;
     padding-right: 0.5rem;
 }
 
@@ -37,6 +48,7 @@
 .THIS .slds-pill_link .slds-pill__remove,
 .THIS .slds-pill--link .slds-pill__remove {
     margin-right: 0.3rem;
+
 }
 
 .THIS .slds-pill:hover {
@@ -77,11 +89,7 @@
 .THIS .slds-combobox__input.events-none {
     pointer-events: none;
 }
-.THIS .slds-input[readonly] {
-    padding: 0 1rem 0 .75rem;
-    border: 1px solid #d4d4d4;
-    font-size: inherit;
-}
+
 @media t(mqSmall) {
  
     .THIS .parent-pill {

@@ -1,17 +1,18 @@
 ({
 	clickCreate : function(component, event) {
         console.log('inside the click create');
-        var spinner = component.find('spinner');
-        $A.util.removeClass(spinner, 'slds-hide');
+       	component.set("v.spinner",true);
+      
 		var action = component.get("c.registerNewCommunityUser");
         var firstName = component.find("firstName").get("v.value");
         var middleName = component.find("middleName").get("v.value");
         var lastName = component.find("lastName").get("v.value");
         var phoneNum = component.find("phoneNumber").get("v.value");
+        var birthdate = component.find("birthdate").get("v.value");
         var emailid = component.find("email").get("v.value");
         var password = component.find("password").get("v.value");
         var confirmpwd = component.find("confirmPassword").get("v.value");
-        
+        console.log("inside registering::");
         action.setParams({ 
             "firstN": firstName,
             "middleN": middleName,
@@ -19,8 +20,8 @@
             "phoneN": phoneNum,
             "email": emailid,
             "pwd": password,
-            "confirmpwd": confirmpwd
-            
+            "confirmpwd": confirmpwd,
+            "birthdate":birthdate
         });
 
         action.setCallback(this, function(a) {
@@ -28,7 +29,7 @@
             if (state === "SUCCESS") {
                 console.log("Successfully returned");
                 var name = a.getReturnValue();  
-                $A.util.addClass(spinner, 'slds-hide');
+               
                 if(name == 'User created successfully'){
                     component.set("v.popupHeader", "Successfully Registered");
                     component.set("v.popupBody", "Please check your email to proceed!!");
@@ -39,6 +40,7 @@
                     component.set("v.popupBody", name);
                     component.set("v.serverStatus", "fail");
                 }
+                component.set("v.spinner",false);
                 component.set("v.isOpen", true);
                 
             } else {
@@ -47,7 +49,7 @@
             }
         });
       	$A.enqueueAction(action);
-        $A.util.addClass(spinner, 'slds-hide');
+       
 	},
     checkPassword: function(component, event){
         var valueEntered = event.getSource().get("v.value");
@@ -112,9 +114,24 @@
             component.set("v.validationObject.confirmPasswordValidation", true);
         }
     },
+    dateValidation: function(component, event) {
+        var valueVal = component.find("birthdate").get("v.value");
+        var today = new Date();
+        var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+        compareDate = new Date(compareDate);
+        var enteredDate = new Date(valueVal);
+        if(enteredDate < compareDate){
+            component.set("v.dateMsg", "");
+            component.set("v.validationObject.birthdateValidation", true);
+        }else{
+            component.set("v.dateMsg", "Date must be prior to today's.");
+            component.set("v.validationObject.birthdateValidation", false);
+        }
+    },
     validateForm: function(component, event){
         component.find("firstName").showHelpMessageIfInvalid();
         component.find("lastName").showHelpMessageIfInvalid();
+        component.find("birthdate").showHelpMessageIfInvalid();
         component.find("email").showHelpMessageIfInvalid();
         var confirmEmail = component.find("confirmEmail");
         confirmEmail.showHelpMessageIfInvalid();
@@ -190,7 +207,7 @@
     validatePhone: function(component) {
         var phoneNumber = component.find("phoneNumber");
         var term = phoneNumber.get("v.value");
-        const regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        const regex = /^\(?([0-9]{3})\)?[.]?([0-9]{3})[.]?([0-9]{4})$/;
         this.clearValidityError(phoneNumber);
         if(term !="" && !regex.test(term)){
             phoneNumber.setCustomValidity('Please enter phone number in correct format');
@@ -213,6 +230,7 @@
         component.find("middleName").set("v.value", "");
         component.find("lastName").set("v.value", "");
         component.find("phoneNumber").set("v.value", "");
+        component.find("birthdate").set("v.value", "");
         component.find("email").set("v.value", "");
         component.find("confirmEmail").set("v.value", "");
         component.find("password").set("v.value", "");
@@ -229,5 +247,17 @@
     },
     hidePasswordChecker: function(component, event){
         document.getElementById("passwordStrength").style.visibility = "hidden";
+    },
+    hideOrShowSpinner: function(component, event, helper){
+        var spinner = component.find('spinner');
+        $A.util.toggleClass(spinner, 'slds-hide');
+    },
+    changepattern: function(component, event){
+        var fieldval=component.find("phoneNumber").get("v.value");
+        if(fieldval.length==10){
+            var trimmedNo = ('' + fieldval).replace(/\D/g, '');
+            var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
+            event.getSource().set('v.value',phone);    
+        }
     }
 })
