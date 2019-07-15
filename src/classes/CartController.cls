@@ -35,6 +35,7 @@ public with sharing class CartController
     public Boolean canCreate { get; private set; }
     public Boolean canPayPartial { get; private set; }
     public Boolean canPayMulti { get; private set; }
+    public Boolean isFeeTransfer { get; private set; }
     public Boolean canSelectReceipt { get; private set; }
     public Boolean checkReceiptAmount { get; private set; }
     public String itemsUnselected { get;set;}
@@ -199,7 +200,8 @@ public with sharing class CartController
             con = m_cs.getActiveContact();            
             a = m_cs.getActiveAccount();
             cart = m_cs.getActiveCart();
-            accountSelected = a.Id;
+            if(a != null)
+                accountSelected = a.Id;
             invoices = m_cs.getCartInvoices(true);
             deposits = m_cs.getCartDeposits(true);
             
@@ -286,7 +288,8 @@ public with sharing class CartController
              system.debug('fees$$'+fees);
             invoices = m_cs.getCartInvoices(true);
             deposits = m_cs.getCartDeposits(true);
-            accountSelected = a.Id;
+            if(a != null)
+                accountSelected = a.Id;
             system.debug('the accountSelected' +accountSelected);
             system.debug('the con is' +con);
             if (con != null) email = con.Email;
@@ -520,7 +523,7 @@ public with sharing class CartController
 
     public void checkout()
     {       
-        if (String.isBlank(accountSelected))
+        if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
         {
             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.');
             ApexPages.addMessage(myMsg);
@@ -587,7 +590,7 @@ public with sharing class CartController
     
     public void review()
     {       
-        if (String.isBlank(accountSelected))
+        if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
         {
             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.');
             ApexPages.addMessage(myMsg);
@@ -619,7 +622,7 @@ public with sharing class CartController
 
         Id conId = (con != null) ? con.Id : null;
         MUSW__Receipt__c receipt = [select id,MUSW__Payment_Method__c,MUSW__Paid_By__c,MUSW__Receipt_Paid_by__c,BGBK__Cart__c,MUSW__Amount_Tendered__c from MUSW__Receipt__c where id =: receiptId];
-        receipt.MUSW__Paid_By__c=a.Id;
+        receipt.MUSW__Paid_By__c=(a != null)?a.Id:null;
         receipt.MUSW__Receipt_Paid_by__c=conId;
         receipt.Status__c='Complete';
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = transactionConformationId;
@@ -636,6 +639,7 @@ public with sharing class CartController
         // default to Check eventho it's already defaulted on the field
         // VF page doesn't see the default field value
         Id conId = (con != null) ? con.Id : null;
+        Id paidBy = (a != null) ? a.Id : null;
         String pmtSelected;
         
         if(receiptVOs.size() > 0 && receiptVOs[0].pmtMethodSelected != 'Deposit') {
@@ -643,7 +647,7 @@ public with sharing class CartController
         } else {
             pmtSelected = 'Deposit';
         }
-        MUSW__Receipt__c r = new MUSW__Receipt__c(MUSW__Payment_Method__c=pmtSelected, MUSW__Paid_By__c=a.Id, MUSW__Receipt_Paid_by__c=conId, BGBK__Cart__c=cart.Id);
+        MUSW__Receipt__c r = new MUSW__Receipt__c(MUSW__Payment_Method__c=pmtSelected, MUSW__Paid_By__c=paidBy, MUSW__Receipt_Paid_by__c=conId, BGBK__Cart__c=cart.Id);
         rs.add(r);
         ReceiptVO newReceiptVO = new ReceiptVO(r, r.MUSW__Amount_Tendered__c, m_rs);
         newReceiptVO.pmtMethodSelected=pmtSelected;
@@ -918,7 +922,42 @@ public with sharing class CartController
         
     }
 
-    
+
+
+    /*Vinanthi :Added below method for US 1835*/
+    public PageReference  TransferFee(){
+        string pinToTransferFee;
+        if(receiptVOs.size()>1){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Multiple payment methods are not allowed for Fee Transfer.'));
+            return null;
+        } 
+        System.debug('****receipt***'+ receiptVOs);
+        for(ReceiptVO objRVO : receiptVOs){
+           if( objRVO.r.Cart_PIN__c == null){
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835
+                    return null;
+                }else{
+                    pinToTransferFee=objRVO.r.Cart_PIN__c;
+                } 
+        }
+        List<Id> feeIds = new List<Id>();
+        System.debug(' fees '+ fees);
+        for(MUSW__Fee__c objFee:fees){
+            feeIds.add(objFee.Id);
+        }
+        
+        List<BGBK__Cart__c> lstCart =[SELECT id,BGBK__Account__c from BGBK__Cart__c WHERE PIN__c =:pinToTransferFee];
+        if(lstCart.size()>0){
+           BGBK.CartManager.transferFeesToCart(feeIds, lstCart[0].BGBK__Account__c, pinToTransferFee); 
+           PageReference pageRef = new PageReference('/s/dashboard');
+           return pageRef;
+        } else{
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835
+                    return null;
+        }
+        
+        
+    }
     public void process()
     {
      System.debug(' fees '+ fees);
@@ -928,7 +967,7 @@ public with sharing class CartController
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Insufficient funds. Tender at least the Amount owing.'));
             return;
         } */
-        if (String.isBlank(accountSelected))
+        if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
             return;
@@ -949,6 +988,13 @@ public with sharing class CartController
             } else if(rvo.r.MUSW__Payment_Method__c == 'Check' && (rvo.r.MUSW__Check_Number__c == null && rvo.r.Payee__c == null)){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please fill in all fields'));
                 return;
+            }else if(rvo.r.MUSW__Payment_Method__c == 'Pay by Employer'){
+                if( rvo.r.Cart_PIN__c == null){
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Invalid payment method'));//Added by Vinanthi for US 1835
+                    return;
+                }else{
+                    return;
+                }
             }
         }
 
@@ -1201,7 +1247,11 @@ public with sharing class CartController
         
         Id[] feeIds = new List<Id>((new Map<Id, MUSW__Fee__c>(fees)).keySet());
         //system.debug('Lastname$$$'+con.LastName);
+        if(a != null) {
         if (con == null) con = new Contact(Id=cart.BGBK__Contact__c,AccountId = a.Id,LastName = a.Name);
+        } else {
+            if (con == null) con = new Contact(Id=cart.BGBK__Contact__c);
+        }
         con.Email = email;
         system.debug('name$$$'+a.Name);
         m_cs.sendConfirmEmail(feeIds, con, BGBK.CartService.AttachmentFormat.PDF, 'Cart Payment Receipt', null);
@@ -1550,7 +1600,12 @@ public with sharing class CartController
     public void checkGatewayRequirementforPaymentMethod() {     
         String paymentMethodLabel = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;     
         BGBK__Payment_Method__mdt[] paymentMethodGatewayDetails = [SELECT BGBK__isGateway_Required__c FROM BGBK__Payment_Method__mdt WHERE BGBK__isActive__c = true AND Label = :paymentMethodLabel LIMIT 1];       
-                
+        if(paymentMethodLabel == 'Pay by Employer'){
+            isFeeTransfer= true;
+        } 
+        else{
+            isFeeTransfer= false;
+        }
         if(paymentMethodGatewayDetails.size() > 0) {        
             if(paymentMethodGatewayDetails[0].BGBK__isGateway_Required__c)        
                 isGatewayRequiredforPaymentMethod = true;       
@@ -1762,7 +1817,7 @@ public with sharing class CartController
 
     public PageReference redirectToPaymentGateway(){
         system.debug(''+isPortalUser);
-        if (String.isBlank(accountSelected))
+        if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
             return null;
