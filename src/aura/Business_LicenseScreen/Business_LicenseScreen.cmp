@@ -17,6 +17,8 @@ _______________________________________________________________
     <aura:attribute name="licenseId" type="String" />
     <aura:attribute name="BranchLicenses" type="Boolean" default="false" />
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
+        <aura:attribute name="helptextcontent" type="String" />
+        <aura:attribute name="helptextmap" type="Map" />
     <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <div>
@@ -58,21 +60,29 @@ _______________________________________________________________
                                                 </td>
                                                 <td data-label="MUSW__Expiration_Date__c" class="cell-style">
                                                     <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
-                                                        <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.MUSW__Expiration_Date__c}"/></div>
+                                                        <div class="slds-truncate">
+                                                            <lightning:formattedDateTime value="{!tableData.MUSW__Expiration_Date__c}" />
+                                                        </div>
                                                         <aura:set attribute="else">(None)</aura:set>
-                                                    </aura:if>
-                                                </td>
-                                                <td data-label="MUSW__Status__c" class="cell-style">
-                                                    <aura:if isTrue="{!tableData.MUSW__Status__c}">
-                                                    <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
-                                                        <aura:set attribute="else">(None)</aura:set>
-                                                    </aura:if>
-                                                </td>  
-                                                <td data-label="Sub_Status__c" class="cell-style">
-                                                    <aura:if isTrue="{!tableData.Sub_Status__c}">
-                                                    	<div class="slds-truncate">{!tableData.Sub_Status__c}</div>
-                                                        <aura:set attribute="else">(None)</aura:set>
-                                                    </aura:if>
+                                                        </aura:if>
+                                                        </td>
+                                                        <td data-label="MUSW__Status__c" class="cell-style">
+                                                            <div>
+                                                                <aura:if isTrue="{!tableData.MUSW__Status__c}">
+                                                                    <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
+                                                                    <aura:set attribute="else">(None)</aura:set>
+                                                                </aura:if>
+                                                                <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License"
+                                                                    data-status="{!tableData.MUSW__Status__c}" data-substatus="{!tableData.Sub_Status__c}">
+                                                                    <lightning:helptext content="{!v.helptextcontent}" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="Sub_Status__c" class="cell-style">
+                                                            <aura:if isTrue="{!tableData.Sub_Status__c}">
+                                                                <div class="slds-truncate">{!tableData.Sub_Status__c}</div>
+                                                                <aura:set attribute="else">(None)</aura:set>
+                                                            </aura:if>
                                                 </td>
                                                 <td data-label="actions" class="cell-style action-cell">
                                                     <div class="slds-truncate">

@@ -150,6 +150,7 @@ public class Polaris_ApplyForLicenseController {
             labelToFields.submissionDetails = Ques.Submission_Title__c;
             labelToFields.questionSectionClass = Ques.Section__c;
             labelToFields.message = Ques.Message__c;
+            labelToFields.helptext = Ques.Help_Text__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
             labelToFields.regex = Ques.Regex_Validation__c;
             labelToFields.errormsg = Ques.Error_Message__c; 

@@ -17,6 +17,8 @@
     <aura:attribute name="licenseList" type="List"/>
     <aura:attribute name="accountId" type="String"/>
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
+        <aura:attribute name="helptextcontent" type="String" />
+        <aura:attribute name="helptextmap" type="Map" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
     
     <aura:if isTrue="{!v.loadingSpinner}">
@@ -66,30 +68,38 @@
                                                 <aura:if isTrue="{!tableData.Delivery_Method__c}">
                                                     <div class="slds-truncate">{!tableData.Delivery_Method__c}</div>
                                                     <aura:set attribute="else">(None)</aura:set>
-                                                </aura:if>
-                                            </td>
-                                            <td data-label="CLOCK HOURS" class="cell-style">
-                                                <aura:if isTrue="{!tableData.Clock_Hours_Continuing_Education__c}">
-                                                    <div class="slds-truncate">{!tableData.Clock_Hours_Continuing_Education__c}</div>
-                                                    <aura:set attribute="else">(None)</aura:set>
-                                                </aura:if>
-                                            </td>
-                                            <td data-label="STATUS" class="cell-style">
-                                                <aura:if isTrue="{!tableData.MUSW__Status__c}">
-                                                    <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
-                                                    <aura:set attribute="else">(None)</aura:set>
-                                                </aura:if>
-                                            </td>
-                                            <td data-label="actions">
-                                                <div class="slds-truncate">
-                                                    <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment')||(tableData.MUSW__Status__c == 'Payment Pending')}">
-                                                        <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee" onclick= "{!c.redirectToCart}"/>
                                                     </aura:if>
-                                                </div>    
-                                            </td>
-                                        </tr>  
-                                    </aura:iteration>
-                                </tbody>
+                                                    </td>
+                                                    <td data-label="CLOCK HOURS" class="cell-style">
+                                                        <aura:if isTrue="{!tableData.Clock_Hours_Continuing_Education__c}">
+                                                            <div class="slds-truncate">{!tableData.Clock_Hours_Continuing_Education__c}</div>
+                                                            <aura:set attribute="else">(None)</aura:set>
+                                                        </aura:if>
+                                                        </td>
+                                                        <td data-label="STATUS" class="cell-style">
+                                                            <div>
+                                                                <aura:if isTrue="{!tableData.MUSW__Status__c}">
+                                                                    <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
+                                                                    <aura:set attribute="else">(None)</aura:set>
+                                                                </aura:if>
+                                                                <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License"
+                                                                    data-status="{!tableData.MUSW__Status__c}" data-substatus="">
+                                                                    <lightning:helptext content="{!v.helptextcontent}" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="actions">
+                                                        <div class="slds-truncate">
+                                                            <aura:if
+                                                                isTrue="{!(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment')||(tableData.MUSW__Status__c == 'Payment Pending')}">
+                                                                <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee"
+                                                                    onclick="{!c.redirectToCart}" />
+                                                            </aura:if>
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    </aura:iteration>
+                                                    </tbody>
                             </table>
                         </div>                       
                     </div>
@@ -141,15 +151,20 @@
                                                 </aura:if>
                                             </td>
                                             <td data-label="Status" class="cell-style">
-                                                <aura:if isTrue="{!tableData.MUSW__Status__c}">
-                                                    <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
-                                                    <aura:set attribute="else">(None)</aura:set>
-                                                </aura:if>
+                                                <div>
+                                                    <aura:if isTrue="{!tableData.MUSW__Status__c}">
+                                                        <div class="slds-truncate">{!tableData.MUSW__Status__c}</div>
+                                                        <aura:set attribute="else">(None)</aura:set>
+                                                    </aura:if>
+                                                    <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License"
+                                                        data-status="{!tableData.MUSW__Status__c}" data-substatus="{!tableData.Sub_Status__c}">
+                                                        <lightning:helptext content="{!v.helptextcontent}" />
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td data-label="Sub Status" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Sub_Status__c}">
-                                                    <div class="slds-truncate">{!tableData.Sub_Status__c}</div>
-                                                    <aura:set attribute="else">(None)</aura:set>
+                                                    <div class="slds-truncate">{!tableData.Sub_Status__c}</div>        <aura:set attribute="else">(None)</aura:set>
                                                 </aura:if>
                                             </td>
                                             <td data-label="actions">
@@ -221,18 +236,24 @@
                                                 <aura:if isTrue="{!tableData.Renewal_Expiration_Date__c}">
                                                     <div class="slds-truncate"><lightning:formattedDateTime value="{!tableData.Renewal_Expiration_Date__c}"/></div>
                                                     <aura:set attribute="else">(None)</aura:set>
-                                                </aura:if>
-                                            </td>
-                                            <td data-label="Status" class="cell-style">
-                                                <aura:if isTrue="{!tableData.Renewal_Status__c}">
-                                                    <div class="slds-truncate">{!tableData.Renewal_Status__c}</div>
-                                                    <aura:set attribute="else">(None)</aura:set>
-                                                </aura:if>
-                                            </td>
-                                            <!--    <td data-label="Sub Status" class="cell-style">
-                                            <div class="slds-truncate">{!tableData.}</div>
-                                        </td> -->
-                                            <td data-label="actions">
+                                                    </aura:if>
+                                                    </td>
+                                                    <td data-label="Status" class="cell-style">
+                                                        <div>
+                                                            <aura:if isTrue="{!tableData.Renewal_Status__c}">
+                                                                <div class="slds-truncate">{!tableData.Renewal_Status__c}</div>
+                                                                <aura:set attribute="else">(None)</aura:set>
+                                                            </aura:if>
+                                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="Renewal/Reinstatement"
+                                                                data-status="{!tableData.Renewal_Status__c}" data-substatus="">
+                                                                <lightning:helptext content="{!v.helptextcontent}" />
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <!--    <td data-label="Sub Status" class="cell-style">
+                                                                                                <div class="slds-truncate">{!tableData.}</div>
+                                                                                            </td> -->
+                                                    <td data-label="actions">
                                                 <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Generate Fee')||(tableData.Renewal_Status__c == 'Pending Payment')||(tableData.MUSW__Status__c == 'Payment Pending')}">
                                                     <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee" onclick= "{!c.redirectToCart}"/>
                                                 </aura:if>

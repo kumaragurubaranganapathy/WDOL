@@ -5,7 +5,22 @@
         console.log("branch::"+branch);
         console.log("accountId::"+component.get("v.accountId"));
         helper.setCurrentLicensesTableData(component, event);
-        
+        helper.getHelptextHelper(component, event, helper);
+
+    },
+
+    getHelpText: function (component, event, helper) {
+        var htmap = component.get("v.helptextmap");
+        console.log('htmap::' + JSON.stringify(htmap));
+        var license_Status = event.currentTarget.getAttribute("data-status");
+        var license_Sub_Status = event.currentTarget.getAttribute("data-substatus") ? event.currentTarget.getAttribute("data-substatus") : 'null';
+        var obj = event.currentTarget.getAttribute("data-obj");
+        console.log("getHelpText @@@@ status -->" + license_Status + "\n license_Sub_Status -->" + license_Sub_Status + "\n obj -->" + obj);
+        var key = license_Status + '-' + license_Sub_Status + '-' + obj;
+        console.log('key::' + key);
+        component.set("v.helptextcontent", htmap[key]);
+        var value = component.get("v.helptextcontent");
+        console.log('value::' + value);
     },
     
     displayLicenseDetails : function(component,event){
