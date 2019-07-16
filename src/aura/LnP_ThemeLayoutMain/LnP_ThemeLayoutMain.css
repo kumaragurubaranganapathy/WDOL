@@ -63,6 +63,11 @@
 .THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
     display:none;
 }
+.THIS .table-scroll{
+    max-height:100%;
+    max-width:100%;
+    overflow:auto;
+}
 .THIS .slds-tabs_default__item.slds-is-active{
     background:t(primary);
     color:t(LnGWhite);
