@@ -389,7 +389,7 @@
             </div>
             
             <aura:if isTrue="{!!v.courseDetail}">
-                <lightning:tabset>
+                <lightning:tabset class="tabs-wrapper">
                     <aura:if isTrue="{!v.accountDetail}">
                         <aura:if isTrue = "{!v.isCourseProvider}"> 
                             <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >

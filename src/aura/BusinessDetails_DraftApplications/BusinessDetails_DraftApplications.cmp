@@ -1,30 +1,23 @@
-<aura:component
-    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
-    access="global" controller="Add_BusinessController">
-
-    <aura:attribute name="DraftMandatoryActionsApplicationsColumns" type="List"
-        default="['REQUEST TYPE','SUBJECT','STATUS']" />
-    <aura:attribute name="DraftMandatoryActionsApplicationsData" type="List" default="" />
-
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" controller="Add_BusinessController" >
+    
+    <aura:attribute name="DraftMandatoryActionsApplicationsColumns" type="List" default="['Request Type','Subject','Status','Actions']"/>
+    <aura:attribute name="DraftMandatoryActionsApplicationsData" type="List" default=""/>
+    
     <!--  <aura:attribute name="DraftCourseApplicationsColumns" type="List" default="['COURSE NAME','COURSE TYPE','LICENSURE LEVEL','DELIVERY METHOD','CLOCK HOURS']" /> -->
-    <aura:attribute name="DraftCourseApplicationsColumns" type="List"
-        default="['PROFESSION','LICENSE TYPE','APPLICATION METHOD','LAST UPDATED']" />
+    <aura:attribute name="DraftCourseApplicationsColumns" type="List" default="['Profession','License Type','Application Method','Last Updated']" />
     <aura:attribute name="DraftCourseApplicationsData" type="List" default="" />
-
-    <aura:attribute name="DraftNewLicenseApplicationColumns" type="List"
-        default="['PROFESSION','LICENSE TYPE','APPLICATION METHOD','LAST UPDATED']" />
+    
+    <aura:attribute name="DraftNewLicenseApplicationColumns" type="List" default="['Profession','License Type','Application Method','Last Updated']" />
     <aura:attribute name="DraftNewLicenseApplicationsData" type="List" default="" />
-
-    <aura:attribute name="DraftRenewalApplicationColumns" type="List"
-        default="['LICENSE #','PROFESSION','LICENSE TYPE', 'LAST UPDATED']" />
+    
+    <aura:attribute name="DraftRenewalApplicationColumns" type="List" default="['License #','Profession','License Type', 'Last Updated']" />
     <aura:attribute name="DraftRenewalApplicationsData" type="List" default="" />
-
-    <aura:attribute name="DraftMaintenanceRequestApplicationColumns" type="List"
-        default="['REQUEST #','REQUEST TYPE','REQUEST AGAINST','STATUS']" />
+    
+    <aura:attribute name="DraftMaintenanceRequestApplicationColumns" type="List" default="['Request #','Request Type','Request Against','Status']" />
     <aura:attribute name="DraftMaintenanceRequestApplicationsData" type="List" default="" />
-
+    
     <aura:attribute name="applicationList" type="List" />
-    <aura:attribute name="renewalAppList" type="List" />
+    <aura:attribute name="renewalAppList" type="List"/>
     <aura:attribute name="accountId" type="String" />
     <aura:attribute name="draftListNotEmpty" type="Boolean" default="false" />
     <aura:attribute name="renewalListNotEmpty" type="Boolean" default="false" />
@@ -35,13 +28,13 @@
     <aura:attribute name="actionclicked" type="string" />
     <aura:attribute name="tasktype" type="string" />
     <aura:attribute name="task" type="task" />
-    <aura:attribute name="helptextcontent" type="String" />
+    <aura:attribute name="helptextcontent" type="String"/>
     <aura:attribute name="helptextmap" type="Map" />
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-
-
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
     <aura:if isTrue="{!v.loadingSpinner}">
-        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <aura:if isTrue="{!v.mandatoryListNotEmpty}">
         <div class="Mandatory-Actions slds-m-vertical_xx-large">
@@ -54,15 +47,14 @@
                                 <aura:iteration items="{!v.DraftMandatoryActionsApplicationsColumns}" var="headerData">
                                     <th class="" scope="col">
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
-                                    </th>
+                                    </th> 
                                 </aura:iteration>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <aura:iteration items="{!v.DraftMandatoryActionsApplicationsData}" var="tableData"
-                                indexVar="ind">
-                                <tr class="slds-hint-parent">
+                            
+                            <aura:iteration items="{!v.DraftMandatoryActionsApplicationsData}" var="tableData" indexVar="ind">
+                                <tr class="slds-hint-parent">    
                                     <td data-label="Task Type" class="cell-style">
                                         <aura:if isTrue="{!tableData.Type}">
                                             <div class="slds-truncate">{!tableData.Type}</div>
@@ -81,35 +73,31 @@
                                                 <div class="slds-truncate">{!tableData.Status}</div>
                                                 <aura:set attribute="else">(None)</aura:set>
                                             </aura:if>
-                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License"
-                                                data-status="{!tableData.MUSW__Status__c}" data-substatus="">
+                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj = "License" data-status ="{!tableData.MUSW__Status__c}" data-substatus = "">
                                                 <lightning:helptext content="{!v.helptextcontent}" />
                                             </div>
                                         </div>
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" data-record="{!tableData.Id}"
-                                            data-type="{!tableData.Type}" data-action="Accepted"
-                                            onclick="{!c.ActionClick}">
-                                            <lightning:button variant="brand" label="Accept" title="Accept" />
-                                        </div>
+                                        <div class="slds-truncate" data-record = "{!tableData.Id}" data-type="{!tableData.Type}" data-action="Accepted" onclick="{!c.ActionClick}">
+                                            <lightning:button variant="brand" label="Accept" title="Accept"/>
+                                        </div>    
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" data-recordId="{!tableData.Id}"
-                                            data-action="Declined" onclick="{!c.ActionClick}">
-                                            <lightning:button variant="brand" label="Decline" title="Decline" />
-                                        </div>
+                                        <div class="slds-truncate" data-recordId = "{!tableData.Id}" data-action="Declined" onclick="{!c.ActionClick}" >
+                                            <lightning:button variant="brand" label="Decline" title="Decline"/>
+                                        </div>    
                                     </td>
-                                </tr>
+                                </tr>  
                             </aura:iteration>
-
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </aura:if>
-
+    
     <aura:if isTrue="{!v.courseListNotEmpty}">
         <div class="Course-Applications slds-m-vertical_xx-large">
             <div class="table-head">Course Applications</div>
@@ -121,15 +109,15 @@
                                 <aura:iteration items="{!v.DraftCourseApplicationsColumns}" var="headerData">
                                     <th class="" scope="col">
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
-                                    </th>
+                                    </th> 
                                 </aura:iteration>
                             </tr>
                         </thead>
                         <tbody>
-
+                            
                             <aura:iteration items="{!v.DraftCourseApplicationsData}" var="tableData" indexVar="ind">
-
-                                <tr class="slds-hint-parent">
+                                
+                                <tr class="slds-hint-parent">    
                                     <td data-label="Course Name" class="cell-style">
                                         <aura:if isTrue="{!tableData.Course_Name__c}">
                                             <div class="slds-truncate">{!tableData.Course_Name__c}</div>
@@ -166,23 +154,22 @@
                                                 <div class="slds-truncate">{!tableData.Status}</div>
                                                 <aura:set attribute="else">(None)</aura:set>
                                             </aura:if>
-                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License"
-                                                data-status="{!tableData.MUSW__Status__c}" data-substatus="">
+                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj = "License" data-status ="{!tableData.MUSW__Status__c}" data-substatus = "">
                                                 <lightning:helptext content="{!v.helptextcontent}" />
                                             </div>
                                         </div>
                                     </td>
                                     <td data-label="actions" class="cell-style">
                                         <div class="slds-truncate" data-recordId="{!tableData.id}">
-                                            <lightning:button label="Edit" title="Neutral action" />
-                                        </div>
+                                            <lightning:button label="Edit" title="Neutral action"/>
+                                        </div>    
                                     </td>
                                     <td data-label="actions" class="cell-style">
                                         <div class="slds-truncate" data-recordId="{!tableData.id}">
-                                            <lightning:button label="Delete" title="Neutral action" />
-                                        </div>
+                                            <lightning:button label="Delete" title="Neutral action"/>
+                                        </div>    
                                     </td>
-                                </tr>
+                                </tr>  
                             </aura:iteration>
                         </tbody>
                     </table>
@@ -201,13 +188,13 @@
                                 <aura:iteration items="{!v.DraftNewLicenseApplicationColumns}" var="headerData">
                                     <th class="" scope="col">
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
-                                    </th>
+                                    </th> 
                                 </aura:iteration>
                             </tr>
                         </thead>
                         <tbody>
                             <aura:iteration items="{!v.DraftNewLicenseApplicationsData}" var="tableData" indexVar="ind">
-                                <tr class="slds-hint-parent">
+                                <tr class="slds-hint-parent">    
                                     <td data-label="Profession" class="cell-style">
                                         <aura:if isTrue="{!tableData.Application_Type__c}">
                                             <div class="slds-truncate">{!tableData.Application_Type__c}</div>
@@ -228,40 +215,33 @@
                                     </td>
                                     <td data-label="Last Updated" class="cell-style">
                                         <aura:if isTrue="{!tableData.LastModifiedDate}">
-                                            <div class="slds-truncate">
-                                                <ui:outputDateTime value="{!tableData.LastModifiedDate}" />
-                                            </div>
+                                            <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
                                             <aura:set attribute="else">(None)</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" onclick="{!c.editDraftLicenseApplication}"
-                                            data-recordId="{!tableData.Id}"
-                                            data-licenseType="{!tableData.Credential_Type__c}"
-                                            data-board="{!tableData.Application_Type__c}"
-                                            data-applicationType="{!tableData.Application_Method__c}"
-                                            data-isrenewal="{!tableData.isRenewal__c}">
-                                            <lightning:button label="Edit" title="Neutral action" />
-                                        </div>
+                                        <div class="slds-truncate"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                             data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
+                                            <lightning:button label="Edit" title="Neutral action"/>
+                                        </div>    
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" onclick="{!c.deleteDraftLicenseApplication}"
-                                            data-recordId="{!tableData.Id}">
-                                            <lightning:button label="Delete" title="Neutral action" />
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <div class="slds-truncate" onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
+                                            <lightning:button label="Delete" title="Neutral action"/>
+                                        </div>    
+                                    </td> 
+                                </tr>  
                             </aura:iteration>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </aura:if>
-
+    </aura:if>    
+    
     <aura:if isTrue="{!v.renewalListNotEmpty}">
         <div class="Renewal-Applications slds-m-vertical_xx-large">
-            <div class="table-head">Renewal Applications</div>
+            <div class="table-head">Renewal Applications</div> 
             <div class="data-table slds-p-vertical_medium">
                 <div class="table-scroll">
                     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
@@ -270,13 +250,13 @@
                                 <aura:iteration items="{!v.DraftRenewalApplicationColumns}" var="headerData">
                                     <th class="" scope="col">
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
-                                    </th>
+                                    </th> 
                                 </aura:iteration>
                             </tr>
                         </thead>
                         <tbody>
                             <aura:iteration items="{!v.DraftRenewalApplicationsData}" var="tableData" indexVar="ind">
-                                <tr class="slds-hint-parent">
+                                <tr class="slds-hint-parent">    
                                     <td data-label="License Number" class="cell-style">
                                         <aura:if isTrue="{!tableData.License__r.Name}">
                                             <div class="slds-truncate">{!tableData.License__r.Name}</div>
@@ -294,40 +274,34 @@
                                             <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
                                             <aura:set attribute="else">(None)</aura:set>
                                         </aura:if>
-                                    </td>
+                                    </td>                                    
                                     <td data-label="Last Updated" class="cell-style">
                                         <aura:if isTrue="{!tableData.LastModifiedDate}">
-                                            <div class="slds-truncate">
-                                                <ui:outputDateTime value="{!tableData.LastModifiedDate}" />
-                                            </div>
+                                            <div class="slds-truncate"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
                                             <aura:set attribute="else">(None)</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" onclick="{!c.editDraftLicenseApplication}"
-                                            data-recordId="{!tableData.Id}"
-                                            data-licenseType="{!tableData.Credential_Type__c}"
-                                            data-board="{!tableData.Application_Type__c}"
-                                            data-applicationType="{!tableData.Application_Method__c}"
-                                            data-isrenewal="{!tableData.isRenewal__c}">
-                                            <lightning:button label="Edit" title="Neutral action" />
-                                        </div>
+                                        <div class="slds-truncate"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                             data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
+                                            <lightning:button label="Edit" title="Neutral action"/>
+                                        </div>    
                                     </td>
                                     <!--<td data-label="actions" class="cell-style">
                                          <div class="slds-truncate" onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
                                             <lightning:button label="Delete" title="Neutral action"/>
                                         </div>    
                                     </td> -->
-                                </tr>
+                                </tr>  
                             </aura:iteration>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </aura:if>
-
-    <aura:if isTrue="{!v.requestListNotEmpty}">
+    </aura:if>  
+    
+    <aura:if isTrue="{!v.requestListNotEmpty}"> 
         <div class="Maintenance-Request-Applications slds-m-vertical_xx-large">
             <div class="table-head">Maintenance Request Applications</div>
             <div class="data-table slds-p-vertical_medium">
@@ -338,14 +312,13 @@
                                 <aura:iteration items="{!v.DraftMaintenanceRequestApplicationColumns}" var="headerData">
                                     <th class="" scope="col">
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
-                                    </th>
+                                    </th> 
                                 </aura:iteration>
                             </tr>
                         </thead>
                         <tbody>
-                            <aura:iteration items="{!v.DraftMaintenanceRequestApplicationsData}" var="tableData"
-                                indexVar="ind">
-                                <tr class="slds-hint-parent">
+                            <aura:iteration items="{!v.DraftMaintenanceRequestApplicationsData}" var="tableData" indexVar="ind">
+                                <tr class="slds-hint-parent">    
                                     <td data-label="Request Type" class="cell-style">
                                         <div class="slds-truncate">{!tableData}</div>
                                     </td>
@@ -357,15 +330,15 @@
                                     </td>
                                     <td data-label="actions" class="cell-style">
                                         <div class="slds-truncate" data-recordId="{!tableData.id}">
-                                            <lightning:button label="Edit" title="Neutral action" />
-                                        </div>
+                                            <lightning:button label="Edit" title="Neutral action"/>
+                                        </div>    
                                     </td>
                                     <!--<td data-label="actions" class="cell-style">
                                 <div class="slds-truncate" data-recordId="{!tableData.id}">
                                     <lightning:button label="Delete" title="Neutral action"/>
                                 </div>    
                             </td> -->
-                                </tr>
+                                </tr>  
                             </aura:iteration>
                         </tbody>
                     </table>
@@ -373,5 +346,5 @@
             </div>
         </div>
     </aura:if>
-
+    
 </aura:component>
