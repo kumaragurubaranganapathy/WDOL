@@ -1,94 +1,91 @@
 ({
-   doInit : function(component, event, helper) {
-       helper.setJSON(component, event, helper);
-       helper.setCurrentLicensesTableData(component, event, helper);
-       helper.setRelationshipTableData(component, event, helper);
-       helper.setDraftNewLicenseApplicationsTableData(component, event, helper);
-       helper.setDraftRenewalApplicationsTableData(component, event, helper);
-       helper.setDraftMaintanceRequestTableData(component, event, helper);
-       helper.setPendingNewLicenseApplicationsTableData(component, event, helper);
-       helper.setPendingRenewalApplicationsTableData(component, event, helper);
-       helper.setPendingMaintanceRequestTableData(component, event, helper);
-       helper.setCompletedMaintanceRequestTableData(component, event, helper);
-       helper.setContactId(component, event, helper);
-       helper.getHelptextHelper(component, event, helper);
-
-       //component.set("v.loadingSpinner",false);
-       
-  },
-
-    getHelpText: function (component, event, helper) {
+    doInit : function(component, event, helper) {
+        helper.setJSON(component, event, helper);
+        helper.setCurrentLicensesTableData(component, event, helper);
+        helper.setRelationshipTableData(component, event, helper);
+        helper.setDraftNewLicenseApplicationsTableData(component, event, helper);
+        helper.setDraftRenewalApplicationsTableData(component, event, helper);
+        helper.setDraftMaintanceRequestTableData(component, event, helper);
+        helper.setPendingNewLicenseApplicationsTableData(component, event, helper);
+        helper.setPendingRenewalApplicationsTableData(component, event, helper);
+        helper.setPendingMaintanceRequestTableData(component, event, helper);
+        helper.setCompletedMaintanceRequestTableData(component, event, helper);
+        helper.setContactId(component, event, helper);
+        helper.getHelptextHelper(component, event, helper);
+        //component.set("v.loadingSpinner",false);
+        
+    },
+    getHelpText : function(component, event, helper) {
         var htmap = component.get("v.helptextmap");
-        console.log('htmap::' + JSON.stringify(htmap));
+        console.log('htmap::'+JSON.stringify(htmap));
         var license_Status = event.currentTarget.getAttribute("data-status");
         var license_Sub_Status = event.currentTarget.getAttribute("data-substatus") ? event.currentTarget.getAttribute("data-substatus") : 'null';
         var obj = event.currentTarget.getAttribute("data-obj");
-        console.log("getHelpText @@@@ status -->" + license_Status + "\n license_Sub_Status -->" + license_Sub_Status + "\n obj -->" + obj);
+        console.log("getHelpText @@@@ status -->"+license_Status+"\n license_Sub_Status -->"+license_Sub_Status+"\n obj -->"+obj);
         var key = license_Status + '-' + license_Sub_Status + '-' + obj;
-        console.log('key::' + key);
+        console.log('key::'+key);
         component.set("v.helptextcontent", htmap[key]);
         var value = component.get("v.helptextcontent");
-        console.log('value::' + value);
+        console.log('value::'+value);
     },
-  
-  handleAssociationSubmissionSuccess: function(component, event, helper){
-     
-    var params = event.getParams();
+    handleAssociationSubmissionSuccess: function(component, event, helper){
         
-    var association_Id =  params.response.id;
-    
-    component.set("v.displayAssociationForm","false");
-    
-    console.log("handleAssociationSubmissionSuccess....."+association_Id);
-     
-    var action = component.get("c.createAssociationTask");
-    
-    action.setParams({"associationID":association_Id});
-    
-    action.setCallback(this,function(response){
+        var params = event.getParams();
         
-        var state = response.getState();
+        var association_Id =  params.response.id;
         
-        if (state === "SUCCESS") {
+        component.set("v.displayAssociationForm","false");
+        
+        console.log("handleAssociationSubmissionSuccess....."+association_Id);
+        
+        var action = component.get("c.createAssociationTask");
+        
+        action.setParams({"associationID":association_Id});
+        
+        action.setCallback(this,function(response){
             
-            if(response.getReturnValue()){
+            var state = response.getState();
+            
+            if (state === "SUCCESS") {
                 
-               helper.showToast(component, event, helper,"Association has been succesfully created ","success");  
-               
-            }else{
+                if(response.getReturnValue()){
+                    
+                    helper.showToast(component, event, helper,"Association has been succesfully created ","success");  
+                    
+                }else{
+                    
+                    helper.showToast(component, event, helper,"Please contact system administrator","error");
+                }
                 
-                helper.showToast(component, event, helper,"Please contact system administrator","error");
-            }
-           
-        }else if (state === "ERROR") {
-            var errors = response.getError();
-            console.error(JSON.stringify(errors));
-        } 
+            }else if (state === "ERROR") {
+                var errors = response.getError();
+                console.error(JSON.stringify(errors));
+            } 
+            
+        });
         
-    });
-     
-    $A.enqueueAction(action); 
-  },
-  
-  handleAssociationSubmissionError: function(component, event, helper){
-      
-      helper.showToast(component, event, helper,"Please contact system administrator","error");
-  },
-  
-  openAssociationForm: function(component, event, helper){
-      
-      helper.setAssociationdefaultrecordTypeIdHelper(component, event, helper);
-      
-      component.set("v.displayAssociationForm","true");
-  },
-  
+        $A.enqueueAction(action); 
+    },
+    
+    handleAssociationSubmissionError: function(component, event, helper){
+        
+        helper.showToast(component, event, helper,"Please contact system administrator","error");
+    },
+    
+    openAssociationForm: function(component, event, helper){
+        
+        helper.setAssociationdefaultrecordTypeIdHelper(component, event, helper);
+        
+        component.set("v.displayAssociationForm","true");
+    },
+    
     closeModalWindow: function(component, event, helper){
-
+        
         var dataAttribute =   event.currentTarget.getAttribute("closeModalWindow");
         if(dataAttribute = "displayAssociationForm"){
-                   component.set("v.displayAssociationForm","false");    
+            component.set("v.displayAssociationForm","false");    
         }
-    
+        
     },
     
     openExistingApp : function(component, event, helper){
@@ -117,7 +114,7 @@
             window.location.href = '/SaveIncompleteApplication?applicationType='+selectedfirst+'&pid='+selectedsecond;
         }
         else
-        helper.manageEndorsementHelper(component, event, helper);
+            helper.manageEndorsementHelper(component, event, helper);
     },
     viewMoreLicenses : function(component, event, helper){
         helper.viewMoreLicenses(component, event, helper);
@@ -143,16 +140,16 @@
             //handle callback
         });
     },    
-     redirectToCart :  function(component, event, helper){
-         
-         var portal_Home_URL = component.get("v.portalURL");
+    redirectToCart :  function(component, event, helper){
+        
+        var portal_Home_URL = component.get("v.portalURL");
         var applicationId = event.getSource().get("v.value");
         var remove_s = portal_Home_URL.slice(0,-2);
         var PayFee_URI = remove_s+'cart?id='+applicationId;
-    	window.open(PayFee_URI, "_self");
-         
-     }, 
-      
+        window.open(PayFee_URI, "_self");
+        
+    }, 
+    
     
     uploadpendingdocuments :function(component, event, helper){
         console.log('uploadpendingdocuments');
@@ -188,9 +185,9 @@
     
     openRemoveAccountContactRelationModal : function(component, event, helper){
         
-         var account_ContactId = event.currentTarget.getAttribute("data-id");
-         component.set("v.removeAccountContactRelationId",account_ContactId);
-         component.set("v.displayRemoveAccountContactModal","true");
+        var account_ContactId = event.currentTarget.getAttribute("data-id");
+        component.set("v.removeAccountContactRelationId",account_ContactId);
+        component.set("v.displayRemoveAccountContactModal","true");
         
     },
     
@@ -203,9 +200,9 @@
         
         var associateId = event.currentTarget.getAttribute("data-id");
         
-         component.set("v.removeAssociationtRelationId",associateId);
-         
-         component.set("v.displayRemoveBusinessRelationShipModal","true");
+        component.set("v.removeAssociationtRelationId",associateId);
+        
+        component.set("v.displayRemoveBusinessRelationShipModal","true");
     },
     
     closedisplayRemoveBusinessRelationShipModal  : function(component, event, helper){
@@ -218,9 +215,9 @@
         
         var associateId = event.currentTarget.getAttribute("data-id");
         
-         component.set("v.removeAssociationtRelationId",associateId);
-         
-         component.set("v.displayRemovePeerRelationShipModal","true");
+        component.set("v.removeAssociationtRelationId",associateId);
+        
+        component.set("v.displayRemovePeerRelationShipModal","true");
     },
     
     closedisplayRemovePeerRelationShipModal : function(component, event, helper){
@@ -240,84 +237,80 @@
     },
     
     dsiplayLicenseDetails : function(component, event, helper){
-
+        
         var licenseId = event.target.getAttribute("data-licenseId");
         
         component.set("v.licenseId",licenseId);
         
         helper.fetchLicenseDetails(component, event, helper, licenseId);
-                                            
+        
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
-                                            
+        
         helper.fetchBusinessRelationShipRecords(component, event, helper,licenseId);
     },
-        
+    
     dsiplayPendingLicenseDetails : function(component, event, helper){
         
         var isPendingLicense =true;
-
+        
         var licenseId = event.target.getAttribute("data-licenseId");
         
         component.set("v.licenseId",licenseId);
         
         helper.fetchLicenseDetails(component, event, helper, licenseId);
-                                            
+        
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
-                                            
+        
         
     },
     
     handleProfessionalBreadCrumb : function(component, event, helper){
         
         helper.setDefaults(component, event, helper);
-
+        
     },
     
     editDraftLicenseApplication  : function(component, event, helper){
-         var ctarget = event.currentTarget;
-          sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
-          sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
-          sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
-          sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
-          sessionStorage.setItem("flowType", "Application");
-          if(ctarget.getAttribute("data-isrenewal") == "true"){
-              sessionStorage.setItem("renewalReinstate", "Renewal");
-              window.location.href='/lightningwashington/s/polaris-renewal';  
-          } else {
-              window.location.href='/lightningwashington/s/apply-for-license';  
-          }
+        var ctarget = event.currentTarget;
+        sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
+        sessionStorage.setItem("flowType", "Application");
+        if(ctarget.getAttribute("data-isrenewal") == "true"){
+            sessionStorage.setItem("renewalReinstate", "Renewal");
+            window.location.href='/lightningwashington/s/polaris-renewal';  
+        } else {
+            window.location.href='/lightningwashington/s/apply-for-license';  
+        }
     },
     deleteDraftLicenseApplication: function(component, event, helper) {
-      var ctarget = event.currentTarget;
-      var application_Id = ctarget.getAttribute("data-recordId");
-  },
+        var ctarget = event.currentTarget;
+        var application_Id = ctarget.getAttribute("data-recordId");
+    },
     editDraftRenewApplications  : function(component, event, helper){
-         var ctarget = event.currentTarget;
-          sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
-          sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
-          sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
-          sessionStorage.setItem("flowType", "Application");
-          sessionStorage.setItem("renewalReinstate", "Renewal");
-          window.location.href='/lightningwashington/s/polaris-renewal';  
-          
+        var ctarget = event.currentTarget;
+        sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("flowType", "Application");
+        sessionStorage.setItem("renewalReinstate", "Renewal");
+        window.location.href='/lightningwashington/s/polaris-renewal';  
+        
     },
     
     deleteDraftRenewApplications: function(component, event, helper) {
-      var ctarget = event.currentTarget;
-      var Renew_application_Id = ctarget.getAttribute("data-recordId");
-  },
+        var ctarget = event.currentTarget;
+        var Renew_application_Id = ctarget.getAttribute("data-recordId");
+    },
     
-   downloadDocument : function(component, event, helper) {
+    downloadDocument : function(component, event, helper) {
         console.log('Pending Application Button');
         var recordIdForPDF = event.getSource().get("v.value");
         console.log('recordIdForPDF== ' + recordIdForPDF);
         var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
-        var url = OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF;
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": url
-        });
-        urlEvent.fire();
+        window.open(OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF,'_top');
+
     }
-  
+    
 })

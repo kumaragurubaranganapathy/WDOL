@@ -265,17 +265,17 @@
                 
                 var returnValue = response.getReturnValue();
                 
-                    component.set("v.submission_id",returnValue);
-                    console.log(component.get("v.submission_id"));
-                    component.set("v.dsiplaySpinner",false);
-                    component.set("v.DisplayDashboardHeader","false");
-                    component.set("v.DisplayDashboardTabs","false");
-                    component.set("v.DisplaylicenseNumberBreadCrumb","true");
-                    component.set("v.DisplayLicense_Details","false");
-                    component.set("v.DisplayUploadDocumentsBreadCrumb","true");
-                    component.set("v.DisplayLicense_Upload_documents","true");
-                    component.set("v.DisplayAdditonalQulaificationsBreadCrumb","false");
-                    component.set("v.DisplayLicense_Additional_Qualification","false");
+                component.set("v.submission_id",returnValue);
+                console.log(component.get("v.submission_id"));
+                component.set("v.dsiplaySpinner",false);
+                component.set("v.DisplayDashboardHeader","false");
+                component.set("v.DisplayDashboardTabs","false");
+                component.set("v.DisplaylicenseNumberBreadCrumb","true");
+                component.set("v.DisplayLicense_Details","false");
+                component.set("v.DisplayUploadDocumentsBreadCrumb","true");
+                component.set("v.DisplayLicense_Upload_documents","true");
+                component.set("v.DisplayAdditonalQulaificationsBreadCrumb","false");
+                component.set("v.DisplayLicense_Additional_Qualification","false");
                 
                 //this.setPendingNewLicenseApplicationsTableData(component, event, helper);
                 
@@ -298,12 +298,12 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
-                    
-               helper.showToast(component, event, helper,"The documents are succesfully uploaded and you application is being reviewd","success"); 
-               
-               helper.setDefaults(component, event, helper);
-               this.setPendingNewLicenseApplicationsTableData(component, event, helper);
-  
+                
+                helper.showToast(component, event, helper,"The documents are succesfully uploaded and you application is being reviewd","success"); 
+                
+                helper.setDefaults(component, event, helper);
+                this.setPendingNewLicenseApplicationsTableData(component, event, helper);
+                
             }else if (state === "ERROR") {
                 
                 var errors = response.getError();
@@ -350,7 +350,7 @@
             if (state === "SUCCESS") {
                 
                 var licenseData = JSON.parse(response.getReturnValue());
-               /* var licenseDataList = [];
+                /* var licenseDataList = [];
                 licenseData.forEach(function(element) {
                     if(element.MUSW__Issue_Date__c != null)
                     	element.MUSW__Issue_Date__c = $A.localizationService.formatDate(element.MUSW__Issue_Date__c, "MM-dd-yyyy");
@@ -385,8 +385,8 @@
                 
                 if(!isPendingLicense){
                     
-                  this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);  
-                  
+                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);  
+                    
                 }else{
                     component.set("v.displayPendingLicense_Details","true");
                 }
@@ -955,26 +955,26 @@
             
         });
         $A.enqueueAction(action);
-    },   
-
-    getHelptextHelper: function (component, event, obj, license_Status, license_Sub_Status) {
+    }, 
+    
+    getHelptextHelper : function(component, event, obj, license_Status, license_Sub_Status){
         var action = component.get("c.helptextFetch");
-        action.setCallback(this, function (response) {
+        action.setCallback(this, function(response){
             var state = response.getState();
-            if (state === "SUCCESS") {
+            if(state === "SUCCESS"){
                 var result = response.getReturnValue();
                 typeof result;
                 var resultMap = JSON.parse(result);
                 component.set("v.helptextmap", resultMap);
-                console.log('helptextmap::' + result);
-                console.log('size::' + result.prototype.size);
+                console.log('helptextmap::'+result);
+                console.log('size::'+result.prototype.size);
             }
-            else if (state === 'ERROR') {
+            else if(state === 'ERROR'){                
                 var errors = response.getError();
-                console.error(JSON.stringify(errors));
+                console.error(JSON.stringify(errors));               
             }
         });
-
+        
         $A.enqueueAction(action);
     }
 })

@@ -418,7 +418,7 @@ color: token(placeholderColor);
     font-style: token(txtfontstyle);
     line-height: normal;
 }
-.THIS .slds-select{
+.THIS .slds-select, .THIS .slds-input{
     border-radius:unset;
 }
 /* common style for tables */
@@ -450,6 +450,12 @@ color: token(placeholderColor);
 }
 .THIS .slds-table_bordered.slds-table {
     border-color:#5b616b;         
+}
+.THIS .slds-table thead th{
+    padding: 1rem 2rem;
+}
+.THIS .slds-table tbody td{
+    padding: 1rem 2rem; 
 }
 .THIS .slds-table_bordered.slds-table > thead > th{
     background-color:#eaeaea;
