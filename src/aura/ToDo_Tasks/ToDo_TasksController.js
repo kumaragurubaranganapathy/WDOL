@@ -86,7 +86,12 @@
     },
     linkBizLic : function(component,event,helper){
         helper.linkBizLic(component,event);
-    }
-    
+    },
+    redirectLicense : function(component,event,helper){
+        helper.redirectLicense(component,event);
+    },
+    redirectBusiness : function(component,event,helper){
+        helper.redirectBusiness(component,event);
+    }    
  
 })

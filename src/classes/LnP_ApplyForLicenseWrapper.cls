@@ -38,6 +38,7 @@ public class LnP_ApplyForLicenseWrapper {
         public String messageTriggerResponse;
         public String message;
         public String regex;
+        public String helptext;
         public String errormsg;
         public String endorsementType;
         public Boolean isMandatoryQues;

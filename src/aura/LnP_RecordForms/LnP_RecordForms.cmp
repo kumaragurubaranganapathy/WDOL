@@ -1,67 +1,102 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller ="Add_BusinessController">
-    <aura:attribute name="fieldsList" type="List"/>
-    <aura:attribute name="recordId" type="Id" default=""/>
-    <aura:attribute name="objectApiName" type="String" default=""/>
-    <aura:attribute name="section" type="List"/>
-    <aura:attribute name="applicationId" type="Id"/>
-    <aura:attribute name="flagHideAndShow" type="String"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:registerEvent name="CmpEvent" type="c:LnP_applyLicense"/> <!-- added by AD -->
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"
+    controller="Add_BusinessController">
+    <aura:attribute name="fieldsList" type="List" />
+    <aura:attribute name="recordId" type="Id" default="" />
+    <aura:attribute name="objectApiName" type="String" default="" />
+    <aura:attribute name="section" type="List" />
+    <aura:attribute name="applicationId" type="Id" />
+    <aura:attribute name="flagHideAndShow" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="CmpEvent" type="c:LnP_applyLicense" /> <!-- added by AD -->
 
-    <aura:if isTrue = "{!and (v.recordId == null, v.objectApiName == 'Account' )}">
-        <lightning:recordEditForm  aura:id="createAccountForm"  objectApiName="{!v.objectApiName}" onsuccess="{!c.createAccount}">
-            <lightning:messages />              
+    <aura:if isTrue="{!and (v.recordId == null, v.objectApiName == 'Account' )}">
+        <lightning:recordEditForm aura:id="createAccountForm" objectApiName="{!v.objectApiName}"
+            onsuccess="{!c.createAccount}">
+            <lightning:messages />
             <div class="slds-grid slds-wrap">
-                    <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">
-                        <aura:if isTrue="{!field.required || field.regex != undefined}">
-                            <lightning:inputField  aura:id="validateField" fieldName="{!field.apiname}"  class="{!(field.required?'required':'')+' in-create slds-show field-size multi-field'}"/>
-                            <aura:set attribute="else">
-                                <lightning:inputField fieldName="{!field.apiname}"  class="in-create slds-show field-size multi-field"/>
-                            </aura:set>
-                        </aura:if>
-                    </aura:iteration> 
-                </div>
-                <div class="row">
-                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"/> 
-                </div>
-            </lightning:recordEditForm>
+                <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">
+                    <aura:if isTrue="{!field.required || field.regex != undefined}">
+                        <lightning:inputField aura:id="validateField" fieldName="{!field.apiname}"
+                            class="{!(field.required?'required':'')+' in-create slds-show field-size multi-field'}" />
+                        <aura:set attribute="else">
+                            <lightning:inputField fieldName="{!field.apiname}"
+                                class="in-create slds-show field-size multi-field" />
+                        </aura:set>
+                    </aura:if>
+                </aura:iteration>
+            </div>
+            <div class="row">
+                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" />
+            </div>
+        </lightning:recordEditForm>
         <aura:set attribute="else">
-            <lightning:recordEditForm density="comfy" aura:id="editForm" recordId="{!v.recordId}" objectApiName="{!v.objectApiName}" >
+            <lightning:recordEditForm density="comfy" aura:id="editForm" recordId="{!v.recordId}"
+                objectApiName="{!v.objectApiName}">
                 <div class="slds-grid slds-wrap">
                     <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">
-                        <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' || field.apiname == 'Social_Security_Number_Encrypted__c' || field.apiname == 'ITIN__c' || field.apiname == 'Reason_for_No_SSN__c'? 'true' : 'false'}">
+                        <aura:if
+                            isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' || field.apiname == 'Social_Security_Number_Encrypted__c' || field.apiname == 'ITIN__c' || field.apiname == 'Reason_for_No_SSN__c'? 'true' : 'false'}">
                             <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' ? 'true' : 'false'}">
                                 <aura:if isTrue="{!field.required || field.regex != undefined}">
-                                    <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.required?'required':'')+' slds-show field-size multi-field'}" onchange="{!c.selectUniqueID}" />
-                                	<aura:set attribute="else">
-                                    	<lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}" class="slds-show field-size multi-field" onchange="{!c.selectUniqueID}" />
+                                    <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField"
+                                        fieldName="{!field.apiname}"
+                                        class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
+                                        onchange="{!c.selectUniqueID}" />
+                                    <aura:set attribute="else">
+                                        <lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}"
+                                            class="slds-show field-size multi-field" onchange="{!c.selectUniqueID}" />
                                     </aura:set>
                                 </aura:if>
                                 <aura:set attribute="else">
                                     <aura:if isTrue="{!field.required || field.regex != undefined}">
-                                        <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" onchange="{!c.getpattern}"/>                        	
+                                        <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField"
+                                            fieldName="{!field.apiname}"
+                                            class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}"
+                                            onchange="{!c.getpattern}" />
                                         <aura:set attribute="else">
-                                            <lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}" class="{!field.label == v.flagHideAndShow ? 'slds-show field-size multi-field field-adjust' : 'slds-hide'}"/> 
+                                            <lightning:inputField disabled="{!field.readOnly}"
+                                                fieldName="{!field.apiname}"
+                                                class="{!field.label == v.flagHideAndShow ? 'slds-show field-size multi-field field-adjust' : 'slds-hide'}" />
                                         </aura:set>
                                     </aura:if>
                                 </aura:set>
                             </aura:if>
                             <aura:set attribute="else">
                                 <aura:if isTrue="{!field.required || field.regex != undefined}">
-                                    <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.required?'required':'')+' slds-show field-size multi-field'}" onchange="{!c.getpattern}"/>
+                                    <aura:if isTrue="{!field.apiname == 'Name'}">
+                                        <div class="account-name field-size">
+                                            <label class="slds-form-element__label account-label" for="text-input-id-1">
+                                                <abbr class="slds-required" title="required">*</abbr>
+                                                Account Name
+                                                <lightning:helptext
+                                                    content="This is the name under which your business is registered with the Secretary of State (corporations and LLCs) or Department of Revenue (all other business structures)." />
+                                            </label>
+                                            <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField"
+                                                fieldName="{!field.apiname}" variant="label-hidden"
+                                                class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
+                                                onchange="{!c.getpattern}" />
+                                        </div>
                                         <aura:set attribute="else">
-                                    	<lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}" aura:id="{!field.apiname}" class="slds-show field-size multi-field"/>
+                                            <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField"
+                                                fieldName="{!field.apiname}"
+                                                class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
+                                                onchange="{!c.getpattern}" />
+                                        </aura:set>
+                                    </aura:if>
+                                    <aura:set attribute="else">
+                                        <lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}"
+                                            aura:id="{!field.apiname}" class="slds-show field-size multi-field" />
                                     </aura:set>
                                 </aura:if>
-                            <!--<lightning:input aura:id="validateField" fieldName="{!field.apiname}" label="{!field.label}" value="{!field.value}" class="in-edit field-size field-item slds-size_1-of-2"/>-->
-                            <!--<label for="validateField">{!field.label}</label>-->
+                                <!--<lightning:input aura:id="validateField" fieldName="{!field.apiname}" label="{!field.label}" value="{!field.value}" class="in-edit field-size field-item slds-size_1-of-2"/>-->
+                                <!--<label for="validateField">{!field.label}</label>-->
                             </aura:set>
                         </aura:if>
                         <!--<lightning:inputField aura:id="validateField" fieldName="{!field.apiname}" class="field-size multi-field" />-->
-                    </aura:iteration> 
+                    </aura:iteration>
                 </div>
                 <div class="row">
-                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"/> 
+                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" />
                 </div>
             </lightning:recordEditForm>
         </aura:set>

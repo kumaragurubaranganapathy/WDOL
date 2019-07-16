@@ -175,5 +175,21 @@
             "url": str
         });
         urlEvent.fire();
-    }                
+    },
+    redirectLicense : function(component,event){
+        var str ='/licenseSelectionPage';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    redirectBusiness : function(component,event){
+        var str ='/business';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    }
 })

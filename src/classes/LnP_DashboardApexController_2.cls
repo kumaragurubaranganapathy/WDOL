@@ -564,5 +564,27 @@ public without sharing class LnP_DashboardApexController_2 {
         }
     }
 
+    @AuraEnabled
+    public static String helptextFetch(){
+        Map<String, String> helptextMap = new Map<String, String>();            
+        try{
+            List<Dashboard_Helptext__mdt> helptextList = [SELECT Id, DeveloperName, Status__c, Sub_Status__c, Object__c, Help_Text__c FROM Dashboard_Helptext__mdt];
+            if(!helptextList.isEmpty()){
+                for(Dashboard_Helptext__mdt htext : helptextList){
+                    String temp = '';
+                    temp = String.valueOf(htext.Status__c + '-' + htext.Sub_Status__c + '-' + htext.Object__c);
+                    helptextMap.put(temp, String.valueOf(htext.Help_Text__c));
+                }
+                
+            }    
+            system.debug('helptextMap::'+helptextMap);            
+            return JSON.serialize(helptextMap);
+        }
+        catch(Exception e){
+            DOL_CreateErrorLog_Exception.addError(e,'<class name>','<method name>');
+            return JSON.serialize(helptextMap);       
+        }
+    }
+
     
 }
