@@ -183,11 +183,11 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String DraftNewLicenseApplicationsTable(){
          Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         
-        List<String> columnHeaderList = new List<String>{'PROFESSION','LICENSE TYPE','APPLICATION METHOD','LAST UPDATED'};
+        List<String> columnHeaderList = new List<String>{'PROFESSION','LICENSE TYPE','APPLICATION METHOD','STATUS','LAST UPDATED'};
       /*  List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn','Submission Failed','Pending'};*/
            List<String> statusFilterList = new List<String>();
          statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-                List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,Application_Method__c, LastModifiedDate,isRenewal__c
+                List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,Application_Method__c, LastModifiedDate, isRenewal__c, MUSW__Status__c
                                                 from MUSW__Application2__c
                                                 where MUSW__Status__c IN :statusFilterList AND  MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
         
