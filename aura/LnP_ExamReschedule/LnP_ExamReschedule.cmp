@@ -1,0 +1,75 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="ExamReschedule">
+    <aura:attribute name="examRescheduleData" type="List"/>
+    <aura:attribute name ="licenseData" type="Object"/>
+    <aura:attribute name="isOpen" type="Boolean" default="false" />
+    <aura:attribute name="examfields" type="String" />
+    <aura:attribute name="requestId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:if isTrue="{!v.examRescheduleData.length!=0?'true':'false'}">
+        <table class="slds-table slds-table--bordered slds-table--striped slds-max-medium-table_stacked">
+            <thead>
+                <tr>
+                    <th scope="col"><span class="slds-truncate">Exam Type</span></th>
+                    <th scope="col"><span class="slds-truncate">Exam Status</span></th>
+                    <th scope="col"><span class="slds-truncate">Exam Expiration Date</span></th>
+                    <th scope="col"><span class="slds-truncate">Exam Completion Date</span></th>
+                    <th scope="col"><span class="slds-truncate">Action</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.examRescheduleData}" var="examRescheduleInstance" indexVar="indexExams">
+                    <tr>
+                        <td>{!examRescheduleInstance.Exam_Type__c}</td>
+                        <td>{!examRescheduleInstance.Status__c}</td>
+                        <td>{!examRescheduleInstance.Exam_Result_Expiry_Date__c}</td>
+                        <td>{!examRescheduleInstance.Exam_Pass_Date__c}</td>
+                        <td><lightning:button variant="brand" label="Reschedule Exam" title="Reschedule Exam" value="{!examRescheduleInstance.Id}" onclick = "{!c.openModelReschedule}"/>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <aura:set attribute="else">
+            <div class="slds-align_absolute-center">No Data!!!</div>
+        </aura:set>
+    </aura:if>
+    <aura:if isTrue="{!v.isOpen}">
+        
+        <!--###### MODAL BOX Start######--> 
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                </header>
+                <!--###### MODAL BOX BODY Part Start######-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:recordEditForm aura:id ="recordEditForm" 
+                                              onsubmit="{!c.handleSubmit}"
+                                              onsuccess="{!c.handleSuccess}"
+                                              objectApiName="Request__c"
+                                              >
+                        <lightning:messages />
+                        <lightning:inputField fieldName="License__c" value= "{!v.licenseData.Id}" disabled = "true"/>
+                        <lightning:inputField fieldName="Profession__c" value ="{!v.licenseData.Application_Type__c}" disabled = "true"/>
+                        <lightning:inputField fieldName="License_Type__c" value = "{!v.licenseData.Credential_Type__c}" disabled = "true"/>
+                        <lightning:inputField fieldName="Service_Request_Type__c" value = "Reschedule Exam" disabled ="true"/>
+                        <lightning:inputField fieldName="Description__c" />
+                        <lightning:inputField fieldName="Status__c" value ="Under Review" class="slds-hide"/>
+                        <div class="slds-m-top_medium">
+                            <lightning:button variant="brand" type="submit" name="save" label="Save" />
+                        </div>
+                    </lightning:recordEditForm>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <!--###### MODAL BOX Part END Here ######-->
+        
+    </aura:if>
+</aura:component>

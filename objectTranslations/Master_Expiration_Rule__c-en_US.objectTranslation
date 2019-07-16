@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master Expiration Rule</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Master Expiration Rules</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+        <picklistValues>
+            <masterLabel>Late Renewal</masterLabel>
+            <translation><!-- Late Renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Application</masterLabel>
+            <translation><!-- New Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reinstatement Application</masterLabel>
+            <translation><!-- Reinstatement Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Renewal Application</masterLabel>
+            <translation><!-- Renewal Application --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Method --></label>
+        <name>Delivery_Method__c</name>
+        <picklistValues>
+            <masterLabel>Classroom (Instructor in room with students)</masterLabel>
+            <translation><!-- Classroom (Instructor in room with students) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distance / On-Line</masterLabel>
+            <translation><!-- Distance / On-Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>One-time event / Seminar</masterLabel>
+            <translation><!-- One-time event / Seminar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ongoing event</masterLabel>
+            <translation><!-- Ongoing event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Substantial course changes to existing,active course</masterLabel>
+            <translation><!-- Substantial course changes to existing,active course --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Formula (Long) --></label>
+        <name>Formula_Long__c</name>
+    </fields>
+    <fields>
+        <help><!-- Can be removed as a new field has been created with type long text area --></help>
+        <label><!-- Formula(Can be removed) --></label>
+        <name>Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inactivity Formula --></label>
+        <name>Inactivity_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pre-Approval --></label>
+        <name>Pre_Approval__c</name>
+        <picklistValues>
+            <masterLabel>AQB</masterLabel>
+            <translation><!-- AQB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>College</masterLabel>
+            <translation><!-- College --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IDECC</masterLabel>
+            <translation><!-- IDECC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USPAP Instructor</masterLabel>
+            <translation><!-- USPAP Instructor --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Program Type --></label>
+        <name>Program_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Two Step Fee --></label>
+        <name>Two_Step_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- sfxId --></label>
+        <name>sfxId__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

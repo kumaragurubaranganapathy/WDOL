@@ -1,0 +1,41 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : OH_DateJSUtililty
+** Description      : to display date
+** Version          : 2.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Priyanka Ch                  01/23/2018                  2.0             Added Comment block on top of the page
+**																			
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component >
+  <script type="text/javascript">
+    var DateUtility = function(date){
+      this.utc = null;
+      this.display = null;
+      this.toUTC = function(date){
+        return new Date(date).toISOString().slice(0,-14)
+      }
+
+      this.toDisplay = function(date){
+        if(date){  
+            date = date.concat(" 00:00:00");
+            var date = new Date(date.toString().replace('-', '/').replace('-', '/'));
+            return ((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());
+        }else{
+        	return null;    
+        }
+      }
+    }
+  </script>
+
+</apex:component>

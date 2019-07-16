@@ -1,0 +1,38 @@
+<!--*******************************************************************
+COMPONENT NAME: LnP_Multiselect_PicklistItem.cmp
+DESCRIPTION: Child component of the re-usable component for using a Multi-select picklist with pills.
+
+@AUTHOR: Apoorva Pethe
+@Date: 08-Jun-2017
+
+MODIFICATION LOG:
+DEVELOPER           DATE            DESCRIPTION
+======================================================================
+Apoorva Pethe       08-Mar-2017     First version created.
+Apoorva Pethe		08-Aug-2017		Defect fix - 13561
+Apoorva Pethe		21-Aug-2017		Defect fix- 14253
+*********************************************************************-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+     <aura:attribute name="itemObj" type="Object"/>
+    <aura:attribute name="singleSelectitem" type="Boolean" default="false"/>
+    <aura:attribute name="closePicklist" type="Object"/>
+    <aura:attribute name="optionID" type="Integer"/>
+    <aura:attribute name="options" type="Object[]"/>
+    <aura:attribute name="isOpen" type="Boolean"/>
+    <aura:attribute name="seloptionID" type="String"/>
+    <aura:attribute name="optionsSelected" type="String"/>
+    <aura:attribute name="listItemClass" type="String" default="slds-listbox__item" />
+    <aura:registerEvent name="OptionSelection" type="c:LnP_OptionSelection_Event"/>
+    
+    <li role="presentation" class="{!'slds-listbox__item '+((v.listItemClass == 'slds-listbox__item') ? '' : v.listItemClass)}" onblur="{!v.closePicklist}" id="{!v.optionID}" tabindex="0" onclick="{!c.toggleselection}" onkeydown="{!c.toggleselection}">
+        <span class="{!'slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-media_center' + ((v.itemObj.isSelected) ? ' slds-is-selected' : '')}" role="option">
+            <span class="slds-media__figure">
+                <!--<c:svgIcon svgPath="{!$Resource.ISD_LDSIcons + '/utility-sprite/svg/symbols.svg#check'}" category="utility" size="x-small" name="check" class="icon-check"/>-->
+                <lightning:icon iconName="utility:check" size="x-small" class="icon-check" />
+            </span>
+            <span class="slds-media__body">
+                <span class="slds-truncate" title="{!v.itemObj.Name}">{!v.itemObj.Name}</span>
+            </span>
+        </span>
+    </li>	
+</aura:component>

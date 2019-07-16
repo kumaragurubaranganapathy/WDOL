@@ -1,0 +1,38 @@
+<!-- *************************************************************************
+Component Name : LnP_HomePageMain
+Created By : Srujan Keskar
+Creation Date : 21-Jan-2019
+
+Modification Log
+
+Name			Date			Issue
+_______________________________________________________________
+
+*******************************************************************************-->
+<aura:component controller = "Lnp_CommonHeader_AC" implements="forceCommunity:availableForAllPageTypes" access="global" >
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  <aura:attribute name="customLblMap" type="Map" />
+    
+    <div class="main-wrapper">
+        <lightning:layout class="outer-wrapper slds-wrap">
+            <lightning:layoutItem size="12" largeDeviceSize="6">
+                <div class="main-title">
+                    {!v.customLblMap.LnP_ApplyLicense}
+                </div>
+            </lightning:layoutItem>
+            <!--lightning:layoutItem size="12" largeDeviceSize="6">
+                <div class="searchbar-wrapper">
+                    <lightning:input class="search-input" aura:id="enter-search" placeholder="Search" name="enter-search" label="Search" type="search" />  
+                   
+                </div>
+            </lightning:layoutItem-->                                            
+        </lightning:layout>
+        <div class="sub-title">
+            {!v.customLblMap.LnP_Header_Description}
+        </div>
+        <div class="help-button">
+            <a class="link-style" href="javascript:void(0)">{!v.customLblMap.LnP_Let_Us_Help_You}</a>
+        </div>
+    </div>
+    
+</aura:component>

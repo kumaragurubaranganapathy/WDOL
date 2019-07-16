@@ -1,0 +1,753 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : AddEmployees_CC
+** Description      : Display Add employees in Manage Business Page
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component controller="AddEmployees_CC" >
+    <apex:attribute name="licAffiliationList" type="String" description="Affiliations records"/>
+    <apex:attribute name="parentId" type="string" description="License Id" />
+    <apex:attribute name="compLabel" type="String" description="Label"/>
+    <apex:attribute name="compDesc" type="String" description="Description"/>
+    <apex:attribute name="businessId" type="ID" description="Business Id" /> 
+    <c:Resources />
+    <div class="col-sm-3 col-md-3">
+        <!-- Component heading -->
+        <!--<h2>{!compLabel}</h2>-->
+        
+        <!-- Button for new form -->
+            <button type="button" class="btn btn-primary btn-very-small add_new_address_button" value="Add Employees" id="{!businessid}addAffiliationSection" onclick="opensection(this)">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span>Add Employees</span>
+            </button>
+
+        <!-- Button for new form -->
+
+        <!-- Component heading -->
+        <!-- Component description -->
+        <p><apex:outputText value="{!compDesc}" escape="false" /></p>
+        <!-- Component description -->
+    </div>                
+    <div class="col-sm-6 col-md-6">
+        <div class="row home">
+            <div class="licAffiliationsList">
+                <div class="row start-flex">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <ul class="list-style-none" id="licAffiliationsList">
+                                <!-- Attach existing rows here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Display list of records -->
+        <!-- Record entry form -->
+        <div class="row {!businessid}affiliationsFormSection" style="display:none" id="{!businessid}affiliationsFormSectionEditContainer">
+            <div class="col-sm-12">
+                <form class="animated-form">
+                    <div class="row">
+                        
+                        <div class="col-sm-12">
+                            <div class="form-group-inanimated required">
+                                <label for="licenseName" id="licOrContactNameLabel">License # or Name</label>
+                                <input type="text" class="form-control" onkeyup="myfunction(this);"  id="{!businessid}licenseName"/>
+                                <span class=""></span>
+                            </div>
+                            <input type="text" class="form-control"  id="{!businessid}licenseId" style="display:none"/>
+                            <input type="text" class="form-control"  id="{!businessid}licContactId" style="display:none"/>
+                            <input type="text" class="form-control"  id="{!businessid}currRecordId" style="display:none"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group-inanimated required">
+                                <label for="licenseeName" id="licOrContactNameLabel">Licensee Name</label>
+                                <input type="text" class="form-control" onkeyup="myfunction1(this);" id="{!businessid}licenseeName"/>
+                                <span class=""></span>
+                            </div>
+                            <input type="text" class="form-control"  id="{!businessid}licenseId" style="display:none"/>
+                            <input type="text" class="form-control"  id="{!businessid}licContactId" style="display:none"/>
+                            <input type="text" class="form-control"  id="{!businessid}currRecordId" style="display:none"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="UnLicensed" id="UnLicensedLabel">Un-Licensed Employee</label>
+                                <input type="text" class="form-control" id="{!businessid}UnLicensed"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <div classs="row">                 
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            
+                            <div class="row addAffiliationBtn" style="display:none">
+                                <div class="col-sm-11 text-right">
+                                    <input type="button" class="btn btn-tertiary {!businessid}cancelAffiliation" value="Cancel" id="{!businessid}affiliationCancel1" />
+                                    <input type="button" class="btn btn-primary" value="Save and Upload" id="{!businessid}affiliationsFormSection" />
+                                </div>
+                            </div>
+                            
+                            <div class="row {!businessid}updateAffiliationBtn" style="display:none">
+                                <div class="col-sm-11 text-right">
+                                    <input type="button" class="btn btn-tertiary {!businessid}cancelAffiliation" onclick="cancelform(this)" value="Cancel" id="{!businessid}affiliationCancel2" />
+                                    <input type="button" class="btn btn-primary" value="Save" id="{!businessid}affiliationSave" onclick="saveaffiliation(this)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="documentupload">
+                        
+                   
+                    <div class="row {!businessId}upload" style="display:none">
+                        <div class="col-sm-12">
+                            <br/>
+                            <br/>
+                            <apex:inputText style="display: none" id="UploadParent" value="{!ParentId1}"/>
+                            <input id="{!businessId}fileSelect" type="file" />
+                            
+                        </div>
+                    </div>
+                    <div classs="row">                 
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="col-sm-11 text-right">
+                                <input type="button" class="btn btn-primary" value="Upload" id="{!businessid}uploadeditem" onclick="uploaditem(this)" />
+                            </div>
+                        </div>
+                    </div>
+                         </div>
+                    
+                    <div id="licAffiliationListDiv" style="display: none;">
+                        <apex:outputLabel value="{!licAffiliationList}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Record entry form -->
+        <!-- Original Button for new form -->
+        <!--<div class="row {!businessid}addAffiliationSection">
+            <div class="col-sm-11 text-left">
+                <input type="button" class="btn btn-secondary" value="Add Employees" id="{!businessid}addAffiliationSection" onclick="opensection(this)"/>
+            </div>
+        </div>-->
+        <!-- Original Button for new form -->
+
+    </div>
+    <section class="row"></section>
+    <div class="row col-sm-8 col-lg-8" style="vertical-align: middle;">
+            Please refer to the <a href="/SupportPage">Support page</a> for any questions on adding applicable employees.
+        </div>
+     
+    <script>
+    
+    // Initialize everything
+    var recordsAffiliation = '';
+    var recordsLicense = '';
+    var licenseName = [];
+    var allLicenseNames = [];
+    var typeOfAffiliationPicklist = '';
+    var stateList = '';
+    var validationMapper = {};
+    
+    
+    // On page load
+    $(function() {
+        AFFILIATIONCOMPNS.loadEvents();
+        AFFILIATIONCOMPNS.gettypeOfAffiliationPicklist();
+        AFFILIATIONCOMPNS.getRecords();
+        
+        
+    });
+    
+    function uploaditem(ele){
+                var id = ele.id;
+                id=id.substring(0,18);
+        AFFILIATIONCOMPNS.uploadDocument(id);  
+                }
+    function opensection(ele){
+                var id = ele.id;
+                id=id.substring(0,18);
+                AFFILIATIONCOMPNS.BuildValidationObject();
+                $("."+id+"affiliationsFormSection").show();
+                $("."+id+"addAffiliationSection").hide();
+                //  $(".addAffiliationBtn").show();
+                $("."+id+"updateAffiliationBtn").show();
+                $("."+id+"upload").show();
+        }
+    function saveaffiliation(ele){
+                var id = ele.id;
+                id=id.substring(0,18);
+                console.log("save employee is clicked  "+id);               
+                if(validationMapper.affiliations.validator.errors().length <= 0){
+                    AFFILIATIONCOMPNS.saveRecord(id);
+                    AFFILIATIONCOMPNS.clearUI(id);
+                    MODAL_UTILITY.successMessageModal('Record Added successfully ', 'SUCCESS', null, refreshPage);
+                } else {
+                    MODAL_UTILITY.errorMessageModal(validationMapper.affiliations.validator.errorHtml());
+                }
+        }
+    function cancelform(ele){
+          var id = ele.id;
+                id=id.substring(0,18);
+                AFFILIATIONCOMPNS.clearUI(id);
+        }
+    function myfunction(ele){
+                 var id = ele.id;
+                id=id.substring(0,18);
+        $("#"+id+"licenseName").autocomplete({
+            minLength: 3,
+            scroll: true,
+            source: function(request, response) {
+                var waiting = [];    // TFS Bug 39429
+                waiting.push("Searching. Please wait...");
+                response(waiting);
+                // reinit account list
+                licenseName = [];
+                var currentSearchTerm = request.term + '%';
+                console.log(currentSearchTerm);
+                console.log('before call');
+                Visualforce.remoting.timeout = 120000;
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.AddEmployees_CC.getLicenseRecords}', 
+                    currentSearchTerm, 
+                    function(result, event){
+                        if (event.status) {
+                            recordsLicense = result;
+                            
+                            // Create array and collect picklist values markup
+                            $.each(recordsLicense, function(i, val) {
+                                // Concatenate markup
+                                var obj = {};
+                                obj.label = val.Applicant_Full_Name__c +', '+ val.Name;
+                                obj.value = val.Id+','+val.MUSW__Applicant__c;
+                                licenseName.push(obj);
+                                var results = $.ui.autocomplete.filter(licenseName, request.term);
+                                results = results.slice(0, 20);
+                                response(results);
+                                console.log(licenseName);
+                            });
+                            // Append picklist values markup
+                        } else if (event.type === 'exception') {
+                        } else {
+                        }
+                    }, 
+                    {escape: true}
+                );
+                console.log('after call');
+            },
+            
+            focus: function(event, ui){
+                event.preventDefault();
+            },
+            select: function( event, ui ) 
+            {
+                event.preventDefault();
+                console.log(ui.item);
+                var arr = (ui.item.value).split(',');
+                var arr1 = (ui.item.label).split(',');
+                $(this).val(ui.item ? ui.item : "");
+                $("#"+id+"licenseeName").val(arr1[0]);
+                $("#"+id+"licenseName").val(arr1[1]);
+                $("#"+id+"licenseId").val(arr[0]);
+                $("#"+id+"licContactId").val(arr[1]);
+                $(this).blur();
+            }
+        });
+        
+    }
+    function myfunction1(ele){
+                var id = ele.id;
+                id=id.substring(0,18);
+        $("#"+id+"licenseeName").autocomplete({
+            minLength: 3,
+            scroll: true,
+            source: function(request, response) {
+                var waiting = [];  // TFS Bug 39429
+                waiting.push("Searching. Please wait...");
+                response(waiting);                
+                // reinit account list
+                licenseName = [];
+                var currentSearchTerm = request.term + '%';
+                console.log(currentSearchTerm);
+                console.log('before call');
+                Visualforce.remoting.timeout = 120000;
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.AddEmployees_CC.getLicenseRecords}', 
+                    currentSearchTerm, 
+                    function(result, event){
+                        if (event.status) {
+                            recordsLicense = result;
+                            
+                            // Create array and collect picklist values markup
+                            $.each(recordsLicense, function(i, val) {
+                                // Concatenate markup
+                                var obj = {};
+                                obj.label = val.Applicant_Full_Name__c +', '+ val.Name;
+                                obj.value = val.Id+','+val.MUSW__Applicant__c;
+                                licenseName.push(obj);
+                                var results = $.ui.autocomplete.filter(licenseName, request.term);
+                                results = results.slice(0, 20);
+                                response(results);
+                                console.log(licenseName);
+                            });
+                            // Append picklist values markup
+                        } else if (event.type === 'exception') {
+                        } else {
+                        }
+                    }, 
+                    {escape: true}
+                );
+                console.log('after call');
+            },
+            
+            focus: function(event, ui){
+                event.preventDefault();
+            },
+            select: function( event, ui ) 
+            {
+                event.preventDefault();
+                console.log(ui.item);
+                var arr = (ui.item.value).split(',');
+                var arr1 = (ui.item.label).split(',');
+                $(this).val(ui.item ? ui.item : "");
+                $("#"+id+"licenseeName").val(arr1[0]);
+                $("#"+id+"licenseName").val(arr1[1]);
+                $("#"+id+"licenseId").val(arr[0]);
+                $("#"+id+"licContactId").val(arr[1]);
+                $(this).blur();
+            }
+        });
+        
+    }
+    ;AFFILIATIONCOMPNS = {
+        
+        /* Convert date for UI */
+        dateConverter: function(currDate) 
+        {
+            var utcDateNow = ''; 
+            if(currDate != null) {
+                utcDateNow = new Date(currDate).toISOString();
+                utcDateNow = utcDateNow.split("T")[1];
+                utcDateNow = new Date(utcDateNow.split("-")[1],utcDateNow.split("-")[2],utcDateNow.split("-")[0]);
+            }
+            return utcDateNow;
+        },
+        /* Build Validation Object */ 
+        BuildValidationObject: function() {
+            console.log("build validation object");
+            validationMapper.affiliations = {};
+            validationMapper.affiliations.validationObject = {
+                fields:[
+                    {
+                        id:"licenseNamef",
+                        required: "false",
+                        name: "License # or Name"
+                    }
+                ]
+            }
+            validationMapper.affiliations.validator = new ValidationEngine(validationMapper.affiliations.validationObject);
+        },
+        /* Load all JQuery events */
+        loadEvents: function() {
+
+            /* Event - Click 'Add' after filling new form */
+            $("#affiliationsFormSection").on("click", function() {
+                if (   ($('#licenseName').val()!='' &&$('#licenseName').val()!=undefined)&&
+                    ($('#licenseeName').val()!=''&&$('#licenseName').val()!=undefined)&&
+                    ($('#UnLicensed').val()==''||$('#UnLicensed').val()==undefined)  
+                    ||
+                    ($('#licenseName').val()=='' ||$('#licenseName').val()==undefined)&&
+                    ($('#licenseeName').val()==''||$('#licenseName').val()==undefined)&&
+                    ($('#UnLicensed').val()!=''&&$('#UnLicensed').val()!=undefined)  
+                   )
+                {
+                    if(validationMapper.affiliations.validator.errors().length <= 0){
+                        AFFILIATIONCOMPNS.saveRecord();
+                    } else {
+                        MODAL_UTILITY.errorMessageModal(validationMapper.affiliations.validator.errorHtml());
+                    }
+                }
+                else{
+                    var errMsg = '<div style="text-align: center"><span>Please .<span></div>';
+                    MODAL_UTILITY.errorMessageModal(errMsg);
+                }
+            });
+
+
+        },
+        
+        /* To manage css for animation*/
+        manageAnimatedFormCss : function()
+        {
+            var editForm = $("#affiliationsFormSectionEditContainer") ;
+            editForm.find("input[type='text']").each(function(index,val)
+                                                     {
+                                                         if($(val).val() != '' )
+                                                         {
+                                                             $(val).closest(".form-group").find("label").removeClass().addClass("animated") ;
+                                                         }
+                                                     });
+        },
+        
+        /* Function - dynamic events */
+        loadDynamicEvents: function() {
+            
+            /* Event - toggle chevron */
+            $('.a').on('click', function() {
+                $(this).find('span').closest('.chevron_toggleable').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+            });
+            
+            $('.navbar').mouseover(function(event) {
+                $(this).find('.navbar-tool').show();
+            });
+            
+            //mouse out of navbar
+            $('.navbar').mouseout(function(event) {
+                $(this).find('.navbar-tool').hide();
+            });
+            
+            /* Event - Edit existing form */
+            $(".editAffiliationButton").on("click", function() {
+                // Get current Id
+                var currentRecordId = $(this).attr("id");
+                currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+                
+                // Loop through list
+                $.each(recordsAffiliation, function(i, val) {
+                    // Once record is found
+                    if(val.Id == currentRecordId) {
+                        
+                        // Load values
+                        $.each(licenseName, function(j, val2) {
+                            if(val2.value == val.Supervisor_License__c) {
+                                $("#licenseName").val(val2.label);
+                            }
+                        });
+                        
+                        console.debug(val);
+                        
+                        if(val.Supervisor_License__c != null &&  val.Supervisor_License__r != null  )
+                        {
+                            $("#licenseId").val(val.Supervisor_License__c);
+                            $("#licenseName").val(val.Supervisor_License__r.Name) ; 
+                        }
+                        
+                        // Load other values
+                        $("#endDate").val(new DateUtility().toDisplay(val.End_Date__c));
+                        $("#typeOfAffiliation").val(val.Primary_Work_Setting__c);
+                        $("#primaryWkSet").val(val.Type_of_Affiliation__c);
+                        $("#licenseId").val(val.Supervisor_License__c);
+                        $("#startDate").val(new DateUtility().toDisplay(val.Start_Date__c));
+                        $("#currRecordId").val(val.Id);
+                        
+                        
+                        AFFILIATIONCOMPNS.manageAnimatedFormCss();
+                    }
+                });
+                
+                // Show-hide UI
+                AFFILIATIONCOMPNS.BuildValidationObject();
+                //  $(".addAffiliationBtn").hide();
+                $(".affiliationsFormSection").show();
+                $(".addAffiliationSection").hide();
+                $(".updateAffiliationBtn").hide();
+                $(".upload").show();
+            });
+            
+            /* Event - Delete existing form */
+            $(".deleteAffiliationButton").on("click", function() {
+                
+                // Get current Id
+                var currentRecordId = $(this).attr("id");
+                currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+                
+                // Delete confirmation
+                MODAL_UTILITY.openDeleteConfirmationModal('This record will be deleted. Are you sure?' , 'Delete Confirmation', currentRecordId, AFFILIATIONCOMPNS.deleteRecord);
+            });
+        },
+        
+        /* Function - For querying picklist records */
+        /*   gettypeOfAffiliationPicklist: function() {
+            
+            // Picklist markup
+            var innerHtmltypeOfAffiliationPicklist = '';
+            var innerHtmlStateList = '';
+            // Get object description
+            var result = sforce.connection.describeSObject(); 
+            
+            // Get picklist array
+            for (var i=0; i < result.fields.length; i++) {
+                var rt = result.fields[i];
+                if(rt.name == '') {
+                    typeOfAffiliationPicklist = rt.getArray("picklistValues");
+                }
+                if(rt.name == '') {
+                    stateList = rt.getArray("picklistValues");
+                }
+            }
+            
+            
+            // Add picklist values to markup
+            $.each(typeOfAffiliationPicklist, function(i, val) {
+                innerHtmltypeOfAffiliationPicklist += '<option value="' + val.value + '">' + val.label + '</option>';
+            });
+            // Add picklist values to markup
+            $.each(stateList, function(i, val) {
+                innerHtmlStateList += '<option value="' + val.value + '">' + val.label + '</option>';
+            });
+            
+            // Append markup
+            $("#typeOfAffiliation").append(innerHtmltypeOfAffiliationPicklist);
+            // Append markup
+            $("#state").append(innerHtmlStateList);
+        },
+        */
+        /* Function - For querying records */
+        getRecords: function() {
+            
+            // Get data from
+            recordsAffiliation = $("#licAffiliationListDiv").text();
+            recordsAffiliation = JSON.parse(recordsAffiliation);
+            
+            // Call markup injection method if records are received
+            if(recordsAffiliation != null) {
+                // Inject markup
+                AFFILIATIONCOMPNS.loadRecords();
+                
+                // Show section
+                $(".licAffiliationsList").show();
+            }
+        },
+        
+        /* Function - Populate Existing records */
+        loadRecords: function() {
+            
+            // Clear educational history records from UI
+            $("#licAffiliationsList").empty();
+            
+            // Build markup
+            var innerHtmlSupervisor =''; 
+            var innerHtmlSupervisee = '';
+            $.each(recordsAffiliation, function( i, val ) {
+                console.log('val'+val);
+                // If institution name in other field
+                var supervisorName = 'Undefined name';
+                var superviseeName = 'Undefined name';
+                
+                if(val.Supervisor__c != null){
+                    console.log("Inside If: " + val.Supervisor_License__c);
+                    supervisorName = val.Supervisor_Name__c+', '+ val.Supervisor_License_Number__c;
+                }else{
+                    supervisorName = val.Unlicensed_Supervisor__c;
+                }
+                
+                if(val.Supervisee__c != null){
+                    console.log("Inside If: " + val.Supervisee_License__c);
+                    superviseeName = val.Supervisee_Name__c+', '+ val.Supervisee_License_Number__c;
+                }else {
+                    superviseeName = val.Unlicensed_Supervisee__c;
+                }
+                
+                // Add markup
+                if(val.Supervisor__c == licGlobalObj.contactId){
+                    innerHtmlSupervisor += '<li class="addedlist"><div class="row navbar container"><div class="col-md-10"><div class="col-md-6"><b>'+superviseeName+'</b><br/>Supervisee</div><div><div class="col-md-4 navbar-tool" style="display:none"><button type="button" class="btn-square-icon editAffiliationButton"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="btn-square-icon"><span class="glyphicon glyphicon-trash"></span></button></div></div></div><div class="col-md-10"><br/><div class="col-md-4"><div class="row">Average Hours Worked:  '+val.Average_Hours_Worked__c+'</div><div class="row">'+val.Businessf_Name__c+'</div><div class="row">'+val.Phone__c+'</div><div class="row">'+val.Address__c+'</div><div class="row">'+val.City__c+', '+val.State__c +' '+val.Zip_Code__c+'</div><br/></div><div class="col-md-5"><div class="row">Start Date:  '+new DateUtility().toDisplay(val.Start_Date__c)+'</div><div class="row">End Date:  '+new DateUtility().toDisplay(val.End_Date__c)+'</div><div class="row">PrimaryWork Setting:  '+val.Primary_Work_Setting__c +'</div><div class="row">Type of Affiliation:  '+val.Type_of_Affiliation__c +'</div></div></div></div></li>';
+                }
+                else{
+                    innerHtmlSupervisee += '<li class="addedlist"><div class="row navbar container"><div class="col-md-10"><div class="col-md-6"><b>'+supervisorName+'</b><br/>Supervisor</div><div><div class="col-md-4 navbar-tool" style="display:none"><button type="button" class="btn-square-icon editAffiliationButton"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="btn-square-icon"><span class="glyphicon glyphicon-trash"></span></button></div></div></div><div class="col-md-10"><br/><div class="col-md-4"><div class="row">Average Hours Worked:  '+val.Average_Hours_Worked__c+'</div><div class="row">'+val.Business_Name__c+'</div><div class="row">'+val.Phone__c+'</div><div class="row">'+val.Address__c+'</div><div class="row">'+val.City__c+', '+val.State__c +' '+val.Zip_Code__c+'</div><br/></div><div class="col-md-5"><div class="row">Start Date:  '+new DateUtility().toDisplay(val.Start_Date__c)+'</div><div class="row">End Date:  '+new DateUtility().toDisplay(val.End_Date__c)+'</div><div class="row">PrimaryWork Setting:  '+val.Primary_Work_Setting__c +'</div><div class="row">Type of Affiliation:  '+val.Type_of_Affiliation__c +'</div></div></div></div></li>';
+                }
+            });
+            console.log();
+            
+            // Append records where the current user is the Supervisor 
+            $("#licAffiliationsList").append(innerHtmlSupervisee);
+            
+            // Append records where the current user is the Supervisee 
+            $("#licAffiliationsList").append(innerHtmlSupervisor);
+            
+            // Load jquery events
+            AFFILIATIONCOMPNS.loadDynamicEvents();
+            
+            // Stop spinner
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        /*function upload document */
+        uploadDocument:function(id){  
+             NOTIFICATIONS.spinnerStart();
+             var ele = document.getElementById(id+"fileSelect");
+            if(!ele.files[0]){
+                MODAL_UTILITY.errorMessageModal('Please select a file.');
+                 NOTIFICATIONS.spinnerStop();
+                return;
+            }
+            else{
+             ATTACHMENT.readCreateSingleFile(ele, id, "Notarized Signature for Filing");
+                   $("."+id+"-edit").hide();
+                  $("."+id+"-delete").hide();
+                  document.getElementById(id+"licenseName").disabled = true;
+                  document.getElementById(id+"licenseeName").disabled = true;
+                  document.getElementById(id+"UnLicensed").disabled = true;                
+                   NOTIFICATIONS.spinnerStop();
+            }
+            },
+                
+        /* Function - Save a record */
+        /*         saveRecord: function(ele) {
+            // Start spinner
+            NOTIFICATIONS.spinnerStart();
+            sforce.connection.sessionId = '{!$Api.Session_ID}'; 
+            // Initialize account and educational history objects
+            var affiliationObj = new sforce.SObject('');       
+            var licId = $("#"+ele+"licenseId").val();
+            var conId = $("#"+ele+"licContactId").val();		
+            if(licId == null || licId == ''){
+                affiliationObj.Unlicensed_Supervisee__c = $("#"+ele+"UnLicensed").val();
+            }
+            else{
+                affiliationObj.Supervisee_License__c = licId;
+                affiliationObj.Supervisee__c = conId;
+                affiliationObj.Unlicensed_Supervisee__c = '';
+            }
+            //affiliationObj.Supervisor_License__c = licGlobalObj.licenseId;  //'{!businessId}'
+            affiliationObj.Supervisor_Business__c = ele;
+            
+            if($("#currRecordId").val() != null&&$("#currRecordId").val() != '') {
+                affiliationObj.Id = $("#currRecordId").val();
+            }
+            
+            // Upsert object
+            if(affiliationObj != null) {
+                var newInsert = false;
+                if(affiliationObj.Id == '') {
+                    newInsert = true;
+                }
+                delete affiliationObj.type; //Don't need the type property from AJAX toolkit to be sent
+                console.log(affiliationObj);
+                Visualforce.remoting.Manager.invokeAction(
+                    '', 
+                    affiliationObj, 
+                    function(result, event){
+                        if (event.status) {                           
+                            // Set Id
+                            affiliationObj.Id = result.id;
+                        } else {
+                            // Show error
+                            MODAL_UTILITY.errorMessageModal('Error saving record. ' + event.message);
+                        } 
+                    }, 
+                    
+                    {escape: true}
+                );
+            }
+            
+            // Stop spinner
+            NOTIFICATIONS.spinnerStop();
+        },
+        
+        */        
+        
+        /* Function - Delete a record */
+        clearUI : function(id) {
+            // Clear input fields
+            $("#"+id+"licenseName").val('');
+            $("#"+id+"licenseeName").val('');
+            $("#"+id+"typeOfAffiliation").val('');
+            $("#"+id+"endDate").val('');
+            $("#"+id+"licenseId").val('');
+            $("#"+id+"currRecordId").val('');
+            
+            
+            // Show-hide
+            /*$(".affiliationsFormSection").show();
+            $(".addAffiliationBtn").show();
+            $(".updateAffiliationBtn").hide();
+            $(".addAffiliationSection").show();
+            $(".upload").show();*/
+            $("#"+id+"affiliationsFormSectionEditContainer").hide();
+            $("."+id+"addAffiliationSection").show();
+        }
+    }
+    
+    ATTACHMENT = {
+        
+        readCreateSingleFile: function (element, parentId, attDesc) {
+            try
+            {
+                var filesToUpload = element.files;
+                var file = filesToUpload[0];
+                if(file){
+                    var fileReader = new FileReader();
+                    fileReader.onload = function (e) {
+                        //var attachment = window.btoa(this.result); //Base 64 encode the file before sending it
+                        //positionIndex = 0;
+                        
+                        // Populate attachment body
+                        var binary = "";
+                        var bytes = new Uint8Array(e.target.result);
+                        var length = bytes.byteLength;
+                        for (var j = 0; j < length; j++) {
+                            binary += String.fromCharCode(bytes[j]);
+                        }
+                        var attachment = (new sforce.Base64Binary(binary)).toString();
+                        
+                        NOTIFICATIONS.spinnerStart();
+
+                        
+                        Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.AddEmployees_CC.doUploadAttachment}', 
+                    parentId,attachment, file.name,
+                    function(result, event){
+                           NOTIFICATIONS.spinnerStop();
+                                AFFILIATIONCOMPNS.clearUI();
+                                MODAL_UTILITY.successMessageModal('You have successfully added/updated your Business Account, employees, and document upload. If you have any questions, please contact your board. ', 'SUCCESS', null, refreshPage);
+                    }, 
+                    {escape: true}
+                );
+                    }
+                    fileReader.onerror = function (e) {
+                        console.log("Error in file reader ----");
+                        console.debug(e);
+                    }
+                    fileReader.onabort = function (e) {
+                        console.log("Error in file reader ----");
+                        console.debug(e);
+                    }
+                    fileReader.readAsArrayBuffer(file); //Read the body of the file
+                }
+            } catch (e) 
+            {
+                NOTIFICATIONS.spinnerStop();
+                MODAL_UTILITY.errorMessageModal(e.message , 'Error(s)') ;
+            }
+        }
+    }
+    
+    function refreshPage(){
+        window.location.href=window.location.href
+    }
+    </script>
+</apex:component>

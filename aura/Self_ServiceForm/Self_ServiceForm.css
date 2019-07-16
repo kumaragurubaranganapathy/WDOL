@@ -1,0 +1,29 @@
+.THIS .service-btn-container button{
+    height: 42px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    max-height: 3rem;
+}
+
+@media t(mqSmall){
+    .THIS .service-form-container {
+        padding: .5rem 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .THIS .service-form-container>div {
+        width: 100%;
+        padding: 0;
+        margin: 0 0 .5rem;
+    }
+    .THIS .service-btn-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .THIS .service-btn-container button{
+        width: 100%;
+        margin: 0 0 .5rem;
+    }
+}

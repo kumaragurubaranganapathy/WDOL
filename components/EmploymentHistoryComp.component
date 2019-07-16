@@ -1,0 +1,635 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : EmploymentHistoryComp
+** Description      : Employment History Component
+** Version          : 
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component >
+    <apex:attribute name="empHistoryList" type="String" description="Employment history records"/>
+    <apex:attribute name="parentId" type="string" description="License Id" />
+    <apex:attribute name="compLabel" type="String" description="Label"/>
+    <apex:attribute name="compDesc" type="String" description="Description"/>
+    <apex:attribute name="empHistObject" type="Employment_History__c" description="Employment history object"/>
+    
+    <div class="col-sm-4 col-md-4">
+        <!-- Component heading -->
+        <h2>{!compLabel}</h2>
+        <!-- Component heading -->
+        <!-- Component description -->
+        <p><apex:outputText escape="false" value="{!compDesc}"/></p>
+        <!-- Component description -->
+    </div>
+    
+    <div class="labeloverflowing col-sm-8 col-md-8">
+        <!-- Display list of records -->
+        <div class="row home">
+            <div class="employmentHistoryList">
+                <div class="row start-flex">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <ul class="list-style-none" id="employmentHistoryList">
+                                <!-- Attach existing rows here -->
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Display list of records -->
+        <!-- Record entry form -->
+        <div class="row empHistoryFormSection" style="display:none" id="empHistoryFormSectionEditContainer">
+            <div class="col-sm-12">
+                <form class="animated-form">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group required">
+                                <label for="empHist_JobTitle" id="empHist_JobTitleLabel">Job Title</label>
+                                <input type="text" class="form-control" id="empHist_JobTitle"/>
+                                <input type="text" class="form-control" id="empCurrRecordId" style="display:none"/>
+                                <span class=""></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group checkboxAlign">
+                                <label for="empHist_Current"><input type="checkbox" id="empHist_Current" />&nbsp;Current</label>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group-inanimated required">
+                                <label for="empHist_Employer" id="empHist_EmployerLabel">Employer</label>
+                                <input type="text" class="form-control" id="empHist_Employer"/>
+                                
+                                <span class=""></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group-inanimated required">
+                                <label for="empHist_StartDate" id="empHist_StartDateLabel">Start Date</label>
+                                <input type="text" class="form-control customDateNow" id="empHist_StartDate"/>
+                                <span class=""></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group-inanimated required" id="emphist_showHideEndDate">
+                                <label for="empHist_EndDate" id="empHist_EndDateLabel">End Date</label>
+                                <input type="text" class="form-control customDateNow" id="empHist_EndDate"/>
+                                <span class=""></span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-11">
+                            <div class="form-group required">
+                                <label for="empHist_Address" id="empHist_AddressLabel">Street Address</label>
+                                <input type="text" class="form-control" id="empHist_Address"/>
+                                <span class=""></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group required">
+                                <label for="empHist_City" id="empHist_CityLabel">City</label>
+                                <input type="text" class="form-control" id="empHist_City"/>
+                                <span class=""></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group required">
+                                <label for="empHist_Zip" id="empHist_ZipLabel">Zip/Postal Code</label>
+                                <input type="text" class="form-control" id="empHist_Zip"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-sm-6">
+                            <!--<div class="form-group required">-->
+                            <div class="form-group-inanimated required">
+                                <apex:outputLabel value="Country" for="empHist_Country" id="empHist_CountryLabel"/>
+                                <apex:inputField value="{!empHistObject.Country__c}" styleClass="form-control" id="empHist_Country" />
+                                <label for="empHist_Country" id="empHist_CountryLabel">Country</label>
+                               <!-- <input type="text" class="form-control" id="empHist_Country"/> -->
+                                <span></span> 
+                            </div>
+                        </div>
+                    </div> 
+                   
+                        <div class="col-sm-4">
+                            <div class="form-group-inanimated">
+                                <apex:outputLabel value="State" for="empHist_State" id="empHist_StateLabel"/>
+                                <apex:inputField value="{!empHistObject.State__c}" styleClass="form-control" id="empHist_State"/>
+                              <!--  <label for="empHist_State" id="empHist_StateLabel">State</label>
+                                <input type="text" class="form-control" id="empHist_State"/> -->
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group-inanimated">
+                                <label for="empHist_County" id="empHist_CountyLabel">County</label>
+                                <apex:inputField value="{!empHistObject.County__c}" styleClass="form-control" id="empHist_County" />
+                               <!-- <input type="text" class="form-control" id="empHist_County"/> -->
+                                <span></span>
+                            </div>
+                        </div>
+                     <div class="col-sm-4">
+                            <div class="form-group-inanimated">
+                                <apex:outputLabel value="Total Hours" for="empHist_TotalHours" id="empHist_TotalHoursLabel"/>
+                                <apex:inputField value="{!empHistObject.Total_Hours__c}" styleClass="form-control" id="empHist_TotalHours"/>
+                               <span></span>
+                            </div>
+                      </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group required" >
+                                <label for="empHist_SupName" id="empHist_SupNameLabel">Supervisor Name</label>
+                                <input type="text" class="form-control" id="empHist_SupName"/>
+                                <span class=""></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group required" >
+                                <label for="empHist_SupPhone" id="empHist_SupPhoneLabel">Supervisor Phone Number</label>
+                                <input type="text" class="form-control" id="empHist_SupPhone"/>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row addEmpHistBtn" style="display:none">
+                        <div class="col-sm-11">
+                            <input type="button" class="btn btn-tertiary cancelEmpHist" value="Cancel" id="empHistoryCancel1" />
+                            <input type="button" class="btn btn-primary btn-space" value="Add" id="empHistoryFormSection" />
+                        </div>
+                    </div>
+                    <div class="row updateEmpHistBtn" style="display:none">
+                        <div class="col-sm-11">
+                            <input type="button" class="btn btn-tertiary cancelEmpHist" value="Cancel" id="empHistoryCancel2" />
+                            <input type="button" class="btn btn-primary btn-space" value="Save" id="empHistorySave" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Record entry form -->
+        <!-- Button for new form -->
+        <div class="row addEmpHistorySection">
+            <div class="col-sm-11 text-left">
+                <input type="button" class="btn btn-secondary" value="Add Work History" id="addEmpHistorySection"/>
+            </div>
+        </div>
+        <!-- Button for new form -->
+    </div>
+    <section class="row"></section>
+    
+    <div id="empHistoryJSON" style="display: none;">
+        <apex:outputText value="{!empHistoryList}"/>
+    </div>
+    
+    <script>
+    // Initialize everything
+    var recordsEmpHist = {};
+    
+    // On page load
+    $(function() {
+        EMPHISTORYCOMPNS.loadEvents();
+        EMPHISTORYCOMPNS.getRecords();
+    });
+    
+    
+    ;EMPHISTORYCOMPNS = {
+        
+        /* Convert date for UI */
+        dateConverter: function(currDate) {
+            var utcDateNow = ''; 
+            if(currDate != null) {
+                utcDateNow = new DateUtility().toDisplay(currDate); 
+            }
+            return utcDateNow;
+        },
+        
+        /* To manage css for animation*/
+        manageAnimatedFormCss : function()
+        {
+            var editForm = $("#empHistoryFormSectionEditContainer") ;
+            editForm.find("input[type='text']").each(function(index,val)
+                                                     {
+                                                         if($(val).val() != '' )
+                                                         {
+                                                             $(val).closest(".form-group").find("label").removeClass().addClass("animated") ;
+                                                         }
+                                                     });
+        },
+        
+        initializeUIValidator: function() {
+            validationMapper.empHistory = {};
+            validationMapper.empHistory.validationObject = {
+                fields:[
+                    {
+                        id:"empHist_JobTitle",
+                        required: true,
+                        name: "Job Title",
+                        watch: true
+                    },
+                    {
+                        id:"empHist_StartDate",
+                        required: true,
+                        name: "Start Date",
+                        validator: "Date",
+                        watch: true
+                    },
+                    {
+                        id:"empHist_EndDate",
+                        required: false,
+                        name: "End Date",
+                        validator: "Date",
+                        watch: true,
+                        customValidator: function(validator){
+                            if($("#empHist_Current").is(":checked")){
+                                validator.isValid = true;
+                            }
+                            else if($("#empHist_EndDate").val() == ''){
+                                validator.isValid = false;
+                                validator.error = 'End Date cannot be empty';
+                            }
+                                else{
+                                    validator.isValid = true; 
+                                }
+                        }
+                    },
+                    {
+                        id:"empHist_Country",
+                        required: true,
+                        name: "Country",
+                        watch: true
+                    },
+                    {
+                        id:"empHist_Employer",
+                        required: true,
+                        name: "Employer",
+                        watch: true
+                    },
+                    {
+                        id:"empHist_Address",
+                        required: true,
+                        name: "Street Address",
+                        watch: true
+                    },
+                    {
+                        id:"empHist_City",
+                        required: true,
+                        name: "City",
+                        watch: true
+                    },
+                    {
+                        id:"empHist_Zip",
+                        required: true,
+                        name: "Zip",
+                        watch: true
+                    },
+                ]
+                    }
+                    validationMapper.empHistory.validator = new ValidationEngine(validationMapper.empHistory.validationObject);
+                    },
+                    
+                    /* Load all JQuery events */
+                    loadEvents: function() {
+                    /* Event - Click 'Add' after filling new form */
+                    $("#empHistoryFormSection").on("click", function() {
+                    if(validationMapper.empHistory.validator.errors().length <= 0){
+                    EMPHISTORYCOMPNS.saveRecord();
+                    } else {
+                    MODAL_UTILITY.errorMessageModal(validationMapper.empHistory.validator.errorHtml());
+                    }
+                    });
+                    
+                    $("#empHist_Current").on("change", function() {
+                    if($("#empHist_Current").is(":checked")) {
+                    var dateNow = new Date();
+                    var yearNow = '' + dateNow.getFullYear();
+                    var monthNow = '' + (dateNow.getMonth() + 1);
+                    if(monthNow.length < 2) {monthNow = '0' + monthNow;}
+                    var dayNow = '' + dateNow.getDate();
+                    if(dayNow.length < 2) {dayNow = '0' + dayNow;}
+                    $("#emphist_showHideEndDate").hide();
+                    $("#empHist_EndDate").val(monthNow + '/' + dayNow + '/' + yearNow);
+                    }
+                    else {
+                    $("#empHist_EndDate").val('');
+                    $("#emphist_showHideEndDate").show();
+                    }
+                    });
+                    
+                    $("#empHist_SupPhone").on("change", function() {
+                    var text = $(this).val();
+                    text = text.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+                    $(this).val(text);
+                    });
+                    
+                    /* Event - Click 'Add Employment' for loading new form */
+                    $("#addEmpHistorySection").on("click", function() {
+                    EMPHISTORYCOMPNS.initializeUIValidator();
+                    
+                    $(".empHistoryFormSection").show();
+                    $(".addEmpHistorySection").hide();
+                    $(".addEmpHistBtn").show();
+                    $(".updateEmpHistBtn").hide();
+                    $("#empHist_Employer").focus();
+                    $("[id$='empHist_Country']").val('United States');
+                    $("[id$='empHist_State']").val('Washington');
+                    });
+                    
+                    /* Event - Cancel form */
+                    $(".cancelEmpHist").on("click", function() {
+                    EMPHISTORYCOMPNS.clearUI();
+                    });
+                    
+                    /* Event - Save existing form */
+                    $("#empHistorySave").on("click", function() {
+                    EMPHISTORYCOMPNS.initializeUIValidator();
+                    if(validationMapper.empHistory.validator.errors().length <= 0){
+                    EMPHISTORYCOMPNS.saveRecord();
+                    } else {
+                    MODAL_UTILITY.errorMessageModal(validationMapper.empHistory.validator.errorHtml());
+                    }
+                    });
+                    },
+                    
+                    loadDynamicEvents: function() {
+                    
+                    /* Event - Edit existing form */
+                    $(".editEmpHistButton").on("click", function() {           
+                    // Start spinner
+                    NOTIFICATIONS.spinnerStart();           
+                    var currentRecordId = $(this).attr("id");
+                    currentRecordId = currentRecordId.substring(3, currentRecordId.length);
+                    $.each(recordsEmpHist, function(i, val) {
+                    //alert('recordsEmpHist on edit '+ JSON.stringify(recordsEmpHist));
+                    if(val.Id == currentRecordId) {
+                        $("#empHist_JobTitle").val(val.Job_Title__c);
+                    if(val.Current__c) {
+                         $("#empHist_Current").prop("checked", true);
+                         $("#emphist_showHideEndDate").hide();
+                    }
+                    else {
+                         $("#empHist_Current").prop("checked", false);
+                        $("#emphist_showHideEndDate").show();
+                    }
+                  
+                        $("#empHist_StartDate").val(EMPHISTORYCOMPNS.dateConverter(val.Start_Date__c));
+                        $("#empHist_EndDate").val(EMPHISTORYCOMPNS.dateConverter(val.End_date__c));
+                    // alert('in edit --'+val.End_date__c + '$("#empHist_EndDate").val' +EMPHISTORYCOMPNS.dateConverter(val.End_date__c));
+                        $("[id$='empHist_Country']").val(val.Country__c);                   
+                    if(val.State__c !=''){
+                        var controllingField = $("[id$='empHist_Country']")[0];
+                        controllingField.onchange();
+                        $("[id$='empHist_State']").val(val.State__c);
+                    }
+                     $("#empCurrRecordId").val(val.Id);
+                    $("#empHist_Address").val(val.Street_Address__c);
+                    if(val.County__c!=''){
+                         //  var controllingField = $("[id$='empHist_State']")[0];
+                        //  controllingField.onchange();
+                    $("#empHist_County").val(val.County__c);
+                    }
+            $("#empHist_SupName").val(val.Supervisor_Name__c);
+            $("#empHist_SupPhone").val(val.Supervisor_Phone_Number__c);
+            $("#empHist_Employer").val(val.Employer__c);
+            $("#empHist_City").val( val.City__c);
+            $("#empHist_Zip").val( val.Zip_code__c);
+            $("#empHist_TotalHours").val( val.Total_Hours__c);
+            
+           
+        }
+        
+        EMPHISTORYCOMPNS.manageAnimatedFormCss();
+    });
+    $(".addEmpHistBtn").hide();
+    $(".empHistoryFormSection").show();
+    $(".addEmpHistorySection").hide();
+    $(".updateEmpHistBtn").show();
+    
+    // Stop spinner
+    NOTIFICATIONS.spinnerStop();
+    });
+    
+    /* Event - Delete existing form */
+    $(".deleteEmpHistButton").on("click", function() {
+        var currentRecordId = $(this).attr("id");
+        currentRecordId = currentRecordId.substring(3, currentRecordId.length);           
+        MODAL_UTILITY.openDeleteConfirmationModal('This record will be deleted. Are you sure?' , 'Delete Confirmation', currentRecordId, EMPHISTORYCOMPNS.deleteRecord);
+    });
+    },
+        
+        /* Function - For querying records */
+        getRecords : function() {      
+            // Get list
+            recordsEmpHist = $("#empHistoryJSON").text();
+            
+            if(recordsEmpHist.trim()=='')
+            {
+                recordsEmpHist=null;
+            }
+            else{
+                recordsEmpHist = JSON.parse(recordsEmpHist);
+            }
+            //recordsEmpHist=null;
+            // Call markup injection method if records are received
+            if(recordsEmpHist != null && recordsEmpHist != '') {
+                // Inject markup
+                EMPHISTORYCOMPNS.loadRecords();
+                
+                // Show section
+                $(".employmentHistoryList").show();
+            }
+        },
+            
+            /* Function - Populate Existing records */
+            loadRecords : function() {       
+                // Clear employment history records from UI
+                $("#employmentHistoryList").empty();
+                
+                // Build markup
+                var innerHtml = '<div class="row"><div class="col-sm-3 ellipsize"><b>Employer</b></div><div class="col-sm-2 ellipsize"><b>Job Title</b></div><div class="col-sm-3"><b>Start Date</b></div><div class="col-sm-3"><b>End Date</b></div><div class="col-sm-1"></div></div>';
+                var empInst = '';
+                //   alert('innr'+innerHtml );
+                $.each(recordsEmpHist, function( i, val ) {
+                    // alert('recordsEmpHist---'+JSON.stringify(recordsEmpHist));
+                    // Change date
+                    var startDate = EMPHISTORYCOMPNS.dateConverter(val.Start_Date__c);
+                     var endDate = EMPHISTORYCOMPNS.dateConverter(val.End_Date__c);
+                    // var endDate = val.End_Date__c;
+                    //alert('endDate---'+endDate);
+                    //alert('val.End_date__c---'+val.End_date__c);
+                     if(val.Current__c) 
+                    {
+                        endDate = 'Current';
+                    } else{
+                    	endDate = EMPHISTORYCOMPNS.dateConverter(val.End_Date__c);
+                    }
+                    // alert(innerHtml );
+                    innerHtml += '<li class="addedlist"><div class="row"><div class="col-sm-3 ellipsize">' + val.Employer__c  + '</div><div class="col-sm-2 ellipsize">' + val.Job_Title__c + '</div><div class="col-sm-3">' + startDate + '</div><div class="col-sm-3">' + endDate + '</div><div class="col-sm-1"><button type="button" class="btn-square-icon editEmpHistButton" id="edt' +  val.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></div>' 
+                    //<div class="col-sm-1"><button type="button" class="btn-square-icon deleteEmpHistButton" id="del' +  val.Id + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div> 
+                    + '</div></li>';
+                    
+                    
+                });
+                
+                // Append educational history records
+                $("#employmentHistoryList").append(innerHtml);
+                
+                // Reload jquery events
+                EMPHISTORYCOMPNS.loadDynamicEvents();
+            },
+                
+                /* Function - Save a record */
+                saveRecord : function() {
+                    
+                    // Start spinner
+                    NOTIFICATIONS.spinnerStart();       
+                    // Initialize account and educational history objects
+                    
+                    var empHistObj = new sforce.SObject("{!$Label.API_Employment_History}");       
+                    // Add Employment History data
+                    if(licGlobalObj.licenseId!=null)
+                    {
+                        empHistObj.License__c = licGlobalObj.licenseId;
+                    }
+                    else{              
+                        empHistObj.Permit__c = licGlobalObj.permitId;
+                    }
+                    empHistObj.Contact__c = licGlobalObj.contactId;
+                    empHistObj.Start_Date__c = new DateUtility().toUTC($("#empHist_StartDate").val());
+                    // alert($("#empHist_Current").is(":checked"));
+                    if(!$("#empHist_Current").is(":checked")) {
+                        empHistObj.End_Date__c = new DateUtility().toUTC($("#empHist_EndDate").val());
+                        //  alert('if----'+empHistObj.End_Date__c);
+                    }
+                    else {
+                        empHistObj.End_Date__c = null;
+                        //  alert('else----'+empHistObj.End_Date__c);
+                    }
+                    // alert(empHistObj.End_Date__c);
+                    empHistObj.Job_Title__c = $("#empHist_JobTitle").val();
+                    //    empHistObj.Country__c = $("[id$='empHist_Country']").val();
+                    empHistObj.Current__c = $("#empHist_Current").is(":checked");
+                    empHistObj.Employer__c=   $("#empHist_Employer").val();
+                    empHistObj.Street_Address__c = $("#empHist_Address").val();
+                    empHistObj.City__c  = $("#empHist_City").val();
+                    empHistObj.Zip_code__c  = $("#empHist_Zip").val();
+                    empHistObj.Country__c = $("[id$='empHist_Country']").val();
+                    
+                    if($("[id$='empHist_State']").val() != null&&$("[id$='empHist_State']").val().indexOf('_') < 0) {
+                        empHistObj.State__c = $("[id$='empHist_State']").val();
+                    } 
+                    else{
+                        empHistObj.State__c = $("[id$='empHist_State']").val('');
+                    }
+                    if($("[id$='empHist_County']").val() != null&&$("[id$='empHist_County']").val().indexOf('_') < 0) {
+                        empHistObj.County__c = $("[id$='empHist_County']").val();
+                    }  
+                    else{
+                        empHistObj.County__c = $("[id$='empHist_County']").val('');
+                    }
+                    
+                    empHistObj.Supervisor_Name__c = $("#empHist_SupName").val();
+                    empHistObj.Supervisor_Phone_Number__c = $("#empHist_SupPhone").val();
+                    empHistObj.Total_Hours__c =  $("#empHist_TotalHours").val();
+                  
+                    if($("#empCurrRecordId").val() != null) {
+                        empHistObj.Id = $("#empCurrRecordId").val();
+                    }
+                    if(empHistObj != null) {
+                        var newInsert = false;
+                        try {
+                            var result = sforce.connection.upsert("Id", [empHistObj]);
+                            
+                            if(result!=null&&result[0].success == 'true') {
+                                
+                                if(empHistObj.Id == '') {
+                                    newInsert = true;
+                                }
+                                
+                                empHistObj.Id = result[0].id;
+                                
+                                if(newInsert == false) {
+                                    var empArray = [];
+                                    $.each(recordsEmpHist, function(i, val) {
+                                        empArray.push(val.Id);
+                                    });
+                                    recordsEmpHist.splice(empArray.indexOf(empHistObj.Id), 1);
+                                }
+                                //  alert('empHistObj--'+JSON.stringify(empHistObj));
+                                recordsEmpHist.push(empHistObj);
+                                EMPHISTORYCOMPNS.loadRecords();
+                                
+                                // Update UI
+                                EMPHISTORYCOMPNS.clearUI();
+                                $(".empHistoryFormSection").hide();
+                                $(".addEmpHistBtn").hide();
+                                $(".updateEmpHistBtn").hide();
+                                $(".addEmpHistorySection").show();
+                            }
+                            else {
+                                // Show error
+                                if(result==null&&event.message=='Page not allowed for the profile'){
+                                    window.location.href='/Dashboard';
+                                }
+                                MODAL_UTILITY.errorMessageModal('Error saving record. ' + result[0].errors.message);
+                            }
+                        }
+                        catch(e) {
+                            // Show error
+                            MODAL_UTILITY.errorMessageModal('Error saving record. ' + e);
+                        }
+                        
+                    }
+                    
+                    // Stop spinner
+                    NOTIFICATIONS.spinnerStop();
+                },
+                    
+                    /* Function - Delete a record */
+                    clearUI : function() {
+                        // Clear input fields
+                        $("#empHist_Employer").val('');
+                        $("#empHist_JobTitle").val('');
+                        $("#empHist_StartDate").val('');
+                        $("#empHist_EndDate").val('');
+                        $("#empHist_City").val('');
+                        $("[id$='empHist_Country']").val('');
+                        $("#empCurrRecordId").val('');
+                        $("#empHist_Address").val('');
+                        $("[id$='empHist_State']").val('');
+                        $("#empHist_City").val('');
+                        $("#empHist_Zip").val('');
+                        $("#empHist_County").val('');
+                        $("#empHist_SupName").val('');
+                        $("#empHist_SupPhone").val('');
+                        $("#empHist_TotalHours").val('');
+                        $("#empHist_Current").prop("checked", false);        
+                        // Show-hide
+                        $("#emphist_showHideEndDate").show();
+                        $(".empHistoryFormSection").hide();
+                        $(".addEmpHistBtn").hide();
+                        $(".updateEmpHistBtn").hide();
+                        $(".addEmpHistorySection").show();
+                    }
+    }
+    </script>
+    
+</apex:component>

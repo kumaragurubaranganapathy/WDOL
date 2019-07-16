@@ -1,0 +1,124 @@
+.THIS .ul-listbox {
+    width: 100%;
+}
+.THIS .slds-listbox:focus{
+    outline:0;
+}
+.THIS .slds-listbox__option .slds-icon-utility-check {
+    opacity: 0;
+}
+.THIS .slds-input{
+     border: 1px solid #5b616b;
+    height:42px;
+    box-shadow:none;
+    border-radius:unset;
+}
+.THIS .slds-size_small{
+    width:19rem;
+}
+.THIS .slds-dropdown-trigger .slds-dropdown{
+    width:100%; 
+    overflow: auto;
+	position:relative;
+	z-index:2;    
+} 
+.THIS .placeholTxt{
+    padding-left:10px;
+}
+.THIS .slds-listbox__option.slds-is-selected .slds-icon-utility-check {
+    opacity: 1;
+}
+
+.THIS li.slds-listbox__item {
+    cursor: pointer;
+}
+
+.THIS .slds-input-has-icon .slds-input__icon {
+    right: 0.5rem;
+    margin-top: -0.65rem;
+}
+
+.THIS .slds-pill__label {
+  /*  color: token(ISDColorPrimary);*/
+    font-family: t(publicSansfontfamily);
+    font-weight:normal;
+    padding-right: 0.5rem;
+}
+
+.THIS .slds-pill__remove svg {
+  /*  fill: token(ISDColorPrimary);*/
+}
+
+.THIS .parent-pill {
+    margin-top: 0.2rem;
+}
+
+.THIS .slds-pill_link .slds-pill__remove,
+.THIS .slds-pill--link .slds-pill__remove {
+    margin-right: 0.3rem;
+
+}
+
+.THIS .slds-pill:hover {
+    background-color: transparent;
+}
+
+.THIS .slds-pill:hover .slds-pill__action {
+    background-color: rgb(244, 246, 249);
+}
+
+.THIS .icon-chevron, .THIS .icon-chevron svg {
+/*    fill: token(ISDColorPrimary);*/
+    margin-top: 0.2rem;
+}
+
+.THIS .slds-icon-utility-chevrondown {
+    pointer-events: none;
+}
+
+.THIS .parent-pill {
+    width: auto;
+}
+
+.THIS .select-box {
+    width: auto;
+}
+
+.THIS .custom-pill {
+    margin-bottom: 0.35rem;
+}
+
+.THIS .slds-listbox {
+    height: 8rem;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.THIS .slds-combobox__input.events-none {
+    pointer-events: none;
+}
+
+@media t(mqSmall) {
+ 
+    .THIS .parent-pill {
+        margin-left: 0;
+        width: 100%;
+    }
+    .THIS .select-box {
+        width: 100%;
+    }
+    .THIS .slds-pill {
+        margin-right: 0.5rem;
+        margin-bottom: 0.2rem;
+    }
+    .THIS .slds-pill + .slds-pill {
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .THIS .slds-pill:nth-of-type(1) {
+        padding-left: 0;
+    }
+    .THIS .slds-size_small{
+        width: 5rem;
+    }
+}

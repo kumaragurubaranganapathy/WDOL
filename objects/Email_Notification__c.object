@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is used to send out email messages using a workflow rule. When a new Email Message record is inserted, an email is sent out using the data from the inserted record.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Attachment_Names__c</fullName>
+        <description>Attachment Names</description>
+        <externalId>false</externalId>
+        <label>Attachment Names</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attachment_Parent_Id__c</fullName>
+        <description>Attachment Parent Id</description>
+        <externalId>false</externalId>
+        <label>Attachment Parent Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Body__c</fullName>
+        <description>Body of email</description>
+        <externalId>false</externalId>
+        <label>Body</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>15</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Credential__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Credential</description>
+        <externalId>false</externalId>
+        <label>Credential</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Email Notifications</relationshipLabel>
+        <relationshipName>Email_Notifications</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Email_Address__c</fullName>
+        <description>Email Address</description>
+        <externalId>false</externalId>
+        <label>Email Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Parent_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(Credential__c)),Credential__c,
+IF( NOT(ISBLANK(Permit_Plan_Review__c)),Permit_Plan_Review__c,
+IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
+)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email Parent Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Has the email been sent?</description>
+        <externalId>false</externalId>
+        <label>Email Sent</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Email_Template_Name__c</fullName>
+        <description>Email Template Name</description>
+        <externalId>false</externalId>
+        <label>Email Template Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Template_Parent_Id__c</fullName>
+        <description>Email Template Parent Id</description>
+        <externalId>false</externalId>
+        <label>Email Template Parent Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <description>Email field but no relation to any contact</description>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expired_Permit_Credential_Status__c</fullName>
+        <description>Expired Permit/Credential Status</description>
+        <externalId>false</externalId>
+        <label>Expired Permit/Credential Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Expired_Permit_Credential_SubStatus__c</fullName>
+        <description>Expired Permit/Credential SubStatus</description>
+        <externalId>false</externalId>
+        <label>Expired Permit/Credential SubStatus</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                    <label>Expired</label>
+                </value>
+                <value>
+                    <fullName>Lapsed</fullName>
+                    <default>false</default>
+                    <label>Lapsed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Invoice__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Invoice</label>
+        <referenceTo>BGBK__Bill__c</referenceTo>
+        <relationshipLabel>Email Notifications</relationshipLabel>
+        <relationshipName>Email_Notifications</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Param1__c</fullName>
+        <description>Parameter of the Email</description>
+        <externalId>false</externalId>
+        <label>Param1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Param2__c</fullName>
+        <description>Parameter of the Email</description>
+        <externalId>false</externalId>
+        <label>Param2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Param3__c</fullName>
+        <description>Parameter of the Email</description>
+        <externalId>false</externalId>
+        <label>Param3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Param4__c</fullName>
+        <description>Parameter of the Email</description>
+        <externalId>false</externalId>
+        <label>Param4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Permit_Plan_Review__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Permit/Plan Review</description>
+        <externalId>false</externalId>
+        <label>Permit/Plan Review</label>
+        <referenceTo>MUSW__Permit2__c</referenceTo>
+        <relationshipLabel>Email Notifications</relationshipLabel>
+        <relationshipName>Email_Notifications</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Recipient_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup field to Contact</description>
+        <externalId>false</externalId>
+        <label>Recipient Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Email Notifications</relationshipLabel>
+        <relationshipName>Email_Notifications</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Renewal_Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Renewal Application</description>
+        <externalId>false</externalId>
+        <label>Renewal Application</label>
+        <referenceTo>Renewal_Application__c</referenceTo>
+        <relationshipLabel>Email Notifications</relationshipLabel>
+        <relationshipName>Email_Notifications</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Subject__c</fullName>
+        <description>Subject of email</description>
+        <externalId>false</externalId>
+        <label>Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Task_Subject__c</fullName>
+        <description>Task Subject</description>
+        <externalId>false</externalId>
+        <label>Task Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>To_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(Recipient_Contact__r.Email)),
+Recipient_Contact__r.Email,
+Email__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>To Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>This is the type of email going out.</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Send Individual Security Code</fullName>
+                    <default>false</default>
+                    <label>Send Individual Security Code</label>
+                </value>
+                <value>
+                    <fullName>Send Business Security Code</fullName>
+                    <default>false</default>
+                    <label>Send Business Security Code</label>
+                </value>
+                <value>
+                    <fullName>Raw HTML Body</fullName>
+                    <default>false</default>
+                    <label>Raw HTML Body</label>
+                </value>
+                <value>
+                    <fullName>User Upgrade</fullName>
+                    <default>false</default>
+                    <label>User Upgrade</label>
+                </value>
+                <value>
+                    <fullName>Email with Attachments</fullName>
+                    <default>false</default>
+                    <label>Email with Attachments</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Email Notification</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Email__c</columns>
+        <columns>Recipient_Contact__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>EM-{000000}</displayFormat>
+        <label>Email Notification Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Email Notifications</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,1 @@
+trigger DRE2_MUSW_Account_Contact_c on MUSW__Account_Contact__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_MUSW_Account_Contact_c', new DRETriggerHandler()); }

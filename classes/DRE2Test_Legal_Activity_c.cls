@@ -1,0 +1,1 @@
+@isTest private class DRE2Test_Legal_Activity_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('Legal_Activity__c'); } }

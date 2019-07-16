@@ -1,0 +1,14 @@
+<apex:page showHeader="false" sidebar="false">
+	
+	<div style="padding-top: 50px; text-align: center; width: 100%">
+		<apex:outputText value="The maximum file size allowed is 300 MB" />
+	</div>
+
+    <MUSW:FileUploadSingle />
+    
+    <script>
+        window.onbeforeunload=function(){
+            opener.ATTACHMENTCOMPNS.saveRecordToBluebeamCallback("{!$CurrentPage.parameters.Id}");
+        }
+    </script>
+</apex:page>

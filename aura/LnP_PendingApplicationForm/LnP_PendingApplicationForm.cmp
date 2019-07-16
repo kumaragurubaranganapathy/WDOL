@@ -1,0 +1,164 @@
+<!-- *************************************************************************
+Component Name : LnP_PendingApplicationForm
+Created By : Srujan Keskar
+Creation Date : 18-June-2019
+
+Modification Log
+
+Name			Date			Issue
+_______________________________________________________________
+
+*******************************************************************************-->
+<aura:component controller="LnP_DashboardApexController_2">
+    
+    <aura:attribute name = "recordID" type = "String"/>
+    
+    <aura:attribute name="EmploymentHistoryTableColumnsList" type="List"/>
+    <aura:attribute name="EmploymentHistoryTableDataList" type="List"/>
+    
+    <aura:attribute name="EducationalHistoryTableColumnsList" type="List"/>
+    <aura:attribute name="EducationalHistoryTableDataList" type="List"/>
+    
+    <aura:attribute name="educationRecordTypeId" type="Id"/>
+    <aura:attribute name="employmentnRecordTypeId" type="Id"/>
+    
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <div class="pending-app-wrapper">
+      
+            <lightning:layout class="slds-wrap">
+                
+                <lightning:layoutItem padding="around-small">
+                    <aura:if isTrue="{!v.EmploymentHistoryTableColumnsList.length != 0}">                          
+                        <div class="slds-p-vertical_large">
+                            <div class="table-name">Employment History</div>    
+                            <div style="height:300px" class="slds-p-vertical_small">
+                            <div style="height: 100%; position: relative;">
+                                <div class="slds-scrollable_x" style="height: 100%;">
+                                    <div class="slds-scrollable_y">
+                                        <div>
+                                            <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                <thead>
+                                                    <tr class="slds-line-height_reset">
+                                                        <aura:iteration items="{!v.EmploymentHistoryTableColumnsList}" var="headerData">
+                                                            <th class="" scope="col">
+                                                                <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                            </th> 
+                                                        </aura:iteration>
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate" title="actionedit"></div>
+                                                        </th>
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate" title="actiondelete"></div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <aura:iteration items="{!v.EmploymentHistoryTableDataList}" var="tableData" indexVar="ind">
+                                                        <tr class="slds-hint-parent">    
+                                                            <td data-label="PROFESSION" class="cell-style">
+                                                                <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                            </td>
+                                                            <td data-label="LICENSE TYPE" class="cell-style">
+                                                                <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                            </td>
+                                                            <td data-label="APPLICATION METHOD" class="cell-style">
+                                                                <div class="slds-truncate">{!tableData.Application_Method__c}</div>
+                                                            </td>
+                                                            <td data-label="LAST UPDATED" class="cell-style">
+                                                                <div class="slds-truncate">{!tableData.editDate}</div>
+                                                            </td>  
+                                                            <td data-label="actions" class="cell-style">
+                                                                <div class="slds-truncate" data-recordId = "{!tableData.Id}">
+                                                                    <lightning:button label="Edit" title="Neutral action"/>
+                                                                </div>    
+                                                            </td>
+                                                            <td data-label="actions" class="cell-style action-cell">
+                                                                <div class="slds-truncate"   onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
+                                                                    <lightning:button label="Delete" variant="brand"/>
+                                                                </div>    
+                                                            </td>
+                                                        </tr>  
+                                                    </aura:iteration>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </aura:if>
+                </lightning:layoutItem>
+                <br/>
+                <lightning:layoutItem padding="around-small">
+                    <aura:if isTrue="{!v.EducationalHistoryTableDataList.length != 0}"> 
+                            <div class="slds-p-vertical_large">
+                                <div class="table-name">Educational History</div>
+                                <div style="height:300px" class="slds-p-vertical_small">                               
+                                    
+                                    <div style="height: 100%; position: relative;">
+                                        <div class="slds-scrollable_x" style="height: 100%;">
+                                            <div class="slds-scrollable_y">
+                                                <div>
+                                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <aura:iteration items="{!v.EducationalHistoryTableColumnsList}" var="headerData">
+                                                                    <th class="" scope="col">
+                                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                                    </th> 
+                                                                </aura:iteration>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actionedit"></div>
+                                                                </th>
+                                                                <th class="" scope="col">
+                                                                    <div class="slds-truncate" title="actiondelete"></div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!v.EducationalHistoryTableDataList}" var="tableData" indexVar="ind">
+                                                                <tr class="slds-hint-parent">    
+                                                                    <td data-label="Name" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.License__r.Name}</div>
+                                                                    </td>
+                                                                    <td data-label="PROFESSION" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Application_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="LICENSE TYPE" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.Credential_Type__c}</div>
+                                                                    </td>
+                                                                    <td data-label="EXPIRATION DATE" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.renexpirydate}</div>
+                                                                    </td>
+                                                                    <td data-label="LAST UPDATED" class="cell-style">
+                                                                        <div class="slds-truncate">{!tableData.editDate}</div>
+                                                                    </td> 
+
+                                                                    <td data-label="actions" class="cell-style">
+                                                                        <div class="slds-truncate"  data-recordId = "{!tableData.Id}">
+                                                                            <lightning:button label="Edit" title="Neutral action"/>
+                                                                        </div>    
+                                                                    </td>
+                                                                    <td data-label="actions" class="cell-style action-cell">
+                                                                        <div class="slds-truncate" data-recordId = "{!tableData.Id}">
+                                                                            <lightning:button label="Delete" variant="brand"/>
+                                                                        </div>    
+                                                                    </td>
+                                                                </tr>  
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aura:if>
+                </lightning:layoutItem>
+                
+            </lightning:layout>
+    </div>
+        
+</aura:component>

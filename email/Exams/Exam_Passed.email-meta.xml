@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS_Trades_Letterhead</letterhead>
+    <name>Exam Passed</name>
+    <style>freeForm</style>
+    <subject>DSPS Exam Results</subject>
+    <textOnly>Re: Credential Number: {!Exam__c.License__c}
+Customer ID: {!Exam__c.Customer_ID__c}
+
+Examination for: {!Exam__c.Exam_Type__c}
+Your score was: {!Exam__c.Grade__c}
+
+Dear {!Exam__c.Contact__c},
+
+Congratulations, you have passed all examination requirements for the credential listed in the regarding line above.
+
+Per SPS305.09(7)(c)(2), you have 90 days from the date of this letter to pay your credential fee.  Failure to pay the credential fee within this timeframe will require you to retake and pass another exam.
+
+Log in to the eSLA portal at https://eSLA.wi.gov  to pay for and complete your credential application or confirm the status of your credential application if a military waiver was requested.
+
+Please refer to your initial application or chapter SPS 305 for detailed information about renewal and/or continuing education requirements.  A renewal notice will be mailed to the last address the department has on file for you, at least 30 days prior to your renewal date.
+
+If you have any questions, please email us at dspscredtrades@wi.gov
+
+After receipt of your credential card, you may engage in the activities it permits.  For necessary program materials, such as forms and worksheets, please visit our website, http://dsps.wi.gov</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

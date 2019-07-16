@@ -1,0 +1,306 @@
+.THIS.page-width {
+    width: 90%;
+    margin: 0px auto;
+}
+.THIS .breadcumb a{
+    font-size:14px;
+    font-weight:500;
+}
+.THIS .field-item.help-text{
+    padding-bottom:0.25rem;
+}
+.THIS .button-borders .slds-table_header-fixed_container{
+    padding-top:0;
+}
+.THIS .sub-section-header{
+    display:none;
+}
+.THIS .slds-page-header h1{
+    font-family:t(publicSansfontfamily);
+}
+
+.THIS .slds-page-header,.THIS .lightningBreadcrumbs div{
+
+    padding-bottom:10px;
+}
+.THIS .slds-page-header{
+    height:auto;
+}
+.THIS .slds-tabs_default__nav{
+    margin-left:0;
+}
+.THIS .sub-header, .THIS .sub-section,.THIS .subheader span{
+    color: t(fieldclr);
+}
+.THIS .lightningBreadcrumbs,.THIS .screen-two,.THIS .screen-three{
+    padding:16px
+}
+.THIS .screen-two{
+    padding-top:0;
+}
+
+.THIS .slds-button_icon-bare .slds-button__icon{
+    display:none;
+}
+.THIS .slds-text-title_caps{
+    text-transform:none;
+}
+.THIS .slds-is-sortable .slds-th__action:hover,.THIS .slds-is-sortable .slds-th__action:focus{
+    background: #d6d7d9;
+}
+.THIS .slds-table th.slds-has-focus,.THIS .slds-has-focus,.THIS .slds-table th:focus{
+    box-shadow:none;
+    
+}
+
+.THIS table.slds-table_header-fixed tbody tr:first-child th, 
+.THIS table.slds-table_header-fixed tbody tr:first-child td{
+    
+   
+    border-top: solid 1px #5b616b;
+}
+
+.THIS .search-result .slds-cell-fixed{
+        background: #d6d7d9;
+    min-height:4rem;
+    position:static;
+      
+}
+.THIS .search-result .slds-has-focus .slds-th__action{
+     background: #d6d7d9;
+}
+.THIS .search-result .slds-table thead tr th:last-child div{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/*.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
+background: t(sectionBG);
+}*/
+.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
+    overflow-x:hidden;
+} 
+/*.THIS .search-result .slds-table th,.THIS .search-result .slds-table td {
+padding: 4px 5px;
+}*/
+.THIS .slds-table tbody tr:hover td,.THIS .slds-table tbody tr:hover th{
+     background: t(white);
+}
+
+.THIS .breadcumb a {
+    color: t(fieldclr);
+    font-weight:t(btnfontweight);
+}
+.THIS .slds-breadcrumb__item:before{
+    margin-top:3%;
+}
+.THIS .text-right{
+    text-align:right;
+}
+.THIS .color-white{
+    color: t(white);
+}
+
+.THIS .button-float{
+    float: right;
+}
+.THIS .button-borders .slds-button{
+    border: none;
+    color: black;
+    box-shadow: none;
+    text-decoration: underline;
+}
+.THIS .button-borders .slds-button_neutral{
+    height:auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-family: token(btnfontfamily);
+    font-size: token(btnfontsize);
+    font-weight: token(txtfontweight);
+    
+}
+.THIS .button-borders a,.THIS .slds-th__action{
+    height: 18px;
+    font-family: token(publicSansfontfamily);
+    font-size: t(senfontsize);
+    font-weight: t(btnfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color:token(LnGFormTitleColor);
+    box-shadow:none;
+}
+.THIS .screen-three .buttons-right{
+    text-align:right;
+}
+
+.THIS .bottom-border{
+    border-bottom: 1px solid #d4d4d4; 
+}
+.THIS .table-border{
+    border-radius: .25rem;
+    border: 1px solid #d4d4d4;
+}
+.THIS .bottom-border .row-margin{
+    margin-bottom :0;
+}
+
+.THIS .transform-text{
+    text-transform: capitalize;
+    letter-spacing: 0px;
+}
+.THIS .pagination-wrapper {
+    text-align:center;
+}
+.THIS .slds-is-active .slds-tabs_default__link{
+    text-decoration: none;
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
+    font-weight: token(btnfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    color: token(licensetxt);
+}
+
+.THIS .licenseinp, .THIS .select-help{
+   
+    width:50%;
+}
+.THIS .screen-one .divBox{
+    padding:0;
+}
+.THIS .alignRight{
+    text-align:right;
+}
+
+    
+/*common style for tabs end*/
+ .THIS .screen-one ul{
+       background:t(LnGWhite);
+}  
+.THIS .divBox .slds-tabs_default__item.slds-is-active{
+    
+    font-weight: token(btnfontweight);
+    color:t(fieldclr);   
+    border-bottom: solid 2px #0071bc;
+    background:t(LnGWhite);;
+
+}
+.THIS .divBox .slds-tabs_default__item.slds-is-active .slds-tabs_default__link{
+   
+    text-decoration:none; 
+}
+.THIS .divBox .slds-tabs_default__item .slds-tabs_default__link{
+    font-family: t(publicSansfontfamily);
+    font-size: 1rem;    
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:t(black);
+   
+}
+.THIS .divBox .slds-tabs_default__item {
+        border:none;
+   }
+
+@media screen and (min-width: 1280px){
+   .THIS .screen-one ul li:nth-child(-n+2){
+        width:50%
+    }
+    .THIS .divBox .slds-tabs_default__overflow-button{
+        visibility:hidden;
+        padding:0;
+    }
+   
+}
+/*common style for tabs end*/
+@media t(mqSmall){ 
+    .THIS .licenseinp,.THIS .licensetab .field-item,.THIS .businesstab .field-item{
+        width:100%;
+    }
+   
+    .THIS #data-table table.slds-table, .THIS #data-table table.slds-table {
+        width: 100% !important;
+        border: 0;
+    }
+    .THIS #data-table .slds-scrollable_y {
+        width: 100% !important;
+    }
+    .THIS #data-table table.slds-table thead, .THIS #data-table table.slds-table thead {
+        position: absolute!important;
+        margin: -1px!important;
+        border: 0!important;
+        padding: 0!important;
+        width: 1px!important;
+        height: 1px!important;
+        overflow: hidden!important;
+        clip: rect(0 0 0 0)!important;
+    }
+    .THIS #data-table table.slds-table tr, .THIS #data-table table.slds-table tr {
+        display: block;
+        border: 1px solid #d4d4d4;
+        border-radius: 5px;
+        margin: 15px 0px;
+    }
+    .THIS #data-table .slds-table_header-fixed_container::before {
+        border: 0px;
+    }
+    .THIS #data-table table.slds-table .slds-button {
+        height: auto;
+        padding: 0px;
+        font-weight: 200;    
+    }
+    .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover th, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover th {
+        background-color: inherit!important;
+        box-shadow: none!important;
+    }
+    .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table td, .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table td {
+        display: block;
+        padding: 8px 15px;
+        max-width: 100%;
+        width: 100%;
+        clear: both;
+        white-space: normal;
+        overflow: hidden;
+        text-align: left;
+        border-top: 0px;
+    }
+    .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table th {
+        border-top: 0;
+        border-right:none;
+    }
+    .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before {
+        padding-bottom: .25rem;
+    }
+    .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before {
+        font-size: .75rem;
+        line-height: 1.25;
+        color: #696969;
+        text-transform: uppercase;
+        letter-spacing: .0625rem;
+        display: block;
+        padding-bottom: .25rem;
+        content: attr(data-label);
+    }
+    .THIS #data-table .slds-table_header-fixed_container {
+        padding: 0px;
+    }
+    .THIS .screen-two .search-details>div{
+        width:100%
+    }
+    .THIS .screen-two .search-details .slds-form-element__label,.THIS .screen-two .search-details .slds-form-element__control{
+        display:inline;
+    }
+    .THIS table.slds-table_header-fixed tbody tr:first-child th, 
+    .THIS table.slds-table_header-fixed tbody tr:first-child td{
+        
+        border-right: none;
+        
+    }
+    .THIS .screen-three .btn-bg{
+        width:100%;
+    }
+    .THIS .screen-three,.THIS .screen-two{
+        padding:0;
+    }
+}
