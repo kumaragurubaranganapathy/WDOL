@@ -103,13 +103,13 @@ system.debug('return is' +customerEnvelpe);
 return customerEnvelpe;
 }*/
     
-    @AuraEnabled
+    /*@AuraEnabled
     public static MUSW__Receipt__c getReceiptInfo(){
         system.debug('inside the controller');
         MUSW__Receipt__c receiptInfo=[SELECT id,Date_Today_s__c FROM MUSW__Receipt__c LIMIT 1];
         system.debug('return is' +receiptInfo);
         return receiptInfo;
-    }
+    }*/
     
     @AuraEnabled
     public static MUSW__Deposit__c getDepositInfo(){
@@ -180,7 +180,7 @@ return customerEnvelpe;
         system.debug('lockBoxId---> is: '+ lockBoxId);
         createPayableReceipt(recRecLstArr,depRecLstArr);
         
-        customerEnvelopeRec.wadol_DefaultProgramType__c= programType; 
+        //customerEnvelopeRec.wadol_DefaultProgramType__c= programType; 
       
         if(lockBoxId !=null){
             system.debug('inside if');
