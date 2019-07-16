@@ -87,6 +87,16 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>City_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
@@ -511,15 +521,248 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>State__c</fullName>
+        <fullName>County__c</fullName>
         <externalId>false</externalId>
-        <label>State</label>
+        <label>County</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
+            <controllingField>State__c</controllingField>
             <restricted>true</restricted>
-            <valueSetName>State_Provinces</valueSetName>
+            <valueSetName>County_New_Values</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>Texas</controllingFieldValue>
+                <controllingFieldValue>Utah</controllingFieldValue>
+                <controllingFieldValue>Vermont</controllingFieldValue>
+                <controllingFieldValue>Virginia</controllingFieldValue>
+                <controllingFieldValue>West Virginia</controllingFieldValue>
+                <controllingFieldValue>Wisconsin</controllingFieldValue>
+                <controllingFieldValue>Wyoming</controllingFieldValue>
+                <controllingFieldValue>Washington D.C.</controllingFieldValue>
+                <controllingFieldValue>American Samoa</controllingFieldValue>
+                <controllingFieldValue>Georgia</controllingFieldValue>
+                <controllingFieldValue>Northern Mariana Islands</controllingFieldValue>
+                <controllingFieldValue>Guam</controllingFieldValue>
+                <controllingFieldValue>Puerto Rico</controllingFieldValue>
+                <controllingFieldValue>Hawaii</controllingFieldValue>
+                <controllingFieldValue>U.S. Virgin Islands</controllingFieldValue>
+                <controllingFieldValue>Idaho</controllingFieldValue>
+                <controllingFieldValue>Marshall Islands</controllingFieldValue>
+                <controllingFieldValue>Illinois</controllingFieldValue>
+                <controllingFieldValue>Armed Forces Pacific</controllingFieldValue>
+                <controllingFieldValue>Indiana</controllingFieldValue>
+                <controllingFieldValue>Armed Forces Americas</controllingFieldValue>
+                <controllingFieldValue>Iowa</controllingFieldValue>
+                <controllingFieldValue>Kansas</controllingFieldValue>
+                <controllingFieldValue>Kentucky</controllingFieldValue>
+                <controllingFieldValue>Louisiana</controllingFieldValue>
+                <controllingFieldValue>Alabama</controllingFieldValue>
+                <controllingFieldValue>Alaska</controllingFieldValue>
+                <controllingFieldValue>Arizona</controllingFieldValue>
+                <controllingFieldValue>Arkansas</controllingFieldValue>
+                <controllingFieldValue>California</controllingFieldValue>
+                <controllingFieldValue>Colorado</controllingFieldValue>
+                <controllingFieldValue>Connecticut</controllingFieldValue>
+                <controllingFieldValue>Delaware</controllingFieldValue>
+                <controllingFieldValue>Florida</controllingFieldValue>
+                <controllingFieldValue>Armed Forces Europe</controllingFieldValue>
+                <controllingFieldValue>Fed St Micronesia</controllingFieldValue>
+                <controllingFieldValue>Palau</controllingFieldValue>
+                <controllingFieldValue>Maine</controllingFieldValue>
+                <controllingFieldValue>Maryland</controllingFieldValue>
+                <controllingFieldValue>Massachusetts</controllingFieldValue>
+                <controllingFieldValue>Michigan</controllingFieldValue>
+                <controllingFieldValue>Minnesota</controllingFieldValue>
+                <controllingFieldValue>Mississippi</controllingFieldValue>
+                <controllingFieldValue>Missouri</controllingFieldValue>
+                <controllingFieldValue>Montana</controllingFieldValue>
+                <controllingFieldValue>Nebraska</controllingFieldValue>
+                <controllingFieldValue>Nevada</controllingFieldValue>
+                <controllingFieldValue>New Hampshire</controllingFieldValue>
+                <controllingFieldValue>New Jersey</controllingFieldValue>
+                <controllingFieldValue>New Mexico</controllingFieldValue>
+                <controllingFieldValue>New York</controllingFieldValue>
+                <controllingFieldValue>North Carolina</controllingFieldValue>
+                <controllingFieldValue>North Dakota</controllingFieldValue>
+                <controllingFieldValue>Ohio</controllingFieldValue>
+                <controllingFieldValue>Oklahoma</controllingFieldValue>
+                <controllingFieldValue>Oregon</controllingFieldValue>
+                <controllingFieldValue>Pennsylvania</controllingFieldValue>
+                <controllingFieldValue>Rhode Island</controllingFieldValue>
+                <controllingFieldValue>South Carolina</controllingFieldValue>
+                <controllingFieldValue>South Dakota</controllingFieldValue>
+                <controllingFieldValue>Tennessee</controllingFieldValue>
+                <valueName>Out Of State</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Adams</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Asotin</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Benton</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Chelan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Clallam</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Clark</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Columbia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Cowlitz</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Douglas</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Ferry</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Franklin</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Garfield</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Grant</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Grays Harbor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Island</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Jefferson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>King</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Kitsap</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Kittitas</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Klickitat</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Lewis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Lincoln</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Mason</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Null</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Okanogan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Out Of Country</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Pacific</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Pend Oreille</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Pierce</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>San Juan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Skagit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Skamania</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Snohomish</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Spokane</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Stevens</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Thurston</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Unknown County</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Wahkiakum</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Walla Walla</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Whatcom</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Whitman</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Washington</controllingFieldValue>
+                <valueName>Yakima</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
     <fields>
