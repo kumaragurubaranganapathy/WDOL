@@ -85,9 +85,9 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+       <unique>false</unique>
     </fields>
-	<fields>
+              <fields>
         <fullName>City_Text__c</fullName>
         <externalId>false</externalId>
         <label>City</label>
@@ -107,6 +107,18 @@
         <valueSet>
             <restricted>true</restricted>
             <valueSetName>List_of_Countries</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>County__c</fullName>
+        <externalId>false</externalId>
+        <label>County</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>County</valueSetName>
         </valueSet>
     </fields>
     <fields>
@@ -286,7 +298,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Job_Title__c</fullName>
         <externalId>false</externalId>
         <label>Job Title</label>
@@ -811,527 +823,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>State__c</fullName>
-        <externalId>false</externalId>
-        <label>State</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <controllingField>Country__c</controllingField>
-            <restricted>true</restricted>
-            <valueSetName>State_Provinces</valueSetName>
-            <valueSettings>
-                <controllingFieldValue>Mauritania</controllingFieldValue>
-                <controllingFieldValue>Mauritius</controllingFieldValue>
-                <controllingFieldValue>Mexico</controllingFieldValue>
-                <controllingFieldValue>Micronesia</controllingFieldValue>
-                <controllingFieldValue>Moldova</controllingFieldValue>
-                <controllingFieldValue>Monaco</controllingFieldValue>
-                <controllingFieldValue>Mongolia</controllingFieldValue>
-                <controllingFieldValue>Montenegro</controllingFieldValue>
-                <controllingFieldValue>Morocco</controllingFieldValue>
-                <controllingFieldValue>Mozambique</controllingFieldValue>
-                <controllingFieldValue>Australia</controllingFieldValue>
-                <controllingFieldValue>Austria</controllingFieldValue>
-                <controllingFieldValue>Azerbaijan</controllingFieldValue>
-                <controllingFieldValue>Bahamas</controllingFieldValue>
-                <controllingFieldValue>Bahrain</controllingFieldValue>
-                <controllingFieldValue>Bangladesh</controllingFieldValue>
-                <controllingFieldValue>Barbados</controllingFieldValue>
-                <controllingFieldValue>Belarus</controllingFieldValue>
-                <controllingFieldValue>Belgium</controllingFieldValue>
-                <controllingFieldValue>Belize</controllingFieldValue>
-                <controllingFieldValue>Namibia</controllingFieldValue>
-                <controllingFieldValue>Nauru</controllingFieldValue>
-                <controllingFieldValue>Nepal</controllingFieldValue>
-                <controllingFieldValue>Afghanistan</controllingFieldValue>
-                <controllingFieldValue>Netherlands</controllingFieldValue>
-                <controllingFieldValue>Albania</controllingFieldValue>
-                <controllingFieldValue>New Zealand</controllingFieldValue>
-                <controllingFieldValue>Algeria</controllingFieldValue>
-                <controllingFieldValue>Nicaragua</controllingFieldValue>
-                <controllingFieldValue>Andorra</controllingFieldValue>
-                <controllingFieldValue>Niger</controllingFieldValue>
-                <controllingFieldValue>Angola</controllingFieldValue>
-                <controllingFieldValue>Nigeria</controllingFieldValue>
-                <controllingFieldValue>Antigua and Barbados</controllingFieldValue>
-                <controllingFieldValue>North Korea</controllingFieldValue>
-                <controllingFieldValue>Argentina</controllingFieldValue>
-                <controllingFieldValue>Norway</controllingFieldValue>
-                <controllingFieldValue>Armenia</controllingFieldValue>
-                <controllingFieldValue>Benin</controllingFieldValue>
-                <controllingFieldValue>Bhutan</controllingFieldValue>
-                <controllingFieldValue>Bolivia</controllingFieldValue>
-                <controllingFieldValue>Bosnia and Herzegovina</controllingFieldValue>
-                <controllingFieldValue>Botswana</controllingFieldValue>
-                <controllingFieldValue>Brazil</controllingFieldValue>
-                <controllingFieldValue>Brunei</controllingFieldValue>
-                <controllingFieldValue>Bulgaria</controllingFieldValue>
-                <controllingFieldValue>Burkina</controllingFieldValue>
-                <controllingFieldValue>Burma</controllingFieldValue>
-                <controllingFieldValue>Oman</controllingFieldValue>
-                <controllingFieldValue>Pakistan</controllingFieldValue>
-                <controllingFieldValue>Palau</controllingFieldValue>
-                <controllingFieldValue>Panama</controllingFieldValue>
-                <controllingFieldValue>Papua New Guinea</controllingFieldValue>
-                <controllingFieldValue>Paraguay</controllingFieldValue>
-                <controllingFieldValue>Peru</controllingFieldValue>
-                <controllingFieldValue>Philippines</controllingFieldValue>
-                <controllingFieldValue>Poland</controllingFieldValue>
-                <controllingFieldValue>Portugal</controllingFieldValue>
-                <controllingFieldValue>Burundi</controllingFieldValue>
-                <controllingFieldValue>Cape Verde</controllingFieldValue>
-                <controllingFieldValue>Cambodia</controllingFieldValue>
-                <controllingFieldValue>Cameroon</controllingFieldValue>
-                <controllingFieldValue>Central African Republic</controllingFieldValue>
-                <controllingFieldValue>Chad</controllingFieldValue>
-                <controllingFieldValue>Chile</controllingFieldValue>
-                <controllingFieldValue>China</controllingFieldValue>
-                <controllingFieldValue>Colombia</controllingFieldValue>
-                <controllingFieldValue>Qatar</controllingFieldValue>
-                <controllingFieldValue>Republic of the Congo</controllingFieldValue>
-                <controllingFieldValue>Romania</controllingFieldValue>
-                <controllingFieldValue>Russia</controllingFieldValue>
-                <controllingFieldValue>Rwanda</controllingFieldValue>
-                <controllingFieldValue>Saint Kitts and Nevis</controllingFieldValue>
-                <controllingFieldValue>Saint Lucia</controllingFieldValue>
-                <controllingFieldValue>Saint Vincent and the Grenadines</controllingFieldValue>
-                <controllingFieldValue>Samoa</controllingFieldValue>
-                <controllingFieldValue>San Marino</controllingFieldValue>
-                <controllingFieldValue>Comoros</controllingFieldValue>
-                <controllingFieldValue>Costa Rica</controllingFieldValue>
-                <controllingFieldValue>Cote d&apos;Ivoire</controllingFieldValue>
-                <controllingFieldValue>Croatia</controllingFieldValue>
-                <controllingFieldValue>Cuba</controllingFieldValue>
-                <controllingFieldValue>Cyprus</controllingFieldValue>
-                <controllingFieldValue>Czech Republic</controllingFieldValue>
-                <controllingFieldValue>Democratic Republic of Congo</controllingFieldValue>
-                <controllingFieldValue>Denmark</controllingFieldValue>
-                <controllingFieldValue>Djibouti</controllingFieldValue>
-                <controllingFieldValue>Sao Tome and Principe</controllingFieldValue>
-                <controllingFieldValue>Saudi Arabia</controllingFieldValue>
-                <controllingFieldValue>Senegal</controllingFieldValue>
-                <controllingFieldValue>Serbia</controllingFieldValue>
-                <controllingFieldValue>Seychelles</controllingFieldValue>
-                <controllingFieldValue>Sierra</controllingFieldValue>
-                <controllingFieldValue>Singapore</controllingFieldValue>
-                <controllingFieldValue>Slovakia</controllingFieldValue>
-                <controllingFieldValue>Slovenia</controllingFieldValue>
-                <controllingFieldValue>Solomon Islands</controllingFieldValue>
-                <controllingFieldValue>Dominica</controllingFieldValue>
-                <controllingFieldValue>Dominican Republic</controllingFieldValue>
-                <controllingFieldValue>Ecuador</controllingFieldValue>
-                <controllingFieldValue>Egypt</controllingFieldValue>
-                <controllingFieldValue>El Salvador</controllingFieldValue>
-                <controllingFieldValue>Equatorial Guinea</controllingFieldValue>
-                <controllingFieldValue>Eritrea</controllingFieldValue>
-                <controllingFieldValue>Estonia</controllingFieldValue>
-                <controllingFieldValue>Ethiopia</controllingFieldValue>
-                <controllingFieldValue>Fiji</controllingFieldValue>
-                <controllingFieldValue>Somalia</controllingFieldValue>
-                <controllingFieldValue>South Africa</controllingFieldValue>
-                <controllingFieldValue>South Korea</controllingFieldValue>
-                <controllingFieldValue>South Sudan</controllingFieldValue>
-                <controllingFieldValue>Spain</controllingFieldValue>
-                <controllingFieldValue>Sri Lanka</controllingFieldValue>
-                <controllingFieldValue>Sudan</controllingFieldValue>
-                <controllingFieldValue>Suriname</controllingFieldValue>
-                <controllingFieldValue>Swaziland</controllingFieldValue>
-                <controllingFieldValue>Sweden</controllingFieldValue>
-                <controllingFieldValue>Finland</controllingFieldValue>
-                <controllingFieldValue>France</controllingFieldValue>
-                <controllingFieldValue>Gabon</controllingFieldValue>
-                <controllingFieldValue>Gambia</controllingFieldValue>
-                <controllingFieldValue>Georgia</controllingFieldValue>
-                <controllingFieldValue>Germany</controllingFieldValue>
-                <controllingFieldValue>Ghana</controllingFieldValue>
-                <controllingFieldValue>Greece</controllingFieldValue>
-                <controllingFieldValue>Grenada</controllingFieldValue>
-                <controllingFieldValue>Guatemala</controllingFieldValue>
-                <controllingFieldValue>Switzerland</controllingFieldValue>
-                <controllingFieldValue>Syria</controllingFieldValue>
-                <controllingFieldValue>Taiwan</controllingFieldValue>
-                <controllingFieldValue>Tajikistan</controllingFieldValue>
-                <controllingFieldValue>Tanzania</controllingFieldValue>
-                <controllingFieldValue>Thailand</controllingFieldValue>
-                <controllingFieldValue>Timor-Leste</controllingFieldValue>
-                <controllingFieldValue>Togo</controllingFieldValue>
-                <controllingFieldValue>Tonga</controllingFieldValue>
-                <controllingFieldValue>Trinidad and Tobago</controllingFieldValue>
-                <controllingFieldValue>Guinea</controllingFieldValue>
-                <controllingFieldValue>Guinea-Bissau</controllingFieldValue>
-                <controllingFieldValue>Guyana</controllingFieldValue>
-                <controllingFieldValue>Haiti</controllingFieldValue>
-                <controllingFieldValue>Honduras</controllingFieldValue>
-                <controllingFieldValue>Hungary</controllingFieldValue>
-                <controllingFieldValue>Iceland</controllingFieldValue>
-                <controllingFieldValue>India</controllingFieldValue>
-                <controllingFieldValue>Indonesia</controllingFieldValue>
-                <controllingFieldValue>Iran</controllingFieldValue>
-                <controllingFieldValue>Tunisia</controllingFieldValue>
-                <controllingFieldValue>Turkey</controllingFieldValue>
-                <controllingFieldValue>Turkmenistan</controllingFieldValue>
-                <controllingFieldValue>Tuvalu</controllingFieldValue>
-                <controllingFieldValue>Uganda</controllingFieldValue>
-                <controllingFieldValue>Ukraine</controllingFieldValue>
-                <controllingFieldValue>United Arab Emirates</controllingFieldValue>
-                <controllingFieldValue>United Kingdom</controllingFieldValue>
-                <controllingFieldValue>Uruguay</controllingFieldValue>
-                <controllingFieldValue>Uzbekistan</controllingFieldValue>
-                <controllingFieldValue>Iraq</controllingFieldValue>
-                <controllingFieldValue>Ireland</controllingFieldValue>
-                <controllingFieldValue>Israel</controllingFieldValue>
-                <controllingFieldValue>Italy</controllingFieldValue>
-                <controllingFieldValue>Jamaica</controllingFieldValue>
-                <controllingFieldValue>Japan</controllingFieldValue>
-                <controllingFieldValue>Jordan</controllingFieldValue>
-                <controllingFieldValue>Kazakhstan</controllingFieldValue>
-                <controllingFieldValue>Kenya</controllingFieldValue>
-                <controllingFieldValue>Kiribati</controllingFieldValue>
-                <controllingFieldValue>Vanuatu</controllingFieldValue>
-                <controllingFieldValue>Vatican City</controllingFieldValue>
-                <controllingFieldValue>Venezuela</controllingFieldValue>
-                <controllingFieldValue>Vietnam</controllingFieldValue>
-                <controllingFieldValue>Yemen</controllingFieldValue>
-                <controllingFieldValue>Zambia</controllingFieldValue>
-                <controllingFieldValue>Zimbabwe</controllingFieldValue>
-                <controllingFieldValue>Out of Country</controllingFieldValue>
-                <controllingFieldValue>Kosovo</controllingFieldValue>
-                <controllingFieldValue>Kuwait</controllingFieldValue>
-                <controllingFieldValue>Kyrgyzstan</controllingFieldValue>
-                <controllingFieldValue>Laos</controllingFieldValue>
-                <controllingFieldValue>Latvia</controllingFieldValue>
-                <controllingFieldValue>Lebanon</controllingFieldValue>
-                <controllingFieldValue>Lesotho</controllingFieldValue>
-                <controllingFieldValue>Liberia</controllingFieldValue>
-                <controllingFieldValue>Libya</controllingFieldValue>
-                <controllingFieldValue>Liechtenstein</controllingFieldValue>
-                <controllingFieldValue>Lithuania</controllingFieldValue>
-                <controllingFieldValue>Luxembourg</controllingFieldValue>
-                <controllingFieldValue>Macedonia</controllingFieldValue>
-                <controllingFieldValue>Madagascar</controllingFieldValue>
-                <controllingFieldValue>Malawi</controllingFieldValue>
-                <controllingFieldValue>Malaysia</controllingFieldValue>
-                <controllingFieldValue>Maldives</controllingFieldValue>
-                <controllingFieldValue>Mali</controllingFieldValue>
-                <controllingFieldValue>Malta</controllingFieldValue>
-                <controllingFieldValue>Marshall Islands</controllingFieldValue>
-                <valueName>Out of Country</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Alabama</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Alaska</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Arizona</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Arkansas</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>California</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Colorado</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Connecticut</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Delaware</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Florida</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Georgia</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Guam</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Hawaii</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Idaho</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Illinois</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Indiana</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Iowa</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Kansas</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Kentucky</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Louisiana</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Maine</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Maryland</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Massachusetts</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Michigan</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Minnesota</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Mississippi</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Missouri</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Montana</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Nebraska</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Nevada</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>New Hampshire</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>New Jersey</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>New Mexico</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>New York</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>North Carolina</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>North Dakota</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Ohio</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Oklahoma</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Oregon</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Pennsylvania</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Rhode Island</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>South Carolina</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>South Dakota</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Tennessee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Texas</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Utah</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Vermont</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Virginia</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Washington</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>West Virginia</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Wisconsin</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Wyoming</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Washington D.C.</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>American Samoa</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Northern Mariana Islands</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Puerto Rico</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>U.S. Virgin Islands</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Marshall Islands</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Armed Forces Pacific</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Armed Forces Americas</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Armed Forces Europe</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Fed St Micronesia</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>United States</controllingFieldValue>
-                <controllingFieldValue>Canada</controllingFieldValue>
-                <valueName>Palau</valueName>
-            </valueSettings>
-        </valueSet>
-    </fields>
     <fields>
         <fullName>Trainer_License__c</fullName>
         <externalId>false</externalId>
@@ -1630,7 +1121,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>France</fullName>
+               <fullName>France</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1646,7 +1137,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Germany</fullName>
+               <fullName>Germany</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2481,7 +1972,7 @@
             </values>
             <values>
                 <fullName>Appraisal Controlling Person</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Appraisal Management Company</fullName>
@@ -2716,7 +2207,7 @@
             <values>
                 <fullName>Architectural Engineering %28PE%29</fullName>
                 <default>false</default>
-            </values>
+           </values>
             <values>
                 <fullName>Architecture Law Review</fullName>
                 <default>false</default>
@@ -3262,7 +2753,7 @@
             </values>
             <values>
                 <fullName>Limited Continuing Education License</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Limited Resident%27s License</fullName>
@@ -3552,7 +3043,7 @@
                 <fullName>Registered Nurse - Temporary %28IR%29</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Registered Pharmacy Technician</fullName>
                 <default>false</default>
             </values>
@@ -3850,7 +3341,7 @@
             <values>
                 <fullName>Manufactured Homes</fullName>
                 <default>false</default>
-            </values>
+           </values>
             <values>
                 <fullName>Misc Payments</fullName>
                 <default>false</default>
@@ -4430,7 +3921,7 @@
             </values>
             <values>
                 <fullName>Ecuador</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Egypt</fullName>
@@ -4476,7 +3967,7 @@
                 <fullName>Gambia</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Georgia</fullName>
                 <default>false</default>
             </values>
@@ -5117,7 +4608,7 @@
             </values>
             <values>
                 <fullName>Iron</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Jackson</fullName>
@@ -5225,7 +4716,7 @@
             </values>
             <values>
                 <fullName>Racine</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Richland</fullName>
@@ -5233,7 +4724,7 @@
             </values>
             <values>
                 <fullName>Rock</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Rusk</fullName>
@@ -5318,7 +4809,7 @@
                 <fullName>Appraisal Controlling Person</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Appraisal Management Company</fullName>
                 <default>false</default>
             </values>
@@ -6358,7 +5849,7 @@
             <values>
                 <fullName>Radiographer</fullName>
                 <default>false</default>
-            </values>
+           </values>
             <values>
                 <fullName>Radiologist Assistant %28RA%29</fullName>
                 <default>false</default>
@@ -7241,7 +6732,7 @@
             </values>
             <values>
                 <fullName>Ecuador</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Egypt</fullName>
@@ -7287,7 +6778,7 @@
                 <fullName>Gambia</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Georgia</fullName>
                 <default>false</default>
             </values>
@@ -9169,7 +8660,7 @@
             <values>
                 <fullName>Radiographer</fullName>
                 <default>false</default>
-            </values>
+           </values>
             <values>
                 <fullName>Radiologist Assistant %28RA%29</fullName>
                 <default>false</default>
@@ -9721,7 +9212,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Virginia</fullName>
+               <fullName>Virginia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9927,7 +9418,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Bhutan</fullName>
+               <fullName>Bhutan</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10096,7 +9587,7 @@
             </values>
             <values>
                 <fullName>Gambia</fullName>
-                <default>false</default>
+               <default>false</default>
             </values>
             <values>
                 <fullName>Georgia</fullName>
@@ -10174,7 +9665,7 @@
                 <fullName>Israel</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Italy</fullName>
                 <default>false</default>
             </values>
@@ -10190,7 +9681,7 @@
                 <fullName>Jordan</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Kazakhstan</fullName>
                 <default>false</default>
             </values>
@@ -10535,7 +10026,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Tajikistan</fullName>
+               <fullName>Tajikistan</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10705,7 +10196,7 @@
                 <fullName>Dunn</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>Eau Claire</fullName>
                 <default>false</default>
             </values>
@@ -11056,7 +10547,7 @@
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
-            <values>
+           <values>
                 <fullName>On-site Wastewater Designer</fullName>
                 <default>false</default>
             </values>
@@ -11980,7 +11471,7 @@
             <values>
                 <fullName>Radiographer</fullName>
                 <default>false</default>
-            </values>
+           </values>
             <values>
                 <fullName>Radiologist Assistant %28RA%29</fullName>
                 <default>false</default>
@@ -12532,7 +12023,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Virginia</fullName>
+               <fullName>Virginia</fullName>
                 <default>false</default>
             </values>
             <values>
