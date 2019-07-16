@@ -1292,7 +1292,7 @@ public with sharing class CartController
             if (con == null) con = new Contact(Id=cart.BGBK__Contact__c);
         }
         con.Email = email;
-        system.debug('name$$$'+a.Name);
+        //system.debug('name$$$'+a.Name); //commented as a part of bug 3576
         m_cs.sendConfirmEmail(feeIds, con, BGBK.CartService.AttachmentFormat.PDF, 'Cart Payment Receipt', null);
     }
     
