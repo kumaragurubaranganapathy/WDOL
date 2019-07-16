@@ -10,7 +10,7 @@
     <aura:attribute name="showMessage" type="Boolean" default="false" />
     <aura:attribute name="isDCP" type="Boolean" default="false" />
     <aura:attribute name="message" type="String" default="You cannot Add Another DCP on this Account" />
-    <aura:attribute name="fields" type="String[]" default="['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Other_Position__c','Ownership_Percentage__c','Title_select__c']" />
+    <aura:attribute name="fields" type="String[]" default="['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Other_Position__c']" />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 	<aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
@@ -24,6 +24,7 @@
                 <div class="slds-modal__container">
                     <!-- ###### MODAL BOX HEADER Start ######-->
                     <header class="slds-modal__header">
+                        <h2>Add Contact</h2>
                         <lightning:buttonIcon iconName="utility:close"
                                               onclick="{! c.closeModel }"
                                               alternativeText="close"
@@ -38,7 +39,7 @@
                             aura:id="myform"
                             objectApiName="MUSW__Account_Contact__c"
                             fields="{!v.fields}"
-                            columns="2"
+                            columns="1"
                             mode="edit"
                             onsubmit="{!c.saveData}"
                             onsuccess="{!c.successData}"

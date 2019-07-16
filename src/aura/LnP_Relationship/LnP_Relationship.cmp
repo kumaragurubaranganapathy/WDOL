@@ -25,11 +25,11 @@
             <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
         </aura:if>
         <aura:if isTrue="{!v.sObjectName == 'MUSW__Account_Contact__c'}">
-            <h1 class="table-title">Contacts and Owners</h1>
+            <h1 class="table-title">Administrators</h1>
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
                 
-                <div style="height: auto;">
-                    <div style="height: 100%; position: relative;">
+                <div>
+                    <div class="table-wrapper">
                         
                                 <div class="table-scroll">
                                     <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
@@ -40,9 +40,9 @@
                                                         <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
                                                     </th> 
                                                 </aura:iteration>
-                                                <th class="contact-button" scope="col"> 
-                                                	<!--<c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/> -->
-                                                </th>
+                                                <!--<th class="contact-button" scope="col"> 
+                                                	<c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/> 
+                                                </th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -75,6 +75,9 @@
                                                             <aura:set attribute="else">(None)</aura:set>
                                                         </aura:if>
                                                     </td>  
+                                                    <td data-label="Email__c" class="cell-style">
+                                                        <div class="slds-truncate">Associated Licensees</div>
+                                                    </td>
                                                     <td data-label="actions" class="cell-style action-cell">
                                                         <div class="slds-truncate">
                                                             <aura:if isTrue="{!(tableData.Status__c == 'Invited')? true : false}">
