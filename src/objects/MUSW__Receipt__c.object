@@ -1403,6 +1403,24 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
+	    <listViews>
+        <fullName>US_Bank_Settlement</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <columns>MUSW__Amount_Available__c</columns>
+        <columns>US_Bank_Payment_Status__c</columns>
+        <columns>MUSW__Receipt_Paid_By__c</columns>
+        <columns>MUSW__Payment_Method__c</columns>
+        <columns>MUSW__Card_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>US_Bank_Payment_Status__c</field>
+            <operation>equals</operation>
+            <value>Processed</value>
+        </filters>
+        <label>US Bank Settlement</label>
+    </listViews>
     <nameField>
         <displayFormat>R-{0000000}</displayFormat>
         <label>Number</label>
