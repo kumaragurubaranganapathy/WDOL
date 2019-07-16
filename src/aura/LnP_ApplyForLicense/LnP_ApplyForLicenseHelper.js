@@ -182,7 +182,25 @@
         }
     },
     SaveAndSubmit : function(component, event, helper) {
-        alert("You will have 30 days to complete this application before it expires.");
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "title": "Warning!",
+            "message": "You will have 30 days to complete this application before it expires.",
+            "type": "Warning"
+        });
+        
+        toastEvent.fire();
+        window.setTimeout(
+            $A.getCallback(function() {
+                // smth after two seconds
+                // check component.isValid() if you want to work with component
+                var urlEvent = $A.get("e.force:navigateToURL");
+                urlEvent.setParams({
+                    "url": "/"
+                });
+                urlEvent.fire();
+            }), 2000
+        );
     },
     submit : function(component, event, helper) {
         this.checkboxValidation(component, event);
