@@ -323,7 +323,7 @@ public without sharing class LnP_DashboardApexController_2 {
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
         if(licenseId != null){ 
-            for(Endorsement__c endorseObj: [select id,Endorsement_Type__c from Endorsement__c  where Status__c ='Active' License__c =: licenseId]){
+            for(Endorsement__c endorseObj: [select id,Endorsement_Type__c from Endorsement__c  where Status__c ='Active' AND License__c =: licenseId]){
                 EndorsementList.add(endorseObj.Endorsement_Type__c);
             }
             
