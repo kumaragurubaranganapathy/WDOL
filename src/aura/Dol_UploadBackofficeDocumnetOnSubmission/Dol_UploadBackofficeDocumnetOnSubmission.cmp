@@ -1,0 +1,50 @@
+<aura:component description = "Dol_UploadBackofficeDocumnetOnSubmission" controller="Dol_UploadDocumenttoSAN" implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name = "title" type="String"/>
+    <aura:attribute name = "docName" type="String"/>
+    <aura:attribute name = "userName" type="String"/>
+    <aura:attribute name = "recordId" type="id"/>
+    <aura:attribute name = "profCodeValue" type="String"/>
+    <aura:attribute name="Spinner" type="Boolean" default="false"/>
+    
+    <aura:handler name ="init" action ="c.doInit" value="{!this}"/>
+    
+    <div aura:id="uploadURL" style="position:relative">
+        <div class="slds-form--stacked">
+            <aura:if isTrue="{!v.Spinner}">
+                <div class="slds-spinner_container" aura:id="uploadSpinner">
+                    <div class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:if>
+            
+            <div class="slds-page-header" role="banner">
+                <h1 class="slds-page-header__title slds-m-right--small
+                           slds-truncate slds-align-center">Upload Document to SAN Drive</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <label class="slds-form-element__label" for="input-01">Title
+                </label>
+                <ui:inputText aura:id="Title" required="true" disabled="false" value="{!v.title}" placeholder=""/>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <label class="slds-form-element__label" for="input-01">Document Name
+                </label>
+                <ui:inputText aura:id="documentName" required="true" disabled="false" value="{!v.docName}" placeholder=""/>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                <label class="slds-form-element__label" for="input-01">User
+                </label>
+                <ui:inputText aura:id="userName" required="true" disabled="true" value="{!v.userName}"/>
+            </div>
+            <div class="slds-form-element">
+                <button class="slds-button slds-button_brand" onclick="{!c.uplaod}">upload</button>
+                <button class="slds-button slds-button_neutral" onclick="{!c.handleCancel }">Cancel</button>&nbsp;
+            </div>	
+        </div>
+    </div>
+
+   
+                
+</aura:component>

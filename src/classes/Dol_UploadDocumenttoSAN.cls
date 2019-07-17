@@ -35,12 +35,15 @@ public class Dol_UploadDocumenttoSAN {
             }
             else professionCode = 'No code';
             UploadData uploadobj = new UploadData();
-            uploadobj.backofficeUserLoginID = user;
+            uploadobj.userName  = user;
             uploadobj.professionCode = professionCode;
-            uploadobj.recordID = recordId;
-            uploadobj.fileName = docName;
-            //uploadobj.areaCode = 'BUS';
-            //uploadobj.departmentCode = 'AUC';
+            uploadobj.polarisId  = recordId;
+            uploadobj.imageName = docName;
+            
+            uploadobj.imageURL = 'docName';
+            uploadobj.imageType = 'docName';
+            uploadobj.areaCode = 'BUS';
+            uploadobj.departmentCode = 'AUC';
             System.debug('uploadobj=='+uploadobj);
             HttpResponse response = Dol_RestAPIservice.BackOfficeUploadToSAN(uploadobj);
             if(response.getStatusCode() == 200){
@@ -107,7 +110,7 @@ public class Dol_UploadDocumenttoSAN {
         if(submissionToFile!= null){
             List<String> contentDocIds = submissionToFile.values();
             if(Dol_IntegrationUtil.isNotEmpty(contentDocIds)){
-                contentVersionList = [SELECT id,VersionData,Title,FileExtension,CreatedDate FROM ContentVersion where id =:contentDocIds];
+                contentVersionList = [SELECT id,VersionData,ContentDocumentId,Title,FileExtension,CreatedDate FROM ContentVersion where id =:contentDocIds];
                 System.debug('contentVersionList'+contentVersionList);
             }
             Set<String> submissionIds = submissionToFile.keySet();
@@ -138,12 +141,16 @@ public class Dol_UploadDocumenttoSAN {
                         System.debug('docType'+docType);
                         UploadData uploadobj = new UploadData();
                         uploadobj.professionCode = profCode;
-                        uploadobj.recordID = contentToSubMissionMap.get(contversion.Id).id;
-                        uploadobj.fileName = contversion.Title + '.' + contversion.FileExtension;
-                        uploadobj.fileType = docType;
-                        uploadobj.fileData = contversion.VersionData;
+                        uploadobj.polarisId  = contentToSubMissionMap.get(contversion.Id).id;
+                        uploadobj.imageName = contversion.Title + '.' + contversion.FileExtension;
+                        uploadobj.imageType = docType;
+                        uploadobj.imageData = contversion.VersionData;
                         uploadobj.createDate = string.valueOf(contversion.CreatedDate);
-                        uploadobj.attachmentId = contversion.id;
+                        uploadobj.attachmentId = contversion.ContentDocumentId;
+                     	uploadobj.imageURL = 'docName';
+           				//uploadobj.imageType = 'docName';
+            			uploadobj.areaCode = 'BUS';
+           	 			uploadobj.departmentCode = 'AUC';
                         uploadobjList.add(uploadobj);
                         System.debug('uploadobj=='+uploadobj);
                  }
@@ -161,14 +168,17 @@ public class Dol_UploadDocumenttoSAN {
     }
             
     public class UploadData{
-        public String backofficeUserLoginID;	//jhann
+        public String userName;	//jhann
         public String professionCode;	//20205
-        public String recordID;	//787356
-        public String fileName;	//YYYYMMDDmillisecondIncirmenting#
-        public String fileType ;
+        public String polarisId;	//787356
+        public String imageName;	//YYYYMMDDmillisecondIncirmenting#
+        public String imageType ;
+        public String imageURL ;
+        public String imageStatus ;
+        public String imageComment ;
         public String areaCode;	//BUS
         public String departmentCode;	//AUC
-        public Blob fileData ;
+        public Blob imageData ;
         public string createDate ;
         public String attachmentId ;
 	

@@ -43,8 +43,8 @@ public class Dol_DeleteAttachmentFromSubmission {
                 }else if(fileURL != 'No URL'){
                	DeleteData deleteObj = new DeleteData();
                 deleteObj.professionCode = professionCode;
-                deleteObj.fileName = docName;
-                deleteObj.fileURL = fileURL;
+                deleteObj.imageName = docName;
+                deleteObj.imageURL = fileURL;
                 System.debug('deleteObj=='+deleteObj);
                 HttpResponse response = Dol_RestAPIservice.BackOfficeDeleteFileURL(deleteObj);
                 if(response.getStatusCode() == 200){
@@ -68,12 +68,26 @@ public class Dol_DeleteAttachmentFromSubmission {
         
     }
     public class DeleteData{
-        public String professionCode;	//jhann
-        public String fileName;	//20205
-        public String fileURL;	//787356
+        //public String professionCode;	//jhann
+        //public String fileName;	//20205
+        //public String fileURL;	//787356
         //public String recordID;	//YYYYMMDDmillisecondIncirmenting#
+        //public String areaCode;	//BUS
+        //public String departmentCode;	//AUC
+        
+        public String userName;	//jhann
+        public String professionCode;	//20205
+        public String polarisId;	//787356
+        public String imageName;	//YYYYMMDDmillisecondIncirmenting#
+        public String imageType ;
+        public String imageURL ;
+        public String imageStatus ;
+        public String imageComment ;
         public String areaCode;	//BUS
         public String departmentCode;	//AUC
+        public Blob imageData ;
+        public string createDate ;
+        public String attachmentId ;
         
 	
 	}
