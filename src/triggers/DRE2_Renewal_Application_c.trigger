@@ -1,12 +1,11 @@
 trigger DRE2_Renewal_Application_c on Renewal_Application__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Renewal_Application_c', new DRETriggerHandler());
-   
-   if(Trigger.isUpdate && Trigger.isBefore ){
+     if(Trigger.isUpdate && Trigger.isBefore ){
        System.debug('Trigger inInsert');
        Map<Id,Boolean> autoReneMap = new Map<Id,Boolean>();
        List<Renewal_Application__c> renewList = new List<Renewal_Application__c>();
        for(Renewal_Application__c renewal : trigger.new){
            System.debug('renewal:: '+renewal.Renewal_Status__c );
-           if(renewal.Renewal_Status__c == 'In-Review'){
+           if(renewal.Renewal_Status__c == 'In-Review' && renewal.License__r.MUSW__Primary_Licensee__r.Account_Status__c == 'Active'){
                renewList.add(renewal);
            }
        }
