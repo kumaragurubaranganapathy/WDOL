@@ -170,7 +170,6 @@
         <layout>Portal_Article__c-Portal Article Layout</layout>
         <recordType>Portal_Article__c.Main</recordType>
     </layoutAssignments>
-	<userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivateContract</name>
