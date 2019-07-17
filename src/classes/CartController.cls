@@ -950,7 +950,7 @@ public with sharing class CartController
         				+'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
         				+'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
         				+'FROM MUSW__Fee_Payment__c '
-						+'WHERE MUSW__Receipt__c = '+receiptId;
+						+'WHERE MUSW__Receipt__c = :receiptId';
 		feePayments = (List<MUSW__Fee_Payment__c>)Database.query(feePaymentQuery);
         MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
         rs.clear();
