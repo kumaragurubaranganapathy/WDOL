@@ -537,6 +537,8 @@
                 
                 component.set("v.CurrentLicenseTableDataList",currentLicenseTableHeaderData);
                 
+                //component.set("v.applicationFilt",currentLicenseTableHeaderData);
+                
             } else if (state === "ERROR") {
                 var errors = response.getError();
                 console.error(JSON.stringify(errors));
@@ -785,6 +787,8 @@
                 component.set("v.DraftMaintananceRequestApplicationsColumnList",draftMaintanceRequestColumnData);
                 
                 component.set("v.DraftMaintananceRequestApplicationsDataList",draftMaintanceRequestTableData);
+                component.set("v.DraftAMRColumnList",draftMaintanceRequestColumnData);
+                component.set("v.DraftAMRDataList",draftMaintanceRequestTableData);
                 
             } else if (state === "ERROR") {
                 
@@ -795,7 +799,37 @@
         });
         $A.enqueueAction(action);    
     },
+     setDraftAMRLicenseDetailTableData :function(component,event, helper,licenseId){
     
+        console.log("In setDraftAMRLicenseDetailTableData...."+licenseId); 
+         
+        var action = component.get("c.setDraftAMRAppLicenseData");
+        action.setParams({"licenseId":licenseId});
+        action.setCallback(this, function(response) {
+            
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                
+                var draftMaintanceRequestTable = JSON.parse(response.getReturnValue());
+                
+                var draftMaintanceRequestColumnData = draftMaintanceRequestTable["tableHeader"];
+                var draftMaintanceRequestTableData = draftMaintanceRequestTable["tableData"];
+                console.log(draftMaintanceRequestTableData);
+                console.log('In LnP_Dashboard_2.aura-helper::setDraftMaintanceRequestTableData '+JSON.stringify(draftMaintanceRequestTable));
+                
+                component.set("v.DraftAMRColumnList",draftMaintanceRequestColumnData);
+                component.set("v.DraftAMRDataList",draftMaintanceRequestTableData);
+                
+            } else if (state === "ERROR") {
+                
+                var errors = response.getError();
+                
+                console.error(JSON.stringify(errors));
+            }
+        });
+        $A.enqueueAction(action); 
+     },
+
     setPendingNewLicenseApplicationsTableData :function(component,event, helper){
         
         console.log('In LnP_Dashboard_2.aura-helper::setPendingNewLicenseApplicationsTableData ');
@@ -976,5 +1010,10 @@
         });
         
         $A.enqueueAction(action);
+    },
+    refreshList : function(component,event){
+        //component.set("v.dispList",[]);
+        //component.set('v.ProfessionalRelationshipDataList', JSON.parse(JSON.stringify(component.get('v.ProfessionalRelationshipDataList'))));
+        //component.set('v.CurrentLicenseTableDataList', JSON.parse(JSON.stringify(component.get('v.CurrentLicenseTableDataList'))));
     }
 })

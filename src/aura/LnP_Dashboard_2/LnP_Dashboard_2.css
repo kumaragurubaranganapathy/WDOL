@@ -136,7 +136,7 @@ padding: 10px;
     display:flex;
 }
 .THIS .label-style{
-    padding-right:5px;
+    padding-right:0.5rem;
 }
 .THIS .breadcrumb-style, .THIS .slds-breadcrumb__item > a{      
     color:t(LnGFormTitleColor);    
@@ -158,15 +158,24 @@ padding: 10px;
     padding-top:1.5rem;
 }
 .THIS .table-height{
-    height:300px;
+    height:auto;
 }
 .THIS .screen-title{
     font-size:1.25rem;
     color:t(LnGFormTitleColor);
     font-weight:600;   
 }
+.THIS .pagination-wrapper{
+    margin-top:1.5rem;
+}
 .THIS .breadcrumb-nav{
     padding-top:1rem;
+}
+.THIS .help-text-wrapper{
+    display:flex;    
+}
+.THIS .help-text-wrapper .slds-form-element__icon{
+    padding-top:0;
 }
 @media (max-width: 30em)
     {

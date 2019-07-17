@@ -11,14 +11,20 @@
     padding-bottom:1.25rem;
     font-weight:bold;
 }
+.THIS .contact-item{
+    width:30%;
+}
+.THIS .contact-details{
+    justify-content:space-between;
+}
 .THIS .field-style{    
     padding-bottom:0.5rem;
-    font-size:1rem;
-    font-family:"SourceSansPro-Regular";    
+    font-size:1rem;      
     color:t(LnGFormTitleColor);
 }
 .THIS .label-style{
-    font-weight:bold;    
+    font-weight:bold;   
+    
 }
 .THIS .change-link{
     color:t(linksColor);
@@ -83,5 +89,34 @@
     }
     .THIS .user-info-wrapper{
         padding:20px;
+    }
+    .THIS .contact-item{
+        width:100%; 
+    }    
+    .THIS .contact-name{
+        padding-bottom:1rem;
+        font-size:1.5rem;
+    }
+    .THIS .change-link-wrapper{
+        margin-bottom:1rem;
+    }
+    .THIS .address-item{
+        margin-bottom:0.5rem;
+    }
+    .THIS .actions-wrapper{      
+        display:flex;
+        justify-content:flex-end;
+        margin-bottom:0.5rem;
+    }
+    .THIS .actions-wrapper .slds-button{
+        border: none;
+        color:t(headerColor);
+        background : t(LnGWhite);
+        font-size:0.8125rem;
+    }
+    .THIS .actions-wrapper .slds-dropdown_left{
+        right:0;
+        width:20rem;
+        left:unset;
     }
 }

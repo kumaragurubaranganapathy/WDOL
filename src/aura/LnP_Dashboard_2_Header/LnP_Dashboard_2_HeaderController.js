@@ -10,6 +10,13 @@
     updateContactInfo : function(component, event, helper) {
 		helper.updateContactInfo(component, event, helper);
 	},
+    showAddress : function(component, event, helper) {
+		helper.showAddress(component, event);
+	},
+    handleMenuSelectlink :  function(component, event, helper) {
+		helper.handleMenuSelectlink(component, event);
+	},
+    
     /*updateAddress : function(component, event, helper) {
 		helper.updateAddress(component, event, helper);
 	}*/
