@@ -35,9 +35,8 @@ public class LnP_UpdateOvershortAmountClass {
     @AuraEnabled
     public static String updateovershortreceiptMethod(Id ReceiptId) {
         if(ReceiptId != null) {
-            MUSW__Receipt__c ReceiptRec = [SELECT Id,MUSW__Amount_Available__c,Overshort_Amount__c FROM MUSW__Receipt__c WHERE Id = :ReceiptId];
+            MUSW__Receipt__c ReceiptRec = [SELECT Id,MUSW__Amount_Available__c FROM MUSW__Receipt__c WHERE Id = :ReceiptId];
             if(ReceiptRec.MUSW__Amount_Available__c <= decimal.valueOf(System.Label.OverShortReceiptUpperLimit) && ReceiptRec.MUSW__Amount_Available__c > decimal.valueOf(System.Label.OverShortReceiptLowerLimit)){
-                ReceiptRec.Overshort_Amount__c = ReceiptRec.MUSW__Amount_Available__c;
                 //update MUSW__Receipt__c overshort Amount with available amount.
                 update ReceiptRec;
                 return 'True';
