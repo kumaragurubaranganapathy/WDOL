@@ -90,4 +90,14 @@ public class DOL_CreateErrorLog_Exception extends Exception {
         log.Session_Id__c=UserInfo.getSessionId().substring(15);
         insert log;
     }
+    
+	//Add delete record details
+    public static void logDeleteDetails(String message, String cname,String cmethod ){
+           Polaris_Custom_Exception__c exc = new Polaris_Custom_Exception__c();
+           //exc.Gov_Limits__c= String.format('{0}\n{1}\n{2}\n{3}',new List<QueryLimit, DMLimit,DMLStat,CPUT>);            
+            exc.Error_Message__c = message;
+            exc.Class_Name__c=cname;
+            exc.Class_Method__c=cmethod;
+            insert exc;
+    }
 }

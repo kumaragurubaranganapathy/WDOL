@@ -1,5 +1,5 @@
 /* Author : Vinanthi
-   Date : 6/12/2019
+Date : 6/12/2019
 */
 global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>, Database.Stateful{
     
@@ -24,12 +24,12 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         
         if(math.mod(currentYear,2)==1){
             if(currentMonth > 6){
-                 BienniumYear =   currentYear+2;
+                BienniumYear =   currentYear+2;
                 FiscalMonth = currentMonth-6;
                 FiscalYear = 01;
             }
             else {
-                 BienniumYear = currentYear;
+                BienniumYear = currentYear;
                 FiscalYear = 02;
                 FiscalMonth = currentMonth + 18;
             }
@@ -37,31 +37,36 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         }
         else{
             BienniumYear =   currentYear+1;
-             FiscalMonth = currentMonth + 6;
+            FiscalMonth = currentMonth + 6;
             if(currentMonth > 6){
-                 
-               
+                
+                
                 FiscalYear = 02;
             }
             else {
-                 
+                
                 FiscalYear = 01;
                 
             }
         }
-
+        
         //Code to calculate Fiscal Year,Fiscal Month and Biennium Year end
-         
+        
         JV_Sequence__c objJVseq =[SELECT Current_sequence__c,id from JV_Sequence__c limit 1];
         if(objJVseq.id != null){
-        	currentSeq=objJVseq.Current_sequence__c;
+            currentSeq=objJVseq.Current_sequence__c;
         }
         List<Journal_Voucher_meta__mdt> lstJVMeta = [select id,MasterLabel,JV_Document_Title__c,Doc_Number_Prefix__c,JV_Explanation_of_Entry__c,(select id,Add_To_PDF__c,Add_To_Interface__c,JV_name__c,Item_FundAccSystem__c,Item_Fund_GL__c,Item_Intake_Method__c,Item_Payment_Method__c,Item_Transaction_Code__c,Journal_Voucher_mtd__c from Journal_Voucher_Filters__r) from Journal_Voucher_meta__mdt WHERE Is_Active__c = true AND Batch_Time__c =: currentHour];
         for(Journal_Voucher_meta__mdt objJVMeta:lstJVMeta){
             Journal_Voucher__c objJV = new Journal_Voucher__c(); 
             for(Journal_Voucher_Filter__mdt objJVFilterMeta : objJVMeta.Journal_Voucher_Filters__r){
-                string strFilterKey= objJVFilterMeta.Item_Intake_Method__c+objJVFilterMeta.Item_Payment_Method__c+objJVFilterMeta.Item_FundAccSystem__c+objJVFilterMeta.Item_Transaction_Code__c+objJVFilterMeta.Item_Fund_GL__c;
-            	mapJVFilterJVName.put(strFilterKey, objJVFilterMeta.JV_name__c);
+                string strFilterKey;
+                 if(objJVFilterMeta.Item_Payment_Method__c == 'Any' ){
+                    strFilterKey= objJVFilterMeta.Item_Intake_Method__c+objJVFilterMeta.Item_FundAccSystem__c+objJVFilterMeta.Item_Transaction_Code__c+objJVFilterMeta.Item_Fund_GL__c; 
+                 }else{
+                 	strFilterKey= objJVFilterMeta.Item_Intake_Method__c+objJVFilterMeta.Item_Payment_Method__c+objJVFilterMeta.Item_FundAccSystem__c+objJVFilterMeta.Item_Transaction_Code__c+objJVFilterMeta.Item_Fund_GL__c;
+                }
+                mapJVFilterJVName.put(strFilterKey, objJVFilterMeta.JV_name__c);
                 mapJVFilterAddToPDF.put(strFilterKey, objJVFilterMeta.Add_To_PDF__c);
                 mapJVFilterAddToInterface.put(strFilterKey, objJVFilterMeta.Add_To_Interface__c);
             }
@@ -82,17 +87,21 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
             objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Automated').getRecordTypeId();
-            currentSeq++;
-               string sTemp =String.Valueof(currentSeq);
-               if(sTemp.length() == 1){
-                            sTemp = '000'+ sTemp;
-                        }
-                        else if(sTemp.length() == 2){
-                            sTemp = '00'+ sTemp;
-                        }
-               				else if(sTemp.length() == 3){
-                            	sTemp = '0'+ sTemp;
-                        	}
+            if(currentSeq > 9998){
+                currentSeq =0;
+            } else{
+            	currentSeq++;
+            }
+            string sTemp =String.Valueof(currentSeq);
+            if(sTemp.length() == 1){
+                sTemp = '000'+ sTemp;
+            }
+            else if(sTemp.length() == 2){
+                sTemp = '00'+ sTemp;
+            }
+            else if(sTemp.length() == 3){
+                sTemp = '0'+ sTemp;
+            }
             objJV.Current_Document_Number__c=objJVMeta.Doc_Number_Prefix__c+ sTemp;
             
             lstJV.add(objJV);
@@ -111,23 +120,23 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         }
         
         
-        list<string> lstValueIntakeMethod=new list<String>{'Counter','Portal','Validation Room'};
-        list<string> lstValuePaymentMethod=new list<String>{'Cash','Check','Money Order','Vital Check','ACH','Credit Card','Lockbox'};
-        list<string> lstTargetAccountingSystem= new list<String>{'TMS','AFRS'};
-        list<string> lstTraansactionCode= new list<String>{'770','001','780','012','062','298','965','006','781'};
-        list<string> lstGL= new list<String>{'7110','3210','4310','1312','3205','5199','7140'};
-        String strQuery = 'SELECT id, name,BGBK__Fund__r.GL__c,Agency__c,Transaction_Code_Type__c,Debit_Credit__c,Transaction_Code__c,Program_Index__c,BGBK__Amount__c,GL_To_AFRS__c,BGBK__Fund__r.Accounting_System__c,BGBK__Fee__r.Agency__c, ';
-            strQuery+='BGBK__Fund__r.Fund__c,Intake_Method__c,Payment_Method__c,BGBK__Fund__r.Major_Group__c,BGBK__Fund__r.Major_Source__c,BGBK__Fund__r.Sub_Source__c ';
-            strQuery+='FROM BGBK__Item__c WHERE Journal_Voucher_Detail__c = null AND BGBK__Fund__r.Accounting_System__c IN  (\'';
-            strQuery += String.join(new List<string>(lstTargetAccountingSystem), '\',\'') + '\')';
-			strQuery+= 'AND Payment_Method__c IN (\'';
-            strQuery += String.join(new List<string>(lstValuePaymentMethod), '\',\'') + '\')';
-            strQuery+= 'AND Transaction_Code__c IN (\'';
-            strQuery += String.join(new List<string>(lstTraansactionCode), '\',\'') + '\')';
-            strQuery+= 'AND BGBK__Fund__r.GL__c IN (\'';
-            strQuery += String.join(new List<string>(lstGL), '\',\'') + '\')';
-        	strQuery+= 'AND Intake_Method__c IN (\'';
-            strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')';	
+        list<string> lstValueIntakeMethod=new list<String>{'Counter','Portal','Validation Room','N/A'};
+            list<string> lstValuePaymentMethod=new list<String>{'Cash','Check','Money Order','Vital Check','ACH','Credit Card','Lockbox'};
+                list<string> lstTargetAccountingSystem= new list<String>{'TMS','AFRS'};
+                    list<string> lstTraansactionCode= new list<String>{'770','001','780','012','062','298','965','006','781'};
+                        list<string> lstGL= new list<String>{'7110','3210','4310','1312','3205','5199','7140'};
+                            String strQuery = 'SELECT id, name,BGBK__Fund__r.GL__c,Agency__c,Transaction_Code_Type__c,Debit_Credit__c,Transaction_Code__c,Program_Index__c,BGBK__Amount__c,GL_To_AFRS__c,BGBK__Fund__r.Accounting_System__c,BGBK__Fee__r.Agency__c, ';
+        strQuery+='BGBK__Fund__r.Fund__c,Intake_Method__c,Payment_Method__c,BGBK__Fund__r.Major_Group__c,BGBK__Fund__r.Major_Source__c,BGBK__Fund__r.Sub_Source__c ';
+        strQuery+='FROM BGBK__Item__c WHERE Journal_Voucher_Detail__c = null AND BGBK__Fund__r.Accounting_System__c IN  (\'';
+        strQuery += String.join(new List<string>(lstTargetAccountingSystem), '\',\'') + '\')';
+       // strQuery+= 'AND Payment_Method__c IN (\'';
+       // strQuery += String.join(new List<string>(lstValuePaymentMethod), '\',\'') + '\')';
+        strQuery+= 'AND Transaction_Code__c IN (\'';
+        strQuery += String.join(new List<string>(lstTraansactionCode), '\',\'') + '\')';
+        strQuery+= 'AND BGBK__Fund__r.GL__c IN (\'';
+        strQuery += String.join(new List<string>(lstGL), '\',\'') + '\')';
+        strQuery+= 'AND Intake_Method__c IN (\'';
+        strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')';	
         return Database.getQueryLocator(strQuery);
     }
     public void execute(Database.BatchableContext objContext, List<BGBK__Item__c> lstItemRecords) {
@@ -143,35 +152,41 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         for(BGBK__Item__c objItem : lstItemRecords){
             system.debug('lstItemRecords$$'+lstItemRecords);
             string strFilterKey= objItem.Intake_Method__c+objItem.Payment_Method__c+objItem.BGBK__Fund__r.Accounting_System__c+objItem.Transaction_Code__c+objItem.BGBK__Fund__r.GL__c;
-            if(mapJVFilterJVName.containsKey(strFilterKey) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))){
+            string strFilterKeyWithoutIM= objItem.Intake_Method__c+objItem.BGBK__Fund__r.Accounting_System__c+objItem.Transaction_Code__c+objItem.BGBK__Fund__r.GL__c;
+            
+            if((mapJVFilterJVName.containsKey(strFilterKey) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))) ||(mapJVFilterJVName.containsKey(strFilterKeyWithoutIM) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKeyWithoutIM))) ){
                 system.debug('strFilterKey$$'+strFilterKey);
-                objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKey));
+                if(mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))){
+                	objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKey));
+                }else{
+                    objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKeyWithoutIM));
+                }
                 lstItemRecordsForJV.add(objItem);
                 //Aggregate item records for TMS accounting system
-               if((objItem.BGBK__Fund__r.Accounting_System__c == 'TMS')){
-                   sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
-                    +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+objItem.Journal_Voucher__c;
-               }
-                	//Aggregate item records for AFRS accounting system
-                   else if((objItem.BGBK__Fund__r.Accounting_System__c == 'AFRS')){
-                        
-                        sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
+                if((objItem.BGBK__Fund__r.Accounting_System__c == 'TMS')){
+                    sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
+                        +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+objItem.Journal_Voucher__c;
+                }
+                //Aggregate item records for AFRS accounting system
+                else if((objItem.BGBK__Fund__r.Accounting_System__c == 'AFRS')){
+                    
+                    sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
                         +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+
-                       objItem.BGBK__Fund__r.Major_Group__c+objItem.BGBK__Fund__r.Major_Source__c+objItem.BGBK__Fund__r.Sub_Source__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+objItem.Journal_Voucher__c;
-                    } 
+                        objItem.BGBK__Fund__r.Major_Group__c+objItem.BGBK__Fund__r.Major_Source__c+objItem.BGBK__Fund__r.Sub_Source__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+objItem.Journal_Voucher__c;
+                } 
                 
-               // Group item records in  mapItemsData based on agregation
-               if(mapItemsData <> null && mapItemsData.containsKey(sToBeGroupedFields)){
-          			mapItemsData.get(sToBeGroupedFields).add(objItem);
+                // Group item records in  mapItemsData based on agregation
+                if(mapItemsData <> null && mapItemsData.containsKey(sToBeGroupedFields)){
+                    mapItemsData.get(sToBeGroupedFields).add(objItem);
                 }
                 else{
-                       mapItemsData.put(sToBeGroupedFields, new List<BGBK__Item__c>{objItem});
-                    }
+                    mapItemsData.put(sToBeGroupedFields, new List<BGBK__Item__c>{objItem});
+                }
                 
                 //Calculate total amount of grouped item records
                 Decimal dTemp = 0.0;
                 if(mapTotalItemAmount <> null && mapTotalItemAmount.containsKey(sToBeGroupedFields)){
-                	dTemp = mapTotalItemAmount.get(sToBeGroupedFields) + objItem.BGBK__Amount__c.abs();
+                    dTemp = mapTotalItemAmount.get(sToBeGroupedFields) + objItem.BGBK__Amount__c.abs();
                 }
                 else{
                     dTemp = objItem.BGBK__Amount__c.abs();
@@ -199,7 +214,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         for(DOL_AppUtility.JournalWrapper objJournalWrapper:lstJVDWrapperData){
             Journal_Voucher_Detail__c objJVD=new Journal_Voucher_Detail__c();
             
-            objJVD.Target_Accounting_System__c =objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c;
+           // objJVD.Target_Accounting_System__c =objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c;
             objJVD.Transaction_Code__c = objJournalWrapper.objItemsData.Transaction_Code__c;
             objJVD.Reversal__c = objJournalWrapper.objItemsData.Transaction_Code_Type__c;     
             objJVD.Agency__c =  objJournalWrapper.objItemsData.Agency__c;
@@ -214,7 +229,12 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             objJVD.Subsidiary_Account_Debit__c = '';
             objJVD.Subsidiary_Account_Credit__c ='';
             objJVD.JournalVoucher__c = objJournalWrapper.objItemsData.Journal_Voucher__c; 
-            
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS'){
+                objJVD.AFRS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;  
+            }
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'TMS'){
+                objJVD.TMS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;
+            }
             string strFilterKey= objJournalWrapper.objItemsData.Intake_Method__c+objJournalWrapper.objItemsData.Payment_Method__c+objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c+objJournalWrapper.objItemsData.Transaction_Code__c+objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c;
             if(mapJVFilterAddToInterface.containsKey(strFilterKey)){
                 objJVD.Add_to_Interface__c=mapJVFilterAddToInterface.get(strFilterKey);
@@ -226,26 +246,26 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             listJVDtoInsert.add(objJVD);
         }
         if(listJVDtoInsert.size()>0){
-        	 Insert listJVDtoInsert;
+            Insert listJVDtoInsert;
         }
         //stamp JVD id on Item record.
-         List<BGBK__Item__c> lstItemToUpdate= new List<BGBK__Item__c>();
-           for(Journal_Voucher_Detail__c objJVD:listJVDtoInsert){
-                    
-               List<String> lstItemIds = objJVD.Item_record_IDs__c.split(',');
-               for(string sItemId:lstItemIds){
-                        BGBK__Item__c objItem = new BGBK__Item__c();
-                        objItem.Id =sItemId;
-                        objItem.Journal_Voucher_Detail__c = objJVD.id;
-                        lstItemToUpdate.add(objItem);
-                  }
-                    
-              }
+        List<BGBK__Item__c> lstItemToUpdate= new List<BGBK__Item__c>();
+        for(Journal_Voucher_Detail__c objJVD:listJVDtoInsert){
+            
+            List<String> lstItemIds = objJVD.Item_record_IDs__c.split(',');
+            for(string sItemId:lstItemIds){
+                BGBK__Item__c objItem = new BGBK__Item__c();
+                objItem.Id =sItemId;
+                objItem.Journal_Voucher_Detail__c = objJVD.id;
+                lstItemToUpdate.add(objItem);
+            }
+            
+        }
         if(lstItemToUpdate.size()>0){
-        	 update lstItemToUpdate;
+            update lstItemToUpdate;
         }
     }
     
     global void finish(Database.BatchableContext objBatchableContext) {}
-
+    
 }

@@ -52,7 +52,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                 <lightning:layoutItem size="12" largeDeviceSize="9" class="nav-links-wrapper">
                     <div aura:id="global-menu" class="menu-wrapper">
                         <lightning:layout>                            
-                            <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'9':'8')}" class="">
+                            <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'9':'10')}" class="">
                                 <div role="navigation" aria-labelledby="nav1" class="slds-col">                   
                                     <ul id="nav1" class="nav-links">
                                         <aura:iteration items="{!v.itemsList}" var="item">
@@ -83,7 +83,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                     </ul>
                                 </div>
                             </lightning:layoutItem>                    
-                            <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'3':'4')}" class="login-wrapper">
+                            <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'3':'2')}" class="login-wrapper">
                                 <aura:if isTrue="{!v.userType=='Guest'}">                            
                                     <div class="login-div">
                                         <img class="logo-style signin-logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/Login.svg'}" alt="Login" />
@@ -93,15 +93,15 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                         <div class="user-wrapper">
                                             <div class="images-wrapper">
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/search.svg'}" class="logo-style" />-->
-                                                <img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style" />
-                                                <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style" />
-                                                <img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style" onclick="{!c.handleLogout}"/>
+                                                <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style" />
+                                                <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style" /> -->
+                                                <a class="link-style" href="javacript:void(0)" onclick="{!c.handleLogout}">Logout<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>
                                                 <!--  <div class="">
                                         <img src="{!$Resource.LnP_Icons+'/LnP_Icons/login.png'}" class="{!v.pageTitle=='Login'?'login-Image':(v.userType!='Guest'?'slds-hide':'login-Image')}" alt="Log In"/>
                                         <div id="profileImage" class="{!v.pageTitle=='Login'?'slds-hide':(v.userType!='Guest'?'slds-show':'slds-hide')}">{!v.userInitial}</div>
                                     </div>-->
                                             </div>
-                                          <!--  <div class="profile-menu-option" aura:id="profile-menu">
+                                            <!--<div class="profile-menu-option" aura:id="profile-menu">
                                                 <aura:if isTrue="{!v.userType!='Guest'}">
                                                     <div class="profile-menu-inner slds-size_4-of-12 slds-large-size_12-of-12">
                                                         <lightning:buttonMenu iconName="utility:down" alternativeText="Settings" disabled="{!or(v.header, v.headerfromsession)}" onselect="{!c.handleMenuSelect}" class="account-dropdown">

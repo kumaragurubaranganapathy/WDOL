@@ -267,6 +267,20 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>AR_Date__c</fullName>
+        <description>Captures Invoice Date</description>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.BGBK__Invoice__r.BGBK__Invoice_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AR Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    
+   
     <fields>
         <fullName>Application_Method__c</fullName>
         <description>Captures application methos</description>
@@ -419,6 +433,77 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	 <fields>
+        <fullName>Reversal_Reapply_Payment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used for reversal Fee Payment</description>
+        <externalId>false</externalId>
+        <label>Reversal Reapply Payment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Source_Fee_Revenue_Code__c</fullName>
+        <description>Captures Source Fee Revenue code</description>
+        <externalId>false</externalId>
+        <formula>Source_Fee__r.Revenue_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Source Fee Revenue Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Source Fee</label>
+        <referenceTo>MUSW__Fee__c</referenceTo>
+        <relationshipLabel>Fee Payments (Source Fee)</relationshipLabel>
+        <relationshipName>Fee_Payments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>RevenueCodeSubString__c</fullName>
+        <description>Captures first 3 characters of Revenue Account Code</description>
+        <externalId>false</externalId>
+        <formula>LEFT(MUSW__Fee__r.Revenue_Code__c , 3)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RevenueCodeSubString</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	 <fields>
+        <fullName>Receipt_Payment_Method__c</fullName>
+        <description>Captures related receipt payment method</description>
+        <externalId>false</externalId>
+        <formula>TEXT(MUSW__Receipt__r.MUSW__Payment_Method__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Receipt Payment Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Reapply_Payment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Reapply Payment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IntakeMethod__c</fullName>

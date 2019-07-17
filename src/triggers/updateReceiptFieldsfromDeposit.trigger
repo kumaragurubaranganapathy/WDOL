@@ -47,7 +47,7 @@ trigger updateReceiptFieldsfromDeposit on MUSW__Deposit__c (after insert, after 
                 update finalReceiptToUpdate;            
         }
         
-       /* if(Trigger.isBefore){
+        if(Trigger.isBefore){
             set<Id> depositIds =new Set<Id>();
             for(MUSW__Deposit__c depositRec: Trigger.new){
                 MUSW__Deposit__c olddeposit = Trigger.oldMap.get(depositRec.Id);
@@ -60,6 +60,6 @@ trigger updateReceiptFieldsfromDeposit on MUSW__Deposit__c (after insert, after 
                 }   
             }
         
-        }*/
+        }
     }
 }

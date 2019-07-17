@@ -221,22 +221,24 @@
             <div class=" slds-m-vertical_xx-large">
                 <aura:if isTrue="{!v.accountDetail}"> 
                     <lightning:layout>
-                        <lightning:layoutItem size="8" padding="around-small">
+                        <lightning:layoutItem size="12" mediumDeviceSize="8" padding="around-small">
                             <div class="Account-name">{!v.SelectedAccountDetails.Name}</div>
                             <lightning:layout>
-                                <lightning:layoutItem size="12" padding="around-small">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" padding="around-small">
                                     <div class="field-style"><span class="label-style">Email : </span>{!v.SelectedAccountDetails.Email__c}</div>
                                     <div class="field-style"><span class="label-style">Phone : </span>{!v.SelectedAccountDetails.Business_Phone__c}</div>
                                 </lightning:layoutItem>
                                 
                                 <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
-                                    <lightning:layoutItem size="12" padding="around-small">
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4" padding="around-small">
                                         <aura:if isTrue = "{!parcel.Address_Type__c == 'HOME'}">
                                             <div class="field-style"><span class="label-style">Physical Address:</span></div>
                                             <div class="">{!parcel.MUSW__Street__c},</div>
                                             <div class="">{!parcel.MUSW__City__c},</div>
                                             <div class="">{!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
                                         </aura:if>
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4" padding="around-small">
                                         <aura:if isTrue = "{!parcel.Address_Type__c == 'MAILING ADDRESS'}">
                                             <div class="field-style"><span class="label-style">Mailing Address:</span></div>
                                             <div class="">{!parcel.MUSW__Street__c},</div>
@@ -248,7 +250,7 @@
                                 
                             </lightning:layout>
                         </lightning:layoutItem>
-                        <lightning:layoutItem class="nav-links" size="4" padding="around-small">
+                        <lightning:layoutItem class="nav-links" size="12" mediumDeviceSize="4" padding="around-small">
                             <ul>
                                 <a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">Apply Business License</a><br/>
                                 <a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a><br/>

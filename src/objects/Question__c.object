@@ -721,6 +721,41 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>max_value__c</fullName>
+        <description>To enter the maximum allowed in that field</description>
+        <externalId>false</externalId>
+        <label>max value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>min_value__c</fullName>
+        <description>To enter minimum value required in that field</description>
+        <externalId>false</externalId>
+        <label>min value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Validation_Criteria__c</fullName>
+        <externalId>false</externalId>
+        <label>Validation Criteria</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Help_Text__c</fullName>
         <externalId>false</externalId>
@@ -1117,12 +1152,11 @@ If multiple responses qualify for the dependency, then multiple values can be st
         <description>Used for multiple sets of dependent children. if the parent answer matches this value, bring in this question.</description>
         <externalId>false</externalId>
         <label>Triggering Parent Answer</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Version__c</fullName>
@@ -3294,7 +3328,15 @@ If multiple responses qualify for the dependency, then multiple values can be st
                 <default>false</default>
             </values>
             <values>
+                <fullName>Currency</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decimal</fullName>
                 <default>false</default>
             </values>
             <values>
