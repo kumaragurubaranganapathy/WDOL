@@ -380,28 +380,6 @@
         <sortField>CREATEDBY_USER</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>MUSW__Type__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>MUSW__Amount__c</fields>
-        <fields>MUSW__Fee_Paid__c</fields>
-        <fields>MUSW__Fee_Paid_Date__c</fields>
-        <fields>MUSW__Receipt_Number__c</fields>
-        <relatedList>MUSW__Fee__c.Handling_Fee__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BGBK__Receipt_Refund__c.Fee__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BGBK__Refund2__c.Fee__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>MUSW__Fee_Payment__c.Source_Fee__c</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
