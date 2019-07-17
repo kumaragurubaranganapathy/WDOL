@@ -109,7 +109,7 @@
         </aura:if>
         <div class="slds-grid slds-p-top_x-large">
             <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large next-button" value="MAILING ADDRESS"/>
-            <lightning:button variant="brand" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
+            <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
         </div>
     </div>
     <br/><br/>
@@ -158,7 +158,7 @@
         </aura:if>
         <div class="slds-grid slds-p-top_x-large">
             <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large next-button" value="PHYSICAL ADDRESS"/>
-            <lightning:button variant="brand" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
+            <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
         </div> 
     </div>
     
@@ -208,7 +208,7 @@
                 </div>
                 
                 <div class="slds-modal__footer">
-                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}"/>
+                    <lightning:button variant="neutral" label="Back" onclick="{!c.handleCancel}"/>
                 </div>
             </div>
         </div>

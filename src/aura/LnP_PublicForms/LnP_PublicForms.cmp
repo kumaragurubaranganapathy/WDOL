@@ -45,7 +45,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                             	<lightning:button variant="brand" label="I don't have a license" title="I don't have a license" onclick="" class="btn"/>
                             </div-->  
                             <div class="slds-p-top_x-small">
-                                <a href="{!$Label.c.Polaris_Portal_Registration}">{!section.staticText2}</a>
+                                <u><a href="{!$Label.c.Polaris_Portal_Registration}">{!section.staticText2}</a></u>
                             </div>
 						</div>
                        
@@ -97,8 +97,8 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     					</div>
 						<div class="slds-show slds-p-top_x-small login-btn-padding">
 							<aura:iteration items="{!v.section}" var="section">
-                                <span><a href="{!$Label.c.Polaris_Portal_ForgotPassword}">{!section.staticText3}</a></span> |
-                                <span><a href="{!$Label.c.Polaris_Portal_ForgotPassword}">{!section.staticText4}</a></span>
+                                <span><u><a href="{!$Label.c.Polaris_Portal_ForgotPassword}">{!section.staticText3}</a></u></span> |
+                                <span><u><a href="{!$Label.c.Polaris_Portal_ForgotPassword}">{!section.staticText4}</a></u></span>
                             </aura:iteration>
 						</div>
 						</div>
