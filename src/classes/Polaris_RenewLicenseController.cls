@@ -431,7 +431,7 @@ return parser;
         Boolean questionsIncomplete = false;
         Boolean FGquestionsIncomplete = false;
         Boolean submissionsIncomplete = true;
-        Map<String,List<LnP_Parcel__c>> mapAddress = new  Map<String,List<LnP_Parcel__c>>();
+        Map<String,List<MUSW__Parcel__c>> mapAddress = new  Map<String,List<MUSW__Parcel__c>>();
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
@@ -1186,16 +1186,18 @@ mstLicense.RecordTypeId = businessRT;
     }
     
     //Fetch all the addresses
-    public static Map<String, List<LnP_Parcel__c>> getAddresses (Set<Id> appId){
-        Map<String, List<LnP_Parcel__c>> mapAddress  =  new Map<String,List<LnP_Parcel__c>>();
-        List<LnP_Parcel__c> lstAddress  = [SELECT Id, Address_Type__c,Application_BG__c, Application__c, City__c, Country__c, State_Province__c, Street__c, Zip_Postal_Code__c 
-                                           FROM LnP_Parcel__c WHERE Application_BG__c IN :appId];
+    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Set<Id> appId){
+        Map<String, List<MUSW__Parcel__c>> mapAddress  =  new Map<String,List<MUSW__Parcel__c>>();
+        List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
+                                                  MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
+                                                  County__c, Country__c, Zip_Postal_Code__c,Application_BG__c
+                                                  FROM MUSW__Parcel__c WHERE Application_BG__c IN :appId];
         if(!lstAddress.isEmpty()){
-            for(LnP_Parcel__c parcelAddress : lstAddress) {
+            for(MUSW__Parcel__c parcelAddress : lstAddress) {
                 if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
                     mapAddress.get(parcelAddress.Address_Type__c).add(parcelAddress);
                 } else {
-                    mapAddress.put(parcelAddress.Address_Type__c, new List<LnP_Parcel__c>{parcelAddress});
+                    mapAddress.put(parcelAddress.Address_Type__c, new List<MUSW__Parcel__c>{parcelAddress});
                 }
             }
         }
