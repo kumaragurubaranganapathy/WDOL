@@ -1152,12 +1152,11 @@ If multiple responses qualify for the dependency, then multiple values can be st
         <description>Used for multiple sets of dependent children. if the parent answer matches this value, bring in this question.</description>
         <externalId>false</externalId>
         <label>Triggering Parent Answer</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Version__c</fullName>
