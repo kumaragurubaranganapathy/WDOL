@@ -128,6 +128,29 @@
         <trackHistory>false</trackHistory>
         <type>TextArea</type>
     </fields>
+	    <fields>
+        <fullName>Duplicate_Verified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</inlineHelpText>
+        <label>Duplicate Verified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>birthdate_text__c</fullName>
+        <description>birhdate couldn&apos;t be used in matching rule. Hence creating this field</description>
+        <externalId>false</externalId>
+        <label>birthdate_text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Archived_Email_Address__c</fullName>
         <description>Archived Email Address</description>
