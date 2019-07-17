@@ -126,6 +126,9 @@
 .THIS .morelinks-list li:hover{
     background-color:#f0f8ff;
 }
+.THIS .menu-outer-wrapper{
+    align-items:center;
+}
 .THIS .profile-menu-link .slds-button_neutral{
     background: #d6d7d9;
     border: none;
@@ -202,7 +205,7 @@
     .THIS .mobile-menu {
         display: block!important;
         position: absolute;
-        top: calc(1rem + 4px);
+        top: calc(1rem + 10px);
         left: 1rem;
         width: 28px;
         height: 20px;
@@ -230,17 +233,20 @@
 
     .THIS .mobile-menu.open {
         left: auto;
-        right: 0;
+        right: 10px;
+        top:25px;
 
     }
     .THIS .mobile-menu span:nth-child(1) { 
         top: 0px; 
+        background : t(LnGWhite);
     }
     .THIS .mobile-menu span:nth-child(2) { 
         top: 8px; 
     }
     .THIS .mobile-menu span:nth-child(3) { 
         top: 16px; 
+        background : t(LnGWhite);
     }
     .THIS .logo-wrapper {       
         margin:0px auto;
@@ -281,15 +287,18 @@
         flex-wrap: wrap;
     }
     .THIS ul.nav-links {
-        display: block;
-        margin: 100px 0 0;
+        display: block;        
         padding: 0px;
+        margin-top:0;
     }
     .THIS ul.nav-links li{
         border-top: solid 1px token(navmenudevider);
         margin: 0 1rem;
         text-align: center;
         padding: 1rem 0;
+    }
+    .THIS ul.nav-links li:first-child{
+        border-top:none;
     }
     .THIS ul.nav-links li:last-child {
         border-bottom: solid 1px token(navmenudevider);
@@ -309,6 +318,9 @@
         display: flex;
         align-items: center;
         justify-content: space-evenly; 
+    }
+    .THIS .login-div{
+        justify-content:center;
     }
 
     .THIS .login-wrapper .profile-menu-option {
@@ -336,6 +348,11 @@
         text-align: center;
         line-height: 30px;
         float: none;
+    }
+    .THIS .mob-logo-wrapper{
+        padding : 1rem;
+        background:t(headerclr);
+        text-align:center;
     }
     
 }

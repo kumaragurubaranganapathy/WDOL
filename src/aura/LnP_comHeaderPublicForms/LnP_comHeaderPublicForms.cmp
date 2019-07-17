@@ -36,12 +36,15 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
             </a>
         </div> -->
         <div class="header-wrapper">
+            <!--<div class="logo-wrapper">
+                <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+            </div> -->
             <div aura:id="hamburger-menu" class="mobile-menu" style="display:none;" onclick="{!c.toggleMenu}">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <lightning:layout>
+            <lightning:layout class="slds-wrap menu-outer-wrapper">
                 <lightning:layoutItem size="12" largeDeviceSize="3" class="logo-wrapper">
                     <div class="logo-div">
                         <!-- <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogo.svg'}" alt="logo" />-->
@@ -51,32 +54,35 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                 </lightning:layoutItem>
                 <lightning:layoutItem size="12" largeDeviceSize="9" class="nav-links-wrapper">
                     <div aura:id="global-menu" class="menu-wrapper">
+                        <div class="mob-logo-wrapper slds-hide_medium">
+                            <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+                        </div>
                         <lightning:layout>                            
                             <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'9':'10')}" class="">
                                 <div role="navigation" aria-labelledby="nav1" class="slds-col">                   
                                     <ul id="nav1" class="nav-links">
                                         <aura:iteration items="{!v.itemsList}" var="item">
                                             <!-- TO DO check for license management and append -->
-                                           
-                                           
+                                            
+                                            
                                             <aura:if isTrue="{!item.key == 'License Management'}">
                                                 
-                                                 <li class="links profile-menu-link">
-                                                 
-                                                  <lightning:buttonMenu iconName="utility:down" label="{!item.key}"  onselect="{!c.handleMenuSelectlink}">
+                                                <li class="links profile-menu-link">
+                                                    
+                                                    <lightning:buttonMenu iconName="utility:down" label="{!item.key}"  onselect="{!c.handleMenuSelectlink}">
                                                         <aura:iteration items="{!v.itemsListtest}" var="itemtest">
                                                             <lightning:menuItem label="{!itemtest.key}" value="{!itemtest.value}"/>
                                                         </aura:iteration>
                                                     </lightning:buttonMenu>
-                                                   
+                                                    
                                                 </li>
-                                                 <aura:set attribute="else">
-                                                      <li><a href="{!item.value}">{!item.key}</a></li>
+                                                <aura:set attribute="else">
+                                                    <li><a href="{!item.value}">{!item.key}</a></li>
                                                 </aura:set>
                                             </aura:if>
                                             
                                         </aura:iteration>
-                                      <!--  <aura:if isTrue="{!v.itemsListtest.length?'true':'false'}">
+                                        <!--  <aura:if isTrue="{!v.itemsListtest.length?'true':'false'}">
                                          
                                          
                                         </aura:if>-->
@@ -85,8 +91,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                             </lightning:layoutItem>                    
                             <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'3':'2')}" class="login-wrapper">
                                 <aura:if isTrue="{!v.userType=='Guest'}">                            
-                                    <div class="login-div">
-                                        <img class="logo-style signin-logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/Login.svg'}" alt="Login" />
+                                    <div class="login-div">                                        
                                         <a class="link-style" href="{!$Label.c.Polaris_Portal_Home+'login/'}" onclick="{!c.loginUser}">Sign In</a>
                                     </div>
                                     <aura:set attribute="else">
