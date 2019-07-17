@@ -1,5 +1,4 @@
 public with sharing class CartController
-
 {
     public FeeVO[] feeVOs { get; set; }
     public InvoiceVO[] invoiceVOs { get; set; }
@@ -26,6 +25,7 @@ public with sharing class CartController
     public Boolean isPortalUser { get; private set; }
     public boolean processSuccessful { get; set; }
     public String processResult { get; set; }
+    
     public String processResultCode { get; set; }
     public string transactionId { get; set; }
     public String processStatus { get; private set; }
@@ -87,10 +87,10 @@ public with sharing class CartController
         totalSelected = 0;
         totalSelectedOutstanding = 0;
         m_totalOwed = 0;
-        isPortalUser = BGCM.UtilityUser.isPortalUser();
-        system.debug('isPortalUser123'+isPortalUser);
+        //isPortalUser = BGCM.UtilityUser.isPortalUser();
+        //system.debug('isPortalUser123'+isPortalUser);
         //Code to avoid 
-        isPortalUser = false;
+        isPortalUser = false; // This variable need to be false for portal
         currURL = String.valueOf(URL.getSalesforceBaseUrl().toExternalForm());
         m_isNotFromVF = false;
         checkReceiptAmount = true;
@@ -108,6 +108,7 @@ public with sharing class CartController
             activeTab = 'fees';
             requestFromEPayment = false; 
             m_pid = System.currentPageReference().getParameters().get('id');
+            system.debug('m_pid$$'+m_pid);
             m_cartId = System.currentPageReference().getParameters().get('cartId');
             m_invoiceId = System.currentPageReference().getParameters().get('invoiceId');
             m_depositId = System.currentPageReference().getParameters().get('depositId');
@@ -118,6 +119,7 @@ public with sharing class CartController
 
         //retURL = 'https://dev-polaris.cs32.force.com/Dashboard';
         if (m_pid != null) m_pid = String.escapeSingleQuotes(m_pid);
+        
         if (m_cartId != null) m_cartId = String.escapeSingleQuotes(m_cartId);
         if (m_invoiceId != null) m_invoiceId = String.escapeSingleQuotes(m_invoiceId);
         
@@ -183,7 +185,7 @@ public with sharing class CartController
         paymentGatewaySettings = [Select Id, DeveloperName, Endpoint__c, Biller_ID__c, Biller_Group_ID__c, Product_Code__c From Payment_Gateway_Settings__mdt where DeveloperName = 'US_Bank_Settings' limit 1];
 
     }
-    /** Initlization of Financial Object **/
+    
     public void initOrder()
     {
         
@@ -242,25 +244,15 @@ public with sharing class CartController
                         return;
                     }
                     system.debug('receipt id '+tempReceiptId);
-                    updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
+                    Boolean paymentProcessed = updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
                     receiptId=tempReceiptId;
-                    cart.BGBK__Process_DateTime__c = System.now();
-                    // Check whether Payment Record already created by RTPC
-                    if(! isPaymentRecorded(feeIdList)){
-                        processEPayment(); 
-                    }
-                    else{
+                    if( paymentProcessed ){
                         onPaymentConfirmation();
-                    }
-                    // create a ePayment Response
-                    //Epayment_Response__c ePaymentResp = new Epayment_Response__c();
-                    //ePaymentResp.Cart_Id__c = ePaymentReturnSession.SFDCId;
-                    //ePaymentResp.Epayment_Conformation_Id__c = ePaymentReturnSession.TransactionConfirmationID;
-                    //ePaymentResp.Fee_Ids__c = String.join(feeIdList,'\r\n');
-                    //ePaymentResp.Receipt_Id__c =  receiptId;
-                    //Id tempId = DOL_Dao.save(ePaymentResp);
-                    //system.debug('Epayment_Response__c created id = '+tempId);     
-                   
+                    }else{
+                        cart.BGBK__Process_DateTime__c = System.now();
+                        processEPayment(); 
+                    }     
+                    
                 }
                 else{
                     ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'ePayment Transaction is failed');
@@ -271,7 +263,10 @@ public with sharing class CartController
         else{
             con = m_cs.getActiveContact();            
             a = m_cs.getActiveAccount();
-            cart = m_cs.getActiveCart();
+            //cart = BGBK.CartManager.getAllCartsForContact('003r000000G0MQu')[0];
+             cart = m_cs.getActiveCart();
+            // cart = m_cs.getCart();
+            system.debug('cart$$'+cart);
             /* commented for a testing in elgin
             if(isPortalUser) cart = m_cs.getActiveCart();
             else    
@@ -637,22 +632,25 @@ public with sharing class CartController
         }*/
     }
     
-    public void updateReceipt(String receiptId, String transactionConformationId){
-
+    public Boolean updateReceipt(String receiptId, String transactionConformationId){
+        Boolean paymentProcessed = false;
         Id conId = (con != null) ? con.Id : null;
-        MUSW__Receipt__c receipt = [select id,MUSW__Payment_Method__c,MUSW__Paid_By__c,MUSW__Receipt_Paid_by__c,BGBK__Cart__c,MUSW__Amount_Tendered__c from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
+        MUSW__Receipt__c receipt = [select id,Status__c,MUSW__Payment_Method__c,MUSW__Paid_By__c,MUSW__Receipt_Paid_by__c,BGBK__Cart__c,MUSW__Amount_Tendered__c from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
+        if(receipt.Status__c == 'Complete'){
+            paymentProcessed = true;// Here True means this transaction already processed by RTPC call.
+        }
         receipt.Status__c = 'Complete';
         receipt.MUSW__Paid_By__c=(a != null)?a.Id:null;
         receipt.MUSW__Receipt_Paid_by__c=conId;
-        
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = transactionConformationId;
         receipt.MUSW__Amount_Tendered__c = null;
-        //upsert receipt;
+        
         system.debug('receipt updated');
         rs.add(receipt);
         ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentReturnSession.PaymentAmount), m_rs);
         newReceiptVO.pmtMethodSelected=receipt.MUSW__Payment_Method__c;
         receiptVOs.add(newReceiptVO);
+        return paymentProcessed;
     }
 
     public void addReceipt()
@@ -891,9 +889,11 @@ public with sharing class CartController
         System.debug(' fees '+ fees);
         System.debug(' receipt '+ receiptVOs);
         system.debug(' inside processEPayment');
+        system.debug(' ****c**BGBK__Contact__c**'+cart.BGBK__Contact__c);
         if(cart.BGBK__Contact__c != null && cart.BGBK__Contact__r.Name == null) {
             Contact c = [SELECT Name,Email,AccountId From Contact WHERE Id =:cart.BGBK__Contact__c];
             cart.BGBK__Contact__r = c;
+            system.debug('****c***'+c);
         }
         Map<MUSW__Receipt__c, Decimal> rsAmt = new Map<MUSW__Receipt__c, Decimal>();
         for (ReceiptVO rvo : receiptVOs){
@@ -944,15 +944,14 @@ public with sharing class CartController
     }
 
     public void onPaymentConfirmation(){
-        Map<MUSW__Receipt__c, Decimal> rsAmt = new Map<MUSW__Receipt__c, Decimal>();
-        for (ReceiptVO rvo : receiptVOs){
-            rsAmt.put(rvo.r, rvo.amount);
-        }
-        
-        Set<Id> feePaymentIds = new Set<Id>();
-        Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
-        populateFeeAndInvoicePayment(receipts, feePaymentIds);
-        depositPayments = populateDepositPayment(receipts);
+    	
+        String feePaymentQuery = 'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
+        				+'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
+        				+'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
+        				+'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
+        				+'FROM MUSW__Fee_Payment__c '
+						+'WHERE MUSW__Receipt__c = '+receiptId;
+		feePayments = (List<MUSW__Fee_Payment__c>)Database.query(feePaymentQuery);
         MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
         rs.clear();
         for(MUSW__Receipt__c receipt : allCartReceipt){
@@ -1000,7 +999,10 @@ public with sharing class CartController
     public void process()
     {
      System.debug(' fees '+ fees);
-     System.debug(' receipt '+ receiptVOs);
+     System.debug('****receipt***'+ receiptVOs);
+     
+       
+        
     /* if (totalBalance > 0 && !canPayPartial) Padma. To avoid unecessary error message
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Insufficient funds. Tender at least the Amount owing.'));
@@ -1090,12 +1092,16 @@ public with sharing class CartController
                 rs.add(receipt);
                 
         }
-
+        
+        
+        
         if(!rs.isEmpty()){
             system.debug('nazneen--->' +rs);
             upsert rs;
         }
-
+        
+        system.debug('***rs***--->' +rs);
+        
         //Populate the map once the receipts were inserted so we can populate the Id
         for (ReceiptVO rvo : receiptVOs){
             MUSW__Receipt__c receipt = rvo.r;
@@ -1104,9 +1110,10 @@ public with sharing class CartController
 
         preparePayables();
         
+        Set<Id> feePaymentIds = new Set<Id>();
         try
         {
-            Set<Id> feePaymentIds = new Set<Id>();
+            
 
          //   system.debug('**** RS: ' + rs);
             if((payables.size() + m_payableDeposits.size()) <= 150) {
@@ -1158,6 +1165,9 @@ public with sharing class CartController
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()));
             return;
         }
+        system.debug('***size**'+feePaymentIds.size()+'***feePaymentIds**'+feePaymentIds+'***totalSelectedOutstanding*******'+totalSelectedOutstanding+'***totalPayment**'+totalPayment);
+        //totalSelectedOutstanding = totalSelectedOutstanding -totalPayment;
+        //system.debug('****totalSelectedOutstanding*'+totalSelectedOutstanding);
     }
     
     /* public void redirectToPaymentGateway(){
@@ -1292,7 +1302,7 @@ public with sharing class CartController
             if (con == null) con = new Contact(Id=cart.BGBK__Contact__c);
         }
         con.Email = email;
-        //system.debug('name$$$'+a.Name);
+        system.debug('name$$$'+a.Name);
         m_cs.sendConfirmEmail(feeIds, con, BGBK.CartService.AttachmentFormat.PDF, 'Cart Payment Receipt', null);
     }
     
@@ -1441,12 +1451,14 @@ public with sharing class CartController
             {
                 Decimal paymentAmount = feeVo.paymentAmount;
                 Decimal outstandingAmount = feeVo.f.MUSW__Outstanding_Fee__c;
+                System.debug('****Fee****outstandingAmount**********'+outstandingAmount);
                 if(paymentAmount !=null){
                     totalSelected += paymentAmount ;
                 }
                 if(outstandingAmount != null){
                     totalSelectedOutstanding += outstandingAmount;
                 }
+                System.debug('**Fee******totalSelectedOutstanding**********'+totalSelectedOutstanding);
             }
         }
         
@@ -1461,12 +1473,15 @@ public with sharing class CartController
                 }
                 if(outstandingAmount != null){
                     totalSelectedOutstanding += outstandingAmount;
+                    System.debug('**Invoice******totalSelectedOutstanding**********'+totalSelectedOutstanding);
                 }
             }
         }
 
         totalSelected += populateSelectedDepositsTotal();
+        System.debug('**final******totalSelectedOutstanding**********'+totalSelectedOutstanding);
         totalSelectedOutstanding += populateSelectedUnpaidDepositsTotal();
+        System.debug('**final 2******totalSelectedOutstanding**********'+totalSelectedOutstanding);
     }
 
         /**
@@ -1561,7 +1576,8 @@ public with sharing class CartController
         }
         // also query based on cart id
         Id cartId = cart!=null? cart.Id:m_cartId!=null?m_cartId:'';
-
+		System.debug('receiptIds='+receiptIds);
+		System.debug('cartId = '+cartId);
         query += 'Id, MUSW__Fee__c,BGBK__Invoice__c,BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c, MUSW__Receipt__c ' +
         'FROM MUSW__Fee_Payment__c WHERE MUSW__Receipt__c IN :receiptIds and MUSW__Receipt__r.MUSW__Payment_Method__c != \'Deposit\' and BGBK__Cart__c = :cartId';
         system.debug('query123'+query);
@@ -1863,10 +1879,23 @@ public with sharing class CartController
     ** Note             : This is called from cart.page in case of payment method 'Credit Card' and 'ACH'
     */
     public PageReference redirectToPaymentGateway(){
-        system.debug(''+isPortalUser);
+        String cartId = m_cs.getCart().Id;
+        String payerContactId;
+        
+        if( con != null){
+            payerContactId = con.Id;
+        }
+        else{
+            payerContactId = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Receipt_Paid_By__c;
+        }
+        
         if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
+            return null;
+        }
+        if(String.isBlank(payerContactId)){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Payer first.'));
             return null;
         }
         // create receipt manually before proceding to payment gateway
@@ -1878,19 +1907,19 @@ public with sharing class CartController
                 feeIds.add(feeVo.f.Id);
             }
         }
-        String cartId = m_cs.getCart().Id;
-       
+        System.debug('payerContactId '+payerContactId );
         String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
         // create the object DOL_ePaymentSessionTransferDetails with required parameter
         DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
                                                                     paymentAmount,
                                                                     receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c,
-                                                                    String.valueOf(con.Id),
+                                                                    payerContactId,
                                                                     cartId,
                                                                     feeIds,
-                                                                    isPortalUser);
+                                                                    BGCM.UtilityUser.isPortalUser());
         sessionTransferDetails.returnValue = receiptId;
         sessionTransferDetails.SFDClicId = receiptId;
+        System.debug('SFDClicId='+receiptId);
         // get the encrypted string
         encryptedSessionInfo = DOL_ePaymentSessionTransfer.getEncryptedSessionString(sessionTransferDetails);
         // Create the PageReference and setting the params
@@ -1899,7 +1928,6 @@ public with sharing class CartController
         pageRef.getParameters().put('billerGroupId',paymentGatewaySettings.Biller_Group_Id__c);
         pageRef.getParameters().put('session',encryptedSessionInfo);
         pageRef.setRedirect(true);
-      
         return pageRef;
     }
 

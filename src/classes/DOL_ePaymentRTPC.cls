@@ -68,13 +68,13 @@ public class DOL_ePaymentRTPC {
             }
             if(receipt != null){
                 updateReceiptFromRTPCPojo(ePaymentRTPCData,receipt);
-                if(receipt.Status__c == 'Complete'){
-                    DOL_Dao.save(receipt);
-                }
-                else{
-                    initFinancialObject();
+                if( receipt.Status__c == 'Complete'){
+                	DOL_Dao.save(receipt);	
+                }else{
+                	initFinancialObject();
                     processEpayment();
                 }
+                
                 response.addLog('receipt updated successfully');
                 response.addLog('success');
                 response.setStatusCode(200);
@@ -155,8 +155,8 @@ public class DOL_ePaymentRTPC {
         acc = m_cs.getActiveAccount(); // updated as acc
         cart = m_cs.getActiveCart();
         
-
-        accountSelected = acc.Id;
+		if(acc != null)
+        	accountSelected = acc.Id;
         if (con != null) email = con.Email;
         // initlization ends here
         // extract fees and receipt
@@ -181,6 +181,8 @@ public class DOL_ePaymentRTPC {
         
         receipt.MUSW__Amount_Tendered__c = null;
         receipt.Status__c = 'Complete';
+        receipt.MUSW__Paid_By__c=(acc != null)?acc.Id:null;
+        receipt.MUSW__Receipt_Paid_by__c=(con != null)?con.Id:null;
         rs = new MUSW__Receipt__c[]{};
         rs.add(receipt);
         ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentRTPCData.PaymentAmount), m_rs);
@@ -199,7 +201,6 @@ public class DOL_ePaymentRTPC {
             MUSW__Receipt__c receipt = rvo.r;
             rsAmt.put(receipt, rvo.amount);
         }
-        
         if(!rs.isEmpty()){
             upsert rs;
         }
@@ -214,8 +215,6 @@ public class DOL_ePaymentRTPC {
                     cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentRTPCData.PaymentAmount);
                 update cart;
             }else{
-                receipt.Status__c = 'Draft';
-                update receipt;
                 response.addErrorMsg('Payment is not processed successfully');
                 //cleanReceiptsAfterPaymentFail(receiptVOs);
             }
