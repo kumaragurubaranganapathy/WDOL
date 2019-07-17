@@ -190,8 +190,8 @@ return customerEnvelpe;
         system.debug('updated customerEnvelopeRec '+customerEnvelopeRec);
         
         list<MUSW__Deposit__c> updateDepLst = new list<MUSW__Deposit__c>();
-        for(MUSW__Deposit__c dep : depRecLstArr){
-            MUSW__Deposit__c d = new MUSW__Deposit__c(id = dep.id);
+        for(MUSW__Deposit__c d : depRecLstArr){
+            //MUSW__Deposit__c d = new MUSW__Deposit__c(id = dep.id);
             d.Validation_number__c = customerEnvelopeRec.ID;
             updateDepLst.add(d);
         }
