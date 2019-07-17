@@ -263,16 +263,16 @@ _______________________________________________________________
                             <lightning:layoutItem size="12" mediumDeviceSize="9">
                                 <lightning:layout class="slds-wrap">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                        <div class="label-style">Business Name</div>
-                                        <div class="data-style">:{!task.Business_Name__c}</div>
+                                        <div class="label-style">Business Name: </div>
+                                        <div class="data-style">{!task.Business_Name__c}</div>
                                     </lightning:layoutItem>
                                     <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                        <div class="label-style">Designation</div>
-                                        <div class="data-style">:{!task.Designation__c}</div>
+                                        <div class="label-style">Designation: </div>
+                                        <div class="data-style">{!task.Designation__c}</div>
                                     </lightning:layoutItem>
                                     <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                        <div class="label-style">Type</div>
-                                        <div class="data-style">:{!task.Type}</div>
+                                        <div class="label-style">Type: </div>
+                                        <div class="data-style">{!task.Type}</div>
                                     </lightning:layoutItem>                                    
                                 </lightning:layout>
                             </lightning:layoutItem>
@@ -462,20 +462,20 @@ _______________________________________________________________
                                     Your License
                                 </div> 
                                 <div class="field-style">
-                                    <span class="label-style">Name </span>
-                                    <span class="data-style">:{!task.Child_Licensee_Name__c}</span>
+                                    <span class="label-style">Name: </span>
+                                    <span class="data-style">{!task.Child_Licensee_Name__c}</span>
                                 </div>
                                 <div class="field-style">
-                                    <span class="label-style">Profession </span>
-                                    <span class="data-style">:{!task.Child_Profession__c}</span>
+                                    <span class="label-style">Profession: </span>
+                                    <span class="data-style">{!task.Child_Profession__c}</span>
                                 </div>
                                 <div class="field-style">
-                                    <span class="label-style">License Type </span>
-                                    <span class="data-style">:{!task.Child_License_Type__c}</span>
+                                    <span class="label-style">License Type: </span>
+                                    <span class="data-style">{!task.Child_License_Type__c}</span>
                                 </div>
                                 <div class="field-style">
-                                    <span class="label-style">License Number </span>
-                                    <span class="data-style">:{!task.Child_License_Name__c}</span>
+                                    <span class="label-style">License Number: </span>
+                                    <span class="data-style">{!task.Child_License_Name__c}</span>
                                 </div>
                             </lightning:layoutItem>                        
                             <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
@@ -483,20 +483,20 @@ _______________________________________________________________
                                     Other License
                                 </div> 
                                 <div class="field-style">
-                                    <span class="label-style">Name </span>
-                                    <span class="data-style">:{!task.Parent_Licensee_Name__c}</span>
+                                    <span class="label-style">Name: </span>
+                                    <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
                                 </div>
                                 <div class="field-style">
-                                    <span class="label-style">Profession </span>
-                                    <span class="data-style">:{!task.Parent_Profession__c}</span>
+                                    <span class="label-style">Profession: </span>
+                                    <span class="data-style">{!task.Parent_Profession__c}</span>
                                 </div>
                                 <div class="field-style">
-                                    <span class="label-style">License Type </span>
-                                    <span class="data-style">:{!task.Parent_License_Type__c}</span>
+                                    <span class="label-style">License Type: </span>
+                                    <span class="data-style">{!task.Parent_License_Type__c}</span>
                                 </div>
                                 <div class="field-style">
-                                    <span class="label-style">License Number </span>
-                                    <span class="data-style">:{!task.Parent_License_Name__c}</span>
+                                    <span class="label-style">License Number: </span>
+                                    <span class="data-style">{!task.Parent_License_Name__c}</span>
                                 </div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
@@ -519,13 +519,13 @@ _______________________________________________________________
                 <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
                     <div class="task-wrapper">
                         <div class="task-subject">
-                            Exam Expired : {!task.Subject}
+                            Exam Expired: {!task.Subject}
                         </div>
                         <lightning:layout class="license-outer-wrapper slds-wrap">
                             <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
                                 <div class="field-style">
-                                    <span class="label-style">Email </span>
-                                    <span class="data-style">:{!task.Email__c}</span>
+                                    <span class="label-style">Email: </span>
+                                    <span class="data-style">{!task.Email__c}</span>
                                 </div>
                             </lightning:layoutItem>
                         </lightning:layout>
