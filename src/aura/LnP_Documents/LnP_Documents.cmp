@@ -76,7 +76,7 @@
                 <tbody>
                     <aura:iteration items="{!v.depositList}" var="item" indexVar="index">
                         <c:LnP_DocumentsChildRowCmp depositRec="{#item}" rowIndex="{!index}" industryMap="{!v.industryMap}" 
-                                           formnum="{!v.formnum}" defaultProgramType="{!v.defaultProgramType}" amountDifference="{!v.amountDifference}"
+                                           formnum="{!v.formnum}" defaultProgramType="{#v.defaultProgramType}" amountDifference="{!v.amountDifference}"
                                                     paymentSourceTotal = "{#v.paymentSourceTotal}" industryFormMap="{!v.industryFormMap}"/>
                     </aura:iteration>
                 </tbody>

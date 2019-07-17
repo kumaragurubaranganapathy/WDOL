@@ -5,7 +5,7 @@
           helper.addReceiptRecord(component, event);
           
         var action = component.get("c.getPayment");
-        var action1 = component.get("c.getReceiptInfo");
+        //var action1 = component.get("c.getReceiptInfo");
        
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -19,17 +19,18 @@
             }
         });
           
-          action1.setCallback(this, function(response) {
+          /*action1.setCallback(this, function(response) {
                 var state = response.getState();
                 console.log('the data is' +response.getReturnValue());
                  if (state === "SUCCESS") {
                      component.set("v.receiptDetails",response.getReturnValue());
                  }
             });
+			*/
                     
           
         $A.enqueueAction(action);
-        $A.enqueueAction(action1);
+        //$A.enqueueAction(action1);
         
       },
     

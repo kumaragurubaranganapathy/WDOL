@@ -161,6 +161,10 @@
         var _insertedReceiptList = component.get("v.insertedReceiptList"); 
         var _insertedDepositList = component.get("v.insertedDepositList");
         var _customerEnvelopeRec = component.get("v.customerEnvelopeRec");
+        _customerEnvelopeRec['Number_of_documents__c'] = component.find("numberOfDocuments").get('v.value');
+        _customerEnvelopeRec['Number_of_payments__c'] = component.get("v.numOfPaymentSources");
+        _customerEnvelopeRec['Total_amount__c'] = component.get("v.paymentSourceTotal");
+        _customerEnvelopeRec['wadol_DefaultProgramType__c'] = component.get("v.defaultProgramType");
         var _parentRecordId = component.get("v.parentRecordId");
         
         var action = component.get("c.updateEnvelopRec");       
