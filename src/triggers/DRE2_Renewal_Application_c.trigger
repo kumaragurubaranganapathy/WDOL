@@ -1,4 +1,4 @@
-trigger DRE2_Renewal_Application_c on Renewal_Application__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Renewal_Application_c', new DRETriggerHandler());
+trigger DRE2_Renewal_Application_c on Renewal_Application__c (after insert, before update,after update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Renewal_Application_c', new DRETriggerHandler());
      if(Trigger.isUpdate && Trigger.isBefore ){
        System.debug('Trigger inInsert');
        Map<Id,Boolean> autoReneMap = new Map<Id,Boolean>();
