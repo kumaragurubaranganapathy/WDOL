@@ -9,8 +9,14 @@
     },
     
     handleLicenseLink :  function(component,event,helper){
-     var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
-     window.open(link, "_self");
+     /*var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
+     window.open(link, "_self");*/
+	 var accId = component.get("v.selectedAccount");
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": "/licenseSelectionPage?accId="+accId
+        });
+        urlEvent.fire();
     },
     
     businessDetails : function(component, event, helper) {

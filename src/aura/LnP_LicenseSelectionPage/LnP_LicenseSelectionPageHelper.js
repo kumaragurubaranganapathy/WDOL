@@ -17,6 +17,26 @@
         
         
     },
+	
+	getUrlParam : function(paramName) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)); //You get the whole decoded URL of the page.
+        var sURLVariables = sPageURL.split('&'); //Split by & so that you get the key value pairs separately in a list
+        var sParameterName;
+        var paramValue;
+        var i;
+        
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('='); //to split the key from the value
+            
+            if (sParameterName[0] === paramName) { //parameter name you are looking for
+                paramValue = (sParameterName[1] === undefined) ? null : sParameterName[1];
+            }
+        }
+        console.log('Param name'+paramName);
+        console.log('Param value'+paramValue);
+        return paramValue;
+    },
+	
     restrictTemporaryLicenses : function(component,event,helper){
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
