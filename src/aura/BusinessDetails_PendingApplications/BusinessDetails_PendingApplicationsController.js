@@ -39,16 +39,7 @@
         helper.uploadPendingdocumentsHelper(component, event, helper,license_Id,license_Number);
         */
     },
-    /*
-    downloadDocument : function(component, event, helper) {
-        console.log('Pending Application Button');
-        var recordIdForPDF = event.getSource().get("v.value");
-        console.log('recordIdForPDF== ' + recordIdForPDF);
-        var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
-        window.open(OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF,'_top');
-
-    },
-	*/    
+    
     updateAdditionalQualification : function(component, event, helper){
         console.log('updateAdditionalQualification..');
         /*
@@ -57,4 +48,12 @@
         helper.updateAdditionalQualificationsHelper(component, event, helper,license_Id);
         */
     },
+    downloadDocument : function(component, event, helper) {
+        console.log('Pending Application Button');
+        var recordIdForPDF = event.getSource().get("v.value");
+        console.log('recordIdForPDF== ' + recordIdForPDF);
+        var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
+        window.open(OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF,'_top');
+
+    }
 })
