@@ -89,6 +89,30 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
+	    <fields>
+        <fullName>Duplicate_Verified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</inlineHelpText>
+        <label>Duplicate Verified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RecordType_text__c</fullName>
+        <description>This field persists the value of RecordType further this field is being used in matching rule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field persists the value of RecordType further this field is being used in matching rule.</inlineHelpText>
+        <label>RecordType_text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AccountSource</fullName>
         <trackFeedHistory>false</trackFeedHistory>
