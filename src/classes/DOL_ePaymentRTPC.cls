@@ -64,15 +64,17 @@ public class DOL_ePaymentRTPC {
             SFDCappId = parameterMap.get('SFDCappId');
 
             if(isNotNullOrBlank(receiptId)){
-                receipt = [select id from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
+                receipt = [select id, Status__c from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
             }
             if(receipt != null){
                 updateReceiptFromRTPCPojo(ePaymentRTPCData,receipt);
-                DOL_Dao.save(receipt);
-                if(! isPaymentRecorded()){
-                    initFinancialObject();
+                if( receipt.Status__c == 'Complete'){
+                	DOL_Dao.save(receipt);	
+                }else{
+                	initFinancialObject();
                     processEpayment();
                 }
+                
                 response.addLog('receipt updated successfully');
                 response.addLog('success');
                 response.setStatusCode(200);
@@ -99,8 +101,8 @@ public class DOL_ePaymentRTPC {
             if(receipt.MUSW__Payment_Method__c == 'CC')
                 receipt.MUSW__Payment_Method__c = 'Credit Card';
         }
-        receipt.Status__c = 'Complete';
-        receipt.MUSW__Amount_Tendered__c = null; // Just to make sure MUSW__Amount_Tendered__c always updated to PaymentAmount inside ReceiptVo
+        //receipt.Status__c = 'Complete';
+        //receipt.MUSW__Amount_Tendered__c = null; // Just to make sure MUSW__Amount_Tendered__c always updated to PaymentAmount inside ReceiptVo
         /* if(isNotNullOrBlank(rtpcData.PaymentAmount))
             receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(rtpcData.PaymentAmount); */
         if(isNotNullOrBlank(rtpcData.PaymentEffectiveDate))
@@ -153,8 +155,8 @@ public class DOL_ePaymentRTPC {
         acc = m_cs.getActiveAccount(); // updated as acc
         cart = m_cs.getActiveCart();
         
-
-        accountSelected = acc.Id;
+		if(acc != null)
+        	accountSelected = acc.Id;
         if (con != null) email = con.Email;
         // initlization ends here
         // extract fees and receipt
@@ -178,6 +180,9 @@ public class DOL_ePaymentRTPC {
         }
         
         receipt.MUSW__Amount_Tendered__c = null;
+        receipt.Status__c = 'Complete';
+        receipt.MUSW__Paid_By__c=(acc != null)?acc.Id:null;
+        receipt.MUSW__Receipt_Paid_by__c=(con != null)?con.Id:null;
         rs = new MUSW__Receipt__c[]{};
         rs.add(receipt);
         ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentRTPCData.PaymentAmount), m_rs);
