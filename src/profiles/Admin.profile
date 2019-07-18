@@ -5,7 +5,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>
-	 <fieldPermissions>
+	 <tabVisibilities>
+        <tab>MUSW__Deposit__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<fieldPermissions>
         <editable>true</editable>
         <field>Portal_Article__c.Article_Body__c</field>
         <readable>true</readable>
