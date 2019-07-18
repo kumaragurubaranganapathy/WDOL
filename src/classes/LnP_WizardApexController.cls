@@ -391,11 +391,14 @@ insert bgckList;
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
         if(!appInstructionList.isEmpty()){
-            result.add(appInstructionList[0].Instructions__c);  
-            if(!masterSubListOnAppInstrList.isEmpty()){
-                for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
-                    result.add(subm.Name);
-                }
+            result.add(appInstructionList[0].Instructions__c);             
+        }
+        else{
+            result.add('');
+        }
+        if(!masterSubListOnAppInstrList.isEmpty()){
+            for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
+                result.add(subm.Name);
             }
         }
         system.debug('@@@@result'+result);
