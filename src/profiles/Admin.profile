@@ -1677,10 +1677,6 @@
         <recordType>MUSW__License2__c.eSLA_Portal</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-	<tabVisibilities>
-        <tab>Portal_Article__c</tab>
-        <visibility>DefaultON</visibility>
-    </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
