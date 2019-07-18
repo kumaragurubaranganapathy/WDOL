@@ -57,30 +57,30 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
-        <fullName>BGBK__Fee_Payment_Basic</fullName>
-        <availableFields>
-            <field>MUSW__Fee__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>BGBK__Payment__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
-        <displayedFields>
-            <field>MUSW__Payment_Amount__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>MUSW__Paid_Date__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <label>Fee Payment Basic</label>
-    </fieldSets>
+	<fullName>BGBK__Fee_Payment_Basic</fullName>
+		<availableFields>
+			<field>BGBK__Payment__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</availableFields>
+		<description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
+		<displayedFields>
+			<field>MUSW__Payment_Amount__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</displayedFields>
+		<displayedFields>
+			<field>MUSW__Paid_Date__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</displayedFields>
+		<displayedFields>
+			<field>Reapply_Amount__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</displayedFields>
+		<label>Fee Payment Basic</label>
+	</fieldSets>
     <fieldSets>
         <fullName>BGBK__Feebasic</fullName>
         <availableFields>
@@ -495,6 +495,17 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Reapply Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
 	<fields>
         <fullName>Reapply_Payment__c</fullName>
