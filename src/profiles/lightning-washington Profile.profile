@@ -20708,11 +20708,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Account.DOR_Business_Account</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>Account.Main_License_Account</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
