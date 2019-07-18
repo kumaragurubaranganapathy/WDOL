@@ -192,66 +192,6 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-	<fields>
-        <fullName>Print_First_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Print First Name</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Print_Last_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Print Last Name</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Print_Middle_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Print Middle Name</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Renewal_Reinstatement_Total_Fee__c</fullName>
-        <externalId>false</externalId>
-        <label>Renewal/Reinstatement Total Fee</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-	<fields>
-        <fullName>Renewal_Reinstatement_Total_Payment__c</fullName>
-        <externalId>false</externalId>
-        <label>Renewal/Reinstatement Total Payment</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
     <fields>
         <fullName>Account_Email__c</fullName>
         <description>MUSW__Primary_Licensee__r.Email__c</description>
@@ -378,7 +318,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	
     <fields>
         <fullName>Application_Method__c</fullName>
         <description>This refers to the application method being applied for- General Application, Examination, etc.</description>
@@ -394,75 +333,83 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
                 <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
                 <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
                 <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Unlicensed</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <controllingFieldValue>Unlicensed</controllingFieldValue>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <valueName>General Application</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <valueName>Comity</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <valueName>Upgrade</valueName>
             </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
+                <valueName>Broker-Restricted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
+                <valueName>Non-Broker</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Application_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Field to store Application Number</description>
@@ -476,7 +423,6 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
-	
     <fields>
         <fullName>Application_Type__c</fullName>
         <description>This refers to the application type being applied for: Application Types- Trades Credential, Plan Review, Permit To Operate, etc.</description>
@@ -492,7 +438,7 @@
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1038,7 +984,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>	
+    </fields>
     <fields>
         <fullName>Credential_Type__c</fullName>
         <description>This is being used instead of MUSW__Type__c as MUSW__Type__c is a managed field and cannot be changed to be dependent on a global picklist. This refers to the credential type being applied for</description>
@@ -1054,32 +1000,77 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
                 <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Delegated Municipality</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Misc Payments</controllingFieldValue>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <controllingFieldValue>Misc Payments</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
                 <valueName>Unlicensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1114,73 +1105,12 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1226,9 +1156,25 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Professional Engineer</valueName>
             </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Credential__c</fullName>
         <description>This refers to the credential being applied for</description>
         <externalId>false</externalId>
@@ -3593,10 +3539,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <controllingFieldValue>Pending Payment</controllingFieldValue>
                 <valueName>Dishonored Payment</valueName>
             </valueSettings>
-			<valueSettings>
-                <controllingFieldValue>Pending action</controllingFieldValue>
-                <valueName>Applicant action</valueName>
-            </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Inactive</controllingFieldValue>
                 <valueName>Child Support Suspension</valueName>
@@ -4262,8 +4204,22 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <columns>RECORDTYPE</columns>
         <columns>Military_Spouse__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Total_Balance__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Generate Fee,Active</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>lessThan</operation>
+            <value>7/4/2019 12:00 AM</value>
+        </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Manufactured_Home_Converted</fullName>
@@ -16050,8 +16006,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-	
-    	<recordTypes>
+    <recordTypes>
         <fullName>Unlicensed</fullName>
         <active>true</active>
         <description>For unlicensed business or professional</description>
@@ -16187,69 +16142,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Timeshares</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Branch_of_Engineering__c</picklist>
-            <values>
-                <fullName>Agricultural %26 Biological</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architectural</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Civil</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Control Systems</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Environmental</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fire Protection</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Industrial</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mechanical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Metallurgical and Materials</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mining and Mineral Processing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Naval Architect%2FMarine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nuclear</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Petroleum</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16791,6 +16683,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
+                <fullName>Manufactured Homes Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -16844,1059 +16740,25 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Current_Country_of_Licensure__c</picklist>
-            <values>
-                <fullName>Afghanistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Albania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Algeria</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Andorra</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Angola</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Antigua and Barbados</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Argentina</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Armenia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Australia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Austria</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Azerbaijan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bahamas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bahrain</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bangladesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Barbados</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Belarus</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Belgium</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Belize</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Benin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bhutan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bolivia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bosnia and Herzegovina</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Botswana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brazil</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brunei</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bulgaria</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burkina</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burma</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burundi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cambodia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cameroon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Canada</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cape Verde</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Central African Republic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chad</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>China</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Colombia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Comoros</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Costa Rica</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cote d%27Ivoire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Croatia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cuba</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cyprus</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Czech Republic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Democratic Republic of Congo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Denmark</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Djibouti</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dominica</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dominican Republic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ecuador</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Egypt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>El Salvador</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Equatorial Guinea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eritrea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Estonia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ethiopia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fiji</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Finland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>France</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gabon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gambia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Georgia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Germany</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ghana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Greece</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grenada</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Guatemala</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Guinea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Guinea-Bissau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Guyana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Haiti</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Honduras</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hungary</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iceland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>India</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Indonesia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iran</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iraq</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ireland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Israel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Italy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jamaica</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Japan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jordan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kazakhstan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kenya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kiribati</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kosovo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kuwait</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kyrgyzstan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Laos</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Latvia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lebanon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lesotho</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Liberia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Libya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Liechtenstein</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lithuania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Luxembourg</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Macedonia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Madagascar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Malawi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Malaysia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Maldives</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mali</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Malta</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshall Islands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mauritania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mauritius</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mexico</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Micronesia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Moldova</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monaco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mongolia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Montenegro</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Morocco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mozambique</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Namibia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nauru</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nepal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Netherlands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Zealand</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nicaragua</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Niger</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nigeria</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Korea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Norway</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pakistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Palau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Panama</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Papua New Guinea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paraguay</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Peru</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Philippines</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Poland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portugal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Qatar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Republic of the Congo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Romania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Russia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rwanda</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Kitts and Nevis</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Lucia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Vincent and the Grenadines</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Samoa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Marino</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sao Tome and Principe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saudi Arabia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Senegal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Serbia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seychelles</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sierra</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Singapore</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Slovakia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Slovenia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Solomon Islands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Somalia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Korea</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Sudan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spain</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sri Lanka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sudan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Suriname</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Swaziland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sweden</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Switzerland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Syria</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taiwan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tajikistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tanzania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Thailand</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Timor-Leste</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Togo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tonga</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trinidad and Tobago</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tunisia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Turkey</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Turkmenistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tuvalu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Uganda</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>United Arab Emirates</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>United Kingdom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>United States</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Uruguay</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Uzbekistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vanuatu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vatican City</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Venezuela</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vietnam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yemen</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Zambia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Zimbabwe</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Current_State_of_Licensure__c</picklist>
-            <values>
-                <fullName>Alabama</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Alaska</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>American Samoa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arizona</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Arkansas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Armed Forces Americas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Armed Forces Europe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Armed Forces Pacific</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>California</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Colorado</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Connecticut</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delaware</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fed St Micronesia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Florida</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Georgia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Guam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hawaii</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Idaho</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Illinois</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Indiana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iowa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kansas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kentucky</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Louisiana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Maine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marshall Islands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Maryland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Massachusetts</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Michigan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Minnesota</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mississippi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Missouri</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Montana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nebraska</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nevada</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Hampshire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Jersey</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Mexico</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New York</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Carolina</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Dakota</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Northern Mariana Islands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ohio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oklahoma</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Palau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pennsylvania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Puerto Rico</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rhode Island</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Carolina</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Dakota</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tennessee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Texas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>U%2ES%2E Virgin Islands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Utah</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vermont</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Virginia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washington</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Washington D%2EC%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>West Virginia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wisconsin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wyoming</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Delivery_Method__c</picklist>
+            <values>
+                <fullName>Classroom %28Instructor in room with students%29</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Distance %2F On-Line</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>One-time event %2F Seminar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ongoing event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Substantial course changes to existing active course</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18094,10 +16956,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -18147,7 +17005,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -18178,21 +17036,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Website</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Intended_means_of_disposition__c</picklist>
-            <values>
-                <fullName>Airplane</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Boat</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18291,15 +17134,15 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pending Additional Qualifications</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending action</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18320,10 +17163,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Suspended</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unlicensed Activity</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18359,17 +17198,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Method_of_Funding__c</picklist>
-            <values>
-                <fullName>Insurance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trust Fund</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>No_of_Lien_copies__c</picklist>
             <values>
                 <fullName>0</fullName>
@@ -18400,7 +17228,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <picklist>Non_US_Citizen__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -18457,52 +17285,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Print_License_DES__c</picklist>
-            <values>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Print_License_Email__c</picklist>
-            <values>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Print_Renewal_Coupon__c</picklist>
-            <values>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Print_Renewal_Letter__c</picklist>
             <values>
                 <fullName>Completed</fullName>
                 <default>false</default>
@@ -18630,6 +17413,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
+                <fullName>Geologist in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>In State Collection Agency</fullName>
                 <default>false</default>
             </values>
@@ -18647,6 +17434,14 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18936,10 +17731,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>Others</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>PA</fullName>
                 <default>false</default>
             </values>
@@ -18993,7 +17784,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>WA</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>WI</fullName>
@@ -19065,6 +17856,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
+                <fullName>Designated Person Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Dishonored Payment</fullName>
                 <default>false</default>
             </values>
@@ -19086,6 +17881,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Retired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -19121,28 +17920,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Type_of_service_offering__c</picklist>
-            <values>
-                <fullName>Engineering</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering %26 Land Surveying</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Land Surveying</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>What_Licensure_Level__c</picklist>
+            <values>
+                <fullName>Broker</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Certified General</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Managing Broker</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -19213,7 +18005,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-	<recordTypes>
+    <recordTypes>
         <fullName>eSLA_Portal</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
