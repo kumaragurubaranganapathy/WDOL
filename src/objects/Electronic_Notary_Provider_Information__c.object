@@ -260,6 +260,16 @@
             </values>
         </picklistValues>
     </recordTypes>
+	<validationRules>
+        <fullName>Electronic_software_provider_not_blank</fullName>
+        <active>true</active>
+        <description>if Provider_Name__c is other then only electronic software provider should be filled.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL( Provider_Name__c,&apos;Other&apos;), 
+ISBLANK( Description__c) 
+)</errorConditionFormula>
+        <errorMessage>Please enter Provide Information in description</errorMessage>
+    </validationRules>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
