@@ -21,11 +21,6 @@
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
-		<editable>true</editable>
-		<field>Master_Distribution_List.ExternalID__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Deposit__c.Over_Short_Revenue_Code__c</field>
         <readable>true</readable>
