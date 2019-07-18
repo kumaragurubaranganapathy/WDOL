@@ -60,6 +60,10 @@ public class DE_LandingPageCustomLabels {
         
         mapCommonHeaderLabels.put('Complaints','Complaints;'+System.Label.Polaris_Portal_Complaint+',');
         
+        if(isValidUser){
+            
+            mapCommonHeaderLabels.put('Help','Help;'+System.Label.Polaris_Portal_Home+'?Help-Topic=Help-Topic'+',');
+        }
         
         //mapCommonHeaderLabels.put('File a Complaint','File a Complaint;https://deloittelnp.force.com/s/file-a-complaint,');
         //mapCommonHeaderLabels.put('Log In','Log In;#,');
