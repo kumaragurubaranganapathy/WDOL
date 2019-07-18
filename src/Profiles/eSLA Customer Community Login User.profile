@@ -5019,6 +5019,28 @@
         <field>Account.Account_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Duplicate_Verified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.RecordType_text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Duplicate_Verified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.birthdate_text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	
     <fieldPermissions>
         <editable>true</editable>
         <field>Renewal_Application__c.AccountStatus__c</field>
