@@ -449,13 +449,17 @@ color: token(placeholderColor);
     border-bottom:none;
 }
 .THIS .slds-table_bordered.slds-table {
-    border-color:#5b616b;         
+    border-color:#5b616b;  
+    table-layout:fixed;
 }
 .THIS .slds-table thead th{
+    background-color:#eaeaea;
     padding: 1rem 2rem;
+    font-size:t(tableFontSize);
 }
 .THIS .slds-table tbody td{
-    padding: 1rem 2rem; 
+    padding: 1rem 2rem;
+    font-size:t(tableFontSize);
 }
 .THIS .slds-table_bordered.slds-table > thead > th{
     background-color:#eaeaea;

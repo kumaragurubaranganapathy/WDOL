@@ -45,12 +45,12 @@
 /*common style for table */
 .THIS .slds-table thead th{
     background-color:#eaeaea;
-}
-.THIS .slds-table thead th{
     padding: 1rem 2rem;
+    font-size:t(tableFontSize);
 }
 .THIS .slds-table tbody td{
     padding: 1rem 2rem;
+    font-size:t(tableFontSize);
 }
 /*common style for table */
 /*common style for tabs */
@@ -62,6 +62,10 @@
 }
 .THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
     display:none;
+}
+.THIS .slds-table_bordered.slds-table {
+    border-color:#5b616b;  
+    table-layout:fixed;
 }
 .THIS .table-scroll{
     max-height:100%;
