@@ -109,7 +109,6 @@
     <aura:attribute name="draftMaintainPaginationList" type="List" />
     <aura:attribute name="pendingNewPaginationList" type="List" />    
     <aura:attribute name="completeRequestPaginationList" type="List" />
-    <aura:attribute name ="ServiceLink" type="List" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     
@@ -157,126 +156,128 @@
         
         <aura:if isTrue="{!v.DisplayLicense_Details}">
             <div id="detailLicenseDataid" class="license-details-wrapper">            
-                
-                <lightning:layout class="slds-wrap">
-                    <lightning:layoutItem size="12" mediumDeviceSize="{!empty(v.ServiceLink)?'12':'9'}">                                    
-                        <aura:iteration items="{!v.detailLicenseData}" var="item">
-                            <div class="card table-border">
-                                <lightning:layout class="slds-wrap lic-details-wrapper bottom-border">            
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                        <div class="label-style text-style">License Number: </div>
-                                        <div class="data-style">{!item.Name}</div>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                        <div class="label-style text-style">License Type: </div>
-                                        <div class="data-style">{!item.Credential_Type__c}</div>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                        <div class="label-style text-style">Status: </div>
-                                        <aura:if isTrue="{!item.MUSW__Status__c}">
-                                            <div class="data-style">{!item.MUSW__Status__c}</div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                </lightning:layout>
-                                <lightning:layout class="slds-wrap lic-details-wrapper">
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">Name: </div>
-                                        <div class="data-style">{!item.MUSW__Applicant__r.Name}</div>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">First Issue Date: </div>
-                                        <aura:if isTrue="{!item.Original_Issue_Date__c}">
-                                            <div class="data-style"><lightning:formattedDateTime value="{!item.Original_Issue_Date__c}"/></div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">Sub-status: </div>
-                                        <aura:if isTrue="{!item.Sub_Status__c}">
-                                            <div class="data-style">{!item.Sub_Status__c}</div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">City: </div>
-                                        <aura:if isTrue="{!item.LnP_Parcels__r.records[0].City__c}">
-                                            <div class="data-style">{!item.LnP_Parcels__r.records[0].City__c}</div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>       
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">Current Issue Date: </div>
-                                        <aura:if isTrue="{!item.MUSW__Issue_Date__c}">
-                                            <div class="data-style"><lightning:formattedDateTime value="{!item.MUSW__Issue_Date__c}"/></div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">State: </div>
-                                        <aura:if isTrue="{!item.LnP_Parcels__r.records[0].State_Province__c}">
-                                            <div class="data-style">{!item.LnP_Parcels__r.records[0].State_Province__c}</div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>                              
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">Expiration Date: </div>
-                                        <aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
-                                            <div class="data-style"><lightning:formattedDateTime value="{!item.MUSW__Expiration_Date__c}"/></div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">Program: </div>
-                                        <aura:if isTrue="{!item.Application_Type__c}">
-                                            <div class="data-style">{!item.Application_Type__c}</div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
-                                        <div class="label-style">Country: </div>
-                                        <aura:if isTrue="{!item.LnP_Parcels__r.records[0].Country__c}">
-                                            <div class="data-style">{!item.LnP_Parcels__r.records[0].Country__c}</div>
-                                            <aura:set attribute="else">
-                                                <div class="data-style">None</div>
-                                            </aura:set>
-                                        </aura:if>
-                                    </lightning:layoutItem>
-                                </lightning:layout>
-                                <aura:if isTrue="{!v.endorsementData.length != 0}">
-                                    <div class="">
-                                        <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
-                                        <div class="section-content slds-p-around_small">
-                                            <aura:iteration items="{!v.endorsementData}" var="item">
-                                                <div class="section-list">{!item}</div>
-                                            </aura:iteration>
+                <lightning:layout horizontalAlign="spread">
+                    <lightning:layoutItem>
+                        <div>
+                            <lightning:layout class="slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="8">                                    
+                                    <aura:iteration items="{!v.detailLicenseData}" var="item">
+                                        <div class="card table-border">
+                                            <lightning:layout class="slds-wrap slds-p-around_small bottom-border">            
+                                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
+                                                    <div class="label-style text-style">License Number: </div>
+                                                    <div class="data-style">{!item.Name}</div>
+                                                </lightning:layoutItem>
+                                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
+                                                    <div class="label-style text-style">License Type: </div>
+                                                    <div class="data-style">{!item.Credential_Type__c}</div>
+                                                </lightning:layoutItem>
+                                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
+                                                    <div class="label-style text-style">Status: </div>
+                                                    <aura:if isTrue="{!item.MUSW__Status__c}">
+                                                        <div class="data-style">{!item.MUSW__Status__c}</div>
+                                                        <aura:set attribute="else">
+                                                            <div class="data-style">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </lightning:layoutItem>
+                                            </lightning:layout>
+                                            <div class="slds-grid slds-p-around_small slds-wrap">
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">Name: </div>
+                                                    <div class="slds-form-element__control">{!item.MUSW__Applicant__r.Name}</div>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">First Issue Date: </div>
+                                                    <aura:if isTrue="{!item.Original_Issue_Date__c}">
+                                                        <div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.Original_Issue_Date__c}"/></div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">Sub-status: </div>
+                                                    <aura:if isTrue="{!item.Sub_Status__c}">
+                                                        <div class="slds-form-element__control">{!item.Sub_Status__c}</div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">City: </div>
+                                                    <aura:if isTrue="{!item.LnP_Parcels__r.records[0].City__c}">
+                                                        <div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].City__c}</div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>       
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">Current Issue Date: </div>
+                                                    <aura:if isTrue="{!item.MUSW__Issue_Date__c}">
+                                                        <div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.MUSW__Issue_Date__c}"/></div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">State: </div>
+                                                    <aura:if isTrue="{!item.LnP_Parcels__r.records[0].State_Province__c}">
+                                                        <div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].State_Province__c}</div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>                              
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">Expiration Date: </div>
+                                                    <aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
+                                                        <div class="slds-form-element__control"><lightning:formattedDateTime value="{!item.MUSW__Expiration_Date__c}"/></div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">Program: </div>
+                                                    <aura:if isTrue="{!item.Application_Type__c}">
+                                                        <div class="slds-form-element__control">{!item.Application_Type__c}</div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                                    <div class="slds-form-element__label text-style">Country: </div>
+                                                    <aura:if isTrue="{!item.LnP_Parcels__r.records[0].Country__c}">
+                                                        <div class="slds-form-element__control">{!item.LnP_Parcels__r.records[0].Country__c}</div>
+                                                        <aura:set attribute="else">
+                                                            <div class="slds-form-element__control">None</div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                            <aura:if isTrue="{!v.endorsementData.length != 0}">
+                                                <div class="">
+                                                    <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
+                                                    <div class="section-content slds-p-around_small">
+                                                        <aura:iteration items="{!v.endorsementData}" var="item">
+                                                            <div class="section-list">{!item}</div>
+                                                        </aura:iteration>
+                                                    </div>
+                                                </div>
+                                            </aura:if>
                                         </div>
-                                    </div>
-                                </aura:if>
-                            </div>
-                        </aura:iteration>
-                    </lightning:layoutItem>
-                    <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!empty(v.ServiceLink)?'slds-hide':'amr-links'}">                                    
-                        <c:Polaris_AMRLink board="{!v.detailLicenseData[0].Application_Type__c}" licenseType="{!v.detailLicenseData[0].Credential_Type__c}" applicationMethod="{!v.detailLicenseData[0].Application_Method__c}" recordId="{!v.detailLicenseData[0].Id}" ServiceLink="{!v.ServiceLink}"  />
-                    </lightning:layoutItem>
-                </lightning:layout>
-            </div>
+                                    </aura:iteration>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="amr-links">
+                                    <c:Polaris_AMRLink board="{!v.detailLicenseData[0].Application_Type__c}" licenseType="{!v.detailLicenseData[0].Credential_Type__c}" applicationMethod="{!v.detailLicenseData[0].Application_Method__c}" recordId="{!v.detailLicenseData[0].Id}"  />
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </div>
                         <br/><br/>
                         <div>
                             <aura:if isTrue="{!v.PeerRelationTableDataList.length != 0 || v.BusinessLicenseTableDataList.length != 0 || v.IsCurrentLicenseParent}">

@@ -2343,7 +2343,7 @@
         <name>ViewEventLogFiles</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>ViewFlowUsageAndFlowEventData</name>
     </userPermissions>
     <userPermissions>
