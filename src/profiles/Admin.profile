@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>false</custom>
-	<tabVisibilities>
-        <tab>Deposits</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
 	<fieldPermissions>
 		<editable>true</editable>
 		<field>Lockbox_Envelope__c.Lockbox_Amount__c</field>
