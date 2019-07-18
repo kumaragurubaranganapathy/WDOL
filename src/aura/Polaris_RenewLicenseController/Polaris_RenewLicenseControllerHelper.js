@@ -150,12 +150,9 @@
 			if (tabsList.hasOwnProperty(key)) {
 				if(tabsList[key].sectionName =='License Information'){
 					for (var question in tabsList[key].labelFieldsMap){
-                        if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].value != null ){
-                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value });
-                        } 
-                        else if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].multiValues != null){
-                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString() });
-                        }
+                        if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
+                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
+                        }						
 					}
 				}
                 else if(tabsList[key].sectionName =='Attachments'){
@@ -176,9 +173,6 @@
        // if(enteredAttestText==userName)
         //debugger;
         this.checkboxValidation(component, event);
-        var id;
-        var noFees;
-        var that = this;
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true)
         {         
             
@@ -188,59 +182,19 @@
                 "renewReinstate": component.get("v.RenewReinstate")
                 //"licID" : component.get("v.licID")
             });
-            that.showSpinner(component, event);
+            this.showSpinner(component, event);
             //helper.AttestVal(component, event, helper);
             action.setCallback(this, function(actionResult){
                 var state = actionResult.getState();
                 if (state === "SUCCESS"){
                     var result = actionResult.getReturnValue();
-                    //var noFees;
-                    //this.hideSpinner(component, event);
-                    component.set("v.storeServerValue", result[0].Id);
-                    id = component.get("v.storeServerValue");
-                    try{
-                        return new Promise($A.getCallback(function(resolve, reject) {
-                            var action = component.get("c.getTotalBalance");
-                            action.setParams({"licId" : id });
-                            action.setCallback(this, function(actionResult){
-                                var state = actionResult.getState();
-                                if (state === "SUCCESS"){
-                                    console.log("state::"+state);
-                                    noFees = actionResult.getReturnValue();
-                                    resolve(actionResult.getReturnValue());
-                                    console.log("state::"+state);
-                                }
-                                
-                            });
-                            $A.enqueueAction(action);
-                        })).then(
-                            $A.getCallback(function(result){ 
-                                var str = '';
-                                component.set("v.loadingSpinner", false);
-                                if(noFees){
-                                    /*str ='/dashboard';
-                                    var urlEvent = $A.get("e.force:navigateToURL");
-                                    urlEvent.setParams({
-                                        "url": str
-                                    });
-                                    urlEvent.fire(); */
-                                    // below code is for no fees case
-                                    that.hideSpinner(component, event);
-                                    component.set("v.popupHeader", "Successfully Submitted");
-                                    component.set("v.popupBody", "Thank you for submission of your application.");
-                                    component.set("v.serverStatus", "success"); 
-                                    //component.set("v.storeServerValue", result[0].Id);
-                                    component.set("v.isOpen", true); 
-                                    // no fees code ends
-                                }else{ 
-                                    that.hideSpinner(component, event);
-                                    window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                                } 
-                            }));
-                    }    
-                    catch(e){
-                        console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
-                    }
+                    this.hideSpinner(component, event);
+                    // Set popup property values before displayiong pop up.
+                    component.set("v.popupHeader", "Successfully Submitted");
+                    component.set("v.popupBody", "Thank you for submission of your application.");
+                    component.set("v.serverStatus", "success"); 
+                    component.set("v.storeServerValue", result);
+                    component.set("v.isOpen", true);
                 }else{
                     console.log("Submit Error->"+error);
                     //handle error as well
