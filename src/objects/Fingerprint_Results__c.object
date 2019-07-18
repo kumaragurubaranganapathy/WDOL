@@ -141,6 +141,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Fingerprint_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Fingerprint Id</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Fingerprint_Reject_Reason__c</fullName>
         <description>Fingerprint Reject Reason</description>
         <externalId>false</externalId>
@@ -236,6 +247,50 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>License_ID__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <externalId>false</externalId>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
+        <relationshipName>Fingerprinting_Background_Results</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Receipt_Number_Field__c</fullName>
+        <externalId>false</externalId>
+        <label>Receipt Number Field</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Status_Date__c</fullName>
         <description>Fingerprint Status Date</description>
         <externalId>false</externalId>
@@ -287,6 +342,11 @@
         <type>Date</type>
     </fields>
     <label>Fingerprinting/Background Results</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>FR - {00000}</displayFormat>
         <label>Fingerprint Results Name</label>

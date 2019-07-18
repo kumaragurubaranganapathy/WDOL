@@ -128,29 +128,6 @@
         <trackHistory>false</trackHistory>
         <type>TextArea</type>
     </fields>
-	    <fields>
-        <fullName>Duplicate_Verified__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</inlineHelpText>
-        <label>Duplicate Verified</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>birthdate_text__c</fullName>
-        <description>birhdate couldn&apos;t be used in matching rule. Hence creating this field</description>
-        <externalId>false</externalId>
-        <label>birthdate_text</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>Archived_Email_Address__c</fullName>
         <description>Archived Email Address</description>
@@ -296,11 +273,24 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>City__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Client_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
+        <caseSensitive>true</caseSensitive>
+        <description>Foreign Key used for Data Conversion</description>
         <externalId>true</externalId>
-        <label>Client_Id</label>
-        <length>60</length>
+        <inlineHelpText>Foreign Key used for Data Conversion</inlineHelpText>
+        <label>Client_ID</label>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -386,7 +376,7 @@
         <fullName>Contact_Type__c</fullName>
         <externalId>false</externalId>
         <label>Contact Type</label>
-        <length>20</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -521,6 +511,17 @@
         <description>Check this field if you want to override the Duplicate check.</description>
         <externalId>false</externalId>
         <label>Duplicate Override</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Duplicate_Verified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</inlineHelpText>
+        <label>Duplicate Verified</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
@@ -1229,6 +1230,17 @@ CASE( MUSW__AlertCode__c,
         </valueSet>
     </fields>
     <fields>
+        <fullName>Street__c</fullName>
+        <externalId>false</externalId>
+        <label>Street or PO Box</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Supervisor_Name__c</fullName>
         <description>This field is to store supervisor name of the applicant</description>
         <externalId>false</externalId>
@@ -1284,7 +1296,7 @@ CASE( MUSW__AlertCode__c,
         <fullName>UBI_Number__c</fullName>
         <externalId>false</externalId>
         <label>UBI #</label>
-        <length>20</length>
+        <length>11</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1357,6 +1369,18 @@ CASE( MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>birthdate_text__c</fullName>
+        <description>birhdate couldn&apos;t be used in matching rule. Hence creating this field</description>
+        <externalId>false</externalId>
+        <label>birthdate_text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>license_specific_email_addresses__c</fullName>
         <externalId>false</externalId>
         <label>license specific email addresses</label>
@@ -1395,6 +1419,7 @@ CASE( MUSW__AlertCode__c,
         <columns>CONTACT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Contacts</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Converted_contacts2</fullName>
@@ -1407,11 +1432,12 @@ CASE( MUSW__AlertCode__c,
         <columns>CONTACT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CREATEDBY_USER.ALIAS</field>
+            <field>CONTACT.CREATED_DATE</field>
             <operation>equals</operation>
-            <value>dadmi</value>
+            <value>TODAY</value>
         </filters>
         <label>Converted Contacts</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>MyContacts</fullName>
@@ -1970,6 +1996,10 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Out of Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -2418,6 +2448,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3071,6 +3105,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3722,6 +3760,7 @@ CASE( MUSW__AlertCode__c,
     <recordTypes>
         <fullName>Contact_with_PII</fullName>
         <active>true</active>
+        <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
         <description>Contact record type for layout with PII fields. Only used while creating records</description>
         <label>Contact with PII</label>
         <picklistValues>
@@ -4243,6 +4282,10 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Out of Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -4691,6 +4734,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5344,6 +5391,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6067,7 +6118,7 @@ CASE( MUSW__AlertCode__c,
         <masterLabel>Create Application</masterLabel>
         <openType>replace</openType>
         <protected>false</protected>
-        <url>https://dev-polaris.cs32.force.com/customLogin?Id={!Contact.Id}</url>
+        <url>https://dev-polaris.cs32.force.com/lightningwashington/customLogin?Id={!Contact.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>GoogleMaps</fullName>
@@ -6137,5 +6188,24 @@ CASE( MUSW__AlertCode__c,
         <openType>sidebar</openType>
         <page>Contact_PII_Information</page>
         <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>test</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>test</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://dev-polaris.cs32.force.com/lightningwashington/customLogin</url>
     </webLinks>
 </CustomObject>

@@ -5,27 +5,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -35,27 +15,7 @@
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -63,27 +23,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -93,41 +33,11 @@
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>SaveEdit</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -137,15 +47,6 @@
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -371,6 +272,20 @@
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
+	<fields>
+	    <fullName>Current_Country_of_Licensure__c</fullName>
+		<externalId>false</externalId>
+		<label>Current Country of Licensure</label>
+		<required>false</required>
+		<trackFeedHistory>false</trackFeedHistory>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Picklist</type>
+	<valueSet>
+		<restricted>true</restricted>
+		<valueSetName>List_of_Countries</valueSetName>
+	</valueSet>
+	</fields>
     <fields>
         <fullName>Apartment_Units__c</fullName>
         <externalId>false</externalId>
@@ -419,7 +334,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	
     <fields>
         <fullName>Application_Method__c</fullName>
         <description>This refers to the application method being applied for- General Application, Examination, etc.</description>
@@ -503,7 +417,7 @@
             </valueSettings>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Application_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Field to store Application Number</description>
@@ -517,7 +431,7 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>Application_Type__c</fullName>
         <description>This refers to the application type being applied for: Application Types- Trades Credential, Plan Review, Permit To Operate, etc.</description>
         <externalId>false</externalId>
@@ -532,7 +446,7 @@
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -656,6 +570,16 @@
         <description>This is the field that shows if the permit is licensed by the applicant.</description>
         <externalId>false</externalId>
         <label>Attestation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Audit_Completed_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Audit Completed Flag</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1548,7 +1472,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             </valueSettings>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Credential__c</fullName>
         <description>This refers to the credential being applied for</description>
         <externalId>false</externalId>
@@ -27870,8 +27794,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-	
-    	<recordTypes>
+    <recordTypes>
         <fullName>Unlicensed</fullName>
         <active>true</active>
         <description>For unlicensed business or professional</description>
@@ -31033,7 +30956,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-	<recordTypes>
+    <recordTypes>
         <fullName>eSLA_Portal</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>

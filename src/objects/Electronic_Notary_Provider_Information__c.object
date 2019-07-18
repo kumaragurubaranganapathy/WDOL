@@ -66,6 +66,14 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Date_Requested__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Requested for Removing Endorsement</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
@@ -202,7 +210,7 @@
     </listViews>
     <nameField>
         <displayFormat>Provider-{0000000}</displayFormat>
-        <label>Electronic Notary Provider Information N</label>
+        <label>Electronic Notary Provider Information Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Electronic Notary Provider Information</pluralLabel>
