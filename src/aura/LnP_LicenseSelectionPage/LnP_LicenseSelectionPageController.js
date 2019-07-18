@@ -2,6 +2,11 @@
 	doInit : function(component, event, helper) {
        console.log('check if temporary license selected');
      //  helper.restrictTemporaryLicenses(component,event,helper);
+     var accountID = helper.getUrlParam('accId');
+        if(accountID){
+            component.set("v.selectedAccountId",accountID);
+            sessionStorage.setItem("accountRecordID",accountID);
+        }  
 	},
     resetAttributes :  function(component, event, helper){
         helper.resetAttributesHelper(component, event, helper);
