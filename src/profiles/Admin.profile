@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>false</custom>
+	<tabVisibilities>
+        <tab>Deposits</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Lockbox_Envelope__c.Lockbox_Amount__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>MUSW__Fee_Payment__c.Reapply_Amount__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>MUSW__Receipt__c.Adjusted__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>Master_Distribution_List.ExternalID__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Deposit__c.Over_Short_Revenue_Code__c</field>

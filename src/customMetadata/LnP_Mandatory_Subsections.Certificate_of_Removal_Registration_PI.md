@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Section__c</field>
-        <value xsi:type="xsd:string">Personal Information</value>
+        <value xsi:type="xsd:string">Business Information</value>
     </values>
     <values>
         <field>SubSection__c</field>
