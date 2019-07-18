@@ -1,5 +1,5 @@
 .THIS.business-outer-wrapper{
-    padding: 1.25rem 6.75rem;
+    padding: 2rem 7.5rem;
 }
 /*.THIS .license-outer-wrapper{
     padding:40px 100px;
@@ -10,8 +10,14 @@
     color:t(LnGFormTitleColor);
     font-weight:600;
 }
+.THIS .alt-email.field-style{
+    display:block;
+}
 .THIS .tabs-wrapper .slds-tabs_default__nav{
     border-bottom:solid 2px t(actionPanelBG);
+}
+.THIS .biz-details-wrapper.expanded-actions{
+    align-items:flex-start;
 }
 .THIS .data-table{
     height:15rem;
@@ -57,22 +63,32 @@
   padding-bottom:8px;
   border-bottom:solid 1px t(headerUnderline);
 }
-.THIS .field-style{
-    font-size:14px;
-    padding-bottom:10px;
-    display:flex;
+.THIS .data-style{
+    font-weight:normal;
+}
+.THIS .field-style{  
+    display:flex; 
+    padding-bottom:0.5rem;
+    font-size:1rem;        
+    color:t(LnGFormTitleColor);
+}
+.THIS .field-style.address{
+    display:block;
 }
 .THIS .label-style{
-    font-weight:bold;
-    white-space:nowrap;
+    font-weight:bold;  
+    padding-right:0.25rem;
 }
 .THIS .business-name{
     font-size:1.25rem;
 	color:t(primary);	
     text-decoration:underline;
+    white-space:nowrap; 
 }
 .THIS .biz-name-wrapper{
     margin-bottom:0.5rem;
+    text-overflow:ellipsis;
+    overflow:hidden;
 }
 .THIS .biz-address{
     padding-bottom:1rem;
@@ -121,16 +137,35 @@
 }
 .THIS .ubi-label{
     font-weight:600;
-    padding-bottom:0.25rem;
+    padding-bottom:0.5rem;
 }
 .THIS .business-card{
     margin-bottom:1.5rem;
-    width:32%;
+    width:26.7vW;
     border: solid 1px t(bizCardBorder);
-    padding: 1.75rem 1.5rem;
+    padding: 1.75rem 1.5rem 2.125rem;
 }
 .THIS .biz-welcome{
     padding-bottom:24px;
+}
+.THIS .nav-links ul{
+    border: solid 1px t(primary);
+    background : t(actionPanelBG);
+    height:100%;
+}
+.THIS .nav-links li{
+    padding:22px 30px;    
+    border-bottom: solid 1px t(actionItemsBorder);      
+}
+.THIS .nav-links li a{
+    color:t(LnGWhite);
+    font-size:1rem;
+    font-family:t(btnfontfamily);
+}
+.THIS .user-info-wrapper{
+    padding:1.5rem 2rem;    
+    border: solid 1px t(grayBorder);
+    border-right:none;
 }
 @media only screen and (max-width:767.9px){
     .THIS .sidebar-options li{
