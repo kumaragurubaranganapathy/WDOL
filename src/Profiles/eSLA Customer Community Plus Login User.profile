@@ -18834,16 +18834,6 @@
         <field>MUSW__Mapping_Service__c.MUSW__Service_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>MUSW__Fee_Payment__c.Reapply_Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>MUSW__Receipt__c.Adjusted__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Master_Distribution_List__c.Amount__c</field>
