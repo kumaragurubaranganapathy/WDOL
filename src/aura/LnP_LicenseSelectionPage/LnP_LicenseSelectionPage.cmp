@@ -29,7 +29,7 @@
     <aura:attribute name="testOptions" type="List" />
     <aura:attribute name="tempLicenses" type="List" />
     <aura:attribute name="Get_Result" type="String" />
-    <aura:handler event="c:LnP_FetchAccounId" action="{!c.getAccountName}" />
+    <!-- aura:handler event="c:LnP_FetchAccounId" action="{!c.getAccountName}" / -->
     <aura:attribute name="proceedTemporaryLicense" type="Boolean" default="False" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:if isTrue="{!v.spinner}">
