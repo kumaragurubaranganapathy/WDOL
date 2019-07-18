@@ -46,9 +46,9 @@
     handleRowAction : function(component, event, helper) {
 		var action = event.getParam('action');
         var row = event.getParam('row');
-        var licenseId = row.License__r.Name;
-        var licenseRecordId = row.Id;
-        var relatedLicense = row.License__r.Related_License__c;
+        var licenseId = row.MUSW__License2__r.Name;
+        var licenseRecordId = row.MUSW__License2__c;
+        var relatedLicense = row.MUSW__License2__r.Related_License__c;
         var licenseType = row.Type;
         component.set("v.licenseRecordType", licenseType);
         switch (action.name) {

@@ -419,6 +419,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	
     <fields>
         <fullName>Application_Method__c</fullName>
         <description>This refers to the application method being applied for- General Application, Examination, etc.</description>
@@ -502,7 +503,7 @@
             </valueSettings>
         </valueSet>
     </fields>
-    <fields>
+	<fields>
         <fullName>Application_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Field to store Application Number</description>
@@ -516,7 +517,7 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
-    <fields>
+	<fields>
         <fullName>Application_Type__c</fullName>
         <description>This refers to the application type being applied for: Application Types- Trades Credential, Plan Review, Permit To Operate, etc.</description>
         <externalId>false</externalId>
@@ -531,7 +532,7 @@
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
     </fields>
-    <fields>
+	<fields>
         <fullName>Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1547,7 +1548,7 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             </valueSettings>
         </valueSet>
     </fields>
-    <fields>
+	<fields>
         <fullName>Credential__c</fullName>
         <description>This refers to the credential being applied for</description>
         <externalId>false</externalId>
@@ -27869,7 +27870,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+	
+    	<recordTypes>
         <fullName>Unlicensed</fullName>
         <active>true</active>
         <description>For unlicensed business or professional</description>
@@ -31031,7 +31033,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+	<recordTypes>
         <fullName>eSLA_Portal</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
