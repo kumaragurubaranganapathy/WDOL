@@ -26739,6 +26739,16 @@
         <field>MUSW__Receipt__c.MUSW__Payment_Method__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee_Payment__c.Reapply_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Receipt__c.Adjusted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>AMR_Link__mdt-AMR Link Layout</layout>
     </layoutAssignments>
