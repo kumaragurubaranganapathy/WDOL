@@ -8,7 +8,12 @@ global class DhpReminderEmailScheduler implements Schedulable {
             licenseIdSet.add(fee.MUSW__License2__c);
         }
         List<MUSW__License2__c> licenseWithDhp = [Select id, Account_Email__c,MUSW__Total_Balance__c,NoEmail__c from MUSW__License2__c where MUSW__Total_Balance__c >0 and NoEmail__c = false and Sub_Status__c = 'DHP' and Id In: licenseIdSet];
-        List<ContentDocumentLink> cdLinkList = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: licenseWithDhp and ContentDocument.title like 'DHP%' ];
+        Set<Id> licenseWithDhpSet = new Set<Id>();
+        for(MUSW__License2__c lic: licenseWithDhp){
+            licenseWithDhpSet.add(lic.Id);
+        }
+
+        List<ContentDocumentLink> cdLinkList = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: licenseWithDhpSet and ContentDocument.title like 'DHP%' ];
         for(ContentDocumentLink clink: cdLinkList ){
             contentDocumentLinkToLicenseMap.put(clink.ContentDocumentId,clink.LinkedEntityId);
         }
