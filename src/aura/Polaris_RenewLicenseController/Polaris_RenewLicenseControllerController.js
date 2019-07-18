@@ -49,15 +49,5 @@
     //Close popup 
     closeModel: function(component, event, helper) {
 		helper.closeModel(component, event);
-	},
-    
-    //US- 1723
-    SaveAndSubmit : function(component, event, helper) {
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": "/"
-        });
-        
-        urlEvent.fire();
-    }
+	}
 })
