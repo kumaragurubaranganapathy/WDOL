@@ -56,10 +56,21 @@
     <fields>
         <fullName>Amount__c</fullName>
         <externalId>false</externalId>
-        <label>Amount</label>
-        <precision>18</precision>
+        <label>Customer Envelop Amount</label>
+        <precision>13</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Lockbox_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Lockbox Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
