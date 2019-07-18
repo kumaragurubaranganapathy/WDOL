@@ -1,1 +1,0 @@
-trigger DRE2_Associations_c on Associations__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Associations_c', new DRETriggerHandler()); }

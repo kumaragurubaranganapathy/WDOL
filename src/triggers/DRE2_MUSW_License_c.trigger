@@ -1,1 +1,0 @@
-trigger DRE2_MUSW_License_c on MUSW__License__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_MUSW_License_c', new DRETriggerHandler()); }

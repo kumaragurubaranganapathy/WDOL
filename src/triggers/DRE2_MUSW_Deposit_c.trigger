@@ -1,1 +1,0 @@
-trigger DRE2_MUSW_Deposit_c on MUSW__Deposit__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_MUSW_Deposit_c', new DRETriggerHandler()); }

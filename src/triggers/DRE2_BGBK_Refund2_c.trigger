@@ -1,1 +1,0 @@
-trigger DRE2_BGBK_Refund2_c on BGBK__Refund2__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_BGBK_Refund2_c', new DRETriggerHandler()); }
