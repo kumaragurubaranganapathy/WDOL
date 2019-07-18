@@ -1,17 +1,16 @@
-.THIS {
-}
 .THIS img{
     height: 35px;
 }
-.THIS .header-style{
-    
-}
 .THIS.dashboard-wrapper{
-    padding:1.5rem 8rem; 
+    padding:1.5rem 7.5rem; 
 }
 .THIS .status-cell{
     display:flex;
     flex-direction:row;
+}
+.THIS .label-style{
+    font-weight:bold;   
+    
 }
 .THIS .bottom-border{
     border-bottom: 1px solid #d4d4d4; 
@@ -30,7 +29,7 @@
 }
 .THIS .bottom-border .row-margin{
     margin-bottom :0;
-}
+} 
 .THIS .text-style{
     font-weight: bold;
 }
@@ -132,8 +131,17 @@ padding: 10px;
 .THIS .info-date{
     text-align:right;
 }
-.THIS .field-style{
+.THIS .field-style{    
+    padding-bottom:0.5rem;
+    font-size:1rem;      
+    color:t(LnGFormTitleColor);
     display:flex;
+}
+.THIS .field-style.lic-details{
+    display:block;
+}
+.THIS .lic-details-wrapper{
+    padding:1rem;
 }
 .THIS .label-style{
     padding-right:0.5rem;
