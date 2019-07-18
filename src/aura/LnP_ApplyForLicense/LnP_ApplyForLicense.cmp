@@ -513,17 +513,10 @@
             </aura:if>
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
-            <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }"
-                disabled="{!(v.currentTab==1)?'true':'false'}"
-                class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp back-button slds-m-left_medium'}" />
-            <lightning:button variant="brand" label="Save and Continue" title="Next" onclick="{! c.nextTab }"
-                class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}" />
-            <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit"
-                onclick="{!c.SaveAndSubmit}"
-                class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}" />
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit and Continue" title="Submit"
-                onclick="{!c.submit}" disabled="{!v.submitButtonDisable}"
-                class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}" />
+            <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn prevBtn back-button'}"/>
+            <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn btn-lnp next-button"/>
+            <lightning:button variant="brand" label="Save and Continue" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}"/>    
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit and Continue" title="Submit" onclick="{!c.submit}" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->
@@ -533,8 +526,11 @@
             <div class="slds-modal__container">
                 <!-- pop up header-->
                 <header class="slds-modal__header">
-                    <lightning:buttonIcon iconName="utility:close" onclick="{! c.closeModel }" alternativeText="close"
-                        variant="bare-inverse" class="slds-modal__close" />
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
                     <h2>{!v.popupHeader}</h2>
                 </header>
                 <!-- pop up body -->
@@ -543,7 +539,10 @@
                 </div>
                 <!-- pop up footer -->
                 <footer class="slds-modal__footer">
-                    <lightning:button variant="neutral" label="OK" title="Cancel" onclick="{! c.closeModel }" />
+                    <lightning:button variant="neutral" 
+                                      label="OK"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
                 </footer>
             </div>
         </section>
