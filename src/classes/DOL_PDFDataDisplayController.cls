@@ -23,7 +23,7 @@ public with sharing class DOL_PDFDataDisplayController {
         addressRecordList = new List<MUSW__Parcel__c>();
         // query for getting specific License Data
         for(MUSW__License2__c licenseRecordInstance : [Select Id, Name, CreatedDate, Application_Type__c, Credential_Type__c, MUSW__Status__c,
-                                                       Application_Method__c, Ultimate_Parent_Account__r.Name, MUSW__Primary_Licensee__r.Name,
+                                                       Application_Method__c, Ultimate_Parent_Account__r.Name, MUSW__Primary_Licensee__r.Name,Owner.Name,
                                                        Sub_Status__c, Original_Issue_Date__c, MUSW__Applicant__r.Name,
                                                        MUSW__Applicant__r.LastName, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.MiddleName,
                                                        MUSW__Applicant__r.Contact_Suffix__c, MUSW__Applicant__r.ContactName__c, MUSW__Applicant__r.Birthdate,
