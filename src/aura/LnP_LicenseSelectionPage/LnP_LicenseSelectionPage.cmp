@@ -59,8 +59,7 @@
                         onchange="{!c.firePassValueEvent}" class="slds-m-vertical_large">
                         <option value="--None--" text="--None--" />
                         <aura:iteration items="{!v.accounts}" var="account">
-                            <option value="{!account.Id}" selected="{!account.Id == v.selectedAccountId}">
-                                {!account.Name}</option>
+                            <option value="{!account.Id}" selected="{!account.Id == v.selectedAccountId}">{!account.Name}</option>
                         </aura:iteration>
                     </lightning:select>
                 </aura:if>
