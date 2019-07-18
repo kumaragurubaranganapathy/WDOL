@@ -4,7 +4,7 @@
                                                                          'MUSW__Amount_Tendered__c' : ''
                                                                          }"/>
     <aura:attribute name="paymentMethodMap" type="Map"/>
-    <aura:attribute name="receiptDetails" type="Date" />   
+    <!-- <aura:attribute name="receiptDetails" type="Date" />   -->
     <aura:attribute name="isDisabled" type="Boolean" default="true" />
     
      <aura:attribute name="receiptList" type="List"/>
@@ -66,7 +66,8 @@
                 </thead>   
                 <tbody>
                     <aura:iteration items="{!v.receiptList}" var="item" indexVar="index">
-                        <c:LnP_PaymentSourcesChildRowCmp receiptRec="{#item}" rowIndex="{!index}" paymentMethodMap="{!v.paymentMethodMap}" />
+                        <c:LnP_PaymentSourcesChildRowCmp receiptRec="{#item}" rowIndex="{!index}" paymentMethodMap="{!v.paymentMethodMap}"
+                                                         disableNext="{!v.isDisabled}"/>
                         <br/>
                     </aura:iteration>
                 </tbody>

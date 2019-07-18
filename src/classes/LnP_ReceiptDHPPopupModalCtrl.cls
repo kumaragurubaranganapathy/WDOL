@@ -1,3 +1,9 @@
+/*@author : Rishap
+ *@name : LnP_ReceiptDHPPopupModalCtrl
+ *@description : US -1656
+ * 
+ */ 
+
 public class LnP_ReceiptDHPPopupModalCtrl {
     
     @AuraEnabled
@@ -71,8 +77,10 @@ public class LnP_ReceiptDHPPopupModalCtrl {
             if(receiptRec.DHP__c == true){
                 List<MUSW__License2__c> licenseToBeUpdatedwithDHP = new List<MUSW__License2__c> ();
                 for(MUSW__License2__c licRec : licenseToBeUpdated){
-                    licRec.Sub_Status__c = 'DHP';
+                    licRec.Polaris_DHP__c = true;
+                    licRec.MUSW__Status__c = 'Inactive';
                     licRec.DHP_Stamp_Date__c = System.today();
+                    licRec.Polaris_Dishonored_Receipt_ID__c = receiptId;
                     licenseToBeUpdatedwithDHP.add(licRec);
                 }
                 system.debug('Before Update ' + licenseToBeUpdatedwithDHP);

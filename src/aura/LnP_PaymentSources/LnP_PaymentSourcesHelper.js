@@ -160,5 +160,22 @@
                 
         }
         
-    } 
+    } ,
+    gotoListView : function(component,event){
+        var action = component.get("c.getObjViews");
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var listviews = response.getReturnValue();
+                var navEvent = $A.get("e.force:navigateToList");
+                navEvent.setParams({
+                    "listViewId": listviews.Id,
+                    "listViewName": null,
+                    "scope": "Customer_Envelope__c"
+                });
+                navEvent.fire();
+            }
+        });
+        $A.enqueueAction(action);
+    }
 })

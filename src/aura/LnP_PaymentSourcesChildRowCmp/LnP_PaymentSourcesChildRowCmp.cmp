@@ -15,6 +15,7 @@
     <aura:attribute name="updateDisabled" type="Boolean" default="true"/>
     <aura:attribute name="defaultProgramType" type="String" access="public"  />
     
+    <aura:attribute name="disableNext" type="boolean" />
 <!-- handlers -->
     <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
     <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
