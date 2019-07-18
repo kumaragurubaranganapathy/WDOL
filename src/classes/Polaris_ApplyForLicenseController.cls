@@ -1371,6 +1371,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                  
                 if(mstLicense.RecordTypeId == individualRT){
                     mstLicense.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
+					mstLicense.Print_First_Name__c = firstName;
+                    mstLicense.Print_Middle_Name__c = MiddleName;
+                    mstLicense.Print_Last_Name__c = LastName;
                 }
                 if(mstLicense.RecordTypeId == businessRT){
                     mstLicense.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
