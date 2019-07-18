@@ -800,6 +800,17 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             </valueSetDefinition>
         </valueSet>
     </fields>
+	<fields>
+		<fullName>Public_Disciplinary_Action__c</fullName>
+		<defaultValue>false</defaultValue>
+		<description>Check this box to make the disciplinary action public</description>
+		<externalId>false</externalId>
+		<inlineHelpText>Check this box to make the disciplinary action public</inlineHelpText>
+		<label>Public Disciplinary Action</label>
+		<trackFeedHistory>false</trackFeedHistory>
+		<trackTrending>false</trackTrending>
+		<type>Checkbox</type>
+	</fields>
     <fields>
         <fullName>Type__c</fullName>
         <description>This field indicates whether an applicant/licensee should upload a hardcopy or softcopy submission, or whether the document is Board Action and should appear in the license lookup.</description>
