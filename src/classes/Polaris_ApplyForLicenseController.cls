@@ -1323,15 +1323,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                 String quesBody = ans.QuestionDOL__r.Question_Body__c;
                                 String answerText = ans.Answer_Text__c;
                                 String stringToDate = '';
-                                if(quesBody == 'Bond Number'){
+                                if(quesBody == 'Bond / Policy Number'){
                                     mstLicense.Bond_Number__c = String.valueOf(answerText);
                                 }
     
-                                if(quesBody == 'Surety Bond Company Name'){
+                                if(quesBody == 'Bond / Insurance Company Name'){
                                     mstLicense.Surety_Bond_Company_Name__c = String.valueOf(answerText);
                                 }
     
-                                if(quesBody == 'Policy Amount'){
+                                if(quesBody == 'Bond / Policy Amount'){
                                     mstLicense.Policy_Amount__c = String.valueOf(answerText);
                                 }
     

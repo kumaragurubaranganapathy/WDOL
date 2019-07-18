@@ -2,7 +2,7 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
 	<tabVisibilities>
-        <tab>Deposits</tab>
+        <tab>MUSW__Deposit__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 	<fieldPermissions>

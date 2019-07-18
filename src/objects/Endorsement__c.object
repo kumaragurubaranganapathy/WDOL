@@ -60,6 +60,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -84,6 +85,96 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Branch_of_Engineering__c</fullName>
+        <externalId>false</externalId>
+        <label>Branch of Engineering</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Agricultural &amp; Biological</fullName>
+                    <default>false</default>
+                    <label>Agricultural &amp; Biological</label>
+                </value>
+                <value>
+                    <fullName>Architectural</fullName>
+                    <default>false</default>
+                    <label>Architectural</label>
+                </value>
+                <value>
+                    <fullName>Chemical</fullName>
+                    <default>false</default>
+                    <label>Chemical</label>
+                </value>
+                <value>
+                    <fullName>Civil</fullName>
+                    <default>false</default>
+                    <label>Civil</label>
+                </value>
+                <value>
+                    <fullName>Control Systems</fullName>
+                    <default>false</default>
+                    <label>Control Systems</label>
+                </value>
+                <value>
+                    <fullName>Electrical</fullName>
+                    <default>false</default>
+                    <label>Electrical</label>
+                </value>
+                <value>
+                    <fullName>Environmental</fullName>
+                    <default>false</default>
+                    <label>Environmental</label>
+                </value>
+                <value>
+                    <fullName>Fire Protection</fullName>
+                    <default>false</default>
+                    <label>Fire Protection</label>
+                </value>
+                <value>
+                    <fullName>Industrial</fullName>
+                    <default>false</default>
+                    <label>Industrial</label>
+                </value>
+                <value>
+                    <fullName>Mechanical</fullName>
+                    <default>false</default>
+                    <label>Mechanical</label>
+                </value>
+                <value>
+                    <fullName>Metallurgical and Materials</fullName>
+                    <default>false</default>
+                    <label>Metallurgical and Materials</label>
+                </value>
+                <value>
+                    <fullName>Mining and Mineral Processing</fullName>
+                    <default>false</default>
+                    <label>Mining and Mineral Processing</label>
+                </value>
+                <value>
+                    <fullName>Naval Architect/Marine</fullName>
+                    <default>false</default>
+                    <label>Naval Architect/Marine</label>
+                </value>
+                <value>
+                    <fullName>Nuclear</fullName>
+                    <default>false</default>
+                    <label>Nuclear</label>
+                </value>
+                <value>
+                    <fullName>Petroleum</fullName>
+                    <default>false</default>
+                    <label>Petroleum</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Created_for_New_Application__c</fullName>
@@ -126,6 +217,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Days_after_Endorsement_Issue_Date_30__c</fullName>
+        <externalId>false</externalId>
+        <formula>Effective_Date__c + 30</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days after Endorsement Issue Date 30</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Effective_Date__c</fullName>
         <externalId>false</externalId>
         <label>Current Issue Date</label>
@@ -141,6 +242,17 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Endorsement_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Endorsement Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Endorsement_Type__c</fullName>
@@ -481,6 +593,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Release__c</fullName>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Removed_Electronic_Software_Providers__c</fullName>
         <externalId>false</externalId>
         <label>Removed Electronic Software Providers</label>
@@ -609,8 +731,45 @@
     <label>Endorsement</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Reinstatement_Application__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Endorsements_with_Pending_Actions</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>License__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Date_Requested_for_Adding_Endorsement__c</columns>
+        <columns>Date_Requested_for_Removing_Endorsement__c</columns>
+        <columns>Electronic_Software_Provider__c</columns>
+        <columns>Removed_Electronic_Software_Providers__c</columns>
+        <columns>Endorsement_Type__c</columns>
+        <columns>Date_Granted__c</columns>
+        <columns>Date_Removed__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Action</value>
+        </filters>
+        <filters>
+            <field>Sub_Status__c</field>
+            <operation>equals</operation>
+            <value>Applicant Action,Third Party Action</value>
+        </filters>
+        <label>Endorsements with Pending Actions</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Pending_Action</fullName>
@@ -640,6 +799,69 @@
         <active>true</active>
         <compactLayoutAssignment>Endorsement_Compact_Layout</compactLayoutAssignment>
         <label>Endorsement</label>
+        <picklistValues>
+            <picklist>Branch_of_Engineering__c</picklist>
+            <values>
+                <fullName>Agricultural %26 Biological</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architectural</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Civil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fire Protection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Metallurgical and Materials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining and Mineral Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naval Architect%2FMarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nuclear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Petroleum</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Endorsement_Type__c</picklist>
             <values>
@@ -748,6 +970,10 @@
             </values>
             <values>
                 <fullName>Structural Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supervisor</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -935,6 +1161,10 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
