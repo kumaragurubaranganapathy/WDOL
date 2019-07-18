@@ -1091,19 +1091,19 @@ mstLicense.RecordTypeId = businessRT;
                         String quesBody = ans.QuestionDOL__r.Question_Body__c;
                         String answerText = ans.Answer_Text__c;
                         String stringToDate = '';
-                        if(quesBody == 'Bond Number'){
+                        if(quesBody == 'Bond / Policy Number'){
                             lic.Bond_Number__c = String.valueOf(answerText);
                         }
                         
-                        if(quesBody == 'Surety Bond Company Name'){
+                        if(quesBody == 'Bond / Insurance Company Name'){
                             lic.Surety_Bond_Company_Name__c = String.valueOf(answerText);
                         }
                         
-                        if(quesBody == 'Policy Amount'){
+                        if(quesBody == 'Bond / Policy Amount'){
                             lic.Policy_Amount__c = String.valueOf(answerText);
                         }
                         
-                        if(quesBody == 'Effective Date of Bond'){
+                        if(quesBody == 'Effective Date'){
                             stringToDate = String.valueOf(answerText);
                             Integer year = Integer.valueOf(stringToDate.subString(0, 4));
                             Integer month = Integer.valueOf(stringToDate.substring(5, 7));
@@ -1113,7 +1113,7 @@ mstLicense.RecordTypeId = businessRT;
                             lic.Effective_Date_of_Bond__c = d;
                         }
                         
-                        if(quesBody == 'Expiration Date of Bond'){
+                        if(quesBody == 'Expiration Date'){
                             stringToDate = String.valueOf(answerText);
                             Integer year = Integer.valueOf(stringToDate.subString(0, 4));
                             Integer month = Integer.valueOf(stringToDate.substring(5, 7));
