@@ -20,11 +20,11 @@
         
         console.log(query_String_values);
         
-        if(query_String_values[0]["key"] == 'help-content'){
+        if(query_String_values[0]["key"] == 'Help-Topic'){
             
             action = component.get('c.getPortalArticlesByDisplayPage');
             
-            action.setParams({"displayPage": "help-content"}); 
+            action.setParams({"displayPage":  query_String_values[0]["value"]}); 
             
         }else if(query_String_values[0]["key"] =="ArticlesExternalId"){
             

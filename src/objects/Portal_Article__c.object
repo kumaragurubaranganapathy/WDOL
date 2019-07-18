@@ -197,6 +197,11 @@
                     <default>false</default>
                     <label>ToDo</label>
                 </value>
+                <value>
+                    <fullName>Help-Topic</fullName>
+                    <default>false</default>
+                    <label>Help-Topic</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -229,10 +234,11 @@ Eg: PUB-ART-SAW-1</inlineHelpText>
     </fields>
     <fields>
         <fullName>Order_of_Display__c</fullName>
+        <defaultValue>1</defaultValue>
         <externalId>false</externalId>
         <label>Order of Display</label>
         <precision>2</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -332,6 +338,10 @@ Eg: PUB-ART-SAW-1</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Help-Topic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Professional</fullName>
                 <default>false</default>
             </values>
@@ -384,6 +394,10 @@ Eg: PUB-ART-SAW-1</inlineHelpText>
             <picklist>Display_Page__c</picklist>
             <values>
                 <fullName>Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Help-Topic</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -442,6 +456,10 @@ Eg: PUB-ART-SAW-1</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Help-Topic</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Professional</fullName>
                 <default>false</default>
             </values>
@@ -494,6 +512,10 @@ Eg: PUB-ART-SAW-1</inlineHelpText>
             <picklist>Display_Page__c</picklist>
             <values>
                 <fullName>Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Help-Topic</fullName>
                 <default>false</default>
             </values>
             <values>
