@@ -5,6 +5,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee__c.Licensee_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	 <tabVisibilities>
         <tab>MUSW__Deposit__c</tab>
         <visibility>DefaultOn</visibility>
