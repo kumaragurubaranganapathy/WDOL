@@ -54,11 +54,15 @@
     <aura:attribute name="isbusinsessLicense" type="Boolean" default="false" />
     <!--<aura:attribute name="noFeesFlag" type="Boolean" default="false"/> -->
     <!--<aura:attribute name="regexFlag" type="Boolean" default="false"/>-->
-    <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}" /> <!-- Added by AD -->
-
-    <force:recordData fields="Name, Email, UserType" recordId="{!$SObjectType.CurrentUser.Id}"
-        targetFields="{!v.currentUser}" mode="VIEW" />
-
+    <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}"/> <!-- Added by AD -->
+    
+    <force:recordData
+                      fields="Name, Email, UserType"
+                      recordId="{!$SObjectType.CurrentUser.Id}"
+                      targetFields="{!v.currentUser}"
+                      mode="VIEW"
+                      />
+    
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
     </aura:if>
@@ -398,6 +402,12 @@
                                                             value="{!question.value}" type="number"
                                                             min="{!question.minValue?question.minValue:''}"
                                                             class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3" />
+                                                    </div>
+                                                </aura:if>
+                                                <aura:if isTrue="{!question.fieldType=='Decimal'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:input name="{!section.sectionName+questionItem}"  value="{!question.value}" type="number" step="0.01" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">

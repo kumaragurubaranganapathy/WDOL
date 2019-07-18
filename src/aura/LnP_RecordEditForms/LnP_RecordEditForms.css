@@ -6,8 +6,8 @@
   	border: solid 1.5px #e3e4ea;
 }
 .THIS label,.THIS .edit-field .slds-form-element__label{
-  width: 137px;
-  height: 22px;
+  /*width: 137px;
+  height: 22px; */
   font-family: token(btnfontfamily);
   font-size: token(btnfontsize);
   font-weight: token(txtfontweight);
@@ -15,7 +15,10 @@
   line-height: normal;
   color: token(fieldclr);
 }
-
+.THIS label.required:before {
+    content: '*';
+    color:t(LnGErrorMsg);
+}
 .THIS .record-wrapper{
     margin: 25px;
 }
@@ -97,7 +100,7 @@
 .THIS .mandatory-icon{
     color: red;
 }
-.THIS .label-hidden label.slds-form-element__label {
+.THIS .label-hidden .slds-form-element__label {
     display: none;
 }
 .THIS .recItem .slds-form-element__control{

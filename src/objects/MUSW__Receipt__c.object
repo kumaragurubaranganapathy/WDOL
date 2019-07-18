@@ -291,6 +291,15 @@
         <description>Cart Confirmation page additonnal fields</description>
         <label>Receipt Confirmation</label>
     </fieldSets>
+	 <fields>
+        <fullName>Adjusted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Adjusted</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>ACH_BillerBusinessDate__c</fullName>
         <externalId>false</externalId>
@@ -984,6 +993,11 @@
                     <fullName>Debit</fullName>
                     <default>false</default>
                     <label>Debit</label>
+                </value>
+				<value>
+                    <fullName>Overshort</fullName>
+                    <default>false</default>
+                    <label>Overshort</label>
                 </value>
             </valueSetDefinition>
         </valueSet>

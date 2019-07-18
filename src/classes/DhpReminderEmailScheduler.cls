@@ -1,29 +1,42 @@
 global class DhpReminderEmailScheduler implements Schedulable {
-    global void execute(SchedulableContext ctx) {
-        Map<Id,List<Id>> licenseToAttachmentIdMap = new Map<Id,List<Id>>();
-        List<MUSW__License2__c> licensesWithEmail = [Select id, Account_Email__c, Bad_Check__c,NoEmail__c from MUSW__License2__c where Bad_Check__c = true and NoEmail__c = false];
-        system.debug('licensesWithEmail::'+licensesWithEmail);
-        for(Attachment att : [Select id,ParentId from Attachment where ParentId in:licensesWithEmail]){
-            if(licenseToAttachmentIdMap.containsKey(att.ParentId)){
-                licenseToAttachmentIdMap.get(att.ParentId).add(att.Id);
-            }else{
-                licenseToAttachmentIdMap.put(att.ParentId, new List<Id>());
-                licenseToAttachmentIdMap.get(att.ParentId).add(att.Id);
+    global void execute(SchedulableContext ctx){
+        Map<Id,Id> contentDocumentLinkToLicenseMap = new Map<Id,Id>();
+        Map<Id,Id> licenseToContentVersionMap = new Map<Id,Id>();
+        Set<Id> licenseIdSet = new Set<Id>();
+        List<MUSW__Fee__c> DHPFeeList = [Select id,MUSW__License2__c,MUSW__Outstanding_Fee__c,Days_since_created__c from MUSW__Fee__c where MUSW__Type__c = 'DHP' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 15)];
+        for(MUSW__Fee__c fee: DHPFeeList){
+            licenseIdSet.add(fee.MUSW__License2__c);
+        }
+        List<MUSW__License2__c> licenseWithDhp = [Select id, Account_Email__c,MUSW__Total_Balance__c,NoEmail__c from MUSW__License2__c where MUSW__Total_Balance__c >0 and NoEmail__c = false and Sub_Status__c = 'DHP' and Id In: licenseIdSet];
+        Set<Id> licenseWithDhpSet = new Set<Id>();
+        for(MUSW__License2__c lic: licenseWithDhp){
+            licenseWithDhpSet.add(lic.Id);
+        }
+
+        List<ContentDocumentLink> cdLinkList = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: licenseWithDhpSet and ContentDocument.title like 'DHP%' ];
+        for(ContentDocumentLink clink: cdLinkList ){
+            contentDocumentLinkToLicenseMap.put(clink.ContentDocumentId,clink.LinkedEntityId);
+        }
+        Set<Id> keySet = contentDocumentLinkToLicenseMap.keySet();
+        List<ContentVersion> cvList = [Select Id,Title, ContentDocumentId from ContentVersion where ContentDocumentId In: keySet ];
+        for(ContentVersion cv: cvList ){
+            if(contentDocumentLinkToLicenseMap.containsKey(cv.ContentDocumentId)){
+                licenseToContentVersionMap.put(contentDocumentLinkToLicenseMap.get(cv.ContentDocumentId),cv.Id);
             }
-        }        
-        system.debug('licensesWithEmail::'+licensesWithEmail);
-        // Send reminder emails
+        }
+        
         List<Messaging.SingleEmailMessage> emailList = new list<Messaging.SingleEmailMessage>();
-        for(MUSW__License2__c lic : licensesWithEmail){
-            if(licenseToAttachmentIdMap.containsKey(lic.Id)){
+        for(MUSW__License2__c lic: licenseWithDhp){
+            if(licenseToContentVersionMap.containsKey(lic.Id)){
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                 message.setToAddresses(new String[]{lic.Account_Email__c});
-                message.setSubject('Reminder Letter for DHP');
-                message.setEntityAttachments(licenseToAttachmentIdMap.get(lic.Id));
+                message.setSubject('Dept of Licensing – Dishonored Payment Reminder');
+                message.setEntityAttachments(new List<Id>{licenseToContentVersionMap.get(lic.Id)});
                 message.setPlainTextBody('Please find attached a copy of your DHP letter');
                 emailList.add(message);
             }
         }
+        
         system.debug('emailList::'+emailList);
         if(emailList.size() > 0){
             Messaging.SendEmailResult[] results = Messaging.sendEmail(emailList);

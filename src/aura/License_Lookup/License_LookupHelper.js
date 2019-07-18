@@ -88,8 +88,10 @@
         }
     },
     searchWithNum : function(component, event) {
-        var objectApi =  'LnP_Parcel__c';
-        var fieldsList = ['License__r.MUSW__Applicant__r.Name','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c','License__r.Related_License__c','License__r.RecordType.Name'];
+        var objectApi =  'MUSW__License_Parcel__c';
+        var fieldsList = ['MUSW__License2__r.License_Printable_Name__c','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c',
+'MUSW__License2__r.MUSW__Status__c','MUSW__License2__r.Sub_Status__c','MUSW__Parcel__r.MUSW__City__c','MUSW__License2__r.Related_License__c',
+'MUSW__License2__r.RecordType.Name'];
         var professionValue =  component.find("Profession").get("v.value");
         var licenseNumberValue = component.find("licenseNumber").get("v.value");
         var searchOneArray=[];
@@ -103,12 +105,12 @@
         }
         if(searchOneArray.length!=0){
             var criteria = {
-                "License__r.Application_Type__c":professionValue,
-                "License__r.Name":licenseNumberValue,
+                "MUSW__License2__r.Application_Type__c":professionValue,
+                "MUSW__License2__r.Name":licenseNumberValue,
             }
             var criteriaOR = {
-                "1":'License__r.RecordType.Name=Individual',
-                "2":'License__r.RecordType.Name=Business',
+                "1":'MUSW__License2__r.RecordType.Name=Individual',
+                "2":'MUSW__License2__r.RecordType.Name=Business',
             }
             var action = component.get("c.generateQueryWithGenericOR");
             action.setParams({
@@ -117,6 +119,7 @@
                 'mapValues':criteria,
                 'mapORValues':criteriaOR,
                 'bIsStatusIncluded':false,
+                'showDeciplinary':true
             });
             action.setCallback(this, function(response){
                 var state = response.getState();
@@ -125,48 +128,57 @@
                     if(rows.length!=0){
                         for (var i = 0; i < rows.length; i++) { 
                             var row = rows[i]; 
-                            if (row.License__r) {
-                                if(row.License__r.MUSW__Applicant__r){
-                                    if(row.License__r.MUSW__Applicant__r.Name){
-                                    	row.Name = row.License__r.MUSW__Applicant__r.Name;
+                            if (row.MUSW__License2__c) {
+                                if(row.MUSW__License2__r){
+                                    if(row.MUSW__License2__r.License_Printable_Name__c){
+                                    	row.Name = row.MUSW__License2__r.License_Printable_Name__c;
                                     } else {
                                         row.Name = "";
                                     }
                                 } else {
                                     row.Name = "";
                                 }
-                                if(row.License__r.Name){
-                                    row.License_Number = row.License__r.Name;
+                                if(row.MUSW__License2__r.Name){
+                                    row.License_Number = row.MUSW__License2__r.Name;
                                 } else {
                                     row.License_Number = "";
                                 }
-                                if(row.License__r.Credential_Type__c){
-                                    row.License_Type = row.License__r.Credential_Type__c;
+                                if(row.MUSW__License2__r.AIDS_Affidavit__c){
+                                    row.Discipline = row.MUSW__License2__r.AIDS_Affidavit__c;
+                                } else {
+                                    row.Discipline = "";
+                                }
+                                if(row.MUSW__License2__r.Credential_Type__c){
+                                    row.License_Type = row.MUSW__License2__r.Credential_Type__c;
                                 } else {
                                     row.License_Type = "";
                                 }
-                                if(row.License__r.MUSW__Status__c){
-                                    row.Status = row.License__r.MUSW__Status__c;
+                                if(row.MUSW__License2__r.MUSW__Status__c){
+                                    row.Status = row.MUSW__License2__r.MUSW__Status__c;
                                 } else {
                                     row.Status = "";
                                 }
-                                if(row.License__r.Sub_Status__c){
-                                    row.Sub_Status = row.License__r.Sub_Status__c;
+                                if(row.MUSW__License2__r.Sub_Status__c){
+                                    if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
+                                        row.Sub_Status = '';
+                                    }else{
+                                        row.Sub_Status = row.MUSW__License2__r.Sub_Status__c;
+                                    }
                                 } else {
                                     row.Sub_Status = "";
                                 }
-                                if(row.License__r.RecordType){
-                                    row.Type = row.License__r.RecordType.Name;
+                                if(row.MUSW__License2__r.RecordType){
+                                    row.Type = row.MUSW__License2__r.RecordType.Name;
                                 } else {
                                     row.Type = "";
                                 }
-                                if(row.License__r.Id){
-                                    row.Id = row.License__r.Id;
+                                if(row.MUSW__License2__r.Id){
+                                    row.Id = row.MUSW__License2__r.Id;
                                 } else {
                                     row.Id = "";
                                 }
-                                if(row.City__c){
-                                    row.City = row.City__c;
+                                if(row.MUSW__Parcel__r.MUSW__City__c){
+                                    row.City = row.MUSW__Parcel__r.MUSW__City__c;
                                 } else {
                                     row.City = "";
                                 }
@@ -177,9 +189,10 @@
                             {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
                             {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                             {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
-                            {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
-                            {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                             {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
+                            {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                            {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
+                            {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},                            
                             {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                              { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                         ]);
@@ -240,9 +253,10 @@
                 var fieldsList = ['Name',
                                   'Credential_Type__c',
                                   'MUSW__Status__c',
-                                  'MUSW__Primary_Licensee__r.Name',
+                                  'License_Printable_Name__c',
                                   'MUSW__Primary_Licensee__r.Doing_Business_As_1__c',
                                   'Phone__c',
+                                  'AIDS_Affidavit__c',
                                   'Original_Issue_Date__c',
                                   'Sub_Status__c',
                                   'Owner_Address__c',
@@ -252,31 +266,34 @@
                 var criteria = {
                     "Name":licenseId
                 }
+                var action = component.get("c.generateQueryWithORDetails");
             } else {
-                var objectApi =  'LnP_Parcel__c';
+                var objectApi =  'MUSW__License_Parcel__c';
                 component.set("v.licenseNameToDisplayDetails", "Professional License Details");
-                var fieldsList = ['License__r.Name',
-                                  'License__r.Credential_Type__c',
-                                  'License__r.MUSW__Status__c',
-                                  'License__r.MUSW__Applicant__r.Name',
-                                  'License__r.Original_Issue_Date__c',
-                                  'License__r.Sub_Status__c',
-                                  'City__c',
-                                  'License__r.MUSW__Issue_Date__c',
-                                  'State_Province__c',
-                                  'License__r.MUSW__Expiration_Date__c',
-                                  'License__r.Application_Type__c',
-                                  'Country__c'];
+                var fieldsList = ['MUSW__License2__r.Name',
+                                  'MUSW__License2__r.Credential_Type__c',
+                                  'MUSW__License2__r.MUSW__Status__c',
+                                  'MUSW__License2__r.License_Printable_Name__c',
+                                  'MUSW__License2__r.Original_Issue_Date__c',
+                                  'MUSW__License2__r.AIDS_Affidavit__c',
+                                  'MUSW__License2__r.Sub_Status__c',
+                                  'MUSW__Parcel__r.MUSW__City__c',
+                                  'MUSW__License2__r.MUSW__Issue_Date__c',
+                                  'MUSW__Parcel__r.MUSW__State__c',
+                                  'MUSW__License2__r.MUSW__Expiration_Date__c',
+                                  'MUSW__License2__r.Application_Type__c',
+                                  'MUSW__Parcel__r.Country__c'];
                 var criteria = {
-                    "License__r.Name":licenseId
+                    "MUSW__License2__r.Name":licenseId
                 }
+                var action = component.get("c.generateQueryWithOR");
             }            
-            var action = component.get("c.generateQueryWithOR");
             action.setParams({
                 'objectName':objectApi,
                 'lstFieldsName':fieldsList,
                 'mapValues':criteria,
                 'bIsStatusIncluded':false,
+                'showDeciplinary': true
             });
      		action.setCallback(this, function(response){
             var state = response.getState();
@@ -286,6 +303,7 @@
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
                 component.set("v.screenThree", true);
+              //  this.fetchEndorsementDetails(component, event, helper, licenseId);
             }else{
                  alert("error!!!!!");
             }
@@ -311,6 +329,7 @@
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();     
                 component.set("v.endorsementData", result);
+                
             }else{
                  alert("error!!!!!");
             }
@@ -320,15 +339,15 @@
     },
     fetchParentLicenses : function(component, event, helper, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
-            var objectApi =  'LnP_Parcel__c';
-            var fieldsList = ['License__r.Related_License__r.MUSW__Applicant__r.Full_Name__c',
-                              'License__r.Related_License__r.Name',
-                              'License__r.Related_License__r.Credential_Type__c',
-                              'License__r.Related_License__r.MUSW__Status__c',
-                              'License__r.Related_License__r.Sub_Status__c',
-                              'City__c' ];
+            var objectApi =  'MUSW__License_Parcel__c';
+            var fieldsList = ['MUSW__License2__r.Related_License__r.MUSW__Applicant__r.Full_Name__c',
+                              'MUSW__License2__r.Related_License__r.Name',
+                              'MUSW__License2__r.Related_License__r.Credential_Type__c',
+                              'MUSW__License2__r.Related_License__r.MUSW__Status__c',
+                              'MUSW__License2__r.Related_License__r.Sub_Status__c',
+                              'MUSW__Parcel__r.MUSW__City__c' ];
             var criteria = {
-                "License__r.Id":licenseRecordId
+                "MUSW__License2__c":licenseRecordId
             }
             var action = component.get("c.generateQueryWithORparent");
             action.setParams({
@@ -352,10 +371,10 @@
     },
     fetchChildLicenses : function(component, event, helper, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
-            var objectApi =  'LnP_Parcel__c';
-            var fieldsList = ['License__r.MUSW__Applicant__r.Name','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c'];
+            var objectApi =  'MUSW__License_Parcel__c';
+            var fieldsList = ['MUSW__License2__r.MUSW__Applicant__r.Name','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c','MUSW__License2__r.MUSW__Status__c','MUSW__License2__r.Sub_Status__c','MUSW__Parcel__r.MUSW__City__c'];
             var criteria = {
-                "License__r.Related_License__c":licenseRecordId
+                "MUSW__License2__r.Related_License__c":licenseRecordId
             }
             var action = component.get("c.generateQueryWithOR");
             action.setParams({
@@ -363,6 +382,7 @@
                 'lstFieldsName':fieldsList,
                 'mapValues':criteria,
                 'bIsStatusIncluded':false,
+                'showDeciplinary' :false,
             });
      		action.setCallback(this, function(response){
             var state = response.getState();
@@ -379,12 +399,12 @@
     },
     searchWithDetails : function(component, event) {
         var selectedTab = component.get("v.selectedTabId");
-        var objectApi =  'LnP_Parcel__c';
+        var objectApi =  'MUSW__License_Parcel__c';
         var searchTwoArray=[];
         var toastEvent = $A.get("e.force:showToast");
         if(selectedTab == "tab1"){
  			component.set("v.licenseNameToDisplay", "Professional License");
-			var fieldsList = ['License__r.MUSW__Applicant__r.Name','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c','License__r.RecordType.Name'];            
+			var fieldsList = ['MUSW__License2__r.License_Printable_Name__c','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c','MUSW__License2__r.MUSW__Status__c','MUSW__License2__r.Sub_Status__c','MUSW__Parcel__r.MUSW__City__c','MUSW__License2__r.RecordType.Name'];            
             var firstName = component.find("firstName").get("v.value");
             var middleName = component.find("middleName").get("v.value");
             var lastName = component.find("lastName").get("v.value");
@@ -421,21 +441,22 @@
             }
             if(searchTwoArray.length!=0){
                 var criteria = {
-                    "License__r.MUSW__Applicant__r.FirstName":firstName,
-                    "License__r.MUSW__Applicant__r.MiddleName":middleName,
-                    "License__r.MUSW__Applicant__r.LastName":lastName,
-                    "License__r.MUSW__Status__c":licenseStatus,
-                    "City__c":city,
-                    "County__c":country,
-                    "License__r.Credential_Type__c":licenseType,
-                    "License__r.RecordType.Name":"Individual"
+                    "MUSW__License2__r.Print_First_Name__c":firstName,
+                    "MUSW__License2__r.Print_Middle_Name__c":middleName,
+                    "MUSW__License2__r.Print_Last_Name__c":lastName,
+                    "MUSW__License2__r.MUSW__Status__c":licenseStatus,
+                    "MUSW__Parcel__r.MUSW__City__c":city,
+                    "MUSW__Parcel__r.County__c":country,
+                    "MUSW__License2__r.Credential_Type__c":licenseType,
+                    "MUSW__License2__r.RecordType.Name":"Individual"
                 }
                 var action = component.get("c.generateQueryWithOR");
                 action.setParams({
                     'objectName':objectApi,
                     'lstFieldsName':fieldsList,
                     'mapValues':criteria,
-                    'bIsStatusIncluded':licenseStatusBoolean
+                    'bIsStatusIncluded':licenseStatusBoolean,
+                    'showDeciplinary':true
                 });
                 action.setCallback(this, function(response){
                     var state = response.getState();
@@ -444,48 +465,57 @@
                         if(rows.length!=0){
                             for (var i = 0; i < rows.length; i++) { 
                                 var row = rows[i]; 
-                                if (row.License__r) {
-                                    if(row.License__r.MUSW__Applicant__r){
-                                        if(row.License__r.MUSW__Applicant__r.Name){
-                                            row.Name = row.License__r.MUSW__Applicant__r.Name;
+                                if (row.MUSW__License2__r) {
+                                    if(row.MUSW__License2__r){
+                                        if(row.MUSW__License2__r.License_Printable_Name__c){
+                                            row.Name = row.MUSW__License2__r.License_Printable_Name__c;
                                         } else {
                                             row.Name = "";
                                         }
                                     } else {
                                         row.Name = "";
                                     }
-                                    if(row.License__r.Name){
-                                        row.License_Number = row.License__r.Name;
+                                    if(row.MUSW__License2__r.Name){
+                                        row.License_Number = row.MUSW__License2__r.Name;
                                     } else {
                                         row.License_Number = "";
                                     }
-                                    if(row.License__r.Credential_Type__c){
-                                        row.License_Type = row.License__r.Credential_Type__c;
+                                    if(row.MUSW__License2__r.Credential_Type__c){
+                                        row.License_Type = row.MUSW__License2__r.Credential_Type__c;
                                     } else {
                                         row.License_Type = "";
                                     }
-                                    if(row.License__r.MUSW__Status__c){
-                                        row.Status = row.License__r.MUSW__Status__c;
+                                    if(row.MUSW__License2__r.AIDS_Affidavit__c){
+                                        row.Discipline = row.MUSW__License2__r.AIDS_Affidavit__c;
+                                    } else {
+                                        row.Discipline = "";
+                                    }
+                                    if(row.MUSW__License2__r.MUSW__Status__c){
+                                        row.Status = row.MUSW__License2__r.MUSW__Status__c;
                                     } else {
                                         row.Status = "";
                                     }
-                                    if(row.License__r.Sub_Status__c){
-                                        row.Sub_Status = row.License__r.Sub_Status__c;
+                                    if(row.MUSW__License2__r.Sub_Status__c){
+                                        if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
+                                            row.Sub_Status = '';
+                                        }else{
+                                            row.Sub_Status = row.MUSW__License2__r.Sub_Status__c;
+                                        }
                                     } else {
                                         row.Sub_Status = "";
                                     }
-                                    if(row.License__r.RecordType){
-                                        row.Type = row.License__r.RecordType.Name;
+                                    if(row.MUSW__License2__r.RecordType){
+                                        row.Type = row.MUSW__License2__r.RecordType.Name;
                                     } else {
                                         row.Type = "";
                                     }
-                                    if(row.License__r.Id){
-                                        row.Id = row.License__r.Id;
+                                    if(row.MUSW__License2__r){
+                                        row.Id = row.MUSW__License2__r;
                                     } else {
                                         row.Id = "";
                                     }
-                                    if(row.City__c){
-                                        row.City = row.City__c;
+                                    if(row.MUSW__Parcel__r.MUSW__City__c){
+                                        row.City = row.MUSW__Parcel__r.MUSW__City__c;
                                     } else {
                                         row.City = "";
                                     }
@@ -495,9 +525,10 @@
                                 {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
+                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
+                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                                 {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
@@ -545,7 +576,7 @@
             }
         } else {
             component.set("v.licenseNameToDisplay", "Business License");
-            var fieldsList = ['License__r.MUSW__Primary_Licensee__r.Name','License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c','License__r.UBI_Number__c','License__r.Name','License__r.Credential_Type__c','License__r.MUSW__Status__c','License__r.Sub_Status__c','City__c','License__r.RecordType.Name'];
+            var fieldsList = ['MUSW__License2__r.License_Printable_Name__c','MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c','MUSW__License2__r.UBI_Number__c','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c','MUSW__License2__r.MUSW__Status__c','MUSW__License2__r.Sub_Status__c','MUSW__Parcel__r.MUSW__City__c','MUSW__License2__r.RecordType.Name'];
             var businessName = component.find("businessName").get("v.value");
             var ubiNumber = component.find("ubiNumber").get("v.value");
             var licenseStatusBusiness = component.find("licenseStatusBusiness").get("v.value");
@@ -578,17 +609,17 @@
             }
             if(searchTwoArray.length!=0){
                 var criteria = {
-                    "License__r.UBI_Number__c":ubiNumber,
-                    "License__r.MUSW__Status__c":licenseStatusBusiness,
-                    "City__c":cityBusiness,
-                    "County__c":countryBusiness,
-                    "License__r.Credential_Type__c":licenseTypeBusiness,
-                    "License__r.RecordType.Name":"Business",
+                    "MUSW__License2__r.UBI_Number__c":ubiNumber,
+                    "MUSW__License2__r.MUSW__Status__c":licenseStatusBusiness,
+                    "MUSW__Parcel__r.MUSW__City__c":cityBusiness,
+                    "MUSW__Parcel__r.County__c":countryBusiness,
+                    "MUSW__License2__r.Credential_Type__c":licenseTypeBusiness,
+                    "MUSW__License2__r.RecordType.Name":"Business",
                 }
                 if(businessName!= "" && businessName.trim()!= "" && businessName.trim().length!= ""){
                     var criteriaOR = {
-                        "1":'License__r.MUSW__Primary_Licensee__r.Name='+businessName,
-                        "2":'License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c='+businessName,
+                        "1":'MUSW__License2__r.License_Printable_Name__c='+businessName,
+                        "2":'MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c='+businessName,
                     }
                     var action = component.get("c.generateQueryWithGenericOR");
                     action.setParams({
@@ -597,6 +628,7 @@
                         'mapValues':criteria,
                         'mapORValues':criteriaOR,
                         'bIsStatusIncluded':licenseStatusBoolean,
+                        'showDeciplinary':true
                     });
                 } else {
                     var action = component.get("c.generateQueryWithOR");
@@ -605,6 +637,7 @@
                         'lstFieldsName':fieldsList,
                         'mapValues':criteria,
                         'bIsStatusIncluded':licenseStatusBoolean,
+                        'showDeciplinary':true
                     });
                 }                
                 action.setCallback(this, function(response){
@@ -614,54 +647,63 @@
                         if(rows.length!=0){
                             for (var i = 0; i < rows.length; i++) { 
                                 var row = rows[i]; 
-                                if (row.License__r) {
-                                    if(row.License__r.MUSW__Primary_Licensee__r.Name){
-                                        row.Business_Name = row.License__r.MUSW__Primary_Licensee__r.Name;
+                                if (row.MUSW__License2__r) {
+                                    if(row.MUSW__License2__r.License_Printable_Name__c){
+                                        row.Business_Name = row.MUSW__License2__r.License_Printable_Name__c;
                                     } else {
                                         row.Business_Name = "";
                                     }
-                                    if(row.License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c){
-                                        row.Doing_Business_As = row.License__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c;
+                                    if(row.MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c){
+                                        row.Doing_Business_As = row.MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c;
                                     } else {
                                         row.Doing_Business_As = "";
                                     }
-                                    if(row.License__r.UBI_Number__c){
-                                        row.UBI_Number = row.License__r.UBI_Number__c;
+                                    if(row.MUSW__License2__r.UBI_Number__c){
+                                        row.UBI_Number = row.MUSW__License2__r.UBI_Number__c;
                                     } else {
                                         row.UBI_Number = "";
                                     }
-                                    if(row.License__r.Name){
-                                        row.License_Number = row.License__r.Name;
+                                    if(row.MUSW__License2__r.Name){
+                                        row.License_Number = row.MUSW__License2__r.Name;
                                     } else {
                                         row.License_Number = "";
                                     }
-                                    if(row.License__r.Credential_Type__c){
-                                        row.License_Type = row.License__r.Credential_Type__c;
+                                    if(row.MUSW__License2__r.Credential_Type__c){
+                                        row.License_Type = row.MUSW__License2__r.Credential_Type__c;
                                     } else {
                                         row.License_Type = "";
                                     }
-                                    if(row.License__r.MUSW__Status__c){
-                                        row.Status = row.License__r.MUSW__Status__c;
+                                    if(row.MUSW__License2__r.AIDS_Affidavit__c){
+                                        row.Discipline = row.MUSW__License2__r.AIDS_Affidavit__c;
+                                    } else {
+                                        row.Discipline = "";
+                                    }
+                                    if(row.MUSW__License2__r.MUSW__Status__c){
+                                        row.Status = row.MUSW__License2__r.MUSW__Status__c;
                                     } else {
                                         row.Status = "";
                                     }
-                                    if(row.License__r.Sub_Status__c){
-                                        row.Sub_Status = row.License__r.Sub_Status__c;
+                                    if(row.MUSW__License2__r.Sub_Status__c){
+                                        if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
+                                            row.Sub_Status = '';
+                                        }else{
+                                            row.Sub_Status = row.MUSW__License2__r.Sub_Status__c;
+                                        }
                                     } else {
                                         row.Sub_Status = "";
                                     }
-                                    if(row.License__r.RecordType){
-                                        row.Type = row.License__r.RecordType.Name;
+                                    if(row.MUSW__License2__r.RecordType){
+                                        row.Type = row.MUSW__License2__r.RecordType.Name;
                                     } else {
                                         row.Type = "";
                                     }
-                                    if(row.License__r.Id){
-                                        row.Id = row.License__r.Id;
+                                    if(row.MUSW__License2__r){
+                                        row.Id = row.MUSW__License2__r;
                                     } else {
                                         row.Id = "";
                                     }
-                                    if(row.City__c){
-                                        row.City = row.City__c;
+                                    if(row.MUSW__Parcel__r.MUSW__City__c){
+                                        row.City = row.MUSW__Parcel__r.MUSW__City__c;
                                     } else {
                                         row.City = "";
                                     }
@@ -673,9 +715,10 @@
                                 {label: 'UBI Number', fieldName: 'UBI_Number', type: 'Number', sortable : true},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
+                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
+                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                                 {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
@@ -747,7 +790,7 @@
         var key = function(a) { return a[fieldName]; }
         var reverse = sortDirection == 'asc' ? 1: -1;
         
-        if(fieldName == 'NumberOfEmployees'){ 
+        if(fieldName == 'Discipline'){ 
             data.sort(function(a,b){
                 var a = key(a) ? key(a) : '';
                 var b = key(b) ? key(b) : '';

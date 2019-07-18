@@ -322,7 +322,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
+                <valueName>Cemetery</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
@@ -330,7 +330,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <valueName>Crematory</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
@@ -354,11 +354,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
+                <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
@@ -366,11 +366,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
+                <valueName>Appraiser Course</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
+                <valueName>Appraiser Trainee</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -378,7 +378,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
+                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -386,7 +386,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <valueName>Temporary Certified General</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -398,11 +398,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
+                <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -410,7 +414,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Academic Intern</valueName>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -422,19 +430,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Prearrangement Funeral Services</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Director</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer</valueName>
+                <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Engineers</controllingFieldValue>
@@ -446,11 +446,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
+                <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
@@ -562,6 +562,11 @@
                     <fullName>Exam Approved</fullName>
                     <default>false</default>
                     <label>Exam Approved</label>
+                </value>
+                <value>
+                    <fullName>In-Review</fullName>
+                    <default>false</default>
+                    <label>In-Review</label>
                 </value>
             </valueSetDefinition>
         </valueSet>

@@ -497,6 +497,8 @@
         <members>mdwebserviceaddress</members>
         <members>melissadataaddresscheckservice</members>
         <members>newController</members>
+		<members>LnP_UpdateOvershortAmountClass</members>
+        <members>LnP_UpdateOvershortAmountClass_Test</members>       
         <name>ApexClass</name>
     </types>
     <types>
@@ -873,6 +875,9 @@
         <members>ToDo_Tasks</members>
         <members>add_Box</members>
         <members>defaultTokens</members>
+		<members>LnP_UpdateOvershortDepositAmount</members>
+		<members>LnP_UpdateOvershortReceiptAmount</members>
+		<members>Lnp_PayfromOverShort</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
@@ -5155,6 +5160,14 @@
         <members>Warrant__c.Return_Date__c</members>
         <members>Warrant__c.Status__c</members>
         <members>de_HomeFooterUrlList__mdt.URL__c</members>
+        <members>Account.Account_Status__c</members>
+        <members>Renewal_Application__c.AccountStatus__c</members>
+        <members>Education_History__c.License_Type__c</members>
+        <members>Education_History__c.Program_Type__c</members>
+        <members>Master_Exam_List__c.Review_Status__c</members>
+		<members>MUSW__License2__c.Print_First_Name__c</members>
+		<members>MUSW__License2__c.Print_Last_Name__c</members>
+		<members>MUSW__License2__c.Print_Middle_Name__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -7459,6 +7472,8 @@
         <members>User_Sharing_Model.Share_Permit_Service_Request</members>
         <members>User_Sharing_Model.Share_Permit_on_Update</members>
         <members>User_Sharing_Model.Share_Permit_on_User_Upgrade</members>
+        <members>Auto_Renew_Reinstate__mdt.Auto_Reinstate</members>
+        <members>Auto_Renew_Reinstate__mdt.Auto_Renewal</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -7640,7 +7655,7 @@
         <members>License_Type__mdt</members>
         <members>License_Verification__c</members>
         <members>Licensing_RelationShip__mdt</members>
-        <members>LnP_BackgroundSection__c</members>
+      <!--  <members>LnP_BackgroundSection__c</members> -->
         <members>LnP_City_County_Map__mdt</members>
         <members>LnP_Course_Questions_Mapping__mdt</members>
         <members>LnP_Custom_Exception__c</members>
@@ -9306,6 +9321,8 @@
         <members>Task.UpdateStatus_4</members>
         <members>Task.UpdateStatus_5</members>
         <members>Task.UpdateStatus_6</members>
+		<members>MUSW__Deposit__c.Send_to_Overshort</members>
+        <members>MUSW__Fee__c.Pay_from_Overshort</members>
         <name>QuickAction</name>
     </types>
     <types>

@@ -950,7 +950,7 @@ public with sharing class CartController
         				+'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
         				+'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
         				+'FROM MUSW__Fee_Payment__c '
-						+'WHERE MUSW__Receipt__c = '+receiptId;
+						+'WHERE MUSW__Receipt__c = :receiptId';
 		feePayments = (List<MUSW__Fee_Payment__c>)Database.query(feePaymentQuery);
         MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
         rs.clear();
@@ -1059,7 +1059,10 @@ public with sharing class CartController
         
        //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
        BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id]; 
-       
+       List<String> portalProfiles = DOL_AppConstants.PORTAL_PROFILES;
+	   system.debug('portalProfiles::'+portalProfiles);
+        List<Profile> pfile = [Select id, Name from Profile where Id =: userinfo.getProfileid() and Name In: portalProfiles];
+       	system.debug('pfile::'+pfile);
         system.debug('the values of cartForIMCheck' +cartForIMCheck);
         // reset receipt list based on VO list
         rs.clear();
@@ -1081,7 +1084,7 @@ public with sharing class CartController
             receipt.BGBK__Cart__c = cart.Id;
            
            //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
-            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null){ 
+            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || pfile.size() == 0){ // added as a part of bug 2164
             receipt.Intake_Method__c='Counter';
                 }
             else{
@@ -1302,7 +1305,6 @@ public with sharing class CartController
             if (con == null) con = new Contact(Id=cart.BGBK__Contact__c);
         }
         con.Email = email;
-        system.debug('name$$$'+a.Name);
         m_cs.sendConfirmEmail(feeIds, con, BGBK.CartService.AttachmentFormat.PDF, 'Cart Payment Receipt', null);
     }
     
