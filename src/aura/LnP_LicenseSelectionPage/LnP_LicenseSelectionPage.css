@@ -1,6 +1,15 @@
-.THIS.form-wrapper {
+.THIS.lic-sel-wrapper{
+    margin: 2rem 7.5rem;
+}
+.THIS .form-wrapper {
     padding : 2rem 2.25rem;
 }
+.THIS .card-wrapper p,.THIS .card-wrapper span,.THIS .card-wrapper li{
+    color:t(fieldclr);
+    font-size: token(fieldlabelsize);
+}
+
+
 .THIS .appTypeFieldClass{
    width: 100%;
    margin-left: 46px;
@@ -9,18 +18,42 @@
 .THIS .slds-radio{
     display: inline;
 }
+.THIS .card-wrapper h2{
+    font-weight:bold;
+    padding-bottom:0.5rem;
+    font-size: token(fieldlabelsize);
+    color:t(fieldclr)
+}
+.THIS .page-title{
+    font-weight:bold;
+    font-size:16px;     
+}
+.THIS .proceed-btn-wrapper{
+    display:flex;
+    justify-content:flex-end;
+    margin:1.5rem 0;
+}
+.THIS .page-title-wrapper{
+    padding-bottom:1rem;
+}
 .THIS .card-wrapper{
-    border-radius: 8px;
-    box-shadow: 0 0 15px 3px rgba(208, 208, 208, 0.5);
-    padding: 30px 75px;
+    border: solid 1px #b8b8b8;
+    padding: 2rem;
+}
+.THIS .account-wrapper{
+    margin-top:1.5rem;
+}
+.THIS .account-label{
+    margin-bottom:1rem;
 }
 .THIS .slds-form-element__control{
     width:80%;
 }
 .THIS .slds-form-element__label, .THIS .app-type{
     font-size: 14px;
-    color: t(LnGFormGray);
+    color: t(fieldclr);
     font-weight:normal;
+    padding-right:0;
 }
 .THIS .slds-input{
     outline:none;
@@ -31,6 +64,8 @@
     padding-left:5px;
     border-radius:0;
     font-size:14px;
+    border : solid 1px t(gray);
+    font-weight: token(btnfontweight);
 }
 .THIS .section-text{
     font-size: 24px;
@@ -64,11 +99,6 @@
 .THIS .slds-dropdown{
     max-height:200px;
 }
-.THIS .proceed-btn{
-    margin-top: 2rem;
-    display:flex;
-    justify-content:flex-end;
-}
 .THIS #appTypeDiv{
     margin-left: 0;
 }
@@ -98,9 +128,25 @@
     list-style:initial;
     margin-left: 15px;
 }
+.THIS .header-style{
+    padding-bottom:1rem;
+    font-size:1rem;
+    font-weight:bold;
+}
+.THIS .proceed-btn{
+   
+    width: 130px;
+    height: 42px;
+    border-radius:5px;
+}
+.THIS .slds-input.slds-combobox__input:focus{
+    box-shadow:none;
+    border:1px solid #1b1c1a;
+    font-weight: token(btnfontweight);
+}
 
-@media screen and (max-width:767px) {
-    .THIS.form-wrapper{
+@media screen and (max-width:767.9px) {
+    .THIS .form-wrapper{
         padding:16px;
     }
     .THIS .card-wrapper{
@@ -133,11 +179,9 @@
     .THIS .prof-choice{
         width:100%;
     }
-
-    .THIS.proceed-btn {
-        display: block;
-        float: none;
-    }
+	.THIS .proceed-btn{
+        width:100%;
+    }    
     .THIS .down-btn-wid {
         width: 100%;
     }
