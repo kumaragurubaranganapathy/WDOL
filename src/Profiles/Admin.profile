@@ -149,6 +149,10 @@
         <apexClass>AAA_CI_Test_Class</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>FeePaymentReminderScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccountContactTriggerHandler</apexClass>
         <enabled>true</enabled>
@@ -13737,6 +13741,11 @@
         <field>Lockbox_Envelope__c.Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Lockbox_Envelope__c.Lockbox_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Lockbox_Envelope__c.Date__c</field>
@@ -16416,6 +16425,11 @@
         <editable>false</editable>
         <field>MUSW__Fee__c.AFRS_Revenue_Code__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee__c.Licensee_Email__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -31341,6 +31355,10 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Answer__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<tabVisibilities>
+        <tab>MUSW__Deposit__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

@@ -333,6 +333,10 @@
         <apexClass>BGBK__AttachmentTriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>FeePaymentReminderScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BGBK__BGException</apexClass>
         <enabled>true</enabled>

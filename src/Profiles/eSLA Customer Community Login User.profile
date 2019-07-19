@@ -149,6 +149,10 @@
         <apexClass>AAA_CI_Test_Class</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>FeePaymentReminderScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccountContactTriggerHandler</apexClass>
         <enabled>false</enabled>
