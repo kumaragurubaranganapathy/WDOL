@@ -21,6 +21,9 @@
         console.log("license::"+license);
         component.set("v.branchLicense",license);
         helper.licensePage(component,event,helper);
+    },
+    showMoreActions : function(component,event,helper){
+        helper.showMoreActions(component,event);
     }
     
 })

@@ -6,6 +6,7 @@
         helper.setDraftNewLicenseApplicationsTableData(component, event, helper);
         helper.setDraftRenewalApplicationsTableData(component, event, helper);
         helper.setDraftMaintanceRequestTableData(component, event, helper);
+      
         helper.setPendingNewLicenseApplicationsTableData(component, event, helper);
         helper.setPendingRenewalApplicationsTableData(component, event, helper);
         helper.setPendingMaintanceRequestTableData(component, event, helper);
@@ -247,6 +248,8 @@
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
         
         helper.fetchBusinessRelationShipRecords(component, event, helper,licenseId);
+        
+        helper.setDraftAMRLicenseDetailTableData(component,event,helper,licenseId);
     },
     
     dsiplayPendingLicenseDetails : function(component, event, helper){
@@ -303,7 +306,29 @@
         var ctarget = event.currentTarget;
         var Renew_application_Id = ctarget.getAttribute("data-recordId");
     },
-    
+    CEAuditAMR : function(component,event,helper){
+        var ctarget = event.currentTarget;
+        console.log('inside draftLicense::');
+       
+				sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+                sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+                sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+           //     sessionStorage.setItem("applicationType", );
+                sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+                sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request'; 
+ 
+
+        var appIsRenewal = ctarget.getAttribute("data-isCeAudit");
+     
+        if(appIsRenewal == 'true'){
+            console.log('inside ce audit request ::');
+            sessionStorage.setItem("renewalReinstate", renewreinstate);
+            sessionStorage.setItem("flowType", "Application");
+            window.location.href='/lightningwashington/s/manage-request';  
+        } 
+        
+    },
     downloadDocument : function(component, event, helper) {
         console.log('Pending Application Button');
         var recordIdForPDF = event.getSource().get("v.value");
@@ -311,6 +336,12 @@
         var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
         window.open(OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF,'_top');
 
+    },
+    refreshList : function(component,event,helper){
+        helper.refreshList(component,event);
+    },
+    showMore : function(component,event,helper){
+    	helper.showMore(component,event);
     }
     
 })

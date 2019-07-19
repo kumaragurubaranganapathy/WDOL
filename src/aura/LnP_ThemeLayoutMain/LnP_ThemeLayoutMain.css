@@ -24,7 +24,14 @@
 }
 @font-face{
     font-family:'Merriweather-Regular';
-    src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf); /*1560421450000*/
+    src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf);
+}
+@font-face{
+    font-family:'PublicSans-Regular';
+    src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf);
+}
+.THIS *{
+    font-family : t(publicSansfontfamily);
 }
 .THIS .header{
     width:100%;
@@ -38,6 +45,12 @@
 /*common style for table */
 .THIS .slds-table thead th{
     background-color:#eaeaea;
+    padding: 1rem 2rem;
+    font-size:t(tableFontSize);
+}
+.THIS .slds-table tbody td{
+    padding: 1rem 2rem;
+    font-size:t(tableFontSize);
 }
 /*common style for table */
 /*common style for tabs */
@@ -49,6 +62,15 @@
 }
 .THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
     display:none;
+}
+.THIS .slds-table_bordered.slds-table, .THIS .slds-table--bordered.slds-table {
+    border-color:#5b616b;  
+    table-layout:fixed;
+}
+.THIS .table-scroll{
+    max-height:100%;
+    max-width:100%;
+    overflow:auto;
 }
 .THIS .slds-tabs_default__item.slds-is-active{
     background:t(primary);
@@ -69,3 +91,15 @@
     display:none;
 }
 /*common style for tabs end*/
+@media t(mqSmall){
+    .THIS .slds-table tbody td{
+        padding:0.75rem;
+        font-size:0.8125rem;
+        border:none;
+    }
+    .THIS .slds-table tbody tr{
+        border:solid 1px t(grayBorder);
+        margin-top:1rem;
+        border-radius : 0.25rem;
+    }
+}
