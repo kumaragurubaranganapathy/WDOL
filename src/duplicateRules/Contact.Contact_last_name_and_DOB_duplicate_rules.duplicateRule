@@ -9,7 +9,7 @@
         <duplicateRuleFilterItems>
             <field>Last_4_Digits_of_SSN__c</field>
             <operation>equals</operation>
-            <value>null</value>
+            <value></value>
             <sortOrder>1</sortOrder>
             <table>Contact</table>
         </duplicateRuleFilterItems>
@@ -43,5 +43,5 @@
     <isActive>true</isActive>
     <masterLabel>Contact last name and DOB duplicate rules</masterLabel>
     <securityOption>EnforceSharingRules</securityOption>
-    <sortOrder>3</sortOrder>
+    <sortOrder>1</sortOrder>
 </DuplicateRule>
