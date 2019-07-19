@@ -194,11 +194,11 @@
                                 if(enteredDate < compareDate){
                                     return true;
                                 }else{
-                                    errorMessage = "Date is required and it should be prior to today's";
+                                    errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
                                 	return false;
                                 }
                             }else{
-                                errorMessage = "Date is required and it should be prior to today's";
+                                errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
                                 return false;
                             }
                         } else {
@@ -232,11 +232,11 @@
                                     if(enteredDate < compareDate){
                                         return true;
                                     }else{
-                                        errorMessage = "Date is required and it should be prior to today's";
+                                        errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
                                     	return false;
                                     }
                                 }else{
-                                    errorMessage = "Date is required and it should be prior to today's";
+                                    errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
                                     return false;
                                 }
                             } else {
