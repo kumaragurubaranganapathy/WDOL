@@ -9,7 +9,7 @@
             //set pagination pages
             var pgSize = component.get("v.pgSize");
             var totalLen = Math.ceil(fullListLen/pgSize);
-            var pgArr=Array.from({length: totalLen}, (x, i) => i+1);
+           var pgArr = Array.from({ length: totalLen }, function (x, i) { return i + 1; });
             component.set("v.pgArr",pgArr);
             
             component.set("v.dispList",this.setActiveList(component, actPg));

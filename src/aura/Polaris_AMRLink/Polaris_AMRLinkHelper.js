@@ -10,7 +10,9 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
-                component.set("v.ServiceLink",result);
+                var amrLength = result.length;
+                component.set("v.ServiceLink",result);                 
+                component.set("v.amrLinkNum",amrLength);
             }else{
                 window.location.href = "./error";
             }
@@ -42,8 +44,8 @@
             else if(link == 'Update Website')
             {
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=License';
-            }else{
-                alert('Print in progress');
+            }else if(link == 'Print License'){
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=print';
             }
             
         }
@@ -157,7 +159,7 @@
                         console.log('inside headertrue');
                         sessionStorage.setItem("header","true");
                         sessionStorage.setItem("applicationId",result); 
-                       window.location.href="https://dev-polaris.cs32.force.com/lightningwashington/s/apply-for-license";
+                       window.location.href=$A.get("$Label.c.Polaris_Portal_Home")+"apply-for-license";
                     } 
                 else if(sessionStorage.getItem("header")){
                 var urlEvent = $A.get("e.force:navigateToURL");
@@ -171,5 +173,8 @@
                console.log('****'+str);//console.log(str);
                     urlEvent.fire();}
       		}));
+    },
+    showMoreActions : function(component,event){
+        component.set("v.showMore",!component.get("v.showMore"));
     }
 })

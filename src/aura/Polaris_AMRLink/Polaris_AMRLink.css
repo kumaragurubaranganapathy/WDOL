@@ -12,3 +12,26 @@
     font-size:1rem;
     font-family:t(btnfontfamily);
 }
+.THIS .nav-links.exp-link{
+    position:absolute;
+    z-index:1000;
+    
+}
+.THIS.links-wrapper.exp-links-wrapper{
+    position:relative;
+}
+@media t(mqSmall){
+    .THIS .nav-links ul{
+        position:absolute;
+        z-index:1000;
+        right:0;
+        height:auto;
+    }
+    .THIS .nav-links{
+        position:relative;
+    }
+    .THIS .nav-links.exp-link{
+        right:0;
+        width:100%;
+    }
+}
