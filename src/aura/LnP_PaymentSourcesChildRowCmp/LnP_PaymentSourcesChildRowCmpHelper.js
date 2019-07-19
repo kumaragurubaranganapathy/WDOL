@@ -10,23 +10,26 @@
             component.set("v.cloneDisabled", true);
             component.set("v.updateDisabled", false);
         }else if(component.get("v.rowIndex") == 0){
-            if( (number!='') && (amount!='') && (paymentType!='')){
+            component.set("v.disableNext",true);
+            if( (paymentType!='') &&(number!='') && (amount!='')){
                 component.set("v.printDisabled", false);
-                component.set("v.cloneDisabled",false);  
+                component.set("v.cloneDisabled", false);                
             }else{
                 component.set("v.printDisabled", true);
                 component.set("v.cloneDisabled", true);
+                
             }   
         }else{
             if( (paymentType!='') &&(number!='') && (amount!='')){
                 component.set("v.printDisabled", false);
                 component.set("v.cloneDisabled", false);
+                component.set("v.disableNext",true);
             }else{
                 component.set("v.printDisabled", true);
                 component.set("v.cloneDisabled", true);
+                component.set("v.disableNext",false);
             }   
         }
-        
         
         
     },
