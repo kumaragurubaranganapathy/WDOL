@@ -43,6 +43,9 @@
             window.open(selectedMenuItemValue,"_self"); 
         
     },
+    showMore : function(component,event){
+        component.set("v.showMoreAMR",!component.get("v.showMoreAMR"));
+    }
     /*updateAddress: function(component, event, helper) {
         var conId = component.get("v.ContactObj.Id") ;
         var key = 'contact' ;

@@ -1,17 +1,33 @@
-.THIS {
-}
 .THIS img{
     height: 35px;
 }
-.THIS .header-style{
-    
-}
 .THIS.dashboard-wrapper{
-    padding:1.5rem 8rem; 
+    padding:1.5rem 7.5rem; 
+}
+.THIS .slds-tabs_default__overflow-button{
+    height:50px;
+}
+.THIS .table-btn button, .THIS .table-btn a{
+    font-size:0.8125rem;    
+}
+.THIS .table-name{
+    font-size:1.25rem;
+    font-weight:600;
+    color:t(LnGFormTitleColor);
 }
 .THIS .status-cell{
     display:flex;
     flex-direction:row;
+}
+.THIS .label-style{
+    font-weight:bold;   
+    
+}
+.THIS .field-style.row-margin{
+    padding-bottom:0;
+}
+.THIS .empty-state{
+    margin-top:1rem;
 }
 .THIS .bottom-border{
     border-bottom: 1px solid #d4d4d4; 
@@ -30,7 +46,7 @@
 }
 .THIS .bottom-border .row-margin{
     margin-bottom :0;
-}
+} 
 .THIS .text-style{
     font-weight: bold;
 }
@@ -132,8 +148,17 @@ padding: 10px;
 .THIS .info-date{
     text-align:right;
 }
-.THIS .field-style{
+.THIS .field-style{    
+    padding-bottom:1rem;
+    font-size:1rem;      
+    color:t(LnGFormTitleColor);
     display:flex;
+}
+.THIS .field-style.lic-details{
+    display:block;
+}
+.THIS .lic-details-wrapper{
+    padding:1rem;
 }
 .THIS .label-style{
     padding-right:0.5rem;
@@ -177,6 +202,10 @@ padding: 10px;
 .THIS .help-text-wrapper .slds-form-element__icon{
     padding-top:0;
 }
+.THIS .add-licensee{
+    display:flex;
+    justify-content:flex-end;
+}
 @media (max-width: 30em)
     {
     .THIS .slds-small-size_1-of-1, .THIS .slds-small-size--1-of-1 {
@@ -212,5 +241,26 @@ padding: 10px;
     .THIS .user-info-wrapper{
         border:solid 1px t(grayBorder);
     }
+    .THIS .status-cell{
+        flex-direction:column;
+    }
+    .THIS .slds-table_cell-buffer tr>td:first-child{
+        padding-left:0.75rem;
+    }
+    .THIS .amr-wrapper{
+        flex-direction:column-reverse;
+    }
+    .THIS .field-style.row-margin{
+        margin-bottom:0.5rem;
+    }
+    .THIS .action-link{
+        color:t(LnGFormTitleColor);
+        font-weight:600;
+    }
+    .THIS .actions-wrapper{
+        margin-bottom:1rem;
+        text-align:right;
+    }
+    
     
 }

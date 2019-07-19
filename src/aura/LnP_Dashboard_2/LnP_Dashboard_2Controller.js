@@ -339,6 +339,9 @@
     },
     refreshList : function(component,event,helper){
         helper.refreshList(component,event);
+    },
+    showMore : function(component,event,helper){
+    	helper.showMore(component,event);
     }
     
 })

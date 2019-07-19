@@ -34,71 +34,16 @@
     font-family:'PublicSans-Regular';
     src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf); /*1560421450000*/
 }
-@media t(mqSmall){
-    .THIS .body{
-        width: 100%;; 
-    }
-    .THIS .side-bar{
-        width: 100%;  
-    }
-    .THIS .slds-grid .field-size {
-        display: block;
-        width: 100%;
-    }
-    .THIS .slds-grid .multi-field:nth-child(odd){
-        margin-right:0;
-    }
-    .THIS .slds-grid .address{
-        width:100%;
-    }
-    
-    .THIS .button-section .pull-right{
-        margin-left:1%;
-    }
-    .THIS .content-wrapper{
-        margin:0 .5rem;
-    }
-    .THIS .background-section .sentences{
-        height:auto;
-    }
-    .THIS .personal-info .background-section{
-        padding:0;
-    }
-    .THIS .content-wrapper .buttonpos{
-        margin: 10% 0;
-        padding:0;
-        display:flex;
-        align-items:flex-end;
-        justify-content:flex-end;
-    }
-    .THIS .button-section .back-button{
-        margin-right:22%;
-    }
-    .THIS .button-section .slds-m-left_medium{
-        margin-left:0;
-    }
-    .THIS .personal-info .ques .quesclr{
-        height:auto;
-    }
-    .THIS .ques{
-        width:100%;
-    }
-    .THIS .personal-info .field-item{
-        padding:0;
-    } 
-    .THIS table.slds-table_bordered tbody td{
-        border-right:none;
-    }
-    .THIS .page-width .field-item .slds-form-element__control,.THIS .page-width .field-size .slds-form-element__control,.THIS .portal-registration-form-container .field-item .slds-form-element__control,.THIS .personal-info .field-size .slds-form-element__control{
-        width:100%;
-     }
-}
+
 
 .THIS {
     min-height:100vh;
 }
 .THIS .themeContainer{
     min-height:calc(100vh - 150px);
+}
+.THIS .full-body .slds-col--padded.contentRegion{
+    padding:0;
 }
 .THIS .body{
     width: 75%;
@@ -123,11 +68,34 @@
     background-color: token(white);
     color: token(blue);
 }
-.THIS .button-section button {
+/*.THIS .button-section button {
     background-color :token(primary);
     border-radius: 5px;
-}
+}*/
 /*added by sanjana*/
+.THIS .validate .slds-radio__label .slds-form-element__label{
+    height: auto;
+    font-family: 'PublicSans-Regular';
+    font-size: t(fieldlabelsize);
+    font-weight: normal;
+    font-style: normal;
+    color: t(fieldclr);
+}
+.THIS .slds-radio .slds-form-element__label{
+	font-size: 14px;
+    color: token(radioBoxClr);
+    font-family: token(publicSansfontfamily);
+}
+.THIS .borderBtn{
+    padding-bottom:55px;
+}
+.THIS .personal-info .slds-checkbox_faux{
+    border:1px solid #5b616b;
+}
+.THIS .personal-info .slds-input:focus,.THIS .slds-select:focus,.THIS .validate .uiInputTextArea:focus{
+    box-shadow:none;
+    border: solid 1px #5b616b
+}
 .THIS .address-button, .THIS .slds-button_neutral{
     height: 42px;
     border-radius: 5px;
@@ -146,7 +114,17 @@
     border: solid 2px #0872b9;
     background-color: #ffffff;
     font-family: token(publicSansfontfamily);
-    font-size: 15px;
+    font-size: token(fieldlabelsize);
+    font-weight: token(btnfontweight);
+}
+.THIS .cancelbtn{
+
+    width: 111px;
+    height: 42px;
+    border-radius: 5px;
+    background-color: t(primary);
+    font-family: token(publicSansfontfamily);
+    font-size: token(fieldlabelsize);
     font-weight: token(btnfontweight);
 }
 .THIS .back-button{
@@ -158,14 +136,15 @@
     font-family: token(publicSansfontfamily);
     font-size: 15px;
     font-weight: token(btnfontweight);
+    color:t(primary);
 }
 
 .THIS .next-button {/* next or continue button*/
-    width: 130px;
+    width: auto;
     height: 42px;
     font-family: token(publicSansfontfamily);
-    font-size: token(btnfontsize);
-    font-weight:15px;
+    font-size: token(fieldlabelsize);
+    font-weight: token(btnfontweight);
     background-color :token(primary);
     border-radius: 5px;
     color:token(white);
@@ -174,10 +153,10 @@
 .THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
 ,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label{
     font-family: token(publicSansfontfamily);
-    font-size: token(licensefontsize);
+    font-size: token(fieldlabelsize);
     line-height:1;
-    font-weight: token(btnfontweight);
-    color: token(LnGFormTitleColor);
+    font-weight: token(txtfontweight);
+    color: token(fieldclr);
     margin:0px;
     padding:0px 0px 5px 0px;
 }
@@ -189,7 +168,7 @@
     box-shadow: none;
     height: 42px;
     font-family: token(publicSansfontfamily);
-    font-size: token(licensefontsize);
+    font-size: token(fieldlabelsize);
     font-weight: token(btnfontweight);
     font-style: token(txtfontstyle);
     color: token(fieldclr);
@@ -198,7 +177,7 @@
 .THIS .field-size {
     display: block;       
     padding: 0px;
-    margin: 0 0 1.5rem;
+    margin: 0 0 0.8rem;
     box-sizing: border-box;
 }
 .THIS .field-item .slds-form-element__control{
@@ -225,7 +204,7 @@
 .THIS .licenseinp input::placeholder,.THIS .licensetab input::placeholder,.THIS .businesstab input::placeholder,.THIS .breadcumb a,.THIS .complaintSummary::placeholder,.THIS .slds-file-selector__text,.THIS .placeholTxt input::placeholder,.THIS .field-style input::placeholder,.THIS .userpswd1 input::placeholder{
     height: 22px;
     font-family: token(publicSansfontfamily);
-    font-size: token(senfontsize);
+    font-size: token(fieldlabelsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     line-height: normal;
@@ -366,6 +345,9 @@ color: token(placeholderColor);
     text-decoration: underline;
     padding-bottom:3rem;
 }
+.THIS .personal-info .slds-button_icon-bare{
+    color:t(primary);
+}
 .THIS .qfield-margin{
     margin-bottom:0
 }
@@ -376,7 +358,7 @@ color: token(placeholderColor);
 .THIS .fileupload .slds-form-input_label,.THIS .headings{
     height: auto;
     font-family: token(publicSansfontfamily);
-    font-size: token(btnfontsize);
+    font-size: token(fieldlabelsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     color: token(fieldclr);
@@ -385,22 +367,38 @@ color: token(placeholderColor);
 .THIS .sentences,.THIS .field-item .slds-text-longform{
     height: auto;
     font-family: token(publicSansfontfamily);
-    font-size: token(senfontsize);
+    font-size: token(fieldlabelsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
-    color: token(subHeader);
+    color: token(sentenceclr);
+     line-height:1.5;
+   
+}
+.THIS .slds-text-longform{
+     font-family: token(publicSansfontfamily);
+    font-size: token(fieldlabelsize);
+    line-height:1;
+    font-weight: token(txtfontweight);
+    color: token(fieldclr);
+    margin:0px;
+    padding:0px 0px 5px 0px;
 }
 /* license information ques*/
 .THIS .questions .slds-form-element__legend{
     font-family: token(publicSansfontfamily);
-    font-size: token(senfontsize);
+    font-size: token(fieldlabelsize);
     font-weight: token(txtfontweight);;
     font-style: token(txtfontstyle);
     color: token(subHeader);
     
 }
-.THIS .underline, .THIS .underlineblk .slds-input{
+.THIS .underlineblk .slds-input{
     border-bottom:0.5px solid #1b1c1a;
+    background: #ffffff;
+}
+.THIS .underline{
+    padding-bottom: 8px;
+    border-bottom:0.5px solid #d6d7d9;
     background: #ffffff;
 }
 .THIS .personal-info .slds-input{
@@ -413,19 +411,21 @@ color: token(placeholderColor);
     color:token(LnGPlaceholderText);
     height: auto;
     font-family: token(publicSansfontfamily);
-    font-size: token(senfontsize);
+    font-size: token(fieldlabelsize);
     font-weight: token(txtfontweight);;
     font-style: token(txtfontstyle);
     line-height: normal;
 }
 .THIS .slds-select, .THIS .slds-input{
     border-radius:unset;
+    font-size: token(fieldlabelsize);
+}
+.THIS .slds-select{
+    z-index:1;
 }
 /* common style for tables */
-.THIS .slds-hint-parent div{
+.THIS .slds-hint-parent div{    
     
-    font-family: t(publicSansfontfamily);
-    font-size: 16px;
     font-weight: t(txtfontweight);
     font-style: t(txtfontstyle);
     line-height: 1.63;
@@ -453,13 +453,10 @@ color: token(placeholderColor);
     table-layout:fixed;
 }
 .THIS .slds-table thead th{
-    background-color:#eaeaea;
     padding: 1rem 2rem;
-    font-size:t(tableFontSize);
 }
 .THIS .slds-table tbody td{
-    padding: 1rem 2rem;
-    font-size:t(tableFontSize);
+    padding:1rem 2rem; 
 }
 .THIS .slds-table_bordered.slds-table > thead > th{
     background-color:#eaeaea;
@@ -468,8 +465,7 @@ color: token(placeholderColor);
     border-right:none;
 }
 .THIS .slds-table_bordered thead th div{
-    color:t(fieldclr);
-    font-size:	13px;
+    color:t(LnGFormTitleColor);    
 }
 .THIS .slds-table thead th{
     background-color:t(headerclr);
@@ -569,4 +565,70 @@ color: token(placeholderColor);
     justify-content:center;
     color:t(black);
     }
+}
+@media t(mqSmall){
+    .THIS .body{
+        width: 100%;; 
+    }
+    .THIS .side-bar{
+        width: 100%;  
+    }
+    .THIS .slds-grid .field-size {
+        display: block;
+        width: 100%;
+    }
+    .THIS .slds-grid .multi-field:nth-child(odd){
+        margin-right:0;
+    }
+    .THIS .slds-grid .address{
+        width:100%;
+    }
+    .THIS .slds-select_container{
+        width:100%;
+    }
+    .THIS .content-wrapper{
+        margin:0 .5rem;
+    }
+    .THIS .background-section .sentences{
+        height:auto;
+    }
+    .THIS .personal-info .background-section{
+        padding:0;
+    }
+    .THIS .content-wrapper .buttonpos{
+        margin: 10% 0;
+        padding:0;
+        display:flex;
+        align-items:flex-end;
+        justify-content:flex-end;
+    }
+   
+    .THIS .button-section .slds-m-left_medium{
+        margin-left:0;
+    }
+    .THIS .personal-info .ques .quesclr{
+        height:auto;
+    }
+    .THIS .ques{
+        width:100%;
+    }
+    .THIS .personal-info .field-item{
+        padding:0;
+    } 
+    .THIS table.slds-table_bordered tbody td{
+        border-right:none;
+    }
+    .THIS .page-width .field-item .slds-form-element__control,.THIS .page-width .field-size .slds-form-element__control,.THIS .portal-registration-form-container .field-item .slds-form-element__control,.THIS .personal-info .field-size .slds-form-element__control{
+        width:100%;
+     }
+    .THIS .slds-table tbody td{
+        padding:0.75rem;
+        font-size:0.8125rem;
+        border:none;
+    }
+    .THIS .slds-table tbody tr{
+        border:solid 1px t(grayBorder);
+        margin-top:1rem;
+        border-radius : 0.25rem;
+    } 
 }

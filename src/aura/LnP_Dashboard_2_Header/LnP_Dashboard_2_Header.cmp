@@ -5,6 +5,7 @@
     <aura:attribute name = "ParcelObj" type ="MUSW__Parcel__c[]"/>
     <aura:attribute name ="portalURL" type ="String" default = "{!$Label.c.Polaris_Portal_Home}"/>
     <aura:attribute name="showAddress" type="Boolean" default="false" />
+    <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div class="header-outer-wrapper">
         <!--<lightning:layout class="header-wrapper slds-wrap">
@@ -19,9 +20,9 @@
             </lightning:layoutItem
         </lightning:layout> -->
         
-        <div class="actions-wrapper slds-hide_medium">        	 
+        <!--<div class="actions-wrapper slds-hide_medium">        	 
                                                     
-                                                    <lightning:buttonMenu iconName="utility:down" label="Actions"  onselect="{!c.handleMenuSelectlink}">
+                                                   <lightning:buttonMenu iconName="utility:down" label="Actions"  onselect="{!c.handleMenuSelectlink}">
                                                         
                                                             <lightning:menuItem label="Payment cart" value="Payment cart"/>
                                                         	<lightning:menuItem label="Apply for new license" value="licenseSelectionPage"/>
@@ -30,7 +31,10 @@
                                                     </lightning:buttonMenu>
                                                     
                                                
-        </div>
+        </div> -->
+        <div class="actions-wrapper slds-hide_medium">                        
+                        <a class="action-link" href="javascript:void(0)" onclick="{!c.showMore}">{!v.showMoreAMR?'Hide actions':'Actions'}</a>
+                    </div>
         <lightning:layout class="slds-wrap intro-wrapper">
             <lightning:layoutItem size="12" mediumDeviceSize="9" class="user-info-wrapper">
                 <div class="contact-name">{!v.ContactObj.Name}</div>  
@@ -91,8 +95,8 @@
                     </lightning:layoutItem>                    
                 </lightning:layout>
             </lightning:layoutItem>
-            <lightning:layoutItem size="12" mediumDeviceSize="3" class="nav-links slds-show_medium">
-                <ul>
+            <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!v.showMoreAMR?'nav-links exp-links':'nav-links slds-show_medium'}">
+                <ul class="{!v.showMoreAMR?'exp-links-inner':''}">
                     <li aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);">Payment cart</a></li>
                     <li aura:id="action-item"><a onclick="{!c.handleClick}" href="javascript:void(0);">Apply for new license</a></li>
                     <li aura:id="action-item"><a onclick="" href="javascript:void(0);">Change legal name</a></li>

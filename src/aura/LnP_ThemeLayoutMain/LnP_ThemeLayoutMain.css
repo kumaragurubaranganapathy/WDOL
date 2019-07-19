@@ -63,7 +63,7 @@
 .THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
     display:none;
 }
-.THIS .slds-table_bordered.slds-table {
+.THIS .slds-table_bordered.slds-table, .THIS .slds-table--bordered.slds-table {
     border-color:#5b616b;  
     table-layout:fixed;
 }
@@ -91,3 +91,15 @@
     display:none;
 }
 /*common style for tabs end*/
+@media t(mqSmall){
+    .THIS .slds-table tbody td{
+        padding:0.75rem;
+        font-size:0.8125rem;
+        border:none;
+    }
+    .THIS .slds-table tbody tr{
+        border:solid 1px t(grayBorder);
+        margin-top:1rem;
+        border-radius : 0.25rem;
+    }
+}

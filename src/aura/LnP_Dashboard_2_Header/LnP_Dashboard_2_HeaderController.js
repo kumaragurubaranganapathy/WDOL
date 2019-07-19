@@ -16,6 +16,9 @@
     handleMenuSelectlink :  function(component, event, helper) {
 		helper.handleMenuSelectlink(component, event);
 	},
+    showMore : function(component,event,helper){
+    	helper.showMore(component,event);
+    }
     
     /*updateAddress : function(component, event, helper) {
 		helper.updateAddress(component, event, helper);

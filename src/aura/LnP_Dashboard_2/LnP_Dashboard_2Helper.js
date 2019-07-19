@@ -1015,5 +1015,8 @@
         //component.set("v.dispList",[]);
         //component.set('v.ProfessionalRelationshipDataList', JSON.parse(JSON.stringify(component.get('v.ProfessionalRelationshipDataList'))));
         //component.set('v.CurrentLicenseTableDataList', JSON.parse(JSON.stringify(component.get('v.CurrentLicenseTableDataList'))));
+    },
+    showMore : function(component,event){
+        component.set("v.showMoreAMR",!component.get("v.showMoreAMR"));
     }
 })

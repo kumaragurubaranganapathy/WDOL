@@ -102,21 +102,18 @@
     }
     .THIS .address-item{
         margin-bottom:0.5rem;
+    }    
+    
+    .THIS .intro-wrapper{
+        flex-direction:column-reverse;
     }
-    .THIS .actions-wrapper{      
-        display:flex;
-        justify-content:flex-end;
-        margin-bottom:0.5rem;
+    .THIS .nav-links.exp-links{
+        position:relative;
     }
-    .THIS .actions-wrapper .slds-button{
-        border: none;
-        color:t(headerColor);
-        background : t(LnGWhite);
-        font-size:0.8125rem;
-    }
-    .THIS .actions-wrapper .slds-dropdown_left{
+    .THIS .nav-links .exp-links-inner{
+        position:absolute;
+        z-index:1000;
         right:0;
-        width:20rem;
-        left:unset;
+        height:auto;
     }
 }
