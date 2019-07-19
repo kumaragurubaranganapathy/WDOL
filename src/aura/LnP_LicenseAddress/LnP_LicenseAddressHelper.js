@@ -175,6 +175,8 @@
         component.set("v.originalAddress", originalAddress);
         console.log('originalAddress with street2==' + originalAddress);
         var valid = true;
+        var regexForUS = /(^[0-9]+[-]*[0-9]+$)/;
+        var regexForCanada = /[a-zA-Z][0-9][a-zA-Z](-| |)[0-9][a-zA-Z][0-9]/;;
         if(($A.util.isEmpty(street) || $A.util.isUndefined(street))) {
             valid = false;
         }
@@ -191,9 +193,13 @@
         if(!valid){;
                    helper.showToast(component, event, "Error!", "error", "Please fill in all required fields.");
                   }
-        /*else if(isNaN(zip)){
-            helper.showToast(component, event, "Error!", "error", "Please enter numeric value for zip.");
-        }*/
+
+        else if(!regexForUS.test(zip) && country =="United States"){
+            helper.showToast(component, event, "Error!", "error", "Please enter numeric value for zip for country United States.");
+        }
+        else if(!regexForCanada.test(zip) && country =="Canada"){
+            helper.showToast(component, event, "Error!", "error", "Please enter ANA NAN format for zip for country Canada.");
+        }
         else if(/[^a-zA-Z \-\/]/.test( city )){
             helper.showToast(component, event, "Error!", "error", "Please remove special character from city.");
         }
