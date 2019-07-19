@@ -17,6 +17,7 @@
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
     <aura:attribute name="AssociationMessage" type="String" default="Are you sure you want to remove this relationship ? " />
     <aura:attribute name="accountId" type="string" />
+    <aura:attribute name="dispList" type="List" />
     <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" />
     <aura:handler event="c:RefreshComponentEvent" action="{!c.handleComponentEvent}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
@@ -29,178 +30,188 @@
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
                 
                 <div>
-                    <div class="table-wrapper">
+                    <div class="table-height">
                         
-                                <div class="table-scroll">
-                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
-                                        <thead>
-                                            <tr class="slds-line-height_reset">
-                                                <aura:iteration items="{!v.CurrentLicenseTableColumnsList}" var="headerData">
-                                                    <th class="" scope="col">
-                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
-                                                    </th> 
-                                                </aura:iteration>
-                                                <!--<th class="contact-button" scope="col"> 
-                                                	<c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/> 
+                        <div class="table-scroll">
+                            <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <aura:iteration items="{!v.CurrentLicenseTableColumnsList}" var="headerData">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                            </th> 
+                                        </aura:iteration>
+                                        <!--<th class="contact-button" scope="col"> 
+                                                 <c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/> 
                                                 </th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <aura:iteration items="{!v.CurrentLicenseTableDataList}" var="tableData" indexVar="ind">
-                                                <tr class="slds-hint-parent">    
-                                                    <td data-label="Full_Name__c" class="cell-style">
-                                                        <aura:if isTrue="{!tableData.Full_Name__c}">
-                                                        <div class="slds-truncate">{!tableData.Full_Name__c}</div>
-                                                            <aura:set attribute="else">(None)</aura:set>
-                                                        </aura:if>
-                                                    </td>
-                                                    <td data-label="Role__c" class="cell-style">
-                                                        <aura:if isTrue="{!tableData.Role__c}">
-                                                        	<div class="slds-truncate">{!tableData.Role__c}</div>
-                                                            <aura:set attribute="else">(None)</aura:set>
-                                                        </aura:if>
-                                                    </td>
-                                                    <td data-label="isAdminContact__c" class="cell-style">
-                                                        <div class="slds-truncate"><lightning:input type="checkbox" name="input1" checked="{!tableData.isAdminContact__c}" disabled="true" /></div>
-                                                    </td>
-                                                    <td data-label="DCP__c" class="cell-style">
-                                                        <div class="slds-truncate"><lightning:input type="checkbox" name="input2" checked="{!tableData.DCP__c}" disabled="true" /></div>
-                                                    </td>
-                                                    <td data-label="Email__c" class="cell-style">
-                                                        <div class="slds-truncate">{!tableData.Email__c}</div>
-                                                    </td>
-                                                    <td data-label="MUSW__Status__c" class="cell-style">
-                                                        <aura:if isTrue="{!tableData.Status__c}">
-                                                        	<div class="slds-truncate">{!tableData.Status__c}</div>
-                                                            <aura:set attribute="else">(None)</aura:set>
-                                                        </aura:if>
-                                                    </td>  
-                                                    <td data-label="Email__c" class="cell-style">
-                                                        <div class="slds-truncate">Associated Licensees</div>
-                                                    </td>
-                                                    <td data-label="actions" class="cell-style action-cell">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!(tableData.Status__c == 'Invited')? true : false}">
-                                                                <a data-index="{!ind}" data-button="cancel" data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
-                                                            </aura:if>
-                                                            <aura:if isTrue="{!tableData.Status__c == 'No Response'}">
-                                                                <lightning:button   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>
-                                                                <lightning:button  variant="brand" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
-                                                            </aura:if>
-                                                            <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
-                                                                <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
-                                                            </aura:if>
-                                                        </div>    
-                                                    </td>
-                                                </tr>  
-                                            </aura:iteration>
-                                        </tbody>
-                                    </table>                               
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.dispList}" var="tableData" indexVar="ind">
+                                        <tr class="slds-hint-parent">    
+                                            <td data-label="Full_Name__c" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Full_Name__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Full_Name__c}">{!tableData.Full_Name__c}</div>
+                                                    <aura:set attribute="else">None</aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td data-label="Role__c" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Role__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Role__c}">{!tableData.Role__c}</div>
+                                                    <aura:set attribute="else">None</aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td data-label="isAdminContact__c" class="cell-style">
+                                                <div class="slds-truncate"><lightning:input type="checkbox" name="input1" checked="{!tableData.isAdminContact__c}" disabled="true" /></div>
+                                            </td>
+                                            <td data-label="DCP__c" class="cell-style">
+                                                <div class="slds-truncate"><lightning:input type="checkbox" name="input2" checked="{!tableData.DCP__c}" disabled="true" /></div>
+                                            </td>
+                                            <td data-label="Email__c" class="cell-style">
+                                                <div class="slds-truncate" title="{!tableData.Email__c}">{!tableData.Email__c}</div>
+                                            </td>
+                                            <td data-label="MUSW__Status__c" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Status__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Status__c}">{!tableData.Status__c}</div>
+                                                    <aura:set attribute="else">None</aura:set>
+                                                </aura:if>
+                                            </td>  
+                                            <td data-label="Email__c" class="cell-style">
+                                                <div class="slds-truncate" title="Associated Licensees">Associated Licensees</div>
+                                            </td>
+                                            <td data-label="actions" class="cell-style action-cell">
+                                                <div class="rel-btn-wrapper">
+                                                    <aura:if isTrue="{!(tableData.Status__c == 'Invited')? true : false}">
+                                                        <a data-index="{!ind}" data-button="cancel" data-id="{!tableData.Id}" class="slds-button_brand slds-button"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!tableData.Status__c == 'No Response'}">                                                        
+                                                        <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>
+                                                        <lightning:button class="rel-btn"  variant="neutral" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
+                                                        <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-button_brand slds-button" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
+                                                    </aura:if>
+                                                </div>    
+                                            </td>
+                                        </tr>  
+                                    </aura:iteration>
+                                </tbody>
+                            </table>                               
                         </div>
                     </div>
                 </div>
+                <div class="slds-m-vertical_xx-large pagination-wrapper">
+                    <c:LnP_Pagination fullList="{!v.CurrentLicenseTableDataList}" dispList="{!v.dispList}" pgSize="4" />
+                </div>
                 <aura:set attribute="else">
-                    There are no Licenses to display
+                    <div class="empty-state">
+                        There are no Licenses to display
+                    </div>
                 </aura:set>
             </aura:if>
         </aura:if>
         <aura:if isTrue="{!v.sObjectName == 'Associations__c'}">
             <h1 class="table-title">Licensee Relationships</h1>
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
-                <div style="height: auto;">
-                    <div style="height: 100%; position: relative;">
+                <div class="table-height">
+                    <div>
                         
-                                <div class="table-scroll">
-                                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
-                                        <thead>
-                                            <tr class="slds-line-height_reset">
-                                                <aura:iteration items="{!v.CurrentLicenseTableColumnsList}" var="headerData">
-                                                    <th class="" scope="col">
-                                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
-                                                    </th> 
-                                                </aura:iteration>
-                                                <!--<th class="" scope="col">
+                        <div class="table-scroll">
+                            <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <aura:iteration items="{!v.CurrentLicenseTableColumnsList}" var="headerData">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                            </th> 
+                                        </aura:iteration>
+                                        <!--<th class="" scope="col">
                                                     <div class="slds-truncate" title="actions"></div>
                                                 </th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <aura:iteration items="{!v.CurrentLicenseTableDataList}" var="tableData" indexVar="ind">
-                                                <tr class="slds-hint-parent">  
-                                                    <td data-label="Name" class="cell-style">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                {!tableData.Child_License__r.Applicant_Full_Name__c}
-                                                                <aura:set attribute="else">
-                                                                    {!tableData.Parent_License__r.Applicant_Full_Name__c}
-                                                                </aura:set>
-                                                            </aura:if>
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="LICENSE NUMBER" class="cell-style">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                {!tableData.Child_License__r.Name}
-                                                                <aura:set attribute="else">
-                                                                    {!tableData.Parent_License__r.Name}
-                                                                </aura:set>
-                                                            </aura:if>
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="LICENSE TYPE" class="cell-style">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                {!tableData.Child_License__r.Credential_Type__c}
-                                                                <aura:set attribute="else">
-                                                                    {!tableData.Parent_License__r.Credential_Type__c} 
-                                                                </aura:set>
-                                                            </aura:if>
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="STATUS" class="cell-style">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                {!tableData.Child_License__r.MUSW__Status__c} 
-                                                                <aura:set attribute="else">
-                                                                    {!tableData.Parent_License__r.MUSW__Status__c} 
-                                                                </aura:set>
-                                                            </aura:if>
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="RELATIONSHIP STATUS" class="cell-style">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                {!tableData.Status__c} 
-                                                                <aura:set attribute="else">
-                                                                    {!tableData.Status__c} 
-                                                                </aura:set>
-                                                            </aura:if>
-                                                        </div>
-                                                    </td> 
-                                                    <td data-label="actions" class="cell-style action-cell">
-                                                        <div class="slds-truncate">
-                                                            <aura:if isTrue="{!(tableData.Status__c == 'Invited')? true : false}">
-                                                                <a data-index="{!ind}" data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
-                                                            </aura:if>
-                                                            <aura:if isTrue="{!tableData.Status__c == 'No Response'}">
-                                                                <lightning:button variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>
-                                                                <lightning:button variant="brand" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
-                                                            </aura:if>
-                                                            <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
-                                                                <a data-index="{!ind}" data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
-                                                            </aura:if>
-                                                        </div>    
-                                                    </td>
-                                                </tr>  
-                                            </aura:iteration>
-                                        </tbody>
-                                    </table>
-                               
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.dispList}" var="tableData" indexVar="ind">
+                                        <tr class="slds-hint-parent">  
+                                            <td data-label="Name" class="cell-style">
+                                                <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Applicant_Full_Name__c:tableData.Parent_License__r.Applicant_Full_Name__c}">
+                                                    <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                        {!tableData.Child_License__r.Applicant_Full_Name__c}
+                                                        <aura:set attribute="else">
+                                                            {!tableData.Parent_License__r.Applicant_Full_Name__c}
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </td>
+                                            <td data-label="LICENSE NUMBER" class="cell-style">
+                                                <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Name:tableData.Parent_License__r.Name}">
+                                                    <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                        {!tableData.Child_License__r.Name}
+                                                        <aura:set attribute="else">
+                                                            {!tableData.Parent_License__r.Name}
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </td>
+                                            <td data-label="LICENSE TYPE" class="cell-style">
+                                                <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Credential_Type__c:tableData.Parent_License__r.Credential_Type__c}">
+                                                    <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                        {!tableData.Child_License__r.Credential_Type__c}
+                                                        <aura:set attribute="else">
+                                                            {!tableData.Parent_License__r.Credential_Type__c} 
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </td>
+                                            <td data-label="STATUS" class="cell-style">
+                                                <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.MUSW__Status__c:tableData.Parent_License__r.MUSW__Status__c}">
+                                                    <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                        {!tableData.Child_License__r.MUSW__Status__c} 
+                                                        <aura:set attribute="else">
+                                                            {!tableData.Parent_License__r.MUSW__Status__c} 
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </td>
+                                            <td data-label="RELATIONSHIP STATUS" class="cell-style">
+                                                <div class="slds-truncate" title="{!tableData.Status__c}">
+                                                    <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                        {!tableData.Status__c} 
+                                                        <aura:set attribute="else">
+                                                            {!tableData.Status__c} 
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </td> 
+                                            <td data-label="actions" class="cell-style action-cell">
+                                                <div class="slds-truncate">
+                                                    <aura:if isTrue="{!(tableData.Status__c == 'Invited')? true : false}">
+                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!tableData.Status__c == 'No Response'}">
+                                                        <lightning:button variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>
+                                                        <lightning:button variant="brand" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
+                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
+                                                    </aura:if>
+                                                </div>    
+                                            </td>
+                                        </tr>  
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                            
                         </div>
                     </div>
                 </div>
+                <div class="slds-m-vertical_xx-large pagination-wrapper">
+                    <c:LnP_Pagination fullList="{!v.CurrentLicenseTableDataList}" dispList="{!v.dispList}" pgSize="4" />
+                </div>
                 <aura:set attribute="else">
-                    There are no Licenses to display
+                    <div class="empty-state">
+                        There are no Licenses to display
+                    </div>
                 </aura:set>
             </aura:if>
         </aura:if>

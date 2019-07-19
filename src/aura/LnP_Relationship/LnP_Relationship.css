@@ -9,6 +9,11 @@
 .THIS .bottom-border{
     border-bottom: 1px solid #d4d4d4; 
 }
+.THIS .table-title{
+    font-weight:600;
+    font-size:1.25rem;
+    color:t(LnGFormTitleColor);
+}
 .THIS .table-wrapper{
     height:20rem;
 }
@@ -18,6 +23,19 @@
 }
 .THIS .bottom-border .row-margin{
     margin-bottom :0;
+}
+.THIS .rel-btn-wrapper a, .THIS .rel-btn-wrapper button{
+    font-size:0.8125rem;
+}
+.THIS .rel-btn{
+    margin-bottom:0.25rem;
+}
+.THIS .rel-btn:last-of-type{
+    margin:0;
+}
+.THIS .btn-wrapper{
+    display:flex;
+    flex-direction:column;
 }
 .THIS .text-style{
     font-weight: bold;

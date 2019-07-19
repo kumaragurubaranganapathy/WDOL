@@ -201,27 +201,26 @@
         });
         $A.enqueueAction(action);
     },
-
-    getHelptextHelper: function (component, event, obj, license_Status, license_Sub_Status) {
+    
+    getHelptextHelper : function(component, event, obj, license_Status, license_Sub_Status){
         var action = component.get("c.helptextFetch");
-        action.setCallback(this, function (response) {
+        action.setCallback(this, function(response){
             var state = response.getState();
-            if (state === "SUCCESS") {
+            if(state === "SUCCESS"){
                 var result = response.getReturnValue();
                 typeof result;
                 var resultMap = JSON.parse(result);
                 component.set("v.helptextmap", resultMap);
-                console.log('helptextmap::' + result);
-                console.log('size::' + result.prototype.size);
+                console.log('helptextmap::'+result);
+                console.log('size::'+result.prototype.size);
             }
-            else if (state === 'ERROR') {
+            else if(state === 'ERROR'){                
                 var errors = response.getError();
-                console.error(JSON.stringify(errors));
+                console.error(JSON.stringify(errors));               
             }
         });
-
+        
         $A.enqueueAction(action);
     }
-
-        
+    
 })
