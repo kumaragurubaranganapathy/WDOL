@@ -331,6 +331,86 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Customer Envelopes</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Default_Customer_Envelope</fullName>
+        <active>true</active>
+        <label>Default Customer Envelope</label>
+        <picklistValues>
+            <picklist>Application_Type</picklist>
+            <values>
+                <fullName>Appraisal Management Companies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisers - Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resorts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemeteries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funerals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Misc Payments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshares</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>processed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
