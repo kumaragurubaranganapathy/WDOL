@@ -1579,7 +1579,7 @@
         <field>MUSW__License2__c.license_specific_email_addresses__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<layoutAssignments>
+	    <layoutAssignments>
         <layout>Portal_Article__c-Child Article Layout</layout>
         <recordType>Portal_Article__c.Body</recordType>
     </layoutAssignments>
@@ -1590,7 +1590,10 @@
     <layoutAssignments>
         <layout>Portal_Article__c-Child Article Layout</layout>
         <recordType>Portal_Article__c.Header</recordType>
-    </layoutAssignments>    
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Portal_Article__c-Portal Article Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Portal_Article__c-Portal Article Layout</layout>
         <recordType>Portal_Article__c.Main</recordType>
