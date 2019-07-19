@@ -1,0 +1,61 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="CompletedRequestData" type="Object" /> 
+    <aura:attribute name="CompletedRequestColumns" type="Object"/>
+    <aura:attribute name="dispList" type="List"/>
+    <div class="Completed-Requests">
+        <div class="table-head">Maintenance requests completed in last twelve months</div>
+        <aura:if isTrue="{!v.CompletedRequestData.length}">
+            
+            <div class="table-height slds-p-vertical_medium">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <aura:iteration items="{!v.CompletedRequestColumns}" var="headerData">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
+                                </th> 
+                            </aura:iteration>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <aura:iteration items="{!v.dispList}" var="tableData" indexVar="ind">
+                            <tr class="slds-hint-parent">
+                                <td data-label="Service_Request_Type__c">
+                                    <aura:if isTrue="{!tableData.name}">
+                                        <div class="slds-truncate" title="{!tableData.name}">{!tableData.name}</div>
+                                        <aura:set attribute="else">None</aura:set>
+                                    </aura:if>
+                                </td>        
+                                <td data-label="Service_Request_Type__c">
+                                    <aura:if isTrue="{!tableData.Service_Request_Type__c}">
+                                        <div class="slds-truncate" title="{!tableData.Service_Request_Type__c}">{!tableData.Service_Request_Type__c}</div>
+                                        <aura:set attribute="else">None</aura:set>
+                                    </aura:if>
+                                </td>
+                                <td data-label="License_Type__c">
+                                    <aura:if isTrue="{!tableData.License_Type__c}">
+                                        <div class="slds-truncate" title="{!tableData.License_Type__c}">{!tableData.License_Type__c}</div>
+                                        <aura:set attribute="else">None</aura:set>
+                                    </aura:if>
+                                </td>
+                                <td data-label="LastModifiedDate">
+                                    <aura:if isTrue="{!tableData.endTime}">
+                                        <div class="slds-truncate" title="{!tableData.endTime}">{!tableData.endTime}</div>
+                                        <aura:set attribute="else">None</aura:set>
+                                    </aura:if>
+                                </td>  
+                            </tr> 
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+            <div class="slds-m-vertical_xx-large pagination-wrapper">
+                <c:LnP_Pagination fullList="{!v.CompletedRequestData}" dispList="{!v.dispList}" pgSize="4" />
+            </div>
+            <aura:set attribute="else">
+                <div class="empty-state">You have no completed requests from past 12 months</div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

@@ -1,22 +1,18 @@
 ({
     doInit : function(component, event, helper) {
       var accId = component.get("v.accountId");
-    
       console.log('account id----'+accId);
       console.log("accountId::"+component.get("v.accountId"));  
       helper.fetchData(component,event, helper);
     },
-    renewLicense : function(component, event, helper){ 
+    renewLicense : function(component, event, helper){         
         var ctarget = event.currentTarget;
-        console.log('inside draftLicense::');
-        
-        sessionStorage.setItem("licId", ctarget.getAttribute("data-recordId"));
-        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
-        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
-        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
-        sessionStorage.setItem("applicationId", ctarget.getAttribute("data-app"));                                      
-        sessionStorage.setItem("accountRecordID", component.get("v.accountId"));
-        
+          console.log('inside draftLicense::');
+          sessionStorage.setItem("licId", ctarget.getAttribute("data-recordId"));
+          sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+          sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+          sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
+          sessionStorage.setItem("applicationId", ctarget.getAttribute("data-app"));                                      
           var appIsRenewal = ctarget.getAttribute("data-appisRenewal");
           
           var renewreinstate = ctarget.getAttribute("data-renewereinstate");

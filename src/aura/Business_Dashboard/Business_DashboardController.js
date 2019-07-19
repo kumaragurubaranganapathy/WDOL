@@ -1,8 +1,11 @@
 ({
 	doInit : function(component, event, helper) {
 		helper.getRecordTypeId(component,event,helper);
-        helper.fetchData(component,event, helper);
+        helper.fetchData(component,event, helper);        
 	},
+    doRender : function(component,event,helper){
+        helper.doRender(component,event);
+    },
     
     handleActive : function(component,event,helper){
       helper.handleActive(component,event,helper);  
@@ -10,8 +13,13 @@
     
     handleLicenseLink :  function(component,event,helper){
      /*var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
+        var result = component.get("v.mainAccountName");
+        var evt = $A.get("e.c:Dol_FetchAccountName");
+        evt.setParams({ "acccountName": result});
+        evt.fire();
+        
      window.open(link, "_self");*/
-     var accId = component.get("v.selectedAccount");
+        var accId = component.get("v.selectedAccount");
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": "/licenseSelectionPage?accId="+accId
@@ -113,5 +121,20 @@
 	},
     updateContactInfo: function(component, event, helper) {
 		helper.updateContactInfo(component, event, helper);
-	}
+	},
+    getAccountName : function (component,event,helper) {
+      helper.getAccountName(component, event, helper);  
+    },
+    BillingCode : function (component,event,helper) {
+      helper.BillingCode(component, event, helper);  
+    },
+    showMoreActions : function(component,event,helper){
+        helper.showMoreActions(component,event);
+    },
+    showMoreDashboard : function(component,event,helper){
+    	helper.showMoreDashboard(component,event);
+    },
+    showMoreAMR : function(component,event,helper){
+    	helper.showMoreAMR(component,event);
+    }
 })

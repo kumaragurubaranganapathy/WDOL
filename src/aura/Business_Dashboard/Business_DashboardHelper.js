@@ -69,20 +69,20 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
-                    
-                    var accountMap = response.getReturnValue();
-                    
-                     console.log('dataAccount::'+selectedAccountId+'   '+JSON.stringify(accountMap));
-                     
-                    if(accountMap!=null){
-                        
-                        var accountvar = accountMap["Account"][0];
-                        
-                        component.set("v.SelectedAccountDetails",accountvar); 
-                        component.set("v.mainAccountName",accountMap["Account"][0].Name);
-                        component.set("v.ParcelObj",accountMap);
-                        component.set("v.isCourseProvider",accountMap["Account"][0].Course_Provider__c);
                 
+                var accountMap = response.getReturnValue();
+                
+                console.log('dataAccount::'+selectedAccountId+'   '+JSON.stringify(accountMap));
+                
+                if(accountMap!=null){
+                    
+                    var accountvar = accountMap["Account"][0];
+                    
+                    component.set("v.SelectedAccountDetails",accountvar);
+                    component.set("v.mainAccountName",accountMap["Account"][0].Name);
+                    component.set("v.ParcelObj",accountMap);
+                    component.set("v.isCourseProvider",accountMap["Account"][0].Course_Provider__c);
+                    
                 }
             }
             
@@ -91,6 +91,12 @@
         $A.enqueueAction(action);
     },
     
+    getAccountName : function (component,event,helper) {
+        var result = component.get("v.mainAccountName");
+        var evt = $A.get("e.c:LnP_FetchAccounId");
+        evt.setParams({ "Show_AccountName": result});
+        evt.fire();
+    },
     navigateToScreenOne : function (component,event,helper) {
         component.set("v.screenOne", true);
         component.set("v.screenTwo", false);
@@ -113,6 +119,7 @@
         component.set("v.screenThree", true);
         component.set("v.courseDetail",false);
     },
+    
     
     getLicenseDetails : function(component,event,helper){
         var action = component.get("c.getLicenseData");
@@ -181,10 +188,18 @@
         var acctId = component.get("v.SelectedAccountDetails.Id");
         var key = 'businesscontact' ;
         window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+acctId+'&par2='+key;
-	},
+    },
+    
+    BillingCode: function(component, event, helper) {
+        var acctId = component.get("v.SelectedAccountDetails.Id");
+        var key = 'billingcode' ;
+        
+        window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+acctId+'&par2='+key;
+       thirdpartybillingcode= true;
+    },
     
     handleActive : function(component,event,helper){
-         var tab = event.getSource();
+        var tab = event.getSource();
         switch (tab.get('v.id')) {
             case 'Courses' :
                 var attr = {accountId: component.get("v.selectedAccount")};
@@ -212,7 +227,7 @@
                 break;
                 
             case 'Pending Applications':
-               var attr = {accountId: component.get("v.selectedAccount")};
+                var attr = {accountId: component.get("v.selectedAccount")};
                 this.injectComponent('c:BusinessDetails_PendingApplications',attr, tab);
                 break;
             case 'Exam':
@@ -230,6 +245,39 @@
                 throw new Error(error);
             }
         });
+    },   
+    /*doRender : function(component,event){
+        var actions = component.find("action-item");
+        actions.forEach(function(element){
+            var elem = element.getElement();
+            if(parseInt(elem.dataset.index)>3)
+                $A.util.addClass(elem,'slds-hide');
+        });
+        console.log("actions="+actions);
+    },  */
+    showMoreActions : function(component,event){        
+        var bizWrapper = component.find("biz-wrapper"); 
+        $A.util.toggleClass(bizWrapper,'expanded-actions');
+        /*var actions = component.find("action-item");
+        var flag = component.get("v.expandedMenu");        
+        
+        actions.forEach(function(element){
+            var elem = element.getElement();
+            if(parseInt(elem.dataset.index)>3)
+                if(flag)
+                $A.util.removeClass(elem,'slds-hide');
+            	else
+                    $A.util.addClass(elem,'slds-hide'); 
+                 $A.util.toggleClass(elem,'slds-hide');
+        }); */
+        component.set("v.expandedMenu",!component.get("v.expandedMenu"));
+        
+    },
+    showMoreDashboard : function(component,event){
+        component.set("v.showMoreDashboard",!component.get("v.showMoreDashboard"));
+    },
+    showMoreAMR : function(component,event){
+        component.set("v.showMoreAMR",!component.get("v.showMoreAMR"));
     }
     
     
