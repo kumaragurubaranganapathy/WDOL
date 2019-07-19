@@ -706,11 +706,142 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Meeting</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Invitation</fullName>
+        <active>true</active>
+        <label>Invitation</label>
+        <picklistValues>
+            <picklist>MUSW__Outcome__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stayed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Contact Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experience Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment Reminder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal Reminder</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -793,7 +924,285 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invitation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Reminder</fullName>
+        <active>true</active>
+        <label>Reminder</label>
+        <picklistValues>
+            <picklist>MUSW__Outcome__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stayed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Contact Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experience Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment Reminder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal Reminder</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Verification</fullName>
+        <active>true</active>
+        <label>Verification</label>
+        <picklistValues>
+            <picklist>MUSW__Outcome__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stayed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contact Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experience Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invitation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>License Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment Reminder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewal Reminder</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
