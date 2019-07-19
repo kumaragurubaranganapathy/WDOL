@@ -20,8 +20,12 @@
                 <field>Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Lockbox_Amount__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
