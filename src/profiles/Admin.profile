@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <classAccesses>
+	<custom>false</custom>
+	<classAccesses>
         <apexClass>DOL_DynamicPortalArticlesRenderer_Apex</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <custom>false</custom>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Fee__c.Licensee_Email__c</field>
         <readable>true</readable>
