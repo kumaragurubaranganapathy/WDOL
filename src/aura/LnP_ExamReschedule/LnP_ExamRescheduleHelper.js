@@ -1,7 +1,8 @@
 ({
     getEducationHistoryData : function(component, event, helper) {
         var action = component.get("c.getEducationHistoryData");
-        action.setParams({'licenseId': component.get("v.licenseData.Id")});
+        var license_Id = component.get("v.licenseData");
+        action.setParams({'licenseId': license_Id[0].Id });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
