@@ -62,7 +62,8 @@
                                     "insertedReceiptList" : component.getReference("v.insertedReceiptList"),
                                     "numOfPaymentSources" : component.getReference("v.numOfPaymentSources"),
                                     "paymentSourceTotal" : component.getReference("v.paymentSourceTotal"),
-                                    "customerEnvelopeRec" : component.get("v.customerEnvelopeRec")
+                                    "customerEnvelopeRec" : component.get("v.customerEnvelopeRec"),
+                                    "defaultProgramType" : component.get("v.defaultProgramType"),
                                    };
                 helper.createDynamicCompInsideContainer(container, "c:LnP_PaymentSources", attributeMap);
                 break;

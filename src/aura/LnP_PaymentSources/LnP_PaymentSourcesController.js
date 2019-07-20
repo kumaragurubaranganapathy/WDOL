@@ -45,7 +45,7 @@
             }
         }
         if(isVitalCheck){
-            helper.gotoListView(component,event);
+            helper.updateLinkReceiptToCstEnv(component,event);           
         }else {
             var paymentSourceTotal=component.find('paymentSourceTotal').get('v.value');   
             var currentStep = component.get("v.stepNumber");
