@@ -6071,12 +6071,12 @@ CASE( MUSW__AlertCode__c,
         <searchFilterFields>CONTACT.EMAIL</searchFilterFields>
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+		<searchResultsAdditionalFields>CONTACT.BIRTHDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Last_4_Digits_of_SSN__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.ADDRESS2_STREET</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.PHONE3</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Client_Id__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>

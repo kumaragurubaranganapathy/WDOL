@@ -39,10 +39,13 @@
                                         <span>Name: {!item.Name}</span>
                                     </div>
                                     <div class="slds-col slds-text-title_bold">
-                                        <span>Form number: {!item.Form_number__c}</span>
+                                        <span>Form Number: {!item.Form_number__c}</span>
                                     </div>
                                     <div class="slds-col slds-text-title_bold">
-                                        <span><i class="slds-float_right" data-item="{!recRow}" onclick="{!c.panelOpen}">Open</i></span>
+                                        <span>Validation Number: {!item.ValidationNumber__c}</span>
+                                    </div>
+                                    <div class="slds-col slds-text-title_bold">
+                                        <span><i class="slds-float_right slds-type-focus" data-item="{!recRow}" onclick="{!c.panelOpen}" style="color:cornflowerblue">Open</i></span>
                                     </div>
                                     
                                 </div>

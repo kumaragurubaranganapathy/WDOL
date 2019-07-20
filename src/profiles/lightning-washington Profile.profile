@@ -5,6 +5,10 @@
         <tab>MUSW__Deposit__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+	<tabVisibilities>
+        <tab>Miscellaneous_Fee__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
 	<fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Fee__c.Licensee_Email__c</field>
@@ -20,6 +24,11 @@
 		<field>MUSW__Fee_Payment__c.Reapply_Amount__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Deposit__c.ValidationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
 		<field>MUSW__Receipt__c.Adjusted__c</field>

@@ -5,7 +5,7 @@ public class LnP_CustomerEnvelopeDetailPageCtrl {
        // List<MUSW__Deposit__c> depositListToBeUpdated = new List<MUSW__Deposit__c>();
        // Set<Id> licenseIds = new Set<Id>();
         if(recordId != null){
-            depositList = [Select Id,name,Form_number__c,Date__c,Amount__c,Document_type__c,wadol_Program_Type__c,Professional_code__c,License_type__c,Contact__c,MUSW__Account__c,License__c,License__r.Name,Fine_Number__c,Route_to_Miscellaneous_queue__c from MUSW__Deposit__c where Validation_number__c =: recordId];
+            depositList = [Select Id,name,Form_number__c,Date__c,Amount__c,Document_type__c,wadol_Program_Type__c,Professional_code__c,License_type__c,Contact__c,MUSW__Account__c,License__c,License__r.Name,Fine_Number__c,Route_to_Miscellaneous_queue__c,ValidationNumber__c from MUSW__Deposit__c where Validation_number__c =: recordId];
         }
         
         return depositList;
@@ -18,7 +18,7 @@ public class LnP_CustomerEnvelopeDetailPageCtrl {
         List<LnP_Licence_Application__c> licenseApplicationsToBeCreated = new List<LnP_Licence_Application__c>();
         
         if(recordId != null){
-            depositRecordsMap = new Map<Id,MUSW__Deposit__c>([Select Id,name,Status__c,Date__c,Amount__c,Document_type__c,wadol_Program_Type__c,Professional_code__c,License_type__c,Contact__c,MUSW__Account__c,License__c,License_Application__c,Fine_Number__c,Route_to_Miscellaneous_queue__c from MUSW__Deposit__c where Validation_number__c =: recordId]);
+            depositRecordsMap = new Map<Id,MUSW__Deposit__c>([Select Id,name,Status__c,Date__c,Amount__c,Document_type__c,wadol_Program_Type__c,Professional_code__c,License_type__c,Contact__c,MUSW__Account__c,License__c,License_Application__c,Fine_Number__c,Route_to_Miscellaneous_queue__c,ValidationNumber__c from MUSW__Deposit__c where Validation_number__c =: recordId]);
             for(MUSW__Deposit__c dep: depositRecordsMap.values()){
                 if(dep.wadol_Program_Type__c != null && (dep.Contact__c != null || dep.MUSW__Account__c != null)){
                     dep.Status__c = 'completed';
