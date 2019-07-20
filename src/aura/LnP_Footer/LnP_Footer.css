@@ -5,6 +5,9 @@
 .THIS.footerWrapper{
     background: t(LnGFooterColor);
     padding:0 5rem;
+    position:relative;
+    bottom:0;
+    width:100%;
 }
 .THIS .botNav{
     display:flex;
@@ -14,10 +17,9 @@
 .THIS .botNav .footerList{
     display:flex;      
 }
-.THIS .footerListLink{
-    font-family: 'NotoSansTC-Regular';
+.THIS .footerListLink{    
     font-size: 0.625rem;
-    color:t(LnGPrimaryColor);    
+    color:t(actionPanelBG);    
 }
 .THIS .footerListItem{
     padding-right:1.875rem;

@@ -112,7 +112,7 @@
                                                 <div class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide':'slds-col slds-size_12-of-12 field-size qfield-margin in-field recItem'):'slds-col slds-size_12-of-12 field-size qfield-margin recItem in-field')}">
                                                     <label class="{!(rec.required?' required':'')}">{!rec.label}</label> 
                                                     <aura:if isTrue="{!rec.required || rec.regex != null}">
-                                                        <lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide label-hidden':'label-hidden'):'label-hidden')+(rec.required?' required':'')}" onchange="{!c.test}"/>
+                                                        <lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide label-hidden test':'label-hidden'):'label-hidden')+(rec.required?' required':'')}" onchange="{!c.mobileFormat}"/>
                                                         <aura:set attribute="else">
                                                             <lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden checkbox-style" onchange="{!c.inputClick}"/>
                                                         </aura:set>
@@ -126,7 +126,7 @@
                                                 </aura:set>
                                             </aura:if>
                                         </div>	
-                                        <lightning:layout horizontalAlign="left" class="slds-m-top_large addRecbtn ">
+                                        <lightning:layout horizontalAlign="left" class="slds-m-vertical_small addRecbtn ">
                                             <lightning:button class="button-style cancel-button" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
                                             <lightning:button class="{!v.sectionName+' button-style add-button'}" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.validate}"/>
                                         </lightning:layout>

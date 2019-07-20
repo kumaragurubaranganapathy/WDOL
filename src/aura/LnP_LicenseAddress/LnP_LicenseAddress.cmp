@@ -26,7 +26,7 @@
                                                                                  'is_Physical_and_Mailing_Address_Same__c':'',
                                                                                  }"/>
     <aura:attribute name="parcelObject" type="MUSW__Parcel__c" default="{ 'sobjectType': 'MUSW__Parcel__c'}" />
-	<aura:attribute name="licenseId" type="String" />
+    <aura:attribute name="licenseId" type="String" />
     <aura:attribute name="saveAddressList" type="List" />
     <aura:attribute name="allAddressList" type="List" />
     <aura:attribute name="affiliatedLoc" type="Boolean" default="false" />
@@ -64,154 +64,161 @@
     <aura:attribute name="userSelectedAddr" type="String" />
     <aura:attribute name="isSelectedAddrTrue" type ="Boolean" default="false"/>
     <aura:attribute name="isPhysicalAndMailingSame" type ="Boolean" default="false"/>
-    <aura:attribute name="sObjParcel" type="String" default="MUSW__Parcel__c"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
- 
-    <div id="usAddr" class = "usAddress">
-        <div class="address-type">
-            <h1>Your Mailing Address</h1>
-        </div>
-        <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
-            <aura:iteration items="{!v.countryList}" var="countryInstance">
-                <option text="{!countryInstance.label}" value="{!countryInstance.value}"/>
-            </aura:iteration>
-        </lightning:select>
-        <lightning:input title="street" name="street" label="Address Line 1" value="{!v.mailingAddressparcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
-        <lightning:input  name="Unit" label="Address Line 2" value="{!v.mailingAddressparcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
-        <lightning:input name="city" label="City" value="{!v.mailingAddressparcel.MUSW__City__c}" required="true" class="field-size address-fields" />
-        <aura:if isTrue="{!v.isState}">
-            <lightning:select aura:id="statePicklist" name="State" label="State / Territory / Province" value="{!v.defaultState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onStateChange}"> 
-                <aura:iteration items="{!v.stateList}" var="stateInstance">
-                    <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
-                </aura:iteration>
-            </lightning:select>
-        </aura:if>
-        <aura:if isTrue="{!v.isCanadianProvince}">
-            <lightning:select aura:id="canadianProvincePicklist" name="State" label="State / Territory / Province" value="{!v.defaultcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.oncanadianProvinceChange}"> 
-                <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
-                    <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
-                </aura:iteration>
-            </lightning:select>
-        </aura:if>
-        <aura:if isTrue="{!v.isNotApplicable}">
-            <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
-        </aura:if>
-        <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.mailingAddressparcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
-        <aura:if isTrue="{!v.isOutOfCountry}">
-            <lightning:select aura:id="county" name="county" label="County" value="{!v.mailingAddressparcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
-                <aura:iteration items="{!v.countyList}" var="eachCounty">
-                    <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
-                </aura:iteration>
-            </lightning:select>
-            <aura:set attribute="else">
-                <lightning:input name="county" label="County" value="Out of State" required="true" class="field-size address-fields" disabled = "true"/>
-            </aura:set>
-        </aura:if>
-        <div class="slds-grid slds-p-top_x-large">
-            <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large next-button" value="MAILING ADDRESS"/>
-            <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
-        </div>
-    </div>
-    <br/><br/>
-    <div id="usAddr" class = "usAddress">
-        <div class="address-type">
-            <h1>Your Physical Address</h1>
-        </div>
-        <lightning:input type="checkbox" aura:id="isPhysicalAndMailingSame" name="addrType" class="checkbox-style" value="{!v.physicalAddressParcel.is_Physical_and_Mailing_Address_Same__c}" checked="{!v.isPhysicalAndMailingSame}" label="Physical Address same as Mailing Address" onchange="{!c.autoPopulatePhysicalAddress}"/>
-        <lightning:select aura:id="physicalCountryPicklist" name="country" label="Country" value="{!v.defaultPhysicalCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalCountryChange}"> 
-            <aura:iteration items="{!v.countryList}" var="country">
-                <option text="{!country.label}" value="{!country.value}"/>
-            </aura:iteration>
-        </lightning:select>
-        
-        <lightning:input title="street" name="street" label="Address Line 1" value="{!v.physicalAddressParcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
-        <lightning:input  name="Unit" label="Address Line 2" value="{!v.physicalAddressParcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
-        
-        <lightning:input name="city" label="City" value="{!v.physicalAddressParcel.MUSW__City__c}" required="true" class="field-size address-fields" onblur="{!c.onPhysicalCityChange}"/>
-        <aura:if isTrue="{!v.isPhysicalState}">
-            <lightning:select name="State" label="State / Territory / Province" value="{!v.defaultPhysicalState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalStateChange}"> 
-                <aura:iteration items="{!v.stateList}" var="stateInstance">
-                    <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
-                </aura:iteration>
-            </lightning:select>
-        </aura:if>
-        <aura:if isTrue="{!v.isPhysicalCanadianProvince}">
-            <lightning:select name="State" label="State / Territory / Province" value="{!v.defaultPhysicalcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalcanadianProvinceChange}"> 
-                <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
-                    <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
-                </aura:iteration>
-            </lightning:select>
-        </aura:if>
-        <aura:if isTrue="{!v.isPhysicalNotApplicable}">
-            <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
-        </aura:if>
-        <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.physicalAddressParcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
-        <aura:if isTrue="{!v.isPhysicalOutOfCountry}">
-            <lightning:select aura:id="county" name="county" label="County" value="{!v.physicalAddressParcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
-                <aura:iteration items="{!v.physicalAddressCounty}" var="eachCounty">
-                    <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
-                </aura:iteration>
-            </lightning:select>
-            <aura:set attribute="else">
-                <lightning:input name="county" label="County" value="Out of State" required="true" class="field-size address-fields" disabled = "true"/>
-            </aura:set>
-        </aura:if>
-        <div class="slds-grid slds-p-top_x-large">
-            <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large next-button" value="PHYSICAL ADDRESS"/>
-            <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium next-button"/>
-        </div> 
-    </div>
+    <aura:attribute name="sObjParcel" type="String" default="MUSW__Parcel__c"/>    
     
-    <aura:if isTrue="{!v.isAddrVerification == 'YES'}"> 
-        <c:Dol_AddressVerificationCmp applicationId="{!v.applicationId}"/>
-    </aura:if>
-    <aura:if isTrue="{!v.isAddAddressClicked}">
-        <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
-            <div class="slds-modal__container">
-                <div class="slds-modal__header">
-                    <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
-                    <aura:if isTrue = "{!v.isAddressDiff}">
-                        <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
-                    </aura:if>
-                </div>
-                <div class="slds-modal__content slds-p-around--medium">
-                    <fieldset class="slds-form-element">
-                        <legend class="slds-form-element__legend slds-form-element__label"></legend>
-                        <div class="slds-form-element__control slds-list_horizontal">
-                            <span class="slds-radio">
-                                <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
-                                <label class="slds-radio__label" for="original">
-                                    <span class="slds-radio_faux"></span>
-                                    <span class="slds-form-element__label">Original Address</span>
-                                    <br/>
-                                    <span id= "old" class="slds-form-element__label">{!v.originalAddress}</span>
-                                </label>
-                            </span>
-                        </div><br/>
-                        <div></div>
-                        <div class="slds-form-element__control slds-list_horizontal">
-                            <span class="slds-radio">
-                                <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
-                                <label class="slds-radio__label" for="suggested">
-                                    <span class="slds-radio_faux"></span>
-                                    <span class="slds-form-element__label">Suggested Address</span><br/>
-                                    <span id= "new" class="slds-form-element__label"><aura:unescapedHtml value="{!v.suggestedAddress}" /></span>
-                                </label>
-                            </span>
-                        </div>
-                    </fieldset>
-                    <lightning:layout horizontalAlign="center">
-                        <lightning:layoutitem padding="around-small">
-                            <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
-                        </lightning:layoutitem>
-                    </lightning:layout>
-                </div>
-                
-                <div class="slds-modal__footer">
-                    <lightning:button variant="neutral" label="Back" onclick="{!c.handleCancel}"/>
-                </div>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
+        <div id="usAddr" class ="usAddress">
+            <div class="address-type">
+                <h1>Your Mailing Address</h1>
+            </div>
+            <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
+                <aura:iteration items="{!v.countryList}" var="countryInstance">
+                    <option text="{!countryInstance.label}" value="{!countryInstance.value}"/>
+                </aura:iteration>
+            </lightning:select>
+            <lightning:input title="street" name="street" label="Address Line 1" value="{!v.mailingAddressparcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
+            <lightning:input  name="Unit" label="Address Line 2" value="{!v.mailingAddressparcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
+            <lightning:input name="city" label="City" value="{!v.mailingAddressparcel.MUSW__City__c}" required="true" class="field-size address-fields" />
+            <aura:if isTrue="{!v.isState}">
+                <lightning:select aura:id="statePicklist" name="State" label="State / Territory / Province" value="{!v.defaultState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onStateChange}"> 
+                    <aura:iteration items="{!v.stateList}" var="stateInstance">
+                        <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+            <aura:if isTrue="{!v.isCanadianProvince}">
+                <lightning:select aura:id="canadianProvincePicklist" name="State" label="State / Territory / Province" value="{!v.defaultcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.oncanadianProvinceChange}"> 
+                    <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
+                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+            <aura:if isTrue="{!v.isNotApplicable}">
+                <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
+            </aura:if>
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.mailingAddressparcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            <aura:if isTrue="{!v.isOutOfCountry}">
+                <lightning:select aura:id="county" name="county" label="County" value="{!v.mailingAddressparcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
+                    <aura:iteration items="{!v.countyList}" var="eachCounty">
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                    </aura:iteration>
+                </lightning:select>
+                <aura:set attribute="else">
+                    <lightning:input name="county" label="County" value="Out of State" required="true" class="field-size address-fields" disabled = "true"/>
+                </aura:set>
+            </aura:if>
+            <div class="slds-grid slds-p-top_medium">
+                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
+                <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn"/>
             </div>
         </div>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </aura:if>
+        <br/><br/>
+        <div id="usAddr" class = "usAddress">
+            <div class="address-type">
+                <h1>Your Physical Address</h1>
+            </div>
+            <lightning:input type="checkbox" aura:id="isPhysicalAndMailingSame" name="addrType" class="checkbox-style" value="{!v.physicalAddressParcel.is_Physical_and_Mailing_Address_Same__c}" checked="{!v.isPhysicalAndMailingSame}" label="Physical Address same as Mailing Address" onchange="{!c.autoPopulatePhysicalAddress}"/>
+            <lightning:select aura:id="physicalCountryPicklist" name="country" label="Country" value="{!v.defaultPhysicalCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalCountryChange}"> 
+                <aura:iteration items="{!v.countryList}" var="country">
+                    <option text="{!country.label}" value="{!country.value}"/>
+                </aura:iteration>
+            </lightning:select>
+            
+            <lightning:input title="street" name="street" label="Address Line 1" value="{!v.physicalAddressParcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
+            <lightning:input  name="Unit" label="Address Line 2" value="{!v.physicalAddressParcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
+            
+            <lightning:input name="city" label="City" value="{!v.physicalAddressParcel.MUSW__City__c}" required="true" class="field-size address-fields" onblur="{!c.onPhysicalCityChange}"/>
+            <aura:if isTrue="{!v.isPhysicalState}">
+                <lightning:select name="State" label="State / Territory / Province" value="{!v.defaultPhysicalState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalStateChange}"> 
+                    <aura:iteration items="{!v.stateList}" var="stateInstance">
+                        <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+            <aura:if isTrue="{!v.isPhysicalCanadianProvince}">
+                <lightning:select name="State" label="State / Territory / Province" value="{!v.defaultPhysicalcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalcanadianProvinceChange}"> 
+                    <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
+                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+            <aura:if isTrue="{!v.isPhysicalNotApplicable}">
+                <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
+            </aura:if>
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.physicalAddressParcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            <aura:if isTrue="{!v.isPhysicalOutOfCountry}">
+                <lightning:select aura:id="county" name="county" label="County" value="{!v.physicalAddressParcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
+                    <aura:iteration items="{!v.physicalAddressCounty}" var="eachCounty">
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                    </aura:iteration>
+                </lightning:select>
+                <aura:set attribute="else">
+                    <lightning:input name="county" label="County" value="Out of State" required="true" class="field-size address-fields" disabled = "true"/>
+                </aura:set>
+            </aura:if>
+            <div class="slds-grid slds-p-top_medium borderBtn">
+                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
+                <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn"/>
+            </div> 
+        </div>
+        
+        <aura:if isTrue="{!v.isAddrVerification == 'YES'}"> 
+            <c:Dol_AddressVerificationCmp applicationId="{!v.applicationId}"/>
+        </aura:if>
+        <aura:if isTrue="{!v.isAddAddressClicked}">
+            <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                        <aura:if isTrue = "{!v.isAddressDiff}">
+                            <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
+                        </aura:if>
+                    </div>
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <fieldset class="slds-form-element">
+                            <legend class="slds-form-element__legend slds-form-element__label"></legend>
+                            <div class="slds-form-element__control slds-list_horizontal">
+                                <span class="slds-radio">
+                                    <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
+                                    <label class="slds-radio__label" for="original">
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">Original Address</span>
+                                        <br/>
+                                        <span id= "old" class="slds-form-element__label">{!v.originalAddress}</span>
+                                    </label>
+                                </span>
+                            </div><br/>
+                            <div></div>
+                            <div class="slds-form-element__control slds-list_horizontal">
+                                <span class="slds-radio">
+                                    <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
+                                    <label class="slds-radio__label" for="suggested">
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">Suggested Address</span><br/>
+                                        <span id= "new" class="slds-form-element__label"><aura:unescapedHtml value="{!v.suggestedAddress}" /></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </fieldset>
+                        <lightning:layout horizontalAlign="center">
+                            <lightning:layoutitem padding="around-small">
+                                <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                            </lightning:layoutitem>
+                        </lightning:layout>
+                    </div>
+                    
+                    <div class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="Back" onclick="{!c.handleCancel}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>     
+        
+            
+              
+        
+   
 </aura:component>
