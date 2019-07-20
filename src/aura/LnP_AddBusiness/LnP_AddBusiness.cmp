@@ -24,7 +24,7 @@
                                                                {"lName":"Business_Website__c", "Required__c":false, "Error_Message__c":"", "ValidationCriteria__c":"", "Regex_Validation__c":""}]' />  
     <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" />
     <div class="">
-        <lightning:button name="Add Business" label="Add Business" class="add-biz-btn" onclick="{!c.handleClick}" />
+        <lightning:button name="Add Business" label="Add Business" variant="brand" class="add-biz-btn" onclick="{!c.handleClick}" />
     </div>
      <aura:if isTrue="{!v.isOpen}">
             
