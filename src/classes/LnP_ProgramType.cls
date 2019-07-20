@@ -1,4 +1,4 @@
-public class LnP_ProgramType{
+public with sharing class LnP_ProgramType{
     
     @AuraEnabled
     public Static Map<String, List<String>> getDependency(sObject objDetail, string contrfieldApiName,string depfieldApiName){
@@ -31,32 +31,7 @@ public class LnP_ProgramType{
         Return mapOptions;
         
     } 
-    /*
-@AuraEnabled         
-public static Map<String,Map<String, String>> getDefaultProgramType() {
-Map<String,Map<String, String>>  mapOptions = new Map<String,Map<String, String>>();
-
-Map<String, String> defaultProgramTypeMap = new Map<String, String>();
-Schema.DescribeFieldResult defaultProgramResult = Customer_Envelope__c.wadol_DefaultProgramType__c.getDescribe();
-List<Schema.PicklistEntry> defaultProgramValues = defaultProgramResult.getPicklistValues();
-for(Schema.PicklistEntry p: defaultProgramValues){
-//Put Picklist Value & Label in Map
-defaultProgramTypeMap.put(p.getValue(), p.getLabel());
-}
-
-Map<String, String> statusMap = new Map<String, String>();
-Schema.DescribeFieldResult statusResult = Customer_Envelope__c.Status__c.getDescribe();
-List<Schema.PicklistEntry> statusValues = statusResult.getPicklistValues();
-for(Schema.PicklistEntry p: statusValues){
-//Put Picklist Value & Label in Map
-statusMap.put(p.getValue(), p.getLabel());
-}
-mapOptions.put('PROGRAMTYPE',defaultProgramTypeMap);
-mapOptions.put('STATUS',statusMap);
-
-Return mapOptions;
-
-}   */ 
+    
     @AuraEnabled 
     public static Map<String, String> getPayment() {
         Map<String, String> mapOptions = new Map<String, String>();
@@ -95,21 +70,6 @@ Return mapOptions;
         Return mapOptions;
     } 
     
-    /*   @AuraEnabled
-public static Customer_Envelope__c getcustomerEnvelopeInfo(){
-system.debug('inside the controller');
-Customer_Envelope__c customerEnvelpe=[SELECT id,Date_Today_s__c FROM Customer_Envelope__c LIMIT 1];
-system.debug('return is' +customerEnvelpe);
-return customerEnvelpe;
-}*/
-    
-    /*@AuraEnabled
-    public static MUSW__Receipt__c getReceiptInfo(){
-        system.debug('inside the controller');
-        MUSW__Receipt__c receiptInfo=[SELECT id,Date_Today_s__c FROM MUSW__Receipt__c LIMIT 1];
-        system.debug('return is' +receiptInfo);
-        return receiptInfo;
-    }*/
     
     @AuraEnabled
     public static MUSW__Deposit__c getDepositInfo(){
@@ -174,41 +134,49 @@ return customerEnvelpe;
         system.debug('List<MUSW__Deposit__c> : '+ depRecLstArr);
         system.debug('Customer_Envelope__c : '+ customerEnvelopeRec);
         system.debug('Customer_Envelope__c id is: '+ customerEnvelopeRec.Id);
+        system.debug('customerEnvelopeRec.Validation_number__c : '+ customerEnvelopeRec.Validation_number__c);
         system.debug('parentRecordId is: '+ parRecordId);
         String lockBoxId= parRecordId;
         
         system.debug('lockBoxId---> is: '+ lockBoxId);
-        createPayableReceipt(recRecLstArr,depRecLstArr);
-        
+        if( recRecLstArr != null && depRecLstArr != null){
+            createPayableReceipt(recRecLstArr,depRecLstArr);
+        }        
         //customerEnvelopeRec.wadol_DefaultProgramType__c= programType; 
-      
+        
         if(lockBoxId !=null){
             system.debug('inside if');
             customerEnvelopeRec.Lockbox_Envelope__c=lockBoxId;
         }
-        update customerEnvelopeRec  ;
+        if(customerEnvelopeRec != null){
+            update customerEnvelopeRec  ;
+        }
         system.debug('updated customerEnvelopeRec '+customerEnvelopeRec);
-        
-        list<MUSW__Deposit__c> updateDepLst = new list<MUSW__Deposit__c>();
-        for(MUSW__Deposit__c d : depRecLstArr){
-            //MUSW__Deposit__c d = new MUSW__Deposit__c(id = dep.id);
-            d.Validation_number__c = customerEnvelopeRec.ID;
-            updateDepLst.add(d);
+        if(depRecLstArr != null && !depRecLstArr.isEmpty()){
+            list<MUSW__Deposit__c> updateDepLst = new list<MUSW__Deposit__c>();
+            for(MUSW__Deposit__c d : depRecLstArr){            
+                d.Validation_number__c = customerEnvelopeRec.ID;
+                d.ValidationNumber__c = customerEnvelopeRec.Validation_number__c;
+                updateDepLst.add(d);
+            }
+            if(!updateDepLst.isEmpty()){
+                update updateDepLst;  
+                system.debug('updateDepLst : '+updateDepLst);
+            } 
         }
-        if(!updateDepLst.isEmpty()){
-            update updateDepLst;  
-            system.debug('updateDepLst : '+updateDepLst);
-        }  
         
-        list<MUSW__Receipt__c> updateRecLst = new list<MUSW__Receipt__c>();
-        for(MUSW__Receipt__c rec : recRecLstArr){                
-            rec.Validation_number__c = customerEnvelopeRec.ID;
-            updateRecLst.add(rec);
+        if( recRecLstArr != null && !recRecLstArr.isEmpty() ){
+            list<MUSW__Receipt__c> updateRecLst = new list<MUSW__Receipt__c>();
+            for(MUSW__Receipt__c rec : recRecLstArr){                
+                rec.Validation_number__c = customerEnvelopeRec.ID;
+                updateRecLst.add(rec);
+            }
+            if(!updateRecLst.isEmpty()){
+                update updateRecLst;  
+                system.debug('updateRecLst : '+updateRecLst);
+            } 
         }
-        if(!updateRecLst.isEmpty()){
-            update updateRecLst;  
-            system.debug('updateRecLst : '+updateRecLst);
-        }   
+        
         try{ 
         }catch(exception e){
             system.debug('***EXCEPTION : '+e.getMessage());
@@ -231,13 +199,16 @@ return customerEnvelpe;
     public static void createPayableReceipt(List<MUSW__Receipt__c> recRecLstArr ,List<MUSW__Deposit__c> depRecLstArr){
         //payment receipt logic
         BGBK.Payable[] payables = new BGBK.Payable[]{};
-            for (MUSW__Deposit__c dep : depRecLstArr){              
-                payables.add(new BGBK.Payable(dep, dep.Amount__c));               
+            if(!depRecLstArr.isEmpty()){
+                for (MUSW__Deposit__c dep : depRecLstArr){              
+                    payables.add(new BGBK.Payable(dep, dep.Amount__c));               
+                } 
             }
-        
         Map<MUSW__Receipt__c, Decimal> receiptMap = new Map<MUSW__Receipt__c, Decimal>();
-        for(MUSW__Receipt__c rec : recRecLstArr){
-            receiptMap.put(rec, rec.MUSW__Amount_Tendered__c);
+        if(!recRecLstArr.isEmpty()){                  
+            for(MUSW__Receipt__c rec : recRecLstArr){
+                receiptMap.put(rec, rec.MUSW__Amount_Tendered__c);
+            }            
         }
         
         DateTime myDateTime = DateTime.newInstance(2000, 7, 7, 7, 8, 12);   
@@ -247,78 +218,6 @@ return customerEnvelpe;
         paymentServiceObj.processPayment(payables, receiptMap,null,myDateTime);
         //  global virtual Boolean processPayment(List<BGBK.Payable> payables, Map<MUSW__Receipt__c,Decimal> receiptAmounts, Id payerAccountId, Datetime processingDatetime) {
         
-        /*  public void preparePayables(){
-System.debug(' inside preparePayables'); 
-System.debug(' fee '+feeVos);
-System.debug(' invoiceVos '+invoiceVos);
-System.debug(' depositVOs '+depositVOs);
-
-payables = new BGBK.Payable[]{};
-
-for (FeeVO fvo : feeVos) if (fvo.isSelected && fvo.paymentAmount>0) payables.add(new BGBK.Payable(fvo.f, fvo.paymentAmount));
-for (InvoiceVO ivo : invoiceVos) if (ivo.isSelected && ivo.paymentAmount>0) payables.add(new BGBK.Payable(ivo.i, ivo.paymentAmount));
-for (DepositVO depVO : depositVOs){
-if(depVO.isSelected){
-payables.add(new BGBK.Payable(depVO.deposit, depVO.paymentAmount));
-}
-}
-}*/
-        /*
-        //old code
-        list<MUSW__Payable_Receipt__c> payList = new list<MUSW__Payable_Receipt__c>();
-        
-        
-        for(integer r=0 ; r < recRecLstArr.size() ; r++ ){
-            decimal receiptAmountDiff = recRecLstArr[r].MUSW__Amount_Tendered__c;
-            
-            for(integer d=0 ; d < depRecLstArr.size(); d++ ){
-                
-                if(depRecLstArr[d].Amount__c != 0) {
-                    
-                    if( receiptAmountDiff == depRecLstArr[d].Amount__c){
-                        MUSW__Payable_Receipt__c pay = new MUSW__Payable_Receipt__c();
-                        pay.MUSW__Receipt__c = recRecLstArr[r].Id;       
-                        pay.MUSW__Deposit__c = depRecLstArr[d].Id; 
-                        pay.MUSW__Amount__c = receiptAmountDiff;                           
-                        depRecLstArr[d].Amount__c = 0;
-                        system.debug('pay : 1'+ pay);
-                        payList.add(pay);  
-                        break;
-                        
-                    }
-                    
-                    if(receiptAmountDiff > depRecLstArr[d].Amount__c){
-                        MUSW__Payable_Receipt__c pay = new MUSW__Payable_Receipt__c();
-                        pay.MUSW__Receipt__c = recRecLstArr[r].Id;       
-                        pay.MUSW__Deposit__c = depRecLstArr[d].Id; 
-                        pay.MUSW__Amount__c = depRecLstArr[d].Amount__c;
-                        receiptAmountDiff = receiptAmountDiff - depRecLstArr[d].Amount__c ;
-                        depRecLstArr[d].Amount__c = 0;
-                        system.debug('pay : 2'+ pay);
-                        payList.add(pay);  
-                        continue;
-                    }
-                    
-                    if(receiptAmountDiff < depRecLstArr[d].Amount__c){
-                        MUSW__Payable_Receipt__c pay = new MUSW__Payable_Receipt__c();
-                        pay.MUSW__Receipt__c = recRecLstArr[r].Id;       
-                        pay.MUSW__Deposit__c = depRecLstArr[d].Id; 
-                        pay.MUSW__Amount__c = receiptAmountDiff;
-                        depRecLstArr[d].Amount__c = depRecLstArr[d].Amount__c - receiptAmountDiff;
-                        system.debug('pay : 3'+ pay);
-                        payList.add(pay);  
-                        break; 
-                    }
-                }
-                
-            }
-        }      
-        if(!payList.isEmpty()){
-            insert payList; 
-            system.debug('inserted pList : '+payList);
-        }  
-        */
-        //payment receipt logic ends
     }
     
     

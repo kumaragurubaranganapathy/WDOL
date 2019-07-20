@@ -10,7 +10,7 @@
      <aura:attribute name="receiptList" type="List"/>
      <aura:attribute name="receiptRec" type="MUSW__Receipt__c" />    
      <aura:attribute name="insertedReceiptList" type="List" access="public"  />  
-    
+     <aura:attribute name="defaultProgramType" type="String" access="public"  />
     <aura:attribute name="stepNumber" type="String" access="public"/>
     
     <!-- added by rishap -->
@@ -66,7 +66,7 @@
                 </thead>   
                 <tbody>
                     <aura:iteration items="{!v.receiptList}" var="item" indexVar="index">
-                        <c:LnP_PaymentSourcesChildRowCmp receiptRec="{#item}" rowIndex="{!index}" paymentMethodMap="{!v.paymentMethodMap}"
+                        <c:LnP_PaymentSourcesChildRowCmp receiptRec="{!item}" rowIndex="{!index}" paymentMethodMap="{!v.paymentMethodMap}"
                                                          disableNext="{!v.isDisabled}"/>
                         <br/>
                     </aura:iteration>

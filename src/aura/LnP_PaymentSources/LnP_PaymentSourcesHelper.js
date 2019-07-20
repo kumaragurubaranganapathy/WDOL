@@ -49,6 +49,24 @@
                     }
                 }
                 component.set("v.insertedReceiptList",_insertedReceiptList);
+                
+                //to clear the non saved data 
+                var _receiptList = component.get("v.receiptList"); 
+                var _receiptList_size = _receiptList.length;
+                for(var i=0 ; i < _receiptList_size ;i++){                   
+                    if(!("Id" in _receiptList[i])){
+                        _receiptList[i].MUSW__Amount_Tendered__c = '';
+                        _receiptList[i].MUSW__Check_Number__c = '';
+                        _receiptList[i].MUSW__Payment_Method__c = '';
+                        _receiptList[i].IAP_Doc__c = '';
+                        _receiptList[i].Sender_Agency__c = '';
+                        _receiptList[i].License_Number__c = '';
+                        _receiptList[i].Applicant_Name__c = '';
+                        _receiptList[i].JV_Number__c = '';
+                    }
+                }
+                component.set("v.receiptList",_receiptList); 
+                 
                 this.updateFields(component, event,_callType); 
             }
             
@@ -161,6 +179,35 @@
         }
         
     } ,
+    updateLinkReceiptToCstEnv : function(component,event){
+        debugger;
+          component.set("v.showSpinner", true);
+        var _insertedReceiptList = component.get("v.insertedReceiptList"); 
+        var _customerEnvelopeRec = component.get("v.customerEnvelopeRec");       
+        _customerEnvelopeRec['Number_of_payments__c'] = component.get("v.numOfPaymentSources");
+        _customerEnvelopeRec['Total_amount__c'] = component.get("v.paymentSourceTotal");
+        _customerEnvelopeRec['wadol_DefaultProgramType__c'] = component.get("v.defaultProgramType");
+        var action = component.get("c.updateEnvelopRec");       
+        action.setParams({
+            "programType" : null,
+            "recRecLstArr" : _insertedReceiptList,
+            "depRecLstArr": null,
+            "customerEnvelopeRec" : _customerEnvelopeRec,
+            "parRecordId" : null
+            
+        });  
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            var _toastEvt = component.getEvent("toastEvt");
+            _toastEvt.setParams({'state' : state , 'data' : 'Customer Envelope record created.' });
+            _toastEvt.fire();
+            component.set("v.showSpinner", false);            
+            if (state === "SUCCESS") {                              
+                this.gotoListView(component,event);
+            }
+        });
+        $A.enqueueAction(action);
+    },
     gotoListView : function(component,event){
         var action = component.get("c.getObjViews");
         action.setCallback(this, function(response){
