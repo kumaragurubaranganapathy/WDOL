@@ -208,6 +208,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+	<fullName>CustomerEnvelope__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Envelope</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Description_Long__c</fullName>
         <externalId>false</externalId>
         <label>Description Long</label>
