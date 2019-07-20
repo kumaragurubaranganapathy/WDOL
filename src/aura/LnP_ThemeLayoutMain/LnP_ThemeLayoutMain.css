@@ -87,9 +87,6 @@
     display:flex;
     align-items:center;
 }
-.THIS .slds-tabs_default__overflow-button{
-    display:none;
-}
 /*common style for tabs end*/
 .THIS .slds-button.slds-button_brand{
     background:t(linksColor);
@@ -102,6 +99,11 @@
     border-radius:4px;
     color:t(buttonNeutral);
     border : solid 1px t(buttonNeutral);
+}
+.THIS .slds-max-medium-table_stacked td:before, .THIS .slds-max-medium-table_stacked th:before{
+    text-transform:capitalize;
+    color:t(LnGFormTitleColor);
+    font-weight:bold;
 }
 @media t(mqSmall){
     .THIS .slds-table tbody td{

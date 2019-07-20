@@ -40,7 +40,7 @@
     min-height:100vh;
 }
 .THIS .themeContainer{
-    min-height:calc(100vh - 150px);
+    min-height:calc(100vh - 106px);
 }
 .THIS .full-body .slds-col--padded.contentRegion{
     padding:0;
@@ -279,6 +279,11 @@
     background-color:t(primary);
     color:#fffffe;
     height:42px;    
+}
+.THIS .slds-max-medium-table_stacked td:before, .THIS .slds-max-medium-table_stacked th:before{
+    text-transform:capitalize;
+    color:t(LnGFormTitleColor);
+    font-weight:bold;
 }
 
 /*.THIS select option{ 
