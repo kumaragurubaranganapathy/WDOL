@@ -144,7 +144,7 @@
 <div class="screen-title">
 Professional Dashboard
 </div>
-<nav role="navigation" aria-label="Breadcrumbs" class="breadcrumb-nav">
+<nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
 <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
    <li class="slds-breadcrumb__item slds-var-p-right_xx-small">
        <a href="javascript:void(0);" class="{!v.DisplayLicense_Details?'breadcrumb-style':'slds-hide'}"

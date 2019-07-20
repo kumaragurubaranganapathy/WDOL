@@ -1,36 +1,67 @@
 .THIS .slds-path__item{
-    min-width: 0;
-  margin-right:0;
-  
+  min-width: 0;
+margin-right:0;
+
+}
+.THIS .slds-path__nav{
+  padding:0 27px;
+}
+.THIS .six-circles hr{
+  width: calc(100%/6);
+  margin: 24px 0;
+  position: relative;
+  top: -7px;
+}
+.THIS .six-circles .slds-path__title{
+white-space:normal;
+left:-14px;
+}
+.THIS .five-circles hr{
+  width: calc(100%/5);
+  margin: 24px 0;
+  position: relative;
+  top: -7px;
+}
+.THIS .four-circles hr{
+  width: calc(100%/4);
+  margin: 24px 0;
+  position: relative;
+  top: -7px;
+}
+.THIS .three-circles hr{
+  width: calc(100%/3);
+  margin: 24px 0;
+  position: relative;
+  top: -7px;
 }
 .THIS .success li {
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  line-height: 2em;
-  border-radius:5rem;
-  background: dodgerblue;
-  margin: 0 1em;
-  display: inline-block;
-  color: white;
-  position: relative;
-    box-shadow:0 0 0 1px red;
-    box-sizing:border-box;
+width: 2rem;
+height: 2rem;
+text-align: center;
+line-height: 2em;
+border-radius:5rem;
+background: dodgerblue;
+margin: 0 1em;
+display: inline-block;
+color: white;
+position: relative;
+  box-shadow:0 0 0 1px red;
+  box-sizing:border-box;
 
 }
 
 .THIS .success li::before{
-  content:'';
-  position: absolute;
-  top: .9em;
-  left: -4em;
-  width: 4em;
-  height: .2em;
-  background: dodgerblue;
-  z-index: -1;
+content:'';
+position: absolute;
+top: .9em;
+left: -4em;
+width: 4em;
+height: .2em;
+background: dodgerblue;
+z-index: -1;
 }
 .THIS .success li:first-child::before {
-  display: none;
+display: none;
 }
 .THIS .success .test{
 position:absolute;
@@ -38,138 +69,148 @@ display:flex;
 color:black;
 }
 .THIS .slds-path__title{
-    overflow:inherit;white-space: inherit;
+  overflow: visible;
+  white-space: nowrap;
+  width: 0;
+  position: relative;
+  left: -56px;
 }
+
 .THIS .icon{
-    vertical-align: middle;
-   /* height: 50px;*/
+  vertical-align: middle;
+ /* height: 50px;*/
 }
 .THIS .slds-path__nav{
-   /*margin: 0 135px;*/
-    margin:0;
+    margin: 0 auto;
+  width: 90%;
+  overflow: visible;
 }
 .THIS .pathwidth{
-    max-width: 65%;
-    margin: 0 auto;
-    margin-top:2rem;
+  max-width: 65%;
+  margin: 0 auto;
+  padding-bottom:25px;
+  padding-top:25px;
 }
 .THIS .subsubheader{    
-    color: t(LnGFormTitleColor);
-    font-size:14px;
-    border-bottom:0.5px solid #d6d7d9;
-   
+  color: t(LnGFormTitleColor);
+  font-size:14px;
+ 
+ 
 }
 .THIS .active-path{
-    border-top: 1px solid #2f853d;
+  border-top: 1px solid #2f853d;
 }
 .THIS .is-not-current{
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    /*filter: grayscale(100%);*/
-    opacity: 0.3;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  /*filter: grayscale(100%);*/
+  opacity: 0.3;
 }
 .THIS .is-complete{
-    border: 3px solid green;
-    box-shadow: 0px 0px 20px green;
+  border: 3px solid green;
+  box-shadow: 0px 0px 20px green;
 }
 .THIS .outer-circle {
-	background: #eff1ff;
-	border-radius: 50%;
-	height:27px;
-	width:27px;
-    position: relative;
-    box-shadow: 0 0 0 5px #215393;
-    margin:10px 0;
+background: #eff1ff;
+border-radius: 50%;
+height:16px;
+width:16px;
+  position: relative;
+  box-shadow: 0 0 0 2px #215393;
+  margin:10px 0;
 }
 .THIS .red-circle {
-  height: 27px;
-  width: 27px;
-  background: #eff1ff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 5px #e2574c;
-  margin:10px ;
+height: 16px;
+width: 16px;
+background: #eff1ff;
+border-radius: 50%;
+box-shadow: 0 0 0 2px #e2574c;
+margin:10px ;
 }
 .THIS .green-circle{
-  height: 27px;
-  width: 27px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 5px #2f853d;
-  margin:10px ;
+height: 16px;
+width: 16px;
+border-radius: 50%;
+box-shadow: 0 0 0 2px #2f853d;
+margin:10px;
+background: #2f853d;
 }
 @media t(mqSmall){
-	.THIS .icon{
-        height: 40px;
-	}
-	.THIS hr {
-		width: 20px;
-		margin: 20px 0;
-        
-	}
-	.THIS .inactive-path-title{
-		display: none;
-	}
-	.THIS .is-not-current{
-		display: none;
-	}
-	.THIS .is-complete-path{
-		display: none;
-	}
-	.THIS .slds-path__nav{
-   		margin: 0 10px;
-  }
-  
-  .THIS .pathwidth {
-    width: 100%;
-  }
+.THIS .icon{
+      height: 40px;
 }
-@media only screen and (min-width: 768px) and (max-width: 1023px){
-	.THIS hr {
-		width: 45px;
-		margin: 32px 0;
-	}
-    .THIS .is-complete-path{
-		display: none;
-	}
-	.THIS .inactive-path-title{
-		display: none;
-	}
-	.THIS .is-not-current{
-		display: none;
-	}
+.THIS hr {
+  width: 20px;
+  margin: 20px 0;
+      
 }
 .THIS .inactive-path-title{
-   text-overflow: ellipsis;   
-   color: token(darkgrey);
-   font-size: 14px;
+  display: none;
 }
-.THIS .active-path-title{
-   text-overflow: ellipsis;   
-   color: token(LnGFormTitleColor);
-   font-size: 14px;
-   font-weight:bold;
+.THIS .is-not-current{
+  display: none;
 }
 .THIS .is-complete-path{
-   text-overflow: ellipsis;   
-   color: token(LnGFormTitleColor);
-   font-size: 14px;
+  display: none;
+}
+.THIS .slds-path__nav{
+     margin: 0 10px;
+}
+
+.THIS .pathwidth {
+  width: 100%;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+.THIS hr {
+  width: 45px;
+  margin: 32px 0;
+}
+  .THIS .is-complete-path{
+  display: none;
+}
+.THIS .inactive-path-title{
+  display: none;
+}
+.THIS .is-not-current{
+  display: none;
+}
+}
+.THIS .inactive-path-title{
+ text-overflow: ellipsis;   
+ color: token(darkgrey);
+ font-size: 13px;
+}
+.THIS .active-path-title{
+ text-overflow: ellipsis;   
+ color: token(LnGNameColor);
+ font-size: 13px;
+ font-weight:600;
+}
+.THIS .is-complete-path{
+ text-overflow: ellipsis;   
+ color: token(LnGNameColor);
+ font-size: 13px;
 }
 @media t(mqLarge){
-  .THIS hr {
-    width: 65px;
-    margin: 1.5rem 0;
-  }
-  .THIS .mobile-tab-view{
-	display:none;
-  }
+.THIS hr {
+ 
+  margin: 1.5rem 0;
+  border-top: 1px solid #d6d7d9;
+ width: 65px;
+}
+.THIS .mobile-tab-view{
+display:none;
+}
 }
 .THIS hover{
-   cursor: pointer; 
+ cursor: pointer; 
 }
 .THIS img{
-   cursor: pointer; 
+ cursor: pointer; 
 }
 .THIS span{
-   cursor: pointer; 
+ cursor: pointer; 
 }
 .THIS .mandatory-fields{
-    padding:0 0 20px;
+  padding:0 0 20px;
 }

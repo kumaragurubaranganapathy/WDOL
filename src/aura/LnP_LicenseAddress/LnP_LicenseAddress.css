@@ -5,6 +5,8 @@
     font-size: 16px;
     color:t(LnGFormTitleColor);
 }
+
+ 
 .THIS .address-wrap{
     display:flex;  
     margin: 20px 0;
@@ -13,8 +15,15 @@
     display:flex;
     justify-content:flex-end;
 }
+.THIS .address-type{
+    padding-bottom:1rem;
+    font-size:t(fieldlabelsize);
+}
 .THIS .tile{
     padding:20px;
+}
+.THIS .checkbox-style{
+    padding-bottom:1rem;
 }
 .THIS .tile .typeofaddress .address-title{
     padding-bottom: 5px;

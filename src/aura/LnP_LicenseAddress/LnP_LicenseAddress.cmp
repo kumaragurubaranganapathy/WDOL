@@ -26,7 +26,7 @@
                                                                                  'is_Physical_and_Mailing_Address_Same__c':'',
                                                                                  }"/>
     <aura:attribute name="parcelObject" type="MUSW__Parcel__c" default="{ 'sobjectType': 'MUSW__Parcel__c'}" />
-	<aura:attribute name="licenseId" type="String" />
+    <aura:attribute name="licenseId" type="String" />
     <aura:attribute name="saveAddressList" type="List" />
     <aura:attribute name="allAddressList" type="List" />
     <aura:attribute name="affiliatedLoc" type="Boolean" default="false" />

@@ -1,12 +1,35 @@
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
+.THIS .dispItem .uiOutputRichText{
+     font-size: token(fieldlabelsize);
+     color:t(fieldclr);
+}
+.THIS .validate .uiOutputRichText{
+     font-size: token(fieldlabelsize);
+}
+.THIS .help-text .slds-select_container{
+    width:75%;
+}
+
+.THIS .slds-form-element.slds-dropdown-trigger{
+    display:inline;
+}
 .THIS label{
     font-size: 16px;
+}
+.THIS .review-item{
+    padding-bottom:5px;
+}
+.THIS .WordSection1 span{
+    color:red;
 }
 .THIS .field-item .slds-input{
     border:1px solid #5b616b;
     height:42px;
+}
+.THIS .mandatory-fields{
+    margin-left:8.5rem;
 }
 .THIS .help-text .slds-form-element__label{
     display:none;
@@ -17,25 +40,29 @@
 }
 .THIS .slds-form-element__label{
     font-size: 14px; 
-    color:t(LnGFormGray);
+    color:t(sentenceclr);
     word-break: normal;
     overflow-wrap: normal;
+}
+.THIS .personal-info .review-item .slds-form-element{
+    margin-bottom:13px;
 }
 .THIS .sectionwidth{
     width:100%;
     height:30px;
     border-bottom:0.5px solid #d6d7d9;
+    margin-bottom:1rem;
+   
 }
 .THIS .sectiondetail{
-    margin-top:25px;     
+    margin-bottom:0.5rem;     
 }
 .THIS .field-item.attest-item{
     padding-right:0;
 }
-.THIS .slds-radio .slds-form-element__label{
-	font-size: 17px;
-    color: token(LnGFormTitleColor);
-    font-family: token(publicSansfontfamily);
+
+.THIS .datelabel label{
+    display:none;
 }
 .THIS .slds-radio_faux{
     width:20px;
@@ -46,12 +73,18 @@
     color: token(LnGFormTitleColor);   
     
 }
+.THIS .aff-loc{
+    margin:2rem 0;
+    padding:1rem 0;
+    border-top:solid 1px t(grayBorder);
+}
 .THIS .slds-file-selector__dropzone{
     border:none;
 }
-.THIS .slds-checkbox .slds-checkbox_faux{
+.THIS .personal-info .slds-checkbox .slds-checkbox_faux{
     width:20px;
     height:20px;
+    margin-right:12px;
 }
 .THIS .slds-form-element__control .slds-radio{
     display : inline-block !important;
@@ -79,9 +112,13 @@
     padding-left: 30px;
 }
 .THIS .buttonpos{
-    margin:0 11%;
-    padding-top: 22px;
+    margin:0 9rem;
+    padding-top: 45px;
     padding-bottom: 22px;
+    border-top:1px solid #5b616b;
+}
+.THIS .field-item .cLnP_Attachment{
+    padding-bottom:11%;
 }
 .THIS .pull-right{
     margin-left: auto;
@@ -91,11 +128,14 @@
 	display:inline-block;
     margin-right: .25em; 
 }
-.THIS .revAndSubErrorFont{
+.THIS .revAndSubErrorFont .error-item,.THIS .revAndSubErrorFont{
     padding: 8px 0 20px 0;
     color: red;
-    font-size:14px; 
+    font-size: token(fieldlabelsize);
     font-family: token(publicSansfontfamily);
+}
+.THIS .review-item span{
+    font-size: token(fieldlabelsize);
 }
 .THIS .revAndSubCompletionFont{
     margin:8px 0 20px 0;
@@ -106,7 +146,7 @@
     -ms-user-select: none;
     user-select: none;
     font-family: token(publicSansfontfamily);
-    font-size: token(btnfontsize);
+   font-size: token(fieldlabelsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     line-height: normal;
@@ -123,8 +163,12 @@
 .THIS .field-item.attest{
     padding:10px 0 25px;
 }
+.THIS .attestation{
+    padding-bottom:25px;
+}
 .THIS .field-item{
     padding-left: 0;
+    padding-bottom:8px;
 }
 .THIS .attestBody{
     font-size:14px;
@@ -185,24 +229,41 @@
     max-width: 872px;
 }
 .THIS .subheader{
-    font-size:20px;
-     margin-left:9rem;
+    font-size:16px;
+    padding-left:9.7rem;
     padding-bottom: 0.5rem;
-    font-weight: 600;
+    margin-top:1rem;
+    font-weight: t(txtfontweight);
     font-style: t(txtfontstyle);
     line-height: 1.3;
-    color: t(LnGFormTitleColor);
+    color: #00202a;
+    border-bottom:0.5px solid #d6d7d9;
 }
-.THIS .btn-lnp{
+.THIS .field-size .slds-form-element__label{
+    max-width:100%;
+}
+.THIS .address-fields .slds-select-container{
+    width:100%;
+}
+/*.THIS .btn-lnp{
     width:auto;
     background: #4c65f2;
     color: #ffffff;
     padding: .25rem 1rem;
     border-radius: 50px;
-}
+}*/
+/*.THIS .prevBtn{
+    background-color: t(LnGWhite);
+    color: t(primary);
+}*/
 .THIS .background-section{
     background-color:t(white);
     margin: 20px 0px;
+   
+}
+.THIS .address-button:nth-child(2){
+     border-bottom:1px solid #d6d7d9;
+    margin-bottom:65px;
 }
 .THIS .tile-wrap{
     display:flex;
@@ -226,13 +287,30 @@
 }
 .THIS .validate {
     position: relative;
+    margin-bottom:1rem;
+    padding-bottom:0;
 }
-.THIS .validate::before {
+.THIS .validate .uiInputTextArea{
+    border:1px solid #5b616b;
+}
+.THIS .dispItem{
+    margin-bottom:0;
+}
+.THIS .validate::before{
     position: absolute;
     content: "*";
     color:t(LnGErrorMsg);
     top: 0px;
     left: -8px;
+}
+.THIS .validate .slds-form-element__label .uiOutputRichText span{
+     font-size: t(fieldlabelsize);
+}
+.THIS .validate .field-item,.THIS .dispItem .field-item{
+    display:inline;
+}
+.THIS .validate .no-help{
+    width:75%;
 }
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
@@ -280,12 +358,26 @@
         display: flex;
         flex-direction: column;
     }
-
+.THIS .personal-info{
+        width:85%;
+    }
+     .THIS .sectionwidth{
+        margin-left: 31px;
+    }
+    .THIS .dispItem .field-item .slds-form-element__control,.THIS .dispItem,.THIS .validate .field-item .slds-form-element__control,.THIS .validate{
+        width:100%;
+    }
+   .THIS .personal-info .validate{
+            margin-bottom: 0.8rem;
+    }
+    .THIS .subheader{
+        padding-left:8rem;
+    }
     .THIS .buttonpos button {
-        width: 100%;
-        margin: 0 0 .5rem;
+        width: 242px;
+        margin: 10px auto;
         height: 42px;    
-        font-size: 17px;
+        font-size: 14px;
         font-weight: bold;
     }
     .THIS .subheader {

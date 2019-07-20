@@ -5,6 +5,10 @@
     border-radius: 5px;
   	border: solid 1.5px #e3e4ea;
 }
+.THIS qfield-margin .slds-form-element_horizontal{
+    padding:0;
+    margin-bottom:0.8rem;
+}
 .THIS label,.THIS .edit-field .slds-form-element__label{
   /*width: 137px;
   height: 22px; */
@@ -22,9 +26,7 @@
 .THIS .record-wrapper{
     margin: 25px;
 }
-.THIS .recItem{
-    padding: 5px 0;
-}
+
 .THIS .addRecbtn{
     padding:5px;
 }
@@ -62,7 +64,7 @@
 }
 .THIS .button-style{
     padding: 4px 20px;
-    margin-right: 20px;
+    margin-right: 24px;
 }
 .THIS .edit-btn{
     padding-top:10px;
@@ -87,7 +89,7 @@
 }
 .THIS.full-width{
     width: 100%;
-    margin-top:5%;
+    margin-top:50px;
 }
 .THIS .slds-input{
     border: none;
@@ -111,9 +113,7 @@
   border: solid 1px #5b616b;
   background-color: token(white);
 }
-.THIS .recItem label{
-    margin-left:0.25rem;
-}
+
 .THIS .recItem .field-item{
     padding:0;  
 }

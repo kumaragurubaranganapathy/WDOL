@@ -537,7 +537,29 @@ color: token(placeholderColor);
     align-items:center;
 }
 
+.THIS .padding-top-30{
+    padding-top:30px;
+}
+.THIS .padding-bottom-20{
+    padding-bottom:20px;
+}
+.THIS .border-bottom {
+    border-bottom:1px solid t(headerclr);
+}
+
 /*common style for tabs end*/
+.THIS .slds-button.slds-button_brand{
+    background:t(linksColor);
+    font-weight:bold;
+    color:t(LnGWhite);
+    border-radius : 4px;
+}
+.THIS .slds-button.slds-button_neutral{
+    font-weight:bold;
+    border-radius:4px;
+    color:t(buttonNeutral);
+    border : solid 1px t(buttonNeutral);
+}
 @media only screen and (max-width:767.9px){
     .THIS .slds-tabs_default__item{
         padding: 0 .75rem;

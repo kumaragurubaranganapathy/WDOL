@@ -7,37 +7,63 @@
 .THIS .field-item .slds-input{
     border:1px solid #5b616b;
     height:42px;
+    margin-bottom: 0.8rem
 }
 .THIS .slds-form-element__label{
-    font-size: 14px; 
-    color:t(LnGFormGray);
+    font-size: t(fieldlabelsize); 
+    color:t(sentenceclr);
     word-break: normal;
     overflow-wrap: normal;
+}
+.THIS .devide-list .slds-select-container{
+    width:75%;
 }
 .THIS .sectionwidth{
     width:100%;
     height:30px;
     border-bottom:0.5px solid #d6d7d9;
+    margin-bottom: 1rem;
 }
 .THIS .sectiondetail{
-    margin-top:25px;     
+   font-size:t(fieldlabelsize);    
 }
 .THIS .field-item.attest-item{
     padding-right:0;
 }
-.THIS .slds-radio .slds-form-element__label{
-	font-size: 17px;
-    color: token(LnGFormTitleColor);
-    font-family: token(publicSansfontfamily);
+.THIS .slds-card__body th,.THIS .slds-card__body td,.THIS .slds-text-heading_small{
+    font-size:t(fieldlabelsize);  
+}
+.THIS .slds-text-heading_small{
+    font-weight:t(btnfontweight);
+}
+.THIS .slds-card .slds-card__header{
+ padding: .75rem 0.7rem 0;
+}
+.THIS .slds-card__body .slds-button_icon-border{
+    width:20px;
+    height:20px;
+}
+.THIS .buttonpos{
+    margin: 0 9rem;
+    padding-top: 45px;
+    padding-bottom: 22px;
+    border-top: 1px solid #5b616b;
+}
+.THIS .personal-info .field-item{
+    display:inline;
 }
 .THIS .slds-radio_faux{
     width:20px;
     height:20px;
 }
 .THIS .slds-checkbox .slds-form-element__label{
-	font-size: 14px;
-    color: token(LnGFormTitleColor);   
-    
+	font-size: t(fieldlabelsize);
+}
+.THIS .personal-info .review-item .slds-form-element {
+    margin-bottom: 13px;
+}
+.THIS .personal-info .review-item{
+    padding:0;
 }
 .THIS .slds-file-selector__dropzone{
     border:none;
@@ -178,20 +204,40 @@
     max-width: 872px;
 }
 .THIS .subheader{
-    font-size:20px;
-     margin-left:9rem;
+    font-size:16px;
+    padding-left:9.7rem;
     padding-bottom: 0.5rem;
-    font-weight: 600;
+    margin-top:1rem;
+    font-weight: t(txtfontweight);
     font-style: t(txtfontstyle);
     line-height: 1.3;
-    color: t(LnGFormTitleColor);
+    color: #00202a;
+    border-bottom:0.5px solid #d6d7d9;
 }
 .THIS .btn-lnp{
     width:auto;
-    background: #4c65f2;
+    background: t(primary);
     color: #ffffff;
-    padding: .25rem 1rem;
-    border-radius: 50px;
+    border-radius:5px; 
+}
+.THIS .slds-input-has-icon .slds-input__icon{
+        top:33%;
+}
+.THIS .datelabel label{
+    display:none;
+}
+.THIS .field-item{
+    display: block;
+    padding: 0;
+    margin: 0 0 .8rem;
+    box-sizing: border-box;
+}
+.THIS .uiInputTextArea:focus{
+   box-shadow:none;
+  
+}
+.THIS .uiInputTextArea{
+ border: solid 1px #5b616b;
 }
 .THIS .background-section{
     background-color:t(white);
@@ -245,6 +291,9 @@
 .THIS .required.field-size.slds-form-element label abbr.slds-required {
     display: none;
 }
+.THIS .page-info{
+    display:none;
+}
 @media only screen and (min-width: 768px)and (max-width: 1024px){
     
     .THIS .buttonpos{
@@ -263,14 +312,23 @@
         display: flex;
         flex-direction: column;
     }
-
+    .THIS .personal-info{
+        width:85%;
+    }
+    .THIS .fieldWidth{
+       width:100%;
+     }
     .THIS .buttonpos button {
-        width: 100%;
-        margin: 0 0 .5rem;
-        height: 42px;    
-        font-size: 17px;
+        width: 242px;
+        margin: 10px auto;
+        height: auto;
+        font-size: 14px;
         font-weight: bold;
     }
+    .THIS .field-item .slds-form-element__control{
+        width:100%;
+    }
+  
     .THIS .subheader {
         margin-left: 0;
     }
