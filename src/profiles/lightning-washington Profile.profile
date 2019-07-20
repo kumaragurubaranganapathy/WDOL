@@ -20,6 +20,11 @@
 		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Submission__c.CustomerEnvelope__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
 		<editable>true</editable>
 		<field>MUSW__Fee_Payment__c.Reapply_Amount__c</field>
 		<readable>true</readable>

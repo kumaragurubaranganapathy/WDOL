@@ -18,6 +18,11 @@
         <field>Portal_Article__c.Article_Body__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Submission__c.CustomerEnvelope__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Portal_Article__c.Article_Content_Type__c</field>
