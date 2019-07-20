@@ -56,31 +56,31 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <fieldSets>
-        <fullName>BGBK__Fee_Payment_Basic</fullName>
-        <availableFields>
-            <field>MUSW__Fee__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <availableFields>
-            <field>BGBK__Payment__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </availableFields>
-        <description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
-        <displayedFields>
-            <field>MUSW__Payment_Amount__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>MUSW__Paid_Date__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <label>Fee Payment Basic</label>
-    </fieldSets>
+     <fieldSets>
+	<fullName>BGBK__Fee_Payment_Basic</fullName>
+		<availableFields>
+			<field>BGBK__Payment__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</availableFields>
+		<description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
+		<displayedFields>
+			<field>MUSW__Payment_Amount__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</displayedFields>
+		<displayedFields>
+			<field>MUSW__Paid_Date__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</displayedFields>
+		<displayedFields>
+			<field>Reapply_Amount__c</field>
+			<isFieldManaged>false</isFieldManaged>
+			<isRequired>false</isRequired>
+		</displayedFields>
+		<label>Fee Payment Basic</label>
+	</fieldSets>
     <fieldSets>
         <fullName>BGBK__Feebasic</fullName>
         <availableFields>
