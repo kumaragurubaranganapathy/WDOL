@@ -221,7 +221,7 @@
     <fields>
         <fullName>Document_type__c</fullName>
         <externalId>false</externalId>
-        <label>Document type</label>
+        <label>Document Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -285,7 +285,7 @@
     <fields>
         <fullName>Form_number__c</fullName>
         <externalId>false</externalId>
-        <label>Form number</label>
+        <label>Form Number</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1136,7 +1136,7 @@
     <fields>
         <fullName>License_type__c</fullName>
         <externalId>false</externalId>
-        <label>License type</label>
+        <label>License Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1459,7 +1459,7 @@
     <fields>
         <fullName>Professional_code__c</fullName>
         <externalId>false</externalId>
-        <label>Professional code</label>
+        <label>Professional Code</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1479,7 +1479,7 @@
     <fields>
         <fullName>Sequence_number__c</fullName>
         <externalId>false</externalId>
-        <label>Sequence number</label>
+        <label>Sequence Number</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -1514,10 +1514,22 @@
         </valueSet>
     </fields>
     <fields>
+	<fullName>ValidationNumber__c</fullName>
+        <description>for Capturing the Validation Number from the Customer Envelope record</description>
+        <externalId>false</externalId>
+        <label>Validation Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Validation_number__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Validation number</label>
+        <label>Customer Envelope</label>
         <referenceTo>Customer_Envelope__c</referenceTo>
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
@@ -1626,6 +1638,7 @@
         <fullName>All</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
+		<columns>ValidationNumber__c</columns>
         <columns>wadol_Program_Type__c</columns>
         <columns>Contact__c</columns>
         <columns>MUSW__Account__c</columns>
@@ -1641,6 +1654,8 @@
     </listViews>
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_Deposit</fullName>
+		<columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Appraisal Management Company Queue</label>
         <queue>Appraisal_Management_Company_Queue</queue>
@@ -1650,7 +1665,8 @@
     </listViews>
     <listViews>
         <fullName>Camping_Resorts_Queue_Deposit</fullName>
-        <columns>NAME</columns>
+		<columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>wadol_Program_Type__c</columns>
         <columns>License_type__c</columns>
         <filterScope>Queue</filterScope>
@@ -1662,7 +1678,8 @@
     </listViews>
     <listViews>
         <fullName>Miscellaneous_Deposit</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns><filterScope>Queue</filterScope>
         <label>Miscellaneous</label>
         <queue>Miscellaneous</queue>
         <sharedTo>
@@ -1672,6 +1689,7 @@
     <listViews>
         <fullName>Notaries_Queue_Deposit</fullName>
         <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>Validation_number__c</columns>
         <columns>License_type__c</columns>
         <columns>Professional_code__c</columns>
@@ -1687,6 +1705,7 @@
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
         <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>wadol_Program_Type__c</columns>
         <columns>License_type__c</columns>
         <columns>Professional_code__c</columns>
@@ -1701,7 +1720,8 @@
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_Deposit</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns><filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
         <queue>Real_Estate_Appraiser_Courses_Queue</queue>
         <sharedTo>
@@ -1712,6 +1732,7 @@
         <fullName>Real_Estate_Appraisers_Queue_Deposit</fullName>
         <columns>Status__c</columns>
         <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>wadol_Program_Type__c</columns>
         <columns>License_type__c</columns>
         <columns>Document_type__c</columns>
@@ -1729,6 +1750,7 @@
     <listViews>
         <fullName>Timeshare_Queue_Deposit</fullName>
         <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>Validation_number__c</columns>
         <columns>wadol_Program_Type__c</columns>
         <columns>License_type__c</columns>
@@ -1743,6 +1765,7 @@
     <listViews>
         <fullName>Unknown_Contacts_Deposit</fullName>
         <columns>NAME</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>Contact__c</columns>
         <columns>MUSW__Account__c</columns>
         <columns>License_type__c</columns>
@@ -1760,7 +1783,16 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Deposits</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>ValidationNumber__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ValidationNumber__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ValidationNumber__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ValidationNumber__c</searchFilterFields>
+        <searchResultsAdditionalFields>ValidationNumber__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MUSW__Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MUSW__Available_Amount__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>MUSW__Cannot_refund_more_than_available_amount</fullName>

@@ -5025,6 +5025,16 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__Submission__c.CustomerEnvelope__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Deposit__c.ValidationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
         <field>Lockbox_Envelope__c.Lockbox_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -29139,6 +29149,10 @@
     <tabVisibilities>
         <tab>Answer__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+	<tabVisibilities>
+        <tab>Miscellaneous_Fee__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Application_Field__c</tab>

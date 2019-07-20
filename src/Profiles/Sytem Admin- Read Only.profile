@@ -5023,7 +5023,16 @@
         <field>Account.Account_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Submission__c.CustomerEnvelope__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Deposit__c.ValidationNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
         <field>Account.Duplicate_Verified__c</field>
@@ -31019,6 +31028,10 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Answer__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<tabVisibilities>
+        <tab>Miscellaneous_Fee__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 	<tabVisibilities>
