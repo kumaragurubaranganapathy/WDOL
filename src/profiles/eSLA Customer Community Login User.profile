@@ -20,6 +20,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee__c.Fee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
 		<editable>true</editable>
 		<field>Lockbox_Envelope__c.Lockbox_Amount__c</field>
 		<readable>true</readable>
