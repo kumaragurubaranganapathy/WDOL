@@ -66,7 +66,7 @@ _______________________________________________________________
     
     <div class="page-width">
         
-        <div class="slds-page-header">
+        <div class="page-header padding-top-30">
             <h1>Education</h1>
         </div>
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
@@ -85,10 +85,10 @@ _______________________________________________________________
             
             
             <aura:if isTrue="{!v.screenOne}">
-                <div class="section-header slds-m-top_xx-large slds-m-horizontal_medium">
+                <div class="section-header slds-p-top_x-small padding-bottom-20">
                     Search a Course
                 </div>
-                <div class="section-form-container slds-box slds-m-top_medium slds-m-horizontal_medium">
+                <div class="section-form-container slds-box slds-m-top_medium">
                     <!-- <div class="slds-form-element"> -->
                     <div multipleRows="true">
                         <!-- <div class="slds-grid"> -->
@@ -108,15 +108,6 @@ _______________________________________________________________
                             </div>
                             <!-- </div> -->
                         </aura:if>
-                        <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
-                        <div class="course-type field-size field-style">
-                            
-                            
-                            <span class="slds-form-element__label">Course Type: </span>
-                            <!-- <lightning:inputField  label="Course Type" fieldName="Course_Type__c" value="" onchange="{!c.searchCourse}" /> -->
-                            <c:LnP_Multiselect_Picklist options="{!v.courseTypeOptions}" aura:id="CourseType" />
-                        </div>
-                        <!-- </div> -->
                         
                         <div class="licensure field-size field-style">
                             
@@ -131,6 +122,21 @@ _______________________________________________________________
                             </lightning:select>
                             <!-- </div> -->
                         </div>
+                        <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
+                        <div class="course-type field-size field-style">
+                                          
+                            <lightning:select name="CourseType" label="Course Type" aura:id="CourseType" value="" required="true" onchange="{!c.searchCourse}">
+                                <option text="Select an Option" value="" />
+                                <aura:iteration items="{!v.courseTypeOptions}" var="opt">
+                                    <option text="{!opt}" value="{!opt}" label="{!opt}" />
+                                </aura:iteration>
+                            </lightning:select>
+                            
+                            <!-- <c:LnP_Multiselect_Picklist options="{!v.courseTypeOptions}" aura:id="CourseType" /> -->
+                        </div>
+                        <!-- </div> -->
+                        
+                        
                         <!-- </lightning:layoutItem> -->
                         <!-- </div> -->
                         <!-- Start of form -->
@@ -174,7 +180,7 @@ _______________________________________________________________
                                 
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <!-- Clock Hours: -->
-                                <lightning:input aura:id="clockHours" label="Clock Hours"
+                                <lightning:input aura:id="clockHours" type="number" label="Clock Hours"
                                                  placeholder="Enter Clock Hours" name="clockHours" />
                             </div>
                             <!-- </div> -->
@@ -205,15 +211,16 @@ _______________________________________________________________
                                 
                                 
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
-                                <!-- <span class="slds-form-element__label">Delivery Method: </span> 
-                          <lightning:input aura:id="DeliveryMethod" label="Delivery Method" variant="label-hidden" fieldName="Delivery_Method__c" /> -->
-                                <lightning:select name="DeliveryMethod" label="Delivery Method" aura:id="DeliveryMethod"
+                                 <span class="slds-form-element__label">Delivery Method: </span> 
+                        <!--  <lightning:input aura:id="DeliveryMethod" label="Delivery Method" variant="label-hidden" fieldName="Delivery_Method__c" /> -->
+                               <!-- <lightning:select name="DeliveryMethod" label="Delivery Method" aura:id="DeliveryMethod"
                                                   value="">
                                     <option text="Select an Option" value="" />
                                     <aura:iteration items="{!v.deliveryMethodOptions}" var="option">
                                         <option text="{!option}" value="{!option}" />
                                     </aura:iteration>
-                                </lightning:select>
+                                </lightning:select> -->
+                                <c:LnP_Multiselect_Picklist options="{!v.deliveryMethodOptions}" aura:id="DeliveryMethod" />
                                 <!-- </div> -->
                             </div>
                             <!-- </div> -->
@@ -235,14 +242,14 @@ _______________________________________________________________
         </div>
         <div class="screen-two">
             <aura:if isTrue="{!v.screenTwo}">
-                <div>
+                <div class="headerWrap">
                     <span class="sub-header">Course Search Criteria</span>
                     <span>
-                        <lightning:button variant="neutral" class="button-border" type="button" name="cancel"
+                        <lightning:button variant="neutral" class="button-border modify-btn" type="button" name="cancel"
                                           label="Modify Search" onclick="{!c.modifySearch}" />
                     </span>
                 </div>
-                <div class="search-details  slds-m-bottom_large">
+                <div class="search-details slds-m-vertical_large">
                     <aura:if isTrue="{!v.searchOne}">
                         <aura:iteration items="{!v.searchOneArray}" var="option">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
@@ -264,7 +271,7 @@ _______________________________________________________________
                     </aura:if>
                 </div>
                 <div class="slds-m-bottom_medium slds-m-top_xx-large">
-                    <span class="sub-header"><b>Search Results </b></span>
+                    <span class="heading"><b>Course Search Results</b></span>
                     <span class="buttons-right text-style text-size">Click on any row below for more information</span>
                     <br />
                     <!--  <span> T = Trainee L = State Licensed R = Certified Residential G = Certified General</span> -->
@@ -284,7 +291,7 @@ _______________________________________________________________
                 <div class="slds-m-vertical_medium subheader">
                     <span>{!v.courseNameToDisplayDetails}</span>
                 </div>
-          
+                
                 <div class="buttons-right text-size">
                     <span>Information as of </span><span>{!v.date}</span>
                 </div>
@@ -293,21 +300,21 @@ _______________________________________________________________
                         <lightning:layout class="slds-p-around_small bottom-border slds-wrap">
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                 <div class="text-style">Course Name&nbsp;:</div>
-                                <div class="text-style-val">{!item.Course_Name__c}</div>
+                                <div class="text-style-val">{!item.Course_Title__c}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                 <div class="text-style">Provider/School Name&nbsp;:</div>
-                                <div class="text-style-val">{!item.Provider_School_Name__c}</div>
+                                <div class="text-style-val">{!item.Ultimate_Parent_Account__r.Name}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                 <div class="text-style">Status&nbsp;:</div>
-                                <div class="text-style-val">{!item.Course_Status__c}</div>
+                                <div class="text-style-val">{!item.MUSW__Status__c}</div>
                             </lightning:layoutItem>
                         </lightning:layout>
                         <div class="slds-grid slds-p-around_small slds-wrap">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                 <div class="field-style fieldSize">Course Name&nbsp;:</div>
-                                <div class="field-style-val">{!item.Course_Name__c}</div>
+                                <div class="field-style-val">{!item.Course_Title__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                 <div class="field-style fieldSize">Clock Hours&nbsp;:</div>
@@ -357,15 +364,15 @@ _______________________________________________________________
                             <div class="slds-grid section-content slds-p-around_small">
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Phone Number&nbsp;:</div>
-                                    <div class="field-style-val">{!item.Phone__c}</div>
+                                    <div class="field-style-val">{!item.License_Phone__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Email&nbsp;:</div>
-                                    <div class="field-style-val">{!item.Business_Email__c}</div>
+                                    <div class="field-style-val">{!item.License_Email__c}</div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Website&nbsp;:</div>
-                                    <div class="field-style-val"></div>
+                                    <div class="field-style-val">{!item.Website__c}</div>
                                 </div>
                             </div>
                         </div>
@@ -375,7 +382,7 @@ _______________________________________________________________
                                      class="section-name bottom-border slds-m-top_medium slds-p-bottom_x-small slds-m-horizontal_small">
                                     Event Information</div>
                                 <div class="section-content slds-p-around_small">
-                                    <table class="slds-table">
+                                    <table class="slds-table slds-max-medium-table_stacked slds-table_bordered">
                                         <thead class="">
                                             <tr class="slds-line-height_reset">
                                                 <th class="" scope="col">
@@ -415,7 +422,7 @@ _______________________________________________________________
                     </div>
                 </aura:iteration>
                 <div class="buttons-right slds-m-vertical_small slds-m-left_small">
-                    <lightning:button variant="neutral" class="btn-bg" type="button"
+                    <lightning:button variant="neutral" class="" type="button"
                                       name="cancel" label="SEARCH ANOTHER LICENSE" onclick="{!c.modifySearch}" />
                 </div>
             </aura:if>
