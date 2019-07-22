@@ -1,6 +1,24 @@
 .THIS.page-width {
-    width: 90%;
+    width: 82%;
+    max-width: 1200px;
     margin: 0px auto;
+    padding-bottom:60px;
+}
+.THIS .page-header h1{
+    font-family: t(publicSansfontfamily);
+    font-size: 20px;
+    font-weight: 600;
+    font-style: t(txtfontstyle);
+    line-height: 1.48;
+    color: t(LnGFormTitleColor);
+}
+.THIS .heading{
+    font-family: t(publicSansfontfamily);
+    font-size: 20px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(fieldclr);
 }
 .THIS .breadcumb a{
     font-size:14px;
@@ -14,9 +32,6 @@
 }
 .THIS .sub-section-header{
     display:none;
-}
-.THIS .slds-page-header h1{
-    font-family:t(publicSansfontfamily);
 }
 .THIS .footer{
     text-align:right;
@@ -35,8 +50,21 @@
 .THIS .sub-header, .THIS .sub-section,.THIS .subheader span{
     color: t(fieldclr);
 }
+.THIS .sub-header{
+    line-height:32px;
+}
+.THIS .slds-button.slds-button_neutral.modify-btn {
+    height:auto;
+    line-height:32px;
+    padding-bottom:0px;
+    border:0px;
+}
+.THIS .field-style{
+    vertical-align: top;
+}
 .THIS .lightningBreadcrumbs,.THIS .screen-two,.THIS .screen-three{
-    padding:16px
+    padding: 5px 0px;
+    line-height: 1;
 }
 .THIS .screen-two{
     padding-top:0;
@@ -62,7 +90,9 @@
    
     border-top: solid 1px #5b616b;
 }
-
+.THIS table.slds-table.slds-max-medium-table_stacked.slds-table_bordered thead th div {
+    text-align: left;
+}
 .THIS .search-result .slds-cell-fixed{
         background: #d6d7d9;
     min-height:4rem;
@@ -166,7 +196,7 @@ padding: 4px 5px;
 }
 
 .THIS .licenseinp, .THIS .select-help{
-   
+   	font-size:12px;
     width:50%;
 }
 .THIS .screen-one .divBox{
@@ -218,6 +248,9 @@ padding: 4px 5px;
 }
 /*common style for tabs end*/
 @media t(mqSmall){ 
+    .THIS.page-width {
+        width: 90%;
+    }
     .THIS .licenseinp,.THIS .licensetab .field-item,.THIS .businesstab .field-item{
         width:100%;
     }
@@ -306,4 +339,51 @@ padding: 4px 5px;
     .THIS .screen-three,.THIS .screen-two{
         padding:0;
     }
+    .THIS .select-help{
+        width:100%;
+    }
+    .THIS .headerWrap {
+        clear: both;
+        padding-top: 10px;
+    }
+    .THIS .headerWrap > span {
+        display: block;
+    }
+    .THIS .headerWrap span button {
+        padding: 0px;
+    }
+    .THIS .headerWrap span.sub-header {
+        line-height: 1.2;
+        padding-bottom: 15px;
+    }
+    .THIS .slds-form-element_horizontal.slds-form-element.slds-size_4-of-12 {
+        width: 100%;
+    }
+    .THIS .slds-size_1-of-3.slds-form-element_horizontal.slds-form-element, 
+    .THIS .slds-size_1-of-2.slds-form-element_horizontal.slds-form-element{
+        width: 100%;
+    }
+    .THIS .slds-grid {
+        flex-wrap:wrap;    
+    }
+    .THIS .bottom-border .row-margin {
+        margin-bottom: 0.5em;
+    }
+}
+.THIS .slds-table tbody td, .THIS .slds-table thead th{
+    padding: 12px 6px;    
+}
+.THIS span.slds-truncate {
+    text-overflow: initial;
+    white-space: normal;
+}
+.THIS .button-borders a {
+    padding: 0px;
+    text-align: left;
+}
+.THIS .slds-table thead tr th:last-child div {
+    justify-content: flex-start;
+}
+.THIS input, .THIS select {
+    line-height: 42px;
 }
