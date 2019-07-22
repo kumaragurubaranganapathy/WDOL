@@ -15,7 +15,7 @@
                 var result = response.getReturnValue();  
                 console.log('result---'+result);
                
-                if(auraAttr == 'v.courseTypeOptions' || auraAttr == 'v.courseTopicOptions' ){
+                if(auraAttr == 'v.deliveryMethodOptions' || auraAttr == 'v.courseTopicOptions' ){
                     for(var i=0; i<result.length; i++){
                         picklistArray.push({Name: result[i] , isSelected: false});
                     }
@@ -66,6 +66,12 @@
         var objectApi =  'MUSW__License2__c';
         var fieldsList = ['Name','Id','Course_Name__c','Course_Number__c','Credential_Type__c','Application_Type__c','What_Licensure_Level__c','What_program_are_you_interested_in__c','Course_Status__c','Course_Title__c','Course_Topic__c','Course_Type__c','Provider_School_Name__c','Clock_Hours__c','Delivery_Method__c'];
         var ProgramValue =  component.find("Program").get("v.value");
+        var LicenseType;
+        if(ProgramValue == 'Appraisers'){
+            LicenseType = 'Appraiser Course';
+        }else{
+            LicenseType = ProgramValue;
+        }
         var CourseTypeValue =  component.find("CourseType").get("v.value");
         var licensureLevelValue =  component.find("licensureLevel").get("v.value");
         var schoolNameValue =  component.find("schoolName").get("v.value");
@@ -85,7 +91,7 @@
         var initialRows = component.get("v.initialRows");
         
         if(ProgramValue != ""){
-            searchOneArray.push({label:"What program are you interested in?", value:ProgramValue});
+            searchOneArray.push({label:"What program are you interested in?", value:LicenseType});
         }
         if(CourseTypeValue!= ""){
             searchOneArray.push({label:"Course Type", value:CourseTypeValue});
@@ -121,15 +127,15 @@
         
         if(searchOneArray.length!=0){
             var criteria = {
-                "What_program_are_you_interested_in__c" : ProgramValue,
+                 "Ultimate_Parent_Account__r.Name" : schoolNameValue,
+                "Credential_Type__c" : LicenseType,
                 "Course_Type__c" : CourseTypeValue,
                 "What_Licensure_Level__c" : licensureLevelValue,
-                "Provider_School_Name__c" : schoolNameValue,
-                "Course_Name__c" : courseNameValue,
-                "Course_Number__c" : courseNumberValue,
+                "Course_Title__c" : courseNameValue,
+                "Name" : courseNumberValue,
                 "Clock_Hours__c" : clockHoursValue,
                 "Course_Topic__c" : TopicValue,
-                "Course_Status__c" : StatusValue,
+                "MUSW__Status__c" : StatusValue,
                 "Delivery_Method__c" : DeliveryMethodValue,
                 "RecordTypeId" : courseRecordTypeVal 
             };
@@ -151,17 +157,16 @@
                         
                          
                         component.set('v.columns', [
-                            {label: 'Course Name', fieldName: 'Course_Name__c', type: 'Text', sortable : true},
-                            {label: 'Provider/School', fieldName: 'Provider_School_Name__c', type: 'Text', sortable : true},
-                            {label: 'Course Number', fieldName: 'Course_Number__c', type: 'Text', sortable : true},
-                            {label: 'Course Type', fieldName: 'Course_Type__c', type: 'Picklist', sortable : true},
-                            {label: 'Licensure Levels', fieldName: 'What_Licensure_Level__c', type: 'Picklist', sortable : true},
+                            {label: 'Course Name', fieldName: 'Course_Title__c', type: 'Text', sortable : true},
+                            {label: 'Provider/School', fieldName: 'Provider_Account_Name__c', type: 'Text', sortable : true},
+                            {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
+                            {label: 'Course Type', fieldName: 'Course_Type__c', type: 'Picklist', sortable : true},                            
                             {label: 'Delivery Method', fieldName: 'Delivery_Method__c', type: 'Picklist', sortable : true},
                             {label: 'Clock Hours', fieldName: 'Clock_Hours__c', type: 'Number', sortable : true},
-                            {label: 'Course Status', fieldName: 'Course_Status__c', type: 'Picklist', sortable : true},
+                            {label: 'Course Status', fieldName: 'MUSW__Status__c', type: 'Picklist', sortable : true},
                             {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
                             { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
-                         
+                         /*{label: 'Licensure Levels', fieldName: 'What_Licensure_Level__c', type: 'Picklist', sortable : true} */
                         ]);
                         component.set("v.data", rows);
                         component.set("v.applicationFilt",rows);
@@ -246,24 +251,26 @@
                                   'Credential_Type__c',
                                   'Application_Type__c',
                                   'Course_Type__c',
-                                  'Phone__c',
+                                  'License_Phone__c',
                                   'Original_Issue_Date__c',
-                                  'Provider_School_Name__c',
-                                  'Course_Name__c',
-                                  'Course_Number__c',
+                                  'Ultimate_Parent_Account__r.Name',
+                                  'Course_Title__c',
+                                  'Id',
                                   'Clock_Hours_Continuing_Education__c',
                                   'Clock_Hours_Pre_Qualifying__c',
                                   'Clock_Hours_Qualifying_Elective__c',
                                   'Clock_Hours__c',
                                   'Course_Topic__c', 
-                                  'Course_Status__c', 
+                                  'MUSW__Status__c', 
                                   'Delivery_Method__c', 
                                   'Owner_Address__c',
                                   'MUSW__Issue_Date__c',
                                   'Event_City__c',
                                   'Event_Date__c',
                                   'Event_State__c',
-                                  'Business_Email__c',
+                                  'License_Email__c',
+                              'Provider_Account_Name__c',
+                              'Website__c',
                                   'MUSW__Expiration_Date__c'];
                     
             var criteria = {
