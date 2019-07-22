@@ -3986,6 +3986,43 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <valueSetName>license_specific_email_addresses</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Case_Number__c</fullName>
+        <description>for letter in US 2676</description>
+        <externalId>false</externalId>
+        <label>Case Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Polaris_DHP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>1656 : enhancement : now we are stamping the DHP status on license through this field and not on Substatus</description>
+        <externalId>false</externalId>
+        <label>DHP</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Polaris_Dishonored_Receipt_ID__c</fullName>
+        <description>stamping the receipt id from DHP modal tracking the Dishonored Payment -&gt; US 2220 - letter</description>
+        <externalId>false</externalId>
+        <label>Dishonored Receipt ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>License</label>
     <listViews>
         <fullName>Active_Converted</fullName>

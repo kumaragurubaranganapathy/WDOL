@@ -464,15 +464,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Date_Today_s__c</fullName>
+        <fullName>Polaris_CreatedDate__c</fullName>
         <externalId>false</externalId>
-        <formula>TODAY()</formula>
+        <formula>TODAY() - DATEVALUE( CreatedDate)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Date_Today&apos;s</label>
+        <label>Created Date</label>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Date</type>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Date__c</fullName>
@@ -920,9 +923,14 @@
                     <label>Lockbox</label>
                 </value>
                 <value>
-                    <fullName>Vitalcheck</fullName>
+                    <fullName>Vitalcheck - Counter</fullName>
                     <default>false</default>
-                    <label>Vitalcheck</label>
+                    <label>Vitalcheck - Counter</label>
+                </value>
+                <value>
+                    <fullName>Vitalcheck - DHP</fullName>
+                    <default>false</default>
+                    <label>Vitalcheck - DHP</label>
                 </value>
                 <value>
                     <fullName>Check/Cashier&apos;s Check</fullName>
