@@ -195,8 +195,8 @@
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Expiration Date: </span>
-                                            <aura:if isTrue="{!v.LicenseData.Expiration_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.Expiration_Date__c}"/>
+                                            <aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}"/>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>                        
@@ -428,7 +428,7 @@
                                                 <div class="contact-item">
                                                     <div class="label-style">Expiration Date: </div> 
                                                     <div class="data-style">
-                                                        {!v.LicenseData.Expiration_Date__c?v.LicenseData.Expiration_Date__c:'None'}
+                                                        {!v.LicenseData.MUSW__Expiration_Date__c?v.LicenseData.MUSW__Expiration_Date__c:'None'}
                                                     </div>
                                                 </div>      
                                             </lightning:layoutItem>

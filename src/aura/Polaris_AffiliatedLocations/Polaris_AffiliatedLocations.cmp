@@ -44,54 +44,53 @@
                                         <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
                                     </th> 
                                 </aura:iteration>
-                                <!--<th class="contact-button" scope="col"> 
-                                                 <c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.SelectedAccountDetails.Name}"/> 
-                                                </th> -->
+                              
                             </tr>
                         </thead>
                         <tbody>
                             <aura:iteration items="{!v.affLocationTableList}" var="tableData" indexVar="ind">
                                 <tr class="slds-hint-parent">    
                                     <td data-label="Designated_Engineer_License__c" class="cell-style">
+                                        
                                         <aura:if isTrue="{!tableData.Designated_Engineer_License__c}">
-                                            <div class="slds-truncate">{!tableData.Designated_Engineer_License__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.Designated_Engineer_License__c}">{!tableData.Designated_Engineer_License__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="Designated_Land_Surveyor_License__c" class="cell-style">
                                         <aura:if isTrue="{!tableData.Designated_Land_Surveyor_License__c}">
-                                            <div class="slds-truncate">{!tableData.Designated_Land_Surveyor_License__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.Designated_Land_Surveyor_License__c}" >{!tableData.Designated_Land_Surveyor_License__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                     				<td data-label="Country__c" class="cell-style">
                                         <aura:if isTrue="{!tableData.Country__c}">
-                                            <div class="slds-truncate">{!tableData.Country__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.Country__c}">{!tableData.Country__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                     				<td data-label="MUSW__Street2__c" class="cell-style">
                                         <aura:if isTrue="{!tableData.MUSW__Street2__c}">
-                                            <div class="slds-truncate">{!tableData.MUSW__Street2__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.MUSW__Street2__c}">{!tableData.MUSW__Street2__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="MUSW__State__c" class="cell-style">
                                         <aura:if isTrue="{!tableData.MUSW__State__c}">
-                                            <div class="slds-truncate">{!tableData.MUSW__State__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.MUSW__State__c}" >{!tableData.MUSW__State__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="County__c" class="cell-style">
                                         <aura:if isTrue="{!tableData.County__c}">
-                                            <div class="slds-truncate">{!tableData.County__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.County__c}">{!tableData.County__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="Zip_Postal_Code__c" class="cell-style">
                                         <aura:if isTrue="{!tableData.Zip_Postal_Code__c}">
-                                            <div class="slds-truncate">{!tableData.Zip_Postal_Code__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <div class="slds-truncate" title="{!tableData.Zip_Postal_Code__c}">{!tableData.Zip_Postal_Code__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
                                     <td data-label="actions" class="cell-style action-cell">
