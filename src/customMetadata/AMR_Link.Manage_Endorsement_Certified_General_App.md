@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Generate_Fee__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>License_Type__c</field>

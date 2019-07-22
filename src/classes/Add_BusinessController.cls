@@ -6,6 +6,40 @@ public without sharing class Add_BusinessController {
         return Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId() ;
     }
     
+    @AuraEnabled 
+    public static String insertRequest(String acctId,String ServiceRequestType){
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        Id getContactId = '003r000000EOhBB';
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
+        }
+       // system.debug('licenseType'+licenseType+'board');
+        Request__c application = new Request__c();
+        application.Profession__c = ServiceRequestType; 
+        application.License_Type__c = ServiceRequestType;        
+        application.Stage__c = 0;
+        application.Service_Request_Type__c = ServiceRequestType;
+        application.Contact__c = getContactId;
+        if(acctId != null && acctId != ''){
+            application.Account__c = acctId;  
+        }  
+        try
+        {          
+            insert application;
+        }
+        catch(Exception e){
+            HandleException.LogException(e,'Add_BusinessController','insertRequest');            
+        }
+        string appId = '';
+        return appId = application.Id;
+    }
+    
     @AuraEnabled
     public static List<Account> getAllAccounts(){
         Set<Id> accntIdSet = new Set<Id>();

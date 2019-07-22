@@ -10,7 +10,9 @@
     handleActive : function(component,event,helper){
       helper.handleActive(component,event,helper);  
     },
-    
+    updateBusinessInfo :function(component,event,helper){
+      helper.updateBusinessInfoHelper(component,event,helper);  
+    },
     handleLicenseLink :  function(component,event,helper){
      /*var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
         var result = component.get("v.mainAccountName");
