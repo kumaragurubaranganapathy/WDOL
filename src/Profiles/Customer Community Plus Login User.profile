@@ -29771,6 +29771,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Portal_Article__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>	
+    <tabVisibilities>
         <tab>standard-Lead</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -30012,10 +30016,5 @@
         <default>true</default>
         <recordType>Portal_Article__c.Main</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>
-    <tabVisibilities>
-        <tab>Portal_Article__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    
+    </recordTypeVisibilities>    
 </Profile>
