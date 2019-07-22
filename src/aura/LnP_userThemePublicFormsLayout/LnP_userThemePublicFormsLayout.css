@@ -96,16 +96,12 @@
     box-shadow:none;
     border: solid 1px #5b616b
 }
-.THIS .address-button, .THIS .slds-button_neutral{
-    height: 42px;
-    border-radius: 5px;
-    border: solid 2px #0872b9;
-    background-color: #ffffff;
-    color: token(primary);
-    font-family: token(publicSansfontfamily);
-    font-size: 15px;
+.THIS .address-button, .THIS .slds-button_neutral{ 
+    
+    
+    font-family: token(publicSansfontfamily);    
     font-weight: token(btnfontweight);
-    max-height: 3rem;
+    
 }
 .THIS .cancel-button,.THIS .add-button {
     width: 111px;
@@ -156,9 +152,7 @@
     font-size: token(fieldlabelsize);
     line-height:1;
     font-weight: token(txtfontweight);
-    color: token(fieldclr);
-    margin:0px;
-    padding:0px 0px 5px 0px;
+    color: token(LnGFormTitleColor);    
 }
 
 .THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input{
@@ -565,10 +559,7 @@ color: token(placeholderColor);
     color:t(buttonNeutral);
     border : solid 1px t(buttonNeutral);
 }
-@media only screen and (max-width:767.9px){
-    .THIS .slds-tabs_default__item{
-        padding: 0 .75rem;
-    } 
+@media only screen and (max-width:767.9px){    
     .THIS .cancel-button,.THIS .next-button{
         display:block;
         width:100%;
@@ -658,4 +649,7 @@ color: token(placeholderColor);
         margin-top:1rem;
         border-radius : 0.25rem;
     } 
+    .THIS .slds-tabs_default__item .slds-tabs_default__link{
+        font-size:0.8125rem;
+    }
 }

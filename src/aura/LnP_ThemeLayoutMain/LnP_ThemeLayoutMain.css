@@ -109,11 +109,15 @@
     .THIS .slds-table tbody td{
         padding:0.75rem;
         font-size:0.8125rem;
+        color:t(LnGFormTitleColor);
         border:none;
     }
     .THIS .slds-table tbody tr{
         border:solid 1px t(grayBorder);
         margin-top:1rem;
         border-radius : 0.25rem;
+    }
+    .THIS .slds-tabs_default__item .slds-tabs_default__link{
+        font-size:0.8125rem;
     }
 }

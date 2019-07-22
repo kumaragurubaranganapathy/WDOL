@@ -39,40 +39,40 @@
                                         <td data-label="Course Name" class="cell-style">
                                             <aura:if isTrue="{!tableData.Course_Title__c}">
                                                 <div class="slds-truncate" title="{!tableData.Course_Title__c}">{!tableData.Course_Title__c}</div>
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </td>
                                         <td data-label="Course Type" class="cell-style">
                                             <aura:if isTrue="{!tableData.Course_Type__c}">
                                                 <div class="slds-truncate" title="{!tableData.Course_Type__c}">{!tableData.Course_Type__c}</div>
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </td>
                                         <td data-label="Delivery Method" class="cell-style">
                                             <aura:if isTrue="{!tableData.Delivery_Method__c}">
                                                 <div class="slds-truncate" title="{!tableData.Delivery_Method__c}">{!tableData.Delivery_Method__c}</div>
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>     
                                         </td>
                                         <td data-label="Licensure Level" class="cell-style">
                                             <aura:if isTrue="{!tableData.What_Licensure_Level__c}">
                                                 <div class="slds-truncate" title="{!tableData.What_Licensure_Level__c}">{!tableData.What_Licensure_Level__c}</div>
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </td>
                                         <td data-label="Clock Hours" class="cell-style">
                                             <aura:if isTrue="{!tableData.Clock_Hours__c}">
                                                 <div class="slds-truncate" title="{!tableData.Clock_Hours__c}">{!tableData.Clock_Hours__c}</div>
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </td>
                                         <td data-label="Status" class="cell-style">
                                             <aura:if isTrue="{!tableData.MUSW__Status__c}">
                                                 <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>                                                
                                         </td>
-                                        <td data-label="actions" class="cell-style action-cell">
+                                        <td data-label="Actions" class="cell-style action-cell">
                                             <div class="slds-truncate">
                                                 <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
                                                     <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c)}">
@@ -111,11 +111,11 @@
                     </div>                    
                 </div>
             </div>
-            <div class="slds-m-vertical_xx-large pagination-wrapper">
+            <div class="pagination-wrapper">
                 <c:LnP_Pagination fullList="{!v.courseList}" dispList="{!v.dispList}" pgSize="5" />
             </div>
             <aura:set attribute="else">
-                <div class="slds-align_absolute-center">There are no course licenses</div>
+                <div class="empty-state">There are no course licenses</div>
             </aura:set>
             
         </aura:if>

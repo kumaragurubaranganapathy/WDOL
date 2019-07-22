@@ -63,13 +63,13 @@
                             
                             <aura:iteration items="{!v.draftMandatoryPagination}" var="tableData" indexVar="ind">
                                 <tr class="slds-hint-parent">    
-                                    <td data-label="Task Type" class="cell-style">
+                                    <td data-label="Request Type" class="cell-style">
                                         <aura:if isTrue="{!tableData.Type}">
                                             <div class="slds-truncate" title="{!tableData.Type}">{!tableData.Type}</div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
-                                    <td data-label="Detail" class="cell-style">
+                                    <td data-label="Subject" class="cell-style">
                                         <aura:if istrue="{!tableData.Subject}">
                                             <div class="slds-truncate" title="{!tableData.Subject}">{!tableData.Subject}</div>
                                             <aura:set attribute="else">None</aura:set>
@@ -91,7 +91,7 @@
                                             <lightning:button variant="brand" label="Accept" title="Accept"/>
                                         </div>    
                                     </td>
-                                    <td data-label="actions" class="cell-style">
+                                    <td data-label="" class="cell-style">
                                         <div class="slds-truncate" data-recordId = "{!tableData.Id}" data-action="Declined" onclick="{!c.ActionClick}" >
                                             <lightning:button variant="neutral" label="Decline" title="Decline"/>
                                         </div>    
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="slds-m-vertical_xx-large pagination-wrapper">
+        <div class="pagination-wrapper">
             <c:LnP_Pagination fullList="{!v.DraftMandatoryActionsApplicationsData}" dispList="{!v.draftMandatoryPagination}" pgSize="4" />
         </div>
         <aura:set attribute="else">
@@ -193,7 +193,7 @@
                 </div>
             </div>
             
-            <div class="slds-m-vertical_xx-large pagination-wrapper">
+            <div class="pagination-wrapper">
                 <c:LnP_Pagination fullList="{!v.DraftCourseApplicationsData}" dispList="{!v.draftCoursesPagination}" pgSize="4" />
             </div>
             <aura:set attribute="else">
@@ -271,7 +271,7 @@
                 </div>
             </div>
             
-            <div class="slds-m-vertical_xx-large pagination-wrapper">
+            <div class="pagination-wrapper">
                 <c:LnP_Pagination fullList="{!v.DraftNewLicenseApplicationsData}" dispList="{!v.draftNewLicensePagination}" pgSize="4" />
             </div>
             <aura:set attribute="else">
@@ -342,7 +342,7 @@
                     </table>
                 </div>
             </div>
-            <div class="slds-m-vertical_xx-large pagination-wrapper">
+            <div class="pagination-wrapper">
                 <c:LnP_Pagination fullList="{!v.DraftRenewalApplicationsData}" dispList="{!v.draftRenewPagination}" pgSize="4" />
             </div>
             <aura:set attribute="else">
@@ -397,7 +397,7 @@
                     </table>
                 </div>
             </div>
-            <div class="slds-m-vertical_xx-large pagination-wrapper">
+            <div class="pagination-wrapper">
                 <c:LnP_Pagination fullList="{!v.DraftMaintenanceRequestApplicationsData}" dispList="{!v.draftMaintainPagination}" pgSize="4" />
             </div>
             <aura:set attribute="else">
