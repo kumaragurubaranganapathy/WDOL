@@ -445,6 +445,28 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Exam_Reschedule_via_DOL__c</fullName>
+        <externalId>false</externalId>
+        <label>Exam Reschedule via DOL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>End_date__c</fullName>
         <description>This is the end date of the education history.</description>
         <externalId>false</externalId>
