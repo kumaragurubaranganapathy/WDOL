@@ -5031,6 +5031,11 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
+        <field>MUSW__Fee_c.Fee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__Submission__c.CustomerEnvelope__c</field>
         <readable>true</readable>
     </fieldPermissions>

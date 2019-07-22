@@ -5246,7 +5246,13 @@
         <field>Account.Establishment_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee_c.Fee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>Account.Extension__c</field>
         <readable>true</readable>

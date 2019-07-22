@@ -280,6 +280,17 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Fee_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Fee Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AFRS_Cash_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLCH&quot;</defaultValue>
@@ -2442,11 +2453,15 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
 IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
 If(OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =&quot;&quot;), 
 If(OR(ISNULL( Renewal_Application__c), Renewal_Application__c = &quot;&quot;), 
+If(OR(ISNULL( Request__c), Request__c = &quot;&quot;), 
+If(OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = &quot;&quot;), 
 IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
 &quot;&quot;, HYPERLINK( &quot;../&quot; &amp; MUSW__License2__c, MUSW__License2__r.Name ,&quot;_parent&quot; )), 
+HYPERLINK( &quot;../&quot; &amp; Miscellaneous_Fee__c, Miscellaneous_Fee__r.Name ,&quot;_parent&quot; )),
+HYPERLINK( &quot;../&quot; &amp; Request__c,Request__r.Name,&quot;_parent&quot; )), 
 HYPERLINK( &quot;../&quot; &amp; Renewal_Application__c,Renewal_Application__r.Name,&quot;_parent&quot; )), 
 HYPERLINK( &quot;../&quot; &amp; MUSW__Application2__c,MUSW__Application2__r.Name,&quot;_parent&quot; )), 
-HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_parent&quot; )),
+HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_parent&quot; )), 
 HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Related To</label>

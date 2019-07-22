@@ -16735,6 +16735,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee_c.Fee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Fee__c.MUSW__Rank__c</field>
         <readable>false</readable>

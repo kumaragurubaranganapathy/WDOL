@@ -14530,6 +14530,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Fee_c.Fee_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Automation_Result__c.MUSW__Value__c</field>
         <readable>false</readable>
