@@ -18,7 +18,6 @@
     <aura:attribute name="objectName" type ="String"/>
     <aura:attribute name="SectionError" type="string[]" default="[]"/>
     <aura:attribute name="currSection" type ="String" default=""/>
-    
     <aura:attribute name="questionsAnswers" type="List"/>
     <aura:attribute name="attachmentResponse" type="List"/>
     <aura:attribute name="certificateValues" type="String" default="false" description="certificate checkbox validation flag" />
@@ -334,7 +333,11 @@
                                 </div>
                             </aura:iteration>
                         </aura:if>
-                        
+                        <aura:if isTrue="{!and(section.sectionName=='Locations',v.currentTab==section.tabIndex)}">
+                            <div class="aff-loc">
+                                <c:Polaris_AffiliatedLocations applicationId = "{!v.applicationId}" />
+                            </div>
+                        </aura:if>
                     </div>
                 </aura:set>
             </aura:if>

@@ -1,0 +1,163 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="LnP_LicenseAddressApexController">
+    <aura:attribute name="countryList" type="List" />
+    <aura:attribute name="countyList" type="List" />
+    <aura:attribute name="isCanadianProvince" type="Boolean" default="false" />
+    <aura:attribute name="isState" type="Boolean" default="false" />
+    <aura:attribute name="isNotApplicable" type="Boolean" default="false" />
+    <aura:attribute name="defaultcanadianProvince" type="String" default='British Columbia'/>
+    <aura:attribute name="canadianProvinceList" type="List" />
+    <aura:attribute name="defaultCountry" type="String" default="United States"/>
+    <aura:attribute name="defaultState" type="String" default='WA'/>
+    <aura:attribute name="applicationId" type="String" />
+    <aura:attribute name="isOneLocation" type="Boolean" default="false" />
+    <aura:attribute name="isAddLocation" type="Boolean" default="false" />
+    <aura:attribute name="stateList" type="List" />
+    <aura:attribute name="affLocationTableList" type="List"/>
+    <aura:attribute name="isOutOfCountry" type="Boolean" />
+    <aura:attribute name="selectedParcelId" type="String" />
+    <aura:attribute name="remove" type="Boolean" default="false" />
+    <aura:attribute name="parcel" type="MUSW__Parcel__c" default="{'sobjectType': 'MUSW__Parcel__c',
+                                                                  			'Designated_Engineer_License__c':'',
+                                                                  			'Designated_Land_Surveyor_License__c':'',
+                                                                            'MUSW__Street2__c ': '',                                                
+                                                                            'MUSW__Unit__c ': '',
+                                                                  			'MUSW__City__c ': '',
+                                                                  			'Country__c ':'',
+                                                                  			'County__c' : '',
+                                                                  			'MUSW__State__c ' :'',
+                                                                  			'Canadian_provinces__c ':'',
+                                                                  			'Zip_Postal_Code__c' : '',
+                                                                  			'Address_Type__c' : '',
+                                                                  			'Application_BG__c ':''                                      
+                                                                   }" />
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="affLocTableColumnsList" type="List" default="['DE#/DLS#','Country','Address Line 1','State','County','Zip Code']"/>                      
+    <aura:if isTrue="{!v.affLocationTableList.length != 0}">        
+        <div>
+            <div class="table-wrapper">                        
+                <div class="table-scroll">
+                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <aura:iteration items="{!v.affLocTableColumnsList}" var="headerData">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                    </th> 
+                                </aura:iteration>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.affLocationTableList}" var="tableData" indexVar="ind">
+                                <tr class="slds-hint-parent">    
+                                    <td data-label="Designated_Engineer_License__c" class="cell-style">
+                                        
+                                        <aura:if isTrue="{!tableData.Designated_Engineer_License__c}">
+                                            <div class="slds-truncate" title="{!tableData.Designated_Engineer_License__c}">{!tableData.Designated_Engineer_License__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="Designated_Land_Surveyor_License__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Designated_Land_Surveyor_License__c}">
+                                            <div class="slds-truncate" title="{!tableData.Designated_Land_Surveyor_License__c}" >{!tableData.Designated_Land_Surveyor_License__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                    				<td data-label="Country__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Country__c}">
+                                            <div class="slds-truncate" title="{!tableData.Country__c}">{!tableData.Country__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                    				<td data-label="MUSW__Street2__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.MUSW__Street2__c}">
+                                            <div class="slds-truncate" title="{!tableData.MUSW__Street2__c}">{!tableData.MUSW__Street2__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="MUSW__State__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.MUSW__State__c}">
+                                            <div class="slds-truncate" title="{!tableData.MUSW__State__c}" >{!tableData.MUSW__State__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="County__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.County__c}">
+                                            <div class="slds-truncate" title="{!tableData.County__c}">{!tableData.County__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="Zip_Postal_Code__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Zip_Postal_Code__c}">
+                                            <div class="slds-truncate" title="{!tableData.Zip_Postal_Code__c}">{!tableData.Zip_Postal_Code__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                                    <td data-label="actions" class="cell-style action-cell">
+                                        <div class="slds-truncate">
+                                           <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveClick}" target="_blank">Remove</a>
+									    </div>    
+                                    </td>
+                                </tr>  
+                            </aura:iteration>
+                        </tbody>
+                    </table>                               
+                </div>
+            </div>
+        </div>
+        <aura:set attribute="else">
+            <div class="empty-state">
+                You have not added any affiliated locations
+            </div>
+        </aura:set>
+    </aura:if>
+    <div class="affiliated-loc-wrapper">
+        
+        <lightning:button label="+ Add Location" onclick="{!c.addLocation}" class="{!v.isOneLocation?'add-loc':'slds-hide'}" />
+        <div class="{!v.isOneLocation?(v.isAddLocation?'fields-wrapper':'slds-hide'):'fields-wrapper'}">                    
+            
+            <lightning:input  name="DELicense" label="Designated Engineer License#" value="{!v.parcel.Designated_Engineer_License__c}"  required="false" class="field-size address-fields"/>
+            <lightning:input  name="DLSLicense" label="Designated Land Surveyor License#" value="{!v.parcel.Designated_Land_Surveyor_License__c}"  required="false" class="field-size field-margin address-fields"/>
+            
+            <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
+                <aura:iteration items="{!v.countryList}" var="countryInstance">
+                    <option text="{!countryInstance.label}" value="{!countryInstance.value}"/>
+                </aura:iteration>
+            </lightning:select>
+            
+            <lightning:input title="street" name="street" label="Address Line 1" value="{!v.parcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
+            <lightning:input  name="Unit" label="Address Line 2" value="{!v.parcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
+            
+            <lightning:input name="city" label="City" value="{!v.parcel.MUSW__City__c}" required="true" class="field-size address-fields" />
+           <aura:if isTrue="{!v.isState}">
+                <lightning:select aura:id="statePicklist" name="State" label="State / Territory / Province" value="{!v.defaultState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onStateChange}"> 
+                    <aura:iteration items="{!v.stateList}" var="stateInstance">
+                        <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+            <aura:if isTrue="{!v.isCanadianProvince}">
+                <lightning:select aura:id="canadianProvincePicklist" name="State" label="State / Territory / Province" value="{!v.defaultcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.oncanadianProvinceChange}"> 
+                    <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
+                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+             <aura:if isTrue="{!v.isNotApplicable}">
+                <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
+            </aura:if>
+           
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.parcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+             <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountyChange}"> 
+                    <aura:iteration items="{!v.countyList}" var="eachCounty">
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                    </aura:iteration>
+              </lightning:select>
+             
+            <div class="action-buttons">
+                <lightning:button variant="neutral" label="Cancel" class="{!v.isOneLocation?'cancel-loc':'slds-hide'}" onclick="{!c.cancelLoc}"/>
+                <lightning:button variant="brand" label="Save" onclick="{!c.saveLocation}"/>
+            </div>
+        </div>
+    </div> 
+</aura:component>
