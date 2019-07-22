@@ -334,7 +334,11 @@
                                 </div>
                             </aura:iteration>
                         </aura:if>
-                        
+                        <aura:if isTrue="{!and(section.sectionName=='Locations',v.currentTab==section.tabIndex)}">
+                            <div class="aff-loc">
+                                <c:Polaris_AffiliatedLocations applicationId = "{!v.applicationId}" />
+                            </div>
+                        </aura:if>
                     </div>
                 </aura:set>
             </aura:if>
