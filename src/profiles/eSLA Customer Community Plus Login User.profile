@@ -9,6 +9,10 @@
         <tab>Miscellaneous_Fee__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>Portal_Article__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>	
 	<fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Fee__c.Licensee_Email__c</field>
