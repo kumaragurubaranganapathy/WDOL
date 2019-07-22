@@ -54,6 +54,7 @@
                     helper.showToast(component, event, "Success!", "success", "Your Search result has has been updated successfully.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
+                    helper.closeQuickAction(component, event, helper);
                 }
                 //follwoing two conditions have been removed as per User Story 1436
                 /*if(result == 'MismatchInactive'){
@@ -62,17 +63,30 @@
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
                 }
+                result.contains(Mismatch)
                 if(result == 'Mismatch'){
                     console.log('Mismatch==');
                     helper.showToast(component, event, "Warning!", "warning", "Business name is Mismatch.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
                 }*/
+                
+                if(result.includes('Mismatch')){
+                    console.log('Mismatch==');
+                    var businessName =  result.split('***')[1];
+                    var acctName =  result.split('***')[2];
+                    var errormsg = 'Business name '+businessName+' retrieved from SOS is not matching with Account Name '+acctName+'.';
+                    helper.showToast(component, event, "Warning!", "warning", errormsg);
+                    $A.get('e.force:refreshView').fire();
+                    helper.setDefaultFields(component);
+                    helper.closeQuickAction(component, event, helper);
+                }
                 if(result == 'Inactive'){
                     console.log('Inactive==');
                     helper.showToast(component, event, "Warning!", "warning", "UBI Status is not Active");
                     $A.get('e.force:refreshView').fire();
                     helper.setDefaultFields(component);
+                    helper.closeQuickAction(component, event, helper);
                     
                 }
                 if(result == 'UBI not found'){
@@ -80,6 +94,7 @@
                     helper.showToast(component, event, "Warning!", "Warning", "No match found for the UBI#.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
+                    helper.closeQuickAction(component, event, helper);
                 }
                 
                 if(result == 'Unknown error occoured'){
@@ -87,6 +102,7 @@
                     helper.showToast(component, event, "Error!", "error", "Error Occoured");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
+                    helper.closeQuickAction(component, event, helper);
                 }
                 
                 if(result == 'error from SOS'){
@@ -94,6 +110,7 @@
                     helper.showToast(component, event, "Error!", "error", "Error Occoured from SOS");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
+                    helper.closeQuickAction(component, event, helper);
                 }
             }
         });
