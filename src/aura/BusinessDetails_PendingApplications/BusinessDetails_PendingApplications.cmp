@@ -38,7 +38,7 @@
                     <div>
                         
                         <div class="table-scroll">
-                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
                                 <thead>
                                     <tr class="slds-line-height_reset">
                                         <aura:iteration items="{!v.PendingCourseApplicationsColumns}" var="headerData">
@@ -51,37 +51,37 @@
                                 <tbody>
                                     <aura:iteration items="{!v.pendingCoursesPagination}" var="tableData" indexVar="ind">
                                         <tr class="slds-hint-parent">
-                                            <td data-label="COURSE NAME" class="cell-style">
+                                            <td data-label="Course name" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Course_Name__c}">
                                                     <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Name__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="COURSE TYPE" class="cell-style">
+                                            <td data-label="Course type" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Course_Type__c}">
                                                     <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Type__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="LICENSURE LEVEL" class="cell-style">
+                                            <td data-label="Licensure level" class="cell-style">
                                                 <aura:if isTrue="{!tableData.What_Licensure_Level__c}">
                                                     <div class="slds-truncate" title="{!tableData.What_Licensure_Level__c}">{!tableData.What_Licensure_Level__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="DELIVERY METHOD" class="cell-style">
+                                            <td data-label="Delivery method" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Delivery_Method__c}">
                                                     <div class="slds-truncate" title="{!tableData.Delivery_Method__c}">{!tableData.Delivery_Method__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="CLOCK HOURS" class="cell-style">
+                                            <td data-label="Clock hours" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Clock_Hours_Continuing_Education__c}">
                                                     <div class="slds-truncate" title="{!tableData.Clock_Hours_Continuing_Education__c}">{!tableData.Clock_Hours_Continuing_Education__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="STATUS" class="cell-style">
+                                            <td data-label="Status" class="cell-style">
                                                 <div class="help-text-wrapper">
                                                     <aura:if isTrue="{!tableData.MUSW__Status__c}">
                                                         <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
@@ -106,7 +106,7 @@
                         </div>                       
                     </div>
                 </div>
-                <div class="slds-m-vertical_xx-large pagination-wrapper">
+                <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingCourseApplicationsData}" dispList="{!v.pendingCoursesPagination}" pgSize="4" />
                 </div>
                 <aura:set attribute="else">
@@ -125,7 +125,7 @@
                 <div class="table-height slds-p-vertical_small">
                     <div>
                         <div class="table-scroll">
-                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
                                 <thead>
                                     <tr class="slds-line-height_reset">
                                         <aura:iteration items="{!v.PendingNewLicenseApplicationColumns}" var="headerData">
@@ -176,7 +176,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td data-label="Sub Status" class="cell-style">
+                                            <td data-label="Sub-status" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Sub_Status__c}">
                                                     <div class="slds-truncate" title="{!tableData.Sub_Status__c}">{!tableData.Sub_Status__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slds-m-vertical_xx-large pagination-wrapper">
+                <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingNewLicenseApplications}" dispList="{!v.pendingNewLicensePagination}" pgSize="4" />
                 </div>
                 <aura:set attribute="else">
@@ -229,7 +229,7 @@
                 <div class="table-height slds-p-vertical_small">
                     <div>
                         <div class="table-scroll">
-                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
                                 <thead>
                                     <tr class="slds-line-height_reset">
                                         <aura:iteration items="{!v.PendingRenewalApplicationColumns}" var="headerData">
@@ -302,7 +302,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slds-m-vertical_xx-large pagination-wrapper">
+                <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingRenewalApplications}" dispList="{!v.pendingRenewPagination}" pgSize="4" />
                 </div>
                 <aura:set attribute="else">
@@ -321,7 +321,7 @@
                 <div class="table-height slds-p-vertical_small">
                     <div>
                         <div class="table-scroll">
-                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
                                 <thead>
                                     <tr class="slds-line-height_reset">
                                         <aura:iteration items="{!v.PendingMaintenanceRequestApplicationColumns}" var="headerData">
@@ -367,7 +367,7 @@
                     </div>
                     
                 </div>
-                <div class="slds-m-vertical_xx-large pagination-wrapper">
+                <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingMaintenanceRequestApplications}" dispList="{!v.pendingMaintainPagination}" pgSize="4" />
                 </div>
                 <aura:set attribute="else">
@@ -381,9 +381,9 @@
         </div>
         
         <aura:set attribute="else">
-            
-            <div class="slds-align_absolute-center">There are no pending applications to display</div>
-            
+            <div class="empty-state">
+            <div>There are no pending applications to display</div>
+            </div>
         </aura:set> 
         
     </aura:if>    
