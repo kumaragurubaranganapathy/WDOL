@@ -16,10 +16,12 @@
  }
  
   global void execute(Database.BatchableContext BC, List<MUSW__Application2__c> listDraftApplication) {
+     Date targetDate = Date.today().addDays(-30);
+     Time targetTime = Time.newInstance(21, 30, 0, 0);
      List<MUSW__Application2__c>  applicationListToUpdateStatus = new List<MUSW__Application2__c>();
      List<MUSW__Application2__c>  applicationDeleteAbandoned = new List<MUSW__Application2__c>();
         for(MUSW__Application2__c appDraft : listDraftApplication) {
-            if(appDraft.MUSW__Status__c != 'Abandoned' && appDraft.LastModifiedDate <= Date.today().addDays(-30)){
+            if(appDraft.MUSW__Status__c != 'Abandoned' && appDraft.LastModifiedDate <= Datetime.newInstanceGmt(targetDate, targetTime)){
             appDraft.MUSW__Status__c = 'Abandoned';
             appDraft.Is_Abandoned__c = true;
             applicationListToUpdateStatus.add(appDraft);}
