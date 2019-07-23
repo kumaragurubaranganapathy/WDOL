@@ -7112,6 +7112,16 @@
         <field>BGBK__Payment_Collection_Types__mdt.BGBK__Deposit_Fieldset_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Refund2__c.Revenue_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BGBK__Refund2__c.Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>BGBK__Payment_Collection_Types__mdt.BGBK__Fee_Fieldset_Name__c</field>
