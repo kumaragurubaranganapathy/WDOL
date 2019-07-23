@@ -38,7 +38,9 @@
         var county;
         var zip;
         var mailingPhysicalAddress;
-        if(selectedAddressType == 'MAILING ADDRESS'){
+        var isPhysicalAndMailingSame =  component.get("v.isPhysicalAndMailingSame");
+        console.log('isPhysicalAndMailingSame====' + isPhysicalAndMailingSame);
+        if(selectedAddressType == 'MAILING ADDRESS' ||  isPhysicalAndMailingSame){
             mailingPhysicalAddress = component.get("v.mailingAddressparcel");
             console.log('address of mailing === ' + JSON.stringify(mailingPhysicalAddress));
             street = mailingPhysicalAddress.MUSW__Street2__c;
