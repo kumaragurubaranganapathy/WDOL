@@ -214,6 +214,7 @@ application.MUSW_Account__c = account;*/
         application.Credential_Type__c = licenseType; 
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
+		application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
         application.MUSW__Account__c = account;
         if(branchLicense.contains(licenseType)){
@@ -253,6 +254,7 @@ application.MUSW_Account__c = account;*/
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
         application.MUSW__Applicant__c = getContactId;
+		appList[0].MUSW__Status__c = 'Submitted';
         if(isRenewal != null && isRenewal != ''){
             application.isRenewal__c = Boolean.valueOf(isRenewal);   
         }
