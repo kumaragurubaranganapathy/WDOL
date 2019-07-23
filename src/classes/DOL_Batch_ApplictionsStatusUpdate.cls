@@ -17,7 +17,7 @@
  
   global void execute(Database.BatchableContext BC, List<MUSW__Application2__c> listDraftApplication) {
      Date targetDate = Date.today().addDays(-30);
-     Time targetTime = Time.newInstance(21, 30, 0, 0);
+     Time targetTime = Time.newInstance(23, 59, 59, 0);
      List<MUSW__Application2__c>  applicationListToUpdateStatus = new List<MUSW__Application2__c>();
      List<MUSW__Application2__c>  applicationDeleteAbandoned = new List<MUSW__Application2__c>();
         for(MUSW__Application2__c appDraft : listDraftApplication) {
