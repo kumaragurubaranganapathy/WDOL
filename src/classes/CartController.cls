@@ -1389,6 +1389,16 @@ public with sharing class CartController
         {
             m_reconcileOriginalContact = cart.BGBK__Contact__c;
         }
+		//Added by Abhilasha as a part of bug:4012
+        if(cart.BGBK__Contact__c != null){
+            Id AccountId = [Select AccountId From Contact Where Id = :cart.BGBK__Contact__c limit 1].AccountId;
+            for(ReceiptVO rvo : receiptVOs){
+                if(rvo.r.MUSW__Receipt_Paid_by__c == null){
+                    rvo.r.MUSW__Receipt_Paid_By__c = cart.BGBK__Contact__c;
+                    rvo.r.MUSW__Paid_By__c = AccountId;
+                }
+            }
+        }
     }
     
     
