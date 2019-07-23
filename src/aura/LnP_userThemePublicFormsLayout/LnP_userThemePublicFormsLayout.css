@@ -152,7 +152,7 @@
     font-size: token(fieldlabelsize);
     line-height:1;
     font-weight: token(txtfontweight);
-    color: token(LnGFormTitleColor);    
+    color: token(fieldclr);    
 }
 
 .THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input{
@@ -517,6 +517,7 @@ color: token(placeholderColor);
     border-top-left-radius : 4px; 
     border-top-right-radius : 4px; 
     padding:0.25rem 2.5rem;
+    flex-grow:1;
 }
 .THIS .slds-tabs_default__item::after, .THIS .slds-tabs--default__item::after{
     display:none;
@@ -545,6 +546,9 @@ color: token(placeholderColor);
 .THIS .border-bottom {
     border-bottom:1px solid t(headerclr);
 }
+.THIS .slds-tabs_default__item.slds-tabs_default__overflow-button[style='visibility: hidden;']{
+    display:none;
+}
 
 /*common style for tabs end*/
 .THIS .slds-button.slds-button_brand{
@@ -559,6 +563,7 @@ color: token(placeholderColor);
     color:t(buttonNeutral);
     border : solid 1px t(buttonNeutral);
 }
+
 @media only screen and (max-width:767.9px){    
     .THIS .cancel-button,.THIS .next-button{
         display:block;
