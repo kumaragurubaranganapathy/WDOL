@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Lockbox Envelope</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Lockbox Envelopes</value>
+    </caseValues>
+    <fields>
+        <label><!-- Customer Envelope Amount --></label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lockbox Amount --></label>
+        <name>Lockbox_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lockbox Number --></label>
+        <name>Lockbox_number__c</name>
+    </fields>
+    <layouts>
+        <layout>Lockbox Envelope Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

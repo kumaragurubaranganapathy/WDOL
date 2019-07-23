@@ -1,0 +1,545 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" controller="Add_BusinessController">
+    <aura:attribute name="businessList" type="List" />
+    <aura:attribute name="businessAccount" type="Account" />
+    <aura:attribute name="recordTypeId" type="String" />
+    <aura:attribute name="selectedAccount" type="String" />
+    <aura:attribute name="accEmail" type="String" />
+    <aura:attribute name="accPhone" type="string" />
+    <aura:attribute name="accUBI" type="String" />
+    <aura:attribute name="accountDetail" type="boolean" />
+    <aura:attribute name="isCourseProvider" type="boolean" default="false"/>
+    <aura:attribute name="licenseDetail" type="boolean" />
+    <aura:attribute name="courseDetail" type="boolean" default="false"/>
+    <aura:attribute name="licenseId" type="String" />
+    <aura:attribute name="LicenseData" type="MUSW__License2__c" />
+    <aura:attribute name="EndorsementData" type="Endorsement__c" />
+    <aura:attribute name="AddressData" type="List" />
+    <aura:attribute name="existingAcc" type="boolean" default="false" />
+    <aura:attribute name="isDisplayTabs" type="boolean" default="true"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="breadcrumbLabel" type="string" />
+    <aura:attribute name="screenOne" type="Boolean" default="true"/>
+    <aura:attribute name="screenTwo" type="Boolean" default="false"/>
+    <aura:attribute name="screenThree" type="Boolean" default="false"/>
+    <aura:attribute name="todayDate" type="String" />
+    <aura:attribute name="SelectedAccountDetails" type="Account"/>
+    <aura:attribute name ="ParcelObj" type ="List"/>
+    <aura:attribute name="mainAccountName" type="String" />
+    <aura:attribute name="branchExam" type="boolean" default="false" />
+    <aura:attribute name="expandedMenu" type="boolean" default="false" />
+    <aura:attribute name="thirdpartybillingcode" type="boolean" description="to store the third party Billing code"/>
+    <aura:attribute name ="ServiceLink" type="List" />
+    <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
+    <aura:attribute name="showMoreDashboard" type="Boolean" default="false" />
+    <aura:registerEvent name="loadAccountName" type="c:LnP_FetchAccounId" />
+    
+    <!-- Pending draft Application -->
+    <aura:attribute name="CompletedRequestColumns" type="List" default="['Request #','Request Type','Request Against','Status', 'Completion Date']" />
+    <aura:attribute name="CompletedRequestData" type="List" default="" />
+    
+    <!-- Affiliated Locations -->
+    <aura:attribute name="affiliatedLoc" type="Boolean" default="true" />
+    
+    <aura:handler name="businessRefresh" event="c:RefreshEvent" action="{!c.handleComponentEvent}"/>
+    <!--<aura:handler name="render" value="{!this}" action="{!c.doRender}" /> -->
+    <div class="business-outer-wrapper">
+        
+        <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
+            <h1 class="screen-title">Business License<!--{!v.breadcrumbLabel} --></h1>
+            <lightning:breadcrumbs class="breadcrumb-wrapper"> 
+                <lightning:breadcrumb class="transform-text breadcumb" label="Business Dashboard" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/>
+                <lightning:breadcrumb class="{!or(v.screenTwo,v.screenThree)?'transform-text breadcumb':'slds-hide'}" label="{!v.breadcrumbLabel}" href="javascrit:void(0)" onclick="{!c.navigateToScreenTwo}"/>
+                <lightning:breadcrumb class="{!v.screenThree?'transform-text breadcumb':'slds-hide'}" label="License 123456789" href="javascrit:void(0)" onclick="{!c.navigateToScreenThree}"/>
+            </lightning:breadcrumbs>
+        </aura:if>
+        <aura:if isTrue="{!v.screenOne}">	
+            <div class="business-dashboard-header">
+                <h2 class="page-title">Business Dashboard</h2>
+                <div class="biz-welcome">                   
+                    
+                    <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/>
+                    
+                </div>
+            </div>
+            <div class="business-dashboard-body">
+                <aura:if isTrue="{!v.businessList.length!=0?'true':'false'}">
+                    <lightning:layout class="slds-wrap business-wrapper">
+                        <aura:iteration items="{!v.businessList}" var="business">
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="slds-box business-card">
+                                <div class="biz-name-wrapper" title="{!business.Name}">
+                                    <a href="javascript:void(0)" title="{!business.Name}" class="business-name" id="{!business.Id}" onclick="{!c.businessDetails}">{!business.Name}</a>
+                                </div>
+                                <div class="biz-address">
+                                    {!business.Email__c?business.Email__c: 'Email address unavailable'}
+                                </div>
+                                <div class="biz-ubi">
+                                    <div class="ubi-label">
+                                        UBI
+                                    </div>
+                                    <div class="ubi-num">
+                                        {!business.UBI_Number__c?business.UBI_Number__c: 'N/A'}
+                                        <!--{!if(!empty(business.UBI_Number__c), business.UBI_Number__c, 'NA')}-->
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+                        </aura:iteration>
+                    </lightning:layout>
+                </aura:if>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.thirdpartybillingcode}">
+            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="Create Code" label="Create Code" onclick="{!c.createcode}"/>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.courseDetail}">
+            <div class="license-outer-wrapper" id = "coursedetailsdivid">
+                <div class="info-date">
+                    {!'Information as of ' + v.todayDate}
+                </div>
+                <div class="actions-wrapper slds-hide_medium">                        
+                        <a class="action-link" href="javascript:void(0)" onclick="{!c.showMoreAMR}">{!v.showMoreAMR?'Hide actions':'Actions'}</a>
+                    </div>
+                <lightning:layout class="slds-wrap amr-wrapper">
+                    
+                    <lightning:layoutItem size="12" mediumDeviceSize="{!empty(v.ServiceLink)?'12':'9'}">
+                        
+                        <div class="license-details-wrapper">
+                            <lightning:layout class="details-header slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
+                                    Course Number: {!v.LicenseData.Name}
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
+                                    License Type: {!v.LicenseData.Credential_Type__c}
+                                </lightning:layoutItem>                
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
+                                    Status: {!v.LicenseData.MUSW__Status__c}
+                                </lightning:layoutItem>                
+                            </lightning:layout>
+                            <div class="details-body">
+                                <lightning:layout class="name-details slds-wrap">
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                        <span class="label-style">Provider:</span>
+                                        {!v.LicenseData.Ultimate_Parent_Account__r.Name}
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem size="12" mediumDeviceSize="8">
+                                        <span class="label-style">Doing Business As:</span> 
+                                        <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}">
+                                            {!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}
+                                            <aura:set attribute="else">(None)</aura:set>
+                                        </aura:if>                                                    
+                                    </lightning:layoutItem>
+                                </lightning:layout>
+                                <lightning:layout class="contact-details slds-wrap">
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                        <div class="contact-item">
+                                            <span class="label-style">Phone:</span>
+                                            <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}">
+                                                {!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}
+                                                <aura:set attribute="else">(None)</aura:set>
+                                            </aura:if>
+                                        </div>
+                                        <div class="contact-item">
+                                            <span class="label-style">Email:</span>
+                                            <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Email__c}">
+                                                {!v.LicenseData.Ultimate_Parent_Account__r.Email__c}
+                                                <aura:set attribute="else">(None)</aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </lightning:layoutItem>
+                                    
+                                    <lightning:layoutItem size="12" class="phy-address" mediumDeviceSize="4">
+                                        <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Physical Address'}">
+                                                <div class="label-style">Physical Address:</div> 
+                                                <div class="address">
+                                                    {!addressvar.Street__c},<br />
+                                                    {!addressvar.City__c},<br />
+                                                    {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                </div>
+                                            </aura:if>
+                                        </aura:iteration>  
+                                    </lightning:layoutItem>
+                                    
+                                    
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                        <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Mailing Address'}">
+                                                <div class="label-style">Mailing Address:</div> 
+                                                <div class="address">
+                                                    {!addressvar.Street__c},<br />
+                                                    {!addressvar.City__c},<br />
+                                                    {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                </div>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:layoutItem> 
+                                    
+                                </lightning:layout>
+                                
+                                <lightning:layout class="issue-details slds-wrap">
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                        <div class="contact-item">
+                                            <span class="label-style">First Issue Date: </span>
+                                            <aura:if isTrue="{!v.LicenseData.Original_Issue_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.Original_Issue_Date__c}"/>
+                                                <aura:set attribute="else">None</aura:set>
+                                            </aura:if>
+                                        </div>
+                                        <div class="contact-item">
+                                            <span class="label-style">Current Issue Date: </span>
+                                            <aura:if isTrue="{!v.LicenseData.MUSW__Issue_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Issue_Date__c}"/>
+                                                <aura:set attribute="else">None</aura:set>
+                                            </aura:if>
+                                        </div>
+                                        <div class="contact-item">
+                                            <span class="label-style">Expiration Date: </span>
+                                            <aura:if isTrue="{!v.LicenseData.Expiration_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.Expiration_Date__c}"/>
+                                                <aura:set attribute="else">None</aura:set>
+                                            </aura:if>
+                                        </div>                        
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem size="12" mediumDeviceSize="8">
+                                        <div class="issue-item">
+                                            <span class="label-style">Sub-status: </span>
+                                            <aura:if isTrue="{!v.LicenseData.Sub_Status__c}">
+                                                {!v.LicenseData.Sub_Status__c}
+                                                <aura:set attribute="else">None</aura:set>
+                                            </aura:if>
+                                        </div>
+                                        <div class="issue-item">
+                                            <span class="label-style">Discipline: </span>None
+                                        </div>
+                                        <div class="issue-item">
+                                            <span class="label-style">Program: </span>
+                                            <aura:if isTrue="{!v.LicenseData.Application_Type__c}">
+                                                {!v.LicenseData.Application_Type__c}
+                                                <aura:set attribute="else">None</aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </lightning:layoutItem>                         
+                                </lightning:layout>
+                            </div>
+                            
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!empty(v.ServiceLink)?'slds-hide':(v.showMoreAMR?'amr-links exp-actions':'amr-links slds-show_medium')}">
+                        <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" recordId="{!v.LicenseData.Id}"  />
+                    </lightning:layoutItem>
+                    
+                </lightning:layout>
+            </div>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.screenTwo}">
+            <div class="screen-two-wrapper">
+                <aura:if isTrue="{!v.accountDetail}"> 
+                    <div class="actions-wrapper slds-hide_medium">                        
+                        <a class="action-link" href="javascript:void(0)" onclick="{!c.showMoreDashboard}">{!v.showMoreDashboard?'Hide actions':'Actions'}</a>
+                    </div>
+                    <lightning:layout class="biz-details-wrapper slds-wrap" aura:id="biz-wrapper">
+                        <lightning:layoutItem size="12" mediumDeviceSize="9" class="user-info-wrapper">
+                            <div class="Account-name">{!v.SelectedAccountDetails.Name}</div>
+                            <lightning:layout class="slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                    <div class="field-style">
+                                        <div class="label-style">UBI:</div>
+                                        <div class="data-style">{!v.SelectedAccountDetails.Email__c}</div>
+                                    </div>
+                                    <div class="field-style">
+                                        <div class="label-style">Email:</div>
+                                        <div class="data-style">{!v.SelectedAccountDetails.Email__c}</div>
+                                    </div>
+                                    <div class="field-style alt-email">
+                                        <div class="label-style">Alternate email:</div>
+                                        <div class="data-style">{!v.SelectedAccountDetails.Email__c}</div>
+                                    </div>                        
+                                    <div class="field-style">
+                                        <div class="label-style">Phone:</div>
+                                        <div class="data-style">{!v.SelectedAccountDetails.Business_Phone__c}</div>
+                                    </div>
+                                    <!--<div class="field-style"><span class="label-style">Email : </span></div>
+                                    <div class="field-style"><span class="label-style">Phone : </span>{!v.SelectedAccountDetails.Business_Phone__c}</div> -->
+                                </lightning:layoutItem>
+                                
+                                <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                        <aura:if isTrue = "{!parcel.Address_Type__c == 'HOME'}">
+                                            <div class="field-style address">
+                                                <div class="field-style address">
+                                                    <div class="label-style">Physical address:</div>
+                                                    <div class="data-style">{!parcel.MUSW__Street__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
+                                                </div>
+                                                <!--<span class="label-style">Physical Address:</span></div>
+                                            <div class="">{!parcel.MUSW__Street__c},</div>
+                                            <div class="">{!parcel.MUSW__City__c},</div>
+                                            <div class="">{!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c} -->
+                                            </div>
+                                        </aura:if>
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                        <aura:if isTrue = "{!parcel.Address_Type__c == 'MAILING ADDRESS'}">
+                                            <div class="field-style address">
+                                                <div class="label-style">Mailing address:</div>
+                                                <div class="data-style">{!parcel.MUSW__Street__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
+                                            </div>
+                                            <!--<div class="field-style"><span class="label-style">Mailing Address:</span></div>
+                                            <div class="">{!parcel.MUSW__Street__c},</div>
+                                            <div class="">{!parcel.MUSW__City__c},</div>
+                                            <div class="">{!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>   --> 
+                                        </aura:if>
+                                    </lightning:layoutItem>
+                                </aura:iteration>
+                                
+                            </lightning:layout>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="12" mediumDeviceSize="3" class="nav-links">
+                            <div class="{!'links-wrapper' + (v.showMoreDashboard?(v.expandedMenu?' exp-wrapper':' mobile-exp'):' slds-show_medium')}">
+                                <ul class="{! 'links-list' + (v.expandedMenu?' expanded':'')}">
+                                    <li data-index="1" aura:id="action-item"><a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">Apply Business License</a></li>
+                                    <li data-index="2" aura:id="action-item"><a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a></li>
+                                    <li data-index="3" aura:id="action-item"><a href="javascript:void(0);">Add Contact</a></li>
+                                    <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li>
+                                    <li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li>
+                                    <li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Request Name Change</a></li>
+                                    <li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.BillingCode}" href="javascript:void(0);">Get Billing Code</a></li>
+                                    
+                                    <li aura:id="more-action" onclick="{!c.showMoreActions}"><a href="javascript:void(0);">{!v.expandedMenu?'Less Actions':'More Actions'}</a></li>
+                                </ul>
+                            </div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </aura:if>
+                <aura:if isTrue="{!v.licenseDetail}">
+                    <div class="license-outer-wrapper">
+                        <div class="info-date">
+                            {!'Information as of ' + v.todayDate}
+                        </div>
+                        <div class="actions-wrapper slds-hide_medium">                        
+                            <a class="action-link" href="javascript:void(0)" onclick="{!c.showMoreAMR}">{!v.showMoreAMR?'Hide actions':'Actions'}</a>
+                        </div>
+                        <lightning:layout class="slds-wrap amr-wrapper">
+                            <lightning:layoutItem size="12" mediumDeviceSize="{!empty(v.ServiceLink)?'12':'9'}">
+                                
+                                <div class="license-details-wrapper">
+                                    <lightning:layout class="details-header slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
+                                            License Number: {!v.LicenseData.Name}
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item slds-truncate" title="{!v.LicenseData.Credential_Type__c}">
+                                            License Type: {!v.LicenseData.Credential_Type__c}
+                                        </lightning:layoutItem>                
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="header-item">
+                                            Status: {!v.LicenseData.MUSW__Status__c}
+                                        </lightning:layoutItem>                
+                                    </lightning:layout>
+                                    <div class="details-body">
+                                        <lightning:layout class="name-details slds-wrap">
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
+                                                <div class="label-style">Business Name:</div> 
+                                                <div class="data-style">{!v.LicenseData.Ultimate_Parent_Account__r.Name?v.LicenseData.Ultimate_Parent_Account__r.Name:'None'}</div>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
+                                                <div class="label-style">Doing Business As:</div> 
+                                                <div class="data-style">
+                                                    {!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c?v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c:'None'}
+                                                </div>
+                                            </lightning:layoutItem>                                     
+                                            
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="contact-item">
+                                                    <div class="label-style">Phone:</div> 
+                                                    <div class="data-style">
+                                                        {!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c?v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c:'None'}
+                                                    </div>
+                                                </div>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="contact-item">
+                                                    <div class="label-style">Email:</div> 
+                                                    <div class="data-style">{!v.LicenseData.Ultimate_Parent_Account__r.Email__c?v.LicenseData.Ultimate_Parent_Account__r.Email__c:'None'}</div>
+                                                </div>
+                                            </lightning:layoutItem>                                            
+                                            <lightning:layoutItem size="12" class="contact-item" mediumDeviceSize="4">
+                                                <div class="label-style">Physical Address:</div> 
+                                                <aura:if isTrue="{!!empty(v.AddressData)}">
+                                                    <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                                        
+                                                        
+                                                        
+                                                        <div class="address data-style">
+                                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Physical Address'}">
+                                                                {!addressvar.Street__c},<br />
+                                                                {!addressvar.City__c},<br />
+                                                                {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                                
+                                                            </aura:if>
+                                                        </div>
+                                                        
+                                                    </aura:iteration> 
+                                                    <aura:set attribute="else">
+                                                        <div class="data-style"> None</div>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </lightning:layoutItem>                                             
+                                            
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
+                                                <div class="label-style">Mailing Address:</div> 
+                                                <aura:if isTrue="{!!empty(v.AddressData)}">
+                                                    <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                                        
+                                                        
+                                                        
+                                                        <div class="address data-style">
+                                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Mailing Address'}">
+                                                                {!addressvar.Street__c},<br />
+                                                                {!addressvar.City__c},<br />
+                                                                {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                                
+                                                                
+                                                            </aura:if>
+                                                        </div>
+                                                    </aura:iteration>
+                                                    <aura:set attribute="else">
+                                                        <div class="data-style">None</div>   
+                                                    </aura:set> 
+                                                </aura:if>
+                                            </lightning:layoutItem>                                           
+                                            
+                                            
+                                            
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="contact-item">
+                                                    <div class="label-style">First Issue Date: </div> 
+                                                    <div class="data-style">
+                                                        {!v.LicenseData.Original_Issue_Date__c?v.LicenseData.Original_Issue_Date__c:'None'}
+                                                    </div>
+                                                </div>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="contact-item">
+                                                    <div class="label-style">Current Issue Date: </div> 
+                                                    <div cass="data-style">{!v.LicenseData.MUSW__Issue_Date__c?v.LicenseData.MUSW__Issue_Date__c:'None'}</div>
+                                                </div>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="contact-item">
+                                                    <div class="label-style">Expiration Date: </div> 
+                                                    <div class="data-style">
+                                                        {!v.LicenseData.Expiration_Date__c?v.LicenseData.Expiration_Date__c:'None'}
+                                                    </div>
+                                                </div>      
+                                            </lightning:layoutItem>
+                                            
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="issue-item">
+                                                    <div class="label-style">Sub-status: </div>
+                                                    <div class="data-style">
+                                                        {!v.LicenseData.Sub_Status__c?v.LicenseData.Sub_Status__c:'None'}
+                                                    </div>
+                                                </div>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="issue-item">
+                                                    <div class="label-style">Discipline: </div>
+                                                    <div class="data-style">
+                                                        Yet to be mapped
+                                                    </div>
+                                                </div>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" mediumDeviceSize="4">
+                                                <div class="issue-item">
+                                                    <div class="label-style">Program: </div>
+                                                    <div class="data-style">
+                                                        {!v.LicenseData.Application_Type__c?v.LicenseData.Application_Type__c:'None'}
+                                                    </div>
+                                                </div>                                                
+                                            </lightning:layoutItem>                         
+                                        </lightning:layout>
+                                        <div class="section-wrapper">
+                                            <div class="section-header">
+                                                Endorsements
+                                            </div>
+                                            <div class="section-details">
+                                                <div class="issue-item">
+                                                    <aura:if isTrue="{!v.EndorsementData.Endorsement_Type__c}">
+                                                        {!v.EndorsementData.Endorsement_Type__c}
+                                                        <aura:set attribute="else">(None)</aura:set>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="{!v.LicenseData.Credential_Type__c=='Engineering/Land Surveying Company'?'section-wrapper':'slds-hide'}">
+                                            <div class="section-header">
+                                                Affiliated Locations
+                                            </div>
+                                            <div class="section-details">
+                                                <div class="address-item">
+                                                    <c:LnP_LicenseAddress affiliatedLoc="{!v.affiliatedLoc}" />
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    
+                                </div>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!empty(v.ServiceLink)?'slds-hide':(v.showMoreAMR?'amr-links exp-actions':'amr-links slds-show_medium')}">
+                                <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" ServiceLink="{!v.ServiceLink}" recordId="{!v.LicenseData.Id}" accountId="{!v.selectedAccount}" />
+                            </lightning:layoutItem>
+                            
+                        </lightning:layout>
+                    </div>
+                </aura:if>
+            </div>
+            
+            <aura:if isTrue="{!!v.courseDetail}">
+                <lightning:tabset class="tabs-wrapper">
+                    <aura:if isTrue="{!v.accountDetail}">
+                        <aura:if isTrue = "{!v.isCourseProvider}"> 
+                            <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >
+                                <!--<c:Course_LicenseScreen  accountId="{!v.selectedAccount}"/>-->
+                                <!-- data is injected Dynamically-->
+                            </lightning:tab>
+                        </aura:if>
+                        <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Licenses" id="Licenses" >
+                            <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" />--> 
+                            <!-- data is injected Dynamically-->
+                        </lightning:tab>
+                    </aura:if>
+                    <aura:if isTrue="{!v.branchExam}">
+                        <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Branches" id="Branches" >
+                            <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" licenseId="{!v.licenseId}" BranchLicenses="true"/>--> 
+                            <!-- data is injected Dynamically-->
+                        </lightning:tab>
+                    </aura:if>   
+                    <lightning:tab class="tab-style" label="Relationships" onactive="{!c.setBreadCrumb}" id="Relationships" >
+                        <!--<c:Polaris_Relationship selectedAccount="{!v.selectedAccount}" mainAccountName="{!v.mainAccountName}" licenseId="{!v.licenseId}" licenseDetail="{!v.licenseDetail}" />-->
+                        <!-- data is injected Dynamically-->
+                    </lightning:tab>
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Draft Applications" id="Draft Applications" >
+                        <!--<c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/>-->
+                        <!-- data is injected Dynamically-->
+                    </lightning:tab>
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Pending Applications" id="Pending Applications" >
+                        <!--<c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" />-->
+                        <!-- data is injected Dynamically-->
+                    </lightning:tab>
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Completed Requests" id="Completed Requests" >
+                        <!--<c:LnP_CompletedRequest CompletedRequestData="{!v.CompletedRequestData}" CompletedRequestColumns="{!v.CompletedRequestColumns}" />-->
+                        <!-- data is injected Dynamically-->
+                    </lightning:tab>
+                    <aura:if isTrue="{!v.branchExam}">
+                        <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Exam" id="Exam" >
+                            <c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/>
+                        </lightning:tab>
+                    </aura:if>
+                </lightning:tabset>
+            </aura:if>
+        </aura:if>
+        <aura:if isTrue="{!v.screenThree}">
+            <c:Business_LicenseScreen />
+        </aura:if>
+    </div>
+</aura:component>

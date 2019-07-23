@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>MUSW__Access_Expires__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Stores the Access Token expiry date</description>
+        <externalId>false</externalId>
+        <label>Access Expires</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Alert_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email address to use in the event of an error in the Bluebeam OAuth process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email address to use in the event of an error in the Bluebeam OAuth process</inlineHelpText>
+        <label>Alert Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Apex_Job_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Apex Job Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Authentication_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The URL Endpoint to request an Authentication token from</description>
+        <externalId>false</externalId>
+        <label>Authentication URL</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Base_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The default return point for the Authentication flow to return to</description>
+        <externalId>false</externalId>
+        <label>Base URL</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Bluebeam_User_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email on User&apos;s Bluebeam Account.</description>
+        <externalId>false</externalId>
+        <label>Bluebeam User Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Client_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Client Id which selects the Bluebeam App to use</description>
+        <externalId>false</externalId>
+        <label>Client Id</label>
+        <length>64</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Client_Secret__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The client secret to use to turn an refresh or code token into an access token</description>
+        <externalId>false</externalId>
+        <label>Client Secret</label>
+        <length>128</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Encrypted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If checked the values in Client Secret, Refresh Token and PARTxx are encrypted, the app will default to encrypted state.</description>
+        <externalId>false</externalId>
+        <label>Encrypted</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__IsRefreshingAccessToken__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Refreshing Access Token</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Part01__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Access Token 1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Part02__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Access Token 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Part03__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Access Token 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Part04__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Access Token 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Part05__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Access Token 5</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Redirect_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The base url for the API calls to the OAuth endpoint</description>
+        <externalId>false</externalId>
+        <label>Redirect URL</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Refresh_Expires__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date the refresh token expires</description>
+        <externalId>false</externalId>
+        <label>Refresh Expires</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Refresh_Token__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Refresh Token</label>
+        <length>128</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>OAuth Properties</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,18 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="selectedAccount" type="String" />
+    <aura:attribute name="mainAccountName" type="String"/>
+    <aura:attribute name="licenseId" type="String" />
+    <aura:attribute name="licenseDetail" type="String" />
+    
+    
+    <c:LnP_Relationship sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.mainAccountName}" />  
+    <aura:if isTrue="{!v.licenseDetail}">        
+        
+        <c:LnP_Relationship sObjectName="Associations__c" queryId="{!v.licenseId}" />
+        <br></br><br></br>
+        <c:LnP_Add_Association  parentLicense="{!v.licenseId}" />
+    </aura:if> 
+    <div class="relation-add">
+        <c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.mainAccountName}"/>
+    </div>
+</aura:component>

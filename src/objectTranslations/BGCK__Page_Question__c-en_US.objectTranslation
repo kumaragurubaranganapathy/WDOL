@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Page Question Basic --></label>
+        <name>BGCK__Page_Question_Basic</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Inspection --></label>
+        <name>Inspection</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Master_page --></label>
+        <name>Master_page</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Question Field set --></label>
+        <name>Question_Field_set</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Test --></label>
+        <name>Test</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist Name --></label>
+        <name>BGCK__BG_Checklist_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist Version Status --></label>
+        <name>BGCK__Checklist_Version_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Criteria --></label>
+        <name>BGCK__Criteria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required --></label>
+        <name>BGCK__IsRequired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>BGCK__Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page --></label>
+        <name>BGCK__Page__c</name>
+        <relationshipLabel><!-- Page Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Page Question --></label>
+        <name>BGCK__Parent_Page_Question__c</name>
+        <relationshipLabel><!-- Page Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Question Number --></label>
+        <name>BGCK__Question_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Question --></label>
+        <name>BGCK__Question__c</name>
+        <relationshipLabel><!-- Page Questions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SubQuestion --></label>
+        <name>BGCK__SubQuestion__c</name>
+        <relationshipLabel><!-- Page Questions (SubQuestion) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tracking Number --></label>
+        <name>BGCK__Track_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Method --></label>
+        <name>Checklist_for__c</name>
+    </fields>
+    <fields>
+        <label><!-- Checklist type --></label>
+        <name>Checklist_type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Area --></label>
+        <name>Permit_Type_or_Credential_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type --></label>
+        <name>Record_Type__c</name>
+        <picklistValues>
+            <masterLabel>Audit</masterLabel>
+            <translation><!-- Audit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inspection</masterLabel>
+            <translation><!-- Inspection --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Review for --></label>
+        <name>Review_for__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>Type_Crendential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Violation --></label>
+        <name>Violation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mulesoft Ext Id --></label>
+        <name>WADOL_Mulesoft_Ext_Id__c</name>
+    </fields>
+    <layouts>
+        <layout>Page Question Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

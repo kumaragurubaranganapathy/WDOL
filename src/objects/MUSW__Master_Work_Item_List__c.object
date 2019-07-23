@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>MasterWorkItemPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>MasterWorkItemPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Master control table to determine which Permit, License, etc values will set or create Work Item outcomes via DRE rules. Can be used to allow non-admin users with appropriate permissions to edit their own criteria and outcome values.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>MUSW__Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of Work Item</description>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Default_Quantity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Default Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>User friendly name of Work Item</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__IsEnabled__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Permit_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Permit Record Type</description>
+        <externalId>false</externalId>
+        <label>Permit Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Building</fullName>
+                    <default>false</default>
+                    <label>Building</label>
+                </value>
+                <value>
+                    <fullName>Electrical</fullName>
+                    <default>false</default>
+                    <label>Electrical</label>
+                </value>
+                <value>
+                    <fullName>Plumbing</fullName>
+                    <default>false</default>
+                    <label>Plumbing</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__Price_Formula__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Price Formula</label>
+        <length>3900</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MUSW__Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>a product related to the master work item to carry product information include standard price</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Master Work Item Lists</relationshipLabel>
+        <relationshipName>Master_Work_Item_Lists</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Record_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of Work Item Record Type</description>
+        <externalId>false</externalId>
+        <label>Record Type</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Sub_Category__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Work Item field grouping</description>
+        <externalId>false</externalId>
+        <label>Sub Category</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Permit_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Permit Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Permit_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UOM__c</fullName>
+        <externalId>false</externalId>
+        <label>UOM</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>$</fullName>
+                    <default>false</default>
+                    <label>$</label>
+                </value>
+                <value>
+                    <fullName>100 LI</fullName>
+                    <default>false</default>
+                    <label>100 LI</label>
+                </value>
+                <value>
+                    <fullName>1K BTU</fullName>
+                    <default>false</default>
+                    <label>1K BTU</label>
+                </value>
+                <value>
+                    <fullName>1K CFM</fullName>
+                    <default>false</default>
+                    <label>1K CFM</label>
+                </value>
+                <value>
+                    <fullName>AMP</fullName>
+                    <default>false</default>
+                    <label>AMP</label>
+                </value>
+                <value>
+                    <fullName>CU YD</fullName>
+                    <default>false</default>
+                    <label>CU YD</label>
+                </value>
+                <value>
+                    <fullName>DEVICE</fullName>
+                    <default>false</default>
+                    <label>DEVICE</label>
+                </value>
+                <value>
+                    <fullName>EACH</fullName>
+                    <default>false</default>
+                    <label>EACH</label>
+                </value>
+                <value>
+                    <fullName>FLAT</fullName>
+                    <default>false</default>
+                    <label>FLAT</label>
+                </value>
+                <value>
+                    <fullName>FT</fullName>
+                    <default>false</default>
+                    <label>FT</label>
+                </value>
+                <value>
+                    <fullName>GAL</fullName>
+                    <default>false</default>
+                    <label>GAL</label>
+                </value>
+                <value>
+                    <fullName>HEADS</fullName>
+                    <default>false</default>
+                    <label>HEADS</label>
+                </value>
+                <value>
+                    <fullName>HOUR</fullName>
+                    <default>false</default>
+                    <label>HOUR</label>
+                </value>
+                <value>
+                    <fullName>HP</fullName>
+                    <default>false</default>
+                    <label>HP</label>
+                </value>
+                <value>
+                    <fullName>INCH</fullName>
+                    <default>false</default>
+                    <label>INCH</label>
+                </value>
+                <value>
+                    <fullName>LIN FT</fullName>
+                    <default>false</default>
+                    <label>LIN FT</label>
+                </value>
+                <value>
+                    <fullName>QTY</fullName>
+                    <default>false</default>
+                    <label>QTY</label>
+                </value>
+                <value>
+                    <fullName>SQ FT</fullName>
+                    <default>false</default>
+                    <label>SQ FT</label>
+                </value>
+                <value>
+                    <fullName>SQ YD</fullName>
+                    <default>false</default>
+                    <label>SQ YD</label>
+                </value>
+                <value>
+                    <fullName>SYSTEM</fullName>
+                    <default>false</default>
+                    <label>SYSTEM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Value_Per_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Value Per Unit</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Item_Formula__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Item Formula</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Master Work Item List</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Master Work Item List Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Master Work Item Lists</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,47 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : PageComponentPrintComp
+** Description      : page Component description
+** Version          : 2.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Priyanka Ch                  01/24/2018                  2.0             Added Comment block on top of the page
+**																			
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+<apex:component >
+    <!-- Attributes -->
+    <apex:attribute name="compName" description="subSection Name" type="String"/>
+    <apex:attribute name="compDesc" description="subSection Description" type="String"/>
+    <!-- Attributes -->
+    <!-- Sub-section left container -->
+    <div class="col-sm-3 col-md-3">
+        <p><strong>{!compName}</strong></p>
+        <p>{!compDesc}</p>
+    </div>
+    <!-- Sub-section left container -->
+    <!-- Sub-section center container -->
+    <div class="col-sm-7 col-md-7">
+        <div class="row">
+        	<!-- Field -->
+            <apex:componentBody />
+            <!-- Field -->
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <!-- Sub-section center container -->
+    <!-- Sub-section right container -->
+    <div class="col-sm-2 col-md-2">
+        <span>&nbsp;</span>
+    </div>
+    <!-- Sub-section right container -->
+    <section class="row">&nbsp;</section>
+</apex:component>

@@ -1,0 +1,275 @@
+<apex:page controller="VerifyLicenseDetailCtlr" standardStylesheets="false" sidebar="false" showHeader="false"
+           docType="html-5.0" cache="true" applyHtmlTag="true" applyBodyTag="false">
+    <html lang='en'>  
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>    
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <title>Public Lookup Details</title> 
+            <c:Resources /> 
+            <script type="text/javascript">
+            var sType;
+            $(document).ready(function() {
+                $(".notification").html('');
+                $('.notification').append('<p>Loading completed</p>');
+                $("a.tip").tooltip();
+                //console.log({!searchResult.LienParties});
+                //console.log({!searchResult.isBusinessLicense});
+
+                var getUrlParameter = function getUrlParameter(sParam) {
+                    var sPageURL = window.location.search.substring(1),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
+                    
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=');
+                        
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                        }
+                    }
+                };
+                sType = getUrlParameter('searchType');
+                if(sType === "title"){
+                    $('.searchOther, .searchBusiness').hide();
+                    $('.searchTitle').show();
+                 } else if(sType === "business") {
+                    $('.searchOther, .searchBusiness').show();
+                    $('.searchTitle').hide();
+                 } else {
+                 	$('.searchOther').show();
+                    $('.searchTitle, .searchBusiness').hide();
+                 }
+                
+            });
+            function printPageURL() {
+                window.open('/VerifyLicenseDetailsPrintFriendly?recordId={!recordDetailId}&source={!source}&searchType='+sType);
+            };
+            
+            </script>
+        </head>
+        <body class="internal">
+            
+            <main class="verifyLicense">
+                <c:HeaderUnauthUser rendered="{!isGuestUserLoggedIn}"/>  
+                <c:Header rendered="{!NOT(isGuestUserLoggedIn)}"/>  
+                
+                <div role="alert" aria-atomic="true" class="notification"></div>
+                
+                <div class="container headerMain">
+                    <div id="internal-header"> <!-- start white header -->
+                        <h1>Public Lookup</h1>
+                    </div>
+                </div> 
+                <section class="below-the-fold">
+                    <div class="container">
+                        <apex:outputpanel styleClass="col-sm-3 no-padding" layout="block">
+                            <h2>
+                                <apex:outputText value="{!searchResult.Name}"/>
+                            </h2>
+                            <p>
+                                The search results for the license holder are listed to the right.
+                            </p>
+                            <div class="row">
+                                <a href="#" class="controls" onclick="printPageURL();">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-print"></span>
+                                    Printer Friendly Version
+                                </a>
+                            </div>
+                        </apex:outputpanel>
+                        
+                        
+                        <div class="col-sm-6" id="license-details">
+                            <div class="row">
+                                <apex:outputLabel value="Current Date & Time" for="currentDate"/>
+                                <span>
+                                    <apex:outputText value="{!currentSystemDateTime}" id="currentDate"/>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Status" for="status"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.Status}" id="status"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-6 searchOther">
+                                    <apex:outputLabel value="Sub-Status" for="sub-status"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.SubStatus}" id="sub-status"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row searchOther">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Application Type" for="appType"/>
+                                    <span>
+                                        <apex:outputText id="appType" value="{!searchResult.ApplicationType}"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <apex:outputLabel value="Credential/Permit Type" for="licenseType"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.Type}" id="licenseType"/>
+                                    </span>
+                                </div> 
+                            </div>       
+                            <div class="row searchTitle">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Name" for="ownerName"/>
+                                    <span>
+                                        <apex:outputText id="ownerName" value="{!searchResult.OwnerName} "/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <apex:outputLabel value="Serial Number" for="serialNum"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.MNFSerialNumber}" id="serialNum"/>
+                                    </span>
+                                </div> 
+                            </div>
+                            <div class="row searchTitle">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Title Number" for="titleNum"/>
+                                    <span>
+                                        <apex:outputText id="titleNum" value="{!searchResult.RecNumber}"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <apex:outputLabel value="Lien Party Name" for="lienPartyName"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.LienParties}" id="lienPartyName"/>
+                                    </span>
+                                </div>                                
+                            </div>
+                            <div class="row searchOther">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Credential, Plan Review or PTO Number" for="licenseNumber"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.RecNumber}" id="licenseNumber"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-6" style="{!IF(searchResult.ObjectName != 'MUSW__License2__c', 'display:block', 'display:none')}">
+                                    <apex:outputLabel value="Site Id" for="siteId"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.SiteId}" id="siteId"/>
+                                    </span>
+                                </div> 
+                            </div>       
+                            
+                            <div class="row">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Issue Date" for="licenseIssueDate"/>
+                                    <span>
+                                        <apex:outputText value="{0, date, MM/dd/yyyy}" id="licenseIssueDate">
+                                            <apex:param value="{!searchResult.IssueDate}" /> 
+                                        </apex:outputText>
+                                    </span>
+                                </div>
+                                <div class="col-sm-6 searchOther">
+                                    <apex:outputLabel value="Expiration Date" for="licenseExpirationDate"/>
+                                    <span>
+                                        <apex:outputText value="{0, date, MM/dd/yyyy}" id="licenseExpirationDate">
+                                            <apex:param value="{!searchResult.ExpirationDate}" /> 
+                                        </apex:outputText>
+                                    </span>
+                                </div>
+                            </div>  
+                            
+                            <div class="row searchOther">
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Customer ID" for="CustomerID"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.custID}" id="CustomerID"/>
+                                    </span>
+                                </div>
+                            </div>  
+                            <div class="searchOther" style="{!IF(searchResult.ObjectName == 'MUSW__License2__c', 'display:block', 'display:none')}" >
+                                <div class="row">
+                                    <div class="col-sm-6 no-leftPadding">
+                                        <apex:outputLabel value="CE Hours Required to Renew" for="ceHoursRequiredToRenew"/>
+                                        <span>
+                                            <apex:outputText value="{!searchResult.CEHoursPerCycle}" id="ceHoursRequiredToRenew"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <apex:outputLabel value="CE Hours Accumulated" for="ceHoursAccumulated"/>
+                                        <span>
+                                            <apex:outputText value="{!searchResult.CEHours}" id="ceHoursAccumulated"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 no-leftPadding">
+                                        <apex:outputLabel value="CE Hours Still Needed" for="ceHoursNeeded"/>
+                                        <span>
+                                            <apex:outputText value="{!searchResult.CEHoursNeeded}" id="ceHoursNeeded"/>
+                                        </span>
+                                    </div> 
+                                </div>
+                            </div> 
+                             
+                            <div class="row searchBusiness" style="{!IF(searchResult.isBusinessLicense == true, 'display:block', 'display:none')}">
+                               <!-- <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Street" for="streetaddress"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.Street}" id="streetaddress"/>
+                                    </span>
+                                </div>-->
+                                <div class="col-sm-6 no-leftPadding">
+                                    <apex:outputLabel value="Zipcode" for="zipcode"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.Zip}" id="zipcode"/>
+                                    </span>
+                                </div>
+                            </div> 
+                            <div class="row searchOther">
+                                <div class="col-sm-4 no-leftPadding">
+                                    <apex:outputLabel value="City" for="city"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.City}" id="city"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <apex:outputLabel value="State" for="state"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.State}" id="state"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <apex:outputLabel value="Country" for="country"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.Country}" id="country"/>
+                                    </span>
+                                </div>     
+                            </div>  
+                            <div class="row searchTitle">
+                                <div class="col-sm-4 no-leftPadding">
+                                    <apex:outputLabel value="County" for="county"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.County}" id="county"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <apex:outputLabel value="State" for="stateT"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.State}" id="stateT"/>
+                                    </span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <apex:outputLabel value="Country" for="countryT"/>
+                                    <span>
+                                        <apex:outputText value="{!searchResult.Country}" id="countryT"/>
+                                    </span>
+                                </div>     
+                            </div>  
+                        </div> <!-- end sm 9 -->
+                    </div> <!-- end container -->
+                </section>
+            </main>
+            <br/><br/><br/><br/>
+            <c:Footer /> 
+        </body>
+    </html>
+</apex:page>

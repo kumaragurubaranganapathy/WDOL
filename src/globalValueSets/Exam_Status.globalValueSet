@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>New</fullName>
+        <default>true</default>
+        <label>New</label>
+    </customValue>
+    <customValue>
+        <fullName>Scheduled</fullName>
+        <default>false</default>
+        <label>Scheduled</label>
+    </customValue>
+    <customValue>
+        <fullName>Pass</fullName>
+        <default>false</default>
+        <label>Pass</label>
+    </customValue>
+    <customValue>
+        <fullName>Fail</fullName>
+        <default>false</default>
+        <label>Fail</label>
+    </customValue>
+    <customValue>
+        <fullName>No Show</fullName>
+        <default>false</default>
+        <label>No Show</label>
+    </customValue>
+    <customValue>
+        <fullName>Ungraded</fullName>
+        <default>false</default>
+        <label>Ungraded</label>
+    </customValue>
+    <customValue>
+        <fullName>Waived</fullName>
+        <default>false</default>
+        <label>Waived</label>
+    </customValue>
+    <customValue>
+        <fullName>Passed</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Passed</label>
+    </customValue>
+    <customValue>
+        <fullName>Failed</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Failed</label>
+    </customValue>
+    <customValue>
+        <fullName>No Grade</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>No Grade</label>
+    </customValue>
+    <description>Holds status of a current exam</description>
+    <masterLabel>Exam Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

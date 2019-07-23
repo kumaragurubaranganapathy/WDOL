@@ -1,0 +1,53 @@
+public class DOL_Dao {
+
+    public Contact getContactDetailsForSessionTransfer(Id contactId){
+        Contact outputContact = [ select lastName, firstName, mailingstreet, mailingcity, mailingstate, mailingcountry , email, MobilePhone, MailingPostalCode from contact where id =: contactId];
+        return outputContact;
+    }
+
+    public MUSW__Receipt__c getReceiptForCartPage(String receiptId){
+        MUSW__Receipt__c receipt = [select id,MUSW__Payment_Method__c,MUSW__Paid_By__c,MUSW__Receipt_Paid_by__c,BGBK__Cart__c,MUSW__Amount_Tendered__c from MUSW__Receipt__c where id =: receiptId];
+        return receipt;
+    }
+
+    public MUSW__Receipt__c getReceiptByTransactionId(String paymentTransactionId){
+        List<MUSW__Receipt__c> receipt = [select id from MUSW__Receipt__c where MUSW__Payment_Gateway_Transaction_Number__c =: paymentTransactionId ];
+        if(receipt != null && receipt.size() > 0)
+            return receipt.get(0);
+        return null;
+    }
+
+    public List<MUSW__Fee__c> getFeeAndFeePayment(List<String> feeIds){
+        List<MUSW__Fee__c> fees = [select id, ( select id from MUSW__Payments__r ) from MUSW__Fee__c where id in :feeIds];
+        return fees;
+    }
+
+    public static Id save(Sobject input){
+        Database.UpsertResult result = Database.upsert(input,false);
+        if(result.isSuccess()){
+            return result.getId();
+        }
+        else{
+            System.debug(result.getErrors());
+            return null;
+        }
+    }
+
+
+    public static List<Id> save(List<Sobject> inputList){
+        HTTPRestResponse response = HTTPRestResponse.getInstance();
+        List<Id> saveIds = new List<String>();
+        Database.UpsertResult[] result = Database.upsert(inputList,false);
+        for(Database.UpsertResult sr : result){
+            if(sr.isSuccess()){
+               saveIds.add(sr.getId());
+            }
+            else{
+                System.debug(sr.getErrors());
+                response.addLog(sr.getErrors());
+            }
+        }
+        return saveIds;
+    }
+
+}

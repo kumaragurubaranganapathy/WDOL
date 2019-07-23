@@ -1,0 +1,76 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"
+    controller="LnP_WizardApexController">
+    <aura:attribute name="eliTypeQues" type="List" />
+    <aura:attribute name="RenewReinstate" type="String" />
+    <aura:attribute name="licID" type="String" />
+    <aura:attribute name="eliQuesNo" type="Integer" default="0" />
+    <aura:attribute name="isDirectProceed" type="Boolean" default="False" />
+    <aura:attribute name="board" type="String" default="Architects" />
+    <aura:attribute name="licenseType" type="String" default="Architect" />
+    <aura:attribute name="appMethod" type="String" default="General Application" />
+    <aura:attribute name="spinner" type="Boolean" default="False" />
+    <aura:attribute name="instructions" type="String" />
+    <aura:attribute name="otherInstructions" type="List" />
+    <aura:attribute name="radiooptions" type="List" default="[
+                                                             {'label': 'Yes', 'value': 'Yes'},
+                                                             {'label': 'No', 'value': 'No'}]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.spinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
+    </aura:if>
+    <c:LnP_ServerActionService aura:id="server" />
+    <lightning:recordEditForm aura:id="recordViewForm" objectApiName="MUSW__License2__c">
+
+        <div id="applicationInstuctionDiv" class="card-wrapper slds-wrap">
+            <!--Application Instructions-->
+            <div id="appTextDiv">
+                <h2 class="header-style">Are You Ready?</h2>
+                <lightning:formattedRichText aura:id="readyHeader" class="slds-m-right_xx-large slds-hide"
+                    value="{!v.instructions}" />
+            </div>
+            <div aura:id="reqDocTextDiv" class="slds-p-top_xx-large slds-hide">
+                <h2 class="">Required documents for this Application</h2>
+                <ul>
+                    <aura:iteration items="{!v.otherInstructions}" var="instr">
+                        <li class="bullets">{!instr}</li>
+                    </aura:iteration>
+                </ul>
+            </div>
+            <div id="necInstr">
+                <h2 class="slds-p-top_large">What you’ll need before you start</h2>
+                <ul>
+                    <li class="bullets">Visa, Mastercard, or American Express credit or debit card or e-check for
+                        payment of the
+                        license fee</li>
+                    <li class="bullets">Required documents listed above (if any), ready for upload</li>
+                    <li class="bullets">If needed, any legal background documents for the last 10 years, ready for
+                        upload</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="eliTypeGridDiv" class="slds-grid card-wrapper slds-wrap slds-m-left_xx-large slds-m-top_xx-large">
+            <div id="eliTextDiv"
+                class="slds-m-right_xx-large slds-large-size_1-of-3 slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <h2>Eligibility</h2>
+                <p>By answering the following questions, eligibility for the license application will be determined.
+                    Confirmation will be noted if eligibility is met.</p>
+            </div>
+            <div id="eliQuesDiv" class="slds-large-size_1-of-3 slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <aura:iteration items="{!v.eliTypeQues}" var="question" indexVar="questionIndex">
+                    <div
+                        class="{!(v.eliQuesNo == (questionIndex + 1) || lessthan((questionIndex + 1),v.eliQuesNo))?'questions':''+' slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1'}">
+                        <lightning:radioGroup class="radio" name="{!questionIndex + '-' + question.quesId}"
+                            label="{!question.quesBody}" aura:id="eliRadios" options="{!v.radiooptions }"
+                            onchange="{!c.showOrHideEliQuestion}" />
+                    </div>
+
+                </aura:iteration>
+            </div>
+        </div>
+    </lightning:recordEditForm>
+    <div id="proceedButtonDiv" class="slds-m-top_xx-large slds-float_right slds-m-bottom_x-large ">
+        <lightning:Button class="down-btn-wid" aura:id="button1" label="Proceed" variant="Brand"
+            onclick="{!c.startApplication}" />
+    </div>
+</aura:component>

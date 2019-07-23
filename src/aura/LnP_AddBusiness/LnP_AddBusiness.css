@@ -1,0 +1,28 @@
+.THIS {
+}
+.THIS .btnCenter{
+    margin:0 auto;
+}
+.THIS .btnHeight{
+    height:auto;
+}
+.THIS .slds-checkbox_faux{
+    display:none;
+}
+.THIS .add-biz-btn{
+     
+    padding: 0.625rem 1.5rem;    
+    font-size:1rem;    
+    line-height:1.29;
+}
+.THIS .txtalign{
+    text-align:left;
+}
+.THIS .required.field-size.slds-form-element label::before {
+    content: '*';
+    color: t(LnGErrorMsg);
+    padding-right: 2px;
+}
+.THIS .required.field-size.slds-form-element label abbr.slds-required {
+    display: none;
+}

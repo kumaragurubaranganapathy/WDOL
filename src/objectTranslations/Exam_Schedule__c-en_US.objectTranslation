@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Exam Schedule</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Exam Schedules</value>
+    </caseValues>
+    <fields>
+        <help><!-- Number of exams scheduled for this date/time --></help>
+        <label><!-- Enrollment --></label>
+        <name>Enrollment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date that the exam is offered --></help>
+        <label><!-- Exam Date --></label>
+        <name>Exam_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Physical address of testing site --></help>
+        <label><!-- Exam Location Address --></label>
+        <name>Exam_Location_Address__c</name>
+    </fields>
+    <fields>
+        <help><!-- Location of Exam --></help>
+        <label><!-- Exam Location --></label>
+        <name>Exam_Location__c</name>
+    </fields>
+    <fields>
+        <help><!-- Maximum number of attendees for an exam --></help>
+        <label><!-- Maximum Capacity --></label>
+        <name>Maximum_Capacity__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of seats still available for exam --></help>
+        <label><!-- Seats Available --></label>
+        <name>Seats_Available__c</name>
+    </fields>
+    <fields>
+        <help><!-- Time that the Exam is being offered --></help>
+        <label><!-- Time of Exam --></label>
+        <name>Time_of_Exam__c</name>
+    </fields>
+    <layouts>
+        <layout>Exam Schedule Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

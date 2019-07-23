@@ -1,0 +1,1 @@
+trigger DRE2_Legal_Activity_c on Legal_Activity__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Legal_Activity_c', new DRETriggerHandler()); }

@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Endorsement_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Endorsement_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Licensee_Name__c</fields>
+        <fields>License__c</fields>
+        <fields>License_Status__c</fields>
+        <label>Endorsement Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>To store specialties / endorsements of a license (individual / business)</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Added_Through_AMR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Added Through AMR</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Application_BG__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application_BG</label>
+        <referenceTo>MUSW__Application2__c</referenceTo>
+        <relationshipLabel>Endorsements</relationshipLabel>
+        <relationshipName>Endorsements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Created_for_New_Application__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Created for New Application</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Date_Granted__c</fullName>
+        <externalId>false</externalId>
+        <label>First Issue Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Removed__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Removed</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Requested_for_Adding_Endorsement__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Requested_for_Removing_Endorsement__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Requested for Removing Endorsement</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Issue Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Electronic_Software_Provider__c</fullName>
+        <externalId>false</externalId>
+        <label>Electronic Software Provider</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Endorsement_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Endorsement Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Agricultural &amp; Biological</fullName>
+                    <default>false</default>
+                    <label>Agricultural &amp; Biological</label>
+                </value>
+                <value>
+                    <fullName>Both Engineering Geologist and Hydrogeologist</fullName>
+                    <default>false</default>
+                    <label>Both Engineering Geologist and Hydrogeologist</label>
+                </value>
+                <value>
+                    <fullName>Building Systems</fullName>
+                    <default>false</default>
+                    <label>Building Systems</label>
+                </value>
+                <value>
+                    <fullName>Cemetery Pre-arrangement Sales</fullName>
+                    <default>false</default>
+                    <label>Cemetery Pre-arrangement Sales</label>
+                </value>
+                <value>
+                    <fullName>Cemetery Pre-arrangement Sales Exemption</fullName>
+                    <default>false</default>
+                    <label>Cemetery Pre-arrangement Sales Exemption</label>
+                </value>
+                <value>
+                    <fullName>Chemical</fullName>
+                    <default>false</default>
+                    <label>Chemical</label>
+                </value>
+                <value>
+                    <fullName>Civil</fullName>
+                    <default>false</default>
+                    <label>Civil</label>
+                </value>
+                <value>
+                    <fullName>Control Systems</fullName>
+                    <default>false</default>
+                    <label>Control Systems</label>
+                </value>
+                <value>
+                    <fullName>Crematory</fullName>
+                    <default>false</default>
+                    <label>Crematory</label>
+                </value>
+                <value>
+                    <fullName>Electrical</fullName>
+                    <default>false</default>
+                    <label>Electrical</label>
+                </value>
+                <value>
+                    <fullName>Electronic Notary</fullName>
+                    <default>false</default>
+                    <label>Electronic Notary</label>
+                </value>
+                <value>
+                    <fullName>Electronic Records Notary Public Endorsement</fullName>
+                    <default>false</default>
+                    <label>Electronic Records Notary Public Endorsement</label>
+                </value>
+                <value>
+                    <fullName>Engineering</fullName>
+                    <default>false</default>
+                    <label>Engineering</label>
+                </value>
+                <value>
+                    <fullName>Engineering Geologist</fullName>
+                    <default>false</default>
+                    <label>Engineering Geologist</label>
+                </value>
+                <value>
+                    <fullName>Environmental</fullName>
+                    <default>false</default>
+                    <label>Environmental</label>
+                </value>
+                <value>
+                    <fullName>Fire Protection</fullName>
+                    <default>false</default>
+                    <label>Fire Protection</label>
+                </value>
+                <value>
+                    <fullName>Funeral Pre-arrangement Contract</fullName>
+                    <default>false</default>
+                    <label>Funeral Pre-arrangement Contract</label>
+                </value>
+                <value>
+                    <fullName>Hydrogeologist</fullName>
+                    <default>false</default>
+                    <label>Hydrogeologist</label>
+                </value>
+                <value>
+                    <fullName>Industrial</fullName>
+                    <default>false</default>
+                    <label>Industrial</label>
+                </value>
+                <value>
+                    <fullName>Land Surveying</fullName>
+                    <default>false</default>
+                    <label>Land Surveying</label>
+                </value>
+                <value>
+                    <fullName>Mechanical</fullName>
+                    <default>false</default>
+                    <label>Mechanical</label>
+                </value>
+                <value>
+                    <fullName>Metallurgical and Materials</fullName>
+                    <default>false</default>
+                    <label>Metallurgical and Materials</label>
+                </value>
+                <value>
+                    <fullName>Mining and Mineral Processing</fullName>
+                    <default>false</default>
+                    <label>Mining and Mineral Processing</label>
+                </value>
+                <value>
+                    <fullName>Naval Architect/Marine</fullName>
+                    <default>false</default>
+                    <label>Naval Architect/Marine</label>
+                </value>
+                <value>
+                    <fullName>Nuclear</fullName>
+                    <default>false</default>
+                    <label>Nuclear</label>
+                </value>
+                <value>
+                    <fullName>Petroleum</fullName>
+                    <default>false</default>
+                    <label>Petroleum</label>
+                </value>
+                <value>
+                    <fullName>Structural Engineer</fullName>
+                    <default>false</default>
+                    <label>Structural Engineer</label>
+                </value>
+                <value>
+                    <fullName>Supervisor</fullName>
+                    <default>false</default>
+                    <label>Supervisor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>License_Applicant__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Applicant_Full_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Applicant</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(License__r.MUSW__Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>License Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Endorsements</relationshipLabel>
+        <relationshipName>Endorsements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( &apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;  License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;,  License__r.MUSW__Applicant__r.FirstName &amp; &quot; &quot;&amp;License__r.MUSW__Applicant__r.LastName  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(License__r.Application_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Renewal_Reinstatement_Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Renewal &amp; Reinstatement Application</label>
+        <referenceTo>Renewal_Application__c</referenceTo>
+        <relationshipLabel>Endorsements</relationshipLabel>
+        <relationshipName>Endorsements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Endorsements</relationshipLabel>
+        <relationshipName>Endorsements</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending Add</fullName>
+                    <default>false</default>
+                    <label>Pending Add</label>
+                </value>
+                <value>
+                    <fullName>Not Qualified</fullName>
+                    <default>false</default>
+                    <label>Not Qualified</label>
+                </value>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Pending Remove</fullName>
+                    <default>false</default>
+                    <label>Pending Remove</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                    <label>Expired</label>
+                </value>
+                <value>
+                    <fullName>Canceled</fullName>
+                    <default>false</default>
+                    <label>Canceled</label>
+                </value>
+                <value>
+                    <fullName>Pending Action</fullName>
+                    <default>false</default>
+                    <label>Pending Action</label>
+                </value>
+                <value>
+                    <fullName>In-Review</fullName>
+                    <default>true</default>
+                    <label>In-Review</label>
+                </value>
+                <value>
+                    <fullName>Renew</fullName>
+                    <default>false</default>
+                    <label>Renew</label>
+                </value>
+                <value>
+                    <fullName>Remove</fullName>
+                    <default>false</default>
+                    <label>Remove</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Endorsement</label>
+    <nameField>
+        <displayFormat>END-{0000000}</displayFormat>
+        <label>Endorsement  icon Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Endorsements</pluralLabel>
+    <recordTypes>
+        <fullName>Endorsement</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>Endorsement_Compact_Layout</compactLayoutAssignment>
+        <label>Endorsement</label>
+        <picklistValues>
+            <picklist>Endorsement_Type__c</picklist>
+            <values>
+                <fullName>Agricultural %26 Biological</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Both Engineering Geologist and Hydrogeologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Building Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery Pre-arrangement Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery Pre-arrangement Sales Exemption</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Civil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control Systems</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronic Notary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronic Records Notary Public Endorsement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fire Protection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Pre-arrangement Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hydrogeologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Metallurgical and Materials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mining and Mineral Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naval Architect%2FMarine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nuclear</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Petroleum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Structural Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supervisor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>License_Type__c</picklist>
+            <values>
+                <fullName>Academic Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal Management Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architect Firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cemetery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certificate of Removal Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified General Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremated Remains Disposition Permit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crematory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delegated Municipality Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineer in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering%2FLand Surveying Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Establishment Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geologist In Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying Corporations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveying LLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Land Surveyor in Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notary Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-site Wastewater Inspector</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prearrangement Funeral Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Licensed Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary Certified Residential</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary State Licensed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Review</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Add</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Remove</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remove</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renew</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Endorsement_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date_Requested_for_Adding_Endorsement__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date_Granted__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

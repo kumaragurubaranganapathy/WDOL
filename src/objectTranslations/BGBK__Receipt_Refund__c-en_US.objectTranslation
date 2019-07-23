@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Amount --></label>
+        <name>BGBK__Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deposit --></label>
+        <name>BGBK__Deposit__c</name>
+        <relationshipLabel><!-- Receipt Refunds --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Receipt --></label>
+        <name>BGBK__Receipt__c</name>
+        <relationshipLabel><!-- Receipt Refunds --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Refund --></label>
+        <name>BGBK__Refund2__c</name>
+        <relationshipLabel><!-- Receipt Refunds --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Refund Type --></label>
+        <name>Refund_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refundee --></label>
+        <name>Refundee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stage --></label>
+        <name>Stage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <layouts>
+        <layout>Receipt Refund Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

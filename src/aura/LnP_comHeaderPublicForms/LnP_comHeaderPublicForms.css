@@ -1,0 +1,429 @@
+.THIS.slds-global-header{
+    height: auto;
+    background: token(headerclr);
+    padding: 1.5rem 7.5rem;
+}
+.THIS li.links {
+    position: relative;
+    bottom: 3px;
+}
+.THIS .logout{
+    padding-left:1rem;
+}
+.THIS .dropdown__list li{
+    margin: 10px 10px 0 10px;
+    text-transform: uppercase;
+}
+/*.THIS .header-wrapper,  .THIS .menu-wrapper .slds-grid {
+    align-items:flex-end;
+} */
+.THIS .user-wrapper{
+    display: flex;    
+    width: 70%;
+}
+.THIS .burgerIcon{
+    display: none;
+}  
+.THIS .logo-wrapper{
+    display:flex;
+    align-items:center;
+}
+.THIS .images-wrapper{
+    width:100%;
+    justify-content:space-between;
+    display:flex;
+}
+.THIS .logo{
+    width:181px;
+}
+.THIS .login-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position:relative; 
+}
+.THIS .nav-links{
+    display: flex;
+    justify-content: space-evenly;
+}
+.THIS .morelinks {
+    color: token(headertxt);
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    text-transform:capitalize;
+}
+.THIS .profile-menu-link .slds-button.slds-button_neutral,.THIS .nav-links a,.THIS .login-wrapper a{
+     color: token(headerLinks);
+    font-family: token(publicSansfontfamily);
+    font-size: 16px;
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    text-transform:capitalize;
+}
+.THIS .register-div{
+    padding-right:1.25rem;
+    border-right:solid 1px #DADADA;
+    font-size:1rem;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.THIS .login-div{
+    display:flex;
+    font-size:1rem;
+}
+.THIS .nav-links a:hover, .THIS .login-wrapper a:hover{
+    font-weight:bold;
+}
+.THIS .login-Image{
+    width: 50px;
+    float: right;    
+    cursor: pointer;
+}
+.THIS .signin-logo{
+    padding-right:0.75rem;
+}
+.THIS #profileImage {
+    width: 53px;
+    height: 51px;
+    border-radius: 50%;
+    background: token(LnGPrimaryColor);
+    font-size: 15px;
+    color: token(LnGWhite);
+    text-align: center;
+    line-height: 54px;
+    float: right;    
+}
+.THIS .slds-dropdown_left, .THIS .slds-dropdown--left {
+    right:0;
+    left:auto;
+}
+.THIS .profileMenu {
+    align-items:center;
+   
+}
+.THIS .more-links{
+    position:relative; 
+    display:flex;
+    align-items:center;
+}
+.THIS .morelinks-list{
+    z-index:1;
+    background-color: t(headerclr);
+}
+.THIS .morelinks-list{
+    top:25px;
+    position:absolute;
+    box-shadow: #d6d7d9 0px 2px 3px 0px;
+    border: 1px solid #d6d7d9;
+    background: t(white);
+    border-radius: 3%;
+}
+
+.THIS .morelinks-list li a{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .75rem;
+    white-space: nowrap;
+}
+.THIS .morelinks-list li:hover{
+    background-color:#f0f8ff;
+}
+.THIS .menu-outer-wrapper{
+    align-items:center;
+}
+.THIS .profile-menu-link .slds-button_neutral{
+    background: #d6d7d9;
+    border: none;
+    height:auto;
+    padding:0;
+    
+}
+.THIS .slds-button:focus{
+    box-shadow:none;
+}
+.THIS .nav-links-wrapper{
+    display:flex;
+    align-items:center;
+}
+.THIS .menu-wrapper{
+    width:100%;
+}
+.THIS .profile-menu-link .slds-button.slds-button_neutral{
+    border:none;
+    color:t(headerLinks);
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .THIS.slds-global-header{
+        height: 3.125rem;
+    }
+    .THIS .header-Image{
+        display: none;
+    }
+    .THIS .burgerIcon{
+        display: inline-block;
+    }                                    
+    .THIS .login-Image {
+        width: 38px;
+        float: right;
+        margin-right: 23px;
+        margin-left: 2px;
+        margin-top: -2px;
+        cursor: pointer;
+    }
+    .THIS ul{
+        font-size: smaller;                         
+    }
+    .THIS li{
+        margin: 8px 0 0 6px;
+        margin-right: 25px;
+        text-transform: uppercase;
+    }
+    .THIS .burger-icon-img{
+        height: 35px;
+        margin-left: 10px;                                         
+    }
+    .THIS #profileImage {
+        display: none;                                            
+    }
+    .THIS li{
+        margin: 14px 7px 0 14px; 
+    } 
+}
+/*only ipad pro*/
+@media only screen and (min-width: 1024px)and (max-width: 1024px){
+    
+    .THIS li{
+        margin: 14px 2px 0 14px; 
+    } 
+    .THIS .login-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative; 
+}
+}
+@media only screen and (max-width:1023px){
+    .THIS .header-wrapper {
+        position:relative;
+        padding:1rem;
+        flex-wrap:wrap;
+    }
+    .THIS .mobile-menu {
+        display: block!important;
+        position: absolute;
+        top: calc(1rem + 10px);
+        left: 1rem;
+        width: 28px;
+        height: 20px;
+        margin: 0 auto;
+        cursor: pointer;
+        transition-duration: .5s;
+        -webkit-transition-duration: 0.5s;
+    }
+    .THIS .mobile-menu span {        
+        position: absolute;
+        left: 0;
+        width: 28px;
+        height: 3px;    
+        background-color: #fff;    
+        z-index: 100000;
+        border-radius: 4px;
+        transition-duration: 0.5s;
+        -webkit-transition-duration: 0.5s;
+    }
+
+    .THIS .mobile-menu.open span {
+        background-color: token(lightgray);
+        width: 1.25rem;
+    }
+
+    .THIS .mobile-menu.open {
+        left: auto;
+        right: 10px;
+        top:25px;
+
+    }
+    .THIS .mobile-menu span:nth-child(1) { 
+        top: 0px; 
+        background : t(LnGWhite);
+    }
+    .THIS .mobile-menu span:nth-child(2) { 
+        top: 8px; 
+    }
+    .THIS .mobile-menu span:nth-child(3) { 
+        top: 16px; 
+        background : t(LnGWhite);
+    }
+    .THIS .logo-wrapper {       
+        margin:0px auto;
+        justify-content: center;
+    }
+    .THIS .menu-wrapper {
+        display:none;
+        width: 100%;
+        height: 100vh;
+        flex-wrap:wrap;
+        position: absolute;
+        top: 0;
+        left: 0px;
+        z-index:999;
+        background: token(white);
+        box-sizing: border-box;
+    }
+    .THIS .menu-wrapper.open {
+        display:block;
+    }
+    .THIS .mobile-menu.open span:nth-child(1), .THIS .mobile-menu.open span:nth-child(3){
+        top:8px;
+    }
+    .THIS .mobile-menu.open span:nth-child(2) {
+        background:transparent;
+    }
+    .THIS .mobile-menu.open span:nth-child(1) {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+    }
+    .THIS .mobile-menu.open span:nth-child(3) {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+    }
+    .THIS .menu-wrapper .slds-grid {
+        flex-wrap: wrap;
+    }
+    .THIS ul.nav-links {
+        display: block;        
+        padding: 0px;
+        margin-top:0;
+    }
+    .THIS ul.nav-links li{
+        border-top: solid 1px token(navmenudevider);
+        margin: 0 1rem;
+        text-align: center;
+        padding: 1rem 0;
+    }
+    .THIS ul.nav-links li:first-child{
+        border-top:none;
+    }
+    .THIS ul.nav-links li:last-child {
+        border-bottom: solid 1px token(navmenudevider);
+        margin-bottom: 1rem; 
+    }
+
+    .THIS .nav-links a {
+        color: #2b2826;
+        font-size: 13px;
+    }
+    .THIS .login-wrapper {
+        /* padding: 1rem 0px 2rem 1rem;
+        justify-content: flex-start; */
+        display: block;
+    }
+    .THIS .user-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; 
+    }
+    .THIS .login-div{
+        justify-content:center;
+    }
+
+    .THIS .login-wrapper .profile-menu-option {
+        position: absolute;
+    }
+
+    .THIS .profileMenu {
+        width: 15%;
+        position: absolute;
+        right: 1rem;
+        top: calc(-1rem - 28px);
+        justify-content: flex-end;
+    }
+    .THIS.slds-global-header{
+        padding:0px;
+        height: auto;
+    }
+    .THIS #profileImage {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #4c65f2;
+        font-size: 12px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 30px;
+        float: none;
+    }
+    .THIS .mob-logo-wrapper{
+        padding : 1rem;
+        background:t(headerclr);
+        text-align:center;
+    }
+    
+}
+@media t(mqSmall){    
+    .THIS .burger-icon-img{
+        height: 35px;
+        margin-left: 10px;                                         
+    }
+    .THIS .header-Image {
+        display: none;
+    }      
+    .THIS .burgerIcon{
+        display: inline-block;
+    }                 
+    .THIS .login-Image {
+        width: 24px;
+        margin-right: 15px;
+        margin-left: 0px;
+        margin-top: 5px;
+    }    
+    .THIS ul{
+        font-size: 8px;
+        margin-top: 4px;
+    }
+    .THIS li {
+        margin: 10px 0 0 6px;
+        margin-right: 21px;
+    }  
+    .THIS .images-wrapper{
+        justify-content:space-around;
+    }
+    .THIS .user-wrapper{
+        width:auto;
+    }
+}
+/*.THIS .account-dropdown{
+    position:relative;
+    right:35px;
+}*/
+.THIS .profile-menu-option{
+    position:relative;    
+    right:25px;
+    width:24px;
+    height:18px;
+}
+.THIS .profile-menu-inner{
+    height:100%;
+}
+
+.THIS .account-dropdown{
+    width:100%;
+    height:100%;
+}
+.THIS .account-dropdown .slds-button{  
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow:none;
+    border-color:transparent;
+    color: transparent;
+}

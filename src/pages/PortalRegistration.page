@@ -1,0 +1,504 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : PortalRegistration
+** Description      : Portal registration for creating new Washington account
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+** Rinku Patel/Deloitte         07/13/2018                                  UI changes 
+**
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page controller="CommunitiesRegistrationController" standardStylesheets="false" sidebar="false" showHeader="false" docType="html-5.0" cache="true" applyHtmlTag="false" applyBodyTag="false">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        
+        <head>
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <title>New Account Registration</title>
+            <c:Resources />
+            <c:PasswordJSUtility />
+            
+            <apex:includeScript value="{!$Resource.Mask}"/> 
+        </head>
+        
+        <body class="internal">
+            <c:HeaderUnauthUser />
+            <main>
+                <div class="container headerMain">
+                    <div id="internal-header">
+                        <h1>New Washington Account</h1>
+                    </div>
+                </div>
+                
+                <section class="below-the-fold">
+                    <div class="container">
+                        <apex:form styleClass="custom-animated-form" id="newlicenseform" rendered="{!isPageConfValid}">
+                            
+                            <div class="col-sm-4">
+                                <p class="p-padding">
+                                    Register here for a new Washington account as a new Applicant.
+                                </p>
+                                <!--<p>     ***Dharan Shah --- COMMENTED this as the requirement is not to have SSN on the New User Account Page --- 03/27***
+                                    Your social security number is required for accurate identification under federal law (42 U.S.C. §666.)
+                                </p>-->
+                                <p>
+                                    <!-- <a target="_blank" href="{!$Label.URL_RegistrationInstructionsLink}">Need help Registering? Click here</a> -->
+                                </p>
+                            </div>
+                            
+                            <div class="col-sm-8">
+                                <div class="row">                                    
+                                    <div class="col-sm-12 individual-show" id="new-user-reg-form">                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <apex:outputLabel value="First Name" for="firstName" styleClass="InputLabel"/>
+                                                    <apex:inputText id="firstName" value="{!newCon.firstName}" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group">
+                                                    <apex:outputLabel value="Middle Name" for="middleName" styleClass="InputLabel"/>
+                                                    <apex:inputText id="middleName" value="{!newCon.MiddleName}" styleClass="form-control"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <apex:outputLabel value="Last Name" for="lastName" styleClass="InputLabel"/>
+                                                    <apex:inputText maxLength="50" id="lastName" value="{!newCon.lastName}" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group">
+                                                    <apex:outputLabel value="Phone Number" for="phoneNumber" styleClass="InputLabel"/>
+                                                    <apex:inputText maxLength="10" id="phoneNumber" value="{!newCon.Phone}" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--***Dharan Shah --- COMMENTED this as the requirement is not to have SSN and DOB on the New User Account Page --- 03/27***-->
+                                        <!--                                        
+                                        <div class="row">
+                                            <div class="col-sm-6" id="ssn_col">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <apex:outputLabel value="Social Security Number" for="ssn" styleClass="InputLabel"/>
+                                                    <apex:inputText id="ssn" maxlength="11" value="{!ssnForPage}" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6" id="no_ssn_col" style="display:none;">
+                                                <div class="animated-input-group requiredElement">
+                                                    <apex:outputLabel for="reason" value="Reason for not providing SSN" styleClass="InputLabel"/>
+                                                    <apex:inputField id="reason" value="{!newCon.Reason_for_No_SSN__c}" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group">
+                                                    <input id="noSSNcheckbox" type="checkbox" value=""/>
+                                                    <label for="noSSNcheckbox"> I don't have a Social Security Number</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-12" id="no_ssn_warning" style="display:none;">
+                                                <p class="warningText">
+                                                    NOTICE - You have indicated that you do not have a Social Security Number. Federal and state child support enforcement law requires collection of social security numbers as part of the application and renewal process. By selecting this option you acknowledge you will need to contact DSPS to have this information added.
+                                                </p>
+                                            </div>
+                                            
+                                        </div> 
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group requiredElement">
+                                                    <label for="bday" class="InputLabel"> Date of Birth</label>
+                                                    <input type="text" class="form-control customDateNow" id="bday" aria-required="true" />
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        -->
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <apex:outputLabel value="Email" for="email" styleClass="InputLabel"/>
+                                                    <apex:inputField id="email" value="{!newCon.Email}" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <label for="confirmEmail"  class="InputLabel top-label">Confirm Email</label>
+                                                    <input type="text" id="confirmEmail" class="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <apex:outputLabel value="Password" for="password" styleClass="InputLabel"/>
+                                                    <apex:inputSecret id="password" styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="animated-input-group  requiredElement">
+                                                    <apex:outputLabel value="Confirm Password" for="confirmPassword" styleClass="InputLabel"/>
+                                                    <apex:inputSecret id="confirmPassword"  styleClass="form-control" html-aria-required="true"/>
+                                                    <span class="bottomShade"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="passwordStrengthPlaceHolder"></div>
+                                        
+                                        <div class="row top-padding">
+                                            <input type="button" class="btn btn-primary" value="Submit" onclick="NEWUSER_REG.submitForm();"/>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <apex:actionStatus id="actionStatusNewReg"
+                                               onstart="NOTIFICATIONS.spinnerStart();"
+                                               onstop="NOTIFICATIONS.spinnerStop(); "/> 
+                            
+                            <apex:ActionFunction immediate="false"
+                                                 name="registerNewCommunityUser"
+                                                 namespace="USER_AF"
+                                                 action="{!registerNewCommunityUser}"
+                                                 rerender="resultPanel"
+                                                 status="actionStatusNewReg">
+                                <apex:param name="userPassword" value="" assignTo="{!passwordParameter}"/>
+                                
+<!--                        ***Dharan Shah --- COMMENTED this as the requirement is not to have DOB on the New User Account Page --- 03/27***       
+                            <apex:param name="birthDateString" value="" assignTo="{!birthDateString}"/>-->
+                            </apex:ActionFunction>
+                            
+                        </apex:form>
+                        
+                        <apex:outputpanel id="resultPanel" style="display:none;" layout="block">
+                            {!ResultData}
+                        </apex:outputpanel>
+                        
+                    </div>
+                </section>
+            </main>
+        </body>
+        <c:Footer />
+        <script type="text/javascript">
+        
+        ;NEWUSER_REG = {
+            
+            submitForm : function()
+            {
+                //if($("#noSSNcheckbox").prop("checked") == true ){
+                
+                    global_validator = NEWUSER_REG.bindValidations($('#new-user-reg-form'),'no_ssn') ;
+                    console.log('global_validator::'+global_validator);
+                //USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val() , $("#bday").val());
+                //USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val());
+                
+           //}else
+              
+           //   {
+                // global_validator = NEWUSER_REG.bindValidations($('#new-user-reg-form'));
+           //   }  
+        
+                //alert(typeof global_validator);
+                //Perform validation with callback
+                
+                global_validator.performValidation();
+              
+            },
+            
+            /* showSSNConfirmation : function()
+            {
+                //if($("[id$='ssn']").val() != '' && $("[id$='ssn']").val().length > 9)
+                //{
+                    var  modalContent = $("<div>").addClass("row");
+                    modalContent.append($("<p>").append
+                                        (
+                                            $("<span>").html("Please verify the Social Security Number entered " ),
+                                            $("<span>").html("<strong>"+$("[id$='ssn']").val()+"</strong>. "),
+                                            $("<span>").html("If this is correct hit 'Confirm' to complete your registration, otherwise hit 'Edit' to make a change.")
+                                        ));
+                    
+                    
+                    modalContent.append
+                    (
+                        $("<div>").addClass("row textCenter").append
+                        (
+                            
+                            $("<input>").attr("type","button").addClass("btn btn-primary btn-space").val("Edit")
+                            .on("click",function(e)
+                                {
+                                    bootbox.hideAll();  
+                                }),
+                            
+                            
+                            $("<input>").attr("type","button").addClass("btn btn-secondary btn-space").val("Confirm")
+                            .on("click",function(e)
+                                {
+                                    //USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val() , $("#bday").val());
+
+                                    USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val());
+                                    bootbox.hideAll();  
+                                })
+                        )
+                    );
+                    
+                    MODAL_UTILITY.openModalWithOptions(modalContent , 'SSN Confirmation');
+                //}else 
+                //{
+                //    USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val() , $("#bday").val());
+                //}
+           },*/
+            
+            
+            processRegResult : function()
+            {
+                var resultString = $("div[id$='resultPanel']").html();
+                
+                if(resultString.length > 3 )
+                {
+                    var result = JSON.parse(resultString);
+                    if(result.isSuccess == false )
+                    {
+                        var errorMessage = $("<ul>") ;
+                        $(result.displayMessages).each(function(index,val){
+                            errorMessage.append(
+                                $("<li>").html(val)
+                            );
+                        });
+                        MODAL_UTILITY.errorMessageModal(errorMessage , 'Error(s) in New User Registration ');
+                    }
+                }
+            },
+            
+            bindValidations : function(contForm , valType )
+            {
+                //alert(valType);
+                /*
+                var ssnField = null ;
+                
+                if(typeof valType =="undefined")
+                {
+                    ssnField = 
+                        {
+                        id: "ssn",
+                        watch: true,
+                        name : "SSN",
+                        required : true, 
+                        validator:"SSN"
+                    } 
+                    
+                }else if(valType =='no_ssn')
+                {
+                    ssnField =
+                        {
+                        id: "reason",
+                        watch: true,
+                        name : "Reason for No SSN ",
+                        required : true
+                    }
+                }
+                */
+                var fieldsList =
+                    [
+                        {
+                            id: "firstName",
+                            watch: true,
+                            name : "First Name",
+                            required : true
+                        },{
+                            id: "lastName",
+                            watch: true,
+                            name : "Last Name",
+                            required : true
+                        },
+                        /*     ssnField
+                        ,{
+                            id: "bday",
+                            watch: true,
+                            name : "Birthday",
+                            required : true , 
+                            event : 'keyup keydown blur',
+                            validator : "Date"
+                        },*/
+                        {
+                            id: "email",
+                            watch: true,
+                            name : "Email",
+                            validator : "Email",
+                            required : true
+                        },
+                        {
+                            id: "confirmEmail",
+                            watch: true,
+                            name : "Confirm Email",
+                            validator : "Email",
+                            required : true,
+                            customValidator : function(validator){
+                                if((validator.element.val()).toLowerCase() == (validator.engineScope._validatorsMap["email"].element.val()).toLowerCase()){
+                                    validator.isValid = true;
+                                    validator.error = null;
+                                } else {
+                                    validator.isValid = false;
+                                    validator.error = validator.name + " not matching"
+                                }
+                            }
+                        },
+                        {
+                            id: "password",
+                            watch: true,
+                            name : "Password",
+                            required : true,
+                            event : 'keyup keydown blur',
+                            customValidator : function(validator){
+                                validator.isValid = passwordManager.isValidCritera(validator.element.val())
+                                validator.isValid
+                                ? validator.error = null
+                                : validator.error = validator.name + " is not up to specification"
+                            }
+                        },
+                        {
+                            id: "confirmPassword",
+                            watch: true,
+                            name : "Confirm Password",
+                            required : true,
+                            event : 'blur',
+                            customValidator : function(validator){
+                                if(validator.element.val() == validator.engineScope._validatorsMap["password"].element.val()){
+                                    validator.isValid = true;
+                                    validator.error = null;
+                                } else {
+                                    validator.isValid = false;
+                                    validator.error = "Password not matching"
+                                }
+                            }
+                        }
+                    ] ;
+                
+                var fieldObject =
+                    {
+                         onValidationSuccess : function()
+                        {
+                            //NEWUSER_REG.showSSNConfirmation();
+                             USER_AF.registerNewCommunityUser($("input[id$='confirmPassword']").val());
+                        },
+                        
+                        form: contForm ,
+                        defaultStyle: function (element, isValid) {
+                            element.closest(".animated-input-group").find("span.errorHidden").remove();
+                            isValid
+                            ? element.closest(".animated-input-group").removeClass("errorElement").find("span.errorHidden").remove()
+                            : element.closest(".animated-input-group").addClass("errorElement").find("label").prepend("<span class='errorHidden'>error</span>");
+                        },
+                        
+                        fields: fieldsList
+                    } ;
+                
+                return new ValidationEngine(fieldObject);
+            },
+            
+            disableCopyPaste : function()
+            {
+                $("input[id$='email']").on("copy",function(e){
+                    return false ;
+                } );
+                $("input[id$='email']").on("paste",function(e){
+                    return false ;
+                } );
+                $("input[id='confirmEmail']").on("copy",function(e){
+                    return false ;
+                } );
+                $("input[id='confirmEmail']").on("paste",function(e){
+                    return false ;
+                } );
+                
+            }
+        }
+        
+        $(document).ready(function()
+                          {
+                              NEWUSER_REG.disableCopyPaste();
+                              NOTIFICATIONS.spinnerStart();
+                              
+                              passwordManager = new PasswordManager({
+                                  container: $("#passwordStrengthPlaceHolder"),
+                                  customTestCases : [{
+                                      caseName : 'firstLast',
+                                      type : 'custom',
+                                      field : 'firstlast',
+                                      customTestCase : function(isValid, password){
+                                          var testString = password.toLowerCase();
+                                          var hasFirst = null;
+                                          var hasLast = null;
+                                          $("[id$='lastName']").val().toLowerCase() == ""
+                                          ? hasLast = false
+                                          : hasLast = testString.indexOf($("[id$='lastName']").val().toLowerCase()) > -1;
+                                          $("[id$='firstName']").val() == ""
+                                          ? hasFirst = false
+                                          : hasFirst = testString.indexOf($("[id$='firstName']").val().toLowerCase()) > -1;
+                                          return !hasFirst && !hasLast;
+                                      }
+                                  }
+                                                    ]
+                              });
+                              
+                            //$('[id$="ssn"]').mask('000-00-0000');
+                              $('#new-user-reg-form').bindAnimatedForm();
+                              /*   $("#noSSNcheckbox").on("click",function(e){
+                                  if($(this).prop("checked"))
+                                  {
+                                      $("#ssn_col").hide();
+                                      $("#ssn_col").find("input").val('') ;
+                                      $("#no_ssn_col").show();
+                                      $("#no_ssn_warning").show();
+                                  }else
+                                  {
+                                      $("#no_ssn_col").hide();
+                                      $("#no_ssn_warning").hide();
+                                      $("#ssn_col").show();
+                                  }
+                              }); */
+                              
+                              global_validator = NEWUSER_REG.bindValidations($('#new-user-reg-form'));
+                              NEWUSER_REG.processRegResult() ; 
+                              NOTIFICATIONS.spinnerStop();
+                          });
+        
+        var global_validator = null ;
+        var passwordManager = null ;
+        
+        </script>
+        
+    </html>
+</apex:page>

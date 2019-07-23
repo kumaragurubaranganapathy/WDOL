@@ -1,0 +1,275 @@
+.THIS.portal-registration-form-container {
+    margin:0px 50px;
+}
+.THIS .field-item {
+    padding: 0 25px 25px 25px;
+}
+.THIS .internal-header h1 {
+    font-size: 40px;
+    color: #03528b;
+    padding:15px 0px 30px;
+}
+.THIS .submit-form{
+    display:flex;
+    justify-content: flex-end;
+}
+.THIS .submit-form button {
+    margin:0px;
+}
+.THIS #passwordStrength p {
+    position:relative;
+    padding:0px 0px 0px 20px;
+}
+.THIS #passwordStrength p::before {
+    position: absolute;
+    left: 0px;
+    font-size: 16px;
+    line-height: 1;
+}
+.THIS #passwordStrength p.invalid::before {
+    content: "\2717";   
+    color: red;
+}
+.THIS #passwordStrength p.valid::before {
+    content: "\2713";
+    color: green;
+}
+.THIS .password-error {
+    color: red;
+}
+.THIS input[name="middleName"] {
+    margin-top: 2px;
+}
+.THIS .slds-modal__container {
+    text-align:center;
+}
+.THIS .password-field {
+    position: relative;
+}
+.THIS .help-text {
+    position: absolute;
+    top: 5px;
+    left: 8%;
+    height:15px;
+    width:15px;
+    border-radius: 50px;
+    border: 1px solid t(darkgrey);
+}
+.THIS .slds-form-element__icon{
+    top: -9px;
+}
+.THIS .slds-form-element__icon .slds-button__icon{
+    height: 10px;
+    width:10px;
+    
+}
+.THIS #passwordStrength {
+    visibility:hidden;
+    bottom:6rem;
+    padding:15px;
+    position:relative;
+    display:inline-block;
+    border: 1px solid t(black)
+}
+.THIS #passwordStrength:before {
+    content: '';
+    display: block;  
+    position: absolute;
+    left: 40px;
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: black;
+}
+.THIS #passwordStrength:after {
+    content: '';
+    display: block;  
+    position: absolute;
+    left: 41px;
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-bottom-color: white;
+}
+@media (max-width:767px){
+.THIS.portal-registration-form-container {
+    margin:0px 15px;
+}
+.THIS .field-item {
+    width:100%;
+    padding: 0 10px 20px 10px;
+}
+.THIS .internal-header h1 {
+    font-size: 26px;
+    line-height:1.2;
+}    
+}
+.THIS .slds-form-element__label{
+    padding-left:5px;
+    position:relative;
+}
+.THIS .slds-form-element__label .slds-required{
+    position: absolute;
+    left: -5px;
+}
+/*@font-face{
+    font-family:'SourceSansPro-SemiBold';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-SemiBold.ttf');
+}
+@font-face{
+    font-family:'SourceSansPro-Regular';
+    src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+}
+@font-face{
+    font-family:'NotoSansTC-Regular';
+    src:url('/lightningwashington/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
+} */
+.THIS.main-wrapper {
+    padding:2.5rem 8rem;    
+    /*color:t(LnGWhite);
+    background-image:url(/lightningwashington/resource/LnP_Icons/LnP_Icons/main-background.png);
+    background-position-y: 40%;
+    background-repeat:no-repeat;
+    position:relative;
+    background-size:cover;
+    left:0;
+    position:relative;
+    transition:left 0.5s; */
+}
+
+
+.THIS .outer-wrapper{
+    display:flex;
+    align-items:center;
+}
+.THIS .main-title{
+    font-size: 2rem;
+    font-weight: bold;
+    color: t(headerColor);
+	padding-bottom:2rem;
+}
+.THIS .help-button-wrapper{
+    margin-left:3rem;
+    
+}
+.THIS .help-button{
+    background: t(linksColor);
+    border-radius: 4px;  
+    padding:0.5rem;
+    color:t(LnGWhite);
+    border: solid 1px t(grayBorder);
+    font-size: 1rem;
+}
+.THIS a.slds-button.help-button {
+    display: block;
+    background: t(linksColor);
+    border-radius: 4px;
+    padding: .25rem .5rem;
+    outline: none;
+    box-shadow: none;
+    margin: 15px 0px;
+    border: 0px;
+}
+.THIS .license-definition {
+    padding:10px 0px 15px;
+}
+.THIS .help-button:hover{
+    text-decoration:none;
+}
+.THIS .link-style{
+    color: t(LnGWhite);
+    text-decoration:none;
+    
+}
+.THIS.moveToRight{  
+    left:50vW;   
+}
+.THIS .license-needs-wrapper{    
+    border: solid 1px t(grayBorder); 
+    margin-bottom:1rem;
+}
+.THIS .license-needs-innerwrapper {
+    border: solid 1px t(grayBorder); 
+    margin:12px;
+}
+.THIS .license-header{
+    color:t(headerColor);
+    font-size:1rem;
+    font-weight:bold;
+    padding-bottom:0.25rem;
+}
+.THIS .help-text{
+    color:t(subHeader);
+    font-size:1rem;
+}
+.THIS .license-header-wrapper{
+    padding:2rem 2rem 1.5rem;    
+}
+.THIS .list-col{
+    padding:1.5rem 2rem;    
+    border-right: solid 1px t(grayBorder);    
+}
+.THIS .list-col:last-of-type{
+    border-right:none;
+}
+.THIS .license-item{
+    padding-bottom:1rem;
+}
+.THIS .license-link:hover{
+    text-decoration:none;
+}
+.THIS .license-link{
+    color:t(linksColor);
+    padding-bottom:0.25rem;
+    border-bottom:solid 1px t(linksColor);   
+    font-weight:600;
+}
+.THIS .action-item{
+    padding:2rem ;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+}
+@media screen and (max-width:1279.9px){
+    .THIS.main-wrapper:after{
+    	display:none;
+    
+}
+}
+@media screen and (max-width: 1023px) {
+    .THIS.main-wrapper{
+        padding:5rem 2rem;
+    }
+  	.THIS .main-title{
+        text-align:center;
+        padding-bottom:1rem;
+    } 
+    .THIS .sub-title{
+        width:100%;
+        text-align:center;
+    }
+    .THIS .outer-wrapper{
+        padding-bottom:1rem;
+    }
+    .THIS .search-input{
+        width:100%;
+    }
+    .THIS .sub-title {
+        max-width: none;
+    }
+    .THIS .search-input{
+        max-width: none;    
+    }
+    .THIS .help-button {
+        margin: 1.5rem auto 0px;
+        max-width:100%;
+    }
+}
+
+@media (max-width:768px) {
+    .THIS.main-wrapper{
+        padding:5rem 2rem 7.5rem;
+    }
+}
