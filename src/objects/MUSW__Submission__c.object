@@ -940,4 +940,22 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <requireRowSelection>false</requireRowSelection>
         <url>/apex/SubmissionsManage?pid={!MUSW__Permit2__c.Id}{!MUSW__Application2__c.Id}{!MUSW__License2__c.Id}</url>
     </webLinks>
+    <webLinks>
+        <fullName>Open_TIFF_Attachment</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Preview Attachment</masterLabel>
+        <openType>newWindow</openType>
+        <page>Dol_ViewTiffFile</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
 </CustomObject>
