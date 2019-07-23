@@ -3,6 +3,8 @@
     <aura:attribute name="stepNumber" type="String" default="0"/>
     <aura:attribute name="numOfPaymentSources" type="Integer" access="public" default="0"/>
     <aura:attribute name="paymentSourceTotal" type="Integer" access="public" default="0" />
+    <aura:attribute name="numberOfDocuments" type="Integer" access="public" default="0"/>
+    <aura:attribute name="documentTotal" type="Integer"  access="public" default="0" />
     <aura:attribute name="insertedReceiptList" type="List" access="public"  default="[]"/>
     <aura:attribute name="insertedDepositList" type="List" access="public"  default="[]"/>
     <aura:attribute name="defaultProgramType" type="String" />
