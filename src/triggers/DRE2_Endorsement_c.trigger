@@ -1,1 +1,0 @@
-trigger DRE2_Endorsement_c on Endorsement__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Endorsement_c', new DRETriggerHandler()); }

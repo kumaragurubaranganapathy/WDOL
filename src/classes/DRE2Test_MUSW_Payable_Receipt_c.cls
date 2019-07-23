@@ -1,1 +1,0 @@
-@isTest private class DRE2Test_MUSW_Payable_Receipt_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('MUSW__Payable_Receipt__c'); } }

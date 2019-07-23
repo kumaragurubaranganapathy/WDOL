@@ -1,1 +1,0 @@
-trigger DRE2_Action_c on Action__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Action_c', new DRETriggerHandler()); }
