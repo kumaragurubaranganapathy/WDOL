@@ -89,7 +89,7 @@
                                                         <lightning:button class="rel-btn"  variant="neutral" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
                                                     </aura:if>
                                                     <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
-                                                        <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-button_brand slds-button" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
+                                                        <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-button_brand slds-button" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Separate</a>
                                                     </aura:if>
                                                 </div>    
                                             </td>
