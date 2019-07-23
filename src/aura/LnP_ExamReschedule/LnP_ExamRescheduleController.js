@@ -21,47 +21,68 @@
     },
     rescheduleExam: function(component,event,helper){
         var ctarget = event.currentTarget;
-        console.log('inside draftLicense::');
-       
-				sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+        var requestId='';
+        var action = component.get("c.insertRequestExam");
+        action.setParams({            
+            "licId": ctarget.getAttribute("data-license"),
+            "licenseType": ctarget.getAttribute("data-licenseType"),
+            "board":ctarget.getAttribute("data-board"),
+            "ServiceRequestType": ctarget.getAttribute("data-requestType"),
+            "ExamRecordId" :ctarget.getAttribute("data-recordId"), 
+        });
+        action.setCallback(this, function(actionResult){
+            console.log('get results----');
+            var state = actionResult.getState();
+            console.log('state---'+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result----'+result);
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
                 sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
                 sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
-           //     sessionStorage.setItem("applicationType", );
-                sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+                //   sessionStorage.setItem("applicationType", component.get("v.applicationMethod"));
+                sessionStorage.setItem("requestId", requestId);
                 sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request'; 
- 
-
-        var appIsRenewal = ctarget.getAttribute("data-reschedule");
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+       
      
-        if(appIsRenewal == 'true'){
-            console.log('inside ce audit request ::');
-            sessionStorage.setItem("renewalReinstate", renewreinstate);
-            sessionStorage.setItem("flowType", "Application");
-            window.location.href='/lightningwashington/s/manage-request';  
-        } 
     },
     submitResults : function(component, event, helper){
-         var ctarget = event.currentTarget;
-        console.log('inside draftLicense::');
-       
-				sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+        var ctarget = event.currentTarget;
+        var requestId = '';
+        var action = component.get("c.insertRequestExam");
+        action.setParams({            
+            "licId": ctarget.getAttribute("data-license"),
+            "licenseType": ctarget.getAttribute("data-licenseType"),
+            "board":ctarget.getAttribute("data-board"),
+            "ServiceRequestType": ctarget.getAttribute("data-requestType"),
+            "ExamRecordId" :ctarget.getAttribute("data-recordId"), 
+        });
+        action.setCallback(this, function(actionResult){
+            console.log('get results----');
+            var state = actionResult.getState();
+            console.log('state---'+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result----'+result);
+                requestId = result;
+                alert('requestId--'+requestId); 
+                sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
                 sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
                 sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
-           //     sessionStorage.setItem("applicationType", );
-                sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+                sessionStorage.setItem("requestId", requestId);
                 sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request'; 
- 
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+    
 
-        var appIsRenewal = ctarget.getAttribute("data-status");
-     /*
-        if(appIsRenewal == 'Pass'){
-            console.log('inside ce audit request ::');
-       //     sessionStorage.setItem("renewalReinstate", renewreinstate);
-            sessionStorage.setItem("flowType", "Application");
-            window.location.href='/lightningwashington/s/manage-request';  
-        } */
+   
     },
     handleSuccess : function(component, event, helper) {
         var payload = event.getParams().response;

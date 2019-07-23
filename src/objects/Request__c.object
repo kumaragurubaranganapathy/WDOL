@@ -120,6 +120,20 @@
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Exam__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Exam</label>
+        <referenceTo>Education_History__c</referenceTo>
+        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipName>Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>Assigned_Resource_User_Id__c</fullName>
         <externalId>false</externalId>

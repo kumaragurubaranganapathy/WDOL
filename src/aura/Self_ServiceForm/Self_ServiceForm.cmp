@@ -6,41 +6,65 @@
     <aura:attribute name="recordEditForm" type="Boolean" default="false" description="to show or hide address component"/>
     <aura:attribute name="address" type="Boolean" default="false" description="to show or hide address component"/>
     <aura:attribute name="customForm" type="Boolean" default="false" description="to show or hide website change request"/>
+    <aura:attribute name="showPrintForm" type="Boolean" default="false" description="to show or hide print license change request"/>
     <aura:attribute name="existWebsite" type="String" description="to store the website field value."/>
     <aura:attribute name="appId" type="String" />
+    <aura:attribute name="contactName" type="String" />
+    <aura:attribute name="AMRName" type="String" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <!-- Form start -->
-    <aura:if isTrue="{!v.recordEditForm}">
-    <lightning:recordEditForm recordId="{!v.recordIDforSSAMR}"
-                              objectApiName="{!v.objectApiName}"
-                              onsuccess="{!c.cancel}">
-        <!-- the messages component is for error messages -->
-        <lightning:messages />
-        <div class="slds-grid slds-wrap slds-p-horizontal_xx-large slds-p-vertical_large service-form-container">
-            <aura:iteration items="{!v.fieldApiNames}" var="field">
-                <div class="slds-col slds-size_1-of-2">
-                    <lightning:inputField fieldName="{!field}"/>
+    <div class="self-service-wrapper">
+        <h1 class="amr-title">{!v.AMRName}</h1>
+        
+        <aura:if isTrue="{!v.recordEditForm}">
+            <lightning:recordEditForm recordId="{!v.recordIDforSSAMR}"
+                                      objectApiName="{!v.objectApiName}"
+                                      onsuccess="{!c.cancel}">
+                <!-- the messages component is for error messages -->
+                <lightning:messages />
+                <div class="service-form-container">
+                    <div class="input-field-wrapper">
+                        <h2 class="contact-name">{!v.contactName}</h2>
+                        <aura:iteration items="{!v.fieldApiNames}" var="field">
+                            <div class="input-field">
+                                <lightning:inputField fieldName="{!field}"/>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                    <div class="service-btn-container">
+                        <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
+                        <lightning:button variant="brand" type="submit" name="save" label="Save"/>
+                    </div>
                 </div>
-            </aura:iteration>
-            <div class="slds-align_absolute-center slds-p-around_medium service-btn-container">
-                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-                <lightning:button variant="brand" type="submit" name="save" label="Save"/>
+            </lightning:recordEditForm>
+        </aura:if>
+        <!-- Form end -->
+        <aura:if isTrue="{!v.address}">
+            <c:LnP_LicenseAddress applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
+            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" onclick="{!c.cancel}"/>
+        </aura:if>
+        <aura:if isTrue="{!v.customForm}">
+            <div class="slds-form-element slds-form-element_horizontal">
+                <lightning:input type="text" label="Website" value="{!v.existWebsite}"/>
             </div>
-        </div>
-    </lightning:recordEditForm>
-    </aura:if>
-    <!-- Form end -->
-    <aura:if isTrue="{!v.address}">
-    	<c:LnP_LicenseAddress licenseId="{!v.recordIDforSSAMR}" applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
-        <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" onclick="{!c.cancel}"/>
-    </aura:if>
-    <aura:if isTrue="{!v.customForm}">
-    	<div class="slds-col slds-size_1-of-1 slds-form-element slds-form-element_horizontal">
-            <lightning:input type="text" label="Website" value="{!v.existWebsite}"/>
-        </div>
-        <div class="slds-align_absolute-center slds-p-around_medium ">
-            <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-            <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.saveWebsite}"/>
-        </div>
-    </aura:if>
+            <div class="slds-align_absolute-center slds-p-around_medium ">
+                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.saveWebsite}"/>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.showPrintForm}">
+            <div class="slds-form-element">
+                <lightning:select aura:id="printLicenseId" name="printLicense" label="How do you want to receive printed License?"  required="true">
+                    <option value="">--None--</option>
+                    <option value="email">Receive printed license to email</option>
+                    <option value="DES">Receive printed license to Mailing Address</option>
+                </lightning:select>
+            </div>
+            <div class="slds-align_absolute-center slds-p-around_medium ">
+                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.printUpdate}"/>
+                <!--<lightning:button variant="success" label="CreateCode" title="Success" onclick="{!!c.createcode}"/>-->
+            </div>
+        </aura:if>
+    </div>
 </aura:component>
