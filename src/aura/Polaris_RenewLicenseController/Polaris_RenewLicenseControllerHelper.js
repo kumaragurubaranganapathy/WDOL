@@ -171,87 +171,48 @@
        window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     submit : function(component, event, helper) {
-       // var enteredAttestText = component.get("v.attestValue");
-       // var userName = component.get("v.currentUser.Name");
-       // if(enteredAttestText==userName)
-        //debugger;
-        this.checkboxValidation(component, event);
-        var id;
-        var noFees;
-        var that = this;
-        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true)
-        {         
-            
-            var action = component.get("c.callCompositeAPI");
-            action.setParams({
-                "applicationId" : component.get("v.applicationId"),
-                "renewReinstate": component.get("v.RenewReinstate")
-                //"licID" : component.get("v.licID")
-            });
-            that.showSpinner(component, event);
-            //helper.AttestVal(component, event, helper);
-            action.setCallback(this, function(actionResult){
-                var state = actionResult.getState();
-                if (state === "SUCCESS"){
-                    var result = actionResult.getReturnValue();
-                    //var noFees;
-                    //this.hideSpinner(component, event);
-                    component.set("v.storeServerValue", result[0].Id);
-                    id = component.get("v.storeServerValue");
-                    try{
-                        return new Promise($A.getCallback(function(resolve, reject) {
-                            var action = component.get("c.getTotalBalance");
-                            action.setParams({"licId" : id });
-                            action.setCallback(this, function(actionResult){
-                                var state = actionResult.getState();
-                                if (state === "SUCCESS"){
-                                    console.log("state::"+state);
-                                    noFees = actionResult.getReturnValue();
-                                    resolve(actionResult.getReturnValue());
-                                    console.log("state::"+state);
-                                }
-                                
-                            });
-                            $A.enqueueAction(action);
-                        })).then(
-                            $A.getCallback(function(result){ 
-                                var str = '';
-                                component.set("v.loadingSpinner", false);
-                                if(noFees){
-                                    /*str ='/dashboard';
-                                    var urlEvent = $A.get("e.force:navigateToURL");
-                                    urlEvent.setParams({
-                                        "url": str
-                                    });
-                                    urlEvent.fire(); */
-                                    // below code is for no fees case
-                                    that.hideSpinner(component, event);
-                                    component.set("v.popupHeader", "Successfully Submitted");
-                                    component.set("v.popupBody", "Thank you for submission of your application.");
-                                    component.set("v.serverStatus", "success"); 
-                                    //component.set("v.storeServerValue", result[0].Id);
-                                    component.set("v.isOpen", true); 
-                                    // no fees code ends
-                                }else{ 
-                                    that.hideSpinner(component, event);
-                                    window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                                } 
-                            }));
-                    }    
-                    catch(e){
-                        console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
-                    }
-                }else{
-                    console.log("Submit Error->"+error);
-                    //handle error as well
-                }
-                
-            });
-            $A.enqueueAction(action);
-        
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-    },
+        // var enteredAttestText = component.get("v.attestValue");
+        // var userName = component.get("v.currentUser.Name");
+        // if(enteredAttestText==userName)
+         //debugger;
+         this.checkboxValidation(component, event);
+         var id;
+         var noFees;
+         var that = this;
+         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true)
+         {         
+             
+           var action = component.get("c.callCompositeAPI");
+             action.setParams({
+                 "applicationId" : component.get("v.applicationId"),
+                 "renewReinstate": component.get("v.RenewReinstate")
+                 //"licID" : component.get("v.licID")
+             });
+             this.showSpinner(component, event);
+             //helper.AttestVal(component, event, helper);
+             action.setCallback(this, function(actionResult){
+                 var state = actionResult.getState();
+                 if (state === "SUCCESS"){
+                     var result = actionResult.getReturnValue();
+                     //this.hideSpinner(component, event);
+                     // Set popup property values before displayiong pop up.
+                    /* component.set("v.popupHeader", "Successfully Submitted");
+                     component.set("v.popupBody", "Thank you for submission of your application.");
+                     component.set("v.serverStatus", "success"); 
+                     component.set("v.isOpen", true);*/
+                     component.set("v.storeServerValue", result);
+                     this.closeModel(component, event, helper);
+                 }else{
+                     console.log("Submit Error->"+error);
+                     //handle error as well
+                 }
+                 
+             });
+             $A.enqueueAction(action);
+         
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+             }
+     },
 
     showDependentQuestionsHelper : function(component, event, helper){
         component.set("v.showEndoMessage",false);
@@ -355,6 +316,7 @@
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
             if (state === "SUCCESS"){
+                this.hideSpinner(component, event);
                 var noFees = actionResult.getReturnValue();
                 if(noFees){
                     window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/user-feedback';
