@@ -191,6 +191,8 @@
                 }else if(eventName === 'submit_next'){                    
                     component.set("v.insertedReceiptList",[]);
                     component.set("v.insertedDepositList",[]);
+                    component.set("v.numberOfDocuments",0);
+                    component.set("v.documentTotal",0);
                     var currentStep = component.get("v.stepNumber");       
                     currentStep = '1';      
                     component.set("v.stepNumber",currentStep);

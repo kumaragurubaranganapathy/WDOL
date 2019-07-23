@@ -110,9 +110,10 @@ public with sharing class LnP_ProgramType{
     @AuraEnabled        
     public static MUSW__Deposit__c saveDeposit_Receipt_Records(MUSW__Deposit__c depRecList){
         
-        system.debug('depRecList : ' + depRecList); 
+        system.debug('depRecList before insert: ' + depRecList); 
         try{
             insert depRecList;
+            system.debug('depRecList after insert : ' + depRecList); 
         }catch(Exception e){
             system.debug('Exception : ' + e.getMessage());
             system.debug('Exception : ' + e.getStackTraceString());
@@ -121,8 +122,9 @@ public with sharing class LnP_ProgramType{
     }
     @AuraEnabled        
     public static MUSW__Deposit__c updateDepositRec(MUSW__Deposit__c depList){
-        system.debug('depList : '+depList);
+        system.debug('before depList : '+depList);
         update depList   ;
+         system.debug('after depList : '+depList);
         return depList;
     }
     

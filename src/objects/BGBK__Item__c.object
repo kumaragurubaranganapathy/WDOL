@@ -479,6 +479,18 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <unique>false</unique>
     </fields>
     <label>Item</label>
+	<listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Fee_Payment__c</columns>
+        <columns>Transaction_Code__c</columns>
+        <columns>BGBK__Fund__c</columns>
+        <columns>GL_To_AFRS__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>IT-{00000000}</displayFormat>
         <label>Number</label>

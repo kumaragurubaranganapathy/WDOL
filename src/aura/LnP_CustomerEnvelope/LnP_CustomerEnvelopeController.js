@@ -2,9 +2,9 @@
     doinit : function(component,event,helper){
         debugger;
         component.set("v.stepNumber",'1');
-      var value = helper.getParameterByName(component , event, 'inContextOfRef');
-      var context = JSON.parse(window.atob(value));
-      component.set("v.parentRecordId", context.attributes.recordId);
+        var value = helper.getParameterByName(component , event, 'inContextOfRef');
+        var context = JSON.parse(window.atob(value));
+        component.set("v.parentRecordId", context.attributes.recordId);
         
     },
     showToast : function(component,event,helper){
@@ -39,8 +39,8 @@
             componentDef: "c:LnP_PaymentSources",
             //componentAttributes :{ //your attribute}
         });
-       
-    evt.fire();
+        
+        evt.fire();
         //event.setParam("stepNumber", stepNumber);
         component.set("v.stepNumber",'2');
     },
@@ -72,8 +72,10 @@
                 var attributeMap = {"stepNumber": component.getReference("v.stepNumber"),
                                     "insertedDepositList" : component.getReference("v.insertedDepositList"),
                                     "insertedReceiptList" : component.getReference("v.insertedReceiptList"),
-                                     "numOfPaymentSources" : component.get("v.numOfPaymentSources"),
+                                    "numOfPaymentSources" : component.get("v.numOfPaymentSources"),
                                     "paymentSourceTotal" : component.get("v.paymentSourceTotal"),
+                                    "numberOfDocuments"  : component.getReference("v.numberOfDocuments"),
+                                    "documentTotal" : component.getReference("v.documentTotal"),
                                     "defaultProgramType" : component.get("v.defaultProgramType"),
                                     "customerEnvelopeRec" : component.get("v.customerEnvelopeRec"),
                                     "parentRecordId" : component.get("v.parentRecordId")

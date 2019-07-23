@@ -23,9 +23,13 @@
     <aura:attribute name="depositRec" type="MUSW__Deposit__c" />
     <aura:attribute name="insertedDepositList" type="List" access="public" default="[]"/>
     <aura:attribute name="defaultProgramType" type="String" access="public"  />
+    <aura:attribute name="changedDefaultProgramType" type="String" access="public"  />
     <aura:attribute name="amountDifference" type="Integer"/>
     <aura:attribute name="industryFormMap" type="Map" />  
     <aura:attribute name="parentRecordId" type="String"  access="public"/>
+    
+    <aura:attribute name="numberOfDocuments" type="Integer" access="public" default="0"/>
+    <aura:attribute name="documentTotal" type="Integer"  access="public" default="0" />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="AddRowEvt" event="c:AddNewRowEvt" action="{!c.addNewRow_}"/>
@@ -43,13 +47,13 @@
         <lightning:layout class="slds-align_absolute-center">
             <div><lightning:input  disabled="true" label="Validation Number" value="{!v.customerEnvelopeRec.Validation_number__c}"/></div>&nbsp;
             <div><lightning:input  disabled="true" label="Number of Payment Sources" value="{!v.numOfPaymentSources}"/></div>&nbsp;
-            <div><lightning:input aura:id="numberOfDocuments" disabled="true" label="Number of Documents" value="0"/></div>
+            <div><lightning:input aura:id="numberOfDocuments" disabled="true" label="Number of Documents" value="{!v.numberOfDocuments}"/></div>
         </lightning:layout>
         
         <lightning:layout class="slds-align_absolute-center">
             <div><lightning:input  disabled="true" label="Date" value="{!v.customerEnvelopeRec.Date_Today_s__c}"/></div>&nbsp;
             <div><lightning:input  disabled="true" label="Payment Source Total" value="{!v.paymentSourceTotal}" /></div>&nbsp;
-            <div><lightning:input  aura:id="documentTotal" disabled="true" label="Document Total" value="0" /></div>
+            <div><lightning:input  aura:id="documentTotal" disabled="true" label="Document Total" value="{!v.documentTotal}" /></div>
         </lightning:layout><br/>
         
         
@@ -75,8 +79,8 @@
                 </thead>   
                 <tbody>
                     <aura:iteration items="{!v.depositList}" var="item" indexVar="index">
-                        <c:LnP_DocumentsChildRowCmp depositRec="{#item}" rowIndex="{!index}" industryMap="{!v.industryMap}" 
-                                           formnum="{!v.formnum}" defaultProgramType="{#v.defaultProgramType}" amountDifference="{!v.amountDifference}"
+                        <c:LnP_DocumentsChildRowCmp aura:id="childComponent" depositRec="{#item}" rowIndex="{!index}" industryMap="{!v.industryMap}" 
+                                           formnum="{!v.formnum}" defaultProgramType="{#v.defaultProgramType}" changedDefaultProgramType="{!v.changedDefaultProgramType}" amountDifference="{!v.amountDifference}"
                                                     paymentSourceTotal = "{#v.paymentSourceTotal}" industryFormMap="{!v.industryFormMap}"/>
                     </aura:iteration>
                 </tbody>
