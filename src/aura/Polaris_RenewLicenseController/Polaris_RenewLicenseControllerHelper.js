@@ -195,6 +195,7 @@
                  if (state === "SUCCESS"){
                      var result = actionResult.getReturnValue();
                      this.hideSpinner(component, event);
+					 component.set("v.storeServerValue", result);
                      // Set popup property values before displayiong pop up.
                     /* component.set("v.popupHeader", "Successfully Submitted");
                      component.set("v.popupBody", "Thank you for submission of your application.");
