@@ -25,6 +25,16 @@
 	</fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
+        <field>BGBK__Refund2__c.Revenue_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>BGBK__Refund2__c.Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__Submission__c.CustomerEnvelope__c</field>
         <readable>true</readable>
     </fieldPermissions>
