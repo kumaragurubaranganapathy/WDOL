@@ -811,7 +811,7 @@ listApp.add(applicationChild);*/
             
             if(checkSuccess) {
                 appList[0].Stage__c = -1;
-                appList[0].MUSW__Status__c = 'Under Review';
+                appList[0].MUSW__Status__c = 'Submitted';
                 licenseID =insertLisence(setapplicationId,renewReinstate);
                 //Setup  for the populating the details
                 List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
