@@ -95,7 +95,7 @@ public without sharing class AddBusiness_CC
                     //    wrapper.myAffiliations = mapLicRelationships.get(bus.MUSW__Account__c);
                         
                         mybusinessList.add(wrapper);
-                      system.debug('Wrapper>>>>>>>>>>>'+wrapper);
+                      system.debug('Wrapper>>>>>>>>>>'+wrapper);
                   }
                   
             }

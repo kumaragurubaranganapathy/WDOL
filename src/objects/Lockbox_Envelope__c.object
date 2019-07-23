@@ -65,6 +65,15 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Lockbox_Amount__c</fullName>
         <externalId>false</externalId>
         <label>Lockbox Amount</label>
@@ -76,24 +85,14 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Lockbox_number__c</fullName>
         <externalId>false</externalId>
         <label>Lockbox Number</label>
-        <precision>18</precision>
+        <length>20</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <label>Lockbox Envelope</label>
@@ -104,11 +103,9 @@
         <columns>Amount__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
-        <columns>UPDATEDBY_USER</columns>
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Lockbox Envelopes</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>LBE-{0000}</displayFormat>

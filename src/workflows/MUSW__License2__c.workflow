@@ -5,7 +5,7 @@
         <description>Application Submitted Alert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>niinani@deloitte.com.wadolbuspro.prod</recipient>
+            <recipient>vagoel@deloitte.com.polaris</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -13,16 +13,11 @@
     </alerts>
     <alerts>
         <fullName>License_Email_Alert</fullName>
-        <ccEmails>nazbegum@deloitte.com</ccEmails>
         <description>License Email Alert</description>
         <protected>false</protected>
         <recipients>
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <recipient>niinani@deloitte.com.wadolbuspro.prod</recipient>
-            <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Payment_For_License</template>
@@ -53,15 +48,6 @@
         <field>MUSW__Geolocation__Longitude__s</field>
         <formula>MUSW__Parcel__r.MUSW__Geolocation__Longitude__s</formula>
         <name>License - Fill Longitude from Parcel</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_MUSW_Expiration_Date_to_current_date</fullName>
-        <field>MUSW__Expiration_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>Set Expiration Date to current date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -104,22 +90,12 @@
             <operation>equals</operation>
             <value>Appraisal Management Company</value>
         </criteriaItems>
-        <description>Queue Assignment for Appraisal Management Company</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Set Expiration Date to current date when license is sunset</fullName>
-        <actions>
-            <name>Set_MUSW_Expiration_Date_to_current_date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
-            <value>Sunset</value>
+            <value>In Review</value>
         </criteriaItems>
-        <description>set Expiration Date to current date when license is sunset</description>
+        <description>Queue Assignment for Appraisal Management Company</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

@@ -111,6 +111,17 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>ExternalID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Object_Name__c</fullName>
         <externalId>false</externalId>
         <label>Object Name</label>
@@ -119,16 +130,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>ExternalID__c</fullName>
-        <externalId>true</externalId>
-        <label>Object Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Old_Amount__c</fullName>
@@ -160,10 +161,10 @@
         <columns>NAME</columns>
         <columns>Business_Event__c</columns>
         <columns>Object_Name__c</columns>
-        <columns>Effective_Date__c</columns>
         <columns>Credit_Code__c</columns>
         <columns>Debit_Code__c</columns>
         <columns>Transaction_Account__c</columns>
+        <columns>Effective_Date__c</columns>
         <columns>Transaction_Type__c</columns>
         <columns>Amount__c</columns>
         <columns>Description__c</columns>

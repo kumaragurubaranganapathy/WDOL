@@ -25,7 +25,7 @@ public class PermitAnsSubmissionTriggerHandler {
        Set<String> permitTypeList = new Set<String>();
        //Set<String> applicationMethodSet = new Set<String>();
        for(Answer__C tempAns: newAnswerMap.values()){
-            List<answer__C> tempPermitTypeList = [select id, permit__c, permit__r.Permit_Type__c, permit__r.Application_Method__c from answer__C where Id=:tempAns.Id];   
+       		List<answer__C> tempPermitTypeList = [select id, permit__c, permit__r.Permit_Type__c, permit__r.Application_Method__c from answer__C where Id=:tempAns.Id];   
            for(Answer__C a:tempPermitTypeList ){
                permitTypeList.add(a.permit__r.Permit_Type__c);
          //      applicationMethodSet.add(a.permit__r.Application_Method__c);
@@ -45,23 +45,23 @@ public class PermitAnsSubmissionTriggerHandler {
                                                    AND Permit_Type__c IN :permitTypeList
                                                    //             AND Application_Method__C IN: applicationMethodSet
                                                                ]) {
-        System.debug('in permit ansTrigHandler 2');                                                       
+		System.debug('in permit ansTrigHandler 2');                                                       
             List < MUSW__Master_Submission_List__c > tempSubmissionList = new List < MUSW__Master_Submission_List__c > ();
             if (typeToSubmissionMap.containsKey(masterSubmission.Permit_Type__c)) {
                 System.debug('in ansTrigHandler 3 '+masterSubmission.Permit_Type__c);                                                       
                 tempSubmissionList = typeToSubmissionMap.get(masterSubmission.Permit_Type__c);
             }
-                System.debug('in permit ansTrigHandler 4 '+tempSubmissionList);                                                       
+              	System.debug('in permit ansTrigHandler 4 '+tempSubmissionList);                                                       
             tempSubmissionList.add(masterSubmission);
-            System.debug('in permit ansTrigHandler 5 '+tempSubmissionList);
+			System.debug('in permit ansTrigHandler 5 '+tempSubmissionList);
             typeToSubmissionMap.put(masterSubmission.Permit_Type__c, tempSubmissionList);
-            System.debug('in permit ansTrigHandler 6 '+typeToSubmissionMap);
+			System.debug('in permit ansTrigHandler 6 '+typeToSubmissionMap);
         }
 
         List < MUSW__Submission__c > submissionUpsertList = new List < MUSW__Submission__c > ();
         List < MUSW__Submission__c > submissionDeleteList = new List < MUSW__Submission__c > ();
 
-        for (Answer__c Ans: [Select Id, Question__c,permit__c, permit__r.Permit_Type__c, Answer_Text__c from Answer__c where Id in: newAnswerMap.keySet()]) {
+        for (Answer__c Ans: [Select Id, Question__c, permit__c, permit__r.Permit_Type__c, Answer_Text__c from Answer__c where Id in: newAnswerMap.keySet()]) {
             permitIds.add(Ans.Permit__c);
            System.debug('in permit ansTrigHandler 7 '+permitIds);
         }
@@ -115,7 +115,7 @@ public class PermitAnsSubmissionTriggerHandler {
             }                
         }
        
-        for (Answer__c Ans: [Select Id, Question__c,permit__c, permit__r.Permit_Type__c, Answer_Text__c from Answer__c where Id in: newAnswerMap.keySet()]) {
+        for (Answer__c Ans: [Select Id, Question__c, permit__c, permit__r.Permit_Type__c, Answer_Text__c from Answer__c where Id in: newAnswerMap.keySet()]) {
             System.debug('in permit ansTrigHandler 18 ');
             if (ans.permit__c != null && permitId_permit_Map.containsKey(ans.permit__c)) {
                 System.debug('in permit ansTrigHandler 19 ');
@@ -177,10 +177,10 @@ public class PermitAnsSubmissionTriggerHandler {
             System.debug('in permit ansTrigHandler 30>>> submissionUpsertList '+submissionUpsertList);
             System.debug('in permit ansTrigHandler 31>>> submissionDeleteList '+submissionDeleteList);
             if(submissionUpsertList != null && submissionUpsertList.size() > 0){
-                upsert submissionUpsertList LicenseQuestionKey__c;  
+            	upsert submissionUpsertList LicenseQuestionKey__c;	
             }
             if(submissionDeleteList != null && submissionDeleteList.size() > 0 ){
-                delete submissionDeleteList;    
+            	delete submissionDeleteList;	
             }
         } catch (Exception ex) {
             System.debug('------------------EXCEPTION-----------');

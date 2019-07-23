@@ -919,9 +919,11 @@
         <columns>BGCK__Active__c</columns>
         <columns>BGCK__Question_Type__c</columns>
         <columns>BGCK__Section_Name__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>Application_Method__c</columns>
+        <columns>Question_Body__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Question Title</label>
@@ -1008,6 +1010,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1449,6 +1455,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -1470,6 +1480,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1651,7 +1665,7 @@
     <recordTypes>
         <fullName>Background_Questions</fullName>
         <active>true</active>
-        <label>Background Questions</label>
+        <label>License Information</label>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -1730,6 +1744,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -1754,10 +1772,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Engineers</fullName>
                 <default>false</default>
             </values>
@@ -1775,10 +1789,6 @@
             </values>
             <values>
                 <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1880,10 +1890,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2126,10 +2132,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -2185,6 +2187,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -2206,6 +2212,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2243,23 +2253,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2415,10 +2413,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -2478,6 +2472,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -2502,10 +2500,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Engineers</fullName>
                 <default>false</default>
             </values>
@@ -2523,10 +2517,6 @@
             </values>
             <values>
                 <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2631,10 +2621,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -2648,10 +2634,6 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2878,10 +2860,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -2937,6 +2915,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -2958,6 +2940,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2995,23 +2981,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3230,6 +3204,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -3254,10 +3232,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Engineers</fullName>
                 <default>false</default>
             </values>
@@ -3275,10 +3249,6 @@
             </values>
             <values>
                 <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3383,10 +3353,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -3400,10 +3366,6 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3685,6 +3647,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -3706,6 +3672,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3743,23 +3713,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3978,6 +3936,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -4002,10 +3964,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Engineers</fullName>
                 <default>false</default>
             </values>
@@ -4023,10 +3981,6 @@
             </values>
             <values>
                 <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4131,10 +4085,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -4148,10 +4098,6 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4378,10 +4324,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -4437,6 +4379,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -4458,6 +4404,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4495,23 +4445,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4730,6 +4668,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -4875,10 +4817,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -4892,10 +4830,6 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5122,10 +5056,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -5181,6 +5111,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -5202,6 +5136,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5239,23 +5177,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5474,6 +5400,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -5498,10 +5428,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Engineers</fullName>
                 <default>false</default>
             </values>
@@ -5519,10 +5445,6 @@
             </values>
             <values>
                 <fullName>Landscape Architects</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manufactured Homes</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5640,10 +5562,6 @@
             </values>
             <values>
                 <fullName>Engineering Corporations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5870,10 +5788,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -5929,6 +5843,10 @@
         <picklistValues>
             <picklist>Data_Type__c</picklist>
             <values>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Date</fullName>
                 <default>false</default>
             </values>
@@ -5950,6 +5868,10 @@
             </values>
             <values>
                 <fullName>Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Textarea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5987,23 +5909,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Home Certificate of Title</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Mechanical</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
                 <default>false</default>
             </values>
             <values>

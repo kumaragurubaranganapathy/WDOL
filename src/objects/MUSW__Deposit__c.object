@@ -10,7 +10,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <type>Default</type>
+        <content>DepositPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -26,7 +28,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>DepositPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -272,76 +276,6 @@
         <externalId>false</externalId>
         <label>Fine Number</label>
         <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Over_Short_Revenue_Code__c</fullName>
-        <description>Captures the overshort revenue code from the Master Configuration list</description>
-        <externalId>false</externalId>
-        <label>Over Short Revenue Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Over_short_Old_Amount__c</fullName>
-        <description>Captures the Overshort old amount.</description>
-        <externalId>false</externalId>
-        <label>Over short Old Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Overshort_Amount__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>Captures Over short amount</description>
-        <externalId>false</externalId>
-        <label>Overshort Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Overshort_Modified__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Set to true if the overshort is modified.</description>
-        <externalId>false</externalId>
-        <label>Overshort Modified</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Previous_Overshort_Updated__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Set to true if the previous over short is modified</description>
-        <externalId>false</externalId>
-        <label>Previous Overshort Updated</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>RevenueCodeSubString__c</fullName>
-        <description>Captures the revenue code over short</description>
-        <externalId>false</externalId>
-        <formula>LEFT( Over_Short_Revenue_Code__c , 3)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>RevenueCodeSubString</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -822,8 +756,8 @@
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -841,8 +775,8 @@
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -1217,7 +1151,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
+                <valueName>Cemetery</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
@@ -1225,7 +1159,12 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
@@ -1234,11 +1173,6 @@
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Delegated Municipality</controllingFieldValue>
@@ -1262,11 +1196,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
+                <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
@@ -1274,11 +1208,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
+                <valueName>Appraiser Course</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
+                <valueName>Appraiser Trainee</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1286,7 +1220,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
+                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1294,7 +1228,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <valueName>Temporary Certified General</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1306,11 +1240,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
+                <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1318,7 +1256,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Academic Intern</valueName>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1330,23 +1276,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer Intern</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Prearrangement Funeral Services</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Director</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer</valueName>
+                <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Engineers</controllingFieldValue>
@@ -1358,11 +1292,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
+                <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
@@ -1523,6 +1457,63 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Over_Short_Revenue_Code__c</fullName>
+        <description>Captures the overshort revenue code from the Master Configuration list</description>
+        <externalId>false</externalId>
+        <label>Over Short Revenue Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Over_short_Old_Amount__c</fullName>
+        <description>Captures the Overshort old amount.</description>
+        <externalId>false</externalId>
+        <label>Over short Old Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Overshort_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Captures Over short amount</description>
+        <externalId>false</externalId>
+        <label>Overshort Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Overshort_Modified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set to true if the overshort is modified.</description>
+        <externalId>false</externalId>
+        <label>Overshort Modified</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Overshort_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set to true if the previous over short is modified</description>
+        <externalId>false</externalId>
+        <label>Previous Overshort Updated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Professional_code__c</fullName>
         <externalId>false</externalId>
         <label>Professional Code</label>
@@ -1534,89 +1525,17 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Program_type__c</fullName>
+        <fullName>RevenueCodeSubString__c</fullName>
+        <description>Captures the revenue code over short</description>
         <externalId>false</externalId>
-        <label>Program type</label>
+        <formula>LEFT( Over_Short_Revenue_Code__c , 3)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RevenueCodeSubString</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Funerals</fullName>
-                    <default>false</default>
-                    <label>Funerals</label>
-                </value>
-                <value>
-                    <fullName>cemeteries</fullName>
-                    <default>false</default>
-                    <label>cemeteries</label>
-                </value>
-                <value>
-                    <fullName>engineers</fullName>
-                    <default>false</default>
-                    <label>engineers</label>
-                </value>
-                <value>
-                    <fullName>land surveyors</fullName>
-                    <default>false</default>
-                    <label>land surveyors</label>
-                </value>
-                <value>
-                    <fullName>on-site wastewater</fullName>
-                    <default>false</default>
-                    <label>on-site wastewater</label>
-                </value>
-                <value>
-                    <fullName>collection agencies</fullName>
-                    <default>false</default>
-                    <label>collection agencies</label>
-                </value>
-                <value>
-                    <fullName>geologists</fullName>
-                    <default>false</default>
-                    <label>geologists</label>
-                </value>
-                <value>
-                    <fullName>architects</fullName>
-                    <default>false</default>
-                    <label>architects</label>
-                </value>
-                <value>
-                    <fullName>landscape architects</fullName>
-                    <default>false</default>
-                    <label>landscape architects</label>
-                </value>
-                <value>
-                    <fullName>camping resorts</fullName>
-                    <default>false</default>
-                    <label>camping resorts</label>
-                </value>
-                <value>
-                    <fullName>appraisers-real estate</fullName>
-                    <default>false</default>
-                    <label>appraisers-real estate</label>
-                </value>
-                <value>
-                    <fullName>timeshares</fullName>
-                    <default>false</default>
-                    <label>timeshares</label>
-                </value>
-                <value>
-                    <fullName>notaries public</fullName>
-                    <default>false</default>
-                    <label>notaries public</label>
-                </value>
-                <value>
-                    <fullName>appraisal management companies</fullName>
-                    <default>false</default>
-                    <label>appraisal management companies</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Route_to_Miscellaneous_queue__c</fullName>
@@ -1653,7 +1572,7 @@
                 <sorted>false</sorted>
                 <value>
                     <fullName>pending</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>pending</label>
                 </value>
                 <value>
@@ -1664,7 +1583,7 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>ValidationNumber__c</fullName>
         <description>for Capturing the Validation Number from the Customer Envelope record</description>
         <externalId>false</externalId>
@@ -1702,42 +1621,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>wadol_Professional_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE(TEXT(  License_type__c  ),
-&quot;Architect&quot;,&quot;20810&quot;,
-&quot;Camping Resort Company&quot;,&quot;27706&quot;,
-&quot;Camping Resort Salesperson&quot;,&quot;27708&quot;,
-&quot;Cemetery&quot;,&quot;21701&quot;,
-&quot;Professional Engineer&quot;,&quot;23201&quot;,
-&quot;Professional Land Surveyor&quot;,&quot;23203&quot;,
-&quot;Embalmer Intern&quot;,&quot;24002&quot;,
-&quot;Funeral Director&quot;,&quot;24003&quot;,
-&quot;Funeral Director Intern&quot;,&quot;24004&quot;,
-&quot;Funeral Establishment&quot;,&quot;24005&quot;,
-&quot;Prearrangement Funeral Services&quot;,&quot;24006&quot;,
-&quot;Funeral Establishment Branch&quot;,&quot;24008&quot;,
-&quot;Geologist&quot;,&quot;29940&quot;,
-&quot;Landscape Architect&quot;,&quot;24901&quot;,
-&quot;Notary Public&quot;,&quot;25601&quot;,
-&quot;On-site Wastewater Designer&quot;,&quot;23251&quot;,
-&quot;On-site Wastewater Inspector&quot;,&quot;23252&quot;,
-&quot;Certified General Appraiser&quot;,&quot;27011&quot;,  
-&quot;State Licensed Appraiser&quot;,&quot;27016&quot;,
-&quot;Certified Residential Appraiser&quot;,&quot;27017&quot;,
-&quot;Appraisal Management Company&quot;,&quot;27030&quot;,
-&quot;Timeshare Company&quot;,&quot;21804&quot;,
-&quot;Timeshare Salesperson&quot;,&quot;21805&quot;,
-&quot; &quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Professional Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>wadol_Program_Type__c</fullName>
         <externalId>false</externalId>
         <label>Program Type</label>
@@ -1750,22 +1633,28 @@
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
     </fields>
-	 
     <label>Deposit</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
-		<columns>ValidationNumber__c</columns>
+        <columns>ValidationNumber__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>Contact__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>Form_number__c</columns>
+        <columns>Validation_number__c</columns>
         <columns>MUSW__Amount__c</columns>
-        <columns>MUSW__Available_Amount__c</columns>
-        <columns>MUSW__Paid_Amount__c</columns>
-        <columns>MUSW__Unpaid_Amount__c</columns>
+        <columns>Sequence_number__c</columns>
+        <columns>Date__c</columns>
+        <columns>Document_type__c</columns>
+        <columns>Professional_code__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Appraisal Management Company Queue</label>
@@ -1776,8 +1665,10 @@
     </listViews>
     <listViews>
         <fullName>Camping_Resorts_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>License_type__c</columns>
         <filterScope>Queue</filterScope>
         <label>Camping Resorts Queue</label>
         <queue>Camping_Resorts_Queue</queue>
@@ -1786,20 +1677,8 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Deposit_Records_From_Customer_Envelope</fullName>
-		<columns>NAME</columns>
-        <columns>ValidationNumber__c</columns>
-        <columns>Form_number__c</columns>
-        <columns>Program_type__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>Amount__c</columns>
-        <filterScope>Mine</filterScope>
-        <label>Deposit Records From Customer Envelope</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>Miscellaneous_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Miscellaneous</label>
@@ -1810,8 +1689,11 @@
     </listViews>
     <listViews>
         <fullName>Notaries_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>Validation_number__c</columns>
+        <columns>License_type__c</columns>
+        <columns>Professional_code__c</columns>
         <filterScope>Queue</filterScope>
         <label>Notaries Queue</label>
         <queue>Notaries_Queue</queue>
@@ -1821,8 +1703,15 @@
     </listViews>
     <listViews>
         <fullName>RBS_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>License_type__c</columns>
+        <columns>Professional_code__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>Contact__c</columns>
         <filterScope>Queue</filterScope>
         <label>RBS Queue</label>
         <queue>RBS_Queue</queue>
@@ -1832,7 +1721,7 @@
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
@@ -1843,8 +1732,16 @@
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>License_type__c</columns>
+        <columns>Document_type__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>Contact__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Professional_code__c</columns>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraisers Queue</label>
         <queue>Real_Estate_Appraisers_Queue</queue>
@@ -1854,8 +1751,12 @@
     </listViews>
     <listViews>
         <fullName>Timeshare_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>Validation_number__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>License_type__c</columns>
+        <columns>Professional_code__c</columns>
         <filterScope>Queue</filterScope>
         <label>Timeshare Queue</label>
         <queue>Timeshare_Queue</queue>
@@ -1865,8 +1766,12 @@
     </listViews>
     <listViews>
         <fullName>Unknown_Contacts_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>Contact__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>License_type__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>Unknown Contacts</label>
         <queue>Unknown_Contacts</queue>

@@ -6,6 +6,7 @@ public class ExamReschedule {
         System.debug('licenseId=== ' + licenseId);
         List<Education_History__c> educationHistoryList = new List<Education_History__c>();
         Id educationHistoryRecordId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId() ;
+        if(String.isNotBlank(licenseId)){
         for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
                                                           Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c
                                                           From Education_History__c Where License__c = :licenseId
@@ -14,6 +15,7 @@ public class ExamReschedule {
                                                           And RecordTypeId = :educationHistoryRecordId]){
                                                               educationHistoryList.add(educationHistoryRecods);                                             
                                                           }
+        }
         return educationHistoryList;
     }
     

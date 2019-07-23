@@ -13,7 +13,7 @@
         });
         $A.enqueueAction(action);
     },
-    addTask : function(component,event) {
+    addTask : function(component,event) {        
         var action = component.get("c.createAssociationTask");
         action.setParams({"associationID": component.get("v.asssociationId")});
         action.setCallback(this, function (response) {

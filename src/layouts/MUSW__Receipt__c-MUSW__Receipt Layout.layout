@@ -34,16 +34,8 @@
                 <field>MUSW__Amount_Available__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VitalChek__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Agency_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Voucher_Number__c</field>
+                <behavior>Readonly</behavior>
+                <field>Polaris_CreatedDate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -58,6 +50,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Sent_to_Collections__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Intake_Method__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -81,7 +77,16 @@
                 <field>MUSW__Check_Number__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Payment_Batch__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VitalCheck_Number__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -90,6 +95,10 @@
         <editHeading>true</editHeading>
         <label>Description</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MUSW__Comments__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Applicant_Name__c</field>
@@ -110,10 +119,6 @@
                 <behavior>Edit</behavior>
                 <field>Sender_Agency__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MUSW__Comments__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -131,11 +136,19 @@
                 <behavior>Edit</behavior>
                 <field>BGBK__Cart__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MUSW__Paid_By__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>US_Bank_Payment_Status__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -158,11 +171,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>BGBK__AdjustReceipts</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>MUSW__Receipt__c.BGBK__Void_Receipt_ltng</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -181,6 +189,11 @@
             <actionName>MUSW__Receipt__c.Capture_DHP_Chargeback</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>4</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>BGBK__AdjustReceipts</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>

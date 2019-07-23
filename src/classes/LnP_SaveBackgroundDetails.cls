@@ -41,7 +41,7 @@ public class LnP_SaveBackgroundDetails {
     public static String updateEducationHistoryRecord(Id educationHistoryRecordId, Id requestId){
         System.debug('educationHistoryRecordId==' + educationHistoryRecordId + 'requestId==' + requestId);
         List<Database.SaveResult> srList = new List<Database.SaveResult>();
-        String outputResponse;
+        String outputResponse = '';
         List<Education_History__c> educationHistoryRecordList = new List<Education_History__c>();
         for(Request__c requestRecord : [SELECT Id, License__c, (SELECT Id, Name, License__c FROM Education_History__r WHERE Id =:educationHistoryRecordId LIMIT 1) FROM Request__c WHERE Id = :requestId]){
             for(Education_History__c educationRecords : requestRecord.Education_History__r){
@@ -49,10 +49,11 @@ public class LnP_SaveBackgroundDetails {
                 educationHistoryRecordList.add(educationRecords);
             }
         }
-      //  System.debug('educationHistoryRecordList====' + educationHistoryRecordList);
+        System.debug('educationHistoryRecordList====' + educationHistoryRecordList);
         if(!educationHistoryRecordList.isEmpty()){
             srList = Database.update(educationHistoryRecordList, false);
         }
+        System.debug('srList== ' + srList);
         // Iterate through each returned result
         for (Database.SaveResult sr : srList) {
             if (sr.isSuccess()) {

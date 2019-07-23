@@ -11,7 +11,8 @@
     <tabs>MUSW__GIS_Sync</tabs>
     <tabs>MUSW__Master_Work_Item_List__c</tabs>
     <tabs>Map</tabs>
-    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <tabs>Master_Exam_List__c</tabs>
-    <tabs>Master_ConfigData_Listing__c</tabs>
+    <tabs>LnP_Parcel__c</tabs>
+    <tabs>EpaymentRemittanceData__c</tabs>
 </CustomApplication>

@@ -1,9 +1,9 @@
-trigger Dol_IsContactRecordUpdatedForASC on Contact (before update) {
+trigger Dol_IsContactRecordUpdatedForASC on Contact (after update) {
      List<Id> contactIds  = new List<Id>();
-     List<Contact> ContactList = new List<Contact>();
+     List<MUSW__License2__c> licenseList = new List<MUSW__License2__c>();
+     List<MUSW__License2__c> licenseListToUpdt = new List<MUSW__License2__c>();
    
      for(Contact con : trigger.new){
-         System.debug('con.UID__c=='+con.UID__c +'--trigger.oldmap.get(con.id).UID__c=='+trigger.oldmap.get(con.id).UID__c);
          if((con.UID__c != trigger.oldmap.get(con.id).UID__c || con.LastName != trigger.oldmap.get(con.id).LastName
              || con.FirstName != trigger.oldmap.get(con.id).FirstName|| con.MiddleName != trigger.oldmap.get(con.id).MiddleName
              || con.Phone != trigger.oldmap.get(con.id).Phone || con.Company_Name__c != trigger.oldmap.get(con.id).Company_Name__c))
@@ -11,13 +11,16 @@ trigger Dol_IsContactRecordUpdatedForASC on Contact (before update) {
              contactIds.add(con.id);
          }
     }
-    System.debug('contactIds'+contactIds);
     if(Dol_IntegrationUtil.isNotEmpty(contactIds)){
-        ContactList = [select id, IsContactRecordUpdatedForASC__c from Contact  where id =:contactIds];
+        licenseList = [select id,Send_information_to_ASC__c from MUSW__License2__c  where MUSW__Applicant__c =:contactIds];
     }
-    for(contact contact : ContactList){
-        for(Contact con : trigger.new){
-            con.IsContactRecordUpdatedForASC__c =true;
-        }
+    for(MUSW__License2__c lic : licenseList){
+        lic.Send_information_to_ASC__c = true;
+        licenseListToUpdt.add(lic);
     }
+    if(Dol_IntegrationUtil.isNotEmpty(licenseListToUpdt)){
+        System.debug('licenseListToUpdt'+licenseListToUpdt);
+        upsert licenseListToUpdt;
+    }
+    
 }

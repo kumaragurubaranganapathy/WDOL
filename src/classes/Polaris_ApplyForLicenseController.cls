@@ -1308,11 +1308,11 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                doingBusinessAs  = ans.Answer_Text__c +' ';
                             }
                             
-                            if(ans.QuestionDOL__r.Question_Body__c=='*Middle Name or initial' && MiddleName == '' ){
+                            if(ans.QuestionDOL__r.Question_Body__c=='Middle Name or initial' && MiddleName == '' ){
                                 MiddleName = ans.Answer_Text__c +' ';
                             }
                             
-                            if(ans.QuestionDOL__r.Question_Body__c=='*Last Name' && LastName == '' ){
+                            if(ans.QuestionDOL__r.Question_Body__c=='Last Name' && LastName == '' ){
                                 LastName = ans.Answer_Text__c;
                             }
                             
@@ -1335,7 +1335,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                     mstLicense.Policy_Amount__c = String.valueOf(answerText);
                                 }
     
-                                if(quesBody == 'Effective Date of Bond'){
+                                if(quesBody == 'Effective Date'){
                                     stringToDate = String.valueOf(answerText);
                                     Integer year = Integer.valueOf(stringToDate.subString(0, 4));
                                     Integer month = Integer.valueOf(stringToDate.substring(5, 7));
@@ -1345,7 +1345,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                     mstLicense.Effective_Date_of_Bond__c = d;
                                 }
     
-                                if(quesBody == 'Expiration Date of Bond'){
+                                if(quesBody == 'Expiration Date'){
                                     stringToDate = String.valueOf(answerText);
                                     Integer year = Integer.valueOf(stringToDate.subString(0, 4));
                                     Integer month = Integer.valueOf(stringToDate.substring(5, 7));
@@ -1371,6 +1371,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                  
                 if(mstLicense.RecordTypeId == individualRT){
                     mstLicense.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
+					mstLicense.Print_First_Name__c = firstName;
+                    mstLicense.Print_Middle_Name__c = MiddleName;
+                    mstLicense.Print_Last_Name__c = LastName;
                 }
                 if(mstLicense.RecordTypeId == businessRT){
                     mstLicense.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;

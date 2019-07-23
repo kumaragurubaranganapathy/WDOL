@@ -96,7 +96,7 @@ public class ParentFieldUpdateTriggerHandlerTest {
         Answer__c answer = new Answer__c(Answer_Text__c='Yes',Question__c=testQuestion.Id,License__c=lstlicense[0].Id, External_id_of_Question__c = 'EXT-test11' );
         insert answer;
         Answer__c ans1 = new Answer__c();
-        ans1= [select id,Answer_Text__c,Question__c,License__c from Answer__c where License__c=:lstlicense[0].Id];
+        ans1= [select id,Answer_Text__c,Question__c, License__c from Answer__c where License__c=:lstlicense[0].Id];
         System.debug('ans1>>>>>' +ans1);
         
         List<MUSW__License2__c> lstlicense2 = new List<MUSW__License2__c>();
@@ -126,7 +126,8 @@ public class ParentFieldUpdateTriggerHandlerTest {
                                                   );
         insert testQuestion;
         
-        Answer__c answer = new Answer__c(Answer_Text__c='Yes',Question__c=testQuestion.Id,Renewal_Application__c=lstRenewal[0].Id, External_id_of_Question__c = 'EXT-test11');        
+        Answer__c answer = new Answer__c(Answer_Text__c='Yes',Question__c=testQuestion.Id,Renewal_Application__c=lstRenewal[0].Id, External_id_of_Question__c = 'EXT-test11');
+        
         insert answer;
         
         List<Renewal_Application__c> lstRenewal1 = new List<Renewal_Application__c>();
@@ -155,7 +156,8 @@ public class ParentFieldUpdateTriggerHandlerTest {
                                                   );
         insert testQuestion;
         
-        Answer__c answer = new Answer__c(Answer_Text__c='Yes',Question__c=testQuestion.Id,Permit__c =lstpermit[0].Id, External_id_of_Question__c = 'EXT-test11');  
+        Answer__c answer = new Answer__c(Answer_Text__c='Yes',Question__c=testQuestion.Id,Permit__c =lstpermit[0].Id, External_id_of_Question__c = 'EXT-test11');
+        
         insert answer;
         
         List<MUSW__Permit2__c> lstpermit1 = new List<MUSW__Permit2__c>();
@@ -190,7 +192,7 @@ public class ParentFieldUpdateTriggerHandlerTest {
         Answer__c answer = new Answer__c(Answer_Text__c='Yes',Question__c=testQuestion.Id,Service_Request__c=srList[0].Id, External_id_of_Question__c = 'EXT-test111' );
         insert answer;
         Answer__c ans1 = new Answer__c();
-        ans1= [select id,Answer_Text__c,License__c from Answer__c where Service_Request__c=:srList[0].Id];
+        ans1= [select id,Answer_Text__c,Question__c, License__c from Answer__c where Service_Request__c=:srList[0].Id];
         System.debug('ans1>>>>>' +ans1);
         
         List<MUSW__Application2__c> srList2 = new List<MUSW__Application2__c>();

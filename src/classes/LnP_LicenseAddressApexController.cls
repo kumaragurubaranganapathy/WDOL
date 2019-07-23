@@ -479,57 +479,6 @@ parcel.License__c = licenseId;
         system.debug('parcelList=='+parcelList);
         return parcelList;
     }
-    
-    
-    @AuraEnabled
-    public static MUSW__Parcel__c AffiliatedLocation(String parcel,boolean removeLocation){
-        MUSW__Parcel__c parcl = (MUSW__Parcel__c)JSON.deserialize(parcel,MUSW__Parcel__c.class);
-        parcl.recordTypeId= Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
-        parcl.Status__c = 'Active';
-        System.debug('parcl::'+ parcl );
-        System.debug('removeLocation::'+ removeLocation);
-        if(parcl != null && !removeLocation ){
-            insert parcl ;
-        }else if(removeLocation ){
-            parcl.Status__c = 'Inactive';
-            update parcl ;
-        }
-        return parcl ;
-    }
-    
-    @AuraEnabled
-    public static Boolean removeLocation(Id parcelId){
-        Boolean removed = false;
-        MUSW__Parcel__c parcl = new MUSW__Parcel__c(id=parcelId); 
-        parcl.Status__c = 'Inactive';
-        try{
-            update parcl ;
-            removed = true;
-        }catch(Exception e){
-            System.debug(e.getMessage());
-            removed = false;
-        }
-        
-        return removed;
-    }
-    
-    
-     @AuraEnabled
-    public static String setLocationTable(String applicationId){
-        try{  
-            List<String> columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Action'};
-            Id LocationRT = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
-            List<SObject> columnDataList;
-            columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Application_BG__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
-            LnP_LicenseAddressApexController.lightningDataTableWrapper wrapperObj = new LnP_LicenseAddressApexController.lightningDataTableWrapper(columnHeaderList,columnDataList);
-            return JSON.serialize(wrapperObj,true);
-            
-        }catch(Exception ex){
-            return null;
-        }
-    }
-    
-    
     public class AddrWrapper {
         @auraEnabled    public String country {get;set;}
         @auraEnabled    public String street {get;set;}
@@ -539,13 +488,4 @@ parcel.License__c = licenseId;
         @auraEnabled    public String zip {get;set;}
     }
     
-     public class lightningDataTableWrapper{
-        public List<String> tableHeader;
-        public List<Sobject> tableData;
-        public String miscellaneousData;
-        lightningDataTableWrapper(List<String> tableHeader,List<Sobject> tableData){
-            this.tableHeader = tableHeader!=null? tableHeader:new List<String>();
-            this.tableData = tableData!=null? tableData : new List<Sobject>();
-        }
-    }
 }

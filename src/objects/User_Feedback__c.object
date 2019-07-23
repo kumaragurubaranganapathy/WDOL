@@ -52,7 +52,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Comments__c</fullName>
         <externalId>false</externalId>
@@ -231,11 +231,6 @@ IF(ISPICKVAL(Grade__c,&apos;5&apos;), &quot;/resource/LnP_Icons/LnP_Icons/fivest
         </valueSet>
     </fields>
     <label>User Feedback</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <listViews>
         <fullName>All_User_Feedback</fullName>
         <columns>NAME</columns>

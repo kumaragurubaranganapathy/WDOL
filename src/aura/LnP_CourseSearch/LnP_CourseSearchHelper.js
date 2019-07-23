@@ -64,7 +64,7 @@
     searchCourse : function(component, event) {
        // alert('Search Called!!');
         var objectApi =  'MUSW__License2__c';
-        var fieldsList = ['Name','Id','Course_Name__c','Course_Number__c','Credential_Type__c','Application_Type__c','What_Licensure_Level__c','What_program_are_you_interested_in__c','Course_Status__c','Course_Title__c','Course_Topic__c','Course_Type__c','Provider_School_Name__c','Clock_Hours__c','Delivery_Method__c'];
+        var fieldsList = ['Name','Id','Course_Name__c','Course_Number__c','Credential_Type__c','Application_Type__c','What_Licensure_Level__c','What_program_are_you_interested_in__c','Course_Status__c','Course_Title__c','Course_Topic__c','Course_Type__c','Provider_Account_Name__c','Clock_Hours__c','Delivery_Method__c'];
         var ProgramValue =  component.find("Program").get("v.value");
         var LicenseType;
         if(ProgramValue == 'Appraisers'){
@@ -131,6 +131,7 @@
                 "Credential_Type__c" : LicenseType,
                 "Course_Type__c" : CourseTypeValue,
                 "What_Licensure_Level__c" : licensureLevelValue,
+               
                 "Course_Title__c" : courseNameValue,
                 "Name" : courseNumberValue,
                 "Clock_Hours__c" : clockHoursValue,
@@ -153,12 +154,13 @@
                     console.log("state---"+state);
                     var rows = response.getReturnValue();  
                     console.log('rows: '+response.getReturnValue());
+                    console.log('rows : '+JSON.stringify(response.getReturnValue()));
                     if(rows.length!=0){
                         
                          
                         component.set('v.columns', [
                             {label: 'Course Name', fieldName: 'Course_Title__c', type: 'Text', sortable : true},
-                            {label: 'Provider/School', fieldName: 'Provider_Account_Name__c', type: 'Text', sortable : true},
+                            {label: 'Provider/School Name', fieldName: 'Provider_Account_Name__c', type: 'Text', sortable : true},
                             {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
                             {label: 'Course Type', fieldName: 'Course_Type__c', type: 'Picklist', sortable : true},                            
                             {label: 'Delivery Method', fieldName: 'Delivery_Method__c', type: 'Picklist', sortable : true},
@@ -254,6 +256,7 @@
                                   'License_Phone__c',
                                   'Original_Issue_Date__c',
                                   'Ultimate_Parent_Account__r.Name',
+                                  'Ultimate_Parent_Account__c',
                                   'Course_Title__c',
                                   'Id',
                                   'Clock_Hours_Continuing_Education__c',
@@ -269,8 +272,8 @@
                                   'Event_Date__c',
                                   'Event_State__c',
                                   'License_Email__c',
-                              'Provider_Account_Name__c',
                               'Website__c',
+                              'Provider_Account_Name__c',
                                   'MUSW__Expiration_Date__c'];
                     
             var criteria = {

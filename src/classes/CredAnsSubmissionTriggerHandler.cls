@@ -25,7 +25,7 @@ public class CredAnsSubmissionTriggerHandler {
        Set<String> credentialList = new Set<String>();
        Set<String> applicationMethodSet = new Set<String>();
        for(Answer__C tempAns: newAnswerMap.values()){
-            List<answer__C> tempcredList = [select id, license__c, license__r.credential__C, license__r.Application_Method__c from answer__C where Id=:tempAns.Id];   
+       		List<answer__C> tempcredList = [select id, license__c, license__r.credential__C, license__r.Application_Method__c from answer__C where Id=:tempAns.Id];   
            for(Answer__C a:tempcredList ){
                credentialList.add(a.license__r.credential__c);
                applicationMethodSet.add(a.license__r.Application_Method__c);
@@ -45,17 +45,17 @@ public class CredAnsSubmissionTriggerHandler {
                                                    AND Credential__c IN :credentialList
                                                                 AND Application_Method__C IN: applicationMethodSet
                                                                ]) {
-        //System.debug('in ansTrigHandler 2');                                                       
+		//System.debug('in ansTrigHandler 2');                                                       
             List < MUSW__Master_Submission_List__c > tempSubmissionList = new List < MUSW__Master_Submission_List__c > ();
             if (typeToSubmissionMap.containsKey(masterSubmission.Credential__c)) {
                 ///System.debug('in ansTrigHandler 3 '+masterSubmission.Credential__c);                                                       
                 tempSubmissionList = typeToSubmissionMap.get(masterSubmission.Credential__c);
             }
-                //System.debug('in ansTrigHandler 4 '+tempSubmissionList);                                                       
+              	//System.debug('in ansTrigHandler 4 '+tempSubmissionList);                                                       
             tempSubmissionList.add(masterSubmission);
-            //System.debug('in ansTrigHandler 5 '+tempSubmissionList);
+			//System.debug('in ansTrigHandler 5 '+tempSubmissionList);
             typeToSubmissionMap.put(masterSubmission.Credential__c, tempSubmissionList);
-            //System.debug('in ansTrigHandler 6 '+typeToSubmissionMap);
+			//System.debug('in ansTrigHandler 6 '+typeToSubmissionMap);
         }
 
         List < MUSW__Submission__c > submissionUpsertList = new List < MUSW__Submission__c > ();
@@ -176,10 +176,10 @@ public class CredAnsSubmissionTriggerHandler {
             System.debug('in ansTrigHandler 30>>> submissionUpsertList '+submissionUpsertList);
             System.debug('in ansTrigHandler 31>>> submissionDeleteList '+submissionDeleteList);
             if(submissionUpsertList != null && submissionUpsertList.size() > 0){
-                upsert submissionUpsertList LicenseQuestionKey__c;  
+            	upsert submissionUpsertList LicenseQuestionKey__c;	
             }
             if(submissionDeleteList != null && submissionDeleteList.size() > 0 ){
-                delete submissionDeleteList;    
+            	delete submissionDeleteList;	
             }
         } catch (Exception ex) {
             ErrorLogger.logGeneralException(ex, UserInfo.getUserId(), label.Str_User, 'while upsert/delete', 'updateAnswerSubmissionRecords', 'CredAnsSubmissionTriggerHandler', label.str_HIGH);            

@@ -349,8 +349,8 @@
                 $(".addEduHistorySection").hide();
                 $(".addEduHistBtn").show();
                 $(".updateEduHistBtn").hide();
-                $("[id$='empHist_Country']").val('United States');
-                $("[id$='empHist_State']").val('Washington');
+                  $("[id$='empHist_Country']").val('United States');
+                  $("[id$='empHist_State']").val('Washington');
             });
             
             $("#eduHistorySave").on("click", function() {
@@ -363,6 +363,7 @@
             });
             /* Event - Click 'Add' after filling new form */
             $("#eduHistoryFormSection").on("click", function() {
+                
                 if(validationMapper.eduHistory.validator.errors().length <= 0){
                     EDUQUALCOMPNS.saveRecord();
                     EDUQUALCOMPNS.clearUI();
@@ -620,7 +621,12 @@
             eduHistObj.Major__c=$("[id$='empHistMajor']").val();
             eduHistObj.Minor__c=$("[id$='empHistMinor']").val();
             eduHistObj.Country__c=$("[id$='empHist_Country']").val();
+            if(eduHistObj.Country__c == 'United States' )
+            {
             eduHistObj.State__c=$("[id$='empHist_State']").val();
+            }
+            else
+            eduHistObj.State__c='';
             eduHistObj.End_date__c=  new DateUtility().toUTC($("#eduHist_EndDate").val());
             eduHistObj.Start_Date__c=  new DateUtility().toUTC($("#eduHist_StartDate").val());
             //  eduHistObj.Contact__c = licGlobalObj.contactId;  
@@ -675,6 +681,7 @@
             }
             NOTIFICATIONS.spinnerStop();
         },
+        
         /* Function - Delete a record */
         clearUI : function() {
             // Clear input fields
@@ -696,6 +703,10 @@
             $(".updateEduHistBtn").hide();
             $(".addEduHistorySection").show();
         }
+    }
+    
+    function removeUnicode (s) {
+        return( s.replace(/\u0000/g,'\u000d\u000a') );
     }
     </script>
 </apex:component>

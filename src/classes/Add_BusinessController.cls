@@ -6,40 +6,6 @@ public without sharing class Add_BusinessController {
         return Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId() ;
     }
     
-    @AuraEnabled 
-    public static String insertRequest(String acctId,String ServiceRequestType){
-        List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
-        
-        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = '003r000000EOhBB';
-        if(userInfoData[0].ContactId != null){
-            getContactId = userInfoData[0].ContactId;
-        }
-       // system.debug('licenseType'+licenseType+'board');
-        Request__c application = new Request__c();
-        application.Profession__c = ServiceRequestType; 
-        application.License_Type__c = ServiceRequestType;        
-        application.Stage__c = 0;
-        application.Service_Request_Type__c = ServiceRequestType;
-        application.Contact__c = getContactId;
-        if(acctId != null && acctId != ''){
-            application.Account__c = acctId;  
-        }  
-        try
-        {          
-            insert application;
-        }
-        catch(Exception e){
-            HandleException.LogException(e,'Add_BusinessController','insertRequest');            
-        }
-        string appId = '';
-        return appId = application.Id;
-    }
-    
     @AuraEnabled
     public static List<Account> getAllAccounts(){
         Set<Id> accntIdSet = new Set<Id>();
@@ -576,7 +542,7 @@ public without sharing class Add_BusinessController {
         }
         
         if(sObjectName == 'Associations__c'){
-            columnHeaderList = new List<String>{'Name','License Number','Status','Invitation Status','Actions'};
+            columnHeaderList = new List<String>{'Name','License Number','License Type','Status','Relationship Status','Actions'};
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                     sObjList =[select id,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
         }

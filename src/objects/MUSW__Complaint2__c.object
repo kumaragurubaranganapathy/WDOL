@@ -10,9 +10,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>MUSW__PageDefaults</content>
+        <content>MUSW__ComplaintPageDefaults</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Scontrol</type>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -112,25 +112,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Attorney_Email__c</fullName>
-        <externalId>false</externalId>
-        <label>Attorney Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Attorney_Phone_Number__c</fullName>
-        <externalId>false</externalId>
-        <label>Attorney Phone Number</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Phone</type>
-    </fields>
-    <fields>
         <fullName>Case_Dispositions__c</fullName>
         <externalId>false</externalId>
         <label>Case Dispositions</label>
@@ -228,34 +209,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Citation_Date__c</fullName>
-        <description>Date of civil citation</description>
-        <externalId>false</externalId>
-        <label>Citation Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Close_of_Escrow_New_Home__c</fullName>
-        <externalId>false</externalId>
-        <label>Close of Escrow (New Home)</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Closed_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Closed Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Complainant_Business_City__c</fullName>
@@ -1282,27 +1235,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Complainant_Phone_Alternate__c</fullName>
-        <externalId>false</externalId>
-        <label>Complainant Phone (Alternate)</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Phone</type>
-    </fields>
-    <fields>
         <fullName>Complainant_Phone_Main__c</fullName>
         <externalId>false</externalId>
         <label>Complainant Phone (Main)</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Phone</type>
-    </fields>
-    <fields>
-        <fullName>Complainant_Phone_Mobile__c</fullName>
-        <externalId>false</externalId>
-        <label>Complainant Phone (Mobile)</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1392,38 +1327,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Contract_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Contract Amount</label>
-        <precision>12</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Contract_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Contract Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Contracting_w_o_a_License__c</fullName>
-        <description>Civil penalty amount for contracting without a license.</description>
-        <externalId>false</externalId>
-        <label>Contracting w/o a License</label>
-        <precision>8</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>DOL_Attorney_Email__c</fullName>
         <externalId>false</externalId>
         <label>DOL Attorney Email</label>
@@ -1472,15 +1375,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Date_Assigned__c</fullName>
-        <externalId>false</externalId>
-        <label>Date Assigned</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Date_Investigation_Closed__c</fullName>
         <externalId>false</externalId>
         <label>Date Investigation Closed</label>
@@ -1509,52 +1403,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Date_Reopened__c</fullName>
-        <externalId>false</externalId>
-        <label>Date Reopened</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Date_Submitted_To_Court__c</fullName>
-        <description>Date the complaint is submitted for prosecution</description>
-        <externalId>false</externalId>
-        <label>Date Submitted To Court</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Date_Work_Started__c</fullName>
-        <externalId>false</externalId>
-        <label>Date Work Started</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Date_Work_Stopped__c</fullName>
-        <externalId>false</externalId>
-        <label>Date Work Stopped</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Date_Work_Was_Completed__c</fullName>
-        <externalId>false</externalId>
-        <label>Date Work Was Completed</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Days_Open__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISBLANK(MUSW__Closed_Date__c) ,  TODAY() - Date_Opened__c, MUSW__Closed_Date__c - Date_Opened__c)</formula>
@@ -1566,26 +1414,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Delivery_Date__c</fullName>
-        <description>Date the certified mail was delivered.</description>
-        <externalId>false</externalId>
-        <label>Delivery Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Email_of_Construction_Site_Owner__c</fullName>
-        <externalId>false</externalId>
-        <label>Email of Construction Site Owner</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2433,13 +2261,28 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Working</fullName>
+                    <default>false</default>
+                    <label>Working</label>
+                </value>
+                <value>
                     <fullName>Closed</fullName>
                     <default>false</default>
                     <label>Closed</label>
                 </value>
                 <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
                     <fullName>Intake</fullName>
-                    <default>true</default>
+                    <default>false</default>
                     <label>Intake</label>
                 </value>
                 <value>
@@ -2748,6 +2591,15 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recommendations__c</fullName>
+        <externalId>false</externalId>
+        <label>Recommendations</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Record_Type1__c</fullName>
@@ -3889,6 +3741,17 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>Complainant_First_Name__c</columns>
+        <columns>Complainant_Last_Name__c</columns>
+        <columns>Anonymous__c</columns>
+        <columns>MUSW__Primary_Contact__c</columns>
+        <columns>Program_Type__c</columns>
+        <columns>Respondent_Business_Name__c</columns>
+        <columns>Respondent_First_Name__c</columns>
+        <columns>Respondent_Last_Name__c</columns>
+        <columns>Licensee_Name__c</columns>
+        <columns>License__c</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

@@ -35,7 +35,7 @@
     <aura:registerEvent name="loadAccountName" type="c:LnP_FetchAccounId" />
     
     <!-- Pending draft Application -->
-    <aura:attribute name="CompletedRequestColumns" type="List" default="['Request #','Request Type','Request against','Status', 'Completion date']" />
+    <aura:attribute name="CompletedRequestColumns" type="List" default="['Request #','Request Type','Request Against','Status', 'Completion Date']" />
     <aura:attribute name="CompletedRequestData" type="List" default="" />
     
     <!-- Affiliated Locations -->
@@ -56,12 +56,9 @@
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
                 <h2 class="page-title">Business Dashboard</h2>
-                <div class="biz-welcome">   
-                    <div class="add-biz-wrapper">
-                        <lightning:button name="Add Business" label="Add business" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
-                    </div>
+                <div class="biz-welcome">                   
                     
-                    <!-- <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/> -->
+                    <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/>
                     
                 </div>
             </div>
@@ -198,8 +195,8 @@
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Expiration Date: </span>
-                                            <aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}"/>
+                                            <aura:if isTrue="{!v.LicenseData.Expiration_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.Expiration_Date__c}"/>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>                        
@@ -303,7 +300,7 @@
                                 <ul class="{! 'links-list' + (v.expandedMenu?' expanded':'')}">
                                     <li data-index="1" aura:id="action-item"><a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">Apply Business License</a></li>
                                     <li data-index="2" aura:id="action-item"><a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a></li>
-                                    <li data-index="3" aura:id="action-item"><a onclick="{!c.updateBusinessInfo}" href="javascript:void(0);">Update/Close Business</a></li>
+                                    <li data-index="3" aura:id="action-item"><a href="javascript:void(0);">Add Contact</a></li>
                                     <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li>
                                     <li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li>
                                     <li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Request Name Change</a></li>
@@ -431,7 +428,7 @@
                                                 <div class="contact-item">
                                                     <div class="label-style">Expiration Date: </div> 
                                                     <div class="data-style">
-                                                        {!v.LicenseData.MUSW__Expiration_Date__c?v.LicenseData.MUSW__Expiration_Date__c:'None'}
+                                                        {!v.LicenseData.Expiration_Date__c?v.LicenseData.Expiration_Date__c:'None'}
                                                     </div>
                                                 </div>      
                                             </lightning:layoutItem>

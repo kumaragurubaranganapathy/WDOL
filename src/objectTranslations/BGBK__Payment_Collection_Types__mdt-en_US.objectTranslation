@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Specify the name of your custom Visualforce Component name or leave blank for standard searches. --></help>
+        <label><!-- Component Name --></label>
+        <name>BGBK__Component_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Deposit Fieldset API Name determines what columns are displayed in the Payable Items list to be added to the Items List on the ItemSearch page. This needs to be set only if deposits need to be listed in the Payable Items. --></help>
+        <label><!-- Deposit Fieldset Name --></label>
+        <name>BGBK__Deposit_Fieldset_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Fee Fieldset API Name determines what columns are displayed in the Payable Items list to be added to the Items List on the ItemSearch page. This needs to be set only if fees need to be listed in the Payable Items. --></help>
+        <label><!-- Fee Fieldset Name --></label>
+        <name>BGBK__Fee_Fieldset_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Invoice Fieldset API Name determines what invoice columns are displayed in the Payable Items list to be added to the Items List on the ItemSearch page. This needs to be set only if invoices need to be listed in the Payable Items. --></help>
+        <label><!-- Invoice Fieldset Name --></label>
+        <name>BGBK__Invoice_Fieldset_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- When finding parents records of payment collection items use only exact matches (as opposed to partial matches) --></help>
+        <label><!-- Exact Match Search --></label>
+        <name>BGBK__IsExactMatch__c</name>
+    </fields>
+    <fields>
+        <help><!-- Allow portal users to find parents records of payment collection items --></help>
+        <label><!-- Portal Accessible --></label>
+        <name>BGBK__IsPortalAccessible__c</name>
+    </fields>
+    <layouts>
+        <layout>Payment Collection Types Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

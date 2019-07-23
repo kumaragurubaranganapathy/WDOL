@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>BGBK__Adjust_Fee</customButtons>
-    <customButtons>Letter</customButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -15,7 +14,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>portal_name__c</field>
+                <field>Portal_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -48,10 +47,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>MUSW__Outstanding_Fee__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Handling_Fee__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -349,11 +344,6 @@
             <actionName>MUSW__Fee__c.Pay_from_Overshort</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>5</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Letter</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>6</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>

@@ -1,6 +1,7 @@
-trigger Dol_IsParcelRecordUpdatedForASC on MUSW__Parcel__c (before update) {
+trigger Dol_IsParcelRecordUpdatedForASC on MUSW__Parcel__c (after update) {
      List<Id> parcelIds  = new List<Id>();
-     List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
+     List<MUSW__License2__c> licenseList = new List<MUSW__License2__c>();
+     List<MUSW__License2__c> licenseListToUpdt = new List<MUSW__License2__c>();
    
      for(MUSW__Parcel__c par : trigger.new){
          if((par.MUSW__Street2__c != trigger.oldmap.get(par.id).MUSW__Street2__c 
@@ -12,11 +13,14 @@ trigger Dol_IsParcelRecordUpdatedForASC on MUSW__Parcel__c (before update) {
          }
     }
     if(Dol_IntegrationUtil.isNotEmpty(parcelIds)){
-        parcelList = [select id,IsParcelRecordUpdatedForASC__c  from MUSW__Parcel__c  where id =:parcelIds];
+        licenseList = [select id,Name,Send_information_to_ASC__c from MUSW__License2__c  where MUSW__Parcel__c =:parcelIds];
     }
-    for(MUSW__Parcel__c parcel : parcelList){
-        for(MUSW__Parcel__c par : trigger.new){
-             par.IsParcelRecordUpdatedForASC__c = true;
-        }
+    for(MUSW__License2__c lic : licenseList){
+        lic.Send_information_to_ASC__c = true;
+        licenseListToUpdt.add(lic);
     }
+    if(Dol_IntegrationUtil.isNotEmpty(licenseListToUpdt)){
+        upsert licenseListToUpdt;
+    }
+    
 }

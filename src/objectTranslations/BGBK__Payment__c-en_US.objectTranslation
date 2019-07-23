@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Payment Adjust --></label>
+        <name>BGBK__Payment_Adjust</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Payment Basic --></label>
+        <name>BGBK__Payment_Basic</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Payment Confirmation --></label>
+        <name>BGBK__Payment_Confirmation</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Payment Read Only --></label>
+        <name>BGBK__Payment_Read_Only</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Available Amount --></label>
+        <name>BGBK__Amount_Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- Used Amount --></label>
+        <name>BGBK__Amount_Used__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>BGBK__Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>BGBK__Application2__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Complaint --></label>
+        <name>BGBK__Complaint2__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Complaint --></label>
+        <name>BGBK__Complaint__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Deposit --></label>
+        <name>BGBK__Deposit__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>BGBK__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Date --></label>
+        <name>BGBK__Effective_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Initial Fund Reference No DO NOT RELEASE --></label>
+        <name>BGBK__Initial_Fund_Reference_Number_del__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice --></label>
+        <name>BGBK__Invoice__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>BGBK__License1__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>BGBK__License2__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>BGBK__License__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Minor adjustment to balance accounts. Used under a specified threshold --></help>
+        <label><!-- Loss/Overage Amount --></label>
+        <name>BGBK__Loss_Overage_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manual Refund --></label>
+        <name>BGBK__Manual_Refund__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Source --></label>
+        <name>BGBK__Payment_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>BGBK__Permit2__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>BGBK__Permit__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>BGBK__Planning_Application__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Purpose --></label>
+        <name>BGBK__Purpose__c</name>
+        <picklistValues>
+            <masterLabel>Application 1 Deposit</masterLabel>
+            <translation><!-- Application 1 Deposit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Application 2 Deposit</masterLabel>
+            <translation><!-- Application 2 Deposit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Receipt --></label>
+        <name>BGBK__Receipt__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field is now deprecated. Use Refundee instead --></help>
+        <label><!-- Refund Receipt Payer --></label>
+        <name>BGBK__Refund_Receipt_Payer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Total of any Refunds --></help>
+        <label><!-- Refunded Amount --></label>
+        <name>BGBK__Refunded_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refundee --></label>
+        <name>BGBK__Refundee__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Rejected Amount --></label>
+        <name>BGBK__Rejected_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Return --></label>
+        <name>BGBK__Return__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>BGBK__Type__c</name>
+        <picklistValues>
+            <masterLabel>Allocation</masterLabel>
+            <translation><!-- Allocation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deposit</masterLabel>
+            <translation><!-- Deposit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fine --></label>
+        <name>Fine__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Inspection --></label>
+        <name>Inspection__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Legal Action --></label>
+        <name>Legal_Action__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Miscellaneous Fee --></label>
+        <name>Miscellaneous_Fee__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Receipt - Amount Remaining --></label>
+        <name>Receipt_Amount_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt - Amount Tendered --></label>
+        <name>Receipt_Amount_Tendered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related To --></label>
+        <name>Related_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renewal Application --></label>
+        <name>Renewal_Application__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Request --></label>
+        <name>Request__c</name>
+        <relationshipLabel><!-- Payments --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Payment Layout</layout>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Refunds --></label>
+            <section>Refunds</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Payment Amount must be positive. Cancel or correct amount to &gt;= 0 --></errorMessage>
+        <name>BGBK__Amount_less_than_0</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- cannot adjust Payment Amount below amount Available. --></errorMessage>
+        <name>BGBK__Payment_Amount_less_than_Available</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot Refund more than the Available Payment Amount. --></errorMessage>
+        <name>BGBK__Payment_Refund_greater_than_Available</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot Reject more than the Available Payment Amount. --></errorMessage>
+        <name>BGBK__Payment_Reject_greater_than_Available</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot Use (pay) more than Payment Amount (minus any Refunds) --></errorMessage>
+        <name>BGBK__Payment_Used_greater_than_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot increase Payment Amount greater than what is available on Receipt. Reduce Amount or cancel change. --></errorMessage>
+        <name>BGBK__Payment_change_more_than_Receipt_avail</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Licensee does not match the account on the Deposit --></errorMessage>
+        <name>Licensee_does_not_match_the_account</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- AdjustPayments --></label>
+        <name>BGBK__AdjustPayments</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Allocate --></label>
+        <name>BGBK__Allocate</name>
+    </webLinks>
+</CustomObjectTranslation>

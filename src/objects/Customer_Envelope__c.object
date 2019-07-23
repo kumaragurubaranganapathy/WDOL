@@ -41,7 +41,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Customer_Envelope_Detail_page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -60,7 +60,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>DHP__c</fullName>
         <defaultValue>false</defaultValue>
@@ -90,91 +90,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Default_program_type__c</fullName>
-        <externalId>false</externalId>
-        <label>Default program type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Funerals</fullName>
-                    <default>false</default>
-                    <label>Funerals</label>
-                </value>
-                <value>
-                    <fullName>cemeteries</fullName>
-                    <default>false</default>
-                    <label>cemeteries</label>
-                </value>
-                <value>
-                    <fullName>engineers</fullName>
-                    <default>false</default>
-                    <label>engineers</label>
-                </value>
-                <value>
-                    <fullName>land surveyors</fullName>
-                    <default>false</default>
-                    <label>land surveyors</label>
-                </value>
-                <value>
-                    <fullName>on-site wastewater</fullName>
-                    <default>false</default>
-                    <label>on-site wastewater</label>
-                </value>
-                <value>
-                    <fullName>collection agencies</fullName>
-                    <default>false</default>
-                    <label>collection agencies</label>
-                </value>
-                <value>
-                    <fullName>geologists</fullName>
-                    <default>false</default>
-                    <label>geologists</label>
-                </value>
-                <value>
-                    <fullName>architects</fullName>
-                    <default>false</default>
-                    <label>architects</label>
-                </value>
-                <value>
-                    <fullName>landscape architects</fullName>
-                    <default>false</default>
-                    <label>landscape architects</label>
-                </value>
-                <value>
-                    <fullName>camping resorts</fullName>
-                    <default>false</default>
-                    <label>camping resorts</label>
-                </value>
-                <value>
-                    <fullName>appraisers-real estate</fullName>
-                    <default>false</default>
-                    <label>appraisers-real estate</label>
-                </value>
-                <value>
-                    <fullName>timeshares</fullName>
-                    <default>false</default>
-                    <label>timeshares</label>
-                </value>
-                <value>
-                    <fullName>notaries public</fullName>
-                    <default>false</default>
-                    <label>notaries public</label>
-                </value>
-                <value>
-                    <fullName>appraisal management companies</fullName>
-                    <default>false</default>
-                    <label>appraisal management companies</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Has_DHP_Deposits__c</fullName>
@@ -250,6 +165,12 @@
                     <default>false</default>
                     <label>processed</label>
                 </value>
+                <value>
+                    <fullName>Hold</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Hold</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -263,18 +184,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Unprocessed_documents__c</fullName>
-        <externalId>false</externalId>
-        <label>Unprocessed documents</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Validation_number__c</fullName>
@@ -303,12 +212,15 @@
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Validation_number__c</columns>
-        <columns>Total_amount__c</columns>
-        <columns>Number_of_payments__c</columns>
-        <columns>Number_of_documents__c</columns>
-        <columns>Has_DHP_Deposits__c</columns>
+        <columns>Lockbox_Envelope__c</columns>
         <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Has_DHP_Deposits__c</columns>
+        <columns>Total_amount__c</columns>
+        <columns>Number_of_documents__c</columns>
+        <columns>wadol_DefaultProgramType__c</columns>
+        <columns>Number_of_payments__c</columns>
+        <filterScope>Mine</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
@@ -318,7 +230,7 @@
         <columns>Validation_number__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Has_DHP_Deposits__c</field>
+            <field>DHP__c</field>
             <operation>equals</operation>
             <value>1</value>
         </filters>
@@ -331,46 +243,12 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Customer Envelopes</pluralLabel>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
-        <fullName>Default_Customer_Envelope</fullName>
-        <active>true</active>
-        <label>Default Customer Envelope</label>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>draft</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>processed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
-    <webLinks>
-        <fullName>CREATE_NEW_CUSTOMER_ENVELOPE</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>CREATE NEW CUSTOMER ENVELOPE</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>https://wadolbuspro--dev.lightning.force.com/lightning/n/ENVELOPE</url>
-    </webLinks>
 </CustomObject>

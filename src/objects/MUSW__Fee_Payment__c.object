@@ -57,30 +57,30 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
-	<fullName>BGBK__Fee_Payment_Basic</fullName>
-		<availableFields>
-			<field>BGBK__Payment__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</availableFields>
-		<description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
-		<displayedFields>
-			<field>MUSW__Payment_Amount__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</displayedFields>
-		<displayedFields>
-			<field>MUSW__Paid_Date__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</displayedFields>
-		<displayedFields>
-			<field>Reapply_Amount__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</displayedFields>
-		<label>Fee Payment Basic</label>
-	</fieldSets>
+        <fullName>BGBK__Fee_Payment_Basic</fullName>
+        <availableFields>
+            <field>BGBK__Payment__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
+        <displayedFields>
+            <field>MUSW__Payment_Amount__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Paid_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Reapply_Amount__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Fee Payment Basic</label>
+    </fieldSets>
     <fieldSets>
         <fullName>BGBK__Feebasic</fullName>
         <availableFields>
@@ -90,12 +90,12 @@
         </availableFields>
         <description>Cart Confirm page</description>
         <displayedFields>
-            <field>MUSW__Fee__r.MUSW__License2__c</field>
+            <field>MUSW__Fee__r.License_Number__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>MUSW__Fee__r.portal_name__c</field>
+            <field>MUSW__Fee__r.Portal_Name__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -196,6 +196,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AR_Date__c</fullName>
+        <description>Captures Invoice Date</description>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.BGBK__Invoice__r.BGBK__Invoice_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AR Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>AR__c</fullName>
         <externalId>false</externalId>
         <formula>IF( MUSW__Fee__r.ARed__c,&quot;ARed&quot; ,&quot;NoAR&quot; )</formula>
@@ -267,20 +279,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>AR_Date__c</fullName>
-        <description>Captures Invoice Date</description>
-        <externalId>false</externalId>
-        <formula>MUSW__Fee__r.BGBK__Invoice__r.BGBK__Invoice_Date__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>AR Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    
-   
     <fields>
         <fullName>Application_Method__c</fullName>
         <description>Captures application methos</description>
@@ -298,7 +296,7 @@
         <fullName>Application_Type__c</fullName>
         <description>Application type</description>
         <externalId>false</externalId>
-        <label>Application Type</label>
+        <label>Program Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -423,6 +421,30 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Fee_AR_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.Acc_AR_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fee AR Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fee_Cash_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.Acc_Cash_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fee Cash Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Fee_Type__c</fullName>
         <externalId>false</externalId>
         <formula>Text(MUSW__Fee__r.MUSW__Type__c)</formula>
@@ -433,88 +455,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-	 <fields>
-        <fullName>Reversal_Reapply_Payment__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Used for reversal Fee Payment</description>
-        <externalId>false</externalId>
-        <label>Reversal Reapply Payment</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Source_Fee_Revenue_Code__c</fullName>
-        <description>Captures Source Fee Revenue code</description>
-        <externalId>false</externalId>
-        <formula>Source_Fee__r.Revenue_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Source Fee Revenue Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Source_Fee__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Source Fee</label>
-        <referenceTo>MUSW__Fee__c</referenceTo>
-        <relationshipLabel>Fee Payments (Source Fee)</relationshipLabel>
-        <relationshipName>Fee_Payments</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-	<fields>
-        <fullName>RevenueCodeSubString__c</fullName>
-        <description>Captures first 3 characters of Revenue Account Code</description>
-        <externalId>false</externalId>
-        <formula>LEFT(MUSW__Fee__r.Revenue_Code__c , 3)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>RevenueCodeSubString</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	 <fields>
-        <fullName>Receipt_Payment_Method__c</fullName>
-        <description>Captures related receipt payment method</description>
-        <externalId>false</externalId>
-        <formula>TEXT(MUSW__Receipt__r.MUSW__Payment_Method__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Receipt Payment Method</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Reapply_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Reapply Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-	<fields>
-        <fullName>Reapply_Payment__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Reapply Payment</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IntakeMethod__c</fullName>
@@ -532,7 +472,7 @@
         <fullName>License_Type__c</fullName>
         <description>Captures License type</description>
         <externalId>false</externalId>
-        <formula>TEXT(  MUSW__Fee__r.MUSW__License2__r.Credential_Type__c  )</formula>
+        <formula>TEXT( MUSW__Fee__r.MUSW__License2__r.Credential_Type__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Type</label>
         <required>false</required>
@@ -688,6 +628,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Reapply Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Reapply_Payment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Reapply Payment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Receipt_Amount_Remaining__c</fullName>
         <externalId>false</externalId>
         <formula>MUSW__Receipt__r.MUSW__Amount_Available__c</formula>
@@ -699,6 +659,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Receipt_Payment_Method__c</fullName>
+        <description>Captures related receipt payment method</description>
+        <externalId>false</externalId>
+        <formula>TEXT(MUSW__Receipt__r.MUSW__Payment_Method__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Receipt Payment Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Record_Number__c</fullName>
@@ -743,6 +716,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>RevenueCodeSubString__c</fullName>
+        <description>Captures first 3 characters of Revenue Account Code</description>
+        <externalId>false</externalId>
+        <formula>LEFT(MUSW__Fee__r.Revenue_Code__c , 3)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RevenueCodeSubString</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Revenue_Code__c</fullName>
         <externalId>false</externalId>
         <formula>MUSW__Fee__r.Revenue_Code__c</formula>
@@ -753,6 +739,42 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reversal_Reapply_Payment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used for reversal Fee Payment</description>
+        <externalId>false</externalId>
+        <label>Reversal Reapply Payment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Source_Fee_Revenue_Code__c</fullName>
+        <description>Captures Source Fee Revenue code</description>
+        <externalId>false</externalId>
+        <formula>Source_Fee__r.Revenue_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Source Fee Revenue Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Source Fee</label>
+        <referenceTo>MUSW__Fee__c</referenceTo>
+        <relationshipLabel>Fee Payments (Source Fee)</relationshipLabel>
+        <relationshipName>Fee_Payments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>TMS_Cash_Code__c</fullName>
@@ -837,6 +859,10 @@
         <searchFilterFields>CREATEDBY_USER</searchFilterFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>Create_Fee_Payment_By_Delegate__c</fullName>
+        <label>Create Fee Payment By Delegate</label>
+    </sharingReasons>
     <validationRules>
         <fullName>BGBK__Payment_greater_than_Fee_Amount</fullName>
         <active>true</active>

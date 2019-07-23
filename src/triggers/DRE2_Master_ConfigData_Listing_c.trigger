@@ -1,1 +1,0 @@
-trigger DRE2_Master_ConfigData_Listing_c on Master_ConfigData_Listing__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Master_ConfigData_Listing_c', new DRETriggerHandler()); }

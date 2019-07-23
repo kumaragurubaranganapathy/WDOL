@@ -24,7 +24,6 @@
                 <div class="slds-modal__container">
                     <!-- ###### MODAL BOX HEADER Start ###### -->
                     <header class="slds-modal__header">
-                        <h2>Add Licensee</h2>
                         <lightning:buttonIcon iconName="utility:close"
                                               onclick="{! c.closeAssociationModel }"
                                               alternativeText="close"
@@ -37,7 +36,7 @@
                             aura:id="associationForm"
                             objectApiName="Associations__c"
                             fields="{!v.associationFields}"
-                            columns="1"
+                            columns="2"
                             mode="edit"
                             onsubmit="{!c.saveData}"
                             onsuccess="{!c.handleSuccess}" 

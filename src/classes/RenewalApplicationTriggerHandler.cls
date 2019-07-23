@@ -7,7 +7,6 @@
 *													Initial Creation
 * 08/22/2018   Srikanth Kottam/Deloitte          	Apex Sharing
 **/
-
 public class RenewalApplicationTriggerHandler  implements BGCM.ITriggerHandler  {
     public static user u;
     public RenewalApplicationTriggerHandler() {

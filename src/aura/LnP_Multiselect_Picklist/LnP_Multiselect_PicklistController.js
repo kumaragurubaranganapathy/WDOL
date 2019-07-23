@@ -15,5 +15,8 @@
     //To close the picklist on blur of the select input
     closePicklist : function(component, event, helper) {
 		helper.closePicklist(component, event);
+    },
+    closeMenu : function(componente,event,helper){
+        helper.closeMenu(component,event);
     }
 })

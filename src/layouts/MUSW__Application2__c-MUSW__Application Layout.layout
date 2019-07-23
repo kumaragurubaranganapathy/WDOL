@@ -25,6 +25,22 @@
                 <behavior>Edit</behavior>
                 <field>Geolocation__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Application_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Credential_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>LnP_Parcel__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>License_ID__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -43,6 +59,18 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Completion_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Application_Method__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Requested_Effective_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Parent_License__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -52,6 +80,10 @@
         <editHeading>true</editHeading>
         <label>Description</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RecordTypeId</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MUSW__Description__c</field>
@@ -122,18 +154,14 @@
         <fields>MUSW__Applicant__c</fields>
         <fields>MUSW__Decision_Date__c</fields>
     </miniLayout>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BGCK__Answer__c.Application_BG__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Endorsement__c.Application_BG__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>LnP_BackgroundSection__c.Application_BG__c</relatedList>
-    </relatedLists>
+    <relatedContent>
+        <relatedContentItems>
+            <layoutItem>
+                <behavior>Readonly</behavior>
+                <field>LnP_Parcel__c</field>
+            </layoutItem>
+        </relatedContentItems>
+    </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>LnP_Parcel__c.Application_BG__c</relatedList>
@@ -154,6 +182,10 @@
         <fields>OWNER.ALIAS</fields>
         <fields>UPDATEDBY_USER</fields>
         <relatedList>MUSW__Review__c.MUSW__Application2__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>BGCK__Answer__c.Application_BG__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Add_Fees_to_Cart2</customButtons>
@@ -179,6 +211,10 @@
         <relatedList>BGBK__Payment__c.BGBK__Application2__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Answer__c.Service_Request__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Task.MUSW__Add_Multiple_Tasks</customButtons>

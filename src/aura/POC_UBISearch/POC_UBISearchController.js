@@ -47,7 +47,7 @@
                 var result = actionResult.getReturnValue();
                 if(result == 'success'){
                     console.log('success==');
-                    helper.showToast(component, event, "Success!", "success", "Your serach result has has been updated successfully.");
+                    helper.showToast(component, event, "Success!", "success", "Your search result has has been updated successfully.");
                     helper.setDefaultFields(component);
                     $A.get('e.force:refreshView').fire();
                 }

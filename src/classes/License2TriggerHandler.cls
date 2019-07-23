@@ -38,6 +38,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         for (MUSW__License2__c newLicenseRecord : triggerNew) {        
                     if(!Label.Str_System_Number.equals(newLicenseRecord.Name)){
                         //throw an error message
+                        system.debug('newLicenseRecord.Name'+newLicenseRecord.Name);
                         newLicenseRecord.addError(Label.Err_Cannot_change_System_Number);
                     }
                 }

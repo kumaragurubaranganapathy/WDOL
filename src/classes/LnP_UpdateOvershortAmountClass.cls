@@ -18,6 +18,7 @@ public class LnP_UpdateOvershortAmountClass {
                 String ProgramType = depositRec.wadol_Program_Type__c;
                 List<Master_ConfigData_Listing__c> mastConfigList = new List<Master_ConfigData_Listing__c>();
                 mastConfigList =[Select Id, Revenue_Account_Code__c,Listing_Type__c,Program_Type__c from Master_ConfigData_Listing__c where Listing_Type__c ='Overshort Queue' AND Program_Type__c INCLUDES(:ProgramType)];
+                System.debug('*******mastConfigList*****'+mastConfigList);
                 if(!mastConfigList.isEmpty()){
                     depositRec.Over_Short_Revenue_Code__c = mastConfigList[0].Revenue_Account_Code__c;
                 }
@@ -34,23 +35,19 @@ public class LnP_UpdateOvershortAmountClass {
     @AuraEnabled
     public static String updateovershortreceiptMethod(Id ReceiptId) {
         if(ReceiptId != null) {
-            /*
-                MUSW__Receipt__c ReceiptRec = [SELECT Id,MUSW__Amount_Available__c,Overshort_Amount__c FROM MUSW__Receipt__c WHERE Id = :ReceiptId];
-                if(ReceiptRec.MUSW__Amount_Available__c <= decimal.valueOf(System.Label.OverShortReceiptUpperLimit) && ReceiptRec.MUSW__Amount_Available__c > decimal.valueOf(System.Label.OverShortReceiptLowerLimit)){
-                    ReceiptRec.Overshort_Amount__c = ReceiptRec.MUSW__Amount_Available__c;
-                    //update MUSW__Receipt__c overshort Amount with available amount.
-                    update ReceiptRec;
-                    return 'True';
-                }else{
-                    return 'False';
-                }
-            */
-            
+            MUSW__Receipt__c ReceiptRec = [SELECT Id,MUSW__Amount_Available__c FROM MUSW__Receipt__c WHERE Id = :ReceiptId];
+            if(ReceiptRec.MUSW__Amount_Available__c <= decimal.valueOf(System.Label.OverShortReceiptUpperLimit) && ReceiptRec.MUSW__Amount_Available__c > decimal.valueOf(System.Label.OverShortReceiptLowerLimit)){
+                //update MUSW__Receipt__c overshort Amount with available amount.
+                update ReceiptRec;
+                return 'True';
+            }else{
+                return 'False';
+            }
         }
         return null;
     }
     
-     @AuraEnabled
+    @AuraEnabled
     public static String payFromOverShort(Id feeId) {
         if(feeId != null) {
            MUSW__Fee__c FeeRec = new MUSW__Fee__c();

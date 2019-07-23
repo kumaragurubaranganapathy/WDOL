@@ -381,7 +381,7 @@ Professional Dashboard
                                                            </aura:if>
                                                        </div>
                                                    </td>
-                                                   <td data-label="Profession" class="cell-style">
+                                                   <td data-label="PROFESSION" class="cell-style">
                                                        <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Application_Type__c:tableData.Parent_License__r.Application_Type__c}">
                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
                                                                {!tableData.Child_License__r.Application_Type__c}
@@ -391,7 +391,7 @@ Professional Dashboard
                                                            </aura:if>
                                                        </div>
                                                    </td>
-                                                   <td data-label="License type" class="cell-style">
+                                                   <td data-label="LICENSE TYPE" class="cell-style">
                                                        <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Credential_Type__c:tableData.Parent_License__r.Credential_Type__c}">
                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
                                                                {!tableData.Child_License__r.Credential_Type__c}
@@ -401,7 +401,7 @@ Professional Dashboard
                                                            </aura:if>
                                                        </div>
                                                    </td>
-                                                   <td data-label="Email" class="cell-style">
+                                                   <td data-label="EMAIL" class="cell-style">
                                                        <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Email__c:tableData.Parent_License__r.Application_Type__c}">
                                                            <aura:if isTrue="{!v.IsCurrentLicenseParent}">
                                                                {!tableData.Child_License__r.Email__c}
@@ -411,7 +411,7 @@ Professional Dashboard
                                                            </aura:if>
                                                        </div>
                                                    </td>
-                                                   <td data-label="Actions" class="cell-style action-cell">
+                                                   <td data-label="actions" class="cell-style action-cell">
                                                        <div class="slds-truncate">
                                                            <aura:if isTrue="{!tableData.Status__c == 'Active'}">
                                                                
@@ -480,19 +480,19 @@ Professional Dashboard
                                                <td data-label="Name" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Name}">{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Name}</div>
                                                </td>
-                                               <td data-label="Role" class="cell-style">
+                                               <td data-label="Application_Type__c" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Association_Type__c}">{!tableData.Association_Type__c}</div>
                                                </td>
-                                               <td data-label="License type" class="cell-style">
+                                               <td data-label="Credential_Type__c" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Parent_License__r.Credential_Type__c}">{!tableData.Parent_License__r.Credential_Type__c}</div>
                                                </td>
-                                               <td data-label="Phone" class="cell-style">
+                                               <td data-label="Renewal_Expiration_Date__c" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c}">{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c}</div>
                                                </td>
-                                               <td data-label="Email" class="cell-style">
+                                               <td data-label="lastupdateddate" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Email__c}">{!tableData.Parent_License__r.MUSW__Primary_Licensee__r.Email__c}</div>
                                                </td>
-                                               <td data-label="Actions" class="cell-style action-cell">
+                                               <td data-label="actions" class="cell-style action-cell">
                                                    <div class="slds-truncate">
                                                        <aura:if isTrue="{!tableData.Status__c == 'Active'}">
                                                            <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button_brand"
@@ -553,19 +553,19 @@ Professional Dashboard
                                        <tbody>
                                            <aura:iteration items="{!v.DraftAMRDataPaginationList}" var="tableData" indexVar="ind">
                                                <tr class="slds-hint-parent">
-                                                   <td data-label="Request ID" class="cell-style">
+                                                   <td data-label="Name" class="cell-style">
                                                        <div class="slds-truncate">{!tableData.Name}</div>
                                                    </td>
-                                                   <td data-label="Request type" class="cell-style">
+                                                   <td data-label="Service_Request_Type__c" class="cell-style">
                                                        <div class="slds-truncate">{!tableData.Service_Request_Type__c}</div>
                                                    </td>
-                                                   <td data-label="Request against" class="cell-style">
+                                                   <td data-label="License_Type__c" class="cell-style">
                                                        <div class="slds-truncate">{!tableData.License_Type__c}</div>
                                                    </td>
-                                                   <td data-label="Status" class="cell-style">
+                                                   <td data-label="Status__c" class="cell-style">
                                                        <div class="slds-truncate">{!tableData.Status__c}</div>
                                                    </td>
-                                                   <td data-label="Last Updated" class="cell-style">
+                                                   <td data-label="LastModifiedDate" class="cell-style">
                                                        <div class="slds-truncate">
                                                            <ui:outputDateTime
                                                                               value="{!tableData.LastModifiedDate}"
@@ -703,18 +703,18 @@ Professional Dashboard
                                <tbody>
                                    <aura:iteration items="{!v.licensePaginationList}" var="tableData" indexVar="ind">
                                        <tr class="slds-hint-parent">
-                                           <td data-label="License#" class="cell-style">
+                                           <td data-label="Name" class="cell-style">
                                                <div class="slds-truncate" title="{!tableData.Name}">
                                                    <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayLicenseDetails}">{!tableData.Name}</a></u>
                                                </div>
                                            </td>
-                                           <td data-label="Profession" class="cell-style">
+                                           <td data-label="PROFESSION" class="cell-style">
                                                <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                            </td>
-                                           <td data-label="License type" class="cell-style">
+                                           <td data-label="LICENSE TYPE" class="cell-style">
                                                <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                            </td>
-                                           <td data-label="Expiration date" class="cell-style">
+                                           <td data-label="EXPIRATION DATE" class="cell-style">
                                                <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
                                                    <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">
                                                        <lightning:formattedDateTime
@@ -726,7 +726,7 @@ Professional Dashboard
                                                    </aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Status" class="cell-style status-cell">
+                                           <td data-label="STATUS" class="cell-style status-cell">
                                                <div class="help-text-wrapper">
                                                    <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
                                                    <div onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
@@ -735,13 +735,13 @@ Professional Dashboard
                                                    </div>
                                                </div>
                                            </td>
-                                           <td data-label="Sub-status" class="cell-style">
+                                           <td data-label="SUB-STATUS" class="cell-style">
                                                <aura:if isTrue="{!tableData.Sub_Status__c}">
                                                    <div class="slds-truncate" title="{!tableData.Sub_Status__c}">{!tableData.Sub_Status__c}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Actions" class="cell-style action-cell">
+                                           <td data-label="actions" class="cell-style action-cell">
                                                <div class="table-btn">
                                                    <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
                                                        <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c)}">
@@ -776,7 +776,7 @@ Professional Dashboard
                    </div>
                </div>
                <aura:set attribute="else">
-                   <div class="slds-align_absolute-center">There no license to display</div>
+                   <div class="slds-align_absolute-center">THERE ARE NO LICENSES TO DISPLAY</div>
                </aura:set>
            </aura:if>
        </div>
@@ -821,7 +821,7 @@ Professional Dashboard
                                        </aura:iteration>
                                        <th class="" scope="col">
                                            <div class="slds-truncate" title="actions">
-                                               Actions
+                                               Action
                                            </div>
                                        </th>
                                    </tr>
@@ -830,28 +830,28 @@ Professional Dashboard
                                    
                                    <aura:iteration items="{!v.relationPaginationList}" var="tableData" indexVar="ind">
                                        <tr class="slds-hint-parent">
-                                           <td data-label="Name" class="cell-style">
+                                           <td data-label="NAME" class="cell-style">
                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Name}">{!tableData.MUSW__Account__r.Name}</div>
                                            </td>
-                                           <td data-label="Role" class="cell-style">
+                                           <td data-label="ROLE" class="cell-style">
                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Role__c}">{!tableData.Role__c}</div>
                                            </td>
-                                           <td data-label="Title" class="cell-style">
+                                           <td data-label="TITLE" class="cell-style">
                                                <aura:if isTrue="{!tableData.Title__c}">
                                                    <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Title__c}">{!tableData.Title__c}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Phone" class="cell-style">
+                                           <td data-label="PHONE" class="cell-style">
                                                <aura:if isTrue="{!tableData.MUSW__Account__r.Business_Phone__c}">
                                                    <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Business_Phone__c}">{!tableData.MUSW__Account__r.Business_Phone__c}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Email" class="cell-style">
+                                           <td data-label="EMAIL" class="cell-style">
                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Email__c}">{!tableData.MUSW__Account__r.Email__c}</div>
                                            </td>
-                                           <td data-label="Actions" class="cell-style action-cell">
+                                           <td data-label="actions" class="cell-style action-cell">
                                                <div class="table-btn">
                                                    <aura:if isTrue="{!tableData.Status__c == 'Active'}">
                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button slds-button_brand"
@@ -869,7 +869,7 @@ Professional Dashboard
                    </div>
                </div>
                <aura:set attribute="else">
-                   <div class="slds-align_absolute-center">There are no relationships to display</div>
+                   <div class="slds-align_absolute-center">THERE ARE NO RELATIONSHIPS TO DISPLAY</div>
                </aura:set>
            </aura:if>
            <div class="pagination-wrapper">
@@ -906,16 +906,16 @@ Professional Dashboard
                                    <tbody>
                                        <aura:iteration items="{!v.draftNewPaginationList}" var="tableData" indexVar="ind">
                                            <tr class="slds-hint-parent">
-                                               <td data-label="Profession" class="cell-style">
+                                               <td data-label="PROFESSION" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                                </td>
-                                               <td data-label="License type" class="cell-style">
+                                               <td data-label="LICENSE TYPE" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                                </td>
-                                               <td data-label="Application method" class="cell-style">
+                                               <td data-label="APPLICATION METHOD" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Application_Method__c}">{!tableData.Application_Method__c}</div>
                                                </td>
-                                               <td data-label="Status" class="cell-style">
+                                               <td data-label="STATUS" class="cell-style">
                                                    <div class="help-text-wrapper">
                                                        <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
                                                        <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
@@ -924,14 +924,14 @@ Professional Dashboard
                                                        </div>
                                                    </div>
                                                </td>
-                                               <td data-label="Last updated" class="cell-style">
+                                               <td data-label="LAST UPDATED" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.LastModifiedDate}">
                                                        <ui:outputDateTime
                                                                           value="{!tableData.LastModifiedDate}"
                                                                           />
                                                    </div>
                                                </td>
-                                               <td data-label="Actions" class="cell-style table-btn">
+                                               <td data-label="actions" class="cell-style table-btn">
                                                    <div class="slds-truncate" onclick="{!c.editDraftLicenseApplication}" data-recordId="{!tableData.Id}"
                                                         data-licenseType="{!tableData.Credential_Type__c}"
                                                         data-board="{!tableData.Application_Type__c}"
@@ -976,30 +976,33 @@ Professional Dashboard
                                                </th>
                                            </aura:iteration>
                                            <th class="" scope="col">
-                                               <div class="slds-truncate" title="actionedit">Actions</div>
-                                           </th>                                                        
+                                               <div class="slds-truncate" title="actionedit">Action</div>
+                                           </th>
+                                           <th class="" scope="col">
+                                               <div class="slds-truncate" title="actiondelete"></div>
+                                           </th>
                                        </tr>
                                    </thead>
                                    <tbody>
                                        <aura:iteration items="{!v.draftRenewPaginationList}" var="tableData" indexVar="ind">
                                            <tr class="slds-hint-parent">
-                                               <td data-label="License#" class="cell-style">
+                                               <td data-label="Name" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.License__r.Name}">{!tableData.License__r.Name}</div>
                                                </td>
-                                               <td data-label="Profession" class="cell-style">
+                                               <td data-label="PROFESSION" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.License__r.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                                </td>
-                                               <td data-label="License type" class="cell-style">
+                                               <td data-label="LICENSE TYPE" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.License__r.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                                </td>
-                                               <td data-label="Expiration date" class="cell-style">
+                                               <td data-label="EXPIRATION DATE" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.License__r.Renewal_Expiration_Date__c}">
                                                        <lightning:formattedDateTime
                                                                                     value="{!tableData.Renewal_Expiration_Date__c}"
                                                                                     />
                                                    </div>
                                                </td>
-                                               <td data-label="Status" class="cell-style">
+                                               <td data-label="STATUS" class="cell-style">
                                                    <div class="help-text-wrapper">
                                                        <div class="slds-truncate" title="{!tableData.License__r.Renewal_Status__c}">{!tableData.Renewal_Status__c}</div>
                                                        <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="	Renewal/Reinstatement"
@@ -1009,7 +1012,7 @@ Professional Dashboard
                                                        </div>
                                                    </div>
                                                </td>
-                                               <td data-label="Last updated" class="cell-style">
+                                               <td data-label="LAST UPDATED" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.License__r.LastModifiedDate}">
                                                        <ui:outputDateTime
                                                                           value="{!tableData.LastModifiedDate}"
@@ -1018,17 +1021,18 @@ Professional Dashboard
                                                </td>
                                                
                                                <td data-label="actions" class="cell-style table-btn">
-                                                   <div class="table-edit" onclick="{!c.editDraftRenewApplications}" data-recordId="{!tableData.Id}"
+                                                   <div class="slds-truncate" onclick="{!c.editDraftRenewApplications}" data-recordId="{!tableData.Id}"
                                                         data-licenseType="{!tableData.Credential_Type__c}"
                                                         data-board="{!tableData.Application_Type__c}">
                                                        <lightning:button variant="brand" label="Edit" title="Neutral action" />
+                                                       <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->
                                                    </div>
-                                                   <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->
-                                                   <div class="" onclick="{!c.deleteDraftRenewApplications}" data-recordId="{!tableData.Id}">
+                                               </td>
+                                               <td data-label="actions" class="cell-style action-cell table-btn">
+                                                   <div class="slds-truncate" onclick="{!c.deleteDraftRenewApplications}" data-recordId="{!tableData.Id}">
                                                        <lightning:button label="Delete"  />
                                                    </div>
-                                                   
-                                               </td>                                                            
+                                               </td>
                                            </tr>
                                        </aura:iteration>
                                    </tbody>
@@ -1059,7 +1063,7 @@ Professional Dashboard
                                                </th>
                                            </aura:iteration>
                                            <th class="" scope="col">
-                                               <div class="slds-truncate" title="actionedit">Actions</div>
+                                               <div class="slds-truncate" title="actionedit">Action</div>
                                            </th>
                                            <th class="" scope="col">
                                                <div class="slds-truncate" title="actiondelete"></div>
@@ -1069,29 +1073,29 @@ Professional Dashboard
                                    <tbody>
                                        <aura:iteration items="{!v.draftMaintainPaginationList}" var="tableData" indexVar="ind">
                                            <tr class="slds-hint-parent">
-                                               <td data-label="Request type" class="cell-style">
+                                               <td data-label="Service_Request_Type__c" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Service_Request_Type__c}">{!tableData.Service_Request_Type__c}</div>
                                                </td>
-                                               <td data-label="Request against" class="cell-style">
+                                               <td data-label="License_Type__c" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.License_Type__c}">{!tableData.License_Type__c}</div>
                                                </td>
                                                <td data-label="Status" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.Status__c}">{!tableData.Status__c}</div>
                                                </td>
-                                               <td data-label="Last updated" class="cell-style">
+                                               <td data-label="LastModifiedDate" class="cell-style">
                                                    <div class="slds-truncate" title="{!tableData.LastModifiedDate}">
                                                        <ui:outputDateTime
                                                                           value="{!tableData.LastModifiedDate}"
                                                                           />
                                                    </div>
                                                </td>
-                                               <td data-label="Actions" class="cell-style table-btn">
-                                                   <div data-recordId="{!tableData.id}">
+                                               <td data-label="ActionEdit" class="cell-style table-btn">
+                                                   <div class="slds-truncate" data-recordId="{!tableData.id}">
                                                        <lightning:button label="Edit" variant="brand" title="Neutral action" />
                                                    </div>
                                                </td>
-                                               <td data-label="Actions" class="cell-style action-cell table-btn">
-                                                   <div data-recordId="{!tableData.id}">
+                                               <td data-label="ActionDelete" class="cell-style action-cell table-btn">
+                                                   <div class="slds-truncate" data-recordId="{!tableData.id}">
                                                        <lightning:button label="Delete" title="Neutral action" />
                                                    </div>
                                                </td>
@@ -1110,7 +1114,7 @@ Professional Dashboard
                </div>
            </aura:if>
            <aura:set attribute="else">
-               <div class="slds-align_absolute-center">There are no draft maintenance requests</div>
+               <div class="slds-align_absolute-center">THERE IS NO CONTENT TO DISPLAY</div>
            </aura:set>
        </aura:if>
    </lightning:tab>
@@ -1132,28 +1136,28 @@ Professional Dashboard
                                                </th>
                                            </aura:iteration>
                                            <th class="" scope="col">
-                                               <div class="slds-truncate" title="actions">Actions</div>
+                                               <div class="slds-truncate" title="actions">Action</div>
                                            </th>
                                        </tr>
                                    </thead>
                                    <tbody>
                                        <aura:iteration items="{!v.pendingNewPaginationList}" var="tableData" indexVar="ind">
                                            <tr class="slds-hint-parent">
-                                               <td data-label="Application#">
+                                               <td data-label="APPLICATION#">
                                                    <div class="slds-truncate">
                                                        <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayPendingLicenseDetails}">{!tableData.Application_Number__c}</a></u>
                                                    </div>
                                                </td>
-                                               <td data-label="Profession">
+                                               <td data-label="PROFESSION">
                                                    <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                                </td>
-                                               <td data-label="License type">
+                                               <td data-label="LICENSE TYPE">
                                                    <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                                </td>
-                                               <td data-label="Application method">
+                                               <td data-label="APPLICATION METHOD">
                                                    <div class="slds-truncate" title="{!tableData.Application_Method__c}">{!tableData.Application_Method__c}</div>
                                                </td>
-                                               <td data-label="Status">
+                                               <td data-label="STATUS">
                                                    <div class="help-text-wrapper">
                                                        <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
                                                        <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
@@ -1162,7 +1166,7 @@ Professional Dashboard
                                                        </div>
                                                    </div>
                                                </td>
-                                               <td data-label="Sub-status">
+                                               <td data-label="SUB-STATUS">
                                                    <aura:if isTrue="{!tableData.Sub_Status__c}">
                                                        <div class="slds-truncate" title="{!tableData.Sub_Status__c}">{!tableData.Sub_Status__c}</div>
                                                        <aura:set attribute="else">
@@ -1170,8 +1174,8 @@ Professional Dashboard
                                                        </aura:set>
                                                    </aura:if>
                                                </td>
-                                               <td data-label="Actions">
-                                                   <div class="table-btn">
+                                               <td data-label="actions">
+                                                   <div class="slds-truncate table-btn">
                                                        <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment') ||(tableData.MUSW__Status__c == 'Payment Pending')}">
                                                            <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee"
                                                                              onclick="{!c.redirectToCart}"
@@ -1231,22 +1235,22 @@ Professional Dashboard
                                    <tbody>
                                        <aura:iteration items="{!v.pendingRenewPaginationList}" var="tableData" indexVar="ind">
                                            <tr class="slds-hint-parent">
-                                               <td data-label="License#">
+                                               <td data-label="License_Number__c">
                                                    <div class="slds-truncate" title="{!tableData.License_Number__c}">{!tableData.License_Number__c}</div>
                                                </td>
-                                               <td data-label="Profession">
+                                               <td data-label="Credential_Type__c">
                                                    <aura:if isTrue="{!tableData.Credential_Type__c}">
                                                        <div class="slds-truncate" title="{!tableData.License_Number__c}">{!tableData.Credential_Type__c}</div>
                                                        <aura:set attribute="else">None</aura:set>
                                                    </aura:if>
                                                </td>
-                                               <td data-label="License type">
+                                               <td data-label="License__r.Application_Method__c">
                                                    <aura:if isTrue="{!tableData.License__r.Application_Method__c}">
                                                        <div class="slds-truncate" title="{!tableData.Application_Method__c}">{!tableData.License__r.Application_Method__c}</div>
                                                        <aura:set attribute="else">None</aura:set>
                                                    </aura:if>
                                                </td>
-                                               <td data-label="Expiration date">
+                                               <td data-label="Renewal_Expiration_Date__c">
                                                    <aura:if isTrue="{!tableData.Renewal_Expiration_Date__c}">
                                                        <div class="slds-truncate" title="{!tableData.Renewal_Expiration_Date__c}">
                                                            <lightning:formattedDateTime
@@ -1256,7 +1260,7 @@ Professional Dashboard
                                                        <aura:set attribute="else">None</aura:set>
                                                    </aura:if>
                                                </td>
-                                               <td data-label="Status">
+                                               <td data-label="Renewal_Status__c">
                                                    <div class="help-text-wrapper">
                                                        <aura:if isTrue="{!tableData.Renewal_Status__c}">
                                                            <div class="slds-truncate" title="{!tableData.Renewal_Status__c}">{!tableData.Renewal_Status__c}</div>
@@ -1270,13 +1274,13 @@ Professional Dashboard
                                                        </div>
                                                    </div>
                                                </td>
-                                               <td data-label="Sub-status">
+                                               <td data-label="SUB-STATUS">
                                                    <aura:if isTrue="{!tableData.Sub_Status__c}">
                                                        <div class="slds-truncate" title="{!tableData.Sub_Status__c}">{!tableData.Sub_Status__c}</div>
                                                        <aura:set attribute="else">None</aura:set>
                                                    </aura:if>
                                                </td>
-                                               <td data-label="Actions" class="table-btn">
+                                               <td data-label="actions" class="table-btn">
                                                    <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Generate Fee')||(tableData.Renewal_Status__c == 'Pending Payment')||(tableData.Renewal_Status__c == 'Payment Pending')}">
                                                        <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee"
                                                                          onclick="{!c.redirectToCart}"
@@ -1327,7 +1331,7 @@ Professional Dashboard
                                    <tbody>
                                        <aura:iteration items="{!v.pendingMaintainPaginationList}" var="tableData" indexVar="ind">
                                            <tr class="slds-hint-parent">
-                                               <td data-label="Request#">
+                                               <td data-label="Name">
                                                    <aura:if isTrue="{!tableData.Name}">
                                                        <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                        <aura:set attribute="else">None</aura:set>
@@ -1339,7 +1343,7 @@ Professional Dashboard
                                                        <aura:set attribute="else">None</aura:set>
                                                    </aura:if>
                                                </td>
-                                               <td data-label="Request against">
+                                               <td data-label="Request Against">
                                                    <aura:if isTrue="{!tableData.License_Type__c}">
                                                        <div class="slds-truncate" title="{!tableData.License_Type__c}">{!tableData.License_Type__c}</div>
                                                        <aura:set attribute="else">None</aura:set>
@@ -1363,7 +1367,7 @@ Professional Dashboard
                
            </aura:if>
            <aura:set attribute="else">
-               <div class="slds-align_absolute-center">There are no pending maintenance requests</div>
+               <div class="slds-align_absolute-center">THERE IS NO CONTETNT TO DISPLAY</div>
            </aura:set>
            <div class="pagination-wrapper">
                <c:LnP_Pagination pgSize="4" fullList="{!v.PendingMaintananceRequestApplicationsDataList}"
@@ -1394,25 +1398,25 @@ Professional Dashboard
                                <tbody>
                                    <aura:iteration items="{!v.completeRequestPaginationList}" var="tableData" indexVar="ind">
                                        <tr class="slds-hint-parent">
-                                           <td data-label="Request#">
+                                           <td data-label="Service_Request_Type__c">
                                                <aura:if isTrue="{!tableData.name}">
                                                    <div class="slds-truncate" title="{!tableData.name}">{!tableData.name}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Request type">
+                                           <td data-label="Service_Request_Type__c">
                                                <aura:if isTrue="{!tableData.Service_Request_Type__c}">
                                                    <div class="slds-truncate" title="{!tableData.Service_Request_Type__c}">{!tableData.Service_Request_Type__c}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Request against">
+                                           <td data-label="License_Type__c">
                                                <aura:if isTrue="{!tableData.License_Type__c}">
                                                    <div class="slds-truncate" title="{!tableData.License_Type__c}">{!tableData.License_Type__c}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
-                                           <td data-label="Completion date">
+                                           <td data-label="LastModifiedDate">
                                                <aura:if isTrue="{!tableData.endTime}">
                                                    <div class="slds-truncate" title="{!tableData.End_Time__c}">
                                                        <lightning:formattedDateTime

@@ -69,9 +69,9 @@
 			 if (!eventFields.First_Name__c) {  
 				ErrorFields.push('First Name');
 			 }
-			 if (!eventFields.Middle_Name__c){  
+			/* if (!eventFields.Middle_Name__c){  
 				ErrorFields.push('Middle Name');
-			 }
+			 }*/
 			 if (!eventFields.Last_Name__c) {  
 				ErrorFields.push('Last Name');
 			 }
@@ -84,15 +84,15 @@
 			 if (!eventFields.Email__c ) {  
 				ErrorFields.push('Email');
 			 }
-			 if (!eventFields.Other_Position__c) {  
+			/* if (!eventFields.Other_Position__c) {  
 				ErrorFields.push('Other Position');
-			 }
+			 }*/
 			 if (!eventFields.Ownership_Percentage__c ) {  
 				ErrorFields.push('OwnerShip Percentage');
 			 }
-			 if (!eventFields.Title_select__c ) {  
+			/* if (!eventFields.Title_select__c ) {  
 				ErrorFields.push('Title');
-			 }
+			 }*/
 		if(ErrorFields.length != 0){
 			return ErrorFields;
 		}else{

@@ -1,9 +1,9 @@
 ({    
-    handleClick : function(component, event,helper) {
-        helper.handleClick(component,event);        
+    handleClick : function(component, event) {
+        component.set("v.isOpen",true);
     },    
-    returnBusiness : function(component,event,helper){
-        helper.returnBusiness(component,event);        
+    closeModel : function(component,event){
+        component.set("v.isOpen",false);
     },    
     handleSuccess : function(component,event,helper){        
         helper.handleSuccess(component,event,helper)   

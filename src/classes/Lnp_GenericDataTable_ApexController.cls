@@ -153,6 +153,9 @@ public without sharing class Lnp_GenericDataTable_ApexController {
         Associations__c association = [SELECT id, Association_Type__c,Parent_License__r.MUSW__Applicant__c,Parent_License__r.Application_Type__c,Parent_License__r.Credential_Type__c,Parent_License__r.Name,Child_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Child_License__r.Name,Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
         Contact childcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Child_License__r.MUSW__Applicant__c];
         Contact parentcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Parent_License__r.MUSW__Applicant__c];
+        system.debug('association : '+association);
+        system.debug('childcon : '+childcon);
+        system.debug('parentcon : '+parentcon);
         try{
         task t = new task();
         t.Whatid = associationID;
@@ -170,6 +173,7 @@ public without sharing class Lnp_GenericDataTable_ApexController {
             t.Parent_License_Type__c =  association.Child_License__r.Credential_Type__c;
             t.Parent_Profession__c =  association.Child_License__r.Application_Type__c;
            	t.Child_License_Id__c = association.Child_License__c;
+            system.debug('task : '+t);
         insert t;
         return true;
       }catch(Exception e){

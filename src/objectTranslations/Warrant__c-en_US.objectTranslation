@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Warrant</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Warrant</value>
+    </caseValues>
+    <fields>
+        <label><!-- Issue Date --></label>
+        <name>Issue_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recipient --></label>
+        <name>Recipient__c</name>
+        <relationshipLabel><!-- Warrant --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Redeem Date --></label>
+        <name>Redeem_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund --></label>
+        <name>Refund__c</name>
+        <relationshipLabel><!-- Warrant --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The date the warrant is returned to Department of Licensing. --></help>
+        <label><!-- Return Date --></label>
+        <name>Return_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Damaged</masterLabel>
+            <translation><!-- Damaged --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost</masterLabel>
+            <translation><!-- Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent</masterLabel>
+            <translation><!-- Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undeliverable</masterLabel>
+            <translation><!-- Undeliverable --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Warrant Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

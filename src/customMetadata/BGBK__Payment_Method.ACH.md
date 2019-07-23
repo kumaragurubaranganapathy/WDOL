@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>BGBK__isGateway_Required__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>BGBK__isPortal_Accessible__c</field>

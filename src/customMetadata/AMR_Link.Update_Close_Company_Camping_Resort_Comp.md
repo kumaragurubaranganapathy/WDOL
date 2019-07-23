@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">Update/Close Company</value>
+        <value xsi:type="xsd:string">Camping Resorts</value>
     </values>
     <values>
         <field>Generate_Fee__c</field>
@@ -20,7 +20,7 @@
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">Update/Close Company</value>
+        <value xsi:type="xsd:string">Camping Resort Company</value>
     </values>
     <values>
         <field>Order_Number__c</field>
@@ -28,7 +28,7 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">License Information,Attachments,Review and Submit</value>
+        <value xsi:type="xsd:string">General Information,License Information,Attachments,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>

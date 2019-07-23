@@ -160,7 +160,7 @@ public class QuestionAnswerObj {
         System.debug('Paralist applicationMethod'+applicationMethod);
         System.debug('Paralist applicationState'+applicationState);
         // Get all questions for this license type
-        quesList = [SELECT Id, Name, Allow_Multiple_Question_Groups__c,Child_Question_Group__c,Question_Group__c, Data_Type__c, Display_Style__c, 
+        /*quesList = [SELECT Id, Name, Allow_Multiple_Question_Groups__c,Child_Question_Group__c,Question_Group__c, Data_Type__c, Display_Style__c, 
             Application_Type__c, Application_Method__c, Credential_Type__c, Credential__c, Permit_Type__c, Program_Area__c, Parent_Question__c, Possible_Responses__c, Previous_Question_Version__c, 
             Qualifying_Response__c, External_id__c,Question_Body__c, Status__c, Version__c, Show_For__c,
             Triggering_Field_API_Name__c, Triggering_Field_Value__c, Parent_Object_API_Name__c,Effective_Date__c,End_Date__c,Parent_Question__r.Effective_Date__c,Parent_Question__r.End_Date__c,
@@ -170,11 +170,11 @@ public class QuestionAnswerObj {
             AND Credential__c = :credential
             AND Service_Request_Type__c = :serviceRequestType
             AND Show_For__c includes (:applicationState)
-            /*AND Application_Method__c = :applicationMethod*/
+            AND Application_Method__c = :applicationMethod
             AND Status__c = 'Active'
             AND Record_Type_Name__c = 'Background Questions'
                   //  AND Question_Sub_Section__c = 'a2Mr0000000QUag'   
-            ORDER BY Order_Number__c];
+            ORDER BY Order_Number__c];*/
            
         // Get all answers for this credential/permit id
         String queryAnswers = 'SELECT Id, App_Generate_Fee_Date__c,Question__r.Effective_Date__c,Question__r.End_Date__c,Answer_Group__c,Question_Group__c,External_id_of_Question__c,Name, Answer_Text__c, Comment__c, License__c, Question__c, Question_Body__c FROM Answer__c WHERE ' + objectLookup + ' = :licenseId';       

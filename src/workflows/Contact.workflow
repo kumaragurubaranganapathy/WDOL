@@ -5,10 +5,10 @@
         <description>DSPS Tax Contact grace period</description>
         <protected>false</protected>
         <recipients>
-            <recipient>skanjilal@deloitte.com.wadolbuspro</recipient>
+            <recipient>vagoel@deloitte.com.polaris</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>skanjilal@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_Grace_Period</template>
     </alerts>
@@ -17,10 +17,10 @@
         <description>DSPS Tax delinquency Contact Active</description>
         <protected>false</protected>
         <recipients>
-            <recipient>skanjilal@deloitte.com.wadolbuspro</recipient>
+            <recipient>vagoel@deloitte.com.polaris</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>skanjilal@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_Active</template>
     </alerts>
@@ -29,10 +29,10 @@
         <description>DSPS Tax delinquency Contact OnHold</description>
         <protected>false</protected>
         <recipients>
-            <recipient>skanjilal@deloitte.com.wadolbuspro</recipient>
+            <recipient>vagoel@deloitte.com.polaris</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>skanjilal@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_On_Hold</template>
     </alerts>

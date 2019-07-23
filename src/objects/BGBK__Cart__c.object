@@ -50,6 +50,7 @@
     <enableBulkApi>false</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>false</enableSharing>
@@ -299,7 +300,7 @@
         <columns>BGBK__Total_Amount__c</columns>
         <columns>BGBK__Last_Payment_Amount__c</columns>
         <columns>BGBK__Process_DateTime__c</columns>
-        <filterScope>Mine</filterScope>
+        <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Rules Engine Logs Active --></label>
+        <name>BGBK__Enable_DRE_Logs__c</name>
+    </fields>
+    <fields>
+        <help><!-- Use to debug CPU Timeout errors --></help>
+        <label><!-- Rules Engine Preview Mode --></label>
+        <name>BGBK__Enable_DRE_Preview_Mode__c</name>
+    </fields>
+    <fields>
+        <help><!-- Comma-delimited list of child relationship names to be excluded from DRE DataContext. For example, MUSW__Fees__r,CustomObjects__r (notice, use &apos;__r&apos;) --></help>
+        <label><!-- Exclude Children --></label>
+        <name>BGBK__Exclude_Children__c</name>
+    </fields>
+    <fields>
+        <help><!-- List of comma-delimited custom objects that you can relate children records to. If no standard parent is found, objects as not-null lookup listed here first are selected as parents first. --></help>
+        <label><!-- Additional Parents --></label>
+        <name>BGBK__Parents__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked Rules Engine will validate Transform values such as repeat tags, and displays an error if there are problems. Leaving this setting unchecked causes errors to be skipped with no feedback. --></help>
+        <label><!-- Rules Engine Validate Transforms --></label>
+        <name>BGBK__Validate_DRE_Transforms__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rules Engine Active --></label>
+        <name>BGBK__rulesEngineActive__c</name>
+    </fields>
+</CustomObjectTranslation>

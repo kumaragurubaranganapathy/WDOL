@@ -55,6 +55,17 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>AFRS_Transaction_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Transaction Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Add_to_Interface__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -229,18 +240,6 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Statewide_Voucher_Number__c</fullName>
-        <externalId>false</externalId>
-        <formula>JournalVoucher__r.IAP_Receipt__r.Sender_Agency__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Statewide Voucher Number</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Sub_Source__c</fullName>
         <externalId>false</externalId>
         <label>Sub Source</label>
@@ -267,6 +266,17 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <externalId>false</externalId>
         <label>Subsidiary Account Debit</label>
         <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TMS_Transaction_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>TMS Transaction Code</label>
+        <length>3</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

@@ -16,9 +16,6 @@
     handleMenuSelectlink :  function(component, event, helper) {
 		helper.handleMenuSelectlink(component, event);
 	},
-	updateLegalName : function(component,event,helper){
-    	helper.updateLegalNameHelper(component,event,helper);
-    },
     showMore : function(component,event,helper){
     	helper.showMore(component,event);
     }

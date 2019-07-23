@@ -66,7 +66,7 @@ _______________________________________________________________
     
     <div class="page-width">
         
-        <div class="page-header padding-top-30">
+        <div class="slds-page-header">
             <h1>Education</h1>
         </div>
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
@@ -85,10 +85,10 @@ _______________________________________________________________
             
             
             <aura:if isTrue="{!v.screenOne}">
-                <div class="section-header slds-p-top_x-small padding-bottom-20">
+                <div class="section-header slds-m-top_xx-large slds-m-horizontal_medium">
                     Search a Course
                 </div>
-                <div class="section-form-container slds-box slds-m-top_medium">
+                <div class="section-form-container slds-box slds-m-top_medium slds-m-horizontal_medium">
                     <!-- <div class="slds-form-element"> -->
                     <div multipleRows="true">
                         <!-- <div class="slds-grid"> -->
@@ -242,14 +242,14 @@ _______________________________________________________________
         </div>
         <div class="screen-two">
             <aura:if isTrue="{!v.screenTwo}">
-                <div class="headerWrap">
+                <div>
                     <span class="sub-header">Course Search Criteria</span>
                     <span>
-                        <lightning:button variant="neutral" class="button-border modify-btn" type="button" name="cancel"
+                        <lightning:button variant="neutral" class="button-border" type="button" name="cancel"
                                           label="Modify Search" onclick="{!c.modifySearch}" />
                     </span>
                 </div>
-                <div class="search-details slds-m-vertical_large">
+                <div class="search-details  slds-m-bottom_large">
                     <aura:if isTrue="{!v.searchOne}">
                         <aura:iteration items="{!v.searchOneArray}" var="option">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
@@ -271,7 +271,7 @@ _______________________________________________________________
                     </aura:if>
                 </div>
                 <div class="slds-m-bottom_medium slds-m-top_xx-large">
-                    <span class="heading"><b>Course Search Results</b></span>
+                    <span class="sub-header"><b>Course Search Results</b></span>
                     <span class="buttons-right text-style text-size">Click on any row below for more information</span>
                     <br />
                     <!--  <span> T = Trainee L = State Licensed R = Certified Residential G = Certified General</span> -->
@@ -382,7 +382,7 @@ _______________________________________________________________
                                      class="section-name bottom-border slds-m-top_medium slds-p-bottom_x-small slds-m-horizontal_small">
                                     Event Information</div>
                                 <div class="section-content slds-p-around_small">
-                                    <table class="slds-table slds-max-medium-table_stacked slds-table_bordered">
+                                    <table class="slds-table">
                                         <thead class="">
                                             <tr class="slds-line-height_reset">
                                                 <th class="" scope="col">
@@ -422,7 +422,7 @@ _______________________________________________________________
                     </div>
                 </aura:iteration>
                 <div class="buttons-right slds-m-vertical_small slds-m-left_small">
-                    <lightning:button variant="neutral" class="" type="button"
+                    <lightning:button variant="neutral" class="btn-bg" type="button"
                                       name="cancel" label="SEARCH ANOTHER LICENSE" onclick="{!c.modifySearch}" />
                 </div>
             </aura:if>

@@ -40,7 +40,9 @@
 		   }
 		   if(eventfields['Role__c'] == 'Designated Controlling Person' ){
 				eventfields["DCP__c"] = true;
-		   }
+		   }else{
+               eventfields["DCP__c"] = false;
+           }
 		   eventfields["MUSW__Account__c"] = component.get("v.accountId");
 		   component.set("v.accountEmail",eventfields.Email__c);
 		   component.set("v.designation",eventfields["Role__c"]);

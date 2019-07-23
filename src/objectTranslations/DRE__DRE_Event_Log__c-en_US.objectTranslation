@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- CPU Time Elapsed (ms) --></label>
+        <name>DRE__CPU_Time_Elapsed__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPU Time (ms) --></label>
+        <name>DRE__CPU_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- DRE Rule --></label>
+        <name>DRE__DRE_Rule__c</name>
+        <relationshipLabel><!-- Event Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>DRE__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operation --></label>
+        <name>DRE__Operation__c</name>
+        <picklistValues>
+            <masterLabel>APPLY</masterLabel>
+            <translation><!-- APPLY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EVALUATE</masterLabel>
+            <translation><!-- EVALUATE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FINISH</masterLabel>
+            <translation><!-- FINISH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>START</masterLabel>
+            <translation><!-- START --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pass Count --></label>
+        <name>DRE__Pass_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related ID --></label>
+        <name>DRE__RelatedId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Session ID --></label>
+        <name>DRE__SessionId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Severity --></label>
+        <name>DRE__Severity__c</name>
+        <picklistValues>
+            <masterLabel>ERROR</masterLabel>
+            <translation><!-- ERROR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INFO</masterLabel>
+            <translation><!-- INFO --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>DRE Event Log Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -56,7 +56,7 @@ public class SRAnsSubmissionTriggHandler_Test {
         queObj1A.Credential_Type__c = 'Soil Professions';
         queObj1A.Credential__c = 'Soil Tester';
         queObj1A.Application_Method__c = 'Examination';
-        queObj1A.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj1A.Service_Request_Type__c = 'Exam Re-Application';
         queObj1A.Status__c = 'Active';
         queObj1A.Version__c = 1.0;
         queObj1A.Order_Number__c = 1;
@@ -80,7 +80,7 @@ public class SRAnsSubmissionTriggHandler_Test {
         queObj2A.Credential_Type__c = 'Uniform Dwelling Code';
         queObj2A.Credential__c = 'UDC Construction Inspector';
         queObj2A.Application_Method__c = 'Examination';
-        queObj2A.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj2A.Service_Request_Type__c = 'Exam Re-Application';
         queObj2A.Status__c = 'Active';
         queObj2A.Version__c = 1.0;
         queObj2A.Order_Number__c = 1;
@@ -114,7 +114,7 @@ public class SRAnsSubmissionTriggHandler_Test {
         msl1.Credential__c = 'Soil Tester';
         msl1.Application_Method__c = 'Examination';
         msl1.BG_File_Location_Type__c = 'Salesforce';
-        msl1.Service_Request_Type__c = 'Exam Re-Application';
+       // msl1.Service_Request_Type__c = 'Exam Re-Application';
         msl1.Question__c = queObj1A.id;
         msl1.Expected_Answer__c = 'Yes';
         msl1.Effective_Start_Date__c = system.today().addDays(-10);

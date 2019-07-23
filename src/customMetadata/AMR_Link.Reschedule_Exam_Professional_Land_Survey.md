@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Generate_Fee__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>License_Type__c</field>
@@ -28,7 +28,7 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">License Information,Review and Submit</value>
+        <value xsi:type="xsd:string">General Information,License Information,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>

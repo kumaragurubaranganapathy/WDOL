@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Expiry --></label>
+        <name>License_Expiry__c</name>
+    </fields>
+    <fields>
+        <label><!-- License No. --></label>
+        <name>License_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Status --></label>
+        <name>License_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>MUSW__Account__c</name>
+        <relationshipLabel><!-- Permits as Contractor --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contractor Type --></label>
+        <name>MUSW__Contractor_Type__c</name>
+        <picklistValues>
+            <masterLabel>Builder</masterLabel>
+            <translation><!-- Builder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrician</masterLabel>
+            <translation><!-- Electrician --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General</masterLabel>
+            <translation><!-- General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plumber</masterLabel>
+            <translation><!-- Plumber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Roofer</masterLabel>
+            <translation><!-- Roofer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit2__c</name>
+        <relationshipLabel><!-- Contractors --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permit --></label>
+        <name>MUSW__Permit__c</name>
+        <relationshipLabel><!-- Contractors --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <layouts>
+        <layout>Permit Contractor Layout</layout>
+        <sections>
+            <label><!-- Contractor Info at Application --></label>
+            <section>Contractor Info at Application</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

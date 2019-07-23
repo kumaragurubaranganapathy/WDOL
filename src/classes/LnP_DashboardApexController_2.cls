@@ -131,7 +131,7 @@ public without sharing class LnP_DashboardApexController_2 {
                 licenseStatusesToBeFiltered = licenseStatuses.split(',');                
             }
 
-            List<String> columnHeaderList = new List<String>{'License#','Profession','License Type','Expiration Date','Status','Sub-status'};
+            List<String> columnHeaderList = new List<String>{'LICENSE#','PROFESSION','LICENSE TYPE','EXPIRATION DATE','STATUS','SUB-STATUS'};
             List<String> statusFilterList = licenseStatusesToBeFiltered;//new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
             List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,MUSW__Expiration_Date__c,MUSW__Status__c,Sub_Status__c,
                                                     RecordType.Name,Is_Renewal_Eligible__c, Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c,Application__r.isRenewal__c,Application_Method__c,
@@ -154,7 +154,7 @@ public without sharing class LnP_DashboardApexController_2 {
     @AuraEnabled
     public static String ProfessionalRelationshipTable(){
         try{  
-            List<String> columnHeaderList = new List<String>{'Name','Role','Title','Phone','Email'};
+            List<String> columnHeaderList = new List<String>{'NAME','ROLE','TITLE','PHONE','EMAIL'};
                 List<String> statusFilterList = new List<String>{'Active'};
                     List<SObject> columnDataList = [Select Id,MUSW__Account__r.Name, Role__c, Title__c, MUSW__Account__r.Phone, MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,Status__c 
                                                     from MUSW__Account_Contact__c
@@ -183,7 +183,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String DraftNewLicenseApplicationsTable(){
          Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         
-        List<String> columnHeaderList = new List<String>{'Profession','License Type','Application Method','Status','Last Updated'};
+        List<String> columnHeaderList = new List<String>{'PROFESSION','LICENSE TYPE','APPLICATION METHOD','STATUS','LAST UPDATED'};
       /*  List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn','Submission Failed','Pending'};*/
            List<String> statusFilterList = new List<String>();
          statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
@@ -199,7 +199,7 @@ public without sharing class LnP_DashboardApexController_2 {
     @AuraEnabled
     public static String setDraftRenewApplicationsTable(){
         
-        List<String> columnHeaderList = new List<String>{'License#','Profession','License Type','Expiration Date','Status','Last Updated'};
+        List<String> columnHeaderList = new List<String>{'LICENSE#','PROFESSION','LICENSE TYPE','EXPIRATION DATE','LAST UPDATED'};
             List<String> statusFilterList = new List<String>{'Draft', 'Pending','Submission Failed'};
                 List<SObject> columnDataList = [Select id,Name,License__r.name, Application_Type__c,Credential_Type__c,Renewal_Expiration_Date__c,Renewal_Status__c, LastModifiedDate
                                                 from Renewal_Application__c
@@ -212,7 +212,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String setDraftMaintananceRequestApplicationsData(){
-        List<String> columnHeaderList = new List<String>{'Request Type', 'Request Against', 'Status','Last Updated'};
+        List<String> columnHeaderList = new List<String>{'REQUEST TYPE', 'REQUEST AGAINST', 'LAST UPDATED'};
             List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn'};
                 List<SObject> columnDataList = [Select  id,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
                                                 from Request__c
@@ -228,7 +228,7 @@ public without sharing class LnP_DashboardApexController_2 {
         try{  
             Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
       
-            List<String> columnHeaderList = new List<String>{'Application#','Profession','License Type','Application Method','Status','Sub-status'};
+            List<String> columnHeaderList = new List<String>{'APPLICATION#','PROFESSION','LICENSE TYPE','APPLICATION METHOD','STATUS','SUB-STATUS'};
           /*  List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};*/
              List<String> statusFilterList = new List<String>();
             statusFilterList = dashboardSettings.Pending_Applications_statuses__c.split(',');
@@ -251,7 +251,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String PendingRenewApplicationsTable(){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'License#','Profession','License Type','Expiration Date','Status','Sub-status',''};
+            List<String> columnHeaderList = new List<String>{'LICENSE#','PROFESSION','LICENSE TYPE','EXPIRATION DATE','STATUS','SUB-STATUS',''};
                 List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                     
                     List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c, Renewal_Expiration_Date__c,Renewal_Status__c,Application_Type__c
@@ -271,7 +271,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String PendingMaintananceRequestApplicationsTable(){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Status'};
+            List<String> columnHeaderList = new List<String>{'REQUEST#','REQUEST TYPE', 'REQUEST AGAINST', 'STATUS'};
                 List<String> statusFilterList = new List<String>{'Under Review'};
                     List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
                                                     from Request__c
@@ -290,7 +290,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String CompletedMaintananceRequestApplicationsTable(){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Completion Date'};
+            List<String> columnHeaderList = new List<String>{'REQUEST#','REQUEST TYPE', 'REQUEST AGAINST', 'COMPLETION DATE'};
                 List<String> statusFilterList = new List<String>{'Approve'};
                     List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, End_Time__c
                                                     from Request__c
@@ -323,7 +323,7 @@ public without sharing class LnP_DashboardApexController_2 {
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
         if(licenseId != null){ 
-            for(Endorsement__c endorseObj: [select id,Endorsement_Type__c from Endorsement__c  where Status__c ='Active' AND License__c =: licenseId]){
+            for(Endorsement__c endorseObj: [select id,Endorsement_Type__c from Endorsement__c where Status__c ='Active' AND License__c =: licenseId]){
                 EndorsementList.add(endorseObj.Endorsement_Type__c);
             }
             
@@ -336,7 +336,7 @@ public without sharing class LnP_DashboardApexController_2 {
     @auraEnabled
     public static String getBusinessRelationShipData(String license_id){
 
-            List<String> columnHeaderList = new List<String>{'Name','Role','License Type','Phone','Email'};
+            List<String> columnHeaderList = new List<String>{'NAME','ROLE','LICENSE TYPE','PHONE','EMAIL'};
             List<String> statusFilterList = new List<String>{'Active'};
                     List<SObject> columnDataList = [Select Id,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
                                                     Parent_License__r.Credential_Type__c,Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c,Parent_License__r.MUSW__Primary_Licensee__r.Email__c        
@@ -363,7 +363,7 @@ public without sharing class LnP_DashboardApexController_2 {
         
          if(license_Custom_Metadata != null && license_Custom_Metadata.Is_Parent__c){
              
-           columnHeaderList  = new List<String>{'Name','Profession','License Type','Email'}; 
+           columnHeaderList  = new List<String>{'NAME','PROFESSION','LICENSE TYPE','EMAIL'}; 
           
            columnDataList = [Select Id,Child_License__r.Applicant_Full_Name__c, Child_License__r.Application_Type__c,
                                     Child_License__r.Credential_Type__c, Child_License__r.Email__c,Status__c    
@@ -376,7 +376,7 @@ public without sharing class LnP_DashboardApexController_2 {
              
          }else if(license_Custom_Metadata != null && !(license_Custom_Metadata.Is_Parent__c)){
              
-             columnHeaderList  = new List<String>{'Name','Profession','License Type','Email'};
+             columnHeaderList  = new List<String>{'NAME','PROFESSION','LICENSE TYPE','EMAIL'};
              
              columnDataList = [Select Id,Parent_License__r.Applicant_Full_Name__c, Parent_License__r.Application_Type__c,
                                          Parent_License__r.Credential_Type__c, Parent_License__r.Email__c,Status__c      
@@ -524,7 +524,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String fetchLicenseRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId){
         
         
-         List<String> columnHeaderList = new List<String>{'Start Date','Job Title','Employer','End Date','Total Hours','Street Address','County','State','Country','City','Zip Code','Status'};   
+         List<String> columnHeaderList = new List<String>{'START DATE','JOB TITLE','EMPLOYER','END DATE','TOTAL HOURS','STREET ADDRESS','COUNTY','STATE','COUNTRY','CITY','ZIP CODE','STATUS'};   
          
          List<LnP_BackgroundSection__c> columnDataList =   [SELECT Start_Date__c,Job_Title__c,Employer__c,End_date__c,Total_Hours__c,
                                                                 Street_Address__c,County__c,State__c,Country__c,City__c,Zip_code__c, 
@@ -540,7 +540,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String fetchRenewalRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId){
-        List<String> columnHeaderList = new List<String>{'Name Of Institution','Degree','Minor','Major','Start Date','End Date','Country','State','Status'};
+        List<String> columnHeaderList = new List<String>{'NAME OF INSTITUTION','DEGREE','MINOR','MAJOR','START DATE','END DATE','COUNTRY','STATE','STATUS'};
         
         List<LnP_BackgroundSection__c> columnDataList =    [SELECT Start_Date__c,Job_Title__c,Employer__c,End_date__c,Total_Hours__c,
                                                                 Street_Address__c,County__c,State__c,Country__c,City__c,Zip_code__c, 

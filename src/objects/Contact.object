@@ -273,24 +273,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>City__c</fullName>
-        <externalId>false</externalId>
-        <label>City</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Client_Id__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <description>Foreign Key used for Data Conversion</description>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
-        <inlineHelpText>Foreign Key used for Data Conversion</inlineHelpText>
-        <label>Client_ID</label>
-        <length>50</length>
+        <label>Client_Id</label>
+        <length>60</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -376,7 +363,7 @@
         <fullName>Contact_Type__c</fullName>
         <externalId>false</externalId>
         <label>Contact Type</label>
-        <length>30</length>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1230,17 +1217,6 @@ CASE( MUSW__AlertCode__c,
         </valueSet>
     </fields>
     <fields>
-        <fullName>Street__c</fullName>
-        <externalId>false</externalId>
-        <label>Street or PO Box</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Supervisor_Name__c</fullName>
         <description>This field is to store supervisor name of the applicant</description>
         <externalId>false</externalId>
@@ -1296,7 +1272,7 @@ CASE( MUSW__AlertCode__c,
         <fullName>UBI_Number__c</fullName>
         <externalId>false</externalId>
         <label>UBI #</label>
-        <length>11</length>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1419,7 +1395,6 @@ CASE( MUSW__AlertCode__c,
         <columns>CONTACT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Contacts</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Converted_contacts2</fullName>
@@ -1432,12 +1407,11 @@ CASE( MUSW__AlertCode__c,
         <columns>CONTACT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CONTACT.CREATED_DATE</field>
+            <field>CREATEDBY_USER.ALIAS</field>
             <operation>equals</operation>
-            <value>TODAY</value>
+            <value>dadmi</value>
         </filters>
         <label>Converted Contacts</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>MyContacts</fullName>
@@ -1996,10 +1970,6 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -2448,10 +2418,6 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3105,10 +3071,6 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3760,7 +3722,6 @@ CASE( MUSW__AlertCode__c,
     <recordTypes>
         <fullName>Contact_with_PII</fullName>
         <active>true</active>
-        <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
         <description>Contact record type for layout with PII fields. Only used while creating records</description>
         <label>Contact with PII</label>
         <picklistValues>
@@ -4282,10 +4243,6 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -4734,10 +4691,6 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5391,10 +5344,6 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6070,9 +6019,9 @@ CASE( MUSW__AlertCode__c,
         <searchFilterFields>CONTACT.PHONE3</searchFilterFields>
         <searchFilterFields>CONTACT.EMAIL</searchFilterFields>
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
-		<searchResultsAdditionalFields>CONTACT.BIRTHDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.BIRTHDATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Last_4_Digits_of_SSN__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.ADDRESS2_STREET</searchResultsAdditionalFields>
@@ -6118,7 +6067,7 @@ CASE( MUSW__AlertCode__c,
         <masterLabel>Create Application</masterLabel>
         <openType>replace</openType>
         <protected>false</protected>
-        <url>https://dev-polaris.cs32.force.com/lightningwashington/customLogin?Id={!Contact.Id}</url>
+        <url>https://qa-qa-polaris.cs32.force.com/customLogin?Id={!Contact.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>GoogleMaps</fullName>
@@ -6177,35 +6126,5 @@ CASE( MUSW__AlertCode__c,
         <showsStatus>false</showsStatus>
         <url>{!URLFOR( $SControl.MUSW__UpdateAlerts, Contact.Id, [tableName=&quot;Contact&quot;, recordID=Contact.Id])}</url>
         <width>400</width>
-    </webLinks>
-    <webLinks>
-        <fullName>View_PII_Info</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>View PII Info</masterLabel>
-        <openType>sidebar</openType>
-        <page>Contact_PII_Information</page>
-        <protected>false</protected>
-    </webLinks>
-    <webLinks>
-        <fullName>test</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <hasMenubar>false</hasMenubar>
-        <hasScrollbars>true</hasScrollbars>
-        <hasToolbar>false</hasToolbar>
-        <height>600</height>
-        <isResizable>true</isResizable>
-        <linkType>url</linkType>
-        <masterLabel>test</masterLabel>
-        <openType>newWindow</openType>
-        <position>none</position>
-        <protected>false</protected>
-        <showsLocation>false</showsLocation>
-        <showsStatus>false</showsStatus>
-        <url>https://dev-polaris.cs32.force.com/lightningwashington/customLogin</url>
     </webLinks>
 </CustomObject>

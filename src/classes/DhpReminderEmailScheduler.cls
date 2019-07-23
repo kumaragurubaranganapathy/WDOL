@@ -3,7 +3,7 @@ global class DhpReminderEmailScheduler implements Schedulable {
         Map<Id,Id> contentDocumentLinkToLicenseMap = new Map<Id,Id>();
         Map<Id,Id> licenseToContentVersionMap = new Map<Id,Id>();
         Set<Id> licenseIdSet = new Set<Id>();
-        List<MUSW__Fee__c> DHPFeeList = [Select id,MUSW__License2__c,MUSW__Outstanding_Fee__c,Days_since_created__c from MUSW__Fee__c where MUSW__Type__c = 'DHP' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 60)];
+        List<MUSW__Fee__c> DHPFeeList = [Select id,MUSW__License2__c,MUSW__Outstanding_Fee__c,Days_since_created__c from MUSW__Fee__c where MUSW__Type__c = 'DHP' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 15)];
         for(MUSW__Fee__c fee: DHPFeeList){
             licenseIdSet.add(fee.MUSW__License2__c);
         }

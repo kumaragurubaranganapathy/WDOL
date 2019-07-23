@@ -87,7 +87,7 @@ public class QuestionAnswerObj_Test {
         queObj3.Credential_Type__c = 'Manufactured Homes Titling';
         queObj3.Credential__c = 'Manufactured Homes Certificate of Title';
         queObj3.Application_Method__c = 'All';
-        queObj3.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj3.Service_Request_Type__c = 'Exam Re-Application';
         queObj3.Status__c = 'Active';
         queObj3.Version__c = 1.0;
         queObj3.Show_For__c = 'Service Request';
@@ -137,7 +137,7 @@ public class QuestionAnswerObj_Test {
         qObj3.Credential_Type__c = 'Manufactured Homes Titling';
         qObj3.Credential__c = 'Manufactured Homes Certificate of Title';
         qObj3.Application_Method__c = 'All';
-        qObj3.Service_Request_Type__c = 'Exam Re-Application';
+        //qObj3.Service_Request_Type__c = 'Exam Re-Application';
         qObj3.Show_For__c = 'Service Request';
         qObj3.Status__c = 'Active';
         qObj3.Version__c = 1.0;

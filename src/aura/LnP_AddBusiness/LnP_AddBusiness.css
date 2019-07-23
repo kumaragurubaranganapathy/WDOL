@@ -9,12 +9,8 @@
 .THIS .slds-checkbox_faux{
     display:none;
 }
-.THIS .add-biz-btn.slds-button_neutral{
-    height:auto;
-    max-height:
-}
 .THIS .add-biz-btn{
-    
+     
     padding: 0.625rem 1.5rem;    
     font-size:1rem;    
     line-height:1.29;
@@ -29,49 +25,4 @@
 }
 .THIS .required.field-size.slds-form-element label abbr.slds-required {
     display: none;
-}
-.THIS.add-biz-wrapper{
-    margin: 2rem 7.5rem;
-}
-.THIS .add-biz-title{
-    color:t(LnGFormTitleColor);
-    font-size:1.25rem;
-    font-weight:bold;
-    margin-bottom:1.5rem;
-}
-.THIS .biz-fields-wrapper{
-    padding:1.5rem 2rem;
-    border:solid 1px t(grayBorder);
-}
-.THIS .biz-fields-wrapper .field-size div input{
-    height:1rem;
-}
-.THIS .biz-fields-wrapper .slds-checkbox [type=checkbox]{
-    position:relative;
-}
-.THIS .btn-wrapper{
-    justify-content:flex-end;
-    display:flex;
-    width:100%;
-    margin-top:1rem;
-}
-@media t(mqSmall){
-    .THIS.add-biz-wrapper{
-        margin: 1rem;
-    }
-    .THIS .field-size .slds-form-element__control{
-        width:100%;
-    }
-    .THIS .biz-fields-wrapper{
-        padding:1rem;        
-    }
-    .THIS .add-biz-title{        
-        margin-bottom:1rem;
-    }
-    .THIS .btn-wrapper{
-        flex-direction:column;
-    }
-    .THIS .btn-wrapper .slds-button + .slds-button{
-        margin:0.5rem 0 0;
-    }
 }

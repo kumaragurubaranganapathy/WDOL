@@ -36,5 +36,35 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
             WA_License_utility.updateRenewalFields(licList);
         }
     }
+	if(trigger.isAfter && trigger.isUpdate){     
+        System.debug('Starttttt');
+            List<Renewal_Application__c> relatedRenewalApplications = [SELECT Id,License__c, Renewal_Status__c, License__r.MUSW__Status__c,License__r.Polaris_DHP__c,Renewal_Reinstatement_Type__c FROM Renewal_Application__c WHERE License__c IN :Trigger.newMap.keySet() AND Renewal_Reinstatement_Type__c='Renewal'];
+            List<Renewal_Application__c> updaterelatedRenewalApplications = new List<Renewal_Application__c>();
+            List<Task> insertLicenseDHPTask = new List<Task>();
+            Id recordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByName().get('Reminder').getRecordTypeId();
+            for(Renewal_Application__c relatedRenewalApplicationRecord :relatedRenewalApplications ){
+                if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true && trigger.NewMap.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c != trigger.OldMap.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c){
+                    System.debug('Update');
+                    Task licenseDHPTask = new Task();
+                    relatedRenewalApplicationRecord.Renewal_Status__c = 'Pending Payment';
+                    licenseDHPTask.WhatId = relatedRenewalApplicationRecord.License__c;
+                    licenseDHPTask.RecordTypeId = recordTypeId;
+                    licenseDHPTask.Type = 'DHP';
+                    licenseDHPTask.Description = 'DHP Reminder';
+                    licenseDHPTask.Status = 'Open';
+                    licenseDHPTask.Subject = 'Bounced Check';
+                    updaterelatedRenewalApplications.add(relatedRenewalApplicationRecord);
+                    insertLicenseDHPTask.add(licenseDHPTask);
+                }
+            }
+            if(relatedRenewalApplications.size() > 0){
+                update updaterelatedRenewalApplications;
+                //System.debug('Test......'+licenseDHPTask.Status);
+            }
+            if(insertLicenseDHPTask.size() > 0){
+             insert insertLicenseDHPTask;
+            }
+            
+        }
 
 }

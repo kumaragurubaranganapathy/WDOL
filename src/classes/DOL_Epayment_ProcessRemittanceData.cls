@@ -64,9 +64,10 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
 
                     receiptId = parameterMap.get('SFDClicId');
                     cartId = parameterMap.get('SFDCId');
-                    SFDCfeeIds = parameterMap.get('SFDCfeeIds');
+                    SFDCfeeIds = parameterMap.get('SFDCfeeId');
                     SFDCappId = parameterMap.get('SFDCappId');
-
+					
+                    System.debug('receiptId='+receiptId+'|cartId = '+cartId+'|feeIds='+SFDCfeeIds+'|applicantId='+SFDCappId);
                     if(isNotNullOrBlank(receiptId)){
                         receipt = new MUSW__Receipt__c(id=receiptId);
                     }
@@ -126,7 +127,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
             receipt.MUSW__Payment_Method__c = remittanceData.paymentMethod;
         if(isNotNullOrBlank(remittanceData.cardType))
             receipt.MUSW__Card_Type__c = remittanceData.cardType;
-        if(isNotNullOrBlank(remittanceData.lastFourAccountNumber) && DOL_AppUtility.isValidDecimalValue(remittanceData.lastFourAccountNumber) )
+        if(isNotNullOrBlank(remittanceData.lastFourAccountNumber))
             receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(remittanceData.lastFourAccountNumber);
         if(isNotNullOrBlank(remittanceData.paymentAuthorization))
             receipt.Card_Authorized__c = remittanceData.paymentAuthorization;
@@ -142,6 +143,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
     }
 
     private boolean isPaymentRecorded(){
+        System.debug('receiptId='+receiptId+'|cartId = '+cartId+'|feeIds='+SFDCfeeIds+'|applicantId='+SFDCappId);
         boolean paymentRecordFound = false;
         List<String> sfdcFeeIdList = sfdcFeeIds.split(DOL_AppConstants.ePaymentUrlListValuesSeperator);
         List<MUSW__Fee__c> fees = dao.getFeeAndFeePayment(sfdcFeeIdList);

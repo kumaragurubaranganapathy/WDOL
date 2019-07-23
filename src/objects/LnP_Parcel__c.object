@@ -38,11 +38,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Addresses_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
+        <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
@@ -63,7 +59,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Address_Type__c</fullName>
         <externalId>false</externalId>
@@ -222,7 +218,7 @@ HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact
     <fields>
         <fullName>State_Province__c</fullName>
         <externalId>false</externalId>
-        <label>State/Territory/Province</label>
+        <label>State/Province</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -283,10 +279,29 @@ HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>Street__c</columns>
         <columns>City__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Unit__c</columns>
+        <columns>Address_Type__c</columns>
+        <columns>Melissa_Address_Verified__c</columns>
+        <columns>is_Physical_and_Mailing_Address_Same__c</columns>
+        <columns>State__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Address_Type__c</columns>
+        <columns>City__c</columns>
+        <columns>State__c</columns>
+        <columns>Country__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Address Name</label>

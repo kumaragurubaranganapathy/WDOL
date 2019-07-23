@@ -477,8 +477,9 @@
     </fields>
     <fields>
         <fullName>Inspector_Name__c</fullName>
+        <description>Primary Inspector or Auditor assigned to the Inspection.</description>
         <externalId>false</externalId>
-        <label>Inspector Name</label>
+        <label>Inspector/Auditor Name</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -851,29 +852,14 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>In Violation</label>
                 </value>
                 <value>
-                    <fullName>Approved</fullName>
-                    <default>false</default>
-                    <label>Approved</label>
-                </value>
-                <value>
                     <fullName>Denied</fullName>
                     <default>false</default>
                     <label>Denied</label>
                 </value>
                 <value>
-                    <fullName>Assigned</fullName>
+                    <fullName>Approved</fullName>
                     <default>false</default>
-                    <label>Assigned</label>
-                </value>
-                <value>
-                    <fullName>Closed</fullName>
-                    <default>false</default>
-                    <label>Closed</label>
-                </value>
-                <value>
-                    <fullName>New</fullName>
-                    <default>false</default>
-                    <label>New</label>
+                    <label>Approved</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -893,59 +879,14 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>SYSTEM TEST</fullName>
+                    <fullName>Complaint</fullName>
                     <default>false</default>
-                    <label>SYSTEM TEST</label>
+                    <label>Complaint</label>
                 </value>
                 <value>
-                    <fullName>Change Owner</fullName>
+                    <fullName>Reinspection</fullName>
                     <default>false</default>
-                    <label>Change Owner</label>
-                </value>
-                <value>
-                    <fullName>Check Ride</fullName>
-                    <default>false</default>
-                    <label>Check Ride</label>
-                </value>
-                <value>
-                    <fullName>Financial</fullName>
-                    <default>false</default>
-                    <label>Financial</label>
-                </value>
-                <value>
-                    <fullName>Follow-up audit</fullName>
-                    <default>false</default>
-                    <label>Follow-up audit</label>
-                </value>
-                <value>
-                    <fullName>High Risk</fullName>
-                    <default>false</default>
-                    <label>High Risk</label>
-                </value>
-                <value>
-                    <fullName>Initial</fullName>
-                    <default>false</default>
-                    <label>Initial</label>
-                </value>
-                <value>
-                    <fullName>New Owner</fullName>
-                    <default>false</default>
-                    <label>New Owner</label>
-                </value>
-                <value>
-                    <fullName>Observation – Classroom</fullName>
-                    <default>false</default>
-                    <label>Observation – Classroom</label>
-                </value>
-                <value>
-                    <fullName>Observation – Knowledge Exam</fullName>
-                    <default>false</default>
-                    <label>Observation – Knowledge Exam</label>
-                </value>
-                <value>
-                    <fullName>Observation – Skills Exam</fullName>
-                    <default>false</default>
-                    <label>Observation – Skills Exam</label>
+                    <label>Reinspection</label>
                 </value>
                 <value>
                     <fullName>Other</fullName>
@@ -953,49 +894,59 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Other</label>
                 </value>
                 <value>
-                    <fullName>Pre-License</fullName>
+                    <fullName>High Risk</fullName>
                     <default>false</default>
-                    <label>Pre-License</label>
+                    <label>High Risk</label>
                 </value>
                 <value>
-                    <fullName>Range/Route Review</fullName>
+                    <fullName>Follow-up Inspection</fullName>
                     <default>false</default>
-                    <label>Range/Route Review</label>
+                    <label>Follow-up Inspection</label>
                 </value>
                 <value>
-                    <fullName>Records</fullName>
+                    <fullName>Check Rides</fullName>
                     <default>false</default>
-                    <label>Records</label>
+                    <label>Check Rides</label>
                 </value>
                 <value>
-                    <fullName>Re-inspection</fullName>
+                    <fullName>Exam Observation</fullName>
                     <default>false</default>
-                    <label>Re-inspection</label>
+                    <label>Exam Observation</label>
                 </value>
                 <value>
-                    <fullName>Routine</fullName>
-                    <default>true</default>
-                    <label>Routine</label>
+                    <fullName>Record</fullName>
+                    <default>false</default>
+                    <label>Record</label>
                 </value>
                 <value>
-                    <fullName>Routine Exam</fullName>
+                    <fullName>Skills Observation</fullName>
                     <default>false</default>
-                    <label>Routine Exam</label>
+                    <label>Skills Observation</label>
                 </value>
                 <value>
-                    <fullName>Special/Priority</fullName>
+                    <fullName>Classroom Observation</fullName>
                     <default>false</default>
-                    <label>Special/Priority</label>
+                    <label>Classroom Observation</label>
                 </value>
                 <value>
-                    <fullName>Technical Assistance</fullName>
+                    <fullName>Annual</fullName>
                     <default>false</default>
-                    <label>Technical Assistance</label>
+                    <label>Annual</label>
                 </value>
                 <value>
-                    <fullName>Vehicle Inspection</fullName>
+                    <fullName>Administrative</fullName>
                     <default>false</default>
-                    <label>Vehicle Inspection</label>
+                    <label>Administrative</label>
+                </value>
+                <value>
+                    <fullName>Financial</fullName>
+                    <default>false</default>
+                    <label>Financial</label>
+                </value>
+                <value>
+                    <fullName>Examiner</fullName>
+                    <default>false</default>
+                    <label>Examiner</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1332,6 +1283,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <columns>MUSW__Due_Date__c</columns>
         <columns>MUSW__Permit__c</columns>
         <columns>MUSW__Parcel__c</columns>
+        <columns>County__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>MUSW__On_Itinerary__c</field>
@@ -1384,7 +1336,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             <value>he</value>
         </filters>
         <label>All not on Itinerary</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Notaries_INSP_AUD_Inspection</fullName>
@@ -1765,7 +1716,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1778,6 +1737,49 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2174,14 +2176,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
-                <fullName>Assigned</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Completed</fullName>
                 <default>false</default>
             </values>
@@ -2191,10 +2185,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>In Violation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2209,7 +2199,39 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <picklistValues>
             <picklist>MUSW__Type__c</picklist>
             <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2217,23 +2239,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pre-License</fullName>
+                <fullName>Record</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-inspection</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Routine</fullName>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2619,7 +2633,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2632,6 +2654,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3017,7 +3098,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3030,6 +3119,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3395,13 +3543,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>MUSW__Type__c</picklist>
-            <values>
-                <fullName>SYSTEM TEST</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Number_of_Sites__c</picklist>
             <values>
                 <fullName>1-20</fullName>
@@ -3759,13 +3900,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>MUSW__Type__c</picklist>
-            <values>
-                <fullName>SYSTEM TEST</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4151,7 +4285,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4164,6 +4306,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4549,7 +4750,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4562,6 +4771,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4947,7 +5215,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4960,6 +5236,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5345,7 +5680,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5358,6 +5701,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5753,7 +6155,59 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <picklistValues>
             <picklist>MUSW__Type__c</picklist>
             <values>
-                <fullName>SYSTEM TEST</fullName>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6139,7 +6593,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6152,6 +6614,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6537,7 +7058,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6550,6 +7079,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6946,14 +7534,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
-                <fullName>Assigned</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Completed</fullName>
                 <default>false</default>
             </values>
@@ -6963,10 +7543,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>In Violation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6981,7 +7557,39 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <picklistValues>
             <picklist>MUSW__Type__c</picklist>
             <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6989,23 +7597,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pre-License</fullName>
+                <fullName>Record</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Re-inspection</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Routine</fullName>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7391,7 +7991,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7404,6 +8012,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7799,7 +8466,59 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <picklistValues>
             <picklist>MUSW__Type__c</picklist>
             <values>
-                <fullName>SYSTEM TEST</fullName>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8185,7 +8904,15 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
                 <default>false</default>
             </values>
             <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8198,6 +8925,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8245,8 +9031,8 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <customTabListAdditionalFields>MUSW__Due_Date__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Priority__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
-        <listViewButtons>MUSW__Add_to_Itinerary</listViewButtons>
         <lookupDialogsAdditionalFields>MUSW__Type__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Due_Date__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Priority__c</lookupDialogsAdditionalFields>
@@ -8265,17 +9051,18 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <searchResultsAdditionalFields>MUSW__Priority__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>OWNER.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
     <webLinks>
         <fullName>Checklist</fullName>
         <availability>online</availability>
         <displayType>button</displayType>
-        <linkType>javascript</linkType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
         <masterLabel>Checklist</masterLabel>
-        <openType>onClickJavaScript</openType>
+        <openType>replace</openType>
         <protected>false</protected>
-        <url>window.location=&apos;/BGCK/QuestionChecklist2.app?pid={!MUSW__Inspection__c.Id}&apos;</url>
+        <url>/BGCK/QuestionChecklist2.app?pid={!MUSW__Inspection__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>Letter</fullName>

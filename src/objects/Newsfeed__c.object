@@ -78,31 +78,6 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <valueName>General Application</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <valueName>Comity</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
                 <valueName>Broker-Restricted</valueName>
             </valueSettings>
@@ -113,6 +88,25 @@
             <valueSettings>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
                 <valueName>All</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <valueName>General Application</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -149,11 +143,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
+                <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
@@ -161,11 +155,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
+                <valueName>Appraiser Course</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
+                <valueName>Appraiser Trainee</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -173,7 +167,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
+                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -181,7 +175,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <valueName>Temporary Certified General</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -193,19 +187,19 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -223,12 +217,40 @@
             <restricted>true</restricted>
             <valueSetName>Credential</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <valueName>Temporary Certified Residential</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
                 <valueName>Temporary State Licensed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <valueName>Temporary Certified General</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <valueName>State Licensed Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
@@ -251,40 +273,12 @@
                 <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <valueName>Certified General Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <valueName>State Licensed Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
                 <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -355,14 +349,6 @@
             <controllingField>Program_Area__c</controllingField>
             <restricted>true</restricted>
             <valueSetName>Permit_Type</valueSetName>
-            <valueSettings>
-                <controllingFieldValue>POWTS</controllingFieldValue>
-                <valueName>POWTS Component Manual Review</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS</controllingFieldValue>
-                <valueName>POWTS Experimental System</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -624,10 +610,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -681,6 +663,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -799,10 +785,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1090,6 +1072,37 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1250,10 +1263,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -1307,6 +1316,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1425,10 +1438,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1716,6 +1725,37 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1876,10 +1916,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -1933,6 +1969,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2051,10 +2091,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2342,6 +2378,37 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2502,10 +2569,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -2559,6 +2622,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2677,10 +2744,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2968,6 +3031,37 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3128,10 +3222,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -3185,6 +3275,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3303,10 +3397,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3594,6 +3684,37 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3813,6 +3934,10 @@
                 <fullName>Transfer of Ownership</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Application_Type__c</picklist>
@@ -3929,10 +4054,6 @@
             </values>
             <values>
                 <fullName>Crematory</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Delegated Municipality Agent</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4228,6 +4349,37 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -117,7 +117,7 @@ public class BackendQuestionAnswer_CC_Test {
         queObj3.Credential_Type__c = 'Manufactured Homes Credential';
         queObj3.Credential__c = 'Manufactured Homes Installer';
         queObj3.Application_Method__c = 'Course Completion';
-        queObj3.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj3.Service_Request_Type__c = 'Exam Re-Application';
         queObj3.Status__c = 'Active';
         queObj3.Version__c = 1.0;
         queObj3.Show_For__c = 'Service Request';
@@ -176,7 +176,7 @@ public class BackendQuestionAnswer_CC_Test {
         qObj3.Credential_Type__c = 'Manufactured Homes Credential';
         qObj3.Credential__c = 'Manufactured Homes Installer';
         qObj3.Application_Method__c = 'Course Completion';
-        qObj3.Service_Request_Type__c = 'Exam Re-Application';
+        //qObj3.Service_Request_Type__c = 'Exam Re-Application';
         qObj3.Show_For__c = 'Service Request';
         qObj3.Status__c = 'Active';
         qObj3.Version__c = 1.0;
@@ -192,7 +192,7 @@ public class BackendQuestionAnswer_CC_Test {
         queObj4.Credential_Type__c = 'Manufactured Homes Credential';
         queObj4.Credential__c = 'Manufactured Homes Installer';
         queObj4.Application_Method__c = 'Course Completion';
-        queObj4.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj4.Service_Request_Type__c = 'Exam Re-Application';
         queObj4.Status__c = 'Active';
         queObj4.Version__c = 1.0;
         queObj4.Show_For__c = 'Service Request';
@@ -212,7 +212,7 @@ public class BackendQuestionAnswer_CC_Test {
         queObj5.Credential_Type__c = 'Manufactured Homes Credential';
         queObj5.Credential__c = 'Manufactured Homes Installer';
         queObj5.Application_Method__c = 'Course Completion';
-        queObj5.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj5.Service_Request_Type__c = 'Exam Re-Application';
         queObj5.Status__c = 'Active';
         queObj5.Version__c = 1.0;
         queObj5.Show_For__c = 'Service Request';
@@ -318,7 +318,7 @@ public class BackendQuestionAnswer_CC_Test {
         queObj3A.Credential_Type__c = 'Manufactured Homes Credential';
         queObj3A.Credential__c = 'Manufactured Homes Installer';
         queObj3A.Application_Method__c = 'Course Completion';
-        queObj3A.Service_Request_Type__c = 'Exam Re-Application';
+        //queObj3A.Service_Request_Type__c = 'Exam Re-Application';
         queObj3A.Status__c = 'Active';
         queObj3A.Version__c = 1.0;
         queObj3A.Show_For__c = 'Service Request';
@@ -401,7 +401,7 @@ public class BackendQuestionAnswer_CC_Test {
         qObj3A.Credential_Type__c = 'Manufactured Homes Credential';
         qObj3A.Credential__c = 'Manufactured Homes Installer';
         qObj3A.Application_Method__c = 'Course Completion';
-        qObj3A.Service_Request_Type__c = 'Exam Re-Application';
+        //qObj3A.Service_Request_Type__c = 'Exam Re-Application';
         qObj3A.Show_For__c = 'Service Request';
         qObj3A.Status__c = 'Active';
         qObj3A.Version__c = 1.0;

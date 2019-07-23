@@ -164,6 +164,31 @@
         </displayedFields>
         <label>Question Field set</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>Test</fullName>
+        <description>This is used on the Test Checklist</description>
+        <displayedFields>
+            <field>BGCK__BG_Checklist_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__Checklist_Version_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__Question__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Test</label>
+    </fieldSets>
     <fields>
         <fullName>Application_Type__c</fullName>
         <externalId>false</externalId>
@@ -399,54 +424,8 @@
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>A degree in Architectural Technology</fullName>
-                    <default>false</default>
-                    <label>A degree in Architectural Technology</label>
-                </value>
-                <value>
-                    <fullName>Architect by Reciprocity - licensed less than 9 years</fullName>
-                    <default>false</default>
-                    <label>Architect by Reciprocity - licensed less than 9 years</label>
-                </value>
-                <value>
-                    <fullName>Architect by Reciprocity - licensed more 9 years licensure</fullName>
-                    <default>false</default>
-                    <label>Architect by Reciprocity - licensed more 9 years licensure</label>
-                </value>
-                <value>
-                    <fullName>Architect Direct Registration</fullName>
-                    <default>false</default>
-                    <label>Architect Direct Registration</label>
-                </value>
-                <value>
-                    <fullName>Architect Firm</fullName>
-                    <default>false</default>
-                    <label>Architect Firm</label>
-                </value>
-                <value>
-                    <fullName>Foreign Degree</fullName>
-                    <default>false</default>
-                    <label>Foreign Degree</label>
-                </value>
-                <value>
-                    <fullName>High School Diploma</fullName>
-                    <default>false</default>
-                    <label>High School Diploma</label>
-                </value>
-                <value>
-                    <fullName>Non-accredited Bachelor or Master in architecture</fullName>
-                    <default>false</default>
-                    <label>Non-accredited Bachelor or Master in architecture</label>
-                </value>
-                <value>
-                    <fullName>Postsecondary Study in Architecture or Related Fields</fullName>
-                    <default>false</default>
-                    <label>Postsecondary Study in Architecture or Related Fields</label>
-                </value>
-            </valueSetDefinition>
+            <restricted>true</restricted>
+            <valueSetName>pagequestion_Review_for</valueSetName>
         </valueSet>
         <visibleLines>4</visibleLines>
     </fields>
@@ -497,8 +476,6 @@
         <columns>BGCK__BG_Checklist_Name__c</columns>
         <columns>Type__c</columns>
         <columns>BGCK__Checklist_Version_Status__c</columns>
-        <columns>BGCK__Question__c</columns>
-        <columns>BGCK__Page__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Active</label>
         <language>en_US</language>
@@ -508,7 +485,6 @@
         <columns>BGCK__Order__c</columns>
         <columns>NAME</columns>
         <columns>BGCK__IsRequired__c</columns>
-        <columns>BGCK__Checklist_Version_Status__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>BGCK__Checklist_Version_Status__c</field>
@@ -516,6 +492,34 @@
             <value>Draft</value>
         </filters>
         <label>All Draft</label>
+    </listViews>
+    <listViews>
+        <fullName>sadhana_check</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <columns>NAME</columns>
+        <columns>BGCK__BG_Checklist_Name__c</columns>
+        <columns>BGCK__Checklist_Version_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>BGCK__Checklist_Version_Status__c</field>
+            <operation>equals</operation>
+            <value>active</value>
+        </filters>
+        <filters>
+            <field>BGCK__BG_Checklist_Name__c</field>
+            <operation>equals</operation>
+            <value>Architect by Reciprocity - licensed more 9 years licensure</value>
+        </filters>
+        <filters>
+            <field>Type_Crendential__c</field>
+            <operation>equals</operation>
+            <value>Architect</value>
+        </filters>
+        <label>sadhana check</label>
         <language>en_US</language>
     </listViews>
     <nameField>

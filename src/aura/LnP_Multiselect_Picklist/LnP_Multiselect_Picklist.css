@@ -1,7 +1,9 @@
 .THIS .ul-listbox {
     width: 100%;
 }
-
+.THIS .slds-listbox:focus{
+    outline:0;
+}
 .THIS .slds-listbox__option .slds-icon-utility-check {
     opacity: 0;
 }
@@ -14,6 +16,12 @@
 .THIS .slds-size_small{
     width:19rem;
 }
+.THIS .slds-dropdown-trigger .slds-dropdown{
+    width:100%; 
+    overflow: auto;
+	position:relative;
+	z-index:2;    
+} 
 .THIS .placeholTxt{
     padding-left:10px;
 }

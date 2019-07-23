@@ -10,7 +10,7 @@ H ADARSH                        12-August-2018             Initial Creation
 ================================================================================= */
 
 
-public with sharing class Utilityclass_withsharing {   
+public class Utilityclass_withsharing {   
     public static final String sSize = 'Size';
     public static Boolean bIsTestClass = false;
     public static final list<String> lstEmptyError= new list<String>{'List is empty'}; 
@@ -334,7 +334,10 @@ public with sharing class Utilityclass_withsharing {
      public static List<SObject> queryRecords(String sQueryToRun) {        
        
         list<SObject> lstResult = new list<SObject>();
+        
+        try{
         lstResult = Database.query(sQueryToRun);
+        }catch(Exception ex){}
        
         return lstResult;
     }
