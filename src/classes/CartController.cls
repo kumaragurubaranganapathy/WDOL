@@ -1132,15 +1132,24 @@ public with sharing class CartController
                     Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
                     populateFeeAndInvoicePayment(receipts, feePaymentIds);
                     depositPayments = populateDepositPayment(receipts);
+					// Multiple Receipt Fix BUG - 2497, Developer :- Laltu Banerjee
+                    // Get Receipt Id created in this transaction
+                    receiptId = rs.get(0).Id;
+                    // ELGIN-237: re-query receipt in order to get the receipt numbers
+                    MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
+                    rs.clear();
+                    for(MUSW__Receipt__c receipt : allCartReceipt){
+                        if(receipt.id == receiptId){
+                            rs.add(receipt);
+                            break;
+                        }
+                    }
+                    // Multiple Receipt Fix BUG - 2497 , ends
                 } else {        
                     // this call is made for testing the clean receipt method.      
                     // Within the org, it should throw a exception, so it will go to the catch, but can't be handled via tests.     
                     cleanReceiptsAfterPaymentFail(receiptVOs);      
                 }
-    
-                
-                // ELGIN-237: re-query receipt in order to get the receipt numbers
-                rs = m_cs.getCartReceipts();
                 
                 m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
             } else {    
