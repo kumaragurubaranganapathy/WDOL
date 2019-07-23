@@ -287,14 +287,6 @@
                 <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Update/Close Company</controllingFieldValue>
-                <valueName>Update/Close Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Update Legal Name</controllingFieldValue>
-                <valueName>Update Legal Name</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
                 <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
@@ -899,16 +891,17 @@
         <columns>Question__c</columns>
         <columns>Application_Method__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>License_Type__c</columns>
-        <columns>Permit_Type__c</columns>
         <columns>Credential__c</columns>
         <columns>Credential_Type__c</columns>
         <columns>Required__c</columns>
         <columns>Subtype__c</columns>
         <columns>Active__c</columns>
         <columns>Default__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Permit_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>POWTS_Consultation</fullName>
@@ -1398,10 +1391,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Misc Payments</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -1445,7 +1434,7 @@
             </values>
             <values>
                 <fullName>Appraiser Course</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Appraiser Trainee</fullName>
@@ -1560,10 +1549,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manufactured Homes Dealer</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -1617,10 +1602,6 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2788,14 +2769,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>POWTS Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Experimental System</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Plumbing</fullName>
                 <default>false</default>
             </values>
@@ -3550,10 +3523,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Update Legal Name</fullName>
                 <default>false</default>
             </values>
@@ -4189,10 +4158,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Comity</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Course Completion</fullName>
                 <default>false</default>
             </values>
@@ -4242,6 +4207,10 @@
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4374,10 +4343,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Delegated Municipality Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Embalmer</fullName>
                 <default>false</default>
             </values>
@@ -4491,10 +4456,6 @@
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
