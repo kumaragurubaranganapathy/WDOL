@@ -57,7 +57,34 @@
         }
         
     },
-    
+    updateBusinessInfoHelper : function(component, event, helper) {
+        var requestId='';
+        var ServiceRequestType = 'Update/Close Company';
+        
+        var action = component.get("c.insertRequest");
+        action.setParams({            
+            "acctId": component.get("v.SelectedAccountDetails.Id"),            
+            "ServiceRequestType": ServiceRequestType,           
+        });
+        action.setCallback(this, function(actionResult){
+            
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ServiceRequestType);                
+                sessionStorage.setItem("board", ServiceRequestType);
+                sessionStorage.setItem("licenseType", ServiceRequestType);
+                sessionStorage.setItem("applicationType", ServiceRequestType);
+                sessionStorage.setItem("requestId", requestId);
+                //sessionStorage.setItem("recordId", component.get("v.recordId"));
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+        
+    },
     setSelectedAccountData : function (component,event,helper,selectedAccountId) {
         console.log("inside selectedAccountData::");
         var action = component.get("c.getAccountData");

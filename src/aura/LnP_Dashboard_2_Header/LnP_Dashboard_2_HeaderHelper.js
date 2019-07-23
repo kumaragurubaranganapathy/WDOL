@@ -25,6 +25,32 @@
         var actionLinks = component.find("action-item");
         console.log(actionLinks+" = actionLinks");
     },
+	updateLegalNameHelper : function(component,event){
+       var requestId='';
+        var ServiceRequestType = 'Update Legal Name';
+        
+        var action = component.get("c.insertRequest");
+        action.setParams({
+            "ServiceRequestType": ServiceRequestType,           
+        });
+        action.setCallback(this, function(actionResult){
+            
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ServiceRequestType);                
+                sessionStorage.setItem("board", ServiceRequestType);
+                sessionStorage.setItem("licenseType", ServiceRequestType);
+                sessionStorage.setItem("applicationType", ServiceRequestType);
+                sessionStorage.setItem("requestId", requestId);
+                //sessionStorage.setItem("recordId", component.get("v.recordId"));
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+    },
     updateContactInfo: function(component, event, helper) {
         var conId = component.get("v.ContactObj.Id") ;
         //alert('ConId : ' +conId);

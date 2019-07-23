@@ -122,6 +122,9 @@
     updateContactInfo: function(component, event, helper) {
 		helper.updateContactInfo(component, event, helper);
 	},
+	updateBusinessInfo :function(component,event,helper){
+      helper.updateBusinessInfoHelper(component,event,helper);  
+    },
     getAccountName : function (component,event,helper) {
       helper.getAccountName(component, event, helper);  
     },

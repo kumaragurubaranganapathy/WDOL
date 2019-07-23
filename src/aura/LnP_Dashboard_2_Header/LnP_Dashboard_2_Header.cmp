@@ -99,7 +99,7 @@
                 <ul class="{!v.showMoreAMR?'exp-links-inner':''}">
                     <li aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);">Payment cart</a></li>
                     <li aura:id="action-item"><a onclick="{!c.handleClick}" href="javascript:void(0);">Apply for new license</a></li>
-                    <li aura:id="action-item"><a onclick="" href="javascript:void(0);">Change legal name</a></li>
+                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change legal name</a></li>
                     
                     <!--<li aura:id="action-item"><a onclick="{!c.handleClick }" href="javascript:void(0);">Apply For New License</a></li>
                     <li aura:id="action-item"><a href="javascript:void(0);" onclick="{!c.updateContactInfo}">Update Contact Information</a></li>
