@@ -46,7 +46,7 @@
     <div class="business-outer-wrapper">
         
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
-            <h1 class="screen-title">Business License<!--{!v.breadcrumbLabel} --></h1>
+            <h1 class="screen-title">{!'Business ' + v.breadcrumbLabel}<!--{!v.breadcrumbLabel} --></h1>
             <lightning:breadcrumbs class="breadcrumb-wrapper"> 
                 <lightning:breadcrumb class="transform-text breadcumb" label="Business Dashboard" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/>
                 <lightning:breadcrumb class="{!or(v.screenTwo,v.screenThree)?'transform-text breadcumb':'slds-hide'}" label="{!v.breadcrumbLabel}" href="javascrit:void(0)" onclick="{!c.navigateToScreenTwo}"/>
