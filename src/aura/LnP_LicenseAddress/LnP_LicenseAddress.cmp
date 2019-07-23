@@ -75,7 +75,7 @@
             </div>
             <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="countryInstance">
-                    <option text="{!countryInstance.label}" value="{!countryInstance.value}"/>
+                    <option text="{!countryInstance.label}" value="{!countryInstance.value}" selected="{!countryInstance.value==v.defaultCountry}"/>
                 </aura:iteration>
             </lightning:select>
             <lightning:input title="street" name="street" label="Address Line 1" value="{!v.mailingAddressparcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
@@ -84,14 +84,14 @@
             <aura:if isTrue="{!v.isState}">
                 <lightning:select aura:id="statePicklist" name="State" label="State / Territory / Province" value="{!v.defaultState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onStateChange}"> 
                     <aura:iteration items="{!v.stateList}" var="stateInstance">
-                        <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
+                        <option text="{!stateInstance.label}" value="{!stateInstance.value}" selected="{!stateInstance.value==v.defaultState}"/>
                     </aura:iteration>
                 </lightning:select>
             </aura:if>
             <aura:if isTrue="{!v.isCanadianProvince}">
                 <lightning:select aura:id="canadianProvincePicklist" name="State" label="State / Territory / Province" value="{!v.defaultcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.oncanadianProvinceChange}"> 
                     <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
-                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
+                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}" selected="{!canadianProvinceInstance.value==v.defaultcanadianProvince}"/>
                     </aura:iteration>
                 </lightning:select>
             </aura:if>
@@ -102,7 +102,7 @@
             <aura:if isTrue="{!v.isOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.mailingAddressparcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.countyList}" var="eachCounty">
-                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.value==v.mailingAddressparcel.County__c}"/>
                     </aura:iteration>
                 </lightning:select>
                 <aura:set attribute="else">
@@ -122,7 +122,7 @@
             <lightning:input type="checkbox" aura:id="isPhysicalAndMailingSame" name="addrType" class="checkbox-style" value="{!v.physicalAddressParcel.is_Physical_and_Mailing_Address_Same__c}" checked="{!v.isPhysicalAndMailingSame}" label="Physical Address same as Mailing Address" onchange="{!c.autoPopulatePhysicalAddress}"/>
             <lightning:select aura:id="physicalCountryPicklist" name="country" label="Country" value="{!v.defaultPhysicalCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="country">
-                    <option text="{!country.label}" value="{!country.value}"/>
+                    <option text="{!country.label}" value="{!country.value}" selected="{!country.value==v.defaultPhysicalCountry}"/>
                 </aura:iteration>
             </lightning:select>
             
@@ -133,14 +133,14 @@
             <aura:if isTrue="{!v.isPhysicalState}">
                 <lightning:select name="State" label="State / Territory / Province" value="{!v.defaultPhysicalState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalStateChange}"> 
                     <aura:iteration items="{!v.stateList}" var="stateInstance">
-                        <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
+                        <option text="{!stateInstance.label}" value="{!stateInstance.value}" selected="{!stateInstance.value==v.defaultPhysicalState}"/>
                     </aura:iteration>
                 </lightning:select>
             </aura:if>
             <aura:if isTrue="{!v.isPhysicalCanadianProvince}">
                 <lightning:select name="State" label="State / Territory / Province" value="{!v.defaultPhysicalcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalcanadianProvinceChange}"> 
                     <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
-                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
+                        <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}" selected="{!canadianProvinceInstance.value==v.defaultPhysicalcanadianProvince}"/>
                     </aura:iteration>
                 </lightning:select>
             </aura:if>
@@ -151,7 +151,7 @@
             <aura:if isTrue="{!v.isPhysicalOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.physicalAddressParcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.physicalAddressCounty}" var="eachCounty">
-                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
+                        <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.value==v.physicalAddressParcel.County__c}"/>
                     </aura:iteration>
                 </lightning:select>
                 <aura:set attribute="else">
