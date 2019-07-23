@@ -56,9 +56,12 @@
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
                 <h2 class="page-title">Business Dashboard</h2>
-                <div class="biz-welcome">                   
+                <div class="biz-welcome">   
+                    <div class="add-biz-wrapper">
+                        <lightning:button name="Add Business" label="Add business" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
+                    </div>
                     
-                    <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/>
+                    <!-- <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/> -->
                     
                 </div>
             </div>

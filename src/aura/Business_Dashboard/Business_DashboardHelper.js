@@ -211,6 +211,7 @@
         console.log('componet.get("v.requestId")',componet.get("v.requestId"));
         
     },
+    
     updateContactInfo: function(component, event, helper) {
         var acctId = component.get("v.SelectedAccountDetails.Id");
         var key = 'businesscontact' ;
@@ -305,6 +306,15 @@
     },
     showMoreAMR : function(component,event){
         component.set("v.showMoreAMR",!component.get("v.showMoreAMR"));
+    },
+    addBusiness :  function(component,event){
+        
+        var str ='/new-business'
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire(); 
     }
     
     

@@ -13,6 +13,7 @@
     updateBusinessInfo :function(component,event,helper){
       helper.updateBusinessInfoHelper(component,event,helper);  
     },
+    
     handleLicenseLink :  function(component,event,helper){
      /*var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
         var result = component.get("v.mainAccountName");
@@ -138,5 +139,8 @@
     },
     showMoreAMR : function(component,event,helper){
     	helper.showMoreAMR(component,event);
+    },
+    addBusiness : function(component,event,helper){
+        helper.addBusiness(component,event);
     }
 })
