@@ -33,7 +33,7 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>BGBK__Refund2__c.Stage__c</field>
         <readable>true</readable>
     </fieldPermissions>
