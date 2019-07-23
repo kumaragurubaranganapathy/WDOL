@@ -16,6 +16,12 @@
                     var compEvent = component.getEvent("businessRefresh");
                     compEvent.setParams({ "refreshFlag": "true" });
                     compEvent.fire();
+                    var str ='/business';
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": str
+                    });
+                    urlEvent.fire(); 
                 } else {
                     toastEvent.setParams({
                         "type": "Error",
@@ -24,15 +30,34 @@
                     });
                 }
                 toastEvent.fire();
+                
             } else if (state === "ERROR") {
             }
         });
         $A.enqueueAction(action);
         component.set("v.isOpen", false);
     },
- handleSuccess : function(component,event,helper){
-     var accntId = event.getParams().response.id;
+    handleSuccess : function(component,event,helper){
+        var accntId = event.getParams().response.id;
         component.set("v.accountId",accntId);
         helper.addAccountContact(component,event,helper);
- }
+    },
+    handleClick : function(component,event){
+        var str ='/new-business';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();        
+        component.set("v.isOpen",true);
+    },
+    returnBusiness : function(component,event){
+        var str ='/business';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire(); 
+    }
+    
 })

@@ -57,34 +57,7 @@
         }
         
     },
-    updateBusinessInfoHelper : function(component, event, helper) {
-        var requestId='';
-        var ServiceRequestType = 'Update/Close Company';
-        
-        var action = component.get("c.insertRequest");
-        action.setParams({            
-            "acctId": component.get("v.SelectedAccountDetails.Id"),            
-            "ServiceRequestType": ServiceRequestType,           
-        });
-        action.setCallback(this, function(actionResult){
-            
-            var state = actionResult.getState();
-            if (state === "SUCCESS"){
-                var result = actionResult.getReturnValue();
-                requestId = result;
-                sessionStorage.setItem("ServiceRequestType", ServiceRequestType);                
-                sessionStorage.setItem("board", ServiceRequestType);
-                sessionStorage.setItem("licenseType", ServiceRequestType);
-                sessionStorage.setItem("applicationType", ServiceRequestType);
-                sessionStorage.setItem("requestId", requestId);
-                //sessionStorage.setItem("recordId", component.get("v.recordId"));
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
-            }
-        });
-        $A.enqueueAction(action);
-        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
-        
-    },
+    
     setSelectedAccountData : function (component,event,helper,selectedAccountId) {
         console.log("inside selectedAccountData::");
         var action = component.get("c.getAccountData");
@@ -210,6 +183,34 @@
         });
         $A.enqueueAction(action);
     },
+    updateBusinessInfoHelper : function(component, event, helper) {
+        var requestId='';
+        var ServiceRequestType = 'Update/Close Company';
+        
+        var action = component.get("c.insertRequest");
+        action.setParams({            
+            "acctId": component.get("v.SelectedAccountDetails.Id"),            
+            "ServiceRequestType": ServiceRequestType,           
+        });
+        action.setCallback(this, function(actionResult){
+            
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ServiceRequestType);                
+                sessionStorage.setItem("board", ServiceRequestType);
+                sessionStorage.setItem("licenseType", ServiceRequestType);
+                sessionStorage.setItem("applicationType", ServiceRequestType);
+                sessionStorage.setItem("requestId", requestId);
+                //sessionStorage.setItem("recordId", component.get("v.recordId"));
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+        
+    },
     
     updateContactInfo: function(component, event, helper) {
         var acctId = component.get("v.SelectedAccountDetails.Id");
@@ -305,6 +306,15 @@
     },
     showMoreAMR : function(component,event){
         component.set("v.showMoreAMR",!component.get("v.showMoreAMR"));
+    },
+    addBusiness :  function(component,event){
+        
+        var str ='/new-business'
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire(); 
     }
     
     
