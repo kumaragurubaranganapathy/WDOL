@@ -488,7 +488,7 @@
                                           </BGBK:CartConfirm>
                         
                         <apex:commandButton value="Print Receipt" reRender="tab,msg" onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');" rendered="{!processSuccessful && receiptVOs.size>0}"/>
-                        <apex:commandButton value="Back" action="{!backToItems}" />
+                        <apex:commandButton value="Continue" action="{!backToItems}" />
                         <apex:commandButton value="Try Again" action="{!checkout}" reRender="tab,msg" rendered="{!!processSuccessful && (feeVOs.size > 0 || invoiceVOs.size > 0)}" />
                     </apex:outputPanel>                      
                 </apex:tab>
