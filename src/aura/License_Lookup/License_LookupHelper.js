@@ -1,7 +1,14 @@
 ({	
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
-		component.set("v.date", localDate);
+        var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var dayShortNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var month = localDate.getMonth();
+        var date = localDate.getDate();
+        var year = localDate.getFullYear();
+        var day = localDate.getDay();
+        localDate = dayShortNames[day]+' '+monthShortNames[month]+' '+date+' '+year+' '+localDate.getHours()+':'+localDate.getMinutes()+':'+localDate.getSeconds();
+        component.set("v.date", localDate);
         var action = component.get("c.getPicklistFieldValues");
         action.setParams({
             'objectName':objectApi,
@@ -10,8 +17,15 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
-                var result = response.getReturnValue();     
-                component.set(auraAttr, result);
+                var result = response.getReturnValue(); 
+                if(auraAttr == 'v.professionOptions'){
+                    var filteredResults = result.filter(function(item){
+                        return (item != 'Update Legal Name' && item != 'Update/Close Company' && item != 'Program Unknown' && item != 'Misc Payments');
+                    });
+                    component.set(auraAttr, filteredResults);
+                }else{
+                    component.set(auraAttr, result);
+                }
             }else{
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -157,12 +171,12 @@
                                     }
                                     if(row.MUSW__License2__r.Sub_Status__c){
                                         if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
-                                            row.Sub_Status = '';
+                                            row.Sub_Status = 'None';
                                         }else{
                                             row.Sub_Status = row.MUSW__License2__r.Sub_Status__c;
                                         }
                                     } else {
-                                        row.Sub_Status = "";
+                                        row.Sub_Status = "None";
                                     }
                                     if(row.MUSW__License2__r.RecordType){
                                         row.Type = row.MUSW__License2__r.RecordType.Name;
@@ -200,7 +214,7 @@
                             {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                             {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                             {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},                            
-                            {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
+                            {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                              { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                         ]);
                         component.set("v.data", rows);
@@ -507,12 +521,12 @@
                                     }
                                     if(row.MUSW__License2__r.Sub_Status__c){
                                         if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
-                                            row.Sub_Status = '';
+                                            row.Sub_Status = 'None';
                                         }else{
                                             row.Sub_Status = row.MUSW__License2__r.Sub_Status__c;
                                         }
                                     } else {
-                                        row.Sub_Status = "";
+                                        row.Sub_Status = "None";
                                     }
                                     if(row.MUSW__License2__r.RecordType){
                                         row.Type = row.MUSW__License2__r.RecordType.Name;
@@ -539,7 +553,7 @@
                                 {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                                {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
+                                {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
                             component.set("v.data", rows);
@@ -699,12 +713,12 @@
                                     }
                                     if(row.MUSW__License2__r.Sub_Status__c){
                                         if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
-                                            row.Sub_Status = '';
+                                            row.Sub_Status = 'None';
                                         }else{
                                             row.Sub_Status = row.MUSW__License2__r.Sub_Status__c;
                                         }
                                     } else {
-                                        row.Sub_Status = "";
+                                        row.Sub_Status = "None";
                                     }
                                     if(row.MUSW__License2__r.RecordType){
                                         row.Type = row.MUSW__License2__r.RecordType.Name;
@@ -733,7 +747,7 @@
                                 {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                                {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
+                                {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
                             component.set("v.data", rows);
