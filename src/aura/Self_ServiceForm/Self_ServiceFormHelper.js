@@ -33,6 +33,38 @@
             component.set("v.AMRName",'Update Contact Information');
             component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
         }
+		else if(value.toLowerCase() == "billingcode"){
+			component.set("v.objectApiName", 'Account');
+            component.set("v.fieldApiNames", ['ThirdPary_Billing_Code__c']);
+            component.set("v.recordIDforSSAMR",recordId);
+            component.set("v.thirdpartybillingcode", true);
+            component.set("v.recordIDforSSAMR",recordId);
+            var action = component.get("c.fetchAccountInfo");
+            action.setParams({
+                "licId": recordId    
+            });
+            action.setCallback(this, function(response) {
+                var state = response.getState();
+                if (state === "SUCCESS") {
+                    var appId = response.getReturnValue();
+                    if(appId != null && appId.ThirdPary_Billing_Code__c != undefined && appId.ThirdPary_Billing_Code__c != null && appId.ThirdPary_Billing_Code__c != ''){
+                    	component.set("v.existingBillingCode",appId.ThirdPary_Billing_Code__c);
+                    }
+                }
+                else if (state === "ERROR") {
+                    var errors = response.getError();
+                    if (errors) {
+                        if (errors[0] && errors[0].message) {
+                            console.error("Error message: " + errors[0].message);
+                        }
+                    } else {
+                        console.error("Unknown error");
+                    }
+                }
+            });
+            $A.enqueueAction(action);              
+            component.set("v.redirectURL",$A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
+        }
         
         else if(value.toLowerCase() == "address"){			
             component.set("v.recordIDforSSAMR",recordId);
@@ -165,7 +197,38 @@
         $A.enqueueAction(action);
         
 	},
-    
+    createcode : function(component, event, helper){
+        var licId = component.get("v.recordIDforSSAMR");
+		var updatedValue = 'createCode';
+		var action = component.get("c.updateWebsiteInfo");
+        action.setParams({
+            "licId": licId,
+            "websiteInfo":updatedValue
+        });
+		/*var action = component.get("c.createCodeValue");
+        action.setParams({
+            "test": 'hello'
+        });*/
+        
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                response.getReturnValue();
+                window.location.href = component.get("v.redirectURL");
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);       
+    },
     
     cancel : function(component, event, helper){
     	window.location.href = component.get("v.redirectURL");
