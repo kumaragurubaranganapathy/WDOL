@@ -4677,7 +4677,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     <pluralLabel>Licenses</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>true</recordTypeTrackHistory>
-    <recordTypes>
+    
+	<recordTypes>
         <fullName>Business</fullName>
         <active>true</active>
         <compactLayoutAssignment>Business_Compact_Layout</compactLayoutAssignment>
@@ -5217,6 +5218,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6630,6 +6635,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
+    
     <recordTypes>
         <fullName>Course</fullName>
         <active>true</active>
@@ -6962,6 +6968,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <picklist>Credential_Type__c</picklist>
             <values>
                 <fullName>Appraiser Course</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8418,7 +8428,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+    
+	<recordTypes>
         <fullName>Delegated_Agent_Record_Type</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
@@ -8954,6 +8965,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10303,7 +10318,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+    
+	<recordTypes>
         <fullName>Individual</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
@@ -10843,6 +10859,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12260,7 +12280,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+    
+	<recordTypes>
         <fullName>Manufactured_Homes_Record_Type</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
@@ -12785,6 +12806,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14150,7 +14175,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+    
+	<recordTypes>
         <fullName>Universal_Default_License_Record_Type</fullName>
         <active>true</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
@@ -14686,6 +14712,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Timeshare Salesperson</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Unlicensed</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16970,6 +17000,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>Unlicensed</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Credential__c</picklist>
@@ -18329,7 +18363,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts>
+    
+	<searchLayouts>
         <customTabListAdditionalFields>Credential__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Application_Method__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Status__c</customTabListAdditionalFields>

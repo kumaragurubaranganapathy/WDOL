@@ -93,6 +93,7 @@
         component.find("button1").set('v.disabled',true);
         component.set("v.eliTypeQues",[]);
         helper.fetchApplicationInstructionHelper(component,event,helper);
+        
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
@@ -395,6 +396,7 @@
             }
         }           
         component.set("v.eliQuesNo",component.get("v.eliQuesNo") + 1);
+        component.find("button1").set('v.disabled',false);
 
     },
     showNotAppTypeEliQuestionsHelper : function(component, event, helper){
@@ -412,7 +414,7 @@
         console.log('inside startApplicationHelper');
         // To disable button on click.
         var applicationId = "";
-        let button = event.getSource();
+       let button = event.getSource();
         button.set('v.disabled',true);
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
         sessionStorage.setItem("board", component.get("v.board"));
@@ -446,7 +448,7 @@
             }
         }
         console.log("till here ::");
-        
+        notEligible =false;
         if(!notEligible){
             try{
                 return new Promise($A.getCallback(function(resolve, reject) {

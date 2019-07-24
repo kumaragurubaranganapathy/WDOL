@@ -19,7 +19,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Templates_Relationships/Licensee_accept_licensee</template>
     </alerts>
