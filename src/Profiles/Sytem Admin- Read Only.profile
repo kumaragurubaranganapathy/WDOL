@@ -30722,12 +30722,12 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>MUSW__License2__c.Universal_Default_License_Record_Type</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>MUSW__License2__c.Unlicensed</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
