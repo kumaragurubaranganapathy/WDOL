@@ -68,6 +68,9 @@
   background: dodgerblue;
   z-index: -1;
 }
+.THIS .attach-title {
+    display: none;
+}
 .THIS .success li:first-child::before {
   display: none;
 }
@@ -171,7 +174,7 @@
         text-align: center;
     }   
     .THIS .field-item {
-        padding: 0 0 .5rem;
+        padding: 0 0 1.5rem;
         width: 100%;
     }
     .THIS .chkbox-container {
