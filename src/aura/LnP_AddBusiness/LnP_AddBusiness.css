@@ -22,10 +22,13 @@
 .THIS .txtalign{
     text-align:left;
 }
-.THIS .required.field-size.slds-form-element label::before {
+.THIS .required.field-size.slds-form-element label::before, .THIS .required.label-style::before {
     content: '*';
     color: t(LnGErrorMsg);
     padding-right: 2px;
+}
+.THIS .required.label-style::before{
+    padding-right:0;
 }
 .THIS .required.field-size.slds-form-element label abbr.slds-required {
     display: none;
@@ -55,6 +58,24 @@
     width:100%;
     margin-top:1rem;
 }
+.THIS .label-style{
+    font-size: 0.875rem;
+    line-height: 1;    
+    color: t(fieldclr);
+    margin-bottom:0.25rem;
+    font-weight:normal;
+}
+.THIS .field-size{
+    width:100%;
+}
+.THIS .biz-fields-wrapper .slds-listbox__option .slds-media__body{
+    font-weight:normal;
+    color:t(fieldclr);
+}
+.THIS .field-size div input{
+    font-weight:normal;
+}
+
 @media t(mqSmall){
     .THIS.add-biz-wrapper{
         margin: 1rem;
