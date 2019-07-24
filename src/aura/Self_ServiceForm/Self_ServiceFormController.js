@@ -12,4 +12,7 @@
     printUpdate: function(component, event, helper) { 
 		helper.printUpdatehelper(component, event, helper);
     },
+	createcode : function(component, event, helper) { 
+		helper.createcode(component, event, helper);
+    },
 })
