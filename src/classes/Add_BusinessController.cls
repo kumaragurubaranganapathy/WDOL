@@ -570,7 +570,7 @@ public without sharing class Add_BusinessController {
         List<String> columnHeaderList;
         List<String> statusFilterList;
         if(sObjectName == 'MUSW__Account_Contact__c'){
-            columnHeaderList = new List<String>{'Name','Role','Admin','DCP','Email','Status','Associated Licensees','Actions'};
+            columnHeaderList = new List<String>{'Name','Role','Admin','DCP','Email','Status','Actions'};
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                     sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted']; 
         }
