@@ -5,14 +5,16 @@
     <aura:attribute name="licenseDetail" type="String" />
     
     
-    <c:LnP_Relationship sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.mainAccountName}" />  
-    <aura:if isTrue="{!v.licenseDetail}">        
-        
-        <c:LnP_Relationship sObjectName="Associations__c" queryId="{!v.licenseId}" />
-        <br></br><br></br>
-        <c:LnP_Add_Association  parentLicense="{!v.licenseId}" />
-    </aura:if> 
+    <c:LnP_Relationship sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.mainAccountName}" /> 
     <div class="relation-add">
         <c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.mainAccountName}"/>
     </div>
+    <aura:if isTrue="{!v.licenseDetail}">       
+        
+        <c:LnP_Relationship sObjectName="Associations__c" queryId="{!v.licenseId}" />        
+        <div class="add-association">
+            <c:LnP_Add_Association  parentLicense="{!v.licenseId}" />
+        </div>
+    </aura:if> 
+    
 </aura:component>
