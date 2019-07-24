@@ -5,8 +5,8 @@
         <description>DSPS Tax Account grace period</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vagoel@deloitte.com.polaris.qa</recipient>
-            <type>user</type>
+            <recipient>System_Admin_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -17,8 +17,8 @@
         <description>DSPS Tax delinquency Account Active</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vagoel@deloitte.com.polaris.qa</recipient>
-            <type>user</type>
+            <recipient>System_Admin_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -29,8 +29,8 @@
         <description>DSPS Tax delinquency Account OnHold</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vagoel@deloitte.com.polaris.qa</recipient>
-            <type>user</type>
+            <recipient>System_Admin_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
