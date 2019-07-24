@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Secondary Inspectors, Auditors, and Investigators affiliated with the Inspection/Complaint</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -54,35 +55,35 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>Activity_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Activity Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Complaint__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Complaint</label>
         <referenceTo>MUSW__Complaint2__c</referenceTo>
-        <relationshipName>Investigation_Notes</relationshipName>
+        <relationshipName>Investigators</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Description__c</fullName>
+        <fullName>Date_Assigned__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
         <externalId>false</externalId>
-        <label>Description</label>
-        <length>3000</length>
+        <label>Date Assigned</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>10</visibleLines>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Completed__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Completed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Inspection__c</fullName>
@@ -90,7 +91,19 @@
         <externalId>false</externalId>
         <label>Inspection</label>
         <referenceTo>MUSW__Inspection__c</referenceTo>
-        <relationshipName>Investigation_Notes</relationshipName>
+        <relationshipName>Investigators</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Investigator_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Investigators</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -100,21 +113,30 @@
         <fullName>Title__c</fullName>
         <externalId>false</externalId>
         <label>Title</label>
-        <length>30</length>
-        <required>true</required>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Secondary Staff</fullName>
+                    <default>false</default>
+                    <label>Secondary Staff</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
-    <label>Activity Log</label>
+    <label>Assigned Staff</label>
     <nameField>
-        <displayFormat>{YY}-{MM}-{DD}-{0000}-NOTE</displayFormat>
-        <label>Investigation Notes ID</label>
+        <displayFormat>{YY}-{MM}-{0000}-STAFF</displayFormat>
+        <label>Examiner</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Activity Logs</pluralLabel>
+    <pluralLabel>Assigned Staff</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

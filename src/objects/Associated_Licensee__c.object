@@ -43,78 +43,69 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <fields>
-        <fullName>Activity_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Activity Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Complaint__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Complaint</label>
-        <referenceTo>MUSW__Complaint2__c</referenceTo>
-        <relationshipName>Investigation_Notes</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Description__c</fullName>
-        <externalId>false</externalId>
-        <label>Description</label>
-        <length>3000</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>10</visibleLines>
-    </fields>
     <fields>
         <fullName>Inspection__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Inspection</label>
         <referenceTo>MUSW__Inspection__c</referenceTo>
-        <relationshipName>Investigation_Notes</relationshipName>
+        <relationshipLabel>Associated Licensees</relationshipLabel>
+        <relationshipName>Associated_Licensees</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Title__c</fullName>
+        <fullName>License_Status__c</fullName>
         <externalId>false</externalId>
-        <label>Title</label>
-        <length>30</length>
-        <required>true</required>
-        <trackHistory>false</trackHistory>
+        <formula>TEXT(License__r.MUSW__Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Status</label>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Activity Log</label>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Associated Licensees</relationshipLabel>
+        <relationshipName>Associated_Licensees</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Licensee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Primary_Licensee__r.First_Name_Primary_Contact__c + &quot; &quot; + License__r.MUSW__Primary_Licensee__r.Last_Name_Primary_Contact__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Licensee Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Associated Licensee</label>
     <nameField>
-        <displayFormat>{YY}-{MM}-{DD}-{0000}-NOTE</displayFormat>
-        <label>Investigation Notes ID</label>
-        <trackHistory>false</trackHistory>
+        <displayFormat>{YY}-{MM}-{000000}</displayFormat>
+        <label>Associated Licensee Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Activity Logs</pluralLabel>
+    <pluralLabel>Associated Licensees</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
