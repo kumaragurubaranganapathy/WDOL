@@ -6066,7 +6066,7 @@
         <fullName>Allow_user_to_input_Only_till_4_digits</fullName>
         <active>true</active>
         <description>This validation rule would prevent user to enter more than 4 digits in the base field</description>
-        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),LEN(TEXT(Base__c))&gt;4)</errorConditionFormula>
+        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),Base__c&gt;=10000)</errorConditionFormula>
         <errorDisplayField>Base__c</errorDisplayField>
         <errorMessage>You are not allowed to enter more than 4 digits.</errorMessage>
     </validationRules>
