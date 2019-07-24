@@ -5,7 +5,7 @@
         <description>DSPS Tax Contact grace period</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vagoel@deloitte.com.polaris.sit2</recipient>
+            <recipient>vagoel@deloitte.com.polaris.qa</recipient>
             <type>user</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
@@ -17,7 +17,7 @@
         <description>DSPS Tax delinquency Contact Active</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vagoel@deloitte.com.polaris.sit2</recipient>
+            <recipient>vagoel@deloitte.com.polaris.qa</recipient>
             <type>user</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
@@ -29,7 +29,7 @@
         <description>DSPS Tax delinquency Contact OnHold</description>
         <protected>false</protected>
         <recipients>
-            <recipient>vagoel@deloitte.com.polaris.sit2</recipient>
+            <recipient>vagoel@deloitte.com.polaris.qa</recipient>
             <type>user</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
