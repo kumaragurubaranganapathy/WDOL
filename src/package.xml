@@ -123,8 +123,8 @@
         <members>MUSW__Inspection__c</members>
         <members>MUSW__Junction_Add_Setting__mdt</members>
         <members>MUSW__License2__c</members>
-		<members>MUSW__License_Parcel__c</members>
-		<members>MUSW__Account_Contact__c</members>
+	<members>MUSW__License_Parcel__c</members>
+	<members>MUSW__Account_Contact__c</members>
         <members>MUSW__Master_Distribution_List__c</members>
         <members>MUSW__Master_Fee_List__c</members>
         <members>MUSW__Master_Inspection_List__c</members>
@@ -160,9 +160,9 @@
         <members>User_Feedback__c</members>
         <members>User_Sharing_Model__mdt</members>
         <members>Warrant__c</members>
-		<members>DOL_Integration_Batch_Input__c</members>
-		<members>DOR_License_Status_Mapping__mdt</members>
-		<members>DOR_Professional_Code_Mapping__mdt</members>
+	<members>DOL_Integration_Batch_Input__c</members>
+	<members>DOR_License_Status_Mapping__mdt</members>
+	<members>DOR_Professional_Code_Mapping__mdt</members>
         <name>CustomObject</name>
     </types>
 	 <types>
@@ -196,6 +196,14 @@
         <members>standard__Service</members>
         <members>standard__ServiceConsole</members>
         <name>CustomApplication</name>
+</types>
+<types>
+        <members>*</members>
+        <name>QuickAction</name>
+</types>
+<types>
+        <members>*</members>
+        <name>NamedCredential</name>
 </types>
  <types>
         <members>AddNewRowEvt</members>
@@ -1211,7 +1219,7 @@
         <name>WorkflowFieldUpdate</name>
 </types>
 <types>
-        <members>*</members>
+        <members>MUSW__Submission__c.Open_TIFF_Attachment</members>
         <name>WebLink</name>
 </types>
 <types>
