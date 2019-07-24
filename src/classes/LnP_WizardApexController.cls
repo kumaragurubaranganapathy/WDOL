@@ -216,7 +216,9 @@ application.MUSW_Account__c = account;*/
         application.Stage__c = 0;
 		application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
-        application.MUSW__Account__c = account;
+                if( account != '' && account != null && account !='undefined'){
+            application.MUSW__Account__c = account;
+        }
         if(branchLicense.contains(licenseType)){
             application.Branch_License__c = true;
             application.Parent_License__c = LicenseUpgradeRecordID;
