@@ -1360,15 +1360,15 @@ Professional Dashboard
                        </div>
                    </div>
                </div>
-               
+               <div class="pagination-wrapper">
+                   <c:LnP_Pagination pgSize="4" fullList="{!v.PendingMaintananceRequestApplicationsDataList}"
+                                     dispList="{!v.pendingMaintainPaginationList}" />
+               </div>
            </aura:if>
            <aura:set attribute="else">
                <div class="slds-align_absolute-center">There are no pending maintenance requests</div>
            </aura:set>
-           <div class="pagination-wrapper">
-               <c:LnP_Pagination pgSize="4" fullList="{!v.PendingMaintananceRequestApplicationsDataList}"
-                                 dispList="{!v.pendingMaintainPaginationList}" />
-           </div>
+           
        </aura:if>
    </lightning:tab>
    
