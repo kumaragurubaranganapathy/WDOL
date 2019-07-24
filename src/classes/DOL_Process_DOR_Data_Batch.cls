@@ -142,7 +142,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }
         catch(Exception error){
             System.debug('error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString());
-            DOL_CreateErrorLog_Exception.logApplicationError(error, 'DOL_Process_DOR_Data_Batch', 'finish');
+            DOL_CreateErrorLog_Exception.logApplicationError(error);
         }
     }
     
