@@ -78,8 +78,20 @@
     <fields>
         <fullName>AccountStatus__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(License__r.MUSW__Primary_Licensee__r.Account_Status__c)</formula>
+        <formula>TEXT(License__r.Ultimate_Parent_Account__r.Account_Status__c)</formula>
         <label>AccountStatus</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LicenseRecordType__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>LicenseRecordType</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
