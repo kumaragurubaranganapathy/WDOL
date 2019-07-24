@@ -1,9 +1,15 @@
 ({
 	doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
+        var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var dayShortNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var month = localDate.getMonth();
+        var date = localDate.getDate();
+        var year = localDate.getFullYear();
+        var day = localDate.getDay();
+        localDate = dayShortNames[day]+' '+monthShortNames[month]+' '+date+' '+year+' '+localDate.getHours()+':'+localDate.getMinutes()+':'+localDate.getSeconds();
 		component.set("v.date", localDate);
         var picklistArray = [];
-
         var action = component.get("c.getPicklistFieldValues");
         action.setParams({
             'objectName':objectApi,
@@ -164,7 +170,7 @@
                             {label: 'Delivery Method', fieldName: 'Delivery_Method__c', type: 'Picklist', sortable : true},
                             {label: 'Clock Hours', fieldName: 'Clock_Hours__c', type: 'Number', sortable : true},
                             {label: 'Course Status', fieldName: 'MUSW__Status__c', type: 'Picklist', sortable : true},
-                            {label: 'Actions', type: 'button', initialWidth: 160, typeAttributes: 
+                            {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                             { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                          /*{label: 'Licensure Levels', fieldName: 'What_Licensure_Level__c', type: 'Picklist', sortable : true} */
                         ]);
