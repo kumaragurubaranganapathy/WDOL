@@ -14,6 +14,7 @@
     },
     fetchAppTypeEliQuestions : function(component, event, helper){
        component.find("button1").set('v.disabled',true);
+         helper.firePassValueEventHelper(component, event, helper);
     	helper.fetchAppTypeEliQuestionsHelper(component, event, helper);
 	},
     showOrHideQuestion : function(component, event, helper){
@@ -22,10 +23,12 @@
     },
     showOrHideEliQuestion : function(component, event, helper){
         component.find("button1").set('v.disabled',true);
+        helper.firePassValueEventHelper(component, event, helper);
         helper.showOrHideEliQuestionHelper(component, event, helper);
     },
     showNotAppTypeEliQuestions : function(component, event, helper){
        helper.showNotAppTypeEliQuestionsHelper(component, event, helper); 
+        helper.firePassValueEventHelper(component, event, helper);
     },
     startApplication : function(component, event, helper){
             helper.startApplicationHelper(component, event, helper);    

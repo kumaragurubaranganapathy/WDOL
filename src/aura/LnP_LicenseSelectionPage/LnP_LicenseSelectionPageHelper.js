@@ -366,7 +366,7 @@
                         component.find("button1").set('v.disabled',true);
                     }   
                 }else{
-                    component.find("button1").set('v.disabled',false);
+                    component.find("button1").set('v.disabled',true);
                 }                                             
             }
             else if(component.get("v.eliQuesNo") >= eliQuestions.length){
@@ -670,7 +670,12 @@
     },
     firePassValueEventHelper : function (component, event, helper){
         component.find("button1").set('v.disabled',true);
-        var pickerValue = component.find("accountPickerId").get("v.value");
+        if(component.find("accountPickerId") != undefined){
+             var pickerValue = component.find("accountPickerId").get("v.value");
+        if(pickerValue)
+            console.log('Check ');
+        else
+            pickerValue = component.get("v.selectedAccountId");
         var getEligibility = document.getElementById("eliTypeGridDiv").classList.contains('slds-hide');
         console.log("pickerValue"+pickerValue);
         
@@ -705,6 +710,8 @@
         }
         
         sessionStorage.setItem("accountRecordID",pickerValue);
+        }
+       
         
     },
     firePassLicenseValueEventHelper : function (component, event, helper){
