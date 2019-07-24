@@ -1,6 +1,9 @@
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
+.THIS .personal-info .slds-checkbox.certificate-checkbox br{
+    display:none;
+}
 .THIS .dispItem .uiOutputRichText{
      font-size: token(fieldlabelsize);
      color:t(fieldclr);
@@ -70,7 +73,7 @@
 }
 .THIS .slds-checkbox .slds-form-element__label{
 	font-size: 14px;
-    color: token(LnGFormTitleColor);   
+    color: token(fieldclr);   
     
 }
 .THIS .aff-loc{
@@ -117,9 +120,7 @@
     padding-bottom: 22px;
     border-top:1px solid #5b616b;
 }
-.THIS .field-item .cLnP_Attachment{
-    padding-bottom:11%;
-}
+
 .THIS .pull-right{
     margin-left: auto;
     margin-right: 0;
@@ -293,8 +294,8 @@
 .THIS .validate .uiInputTextArea{
     border:1px solid #5b616b;
 }
-.THIS .dispItem{
-    margin-bottom:0;
+.THIS .dispItem,.THIS .GuaranteedispItem {
+    margin-bottom:-11px;
 }
 .THIS .validate::before{
     position: absolute;
@@ -303,8 +304,18 @@
     top: 0px;
     left: -8px;
 }
-.THIS .validate .slds-form-element__label .uiOutputRichText span{
+.THIS .validate .slds-form-element__label .uiOutputRichText span span span{
      font-size: t(fieldlabelsize);
+    color: t(sentenceclr);
+    word-break: normal;
+    overflow-wrap: normal;
+    font-family: t(publicSansfontfamily);
+    margin: 0;
+    padding: 0 0 5px 0;
+    
+}
+.THIS .validate .slds-form-element__label .uiOutputRichText br{
+    display:none;
 }
 .THIS .validate .field-item,.THIS .dispItem .field-item{
     display:inline;
