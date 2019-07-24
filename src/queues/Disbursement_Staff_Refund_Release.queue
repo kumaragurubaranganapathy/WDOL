@@ -3,11 +3,9 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <name>Disbursement Staff Refund Release</name>
     <queueMembers>
-        <users>
-            <user>aspai@deloitte.com.dol.wa.gov</user>
-            <user>deearora@deloitte.com.polaris</user>
-            <user>nehasethi6@deloitte.com.polarisqa</user>
-        </users>
+        <publicGroups>
+            <publicGroup>System_Admin_Group</publicGroup>
+        </publicGroups>
     </queueMembers>
     <queueSobject>
         <sobjectType>BGBK__Refund2__c</sobjectType>
