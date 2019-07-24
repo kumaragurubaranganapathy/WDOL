@@ -5121,6 +5121,11 @@
         <field>Account.AccountSource</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Master_Fee_List__c.Exam_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Account_Status__c</field>
