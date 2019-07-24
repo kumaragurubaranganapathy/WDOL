@@ -5029,6 +5029,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Master_Fee_List__c.Exam_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>BGBK__Refund2__c.Stage__c</field>
         <readable>true</readable>

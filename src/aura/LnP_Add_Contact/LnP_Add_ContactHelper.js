@@ -64,7 +64,7 @@
     
      validateFieldvalues : function(component,event){
 		var eventFields = event.getParam("fields");
-		var fieldNames = ['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Other_Position__c','Ownership_Percentage__c','Title_select__c'];
+		var fieldNames = ['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Other_Position__c'];
 		var ErrorFields = [];
 			 if (!eventFields.First_Name__c) {  
 				ErrorFields.push('First Name');
@@ -87,9 +87,9 @@
 			/* if (!eventFields.Other_Position__c) {  
 				ErrorFields.push('Other Position');
 			 }*/
-			 if (!eventFields.Ownership_Percentage__c ) {  
+			 /*if (!eventFields.Ownership_Percentage__c ) {  
 				ErrorFields.push('OwnerShip Percentage');
-			 }
+			 } */
 			/* if (!eventFields.Title_select__c ) {  
 				ErrorFields.push('Title');
 			 }*/
