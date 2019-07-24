@@ -2,7 +2,7 @@
 ** Name             : DOL_DOR_Input
 ** Description   	: Input for DOR transaction from DOL system to Salesforce via Mulesoft.
 ** Version          : 1.0
-** Story			: US-****
+** Story			: US-2298
 **-------------------------------------
 ** Revision History:
 **---------------------------
@@ -42,6 +42,7 @@ public class DOL_DOR_Input {
 		public String dorGovPerMiddleName;
 		public String dorGovPerLastName;
 		public String dorTradeName;
+		public String dolProfCode;
 		public String fileName;
     
     public static DOL_DOR_Input parse(String json) {
