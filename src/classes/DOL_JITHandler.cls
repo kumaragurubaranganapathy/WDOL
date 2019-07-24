@@ -20,7 +20,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
     }
        
     global User createUser(Id samlSsoProviderId, Id communityId, Id portalId, String federationIdentifier, Map<String, String> attributes, String assertion) {
-        try {	
+        try {   
             system.debug('federationIdentifier==='+federationIdentifier);
             system.debug('attributes==='+attributes);
             if(!validSAMLAttributes(attributes)){
@@ -30,28 +30,41 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
                 system.debug('user***'+user);
                 if (user != null){
                     If(user.ContactId == null){
-                        System.debug('user=='+user);
-                		//throw new JITErrorObject('An SAML error occurred. Please contact us for assistance.', 'LogicError', 'federationIdentifier: '+ federationIdentifier + ' attempted to login via SAW in Community Portal but already has an internal user record.').getJitException();
+                        System.debug('internal user=='+user);
+                        
+                        Contact portalUserContact = getContactByEmailAndName(attributes.get(Label.SAML_Attribute_Name),attributes.get(Label.SAML_Attribute_Email));
+                        System.debug('existingcontact=='+portalUserContact);
+                        
+                        If(portalUserContact == null){   
+                            Account acc = createAccount(attributes.get(Label.SAML_Attribute_Name),attributes.get(Label.SAML_Attribute_Email));
+                            System.debug('acc=='+acc);
+                            portalUserContact = createContact (attributes.get(Label.SAML_Attribute_Name),  attributes.get(Label.SAML_Attribute_Email), acc.id);
+                            System.debug('newContact=='+portalUserContact);
+                        }
+                        user  = createUser (portalUserContact, federationIdentifier,attributes.get(Label.SAML_Attribute_User));
+                    }else If(user.ContactId != null){
+                        System.debug('existing portal user=='+user);
+                        user.FederationIdentifier = federationIdentifier;
+                         try{
+                            update user;
+                            system.debug('user :: '  + user);
+                        }catch(Exception e){
+                            System.debug('We cannot update this user :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
+                        }
                     }
-                    //Add condition here if portal user exists with same email address
-                    //if(user.user.federationIdentifier != null){
-
-                    //}
-                    user.FederationIdentifier = federationIdentifier;
-                    update user;
                     return user;
                 }else{   
-                    Contact conatctForUser = getContactByEmailAndName(attributes.get(Label.SAML_Attribute_Name),attributes.get(Label.SAML_Attribute_Email));
-                     System.debug('existingcontact=='+ConatctForUser);
+                    Contact portalUserContact = getContactByEmailAndName(attributes.get(Label.SAML_Attribute_Name),attributes.get(Label.SAML_Attribute_Email));
+                     System.debug('existingcontact=='+portalUserContact);
                     //Contact newContact = new Contact();
                     //if contact record with Same emial ,FN and LN does not exist in Salesforce
-                    If(ConatctForUser == null){   
+                    If(portalUserContact == null){   
                         Account acc = createAccount(attributes.get(Label.SAML_Attribute_Name),attributes.get(Label.SAML_Attribute_Email));
-                     	System.debug('acc=='+acc);
-                        conatctForUser = createContact (attributes.get(Label.SAML_Attribute_Name),  attributes.get(Label.SAML_Attribute_Email), acc.id);
-                     	System.debug('newContact=='+ConatctForUser);
+                        System.debug('acc=='+acc);
+                        portalUserContact = createContact (attributes.get(Label.SAML_Attribute_Name),  attributes.get(Label.SAML_Attribute_Email), acc.id);
+                        System.debug('newContact=='+portalUserContact);
                     }
-                    user  = createUser (conatctForUser, federationIdentifier,attributes.get(Label.SAML_Attribute_User));
+                    user  = createUser (portalUserContact, federationIdentifier,attributes.get(Label.SAML_Attribute_User));
                     return user;
                 }
             }
@@ -76,7 +89,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
     private User getUserByEmail(String email){
         List<User> users = [SELECT Id, Name, alias, Email, FederationIdentifier, ContactId FROM User WHERE Email = :email];
         if(users.size() > 0)
-        	return users[0];
+            return users[0];
         else
             return null;
     }
@@ -97,7 +110,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
         List<Contact> contacts = [SELECT Id, AccountId, FirstName, LastName, Email FROM Contact WHERE Email = :email AND FirstName= :firstName AND LastName=:lastName] ;
         System.debug('existing contacts'+contacts);
         if(contacts.size() > 0)
-        	return contacts[0];
+            return contacts[0];
         else
             return null;
     }
@@ -132,16 +145,16 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
             Recordtypeid = contRecordTypeId,
             AccountId = accountId
         );
-		try{
-			insert contact;
-			system.debug('contact :: '  + contact);
-		}catch(Exception e){
-			System.debug('We cannot insert this contact :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
-		}
+        try{
+            insert contact;
+            system.debug('contact :: '  + contact);
+        }catch(Exception e){
+            System.debug('We cannot insert this contact :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
+        }
         return contact;
     }
     private  Account createAccount(String name,  String emailVal){
-		Id acctRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('User Account').getRecordTypeId();
+        Id acctRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('User Account').getRecordTypeId();
         List<User> users = [Select Id FROM User WHERE Name =: System.Label.Admin_Name and isActive = true LIMIT 1  ] ;
         ID DEFAULT_ACCOUNT_OWNERID =  users[0].Id;
         
@@ -152,12 +165,12 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
             RecordTypeId = acctRecordTypeId,
             Account_Status__c  = 'Active'
         );
-		try{
-			insert account;
-			system.debug('account :: '  + account);
-		}catch(Exception e){
-			System.debug('We cannot insert this account :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
-		}
+        try{
+            insert account;
+            system.debug('account :: '  + account);
+        }catch(Exception e){
+            System.debug('We cannot insert this account :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
+        }
         return account;
     }
     private  User createUser(Contact contact, String fedId, String username) {
@@ -194,11 +207,11 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
         user.Emailencodingkey = 'UTF-8';
         System.debug('user==**'+user);
         try{
-			insert user;
-			system.debug('user :: '  + user);
-		}catch(Exception e){
-			System.debug('We cannot insert this user :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
-		}
+            insert user;
+            system.debug('user :: '  + user);
+        }catch(Exception e){
+            System.debug('We cannot insert this user :: ' + e.getMessage() + ' -- ' + e.getStackTraceString());
+        }
         return user;
     }
     private static String encrypt(String data){
