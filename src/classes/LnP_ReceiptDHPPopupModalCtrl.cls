@@ -10,6 +10,7 @@ public class LnP_ReceiptDHPPopupModalCtrl {
     public static String saveLicenseandReceipt(Id receiptId){
         try{
             MUSW__Receipt__c receiptRec = [Select Id,
+										   Name,
                                            MUSW__Amount_Tendered__c,
                                            MUSW__Check_Number__c,
                                            MUSW__Payment_Method__c,
@@ -80,7 +81,7 @@ public class LnP_ReceiptDHPPopupModalCtrl {
                     licRec.Polaris_DHP__c = true;
                     licRec.MUSW__Status__c = 'Inactive';
                     licRec.DHP_Stamp_Date__c = System.today();
-                    licRec.Polaris_Dishonored_Receipt_ID__c = receiptId;
+                    licRec.Polaris_Dishonored_Receipt_ID__c = receiptRec.Name;
                     licenseToBeUpdatedwithDHP.add(licRec);
                 }
                 system.debug('Before Update ' + licenseToBeUpdatedwithDHP);
