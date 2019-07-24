@@ -75,10 +75,7 @@
                                                     <div class="slds-truncate" title="{!tableData.Status__c}">{!tableData.Status__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
-                                            </td>  
-                                            <td data-label="Associated Licensees" class="cell-style">
-                                                <div class="slds-truncate" title="Associated Licensees">Associated Licensees</div>
-                                            </td>
+                                            </td>                                             
                                             <td data-label="Actions" class="cell-style action-cell">
                                                 <div class="rel-btn-wrapper">
                                                     <aura:if isTrue="{!(tableData.Status__c == 'Invited')? true : false}">
