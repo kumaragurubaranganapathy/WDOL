@@ -91,6 +91,7 @@
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
         component.find("button1").set('v.disabled',true);
+        component.set("v.eliTypeQues",[]);
         helper.fetchApplicationInstructionHelper(component,event,helper);
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
@@ -366,7 +367,7 @@
                         component.find("button1").set('v.disabled',true);
                     }   
                 }else{
-                    component.find("button1").set('v.disabled',true);
+                    component.find("button1").set('v.disabled',false);
                 }                                             
             }
             else if(component.get("v.eliQuesNo") >= eliQuestions.length){
