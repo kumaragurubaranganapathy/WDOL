@@ -7,16 +7,51 @@ public class ExamReschedule {
         List<Education_History__c> educationHistoryList = new List<Education_History__c>();
         Id educationHistoryRecordId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId() ;
         if(String.isNotBlank(licenseId)){
-        for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
-                                                          Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c
-                                                          From Education_History__c Where License__c = :licenseId
-                                                          AND (Status__c = 'Fail' OR Status__c = 'Expired')
-                                                          AND Reschedule_Possible__c = true
-                                                          And RecordTypeId = :educationHistoryRecordId]){
-                                                              educationHistoryList.add(educationHistoryRecods);                                             
-                                                          }
+            for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
+                                                              Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,
+                                                              Request__c,Program_Type__c,Request__r.Service_Request_Type__c
+                                                              From Education_History__c Where License__c = :licenseId
+                                                              And RecordTypeId = :educationHistoryRecordId]){
+                                                                  educationHistoryList.add(educationHistoryRecods);                                             
+                                                              }
         }
         return educationHistoryList;
+    }
+    @AuraEnabled
+     public static String insertRequestExam(String licId,String licenseType, String board,String ServiceRequestType,String ExamRecordId)
+    {
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        Id getContactId = '003r000000EOhBB';
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
+        }
+        system.debug('licenseType'+licenseType+'board');
+        Request__c application = new Request__c();
+        application.Profession__c = board; 
+        application.License_Type__c = licenseType;        
+        application.Stage__c = 0;
+        application.Service_Request_Type__c = ServiceRequestType;
+        application.Contact__c = getContactId;
+        application.Exam__c = ExamRecordId;
+        
+        if(licId != null && licId != ''){
+            application.License__c = licId;  
+        }  
+        try
+        {          
+            insert application;
+        }
+        catch(Exception e){
+            HandleException.LogException(e,'ExamReschedule','insertRequest');            
+        }
+        string appId = '';
+        return appId = application.Id;
     }
     
     @AuraEnabled
