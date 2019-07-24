@@ -56,14 +56,14 @@
                     <aura:if isTrue="{!v.accounts.length > 0}">
                         <div class="slds-hide account-wrapper" id="accountPickerId">
                             <!--<div class="account-label">Account: {!v.Get_Result}</div>-->
-                            <lightning:select aura:id="accountPickerId" name="" label="Select the Account" onchange="{!c.firePassValueEvent}" class="">
+                            <lightning:select value="{!v.selectedAccountId}" aura:id="accountPickerId" name="" label="Select the Account" onchange="{!c.firePassValueEvent}" class="">
                                 <option value="" text="Select an option"/>    
                                 <aura:iteration items="{!v.accounts}" var="account">
                                     <option value="{!account.Id}" selected="{!account.Id == v.selectedAccountId}">{!account.Name}</option>
                                 </aura:iteration>
                             </lightning:select>
                         </div>
-                    </aura:if>  
+                    </aura:if>
                     
                     <aura:if isTrue="{!v.showLicenseDropdown == true}">
                         <lightning:select aura:id="licensePickerId" name="" label="Select the License" variant="Brand"  onchange="{!c.firePassLicenseValueEvent}" class="slds-m-vertical_large">
@@ -115,7 +115,7 @@
             </div> 
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class= "proceed-btn-wrapper">
-            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" onclick="{!c.startApplication}" disabled="true"/>
+            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" onclick="{!c.validateForm}" disabled="true"/>
         </div>
     </div>
 </aura:component>
