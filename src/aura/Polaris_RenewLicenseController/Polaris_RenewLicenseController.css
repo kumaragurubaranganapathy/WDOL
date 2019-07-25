@@ -4,10 +4,22 @@
 .THIS label{
     font-size: 16px;
 }
+.THIS .slds-form-element__label span{
+    color:t(sentenceclr);
+}
 .THIS .field-item .slds-input{
     border:1px solid #5b616b;
     height:42px;
     margin-bottom: 0.8rem
+}
+.THIS .certificate-checkbox .slds-checkbox__label span{
+    color:t(sentenceclr);
+}
+.THIS .Information .slds-text-longform{
+    color:t(sentenceclr);
+}
+.THIS .Guarantee .slds-text-longform{
+    color:t(fieldclr);
 }
 .THIS .slds-form-element__label{
     font-size: t(fieldlabelsize); 
@@ -25,7 +37,8 @@
     margin-bottom: 1rem;
 }
 .THIS .sectiondetail{
-   font-size:t(fieldlabelsize);    
+   font-size:t(fieldlabelsize);
+    color:t(sentenceclr);
 }
 .THIS .field-item.attest-item{
     padding-right:0;
@@ -58,7 +71,7 @@
 }
 .THIS .slds-checkbox .slds-form-element__label{
 	font-size: t(fieldlabelsize);
-	color: t(fieldclr);
+    color: t(fieldclr);
 }
 .THIS .personal-info .review-item .slds-form-element {
     margin-bottom: 13px;

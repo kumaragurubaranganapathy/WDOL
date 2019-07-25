@@ -15,9 +15,12 @@
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
-   <div class="field-item content-wrapper">
+  
+    <div class="field-item content-wrapper">
+        <aura:if isTrue="{!v.endorsementList!=0}">
         <div class="spaceBottm">Endorsement Details
             <p class="slds-p-vertical_small">
+                
                 <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                     <thead>
                         <tr class="slds-line-height_reset">
@@ -49,6 +52,7 @@
             </p>
          
         </div>
+         </aura:if>
         
         <aura:if isTrue="{!v.showProvider}">    
             <!--<c:LnP_RecordEditForms sectionList ="{!v.sectionList}" sectionName="{!v.sectionName}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}"/> -->
