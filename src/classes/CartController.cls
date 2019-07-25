@@ -1328,6 +1328,18 @@ public with sharing class CartController
         pr.setredirect(true);
         return pr;
     }
+	
+	//Added for BUG:3573
+    public PageReference printReceipt(){
+        //onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');"
+        if(portalProfiles.size() == 0){
+            PageReference pageRef = new PageReference('/apex/BGBK__CartPrint?cartId='+cart.Id+'&email='+email); 
+            return pageRef;
+        }else{
+            PageReference pageRef = new PageReference('/BGBK__CartPrint?cartId='+cart.Id+'&email='+email); 
+            return pageRef;
+        }
+    }
     
     public PageReference  backToItems()
     {
