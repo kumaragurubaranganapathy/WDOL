@@ -84,6 +84,7 @@
         }
     },
     Update_AddNewRow : function(component,event,helper){
+        
         var _depositRec= component.get("v.depositRec");    
         console.log("depositRec : "+JSON.stringify(_depositRec));
         var _AddRowEvt = component.getEvent("AddRowEvt");
