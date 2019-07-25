@@ -5,6 +5,7 @@
     <aura:attribute name="section" type="List"/>
     <aura:attribute name="applicationId" type="Id"/>
     <aura:attribute name="flagHideAndShow" type="String"/>
+    <aura:attribute name="isRenewal" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:registerEvent name="CmpEvent" type="c:LnP_applyLicense"/> <!-- added by AD -->
     
@@ -22,7 +23,7 @@
                 </aura:iteration> 
             </div>
             <div class="row">
-                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"/> 
+                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" isRenewal="{!v.isRenewal}" /> 
             </div>
         </lightning:recordEditForm>
         <aura:set attribute="else">
@@ -75,7 +76,7 @@
                     </aura:iteration> 
                 </div>
                 <div class="row">
-                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"/> 
+                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" isRenewal="{!v.isRenewal}"/> 
                 </div>
             </lightning:recordEditForm>
         </aura:set>

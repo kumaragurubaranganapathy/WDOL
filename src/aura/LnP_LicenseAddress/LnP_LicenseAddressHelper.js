@@ -493,6 +493,14 @@
                                 component.set("v.isPhysicalState", false);
                             }
                         component.set("v.physicalAddressParcel.Zip_Postal_Code__c", parcelList[0].Zip_Postal_Code__c);
+                        console.log("inside physical address::::");
+                        console.log("isRenewal::"+component.get("v.isRenewal"));
+                        if(component.get("v.isRenewal")){
+                            console.log("inside event call");
+                            var compEvent = $A.get("e.c:RefreshComponentEvent"); 
+                            compEvent.setParams({"physicalAddressModifiedonRenewal" : "true" });
+                            compEvent.fire();
+                        }
                     }
                     helper.showToast(component, event, "Success!", "success", "Your address Entry has been successfully created."); 
                 }
