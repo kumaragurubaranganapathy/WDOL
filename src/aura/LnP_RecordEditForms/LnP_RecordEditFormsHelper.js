@@ -110,7 +110,23 @@
         if(currElem.get("v.fieldName")==="Current__c"){
             currentValue = currElem.get("v.value");
             component.set("v.currentValue",currentValue);            
-        }      
+        }
+		var currElement = event.getSource().get('v.value'); 
+        var currfield=event.getSource().get('v.fieldName');
+        var masking = event.getSource().get('v.id');
+        var patternArray=masking.split(",")
+        var strlength=patternArray[0];
+        var sliceIndex=patternArray[1];
+        var intervalIndex=patternArray[2];
+        var delimiter=patternArray[3];
+        var endIndex=(+sliceIndex)+(+intervalIndex);
+        if(currfield=="Supervisor_Phone_Number__c"){
+            if(currElement.length==strlength){
+                var trimmedNo = ('' + currElement).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, sliceIndex)+delimiter+trimmedNo.slice(sliceIndex,endIndex) + delimiter + trimmedNo.slice(endIndex);
+                event.getSource().set('v.value',phone); 
+            }
+        }		
     },
     inputEditClick : function(component,event){        
         var currElem = event.getSource();
@@ -124,6 +140,22 @@
             cardIndex = parseInt(cardClass.split("itemRow=")[1]);
             component.set("v.currentEditValue",currentValue);
             component.set("v.cardIndex",cardIndex);            
+        }
+		var currElement = event.getSource().get('v.value'); 
+        var currfield=event.getSource().get('v.fieldName');
+        var masking = event.getSource().get('v.id');
+        var patternArray=masking.split(",")
+        var strlength=patternArray[0];
+        var sliceIndex=patternArray[1];
+        var intervalIndex=patternArray[2];
+        var delimiter=patternArray[3];
+        var endIndex=(+sliceIndex)+(+intervalIndex);
+        if(currfield=="Supervisor_Phone_Number__c"){
+            if(currElement.length==strlength){
+                var trimmedNo = ('' + currElement).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, sliceIndex)+delimiter+trimmedNo.slice(sliceIndex,endIndex) + delimiter + trimmedNo.slice(endIndex);
+                event.getSource().set('v.value',phone); 
+            }
         }
         /*inputFields.forEach(function(elem){
             var fieldName = elem.get("v.fieldName");
