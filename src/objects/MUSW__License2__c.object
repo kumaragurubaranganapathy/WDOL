@@ -3287,7 +3287,7 @@ Military_Waiver__c))))))))))))</formula>
     <fields>
         <fullName>No_of_years_inactive__c</fullName>
         <externalId>false</externalId>
-        <formula>CEILING(( TODAY()-MUSW__Expiration_Date__c) / 365)</formula>
+        <formula>(TODAY()-MUSW__Expiration_Date__c) / 365</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No.of years inactive</label>
         <precision>18</precision>

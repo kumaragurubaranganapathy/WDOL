@@ -133,59 +133,42 @@
                         <tbody>
                             
                             <aura:iteration items="{!v.draftCoursesPagination}" var="tableData" indexVar="ind">
-                                
                                 <tr class="slds-hint-parent">    
-                                    <td data-label="Course Name" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Course_Name__c}">
-                                            <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Name__c}</div>
+                                    <td data-label="Profession" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Application_Type__c}">
+                                            <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
-                                    <td data-label="Course Type" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Course_Type__c}">
-                                            <div class="slds-truncate" title="{!tableData.Course_Type__c}">{!tableData.Course_Type__c}</div>
+                                    <td data-label="License Type" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Credential_Type__c}">
+                                            <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
-                                    <td data-label="Delivery Method" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Delivery_Method__c}">
-                                            <div class="slds-truncate" title="{!tableData.Delivery_Method__c}">{!tableData.Delivery_Method__c}</div>
-                                            <aura:set attribute="else">(None)</aura:set>
-                                        </aura:if>
-                                    </td>
-                                    <td data-label="Licensure Level" class="cell-style">
-                                        <aura:if isTrue="{!tableData.What_Licensure_Level__c}">
-                                            <div class="slds-truncate" title="{!tableData.What_Licensure_Level__c}">{!tableData.What_Licensure_Level__c}</div>
+                                    <td data-label="Application Method" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Application_Method__c}">
+                                            <div class="slds-truncate" title="{!tableData.Application_Method__c}">{!tableData.Application_Method__c}</div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
-                                    <td data-label="Clock Hours" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Clock_Hours__c}">
-                                            <div class="slds-truncate" title="{!tableData.Clock_Hours__c}">{!tableData.Clock_Hours__c}</div>
+                                    <td data-label="Last Updated" class="cell-style">
+                                        <aura:if isTrue="{!tableData.LastModifiedDate}">
+                                            <div class="slds-truncate" title="{!tableData.LastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
-                                    </td>
-                                    <td data-label="Status" class="cell-style">
-                                        <div class="help-text-wrapper">
-                                            <aura:if isTrue="{!tableData.Status}">
-                                                <div class="slds-truncate" title="{!tableData.Status}">{!tableData.Status}</div>
-                                                <aura:set attribute="else">None</aura:set>
-                                            </aura:if>
-                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj = "License" data-status ="{!tableData.MUSW__Status__c}" data-substatus = "">
-                                                <lightning:helptext content="{!v.helptextcontent}" />
-                                            </div>
-                                        </div>
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" data-recordId="{!tableData.id}">
-                                            <lightning:button label="Edit" title="Neutral action"/>
+                                        <div class="new-lic-btn"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                             data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
+                                            <lightning:button variant="brand" label="Edit" title="Neutral action"/>
                                         </div>    
                                     </td>
                                     <td data-label="actions" class="cell-style">
-                                        <div class="slds-truncate" data-recordId="{!tableData.id}">
+                                        <div class="new-lic-btn" onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
                                             <lightning:button label="Delete" title="Neutral action"/>
                                         </div>    
-                                    </td>
+                                    </td> 
                                 </tr>  
                             </aura:iteration>
                         </tbody>

@@ -71,7 +71,8 @@
                 } else {
                     console.log("Unknown error");
                 }
-            }    
+            } 
+            component.set("v.articlesLoaded",true);
         });
         $A.enqueueAction(action);
     },

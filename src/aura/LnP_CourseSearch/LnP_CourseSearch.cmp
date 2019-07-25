@@ -99,11 +99,12 @@ _______________________________________________________________
                                 <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 
                                 <lightning:select name="Program" label="What program are you interested in?"
-                                                  aura:id="Program" value="" required="true" onchange="{!c.searchCourse}">
-                                    <option text="Select an Option" value="" />
-                                    <aura:iteration items="{!v.programOptions}" var="option">
+                                                  aura:id="Program" value="Appraisers" required="true" onchange="{!c.searchCourse}">
+                                    <!--option text="Select an Option" value="" /-->
+                                    <option text="Appraisers" value="Appraisers" label="{!option}" />
+                                    <!--aura:iteration items="{!v.programOptions}" var="option">
                                         <option text="{!option}" value="{!option}" label="{!option}" />
-                                    </aura:iteration>
+                                    </aura:iteration-->
                                 </lightning:select>
                             </div>
                             <!-- </div> -->
@@ -297,63 +298,59 @@ _______________________________________________________________
                 </div>
                 <aura:iteration items="{!v.detailData}" var="item">
                     <div class="card table-border">
-                        <lightning:layout class="slds-p-around_small bottom-border slds-wrap">
+                                                <lightning:layout class="slds-p-around_small bottom-border slds-wrap">
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="text-style">Course Name&nbsp;:</div>
+                                <div class="text-style">Course Name:<span>&nbsp;</span></div>
                                 <div class="text-style-val">{!item.Course_Title__c}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="text-style">Provider/School Name&nbsp;:</div>
+                                <div class="text-style">Provider/School Name:<span>&nbsp;</span></div>
                                 <div class="text-style-val">{!item.Ultimate_Parent_Account__r.Name}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="text-style">Status&nbsp;:</div>
+                                <div class="text-style">Status:<span>&nbsp;</span></div>
                                 <div class="text-style-val">{!item.MUSW__Status__c}</div>
                             </lightning:layoutItem>
                         </lightning:layout>
                         <div class="slds-grid slds-p-around_small slds-wrap">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Course Name&nbsp;:</div>
-                                <div class="field-style-val">{!item.Course_Title__c}</div>
-                            </div>
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Clock Hours&nbsp;:</div>
+                                <div class="field-style fieldSize">Clock Hours:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">First Issue Date&nbsp;:</div>
+                                <div class="field-style fieldSize">First Issue Date:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Original_Issue_Date__c}</div>
                             </div>
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Course Type&nbsp;:</div>
+                            <!--div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="field-style fieldSize">Course Type:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Course_Type__c}</div>
-                            </div>
+                            </div-->
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Pre-Qualifying&nbsp;:</div>
+                                <div class="field-style fieldSize">Pre-Qualifying Hours:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours_Pre_Qualifying__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Current Issue Date&nbsp;:</div>
+                                <div class="field-style fieldSize">Current Issue Date:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.MUSW__Issue_Date__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Licensure Level&nbsp;:</div>
+                                <div class="field-style fieldSize">Licensure Level:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.What_Licensure_Level__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Qualifying Elective&nbsp;:</div>
+                                <div class="field-style fieldSize">Qualifying Elective:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours_Qualifying_Elective__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Expiration Date&nbsp;:</div>
+                                <div class="field-style fieldSize">Expiration Date:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.MUSW__Expiration_Date__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Delivery Method&nbsp;:</div>
+                                <div class="field-style fieldSize">Delivery Method:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Delivery_Method__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Continuing Education&nbsp;:</div>
+                                <div class="field-style fieldSize">Continuing Education:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours_Continuing_Education__c}
                                 </div>
                             </div>
@@ -363,16 +360,16 @@ _______________________________________________________________
                                 Provider Contact Information</div>
                             <div class="slds-grid section-content slds-p-around_small">
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="field-style fieldSize">Phone Number&nbsp;:</div>
-                                    <div class="field-style-val">{!item.License_Phone__c}</div>
+                                    <div class="field-style fieldSize">Phone Number:<span>&nbsp;</span></div>
+                                    <div class="field-style-val"><a href="{!'tel:'+item.License_Phone__c}">{!item.License_Phone__c}</a></div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="field-style fieldSize">Email&nbsp;:</div>
-                                    <div class="field-style-val">{!item.License_Email__c}</div>
+                                    <div class="field-style fieldSize">Email:<span>&nbsp;</span></div>
+                                    <div class="field-style-val"><a href="{!'mailto:'+item.License_Email__c}">{!item.License_Email__c}</a></div>
                                 </div>
                                 <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                    <div class="field-style fieldSize">Website&nbsp;:</div>
-                                    <div class="field-style-val">{!item.Website__c}</div>
+                                    <div class="field-style fieldSize">Website:<span>&nbsp;</span></div>
+                                    <div class="field-style-val"><a href="{!'//'+item.Website__c}" target="_blank">{!item.Website__c}</a></div>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +419,7 @@ _______________________________________________________________
                     </div>
                 </aura:iteration>
                 <div class="buttons-right slds-m-vertical_small slds-m-left_small">
-                    <lightning:button variant="neutral" class="" type="button"
+                    <lightning:button variant="brand" class="" type="button"
                                       name="cancel" label="SEARCH ANOTHER LICENSE" onclick="{!c.modifySearch}" />
                 </div>
             </aura:if>

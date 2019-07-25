@@ -570,7 +570,7 @@ public without sharing class Add_BusinessController {
         List<String> columnHeaderList;
         List<String> statusFilterList;
         if(sObjectName == 'MUSW__Account_Contact__c'){
-            columnHeaderList = new List<String>{'Name','Role','Admin','DCP','Email','Status','Associated Licensees','Actions'};
+            columnHeaderList = new List<String>{'Name','Role','Admin','DCP','Email','Status','Actions'};
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                     sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted']; 
         }
@@ -681,7 +681,7 @@ public without sharing class Add_BusinessController {
                                                 Course_Status__c,Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                                 Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
                                                 Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c,Sub_Status__c,MUSW__Status__c
-                                                FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordTypeId =: courseRecordTypeId AND MUSW__Primary_Licensee__c =: accountID ORDER BY CreatedDate asc];
+                                                FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordTypeId =: courseRecordTypeId AND Ultimate_Parent_Account__c =: accountID ORDER BY CreatedDate asc];
             
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             

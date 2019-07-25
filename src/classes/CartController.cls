@@ -80,6 +80,7 @@ public with sharing class CartController
     public String encryptedSessionInfo {get; set;}
     public boolean requestFromEPayment {get; set;}
     public DOL_ePaymentReturnSession ePaymentReturnSession {get; set;}
+	public List<Profile> portalProfiles {get;set;}
     
     public CartController(ApexPages.StandardSetController c)
     {
@@ -183,7 +184,11 @@ public with sharing class CartController
         }
         system.debug('contact = '+ m_cs.getActiveContact() );
         paymentGatewaySettings = [Select Id, DeveloperName, Endpoint__c, Biller_ID__c, Biller_Group_ID__c, Product_Code__c From Payment_Gateway_Settings__mdt where DeveloperName = 'US_Bank_Settings' limit 1];
-
+		
+		List<String> portalProfileNames = DOL_AppConstants.PORTAL_PROFILES;
+        system.debug('portalProfileNames::'+portalProfileNames);
+        portalProfiles = [Select id, Name from Profile where Id =: userinfo.getProfileid() and Name In: portalProfileNames];
+        system.debug('portalProfiles::'+portalProfiles);
     }
     
     public void initOrder()
@@ -1059,10 +1064,7 @@ public with sharing class CartController
         
        //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
        BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id]; 
-       List<String> portalProfiles = DOL_AppConstants.PORTAL_PROFILES;
-	   system.debug('portalProfiles::'+portalProfiles);
-        List<Profile> pfile = [Select id, Name from Profile where Id =: userinfo.getProfileid() and Name In: portalProfiles];
-       	system.debug('pfile::'+pfile);
+       
         system.debug('the values of cartForIMCheck' +cartForIMCheck);
         // reset receipt list based on VO list
         rs.clear();
@@ -1084,7 +1086,7 @@ public with sharing class CartController
             receipt.BGBK__Cart__c = cart.Id;
            
            //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
-            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || pfile.size() == 0){ // added as a part of bug 2164
+            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
             receipt.Intake_Method__c='Counter';
                 }
             else{
@@ -1134,7 +1136,9 @@ public with sharing class CartController
                     depositPayments = populateDepositPayment(receipts);
 					// Multiple Receipt Fix BUG - 2497, Developer :- Laltu Banerjee
                     // Get Receipt Id created in this transaction
-                    receiptId = rs.get(0).Id;
+                    if(rs.size()>0){
+						receiptId = rs.get(0).Id;
+					}
                     // ELGIN-237: re-query receipt in order to get the receipt numbers
                     MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
                     rs.clear();
@@ -1324,13 +1328,30 @@ public with sharing class CartController
         pr.setredirect(true);
         return pr;
     }
+	
+	//Added for BUG:3573
+    public PageReference printReceipt(){
+        //onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');"
+        if(portalProfiles.size() == 0){
+            PageReference pageRef = new PageReference('/apex/BGBK__CartPrint?cartId='+cart.Id+'&email='+email); 
+            return pageRef;
+        }else{
+            PageReference pageRef = new PageReference('/BGBK__CartPrint?cartId='+cart.Id+'&email='+email); 
+            return pageRef;
+        }
+    }
+    
     
     public PageReference  backToItems()
     {
-        // selectedTab = label.Str_Fees;
-        PageReference pageRef = new PageReference('/s/user-feedback'); // Srujan - added to show Feedback Component
-        return pageRef; 
-        
+        //added as a part of BUG: 2965 when paying from back office and clicking back,navigate to correct page.
+        if(portalProfiles.size() == 0){
+            return cancel();
+        }else{
+            // selectedTab = label.Str_Fees;
+            PageReference pageRef = new PageReference('/s/user-feedback'); // Srujan - added to show Feedback Component
+            return pageRef; 
+        }
     }
     public pageReference cancel()
     {

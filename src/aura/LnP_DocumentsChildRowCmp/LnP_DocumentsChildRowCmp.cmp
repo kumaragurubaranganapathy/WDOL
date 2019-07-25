@@ -29,7 +29,7 @@
     <aura:attribute name="bDisabledDependentFld" type="boolean" default="true"/> 
     <!-- handlers -->
     
-   
+    
     
     <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
     <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
