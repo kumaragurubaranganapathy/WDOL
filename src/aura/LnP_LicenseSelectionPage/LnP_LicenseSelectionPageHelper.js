@@ -90,7 +90,7 @@
     },
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
-        component.find("button1").set('v.disabled',true);
+        component.find("button1").set('v.disabled',false);
         component.set("v.eliTypeQues",[]);
         helper.fetchApplicationInstructionHelper(component,event,helper);
         
@@ -340,7 +340,7 @@
                 component.find("appTypeField").set("v.value","");
             }
             else{
-                component.find("button1").set('v.disabled',true);
+                component.find("button1").set('v.disabled',false);
                 //proceedButtonDiv.classList.add("slds-hide");
                 //eliQuesDiv.classList.add("slds-hide");
                 //eliTextDiv.classList.add("slds-hide");
@@ -365,23 +365,11 @@
                             component.find("button1").set('v.disabled',false);
                         }
                     }else{
-                        component.find("button1").set('v.disabled',true);
+                        component.find("button1").set('v.disabled',false);
                     }   
                 }else{
                     component.find("button1").set('v.disabled',false);
                 }                                             
-            }
-            else if(component.get("v.eliQuesNo") >= eliQuestions.length){
-                if(!answersMarked){
-                    var toastEvent = $A.get("e.force:showToast");
-                    toastEvent.setParams({
-                        "title": "Failure!",
-                        "message": "You do not appear to meet the eligibility criteria for this profession at this time.  Please do not apply until you meet all eligibility criteria ",
-                        "type": "Error"
-                    });
-                    toastEvent.fire();
-                    component.find("button1").set('v.disabled',true);
-                }
             }
             else{
                 component.find("button1").set('v.disabled',true);
@@ -561,7 +549,7 @@
         var board=component.get("v.board");
         var licenseType=component.get("v.licenseType");
         var result ='';
-        component.find("button1").set('v.disabled',true);
+        component.find("button1").set('v.disabled',false);
         try{
             return new Promise($A.getCallback(function(resolve, reject) {
                 console.log('inside promise');
@@ -604,7 +592,7 @@
                             var v = document.getElementById("accountPickerId");
                             v.classList.remove('slds-hide');
                             console.log("component.get"+component.get("v.accounts"));
-                            component.find("button1").set('v.disabled',true);
+                            component.find("button1").set('v.disabled',false);
                             if(component.get("v.accounts") == ''){
                                 var toastEvent = $A.get("e.force:showToast");
                                 toastEvent.setParams({
@@ -672,7 +660,7 @@
         component.set("v.Get_Result", AccountName);
     },
     firePassValueEventHelper : function (component, event, helper){
-        component.find("button1").set('v.disabled',true);
+        component.find("button1").set('v.disabled',false);
         if(component.find("accountPickerId") != undefined){
              var pickerValue = component.find("accountPickerId").get("v.value");
         if(pickerValue)
@@ -703,13 +691,13 @@
                 component.find("button1").set('v.disabled',false);
                 
             } else {
-                component.find("button1").set('v.disabled',true);
+                component.find("button1").set('v.disabled',false);
             }
         } else if(pickerValue != "" && questionsChecker) {
             component.find("button1").set('v.disabled',false);
             
         } else {
-            component.find("button1").set('v.disabled',true);
+            component.find("button1").set('v.disabled',false);
         }
         
         sessionStorage.setItem("accountRecordID",pickerValue);

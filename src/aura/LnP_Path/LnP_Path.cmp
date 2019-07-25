@@ -19,7 +19,7 @@
         <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
 			<span class="{!(((var+1)==v.currentTab)?'': 'slds-hide')+' '}">
                 <!--<div class="subheader">{!tabPath.subheader}</div>-->
-                <div class="subheader">{!'Apply for a New License : ' + v.board}</div>
+                <div class="subheader">{!'Apply for a new license : ' + v.board}</div>
 				<div class="subsubheader">{!tabPath.subsubheader}</div>
 			</span>
 		</aura:iteration>
@@ -56,6 +56,9 @@
 									<div id ="{!'CurrIcon'+(var+1)}" class="{!(((var+1)==v.currentTab)?'is-current':(greaterthan((var+1),v.currentTab)==true?'is-not-current':'slds-hide'))+' icon'}">
                                           <div class="outer-circle" >
                                          </div>
+                                       <!-- <div class="outer">
+                                                <div class="inner">&nbsp;</div>
+                                        </div>-->
                                     </div>
                                     <!--<img id ="{!'MobIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/disabledmenu.svg'}" class="{!(greaterthan((var+1),v.currentTab)==true?'mobile-tab-view':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>-->
 								</a>

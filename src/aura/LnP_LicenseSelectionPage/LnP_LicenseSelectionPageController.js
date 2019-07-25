@@ -72,8 +72,8 @@
             var eliQuestions= component.find('eliRadios');
             var answersMarked = true;
             if(component.get("v.eliTypeQues").length == 1){
-                if(eliQuestions.get('v.value') != 'No') {
-                    answersMarked = true;
+                if(eliQuestions.get('v.value') != 'Yes') {
+                    answersMarked = false;
                 }
                 
             } else {
@@ -86,7 +86,7 @@
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Failure!",
-                    "message": "You do not appear to meet the eligibility criteria for this profession at this time.  Please do not apply until you meet all eligibility criteria ",
+                    "message": "You do not appear to meet the eligibility criteria for this profession at this time. Please do not apply until you meet all eligibility criteria",
                     "type": "Error"
                 });
                 toastEvent.fire();
@@ -130,7 +130,7 @@
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Failure!",
-                    "message": "Please select account to proceed if account is not present please create business account and then apply ",
+                    "message": "Please do not apply until you meet all eligibility criteria",
                     "type": "Error"
                 });
                 toastEvent.fire();
