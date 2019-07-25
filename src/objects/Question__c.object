@@ -796,12 +796,14 @@
     </fields>
     <fields>
         <fullName>Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Message</label>
-        <required>false</required>
+        <length>131071</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Mulesoft_External_Id__c</fullName>
@@ -922,12 +924,25 @@
         <fullName>Qualifying_Response__c</fullName>
         <description>The responses for which the current dependent question is considered as dependent on the parent will be stored in this field. 
 If multiple responses qualify for the dependency, then multiple values can be stored here separated by a comma.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Qualifying Response</label>
-        <required>false</required>
+        <length>131071</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+	    <fields>
+        <fullName>Warning_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Warning Message</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>QuestionFieldAPI__c</fullName>
