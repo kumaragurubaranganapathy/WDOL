@@ -59,7 +59,7 @@
                     sectionList = sectionList.labelFieldsMap;
                     for(var i=0;i<sectionList.length;i++){
                         if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'LnP_BackgroundSection__c' && obj=='LnP_BackgroundSection__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label, "required":sectionList[i].isMandatoryQues, "regex":sectionList[i].regex, "error":sectionList[i].errormsg});
+                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label, "required":sectionList[i].isMandatoryQues, "regex":sectionList[i].regex, "error":sectionList[i].errormsg, "masking":sectionList[i].validationCriteria});
                         }
                         else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Endorsement__c' && obj=='Endorsement__c'){
                             recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
