@@ -64,9 +64,11 @@
     <aura:attribute name="userSelectedAddr" type="String" />
     <aura:attribute name="isSelectedAddrTrue" type ="Boolean" default="false"/>
     <aura:attribute name="isPhysicalAndMailingSame" type ="Boolean" default="false"/>
-    <aura:attribute name="sObjParcel" type="String" default="MUSW__Parcel__c"/>    
-    
+    <aura:attribute name="sObjParcel" type="String" default="MUSW__Parcel__c"/>
+    <aura:attribute name="isRenewal" type="Boolean" default="false" />
+	<aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:AddressModifiedEvent" action="{!c.handleEvent}"/>  
     
     
         <div id="usAddr" class ="usAddress">

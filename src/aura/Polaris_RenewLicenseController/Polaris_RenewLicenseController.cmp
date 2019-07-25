@@ -18,6 +18,7 @@
     <aura:attribute name="objectName" type ="String"/>
     <aura:attribute name="SectionError" type="string[]" default="[]"/>
     <aura:attribute name="currSection" type ="String" default=""/>
+    <aura:attribute name="isRenewal" type="Boolean" default="true" />
     <aura:attribute name="questionsAnswers" type="List"/>
     <aura:attribute name="attachmentResponse" type="List"/>
     <aura:attribute name="certificateValues" type="String" default="false" description="certificate checkbox validation flag" />
@@ -42,6 +43,9 @@
     <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
     <aura:attribute name="showEndoMessage" type="Boolean" default="false" />
     <aura:attribute name="endoMessage" type="String" />
+    <aura:attribute name="PhysicalAddressModified" type="Boolean" default="false" />
+    <aura:registerEvent name="AddressModifiedEvent" type="c:AddressModifiedEvent" />
+    <aura:handler event="c:RefreshComponentEvent" action="{!c.handleComponentEvent}"/>
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -68,7 +72,7 @@
                 <aura:set attribute="else">
                     <aura:if isTrue="{!and(or(section.sectionName=='Course Information'), v.currentTab==section.tabIndex)}">
                         <div class="personal-info">                    
-                            <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
+                            <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}" isRenewal="{!v.isRenewal}" />
                         </div>
                     </aura:if>
                     <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap personal-info':'slds-hide'}">

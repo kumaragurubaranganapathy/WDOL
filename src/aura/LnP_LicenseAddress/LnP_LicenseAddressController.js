@@ -274,6 +274,13 @@
             helper.updateExistingMailingAddress(component, event, helper, isChecked);
         }
         
+    },
+	
+    handleEvent : function(component,event,helper){
+        console.log("inside handleEvent::");
+        var isRenewal = event.getParam("isRenewal");
+        component.set("v.isRenewal",isRenewal);
+        console.log("inside Address"+ component.get("v.isRenewal",isRenewal));
     }
     
 })

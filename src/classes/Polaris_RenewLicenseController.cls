@@ -1013,13 +1013,14 @@ listApp.add(applicationChild);*/
         // For Course Renewal Applications
         Id courseRT = SObjectType.Renewal_Application__c.getRecordTypeInfosBYDeveloperName().get('Course').getRecordTypeId();
         
-        List<MUSW__Application2__c> applicationList = [SELECT Id,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
+        List<MUSW__Application2__c> applicationList = [SELECT Id,isRenewal__c,Physical_Address_Modified_On_Renewal__c,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
         system.debug('applicationList : '+applicationList);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
             mstLicense.Applicant__c = application.MUSW__Applicant__c;
             mstLicense.Application_Type__c = application.Application_Type__c;
             mstLicense.Credential_Type__c = application.Credential_Type__c;
+            mstLicense.Physical_Address_Modified__c = application.Physical_Address_Modified_On_Renewal__c;
             mstLicense.Credential__c = application.Credential_Type__c;
             //mstLicense.Application_Method__c = application.Application_Method__c;
             if(application.MUSW__Account__c!=null)
@@ -1158,6 +1159,11 @@ mstLicense.RecordTypeId = businessRT;
             
         }
         update lstEndo;
+        if(!applicationList.isEmpty())
+        {
+            applicationList[0].isRenewal__c = false;
+            update applicationList;
+        }
         return lstLisence[0].Id;
         
     }
@@ -1242,5 +1248,18 @@ mstLicense.RecordTypeId = businessRT;
         
     }
     
+    @AuraEnabled
+    public static boolean updateAddressModified(Id appId){
+        Boolean updatedFlag = false;
+        MUSW__Application2__c app = new MUSW__Application2__c(Id = appId);
+        app.Physical_Address_Modified_On_Renewal__c = true;
+        try{
+            update app;
+            updatedFlag = true;
+        }catch(Exception e){
+            updatedFlag = false;
+        }
+        return updatedFlag;
+    }
     
 }

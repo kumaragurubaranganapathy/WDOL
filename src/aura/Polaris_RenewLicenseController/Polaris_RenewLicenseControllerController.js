@@ -59,5 +59,14 @@
         });
         
         urlEvent.fire();
-    }
+    },
+    
+    handleComponentEvent : function(component,event,helper){
+    var PhysicalAddressModified = event.getParam("physicalAddressModifiedonRenewal");
+        console.log('inside PhysicalAddressModified::' + PhysicalAddressModified );
+        if(PhysicalAddressModified){
+           component.set("v.PhysicalAddressModified",true);
+        }
+        
+}
 })

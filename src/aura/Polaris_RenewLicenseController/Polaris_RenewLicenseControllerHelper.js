@@ -33,6 +33,14 @@
                 console.log("resultWrapper", JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
+                if(component.get("v.RenewReinstate") == "Renewal"){
+                    console.log('inside');
+                    component.set("v.isRenewal",true);
+                    console.log(component.get("v.isRenewal"));
+                    var appEvent = $A.get("e.c:AddressModifiedEvent");
+                    appEvent.setParams({ "isRenewal" : "true"});
+                    appEvent.fire();
+                }
             }else{
                 window.location.href = "./error";
             }
