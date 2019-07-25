@@ -502,7 +502,13 @@
         <members>melissadataaddresscheckservice</members>
         <members>newController</members>
 		<members>LnP_UpdateOvershortAmountClass</members>
-        <members>LnP_UpdateOvershortAmountClass_Test</members>       
+        <members>LnP_UpdateOvershortAmountClass_Test</members>
+		<members>DOL_SaveDataForIntegrationBatch</members>
+		<members>DOL_CreateErrorLog_Exception</members>
+		<members>DOL_ContentVersionUtility</members>
+		<members>DOL_ProcessIntContentDoc_Batch</members>
+		<members>DOL_RTPC_Input</members>
+		<members>DOL_DOR_Input</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -5166,6 +5172,16 @@
 		<members>MUSW__License2__c.Print_First_Name__c</members>
 		<members>MUSW__License2__c.Print_Last_Name__c</members>
 		<members>MUSW__License2__c.Print_Middle_Name__c</members>
+		<members>DOL_Integration_Batch_Input__c.File_Name__c</members>
+		<members>DOL_Integration_Batch_Input__c.INFO__c</members>
+		<members>DOL_Integration_Batch_Input__c.Input__c</members>
+		<members>DOL_Integration_Batch_Input__c.Input_Type__c</members>
+		<members>DOL_Integration_Batch_Input__c.Status__c</members>
+		<members>DOR_License_Status_Mapping__mdt.DOR_License_Status__c</members>
+		<members>DOR_License_Status_Mapping__mdt.Salesforce_License_Status__c</members>
+		<members>DOR_Professional_Code_Mapping__mdt.License_Type__c</members>
+		<members>DOR_Professional_Code_Mapping__mdt.Professional_Code__c</members>
+		<members>DOR_Professional_Code_Mapping__mdt.Program__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -7474,6 +7490,38 @@
         <members>User_Sharing_Model.Share_Permit_on_User_Upgrade</members>
         <members>Auto_Renew_Reinstate__mdt.Auto_Reinstate</members>
         <members>Auto_Renew_Reinstate__mdt.Auto_Renewal</members>
+		<members>DOR_Professional_Code_Mapping.DOL_20810</members>
+		<members>DOR_Professional_Code_Mapping.DOL_20811</members>
+		<members>DOR_Professional_Code_Mapping.DOL_21701</members>
+		<members>DOR_Professional_Code_Mapping.DOL_21702</members>
+		<members>DOR_Professional_Code_Mapping.DOL_21703</members>
+		<members>DOR_Professional_Code_Mapping.DOL_21805</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23201</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23202</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23203</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23204</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23206</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23207</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23250</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23251</members>
+		<members>DOR_Professional_Code_Mapping.DOL_23252</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24001</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24002</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24003</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24005</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24008</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24010</members>
+		<members>DOR_Professional_Code_Mapping.DOL_24901</members>
+		<members>DOR_Professional_Code_Mapping.DOL_25601</members>
+		<members>DOR_Professional_Code_Mapping.DOL_27706</members>
+		<members>DOR_Professional_Code_Mapping.DOL_27708</members>
+		<members>DOR_Professional_Code_Mapping.DOL_29940</members>
+		<members>DOR_License_Status_Mapping.DOR_Active</members>
+		<members>DOR_License_Status_Mapping.DOR_Hold</members>
+		<members>DOR_License_Status_Mapping.DOR_Pending</members>
+		<members>DOR_License_Status_Mapping.DOR_Suspended</members>
+		<members>DOR_License_Status_Mapping.DOR_Terminated</members>
+		<members>DOR_License_Status_Mapping.DOR_Withdrawn</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -7840,6 +7888,9 @@
         <members>WorkBadgeDefinition</members>
         <members>WorkThanks</members>
         <members>de_HomeFooterUrlList__mdt</members>
+		<members>DOL_Integration_Batch_Input__c</members>
+		<members>DOR_License_Status_Mapping__mdt</members>
+		<members>DOR_Professional_Code_Mapping__mdt</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -9408,6 +9459,9 @@
         <members>Resource__c.POWTS</members>
         <members>Task.Inspection_Task</members>
         <members>Task.MUSW__All</members>
+		<members>Account.DOR_Business_Account</members>
+		<members>MUSW__Account_Contact__c.DOR_Account_Contacts</members>
+		<members>MUSW__Parcel__c.DOR_Parcels</members>
         <name>RecordType</name>
     </types>
     <types>
