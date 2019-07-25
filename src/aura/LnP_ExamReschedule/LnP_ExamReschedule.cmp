@@ -45,15 +45,20 @@
                                     </aura:if>
                                 </div>
                                 <div class="slds-truncate" data-recordId="{!examRescheduleInstance.id}">
-                                    <div class="slds-truncate exam-btn" onclick="{!c.submitResults}" data-license="{!examRescheduleInstance.License__c}"
-                                         data-recordId="{!examRescheduleInstance.Id}"
-                                         data-licenseType="{!examRescheduleInstance.License_Type__c}"
-                                         data-status="{!examRescheduleInstance.Status__c}"
-                                         data-board="{!examRescheduleInstance.Program_Type__c}"
-                                         data-requestType="Submit Exam Results">
-                                        <lightning:button variant="brand" label="Submit Exam Results" title="Submit Exam Results"
-                                                          />
-                                    </div>
+                                    <aura:if isTrue="{!examRescheduleInstance.Submit_Exam_Results__c}">
+                                        <aura:if isTrue="{!(examRescheduleInstance.Status__c) == 'Results Pending'}">
+                                            <div class="slds-truncate exam-btn" onclick="{!c.submitResults}" data-license="{!examRescheduleInstance.License__c}"
+                                                 data-recordId="{!examRescheduleInstance.Id}"
+                                                 data-licenseType="{!examRescheduleInstance.License_Type__c}"
+                                                 data-status="{!examRescheduleInstance.Status__c}"
+                                                 data-board="{!examRescheduleInstance.Program_Type__c}"
+                                                 data-requestType="Submit Exam Results">
+                                                <lightning:button variant="brand" label="Submit Exam Results" title="Submit Exam Results"
+                                                                  />
+                                                
+                                            </div>
+                                        </aura:if>
+                                    </aura:if>
                                     
                                 </div>
                                 <!-- <lightning:button variant="brand" label="Submit Exam Results" class="exam-btn"
