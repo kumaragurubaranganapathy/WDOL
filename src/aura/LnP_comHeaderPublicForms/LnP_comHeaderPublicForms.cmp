@@ -101,7 +101,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style" />
                                                 <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style" /> -->
                                                 <!--<a class="link-style" href="javacript:void(0)" onclick="{!c.handleLogout}">Logout<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>-->
-												<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" onclick="{!c.handleLogout}" />
+												<a class="logout-style" onclick="{!c.handleLogout}">Logout<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>
                                                 <!--  <div class="">
                                         <img src="{!$Resource.LnP_Icons+'/LnP_Icons/login.png'}" class="{!v.pageTitle=='Login'?'login-Image':(v.userType!='Guest'?'slds-hide':'login-Image')}" alt="Log In"/>
                                         <div id="profileImage" class="{!v.pageTitle=='Login'?'slds-hide':(v.userType!='Guest'?'slds-show':'slds-hide')}">{!v.userInitial}</div>

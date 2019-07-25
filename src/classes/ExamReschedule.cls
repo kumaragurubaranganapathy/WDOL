@@ -9,7 +9,7 @@ public class ExamReschedule {
         if(String.isNotBlank(licenseId)){
             for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
                                                               Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,
-                                                              Request__c,Program_Type__c,Request__r.Service_Request_Type__c
+                                                              Request__c,Program_Type__c,Request__r.Service_Request_Type__c,Submit_Exam_Results__c
                                                               From Education_History__c Where License__c = :licenseId
                                                               And RecordTypeId = :educationHistoryRecordId]){
                                                                   educationHistoryList.add(educationHistoryRecods);                                             

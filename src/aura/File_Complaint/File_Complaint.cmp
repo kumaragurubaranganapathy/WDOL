@@ -101,7 +101,7 @@
                 </div>
                 <aura:if isTrue="{!v.professionalScreen}">
                     <div class="slds-p-vertical_small chkbox-container">
-                        <lightning:input type="checkbox" label="Check this box if you want to enter Business related information" name="businessDisplay" checked="{!v.businessScreen}"/>
+                        <lightning:input type="checkbox" label="Check this box if you want to enter business related information" name="businessDisplay" checked="{!v.businessScreen}"/>
                     </div>
                 </aura:if>
                 <aura:if isTrue="{!v.businessScreen}">
@@ -202,7 +202,7 @@
             <!--</aura:if>-->
             <!--<aura:if isTrue="{!v.screenTwo}">-->
             <div class="{!v.screenTwo?'':'slds-hide'}">
-            	<h2 class="sec-header">Your Information</h2>
+            	<h2 class="sec-header">Respondent Information</h2>
                 <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">Give us information about yourself to reach out to you and update you about the progress of this complaint</div-->
                 <div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
                 <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div>
@@ -252,9 +252,12 @@
                             <lightning:input aura:id="informationForm" label="City" placeholder="Enter City"
                                              class="field-item  slds-p-around_medium"
                                              name="city"/>
-                            <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="informationForm" value="">
+                            <lightning:select value="Washington" class="field-item  slds-p-around_medium" name="state" label="State" aura:id="informationForm" >
                                 <option text="Select an Option" value=""/>
                                 <aura:iteration items="{!v.stateOptions}" var="option">
+                                    <aura:if isTrue="{!option=='Washington'}">
+                                    	<option text="{!option}" selected="true" value="{!option}"/>
+                                    </aura:if>
                                     <option text="{!option}" value="{!option}"/>
                                 </aura:iteration>
                             </lightning:select>
@@ -273,7 +276,7 @@
                 	<h2 class="sec-header">Complaint Summary</h2>
                     <div class="sub-header slds-p-top_x-small slds-p-bottom_large">A summary of your complaint; this should include dates, other parties involved, and any efforts you have already made to resolve the problem. 
     Describe events in the order they occurred.</div>
-                    <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter Complaint summary here" variant="label-hidden"/>
+                    <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter complaint summary here" variant="label-hidden"/>
                 </div>
                 <div class="attachments slds-m-vertical_xx-large">
                 	<h2 class="sec-header">Attachments</h2>
