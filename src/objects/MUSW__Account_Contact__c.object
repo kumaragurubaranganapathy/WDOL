@@ -656,6 +656,204 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Account Contacts</pluralLabel>
+	<recordTypes>
+        <fullName>DOR_Account_Contacts</fullName>
+        <active>true</active>
+        <description>This record type to map data coming from DOR Interface</description>
+        <label>DOR Account Contacts</label>
+        <picklistValues>
+            <picklist>Associate_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Active</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>Administrator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency Principal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Controlling person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Engineer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Funeral Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Governing Persons</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified Agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualifying Principal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title_select__c</picklist>
+            <values>
+                <fullName>Chief Construction Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief Executive Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief Financial Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief Investment Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief Operations Officer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Controlling Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Controlling Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Vice President</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect Owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Member</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>President</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secretary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shareholder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supervisory Committee Member</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Treasurer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vice President</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
