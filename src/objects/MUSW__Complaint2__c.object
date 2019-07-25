@@ -130,6 +130,41 @@
         <trackTrending>false</trackTrending>
         <type>Phone</type>
     </fields>
+	<fields>
+        <fullName>Incident_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Incident Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>Respondent_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Primary_Contact__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Respondent Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>License_Id__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>License Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Case_Dispositions__c</fullName>
         <externalId>false</externalId>
