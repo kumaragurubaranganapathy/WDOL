@@ -82,6 +82,55 @@ public class DOL_CreateErrorLog_Exception extends Exception {
         return null;        
     }
 
+    /**
+    ** Name 			: logApplicationError
+    ** Input			: error Exception
+    ** Functionality	: Save input to Polaris_Custom_Exception__c
+    ** Return			: Id, created Record ID 
+    ** Author			: Laltu Banerjee
+    ** Date             : 07/24/2019
+    */
+    public static Id logApplicationError(Exception error){
+        try{
+            if(error != null ){
+            Polaris_Custom_Exception__c log = new Polaris_Custom_Exception__c();
+            log.Error_Message__c = error.getMessage();
+            log.Exception_Type__c = error.getTypeName();
+            log.LineNumber__c = error.getLineNumber();
+            log.Stack_Trace__c = error.getStackTraceString();
+            log.Class_Name__c = getClassName(error.getStackTraceString());
+            log.Class_Method__c = getMethodName(error.getStackTraceString());
+            log.Log_Type__c = 'ERROR';
+            log.Source__c = 'Salesforce';
+            logToDB(log);
+            return log.Id;
+            }
+        }catch(Exception e){
+            System.debug(e);
+        }
+        return null; 
+    }
+
+    private static String getClassName(String stackTraceString){
+        try{    
+            stackTraceString = stackTraceString.substringBefore('\n');
+            if (stackTraceString.startsWith('Class.'))
+                stackTraceString = stackTraceString.substringAfter('Class.');
+            return stackTraceString.substringBefore(':').substringBeforeLast('.');
+        }catch(Exception e){
+            return '';
+        }
+    }
+
+    private static String getMethodName(String stackTraceString){
+        try{
+            stackTraceString = stackTraceString.substringBefore('\n');
+            return stackTraceString.substringBefore(':').substringAfterLast('.');
+        }catch(Exception e){
+            return '';
+        }
+    }
+
     private static void logToDB(Polaris_Custom_Exception__c log){
         log.QueryLimit__c = 'SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
         log.DMLimit__c = 'Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
@@ -90,8 +139,7 @@ public class DOL_CreateErrorLog_Exception extends Exception {
         log.Session_Id__c=UserInfo.getSessionId().substring(15);
         insert log;
     }
-    
-	//Add delete record details
+    //Add delete record details
     public static void logDeleteDetails(String message, String cname,String cmethod ){
            Polaris_Custom_Exception__c exc = new Polaris_Custom_Exception__c();
            //exc.Gov_Limits__c= String.format('{0}\n{1}\n{2}\n{3}',new List<QueryLimit, DMLimit,DMLStat,CPUT>);            
