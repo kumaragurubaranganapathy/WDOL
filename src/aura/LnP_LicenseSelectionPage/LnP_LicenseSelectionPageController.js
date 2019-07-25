@@ -61,9 +61,7 @@
         var accountRec = component.find("accountPickerId");
         
         var getEligibility = document.getElementById("eliTypeGridDiv").classList.contains('slds-hide');
-        if(accountRec == undefined && getEligibility ) {
-           helper.startApplicationHelper(component, event, helper);         
-        }
+        
         
         if(accountRec == undefined && getEligibility ) {
             helper.startApplicationHelper(component, event, helper);         
