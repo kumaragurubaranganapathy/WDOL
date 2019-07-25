@@ -162,6 +162,7 @@ ansWrapper = getJSONWrapper(lstLicenseApplication);
             labelToFields.submissionDetails = Ques.Submission_Title__c;
             labelToFields.questionSectionClass = Ques.Section__c;
             labelToFields.message = Ques.Message__c;
+            labelToFields.warningMessages  = Ques.Warning_Message__c;
             labelToFields.endorsementType=Ques.Endorsement_Type__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
             if(questionSection == Ques.Section__c || Ques.Section__c==null)

@@ -150,13 +150,14 @@ public class Polaris_ApplyForLicenseController {
             labelToFields.submissionDetails = Ques.Submission_Title__c;
             labelToFields.questionSectionClass = Ques.Section__c;
             labelToFields.message = Ques.Message__c;
+            labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
+            labelToFields.warningMessages  = Ques.Warning_Message__c;
+            labelToFields.regex = Ques.Regex_Validation__c;
+            labelToFields.errormsg = Ques.Error_Message__c;
             labelToFields.helptext = Ques.Help_Text__c;
-			labelToFields.minValue = Ques.min_value__c;
+            labelToFields.minValue = Ques.min_value__c;
             labelToFields.maxValue = Ques.max_value__c; 
             labelToFields.validationCriteria = Ques.Validation_Criteria__c;
-            labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
-            labelToFields.regex = Ques.Regex_Validation__c;
-            labelToFields.errormsg = Ques.Error_Message__c; 
             if(Ques.isRequired__c==true)
             {
                 labelToFields.isMandatoryQues = true;

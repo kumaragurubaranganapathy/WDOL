@@ -112,7 +112,7 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         {
             condition7 = 'AND Show_For__c includes (\'Credential Renewal\')';
         }
-        else if(renewalReinstate=='Reinstate')
+        else if(renewalReinstate=='Reinstatement')
         {
             condition7 = 'AND Show_For__c includes (\'Credential Reinstatement\')';
         }

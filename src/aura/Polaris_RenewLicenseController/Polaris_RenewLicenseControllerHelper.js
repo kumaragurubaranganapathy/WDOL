@@ -224,15 +224,22 @@
         var questionNumber = event.getSource().get("v.name");
         var tabsList = component.get("v.licenseWrapper");
         var currentTab = component.get("v.currentTab");
-         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
+        if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {
             component.set("v.showNotaryEndo",true);
+            component.set("v.showEndoMessage",true);
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
         }
-        if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
+        else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {            
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
         }
+         else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse != response  && tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages != null ) {
+           component.set("v.showEndoMessage",true);
+           component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages);            
+        }
+
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
         var childQuestionsArray = [];

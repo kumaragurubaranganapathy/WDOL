@@ -307,11 +307,17 @@
         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {
             component.set("v.showNotaryEndo",true);
+            component.set("v.showEndoMessage",true);
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
         }
-        if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response && component.get("v.licenseType")!='Notary Public')
+        else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {            
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
+        }
+         else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse != response  && tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages != null ) {
+           component.set("v.showEndoMessage",true);
+           component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages);            
         }
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
