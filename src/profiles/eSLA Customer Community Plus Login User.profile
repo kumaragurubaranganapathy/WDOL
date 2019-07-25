@@ -18,11 +18,6 @@
         <field>MUSW__Fee__c.Licensee_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>MUSW__Master_Fee_List__c.Exam_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
 		<editable>true</editable>
 		<field>Lockbox_Envelope__c.Lockbox_Amount__c</field>

@@ -71,7 +71,7 @@
                     
                     var pendingCourseTableData = pendingcourseTable["tableData"];
                     
-                    component.set("v.PendingCourseApplicationsColumns",pendingCourseColumnData);
+                    component.set("v.PendingCourseApplicationsColumns",pendingCourseTableData);
                     
                     component.set("v.PendingCourseApplicationsData",pendingCourseTableData);
                     

@@ -42,15 +42,15 @@
                     <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
                         <div class="field-style">
                             <div class="label-style">Email:</div>
-                            <div class="data-style">{!v.ContactObj.Email?v.ContactObj.Email:'None'}</div>
+                            <div class="data-style">{!v.ContactObj.Email}</div>
                         </div>
                         <div class="field-style alt-email">
                             <div class="label-style">Alternate email:</div>
-                            <div class="data-style">{!v.ContactObj.Other_Email__c?v.ContactObj.Other_Email__c:'None'}</div>
+                            <div class="data-style">{!v.ContactObj.Other_Email__c}</div>
                         </div>                        
                         <div class="field-style">
                             <div class="label-style">Phone:</div>
-                            <div class="data-style">{!v.ContactObj.Phone?v.ContactObj.Phone:'None'}</div>
+                            <div class="data-style">{!v.ContactObj.Phone}</div>
                         </div>                        
                     </lightning:layoutItem>
                     <lightning:layoutItem size="12" class="contact-item address-item slds-hide_medium"> 
@@ -58,7 +58,6 @@
                             <a class="show-address label-style" onclick="{!c.showAddress}" href="javascript:void(0)">{!v.showAddress?'Hide Addresses':'Show Addresses'}</a>
                         </div>
                     </lightning:layoutItem>
-                    <aura:if isTrue="{!not(empty(v.ParcelObj))}">
                     <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
                         
                         <aura:if isTrue = "{!parcel.Address_Type__c == 'HOME'}">
@@ -85,21 +84,6 @@
                         </aura:if>
                         
                     </aura:iteration>
-                        <aura:set attribute="else">
-                        	<lightning:layoutItem size="12" mediumDeviceSize="4" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
-                                <div class="field-style address">
-                                    <div class="label-style">Mailing address:</div>
-                                    <div class="data-style">None</div>
-                                </div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem size="12" mediumDeviceSize="4" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
-                                <div class="field-style address">
-                                    <div class="label-style">Physical address:</div>
-                                    <div class="data-style">None</div>
-                                </div>
-                            </lightning:layoutItem>
-                        </aura:set>
-                    </aura:if>
                     
                 </lightning:layout>
                 <lightning:layout class="action-links slds-wrap"> 
@@ -113,9 +97,9 @@
             </lightning:layoutItem>
             <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!v.showMoreAMR?'nav-links exp-links':'nav-links slds-show_medium'}">
                 <ul class="{!v.showMoreAMR?'exp-links-inner':''}">
-                    <li aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);" target="_self" >Payment cart</a></li>
+                    <li aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);">Payment cart</a></li>
                     <li aura:id="action-item"><a onclick="{!c.handleClick}" href="javascript:void(0);">Apply for new license</a></li>
-                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change Legal Name</a></li>
+                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change legal name</a></li>
                     
                     <!--<li aura:id="action-item"><a onclick="{!c.handleClick }" href="javascript:void(0);">Apply For New License</a></li>
                     <li aura:id="action-item"><a href="javascript:void(0);" onclick="{!c.updateContactInfo}">Update Contact Information</a></li>

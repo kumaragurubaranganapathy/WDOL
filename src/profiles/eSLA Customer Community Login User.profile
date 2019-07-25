@@ -103,11 +103,6 @@
         <field>MUSW__License2__c.Amount_of_Bond__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>MUSW__Master_Fee_List__c.Exam_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MUSW__License2__c.Apartment_Units__c</field>

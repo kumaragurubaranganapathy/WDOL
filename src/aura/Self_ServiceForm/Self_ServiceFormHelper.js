@@ -33,8 +33,7 @@
             component.set("v.AMRName",'Update Contact Information');
             component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
         }
-        
-        else if(value.toLowerCase() == "billingcode"){
+		else if(value.toLowerCase() == "billingcode"){
 			component.set("v.objectApiName", 'Account');
             component.set("v.fieldApiNames", ['ThirdPary_Billing_Code__c']);
             component.set("v.recordIDforSSAMR",recordId);
@@ -171,7 +170,33 @@
         });
         $A.enqueueAction(action);       
     },
-   
+    printUpdatehelper : function(component, event, helper){
+    	var licId = component.get("v.recordIDforSSAMR");
+        var action = component.get("c.printUpdateLicense");
+        action.setParams({
+            "licId": licId,
+            "printType":component.find("printLicenseId").get("v.value")
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                response.getReturnValue();
+                window.location.href = component.get("v.redirectURL");
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        
+	},
     createcode : function(component, event, helper){
         var licId = component.get("v.recordIDforSSAMR");
 		var updatedValue = 'createCode';
@@ -204,34 +229,6 @@
         });
         $A.enqueueAction(action);       
     },
-    printUpdatehelper : function(component, event, helper){
-    	var licId = component.get("v.recordIDforSSAMR");
-        var action = component.get("c.printUpdateLicense");
-        action.setParams({
-            "licId": licId,
-            "printType":component.find("printLicenseId").get("v.value")
-        });
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {
-                response.getReturnValue();
-                window.location.href = component.get("v.redirectURL");
-            }
-            else if (state === "ERROR") {
-                var errors = response.getError();
-                if (errors) {
-                    if (errors[0] && errors[0].message) {
-                        console.error("Error message: " + errors[0].message);
-                    }
-                } else {
-                    console.error("Unknown error");
-                }
-            }
-        });
-        $A.enqueueAction(action);
-        
-	},
-    
     
     cancel : function(component, event, helper){
     	window.location.href = component.get("v.redirectURL");

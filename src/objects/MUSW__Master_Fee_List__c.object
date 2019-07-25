@@ -75,18 +75,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>Exam_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Exam Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>Exam_Type</valueSetName>
-        </valueSet>
-    </fields>
     <fields>
         <fullName>AFRS_Revenue_Code__c</fullName>
         <externalId>false</externalId>
@@ -1310,7 +1298,7 @@
         <fullName>Fee_Type__c</fullName>
         <externalId>false</externalId>
         <label>Fee Type</label>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -6078,7 +6066,7 @@
         <fullName>Allow_user_to_input_Only_till_4_digits</fullName>
         <active>true</active>
         <description>This validation rule would prevent user to enter more than 4 digits in the base field</description>
-        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),Base__c&gt;=10000)</errorConditionFormula>
+        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),LEN(TEXT(Base__c))&gt;4)</errorConditionFormula>
         <errorDisplayField>Base__c</errorDisplayField>
         <errorMessage>You are not allowed to enter more than 4 digits.</errorMessage>
     </validationRules>

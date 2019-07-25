@@ -42,10 +42,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>DOL_Program_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Record_Type1__c</field>
             </layoutItems>
             <layoutItems>
@@ -313,10 +309,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Incident_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Incident_Description__c</field>
             </layoutItems>
         </layoutColumns>
@@ -405,21 +397,8 @@
                 <behavior>Edit</behavior>
                 <field>Date_Investigation_Closed__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Recommendations__c</field>
-            </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Investigation_Due_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Investigation_Comments__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -461,14 +440,6 @@
         <fields>Title__c</fields>
         <fields>MUSW__Status__c</fields>
         <relatedList>MUSW__Violation__c.MUSW__Complaint2__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Action_Order_Type__c</fields>
-        <fields>Status__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>Action__c.Complaint__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -536,10 +507,6 @@
         <fields>Actor</fields>
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Historical_Complaint_Action__c.Complaint__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

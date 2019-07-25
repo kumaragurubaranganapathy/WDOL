@@ -52,6 +52,8 @@
     	<div aura:id="complaintApplication" class="complaint-application">
         <div class="page-header">
         	<h1 class="padding-top-30">File a Complaint</h1>
+            <div class="sub-header slds-p-top_x-small padding-bottom-20 border-bottom">You can use this to file a complaint against a person or a business to report uncensored activity</div>
+            <!--<div class="sub-header slds-p-top_xx-small slds-p-bottom_large">You can use this to file a complaint against a person or a business, or to report unlicensed activity.</div> -->
         	<div class="complaint-path">
                 <!-- path -->
                 <div class="slds-grid slds-path__track">
@@ -91,66 +93,14 @@
             <div class="{!v.screenOne?'':'slds-hide'}">
                 <h2 class="heading">Complaint Against</h2>
                 <div class="sub-header slds-p-top_small slds-p-bottom_medium">Provide information about a professional or a business against whom you are filing a complaint</div>
-                <div class="">
-                    <lightning:select class="field-item" name="Profession" label="Profession" required="true" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
+                <div class="slds-box slds-m-bottom_small">
+                    <lightning:select class="field-item slds-p-around_medium" name="Profession" label="Profession *" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
                         <option text="Select an Option" value=""/>
                         <aura:iteration items="{!v.professionOptions}" var="profession">
                             <option text="{!profession}" value="{!profession}"/>
                         </aura:iteration>
                     </lightning:select>
                 </div>
-                <aura:if isTrue="{!v.professionalScreen}">
-                    <div class="slds-p-vertical_small chkbox-container">
-                        <lightning:input type="checkbox" label="Check this box if you want to enter Business related information" name="businessDisplay" checked="{!v.businessScreen}"/>
-                    </div>
-                </aura:if>
-                <aura:if isTrue="{!v.businessScreen}">
-                    <div class="slds-box slds-m-bottom_medium">
-                        <!-- Start of form -->
-                        <div class="slds-form-element">
-                            <div class="slds-wrap">
-                                <lightning:input aura:id="businessForm" label="Business Name" placeholder="Enter Business Name"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="businessName"/>
-                                <lightning:input aura:id="businessForm" label="Doing Business As" placeholder="Enter Doing Business As"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="doingBusinessAs"/>
-                                <lightning:input aura:id="businessForm" label="License Number" placeholder="Enter Number"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="licenseNumber"/>
-                            </div>
-                            <div class=" slds-wrap">
-                                <lightning:input aura:id="businessForm" label="Email" placeholder="Enter Email"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="email" type="email"/>
-                                <lightning:input aura:id="businessForm" label="Phone" placeholder="xxx.xxx.xxxx"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
-                                <lightning:input aura:id="businessForm" label="Address" placeholder="Enter Address"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="address"/>
-                            </div>
-                            <div class="slds-wrap">
-                                <lightning:input aura:id="businessForm" label="City" placeholder="Enter City"
-                                             class="field-item  slds-p-around_medium"
-                                             name="city"/>
-                                <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="">
-                                    <option text="Select an Option" value=""/>
-                                    <aura:iteration items="{!v.stateOptions}" var="option">
-                                        <option text="{!option}" value="{!option}"/>
-                                    </aura:iteration>
-                                </lightning:select>
-                                <lightning:select class="field-item  slds-p-around_medium" name="county" label="County" aura:id="businessForm" value="">
-                                    <option text="Select an Option" value=""/>
-                                    <aura:iteration items="{!v.countyOptions}" var="option">
-                                        <option text="{!option}" value="{!option}"/>
-                                    </aura:iteration>
-                                </lightning:select>
-                            </div>
-                        </div>
-                        <!-- End of form -->
-                    </div>
-                </aura:if>
                 <aura:if isTrue="{!v.professionalScreen}">
                     <div class="slds-box">
                         <!-- Start of form -->
@@ -197,25 +147,68 @@
                         </div>
                         <!-- End of form -->
                     </div>
+                    <div class="slds-p-vertical_small chkbox-container">
+                        <lightning:input type="checkbox" label="Check this box if you want to enter Business related information" name="businessDisplay" checked="{!v.businessScreen}"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.businessScreen}">
+                    <div class="slds-box">
+                        <!-- Start of form -->
+                        <div class="slds-form-element">
+                            <div class="slds-wrap">
+                                <lightning:input aura:id="businessForm" label="Business Name" placeholder="Enter Business Name"
+                                                 class="field-item  slds-p-around_medium"
+                                                 name="businessName"/>
+                                <lightning:input aura:id="businessForm" label="Doing Business As" placeholder="Enter Doing Business As"
+                                                 class="field-item slds-p-around_medium"
+                                                 name="doingBusinessAs"/>
+                                <lightning:input aura:id="businessForm" label="License Number" placeholder="Enter Number"
+                                                 class="field-item slds-p-around_medium"
+                                                 name="licenseNumber"/>
+                            </div>
+                            <div class=" slds-wrap">
+                                <lightning:input aura:id="businessForm" label="Email" placeholder="Enter Email"
+                                                 class="field-item  slds-p-around_medium"
+                                                 name="email" type="email"/>
+                                <lightning:input aura:id="businessForm" label="Phone" placeholder="xxx.xxx.xxxx"
+                                                 class="field-item slds-p-around_medium"
+                                                 name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
+                                <lightning:input aura:id="businessForm" label="Address" placeholder="Enter Address"
+                                                 class="field-item  slds-p-around_medium"
+                                                 name="address"/>
+                            </div>
+                            <div class="slds-wrap">
+                                <lightning:input aura:id="businessForm" label="City" placeholder="Enter City"
+                                             class="field-item  slds-p-around_medium"
+                                             name="city"/>
+                                <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="">
+                                    <option text="Select an Option" value=""/>
+                                    <aura:iteration items="{!v.stateOptions}" var="option">
+                                        <option text="{!option}" value="{!option}"/>
+                                    </aura:iteration>
+                                </lightning:select>
+                                <lightning:select class="field-item  slds-p-around_medium" name="county" label="County" aura:id="businessForm" value="">
+                                    <option text="Select an Option" value=""/>
+                                    <aura:iteration items="{!v.countyOptions}" var="option">
+                                        <option text="{!option}" value="{!option}"/>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                        </div>
+                        <!-- End of form -->
+                    </div>
                 </aura:if>
             </div>
             <!--</aura:if>-->
             <!--<aura:if isTrue="{!v.screenTwo}">-->
             <div class="{!v.screenTwo?'':'slds-hide'}">
             	<h2 class="sec-header">Your Information</h2>
-                <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">Give us information about yourself to reach out to you and update you about the progress of this complaint</div-->
-                <div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
-                <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div>
-                <!--aura:if isTrue="{!v.displayMessage}">
+                <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Give us information about yourself to reach out to you and update you about the progress of this complaint</div>
+                <aura:if isTrue="{!v.displayMessage}">
                     <div class="sub-header slds-p-top_x-small slds-p-bottom_medium">{!$Label.c.File_Complaint_Conditional_Anonymous_Text}</div>
                 	<aura:set attribute="else">
                     	<div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
                     </aura:set>
-                </aura:if-->
-                <aura:if isTrue="{!v.anonymousComplaint}">
-                    <div class="slds-p-vertical_small chkbox-container">
-                        <lightning:input type="checkbox" label="File anonymously" name="AnonymousComplaint" checked="{!v.anonymousComplaintCheckbox}"/>
-                    </div>
                 </aura:if>
                 <div class="slds-box">
                     <!-- Start of form -->
@@ -265,6 +258,11 @@
                     </div>
                     <!-- End of form -->
                 </div>
+                <aura:if isTrue="{!v.anonymousComplaint}">
+                    <div class="slds-p-vertical_small chkbox-container">
+                        <lightning:input type="checkbox" label="Anonymous Complaint" name="AnonymousComplaint" checked="{!v.anonymousComplaintCheckbox}"/>
+                    </div>
+                </aura:if>
             </div>
             <!--</aura:if>-->
             <!--<aura:if isTrue="{!v.screenThree}">-->

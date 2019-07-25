@@ -11,7 +11,7 @@
             }else{
                 component.find('amount').setCustomValidity(""); // if there was a custom error before, reset it
             }
-            
+           
         }
         if(depositRec.Id){
             component.set("v.printDisabled", true);
@@ -36,7 +36,7 @@
         }        
     },
     getDependentFieldValuesOnLoad : function(component, event){
-        // var controllerValueKey = event.getSource().get("v.value"); // get selected controller field value
+       // var controllerValueKey = event.getSource().get("v.value"); // get selected controller field value
         var depnedentFieldMap = component.get("v.industryFormMap");
         
         //for on Load:

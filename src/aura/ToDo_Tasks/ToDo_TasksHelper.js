@@ -6,13 +6,13 @@
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();
                 if(result == '') {
-                    /*var toastEvent = $A.get("e.force:showToast");
+                    var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "No result found!",
                         "message": "No task to display",
                         "type": "SUCCESS"
                     });
-                    toastEvent.fire(); */
+                    toastEvent.fire();
                 } else  {
                     component.set("v.taskList",result);
                 }

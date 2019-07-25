@@ -67,7 +67,7 @@
             <lightning:breadcrumb class="breadcumb" label="{!'LicenseType&nbsp;:'+v.licenseType}" />
             
         </lightning:breadcrumbs>-->
-        <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" board="{!v.board}" licenseType="{!v.licenseType}"/>
+        <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
       <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
                 {!v.endoMessage}

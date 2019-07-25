@@ -11,14 +11,7 @@
 
 @RestResource(urlMapping='/DOLRestEndpoint')
 global class DOLRestEndpoint {
-    /**
-    ** Name 			: postRequest
-    ** Input			: retrive from requestBody
-    ** Functionality	: retrive the requestBody and requestType and pass it to processRequest()
-    ** Return			: DOL_RestResponse
-    ** Author			: Laltu Banerjee
-    ** Note             : 
-    */
+
     @HttpPost
     global static DOL_RestResponse postRequest(){
         system.debug('Inside DOLRestEndpoint postRequest');
@@ -29,62 +22,48 @@ global class DOLRestEndpoint {
         try{
             jsonBody = req.requestBody.toString();
             requestType = req.headers.get('request-type');
+            // log the input
             String info = ' requestType = '+requestType+' body = '+jsonBody;
+            DebugErrorLoggger.dolLogger(Dol_LoggerInput.getDolLoggerForInfo(info,requestType,'DOLRestEndpoint'));
+            
             HTTPRestResponse output = processRequest(jsonBody,requestType);
             resp.setResponse(output);
+            //log the output
+            DebugErrorLoggger.dolLogger(Dol_LoggerInput.getDolLoggerForInfo(resp.log+' status = '+resp.status,requestType,'DOLRestEndpoint'));
         }catch(Exception error){
-            Id errorLogId = DOL_CreateErrorLog_Exception.logApplicationError(error);
             resp.statusCode = '400';
-            resp.log = 'error occured :- '+error.getMessage()+
-                        ' stack trace '+error.getStackTraceString()+
-                        ' error log created = '+errorLogId;
+            resp.log = 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
             resp.status = 'failed';
-            
+            // log the error
+            DebugErrorLoggger.dolLogger(Dol_LoggerInput.getDolLoggerForError(resp.log,requestType,'DOLRestEndpoint'));
         }
-        RestContext.response.statusCode = Integer.valueOf(resp.statusCode);
         return resp;
     }
 
-    /**
-    ** Name 			: processRequest
-    ** Input			: jsonBody :- requestBody, requestType :- header value
-    ** Functionality	: call the required APEX class based on requestType
-    ** Return			: HTTPRestResponse
-    ** Author			: Laltu Banerjee
-    ** Note             : This method called from DOLRestEndpoint -> postRequest()
-    */
     private static HTTPRestResponse processRequest(String jsonBody, String requestType){
         HTTPRestResponse output = null;
         if(requestType == 'EPAYMENT_RTPC_CALL'){
-            output = new DOL_SaveDataForIntegrationBatch().saveDataForIntegrationBatch(jsonBody,'RTPC');
+            output = new DOL_ePaymentRTPC().processEpaymentRTPCRequest(jsonBody);
         }
-        else if(requestType == 'EPAYMENT_REMITTANCE_CALL'){
-            output = new DOL_SaveDataForIntegrationBatch().saveDataForIntegrationBatch(jsonBody,'REMITTANCE');
+        if(requestType == 'EPAYMENT_REMITTANCE_CALL'){
+            output = new DOL_EpaymentSaveRemittanceData().saveRemittanceData(jsonBody);
         }
-        else if(requestType == 'NCR_FILE_DATA'){
-            output = new DOL_SaveDataForIntegrationBatch().saveDataForIntegrationBatch(jsonBody,'NCR');
+        if(requestType == 'NCR_FILE_DATA'){
+            output = new DOL_SaveNCRData().saveNCRData(jsonBody);
         }
-        else if(requestType == 'DOR'){
-            output = new DOL_SaveDataForIntegrationBatch().saveDataForIntegrationBatch(jsonBody,'DOR');
-        }
-        else{
-            throw new CustomException('Request type header value is not valid');
+        if(output == null){
+            output = HTTPRestResponse.getInstance();
+            output.addErrorMsg('Request Type Header value is not valid');
+            output.setStatusCode(400);
         }
         return output;
     }
     
-    /**
-    ** Name         : DOL_RestResponse
-    ** Description  : To wrap the outgoing HTTP response
-     */
     global class DOL_RestResponse{
         String log {get; set;}
         String statusCode {get; set;}
         String status {get; set;}
         
-        /**
-        ** set the response from HTTPRestResponse
-         */
         public void setResponse(HTTPRestResponse intputResponse){
             this.log = 'Logs :- '+intputResponse.getLogs()+' error :- '+intputResponse.geterrorMsgs();
             this.statusCode = ''+intputResponse.getStatusCode();
