@@ -12,7 +12,17 @@
     <tabVisibilities>
         <tab>Portal_Article__c</tab>
         <visibility>DefaultOn</visibility>
-    </tabVisibilities>	
+    </tabVisibilities>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Education_History__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Master_Exam_List__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Fee__c.Licensee_Email__c</field>

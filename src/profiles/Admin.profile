@@ -24,6 +24,16 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>true</editable>
+        <field>Education_History__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Master_Exam_List__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
         <field>MUSW__Fee__c.Fee_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
