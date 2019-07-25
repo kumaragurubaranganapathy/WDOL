@@ -18,6 +18,21 @@
         <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/Accept_invitation</template>
     </alerts>
+	<alerts>
+        <fullName>Approval_to_Reschedule_Exam</fullName>
+        <description>Notification on AMR Approval to Reschedule Exam</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Request_to_Reschedule_Exam_Approved</template>
+    </alerts>
     <alerts>
         <fullName>Email_to_Request_Applicant_when_request_is_approved</fullName>
         <description>Email to Request Applicant when request is approved</description>
@@ -114,6 +129,25 @@
             <field>Request__c.Status__c</field>
             <operation>equals</operation>
             <value>Deny</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>Send Email on Reschedule Exam Request Approval</fullName>
+        <actions>
+            <name>Approval_to_Reschedule_Exam</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Request__c.Service_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>Reschedule Exam</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Request__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
