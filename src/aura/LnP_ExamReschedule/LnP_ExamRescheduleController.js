@@ -70,7 +70,7 @@
                 var result = actionResult.getReturnValue();
                 console.log('result----'+result);
                 requestId = result;
-                alert('requestId--'+requestId); 
+              
                 sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
                 sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
                 sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));

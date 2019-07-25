@@ -571,6 +571,14 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Submit_Exam_Results__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Submit Exam Results</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Review_SubStatus__c</fullName>
         <externalId>false</externalId>
@@ -599,7 +607,7 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
-    </fields>
+    </fields>	
     <label>Master Exam List</label>
     <listViews>
         <fullName>All</fullName>
