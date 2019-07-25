@@ -1136,7 +1136,9 @@ public with sharing class CartController
                     depositPayments = populateDepositPayment(receipts);
 					// Multiple Receipt Fix BUG - 2497, Developer :- Laltu Banerjee
                     // Get Receipt Id created in this transaction
-                    receiptId = rs.get(0).Id;
+                    if(rs.size()>0){
+						receiptId = rs.get(0).Id;
+					}
                     // ELGIN-237: re-query receipt in order to get the receipt numbers
                     MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
                     rs.clear();
