@@ -116,9 +116,8 @@
                         if(newlst.length==0){
                             component.set("v.AttFlagForsubmit","true");
                         }
-                    });
-                    if(newlst.length==0){
-                        component.set("v.AttFlagForsubmit","true");
+                        component.set("v.SectionError",newlst);
+                        
                     }
                     var sectionList = [];
                     for (var index = 0; index < resultWrapper.length; index++){
@@ -141,14 +140,20 @@
                         this.updatePhysicalAddress(component,event,helper);
                     }
                     
-        if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
-        {
-            component.set("v.showNotaryEndo",true);
-        }
-               // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
-            } else {
-                //handle error as well
-                console.log('error on insert application');
+                    if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
+                    {
+                        component.set("v.showNotaryEndo",true);
+                    }
+                    // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
+                } else {
+                    //handle error as well
+                    console.log('error on insert application');
+                }
+            });
+            $A.enqueueAction(action);
+            //Added to save the personal imformation
+            if(component.find("recordObjectForm") != null){
+                component.find("recordObjectForm").find("editForm").submit();   
             }
             var tabsList = component.get("v.licenseWrapper");
             console.log('tabsList '+tabsList);
@@ -174,11 +179,11 @@
                         }
                     }
                 }
-			}
-		}
-	   component.set('v.questionsAnswers',a);
-       component.set('v.attachmentResponse',attRes);
-       window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            component.set('v.questionsAnswers',a);
+            component.set('v.attachmentResponse',attRes);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     },
     submit : function(component, event, helper) {
         // var enteredAttestText = component.get("v.attestValue");
@@ -336,7 +341,7 @@
     },
     getCurrTabHelper : function(component, event, helper){
         var currTab = event.getParam("currTab");
-    	component.set("v.currentTab", currTab);
+        component.set("v.currentTab", currTab);
     },
     showDependentQuestionsOnPageLoadHelper : function(component, event, helper){
         var tabsList = component.get("v.licenseWrapper");
@@ -351,7 +356,7 @@
                     if(tabsList[currentTab-1].labelFieldsMap[i].labelId == parentQuestionId &&tabsList[currentTab-1].labelFieldsMap[i].value == expectedResponse ){
                         childQuestionId = document.getElementById('q'+index);
                         if(childQuestionId !=null){
-                           childQuestionId.classList.remove('slds-hide'); 
+                            childQuestionId.classList.remove('slds-hide'); 
                         }
                         
                     }
@@ -361,7 +366,7 @@
     },
     //Close the modal popup and redirect to cart page
     closeModel: function(component, event) {
-		component.set("v.isOpen", false);
+        component.set("v.isOpen", false);
         var id = component.get("v.storeServerValue");
         var action = component.get("c.getTotalBalance");
         action.setParams({"licId" : id });
