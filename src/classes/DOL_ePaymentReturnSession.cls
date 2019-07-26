@@ -16,15 +16,15 @@ public class DOL_ePaymentReturnSession {
     public String PaymentMethod { get; private set; }
     public String ConvenienceFee { get; private set; }
     public String PaymentAmount { get; private set; }
-    public String PaymentEffectiveDate { get; private set; }
+    public String PaymentEffectiveDate { get; private set; } // Effective Date YYYYMMDD
     public String AmountDue { get; private set; }
     public String TransactionMode { get; private set; }
     public String ReplacesConfirmationId { get; private set; }
-    public String InitiationDateTime { get; private set; }
-    public String CreditCardNumber { get; private set; }
-    public String CreditCardType { get; private set; }
-    public String CreditCardExpDate { get; private set; }
-    public String AccountNumber { get; private set; }
+    public String InitiationDateTime { get; private set; } // Intiation datetime YYYYMMDD:HHMMSS
+    public String CreditCardNumber { get; private set; } // Last 4 digit in case of CC
+    public String CreditCardType { get; private set; } // Card type
+    public String CreditCardExpDate { get; private set; } 
+    public String AccountNumber { get; private set; } // In case of ACH
     public String ProductDescription { get; private set; }
     public String BillerBusinessDate { get; private set; }
     public String IsPayorRegistered { get; private set; }
@@ -81,6 +81,29 @@ public class DOL_ePaymentReturnSession {
             sfdcFeeIds = SFDCfeeId.split(DOL_AppConstants.ePaymentUrlListValuesSeperator);
         }
         system.debug('return value '+ReturnValue);     
+    }
+
+    public void updateReceipt(MUSW__Receipt__c receipt) {
+        
+        if(! String.isBlank(TransactionConfirmationID)){
+            receipt.MUSW__Payment_Gateway_Transaction_Number__c = TransactionConfirmationID;
+            receipt.Transaction_Confirmation_ID__c = TransactionConfirmationID;
+        }
+        if(! String.isBlank(PaymentEffectiveDate))
+            receipt.MUSW__Effective_Date__c = DOL_AppUtility.getDate(PaymentEffectiveDate , 'YYYYMMDD');
+        if(! String.isBlank(InitiationDateTime))
+            receipt.Initiation_Date_and_Time__c = DOL_AppUtility.getDateTime(InitiationDateTime, 'YYYYMMDD:HHMMSS');
+        if(PaymentMethod.equals('ACH')){
+            if((!String.isBlank(AccountNumber)) && DOL_AppUtility.isValidDecimalValue(AccountNumber.right(4) ) )
+                receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(AccountNumber.right(4) );
+        }
+        else{
+            if((! String.isBlank(CreditCardNumber)) && DOL_AppUtility.isValidDecimalValue(CreditCardNumber.right(4)) )
+                receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(CreditCardNumber.right(4));
+            if( ! String.isBlank(CreditCardType) )
+                receipt.MUSW__Card_Type__c = CreditCardType;
+        }
+        receipt.US_Bank_Payment_Status__c = 'Processed';
     }
 
 }

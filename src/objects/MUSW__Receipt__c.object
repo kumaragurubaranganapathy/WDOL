@@ -1317,14 +1317,14 @@
     <fields>
         <fullName>Transaction_Confirmation_ID__c</fullName>
         <description>Transaction confirmation from US Bank</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transaction Confirmation ID</label>
-        <precision>18</precision>
+        <length>25</length>
         <required>false</required>
-        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
