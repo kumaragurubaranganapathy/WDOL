@@ -19,6 +19,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>false</editable>
+        <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
 		<editable>true</editable>
 		<field>Lockbox_Envelope__c.Lockbox_Amount__c</field>
 		<readable>true</readable>

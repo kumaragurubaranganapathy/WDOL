@@ -55,6 +55,18 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>AFRS_Transaction_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>AFRS Transaction Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Add_to_Interface__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -274,10 +286,34 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>TMS_Transaction_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>TMS Transaction Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Target_Accounting_System__c</fullName>
         <externalId>false</externalId>
         <label>Target Accounting System</label>
         <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Accounting_Systems__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXXX&quot;,&quot;AFRS&quot;)&amp; &quot;-&quot; &amp; IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXX&quot;,&quot;TMS&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Accounting Systems</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
