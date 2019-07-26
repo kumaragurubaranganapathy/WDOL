@@ -88,10 +88,10 @@ public with sharing class CartController
         totalSelected = 0;
         totalSelectedOutstanding = 0;
         m_totalOwed = 0;
-        //isPortalUser = BGCM.UtilityUser.isPortalUser();
+        isPortalUser = BGCM.UtilityUser.isPortalUser();
         //system.debug('isPortalUser123'+isPortalUser);
         //Code to avoid 
-        isPortalUser = false; // This variable need to be false for portal
+        //isPortalUser = false; // This variable need to be false for portal
         currURL = String.valueOf(URL.getSalesforceBaseUrl().toExternalForm());
         m_isNotFromVF = false;
         checkReceiptAmount = true;
@@ -439,7 +439,9 @@ public with sharing class CartController
 
                 //don't include Deposit if multiple payment methods where initial payment method is not Deposit
                if(m_settings.BGBK__Allow_Pay_By_Deposit__c && deposits.size() == 0 && receiptVOs.size() <= 1){
-                    pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
+					if(!isPortalUser){  // Added the check to remove deposit option for Portal user as per demo feedback [Chiranth 7/25/2019]
+						pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
+					}
                 }
 
                 //Add 'Exisiting Receipt' payment method
