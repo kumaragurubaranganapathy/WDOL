@@ -307,6 +307,89 @@
         <processMetadataValues>
             <name>index</name>
             <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision12</name>
+        <label>myDecision12</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_13</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Appraiser Course</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_13_A1</targetReference>
+            </connector>
+            <label>Appraiser Course - New License</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
                 <numberValue>1.0</numberValue>
             </value>
         </processMetadataValues>
@@ -672,6 +755,9 @@
         <label>myDecision9</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision12</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_10</name>
@@ -1526,7 +1612,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_1834781557</name>
+        <name>formula_11_myRule_10_A1_0424382058</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY())+1,3, 31) &gt;90,
@@ -1538,48 +1624,75 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>	If( [MUSW__License2__c].MUSW__Issue_Date__c &gt; DATE(YEAR(TODAY()),MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c )),
-	IF(	
-	  [MUSW__License2__c].MUSW__Issue_Date__c - DATE(YEAR(TODAY()),MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c )) &gt;90,
-	  DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c),MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c )),
-	  DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 1, MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c ) )),
-	 DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c ))
+                <stringValue>IF(
+	INCLUDES([MUSW__License2__c].Delivery_Method__c , &quot;One-time event / Seminar&quot;), 
+	DATE(YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].MUSW__Issue_Date__c ),DAY( [MUSW__License2__c].MUSW__Issue_Date__c )),IF(
+	INCLUDES([MUSW__License2__c].Pre_Approval__c,&quot;USPAP Instructor&quot;), IF(MOD(YEAR(TODAY()),2) != 0 ,DATE(YEAR(TODAY()),12, 31),DATE(YEAR(TODAY())+1,12, 31)),IF(
+	INCLUDES([MUSW__License2__c].Delivery_Method__c,&quot;Distance / On-Line&quot;), 
+	[MUSW__License2__c].IDECC_Approval_Expiration_Date__c,IF(
+	AND(INCLUDES([MUSW__License2__c].Delivery_Method__c, &quot;Classroom (Instructor in room with students)&quot;), INCLUDES([MUSW__License2__c].Pre_Approval__c,&quot;AQB&quot;)),
+	[MUSW__License2__c].AQB_Approval_Expiration_Date__c,DATE(YEAR([MUSW__License2__c].MUSW__Issue_Date__c)+3,MONTH( [MUSW__License2__c].MUSW__Issue_Date__c ), DAY( [MUSW__License2__c].MUSW__Issue_Date__c )) )))) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_14_myRule_13_A1_1712861641</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+	INCLUDES({!myVariable_current.Delivery_Method__c} , &quot;One-time event / Seminar&quot;), 
+	DATE(YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.MUSW__Issue_Date__c} ),DAY( {!myVariable_current.MUSW__Issue_Date__c} )),IF(
+	INCLUDES({!myVariable_current.Pre_Approval__c},&quot;USPAP Instructor&quot;), IF(MOD(YEAR(TODAY()),2) != 0 ,DATE(YEAR(TODAY()),12, 31),DATE(YEAR(TODAY())+1,12, 31)),IF(
+	INCLUDES({!myVariable_current.Delivery_Method__c},&quot;Distance / On-Line&quot;), 
+	{!myVariable_current.IDECC_Approval_Expiration_Date__c},IF(
+	AND(INCLUDES({!myVariable_current.Delivery_Method__c}, &quot;Classroom (Instructor in room with students)&quot;), INCLUDES({!myVariable_current.Pre_Approval__c},&quot;AQB&quot;)),
+	{!myVariable_current.AQB_Approval_Expiration_Date__c},DATE(YEAR({!myVariable_current.MUSW__Issue_Date__c})+3,MONTH( {!myVariable_current.MUSW__Issue_Date__c} ), DAY( {!myVariable_current.MUSW__Issue_Date__c} )) ))))</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>	If( [MUSW__License2__c].NumberoFDaysToExpired__c &gt;0,
+	  IF(	
+	   [MUSW__License2__c].NumberoFDaysToExpired__c &gt; 90,
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c),MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c )),
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c )+1, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
+	   ),
+	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ))
 	 ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_7600468684</name>
+        <name>formula_2_myRule_1_A1_9036192859</name>
         <dataType>Date</dataType>
-        <expression>	If( {!myVariable_current.MUSW__Issue_Date__c} &gt; DATE(YEAR(TODAY()),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )),
-	IF(	
-	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY()),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )) &gt;90,
-	  DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c}),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )),
-	  DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 1, MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} ) )),
-	 DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} ))
+        <expression>	If( {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
+	  IF(	
+	   {!myVariable_current.NumberoFDaysToExpired__c} &gt; 90,
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c}),MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} )),
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} )+1, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
+	   ),
+	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
 	 )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>	If( [MUSW__License2__c].MUSW__Issue_Date__c &gt; DATE(YEAR(TODAY()),MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c )),
+                <stringValue>	If(  [MUSW__License2__c].NumberoFDaysToExpired__c &gt;0,
 		IF(	
-		[MUSW__License2__c].MUSW__Issue_Date__c - DATE(YEAR(TODAY()),MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c )) &gt;90,
-		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c )),
-		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 2, MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c ) )
+		 [MUSW__License2__c].NumberoFDaysToExpired__c &gt; 90,
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c )),
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 2, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
 		 ),
-	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Date_of_Birth__c ), DAY( [MUSW__License2__c].Date_of_Birth__c ))
+	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ))
 	 )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_3433252217</name>
+        <name>formula_5_myRule_4_A1_3437954948</name>
         <dataType>Date</dataType>
-        <expression>	If( {!myVariable_current.MUSW__Issue_Date__c} &gt; DATE(YEAR(TODAY()),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )),
+        <expression>	If(  {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
 		IF(	
-		{!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY()),MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )) &gt;90,
-		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} )),
-		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} ) )
+		 {!myVariable_current.NumberoFDaysToExpired__c} &gt; 90,
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} )),
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
 		 ),
-	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Date_of_Birth__c} ), DAY( {!myVariable_current.Date_of_Birth__c} ))
+	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
 	 )</expression>
     </formulas>
     <formulas>
@@ -1593,7 +1706,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_7694208742</name>
+        <name>formula_8_myRule_7_A1_4262472711</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY())+1,1, 31) &gt;90,
@@ -1601,7 +1714,7 @@
 	  DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, 1, 31 )
 	)</expression>
     </formulas>
-    <interviewLabel>Please_complete_1315-29_InterviewLabel</interviewLabel>
+    <interviewLabel>Please_complete_1315-56_InterviewLabel</interviewLabel>
     <label>Enterprise - Expiration Dates and Fees - Licenses with Set Expiration Date (Pre-Grace Period)5.</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1788,7 +1901,87 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_1834781557</elementReference>
+                <elementReference>formula_11_myRule_10_A1_0424382058</elementReference>
+            </value>
+        </inputAssignments>
+        <object>MUSW__License2__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[MUSW__License2__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_13_A1</name>
+        <label>Set Issue Date and Expiration Date</label>
+        <locationX>1300</locationX>
+        <locationY>200</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Expiration Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Expiration_Date__c</field>
+            <value>
+                <elementReference>formula_14_myRule_13_A1_1712861641</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -1953,7 +2146,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_7600468684</elementReference>
+                <elementReference>formula_2_myRule_1_A1_9036192859</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2118,7 +2311,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_3433252217</elementReference>
+                <elementReference>formula_5_myRule_4_A1_3437954948</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2283,7 +2476,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_7694208742</elementReference>
+                <elementReference>formula_8_myRule_7_A1_4262472711</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
