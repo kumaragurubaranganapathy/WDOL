@@ -45,6 +45,11 @@ public with sharing class Lnp_CommonHeader_AC {
         customLabelMap.put('LnP_Praise', System.Label.LnP_Praise);
         customLabelMap.put('LnP_FileComplaint', System.Label.LnP_FileComplaint);
         customLabelMap.put('LnP_LicenseList', System.Label.LnP_LicenseList);
+        customLabelMap.put('LnP_FooterTerms_URL', System.Label.LnP_FooterTerms_URL);
+        customLabelMap.put('LnP_FooterPrivacy_URL', System.Label.LnP_FooterPrivacy_URL);
+        customLabelMap.put('LnP_FooterGuide_URL', System.Label.LnP_FooterGuide_URL);
+        customLabelMap.put('LnP_FooterSupport_URL', System.Label.LnP_FooterSupport_URL);
+        
         
         return customLabelMap;
     }
@@ -61,6 +66,24 @@ public with sharing class Lnp_CommonHeader_AC {
         return Id.valueOf(fileId);
     }
     
+    @AuraEnabled
+    public static List<String> getContactUserInfo(){
+         List<String> usrInfo = new List<String>();
+        try{
+         //List<User> userDetail = [select id,UserType,Name from User where ContactId=:conId];
+         //String userType= userDetail[0].UserType;
+         //String userName = userDetail[0].Name;
+         
+         usrInfo.add(userInfo.getUserType());
+         //usrInfo.add(userDetail[0].Name);
+         //usrInfo.add(userDetail[0].Id);
+            //usrInfo.add(conId);
+        }
+		catch(Exception e){
+            HandleException.LogException(e,'LnP_comHeaderPublicFormsApexController','getCurrentUserInfo');
+        }
+         return usrInfo;
+      }
     public static Id saveTheFile(String fileName, String base64Data,String contentType) {
         base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
         Document oAttachment=new Document();
