@@ -5,6 +5,13 @@
     border-radius: 5px;
   	border: solid 1.5px #e3e4ea;
 }
+.THIS .slds-truncate.field-item{
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.THIS .recItem textarea{
+    color:t(fieldclr);
+}
 /*.THIS .recItem .slds-form-element__static{
    max-width: 100%;
     overflow: hidden;
@@ -95,7 +102,7 @@
 }
 .THIS.full-width{
     width: 100%;
-    margin-top:50px;
+    margin-top:30px;
 }
 .THIS .slds-input{
     border: none;
