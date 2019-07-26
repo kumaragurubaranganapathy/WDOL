@@ -490,8 +490,7 @@ return parser;
             Integer questioncount = 0;
             Integer FGquestioncount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
-                
-                if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' || fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
+                if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' && fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                     requestDetails.method = 'POST';
@@ -859,17 +858,6 @@ listApp.add(applicationChild);*/
                 if(!lstParcelsList.isEmpty()){
                     update lstParcelsList;
                 }
-                /*List<MUSW__License_Parcel__c> lstParcels = new List<MUSW__License_Parcel__c>();            
-                if(appListOtherDetils[0].Parcels__r != null && appListOtherDetils[0].Parcels__r.size()>0 && !String.isBlank(licenseID)){
-                    for(MUSW__Parcel__c parcel : appListOtherDetils[0].Parcels__r){
-                        system.debug('parcelInstance==' + parcel);
-                        MUSW__License_Parcel__c licenseParcelRecord = new MUSW__License_Parcel__c();
-                        licenseParcelRecord.MUSW__Parcel__c = parcel.Id;
-                        licenseParcelRecord.Renewal_Reinstatement_Application__c = licenseID; 
-                        lstParcels.add(licenseParcelRecord);
-                    }
-                    upsert lstParcels;                
-                }*/
                 List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
                 if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
                     for(LnP_BackgroundSection__c EduHist : appListOtherDetils[0].LnP_BackgroundSections__r){
@@ -980,7 +968,7 @@ listApp.add(applicationChild);*/
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
-                            endorsment.License__c = liceseIDRenewal.Id;
+                            endorsment.License__c = liceseIDRenewal;
                             lstEndorsements.add(endorsment);
                         }
                         else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
@@ -992,7 +980,7 @@ listApp.add(applicationChild);*/
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
-                            endorsment.License__c = liceseIDRenewal.Id;
+                            endorsment.License__c = liceseIDRenewal;
                             lstEndorsements.add(endorsment);
                         }
                         lstAnswers.add(ans);
@@ -1085,11 +1073,11 @@ mstLicense.RecordTypeId = businessRT;
             mstLicense.Application__c = application.id;
             //mstLicense.MUSW__Applicant__c = application.MUSW_Applicant__c;
             //mstLicense.MUSW__Primary_Licensee__c = '001r000000Cax8Y';
-            
+            liceseIDRenewal = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
             mstLicense.Renewal_Status__c = 'Generate Fee';
-            mstLicense.License__c = liceseIDRenewal.Id;
+            mstLicense.License__c = liceseIDRenewal;
             mstLicense.Renewal_Reinstatement_Type__c = renewReinstate;
-            //MUSW__License2__c lic = [SELECT Id, Bond_Number__c, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c FROM MUSW__License2__c where Id =: liceseIDRenewal];
+            MUSW__License2__c lic = [SELECT Id, Bond_Number__c, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c FROM MUSW__License2__c where Id =: liceseIDRenewal];
             //Added for pol
             Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get('Renewal_Application__c').getDescribe().SObjectType.getDescribe().fields.getMap();
             Map<String,String>  mapValueToStr =  new Map<String,String>();
@@ -1139,15 +1127,15 @@ mstLicense.RecordTypeId = businessRT;
                         String answerText = ans.Answer_Text__c;
                         String stringToDate = '';
                         if(quesBody == 'Bond / Policy Number'){
-                            liceseIDRenewal.Bond_Number__c = String.valueOf(answerText);
+                            lic.Bond_Number__c = String.valueOf(answerText);
                         }
                         
                         if(quesBody == 'Bond / Insurance Company Name'){
-                            liceseIDRenewal.Surety_Bond_Company_Name__c = String.valueOf(answerText);
+                            lic.Surety_Bond_Company_Name__c = String.valueOf(answerText);
                         }
                         
                         if(quesBody == 'Bond / Policy Amount'){
-                            liceseIDRenewal.Policy_Amount__c = String.valueOf(answerText);
+                            lic.Policy_Amount__c = String.valueOf(answerText);
                         }
                         
                         if(quesBody == 'Effective Date'){
@@ -1157,7 +1145,7 @@ mstLicense.RecordTypeId = businessRT;
                             Integer day = Integer.valueOf(stringToDate.subString(8));
                             Date d = Date.newInstance(year, month, day);
                             
-                            liceseIDRenewal.Effective_Date_of_Bond__c = d;
+                            lic.Effective_Date_of_Bond__c = d;
                         }
                         
                         if(quesBody == 'Expiration Date'){
@@ -1167,7 +1155,7 @@ mstLicense.RecordTypeId = businessRT;
                             Integer day = Integer.valueOf(stringToDate.subString(8));
                             Date d = Date.newInstance(year, month, day);
                             
-                            liceseIDRenewal.Expiration_Date_of_Bond__c = d;
+                            lic.Expiration_Date_of_Bond__c = d;
                         }
                     }            
                     
@@ -1177,8 +1165,7 @@ mstLicense.RecordTypeId = businessRT;
             }
             //---------Completed by Babita
             
-            
-            liceList.add(liceseIDRenewal);
+            liceList.add(lic);
             lstLisence.add(mstLicense);
         }
         
@@ -1187,7 +1174,7 @@ mstLicense.RecordTypeId = businessRT;
             update liceList;
         }
         
-        List<Endorsement__c> lstEndo = [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,Renewal_Reinstatement_Application__c,License__c,Status__c FROM Endorsement__c where  License__c =:liceseIDRenewal.Id];
+        List<Endorsement__c> lstEndo = [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,Renewal_Reinstatement_Application__c,License__c,Status__c FROM Endorsement__c where  License__c =:liceseIDRenewal];
         for(Endorsement__c endo : lstEndo)
         {
             if(endo.Status__c == 'Renew'){
@@ -1307,6 +1294,5 @@ mstLicense.RecordTypeId = businessRT;
         }
         return updatedFlag;
     }
-    
     
 }

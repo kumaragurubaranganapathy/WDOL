@@ -12,7 +12,8 @@ public class Polaris_RefundTriggerHandler {
         Map<Id, BGBK__Refund2__c> rejectedStatements = new Map<Id, BGBK__Refund2__c>();
         List<MUSW__Receipt__c> receiptsToBeUpdated = new List<MUSW__Receipt__c>();
         List<BGBK__Receipt_Refund__c> receiptRefundsToBeUpdated = new List<BGBK__Receipt_Refund__c>();
-        List<BGBK__Receipt_Refund__c> receiptRefundList = [Select id, BGBK__Refund2__c,BGBK__Receipt__c,BGBK__Amount__c,BGBK__Receipt__r.MUSW__Amount_Refunded__c,BGBK__Receipt__r.MUSW__Amount_Available__c from BGBK__Receipt_Refund__c where BGBK__Refund2__c in: newList ];
+        List<MUSW__Deposit__c> depositsToBeUpdated = new List<MUSW__Deposit__c>();
+        List<BGBK__Receipt_Refund__c> receiptRefundList = [Select id, BGBK__Refund2__c,BGBK__Receipt__c,BGBK__Amount__c,BGBK__Receipt__r.MUSW__Amount_Refunded__c,BGBK__Receipt__r.MUSW__Amount_Available__c,BGBK__Deposit__c,BGBK__Deposit__r.MUSW__Refunded_Amount__c from BGBK__Receipt_Refund__c where BGBK__Refund2__c in: newList ];
         List<Group> queueList = [select Id, DeveloperNAME from Group where Type = 'Queue' AND DeveloperNAME In: QueueNames];
         Map<String,Id> QueueNameToIdMap = new Map<String,Id>();
         List<BGBK__Refund2__c> refundsToBeUpdated = new List<BGBK__Refund2__c>();
@@ -29,14 +30,23 @@ so we only have to use 1 SOQL query to do all checks.
             if(oldMap.get(ref.Id).status__c != 'Rejected' && oldMap.get(ref.Id).status__c != 'Issued in Error'){
                 for(BGBK__Receipt_Refund__c recRefund : receiptRefundList ){
                     if(recRefund.BGBK__Refund2__c == ref.Id && (ref.Status__c == 'Rejected' || ref.Status__c == 'Issued in Error')){
-                        MUSW__Receipt__c receipt = new MUSW__Receipt__c(Id=recRefund.BGBK__Receipt__c);
-                        receipt.MUSW__Amount_Refunded__c = recRefund.BGBK__Receipt__r.MUSW__Amount_Refunded__c - ref.BGBK__Amount__c;
-                        receipt.MUSW__Amount_Available__c = recRefund.BGBK__Receipt__r.MUSW__Amount_Available__c + ref.BGBK__Amount__c;
-                        recRefund.BGBK__Amount__c = recRefund.BGBK__Amount__c - ref.BGBK__Amount__c;
-                        // update the amount of receipt refund
-                        receiptRefundsToBeUpdated.add(recRefund);
-                        //update the refunded amount and available amount on receipt
-                        receiptsToBeUpdated.add(receipt);
+                        if(recRefund.BGBK__Deposit__c != null){ //BUG:4684
+                            MUSW__Deposit__c dep = new MUSW__Deposit__c(Id=recRefund.BGBK__Deposit__c);
+                            dep.MUSW__Refunded_Amount__c =  recRefund.BGBK__Deposit__r.MUSW__Refunded_Amount__c - ref.BGBK__Amount__c;
+                            recRefund.BGBK__Amount__c = recRefund.BGBK__Amount__c - ref.BGBK__Amount__c;
+                            receiptRefundsToBeUpdated.add(recRefund);
+                            depositsToBeUpdated.add(dep);
+                        }else{
+                            MUSW__Receipt__c receipt = new MUSW__Receipt__c(Id=recRefund.BGBK__Receipt__c);
+                            receipt.MUSW__Amount_Refunded__c = recRefund.BGBK__Receipt__r.MUSW__Amount_Refunded__c - ref.BGBK__Amount__c;
+                            receipt.MUSW__Amount_Available__c = recRefund.BGBK__Receipt__r.MUSW__Amount_Available__c + ref.BGBK__Amount__c;
+                            recRefund.BGBK__Amount__c = recRefund.BGBK__Amount__c - ref.BGBK__Amount__c;
+                            // update the amount of receipt refund
+                            receiptRefundsToBeUpdated.add(recRefund);
+                            //update the refunded amount and available amount on receipt
+                            receiptsToBeUpdated.add(receipt);
+                        }
+                        
                     }
                 }
             }
@@ -95,6 +105,9 @@ so we only have to use 1 SOQL query to do all checks.
         if(receiptRefundsToBeUpdated.size() >0){
             update receiptRefundsToBeUpdated;
         }
+        if(depositsToBeUpdated.size() > 0){
+            update depositsToBeUpdated;
+        }
         
     }
     public static void handleAfterUpdate(List<BGBK__Refund2__c> newList,Map<Id,BGBK__Refund2__c> oldMap){
@@ -108,6 +121,7 @@ so we only have to use 1 SOQL query to do all checks.
             updateReceiptRefundStatus(refundsWithStatusUpdate);
         }
         
+       
     }
     public static void updateReceiptRefundStatus(List<BGBK__Refund2__c> newList){
         List<BGBK__Receipt_Refund__c> receiptRefundList = [Select id, BGBK__Refund2__c,BGBK__Refund2__r.Status__c,BGBK__Refund2__r.Stage__c,Status__c,Stage__c from BGBK__Receipt_Refund__c where BGBK__Refund2__c in: newList ];
@@ -123,5 +137,7 @@ so we only have to use 1 SOQL query to do all checks.
             update receiptRefundToBeUpdated;
         }
     }
+    
+   
     
 }
