@@ -15,7 +15,7 @@ trigger DRE2_Renewal_Application_c on Renewal_Application__c (after insert, befo
            system.debug('renewal.License__r.MUSW__Primary_Licensee__r.AccountStatus__c '+renewal.AccountStatus__c );
            if(renewal.Renewal_Status__c == 'In-Review' && renewal.LicenseRecordType__c == 'Business' && renewal.AccountStatus__c == 'Active'){
                system.debug('accc'+LicensetoRenew);
-               if(renewal.Renewal_Reinstatement_Type__c == 'Renewal' && LicensetoRenew!= null && LicensetoRenew.contains(renewal.Credential_Type__c) ){
+               if(renewal.Renewal_Reinstatement_Type__c == 'Renewal' && LicensetoRenew!= null && LicensetoRenew.contains(renewal.Credential_Type__c) && (renewal.Physical_Address_Modified__c == true)){
                    system.debug('acc2Insidetext');
                    renewList.add(renewal);
                }else if(renewal.Renewal_Reinstatement_Type__c == 'Reinstatement' && LicensetoReinstate !=null && LicensetoReinstate.contains(renewal.Credential_Type__c)){
@@ -24,7 +24,7 @@ trigger DRE2_Renewal_Application_c on Renewal_Application__c (after insert, befo
            }
            else if(renewal.Renewal_Status__c == 'In-Review' && renewal.LicenseRecordType__c != 'Business' ){
                system.debug('inside inreview'+LicensetoRenew);
-               if(renewal.Renewal_Reinstatement_Type__c == 'Renewal' && LicensetoRenew!= null && LicensetoRenew.contains(renewal.Credential_Type__c)){
+               if(renewal.Renewal_Reinstatement_Type__c == 'Renewal' && LicensetoRenew!= null && LicensetoRenew.contains(renewal.Credential_Type__c) && (renewal.Physical_Address_Modified__c == true)){
                    system.debug('acc2');
                    renewList.add(renewal);
                }else if(renewal.Renewal_Reinstatement_Type__c == 'Reinstatement' && LicensetoReinstate !=null && LicensetoReinstate.contains(renewal.Credential_Type__c) ){

@@ -410,5 +410,18 @@
         } else {
             component.set("v.attestationError", "Name should be same.");
         }
+    },
+    updatePhysicalAddress : function(component,event,helper){
+        var applicationId = component.get("v.applicationId");
+        var action = component.get("c.updateAddressModified");
+        action.setParams({"appId" : applicationId});
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var updated = actionResult.getReturnValue();
+                console.log("updated ::"+updated);
+            }
+        });
+        $A.enqueueAction(action);
     }
 })
