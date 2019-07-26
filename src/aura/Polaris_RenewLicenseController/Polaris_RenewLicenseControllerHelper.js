@@ -133,7 +133,11 @@
                 this.hideSpinner(component, event);
                 var tabsList = component.get("v.licenseWrapper");
             var currentTab = component.get("v.currentTab");
-        
+			if(currentTab == 2 && component.get("v.PhysicalAddressModified")){
+                        console.log("inside update Physical address ::");
+                        this.updatePhysicalAddress(component,event,helper);
+                    }
+                    
         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
         {
             component.set("v.showNotaryEndo",true);
