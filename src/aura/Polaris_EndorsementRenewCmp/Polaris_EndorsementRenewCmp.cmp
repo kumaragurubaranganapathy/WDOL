@@ -17,7 +17,7 @@
     </aura:if>
   
     <div class="field-item content-wrapper">
-        <aura:if isTrue="{!v.endorsementList!=0}">
+        <aura:if isTrue="{!v.endorsementList.length!=0}">
         <div class="spaceBottm">Endorsement Details
             <p class="slds-p-vertical_small">
                 
