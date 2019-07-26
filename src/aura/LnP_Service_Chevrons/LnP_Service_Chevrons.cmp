@@ -129,11 +129,11 @@
                                             </div>
                                         </aura:iteration>
                                     </div>
-                                    <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                    <!--<div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
 <div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                            <!--<div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
-                                            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
+                                            <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
+                                            <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                             <div class="slds-form-element">
                                                 <div class="slds-form-element__control">
                                                     <div class="slds-checkbox certificate-checkbox">
@@ -147,7 +147,7 @@
                                             </div>
                                         </aura:iteration> 
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
-                                    </div>
+                                    </div>-->
                                     
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                       <div class="reviewHeading declaration">DECLARATION</div><br/>
