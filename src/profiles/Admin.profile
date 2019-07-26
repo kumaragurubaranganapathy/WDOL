@@ -16,10 +16,25 @@
     <tabVisibilities>
         <tab>Portal_Article__c</tab>
         <visibility>DefaultOn</visibility>
-    </tabVisibilities>	
+    </tabVisibilities>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
 	<fieldPermissions>
         <editable>true</editable>
         <field>Portal_Article__c.Article_Body__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Education_History__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Master_Exam_List__c.Submit_Exam_Results__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>

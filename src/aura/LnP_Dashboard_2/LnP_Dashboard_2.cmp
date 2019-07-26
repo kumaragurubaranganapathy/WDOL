@@ -142,13 +142,13 @@
 </aura:if>
 <div aura:id="body" class="dashboard-wrapper">
 <div class="screen-title">
-Professional Dashboard
+Individual Account
 </div>
 <nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
 <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
    <li class="slds-breadcrumb__item slds-var-p-right_xx-small">
        <a href="javascript:void(0);" class="{!v.DisplayLicense_Details?'breadcrumb-style':'slds-hide'}"
-          onclick="{!c.handleProfessionalBreadCrumb}">Professional Dashboard</a>
+          onclick="{!c.handleProfessionalBreadCrumb}">Individual Account</a>
    </li>
    
    <aura:if isTrue="{!v.DisplaylicenseNumberBreadCrumb}">
@@ -526,7 +526,7 @@ Professional Dashboard
            </lightning:tab>
            <!--- To Show AMRs in related List of License Detail Page -->
            
-           <lightning:tab class="tab-style" label="Draft Applications" id="DraftApp_id">
+           <lightning:tab class="tab-style" label="Draft Applications/Requests" id="DraftApp_id">
                <aura:if isTrue="{!v.DraftAMRDataList.length != 0}">
                    <div class="slds-p-vertical_large">
                        
@@ -879,7 +879,7 @@ Professional Dashboard
        </div>
    </lightning:tab>
    
-   <lightning:tab class="tab-style" label="Draft Applications" id="ProfessionalDraftApplicationsTab">
+   <lightning:tab class="tab-style" label="Draft Applications/Requests" id="ProfessionalDraftApplicationsTab">
        <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0 || v.DraftRenewApplicationsDataList.length != 0 || v.DraftMaintananceRequestApplicationsDataList.length != 0}">
            <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0}">
                <div class="">
@@ -1115,7 +1115,7 @@ Professional Dashboard
        </aura:if>
    </lightning:tab>
    
-   <lightning:tab class="tab-style" label="Pending Applications" id="ProfessionalPendingApplicationsTab">
+   <lightning:tab class="tab-style" label="Pending Applications/Requests" id="ProfessionalPendingApplicationsTab">
        <aura:if isTrue="{!v.PendingNewLicenseApplicationsDataList.length != 0 || v.PendingRenewApplicationsDataList.length != 0 || v.PendingMaintananceRequestApplicationsDataList.length != 0}">
            <aura:if isTrue="{!v.PendingNewLicenseApplicationsDataList.length != 0}">
                <div class="">
@@ -1360,15 +1360,15 @@ Professional Dashboard
                        </div>
                    </div>
                </div>
-               
+               <div class="pagination-wrapper">
+                   <c:LnP_Pagination pgSize="4" fullList="{!v.PendingMaintananceRequestApplicationsDataList}"
+                                     dispList="{!v.pendingMaintainPaginationList}" />
+               </div>
            </aura:if>
            <aura:set attribute="else">
                <div class="slds-align_absolute-center">There are no pending maintenance requests</div>
            </aura:set>
-           <div class="pagination-wrapper">
-               <c:LnP_Pagination pgSize="4" fullList="{!v.PendingMaintananceRequestApplicationsDataList}"
-                                 dispList="{!v.pendingMaintainPaginationList}" />
-           </div>
+           
        </aura:if>
    </lightning:tab>
    

@@ -5,6 +5,7 @@
         <tab>MUSW__Deposit__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+	
 	<tabVisibilities>
         <tab>Miscellaneous_Fee__c</tab>
         <visibility>DefaultOn</visibility>
@@ -16,6 +17,11 @@
 	<fieldPermissions>
         <editable>false</editable>
         <field>MUSW__Fee__c.Licensee_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>On-site Wastewater Designer</label>
+    <label>State Licensed Appraiser Upgrade</label>
     <protected>false</protected>
     <values>
         <field>Application_Method__c</field>
-        <value xsi:type="xsd:string">General Application</value>
+        <value xsi:type="xsd:string">Upgrade</value>
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">On-site Wastewater</value>
+        <value xsi:type="xsd:string">Appraisers - Real Estate</value>
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">On-site Wastewater Designer</value>
+        <value xsi:type="xsd:string">State Licensed Appraiser</value>
     </values>
     <values>
         <field>Sections__c</field>

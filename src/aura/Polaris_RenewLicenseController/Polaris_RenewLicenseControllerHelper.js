@@ -33,6 +33,14 @@
                 console.log("resultWrapper", JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
+                if(component.get("v.RenewReinstate") == "Renewal"){
+                    console.log('inside');
+                    component.set("v.isRenewal",true);
+                    console.log(component.get("v.isRenewal"));
+                    var appEvent = $A.get("e.c:AddressModifiedEvent");
+                    appEvent.setParams({ "isRenewal" : "true"});
+                    appEvent.fire();
+                }
             }else{
                 window.location.href = "./error";
             }
@@ -125,7 +133,11 @@
                 this.hideSpinner(component, event);
                 var tabsList = component.get("v.licenseWrapper");
             var currentTab = component.get("v.currentTab");
-        
+			if(currentTab == 2 && component.get("v.PhysicalAddressModified")){
+                        console.log("inside update Physical address ::");
+                        this.updatePhysicalAddress(component,event,helper);
+                    }
+                    
         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
         {
             component.set("v.showNotaryEndo",true);
@@ -394,5 +406,18 @@
         } else {
             component.set("v.attestationError", "Name should be same.");
         }
+    },
+    updatePhysicalAddress : function(component,event,helper){
+        var applicationId = component.get("v.applicationId");
+        var action = component.get("c.updateAddressModified");
+        action.setParams({"appId" : applicationId});
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var updated = actionResult.getReturnValue();
+                console.log("updated ::"+updated);
+            }
+        });
+        $A.enqueueAction(action);
     }
 })
