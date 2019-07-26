@@ -294,6 +294,18 @@
 .THIS .page-info{
     display:none;
 }
+.THIS .validate {
+    position: relative;
+    margin-bottom:1rem;
+    padding-bottom:0;
+}
+.THIS .validate::before{
+    position: absolute;
+    content: "*";
+    color:t(LnGErrorMsg);
+    top: 0px;
+    left: -8px;
+}
 @media only screen and (min-width: 768px)and (max-width: 1024px){
     
     .THIS .buttonpos{
