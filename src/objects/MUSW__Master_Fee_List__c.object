@@ -6067,9 +6067,34 @@
         <fullName>Allow_user_to_input_Only_till_4_digits</fullName>
         <active>true</active>
         <description>This validation rule would prevent user to enter more than 4 digits in the base field</description>
-        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),LEN(TEXT(Base__c))&gt;4)</errorConditionFormula>
+        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),Base__c&lt;0 || Base__c&gt;=5999.99)</errorConditionFormula>
         <errorDisplayField>Base__c</errorDisplayField>
-        <errorMessage>You are not allowed to enter more than 4 digits.</errorMessage>
+        <errorMessage>Base amount cannot be negative or more than 5999.99</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Profession_Code_Number_Check</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(
+NOT(ISNUMBER(Profession_Code__c)),
+TRUE,
+
+IF(AND(
+ISNUMBER(Profession_Code__c),
+OR(
+ LEN(Profession_Code__c) &lt;&gt; 5,
+CONTAINS(Profession_Code__c,&apos;.&apos;) 
+)
+),TRUE,FALSE)
+)</errorConditionFormula>
+        <errorDisplayField>Profession_Code__c</errorDisplayField>
+        <errorMessage>Profession code should be a 5 digit number and cannot have decimal</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Revenue_Code_Format</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(REGEX(Revenue_Code__c, &quot;[A-Z0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{6}&quot;) )</errorConditionFormula>
+        <errorDisplayField>Revenue_Code__c</errorDisplayField>
+        <errorMessage>Revenue code not in valid format</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
