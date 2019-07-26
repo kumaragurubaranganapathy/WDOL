@@ -11,10 +11,6 @@
                 <behavior>Readonly</behavior>
                 <field>Name</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Target_Accounting_Systems__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -32,31 +28,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Reference_Document_Suffix__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>AFRS_Transaction_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>TMS_Transaction_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Reversal__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Agency__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Fund__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Program_Index__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -72,15 +44,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Debit_Credit__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>General_Ledger_Account__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -91,7 +55,41 @@
                 <field>Subsidiary_Account_Credit__c</field>
             </layoutItems>
         </layoutColumns>
-        <style>OneColumn</style>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Reference_Document_Suffix__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AFRS_Transaction_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TMS_Transaction_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Agency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Reversal__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Program_Index__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Debit_Credit__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Amount__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -99,6 +97,10 @@
         <editHeading>true</editHeading>
         <label>Interface Management</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Target_Accounting_Systems__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Add_to_PDF__c</field>
