@@ -249,22 +249,29 @@ public with sharing class CartController
                         ApexPages.addMessage(myMsg);
                         return;
                     }
-                    system.debug('receipt id '+tempReceiptId);
-                    Boolean paymentProcessed = updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
                     receiptId=tempReceiptId;
-                    if( paymentProcessed ){
+                    MUSW__Receipt__c receipt = [select id,Status__c,MUSW__Payment_Method__c from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
+                    //Boolean paymentProcessed = updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
+                    if(receipt == null){
+                        ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Receipt with Id ='+receiptId+' is not present in Salesforce');
+                        ApexPages.addMessage(myMsg);
+                        return;
+                    }
+                    ePaymentReturnSession.updateReceipt(receipt);
+                    if(receipt.Status__c == 'Complete'){
+                        update receipt;
                         onPaymentConfirmation();
-                    }else{
+                    }
+                    else{
+                        receipt.Status__c = 'Complete';
+                        receipt.MUSW__Amount_Tendered__c = null;
+                        rs.add(receipt);
+                        ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentReturnSession.PaymentAmount), m_rs);
+                        newReceiptVO.pmtMethodSelected=receipt.MUSW__Payment_Method__c;
+                        receiptVOs.add(newReceiptVO);
                         cart.BGBK__Process_DateTime__c = System.now();
                         processEPayment(); 
-                    }     
-                    
-                }
-                else{
-                    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'ePayment Transaction is failed');
-                    ApexPages.addMessage(myMsg);
-                    return;
-                }
+                    }
         }
         else{
             con = m_cs.getActiveContact();            
