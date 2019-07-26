@@ -54,12 +54,20 @@
 }
 /*common style for table */
 /*common style for tabs */
+.THIS .slds-tabs_default__overflow-button .slds-button{
+    color:t(actionPanelBG);
+    font-size:1rem;
+}
 .THIS .slds-tabs_default__item{    
     border : solid 1px t(actionPanelBG);
     border-top-left-radius : 4px; 
     border-top-right-radius : 4px; 
-    padding:0.25rem 2.5rem;
+    height:65px;
+    align-items:center;
+    display:flex;
+    justify-content:center;
     flex-grow:1;
+    padding:0;
 }
 .THIS .slds-tabs_default__item.slds-tabs_default__overflow-button[style='visibility: hidden;']{
     display:none;
@@ -77,12 +85,13 @@
     overflow:auto;
 }
 .THIS .slds-tabs_default__item.slds-is-active{
-    background:t(primary);
+    background:t(actionPanelBG);
     color:t(LnGWhite);
 }
 .THIS .slds-tabs_default__item.slds-is-active .slds-tabs_default__link{
     color:t(LnGWhite);
     text-decoration:none;
+    font-weight:bold;
 }
 .THIS .slds-tabs_default__item .slds-tabs_default__link{    
     font-size: 1rem;    
@@ -90,6 +99,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    line-height:1.2;    
 }
 /*common style for tabs end*/
 .THIS .slds-button.slds-button_brand{
@@ -122,6 +132,10 @@
         border-radius : 0.25rem;
     }
     .THIS .slds-tabs_default__item .slds-tabs_default__link{
+        font-size:0.8125rem;
+    }
+    .THIS .slds-tabs_default__overflow-button .slds-button{
+        color:t(actionPanelBG);
         font-size:0.8125rem;
     }
 }

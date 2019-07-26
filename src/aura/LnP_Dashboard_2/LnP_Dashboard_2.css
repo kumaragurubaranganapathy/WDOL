@@ -4,11 +4,11 @@
 .THIS.dashboard-wrapper{
     padding:1.5rem 7.5rem; 
 }
-.THIS .slds-tabs_default__overflow-button{
-    height:50px;
-}
 .THIS .table-btn button, .THIS .table-btn a{
     font-size:0.8125rem;    
+}
+.THIS .table-edit{
+    margin-bottom:0.25rem;
 }
 .THIS .table-name{
     font-size:1.25rem;
@@ -132,7 +132,7 @@ padding: 10px;
     padding:1rem 1rem 0;
 }
 .THIS .license-details-wrapper{
-    padding-top:60px;
+    padding-top:1.5rem;
 }
 .THIS .renew-btn{
     display:flex;
@@ -188,7 +188,8 @@ padding: 10px;
 .THIS .screen-title{
     font-size:1.25rem;
     color:t(LnGFormTitleColor);
-    font-weight:600;   
+    font-weight:600; 
+    line-height:26px;
 }
 .THIS .pagination-wrapper{
     margin-top:1.5rem;
