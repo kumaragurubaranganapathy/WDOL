@@ -477,8 +477,7 @@ return parser;
             Integer questioncount = 0;
             Integer FGquestioncount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
-                
-                if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
+                if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' && fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                     requestDetails.method = 'POST';
