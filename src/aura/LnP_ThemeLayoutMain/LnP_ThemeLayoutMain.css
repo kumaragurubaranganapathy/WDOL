@@ -54,6 +54,10 @@
 }
 /*common style for table */
 /*common style for tabs */
+.THIS .slds-tabs_default__overflow-button .slds-button{
+    color:t(actionPanelBG);
+    font-size:1rem;
+}
 .THIS .slds-tabs_default__item{    
     border : solid 1px t(actionPanelBG);
     border-top-left-radius : 4px; 
@@ -128,6 +132,10 @@
         border-radius : 0.25rem;
     }
     .THIS .slds-tabs_default__item .slds-tabs_default__link{
+        font-size:0.8125rem;
+    }
+    .THIS .slds-tabs_default__overflow-button .slds-button{
+        color:t(actionPanelBG);
         font-size:0.8125rem;
     }
 }
