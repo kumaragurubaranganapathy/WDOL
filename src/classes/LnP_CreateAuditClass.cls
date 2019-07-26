@@ -107,38 +107,42 @@ public class LnP_CreateAuditClass {
         Id recordTypeId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('CE Audit Review').getRecordTypeId();
         system.debug(' ce audit review record type '+recordTypeId);
         for(MUSW__License2__c licenseApp : licenseList){
-            MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
+            
+            Request__c newCEAuditRequest = new Request__c(
+                Profession__c = licenseApp.Application_Type__c,
+                License_Type__c = licenseApp.Credential_Type__c,
+                Service_Request_Type__c = 'CE Audit',
+                Stage__c = 0,
+                License__c = licenseApp.id,
+                Contact__c = licenseApp.MUSW__Applicant__c,
+                Status__c = 'Draft'
+           );
+           requestList.add(newCEAuditRequest); 
+           
+          /* MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
                 recordTypeId = recordTypeId,
                 Application_Type__c = licenseApp.Application_Type__c,
                 License__c = licenseApp.Id,
                 MUSW__Status__c = 'Audit Pending',
                 Review_Type__c = 'CE Audit',
                 License_Type__c = licenseApp.Credential_Type__c
-            );
+            ); 
           
             auditList.add(newAuditReviewRec);
-            system.debug('auditList-------'+auditList);
-            
-            Request__c newCEAuditRequest = new Request__c(
-                Profession__c = licenseApp.Application_Type__c,
-                License_Type__c = licenseApp.Credential_Type__c,
-                Service_Request_Type__c = 'CE Audit',
-                License__c = licenseApp.id,
-                Status__c = 'Draft'
-           );
-           requestList.add(newCEAuditRequest); 
+            system.debug('auditList-------'+auditList); */
             
             licenseApp.Selected_for_Audit__c = true;
             updateFlagOnLicenseList.add(licenseApp);
            system.debug('newCEAuditRequest----'+newCEAuditRequest);
            
         }
-        if(!auditList.isEmpty()){
-            insert auditList;
-        } 
+        
         if(!requestList.isEmpty()){
             insert requestList;
         }
+      /*  if(!auditList.isEmpty()){
+            insert auditList;
+        } */
         if(!updateFlagOnLicenseList.isEmpty()){
             update updateFlagOnLicenseList;
         }
