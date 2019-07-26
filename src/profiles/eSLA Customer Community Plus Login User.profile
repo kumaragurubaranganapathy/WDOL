@@ -19,6 +19,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>false</editable>
+        <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>Master_Exam_List__c.Submit_Exam_Results__c</field>
         <readable>true</readable>
