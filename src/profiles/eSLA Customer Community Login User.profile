@@ -5,7 +5,6 @@
         <tab>MUSW__Deposit__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-	
 	<tabVisibilities>
         <tab>Miscellaneous_Fee__c</tab>
         <visibility>DefaultOn</visibility>
@@ -1610,7 +1609,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>MUSW__License2__c.Unlicensed</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
