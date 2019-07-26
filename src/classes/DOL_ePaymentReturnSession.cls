@@ -83,4 +83,27 @@ public class DOL_ePaymentReturnSession {
         system.debug('return value '+ReturnValue);     
     }
 
+    public void updateReceipt(MUSW__Receipt__c receipt) {
+        
+        if(! String.isBlank(TransactionConfirmationID)){
+            receipt.MUSW__Payment_Gateway_Transaction_Number__c = TransactionConfirmationID;
+            receipt.Transaction_Confirmation_ID__c = TransactionConfirmationID;
+        }
+        if(! String.isBlank(PaymentEffectiveDate))
+            receipt.MUSW__Effective_Date__c = DOL_AppUtility.getDate(PaymentEffectiveDate , 'YYYYMMDD');
+        if(! String.isBlank(InitiationDateTime))
+            receipt.Initiation_Date_and_Time__c = DOL_AppUtility.getDateTime(InitiationDateTime, 'YYYYMMDD:HHMMSS');
+        if(PaymentMethod.equals('ACH')){
+            if((!String.isBlank(AccountNumber)) && DOL_AppUtility.isValidDecimalValue(AccountNumber.right(4) ) )
+                receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(AccountNumber.right(4) );
+        }
+        else{
+            if((! String.isBlank(CreditCardNumber)) && DOL_AppUtility.isValidDecimalValue(CreditCardNumber.right(4)) )
+                receipt.Last_4_digits_of_Credit_Card_or_ACH__c = Decimal.valueOf(CreditCardNumber.right(4));
+            if( ! String.isBlank(CreditCardType) )
+                receipt.MUSW__Card_Type__c = CreditCardType;
+        }
+        receipt.US_Bank_Payment_Status__c = 'Processed';
+    }
+
 }

@@ -200,3 +200,6 @@
 .THIS .proceed-btn[disabled], .THIS .proceed-btn:disabled {
     background:t(LnGGrayText);
 }
+.THIS lightning-base-combobox-item[data-value*="Unlicensed"] {
+    display: none;
+}

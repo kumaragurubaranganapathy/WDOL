@@ -31067,7 +31067,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>MUSW__License2__c.Unlicensed</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>

@@ -239,37 +239,50 @@ public with sharing class CartController
             system.debug('Intializing receipt');
             // initialize receipt
             rs = new MUSW__Receipt__c[]{};
-            if(ePaymentReturnSession.TransactionConfirmationID != null && 
-                ePaymentReturnSession.TransactionConfirmationID != ''){
-                    system.debug('Transaction id:-'+ePaymentReturnSession.TransactionConfirmationID);
-                    String tempReceiptId = ePaymentReturnSession.ReturnValue;
-                    if(tempReceiptId == null || tempReceiptId == ''){
-                        ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Receipt Id is absent in the response, which is required to complete the transaction. Please contact ePayment gateway');
-                        ApexPages.addMessage(myMsg);
-                        return;
-                    }
-                    system.debug('receipt id '+tempReceiptId);
-                    Boolean paymentProcessed = updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
-                    receiptId=tempReceiptId;
-                    if( paymentProcessed ){
-                        onPaymentConfirmation();
-                    }else{
-                        cart.BGBK__Process_DateTime__c = System.now();
-                        processEPayment(); 
-                    }     
-                    
-                }
-                else{
-                    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'ePayment Transaction is failed');
-                    ApexPages.addMessage(myMsg);
-                    return;
-                }
+                if(ePaymentReturnSession.TransactionConfirmationID != null && 
+                   ePaymentReturnSession.TransactionConfirmationID != ''){
+                       system.debug('Transaction id:-'+ePaymentReturnSession.TransactionConfirmationID);
+                       String tempReceiptId = ePaymentReturnSession.ReturnValue;
+                       if(tempReceiptId == null || tempReceiptId == ''){
+                           ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Receipt Id is absent in the response, which is required to complete the transaction. Please contact ePayment gateway');
+                           ApexPages.addMessage(myMsg);
+                           return;
+                       }
+                       receiptId=tempReceiptId;
+                       MUSW__Receipt__c receipt = [select id,Status__c,MUSW__Payment_Method__c from MUSW__Receipt__c where id =: receiptId FOR UPDATE];
+                       //Boolean paymentProcessed = updateReceipt(tempReceiptId,ePaymentReturnSession.TransactionConfirmationID);
+                       if(receipt == null){
+                           ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Receipt with Id ='+receiptId+' is not present in Salesforce');
+                           ApexPages.addMessage(myMsg);
+                           return;
+                       }
+                       ePaymentReturnSession.updateReceipt(receipt);
+                       if(receipt.Status__c == 'Complete'){
+                            update receipt;
+                            onPaymentConfirmation();
+                       }
+                       else{
+                            receipt.Status__c = 'Complete';
+                            receipt.MUSW__Amount_Tendered__c = null;
+                            rs.add(receipt);
+                            ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentReturnSession.PaymentAmount), m_rs);
+                            newReceiptVO.pmtMethodSelected=receipt.MUSW__Payment_Method__c;
+                            receiptVOs.add(newReceiptVO);
+                            cart.BGBK__Process_DateTime__c = System.now();
+                            processEPayment(); 
+                       }
+                   }
+            else{
+                ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'ePayment Transaction is failed');
+                ApexPages.addMessage(myMsg);
+                return;
+            }
         }
         else{
             con = m_cs.getActiveContact();            
             a = m_cs.getActiveAccount();
             //cart = BGBK.CartManager.getAllCartsForContact('003r000000G0MQu')[0];
-             cart = m_cs.getActiveCart();
+            cart = m_cs.getActiveCart();
             // cart = m_cs.getCart();
             system.debug('cart$$'+cart);
             /* commented for a testing in elgin
@@ -377,18 +390,6 @@ public with sharing class CartController
             // set the payables that might be needed for portal users
             preparePayables();
         }
-    }
-
-    private boolean isPaymentRecorded(List<String> feeIds){
-        DOL_Dao dao = new DOL_Dao();
-        boolean paymentRecordFound = false;
-        List<MUSW__Fee__c> fees = dao.getFeeAndFeePayment(feeIds);
-        if(fees != null && fees.size() > 0){
-        	List<MUSW__Fee_Payment__c> feePayments = fees.get(0).MUSW__Payments__r;
-            if(feePayments != null && feePayments.size() > 0)
-            	paymentRecordFound = true;
-        }
-        return paymentRecordFound;
     }
     
     /**
@@ -550,12 +551,26 @@ public with sharing class CartController
             ApexPages.addMessage(myMsg);
             return;
         }
+
+        if( con == null ){
+            for(ReceiptVO rvo : receiptVOs){
+                if(rvo.r.MUSW__Receipt_Paid_by__c == null){
+                    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Contact first');
+                    ApexPages.addMessage(myMsg);
+                    return;
+                }
+            }
+        }
         
         if (totalSelected <= 0)
         {
             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Cannot Checkout when Total Selected is zero or less. Select Fees to pay.');
             ApexPages.addMessage(myMsg);
             return;
+        }
+
+        if(isPortalUser){
+            isGatewayRequiredforPaymentMethod = true;
         }
         
         activeTab = 'checkout';
@@ -720,9 +735,9 @@ public with sharing class CartController
             Id depositId = receiptVOs[currentRowIndex].payableReceipt.MUSW__Deposit__c;
             
             List<MUSW__Deposit__c> deposits = [SELECT Id, MUSW__Available_Amount__c 
-                                        FROM MUSW__Deposit__c 
-                                        WHERE Id = :depositId AND MUSW__Available_Amount__c > 0];
-                                        
+                                               FROM MUSW__Deposit__c 
+                                               WHERE Id = :depositId AND MUSW__Available_Amount__c > 0];
+            
             if(!deposits.isEmpty()){
                 receiptVOs[currentRowIndex].amount = deposits[0].MUSW__Available_Amount__c;
                 m_depositsMap.put(deposits[0].Id, deposits[0]);
@@ -896,7 +911,8 @@ public with sharing class CartController
         System.debug(' fees '+ fees);
         System.debug(' receipt '+ receiptVOs);
         system.debug(' inside processEPayment');
-        system.debug(' ****c**BGBK__Contact__c**'+cart.BGBK__Contact__c);
+        Savepoint sp = null;
+        
         if(cart.BGBK__Contact__c != null && cart.BGBK__Contact__r.Name == null) {
             Contact c = [SELECT Name,Email,AccountId From Contact WHERE Id =:cart.BGBK__Contact__c];
             cart.BGBK__Contact__r = c;
@@ -907,6 +923,7 @@ public with sharing class CartController
             MUSW__Receipt__c receipt = rvo.r;
             rsAmt.put(receipt, rvo.amount);
         }
+        sp = Database.setSavePoint();
         if(!rs.isEmpty()){
             upsert rs;
         }
@@ -916,18 +933,20 @@ public with sharing class CartController
             processSuccessful = m_ps.processPayment(payables, rsAmt, accountSelected, cart.BGBK__Process_DateTime__c);
             system.debug('process successfull '+processSuccessful);
             if(processSuccessful)   {
-                    Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
-                    populateFeeAndInvoicePayment(receipts, feePaymentIds);
-                    depositPayments = populateDepositPayment(receipts);
-                    if(cart.BGBK__Last_Payment_Amount__c == null)
-                        cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
-                    else
-                        cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
-                    update cart;
-                } else {        
-                    // this call is made for testing the clean receipt method.      
-                    // Within the org, it should throw a exception, so it will go to the catch, but can't be handled via tests.     
-                    //cleanReceiptsAfterPaymentFail(receiptVOs);      
+                Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
+                populateFeeAndInvoicePayment(receipts, feePaymentIds);
+                depositPayments = populateDepositPayment(receipts);
+                if(cart.BGBK__Last_Payment_Amount__c == null)
+                    cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
+                else
+                    cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
+                update cart;
+            } else {
+                if(sp != null)
+                    Database.rollback(sp);        
+                // this call is made for testing the clean receipt method.      
+                // Within the org, it should throw a exception, so it will go to the catch, but can't be handled via tests.     
+                //cleanReceiptsAfterPaymentFail(receiptVOs);      
             }
             MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
             rs.clear();
@@ -943,6 +962,8 @@ public with sharing class CartController
         }
         catch (Exception e)
         {
+            if(sp != null)
+                Database.rollback(sp);
             //cleanReceiptsAfterPaymentFail(receiptVOs);
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()));
             return;
@@ -1029,6 +1050,13 @@ public with sharing class CartController
         {
             ReceiptVO rvo = receiptVOs[i];
             system.debug('nazneen' +rvo);
+            // Don't go with this method if Payment Method is ACH or Credit Card, US - 4691
+            if( rvo.r.MUSW__Payment_Method__c == 'ACH' || rvo.r.MUSW__Payment_Method__c == 'Credit Card'){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please Select Process ePayment Button '));
+                isGatewayRequiredforPaymentMethod = true;
+                return;
+            }
+            // US-4691 end
             if (rvo.r.MUSW__Payment_Method__c == 'Deposit' && rvo.payableReceipt.MUSW__Deposit__c == null)
             {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select a deposit.'));
@@ -1212,23 +1240,17 @@ public with sharing class CartController
     } */
 
     public void createReceiptForPaymentGateway(){
-        MUSW__Receipt__c receipt = new MUSW__Receipt__c();
-        receipt.BGBK__Cart__c = m_cs.getCart().Id;
+        MUSW__Receipt__c receipt = receiptVOs[Integer.valueOf(currentReceiptIndex)].r;
+        receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = 'Draft';
-        //receipt.Intake_Method__c = 'Portal';
-      
-        system.debug('inside createReceiptForPaymentGateway');
-        
-        
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
                 feeIds.add(feeVo.f.Id);
             }
         }
-        //receipt.MUSW__Amount_Tendered__c = totalSelected;
         receipt.Selected_Fees__c = String.join(feeIds, ',');
-        receipt.MUSW__Payment_Method__c = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;
+        
         //Added by Vinanthi for defect 4999
         BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id];
          
@@ -1238,8 +1260,8 @@ public with sharing class CartController
             else{
                 receipt.Intake_Method__c='Portal';
             }
+        // defect 4999 ends here
         insert receipt;
-        
         receiptId = receipt.Id;
     }
 
@@ -1429,7 +1451,7 @@ public with sharing class CartController
         {
             m_reconcileOriginalContact = cart.BGBK__Contact__c;
         }
-		//Added by Abhilasha as a part of bug:4012
+        //Added by Abhilasha as a part of bug:4012
         if(con == null){ //check if existing cart has contact.
             if(cart.BGBK__Contact__c != null){
                 Id AccountId = [Select AccountId From Contact Where Id = :cart.BGBK__Contact__c limit 1].AccountId;
@@ -1441,6 +1463,7 @@ public with sharing class CartController
                 }
             }
         }
+        
     }
     
     
@@ -1935,17 +1958,18 @@ public with sharing class CartController
     public PageReference redirectToPaymentGateway(){
         String cartId = m_cs.getCart().Id;
         String payerContactId;
-        
-        if( con != null){
-            payerContactId = con.Id;
-        }
-        else{
-            payerContactId = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Receipt_Paid_By__c;
-        }
+        String paymentMethod;
+
+        payerContactId = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Receipt_Paid_By__c;
+        paymentMethod = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;
         
         if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
+            return null;
+        }
+        if( paymentMethod != 'ACH' && paymentMethod != 'Credit Card'){
+            isGatewayRequiredforPaymentMethod = false;
             return null;
         }
         if(String.isBlank(payerContactId)){
