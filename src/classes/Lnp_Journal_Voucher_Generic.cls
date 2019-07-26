@@ -71,6 +71,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                 mapJVFilterAddToInterface.put(strFilterKey, objJVFilterMeta.Add_To_Interface__c);
             }
             objJV.Journal_Voucher_Type__c= objJVMeta.MasterLabel;
+		objJV.Document_Type__c = objJVMeta.MasterLabel;
             objJV.Document_Title__c = objJVMeta.JV_Document_Title__c;
             objJV.Agency_Name__c='Department of Licensing';
             objJV.Agency_No__c='2400';
