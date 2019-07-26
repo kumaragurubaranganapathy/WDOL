@@ -1044,8 +1044,6 @@ listApp.add(applicationChild);*/
         
         List<MUSW__Application2__c> applicationList = [SELECT Id,isRenewal__c,Physical_Address_Modified_On_Renewal__c,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
         system.debug('applicationList : '+applicationList);
-        liceseIDRenewal = [Select Id,Application__c,Bond_Number__c, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c From MUSW__License2__c where Application__c IN:appId];
-        system.debug('liceseIDRenewal : '+liceseIDRenewal);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
             mstLicense.Applicant__c = application.MUSW__Applicant__c;
@@ -1105,11 +1103,9 @@ mstLicense.RecordTypeId = businessRT;
                             string strFieldName = String.valueOf(targetType);
                             if(strFieldName == 'TEXTAREA' || strFieldName =='MULTIPICKLIST' || strFieldName == 'TEXT'  ) {
                                 mstLicense.put(fieldName,String.valueOf(mapValueToStr.get(fieldName)));
-                               // liceseIDRenewal.put(fieldName,String.valueOf(mapValueToStr.get(fieldName)));
                                 system.debug('***RenewalObj in if***'+mstLicense);
                             } else if(strFieldName == 'DOUBLE') {
                                 mstLicense.put(fieldName,Double.valueOf(mapValueToStr.get(fieldName))); 
-                                //liceseIDRenewal.put(fieldName,Double.valueOf(mapValueToStr.get(fieldName))); 
                                 system.debug('***RenewalObj in else if***'+mstLicense);
                             }    
                         }
