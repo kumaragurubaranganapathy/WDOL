@@ -45,6 +45,9 @@
     firePassLicenseValueEvent : function (component, event, helper){
     	helper.firePassLicenseValueEventHelper(component, event, helper);
     },
+	goBack : function (component, event, helper){
+    	window.history.back();
+    },
     setApplicationType : function(component, event, helper){
         helper.firePassValueEventHelper(component, event, helper);
     },

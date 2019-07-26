@@ -115,6 +115,7 @@
             </div> 
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class= "proceed-btn-wrapper">
+			<lightning:Button class="proceed-btn" aura:id="buttonBack" label="Back" variant="Brand" onclick="{!c.goBack}" />
             <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" onclick="{!c.validateForm}" disabled="true"/>
         </div>
     </div>

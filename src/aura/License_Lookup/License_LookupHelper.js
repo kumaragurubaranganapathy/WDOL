@@ -20,7 +20,7 @@
                 var result = response.getReturnValue(); 
                 if(auraAttr == 'v.professionOptions'){
                     var filteredResults = result.filter(function(item){
-                        return (item != 'Update Legal Name' && item != 'Update/Close Company' && item != 'Program Unknown' && item != 'Misc Payments');
+                        return (item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name');
                     });
                     component.set(auraAttr, filteredResults);
                 }else{
@@ -322,7 +322,17 @@
      		action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
-                var result = response.getReturnValue();     
+                var result = response.getReturnValue();
+                for(var i=0; i<result.length; i++){
+                    if(result[i].MUSW__License2__r.MUSW__Expiration_Date__c){
+                        if($A.get("$SObjectType.CurrentUser.Id")){
+                            
+                        }else{
+                            var date = new Date(result[i].MUSW__License2__r.MUSW__Expiration_Date__c);
+                            result[i].MUSW__License2__r.MUSW__Expiration_Date__c = date.getFullYear()+'-'+(parseInt(date.getMonth())+1);
+                        }
+                    }
+                }
                 component.set("v.detailData", result);
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
