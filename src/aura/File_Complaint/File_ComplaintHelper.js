@@ -8,8 +8,15 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
-                var result = response.getReturnValue();     
-                component.set(auraAttr, result);
+                var result = response.getReturnValue();
+                if(auraAttr == "v.professionOptions"){
+                    var filteredResult = result.filter(function(item){
+                       return item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name';
+                    });
+                    component.set(auraAttr, filteredResult);
+                }else{
+                    component.set(auraAttr, result);
+                }
             }else{
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
