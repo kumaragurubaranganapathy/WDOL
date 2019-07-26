@@ -30,7 +30,17 @@ public class Polaris_AMRLinkCntrl {
       }
       
     }
-    
+     @AuraEnabled
+    public static String fetchContactInfo()
+    {
+        List<User> userInfoData = new List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        
+        return [Select id,Full_Name__c FROM Contact where id=:userInfoData[0].Contact.Id].Full_Name__c;
+        
+    }
     
     @AuraEnabled
     public static String fetchWebsiteInfo(String licId)
