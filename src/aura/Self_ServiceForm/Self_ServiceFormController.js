@@ -2,6 +2,7 @@
 	doInit: function(component, event, helper) { 
 		helper.doInit(component, event, helper);
         helper.getContact(component, event, helper);
+		
     },
     cancel: function(component, event, helper) { 
 		helper.cancel(component, event, helper);
