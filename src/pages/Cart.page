@@ -64,13 +64,20 @@
                     <!-- FEES --> 
                     <apex:pageblockSection columns="1" title="Fees" collapsible="false" rendered="{!feeVOs.size > 0}">
                         <apex:pageBlocktable value="{!feeVOs}" var="fee" style="width:100%">
-                            <apex:column headerValue="Pay" rendered="{!!isPortalUser}">
+							<!---
+						   <apex:column headerValue="Pay" rendered="{!!isPortalUser}">
                                 <apex:facet name="header"> 
                                     <apex:inputCheckbox id="cbFeeAll" styleClass="cbFeeAll" onclick="selectAll(this, 'fee')" />
                                 </apex:facet>
                                 <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll')" id="{!fee.f.Id}" rendered="{!!isPortalUser}"/>
                             </apex:column>
-                            
+                            --->
+							 <apex:column headerValue="Pay" >
+                                <apex:facet name="header"> 
+                                    <apex:inputCheckbox id="cbFeeAll" styleClass="cbFeeAll" onclick="selectAll(this, 'fee')" />
+                                </apex:facet>
+                                <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll')" id="{!fee.f.Id}" />
+                            </apex:column>
                             <apex:repeat value="{!$ObjectType.MUSW__Fee__c.FieldSets.BGBK__Fee_Basic}" var="ff">  
                                 
                                 <apex:column headerValue="{!ff.label}" >
@@ -351,7 +358,7 @@
                             </apex:pageBlockSection>
                         </apex:outputPanel>
                         
-                        <apex:outputPanel id="creditPanel" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Credit Card' || rvo.r.MUSW__Payment_Method__c = 'Debit' || rvo.r.MUSW__Payment_Method__c = 'Offline Credit Card' || rvo.r.MUSW__Payment_Method__c = 'Bank Account'}">
+                        <apex:outputPanel id="creditPanel" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Debit' || rvo.r.MUSW__Payment_Method__c = 'Offline Credit Card' || rvo.r.MUSW__Payment_Method__c = 'Bank Account'}">
                              <!--Uncomment this if you want to us this basic functionality -->
                             <apex:pageBlockSection columns="1" id="creditdetails">  
                                 <!-- <apex:inputField label="Card Number" onchange="checkCreditCardCount()" id="chequeNumber" value="{!rvo.r.MUSW__Card_Number__c}" /> -->
