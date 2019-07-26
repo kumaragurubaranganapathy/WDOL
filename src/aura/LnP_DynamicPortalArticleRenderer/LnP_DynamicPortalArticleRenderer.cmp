@@ -7,12 +7,15 @@
     <aura:attribute name="ArticlesExternalId" type="String"/>
     <aura:attribute name="isShowMore" type="Boolean" />
     <aura:attribute name="articlesLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isLoggedIn" type="Boolean" default="false" />
     
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>   
+    
     
     <aura:if isTrue = "{!v.articlesLoaded}">
-        <div class="main-wrapper">
-            <h1 class="main-title">
+        <div class="main-wrapper">            
+            <h1 class="{!v.isLoggedIn?'slds-hide':'main-title'}">
+                
                 <!--{!v.customLblMap.LnP_ApplyLicense} -->
                 Manage your professional and business license online
             </h1>
