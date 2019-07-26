@@ -1182,7 +1182,7 @@ Professional Dashboard
                                                                <lightning:button variant="brand" label="Update" title="Update" />
                                                            </div>
                                                        </aura:if>
-                                                       <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending action'}">
+                                                       <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending Action'}">
                                                            <div onclick="{!c.uploadpendingdocuments}" data-id="{!tableData.Id}" data-number="{!tableData.Name}">
                                                                <lightning:button variant="brand" label="Upload Files" />
                                                            </div>
@@ -1288,7 +1288,7 @@ Professional Dashboard
                                                            <lightning:button variant="brand" label="Update" title="Update" />
                                                        </div>
                                                    </aura:if>
-                                                   <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending action')}">
+                                                   <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending Action')}">
                                                        <lightning:button variant="brand" label="Update Files" value="{!tableData.Id}" />
                                                    </aura:if>
                                                    <!--<lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.redirectToCart}"/>-->
