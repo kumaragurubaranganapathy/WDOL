@@ -22099,6 +22099,16 @@
         <field>MUSW__Receipt__c.MUSW__Paid_By__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Education_History__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Master_Exam_List__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Receipt__c.MUSW__Payment_Gateway_Transaction_Number__c</field>

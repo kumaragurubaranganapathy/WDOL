@@ -21077,6 +21077,16 @@
         <field>MUSW__Permit_Parcel__c.Primary__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Education_History__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>Master_Exam_List__c.Submit_Exam_Results__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>MUSW__Permit_Parcel__c.Public__c</field>
