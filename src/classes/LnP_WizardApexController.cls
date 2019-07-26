@@ -274,20 +274,27 @@ application.MUSW_Account__c = account;*/
             lic.Application__c = application.Id;
             update lic;
         }
-        
-        List<LnP_Parcel__c>lstParcels = [Select id, Application_BG__c,City__c,Country__c,State_Province__c,Street__c,Zip_Postal_Code__c, Address_Type__c,License__c FROM LnP_Parcel__c where License__c=:licId];
-        List<LnP_Parcel__c>lstupdateParcel = new List<LnP_Parcel__c>();
+        Set<Id> parcelIds = new Set<Id>();
+        List<MUSW__Parcel__c>lstParcels = new List<MUSW__Parcel__c>();
+        for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c where MUSW__License2__c=:licId]){
+            parcelIds.add(licenseParcelInstance.MUSW__Parcel__c);
+        }
+        if(!parcelIds.isEmpty()){
+        lstParcels = [Select id, Application_BG__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
+                                                      is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c FROM MUSW__Parcel__c where Id IN :parcelIds];
+                                                      }
+        List<MUSW__Parcel__c>lstupdateParcel = new List<MUSW__Parcel__c>();
         if(!lstParcels.isEmpty())
         {
-            for(LnP_Parcel__c par : lstParcels )
+            for(MUSW__Parcel__c par : lstParcels )
             {
-                LnP_Parcel__c parcel = new LnP_Parcel__c();
+                MUSW__Parcel__c parcel = new MUSW__Parcel__c();
                 parcel.Application_BG__c = application.Id;
                 parcel.Address_Type__c  = par.Address_Type__c;
-                parcel.City__c = par.City__c;
+                parcel.MUSW__City__c = par.MUSW__City__c;
                 parcel.Country__c = par.Country__c;
-                parcel.State_Province__c = par.State_Province__c;
-                parcel.Street__c = par.Street__c;
+                parcel.MUSW__State__c = par.MUSW__State__c;
+                parcel.MUSW__Street2__c = par.MUSW__Street2__c;
                 parcel.Zip_Postal_Code__c = par.Zip_Postal_Code__c;
                 lstupdateParcel.add(parcel);
             }
