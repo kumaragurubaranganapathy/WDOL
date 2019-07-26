@@ -240,6 +240,18 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Statewide_Voucher_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>JournalVoucher__r.IAP_Receipt__r.Sender_Agency__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Statewide Voucher Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Sub_Source__c</fullName>
         <externalId>false</externalId>
         <label>Sub Source</label>
@@ -288,6 +300,18 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <externalId>false</externalId>
         <label>Target Accounting System</label>
         <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Accounting_Systems__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXXX&quot;,&quot;AFRS&quot;)&amp; &quot;-&quot; &amp; IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXX&quot;,&quot;TMS&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Accounting Systems</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
