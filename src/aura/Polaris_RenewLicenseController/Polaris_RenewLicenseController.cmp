@@ -18,6 +18,7 @@
     <aura:attribute name="objectName" type ="String"/>
     <aura:attribute name="SectionError" type="string[]" default="[]"/>
     <aura:attribute name="currSection" type ="String" default=""/>
+    <aura:attribute name="nextFlag" type="Boolean" default="true"/>
     <aura:attribute name="isRenewal" type="Boolean" default="true" />
     <aura:attribute name="questionsAnswers" type="List"/>
     <aura:attribute name="attachmentResponse" type="List"/>
@@ -168,7 +169,7 @@
                                         </aura:iteration> 
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
                                     </div>
-                                    <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                    <div id="declarationsValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="declaration headings">Declaration</div><br/>
                                           <div class="slds-form-element">
                                               <div class="slds-form-element__control">
@@ -216,7 +217,7 @@
                                             </aura:iteration>
                                         </ui:inputSelect> 
                                     </div-->
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') + ' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <lightning:select name="{!questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 <option value="{!option}">{!option}</option>
@@ -225,9 +226,9 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Radio'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:radioGroup name="{!questionItem}"                                                                              
+                                                        <lightning:radioGroup name="{!section.sectionName+questionItem}"                                                                              
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
@@ -235,9 +236,9 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!and(question.fieldType=='Yes_No' , question.endorsementType==null)}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'')+ (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:radioGroup name="{!questionItem}"                                                                              
+                                                        <lightning:radioGroup name="{!section.sectionName+questionItem}"                                                                              
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
@@ -246,9 +247,9 @@
                                                 </aura:if>
                                                 
                                                 <aura:if isTrue="{!and(question.fieldType=='Yes_No' , question.endorsementType!=null)}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value,  !question.renderedOnUi)?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value,  !question.renderedOnUi)?'slds-hide':'')+ (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:radioGroup name="{!questionItem}"                                                                              
+                                                        <lightning:radioGroup name="{!section.sectionName+questionItem}"                                                                              
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
@@ -257,28 +258,28 @@
                                                 </aura:if>
                                                 
                                                 <aura:if isTrue="{!question.fieldType=='Checkbox'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:checkboxGroup name="{!questionItem}"                                                                                 
+                                                        <lightning:checkboxGroup name="{!section.sectionName+questionItem+'checkbox'}"                                                                                 
                                                                                  options="{!question.radioValueOptions}"
                                                                                  value="{!question.multiValues}"
                                                                                  onchange="{!c.showDependentQuestions}"/>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input name="{!question.label}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                        <lightning:input name="{!!section.sectionName+questionItem}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if> 
                                                 <aura:if isTrue="{!question.fieldType=='number'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input name="{!question.label}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                        <lightning:input name="{!section.sectionName+questionItem}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if> 
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +'fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
                                                             <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                             <ui:inputTextArea value="{!question.value}" rows="5"/>
@@ -286,11 +287,12 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
-                                                    <div id="{!'q'+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') + ' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input type="date" name="{!question.label}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 datelabel"/>
+                                                        <lightning:input type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 datelabel"/>
                                                     </div>
                                                 </aura:if>
+                                                
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">
                                                     <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
@@ -350,7 +352,7 @@
             <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn back-button'}"/>
              <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn next-button"/>
             <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn cancelbtn'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Save and Proceed to Payment" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit and Proceed to Payment" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->
