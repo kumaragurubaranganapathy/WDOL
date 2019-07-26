@@ -12,7 +12,7 @@ Kojashree Kakariya               25-June-2019             Initial Creation
 global class Polaris_RBSAuditSelectionBatchClass implements Database.Batchable<sObject>{
     global Database.QueryLocator start(Database.BatchableContext bc) {
         // collect the batches of records or objects to be passed to execute
-        return Database.getQueryLocator('SELECT Id, Name,MUSW__Status__c,Credential_Type__c,Application_Type__c,Is_Renewal_Eligible__c,Renewal_Eligible_Start_Date__c,MUSW__Renewal_Date__c FROM MUSW__License2__c WHERE Is_Renewal_Eligible__c = True AND LastModifiedDate >= LAST_N_DAYS : 30');
+        return Database.getQueryLocator('SELECT Id, Name,MUSW__Status__c,Credential_Type__c,Application_Type__c,Is_Renewal_Eligible__c,Renewal_Eligible_Start_Date__c,MUSW__Expiration_Date__c,MUSW__Renewal_Date__c,MUSW__Applicant__c,Selected_for_Audit__c,Audit_Completed_Flag__c FROM MUSW__License2__c WHERE Selected_for_Audit__c= False AND MUSW__Expiration_Date__c != NULL AND Audit_Completed_Flag__c = False AND MUSW__Status__c = \'Active\' AND In_Audit_Selection_Window__c= True');
     }
     global void execute(Database.BatchableContext bc, List<MUSW__License2__c> RBSLicenseList){
         system.debug('RBSLicenseList---'+RBSLicenseList);
@@ -20,7 +20,7 @@ global class Polaris_RBSAuditSelectionBatchClass implements Database.Batchable<s
         
         List<License_Type__mdt> RBSAppListForAudit = new List<License_Type__mdt>();
         RBSAppListForAudit = [SELECT Application_Type__c,Credential_Type__c,Is_Available_for_Audit__c,Object_Name__c,RBS_RE__c FROM License_Type__mdt WHERE RBS_RE__c = 'RBS' AND Is_Available_for_Audit__c = True AND Object_Name__c = 'MUSW__License2__c'];
-     	system.debug('RBSAppListForAudit--'+RBSAppListForAudit);
+        system.debug('RBSAppListForAudit--'+RBSAppListForAudit);
         
         Map<String,List<MUSW__License2__c>> rbsApplicationMap = new Map<String,List<MUSW__License2__c>>();
         Map<String,List<MUSW__License2__c>> UpdatedApplicationMap = new Map<String,List<MUSW__License2__c>>();
