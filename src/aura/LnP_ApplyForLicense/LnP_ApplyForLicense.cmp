@@ -105,7 +105,7 @@
                                     <div id="SubmitAndReview" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings underline">Questions Review</div><br/>
                                         <!-- <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes">
-                                <label >{!varRes + 1}. {!responses.question}</label><br></br>
+                               {!varRes + 1}. <ui:outputRichText value="{!responses.question}"/><br></br>
         <p><aura:if isTrue="{!responses.answer != null}">
                                    <i>{!responses.answer}</i><br></br> 
                                     <aura:set attribute="else">
@@ -118,13 +118,13 @@
                                             <div class = "slds-size--1-of-2 slds-small-size--1-of-1 ques">
                                                 <div class="quesclr">
                                                     <!--  <ui:inputText disabled = "true" value="{!responses.question}"/>-->
-                                                    {!responses.question}
+                                                    <ui:outputRichText value="{!responses.question}"/>
                                                 </div>
                                                 <!-- <p> -->  
                                                 <aura:if isTrue="{!responses.answer != null}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
-                                                        <ui:outputText value="{!responses.answer}"/>
+                                                        <ui:outputRichText value="{!responses.answer}"/>
                                                         <!-- CR <aura:if isTrue="{!and(responses.hasChild, responses.value == No)}" >
                                                  {!varRes + 1}
                                                 </aura:if>   -->  
@@ -133,7 +133,7 @@
                                                     <aura:set attribute="else">
                                                         <!-- <span class="">Attachment Complete</span>  -->
                                                         <div class = "revAndSubErrorFont">
-                                                            <ui:outputText value="You Have Not Answered this question."/>
+                                                            <ui:outputRichText value="You Have Not Answered this question."/>
                                                         </div>
                                                     </aura:set>  
                                                 </aura:if>                 
@@ -147,14 +147,14 @@
                                             <!--<span >{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
                                                 <div>
-                                                    <ui:inputText disabled = "true" value="{!attResponses.attachment}"/>
+                                                     <ui:outputRichText value="{!attResponses.attachment}"/>
                                                     <aura:if isTrue="{!(((attResponses.uploadOrAck == true &amp;&amp; attResponses.fileNos == 0) || (attResponses.uploadOrAck == null &amp;&amp; (attResponses.acknowledgeResponse == null || attResponses.acknowledgeResponse == false))) &amp;&amp; attResponses.isMandatorySub == true)}"> 
                                                         <div class = "revAndSubErrorFont">
-                                                            <ui:outputText value="**Required Submission/Acknowledgement not Complete."/>
+                                                            <ui:outputRichText value="**Required Submission/Acknowledgement not Complete."/>
                                                         </div>
                                                         <aura:set attribute="else">
                                                             <div class = "revAndSubCompletionFont">
-                                                                <ui:outputText value="Complete"/>
+                                                                <ui:outputRichText value="Complete"/>
                                                             </div>
                                                         </aura:set>  
                                                     </aura:if>  
