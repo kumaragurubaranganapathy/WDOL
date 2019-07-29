@@ -234,8 +234,9 @@
                                     </aura:if>
                                     
                                     <div id="AttestationValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="attestation headings">Signature</div><br/>
+                                        <div class="attestation headings">Signature</div>
                                         <div class="attestBody sentences">Attest before proceeding.</div>
+										<div class="attestBody sentences">Electronic signature name must match name shown below.</div>
                                         <div class="slds-form-element  field-item review-item attest-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
                                             <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                             (<span>{!v.currentUser.Name}</span>)

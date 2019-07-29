@@ -1,7 +1,219 @@
-<apex:page standardController="MUSW__Fee__c" extensions="CartController" tabStyle="BGBK__Cart__c" recordSetVar="c" action="{!initOrder}" id="p"  sidebar="false">
-    
-    <apex:includeScript value="/support/console/26.0/integration.js"/>
-    
+<apex:page standardController="MUSW__Fee__c" extensions="CartController" tabStyle="BGBK__Cart__c"
+    recordSetVar="c" action="{!initOrder}" id="p" sidebar="false" showHeader="false"
+    title="Cart" docType="html-5.0" applyHtmlTag="false" applyBodyTag="false">
+    <title>Cart</title>
+
+
+    <apex:includeScript value="/support/console/26.0/integration.js" />
+    <style>
+        @font-face {
+            font-family: 'PublicSans-Regular';
+            src: url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf);
+        }
+        
+        @font-face {
+            font-family: 'NotoSansTC-Regular';
+            src: url('/lightningwashington/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
+        }
+        
+        body {
+            font-family: 'PublicSans-Regular';
+        }
+        
+        .individualPalette {
+            margin-left: 3%;
+            width: 65%;
+        }
+        
+        .rich-tab-bottom-line {
+            background-color: white;
+        }
+        
+        .pageType {
+            display: none!important;
+        }
+        
+        .pageDescription {
+            font-family: 'PublicSans-Regular';
+        }
+        
+        .text-description {
+            padding-left: 43px;
+            font-size: 11px;
+            padding-bottom: 20px;
+            font-family: 'PublicSans-Regular';
+        }
+        
+        .footerWrapper {
+            background: #e5e5eb;
+            padding: 0 3rem;
+            position: relative;
+            bottom: 0;
+            width: auto;
+        }
+        
+        .botNav {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: row;
+        }
+        
+        .botNav .footerList {
+            margin: 2px;
+            display: flex;
+        }
+        
+        .footerListItem {
+            list-style: none;
+            padding-right: 1.875rem;
+            margin: 0;
+        }
+        
+        .footerListLink {
+            text-decoration: none;
+            font-family: 'NotoSansTC-Regular';
+            font-size: .625rem;
+            color: #205493;
+        }
+        
+        .footerListLink > a {
+            text-decoration: none;
+        }
+        
+        .bPageBlock {
+            border: 0px;
+        }
+        
+        .pbHeader {
+            display: none;
+        }
+        
+        .pbBody {
+            margin: 0px!important;
+        }
+        
+        .rich-tab-header {
+            width: 150px;
+            border: solid 1px #205493!important;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            height: 35px;
+            padding: 0;
+            background-color: white!important;
+        }
+        
+        .rich-tab-active {
+            font-size: 1rem;
+            background-image: none;
+            color: white!important;
+            background-color: #205493!important;
+        }
+        
+        .rich-tab-disabled {
+            font-size: 1rem;
+            color: #205493!important;
+            background-image: none;
+        }
+        
+        .rich-tab-inactive {
+            font-size: 1rem;
+            color: #205493!important;
+            background-image: none;
+        }
+        
+        .rich-tab-bottom-line {
+            border-bottom-color: #205493;
+        }
+        
+        .rich-tabpanel-content {
+            background-color: white;
+            color: #000;
+            border-bottom-color: #205493;
+            border-right-color: #205493;
+            border-left-color: #205493;
+            font-size: 11px;
+            font-family: 'PublicSans-Regular';
+        }
+        
+        .bPageBlock {
+            border-bottom: 0px!important;
+            border-left: 0px!important;
+            border-right: 0px!important;
+        }
+        
+        .pbSubheader {
+            background-color: #205493!important;
+            text-align: center;
+            margin-top: 10px!important;
+        }
+        
+        .apexp .detailList .list .headerRow th {
+            border-bottom: 1px solid #eaeaea;
+            border-width: 1px;
+            background-color: #eaeaea;
+            color: rgb(81, 79, 77);
+        }
+        
+        .apexp .pbBody table.list {
+            border: 0px!important;
+        }
+        
+        .dataRow {
+            border-bottom: 1.5px solid #eaeaea;
+        }
+        
+        .btn {
+            font-weight: bold!important;
+            border-radius: 4px!important;
+            color: #0872b9!important;
+            border: solid 1px #0872b9!important;
+            margin: 1px!important;
+            padding: 6px 6px!important;
+            background: white!important;
+            /* font-weight: bold; */
+            font-size: .9em!important;
+        }
+        
+        .btn:hover {
+            background: #D3D3D3!important;
+        }
+        
+        body .bPageTitle .ptBody .pageDescription {
+            font-size: 2em!important;
+        }
+        
+        .back_btn {}
+        
+        .cont_btn {
+            float: right;
+        }
+        
+        .refresh_btn {
+            margin-left: 37%!important;
+        }
+        
+        .epay_btn {
+            float: right;
+        }
+        
+        .bg-steps {
+            margin-top: 10px;
+        }
+        
+        .pay_btn {
+            float: right;
+        }
+        
+        .pbBody {
+            background-color: white!important;
+            font-family: 'PublicSans-Regular';
+        }
+        
+        .continute_btn {
+            float: right;
+        }
+
+    </style>
     <c:BlockIndicator />
     <div id="preloader2" style="visibility:hidden;"></div>
     
@@ -13,7 +225,11 @@
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
         </apex:sectionHeader>
-        
+        <div class="text-description">
+            <b>PLEASE DO NOT USE THE BROWSER'S BACK BUTTON AS THAT MAY OVERWRITE YOUR DATA.</b><br/>            If you want to return to your application, simply log out and log back
+            in. <br/><b>ALL PAYMENTS ARE NON-REFUNDABLE.</b>
+            <!--<b>Click <a class="blueUnderline" href="#" onclick="showTrxnFeeDetails(); return false;">here</a> for more information on eLicense Transaction Fee</b>-->
+        </div>
         <apex:pageBlock title="Cart #{!cart.Name}" id="pb">
             
             <!--apex:pageblockbuttons id="topBtns" location="top" rendered="{!!isPortalUser}">
@@ -135,22 +351,49 @@
                     </apex:pageblockSection>
                     
                     <div class="bg-fees">
-                        <apex:pageBlockSection columns="1" id="totals">
-                            <apex:outputText label="Total Selected" value="${!totalSelected}" id="totalSelected" style="font-weight:bold;font-size:1.5em;" styleClass="bg-float-right" />
-                            <apex:outputPanel styleClass="btn" style="margin-left:18%" onclick="refreshTotalJS(getUnselectedItems());" rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel>
-                           <!--- <apex:selectList id="accounts" rendered="{!!isPortalUser}" value="{!accountSelected}" multiselect="false" size="1" label="Account" >
-                                <apex:selectOptions value="{!accounts}"/>
-                                <apex:actionSupport event="onchange" action="{!accountChanged}" reRender="tab,abandonBtn" />
-                            </apex:selectList> --->
-                            <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Contact__c}" id="contact" >
-                                <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection" /> 
+                        <apex:pageBlockSection columns="2" id="totals">
+                            <apex:outputText label="Total Selected" value="${!totalSelected}" id="totalSelected"
+                                style="font-weight:bold;font-size:1.5em;" styleClass="bg-float-right"
+                            />
+                            <br/>
+                            <apex:outputPanel styleClass="btn refresh_btn" style="margin-left:18%" onclick="refreshTotalJS(getUnselectedItems());"
+                                rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel>
+
+                            <!---
+                            <apex:selectList id="accounts" rendered="{!!isPortalUser}" value="{!accountSelected}"
+                                multiselect="false" size="1" label="Account">
+                                <apex:selectOptions value="{!accounts}" />
+                                <apex:actionSupport event="onchange" action="{!accountChanged}" reRender="tab,abandonBtn"
+                                />
+                            </apex:selectList>
+                            
+                            --->
+                            <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
+                            <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Contact__c}" id="contact">
+                                <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection"
+                                />
                             </apex:inputField>
-                            <apex:inputText label="Email Receipt To" value="{!email}" id="email"/>
-                            <apex:outputPanel style="margin-left:18%">Note: If you update the email address on this field, it will also update the email address for the contact record.</apex:outputPanel>
-                            <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Process_DateTime__c}"/>
+                            <br/>
+                            <apex:inputText label="Email Receipt To" value="{!email}" id="email" />
+                            <br/>
+                            <apex:outputPanel >
+                                <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
+                                    it will also update the email address for the
+                                    contact record.
+                                </p>
+                            </apex:outputPanel>
+                            <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
+
+                            <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Process_DateTime__c}"
+                            />
                             <br />
-                            <apex:outputPanel styleClass="btn" onclick="checkoutJS(getUnselectedItems());" rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0 || depositVOs.size > 0)}">Continue</apex:outputPanel> 
-                            <apex:commandButton value="Back" action="{!backToItems}" />
+                            <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
+                            <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
+
+                            <apex:commandButton styleClass="back_btn" value="Previous" action="{!backToItems}"
+                            />
+                            <apex:outputPanel styleClass="btn cont_btn" onclick="checkoutJS(getUnselectedItems());"
+                                rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0 || depositVOs.size > 0)}">Continue</apex:outputPanel>
                             <apex:outputPanel id="reconcileSection" style="display:none">
                                 <apex:outputPanel rendered="{!reconcileCart!=null}">
                                     <script>
@@ -452,10 +695,10 @@
 
                     <!-- 
 <apex:commandButton value="Process Payment" action="{!process}" reRender="tab,msg" rendered="{!hasCC = 'false'}" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"/>-->
-                    <apex:commandButton value="Transfer Fee" status="BlockIndicator" action="{!TransferFee}"
+                    <apex:commandButton value="Transfer Fee" styleClass="pay_btn" status="BlockIndicator" action="{!TransferFee}"
                         rendered="{!isFeeTransfer}" />
-                    <apex:commandButton value="Proceed to Payment" status="BlockIndicator" action="{!process}"
-                        rendered="{!(!isGatewayRequiredforPaymentMethod && !isFeeTransfer)}"
+                    <apex:commandButton styleClass="pay_btn" value="Proceed to Payment" status="BlockIndicator"
+                        action="{!process}" rendered="{!(!isGatewayRequiredforPaymentMethod && !isFeeTransfer)}"
                         reRender="tab,msg,totalPaymentPanel" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"
                     />
                     <!-- <BGBK:MockGatewayPayment cID="a1er0000000K1Av" returnUrl="https://dev-polaris.cs32.force.com/dashboard" contactEmail="mabhang@deloitte.com" accountPay="{!a}" contactPay="{!con}" paymentMethodSelected="Credit Card" amountToPay="290" payablesForGateway="{!payables}" rendered="{!isGatewayRequiredforPaymentMethod}"/>-->
@@ -463,7 +706,9 @@
 
                     <!--Uncomment this button if you want to  redirect o gateway -->
                     <!-- <apex:commandButton value="Process Payment" status="BlockIndicator" action="{!redirectToPaymentGateway}" rendered="{!isGatewayRequiredforPaymentMethod}" reRender="paymentFormPanel" oncomplete="submitPayment()"/> -->
-                    <apex:commandButton value="Process ePayment" status="BlockIndicator" action="{!redirectToPaymentGateway}" rendered="{!isGatewayRequiredforPaymentMethod}" />
+                    <apex:commandButton value="Process ePayment" status="BlockIndicator" action="{!redirectToPaymentGateway}"
+                        rendered="{!isGatewayRequiredforPaymentMethod}" styleClass="epay_btn"
+                    />
                     <!--Uncomment thsi button if you want to  use basic functionality with credit card textbox-->
                     <!--
                     <apex:commandButton value="Process Payment" rendered="{!isGatewayRequiredforPaymentMethod}" action="{!process}" reRender="tab,msg"  oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';" />  
@@ -510,8 +755,8 @@
                 
             </apex:tabPanel>
             
-            <p class="bg-steps">To complete the payment process successfully, please do not click your browser back button.</p>
-            
+            <p class="bg-steps"><b>To complete the payment process successfully, please do not click your
+                browser back button.</b></p>            
         </apex:pageblock>
         
         <apex:actionFunction name="sendEmailJS" action="{!sendPdf}" reRender="" rendered="{!NOT(keepPolling)}"/>

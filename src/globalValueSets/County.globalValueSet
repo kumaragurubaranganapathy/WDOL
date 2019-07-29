@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>--Select One--</fullName>
+        <default>true</default>
+        <label>--Select One--</label>
+    </customValue>
+    <customValue>
         <fullName>Adams</fullName>
         <default>false</default>
         <label>Adams</label>
@@ -119,6 +124,11 @@
         <fullName>Okanogan</fullName>
         <default>false</default>
         <label>Okanogan</label>
+    </customValue>
+    <customValue>
+        <fullName>Out Of State</fullName>
+        <default>false</default>
+        <label>Out of State</label>
     </customValue>
     <customValue>
         <fullName>Pacific</fullName>
@@ -544,12 +554,6 @@
         <label>Washburn</label>
     </customValue>
     <customValue>
-        <fullName>Out of State</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Out of State</label>
-    </customValue>
-    <customValue>
         <fullName>Washington</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -617,5 +621,5 @@
     </customValue>
     <description>County Picklist</description>
     <masterLabel>County</masterLabel>
-    <sorted>true</sorted>
+    <sorted>false</sorted>
 </GlobalValueSet>
