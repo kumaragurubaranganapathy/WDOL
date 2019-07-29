@@ -1,6 +1,10 @@
 ({
     doInit : function(component,event) {        
-        var action = component.get('c.getContactUserInfo');                     
+        var action = component.get('c.getContactUserInfo');  
+        var currURL = document.URL;
+        if(/Help-Topic/.test(currURL)){
+            component.set("v.helpPage",true);
+        }
         action.setCallback(this, function(actionResult) {
             var state = actionResult.getState();
             if (state === "SUCCESS") {
