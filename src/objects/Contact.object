@@ -1383,6 +1383,15 @@ CASE( MUSW__AlertCode__c,
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>NO_SSN_ITIN__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>No SSN and ITIN Certification</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
     <listViews>
         <fullName>AllContacts</fullName>
         <columns>FULL_NAME</columns>
