@@ -4151,6 +4151,18 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Application_formatted_number__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;/&apos;&amp; Application__r.Id ,Application__r.Application_Number__c,&quot;_self&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Application</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>License</label>
     <listViews>
         <fullName>Active_Converted</fullName>
