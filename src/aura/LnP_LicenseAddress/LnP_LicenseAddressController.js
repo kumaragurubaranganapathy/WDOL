@@ -14,7 +14,12 @@
         helper.getStateList(component , helper);
         helper.getCountyList(component , helper);
         helper.getCanadianProvince(component , helper);
-        helper.getallAddress(component, event, helper);
+        if(component.get('v.changeAddress')=== true){
+            helper.getAddress(component, event, helper);  
+        } else {
+             helper.getallAddress(component, event, helper);       
+        }
+
     },
     
     addAddress: function(component, event, helper){  
@@ -85,6 +90,13 @@
     
     cancelAddress: function(component, event, helper){
         helper.cancelAdressHelper(component, event, helper);  
+    },
+    tolocation: function(component, event, helper){
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": "/newdashboard"
+        });
+        urlEvent.fire();
     },
     
     onCountryChange: function(component, event, helper){
@@ -169,6 +181,14 @@
         }
     },
     
+    
+    onCityChange : function(component, event, helper){
+        console.log('reaching');
+        if(component.get("v.mailingAddressparcel.MUSW__City__c") != null && component.get("v.mailingAddressparcel.MUSW__State__c") != null){
+        	helper.countyFetchHelper(component, event, helper);
+        }
+    },
+    
     onPhysicalStateChange: function(component, event, helper){
         var selectedState = event.getSource().get("v.value");
         console.log(event.getSource().get("v.value")); 
@@ -211,7 +231,12 @@
         
     },
     onsaveAddress: function(component ,event, helper) {
-        helper.onsaveAddressHelper(component ,event, helper);
+        if(component.get("v.changeAddress")== true) {
+           helper.onsaveContactAddressHelper(component ,event, helper); 
+        } else {
+            helper.onsaveAddressHelper(component ,event, helper); 
+        }
+       
     },
     handleDelete: function(component ,event, helper) {
         helper.deleteRecordHelper(component, event, helper);

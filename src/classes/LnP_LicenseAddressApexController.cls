@@ -30,6 +30,42 @@ public with sharing class LnP_LicenseAddressApexController {
         return ListAddress;
     }
     
+    @AuraEnabled
+    public static List<MUSW__Parcel__c> getAddress(Id applicationId){
+        system.debug('applicationId==='+ applicationId);
+        List<MUSW__Parcel__c> ListAddress = new List<MUSW__Parcel__c>();
+         List<MUSW__Parcel_Contact2__c> lstContact  = new  List<MUSW__Parcel_Contact2__c>();
+        if(String.isNotBlank(applicationId)){
+            lstContact   = [SELECT MUSW__Parcel__r.Application_BG__c,MUSW__Parcel__r.Canadian_provinces__c,
+                            MUSW__Parcel__r.MUSW__Unit__c,MUSW__Parcel__r.is_Physical_and_Mailing_Address_Same__c,
+                            MUSW__Parcel__r.Address_Type__c,MUSW__Parcel__r.Country__c,MUSW__Parcel__r.County__c,
+                            Id,MUSW__Parcel__r.MUSW__City__c,MUSW__Parcel__r.MUSW__District__c,
+                            MUSW__Parcel__r.Zip_Postal_Code__c,
+                            MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Street2__c,
+                            MUSW__Parcel__r.MUSW__Street_Number__c,MUSW__Parcel__r.MUSW__Street_Suffix__c,MUSW__Parcel__r.MUSW__Street__c,Name 
+                            from MUSW__Parcel_Contact2__c where MUSW__Contact__c  =:applicationId Limit 1];
+            if(!lstContact.isEmpty()) {
+                for(MUSW__Parcel_Contact2__c lstparcel :lstContact) {
+                    MUSW__Parcel__c parcel = new MUSW__Parcel__c();
+                    parcel.Address_Type__c = lstparcel.MUSW__Parcel__r.Address_Type__c;
+                    parcel.is_Physical_and_Mailing_Address_Same__c = lstparcel.MUSW__Parcel__r.is_Physical_and_Mailing_Address_Same__c;
+                    parcel.MUSW__Unit__c = lstparcel.MUSW__Parcel__r.MUSW__Unit__c;
+                    parcel.MUSW__City__c = lstparcel.MUSW__Parcel__r.MUSW__City__c;
+                    parcel.MUSW__State__c = lstparcel.MUSW__Parcel__r.MUSW__State__c;
+                    parcel.MUSW__Street2__c = lstparcel.MUSW__Parcel__r.MUSW__Street2__c;
+                    parcel.Canadian_provinces__c = lstparcel.MUSW__Parcel__r.Canadian_provinces__c;
+                    parcel.County__c = lstparcel.MUSW__Parcel__r.County__c;
+                    parcel.Country__c = lstparcel.MUSW__Parcel__r.Country__c;
+                    parcel.Zip_Postal_Code__c =lstparcel.MUSW__Parcel__r.Zip_Postal_Code__c;
+                    parcel.Application_BG__c = lstparcel.MUSW__Parcel__r.Application_BG__c;
+                    ListAddress.add(parcel);
+                }
+
+            }
+        }
+        return ListAddress;
+    }
+    
     @AuraEnabled    
     public static List<String> getAddressDetailsType(){
         List<String> options = new List<String>();
@@ -547,5 +583,127 @@ parcel.License__c = licenseId;
             this.tableHeader = tableHeader!=null? tableHeader:new List<String>();
             this.tableData = tableData!=null? tableData : new List<Sobject>();
         }
+    }
+    
+    @auraEnabled
+    public static List<MUSW__Parcel__c> updateContactParcel(string selectedAddress,Boolean isAptInfo,String contactId, Boolean issuggestTrue,String addresstype, String county){
+        List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
+        String addres1;
+        String aptInfo = '';
+        String city;
+        String state;
+        String zip;
+        String country;
+        String countyVal = county;
+        system.debug('isAptInfo=='+isAptInfo);
+        system.debug('selectedAddress=='+selectedAddress);
+        
+        try{
+            if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
+                selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
+                system.debug('selectedAddress='+selectedAddress);
+                List<String> Addresslist = selectedAddress.split(',');
+                if(Dol_IntegrationUtil.isNotempty(Addresslist)){
+                    addres1 = Addresslist[0] != null ? Addresslist[0].trim() : '';
+                    //if address line 2 is null
+                    if(!isAptInfo){
+                        city = Addresslist[1] != null ? Addresslist[1].trim() : '';
+                        state = Addresslist[2] != null ? Addresslist[2].trim() : '';
+                        zip = Addresslist[3] != null ? Addresslist[3].trim() : '';
+                        country = Addresslist[4] != null ? Addresslist[4].trim() : '';
+                    }
+                    //if address line 2 is NOT null
+                    else if(isAptInfo){
+                        aptInfo = Addresslist[1] != null ? Addresslist[1].trim() : '';
+                        city = Addresslist[2] != null ? Addresslist[2].trim() : '';
+                        state = Addresslist[3] != null ? Addresslist[3].trim() : '';
+                        zip = Addresslist[4] != null ? Addresslist[4].trim() : '';
+                        country = Addresslist[5] != null ? Addresslist[5].trim() : '';
+                    }
+                }
+                List<MUSW__Parcel_Contact2__c> lstParcelContact = [SELECT id, MUSW__Parcel__c from MUSW__Parcel_Contact2__c 
+                                                                   where MUSW__Contact__c =:contactId AND MUSW__Parcel__r.Address_Type__c = :addresstype Limit 1 ];
+
+                if(!lstParcelContact.isEmpty()) {
+                    for(MUSW__Parcel__c existingParcel : [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
+                                                          is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c from MUSW__Parcel__c 
+                                                          where Id = :lstParcelContact[0].MUSW__Parcel__c
+                                                          Limit 1]){
+                                                              System.debug('existingParcel=='+ existingParcel);
+                                                              existingParcel.MUSW__Street2__c = addres1;
+                                                              existingParcel.MUSW__Unit__c = aptInfo;
+                                                              existingParcel.MUSW__City__c = city;
+                                                              existingParcel.Country__c = country;
+                                                              existingParcel.County__c = countyVal;
+                                                              if(country!= 'Canada'){
+                                                                  existingParcel.MUSW__State__c = state; 
+                                                                  existingParcel.Canadian_provinces__c = null;
+                                                              }else {
+                                                                  existingParcel.Canadian_provinces__c = state;
+                                                                  existingParcel.MUSW__State__c = null;
+                                                              }
+                                                              existingParcel.Zip_Postal_Code__c = zip;
+                                                              parcelList.add(existingParcel);
+                                                          }
+                }
+                if(!parcelList.isEmpty()){
+                    upsert parcelList;
+                    System.debug('updated parcelList'+parcelList);
+                }
+                else{
+                    MUSW__Parcel__c parcel = new MUSW__Parcel__c();
+                    parcel.MUSW__Street2__c = addres1;
+                    parcel.MUSW__Unit__c = aptInfo;
+                    parcel.MUSW__City__c = city;
+                    parcel.Country__c = country;
+                    parcel.County__c = countyVal;
+                    System.debug('country===' + country);
+                    if(country!= 'Canada'){
+                        parcel.MUSW__State__c = state; 
+                        parcel.Canadian_provinces__c = null;
+                    }else {
+                        parcel.Canadian_provinces__c = state;
+                        parcel.MUSW__State__c = null;
+                    }
+                    parcel.Zip_Postal_Code__c = zip;
+                    
+                    if(issuggestTrue == true){
+                        parcel.Melissa_Address_Verified__c = true;
+                    }
+                    if(addresstype != null && addresstype !='--None--'){
+                        parcel.Address_Type__c = addresstype;
+                    }
+                    System.debug('parcel' + parcel);
+                    if(parcel != null){
+                        upsert parcel;
+                       
+                        if(Dol_IntegrationUtil.isNotBlank(parcel.id)){
+                             addContactparcel(contactId,parcel.id);
+                            List<MUSW__Parcel__c> insertedParcel = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,
+                                                                    Zip_Postal_Code__c, Canadian_provinces__c, Country__c,County__c,
+                                                                    Melissa_Address_Verified__c,Address_Type__c, Application_BG__c,
+                                                                    is_Physical_and_Mailing_Address_Same__c from MUSW__Parcel__c 
+                                                                    where id =:parcel.id Limit 1];
+                            System.debug('insertedParcel'+insertedParcel);
+                            if(Dol_IntegrationUtil.isNotempty(insertedParcel)){ 
+                                parcelList.add(insertedParcel[0]);
+                            }    
+                        }
+                    } 
+                }
+            }
+        }catch(Exception e){
+            System.debug('Dol_AddressValidationService - Exception: '+e);
+            DebugErrorLoggger.LogError(e, '', '','Dol_AddressValidationService','saveAddress','saveAddress Method failed');  
+        }
+        system.debug('parcelList=='+parcelList);
+        return parcelList;
+    }
+    
+    Public static void addContactparcel (string contactID, Id parcelId) {
+        MUSW__Parcel_Contact2__c  newParcelContact =  new MUSW__Parcel_Contact2__c();
+        newParcelContact.MUSW__Contact__c = contactID;
+        newParcelContact.MUSW__Parcel__c = parcelId;
+        insert newParcelContact;
     }
 }
