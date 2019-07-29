@@ -376,7 +376,7 @@
                             <br/>
                             <apex:inputText label="Email Receipt To" value="{!email}" id="email" />
                             <br/>
-                            <apex:outputPanel>
+                            <apex:outputPanel >
                                 <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
                                     it will also update the email address for the
                                     contact record.
@@ -687,7 +687,7 @@
 
                     <!-- 
 <apex:commandButton value="Process Payment" action="{!process}" reRender="tab,msg" rendered="{!hasCC = 'false'}" oncomplete="sendEmailJS();document.getElementById('p:f:pb:topBtns:abandonBtn').style.visibility='hidden';"/>-->
-                    <apex:commandButton value="Transfer Fee" status="BlockIndicator" action="{!TransferFee}"
+                    <apex:commandButton value="Transfer Fee" styleClass="pay_btn" status="BlockIndicator" action="{!TransferFee}"
                         rendered="{!isFeeTransfer}" />
                     <apex:commandButton styleClass="pay_btn" value="Proceed to Payment" status="BlockIndicator"
                         action="{!process}" rendered="{!(!isGatewayRequiredforPaymentMethod && !isFeeTransfer)}"
