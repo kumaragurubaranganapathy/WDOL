@@ -116,7 +116,7 @@
             <name>OwnerChange_Real_Estate_Appraiser_Course</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(  License__c != NULL,  ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Course&apos;) )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
