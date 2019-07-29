@@ -42,11 +42,11 @@
                     <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
                         <div class="field-style">
                             <div class="label-style">Email:</div>
-                            <div class="data-style">{!v.ContactObj.Email?v.ContactObj.Email:'None'}</div>
+                            <div class="data-style slds-truncate" title="{!v.ContactObj.Email?v.ContactObj.Email:'None'}">{!v.ContactObj.Email?v.ContactObj.Email:'None'}</div>
                         </div>
                         <div class="field-style alt-email">
                             <div class="label-style">Alternate email:</div>
-                            <div class="data-style">{!v.ContactObj.Other_Email__c?v.ContactObj.Other_Email__c:'None'}</div>
+                            <div class="data-style slds-truncate" title="{!v.ContactObj.Other_Email__c?v.ContactObj.Other_Email__c:'None'}">{!v.ContactObj.Other_Email__c?v.ContactObj.Other_Email__c:'None'}</div>
                         </div>                        
                         <div class="field-style">
                             <div class="label-style">Phone:</div>

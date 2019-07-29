@@ -15,9 +15,10 @@
     <aura:attribute name="showProviderD" type="boolean" default="false"/>
     <aura:attribute name="recordList" type="List" />
     <aura:attribute name="flowType" type="String" />
+    <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
     <!--<aura:handler  name="init" value="{!this}" action="{!c.doinit}"/>-->
     
-    <c:LnP_RecordEditForms sectionList ="{!v.sectionList}" sectionName="{!v.sectionName}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}"/> 
+    <c:LnP_RecordEditForms sectionList ="{!v.sectionList}" sectionName="{!v.sectionName}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}" isAMRFlow="{!v.isAMRFlow}" /> 
     <!--<aura:if isTrue="{!v.ProviderList.length!=0?'true':'false'}"> 
     <lightning:card title="Provider Details">
         <p class="slds-p-horizontal_small">            

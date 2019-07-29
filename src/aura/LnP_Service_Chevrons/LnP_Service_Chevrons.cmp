@@ -42,6 +42,7 @@
     <aura:attribute name="submitButtonDisable" type="boolean" default="true"/>
     <aura:attribute name="amrData" type="AMR_Link__mdt" />
     <aura:attribute name="Description" type="String" />
+    <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -71,7 +72,7 @@
                                     <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                     <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
-                                        <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}"/> 
+                                        <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}" /> 
                                     </aura:if>
                                 </div>
                             </aura:iteration>
@@ -79,19 +80,19 @@
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="reviewHeading">QUESTIONS REVIEW</div><br/>
+                                        <div class="reviewHeading">Questions Review</div><br/>
                                         
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
                                                 <div>
-                                                    <ui:outputRichText  value="{!responses.question}"/>
+                                                    <ui:inputText disabled = "true" value="{!responses.question}"/>
                                                 </div>
                                                 <!-- <p> -->  
                                                 <aura:if isTrue="{!responses.answer != null}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
-                                                        <ui:outputRichText value="{!responses.answer}"/>
+                                                        <ui:outputText value="{!responses.answer}"/>
                                                         <!-- CR <aura:if isTrue="{!and(responses.hasChild, responses.value == No)}" >
                                                  {!varRes + 1}
                                                 </aura:if>   -->  
@@ -109,7 +110,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="reviewHeading">MANDATORY SUBMISSIONS REVIEW</div><br/>
+                                        <div class="reviewHeading">Mandatory Submission Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
@@ -150,9 +151,9 @@
                                     </div>-->
                                     
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="reviewHeading declaration">DECLARATION</div><br/>
+                                        <div class="reviewHeading declaration">Declaration</div><br/>
                                         <div class="slds-form-element">
-                                            <div class="slds-form-element__control">
+                                            <div class="slds-form-element__control DeclrtnWidth">
                                                 <div class="slds-checkbox declaration-checkbox">
                                                     <input type="checkbox" name="Declaration" id="declaration" onchange="{!c.onDeclarationChange}"/>
                                                     <label class="slds-checkbox__label" for="declaration">
@@ -164,8 +165,8 @@
                                         </div>
                                     </div>
                                     
-                                    <div id="AttestationValidation" class='field-item'>                
-                                        <div class="reviewHeading attestation">SIGNATURE</div>
+                                    <div id="AttestationValidation" class='field-item attest-fields'>                
+                                        <div class="reviewHeading attestation">Signature</div>
                                         <div class="attestBody">Declare before proceeding.</div>
                                         <div class="slds-form-element  field-item">
                                             <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
