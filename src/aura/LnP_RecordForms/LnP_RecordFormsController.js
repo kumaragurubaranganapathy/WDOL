@@ -50,13 +50,13 @@
                         var uniqueID = fieldValues[i].get("v.value");  
                         var compEvent = component.getEvent("CmpEvent");
                         if(fieldValues[i].get("v.value") == "No_SSN_or_ITIN"){
-                            component.set("v.flagHideAndShow", "Reason for No SSN");  
+                            component.set("v.flagHideAndShow", "NO_SSN_ITIN__c");  
                             compEvent.setParams({"message" : "Reason for No SSN" });
-                            compEvent.fire();
+                           // compEvent.fire();
                         } else {
                             component.set("v.flagHideAndShow", uniqueID);  
                             compEvent.setParams({"message" : uniqueID });
-                            compEvent.fire();   
+                           // compEvent.fire();   
                         } 
                     }
                 }         
@@ -76,11 +76,11 @@
         if(uniqueID != "No_SSN_or_ITIN"){
             component.set("v.flagHideAndShow", uniqueID);  
         	compEvent.setParams({"message" : uniqueID });
-        	compEvent.fire();          
+        	//compEvent.fire();          
         } else {
-            component.set("v.flagHideAndShow", "Reason for No SSN");  
+            component.set("v.flagHideAndShow", "NO_SSN_ITIN__c");  
             compEvent.setParams({"message" : "Reason for No SSN" });
-        	compEvent.fire();
+        	//compEvent.fire();
         }       
     },
     getpattern : function(component, event, helper) {
