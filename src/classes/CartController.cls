@@ -582,6 +582,7 @@ m_cs.removeFeeFromCart(feeSelected);
 
         // Check the default Payment method and based on that checnge the value for isGatewayRequiredforPaymentMethod
         // By Default value of isGatewayRequiredforPaymentMethod is false
+        
         String paymentMethodLabel = pmtMethods[0].getValue();
         BGBK__Payment_Method__mdt[] paymentMethodGatewayDetails = [SELECT BGBK__isGateway_Required__c FROM BGBK__Payment_Method__mdt WHERE BGBK__isActive__c = true AND Label = :paymentMethodLabel LIMIT 1]; 
         if(paymentMethodGatewayDetails.size() > 0) {        
@@ -1981,7 +1982,9 @@ receiptId = receipt.Id;
         try{
             String payerContactId;
             String paymentMethod;
+            String paymentAmount;
 
+            paymentAmount = String.valueOf(receiptVOs[0].amount);
             payerContactId = receiptVOs[0].r.MUSW__Receipt_Paid_By__c;
             paymentMethod = receiptVOs[0].r.MUSW__Payment_Method__c;
             
@@ -2010,8 +2013,7 @@ receiptId = receipt.Id;
                     feeIds.add(feeVo.f.Id);
                 }
             }
-            System.debug('payerContactId '+payerContactId );
-            String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
+            
             // create the object DOL_ePaymentSessionTransferDetails with required parameter
             DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
                                                                                                             paymentAmount,
