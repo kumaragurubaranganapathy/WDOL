@@ -204,3 +204,13 @@
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
 }
+.THIS .personal-info .field-item > .slds-form-element__label:before {
+    position: absolute;
+    content: "*";
+    color: red;
+    top: -5px;
+    left: -5px;
+}
+.THIS .personal-info .field-item > .slds-form-element__label {
+    position: relative;
+}
