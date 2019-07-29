@@ -50,7 +50,7 @@
                         </div>                        
                         <div class="field-style">
                             <div class="label-style">Phone:</div>
-                            <div class="data-style">{!v.ContactObj.Other_Email__c?v.ContactObj.Other_Email__c:'None'}</div>
+                            <div class="data-style">{!v.ContactObj.MobilePhone?v.ContactObj.MobilePhone:'None'}</div>
                         </div>                        
                     </lightning:layoutItem>
                     <lightning:layoutItem size="12" class="contact-item address-item slds-hide_medium"> 
