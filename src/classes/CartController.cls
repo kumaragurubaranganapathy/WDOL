@@ -1964,7 +1964,9 @@ public with sharing class CartController
         try{
             String payerContactId;
             String paymentMethod;
+            String paymentAmount;
 
+            paymentAmount = String.valueOf(receiptVOs[0].amount);
             payerContactId = receiptVOs[0].r.MUSW__Receipt_Paid_By__c;
             paymentMethod = receiptVOs[0].r.MUSW__Payment_Method__c;
             
@@ -1993,8 +1995,7 @@ public with sharing class CartController
                     feeIds.add(feeVo.f.Id);
                 }
             }
-            System.debug('payerContactId '+payerContactId );
-            String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
+            
             // create the object DOL_ePaymentSessionTransferDetails with required parameter
             DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
                                                                                                             paymentAmount,
