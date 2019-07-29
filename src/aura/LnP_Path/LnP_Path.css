@@ -17,8 +17,10 @@
     top: -7px;
 }
 .THIS .six-circles .slds-path__title{
-  white-space:normal;
-  left:-20px;
+    white-space: normal;
+    left: 11px;
+    display: flex;
+    justify-content: center;
 }
 .THIS .five-circles hr{
     width: calc(100%/5);
@@ -59,7 +61,9 @@
     box-sizing:border-box;
 
 }
-
+.THIS a[title="Attachments"]+span{
+    left:-32px;
+}
 .THIS .success li::before{
   content:'';
   position: absolute;
