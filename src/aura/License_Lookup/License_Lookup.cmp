@@ -75,7 +75,7 @@ _______________________________________________________________
         <div class="page-header">
             <h1 class="padding-top-30">License Lookup</h1>
         </div>
-        <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
+        <!--aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <lightning:breadcrumbs class="boxsize">
                 <lightning:breadcrumb class="transform-text breadcumb" label="License Lookup" href="javascrit:void(0)" onclick="{!c.navigateToCustomPlace1}"/>
                 <lightning:breadcrumb class="transform-text breadcumb" label="Search Results" href="javascrit:void(0)" onclick="{!c.navigateToCustomPlace2}"/>
@@ -83,7 +83,7 @@ _______________________________________________________________
                     <lightning:breadcrumb class="transform-text breadcumb" label="License Details" href="javascrit:void(0)" onclick="{!c.navigateToCustomPlace3}"/>
                 </aura:if>
             </lightning:breadcrumbs>
-        </aura:if>
+        </aura:if-->
         <div>
         </div>
         <div class="screen-one">
@@ -91,7 +91,7 @@ _______________________________________________________________
                 <div class="slds-p-top_x-small padding-bottom-20">
                     This search only provides information about the below license types we've issued. If you didn't find what you were looking for, you may want to check <a href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
                 </div>
-                <div class="slds-m-top_medium">
+                <div class="slds-hide slds-m-top_medium">
                     <aura:iteration items="{!v.licnseType}" var="eachLicense">
                         <p>{!eachLicense}</p>
                     </aura:iteration>        
@@ -538,7 +538,7 @@ _______________________________________________________________
                         <lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace2}"/>
                     </div>
                     <div class="buttons-right">
-                        <lightning:button class="next-button" variant="brand" type="button" name="cancel" label="SEARCH ANOTHER LICENSE" onclick="{!c.modifySearch}"/>
+                        <lightning:button class="next-button" variant="brand" type="button" name="cancel" label="Search Another License" onclick="{!c.modifySearch}"/>
                     </div>
                 </div>
             </div>
