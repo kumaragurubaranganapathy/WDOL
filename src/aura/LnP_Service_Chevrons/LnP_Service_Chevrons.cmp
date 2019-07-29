@@ -52,7 +52,7 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-        <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
+        <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
         <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
                 {!v.endoMessage}
@@ -129,8 +129,8 @@
                                             </div>
                                         </aura:iteration>
                                     </div>
-                                    <!--<div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-<div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
+                                    <!--<div id="certificationsValidation" class='field-item'> 
+                                        <div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                             <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                             <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
@@ -150,7 +150,7 @@
                                     </div>-->
                                     
                                     <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                      <div class="reviewHeading declaration">DECLARATION</div><br/>
+                                        <div class="reviewHeading declaration">DECLARATION</div><br/>
                                         <div class="slds-form-element">
                                             <div class="slds-form-element__control">
                                                 <div class="slds-checkbox declaration-checkbox">
@@ -164,10 +164,10 @@
                                         </div>
                                     </div>
                                     
-                                    <div id="AttestationValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="reviewHeading attestation">SIGNATURE</div><br/>
+                                    <div id="AttestationValidation" class='field-item'>                
+                                        <div class="reviewHeading attestation">SIGNATURE</div>
                                         <div class="attestBody">Declare before proceeding.</div>
-                                        <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
+                                        <div class="slds-form-element  field-item">
                                             <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                             (<span>{!v.currentUser.Name}</span>)
                                         </div>
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                     <aura:set attribute="else">
-                                        <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap':'slds-hide'}">
+                                        <div class="{!((varSection+1)==v.currentTab)?'section-wrapper':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                                 <div class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                                 <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
@@ -241,7 +241,7 @@
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                        <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3" variant="label-hidden" />
                                                     </div>
                                                 </aura:if> 
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
@@ -259,7 +259,7 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">
-                                                    <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item'}">
                                                         <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
                                                     </div>
                                                     <aura:if isTrue = "{!(question.multiValues.length == 0 &amp;&amp; question.isMandatorySub == true)}">
