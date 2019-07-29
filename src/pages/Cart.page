@@ -220,7 +220,7 @@
     <apex:variable var="hasCC" value="false"/>
     
     <apex:form id="f">
-        
+        <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
         <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '`s Cart', 'Your Cart')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
@@ -836,4 +836,20 @@
             </form>
         </apex:outputPanel>
     </apex:outputPanel>
+	<div class="footer" data-aura-rendered-by="170:0">
+        <div class="footerWrapper cLnP_Footer" data-aura-rendered-by="173:0" data-aura-class="cLnP_Footer">
+            <div class="slds-grid botNav" data-aura-rendered-by="174:0">
+                <ul class="footerList" data-aura-rendered-by="175:0">
+                    <li class="footerListItem" data-aura-rendered-by="176:0"><a class="footerListLink" href="https://www.dol.wa.gov/business/renewprofessional.html"
+                            target="blank" data-aura-rendered-by="177:0">Terms</a></li>
+                    <li class="footerListItem" data-aura-rendered-by="179:0"><a class="footerListLink" href="https://www.dol.wa.gov/business/renewprofessional.html"
+                            target="blank" data-aura-rendered-by="180:0">Privacy</a></li>
+                    <li class="footerListItem" data-aura-rendered-by="182:0"><a class="footerListLink" href="https://www.dol.wa.gov/business/renewprofessional.html"
+                            target="blank" data-aura-rendered-by="183:0">Guide</a></li>
+                    <li class="footerListItem" data-aura-rendered-by="185:0"><a class="footerListLink" href="https://www.dol.wa.gov/business/renewprofessional.html"
+                            target="blank" data-aura-rendered-by="186:0">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </apex:page>
