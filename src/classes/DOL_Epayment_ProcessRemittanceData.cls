@@ -64,7 +64,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
 
                     receiptId = parameterMap.get('SFDClicId');
                     cartId = parameterMap.get('SFDCId');
-                    SFDCfeeIds = parameterMap.get('SFDCfeeIds');
+                    SFDCfeeIds = parameterMap.get('SFDCfeeId');
                     SFDCappId = parameterMap.get('SFDCappId');
 
                     if(isNotNullOrBlank(receiptId)){
