@@ -221,7 +221,7 @@ public without sharing class Add_BusinessController {
                                               Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,MUSW__Primary_Licensee__c,
                                               Course_Status__c, Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                               Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,Is_Renewal_Eligible__c,
-                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,
+                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,MUSW__Expiration_Date__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         
@@ -576,7 +576,7 @@ public without sharing class Add_BusinessController {
         }
         
         if(sObjectName == 'Associations__c'){
-            columnHeaderList = new List<String>{'Name','License Number','Status','Invitation Status','Actions'};
+            columnHeaderList = new List<String>{'Name','License Number','Status','Invitation Status','Actions'}; 
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                     sObjList =[select id,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
         }
@@ -681,8 +681,8 @@ public without sharing class Add_BusinessController {
                                                 Course_Status__c,Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                                 Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
                                                 Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c,Sub_Status__c,MUSW__Status__c
-                                                FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordTypeId =: courseRecordTypeId AND Ultimate_Parent_Account__c =: accountID ORDER BY CreatedDate asc];
-            
+                                                FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordType.Id =: courseRecordTypeId AND Ultimate_Parent_Account__c =: accountID ORDER BY CreatedDate asc];
+            system.debug('columnDataList---'+columnDataList);
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
             return JSON.serialize(wrapperObj,true);
