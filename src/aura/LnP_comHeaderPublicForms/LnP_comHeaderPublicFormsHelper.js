@@ -11,13 +11,13 @@
             } else {
                 component.set("v.pageTitle", 'Verify A License');
             }
-
+            
             var itemString = "";
             var urlList = [];
             var urlListtest=[];
             var labelMap = [];
             var urlListone = [];
-
+            
             const server = component.find('server');
             const anAction = component.get('c.getCommonHeaderCustomLabels');
             server.callServer(
@@ -34,23 +34,24 @@
                         for (var index = 0; index < itemArray.length; index++) {
                             if (index != itemArray.length - 1) {
                                 var itemArrayItem = itemArray[index].split(';');
-                                if(itemArrayItem[0]=="To Do"||itemArrayItem[0]=="Professional Dashboard"||itemArrayItem[0]=="Business Dashboard"){
+                                if(itemArrayItem[0]=="To Do"||itemArrayItem[0]=="Individual Account"||itemArrayItem[0]=="Business Management"){
                                     urlListtest.push({
-                                         value: itemArrayItem[1],
-                                         key: itemArrayItem[0]
+                                        value: itemArrayItem[1],
+                                        key: itemArrayItem[0]
                                     });
                                 }
-                               
+                                
                                 else{
-                                urlList.push({
-                                    value: itemArrayItem[1],
-                                    key: itemArrayItem[0]
-                                });}
-                               
+                                    urlList.push({
+                                        value: itemArrayItem[1],
+                                        key: itemArrayItem[0]
+                                    });
+                                }
+                                
                             }
                         }
                     }
-
+                    
                     
                     component.set("v.itemsList", urlList);
                     component.set("v.itemsListtest", urlListtest);
@@ -66,9 +67,9 @@
         var displaylinks = component.find('moreLinks');
         $A.util.toggleClass(displaylinks, 'slds-hide');
     },
-     handleMenuSelectlink: function(component, event) {
+    handleMenuSelectlink: function(component, event) {
         var selectedMenuItemValue = event.getParam("value");
-            window.open(selectedMenuItemValue,"_self");
+        window.open(selectedMenuItemValue,"_self");
         
     },
     setUserInfo: function(component, event, helper) {
@@ -78,15 +79,15 @@
         var conId = component.get("v.conIdfromsession");
         console.log('######conId' + conId);
         console.log('headerfrmsession' + headerfrmsession);
-
+        
         if (headervalue) {
             var action = component.get('c.getContactUserInfo');
             action.setParams({
                 "conId": component.get("v.contactRecId")
                 //"conId":'003r000000FOq9v'
-
+                
             });
-
+            
             action.setCallback(this, function(actionResult) {
                 var state = actionResult.getState();
                 if (state === "SUCCESS") {
@@ -98,15 +99,15 @@
                 }
             });
             $A.enqueueAction(action);
-
+            
         } else if (headerfrmsession) {
             var action = component.get('c.getContactUserInfo');
             action.setParams({
                 "conId": component.get("v.conIdfromsession")
                 //"conId":'003r000000FOq9v'
-
+                
             });
-
+            
             action.setCallback(this, function(actionResult) {
                 var state = actionResult.getState();
                 if (state === "SUCCESS") {
@@ -118,9 +119,9 @@
                 }
             });
             $A.enqueueAction(action);
-
+            
         } else {
-
+            
             try {
                 const server = component.find('server');
                 const userInfoAction = component.get('c.getCurrentUserInfo');
@@ -131,7 +132,7 @@
                         var nameArr = response[1].split(' ');
                         var nameInitial = nameArr[0].charAt(0) + nameArr[1].charAt(0);
                         component.set("v.userInitial", nameInitial);
-
+                        
                     }),
                     $A.getCallback(function(errors) {}),
                     false, "");
@@ -163,15 +164,52 @@
             window.open($A.get("$Label.c.Polaris_Portal_URL") + 's/add-business', "_blank");
         }
     },
-     handleLogout: function(component, event) {
-      
-            window.location.replace($A.get("$Label.c.Polaris_Portal_URL") + 'secur/logout.jsp');
+    handleLogout: function(component, event) {
+        
+        window.location.replace($A.get("$Label.c.Polaris_Portal_URL") + 'secur/logout.jsp');
     },
     toggleMenu: function(component, event) {
         var menu = component.find('hamburger-menu');
         var menuItems = component.find('global-menu');
         $A.util.toggleClass(menu, 'open');
         $A.util.toggleClass(menuItems, 'open');
+    },
+    checkURL : function(component,event){
+        var currURL = document.URL;
+        if(/license-lookup/.test(currURL)){            
+            component.set("v.urlString","License Lookup"); 
+        }
+        else if(/file-complaint/.test(currURL)){            
+            component.set("v.urlString","Complaints"); 
+        }
+            else if(/course-search/.test(currURL)){            
+                component.set("v.urlString","Course Search"); 
+            }
+                else if(/newdashboard/.test(currURL)){            
+                    component.set("v.urlString","Professional"); 
+                }
+                    else if(/business/.test(currURL)){            
+                        component.set("v.urlString","Business"); 
+                    }
+                        else if(/license-lookup/.test(currURL)){            
+                            component.set("v.urlString","License Lookup"); 
+                        }
+                            else if(/Help-Topic/.test(currURL)){
+                                component.set("v.urlString","Help"); 
+                            }
+                                else
+                                    component.set("v.urlString","Home");
+        
+    },
+    redirectToHome : function(component, event) {
+        var str ='/';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+      	component.set("v.urlString","Home");
     }
-
+    
+    
 })

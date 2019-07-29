@@ -59,10 +59,10 @@ _______________________________________________________________
                         Manage your license by linking it to your POLARIS profile.
                     </div>
                     <div class="ser-btn-wrapper slds-m-bottom_large">
-                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkProfLic}" label="LINK YOUR PROFESSIONAL LICENSE" /> 
+                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkProfLic}" label="Link you professional license" /> 
                     </div>
                     <div class="ser-btn-wrapper">
-                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkBizLic}" label="LINK YOUR BUSINESS" />  
+                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkBizLic}" label="Link your business" />  
                     </div>
                 </lightning:layoutItem>
                 <!--<lightning:layoutItem aura:id ="professionalForm" padding="around-large" size="12" class="slds-hide new-wrapper slds-m-left_medium">
@@ -555,7 +555,7 @@ _______________________________________________________________
                     </ul>
                 </div>
                 <div class="ser-btn-wrapper">
-                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="APPLY FOR PROFESSIONAL LICENSE" /> 
+                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply for professional license" /> 
                 </div>
             </lightning:layoutItem>
             <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
@@ -574,7 +574,7 @@ _______________________________________________________________
                     </ul>
                 </div>
                 <div class="ser-btn-wrapper">
-                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="ADD BUSINESS" /> 
+                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Add business" /> 
                 </div>
             </lightning:layoutItem>
         </lightning:layout>

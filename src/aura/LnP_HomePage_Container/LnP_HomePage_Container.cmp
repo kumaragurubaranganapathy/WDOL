@@ -1,9 +1,10 @@
 <aura:component controller = "Lnp_CommonHeader_AC" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     <aura:attribute name="isPageLoaded" type="Boolean" default="false" />
-    <aura:attribute name="isLoggedIn" type="Boolean" default="false" />    
+    <aura:attribute name="isLoggedIn" type="Boolean" default="false" /> 
+    <aura:attribute name="helpPage" type="Boolean" default="false" /> 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.isPageLoaded}">
-        <aura:if isTrue="{!v.isLoggedIn}">       
+        <aura:if isTrue="{!and(v.isLoggedIn,!v.helpPage)}">       
             
             <c:ToDo_Tasks />   
             

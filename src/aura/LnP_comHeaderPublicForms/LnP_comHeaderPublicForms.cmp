@@ -23,6 +23,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     <aura:attribute name="headerfromsession" type="Boolean" default="false" />
     <aura:attribute name="contactRecId" type="Id" />
     <aura:attribute name="conIdfromsession" type="Id" />
+    <aura:attribute name="urlString" type="String" default="Home" />
     <c:LnP_ServerActionService aura:id="server"/>
     <aura:registerEvent name="appEvent" type="c:LnP_VerticalNavEvent"/>
     
@@ -48,18 +49,18 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                 <lightning:layoutItem size="12" largeDeviceSize="3" class="logo-wrapper">
                     <div class="logo-div">
                         <!-- <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogo.svg'}" alt="logo" />-->
-                        <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+                        <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" onclick="{!c.redirectToHome}" />
                         
                     </div>
                 </lightning:layoutItem>
                 <lightning:layoutItem size="12" largeDeviceSize="9" class="nav-links-wrapper">
                     <div aura:id="global-menu" class="menu-wrapper">
                         <div class="mob-logo-wrapper slds-hide_medium">
-                            <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+                            <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" onclick="{!c.redirectToHome}" />
                         </div>
-                        <lightning:layout>                            
+                        <lightning:layout class="nav-grid">                            
                             <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'9':'10')}" class="">
-                                <div role="navigation" aria-labelledby="nav1" class="slds-col">                   
+                                <div role="navigation" aria-labelledby="nav1" class="slds-col nav-div">                   
                                     <ul id="nav1" class="nav-links">
                                         <aura:iteration items="{!v.itemsList}" var="item">
                                             <!-- TO DO check for license management and append -->
@@ -77,7 +78,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                                     
                                                 </li>
                                                 <aura:set attribute="else">
-                                                    <li><a href="{!item.value}">{!item.key}</a></li>
+                                                    <li class="{!item.key == v.urlString?'active-link':'inactive-link'}"><a href="{!item.value}" >{!item.key}</a></li>
                                                 </aura:set>
                                             </aura:if>
                                             
@@ -100,8 +101,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/search.svg'}" class="logo-style" />-->
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style" />
                                                 <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style" /> -->
-                                                <!--<a class="link-style" href="javacript:void(0)" onclick="{!c.handleLogout}">Logout<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>-->
-												<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" onclick="{!c.handleLogout}" />
+                                              <a class="logout-style" onclick="{!c.handleLogout}">Logout<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>
                                                 <!--  <div class="">
                                         <img src="{!$Resource.LnP_Icons+'/LnP_Icons/login.png'}" class="{!v.pageTitle=='Login'?'login-Image':(v.userType!='Guest'?'slds-hide':'login-Image')}" alt="Log In"/>
                                         <div id="profileImage" class="{!v.pageTitle=='Login'?'slds-hide':(v.userType!='Guest'?'slds-show':'slds-hide')}">{!v.userInitial}</div>

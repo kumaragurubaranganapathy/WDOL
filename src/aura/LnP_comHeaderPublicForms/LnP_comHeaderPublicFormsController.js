@@ -9,6 +9,7 @@
         component.set("v.conIdfromsession", conRecId);
         helper.setItemsList(component, event, helper);
         helper.setUserInfo(component, event, helper); 
+        helper.checkURL(component, event); 
         
 
      },
@@ -34,5 +35,8 @@
     },
      handleMenuSelectlink:function(component, event, helper){
          helper.handleMenuSelectlink(component, event);
+    },
+    redirectToHome : function(component,event,helper){
+        helper.redirectToHome(component,event);
     }
 })
