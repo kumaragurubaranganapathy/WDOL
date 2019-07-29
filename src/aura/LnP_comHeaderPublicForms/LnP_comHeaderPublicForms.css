@@ -1,14 +1,14 @@
 .THIS.slds-global-header{
     height: auto;
     background: token(headerclr);
-    padding: 1.5rem 7.5rem;
+    padding: 0 7.5rem;
 }
 .THIS li.links {
     position: relative;
     bottom: 3px;
 }
 .THIS .logout{
-    padding-left:1rem;
+    margin-left:0.5rem;
 }
 .THIS .dropdown__list li{
     margin: 10px 10px 0 10px;
@@ -23,10 +23,14 @@
 }
 .THIS .burgerIcon{
     display: none;
-}  
+}
+.THIS .nav-grid, .THIS .nav-div, .THIS .menu-wrapper, .THIS .nav-links{
+    height:100%;
+}
 .THIS .logo-wrapper{
     display:flex;
     align-items:center;
+    padding:1.5rem 0;
 }
 .THIS .images-wrapper{
     width:100%;
@@ -35,6 +39,7 @@
 }
 .THIS .logo{
     width:181px;
+    cursor:pointer;
 }
 .THIS .login-wrapper{
     display: flex;
@@ -43,8 +48,11 @@
     position:relative; 
 }
 .THIS .nav-links{
-    display: flex;
-    justify-content: space-evenly;
+    display: flex;    
+}
+.THIS .nav-links li.active-link{
+    border-bottom: solid 4px t(actionPanelBG);
+    padding-bottom:1.25rem;
 }
 .THIS .morelinks {
     color: token(headertxt);
@@ -55,10 +63,26 @@
     line-height: normal;
     text-transform:capitalize;
 }
+.THIS .nav-links li{
+    padding:1.5rem 0;
+    display:flex;
+    align-items:center;
+    margin-right: 2.77vW;
+    cursor:pointer;
+}
+.THIS .nav-links li a{
+    cursor:pointer;
+}
+.THIS .nav-links li a:hover{
+    text-decoration:none;
+}
+.THIS .nav-links li:last-of-type{
+    margin-right:0;
+}
 .THIS .profile-menu-link .slds-button.slds-button_neutral,.THIS .nav-links a,.THIS .login-wrapper a{
      color: token(headerLinks);
     font-family: token(publicSansfontfamily);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     line-height: normal;
@@ -136,7 +160,7 @@
     background-color:#f0f8ff;
 }
 .THIS .menu-outer-wrapper{
-    align-items:center;
+    align-items:normal;
 }
 .THIS .profile-menu-link .slds-button_neutral{
     background: #d6d7d9;
@@ -264,6 +288,7 @@
     .THIS .logo-wrapper {       
         margin:0px auto;
         justify-content: center;
+        padding:0;
     }
     .THIS .menu-wrapper {
         display:none;
@@ -307,7 +332,8 @@
     .THIS ul.nav-links li{
         border-top: solid 1px token(navmenudevider);
         margin: 0 1rem;
-        text-align: center;
+        display:flex;
+        justify-content:center;
         padding: 1rem 0;
     }
     .THIS ul.nav-links li:first-child{
@@ -316,6 +342,9 @@
     .THIS ul.nav-links li:last-child {
         border-bottom: solid 1px token(navmenudevider);
         margin-bottom: 1rem; 
+    }
+    .THIS .nav-links li:last-of-type{
+        margin-right:1rem;
     }
 
     .THIS .nav-links a {
@@ -399,6 +428,13 @@
     }
     .THIS .user-wrapper{
         width:auto;
+    }
+    .THIS .nav-div{
+        height:auto;
+    }
+    .THIS .nav-grid{
+        align-items:flex-start;
+        flex-direction:column;        
     }
 }
 /*.THIS .account-dropdown{
