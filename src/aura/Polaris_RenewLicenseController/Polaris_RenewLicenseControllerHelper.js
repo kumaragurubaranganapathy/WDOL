@@ -515,6 +515,33 @@
                                     errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                     return false;
                                 }
+                            } else if(item.Regex_Validation__c == "ssn-validation"){
+                                var valueVal = fieldValuesWrapper[index].get("v.value");
+                                var regexExp = new RegExp('^[0-9\*]{9}$');
+                                if(valueVal.slice(0,5) == "*****"){
+                                    return true;
+                                }else{
+                                    if(valueVal.charAt(0) == "9"){
+                                        if(valueVal.charAt(3) == "9" || valueVal.charAt(3) == "7"){
+                                            if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
+                                                return true;
+                                            }else{
+                                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                return false;
+                                            }
+                                        }else{
+                                            errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                            return false;
+                                        }
+                                    }else{
+                                        if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
+                                            return true;
+                                        }else{
+                                            errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                            return false;
+                                        }
+                                    }
+                                }
                             } else if(item.Regex_Validation__c == "itin-validation"){
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
                                 var regexExp = new RegExp('^[0-9]{3}\-[0-9]{2}\-[0-9]{4}$');
