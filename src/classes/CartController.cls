@@ -569,8 +569,13 @@ public with sharing class CartController
             return;
         }
 
-        if(isPortalUser){
-            isGatewayRequiredforPaymentMethod = true;
+        // Check the default Payment method and based on that checnge the value for isGatewayRequiredforPaymentMethod
+        // By Default value of isGatewayRequiredforPaymentMethod is false
+        String paymentMethodLabel = pmtMethods[0].getValue();
+        BGBK__Payment_Method__mdt[] paymentMethodGatewayDetails = [SELECT BGBK__isGateway_Required__c FROM BGBK__Payment_Method__mdt WHERE BGBK__isActive__c = true AND Label = :paymentMethodLabel LIMIT 1]; 
+        if(paymentMethodGatewayDetails.size() > 0) {        
+            if(paymentMethodGatewayDetails[0].BGBK__isGateway_Required__c)        
+                isGatewayRequiredforPaymentMethod = true;    
         }
         
         activeTab = 'checkout';
@@ -1240,7 +1245,7 @@ public with sharing class CartController
     } */
 
     public void createReceiptForPaymentGateway(){
-        MUSW__Receipt__c receipt = receiptVOs[Integer.valueOf(currentReceiptIndex)].r;
+        MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = 'Draft';
         List<String> feeIds = new List<String>();
@@ -1956,57 +1961,68 @@ public with sharing class CartController
     ** Note             : This is called from cart.page in case of payment method 'Credit Card' and 'ACH'
     */
     public PageReference redirectToPaymentGateway(){
-        String cartId = m_cs.getCart().Id;
-        String payerContactId;
-        String paymentMethod;
+        try{
+            String payerContactId;
+            String paymentMethod;
 
-        payerContactId = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Receipt_Paid_By__c;
-        paymentMethod = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;
-        
-        if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
-        {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
-            return null;
-        }
-        if( paymentMethod != 'ACH' && paymentMethod != 'Credit Card'){
-            isGatewayRequiredforPaymentMethod = false;
-            return null;
-        }
-        if(String.isBlank(payerContactId)){
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Payer first.'));
-            return null;
-        }
-        // create receipt manually before proceding to payment gateway
-        createReceiptForPaymentGateway();
-        // list of all selected feeIds
-        List<String> feeIds = new List<String>();
-        for (FeeVO feeVo : feeVOs){
-            if (feeVo.isSelected){
-                feeIds.add(feeVo.f.Id);
+            payerContactId = receiptVOs[0].r.MUSW__Receipt_Paid_By__c;
+            paymentMethod = receiptVOs[0].r.MUSW__Payment_Method__c;
+            
+            if (String.isBlank(accountSelected) && !m_settings.BGBK__Enable_Cashier_Cart__c)
+            {
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Account first.'));
+                return null;
             }
+            // Put a check if paymentMethod other then the below don't process further
+            //change the value of isGatewayRequiredforPaymentMethod to false
+            //which will change the buttons for payments
+            if( paymentMethod != 'ACH' && paymentMethod != 'Credit Card'){
+                isGatewayRequiredforPaymentMethod = false;
+                return null;
+            }
+            if(String.isBlank(payerContactId)){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please select an Payer first.'));
+                return null;
+            }
+            // create receipt manually before proceding to payment gateway
+            createReceiptForPaymentGateway();
+            // list of all selected feeIds
+            List<String> feeIds = new List<String>();
+            for (FeeVO feeVo : feeVOs){
+                if (feeVo.isSelected){
+                    feeIds.add(feeVo.f.Id);
+                }
+            }
+            System.debug('payerContactId '+payerContactId );
+            String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
+            // create the object DOL_ePaymentSessionTransferDetails with required parameter
+            DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
+                                                                                                            paymentAmount,
+                                                                                                            paymentMethod,
+                                                                                                            payerContactId,
+                                                                                                            cart.Id,
+                                                                                                            feeIds,
+                                                                                                            isPortalUser);
+            sessionTransferDetails.returnValue = receiptId;
+            sessionTransferDetails.SFDClicId = receiptId;
+            System.debug('SFDClicId='+receiptId);
+            // get the encrypted string
+            encryptedSessionInfo = DOL_ePaymentSessionTransfer.getEncryptedSessionString(sessionTransferDetails);
+            // Create the PageReference and setting the params
+            PageReference pageRef = new PageReference(paymentGatewaySettings.Endpoint__c);
+            pageRef.getParameters().put('billerId',paymentGatewaySettings.Biller_Id__c);
+            pageRef.getParameters().put('billerGroupId',paymentGatewaySettings.Biller_Group_Id__c);
+            pageRef.getParameters().put('session',encryptedSessionInfo);
+            pageRef.setRedirect(true);
+            return pageRef;
         }
-        System.debug('payerContactId '+payerContactId );
-        String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
-        // create the object DOL_ePaymentSessionTransferDetails with required parameter
-        DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
-                                                                    paymentAmount,
-                                                                    receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c,
-                                                                    payerContactId,
-                                                                    cartId,
-                                                                    feeIds,
-                                                                    BGCM.UtilityUser.isPortalUser());
-        sessionTransferDetails.returnValue = receiptId;
-        sessionTransferDetails.SFDClicId = receiptId;
-        System.debug('SFDClicId='+receiptId);
-        // get the encrypted string
-        encryptedSessionInfo = DOL_ePaymentSessionTransfer.getEncryptedSessionString(sessionTransferDetails);
-        // Create the PageReference and setting the params
-        PageReference pageRef = new PageReference(paymentGatewaySettings.Endpoint__c);
-        pageRef.getParameters().put('billerId',paymentGatewaySettings.Biller_Id__c);
-        pageRef.getParameters().put('billerGroupId',paymentGatewaySettings.Biller_Group_Id__c);
-        pageRef.getParameters().put('session',encryptedSessionInfo);
-        pageRef.setRedirect(true);
-        return pageRef;
+        catch(Exception error){
+            Id errorLogId = DOL_CreateErrorLog_Exception.logApplicationError(error);
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
+            'Error occured during proceeding to payment gateway, Please contact Salesforce Team with Id :: '+errorLogId));
+            return null;
+        }
+        
     }
 
 }
