@@ -5,8 +5,28 @@
 	padding-left: 20px;
     padding-bottom: 20px;
 }
+.THIS .fileupload .slds-form-element__control{
+    width:100%;
+}
+
+.THIS .slds-file-selector_files .slds-file-selector__button{
+    color: #ffffff;
+    background: t(primary);
+}
+.THIS .attach-title{
+    font-weight:600;
+    color:t(LnGFormTitleColor);
+    font-size:1.25rem;
+    margin-bottom:1rem;
+}
 .THIS .slds-form-element .slds-form-element__control{
-	display: inline-block!important;
+	display: inline-block;
+    margin-left:1rem;
+}
+.THIS .slds-form-element .slds-form-element__control .slds-file-selector__text{
+    margin-left:1rem;
+    display: flex;
+    align-items: center;
 }
 .THIS.alert {
     padding-left: 15px;
@@ -15,7 +35,7 @@
 .THIS .delete-button{
     text-align: -webkit-right;
     position: relative;
-    z-index: 99;
+    z-index:1;
     top: 10px;
     left: 10px;
 }
@@ -24,6 +44,7 @@
     height: 20px;
     line-height: 0;
     border-radius: 10px;
+     z-index:0;
 }
 .THIS lightning-primitive-icon{
 	margin-left: -6px;
