@@ -307,8 +307,8 @@
         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {
             component.set("v.showNotaryEndo",true);
-            component.set("v.showEndoMessage",true);
-            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
+            //component.set("v.showEndoMessage",true);
+            //component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
         }
         else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {            
