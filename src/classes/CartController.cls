@@ -1264,7 +1264,7 @@ receiptId = receipt.Id;
 } */
     
     public void createReceiptForPaymentGateway(){
-        MUSW__Receipt__c receipt = receiptVOs[Integer.valueOf(currentReceiptIndex)].r;
+        MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = 'Draft';
         List<String> feeIds = new List<String>();
