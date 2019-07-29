@@ -79,10 +79,13 @@
 .THIS .nav-links li:last-of-type{
     margin-right:0;
 }
+.THIS .nav-links li.active-link a{
+    font-weight:bold;
+}
 .THIS .profile-menu-link .slds-button.slds-button_neutral,.THIS .nav-links a,.THIS .login-wrapper a{
      color: token(headerLinks);
     font-family: token(publicSansfontfamily);
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     line-height: normal;
