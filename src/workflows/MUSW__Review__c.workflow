@@ -6,7 +6,7 @@
         <lookupValue>Real_Estate_Appraiser_Courses_Queue</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>OwnerChange Real Estate Appraiser Course</name>
-        <notifyAssignee>false</notifyAssignee>
+        <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
@@ -116,7 +116,7 @@
             <name>OwnerChange_Real_Estate_Appraiser_Course</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <formula>AND(  License__c != NULL,  ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Course&apos;) )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
