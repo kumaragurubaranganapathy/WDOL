@@ -2929,6 +2929,10 @@ CASE( MUSW__AlertCode__c,
         <picklistValues>
             <picklist>County__c</picklist>
             <values>
+                <fullName>--Select One--</fullName>
+                <default>true</default>
+            </values>
+            <values>
                 <fullName>Adams</fullName>
                 <default>false</default>
             </values>
@@ -5455,6 +5459,10 @@ CASE( MUSW__AlertCode__c,
         </picklistValues>
         <picklistValues>
             <picklist>County__c</picklist>
+            <values>
+                <fullName>--Select One--</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Asotin</fullName>
                 <default>false</default>
