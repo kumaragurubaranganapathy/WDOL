@@ -171,7 +171,7 @@
         var attRes = [];
         for (var key in tabsList) {
             if (tabsList.hasOwnProperty(key)) {
-                if(tabsList[key].sectionName =='License Information'  ){
+                if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Request Information'  ){
                     for (var question in tabsList[key].labelFieldsMap){
                         if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
                             a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
@@ -234,6 +234,10 @@
         if(event.getSource().get("v.name").includes('License Information'))
         {
              questionNumber = event.getSource().get("v.name").split('License Information')[1];
+        }
+       	else if(event.getSource().get("v.name").includes('Request Information'))
+        {
+             questionNumber = event.getSource().get("v.name").split('Request Information')[1];
         }
         else 
         {          
