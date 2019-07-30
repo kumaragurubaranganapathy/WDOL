@@ -5352,27 +5352,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Courses_Queue</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>Course_Title__c</columns>
-        <columns>Course_Type__c</columns>
-        <columns>Delivery_Method__c</columns>
-        <columns>Clock_Hours__c</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Appraiser Course</value>
-        </filters>
-        <label>Courses Queue</label>
-        <language>en_US</language>
-        <queue>Courses_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>DOR_Licenses</fullName>
         <columns>NAME</columns>
         <columns>MUSW__Status__c</columns>
