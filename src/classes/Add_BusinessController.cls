@@ -362,14 +362,19 @@ public without sharing class Add_BusinessController {
     
     //method to get endorsement details 
     @AuraEnabled 
-    public static Endorsement__c getEndorsementData(String Id){
+     public static String[] getEndorsementData(String licenseId){
         
-        List<Endorsement__c> endorsementData = [SELECT id, Name,License__c,Endorsement_Type__c FROM Endorsement__c WHERE License__c=:Id limit 1];
-        if(!endorsementData.isEmpty()){
-            return endorsementData[0];
-        }else{
-            return null;
+        List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
+        List<String> EndorsementList= new List<String>();
+        if(licenseId != null){ 
+            for(Endorsement__c endorseObj: [select id,Endorsement_Type__c from Endorsement__c where Status__c ='Active' AND License__c =: licenseId]){
+                EndorsementList.add(endorseObj.Endorsement_Type__c);
+            }
+            
         }
+        system.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
+        
+        return EndorsementList;  
     }
     
     //method to get Address details 

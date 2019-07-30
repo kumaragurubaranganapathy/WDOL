@@ -13,7 +13,7 @@
     <aura:attribute name="courseDetail" type="boolean" default="false"/>
     <aura:attribute name="licenseId" type="String" />
     <aura:attribute name="LicenseData" type="MUSW__License2__c" />
-    <aura:attribute name="EndorsementData" type="Endorsement__c" />
+    <aura:attribute name="EndorsementData" type="String[]" />
     <aura:attribute name="AddressData" type="List" />
     <aura:attribute name="existingAcc" type="boolean" default="false" />
     <aura:attribute name="isDisplayTabs" type="boolean" default="true"/>
@@ -461,7 +461,17 @@
                                                 </div>                                                
                                             </lightning:layoutItem>                         
                                         </lightning:layout>
-                                        <div class="section-wrapper">
+										<aura:if isTrue="{!v.EndorsementData.length != 0}">
+                                        <div class="">
+                                            <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
+                                            <div class="section-content slds-p-around_small">
+                                                <aura:iteration items="{!v.EndorsementData}" var="item">
+                                                    <div class="section-list">{!item}</div>
+                                                </aura:iteration>
+                                            </div>
+                                        </div>
+                                    </aura:if>
+                                        <!--<div class="section-wrapper">
                                             <div class="section-header">
                                                 Endorsements
                                             </div>
@@ -474,7 +484,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--<div class="{!v.LicenseData.Credential_Type__c=='Engineering/Land Surveying Company'?'section-wrapper':'slds-hide'}">
+                                       <div class="{!v.LicenseData.Credential_Type__c=='Engineering/Land Surveying Company'?'section-wrapper':'slds-hide'}">
                                             <div class="section-header">
                                                 Affiliated Locations
                                             </div>
