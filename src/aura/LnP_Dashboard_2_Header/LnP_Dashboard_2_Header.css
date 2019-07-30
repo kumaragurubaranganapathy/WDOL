@@ -5,17 +5,14 @@
     padding-bottom:36px;
 }
 .THIS .contact-name{
-    font-size:2rem;
-    font-family:t(btnfontfamily);
+    font-size:2rem;    
     color:t(LnGFormTitleColor);
     padding-bottom:1.25rem;
     font-weight:bold;
 }
 .THIS .contact-item{
     width:30%;
-}
-.THIS .contact-details{
-    justify-content:space-between;
+    margin-right:2rem;
 }
 .THIS .field-style{    
     padding-bottom:0.5rem;
@@ -46,11 +43,9 @@
 }
 .THIS .nav-links li a{
     color:t(LnGWhite);
-    font-size:1rem;
-    font-family:t(btnfontfamily);
+    font-size:1rem;    
 }
-.THIS .header-wrapper{
-    font-family: t(btnfontfamily);    
+.THIS .header-wrapper{    
     color: t(LnGBackgroundGray);
     padding:2rem 2.5rem;    
     border-radius: 10px;
@@ -92,6 +87,7 @@
     }
     .THIS .contact-item{
         width:100%; 
+        margin-right:0;
     }    
     .THIS .contact-name{
         padding-bottom:1rem;

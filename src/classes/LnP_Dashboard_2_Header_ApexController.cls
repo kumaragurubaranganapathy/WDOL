@@ -2,16 +2,32 @@ public class LnP_Dashboard_2_Header_ApexController {
 	@AuraEnabled
     public static Contact getContact(){
         Contact conObj;
-        List<Contact> ConList =  [SELECT OtherGeocodeAccuracy, Other_Email__c,Email,OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, Name, FirstName, LastName, Id, MiddleName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, MailingGeocodeAccuracy, Phone, MobilePhone, HomePhone, OtherPhone, Title FROM Contact Where Id In (Select ContactId
-                                                                             From User
-                                                                             Where Id = :UserInfo.getUserId())];
+        List<Contact> ConList =  [SELECT Other_Email__c,Email,OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, Name, FirstName, LastName, Id, MiddleName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, MailingGeocodeAccuracy, Phone, MobilePhone, HomePhone, OtherPhone, Title  
+                                  FROM Contact 
+                                  Where Id In (Select ContactId
+                                               From User
+                                               Where Id = :UserInfo.getUserId())];
         if(!ConList.isEmpty()){
             conObj = ConList[0];
         }
         return conObj;
     }
-	
-	@AuraEnabled 
+    
+    @AuraEnabled 
+    public static MUSW__Parcel_Contact2__c getAddressDetails  () {
+        MUSW__Parcel_Contact2__c conParcel ;
+        List<MUSW__Parcel_Contact2__c> lstContact  = new  List<MUSW__Parcel_Contact2__c>();
+          lstContact = [ SELECT MUSW__Parcel__r.Address_Type__c,MUSW__Parcel__r.Country__c,MUSW__Parcel__r.County__c,Id,MUSW__Parcel__r.MUSW__City__c,MUSW__Parcel__r.MUSW__District__c,MUSW__Parcel__r.Zip_Postal_Code__c,
+                  MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Street2__c,MUSW__Parcel__r.MUSW__Street_Number__c,MUSW__Parcel__r.MUSW__Street_Suffix__c,MUSW__Parcel__r.MUSW__Street__c,Name 
+                  from MUSW__Parcel_Contact2__c where MUSW__Parcel__r.Address_Type__c IN ('HOME','MAILING ADDRESS') AND MUSW__Parcel__r.Status__c = 'Active'
+                  AND MUSW__Contact__c  in (Select ContactId From User Where Id = :UserInfo.getUserId()) Limit 1 ];
+       if(!lstContact.isEmpty()){
+            conParcel = lstContact[0];
+        }
+        return conParcel;
+    }
+    
+    @AuraEnabled 
     public static String insertRequest(String ServiceRequestType){
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
@@ -41,5 +57,23 @@ public class LnP_Dashboard_2_Header_ApexController {
         }
         string appId = '';
         return appId = application.Id;
+    }
+    
+    @AuraEnabled
+    public static Boolean checkActiveCart(){
+        Boolean redirect = false;
+       List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        
+        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId];
+        if(!crtList.isEmpty()){
+            redirect = true;
+        }
+        return redirect;
     }
 }
