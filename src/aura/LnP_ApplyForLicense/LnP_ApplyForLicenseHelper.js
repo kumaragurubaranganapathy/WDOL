@@ -260,13 +260,7 @@
                                     // no fees code ends
                                 }else{ 
                                     that.hideSpinner(component, event);
-                                    var str ='/cart?id='+id;
-                                    var urlEvent = $A.get("e.force:navigateToURL");
-                                    urlEvent.setParams({
-                                        "url": str
-                                    });
-                                    urlEvent.fire();
-                                    //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
+                                    window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
                                 } 
                             }));
                     }    
