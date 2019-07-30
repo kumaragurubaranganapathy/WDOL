@@ -1016,12 +1016,14 @@ public with sharing class CartController
         for(MUSW__Fee__c objFee:fees){
             feeIds.add(objFee.Id);
         }
+        List<Account> lstAcc =[SELECT id,PIN__c from Account WHERE PIN__c =:pinToTransferFee];
         
-        List<BGBK__Cart__c> lstCart =[SELECT id,BGBK__Account__c from BGBK__Cart__c WHERE PIN__c =:pinToTransferFee];
-        if(lstCart.size()>0){
-           BGBK.CartManager.transferFeesToCart(feeIds, lstCart[0].BGBK__Account__c, pinToTransferFee); 
-           PageReference pageRef = new PageReference('/s/dashboard');
-           return pageRef;
+        //List<BGBK__Cart__c> lstCart =[SELECT id,BGBK__Account__c from BGBK__Cart__c WHERE PIN__c =:pinToTransferFee];
+        if(lstAcc.size()>0){
+            string sPin=BGBK.CartManager.getCartPIN(lstAcc[0]);
+            BGBK.CartManager.transferFeesToCart(feeIds, lstAcc[0].id, pinToTransferFee); 
+            PageReference pageRef = new PageReference('/s/dashboard');
+            return pageRef;
         } else{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835
                     return null;
