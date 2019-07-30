@@ -87,6 +87,7 @@
         debugger;
         this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
+        	component.set("v.showEndoMessage",false);
             var curTab= component.get("v.currentTab");		
             var tabNumber = component.get("v.currentTab");
             var totalTabNumber = component.get("v.totalTabs");
