@@ -16,15 +16,15 @@ public class DOL_ePaymentReturnSession {
     public String PaymentMethod { get; private set; }
     public String ConvenienceFee { get; private set; }
     public String PaymentAmount { get; private set; }
-    public String PaymentEffectiveDate { get; private set; }
+    public String PaymentEffectiveDate { get; private set; } // Effective Date YYYYMMDD
     public String AmountDue { get; private set; }
     public String TransactionMode { get; private set; }
     public String ReplacesConfirmationId { get; private set; }
-    public String InitiationDateTime { get; private set; }
-    public String CreditCardNumber { get; private set; }
-    public String CreditCardType { get; private set; }
-    public String CreditCardExpDate { get; private set; }
-    public String AccountNumber { get; private set; }
+    public String InitiationDateTime { get; private set; } // Intiation datetime YYYYMMDD:HHMMSS
+    public String CreditCardNumber { get; private set; } // Last 4 digit in case of CC
+    public String CreditCardType { get; private set; } // Card type
+    public String CreditCardExpDate { get; private set; } 
+    public String AccountNumber { get; private set; } // In case of ACH
     public String ProductDescription { get; private set; }
     public String BillerBusinessDate { get; private set; }
     public String IsPayorRegistered { get; private set; }
@@ -71,15 +71,10 @@ public class DOL_ePaymentReturnSession {
 		IsPayorRegistered = sessionDataMap.get('IsPayorRegistered');
 		Email = sessionDataMap.get('Email');
 		SFDCId = sessionDataMap.get('SFDCId');
-		SFDCfeeId = sessionDataMap.get('SFDCfeeId');
+		SFDCfeeId = sessionDataMap.get('SFDCfeeId'); // not using as this one giving partial Info
 		SFDCappId = sessionDataMap.get('SFDCappId');
 		SFDClicId = sessionDataMap.get('SFDClicId');
-
-        sfdcFeeIds = new List<String>();
-        system.debug(' SFDCfeeId '+SFDCfeeId);
-        if(SFDCfeeId != null && SFDCfeeId != ''){
-            sfdcFeeIds = SFDCfeeId.split(DOL_AppConstants.ePaymentUrlListValuesSeperator);
-        }
+        sfdcFeeIds = getSelectedFees();
         system.debug('return value '+ReturnValue);     
     }
 
@@ -104,6 +99,11 @@ public class DOL_ePaymentReturnSession {
                 receipt.MUSW__Card_Type__c = CreditCardType;
         }
         receipt.US_Bank_Payment_Status__c = 'Processed';
+    }
+
+    private List<String> getSelectedFees(){
+        MUSW__Receipt__c receipt = [select Id,Selected_Fees__c from MUSW__Receipt__c where Id =: SFDClicId];
+        return receipt.Selected_Fees__c.split(',');
     }
 
 }
