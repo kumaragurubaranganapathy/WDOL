@@ -543,11 +543,8 @@ Individual Account
                                                    </th>
                                                </aura:iteration>
                                                <th class="" scope="col">
-                                                   <div class="slds-truncate" title="actionedit"></div>
-                                               </th>
-                                               <th class="" scope="col">
-                                                   <div class="slds-truncate" title="actiondelete"></div>
-                                               </th>
+                                                   <div class="slds-truncate" title="actionedit">Action</div>
+                                               </th>                                                            
                                            </tr>
                                        </thead>
                                        <tbody>
@@ -573,9 +570,9 @@ Individual Account
                                                        </div>
                                                    </td>
                                                    <td data-label="CEAuditInfo" class="cell-style">
-                                                       <div class="slds-truncate" data-recordId="{!tableData.id}">
+                                                       <div class="" data-recordId="{!tableData.id}">
                                                            <aura:if isTrue="{!(tableData.License__r.Selected_for_Audit__c)}">
-                                                               <div class="slds-truncate" onclick="{!c.CEAuditAMR}" data-license="{!tableData.License__c}"
+                                                               <div class="" onclick="{!c.CEAuditAMR}" data-license="{!tableData.License__c}"
                                                                     data-recordId="{!tableData.Id}"
                                                                     data-licenseType="{!tableData.License_Type__c}"
                                                                     data-isCeAudit="{!tableData.License__r.Selected_for_Audit__c}"
@@ -1182,7 +1179,7 @@ Individual Account
                                                                <lightning:button variant="brand" label="Update" title="Update" />
                                                            </div>
                                                        </aura:if>
-                                                       <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending action'}">
+                                                       <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending Action'}">
                                                            <div onclick="{!c.uploadpendingdocuments}" data-id="{!tableData.Id}" data-number="{!tableData.Name}">
                                                                <lightning:button variant="brand" label="Upload Files" />
                                                            </div>
