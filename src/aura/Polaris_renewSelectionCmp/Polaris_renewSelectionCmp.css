@@ -1,45 +1,29 @@
-.THIS.lic-sel-wrapper{
+.THIS.lic-renew-wrapper{
     margin: 2rem 7.5rem;
 }
 .THIS .form-wrapper {
     padding : 2rem 2.25rem;
 }
-.THIS .application label:before{
-    content: '*';
-    color: #c23934;
-    padding-right: 1px;
-}
-.THIS .card-wrapper p,.THIS .card-wrapper span,.THIS .card-wrapper li{
-    color:t(fieldclr);
-    font-size: token(fieldlabelsize);
-}
-.THIS .slds-radio .slds-form-element__label{
-    padding-right: .5rem;
-    padding-top: .25rem;
-    margin-bottom: .125rem;
-}
-
 .THIS .appTypeFieldClass{
-    width: 100%;
-    margin-left: 46px;
-    margin-top: 16px;
+   width: 100%;
+   margin-left: 46px;
+   margin-top: 16px;
+}
+.THIS .card-wrapper h2{
+    font-weight:bold;
+    font-size:1rem;
+    padding-bottom:0.5rem;
 }
 .THIS .slds-radio{
     display: inline;
 }
-.THIS .card-wrapper h2{
-    font-weight:bold;
-    padding-bottom:0.5rem;
-    font-size: token(fieldlabelsize);
-    color:t(fieldclr)
-}
 .THIS .page-title{
     font-weight:bold;
-    font-size:16px;     
+    font-size:1.25rem;     
 }
 .THIS .proceed-btn-wrapper{
     display:flex;
-    justify-content:space-between;
+    justify-content:flex-end;
     margin:1.5rem 0;
 }
 .THIS .page-title-wrapper{
@@ -60,12 +44,8 @@
 }
 .THIS .slds-form-element__label, .THIS .app-type{
     font-size: 14px;
-    color: t(fieldclr);
+    color: t(LnGFormGray);
     font-weight:normal;
-    padding-right:0;
-}
-.THIS .slds-form-element__label{
-    line-height:1.5;
 }
 .THIS .slds-input{
     outline:none;
@@ -76,8 +56,6 @@
     padding-left:5px;
     border-radius:0;
     font-size:14px;
-    border : solid 1px t(gray);
-    font-weight: token(btnfontweight);
 }
 .THIS .section-text{
     font-size: 24px;
@@ -145,17 +123,6 @@
     font-size:1rem;
     font-weight:bold;
 }
-.THIS .proceed-btn{
-    
-    width: 130px;
-    height: 42px;
-    border-radius:5px;
-}
-.THIS .slds-input.slds-combobox__input:focus{
-    box-shadow:none;
-    border:1px solid #1b1c1a;
-    font-weight: token(btnfontweight);
-}
 
 @media screen and (max-width:767.9px) {
     .THIS .form-wrapper{
@@ -191,20 +158,11 @@
     .THIS .prof-choice{
         width:100%;
     }
-    .THIS .proceed-btn{
+	.THIS .proceed-btn{
         width:100%;
     }    
     .THIS .down-btn-wid {
         width: 100%;
     }
-    .THIS.lic-sel-wrapper{
-        margin: 1rem;
-    }
     
-}
-.THIS .proceed-btn[disabled], .THIS .proceed-btn:disabled {
-    background:t(LnGGrayText);
-}
-.THIS lightning-base-combobox-item[data-value*="Unlicensed"] {
-    display: none;
 }

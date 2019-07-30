@@ -45,25 +45,26 @@
             <div class= "slds-grid card-wrapper slds-wrap">
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-2">
                     <h2 class="header-style">Program Selection</h2>
-                    <p class="slds-medium-size_11-of-12">Select the profession for which you are seeking a license. Next, select the specific license type from the Select a License dropdown.</p>
+                    <p class="slds-medium-size_11-of-12">Select the Program Type for which you are seeking a license. Next, select the specific license type from the License Type dropdown.</p>
                 </div>
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-2 prof-choice">
                     
                     <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}"/> 
+                    <!-- <aura:if isTrue="{!Credential_Type__c.apiname !='Unlicensed'}"> -->
                     <lightning:inputField aura:id="licenseType" class="slds-hide slds-m-vertical_large" label="Select a License Type" fieldName="Credential_Type__c" value="" onchange="{!c.resetApplicationMethod}"/>
-                    <lightning:inputField aura:id="getApplicationMethod" class="application slds-hide slds-m-vertical_large" label="Application Method" fieldName="Application_Method__c" value="" onchange="{!c.fetchAppTypeEliQuestions}"/>
-                    
+                    <lightning:inputField aura:id="getApplicationMethod" class="application slds-hide slds-m-vertical_large" required="true" label="Application Method" fieldName="Application_Method__c" value="" onchange="{!c.fetchAppTypeEliQuestions}"/>
+                    <!-- </aura:if> -->
                     <aura:if isTrue="{!v.accounts.length > 0}">
                         <div class="slds-hide account-wrapper" id="accountPickerId">
                             <!--<div class="account-label">Account: {!v.Get_Result}</div>-->
-                            <lightning:select aura:id="accountPickerId" name="" label="Select the Account" onchange="{!c.firePassValueEvent}" class="">
+                            <lightning:select value="{!v.selectedAccountId}" aura:id="accountPickerId" name="" label="Select the Account" onchange="{!c.firePassValueEvent}" class="">
                                 <option value="" text="Select an option"/>    
                                 <aura:iteration items="{!v.accounts}" var="account">
                                     <option value="{!account.Id}" selected="{!account.Id == v.selectedAccountId}">{!account.Name}</option>
                                 </aura:iteration>
                             </lightning:select>
                         </div>
-                    </aura:if>  
+                    </aura:if>
                     
                     <aura:if isTrue="{!v.showLicenseDropdown == true}">
                         <lightning:select aura:id="licensePickerId" name="" label="Select the License" variant="Brand"  onchange="{!c.firePassLicenseValueEvent}" class="slds-m-vertical_large">
@@ -115,7 +116,8 @@
             </div> 
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class= "proceed-btn-wrapper">
-            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" onclick="{!c.startApplication}" disabled="true"/>
+            <lightning:Button class="proceed-btn" aura:id="buttonBack" label="Back" variant="Brand" onclick="{!c.goBack}" />
+            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" onclick="{!c.validateForm}" disabled="true"/>
         </div>
     </div>
 </aura:component>
