@@ -5281,25 +5281,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-    <listViews>
-        <fullName>Appraisal_Management_Company</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>Application_Type__c</columns>
-        <columns>Credential_Type__c</columns>
-        <columns>Application_Method__c</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>Owner_Full_Name__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>MUSW__Total_Balance__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Application_Type__c</field>
-            <operation>equals</operation>
-            <value>Appraisal Management Companies</value>
-        </filters>
-        <label>Appraisal Management Company  - All</label>
-    </listViews>
+   
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_License2</fullName>
         <columns>NAME</columns>
@@ -5318,8 +5300,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     <listViews>
         <fullName>Appraiser_Course_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
-        <label>Real Estate Appraiser Courses Queue</label>
-        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
+        <label>Courses Queue</label>
+        <queue>Courses_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
