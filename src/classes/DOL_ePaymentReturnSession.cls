@@ -71,15 +71,10 @@ public class DOL_ePaymentReturnSession {
 		IsPayorRegistered = sessionDataMap.get('IsPayorRegistered');
 		Email = sessionDataMap.get('Email');
 		SFDCId = sessionDataMap.get('SFDCId');
-		SFDCfeeId = sessionDataMap.get('SFDCfeeId');
+		SFDCfeeId = sessionDataMap.get('SFDCfeeId'); // not using as this one giving partial Info
 		SFDCappId = sessionDataMap.get('SFDCappId');
 		SFDClicId = sessionDataMap.get('SFDClicId');
-
-        sfdcFeeIds = new List<String>();
-        system.debug(' SFDCfeeId '+SFDCfeeId);
-        if(SFDCfeeId != null && SFDCfeeId != ''){
-            sfdcFeeIds = SFDCfeeId.split(DOL_AppConstants.ePaymentUrlListValuesSeperator);
-        }
+        sfdcFeeIds = getSelectedFees();
         system.debug('return value '+ReturnValue);     
     }
 
@@ -104,6 +99,11 @@ public class DOL_ePaymentReturnSession {
                 receipt.MUSW__Card_Type__c = CreditCardType;
         }
         receipt.US_Bank_Payment_Status__c = 'Processed';
+    }
+
+    private List<String> getSelectedFees(){
+        MUSW__Receipt__c receipt = [select Id,Selected_Fees__c from MUSW__Receipt__c where Id =: SFDClicId];
+        return receipt.Selected_Fees__c.split(',');
     }
 
 }
