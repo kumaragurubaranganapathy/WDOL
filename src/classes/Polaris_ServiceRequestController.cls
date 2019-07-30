@@ -236,7 +236,7 @@ public class Polaris_ServiceRequestController {
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFieldTemp = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         //List<string> lstMandatorySubSections= new  List<string>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Endorsement')){
+            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Request Information') ){
                 system.debug('Inside section=Question');
                 listFields = objWrapper.labelFieldsMap;
                 system.debug('List Fields '+listFields);
@@ -354,7 +354,7 @@ public class Polaris_ServiceRequestController {
         List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
             system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
-            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement')){
+            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Request Information')){
                 listFields.addAll(objWrapper.labelFieldsMap);
             }
             if(objWrapper.sectionName.contains('Attachments')){
@@ -560,6 +560,9 @@ public class Polaris_ServiceRequestController {
             objWrapper.sectionError = false;
             lstMandatorySubsection= new List<String> ();
             if(objWrapper.sectionName.contains('License Information') && questionsIncomplete==true){
+                objWrapper.sectionError = true;
+            } 
+            if(objWrapper.sectionName.contains('Request Information') && questionsIncomplete==true){
                 objWrapper.sectionError = true;
             } 
             if(objWrapper.sectionName.contains('Attachments') && submissionsIncomplete == true){

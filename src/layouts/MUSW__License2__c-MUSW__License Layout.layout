@@ -514,6 +514,11 @@
         <fields>Date_Granted__c</fields>
         <relatedList>Endorsement__c.License__c</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Parcel_Address__c</fields>
+        <relatedList>MUSW__License_Parcel__c.MUSW__License2__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Credential__c</fields>
@@ -614,17 +619,7 @@
         <fields>Amount__c</fields>
         <fields>MUSW__Available_Amount__c</fields>
         <relatedList>MUSW__Deposit__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Address_Type__c</fields>
-        <fields>City__c</fields>
-        <fields>County__c</fields>
-        <fields>State_Province__c</fields>
-        <fields>Country__c</fields>
-        <fields>Zip_Postal_Code__c</fields>
-        <relatedList>LnP_Parcel__c.License__c</relatedList>
-    </relatedLists>
+    </relatedLists>    
     <relatedLists>
         <fields>NAME</fields>
         <fields>Renewal_Reinstatement_Type__c</fields>

@@ -30,7 +30,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
     private BGBK.Payable[] payables {get; set;}
     private boolean processSuccessful { get; set; }
     private DOL_EpaymentRemittanceInput tempRemittanceInput { get; set; }
-    private EpaymentRemittanceData__c tempRecord {get; set; }
+    private DOL_Integration_Batch_Input__c tempRecord {get; set; }
     private MUSW__Receipt__c receipt {get; set; }
     private Map<String,String> parameterMap {get; set; }
 
@@ -43,18 +43,18 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
 
     global Database.QueryLocator start(Database.BatchableContext BC){
         System.debug('DOL_Epayment_ProcessRemittanceData::start...');
-        return Database.getQueryLocator([ select id,Details__c,File_Name__c,Status__c,INFO__C from EpaymentRemittanceData__c where Status__c = 'Unprocessed' ]);
+        return Database.getQueryLocator([ select id, File_Name__c, INFO__c, Input__c, Status__c, Input_Type__c from DOL_Integration_Batch_Input__c where Status__c = 'UNPROCESSED' and Input_Type__c = 'REMITTANCE' ]);
     }
     
-    global void execute(Database.BatchableContext BC, List<EpaymentRemittanceData__c> remittanceRecords){
+    global void execute(Database.BatchableContext BC, List<DOL_Integration_Batch_Input__c> remittanceRecords){
         
         if(remittanceRecords != null && remittanceRecords.size() > 0){
             Boolean isRecordProcessed;
-            for(EpaymentRemittanceData__c record : remittanceRecords){
+            for(DOL_Integration_Batch_Input__c record : remittanceRecords){
                 tempRecord = record;
                 isRecordProcessed = false;
                 try{
-                    tempRemittanceInput = DOL_EpaymentRemittanceInput.parse(record.Details__c);
+                    tempRemittanceInput = DOL_EpaymentRemittanceInput.parse(record.Input__c);
                     receipt = null;
                     parameterMap = new Map<String,String>();
                     parameterMap.put(tempRemittanceInput.sfdcParameter1Name,tempRemittanceInput.sfdcParameter1Value);
@@ -64,7 +64,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
 
                     receiptId = parameterMap.get('SFDClicId');
                     cartId = parameterMap.get('SFDCId');
-                    SFDCfeeIds = parameterMap.get('SFDCfeeIds');
+                    SFDCfeeIds = parameterMap.get('SFDCfeeId');
                     SFDCappId = parameterMap.get('SFDCappId');
 
                     if(isNotNullOrBlank(receiptId)){
@@ -87,7 +87,6 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
                     
                 }catch(Exception error){
                     tempRecord.INFO__c += 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
-                    System.debug('info '+record.INFO__c);
                 }
                 if(isRecordProcessed)
                     tempRecord.Status__c = 'Processed';

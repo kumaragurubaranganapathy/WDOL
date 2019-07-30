@@ -582,6 +582,7 @@ m_cs.removeFeeFromCart(feeSelected);
 
         // Check the default Payment method and based on that checnge the value for isGatewayRequiredforPaymentMethod
         // By Default value of isGatewayRequiredforPaymentMethod is false
+        
         String paymentMethodLabel = pmtMethods[0].getValue();
         BGBK__Payment_Method__mdt[] paymentMethodGatewayDetails = [SELECT BGBK__isGateway_Required__c FROM BGBK__Payment_Method__mdt WHERE BGBK__isActive__c = true AND Label = :paymentMethodLabel LIMIT 1]; 
         if(paymentMethodGatewayDetails.size() > 0) {        
@@ -1138,11 +1139,13 @@ system.debug('!!!underpayment : ');
             receipt.BGBK__Cart__c = cart.Id;
             
             //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
-            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
-                receipt.Intake_Method__c='Counter';
-            }
-            else{
-                receipt.Intake_Method__c='Portal';
+            if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
+                if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
+                    receipt.Intake_Method__c='Counter';
+                }
+                else{
+                    receipt.Intake_Method__c='Portal';
+                }
             }
             //rsAmt.put(receipt, rvo.amount);
             if(rvo.pmtMethodSelected != 'Deposit')                
@@ -1277,13 +1280,14 @@ receiptId = receipt.Id;
         
         //Added by Vinanthi for defect 4999
         BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id];
-         
+         if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
             if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
                 receipt.Intake_Method__c='Counter';
             }
             else{
                 receipt.Intake_Method__c='Portal';
             }
+           }
         // defect 4999 ends here
         insert receipt;
         receiptId = receipt.Id;
@@ -1981,7 +1985,9 @@ receiptId = receipt.Id;
         try{
             String payerContactId;
             String paymentMethod;
+            String paymentAmount;
 
+            paymentAmount = String.valueOf(receiptVOs[0].amount);
             payerContactId = receiptVOs[0].r.MUSW__Receipt_Paid_By__c;
             paymentMethod = receiptVOs[0].r.MUSW__Payment_Method__c;
             
@@ -2010,8 +2016,7 @@ receiptId = receipt.Id;
                     feeIds.add(feeVo.f.Id);
                 }
             }
-            System.debug('payerContactId '+payerContactId );
-            String paymentAmount = String.valueOf(receiptVOs[Integer.valueOf(currentReceiptIndex)].amount);
+            
             // create the object DOL_ePaymentSessionTransferDetails with required parameter
             DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
                                                                                                             paymentAmount,
