@@ -108,17 +108,16 @@ public class LnP_CreateAuditClass {
         system.debug(' ce audit review record type '+recordTypeId);
         for(MUSW__License2__c licenseApp : licenseList){
             
-            Request__c newCEAuditRequest = new Request__c();
-                newCEAuditRequest.Profession__c = licenseApp.Application_Type__c;
-                newCEAuditRequest.License_Type__c = licenseApp.Credential_Type__c;
-                newCEAuditRequest.Service_Request_Type__c = 'CE Audit';
-                newCEAuditRequest.Stage__c = 0;
-                newCEAuditRequest.License__c = licenseApp.id;
-                newCEAuditRequest.Contact__c = licenseApp.MUSW__Applicant__c;
-                newCEAuditRequest.Status__c = 'Draft';
-           
+            Request__c newCEAuditRequest = new Request__c(
+                Profession__c = licenseApp.Application_Type__c,
+                License_Type__c = licenseApp.Credential_Type__c,
+                Service_Request_Type__c = 'CE Audit',
+                Stage__c = 0,
+                License__c = licenseApp.id,
+                Contact__c = licenseApp.MUSW__Applicant__c,
+                Status__c = 'Draft'
+           );
            requestList.add(newCEAuditRequest); 
-          
            
           /* MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
                 recordTypeId = recordTypeId,

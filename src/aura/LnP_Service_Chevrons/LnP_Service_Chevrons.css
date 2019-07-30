@@ -1,6 +1,3 @@
-.THIS.content-wrapper{
-    margin:2rem 7.5rem;
-}
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
@@ -15,16 +12,14 @@
 }
 .THIS .section{
     font-size: 18px;
-    color:t(LnGFormTitleColor);    
-    padding-bottom:0.5rem;    
-    font-weight:600;    
+    color:t(LnGFormTitleColor);
+    margin: 0 0 0 25px;
+    padding-bottom:10px;
+    width:100%;
 }
 .THIS .sectiondetail{
-    margin: 0 0 1.5rem;    
-    color: t(LnGFormTitleColor);
-    
-}
-.THIS .section-wrapper{
+    margin: 0 0 25px 25px;    
+    color: t(LnGFormGray);  
     width:100%;
 }
 .THIS .slds-radio .slds-form-element__label{
@@ -56,7 +51,7 @@
     font-size: 25px;
 }
 .THIS .field-item{
-   padding: 0 0 1.5rem; 
+   padding: 0px 25px 25px 25px; 
 }
 .THIS.button-section{
     width: -webkit-fill-available;
@@ -67,9 +62,6 @@
     margin: auto;
     padding: 10px;
     padding-left: 30px;
-}
-.THIS .attestation{
-    margin-bottom:1rem;
 }
 .THIS .pull-right{
     margin-left: auto;
@@ -85,10 +77,10 @@
     font-size:14px;    
 }
 .THIS .revAndSubCompletionFont{
-    margin:0.5rem 0 1.25rem;
+    margin:8px 0 20px 12px;
     color: t(LnGFormTitleColor);
-    font-size:0.875rem;  
-    padding:0.25rem 0.5rem;
+    font-size:14px;  
+    padding:5px 10px;
     background-color: rgb(233, 234, 236);    
     -moz-user-select: none;
     -ms-user-select: none;
@@ -98,7 +90,7 @@
     border-top:none;
     border-left:none;
     border-right:none;
-    font-size:0.875rem;
+    font-size:14px;
     color:t(LnGFormTitleColor);
     border-radius:0;
     background:t(LnGBackgroundGray);
@@ -107,21 +99,19 @@
     padding:10px 0 25px;
 }
 .THIS .attestBody{
-    font-size:0.875rem;
-    margin-bottom:1rem
+    font-size:14px;
 }
 .THIS .uiInput--default.uiInput--input{
     border:none;
-    font-size:0.875rem;
+    font-size:14px;
     color:t(LnGFormTitleColor);
-    background-color: t(LnGWhite);    
-    cursor: not-allowed; 
-    padding-left: 0;
+    background-color: t(LnGBackgroundGray);    
+    cursor: not-allowed;    
 }
 .THIS .reviewHeading{
-    font-weight: 600;   
-    color: t(LnGFormTitleColor);
-    font-size:1rem;
+    font-weight: bold;   
+    color: t(LnGFormGray);
+    font-size:16px;
 }
 .THIS .attValidationStyle{
     padding-left: 25px;
@@ -147,8 +137,16 @@
 .THIS .LnP_Employment__caddRecord{
    padding:10px 0 0 0;
 }
+.THIS{
+    margin: 0 40px;
+}
+
 .THIS .personal-info{    
-    margin: 1.5rem 0;    
+    margin: 20px auto;
+    padding: 30px 10px;    
+    border-radius: 8px;
+  	box-shadow: 3px 3px 12px 0 rgba(208, 208, 208, 0.5);
+    background:t(LnGBackgroundGray);
     display: flex;
     flex-direction: column;    
 }
@@ -165,8 +163,7 @@
     margin: auto;     
 }
 .THIS .subheader{
-    font-size:1.25rem;
-    font-weight:600;
+    font-size:24px;
     color:t(LnGFormTitleColor);
 }
 .THIS .btn-lnp{

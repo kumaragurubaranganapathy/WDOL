@@ -2,12 +2,12 @@ global class FeePaymentReminderScheduler implements Schedulable {
     global void execute(SchedulableContext ctx) {
         List<MUSW__Fee__c> fineCollectionNoticeList = new List<MUSW__Fee__c>();
         List<MUSW__Fee__c> finePaymentNoticeList = new List<MUSW__Fee__c>();
-        List<MUSW__Fee__c> fineList = [Select id,MUSW__License2__r.name,MUSW__Amount__c,MUSW__Outstanding_Fee__c,Days_since_created__c,Licensee_Email__c from MUSW__Fee__c where MUSW__Type__c = 'Fine' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 46 OR Days_since_created__c = 61)];
+        List<MUSW__Fee__c> fineList = [Select id,MUSW__License2__r.name,MUSW__Amount__c,MUSW__Outstanding_Fee__c,Days_since_created__c,Licensee_Email__c from MUSW__Fee__c where MUSW__Type__c = 'Fine' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 44 OR Days_since_created__c = 61)];
         Set<ID> finePaymentIdSet = new Set<Id>();
         Set<ID> fineCollectionIdSet = new Set<Id>();
         if(fineList.size()>0){
             for(MUSW__Fee__c fee: fineList){
-                if(fee.Days_since_created__c == 46){
+                if(fee.Days_since_created__c == 44){
                     finePaymentNoticeList.add(fee);
                     finePaymentIdSet.add(fee.id);
                 }else if(fee.Days_since_created__c == 61){
