@@ -1121,13 +1121,15 @@ public with sharing class CartController
               }
             }                       
             receipt.BGBK__Cart__c = cart.Id;
-           
-           //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
-            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
-            receipt.Intake_Method__c='Counter';
+            
+            //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
+            if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
+                if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
+                    receipt.Intake_Method__c='Counter';
                 }
-            else{
-                 receipt.Intake_Method__c='Portal';
+                else{
+                    receipt.Intake_Method__c='Portal';
+                }
             }
             //rsAmt.put(receipt, rvo.amount);
             if(rvo.pmtMethodSelected != 'Deposit')                
@@ -1260,13 +1262,14 @@ public with sharing class CartController
         
         //Added by Vinanthi for defect 4999
         BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id];
-         
+         if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
             if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
                 receipt.Intake_Method__c='Counter';
             }
             else{
                 receipt.Intake_Method__c='Portal';
             }
+           }
         // defect 4999 ends here
         insert receipt;
         receiptId = receipt.Id;
