@@ -8,7 +8,7 @@ public class LnP_CalculateSystemGeneratedAmountClass {
     
         Map<Id, List<MUSW__Receipt__c>> cashRegwithReceiptMap = new Map<Id, List<MUSW__Receipt__c>>();
         if(RecordId != null){
-            for(MUSW__Receipt__c receipt: [SELECT Id,MUSW__Amount_Tendered__c, BGBK__Cart__r.BGBK__BG_Payment_Batch__r.Cash_Register__c FROM MUSW__Receipt__c where BGBK__Cart__r.BGBK__BG_Payment_Batch__r.Cash_Register__c =:RecordId]){
+            for(MUSW__Receipt__c receipt: [SELECT Id,MUSW__Amount_Tendered__c, BGBK__Cart__r.BGBK__BG_Payment_Batch__r.Cash_Register__c FROM MUSW__Receipt__c where BGBK__Cart__r.BGBK__BG_Payment_Batch__r.Cash_Register__c =:RecordId and MUSW__Payment_Method__c ='cash']){
             if(!cashRegwithReceiptMap.containsKey(receipt.BGBK__Cart__r.BGBK__BG_Payment_Batch__r.Cash_Register__c)){
                 cashRegwithReceiptMap.put(receipt.BGBK__Cart__r.BGBK__BG_Payment_Batch__r.Cash_Register__c, new List<MUSW__Receipt__c>());
             }
@@ -17,13 +17,15 @@ public class LnP_CalculateSystemGeneratedAmountClass {
         
             List<Cash_Register__c> cashRegisterList = new List<Cash_Register__c>();
             Double totalAmount = 0;
-            if(!cashRegwithReceiptMap.isEmpty()){
+            
                 for(Cash_Register__c cashRegister : [Select Id, System_generated_cash_total__c from Cash_Register__c where Id =: RecordId]){
                     totalAmount = 0;
-                    if(cashRegwithReceiptMap.containsKey(cashRegister.Id)){
-                        for(MUSW__Receipt__c receipt : cashRegwithReceiptMap.get(cashRegister.Id)){
-                            if(receipt.MUSW__Amount_Tendered__c != null){
-                                totalAmount += receipt.MUSW__Amount_Tendered__c;
+                    if(!cashRegwithReceiptMap.isEmpty()){
+                        if(cashRegwithReceiptMap.containsKey(cashRegister.Id)){
+                            for(MUSW__Receipt__c receipt : cashRegwithReceiptMap.get(cashRegister.Id)){
+                                if(receipt.MUSW__Amount_Tendered__c != null){
+                                    totalAmount += receipt.MUSW__Amount_Tendered__c;
+                                }
                             }
                         }
                     }
@@ -33,7 +35,7 @@ public class LnP_CalculateSystemGeneratedAmountClass {
                         update cashRegisterList;
                    }
                 }
-            }
+            
         }
         return null;
     }
