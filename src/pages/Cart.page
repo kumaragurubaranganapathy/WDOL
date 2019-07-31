@@ -221,7 +221,7 @@
     
     <apex:form id="f">
        
-        <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '`s Cart', 'Your Cart')}" id="h">
+        <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '’s Cart', 'Your Cart')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
         </apex:sectionHeader>
