@@ -376,7 +376,7 @@
                                 />
                             </apex:inputField>
                             <br/>
-                            <apex:inputText label="Email Receipt To" value="{!email}" id="email" />
+                            <apex:outputText label="Email Receipt To" value="{!email}" id="email" />
                             <br/>
                             <apex:outputPanel >
                                 <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
@@ -566,9 +566,9 @@
                                     <apex:param name="currentReceiptIndex" value="{!index}" assignTo="{!currentReceiptIndex}"/>
                                 </apex:actionSupport>
                             </apex:selectList>
-                            <apex:inputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
+                            <apex:outputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
                                 <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />  
-                            </apex:inputText>
+                            </apex:outputText>
                         </apex:pageBlockSection>
                         <apex:outputPanel rendered="{!rvo.r.MUSW__Payment_Method__c = 'Deposit'}">
                             <apex:pageBlockSection columns="1" id="depositCheckout">
