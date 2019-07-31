@@ -32,7 +32,7 @@
                 <field>Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>System_generated_cash_total__c</field>
             </layoutItems>
         </layoutColumns>
@@ -314,7 +314,11 @@
             <actionType>StandardButton</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
-        
+        <platformActionListItems>
+            <actionName>Cash_Register__c.System_Generated_Cash_Total</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>5</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
