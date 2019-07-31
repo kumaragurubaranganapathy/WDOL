@@ -195,9 +195,11 @@
             $A.getCallback(function() {
                 // smth after two seconds
                 // check component.isValid() if you want to work with component
+                var isBizLic = component.get("v.isbusinsessLicense");                
+                var str = isBizLic?'/business':'/newdashboard';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
-                    "url": "/"
+                    "url": str
                 });
                 urlEvent.fire();
             }), 2000
