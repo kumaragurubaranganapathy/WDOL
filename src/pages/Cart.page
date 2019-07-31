@@ -223,7 +223,7 @@
         <apex:outputPanel rendered="{!isPortalUser}">
 			<img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
 		</apex:outputPanel>
-        <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '’s Cart', 'Your Cart')}" id="h">
+        <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '`s Cart', 'Your Cart')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
         </apex:sectionHeader>

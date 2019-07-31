@@ -607,22 +607,4 @@ public without sharing class LnP_DashboardApexController_2 {
             return JSON.serialize(helptextMap);       
         }
     }
-
-    @AuraEnabled
-    public static String setDraftAMRAppLicenseData(String licenseId){
-        String AMRlicenseId = licenseId;
-        Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
-        List<String> columnHeaderList = new List<String>{'Request ID','Request Type', 'Request Against', 'Status','Last Updated'};
-            //List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn'};
-        List<String> statusFilterList = new List<String>();
-        statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-        List<SObject> columnDataList = [Select  id,Name,License_Type__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate),License__c,License__r.Selected_for_Audit__c,
-                                        Profession__c,Stage__c,Contact__c  from Request__c
-                                        where Status__c IN :statusFilterList AND License__c =: AMRlicenseId  AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
-        
-        LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
-        
-        return JSON.serialize(wrapperObj,true); 
-    }
-
 }
