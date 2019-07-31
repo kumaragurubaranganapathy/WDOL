@@ -18,6 +18,7 @@
        // console.log("dcp::"+ ctarget.getAttributes("data-DCP"));
         var DCP = ctarget.getAttribute("data-DCP");
         var designation = ctarget.getAttribute("data-designation");
+        var subject = ctarget.getAttribute("data-subject");
         console.log("acctName::"+acctName);
         console.log("taskdId::"+ taskId);
         component.set("v.taskId",taskId);
@@ -33,7 +34,7 @@
             console.log( "v.accountContact"+ ctarget.getAttribute("data-whatid"));
             helper.insertRequest(component,event,helper); 
         }else{
-        	helper.actionRequest(component, event, helper);    
+        	helper.actionRequest(component, event, helper,subject);    
         }
         
     },

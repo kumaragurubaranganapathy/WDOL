@@ -278,7 +278,7 @@ _______________________________________________________________
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
                                 <lightning:button class="{!or(task.Type == 'Renewal Reminder',task.Type == 'Payment Reminder')?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
-                                <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
+                                <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
                                     <lightning:button variant="brand" type="submit" name="{!task.Id}" label="Accept" />
                                 </div>
                                 <lightning:button class="{!or(task.Type == 'License Verification',task.Type == 'Experience Verification')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Confirm" onclick="{!c.confirmRequest}"/>

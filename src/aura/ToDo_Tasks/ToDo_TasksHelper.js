@@ -50,7 +50,7 @@
         $A.enqueueAction(action); 
         $A.enqueueAction(actionName); 
     },
-    actionRequest : function(component, event, helper) {
+    actionRequest : function(component, event, helper,subject) {
         console.log('inside actionRequest');
         var action = component.get("c.updateTask");
         action.setParams({"taskId": component.get("v.taskId"),"subStatus": component.get("v.actionclicked")});
@@ -66,6 +66,14 @@
                         "message": "Action Completed Successfully",
                         "type": "success"
                     });
+                    if(subject === "Invitation to be a Business Admin"){
+                        var str ='/business';
+                        var urlEvent = $A.get("e.force:navigateToURL");
+                        urlEvent.setParams({
+                            "url": str
+                        });
+                        urlEvent.fire();
+                    }
                 }else if(result=='Pay Fee')
                 {
                     // Set popup property values before displayiong pop up.
