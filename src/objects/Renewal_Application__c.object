@@ -87,18 +87,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>LicenseRecordType__c</fullName>
-        <externalId>false</externalId>
-        <formula>License__r.RecordType.Name</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>LicenseRecordType</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Additional_Address__c</fullName>
         <description>Additional Address from credential to be displayed on renewal application</description>
         <externalId>false</externalId>
@@ -265,6 +253,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bond_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Bond Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -486,6 +485,15 @@ Permit__r.Business_License__c
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Effective_Date_of_Bond__c</fullName>
+        <externalId>false</externalId>
+        <label>Effective Date of Bond</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
         <label>Email</label>
@@ -494,6 +502,15 @@ Permit__r.Business_License__c
         <trackTrending>false</trackTrending>
         <type>Email</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expiration_Date_of_Bond__c</fullName>
+        <externalId>false</externalId>
+        <label>Expiration Date of Bond</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>External_Id__c</fullName>
@@ -560,6 +577,18 @@ Permit__r.Business_License__c
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LicenseRecordType__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>LicenseRecordType</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -955,8 +984,17 @@ FALSE)))))))</formula>
         <type>Phone</type>
     </fields>
     <fields>
+        <fullName>Physical_Address_Modified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Physical Address Modified</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Pieces_of_Personal_Property__c</fullName>
-		<defaultValue>0</defaultValue>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label># Pieces of Personal Property</label>
         <precision>18</precision>
@@ -966,6 +1004,17 @@ FALSE)))))))</formula>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Policy_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Policy Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Pre_Approval__c</fullName>
@@ -1168,6 +1217,30 @@ FALSE)))))))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Sub_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Sub_Status</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Surety_Bond_Company_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Name of Bond Company</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Time_to_Renewal_Reinstatement__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - Renewed_Date__c, License__r.MUSW__Issue_Date__c - Renewed_Date__c)</formula>
@@ -1202,7 +1275,7 @@ FALSE)))))))</formula>
         <label>Total Balance</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1270,15 +1343,6 @@ FALSE)))))))</formula>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Physical_Address_Modified__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Physical Address Modified</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <label>Renewal &amp; Reinstatement Application</label>
     <listViews>
@@ -1444,6 +1508,15 @@ FALSE)))))))</formula>
             <value>Submitted</value>
         </filters>
         <label>MFH Submitted Renewal Applications</label>
+    </listViews>
+    <listViews>
+        <fullName>Real_Estate_Appraiser_Courses_Queue_Renewal_Application</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Courses Queue</label>
+        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Renewal_Applications_For_Audit</fullName>
@@ -2097,6 +2170,77 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Additional Fee Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Additional Information Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Applicant action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Support Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Company Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deceased</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Person Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishonored Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance%2FBond Not Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Surrendered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third party action</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Course</fullName>
@@ -2357,6 +2501,77 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Additional Fee Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Additional Information Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Applicant action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Support Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Company Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deceased</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Person Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishonored Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance%2FBond Not Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Surrendered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third party action</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2993,6 +3208,77 @@ FALSE)))))))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Additional Fee Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Additional Information Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Applicant action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Support Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Company Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deceased</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Person Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishonored Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance%2FBond Not Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Surrendered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third party action</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Manufactured_Homes_Renewal_Reinstatement</fullName>
@@ -3567,6 +3853,77 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Additional Fee Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Additional Information Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Applicant action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Support Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Company Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deceased</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Person Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishonored Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance%2FBond Not Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Surrendered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third party action</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4201,6 +4558,77 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Additional Fee Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Additional Information Required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Applicant action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Child Support Suspension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Company Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deceased</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Designated Person Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dishonored Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance%2FBond Not Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Surrendered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third party action</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
