@@ -99,9 +99,6 @@ public with sharing class CartController
         system.debug('******BGCM.UtilityUser.isPortalUser()**********'+BGCM.UtilityUser.isPortalUser());
         
         isPortalUser = BGCM.UtilityUser.isPortalUser();
-        //system.debug('isPortalUser123'+isPortalUser);
-        //Code to avoid 
-        //isPortalUser = false; // This variable need to be false for portal
         currURL = String.valueOf(URL.getSalesforceBaseUrl().toExternalForm());
         m_isNotFromVF = false;
         checkReceiptAmount = true;
@@ -127,8 +124,7 @@ public with sharing class CartController
             m_depositAccountId = System.currentPageReference().getParameters().get('depositAccountId')==''?null:System.currentPageReference().getParameters().get('depositAccountId');
             retURL = System.currentPageReference().getParameters().get('retURL');
         }
-        
-        //retURL = 'https://dev-polaris.cs32.force.com/Dashboard';
+		
         if (m_pid != null) m_pid = String.escapeSingleQuotes(m_pid);
         
         if (m_cartId != null) m_cartId = String.escapeSingleQuotes(m_cartId);
@@ -165,14 +161,13 @@ public with sharing class CartController
         
         canCreate = m_ps.canCreate();
         feeVOs = new FeeVO[]{};
-            invoiceVOs = new InvoiceVO[]{};
-                receiptVOs = new ReceiptVO[]{};
-                    depositVOs = new DepositVO[]{};
-                        // manual Add to Cart (add fees on parent to m_selectedFees list)
-                        if (m_pid != null)
-                    {
-                        m_selectedFees = new Map<Id, MUSW__Fee__c>((List<MUSW__Fee__c>)c.getSelected());
-                    }
+        invoiceVOs = new InvoiceVO[]{};
+        receiptVOs = new ReceiptVO[]{};
+        depositVOs = new DepositVO[]{};
+        // manual Add to Cart (add fees on parent to m_selectedFees list)
+        if (m_pid != null){
+			m_selectedFees = new Map<Id, MUSW__Fee__c>((List<MUSW__Fee__c>)c.getSelected());
+        }
         else if(m_feeId!=null)    // ELGIN-232
         {
             m_selectedFees = new Map<Id,MUSW__Fee__c>();
@@ -297,20 +292,20 @@ public with sharing class CartController
             // cart = m_cs.getCart();
             system.debug('cart$$'+cart);
             /* commented for a testing in elgin
-if(isPortalUser) cart = m_cs.getActiveCart();
-else    
-{
-cart = m_cs.getCart();
-if (cart.BGBK__Expiration_DateTime__c < System.now() || cart.BGBK__Status__c == 'Closed')
-{
-if (m_cartId != null)
-{
-throw new BGCM.BGException('Cart is either closed or expired.', true);
-}
-else cart = m_cs.getActiveCart();
-}
-}
-*/
+			if(isPortalUser) cart = m_cs.getActiveCart();
+			else    
+			{
+			cart = m_cs.getCart();
+			if (cart.BGBK__Expiration_DateTime__c < System.now() || cart.BGBK__Status__c == 'Closed')
+			{
+			if (m_cartId != null)
+			{
+			throw new BGCM.BGException('Cart is either closed or expired.', true);
+			}
+			else cart = m_cs.getActiveCart();
+			}
+			}
+			*/
             if (m_selectedFees != null) m_cs.addFeesToCart(m_selectedFees.values());
             if (m_invoiceId != null) m_cs.addInvoicesToCart(new BGBK__Bill__c[]{new BGBK__Bill__c(Id=m_invoiceId)});
             if(m_depositId != null) addDepositsToCart();
@@ -1240,29 +1235,6 @@ system.debug('!!!underpayment : ');
         //system.debug('****totalSelectedOutstanding*'+totalSelectedOutstanding);
     }
     
-    /* public void redirectToPaymentGateway(){
-MUSW__Receipt__c receipt = new MUSW__Receipt__c();
-receipt.BGBK__Cart__c = m_cs.getCart().Id;
-receipt.Status__c = 'Draft';
-// receipt.Intake_Method__c = 'Portal';
-
-system.debug('inside redirectToPaymentGateway ');
-
-List<String> feeIds = new List<String>();
-for (FeeVO feeVo : feeVOs){
-if (feeVo.isSelected){
-feeIds.add(feeVo.f.Id);
-}
-}
-receipt.MUSW__Amount_Tendered__c = totalSelected;
-receipt.Selected_Fees__c = String.join(feeIds, ',');
-receipt.MUSW__Payment_Method__c = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;
-
-insert receipt;
-
-receiptId = receipt.Id;
-} */
-    
     public void createReceiptForPaymentGateway(){
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
@@ -1290,16 +1262,16 @@ receiptId = receipt.Id;
     }
     
     /*
-* Start polling : update keep polling to true and set the processing message
-*/
+	* Start polling : update keep polling to true and set the processing message
+	*/
     public void startPoll() {
         keepPolling = true;
         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Processing Payment ...'));
     }
     
     /*
-* Polling through the ProcessPaymentBatch jobs to check status and update message in VF page
-*/
+	* Polling through the ProcessPaymentBatch jobs to check status and update message in VF page
+	*/
     public void batchJobPoll() {
         AsyncApexJob job = [SELECT JobItemsProcessed, TotalJobItems, Status, ExtendedStatus FROM AsyncApexJob WHERE Id=:jobId];
         if(job.Status != 'Completed' && job.Status != 'Aborted') {
@@ -1351,11 +1323,11 @@ receiptId = receipt.Id;
     }
     
     /*
-* Get the Cart Service instance
-* @param Id parent id
-* @param Id cart Id
-* @return BGBK.CartService
-*/
+	* Get the Cart Service instance
+	* @param Id parent id
+	* @param Id cart Id
+	* @return BGBK.CartService
+	*/
     public static BGBK.CartService getCartService(Id pid, Id cId){
         transient BGBK.CartService tempService = (pid != null || cId != null) ? new BGBK.CartService(pid, cId) : new BGBK.CartService();
         return tempService;
@@ -1429,8 +1401,8 @@ receiptId = receipt.Id;
     }
     
     /*
-*  Get the unselected item ids from page and refresh the total
-*/
+	*  Get the unselected item ids from page and refresh the total
+	*/
     public void refreshTotal()
     {
         for (FeeVo feeVo : feeVOs)
@@ -1454,8 +1426,8 @@ receiptId = receipt.Id;
     }
     
     /*
-*  Update fee total based on user input and check out
-*/
+	*  Update fee total based on user input and check out
+	*/
     public void refreshTotalAndCheckout()
     {
         refreshTotal();
@@ -1463,8 +1435,8 @@ receiptId = receipt.Id;
     }
     
     /**
-* user changed contact
-*/
+	* user changed contact
+	*/
     public void contactChanged()
     {
         reconcileCart = cart.BGBK__Contact__c!=null ? findActiveCartByContact(cart.BGBK__Contact__c) : null;
@@ -1490,8 +1462,8 @@ receiptId = receipt.Id;
     
     
     /**
-* do reconcile, abandon current cart and navigate user to new reconciled cart
-*/
+	* do reconcile, abandon current cart and navigate user to new reconciled cart
+	*/
     public PageReference doReconcile()
     {
         // System.debug('===============>doReconcile');
@@ -1525,8 +1497,8 @@ receiptId = receipt.Id;
     }
     
     /**
-* cancel reconcile cart, restore previoius contact
-*/
+	* cancel reconcile cart, restore previoius contact
+	*/
     public PageReference cancelReconcile()
     {
         reconcileCart = null;
@@ -1584,11 +1556,11 @@ receiptId = receipt.Id;
     }
     
     /**
-* Populate the payments for fees
-* @param Set<MUSW__Receipt__c> receipts that were created or updated during process payment
-* @param Set<Id> feePaymentIds fee payments that were created for the fees/invoices were processed
-* @return void
-*/
+	* Populate the payments for fees
+	* @param Set<MUSW__Receipt__c> receipts that were created or updated during process payment
+	* @param Set<Id> feePaymentIds fee payments that were created for the fees/invoices were processed
+	* @return void
+	*/
     private void populateFeeAndInvoicePayment(Set<MUSW__Receipt__c> receipts, Set<Id> feePaymentIds){
         Set<Id> receiptIds = new Set<Id>();
         Set<Id> invoiceIds = new Set<Id>();
@@ -1660,10 +1632,10 @@ receiptId = receipt.Id;
     }
     
     /**
-* Query the fee payments for receipts in this transaction
-* @param Set<Id> Receipt Ids from the payments processed
-* @return List<MUSW__Fee_Payment__c> List Fee Payment with the receipt ids in param
-*/
+	* Query the fee payments for receipts in this transaction
+	* @param Set<Id> Receipt Ids from the payments processed
+	* @return List<MUSW__Fee_Payment__c> List Fee Payment with the receipt ids in param
+	*/
     private List<MUSW__Fee_Payment__c> queryFeePayments(Set<Id> receiptIds){
         List<Schema.FieldSetMember> fieldSets = SObjectType.MUSW__Fee_Payment__c.FieldSets.BGBK__Feebasic.getFields();
         String query = 'SELECT ';
@@ -1684,10 +1656,10 @@ receiptId = receipt.Id;
     }
     
     /**
-* Query the fee payments fby Id
-* @param Set<Id> Fee Payment Ids from the payments processed
-* @return List<MUSW__Fee_Payment__c> List Fee Payments with the ids in param
-*/
+	* Query the fee payments fby Id
+	* @param Set<Id> Fee Payment Ids from the payments processed
+	* @return List<MUSW__Fee_Payment__c> List Fee Payments with the ids in param
+	*/
     private List<MUSW__Fee_Payment__c> queryFeePaymentsById(Set<Id> ids){
         List<Schema.FieldSetMember> fieldSets = SObjectType.MUSW__Fee_Payment__c.FieldSets.BGBK__Feebasic.getFields();
         String query = 'SELECT ';
@@ -1707,10 +1679,10 @@ receiptId = receipt.Id;
     }
     
     /**
-* Populate the payments for deposits
-* @param Set<MUSW__Receipt__c> receipts
-* @return List<MUSW__Payable_Receipt__c> list of deposit payments
-*/
+	* Populate the payments for deposits
+	* @param Set<MUSW__Receipt__c> receipts
+	* @return List<MUSW__Payable_Receipt__c> list of deposit payments
+	*/
     public List<MUSW__Payable_Receipt__c> populateDepositPayment(Set<MUSW__Receipt__c> receipts){
         Set<Id> receiptIds = new Set<Id>();
         Set<Id> depositIds = new Set<Id>();
@@ -1749,8 +1721,8 @@ receiptId = receipt.Id;
     }
     
     /**
-*    Uses an indexed receipt label to query gateway requirement     
-*/      
+	*    Uses an indexed receipt label to query gateway requirement     
+	*/      
     public void checkGatewayRequirementforPaymentMethod() {     
         String paymentMethodLabel = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;     
         BGBK__Payment_Method__mdt[] paymentMethodGatewayDetails = [SELECT BGBK__isGateway_Required__c FROM BGBK__Payment_Method__mdt WHERE BGBK__isActive__c = true AND Label = :paymentMethodLabel LIMIT 1];       
@@ -1771,8 +1743,8 @@ receiptId = receipt.Id;
     }
     
     /**
-*   Add deposits from page reference to a cart
-*/
+	*   Add deposits from page reference to a cart
+	*/
     private void addDepositsToCart(){
         m_depositId = String.escapeSingleQuotes(m_depositId.remove(' '));
         
@@ -1783,8 +1755,8 @@ receiptId = receipt.Id;
     }
     
     /**
-*   Populate DepositVO list and calculate the total unpaid amount
-*/
+	*   Populate DepositVO list and calculate the total unpaid amount
+	*/
     private Decimal populateDepositVOs(){
         Decimal amountUnpaid = 0;
         
@@ -1796,8 +1768,8 @@ receiptId = receipt.Id;
     }
     
     /**
-*   Calculate the total payment amount for selected deposits
-*/
+	*   Calculate the total payment amount for selected deposits
+	*/
     private Decimal populateSelectedDepositsTotal(){
         Decimal totalAmount = 0;
         for (DepositVO depVO : depositVOs){
@@ -1810,8 +1782,8 @@ receiptId = receipt.Id;
     }
     
     /**
-*   Calculate the total unpaid amount for selected deposits
-*/
+	*   Calculate the total unpaid amount for selected deposits
+	*/
     private Decimal populateSelectedUnpaidDepositsTotal(){
         Decimal totalAmount = 0;
         for (DepositVO depVO : depositVOs){
@@ -1824,8 +1796,8 @@ receiptId = receipt.Id;
     }
     
     /**
-*   Pay for fees by deposit and populate the payments generated through PaymentService
-*/
+	*   Pay for fees by deposit and populate the payments generated through PaymentService
+	*/
     private Set<Id> processDepositPayment(){
         System.debug('^^^ m_payableDeposits '+m_payableDeposits);
         Set<Id> feePaymentIds     = m_ps.processDepositPayment(m_payableDeposits, cart.BGBK__Process_DateTime__c);
@@ -1970,13 +1942,13 @@ receiptId = receipt.Id;
     }
     
     /**
-** Name             : redirectToPaymentGateway
-** Input            : N/A
-** Functionality    : To redirect the user from salesforce to ePayment gateway
-** Return           : PageReference
-** Author           : Laltu Banerjee
-** Note             : This is called from cart.page in case of payment method 'Credit Card' and 'ACH'
-*/
+	** Name             : redirectToPaymentGateway
+	** Input            : N/A
+	** Functionality    : To redirect the user from salesforce to ePayment gateway
+	** Return           : PageReference
+	** Author           : Laltu Banerjee
+	** Note             : This is called from cart.page in case of payment method 'Credit Card' and 'ACH'
+	*/
     public PageReference redirectToPaymentGateway(){
         try{
             String payerContactId;
