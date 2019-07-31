@@ -21,6 +21,6 @@
             <operation>notEqual</operation>
             <value>NULL</value>
         </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

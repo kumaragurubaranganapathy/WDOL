@@ -322,10 +322,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFieldTemp = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         //List<string> lstMandatorySubSections= new  List<string>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-            if(objWrapper.sectionName.contains('License Information')||objWrapper.sectionName.contains('Questions')||objWrapper.sectionName.contains('Endorsement')){
-                system.debug('Inside section=Question');
-                listFields = objWrapper.labelFieldsMap;
-                system.debug('List Fields '+listFields);
+            system.debug('wrapperlist123444'+wrapperList);
+            if(objWrapper.sectionName.contains('License Information')||objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Endorsement')){
+                system.debug('Inside section=Question');             
+                for(LnP_ApplyForLicenseWrapper.MapLabelToFields abc: objWrapper.labelFieldsMap) {
+                    listFields.add(abc);
+                }                
             }
             if(objWrapper.sectionName.contains('Attachments')){
                 listFieldSub = objWrapper.labelFieldsMap;
@@ -1112,11 +1114,14 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 if(appListOtherDetils[0].MUSW__Submissions__r != null && appListOtherDetils[0].MUSW__Submissions__r.size()>0){
                     for(MUSW__Submission__c submissions : appListOtherDetils[0].MUSW__Submissions__r){
                         submissions.MUSW__License2__c = licenseID[0].Id; 
-                        submissions.MUSW__License2__c = licenseID[0].Id; 
+                      //  submissions.MUSW__License2__c = licenseID[0].Id; 
                         lstSubmissions.add(submissions);
                         
                         //Creating map for integration team to  store the docs in 3rd party
-                        mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c);
+                        if(submissions!=null && submissions.ContentDocumentId__c != null ) {
+                            mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
+                        }
+
                     }
                     update lstSubmissions;                
                 }
@@ -1133,9 +1138,10 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             }
         }
         //Calling method to  store 3rd party
-       /* if(!mapSubmissionToFile.isEmpty()){
-            string success = Dol_UploadDocumenttoSAN.portalUpload(mapSubmissionToFile);
-        }*/
+        if(!mapSubmissionToFile.isEmpty()){
+            Polaris_ApplyForLicenseController.updateLinkedEntityId(mapSubmissionToFile);
+          //  string success = Dol_UploadDocumenttoSAN.portalUpload(mapSubmissionToFile);
+        }
         return licenseID;
     }
     private static List<MUSW__License2__c> insertLisence(Set<Id> appId){
@@ -1518,9 +1524,35 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             licList[0].No_Fee_Required__c = noFees;
             update licList[0];
         }
-        
-        return noFees;
-    
+        return noFees;    
     }
-    
+    private static void updateLinkedEntityId (Map<String,String> mapSubmissionToFile) {
+        List<String> abc  = new List<String>();
+         List<ContentDocumentLink> lstFiles  = new List<ContentDocumentLink>();
+        if(!mapSubmissionToFile.isEmpty()) {
+            abc.addAll(mapSubmissionToFile.values());
+        }
+        List<ContentDocumentLink> lstContent = new List<ContentDocumentLink>();
+        system.debug('inside the submissions');
+        for(ContentDocumentLink cont : [select  ContentDocumentId,Id,LinkedEntityId FROM ContentDocumentLink where  LinkedEntityId =:UserInfo.getUserId()]){
+            system.debug('inside the submissions'+cont);
+            lstContent.add(cont);
+        }
+        if(!lstContent.isEmpty()){
+            for(String submissionId :mapSubmissionToFile.keySet()) {
+                for(ContentDocumentLink contentID : lstContent){
+                    if (mapSubmissionToFile.get(submissionId) == contentID.ContentDocumentId) {
+                        ContentDocumentLink newclnk = contentID.clone();
+                        newclnk.linkedentityid = submissionId;
+                        newclnk.ShareType = 'I';
+                        lstFiles.add(newclnk);
+                    }
+                }
+            } 
+        }
+
+        if(!lstContent.isEmpty()) {
+            upsert lstFiles;
+        } 
+    }
 }
