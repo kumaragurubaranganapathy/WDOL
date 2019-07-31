@@ -146,7 +146,6 @@
     </fields>
     <fields>
         <fullName>Assigned_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Assigned Date</label>
         <required>false</required>
@@ -240,7 +239,6 @@
     </fields>
     <fields>
         <fullName>Community_Address__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community Address</label>
         <length>255</length>
@@ -253,7 +251,6 @@
     </fields>
     <fields>
         <fullName>Community_ID_No__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community ID No</label>
         <length>255</length>
@@ -266,7 +263,6 @@
     </fields>
     <fields>
         <fullName>Community_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community Name</label>
         <length>255</length>
@@ -279,7 +275,6 @@
     </fields>
     <fields>
         <fullName>Community_Owner__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community Owner</label>
         <length>255</length>
@@ -292,7 +287,6 @@
     </fields>
     <fields>
         <fullName>Completed_DateTime__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -303,7 +297,6 @@
     </fields>
     <fields>
         <fullName>Corrective_Action_Summary__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Corrective Action Summary</label>
         <length>2000</length>
@@ -342,7 +335,6 @@
     </fields>
     <fields>
         <fullName>Current_Violations__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Current Violations</label>
         <required>false</required>
@@ -366,7 +358,6 @@
     </fields>
     <fields>
         <fullName>Designated_Broker_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Designated Licensee</label>
         <length>20</length>
@@ -379,7 +370,6 @@
     </fields>
     <fields>
         <fullName>Due_DateTime__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -454,7 +444,6 @@
     <fields>
         <fullName>Inspection_Followup_Date__c</fullName>
         <description>Inspection Followup Date</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Followup Date</label>
         <required>false</required>
@@ -465,7 +454,6 @@
     </fields>
     <fields>
         <fullName>Inspection_Start_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -490,7 +478,6 @@
     <fields>
         <fullName>Inspector_Name__c</fullName>
         <description>Primary Inspector or Auditor assigned to the Inspection.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspector/Auditor Name</label>
         <length>255</length>
@@ -574,7 +561,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Closed_DateTime__c</fullName>
         <deprecated>false</deprecated>
         <description>Optional. This can be used if inspection metrics are measured in hours rather than days.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
@@ -603,7 +589,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Completed_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the inspection was completed.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -616,7 +601,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Notes, comments, or description of what took place during the inspection.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <required>false</required>
@@ -629,7 +613,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Due_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>The date the inspection is requested for or is due. Used for views that sort inspections on the Itinerary page and for reporting on Past Due inspections. Itinerary views include &quot;past due&quot;.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -809,7 +792,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Scheduled_Start_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the inspection is scheduled for (usually before or by due date if not late). Used for views on the itinerary page.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Scheduled Start Date</label>
         <required>false</required>
@@ -822,7 +804,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Start_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the inspection was started. It is only filled in when inspector actually starts the inspection.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -1139,7 +1120,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
     </fields>
     <fields>
         <fullName>Requested_DateTime__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Requested Date</label>
         <required>false</required>
@@ -1164,7 +1144,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
     <fields>
         <fullName>Secondary_Inpsector_Auditor__c</fullName>
         <description>Secondary Inspector or Auditor assigned to Inspection.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Secondary Inpsector/Auditor</label>
         <length>255</length>
@@ -1386,7 +1365,6 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         </sharedTo>
     </listViews>
     <nameField>
-        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2336,8 +2314,8 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <customTabListAdditionalFields>MUSW__Due_Date__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Priority__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>MUSW__Type__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Due_Date__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Priority__c</lookupDialogsAdditionalFields>
