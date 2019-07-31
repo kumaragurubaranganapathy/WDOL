@@ -4,11 +4,14 @@
 .THIS .file{
 	padding-left: 20px;
     padding-bottom: 20px;
+    z-index:0;
 }
 .THIS .fileupload .slds-form-element__control{
     width:100%;
 }
-
+.THIS .forceContentFileCard .slds-file__title_card{
+    z-index:0;
+}
 .THIS .slds-file-selector_files .slds-file-selector__button{
     color: #ffffff;
     background: t(primary);
@@ -16,8 +19,11 @@
 .THIS .attach-title{
     font-weight:600;
     color:t(LnGFormTitleColor);
-    font-size:1.25rem;
-    margin-bottom:1rem;
+    font-size:16px;
+    margin-left:1rem;
+ }
+.THIS .fileupload .slds-form-element__label{
+    margin-left:1rem;
 }
 .THIS .slds-form-element .slds-form-element__control{
 	display: inline-block;

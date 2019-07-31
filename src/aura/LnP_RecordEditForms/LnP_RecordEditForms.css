@@ -5,6 +5,40 @@
     border-radius: 5px;
   	border: solid 1.5px #e3e4ea;
 }
+/*added for qualifying info*/
+.THIS .recordDetail .edit-field .slds-form-element__control{
+    width:50%;
+    margin-bottom:0.8rem;
+}
+.THIS .recItem label{
+    padding-bottom:5px; 
+}
+.THIS .itemLayoutInp .slds-checkbox_standalone input{
+   top:-8px;
+}
+.THIS .checkbox-style .slds-checkbox_standalone input{
+    top: 8px;
+}
+.THIS .recItem .field-item.itemLayout lightning-output-field{
+   display:block; 
+}
+.THIS .inlineFields{
+    display:inline-block;
+    /*text-align:right;*/
+}
+.THIS .itemLayoutInp{
+    padding: 0;
+    width: 100%;
+    align-items: baseline;
+}
+
+.THIS .recItem .field-item.itemLayout label{
+        
+    white-space:normal;
+    line-height: 1.5;
+}
+
+/*added for qualifying info*/
 .THIS .slds-truncate.field-item{
     overflow:hidden;
     text-overflow:ellipsis;
@@ -42,7 +76,18 @@
 .THIS .record-wrapper{
     margin: 25px;
 }
-
+.THIS .widthLayout{
+    width:100%;
+}
+.THIS .iconsLayout{
+    text-align:right;
+}
+.THIS .inlineFields .slds-form-element__static{
+    color:t(sentenceclr);
+}
+.THIS .itemLayoutInp .slds-checkbox_standalone .slds-checkbox_faux{
+   top:-4px;
+}
 .THIS .addRecbtn{
     padding:5px;
 }
@@ -58,8 +103,14 @@
     width: -webkit-fill-available;
 }
 .THIS .hideButtonStyle{
-    text-align: center;
+    
     padding-top: 25px;
+}
+.THIS .inlineField{
+    display:inline-block;
+}
+.THIS .inlineField .slds-form-element__static{
+   padding-left: 20%; 
 }
 .THIS i{
     font-size: 19px;

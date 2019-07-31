@@ -14,7 +14,14 @@
 .THIS .help-text .slds-select_container{
     width:75%;
 }
-
+.THIS ul.error-messages {
+    font-size: 14px;
+    width: 90%;
+    max-width: 892px;
+    margin: 5px auto 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 .THIS .slds-form-element.slds-dropdown-trigger{
     display:inline;
 }
@@ -273,7 +280,13 @@
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
-    padding:15px;
+    padding:15px 15px 15px 0;  
+}
+.THIS .Endorsement .uiOutputRichText ul{
+    margin-left:1rem;
+}
+.THIS .addressBtn{
+    display:none;
 }
 .THIS .tile-wrap .recordDetail .row{
     width: 100%;
@@ -295,11 +308,12 @@
 }
 .THIS .validate .uiInputTextArea{
     border:1px solid #5b616b;
+    margin-bottom: 0.8rem;
 }
 .THIS .dispItem,.THIS .GuaranteedispItem {
     margin-bottom:-11px;
 }
-.THIS .License.Information.dispItem{
+.THIS .License.Information.dispItem:last-of-type{
     margin-bottom:1rem;
 }
 .THIS .Guarantee.dispItem{
