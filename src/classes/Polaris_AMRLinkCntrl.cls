@@ -5,6 +5,23 @@ public class Polaris_AMRLinkCntrl {
     {       
         return [SELECT id,MasterLabel,AMR_Type__c,Order_Number__c,Board__c,Service_Request_Type__c,License_Type__c,Application_Method__c FROM AMR_Link__mdt where Board__c =:board AND License_Type__c =:licenseType AND Application_Method__c=:applicationMethod ORDER BY Order_Number__c ASC  ];
     }
+	@AuraEnabled
+    public static void printUpdateLicense(String licId,String printType)
+    {
+        if(licId!=null){
+            MUSW__License2__c lic = [SELECT id,Print_License_Email__c,Print_License_DES__c,Application__c FROM MUSW__License2__c where id=:licId ];
+            if(printType == 'email')
+            {
+                lic.Print_License_Email__c='Yes';
+            }else if(printType=='DES')
+            {
+                lic.Print_License_DES__c='Yes';
+            }
+            update lic;
+        }
+        
+    }
+	
     @AuraEnabled
     public static String fetchAppId(String licId)
     {
