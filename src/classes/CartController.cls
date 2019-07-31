@@ -89,9 +89,6 @@ public with sharing class CartController
         totalSelectedOutstanding = 0;
         m_totalOwed = 0;
         isPortalUser = BGCM.UtilityUser.isPortalUser();
-        //system.debug('isPortalUser123'+isPortalUser);
-        //Code to avoid 
-        //isPortalUser = false; // This variable need to be false for portal
         currURL = String.valueOf(URL.getSalesforceBaseUrl().toExternalForm());
         m_isNotFromVF = false;
         checkReceiptAmount = true;
@@ -117,8 +114,7 @@ public with sharing class CartController
             m_depositAccountId = System.currentPageReference().getParameters().get('depositAccountId')==''?null:System.currentPageReference().getParameters().get('depositAccountId');
             retURL = System.currentPageReference().getParameters().get('retURL');
         }
-
-        //retURL = 'https://dev-polaris.cs32.force.com/Dashboard';
+		
         if (m_pid != null) m_pid = String.escapeSingleQuotes(m_pid);
         
         if (m_cartId != null) m_cartId = String.escapeSingleQuotes(m_cartId);
@@ -1225,29 +1221,6 @@ public with sharing class CartController
         //system.debug('****totalSelectedOutstanding*'+totalSelectedOutstanding);
     }
     
-    /* public void redirectToPaymentGateway(){
-        MUSW__Receipt__c receipt = new MUSW__Receipt__c();
-        receipt.BGBK__Cart__c = m_cs.getCart().Id;
-        receipt.Status__c = 'Draft';
-       // receipt.Intake_Method__c = 'Portal';
-        
-        system.debug('inside redirectToPaymentGateway ');
-        
-        List<String> feeIds = new List<String>();
-        for (FeeVO feeVo : feeVOs){
-            if (feeVo.isSelected){
-                feeIds.add(feeVo.f.Id);
-            }
-        }
-        receipt.MUSW__Amount_Tendered__c = totalSelected;
-        receipt.Selected_Fees__c = String.join(feeIds, ',');
-        receipt.MUSW__Payment_Method__c = receiptVOs[Integer.valueOf(currentReceiptIndex)].r.MUSW__Payment_Method__c;
-       
-        insert receipt;
-        
-        receiptId = receipt.Id;
-    } */
-
     public void createReceiptForPaymentGateway(){
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
