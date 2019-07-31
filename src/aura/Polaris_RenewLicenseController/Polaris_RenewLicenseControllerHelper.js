@@ -235,14 +235,15 @@
         var response = event.getSource().get("v.value").trim();
         var responsePlaceholder = response;
         var questionNumber = '';
-        if(event.getSource().get("v.name").includes('License Information'))
-        {
-            questionNumber = event.getSource().get("v.name").split('License Information')[1];
-        }
-        else if(event.getSource().get("v.name").includes('Questions'))
-        {
-            questionNumber = event.getSource().get("v.name").split('Questions')[1];
-        }
+
+            if(event.getSource().get("v.name").includes('License Information'))
+            {
+                questionNumber = event.getSource().get("v.name").split('License Information')[1];
+            }
+            else if(event.getSource().get("v.name").includes('Questions'))
+            {
+                questionNumber = event.getSource().get("v.name").split('Questions')[1];
+            }
             else
             {          
                 questionNumber = event.getSource().get("v.name").split('Endorsement')[1];
