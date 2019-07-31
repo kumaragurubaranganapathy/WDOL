@@ -181,160 +181,135 @@
           console.log(formattedDate);
         }*/
     },
-    validate : function(component, event, helper) {
-        var classList = event.getSource().get("v.class");
-        var blockID = event.getSource().get("v.name");
-        var totalFieldsList = component.get("v.sectionList").labelFieldsMap;
-        var sectionFieldsList = [];
-        var errorMessage = "Please fill valid data";
-        if(classList.includes("Qualifying Postsecondary Education")){
-            sectionFieldsList = totalFieldsList.filter(function(item){
-                return item.questionSectionClass == "Qualifying Postsecondary Education" && (item.isMandatoryQues || item.regex != null);
-            });
-        }
-        if(classList.includes("Qualifying Experience")){
-            sectionFieldsList = totalFieldsList.filter(function(item){
-                return item.questionSectionClass == "Qualifying Experience" && (item.isMandatoryQues || item.regex != null);
-            });
-        }
-        if(classList.includes("Qualifying Courses")){
-            sectionFieldsList = totalFieldsList.filter(function(item){
-                return item.questionSectionClass == "Qualifying Courses" && (item.isMandatoryQues || item.regex != null);
-            });
-        }
-        if(classList.includes("editFields")){
-            component.set("v.editForm", true);
-            var fieldValuesWrapper = component.find("validateEditField");
-            fieldValuesWrapper = fieldValuesWrapper.filter(function(item){
-               return item.get("v.class").includes('itemRow='+blockID); 
-            });
-        }else{
-            component.set("v.editForm", false);
-            var fieldValuesWrapper = component.find("validateField");
-        }
-        var validateFlagCheck = sectionFieldsList.every(function(item, index){
-            if(!fieldValuesWrapper[index].get("v.class").includes('slds-hide')){
-                 if(item.isMandatoryQues){
-                    if(item.regex != undefined && item.regex != null && item.regex != ""){
-                        if(item.regex == "Date-Validation"){
-                            var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != "" && valueVal != null){
-                                var today = new Date();
-                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                compareDate = new Date(compareDate);
-                                var enteredDate = new Date(valueVal);
-                                if(enteredDate < compareDate){
-                                    return true;
-                                }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                	return false;
-                                }
-                            }else{
-                                errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                return false;
-                            }
-                        } else {
-                            var regexExp = new RegExp(item.regex);
-                            var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null && regexExp.test(valueVal)){
-                                return true;
-                            }else{
-                                errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
-                                return false;
-                            }  
-                        }
-                    } else {
-                        if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
-                            return true;
-                        } else {
-                            errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
-                            return false;
-                        }  
-                    }
-                } else {
-                    if(item.regex != undefined && item.regex != null && item.regex != ""){
-                        if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
-                            if(item.Regex_Validation__c == "Date-Validation"){
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(valueVal != "" && valueVal != null){
-                                    var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                    compareDate = new Date(compareDate);
-                                    var enteredDate = new Date(valueVal);
-                                    if(enteredDate < compareDate){
-                                        return true;
-                                    }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                    	return false;
-                                    }
-                                }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                    return false;
-                                }
-                            } else {
-                                var regexExp = new RegExp(item.regex);
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null && regexExp.test(valueVal)){
-                                    return true;
-                                }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
-                                    return false;
-                                }  
-                            }
-                        } else {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                }   
-            }else{
-                return true;
-            }
-        });
-        if(validateFlagCheck){
-            if(component.get("v.editForm")){
-                if(component.find("editFormDetails").length!=undefined){
-                    component.find("editFormDetails")[blockID].submit();
-                }else{
-                    component.find("editFormDetails").submit();
-                }
-            }else{
-                component.find("editForm").submit();
-            }
-            
-        } else {
-            var toastEvent = $A.get("e.force:showToast");
-            toastEvent.setParams({
-                "title": "ERROR!",
-                "message": errorMessage,
-                "type": "error"
-            });
-            toastEvent.fire();
-            event.preventDefault();
-        }
-        
-        /*var inputCmp = component.find("inputCmp");
-        var errorFound = false;
-        inputCmp.forEach(function(entry) {
-            var value = entry.get("v.value");
-            var classes = entry.get("v.class");
-            if(classes !=  undefined && classes.includes('mandatory')&&value==null){
-                errorFound = true;
-            }       
-        });
-        if(errorFound== true){
-            console.log('errors!');
-            var resultsToast = $A.get("e.force:showToast");
-            resultsToast.setParams({
-                "title": "Missing fields",
-                "message": "Add mandatory fields."
-            });
-            resultsToast.fire();
-            event.preventDefault();
-        }else{
-            console.log('no errors!');
-            //component.find("editForm").onsubmit();
-        }*/
-    },
+	validate : function(component, event, helper) {
+		var classList = event.getSource().get("v.class");
+		var blockID = event.getSource().get("v.name");
+		var totalFieldsList = component.get("v.sectionList").labelFieldsMap;
+		var sectionFieldsList = [];
+		var errorMessage = "Please fill valid data";
+		if(classList.includes("Qualifying Postsecondary Education")){
+			sectionFieldsList = totalFieldsList.filter(function(item){
+				return item.questionSectionClass == "Qualifying Postsecondary Education" && (item.isMandatoryQues || item.regex != null);
+			});
+		}
+		if(classList.includes("Qualifying Experience")){
+			sectionFieldsList = totalFieldsList.filter(function(item){
+				return item.questionSectionClass == "Qualifying Experience" && (item.isMandatoryQues || item.regex != null);
+			});
+		}
+		if(classList.includes("Qualifying Courses")){
+			sectionFieldsList = totalFieldsList.filter(function(item){
+				return item.questionSectionClass == "Qualifying Courses" && (item.isMandatoryQues || item.regex != null);
+			});
+		}
+		if(classList.includes("editFields")){
+			component.set("v.editForm", true);
+			var fieldValuesWrapper = component.find("validateEditField");
+			fieldValuesWrapper = fieldValuesWrapper.filter(function(item){
+				return item.get("v.class").includes('itemRow='+blockID); 
+			});
+		}else{
+			component.set("v.editForm", false);
+			var fieldValuesWrapper = component.find("validateField");
+		}
+		var validateFlagCheck = sectionFieldsList.every(function(item, index){
+			if(!fieldValuesWrapper[index].get("v.class").includes('slds-hide')){
+				if(item.isMandatoryQues){
+					if(item.regex != undefined && item.regex != null && item.regex != ""){
+						var valueVal = fieldValuesWrapper[index].get("v.value");
+						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+							if(item.regex == "Date-Validation"){
+								var valueVal = fieldValuesWrapper[index].get("v.value");
+								var today = new Date();
+								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+								compareDate = new Date(compareDate);
+								var enteredDate = new Date(valueVal);
+								if(enteredDate < compareDate){
+									return true;
+								}else{
+									errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
+									return false;
+								}
+							} else {
+								var regexExp = new RegExp(item.regex);
+								var valueVal = fieldValuesWrapper[index].get("v.value");
+								if(regexExp.test(valueVal)){
+									return true;
+								}else{
+									errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+									return false;
+								}  
+							}
+						}else{
+							errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+							return false;
+						}
+					} else {
+						var valueVal = fieldValuesWrapper[index].get("v.value");
+						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+							return true;
+						} else {
+							errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+							return false;
+						}  
+					}
+				} else {
+					if(item.regex != undefined && item.regex != null && item.regex != ""){
+						var valueVal = fieldValuesWrapper[index].get("v.value");
+						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+							if(item.Regex_Validation__c == "Date-Validation"){
+								var valueVal = fieldValuesWrapper[index].get("v.value");
+								var today = new Date();
+								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+								compareDate = new Date(compareDate);
+								var enteredDate = new Date(valueVal);
+								if(enteredDate < compareDate){
+									return true;
+								}else{
+									errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
+									return false;
+								}
+							} else {
+								var regexExp = new RegExp(item.regex);
+								var valueVal = fieldValuesWrapper[index].get("v.value");
+								if(regexExp.test(valueVal)){
+									return true;
+								}else{
+									errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+									return false;
+								}  
+							}
+						} else {
+							return true;
+						}
+					} else {
+						return true;
+					}
+				}   
+			}else{
+				return true;
+			}
+		});
+		if(validateFlagCheck){
+			if(component.get("v.editForm")){
+				if(component.find("editFormDetails").length!=undefined){
+					component.find("editFormDetails")[blockID].submit();
+				}else{
+					component.find("editFormDetails").submit();
+				}
+			}else{
+				component.find("editForm").submit();
+			}
+			
+		} else {
+			var toastEvent = $A.get("e.force:showToast");
+			toastEvent.setParams({
+				"title": "ERROR!",
+				"message": errorMessage,
+				"type": "error"
+			});
+			toastEvent.fire();
+			event.preventDefault();
+		}
+	}
 })
