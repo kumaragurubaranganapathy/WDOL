@@ -268,7 +268,7 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium borderBtn">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
                 <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn"/>
             </div> 
         </div>
