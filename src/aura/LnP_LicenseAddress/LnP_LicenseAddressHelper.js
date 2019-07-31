@@ -167,6 +167,7 @@
         
         var originalAddress = street+', '+city+', '+state+', '+zip+', '+country;
         console.log('originalAddress==' + originalAddress);
+		component.set("v.isAddress2" , false);
         if(!($A.util.isEmpty(street2) || $A.util.isUndefined(street2))){
             component.set("v.isOriginalAdd2" , true);
             component.set("v.isAddress2" , true);
