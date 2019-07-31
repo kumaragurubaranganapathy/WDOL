@@ -82,7 +82,7 @@
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
                                     <div style="padding-top:50px" class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
-                                    <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                    <div class="{!(question.questionSectionDetail!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
                                         <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 
                                     </aura:if>
@@ -209,7 +209,7 @@
                                         <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                                 <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
-                                                <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                                <div class="{!(question.questionSectionDetail!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                         <ui:inputSelect label="{!question.label}" value="{!question.value}" change="{!c.showDependentQuestions}">
@@ -219,7 +219,7 @@
                                         </ui:inputSelect> 
                                     </div-->
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') + ' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
-                                                        <lightning:select name="{!questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
+                                                        <lightning:select name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 <option value="{!option}">{!option}</option>
                                                             </aura:iteration>

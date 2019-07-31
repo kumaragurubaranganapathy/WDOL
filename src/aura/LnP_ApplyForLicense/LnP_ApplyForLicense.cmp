@@ -93,7 +93,7 @@
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
                                     <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
-                                    <div class="{!(question.questionSection!='null')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                    <div class="sectiondetail sentences">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
                                         <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 
                                     </aura:if>
@@ -258,7 +258,7 @@
                                         <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap questions test':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                                 <div class="{!(question.questionSection!='null')?'headings sectionwidth':'slds-hide'}">{!question.questionSection}</div>
-                                                <div class="{!(question.questionSection!='null')?'sentences sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                                <div class="{!(question.questionSectionDetail!='null')?'sentences sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                         <ui:inputSelect label="{!question.label}" value="{!question.value}" change="{!c.showDependentQuestions}">
@@ -355,7 +355,7 @@
                                                     <!--<tbody>
 
                                                  <tr class="slds-hint-parent"><th>-->
-                                                   
+                                                    
                                                     
                                                     <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+' field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <!--<div><p>Test</p></div>-->

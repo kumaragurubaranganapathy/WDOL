@@ -88,23 +88,23 @@ public class Polaris_RenewLicenseController {
         }
         //mapSObject used to store application Id and List of License application record
         /*Map<Id, List<SObject>> mapSObject = new Map<Id, List<SObject>>();
-for (MUSW__Application2__c app : lstApps) 
-{
-mapSObject.put(app.Id, app.License_Application__r);
-}
+		for (MUSW__Application2__c app : lstApps) 
+		{
+		mapSObject.put(app.Id, app.License_Application__r);
+		}
 
-List<LnP_Licence_Application__c> lstLicenseApplication =new List<LnP_Licence_Application__c>();
-for (List <sObject> lstApplicationLicense : mapSObject.values())
-{               
-lstLicenseApplication =lstApplicationLicense ;            
-}*/
-        
-        
-        /*if(lstApps.size() >0 && !lstLicenseApplication.isEmpty() && lstApps[0].Stage__c != null  )
-{
-currentTab = Integer.valueOf(lstApps[0].Stage__c);
-ansWrapper = getJSONWrapper(lstLicenseApplication);
-}*/
+		List<LnP_Licence_Application__c> lstLicenseApplication =new List<LnP_Licence_Application__c>();
+		for (List <sObject> lstApplicationLicense : mapSObject.values())
+		{               
+		lstLicenseApplication =lstApplicationLicense ;            
+		}*/
+				
+				
+				/*if(lstApps.size() >0 && !lstLicenseApplication.isEmpty() && lstApps[0].Stage__c != null  )
+		{
+		currentTab = Integer.valueOf(lstApps[0].Stage__c);
+		ansWrapper = getJSONWrapper(lstLicenseApplication);
+		}*/
         if(lstApps.size() >0 && lstApps[0].Stage__c != null && lstApps[0].Form_JSON__c != '' )
         {
             currentTab = Integer.valueOf(lstApps[0].Stage__c); 
@@ -120,7 +120,7 @@ ansWrapper = getJSONWrapper(lstLicenseApplication);
             mapLabel.conditionalAnswer = masterSubmissionRecord.Title__c;
             mapLabel.fieldType = 'Attachment';
             mapLabel.isGenericSub = true;
-            
+            mapLabel.orderBy = masterSubmissionRecord.Order_No__c;
             if(masterSubmissionRecord.Submission_Type__c != null && masterSubmissionRecord.Submission_Type__c.contains('Softcopy: To be Uploaded')){
                 mapLabel.uploadFile = true;
             }
@@ -170,6 +170,7 @@ ansWrapper = getJSONWrapper(lstLicenseApplication);
             labelToFields.endorsementType=Ques.Endorsement_Type__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
             labelToFields.errormsg = Ques.Error_Message__c; 
+            labelToFields.questionSectionDetail = Ques.Sub_Header__c;
             if(Ques.isRequired__c==true)
             {
                 labelToFields.isMandatoryQues = true;
@@ -186,7 +187,7 @@ ansWrapper = getJSONWrapper(lstLicenseApplication);
             {
                 labelToFields.questionSection = Ques.Section__c;
                 questionSection = Ques.Section__c;
-                labelToFields.questionSectionDetail = Ques.Sub_Header__c;
+
             }
             if(Ques.Parent_Question__c != null)
             {
@@ -352,7 +353,7 @@ return parser;
         return parser;
     }
     
-    public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
+        public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
         Set<String> submissionList  = new Set<String>(); 
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<MUSW__Master_Submission_List__c> masterSubmissionList = new List<MUSW__Master_Submission_List__c>();
@@ -360,19 +361,23 @@ return parser;
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFieldTemp = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         //List<string> lstMandatorySubSections= new  List<string>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-            if(objWrapper.sectionName.contains('License Information') ||objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Endorsement')){
-                system.debug('Inside section=Question');
+            system.debug('wrapperlist123444'+wrapperList);
+            if(objWrapper.sectionName.contains('License Information')||objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Endorsement')){
+                system.debug('Inside section=Question');             
                 for(LnP_ApplyForLicenseWrapper.MapLabelToFields abc: objWrapper.labelFieldsMap) {
                     listFields.add(abc);
-                }   
+                }                
             }
             if(objWrapper.sectionName.contains('Attachments')){
                 listFieldSub = objWrapper.labelFieldsMap;
             }
         }
+        system.debug('List Fields '+Json.serialize(listFieldSub));
         for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
             if((fieldMap.submissionDetails != '' && fieldMap.submissionDetails != null) ){
+                system.debug('insdie submissiondetails'+fieldMap);
                 if (fieldMap.value != null && fieldMap.value != '' ) {
+                    system.debug('insdie submissiondetailsvalues'+fieldMap.value);
                     Map<String, String> mapAttachment = (Map<String, String>)JSON.deserialize(fieldMap.submissionDetails,Map<String, String>.class);
                     system.debug('mapAttachment12344'+mapAttachment);
                     if(mapAttachment.containsKey(fieldMap.value)){
@@ -394,34 +399,41 @@ return parser;
         }
         String mastSubCond1 = 'Application_Type__c = \''+Board+'\'';
         String mastSubCond2 = 'Application_Method__c =\''+ApplicationType+'\'';
-        String mastSubCond3 = 'Credential_Type__c =\''+LicenseType+'\' AND' + ' Default__c = false';
-        String mastSubCond4 = 'Title__c IN: XXX';
-        String strSubmission = 'Select Id, Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4;
+        String mastSubCond3 = 'Credential_Type__c =\''+LicenseType+'\'';
+        String mastSubCond4 = 'Title__c IN: XXX ORDER BY  Order_No__c ASC';
+        String strSubmission = 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
         system.debug('submissionList'+submissionList);
         masterSubmissionList = Utilityclass_withsharing.queryRecordsInClause(strSubmission,submissionList);
         system.debug('masterSubmissionList12345'+masterSubmissionList);
         
         System.debug('Field Map'+JSON.serialize(listFieldSub));
-        Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields> submissions = new Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
+        Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> submissions = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
+        Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFieldSub){
             if(fieldMap.isGenericSub == true){
-                listFieldTemp.add(fieldMap);
+                // listFieldTemp.add(fieldMap);
+                warapperMapSorted.put(fieldMap.orderBy,fieldMap);  
             }
             else{
-                submissions.put(fieldMap.label,fieldMap);   
+               submissions.put(fieldMap.orderBy,fieldMap);  
             }
         }
+        system.debug('submissions3454'+submissions);
+        //Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted = new Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         if(masterSubmissionList.size()>0){
             for(MUSW__Master_Submission_List__c master : masterSubmissionList){
-                if(submissions.containsKey(master.Name)){
-                    listFieldTemp.add(submissions.get(master.Name));
-                    System.debug('submission'+submissions.get(master.Name));
+                if(submissions.containsKey(master.Order_No__c)){
+                   // listFieldTemp.add(submissions.get(String.valueof(master.Order_No__c)));
+                    
+                    warapperMapSorted.put(master.Order_No__c,submissions.get(master.Order_No__c));
+                  //  System.debug('submission'+submissions.get(master.Name));
                 }
                 else{
                     System.debug('Create new submission'+master.id);
                     LnP_ApplyForLicenseWrapper.MapLabelToFields submissionMap = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
                     submissionMap.label = master.Name;
                     submissionMap.conditionalAnswer = master.Title__c;
+                    submissionMap.orderBy = master.Order_No__c;
                     submissionMap.fieldType = 'Attachment';
                     if(master.Submission_Type__c != null && master.Submission_Type__c.contains('Softcopy: To be Uploaded')){
                         submissionMap.uploadFile = true;
@@ -432,10 +444,24 @@ return parser;
                     if(master.Required__c){
                         submissionMap.isMandatorySub = true;   
                     }
-                    listFieldTemp.add(submissionMap);
+                    warapperMapSorted.put(submissionMap.orderBy,submissionMap);
+                   // listFieldTemp.add(submissionMap);
                 }
             }
+           // listFieldTemp.addAll(warapperMapSorted.keyset());
+          //  listFieldTemp.sort();
         }
+        List<Decimal> lststing = new List<Decimal>();
+        lststing.addAll(warapperMapSorted.keyset());
+        system.debug('before sort'+json.serialize(warapperMapSorted));
+        system.debug('inside sort'+json.serialize(lststing) );
+        lststing.sort();
+        Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted2 = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
+       for( Integer i= 0;i < lststing.size(); i++){
+            warapperMapSorted2.put(lststing[i],warapperMapSorted.get(lststing[i]));
+        }
+        system.debug('after sort'+json.serialize(warapperMapSorted));
+       	listFieldTemp = warapperMapSorted2.values();
         listFieldSub.clear();
         listFieldSub.addAll(listFieldTemp);
         System.debug('Field Map'+JSON.serialize(listFieldTemp));

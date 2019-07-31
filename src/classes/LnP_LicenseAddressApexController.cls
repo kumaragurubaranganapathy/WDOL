@@ -79,36 +79,42 @@ public with sharing class LnP_LicenseAddressApexController {
         return options;
     }
     
-    /*@AuraEnabled
+    @AuraEnabled
 public static List<selectOption> getCountyValue(String state, String city){
-List<selectOption> selectCounty = new List<selectOption>();
-String stateValue = state;
-//System.debug('statevalue::'+stateValue);
-String cityValue = city;
-List<LnP_City_County_Map__mdt> cityCountyMap = new List<LnP_City_County_Map__mdt>();
-cityCountyMap = [SELECT MasterLabel, City__c, County__c FROM LnP_City_County_Map__mdt];
-
-LnP_Parcel__c par = new LnP_Parcel__c();
-if(stateValue != 'Washington' && stateValue != 'WA'){
-selectOption sel = new selectOption();
-sel.label = 'Out Of State';
-sel.value = 'Out Of State';
-selectCounty.add(sel);
+    List<selectOption> selectCounty = new List<selectOption>();
+    String stateValue = state;
+    System.debug('statevalue::'+stateValue);
+    String cityValue = city;
+    System.debug('cityvalue::'+cityValue);
+    List<LnP_City_County_Map__mdt> cityCountyMap = new List<LnP_City_County_Map__mdt>();
+    //System.debug('statevalue::'+stateValue);
+    cityCountyMap = [SELECT MasterLabel, City__c, County__c FROM LnP_City_County_Map__mdt];
+    System.debug('cityCountyMap::'+cityCountyMap);
+    
+    MUSW__Parcel__c par = new MUSW__Parcel__c();
+    if(stateValue != 'Washington' && stateValue != 'WA'){
+        selectOption sel = new selectOption();
+        sel.label = 'Out Of State';
+        sel.value = 'Out Of State';
+        selectCounty.add(sel);
+    }
+    else {
+        for(LnP_City_County_Map__mdt mapItem : cityCountyMap){
+            if(mapItem.City__c == cityValue){
+                selectOption sel = new selectOption();
+                sel.label = mapItem.County__c;
+                sel.value = mapItem.County__c;
+                selectCounty.add(sel);
+            }
+        }
 }
-else {
-for(LnP_City_County_Map__mdt mapItem : cityCountyMap){
-if(mapItem.City__c == cityValue){
-selectOption sel = new selectOption();
-sel.label = mapItem.County__c;
-sel.value = mapItem.County__c;
-selectCounty.add(sel);
-}
-}
-}
+     System.debug('selectCounty::'+selectCounty);
 return selectCounty;
+       //System.debug('selectCounty::'+selectCounty);
+ 
 }
 
-@AuraEnabled
+/*@AuraEnabled
 public static List<String> objectFields(String selectedObject){
 List<String> fields = new List<String>();
 Map<String , Schema.SObjectType> globalDescription = Schema.getGlobalDescribe();

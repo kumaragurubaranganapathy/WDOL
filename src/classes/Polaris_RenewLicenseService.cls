@@ -72,13 +72,13 @@ public class Polaris_RenewLicenseService {
         String condition1 = '';
         if(renewReinstate == 'Renewal')
         {
-            condition1 = 'AND Show_For__c INCLUDES (\'Credential Renewal\') ORDER BY  Order_No__c ASC';
+            condition1 = 'AND Show_For__c INCLUDES (\'Credential Renewal\') ORDER BY  CreatedDate ASC';
         }
         else if(renewReinstate=='Reinstatement')
         {
-            condition1 = 'AND Show_For__c INCLUDES (\'Credential Reinstatement\') ORDER BY  Order_No__c ASC';
+            condition1 = 'AND Show_For__c INCLUDES (\'Credential Reinstatement\') ORDER BY  CreatedDate ASC';
         }
-        String Str = 'Select Id,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'Renewal_Application__c\'  '+condition1;
+        String Str = 'Select Id,Order_No__c,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c,   Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'Renewal_Application__c\'  '+condition1;
         lstMasterSubmission = Utilityclass_withsharing.queryRecords(Str);
         return lstMasterSubmission;
     }
