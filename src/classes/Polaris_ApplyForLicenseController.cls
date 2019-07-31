@@ -315,7 +315,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         return parser;
     }
     
-    public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
+   public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
         Set<String> submissionList  = new Set<String>(); 
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<MUSW__Master_Submission_List__c> masterSubmissionList = new List<MUSW__Master_Submission_List__c>();
@@ -377,16 +377,18 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 warapperMapSorted.put(fieldMap.orderBy,fieldMap);  
             }
             else{
-               submissions.put(fieldMap.orderBy,fieldMap);  
+                submissions.put(fieldMap.orderBy,fieldMap);  
             }
         }
+        system.debug('submissions3454'+submissions);
+        //Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted = new Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         if(masterSubmissionList.size()>0){
             for(MUSW__Master_Submission_List__c master : masterSubmissionList){
                 if(submissions.containsKey(master.Order_No__c)){
-                   // listFieldTemp.add(submissions.get(String.valueof(master.Order_No__c)));
+                    // listFieldTemp.add(submissions.get(String.valueof(master.Order_No__c)));
                     
                     warapperMapSorted.put(master.Order_No__c,submissions.get(master.Order_No__c));
-                  //  System.debug('submission'+submissions.get(master.Name));
+                    //  System.debug('submission'+submissions.get(master.Name));
                 }
                 else{
                     System.debug('Create new submission'+master.id);
@@ -405,26 +407,27 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         submissionMap.isMandatorySub = true;   
                     }
                     warapperMapSorted.put(submissionMap.orderBy,submissionMap);
-                   // listFieldTemp.add(submissionMap);
+                    // listFieldTemp.add(submissionMap);
                 }
             }
-           // listFieldTemp.addAll(warapperMapSorted.keyset());
-          //  listFieldTemp.sort();
+            // listFieldTemp.addAll(warapperMapSorted.keyset());
+            //  listFieldTemp.sort();
         }
         List<Decimal> lststing = new List<Decimal>();
-        lststing.addAll(warapperMapSorted.keyset());
-        system.debug('before sort'+json.serialize(warapperMapSorted));
-        system.debug('inside sort'+json.serialize(lststing) );
-        lststing.sort();
         Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted2 = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
-       for( Integer i= 0;i < lststing.size(); i++){
-            warapperMapSorted2.put(lststing[i],warapperMapSorted.get(lststing[i]));
+        if(!warapperMapSorted.isEmpty()) {
+            lststing.addAll(warapperMapSorted.keyset());
+            lststing.sort();
+            for( Integer i= 0;i < lststing.size(); i++){
+                warapperMapSorted2.put(lststing[i],warapperMapSorted.get(lststing[i]));
+            }
+            // system.debug('after sort'+json.serialize(warapperMapSorted));
+            listFieldTemp = warapperMapSorted2.values();
+            listFieldSub.clear();
+            listFieldSub.addAll(listFieldTemp);
+            // System.debug('Field Map'+JSON.serialize(listFieldTemp));
         }
-        system.debug('after sort'+json.serialize(warapperMapSorted));
-       	listFieldTemp = warapperMapSorted2.values();
-        listFieldSub.clear();
-        listFieldSub.addAll(listFieldTemp);
-        System.debug('Field Map'+JSON.serialize(listFieldTemp));
+        
         return wrapperList;
     }
     @AuraEnabled 
