@@ -213,7 +213,7 @@ public with sharing class LnP_ProgramType{
             }            
         }
         
-        DateTime myDateTime = DateTime.newInstance(2000, 7, 7, 7, 8, 12);   
+        Datetime myDateTime = Datetime.now();  
         BGBK.PaymentService paymentServiceObj = new BGBK.PaymentService();
         system.debug('payables : ' +payables);
         system.debug('receiptMap : '+receiptMap);
