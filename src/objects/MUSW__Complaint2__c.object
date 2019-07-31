@@ -2596,13 +2596,49 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Complainant_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Complainant_First_Name__c +  IF(ISBLANK(Complainant_Middle_Name__c), &quot;&quot;, Complainant_Middle_Name__c)  + Complainant_Last_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Complainant Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Respondent_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Primary_Contact__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Respondent Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Investigator_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Investigator Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Complaints</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>Master_Complaint__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The field is used to specify the master complaint, only populate when status is closed and sub status merged.</description>
         <externalId>false</externalId>
         <inlineHelpText>Use the field to specify when this complaint is merged with another complaint. Set Status to &quot;Closed&quot;, Sub-Status to &quot;Merged&quot;.</inlineHelpText>
-        <label>Merged with Complaint</label>
+        <label>Master Complaint</label>
         <referenceTo>MUSW__Complaint2__c</referenceTo>
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaints</relationshipName>

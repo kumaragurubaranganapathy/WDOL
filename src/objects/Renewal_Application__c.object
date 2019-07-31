@@ -1293,7 +1293,7 @@ FALSE)))))))</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Time_to_Renewal_Reinstatement__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - DATEVALUE(CreatedDate), Renewed_Date__c - DATEVALUE(CreatedDate))</formula>
