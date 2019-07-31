@@ -603,6 +603,7 @@ public class Polaris_ServiceRequestController {
     @AuraEnabled
     public static List<Request__c> callCompositeAPI(String applicationId,String description){
         List<Request__c> appList =new List<Request__c>();
+        Map<String,String> mapSubmissionToFile = new Map<String,String>();
         Set<Id>  setapplicationId =  new Set<Id> ();
         List<Request__c> licenseID;
         // string applicationId2 = string.valueOf(applicationId).substring(0, 15);
@@ -676,7 +677,7 @@ public class Polaris_ServiceRequestController {
                 //Setup  for the populating the details
                 List<Request__c> appListOtherDetils =new List<Request__c>();
                 // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
-                String strAppOther = 'Select Id,Stage__c, Profession__c,  License_Type__c, (select id,Request__c from Submissions__r) ,(select Id,Answer_Text__c,License__c,Request__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c from Answers__r),(Select Id,License__c,Request__c FROM LnP_BackgroundSections__r),(Select Id,License__c,Request__c FROM LnP_Parcels__r) from Request__c where '+appCondition;
+                String strAppOther = 'Select Id,Stage__c, Profession__c,  License_Type__c, (select id,Request__c,ContentDocumentId__c from Submissions__r) ,(select Id,Answer_Text__c,License__c,Request__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c from Answers__r),(Select Id,License__c,Request__c FROM LnP_BackgroundSections__r),(Select Id,License__c,Request__c FROM LnP_Parcels__r) from Request__c where '+appCondition;
                 system.debug('StrApp Query--->'+strAppOther);
                 appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
                 List<LnP_Parcel__c> lstParcels = new List<LnP_Parcel__c>();            
@@ -780,14 +781,22 @@ public class Polaris_ServiceRequestController {
                     for(MUSW__Submission__c submissions : appListOtherDetils[0].Submissions__r){
                         submissions.Request__c = appList[0].Id; 
                         lstSubmissions.add(submissions);
+                        if(submissions!=null && submissions.ContentDocumentId__c != null ) {
+                            mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
+                        }
                     }
+                    
                     update lstSubmissions;                
                 }
                 update appList[0];
                 
             }   
         }
-        
+        //Calling method to  store 3rd party
+        if(!mapSubmissionToFile.isEmpty()){
+            Polaris_ServiceRequestController.updateLinkedEntityId(mapSubmissionToFile);
+          //  string success = Dol_UploadDocumenttoSAN.portalUpload(mapSubmissionToFile);
+        }
         return appList;
     }
     
@@ -859,6 +868,35 @@ public class Polaris_ServiceRequestController {
             return false;
         }
     
-    }   
+    }
+    private static void updateLinkedEntityId (Map<String,String> mapSubmissionToFile) {
+        List<String> abc  = new List<String>();
+         List<ContentDocumentLink> lstFiles  = new List<ContentDocumentLink>();
+        if(!mapSubmissionToFile.isEmpty()) {
+            abc.addAll(mapSubmissionToFile.values());
+        }
+        List<ContentDocumentLink> lstContent = new List<ContentDocumentLink>();
+        system.debug('inside the submissions');
+        for(ContentDocumentLink cont : [select  ContentDocumentId,Id,LinkedEntityId FROM ContentDocumentLink where  LinkedEntityId =:UserInfo.getUserId()]){
+            system.debug('inside the submissions'+cont);
+            lstContent.add(cont);
+        }
+        if(!lstContent.isEmpty()){
+            for(String submissionId :mapSubmissionToFile.keySet()) {
+                for(ContentDocumentLink contentID : lstContent){
+                    if (mapSubmissionToFile.get(submissionId) == contentID.ContentDocumentId) {
+                        ContentDocumentLink newclnk = contentID.clone();
+                        newclnk.linkedentityid = submissionId;
+                        newclnk.ShareType = 'I';
+                        lstFiles.add(newclnk);
+                    }
+                }
+            } 
+        }
+
+        if(!lstContent.isEmpty()) {
+            upsert lstFiles;
+        } 
+    }
     
 }
