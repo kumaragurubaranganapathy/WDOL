@@ -1,6 +1,9 @@
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
+.THIS .personal-info .slds-checkbox.certificate-checkbox br{
+    display:none;
+}
 .THIS .dispItem .uiOutputRichText{
      font-size: token(fieldlabelsize);
      color:t(fieldclr);
@@ -11,7 +14,14 @@
 .THIS .help-text .slds-select_container{
     width:75%;
 }
-
+.THIS ul.error-messages {
+    font-size: 14px;
+    width: 90%;
+    max-width: 892px;
+    margin: 5px auto 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 .THIS .slds-form-element.slds-dropdown-trigger{
     display:inline;
 }
@@ -70,7 +80,7 @@
 }
 .THIS .slds-checkbox .slds-form-element__label{
 	font-size: 14px;
-    color: token(LnGFormTitleColor);   
+    color: token(fieldclr);   
     
 }
 .THIS .aff-loc{
@@ -117,9 +127,7 @@
     padding-bottom: 22px;
     border-top:1px solid #5b616b;
 }
-.THIS .field-item .cLnP_Attachment{
-    padding-bottom:11%;
-}
+
 .THIS .pull-right{
     margin-left: auto;
     margin-right: 0;
@@ -172,6 +180,7 @@
 }
 .THIS .attestBody{
     font-size:14px;
+    color:t(fieldclr);
 }
 .THIS .uiInput--default.uiInput--input{
     border:none;
@@ -271,13 +280,18 @@
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
-    padding:15px;
+    padding:15px 15px 15px 0;
+    
+}
+.THIS .addressBtn{
+    display:none;
 }
 .THIS .tile-wrap .recordDetail .row{
     width: 100%;
     justify-content: flex-end;
     display: flex;
     padding: 15px;
+    
 }
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
@@ -293,7 +307,13 @@
 .THIS .validate .uiInputTextArea{
     border:1px solid #5b616b;
 }
-.THIS .dispItem{
+.THIS .dispItem,.THIS .GuaranteedispItem {
+    margin-bottom:-11px;
+}
+.THIS .License.Information.dispItem{
+    margin-bottom:1rem;
+}
+.THIS .Guarantee.dispItem{
     margin-bottom:0;
 }
 .THIS .validate::before{
@@ -303,8 +323,18 @@
     top: 0px;
     left: -8px;
 }
-.THIS .validate .slds-form-element__label .uiOutputRichText span{
+.THIS .validate .slds-form-element__label .uiOutputRichText span span span{
      font-size: t(fieldlabelsize);
+    color: t(sentenceclr);
+    word-break: normal;
+    overflow-wrap: normal;
+    font-family: t(publicSansfontfamily);
+    margin: 0;
+    padding: 0 0 5px 0;
+    
+}
+.THIS .validate .slds-form-element__label .uiOutputRichText br{
+    display:none;
 }
 .THIS .validate .field-item,.THIS .dispItem .field-item{
     display:inline;
