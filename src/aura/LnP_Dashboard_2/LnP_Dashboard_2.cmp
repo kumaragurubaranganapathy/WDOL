@@ -530,7 +530,7 @@
                             <aura:if isTrue="{!v.DraftAMRDataList.length != 0}">
                                 <div class="slds-p-vertical_large">
                                     
-                                    <div style="height:300px" class="slds-p-vertical_small">
+                                    <div class="slds-p-vertical_small table-height">
                                         
                                         <div style="height: 100%; position: relative;">
                                             <div class="table-scroll">
@@ -569,7 +569,7 @@
                                                                                            />
                                                                     </div>
                                                                 </td>
-                                                                <td data-label="CEAuditInfo" class="cell-style">
+                                                                <td data-label="CEAuditInfo" class="cell-style table-btn">
                                                                     <div class="" data-recordId="{!tableData.id}">
                                                                         <aura:if isTrue="{!(tableData.License__r.Selected_for_Audit__c)}">
                                                                             <div class="" onclick="{!c.CEAuditAMR}" data-license="{!tableData.License__c}"

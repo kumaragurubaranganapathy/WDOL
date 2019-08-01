@@ -6,7 +6,7 @@
         helper.setDraftNewLicenseApplicationsTableData(component, event, helper);
         helper.setDraftRenewalApplicationsTableData(component, event, helper);
         helper.setDraftMaintanceRequestTableData(component, event, helper);
-      
+        
         helper.setPendingNewLicenseApplicationsTableData(component, event, helper);
         helper.setPendingRenewalApplicationsTableData(component, event, helper);
         helper.setPendingMaintanceRequestTableData(component, event, helper);
@@ -145,9 +145,43 @@
         
         var portal_Home_URL = component.get("v.portalURL");
         var applicationId = event.getSource().get("v.value");
-        var remove_s = portal_Home_URL.slice(0,-2);
+        var action = component.get("c.checkActiveCart");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var checkResult = response.getReturnValue();
+                if(checkResult){
+                    var str ='/cart?id='+applicationId;
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": str
+                    });
+                    urlEvent.fire();
+                }else{
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "Error!",
+                        "message": "You do not have an active cart currently",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                }
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        /*var remove_s = portal_Home_URL.slice(0,-2);
         var PayFee_URI = remove_s+'cart?id='+applicationId;
-        window.open(PayFee_URI, "_self");
+        window.open(PayFee_URI, "_self"); */        
         
     }, 
     
@@ -309,18 +343,18 @@
     CEAuditAMR : function(component,event,helper){
         var ctarget = event.currentTarget;
         console.log('inside draftLicense::');
-       
-				sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
-                sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
-                sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
-           //     sessionStorage.setItem("applicationType", );
-                sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
-                sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request'; 
- 
-
+        
+        sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+        //     sessionStorage.setItem("applicationType", );
+        sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+        sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+        window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request'; 
+        
+        
         var appIsRenewal = ctarget.getAttribute("data-isCeAudit");
-     
+        
         if(appIsRenewal == 'true'){
             console.log('inside ce audit request ::');
             sessionStorage.setItem("renewalReinstate", renewreinstate);
@@ -335,13 +369,13 @@
         console.log('recordIdForPDF== ' + recordIdForPDF);
         var OrgURLForPDF = $A.get("$Label.c.OrgURLForPDF");
         window.open(OrgURLForPDF+'apex/DOL_PDFGenerator?id=' + recordIdForPDF,'_top');
-
+        
     },
     refreshList : function(component,event,helper){
         helper.refreshList(component,event);
     },
     showMore : function(component,event,helper){
-    	helper.showMore(component,event);
+        helper.showMore(component,event);
     }
     
 })

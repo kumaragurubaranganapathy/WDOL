@@ -166,6 +166,7 @@
             sessionStorage.setItem("renewalReinstate", "Renewal");
             window.location.href='/lightningwashington/s/polaris-renewal';  
         } else {
+            
             window.location.href='/lightningwashington/s/apply-for-license';  
         }
     },
