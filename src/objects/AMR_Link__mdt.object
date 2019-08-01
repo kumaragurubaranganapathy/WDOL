@@ -174,7 +174,7 @@
                     <default>false</default>
                     <label>Appraiser Course</label>
                 </value>
-				<value>
+                <value>
                     <fullName>Update/Close Company</fullName>
                     <default>false</default>
                     <label>Update/Close Company</label>
@@ -186,6 +186,14 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Display_In_Related_Tab__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Display In Related Tab</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Generate_Fee__c</fullName>
@@ -446,7 +454,7 @@
                     <default>false</default>
                     <label>Registered Trainee</label>
                 </value>
-				<value>
+                <value>
                     <fullName>Update/Close Company</fullName>
                     <default>false</default>
                     <label>Update/Close Company</label>
@@ -491,6 +499,17 @@
         <unique>false</unique>
     </fields>
     <label>AMR Link</label>
+    <listViews>
+        <fullName>AMRs</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Sections__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Service_Request_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>AMRs</label>
+        <language>en_US</language>
+    </listViews>
     <pluralLabel>AMR Links</pluralLabel>
     <visibility>Public</visibility>
 </CustomObject>
