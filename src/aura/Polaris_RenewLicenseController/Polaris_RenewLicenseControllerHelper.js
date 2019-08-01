@@ -486,98 +486,21 @@
     },
     checkFieldValidations : function(component, event){
         var licenseWrapper = component.get("v.licenseWrapper");
-        console.log('licenseWrapper===' + JSON.stringify(licenseWrapper));
         var tabNumber = component.get("v.currentTab") - 1;
-        if(licenseWrapper[tabNumber].subheader == 'Personal Information' || licenseWrapper[tabNumber].subheader == 'Business Information') {
+        if(licenseWrapper[tabNumber].subheader == 'Personal Information' || licenseWrapper[tabNumber].subheader == 'Business Information' || licenseWrapper[tabNumber].subheader == 'Course Information') {
             var fieldsWrapper = JSON.parse(licenseWrapper[tabNumber].fieldJson);
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
             });                
             var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
             var errorMessage = "Please fill valid data";
-            var PatternAndFlagCheck = validateFields.every(function validateFields(item, index) {
+            var errorMsgsArray = [];
+            var PatternAndFlagCheck = validateFields.filter(function(item, index) {
                 if(!$A.util.hasClass(fieldValuesWrapper[index], "slds-hide")){
                     if(item.Required__c){
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
-                            if(item.Regex_Validation__c == "Date-Validation"){
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(valueVal != "" && valueVal != null){
-                                    var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                    compareDate = new Date(compareDate);
-                                    var enteredDate = new Date(valueVal);
-                                    if(enteredDate < compareDate){
-                                        return true;
-                                    }else{
-                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                        return false;
-                                    }
-                                }else{
-                                    errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                    return false;
-                                }
-                            } else if(item.Regex_Validation__c == "ssn-validation"){
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                var regexExp = new RegExp('^[0-9\*]{9}$');
-                                if(valueVal.slice(0,5) == "*****"){
-                                    return true;
-                                }else{
-                                    if(valueVal.charAt(0) == "9"){
-                                        if(valueVal.charAt(3) == "9" || valueVal.charAt(3) == "7"){
-                                            if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
-                                                return true;
-                                            }else{
-                                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                                return false;
-                                            }
-                                        }else{
-                                            errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                            return false;
-                                        }
-                                    }else{
-                                        if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
-                                            return true;
-                                        }else{
-                                            errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                            return false;
-                                        }
-                                    }
-                                }
-                            } else if(item.Regex_Validation__c == "itin-validation"){
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                var regexExp = new RegExp('^[0-9]{3}\-[0-9]{2}\-[0-9]{4}$');
-                                if(valueVal!= "" && valueVal!="111-11-1111" && valueVal!="333-33-3333" && valueVal!="666-66-6666" && valueVal!="123-45-6789" && valueVal.charAt(0) == "9" && regexExp.test(valueVal)){
-                                    if(valueVal.slice(0,3)!= "000" && valueVal.slice(0,3)!= "666" && valueVal.slice(4, 6) != "00" && valueVal.slice(7, 11) != "0000"){
-                                        return true;
-                                    } else {
-                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                        return false;
-                                    }
-                                } else {
-                                    errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                    return false;
-                                }
-                            } else {
-                                var regexExp = new RegExp(item.Regex_Validation__c);
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null && regexExp.test(valueVal)){
-                                    return true;
-                                }else{
-                                    errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                    return false;
-                                }  
-                            }
-                        } else {
-                            if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
-                                return true;
-                            } else {
-                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
-                                return false;
-                            }  
-                        }
-                    } else {
-                        if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
-                            if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
+                            var valueVal = fieldValuesWrapper[index].get("v.value");
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
@@ -588,8 +511,56 @@
                                         return true;
                                     }else{
                                         errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        errorMsgsArray.push(errorMessage);
                                         return false;
-                                    }  
+                                    }
+                                }else if(item.Regex_Validation__c == "ssn-validation"){
+                                    var valueVal = fieldValuesWrapper[index].get("v.value");
+                                    var regexExp = new RegExp('^[0-9]{9}$');
+                                    var ssn = component.get("v.isSSNchanged");
+                                    if(!ssn){
+                                        return true;
+                                    }else{
+                                        if(valueVal.charAt(0) == "9"){
+                                            if(valueVal.charAt(3) == "9" || valueVal.charAt(3) == "7"){
+                                                if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
+                                                    return true;
+                                                }else{
+                                                    errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                    errorMsgsArray.push(errorMessage);
+                                                    return false;
+                                                }
+                                            }else{
+                                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                errorMsgsArray.push(errorMessage);
+                                                return false;
+                                            }
+                                        }else{
+                                            if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
+                                                return true;
+                                            }else{
+                                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                errorMsgsArray.push(errorMessage);
+                                                return false;
+                                            }
+                                        }
+                                    }
+                                } else if(item.Regex_Validation__c == "itin-validation"){
+                                    var valueVal = fieldValuesWrapper[index].get("v.value");
+                                    var regexExp = new RegExp('^[0-9]{3}\-[0-9]{2}\-[0-9]{4}$');
+                                    if(valueVal!="111-11-1111" && valueVal!="333-33-3333" && valueVal!="666-66-6666" && valueVal!="123-45-6789" && valueVal.charAt(0) == "9" && regexExp.test(valueVal)){
+                                        if(valueVal.slice(0,3)!= "000" && valueVal.slice(0,3)!= "666" && valueVal.slice(4, 6) != "00" && valueVal.slice(7, 11) != "0000"){
+                                            return true;
+                                        } else {
+                                            errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                            errorMsgsArray.push(errorMessage);
+                                            return false;
+                                        }
+                                    } else {
+                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        errorMsgsArray.push(errorMessage);
+                                        return false;
+                                    }
                                 } else {
                                     var regexExp = new RegExp(item.Regex_Validation__c);
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
@@ -597,6 +568,97 @@
                                         return true;
                                     }else{
                                         errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        errorMsgsArray.push(errorMessage);
+                                        return false;
+                                    }  
+                                }
+                            }else{
+                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                errorMsgsArray.push(errorMessage);
+                                return false;
+                            }
+                        } else {
+                            var valueVal = fieldValuesWrapper[index].get("v.value");
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                                return true;
+                            } else {
+                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                errorMsgsArray.push(errorMessage);
+                                return false;
+                            }  
+                        }
+                    } else {
+                        if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
+                            var valueVal = fieldValuesWrapper[index].get("v.value");
+                            if(valueVal != "" && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                                if(item.Regex_Validation__c == "Date-Validation"){
+                                    var valueVal = fieldValuesWrapper[index].get("v.value");
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate < compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        errorMsgsArray.push(errorMessage);
+                                        return false;
+                                    }  
+                                } else if(item.Regex_Validation__c == "ssn-validation"){
+                                    var valueVal = fieldValuesWrapper[index].get("v.value");
+                                    var regexExp = new RegExp('^[0-9]{9}$');
+                                    var ssn = component.get("v.isSSNchanged");
+                                    if(!ssn){
+                                        return true;
+                                    }else{
+                                        if(valueVal.charAt(0) == "9"){
+                                            if(valueVal.charAt(3) == "9" || valueVal.charAt(3) == "7"){
+                                                if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
+                                                    return true;
+                                                }else{
+                                                    errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                    errorMsgsArray.push(errorMessage);
+                                                    return false;
+                                                }
+                                            }else{
+                                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                errorMsgsArray.push(errorMessage);
+                                                return false;
+                                            }
+                                        }else{
+                                            if(valueVal.slice(0,3)!= "000" && regexExp.test(valueVal)){
+                                                return true;
+                                            }else{
+                                                errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                                errorMsgsArray.push(errorMessage);
+                                                return false;
+                                            }
+                                        }
+                                    }
+                                } else if(item.Regex_Validation__c == "itin-validation"){
+                                    var valueVal = fieldValuesWrapper[index].get("v.value");
+                                    var regexExp = new RegExp('^[0-9]{3}\-[0-9]{2}\-[0-9]{4}$');
+                                    if(valueVal!="111-11-1111" && valueVal!="333-33-3333" && valueVal!="666-66-6666" && valueVal!="123-45-6789" && valueVal.charAt(0) == "9" && regexExp.test(valueVal)){
+                                        if(valueVal.slice(0,3)!= "000" && valueVal.slice(0,3)!= "666" && valueVal.slice(4, 6) != "00" && valueVal.slice(7, 11) != "0000"){
+                                            return true;
+                                        } else {
+                                            errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                            errorMsgsArray.push(errorMessage);
+                                            return false;
+                                        }
+                                    } else {
+                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        errorMsgsArray.push(errorMessage);
+                                        return false;
+                                    }
+                                } else {
+                                    var regexExp = new RegExp(item.Regex_Validation__c);
+                                    var valueVal = fieldValuesWrapper[index].get("v.value");
+                                    if(regexExp.test(valueVal)){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
+                                        errorMsgsArray.push(errorMessage);
                                         return false;
                                     }  
                                 }
@@ -611,23 +673,17 @@
                     return true;
                 }  
             });
-            if(PatternAndFlagCheck){
+            if(errorMsgsArray.length==0){
                 component.set("v.nextFlag", true);                    
             }
             else{
                 component.set("v.nextFlag", false);
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": errorMessage,
-                    "type": "error"
-                });
-                toastEvent.fire();
+                component.set("v.errorMsgsList", errorMsgsArray);
+                component.set("v.showErrorMsgs", true); 
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
-        else if(licenseWrapper[tabNumber].subheader == "License Information"){
-            debugger;
-            console.log('Entered license Information');
+        else if(licenseWrapper[tabNumber].subheader == "License Information" || licenseWrapper[tabNumber].subheader == 'Questions'){
             var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
@@ -638,11 +694,11 @@
                     if(item.isMandatoryQues){
                         if(item.regex != undefined && item.regex != ""){
                             if(item.regex == "Date-Validation"){
-                                //
+                                return true;
                             } else {
                                 var regexExp = new RegExp(item.regex);
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != "" && regexExp.test(valueVal)){
                                     return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -651,7 +707,7 @@
                             }
                         } else {
                             var valueVal = item.value;
-                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal.trim() != "" ){
+                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != "" ){
                                 return true;
                             } else {
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -661,13 +717,13 @@
                     } else {
                         if(item.regex != undefined && item.regex != ""){
                             var valueVal = item.value;
-                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal.trim() != "" ){
+                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != "" ){
                                 if(item.regex == "Date-Validation"){
-                                    //
+                                    return true;
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                    if(regexExp.test(valueVal)){
                                         return true;
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -698,23 +754,48 @@
                 });
                 toastEvent.fire();
             }            
-        }
-            else if(licenseWrapper[tabNumber].subheader == "Endorsement"){
-                var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
-                var validateFields = fieldsWrapper.filter(function(item){
-                    return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-                });                            
-                var errorMessage = "Please fill valid data";
-                var questionsFlagCheck = validateFields.every(function validateFields(item, index) {
-                    if(item.renderedOnUi){
-                        if(item.isMandatoryQues){
-                            if(item.regex != undefined && item.regex != ""){
+        } 
+        else if(licenseWrapper[tabNumber].subheader == "Endorsement"){
+            var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
+            var validateFields = fieldsWrapper.filter(function(item){
+                return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
+            });                            
+            var errorMessage = "Please fill valid data";
+            var questionsFlagCheck = validateFields.every(function validateFields(item, index) {
+                if(item.renderedOnUi){
+                    if(item.isMandatoryQues){
+                        if(item.regex != undefined && item.regex != ""){
+                            if(item.regex == "Date-Validation"){
+                                //
+                            } else {
+                                var regexExp = new RegExp(item.regex);
+                                var valueVal = item.value;
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                    return true;
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                    return false;
+                                }  
+                            }
+                        } else {
+                            var valueVal = item.value;
+                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
+                                return true;
+                            } else {
+                                errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                return false;
+                            }  
+                        }
+                    } else {
+                        if(item.regex != undefined && item.regex != ""){
+                            var valueVal = item.value;
+                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
                                 if(item.regex == "Date-Validation"){
                                     //
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
                                         return true;
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -722,236 +803,190 @@
                                     }  
                                 }
                             } else {
-                                var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && 
-								valueVal != "--Select one--" && valueVal.trim() != "" ){
-                                    return true;
-                                } else {
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
-                                    return false;
-                                }  
-                            }
-                        } else {
-                            if(item.regex != undefined && item.regex != ""){
-                                var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && 
-								valueVal != "--Select one--" && valueVal.trim() != "" ){
-                                    if(item.regex == "Date-Validation"){
-                                        //
-                                    } else {
-                                        var regexExp = new RegExp(item.regex);
-                                        var valueVal = item.value;
-                                        if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" &&valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
-                                            return true;
-                                        }else{
-                                            errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
-                                            return false;
-                                        }  
-                                    }
-                                } else {
-                                    return true;
-                                }
-                            } else {
                                 return true;
                             }
+                        } else {
+                            return true;
+                        }
+                    }
+                } else {
+                    return true;
+                }  
+            });
+            if(questionsFlagCheck){
+                component.set("v.nextFlag", true);                    
+            }
+            else{
+                component.set("v.nextFlag", false);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": errorMessage,
+                    "type": "error"
+                });
+                toastEvent.fire();
+            }            
+        }else if(licenseWrapper[tabNumber].subheader == "Financial Guarantee"){
+            var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
+            var validateFields = fieldsWrapper.filter(function(item){
+                return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
+            });                            
+            var errorMessage = "Please fill valid data";
+            var financequestionsFlagCheck = validateFields.every(function validateFields(item, index) {
+                if(item.renderedOnUi){
+                    if(item.isMandatoryQues){
+                        if(item.regex != undefined && item.regex != ""){
+                            var valueVal = item.value;
+                            if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!=""){
+                                if(item.regex == "Future-Date"){
+                                    var valueVal = item.value;
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate > compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }
+                                } else if(item.regex == "Policy-Amount"){
+                                    var valueVal = item.value;
+                                    var minValue = parseInt(item.minValue);
+                                    if(valueVal >= minValue){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }
+                                }else {
+                                    var regexExp = new RegExp(item.regex);
+                                    var valueVal = item.value;
+                                    if(regexExp.test(valueVal)){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }  
+                                }
+                            }else{
+                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                return false;
+                            }
+                        } else {
+                            var valueVal = item.value;
+                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!="" ){
+                                return true;
+                            } else {
+                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                return false;
+                            }  
                         }
                     } else {
-                        return true;
-                    }  
-                });
-                if(questionsFlagCheck){
-                    component.set("v.nextFlag", true);                    
-                }
-                else{
-                    component.set("v.nextFlag", false);
-                    var toastEvent = $A.get("e.force:showToast");
-                    toastEvent.setParams({
-                        "title": "ERROR!",
-                        "message": errorMessage,
-                        "type": "error"
-                    });
-                    toastEvent.fire();
-                }            
-            }
-        
-                else if(licenseWrapper[tabNumber].subheader == "Financial Guarantee"){
-                    var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
-                    var validateFields = fieldsWrapper.filter(function(item){
-                        return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-                    });                            
-                    var errorMessage = "Please fill valid data";
-                    var financequestionsFlagCheck = validateFields.every(function validateFields(item, index) {
-                        if(item.renderedOnUi){
-                            if(item.isMandatoryQues){
-                                if(item.regex != undefined && item.regex != ""){
-                                    if(item.regex == "Future-Date"){
-                                        var valueVal = item.value;
-                                        if(valueVal!="" && valueVal!=null){
-                                            var today = new Date();
-                                            var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                            compareDate = new Date(compareDate);
-                                            var enteredDate = new Date(valueVal);
-                                            if(enteredDate > compareDate){
-                                                return true;
-                                            }else{
-                                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                return false;
-                                            }
-                                        }else{
-                                            errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                            return false;
-                                        }
-                                    } else if(item.regex == "Policy-Amount"){
-                                        var valueVal = item.value;
-                                        if(valueVal!="" && valueVal!=null){
-                                            var minValue = parseInt(item.minValue);
-                                            if(valueVal >= minValue){
-                                                return true;
-                                            }else{
-                                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                return false;
-                                            }
-                                        }else{
-                                            errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                            return false;
-                                        }
-                                    }else {
-                                        var regexExp = new RegExp(item.regex);
-                                        var valueVal = item.value;
-                                        if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" &&valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
-                                            return true;
-                                        }else{
-                                            errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                            return false;
-                                        }  
-                                    }
-                                } else {
+                        if(item.regex != undefined && item.regex != ""){
+                            var valueVal = item.value;
+                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!="" ){
+                                if(item.regex == "Future-Date"){
                                     var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" &&
-									valueVal != "--Select one--" && valueVal.trim() != "" ){
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate > compareDate){
                                         return true;
-                                    } else {
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    } 
+                                } else if(item.regex == "Policy-Amount"){
+                                    var valueVal = item.value;
+                                    var minValue = parseInt(item.minValue);
+                                    if(valueVal >= minValue){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    }
+                                }else {
+                                    var regexExp = new RegExp(item.regex);
+                                    var valueVal = item.value;
+                                    if(regexExp.test(valueVal)){
+                                        return true;
+                                    }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
                                     }  
                                 }
                             } else {
-                                if(item.regex != undefined && item.regex != ""){
-                                    var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal.trim() != "" ){
-                                        if(item.regex == "Future-Date"){
-                                            var valueVal = item.value;
-                                            if(valueVal != "" && valueVal != null){
-                                                var today = new Date();
-                                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                                compareDate = new Date(compareDate);
-                                                var enteredDate = new Date(valueVal);
-                                                if(enteredDate > compareDate){
-                                                    return true;
-                                                }else{
-                                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                    return false;
-                                                } 
-                                            }else{
-                                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                return false;
-                                            } 
-                                        } else if(item.regex == "Policy-Amount"){
-                                            var valueVal = item.value;
-                                            if(valueVal!="" && valueVal!=null){
-                                                var minValue = parseInt(item.minValue);
-                                                if(valueVal >= minValue){
-                                                    return true;
-                                                }else{
-                                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                    return false;
-                                                }
-                                            }else{
-                                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                return false;
-                                            }
-                                        }else {
-                                            var regexExp = new RegExp(item.regex);
-                                            var valueVal = item.value;
-                                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" 
-											 && valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
-                                                return true;
-                                            }else{
-                                                errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                                return false;
-                                            }  
-                                        }
-                                    } else {
-                                        return true;
-                                    }
-                                } else {
-                                    return true;
-                                }
+                                return true;
                             }
                         } else {
                             return true;
-                        }  
-                    });
-                    if(financequestionsFlagCheck){
-                        component.set("v.nextFlag", true);                    
-                    }
-                    else{
-                        component.set("v.nextFlag", false);
-                        var toastEvent = $A.get("e.force:showToast");
-                        toastEvent.setParams({
-                            "title": "ERROR!",
-                            "message": errorMessage,
-                            "type": "error"
-                        });
-                        toastEvent.fire();
-                    }            
-                } else if(licenseWrapper[tabNumber].subheader == "Qualifying Information"){
-                    var qualificationValidation = licenseWrapper[tabNumber].mandatorySubsection;
-                    var qualificationValid = false;
-                    var counter = 0;
-                    if(qualificationValidation != null){
-                        if(document.getElementsByClassName('tile-wrap').length != undefined && document.getElementsByClassName('tile-wrap').length != 0){
-                            var qualifications = document.getElementsByClassName('tile-wrap');
-                            for(var i=0; i<qualifications.length; i++){
-                                if(qualifications[i].firstElementChild != null){
-                                    if(qualifications[i].firstElementChild.classList.contains('recordDetail')){
-                                        counter = counter+1;
-                                    }
-                                }
-                            }
-                            var mandatoryqualification = qualificationValidation.split(",");
-                            if(mandatoryqualification.length != undefined && mandatoryqualification.length !=0 && mandatoryqualification.length == counter){
-                                qualificationValid = true;
-                            } else {
-                                qualificationValid = false;
-                                errorMessage = "Please fill the mandatory sections";
-                            }
-                        } else {
-                            qualificationValid = false;
-                            errorMessage = "Please fill the mandatory sections";
                         }
-                    } else {
+                    }
+                } else {
+                    return true;
+                }  
+            });
+            if(financequestionsFlagCheck){
+                component.set("v.nextFlag", true);                    
+            }
+            else{
+                component.set("v.nextFlag", false);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": errorMessage,
+                    "type": "error"
+                });
+                toastEvent.fire();
+            }            
+        }else if(licenseWrapper[tabNumber].subheader == "Qualifying Information"){
+            var qualificationValidation = licenseWrapper[tabNumber].mandatorySubsection;
+            var qualificationValid = false;
+            var counter = 0;
+            if(qualificationValidation != null){
+                if(document.getElementsByClassName('tile-wrap').length != undefined && document.getElementsByClassName('tile-wrap').length != 0){
+                    var qualifications = document.getElementsByClassName('tile-wrap');
+                    for(var i=0; i<qualifications.length; i++){
+                        if(qualifications[i].firstElementChild != null){
+                            if(qualifications[i].firstElementChild.classList.contains('recordDetail')){
+                                counter = counter+1;
+                            }
+                        }
+                    }
+                    var mandatoryqualification = qualificationValidation.split(",");
+                    if(mandatoryqualification.length != undefined && mandatoryqualification.length !=0 && mandatoryqualification.length == counter){
                         qualificationValid = true;
+                    } else {
+                        qualificationValid = false;
+                        errorMessage = "Please fill the mandatory sections";
                     }
-                    
-                    if(qualificationValid){
-                        component.set("v.nextFlag", true);                    
-                    }
-                    else{
-                        component.set("v.nextFlag", false);
-                        var toastEvent = $A.get("e.force:showToast");
-                        toastEvent.setParams({
-                            "title": "ERROR!",
-                            "message": errorMessage,
-                            "type": "error"
-                        });
-                        toastEvent.fire();
-                    }     
+                } else {
+                    qualificationValid = false;
+                    errorMessage = "Please fill the mandatory sections";
                 }
-                    else {
-                        component.set("v.nextFlag", true);  
-                    }
-        
+            } else {
+                qualificationValid = true;
+            }
+            
+            if(qualificationValid){
+                component.set("v.nextFlag", true);                    
+            }
+            else{
+                component.set("v.nextFlag", false);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": errorMessage,
+                    "type": "error"
+                });
+                toastEvent.fire();
+            }     
+        }
+        else {
+            component.set("v.nextFlag", true);  
+        }
     },
     
     

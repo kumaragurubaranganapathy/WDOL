@@ -6,6 +6,7 @@
     <aura:attribute name="applicationId" type="Id"/>
     <aura:attribute name="flagHideAndShow" type="String"/>
     <aura:attribute name="isRenewal" type="Boolean" default="false"/>
+	<aura:attribute name="isSSNchanged" type="Boolean"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:registerEvent name="CmpEvent" type="c:LnP_applyLicense"/> <!-- added by AD -->
     
