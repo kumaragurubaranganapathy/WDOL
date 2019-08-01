@@ -130,7 +130,7 @@
             <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
-                        <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                        <h2 class="title slds-text-heading--large">Review your Address</h2><br/>
                         <aura:if isTrue = "{!v.isAddressDiff}">
                             <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
                         </aura:if>
@@ -163,7 +163,7 @@
                         </fieldset>
                         <lightning:layout horizontalAlign="center">
                             <lightning:layoutitem padding="around-small">
-                                <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                                <lightning:button  label="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                             </lightning:layoutitem>
                         </lightning:layout>
                     </div>
@@ -280,7 +280,7 @@
             <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
-                        <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                        <h2 class="title slds-text-heading--large">Review Your Address</h2><br/>
                         <aura:if isTrue = "{!v.isAddressDiff}">
                             <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
                         </aura:if>
@@ -313,7 +313,7 @@
                         </fieldset>
                         <lightning:layout horizontalAlign="center">
                             <lightning:layoutitem padding="around-small">
-                                <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                                <lightning:button  label="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                             </lightning:layoutitem>
                         </lightning:layout>
                     </div>
