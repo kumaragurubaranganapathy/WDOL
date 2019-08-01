@@ -13,8 +13,10 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <type>adhoc</type>
+                <name>JV_Approval_queue</name>
+                <type>queue</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Step 1</label>
         <name>Step_1</name>
