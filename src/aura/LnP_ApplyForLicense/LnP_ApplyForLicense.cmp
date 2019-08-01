@@ -49,6 +49,9 @@
     <aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <!--<aura:attribute name="noFeesFlag" type="Boolean" default="false"/> -->
     <!--<aura:attribute name="regexFlag" type="Boolean" default="false"/>-->
+	<aura:attribute name="isSSNchanged" type="Boolean" default="false"/>
+    <aura:attribute name="errorMsgsList" type="List"/>
+    <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
     <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}"/> <!-- Added by AD -->
     
     <force:recordData
@@ -68,7 +71,14 @@
             
         </lightning:breadcrumbs>-->
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" board="{!v.board}" licenseType="{!v.licenseType}"/>
-      <aura:if isTrue="{!v.showEndoMessage}">
+		<aura:if isTrue="{!v.showErrorMsgs}">
+            <ul class="error-messages slds-theme_error">
+                <aura:iteration items="{!v.errorMsgsList}" var="item">
+            		<li>{!item}</li>
+            	</aura:iteration>
+            </ul>
+        </aura:if>
+		<aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
                 {!v.endoMessage}
             </ui:message>
@@ -77,12 +87,12 @@
             <aura:if isTrue="{!and(or(section.sectionName=='Personal Information',section.sectionName=='Business Information'), v.currentTab==section.tabIndex)}">
                 <div class="sectionwidth info headings">{!section.sectionName}</div>
                 <div class="personal-info">                    
-                    <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
+                    <c:LnP_RecordForms isSSNchanged="{!v.isSSNchanged}" aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
                 </div>
                 <aura:set attribute="else">
                     <aura:if isTrue="{!and(or(section.sectionName=='Course Information'), v.currentTab==section.tabIndex)}">
                         <div class="personal-info">                    
-                            <c:LnP_RecordForms aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
+                            <c:LnP_RecordForms isSSNchanged="{!v.isSSNchanged}" aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
                         </div>
                     </aura:if>
                     <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap personal-info':'slds-hide'}">
