@@ -12845,6 +12845,26 @@
         <field>Lead.Email</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>MUSW__Deposit__c.Reapply_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee_Payment__c.Deposit_Reapply_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee_Payment__c.Target_Initial_Apply_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Fee_Payment__c.Target_Reapply_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.Fax</field>
