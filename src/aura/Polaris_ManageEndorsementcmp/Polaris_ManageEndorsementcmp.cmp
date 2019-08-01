@@ -28,37 +28,46 @@
     <div class="content-wrapper">
         <span class="page-info">Manage Endorsement</span>
         
-        <lightning:card title="Endorsement Details">
-            <p class="slds-p-horizontal_small">
-                <table>
-                    <thead>
-                        <th>Endorsement Type</th>
-                        <th>Status</th>
-                        <th>Date Requested</th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        <aura:iteration items="{!v.endorsementList}" var="doc">
-                            <tr>
-                                <td>{!doc.Endorsement_Type__c}</td>
-                                <td>{!doc.Status__c}</td>
-                                <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
-                                <td>
-                                    <aura:if isTrue="{!v.disableRemove}">
-                                    <lightning:button aura:id="button" value="{!doc.Id}" label="Remove" onclick="{!c.remove}"/> 
-                                    </aura:if>
-                                    &nbsp;&nbsp; 
-                                    <aura:if isTrue="{!doc.License_Type__c=='Notary Public'}">
-                                        <lightning:button aura:id="button" value="{!doc.Id}" label="View Providers" onclick="{!c.viewProvider}"/>
-                                        <lightning:button aura:id="button" value="{!doc.Id}" label="Add Providers" onclick="{!c.addProvider}"/>
-                                    </aura:if>
-                                </td>
-                            </tr>              
-                        </aura:iteration>        
-                    </tbody>
-                </table>
-            </p>
-        </lightning:card>
+        <aura:if isTrue="{!not(empty(v.endorsementList))}">               
+            
+            
+            <lightning:card title="Endorsement Details">
+                <p class="slds-p-horizontal_small">
+                    <table>
+                        <thead>
+                            <th>Endorsement Type</th>
+                            <th>Status</th>
+                            <th>Date Requested</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.endorsementList}" var="doc">
+                                <tr>
+                                    <td>{!doc.Endorsement_Type__c}</td>
+                                    <td>{!doc.Status__c}</td>
+                                    <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
+                                    <td>
+                                        <aura:if isTrue="{!v.disableRemove}">
+                                            <lightning:button aura:id="button" value="{!doc.Id}" label="Remove" onclick="{!c.remove}"/> 
+                                        </aura:if>
+                                        &nbsp;&nbsp; 
+                                        <aura:if isTrue="{!doc.License_Type__c=='Notary Public'}">
+                                            <lightning:button aura:id="button" value="{!doc.Id}" label="View Providers" onclick="{!c.viewProvider}"/>
+                                            <lightning:button aura:id="button" value="{!doc.Id}" label="Add Providers" onclick="{!c.addProvider}"/>
+                                        </aura:if>
+                                    </td>
+                                </tr>              
+                            </aura:iteration>        
+                        </tbody>
+                    </table>
+                </p>
+            </lightning:card>
+            <aura:set attribute="else">
+            	<div class="no-endorse">
+                	There are no endorsements currently	
+                </div>
+            </aura:set>
+        </aura:if>
         <aura:if isTrue="{!v.showProvider}">          
             <lightning:card title="Provider Details">
                 <p class="slds-p-horizontal_small">
@@ -84,8 +93,8 @@
             </lightning:card>
         </aura:if>
         
-         <aura:if isTrue="{!v.isModalOpen}">
-             
+        <aura:if isTrue="{!v.isModalOpen}">
+            
             <!-- Modal/Popup Box starts here-->
             <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
@@ -102,14 +111,14 @@
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                         <!--RecordEditForm for Adding Provider details-->
                         <lightning:recordForm
-                            aura:id="providerForm"
-                            objectApiName="Electronic_Notary_Provider_Information__c"
-                            fields="{!v.ProviderFields}"
-                            columns="2"
-                            mode="edit"
-                            onsubmit="{!c.saveData}"
-                             onsuccess="{!c.handleSuccess}" 
-                            oncancel="{!c.closeProviderModel}"/>
+                                              aura:id="providerForm"
+                                              objectApiName="Electronic_Notary_Provider_Information__c"
+                                              fields="{!v.ProviderFields}"
+                                              columns="2"
+                                              mode="edit"
+                                              onsubmit="{!c.saveData}"
+                                              onsuccess="{!c.handleSuccess}" 
+                                              oncancel="{!c.closeProviderModel}"/>
                     </div>
                     
                 </div>
