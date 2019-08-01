@@ -517,14 +517,15 @@ return parser;
             Integer count = 0;
             Integer questioncount = 0;
             Integer FGquestioncount = 0;
+			Integer refcount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
-                
+                refcount++;
                 if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' && fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                     requestDetails.method = 'POST';
                     requestDetails.url = '/services/data/v38.0/sobjects/BGCK__Answer__c';
-                    requestDetails.referenceId = 'refId'+count;
+                    requestDetails.referenceId = 'refId'+refcount;
                     LnP_JSONParser.Body body = new LnP_JSONParser.Body();
                     // system.debug('fieldMap '+fieldMap.value);
                     if(fieldMap.value != null && fieldMap.value != ''){
