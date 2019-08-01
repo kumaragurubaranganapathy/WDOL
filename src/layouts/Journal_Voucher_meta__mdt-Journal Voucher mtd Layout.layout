@@ -16,17 +16,29 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>JV_Document_Title__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>JV_Explanation_of_Entry__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Is_Active__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Batch_Time__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Doc_Number_Prefix__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsProtected</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Is_Active__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -56,7 +68,7 @@
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
@@ -66,8 +78,14 @@
     </layoutSections>
     <relatedLists>
         <fields>MasterLabel</fields>
+        <fields>JV_name__c</fields>
         <fields>DeveloperName</fields>
         <fields>NamespacePrefix</fields>
+        <fields>Item_Intake_Method__c</fields>
+        <fields>Item_Payment_Method__c</fields>
+        <fields>Item_Transaction_Code__c</fields>
+        <fields>Item_Fund_GL__c</fields>
+        <fields>Item_FundAccSystem__c</fields>
         <relatedList>Journal_Voucher_Filter__mdt.Journal_Voucher_mtd__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -76,7 +94,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002QpU5</masterLabel>
+        <masterLabel>00hr0000002Qffw</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
