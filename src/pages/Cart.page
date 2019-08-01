@@ -220,9 +220,11 @@
     <apex:variable var="hasCC" value="false"/>
     
     <apex:form id="f">
+		<!----
         <apex:outputPanel rendered="{!isPortalUser}">
 			<img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
 		</apex:outputPanel>
+		--->
         <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '’s Cart', 'Your Cart')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
@@ -846,6 +848,7 @@
             </form>
         </apex:outputPanel>
     </apex:outputPanel>
+	<!----
     <div class="footer" data-aura-rendered-by="170:0">
         <div class="footerWrapper cLnP_Footer" data-aura-rendered-by="173:0" data-aura-class="cLnP_Footer">
             <div class="slds-grid botNav" data-aura-rendered-by="174:0">
@@ -862,4 +865,5 @@
             </div>
         </div>
     </div>
+	--->
 </apex:page>
