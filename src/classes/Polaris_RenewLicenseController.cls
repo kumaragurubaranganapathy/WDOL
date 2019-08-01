@@ -154,7 +154,7 @@ public class Polaris_RenewLicenseController {
         for(Question__c Ques : lstQuestions )
         {
             LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
-            labelToFields.label = Ques.Question_Body__c;
+            labelToFields.label =  Ques.Question_Body__c.replaceAll('\\<.*?>','');
             labelToFields.labelId = Ques.Id;
             labelToFields.fieldType = Ques.Data_Type__c;
             labelToFields.hasChild = Ques.Has_dependent_questions__c;
@@ -598,8 +598,10 @@ return parser;
                 }    
             }
             Integer count = 0;
+            Integer subcount = 0;
             system.debug('submissionFields'+submissionFields);
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
+                subcount++;
                 if(fieldMap.isMandatorySub == true){
                     count++;
                 }
@@ -609,34 +611,36 @@ return parser;
                 system.debug('counttotal'+count);
                 system.debug('filesSubmitted'+filesSubmitted);
                 if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
+                    Integer innerCount = 0;
                     for(String contentdocId : fieldMap.multiValues){
-                        Integer innerCount = 0;
+                        innerCount++;
                         LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                         requestDetails.method = 'DELETE';
                         requestDetails.url = '/services/data/v38.0/sobjects/ContentDocumentLink/'+docLinkMap.get(contentdocId);
-                        requestDetails.referenceId = 'refDocId'+count+innerCount;
+                        requestDetails.referenceId = 'refDocId'+subcount+innerCount;
                         requestDetailsList.add(requestDetails);
                     }
                 }
                 LnP_JSONParser.CompositeRequest requestDetailSub = new LnP_JSONParser.CompositeRequest();
                 requestDetailSub.method = 'POST';
                 requestDetailSub.url = '/services/data/v38.0/sobjects/MUSW__Submission__c';
-                requestDetailSub.referenceId = 'refSubId'+count;
+                requestDetailSub.referenceId = 'refSubId'+subcount;
                 LnP_JSONParser.Body bodySub = new LnP_JSONParser.Body();
                 bodySub.Name = fieldMap.conditionalAnswer;
                 bodySub.MUSW_Description = fieldMap.label;
                 bodySub.MUSW_Application2= appId;
                 bodySub.Hardcopy = fieldMap.acknowledgeResponse;
                 bodySub.ContentDocumentId ='';
+                Integer innerCount = 0;
                 if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
                     for(String contentdocId : fieldMap.multiValues){
-                        Integer innerCount = 0;
+                        innerCount++;
                         LnP_JSONParser.CompositeRequest requestDetailsContent = new LnP_JSONParser.CompositeRequest();
                         requestDetailsContent.method = 'POST';
                         requestDetailsContent.url = '/services/data/v38.0/sobjects/ContentDocumentLink';
-                        requestDetailsContent.referenceId = 'refContId'+count;
+                        requestDetailsContent.referenceId = 'refContId'+innerCount;
                         LnP_JSONParser.Body bodyLink = new LnP_JSONParser.Body();
-                        bodyLink.LinkedEntityId = '@{refSubId'+count+'.id}';
+                        bodyLink.LinkedEntityId = '@{refSubId'+innerCount+'.id}';
                         bodyLink.ContentDocumentId = contentdocId;
                         bodyLink.ShareType = 'I';
                         requestDetailsContent.body = bodyLink;
@@ -653,6 +657,7 @@ return parser;
                 submissionsIncomplete = true;
             }
         }
+
         finalRequest.compositeRequest = requestDetailsList;
         String JSONstr = JSON.serialize(finalRequest);
         System.debug('JSONstr-->'+JSONstr);
