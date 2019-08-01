@@ -51,33 +51,39 @@
                                 <tbody>
                                     <aura:iteration items="{!v.pendingCoursesPagination}" var="tableData" indexVar="ind">
                                         <tr class="slds-hint-parent">
-                                            <td data-label="Course name" class="cell-style">
-                                                <aura:if isTrue="{!tableData.Course_Name__c}">
-                                                    <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Name__c}</div>
+                                            <td data-label="Course #" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Name}">
+                                                    <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
+                                                    <aura:set attribute="else">None</aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td data-label="Course Name" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Course_Title__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Course_Title__c}">{!tableData.Course_Title__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
                                             <td data-label="Course type" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Course_Type__c}">
-                                                    <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Type__c}</div>
+                                                    <div class="slds-truncate" title="{!tableData.Course_Type__c}">{!tableData.Course_Type__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="Licensure level" class="cell-style">
+                                         <!--   <td data-label="Licensure level" class="cell-style">
                                                 <aura:if isTrue="{!tableData.What_Licensure_Level__c}">
                                                     <div class="slds-truncate" title="{!tableData.What_Licensure_Level__c}">{!tableData.What_Licensure_Level__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
-                                            </td>
+                                            </td> -->
                                             <td data-label="Delivery method" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Delivery_Method__c}">
                                                     <div class="slds-truncate" title="{!tableData.Delivery_Method__c}">{!tableData.Delivery_Method__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="Clock hours" class="cell-style">
-                                                <aura:if isTrue="{!tableData.Clock_Hours_Continuing_Education__c}">
-                                                    <div class="slds-truncate" title="{!tableData.Clock_Hours_Continuing_Education__c}">{!tableData.Clock_Hours_Continuing_Education__c}</div>
+                                            <td data-label="Clock Hours" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Clock_Hours__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Clock_Hours__c}">{!tableData.Clock_Hours__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
@@ -382,7 +388,7 @@
         
         <aura:set attribute="else">
             <div class="empty-state">
-            <div>There are no pending applications to display</div>
+            <div class="slds-align_absolute-center">There are no pending applications to display</div>
             </div>
         </aura:set> 
         

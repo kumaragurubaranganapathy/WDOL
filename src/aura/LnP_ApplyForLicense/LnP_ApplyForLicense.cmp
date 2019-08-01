@@ -3,7 +3,7 @@
     <aura:attribute name="currentTab" type="Integer" default="1"/>
     <aura:attribute name="totalTabs" type="Integer" default="1"/>
     <aura:attribute name="licenseType" type="String" default="licenseType"/>
-    <aura:attribute name="board" type="String" default="board"/>
+    <aura:attribute name="board" type="String" default="board"/>	
     <aura:attribute name="applicationType" type="String" default="applicationType"/>
     <aura:attribute name="flowType" type="String" default="License"/>
     <aura:attribute name="licenseWrapper" type="LnP_ApplyForLicenseWrapper[]"/>
@@ -49,10 +49,11 @@
     <aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <!--<aura:attribute name="noFeesFlag" type="Boolean" default="false"/> -->
     <!--<aura:attribute name="regexFlag" type="Boolean" default="false"/>-->
-	<aura:attribute name="isSSNchanged" type="Boolean" default="false"/>
+    <aura:attribute name="isSSNchanged" type="Boolean" default="false"/>
     <aura:attribute name="errorMsgsList" type="List"/>
     <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
     <aura:attribute name="saveAndSubmit" type="Boolean" default="false" />
+    <aura:attribute name="approExpirationFlag" type="Boolean" default="false" />
     <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}"/> <!-- Added by AD -->
     
     <force:recordData
@@ -66,20 +67,20 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-      <!--  <lightning:breadcrumbs class="licensetype">
+        <!--  <lightning:breadcrumbs class="licensetype">
             <lightning:breadcrumb class="breadcumb" label="{!'Profession&nbsp;:'+v.board}" />
             <lightning:breadcrumb class="breadcumb" label="{!'LicenseType&nbsp;:'+v.licenseType}" />
             
         </lightning:breadcrumbs>-->
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" board="{!v.board}" licenseType="{!v.licenseType}"/>
-		<aura:if isTrue="{!v.showErrorMsgs}">
+        <aura:if isTrue="{!v.showErrorMsgs}">
             <ul class="error-messages slds-theme_error">
                 <aura:iteration items="{!v.errorMsgsList}" var="item">
             		<li>{!item}</li>
             	</aura:iteration>
             </ul>
         </aura:if>
-		<aura:if isTrue="{!v.showEndoMessage}">
+        <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
                 {!v.endoMessage}
             </ui:message>
@@ -116,7 +117,7 @@
                                     <div id="SubmitAndReview" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings underline">Questions Review</div><br/>
                                         <!-- <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes">
-                               {!varRes + 1}. <ui:outputRichText value="{!responses.question}"/><br></br>
+                                <label >{!varRes + 1}. {!responses.question}</label><br></br>
         <p><aura:if isTrue="{!responses.answer != null}">
                                    <i>{!responses.answer}</i><br></br> 
                                     <aura:set attribute="else">
@@ -128,8 +129,8 @@
                                             <!--<span >{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-small-size--1-of-1 ques">
                                                 <div class="quesclr">
-                                                    <!--  <ui:inputText disabled = "true" value="{!responses.question}"/>-->
                                                     <ui:outputRichText value="{!responses.question}"/>
+                                                    
                                                 </div>
                                                 <!-- <p> -->  
                                                 <aura:if isTrue="{!responses.answer != null}"> 
@@ -158,7 +159,7 @@
                                             <!--<span >{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
                                                 <div>
-                                                     <ui:outputRichText value="{!attResponses.attachment}"/>
+                                                    <ui:outputRichText  value="{!attResponses.attachment}"/>
                                                     <aura:if isTrue="{!(((attResponses.uploadOrAck == true &amp;&amp; attResponses.fileNos == 0) || (attResponses.uploadOrAck == null &amp;&amp; (attResponses.acknowledgeResponse == null || attResponses.acknowledgeResponse == false))) &amp;&amp; attResponses.isMandatorySub == true)}"> 
                                                         <div class = "revAndSubErrorFont">
                                                             <ui:outputRichText value="**Required Submission/Acknowledgement not Complete."/>
@@ -194,13 +195,13 @@
                                         </aura:iteration> 
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
                                     </div>
-                                    <aura:if isTrue="{!v.licenseType=='Appraiser Course'}">
+                                 <!--   <aura:if isTrue="{!v.licenseType=='Appraiser Course'}">
                                         <div class="slds-form-element__control slds-p-bottom_medium">
                                             <div >
                                                 <span class="sentences">{!$Label.c.LnP_Course_Certification}</span>
                                             </div>
                                         </div>
-                                    </aura:if>
+                                    </aura:if> -->
                                     <div id="declarationsValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="declaration headings">Declaration</div><br/>
                                         <div class="slds-form-element">
@@ -234,8 +235,6 @@
                                             <div class="error checkbox-error slds-m-top_large">{!v.emailDistributionError}</div>
                                         </div> 
                                     </aura:if>  
-                                    
-                                    
                                     <aura:if isTrue="{!v.licenseType=='Appraiser Course'}">
                                         <div class="slds-form-element__control slds-p-bottom_medium">
                                             <div >
@@ -247,7 +246,7 @@
                                     <div id="AttestationValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
                                         <div class="attestation headings">Signature</div>
                                         <div class="attestBody sentences">Attest before proceeding.</div>
-										<div class="attestBody sentences">Electronic signature name must match name shown below.</div>
+                                        <div class="attestBody sentences">Electronic signature name must match name shown below.</div>
                                         <div class="slds-form-element  field-item review-item attest-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
                                             <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
                                             (<span>{!v.currentUser.Name}</span>)
@@ -344,7 +343,7 @@
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' dispItem slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
-                                                            <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                            <span class="slds-form-element__label"><ui:outputRichText  value="{!question.label}"/></span> 
                                                             <ui:inputTextArea  value="{!question.value}" rows="5" />
                                                         </div>
                                                     </div>
@@ -379,7 +378,7 @@
                                                         </div>
                                                         
                                                     </aura:if> <!--</th></tr></tbody>-->
-                                                   
+                                                    
                                                 </aura:if><!--</table>-->
                                                 
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.acknowledge)}">

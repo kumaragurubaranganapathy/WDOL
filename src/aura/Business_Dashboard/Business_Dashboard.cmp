@@ -15,6 +15,8 @@
     <aura:attribute name="LicenseData" type="MUSW__License2__c" />
     <aura:attribute name="EndorsementData" type="String[]" />
     <aura:attribute name="AddressData" type="List" />
+	<aura:attribute name="PhysicalAddressData" type="List" />
+    <aura:attribute name="MailingAddressData" type="List" />
     <aura:attribute name="existingAcc" type="boolean" default="false" />
     <aura:attribute name="isDisplayTabs" type="boolean" default="true"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -151,32 +153,35 @@
                                         </div>
                                     </lightning:layoutItem>
                                     
+                                   
                                     <lightning:layoutItem size="12" class="phy-address" mediumDeviceSize="4">
-                                        <aura:iteration items="{!v.AddressData}" var="addressvar">
-                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Physical Address'}">
+                                        <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
+                                           
                                                 <div class="label-style">Physical Address:</div> 
                                                 <div class="address">
-                                                    {!addressvar.Street__c},<br />
-                                                    {!addressvar.City__c},<br />
-                                                    {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                    {!addressvar.MUSW__Street2__c},<br />
+                                                    {!addressvar.MUSW__City__c},<br />
+                                                    {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
                                                 </div>
-                                            </aura:if>
+                                            
                                         </aura:iteration>  
                                     </lightning:layoutItem>
                                     
                                     
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
-                                        <aura:iteration items="{!v.AddressData}" var="addressvar">
-                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Mailing Address'}">
+                                        <aura:iteration items="{!v.MailingAddressData}" var="addressvar">
+                                          
                                                 <div class="label-style">Mailing Address:</div> 
                                                 <div class="address">
-                                                    {!addressvar.Street__c},<br />
-                                                    {!addressvar.City__c},<br />
-                                                    {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                    {!addressvar.MUSW__Street2__c},<br />
+                                                    {!addressvar.MUSW__City__c},<br />
+                                                    {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
                                                 </div>
-                                            </aura:if>
+                                            
                                         </aura:iteration>
                                     </lightning:layoutItem> 
+                                    
+                                </lightning:layout>
                                     
                                 </lightning:layout>
                                 
@@ -267,7 +272,7 @@
                                     <div class="field-style"><span class="label-style">Phone : </span>{!v.SelectedAccountDetails.Business_Phone__c}</div> -->
                                 </lightning:layoutItem>
                                 
-                                <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
+                                 <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
                                         <aura:if isTrue = "{!parcel.Address_Type__c == 'HOME'}">
                                             <div class="field-style address">
@@ -367,19 +372,14 @@
                                             </lightning:layoutItem>                                            
                                             <lightning:layoutItem size="12" class="contact-item" mediumDeviceSize="4">
                                                 <div class="label-style">Physical Address:</div> 
-                                                <aura:if isTrue="{!!empty(v.AddressData)}">
+                                                <aura:if isTrue="{!!empty(v.PhysicalAddressData)}">
                                                     <aura:iteration items="{!v.AddressData}" var="addressvar">
-                                                        
-                                                        
-                                                        
-                                                        <div class="address data-style">
-                                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Physical Address'}">
-                                                                {!addressvar.Street__c},<br />
-                                                                {!addressvar.City__c},<br />
-                                                                {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
-                                                                
-                                                            </aura:if>
-                                                        </div>
+                                                         <div class="address data-style">
+                                                           
+                                                                {!addressvar.MUSW__Street2__c},<br />
+                                                                {!addressvar.MUSW__City__c},<br />
+                                                                {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                         </div>
                                                         
                                                     </aura:iteration> 
                                                     <aura:set attribute="else">
@@ -391,18 +391,18 @@
                                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
                                                 <div class="label-style">Mailing Address:</div> 
                                                 <aura:if isTrue="{!!empty(v.AddressData)}">
-                                                    <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                                    <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
                                                         
                                                         
                                                         
                                                         <div class="address data-style">
-                                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Mailing Address'}">
-                                                                {!addressvar.Street__c},<br />
-                                                                {!addressvar.City__c},<br />
-                                                                {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                            
+                                                                {!addressvar.MUSW__Street2__c},<br />
+                                                                {!addressvar.MUSW__City__c},<br />
+                                                                {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
                                                                 
                                                                 
-                                                            </aura:if>
+                                                          
                                                         </div>
                                                     </aura:iteration>
                                                     <aura:set attribute="else">
@@ -411,7 +411,7 @@
                                                 </aura:if>
                                             </lightning:layoutItem>                                           
                                             
-                                            
+                                         
                                             
                                             <lightning:layoutItem size="12" mediumDeviceSize="4">
                                                 <div class="contact-item">

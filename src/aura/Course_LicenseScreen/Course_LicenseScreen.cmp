@@ -1,6 +1,6 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller = "Add_BusinessController" >
     <aura:attribute name="MandatoryActionsApplicationsColumns" type="List" default="['REQUEST TYPE','REQUEST AGAINST ','DUE DATE']"/>
-    <aura:attribute name="CourseApplicationsColumns" type="List" default="['COURSE#','COURSE NAME','COURSE TYPE','DELIVERY METHOD','LICENSURE LEVEL','EXPIRATION DATE','CLOCK HOURS','STATUS']" />
+    <aura:attribute name="CourseApplicationsColumns" type="List" default="['Course#','Course Name','Course Type','Delivery Method','Expiration Date','Clock Hours','Status']" />
     <aura:attribute name="courseList" type="List" />
     <aura:attribute name="accountId" type="String" />
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />    
@@ -54,12 +54,7 @@
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>     
                                         </td>
-                                        <td data-label="Licensure Level" class="cell-style">
-                                            <aura:if isTrue="{!tableData.What_Licensure_Level__c}">
-                                                <div class="slds-truncate" title="{!tableData.What_Licensure_Level__c}">{!tableData.What_Licensure_Level__c}</div>
-                                                <aura:set attribute="else">None</aura:set>
-                                            </aura:if>
-                                        </td>
+                                       
                                         <td data-label="Expiration Date" class="cell-style">
                                             <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
                                                 <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">{!tableData.MUSW__Expiration_Date__c}</div>

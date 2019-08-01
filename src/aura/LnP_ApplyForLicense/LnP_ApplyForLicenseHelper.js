@@ -166,7 +166,7 @@
             var attRes = [];
             for (var key in tabsList) {
                 if (tabsList.hasOwnProperty(key)) {
-                    if(tabsList[key].sectionName =='License Information'  ){
+                    if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Questions' ){
                         for (var question in tabsList[key].labelFieldsMap){
                             if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
                                 a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});

@@ -169,16 +169,46 @@
         $A.enqueueAction(action);
     },
     
-    getAddressDetails : function(component,event,helper){
+     getAddressDetails : function(component,event,helper){
+        console.log('in get address details component');
+       
         var action = component.get("c.getAddressData");
         action.setParams({'Id': component.get("v.licenseId")});
         action.setCallback(this, function(response) {
             var state = response.getState();
+            var mailingAddress = [];
+            var physicalAddress = [];
+            var sameAddress = [];
+            
             if (state === "SUCCESS") {
                 
                 var data = response.getReturnValue();
+                console.log(JSON.stringify(data));
                 console.log('dataAddress::'+data);
-                component.set("v.AddressData",data);
+               
+                for(var key = 0; key < data.length; key++){
+                   
+                    if(data[key].Address_Type__c == 'Mailing Address' && !(data[key].is_Physical_and_Mailing_Address_Same__c) ){
+                        mailingAddress.push(data[key]);
+                        console.log('mailingAddress--'+mailingAddress);
+                        component.set("v.MailingAddressData",mailingAddress);
+                        
+                    }else if(data[key].Address_Type__c == 'Physical Address'){
+                        physicalAddress.push(data[key]);
+                        console.log('physicalAddress--'+physicalAddress);
+                        component.set("v.PhysicalAddressData",physicalAddress);
+                        
+                    }else if(data[key].is_Physical_and_Mailing_Address_Same__c){
+                        sameAddress.push(data[key]);
+                       console.log('same address--'+ JSON.stringify(sameAddress));
+                              console.log('same address--'+ sameAddress[0].MUSW__City__c);
+                       component.set("v.MailingAddressData",sameAddress[0]);
+                       component.set("v.PhysicalAddressData",sameAddress[0]);
+                      
+                    }
+                   
+                }
+              component.set("v.AddressData",data);
             }                          
         });
         $A.enqueueAction(action);

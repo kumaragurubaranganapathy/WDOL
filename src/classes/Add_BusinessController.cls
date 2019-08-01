@@ -379,15 +379,30 @@ public without sharing class Add_BusinessController {
     
     //method to get Address details 
     @AuraEnabled 
-    public static List<LnP_Parcel__c> getAddressData(String Id){
+    public static List<MUSW__Parcel__c> getAddressData(String Id){
         
-        List<LnP_Parcel__c>  addressData = [SELECT id, Name,Address_Type__c,Street__c,City__c,State__c,Zip_Postal_Code__c,License__c,is_Physical_and_Mailing_Address_Same__c FROM LnP_Parcel__c WHERE License__c=:Id limit 4];
+      /*  List<LnP_Parcel__c>  addressData = [SELECT id, Name,Address_Type__c,Street__c,City__c,State__c,Zip_Postal_Code__c,License__c,is_Physical_and_Mailing_Address_Same__c FROM LnP_Parcel__c WHERE License__c=:Id limit 4];
         if(!addressData .isEmpty()){
+            return addressData;
+        }else{
+            return null;
+        }*/
+        Set<Id> parcelIds = new Set<Id>();
+        List<MUSW__Parcel__c>addressData = new List<MUSW__Parcel__c>();
+        for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c where MUSW__License2__c=:Id]){
+            parcelIds.add(licenseParcelInstance.MUSW__Parcel__c);
+        }
+        if(!parcelIds.isEmpty()){
+            addressData = [Select id, Application_BG__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
+                          is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c FROM MUSW__Parcel__c where Id IN :parcelIds];
+        }
+         if(!addressData.isEmpty()){
             return addressData;
         }else{
             return null;
         }
     }
+    
     
     // Method to update task status and related record on accept or declined of action.
     @AuraEnabled 
@@ -678,7 +693,7 @@ public without sharing class Add_BusinessController {
             }  
             
             Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
-            List<String> columnHeaderList = new List<String>{'Course Name','Course Type','Licensure Level','Delivery Method','Clock Hours', 'Status'};
+           List<String> columnHeaderList = new List<String>{'Course #','Course Name','Course Type','Delivery Method','Clock Hours', 'Status'};
                 //List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 
                 List<SObject> columnDataList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
