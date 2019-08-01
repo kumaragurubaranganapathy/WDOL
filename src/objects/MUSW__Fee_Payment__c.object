@@ -766,6 +766,56 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Deposit_Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(BGBK__Payment__r.BGBK__Deposit__c), 
+    0,  
+    BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c +  Reapply_Amount__c -  Target_Reapply_Amount__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Deposit Reapply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Target_Initial_Apply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Payment_Amount__c -  Target_Reapply_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Initial Apply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Target_Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(BGBK__Payment__r.BGBK__Deposit__c), 
+  IF(MUSW__Receipt__r.Adjusted__c = TRUE,
+    MUSW__Payment_Amount__c,
+    0
+  ),
+  IF(MUSW__Payment_Amount__c &gt; BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c, 
+    BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c, 
+    MUSW__Payment_Amount__c
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Reapply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
     <fields>
         <fullName>TMS_Revenue_Code__c</fullName>
         <externalId>false</externalId>
