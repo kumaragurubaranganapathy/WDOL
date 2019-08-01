@@ -15,6 +15,10 @@
         <value xsi:type="xsd:string">Land Surveyors</value>
     </values>
     <values>
+        <field>Display_In_Related_Tab__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
         <field>Generate_Fee__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>
