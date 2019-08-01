@@ -90,7 +90,7 @@
     },
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
-        component.find("button1").set('v.disabled',false);
+       // component.find("button1").set('v.disabled',false);
         component.set("v.eliTypeQues",[]);
         helper.fetchApplicationInstructionHelper(component,event,helper);
         
@@ -549,7 +549,7 @@
         var board=component.get("v.board");
         var licenseType=component.get("v.licenseType");
         var result ='';
-        component.find("button1").set('v.disabled',false);
+        //component.find("button1").set('v.disabled',false);
         try{
             return new Promise($A.getCallback(function(resolve, reject) {
                 console.log('inside promise');
