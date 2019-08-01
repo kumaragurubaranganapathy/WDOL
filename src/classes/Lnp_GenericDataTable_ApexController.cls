@@ -153,6 +153,7 @@ public without sharing class Lnp_GenericDataTable_ApexController {
         Associations__c association = [SELECT id, Association_Type__c,Parent_License__r.MUSW__Applicant__c,Parent_License__r.Application_Type__c,Parent_License__r.Credential_Type__c,Parent_License__r.Name,Child_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Child_License__r.Name,Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
         Contact childcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Child_License__r.MUSW__Applicant__c];
         Contact parentcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Parent_License__r.MUSW__Applicant__c];
+		User currentUser = [SELECT Name,Id,ContactId,Email from User Where ContactId = :childcon.Id LIMIT 1];
         system.debug('association : '+association);
         system.debug('childcon : '+childcon);
         system.debug('parentcon : '+parentcon);
@@ -160,7 +161,7 @@ public without sharing class Lnp_GenericDataTable_ApexController {
         task t = new task();
         t.Whatid = associationID;
         t.Status = 'Pending';
-        t.Email__c = childcon.Email;
+        t.Email__c = currentUser.Email;
         t.Subject = 'Invitation to get asociated to a Business License';
         t.Type = 'License Relationship';
           t.Designation__c =  association.Association_Type__c;
