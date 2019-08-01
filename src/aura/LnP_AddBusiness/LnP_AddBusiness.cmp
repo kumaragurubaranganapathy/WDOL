@@ -59,7 +59,7 @@
                     <aura:iteration items="{!v.validateFields}" var="fieldlist" indexVar="fieldCount">
                         <aura:if isTrue="{!fieldlist.Required__c || fieldlist.Regex_Validation__c !=''}">
                             <label class="{!fieldlist.lName == 'Name'?'label-style required':'slds-hide'}">
-                            	Business Change
+                            	Business Name
                             </label>
                             <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'')}"  onchange="{!c.fieldchange}" variant="{!fieldlist.lName == 'Name'?'label-hidden':''}"/> 
                             <aura:set attribute="else">
