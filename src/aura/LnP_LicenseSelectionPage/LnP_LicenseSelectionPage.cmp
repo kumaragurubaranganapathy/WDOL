@@ -106,7 +106,7 @@
                 </div>
                 <div id="eliQuesDiv" class = "slds-small-size_1-of-1 slds-medium-size_1-of-2">
                     <aura:iteration items="{!v.eliTypeQues}" var="question" indexVar="questionIndex">
-                        <div class = "{!(v.eliQuesNo == (questionIndex + 1) || lessthan((questionIndex + 1),v.eliQuesNo))?'questions':'slds-hide'+' slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1'}">
+                        <div class = "{!(v.eliQuesNo == (questionIndex + 1) || lessthan((questionIndex + 1),v.eliQuesNo))?'questions':'questions'+' slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1'}">
                             <ui:outputRichText class="slds-text-longform slds-form-element__label"  value="{!question.quesBody}"/>
                             <lightning:radioGroup class="radio" name="{!questionIndex + '-' + question.quesId}"  aura:id="eliRadios"
                                                   options="{!v.radiooptions }"  onchange="{!c.showOrHideEliQuestion}"/>
