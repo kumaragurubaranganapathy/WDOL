@@ -58,6 +58,7 @@
     <aura:attribute name="isAddressDiff" type="Boolean" default="false"/>
     <aura:attribute name="issuggestedAdd2" type="Boolean" default="false"/>
     <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="contactId" type="Id"/>
     <aura:attribute name="isAddrVerification" type="String"/>
     <aura:attribute name="selectedAddressType" type="String" />
     <aura:attribute name="LicenseAddressList" type="List"/>
@@ -66,7 +67,7 @@
     <aura:attribute name="isPhysicalAndMailingSame" type ="Boolean" default="false"/>
     <aura:attribute name="sObjParcel" type="String" default="MUSW__Parcel__c"/>
     <aura:attribute name="isRenewal" type="Boolean" default="false" />
-	<aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
+    <aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:AddressModifiedEvent" action="{!c.handleEvent}"/>  
     
@@ -173,7 +174,7 @@
             <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
-                        <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                        <h2 class="title slds-text-heading--large">Review Your Address</h2><br/>
                         <aura:if isTrue = "{!v.isAddressDiff}">
                             <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
                         </aura:if>
@@ -206,7 +207,7 @@
                         </fieldset>
                         <lightning:layout horizontalAlign="center">
                             <lightning:layoutitem padding="around-small">
-                                <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                                <lightning:button  label="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                             </lightning:layoutitem>
                         </lightning:layout>
                     </div>
@@ -219,8 +220,8 @@
             <div class="slds-backdrop slds-backdrop_open"></div>
         </aura:if>     
         
-            
-              
         
-   
+    </aura:set>        
+    </aura:if>
+    
 </aura:component>
