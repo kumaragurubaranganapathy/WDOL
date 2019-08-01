@@ -54,12 +54,8 @@
     
     //US- 1723
     SaveAndSubmit : function(component, event, helper) {
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": "/"
-        });
-        
-        urlEvent.fire();
+       component.set("v.saveAndSubmit",true);
+       helper.goToNextTab(component, event, helper);
     },
     
     handleComponentEvent : function(component,event,helper){

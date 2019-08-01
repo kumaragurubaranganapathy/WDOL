@@ -84,7 +84,6 @@
         component.set("v.attestationError", "");
     },
     goToNextTab : function(component, event, helper) {
-        debugger;
         this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
         	component.set("v.showEndoMessage",false);
@@ -135,6 +134,9 @@
                     console.log('licenseWrapper ' + JSON.stringify(component.get("v.licenseWrapper")));
                     component.set("v.totalTabs", sectionList.length);
                     this.hideSpinner(component, event);
+                    if(component.get("v.saveAndSubmit") == true){
+                        this.SaveAndSubmit(component,event,helper); 
+                    }
                     var tabsList = component.get("v.licenseWrapper");
                     var currentTab = component.get("v.currentTab");
                     
@@ -181,7 +183,9 @@
             }
             component.set('v.questionsAnswers',a);
             component.set('v.attachmentResponse',attRes);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if( component.get("v.saveAndSubmit") !=true){
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
     },
     SaveAndSubmit : function(component, event, helper) {

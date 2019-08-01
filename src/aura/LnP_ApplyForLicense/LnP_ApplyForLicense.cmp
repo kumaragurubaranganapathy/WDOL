@@ -52,6 +52,7 @@
 	<aura:attribute name="isSSNchanged" type="Boolean" default="false"/>
     <aura:attribute name="errorMsgsList" type="List"/>
     <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
+    <aura:attribute name="saveAndSubmit" type="Boolean" default="false" />
     <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}"/> <!-- Added by AD -->
     
     <force:recordData
