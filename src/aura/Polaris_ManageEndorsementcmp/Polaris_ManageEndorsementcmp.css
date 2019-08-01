@@ -46,9 +46,11 @@
     font-weight: normal;
     color:t(LnGFormGray);
 }
-.THIS.page-info{
-	color: token(blue);
-    font-size: 25px;
+.THIS .page-info{
+	color: t(headerColor);
+    font-size: 1.25rem;
+    padding-bottom:1rem;
+    font-weight:600;
 }
 .THIS .field-item{
    padding: 0px 25px 25px 25px; 
