@@ -485,14 +485,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             Integer questioncount = 0;
             Integer FGquestioncount = 0;
             Integer CIquestioncount = 0;
+            Integer refcount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
-                
+                refcount++;
                 if((fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                     requestDetails.method = 'POST';
                     requestDetails.url = '/services/data/v38.0/sobjects/BGCK__Answer__c';
-                    requestDetails.referenceId = 'refId'+count;
+                    requestDetails.referenceId = 'refId'+refcount;
                     LnP_JSONParser.Body body = new LnP_JSONParser.Body();
                     // system.debug('fieldMap '+fieldMap.value);
                     if(fieldMap.value != null && fieldMap.value != ''){
@@ -603,7 +604,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 LnP_JSONParser.CompositeRequest requestDetailSub = new LnP_JSONParser.CompositeRequest();
                 requestDetailSub.method = 'POST';
                 requestDetailSub.url = '/services/data/v38.0/sobjects/MUSW__Submission__c';
-                requestDetailSub.referenceId = 'refSubId'+count;
+                requestDetailSub.referenceId = 'refSubId'+subcount;
                 LnP_JSONParser.Body bodySub = new LnP_JSONParser.Body();
                 bodySub.Name = fieldMap.conditionalAnswer;
                 bodySub.MUSW_Description = fieldMap.label;
