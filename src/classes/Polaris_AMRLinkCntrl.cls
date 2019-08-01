@@ -3,7 +3,7 @@ public class Polaris_AMRLinkCntrl {
     @AuraEnabled
     Public static List<AMR_Link__mdt> fetchServiceLinksServer(String board, String licenseType, String applicationMethod)
     {       
-        return [SELECT id,MasterLabel,AMR_Type__c,Order_Number__c,Board__c,Service_Request_Type__c,License_Type__c,Application_Method__c FROM AMR_Link__mdt where Board__c =:board AND License_Type__c =:licenseType AND Application_Method__c=:applicationMethod ORDER BY Order_Number__c ASC  ];
+        return [SELECT id,MasterLabel,AMR_Type__c,Order_Number__c,Board__c,Service_Request_Type__c,License_Type__c,Application_Method__c FROM AMR_Link__mdt where Board__c =:board AND License_Type__c =:licenseType AND Application_Method__c=:applicationMethod AND Display_In_Related_Tab__c=false ORDER BY Order_Number__c ASC  ];
     }
 	@AuraEnabled
     public static void printUpdateLicense(String licId,String printType)
