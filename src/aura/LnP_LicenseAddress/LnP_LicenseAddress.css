@@ -5,8 +5,12 @@
     font-size: 16px;
     color:t(LnGFormTitleColor);
 }
-
- 
+.THIS .address-type .address-fields span{
+    color:t(fieldclr);
+}
+.THIS .address-fields .slds-form-element__help{
+    float:none;
+}
 .THIS .address-wrap{
     display:flex;  
     margin: 20px 0;
@@ -18,6 +22,7 @@
 .THIS .address-type{
     padding-bottom:1rem;
     font-size:t(fieldlabelsize);
+    color:t(fieldclr);
 }
 .THIS .tile{
     padding:20px;
@@ -105,5 +110,5 @@
     overflow-x:hidden;
 }
 .THIS .highlight {
-    background-color: red;
+    background-color: #d3d3d3;
 }
