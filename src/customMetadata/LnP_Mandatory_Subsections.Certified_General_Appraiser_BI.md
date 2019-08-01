@@ -20,6 +20,6 @@
     </values>
     <values>
         <field>SubSection__c</field>
-        <value xsi:type="xsd:string">Qualifying Postsecondary Education, Qualifying Experience, Qualifying Courses</value>
+        <value xsi:type="xsd:string">Qualifying Postsecondary Education, Qualifying Experience</value>
     </values>
 </CustomMetadata>
