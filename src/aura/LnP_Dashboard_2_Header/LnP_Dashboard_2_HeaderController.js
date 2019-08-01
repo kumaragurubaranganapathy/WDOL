@@ -23,8 +23,8 @@
     updateLegalName : function(component,event,helper){
     	helper.updateLegalNameHelper(component,event,helper);
     },
-    showMore : function(component,event,helper){
-    	helper.showMore(component,event);
+    goToCart : function(component,event,helper){
+        helper.goToCart(component,event);
     },
     updateAddress : function(component, event, helper) {
 		helper.updateAddress(component, event, helper);

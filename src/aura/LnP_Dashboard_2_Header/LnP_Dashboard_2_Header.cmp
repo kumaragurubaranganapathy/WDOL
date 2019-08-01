@@ -55,7 +55,7 @@
                     </lightning:layoutItem>
                     <lightning:layoutItem size="12" class="contact-item address-item slds-hide_medium"> 
                         <div class="mob-address">
-                            <a class="show-address label-style" onclick="{!c.showAddress}" href="javascript:void(0)">{!v.showAddress?'Hide Addresses':'Show Addresses'}</a>
+                            <a class="show-address label-style" onclick="{!c.showAddress}" href="javascript:void(0)">{!v.showAddress?'Hide Address':'Show Address'}</a>
                         </div>
                     </lightning:layoutItem>
                     <aura:if isTrue="{!not(empty(v.ParcelObj))}">

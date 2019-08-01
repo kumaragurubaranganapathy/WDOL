@@ -58,4 +58,22 @@ public class LnP_Dashboard_2_Header_ApexController {
         string appId = '';
         return appId = application.Id;
     }
+    
+    @AuraEnabled
+    public static Boolean checkActiveCart(){
+        Boolean redirect = false;
+       List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        
+        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId];
+        if(!crtList.isEmpty()){
+            redirect = true;
+        }
+        return redirect;
+    }
 }
