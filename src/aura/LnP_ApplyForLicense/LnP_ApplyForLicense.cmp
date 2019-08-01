@@ -49,6 +49,7 @@
     <aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <!--<aura:attribute name="noFeesFlag" type="Boolean" default="false"/> -->
     <!--<aura:attribute name="regexFlag" type="Boolean" default="false"/>-->
+    <aura:attribute name="saveAndSubmit" type="Boolean" default="false" />
     <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}"/> <!-- Added by AD -->
     
     <force:recordData

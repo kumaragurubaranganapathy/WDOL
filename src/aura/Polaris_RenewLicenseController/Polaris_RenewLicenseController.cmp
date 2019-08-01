@@ -45,6 +45,7 @@
     <aura:attribute name="showEndoMessage" type="Boolean" default="false" />
     <aura:attribute name="endoMessage" type="String" />
     <aura:attribute name="PhysicalAddressModified" type="Boolean" default="false" />
+    <aura:attribute name="saveAndSubmit" type="Boolean" default="false" />
     <aura:registerEvent name="AddressModifiedEvent" type="c:AddressModifiedEvent" />
     <aura:handler event="c:RefreshComponentEvent" action="{!c.handleComponentEvent}"/>
     <force:recordData
