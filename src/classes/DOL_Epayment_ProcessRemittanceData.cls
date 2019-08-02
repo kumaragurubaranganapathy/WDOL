@@ -89,7 +89,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
                     tempRecord.INFO__c += 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
                 }
                 if(isRecordProcessed)
-                    tempRecord.Status__c = 'Processed';
+                    tempRecord.Status__c = 'SUCCESSFUL';
                 else
                     tempRecord.Status__c = 'Failed';
             }
