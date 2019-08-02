@@ -241,7 +241,52 @@
     
     cancel : function(component, event, helper){
     	window.location.href = component.get("v.redirectURL");
-	}
+    },
+    
+    maskInput : function(component,event){        
+        var fieldname=event.getSource().get('v.fieldName');
+        if(fieldname=="MobilePhone" || fieldname=="Phone"){
+            var numbers=event.getSource().get('v.value');
+            if(numbers.length===10){
+                var trimmedNo = ('' + numbers).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
+                event.getSource().set('v.value',phone); 
+            }            
+            
+        }
+    },
+    
+    validateFields : function(component,event){
+        var inputFields = component.find("input-fields");
+        var errorCount = 0;
+        inputFields.forEach(function(elem){
+            if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12){
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": "Mobile Phone should be 10 digits",
+                    "type": "error"
+                });
+                toastEvent.fire();
+                errorCount++;
+            }
+            else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12){
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": "Business Phone should be 10 digits",
+                    "type": "error"
+                });
+                toastEvent.fire();
+                errorCount++;
+            }
+        });
+        if(errorCount===0){
+            component.set("v.fieldsValidated",true);
+        }
+        else
+        	component.set("v.fieldsValidated",false);
+    }
     
     
 
