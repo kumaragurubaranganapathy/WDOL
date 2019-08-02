@@ -561,11 +561,13 @@ _______________________________________________________________
                     <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply for professional license" /> 
                 </div>
             </lightning:layoutItem>
-            <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
-                <div class="ser-title">
-                    Manage Businesses
-                </div>
-                <div class="ser-desc">
+<lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
+                <div class="ind-account-wrapper">
+                    <div class="ser-title">
+                        Business licenses
+                     </div>
+                   
+                <!--<div class="ser-desc">
                     Washington Department of Licensing helps you obtain business licenses.
                 </div>
                 <div class="ser-links">
@@ -575,10 +577,26 @@ _______________________________________________________________
                         <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Become a Course/Exam Provider</a></li>    
                         <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Understand how to manage Businesses</a></li>    
                     </ul>
+                </div> -->
+                    <div class="ser-btn-wrapper">
+                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Add a business" /> 
+                    </div>
                 </div>
-                <div class="ser-btn-wrapper">
-                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Add business" /> 
+                  <div class="ser-btn-wrapper">
+                    <div class="businessStatus">
+                        <div class="ser-title newbiz-wrapper">Once you add a business,you’ll be able to:</div>
+                        <div class="bizlayout">
+                            <ul class="business">
+                                <li>Apply for a business license</li>
+                                <li>Link to existing licenses</li>
+                                <li>Add other businesses</li>
+                                <li>Add training courses</li>
+                                <li>Pay fees for others</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+              
             </lightning:layoutItem>
         </lightning:layout>
     </div>
