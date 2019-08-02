@@ -67,7 +67,7 @@ _______________________________________________________________
     <div class="page-width">
         
         <div class="page-header padding-top-30">
-            <h1>Education</h1>
+            <h1>Course Search</h1>
         </div>
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <lightning:breadcrumbs class="slds-p-vertical_x-small">
@@ -85,9 +85,9 @@ _______________________________________________________________
             
             
             <aura:if isTrue="{!v.screenOne}">
-                <div class="section-header slds-p-top_x-small padding-bottom-20">
+                <!--div class="section-header slds-p-top_x-small padding-bottom-20">
                     Search a Course
-                </div>
+                </div-->
                 <div class="section-form-container slds-box slds-m-top_medium">
                     <!-- <div class="slds-form-element"> -->
                     <div multipleRows="true">
@@ -109,6 +109,18 @@ _______________________________________________________________
                             </div>
                             <!-- </div> -->
                         </aura:if>
+						
+                        <div class="course-type field-size field-style">
+                                          
+                            <lightning:select name="CourseType" label="Course Type" aura:id="CourseType" value="" required="true" onchange="{!c.searchCourse}">
+                                <option text="Select an Option" value="" />
+                                <aura:iteration items="{!v.courseTypeOptions}" var="opt">
+                                    <option text="{!opt}" value="{!opt}" label="{!opt}" />
+                                </aura:iteration>
+                            </lightning:select>
+                            
+                            <!-- <c:LnP_Multiselect_Picklist options="{!v.courseTypeOptions}" aura:id="CourseType" /> -->
+                        </div>
 						<div class="licensure field-size field-style">
                             
                             <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
@@ -121,17 +133,6 @@ _______________________________________________________________
                                 </aura:iteration>
                             </lightning:select>
                             <!-- </div> -->
-                        </div>
-                        <div class="course-type field-size field-style">
-                                          
-                            <lightning:select name="CourseType" label="Course Type" aura:id="CourseType" value="" required="true" onchange="{!c.searchCourse}">
-                                <option text="Select an Option" value="" />
-                                <aura:iteration items="{!v.courseTypeOptions}" var="opt">
-                                    <option text="{!opt}" value="{!opt}" label="{!opt}" />
-                                </aura:iteration>
-                            </lightning:select>
-                            
-                            <!-- <c:LnP_Multiselect_Picklist options="{!v.courseTypeOptions}" aura:id="CourseType" /> -->
                         </div>
                         
                         <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->

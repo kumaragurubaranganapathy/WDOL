@@ -159,14 +159,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-	<fields>
-        <fullName>Submit_Exam_Results__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Submit Exam Results</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <fields>
         <fullName>Course_Hours_or_Units__c</fullName>
         <externalId>false</externalId>
@@ -453,28 +445,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Exam_Reschedule_via_DOL__c</fullName>
-        <externalId>false</externalId>
-        <label>Exam Reschedule via DOL</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Yes</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>No</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>End_date__c</fullName>
         <description>This is the end date of the education history.</description>
         <externalId>false</externalId>
@@ -498,6 +468,30 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Exam_Reschedule_via_DOL__c</fullName>
+        <externalId>false</externalId>
+        <label>Exam Reschedule via DOL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Exam_Result_Expiry_Date__c</fullName>
@@ -644,6 +638,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Certificate of Removal Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1174,6 +1172,14 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submit_Exam_Results__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Submit Exam Results</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Trainer_License__c</fullName>
@@ -2273,6 +2279,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4033,6 +4050,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Exam_Type__c</picklist>
             <values>
                 <fullName>ARE - 5%2E0 Construction %26 Evaluation</fullName>
@@ -5765,6 +5793,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7525,6 +7564,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Exam_Type__c</picklist>
             <values>
                 <fullName>ARE - 5%2E0 Construction %26 Evaluation</fullName>
@@ -9277,6 +9327,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

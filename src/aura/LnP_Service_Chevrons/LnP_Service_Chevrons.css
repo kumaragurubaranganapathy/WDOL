@@ -59,7 +59,14 @@
     font-size: 25px;
 }
 .THIS .field-item{
-   padding: 0 0 1.5rem; 
+    padding-left: 0;
+    padding-bottom: 8px; 
+}
+.THIS .field-item span{
+    font-size:t(fieldlabelsize);
+}
+.THIS .fileupload .slds-form-element__label{
+    margin: 10px;
 }
 .THIS.button-section{
     width: -webkit-fill-available;
@@ -123,8 +130,8 @@
 }
 .THIS .reviewHeading{
     font-weight: 600;   
-    color: t(LnGFormTitleColor);
-    font-size:1rem;
+    color: t(fieldclr);
+    font-size:t(fieldlabelsize);
 }
 .THIS .attValidationStyle{
     padding-left: 25px;
