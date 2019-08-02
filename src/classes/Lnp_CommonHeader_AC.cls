@@ -84,6 +84,20 @@ public with sharing class Lnp_CommonHeader_AC {
         }
          return usrInfo;
       }
+    
+    @AuraEnabled  
+    public static boolean isValidCommunityUser(){
+        String validProfileName = 'eSLA Customer Community Plus Login User';
+        Boolean isValid = true;
+        User u  = [select id,Profile.name from user where id  =: UserInfo.getUserId() LIMIT 1];
+        if(u != null){
+            if(u.Profile.name != validProfileName){
+                isValid = false;
+            }
+        }        
+        return isValid;
+    }
+    
     public static Id saveTheFile(String fileName, String base64Data,String contentType) {
         base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
         Document oAttachment=new Document();

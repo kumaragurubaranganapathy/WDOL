@@ -20,5 +20,20 @@
         });
         $A.enqueueAction(action);
         
+    },
+    
+    checkIsCommunityUser : function(component,event) { 
+        console.log('checkIsCommunityUser...........');
+        var action = component.get('c.isValidCommunityUser');
+        action.setCallback(this, function(result) {
+            console.log('In Call back checkIsCommunityUser...........');
+            var state = result.getState();
+            if (state === "SUCCESS") {
+                var response = result.getReturnValue();
+                component.set("v.isValidCommunityUser",response);
+            }
+        });
+        $A.enqueueAction(action);
+        
     }
 })
