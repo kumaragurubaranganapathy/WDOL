@@ -160,6 +160,35 @@ public without Sharing class  Polaris_TodoList{
             return 'Fail';                   
     }
     
+    @AuraEnabled
+    public static boolean hasBusinessAccounts(){
+        
+        Boolean hasBusinessAccounts = true;
+         
+        try{
+        
+            List<Account> accList = Add_BusinessController.getAllAccounts();
+        
+            If(accList != null){
+                
+                if(accList.size()!=0){
+                    
+                    hasBusinessAccounts = true;
+                    
+                }else{
+                    
+                    hasBusinessAccounts = false;
+                }
+        }
+        
+        return hasBusinessAccounts;
+        
+        }catch(Exception Ex){
+            
+             return hasBusinessAccounts = true;
+        }
+    }
+    
     public class ToDoWrapper{
         @AuraEnabled
         public string businessName;

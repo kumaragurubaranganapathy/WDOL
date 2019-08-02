@@ -33,7 +33,7 @@ _______________________________________________________________
     <aura:attribute name="accountColumnList" type="List" description="Holds the lists ofaccount"/>
     <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
     <aura:attribute name="LicenseColumnListData" type="List" description="Holds the lists of accounts"/>
-    
+    <aura:attribute name="AddBusinessAccountsStatusAlert" type="Boolean" default="false"/>
     
     <div class="todo-wrapper">
         
@@ -538,6 +538,9 @@ _______________________________________________________________
                     </div>
                 </aura:if>
             </aura:iteration>
+        </aura:if>
+		<aura:if isTrue="{!v.AddBusinessAccountsStatusAlert}">
+            <c:StatusAlertForAddingBusinessComponent/>
         </aura:if>
         <lightning:layout class="additional-services slds-wrap">
             <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
