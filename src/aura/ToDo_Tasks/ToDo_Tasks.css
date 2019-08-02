@@ -13,8 +13,17 @@
 .THIS .slds-form-element__control{
     width:50%;
 }
+.THIS ul.business li:before{
+    content:"\2714\0020";
+}
+.THIS ul.business li{
+        font-size: 14px
+}
 .THIS .new-wrapper{
     margin:1rem 0;
+}
+.THIS .newbiz-wrapper{
+    margin-top:1rem;
 }
 .THIS .link-help{
 	padding-bottom:0.5rem;
@@ -49,8 +58,7 @@
     margin-right:10px;
 }
 .THIS .services{
-    padding:17px 35px;
-    border-radius: 5px;
+    padding:17px 35px;    
     border: solid 1px t(servicesBorder);
     width:45%;
 }
@@ -67,10 +75,14 @@
     display:flex;
     justify-content:space-between;
 }
+.THIS .ind-account-wrapper{
+    padding-bottom:1.25rem;
+    border-bottom: solid 1px #c5c5c5;
+}
 .THIS .ser-title{
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: bold;
-    padding-bottom:32px;    
+    padding-bottom:1.25rem;    
 }
 .THIS .ser-desc{
     font-size: 12px;

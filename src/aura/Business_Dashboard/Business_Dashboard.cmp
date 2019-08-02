@@ -88,6 +88,9 @@
                             </lightning:layoutItem>
                         </aura:iteration>
                     </lightning:layout>
+                    <aura:set attribute="else">
+                        <c:StatusAlertForAddingBusinessComponent/>
+                   </aura:set>
                 </aura:if>
             </div>
         </aura:if>

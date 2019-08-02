@@ -1,6 +1,7 @@
 ({
 	doInit : function(component, event, helper) {
         helper.doInit(component, event, helper);
+		helper.showBusinessAccountAlert(component, event, helper);		
     },
     declineRequest : function(component, event, helper) {
         var taskId = event.getSource().get("v.name");

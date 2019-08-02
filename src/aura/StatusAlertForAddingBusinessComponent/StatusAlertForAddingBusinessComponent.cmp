@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <div>
+        <div class="businessStatus slds-box">
+             
+            <span><lightning:icon iconName="utility:info" alternativeText="Info" /></span>
+            <div class="businessHeader">You haven’t added a business yet</div>
+            <div class="bizlayout">
+            <p class="businessSubHeader">Please add a business. Once you add a business, you’ll be able to:</p>
+            <ul class="business">
+                <li>Apply for a business license</li>
+                <li>Link to existing licenses</li>
+                <li>Add other businesses</li>
+                <li>Add training courses</li>
+                <li>Pay fees for others</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

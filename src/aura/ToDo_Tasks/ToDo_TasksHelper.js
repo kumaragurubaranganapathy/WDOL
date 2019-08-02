@@ -50,6 +50,20 @@
         $A.enqueueAction(action); 
         $A.enqueueAction(actionName); 
     },
+    
+    showBusinessAccountAlert : function(component, event, helper) {
+        var action = component.get("c.hasBusinessAccounts");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var hasBusinessAccounts = response.getReturnValue();
+                console.log(hasBusinessAccounts);
+                component.set('v.AddBusinessAccountsStatusAlert',!hasBusinessAccounts);
+            }                          
+        });
+        $A.enqueueAction(action);    
+    },
+    
     actionRequest : function(component, event, helper,subject) {
         console.log('inside actionRequest');
         var action = component.get("c.updateTask");
