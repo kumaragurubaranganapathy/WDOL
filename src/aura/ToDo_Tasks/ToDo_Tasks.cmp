@@ -473,7 +473,7 @@ _______________________________________________________________
                                               objectApiName="Request__c"
                                               >
                         <lightning:messages />
-                        <lightning:inputField fieldName="License__c" value= "{!v.taskRecordForModel.Child_License_Name__c}" disabled = "false"/>
+                        <lightning:inputField fieldName="License__c" value= "{!v.taskRecordForModel.Child_License_Id__c}" disabled = "false"/>
                         <lightning:inputField fieldName="Profession__c" value ="{!v.taskRecordForModel.Child_Profession__c}" disabled = "true"/>
                         <lightning:inputField fieldName="License_Type__c" value = "{!v.taskRecordForModel.Child_License_Type__c}" disabled = "true"/>
                         <lightning:inputField fieldName="Service_Request_Type__c" value = "Reschedule Exam" disabled ="true"/>
