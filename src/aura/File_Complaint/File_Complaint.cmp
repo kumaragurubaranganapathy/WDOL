@@ -89,7 +89,7 @@
         <div class="page-content">
             <!--<aura:if isTrue="{!v.screenOne}">-->
             <div class="{!v.screenOne?'':'slds-hide'}">
-                <h2 class="heading">Complaint Against</h2>
+                <!--h2 class="heading">Complaint Against</h2-->
                 <div class="sub-header slds-p-top_small slds-p-bottom_medium">Provide information about a professional or a business against whom you are filing a complaint</div>
                 <div class="">
                     <lightning:select class="field-item" name="Profession" label="Profession" required="true" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
