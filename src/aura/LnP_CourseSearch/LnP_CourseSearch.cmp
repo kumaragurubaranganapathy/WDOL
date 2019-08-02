@@ -145,7 +145,7 @@ _______________________________________________________________
                         <!-- Start of form -->
                         <!-- <div class="slds-form-element"> -->
                         
-                        <aura:if isTrue="true">
+                        <aura:if isTrue="{!v.showSearchFields}">
                             <!-- <div class="slds-grid"> -->
                             <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                             <!--   Provider/School Name: -->
