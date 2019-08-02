@@ -13,6 +13,7 @@
     <aura:attribute name="appId" type="String" />
     <aura:attribute name="contactName" type="String" />
     <aura:attribute name="AMRName" type="String" />
+    <aura:attribute name="fieldsValidated" type="Boolean" default="true" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <!-- Form start -->
     <div class="self-service-wrapper">
@@ -29,13 +30,13 @@
                         <h2 class="contact-name">{!v.contactName}</h2>
                         <aura:iteration items="{!v.fieldApiNames}" var="field">
                             <div class="input-field">
-                                <lightning:inputField fieldName="{!field}"/>
+                                <lightning:inputField aura:id="input-fields" fieldName="{!field}" onchange="{!c.maskInput}" />
                             </div>
                         </aura:iteration>
                     </div>
                     <div class="service-btn-container">
                         <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-                        <lightning:button variant="brand" type="submit" name="save" label="Save"/>
+                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}" name="save" label="Save" onclick="{!c.validateFields}" />
                     </div>
                 </div>
             </lightning:recordEditForm>
