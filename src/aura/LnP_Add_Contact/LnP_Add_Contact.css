@@ -1,7 +1,6 @@
 .THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__control{
     padding-left:0;
-    width:50%;
-    float:unset;
+    width:50%;    
 }
 .THIS.contact-details-wrapper{
     padding: 1.5rem 2rem;
@@ -22,7 +21,13 @@
 .THIS.contact-details-wrapper .slds-form-element__label{
     padding-right:0;
 }
-
+.THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__label{
+    float:unset;
+}
+.THIS.contact-details-wrapper .slds-combobox__input{
+    border: 1px solid #5b616b;
+    height: 42px;
+}
 @media t(mqSmall){
     .THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__control{        
         width:100%;
