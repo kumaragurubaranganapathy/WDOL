@@ -1,16 +1,16 @@
 ({
     fetchDataFromServer : function(component, event, helper){
-        var licenseType = component.get("v.licenseType");        
+        var licenseType = component.get("v.licenseType");
         var board = component.get("v.board");
         var applicationType = component.get("v.applicationType");
         var flowType = component.get("v.flowType");
-        
+
         var action = component.get("c.fetchRenewalData");
         action.setParams({
             "appId": component.get("v.applicationId"),
             "renewReinstate": component.get("v.RenewReinstate"),
-            "board": board, 
-            "licenseType": licenseType, 
+            "board": board,
+            "licenseType": licenseType,
             "applicationType": applicationType,
             "flowType": flowType,
             "licID": component.get("v.licID"),
@@ -74,7 +74,7 @@
         if((recordID !='' && recordID != null) || recordID != null ){
             recordID = recordID;
             objectName = "Account";
-        } 
+        }
         component.set("v.recordId",recordID);
         component.set("v.objectName",objectName);
         sessionStorage.clear();
@@ -87,10 +87,10 @@
     goToNextTab : function(component, event, helper) {
         this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
-            var curTab= component.get("v.currentTab");		
+            var curTab= component.get("v.currentTab");
             var tabNumber = component.get("v.currentTab");
             var totalTabNumber = component.get("v.totalTabs");
-            component.set("v.submitButtonDisable", "true");  
+            component.set("v.submitButtonDisable", "true");
             component.set("v.currentTab", tabNumber+1);
             tabNumber++;
             var action = component.get("c.insertApplication");
@@ -117,7 +117,7 @@
                             component.set("v.AttFlagForsubmit","true");
                         }
                         component.set("v.SectionError",newlst);
-                        
+
                     }
                     var sectionList = [];
                     for (var index = 0; index < resultWrapper.length; index++){
@@ -134,7 +134,7 @@
                     component.set("v.totalTabs", sectionList.length);
                     this.hideSpinner(component, event);
                     if(component.get("v.saveAndSubmit") == true){
-                        this.SaveAndSubmit(component,event,helper); 
+                        this.SaveAndSubmit(component,event,helper);
                     }
                     var tabsList = component.get("v.licenseWrapper");
                     var currentTab = component.get("v.currentTab");
@@ -142,7 +142,7 @@
                         console.log("inside update Physical address ::");
                         this.updatePhysicalAddress(component,event,helper);
                     }
-                    
+
                     if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
                     {
                         component.set("v.showNotaryEndo",true);
@@ -156,20 +156,20 @@
             $A.enqueueAction(action);
             //Added to save the personal imformation
             if(component.find("recordObjectForm") != null){
-                component.find("recordObjectForm").find("editForm").submit();   
+                component.find("recordObjectForm").find("editForm").submit();
             }
             var tabsList = component.get("v.licenseWrapper");
             console.log('tabsList '+tabsList);
             var a = [];
             var attRes = [];
-            var certArray =[]; 
+            var certArray =[];
             for (var key in tabsList) {
                 if (tabsList.hasOwnProperty(key)) {
                     if(tabsList[key].sectionName =='License Information'){
                         for (var question in tabsList[key].labelFieldsMap){
                             if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].value != null ){
                                 a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value });
-                            } 
+                            }
                             else if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].multiValues != null){
                                 a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString() });
                             }
@@ -194,7 +194,7 @@
         window.setTimeout(
             $A.getCallback(function() {
                 var isBizLic = component.get("v.isbusinsessLicense");
-                
+
                 var str = isBizLic?'/business':'/newdashboard';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
@@ -203,7 +203,7 @@
                 urlEvent.fire();
             }), 2000
         );
-        
+
     },
     submit : function(component, event, helper) {
         // var enteredAttestText = component.get("v.attestValue");
@@ -215,8 +215,8 @@
         var noFees;
         var that = this;
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true)
-        {         
-            
+        {
+
             var action = component.get("c.callCompositeAPI");
             action.setParams({
                 "applicationId" : component.get("v.applicationId"),
@@ -233,7 +233,7 @@
                     // Set popup property values before displayiong pop up.
                     /* component.set("v.popupHeader", "Successfully Submitted");
                      component.set("v.popupBody", "Thank you for submission of your application.");
-                     component.set("v.serverStatus", "success"); 
+                     component.set("v.serverStatus", "success");
                      component.set("v.isOpen", true);*/
                     component.set("v.storeServerValue", result);
                     this.closeModel(component, event, helper);
@@ -241,15 +241,15 @@
                     console.log("Submit Error->"+error);
                     //handle error as well
                 }
-                
+
             });
             $A.enqueueAction(action);
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     },
-    
-    showDependentQuestionsHelper : function(component, event, helper) {        
+
+    showDependentQuestionsHelper : function(component, event, helper) {
         component.set("v.showEndoMessage",false);
         component.set("v.showNotaryEndo",false);
         var response = event.getSource().get("v.value").trim();
@@ -264,7 +264,7 @@
             questionNumber = event.getSource().get("v.name").split('Questions')[1];
         }
             else
-            {          
+            {
                 questionNumber = event.getSource().get("v.name").split('Endorsement')[1];
             }
         var tabsList = component.get("v.licenseWrapper");
@@ -273,16 +273,16 @@
         {
             component.set("v.showNotaryEndo",true);
             component.set("v.showEndoMessage",true);
-            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);
         }
         else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
-        {            
+        {
             component.set("v.showEndoMessage",true);
-            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);
         }
             else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse != response  && tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages != null ) {
                 component.set("v.showEndoMessage",true);
-                component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages);            
+                component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages);
             }
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
@@ -292,7 +292,7 @@
             for(var index=0; index<tabsList[currentTab-1].labelFieldsMap.length ; index++){
                 if(tabsList[currentTab-1].labelFieldsMap[index].parentQuestionId == questionNumberId){
                     childQuestionsArray.push(index);
-                } 
+                }
             }
             if(childQuestionsArray.length>0){
                 for(var i=0; i<childQuestionsArray.length; i++){
@@ -304,14 +304,14 @@
                         for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length; j++){
                             if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId == questionNumberId){
                                 if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer == response){
-                                    tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;                       
+                                    tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;
                                 }else{
                                     if(tabsList[currentTab-1].labelFieldsMap[j].hasChild){
-                                        subChildQuestionsArray=[]; 
+                                        subChildQuestionsArray=[];
                                         for(var k=j; k<tabsList[currentTab-1].labelFieldsMap.length ; k++){
                                             if(tabsList[currentTab-1].labelFieldsMap[k].parentQuestionId == questionNumberId){
                                                 subChildQuestionsArray.push(k);
-                                            } 
+                                            }
                                         }
                                         if(subChildQuestionsArray.length == 1){
                                             questionNumberId = tabsList[currentTab-1].labelFieldsMap[j].labelId;
@@ -332,32 +332,32 @@
                                                     tabsList[currentTab-1].labelFieldsMap[newVar].renderedOnUi=false;
                                                 }
                                             }
-                                        }   
+                                        }
                                     } else {
                                         tabsList[currentTab-1].labelFieldsMap[j].value = '';
                                         tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;
-                                    }                                             
-                                } 
+                                    }
+                                }
                             }
                         }
-                    } 
+                    }
                 }
             }
         }
         component.set("v.licenseWrapper",tabsList);
-    },    
-    
+    },
+
     showSpinner: function(component, event){
         console.log('show spinner');
         //var spinner = component.find('spinner');
         //$A.util.removeClass(spinner, 'slds-hide');
-        component.set("v.loadingSpinner", true); 
+        component.set("v.loadingSpinner", true);
     },
     hideSpinner: function(component, event){
         console.log('hide spinner');
         //var spinner = component.find('spinner');
         //$A.util.addClass(spinner, 'slds-hide');
-        component.set("v.loadingSpinner", false); 
+        component.set("v.loadingSpinner", false);
     },
     getCurrTabHelper : function(component, event, helper){
         var currTab = event.getParam("currTab");
@@ -376,9 +376,9 @@
                     if(tabsList[currentTab-1].labelFieldsMap[i].labelId == parentQuestionId &&tabsList[currentTab-1].labelFieldsMap[i].value == expectedResponse ){
                         childQuestionId = document.getElementById('q'+index);
                         if(childQuestionId !=null){
-                            childQuestionId.classList.remove('slds-hide'); 
+                            childQuestionId.classList.remove('slds-hide');
                         }
-                        
+
                     }
                 }
             }
@@ -398,11 +398,11 @@
                 if(noFees){
                     window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/user-feedback';
                 }else{
-                    window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;        
+                    window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
                 }
-                
+
             }
-            
+
         });
         $A.enqueueAction(action);
     },
@@ -415,7 +415,7 @@
             component.set("v.submitButtonDisable", "true");
         }
     },
-    
+
     onCheckboxChange: function(component, event){
         this.toEnableSubmitButtonCheck(component, event);
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true){
@@ -444,16 +444,16 @@
                 }
             }else{
                 counter = counter + 1;
-            }  
+            }
         }
         if(totalCheckbox.length == counter) {
             component.set("v.certificateValues", true);
-            
+
         } else {
             component.set("v.certificateValues", false);
             //component.set("v.certificateError", "All checkbox's must be checked.");
         }
-        
+
         var totalDeclarationCheckbox = document.getElementsByClassName("declaration-checkbox");
         var declarationCounter = 0;
         for(var i=0; i < totalDeclarationCheckbox.length; i++ ){
@@ -463,13 +463,13 @@
         }
         if(totalDeclarationCheckbox.length == declarationCounter) {
             component.set("v.declarationFlag", true);
-            
+
         } else {
             component.set("v.declarationFlag", false);
             //component.set("v.certificateError", "All checkbox's must be checked.");
         }
-        
-        
+
+
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
         var givenName = component.get("v.attestValue").trim().toLowerCase();
         if(attestedName == givenName){
@@ -478,7 +478,7 @@
         } else {
             component.set("v.attestationStatus", false);
             //component.set("v.attestationError", "Name should be same.");
-        }        
+        }
     },
     checkboxValidation: function(component, event){
         var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
@@ -487,7 +487,7 @@
             if(document.getElementById('cert'+i).checked === true){
                 counter = counter + 1;
             }
-        }        
+        }
         if(totalCheckbox.length == counter) {
             component.set("v.certificateValues", true);
             component.set("v.certificateError", "");
@@ -511,8 +511,8 @@
             var fieldsWrapper = JSON.parse(licenseWrapper[tabNumber].fieldJson);
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
-            });                
-            var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
+            });
+            var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");
             var errorMessage = "Please fill valid data";
             var PatternAndFlagCheck = validateFields.every(function validateFields(item, index) {
                 if(!$A.util.hasClass(fieldValuesWrapper[index], "slds-hide")){
@@ -557,7 +557,7 @@
                                 }else{
                                     errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                     return false;
-                                }  
+                                }
                             }
                         } else {
                             if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
@@ -565,7 +565,7 @@
                             } else {
                                 errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                 return false;
-                            }  
+                            }
                         }
                     } else {
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
@@ -581,7 +581,7 @@
                                     }else{
                                         errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                         return false;
-                                    }  
+                                    }
                                 } else {
                                     var regexExp = new RegExp(item.Regex_Validation__c);
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
@@ -590,7 +590,7 @@
                                     }else{
                                         errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 return true;
@@ -601,10 +601,10 @@
                     }
                 } else {
                     return true;
-                }  
+                }
             });
             if(PatternAndFlagCheck){
-                component.set("v.nextFlag", true);                    
+                component.set("v.nextFlag", true);
             }
             else{
                 component.set("v.nextFlag", false);
@@ -623,7 +623,7 @@
             var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-            });                            
+            });
             var errorMessage = "Please fill valid data";
             var questionsFlagCheck = validateFields.every(function validateFields(item, index) {
                 if(item.renderedOnUi){
@@ -639,7 +639,7 @@
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                     return false;
-                                }  
+                                }
                             }
                         } else {
                             var valueVal = item.value;
@@ -648,7 +648,7 @@
                             } else {
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                 return false;
-                            }  
+                            }
                         }
                     } else {
                         if(item.regex != undefined && item.regex != ""){
@@ -664,7 +664,7 @@
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 return true;
@@ -675,10 +675,10 @@
                     }
                 } else {
                     return true;
-                }  
+                }
             });
             if(questionsFlagCheck){
-                component.set("v.nextFlag", true);                    
+                component.set("v.nextFlag", true);
             }
             else{
                 component.set("v.nextFlag", false);
@@ -689,13 +689,13 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-            }            
+            }
         }
             else if(licenseWrapper[tabNumber].subheader == "Endorsement"){
                 var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
                 var validateFields = fieldsWrapper.filter(function(item){
                     return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-                });                            
+                });
                 var errorMessage = "Please fill valid data";
                 var questionsFlagCheck = validateFields.every(function validateFields(item, index) {
                     if(item.renderedOnUi){
@@ -711,22 +711,22 @@
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && 
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" &&
 								valueVal != "--Select one--" && valueVal.trim() != "" ){
                                     return true;
                                 } else {
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                     return false;
-                                }  
+                                }
                             }
                         } else {
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && 
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" &&
 								valueVal != "--Select one--" && valueVal.trim() != "" ){
                                     if(item.regex == "Date-Validation"){
                                         //
@@ -738,7 +738,7 @@
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                             return false;
-                                        }  
+                                        }
                                     }
                                 } else {
                                     return true;
@@ -749,10 +749,10 @@
                         }
                     } else {
                         return true;
-                    }  
+                    }
                 });
                 if(questionsFlagCheck){
-                    component.set("v.nextFlag", true);                    
+                    component.set("v.nextFlag", true);
                 }
                 else{
                     component.set("v.nextFlag", false);
@@ -763,15 +763,16 @@
                         "type": "error"
                     });
                     toastEvent.fire();
-                }            
+                }
             }
-        
+
                 else if(licenseWrapper[tabNumber].subheader == "Financial Guarantee"){
                     var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
                     var validateFields = fieldsWrapper.filter(function(item){
                         return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-                    });                            
+                    });
                     var errorMessage = "Please fill valid data";
+                    var approExpirationFlag = component.get("v.approExpirationFlag");
                     var financequestionsFlagCheck = validateFields.every(function validateFields(item, index) {
                         if(item.renderedOnUi){
                             if(item.isMandatoryQues){
@@ -815,7 +816,7 @@
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                             return false;
-                                        }  
+                                        }
                                     }
                                 } else {
                                     var valueVal = item.value;
@@ -825,7 +826,7 @@
                                     } else {
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 if(item.regex != undefined && item.regex != ""){
@@ -843,11 +844,11 @@
                                                 }else{
                                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                                     return false;
-                                                } 
+                                                }
                                             }else{
                                                 errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                                 return false;
-                                            } 
+                                            }
                                         } else if(item.regex == "Policy-Amount"){
                                             var valueVal = item.value;
                                             if(valueVal!="" && valueVal!=null){
@@ -865,13 +866,13 @@
                                         }else {
                                             var regexExp = new RegExp(item.regex);
                                             var valueVal = item.value;
-                                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" 
+                                            if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--"
 											 && valueVal != "--Select one--" && valueVal.trim() != "" && regexExp.test(valueVal)){
                                                 return true;
                                             }else{
                                                 errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                                 return false;
-                                            }  
+                                            }
                                         }
                                     } else {
                                         return true;
@@ -882,13 +883,33 @@
                             }
                         } else {
                             return true;
-                        }  
+                        }
                     });
-                    if(financequestionsFlagCheck){
-                        component.set("v.nextFlag", true);                    
+                    var finExpirationDate = "";
+                    var finEffectiveDate = "";
+                    for(var i=0; i<fieldsWrapper.length; i++){
+                        if(fieldsWrapper[i].fieldAPIName == "Expiration_Date_of_Bond__c" && fieldsWrapper[i].value != "")  {
+                            finExpirationDate = fieldsWrapper[i].value;
+                        }
+                        if(fieldsWrapper[i].fieldAPIName == "Effective_Date_of_Bond__c" && fieldsWrapper[i].value != "")  {
+                            finEffectiveDate = fieldsWrapper[i].value;
+                        }
+                    }
+                    if(finExpirationDate < finEffectiveDate){
+                        approExpirationFlag = false;
+                        errorMessage = 'Expiration Date should be greater than Effective Date!';
+                    }
+                    else if(finExpirationDate > finEffectiveDate){
+                        approExpirationFlag = true;
+                    }
+
+                    if(financequestionsFlagCheck && approExpirationFlag){
+                        component.set("v.nextFlag", true);
+                        component.set("v.approExpirationFlag", true);
                     }
                     else{
                         component.set("v.nextFlag", false);
+                        component.set("v.approExpirationFlag", false);
                         var toastEvent = $A.get("e.force:showToast");
                         toastEvent.setParams({
                             "title": "ERROR!",
@@ -896,7 +917,7 @@
                             "type": "error"
                         });
                         toastEvent.fire();
-                    }            
+                    }
                 } else if(licenseWrapper[tabNumber].subheader == "Qualifying Information"){
                     var qualificationValidation = licenseWrapper[tabNumber].mandatorySubsection;
                     var qualificationValid = false;
@@ -925,9 +946,9 @@
                     } else {
                         qualificationValid = true;
                     }
-                    
+
                     if(qualificationValid){
-                        component.set("v.nextFlag", true);                    
+                        component.set("v.nextFlag", true);
                     }
                     else{
                         component.set("v.nextFlag", false);
@@ -938,15 +959,15 @@
                             "type": "error"
                         });
                         toastEvent.fire();
-                    }     
+                    }
                 }
                     else {
-                        component.set("v.nextFlag", true);  
+                        component.set("v.nextFlag", true);
                     }
-        
+
     },
-    
-    
+
+
     updatePhysicalAddress : function(component,event,helper){
         var applicationId = component.get("v.applicationId");
         var action = component.get("c.updateAddressModified");

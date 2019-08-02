@@ -1,6 +1,6 @@
 ({
     fetchDataFromServer : function(component, event, helper){
-        var licenseType = component.get("v.licenseType");   
+        var licenseType = component.get("v.licenseType");
         var businessLicenseType =$A.get("$Label.c.Business_Licenses");
         var businsessLicenseArray = businessLicenseType.split(',');
         var isbusinsessLicense = businsessLicenseArray.includes(licenseType);
@@ -11,10 +11,10 @@
         var action = component.get("c.fetchData");
         action.setParams({
             "appId": component.get("v.applicationId"),
-            "board": board, 
-            "licenseType": licenseType, 
+            "board": board,
+            "licenseType": licenseType,
             "applicationType": applicationType,
-            "flowType": flowType 
+            "flowType": flowType
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
@@ -23,7 +23,7 @@
                 var resultWrapper = JSON.parse(result);
                 component.set("v.licenseWrapper",resultWrapper);
                 //alert(resultWrapper);
-                
+
                 var sectionList = [];
                 for (var index = 0; index < resultWrapper.length; index++){
                     var obj = new Object();
@@ -35,7 +35,7 @@
                 component.set("v.section",sectionList);
                 console.log("resultWrapper", JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
-                
+
                 this.hideSpinner(component, event);
             }else{
                 window.location.href = "./error";
@@ -60,7 +60,7 @@
                 window.location.href = "./error";
             }
         }
-        
+
         component.set("v.licenseType", licenseType);
         component.set("v.board", board);
         component.set("v.applicationType", applicationType);
@@ -69,12 +69,12 @@
         if((recordID !='' && recordID != null) || recordID != null ){
             recordID = recordID;
             objectName = "Account";
-        } 
+        }
         component.set("v.recordId",recordID);
         component.set("v.licenseRecordID",licenseRecordID);
         component.set("v.objectName",objectName);
         sessionStorage.clear();
-        
+
     },
     goToPreviousTab : function(component, event, helper) {
         component.set("v.AttFlagForsubmit","false");
@@ -87,10 +87,10 @@
         this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
         	component.set("v.showEndoMessage",false);
-            var curTab= component.get("v.currentTab");		
+            var curTab= component.get("v.currentTab");
             var tabNumber = component.get("v.currentTab");
             var totalTabNumber = component.get("v.totalTabs");
-            component.set("v.submitButtonDisable", "true"); 
+            component.set("v.submitButtonDisable", "true");
             component.set("v.currentTab", tabNumber+1);
             tabNumber++;
             var action = component.get("c.insertApplication");
@@ -116,7 +116,7 @@
                         if(newlst.length==0){
                             component.set("v.AttFlagForsubmit","true");
                         }
-                        component.set("v.SectionError",newlst);            
+                        component.set("v.SectionError",newlst);
                     }
                     var sectionList = [];
                     for (var index = 0; index < resultWrapper.length; index++){
@@ -133,11 +133,11 @@
                     component.set("v.totalTabs", sectionList.length);
                     this.hideSpinner(component, event);
                     if(component.get("v.saveAndSubmit") == true){
-                        this.SaveAndSubmit(component,event,helper); 
+                        this.SaveAndSubmit(component,event,helper);
                     }
                     var tabsList = component.get("v.licenseWrapper");
                     var currentTab = component.get("v.currentTab");
-                    
+
                     if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
                     {
                         component.set("v.showNotaryEndo",true);
@@ -150,13 +150,13 @@
             });
             $A.enqueueAction(action);
             //Added to save the personal imformation
-            
+
             if(component.find("recordObjectForm") != null && component.find("recordObjectForm").find("editForm") != null){
-                component.find("recordObjectForm").find("editForm").submit();            
+                component.find("recordObjectForm").find("editForm").submit();
             }
             if(component.find("recordObjectForm") != null && component.find("recordObjectForm").find("createAccountForm") != null){
                 //var fields = event.getParam("fields");
-                component.find("recordObjectForm").find("createAccountForm").submit();            
+                component.find("recordObjectForm").find("createAccountForm").submit();
             }
             var tabsList = component.get("v.licenseWrapper");
             console.log('tabsList '+tabsList);
@@ -168,9 +168,9 @@
                         for (var question in tabsList[key].labelFieldsMap){
                             if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
                                 a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
-                            }						
+                            }
                         }
-                    }                
+                    }
                     else if(tabsList[key].sectionName =='Attachments'){
                         for (var att in tabsList[key].labelFieldsMap){
                             var fileNos = tabsList[key].labelFieldsMap[att].multiValues.length;
@@ -193,13 +193,13 @@
             "message": "You will have 30 days to complete this application before it expires.",
             "type": "Warning"
         });
-        
+
         toastEvent.fire();
         window.setTimeout(
             $A.getCallback(function() {
                 // smth after two seconds
                 // check component.isValid() if you want to work with component
-                var isBizLic = component.get("v.isbusinsessLicense");                
+                var isBizLic = component.get("v.isbusinsessLicense");
                 var str = isBizLic?'/business':'/newdashboard';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
@@ -215,7 +215,7 @@
         var noFees;
         var that = this;
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true)
-        {                      
+        {
             var action = component.get("c.callCompositeAPI");
             action.setParams({
                 "applicationId" : component.get("v.applicationId"),
@@ -243,11 +243,11 @@
                                     resolve(actionResult.getReturnValue());
                                     console.log("state::"+state);
                                 }
-                                
+
                             });
                             $A.enqueueAction(action);
                         })).then(
-                            $A.getCallback(function(result){ 
+                            $A.getCallback(function(result){
                                 var str = '';
                                 component.set("v.loadingSpinner", false);
                                 if(noFees){
@@ -261,11 +261,11 @@
                                     that.hideSpinner(component, event);
                                     component.set("v.popupHeader", "Successfully Submitted");
                                     component.set("v.popupBody", "Thank you for submission of your application.");
-                                    component.set("v.serverStatus", "success"); 
+                                    component.set("v.serverStatus", "success");
                                     //component.set("v.storeServerValue", result[0].Id);
-                                    component.set("v.isOpen", true); 
+                                    component.set("v.isOpen", true);
                                     // no fees code ends
-                                }else{ 
+                                }else{
                                     that.hideSpinner(component, event);
                                     var str ='/cart?id='+id;
                                     var urlEvent = $A.get("e.force:navigateToURL");
@@ -274,30 +274,30 @@
                                     });
                                     urlEvent.fire();
                                     //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                                } 
+                                }
                             }));
-                    }    
+                    }
                     catch(e){
-                        console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+                        console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);
                     }
                     // Set popup property values before displayiong pop up.
                     /*component.set("v.popupHeader", "Successfully Submitted");
                     component.set("v.popupBody", "Thank you for submission of your application.");
-                    component.set("v.serverStatus", "success"); 
+                    component.set("v.serverStatus", "success");
                     component.set("v.storeServerValue", result[0].Id);
                     component.set("v.isOpen", true); */
                 }else{
                     console.log("Error");
                     //handle error as well
                 }
-                
+
             });
             $A.enqueueAction(action);
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    },    
-    showDependentQuestionsHelper : function(component, event, helper) {        
+    },
+    showDependentQuestionsHelper : function(component, event, helper) {
         component.set("v.showEndoMessage",false);
         component.set("v.showNotaryEndo",false);
         var response = event.getSource().get("v.value").trim();
@@ -312,7 +312,7 @@
             questionNumber = event.getSource().get("v.name").split('Questions')[1];
         }
         else
-        {          
+        {
             questionNumber = event.getSource().get("v.name").split('Endorsement')[1];
         }
         var tabsList = component.get("v.licenseWrapper");
@@ -321,12 +321,12 @@
         {
             component.set("v.showNotaryEndo",true);
 			//component.set("v.showEndoMessage",true);
-            //component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
+            //component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);
         }
         if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
-        {            
+        {
             component.set("v.showEndoMessage",true);
-            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);
         }
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
@@ -336,7 +336,7 @@
             for(var index=0; index<tabsList[currentTab-1].labelFieldsMap.length ; index++){
                 if(tabsList[currentTab-1].labelFieldsMap[index].parentQuestionId == questionNumberId){
                     childQuestionsArray.push(index);
-                } 
+                }
             }
             if(childQuestionsArray.length>0){
                 for(var i=0; i<childQuestionsArray.length; i++){
@@ -348,14 +348,14 @@
                         for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length; j++){
                             if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId == questionNumberId){
                                 if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer == response){
-                                    tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;                       
+                                    tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;
                                 }else{
                                     if(tabsList[currentTab-1].labelFieldsMap[j].hasChild){
-                                        subChildQuestionsArray=[]; 
+                                        subChildQuestionsArray=[];
                                         for(var k=j; k<tabsList[currentTab-1].labelFieldsMap.length ; k++){
                                             if(tabsList[currentTab-1].labelFieldsMap[k].parentQuestionId == questionNumberId){
                                                 subChildQuestionsArray.push(k);
-                                            } 
+                                            }
                                         }
                                         if(subChildQuestionsArray.length == 1){
                                             questionNumberId = tabsList[currentTab-1].labelFieldsMap[j].labelId;
@@ -376,31 +376,31 @@
                                                     tabsList[currentTab-1].labelFieldsMap[newVar].renderedOnUi=false;
                                                 }
                                             }
-                                        }   
+                                        }
                                     } else {
                                         tabsList[currentTab-1].labelFieldsMap[j].value = '';
                                         tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;
-                                    }                                             
-                                } 
+                                    }
+                                }
                             }
                         }
-                    } 
+                    }
                 }
             }
         }
         component.set("v.licenseWrapper",tabsList);
-    },    
+    },
     showSpinner: function(component, event){
         console.log('show spinner');
         //var spinner = component.find('spinner');
         //$A.util.removeClass(spinner, 'slds-hide');
-        component.set("v.loadingSpinner", true); 
+        component.set("v.loadingSpinner", true);
     },
     hideSpinner: function(component, event){
         console.log('hide spinner');
         //var spinner = component.find('spinner');
         //$A.util.addClass(spinner, 'slds-hide');
-        component.set("v.loadingSpinner", false); 
+        component.set("v.loadingSpinner", false);
     },
     getCurrTabHelper : function(component, event, helper){
         var currTab = event.getParam("currTab");
@@ -419,9 +419,9 @@
                     if(tabsList[currentTab-1].labelFieldsMap[i].labelId == parentQuestionId &&tabsList[currentTab-1].labelFieldsMap[i].value == expectedResponse ){
                         childQuestionId = document.getElementById('q'+index);
                         if(childQuestionId !=null){
-                            childQuestionId.classList.remove('slds-hide'); 
+                            childQuestionId.classList.remove('slds-hide');
                         }
-                        
+
                     }
                 }
             }
@@ -435,7 +435,7 @@
         urlEvent.setParams({
             "url": str
         });
-        urlEvent.fire(); 
+        urlEvent.fire();
         /*var id = component.get("v.storeServerValue");
         var noFees;
         component.set("v.loadingSpinner", true);
@@ -452,11 +452,11 @@
                             resolve(actionResult.getReturnValue());
                             console.log("state::"+state);
                         }
-                        
+
                     });
                     $A.enqueueAction(action);
                 })).then(
-                    $A.getCallback(function(result){ 
+                    $A.getCallback(function(result){
                         var str = '';
                         component.set("v.loadingSpinner", false);
                         if(noFees){
@@ -466,16 +466,16 @@
                                 "url": str
                             });
                             urlEvent.fire();
-                            
+
                         }else{
                             window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                        } 
+                        }
                     }));
-            }    
-            catch(e){
-                console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
             }
-        }*/},                               
+            catch(e){
+                console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);
+            }
+        }*/},
     onDeclarationChange: function(component, event, helper){
         this.toEnableSubmitButtonCheck(component, event);
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true){
@@ -484,7 +484,7 @@
         else {
             component.set("v.submitButtonDisable", "true");
         }
-    },  
+    },
     onCheckboxChange: function(component, event){
         this.toEnableSubmitButtonCheck(component, event);
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true){
@@ -513,16 +513,16 @@
                 }
             }else{
                 counter = counter + 1;
-            }  
+            }
         }
         if(totalCheckbox.length == counter) {
             component.set("v.certificateValues", true);
-            
+
         } else {
             component.set("v.certificateValues", false);
             //component.set("v.certificateError", "All checkbox's must be checked.");
         }
-        
+
         var totalDeclarationCheckbox = document.getElementsByClassName("declaration-checkbox");
         var declarationCounter = 0;
         for(var i=0; i < totalDeclarationCheckbox.length; i++ ){
@@ -532,13 +532,13 @@
         }
         if(totalDeclarationCheckbox.length == declarationCounter) {
             component.set("v.declarationFlag", true);
-            
+
         } else {
             component.set("v.declarationFlag", false);
             //component.set("v.certificateError", "All checkbox's must be checked.");
         }
-        
-        
+
+
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
         var givenName = component.get("v.attestValue").trim().toLowerCase();
         if(attestedName == givenName){
@@ -547,7 +547,7 @@
         } else {
             component.set("v.attestationStatus", false);
             //component.set("v.attestationError", "Name should be same.");
-        }        
+        }
     },
     checkboxValidation: function(component, event){
         var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
@@ -560,7 +560,7 @@
             }else{
                 counter = counter + 1;
             }
-        }    
+        }
         if(totalCheckbox.length == counter) {
             component.set("v.certificateValues", true);
             component.set("v.certificateError", "");
@@ -577,7 +577,7 @@
         if(totalDeclarationCheckbox.length == declarationCounter) {
             component.set("v.declarationFlag", true);
             component.set("v.declarationError", "");
-            
+
         } else {
             component.set("v.declarationError", "Declation checkbox must be checked.");
         }
@@ -597,8 +597,8 @@
             var fieldsWrapper = JSON.parse(licenseWrapper[tabNumber].fieldJson);
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
-            });                
-            var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
+            });
+            var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");
             var errorMessage = "Please fill valid data";
             var PatternAndFlagCheck = validateFields.every(function validateFields(item, index) {
                 if(!$A.util.hasClass(fieldValuesWrapper[index], "slds-hide")){
@@ -642,7 +642,7 @@
                                 }else{
                                     errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                     return false;
-                                }  
+                                }
                             }
                         } else {
                             if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
@@ -650,7 +650,7 @@
                             } else {
                                 errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                 return false;
-                            }  
+                            }
                         }
                     } else {
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
@@ -666,7 +666,7 @@
                                     }else{
                                         errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                         return false;
-                                    }  
+                                    }
                                 } else {
                                     var regexExp = new RegExp(item.Regex_Validation__c);
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
@@ -675,7 +675,7 @@
                                     }else{
                                         errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 return true;
@@ -686,7 +686,7 @@
                     }
                 } else {
                     return true;
-                }  
+                }
             });
             //Address validation code
             /*var addressValidation = licenseWrapper[tabNumber].mandatorySubsection;
@@ -717,7 +717,7 @@
             }*/
             // Address validation check && addressValid
             if(PatternAndFlagCheck){
-                component.set("v.nextFlag", true);                    
+                component.set("v.nextFlag", true);
             }
             else{
                 component.set("v.nextFlag", false);
@@ -734,7 +734,7 @@
             var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-            });                            
+            });
             var errorMessage = "Please fill valid data";
             var questionsFlagCheck = validateFields.every(function validateFields(item, index) {
                 if(item.renderedOnUi){
@@ -750,7 +750,7 @@
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                     return false;
-                                }  
+                                }
                             }
                         } else {
                             var valueVal = item.value;
@@ -759,7 +759,7 @@
                             } else {
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                 return false;
-                            }  
+                            }
                         }
                     } else {
                         if(item.regex != undefined && item.regex != ""){
@@ -775,7 +775,7 @@
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 return true;
@@ -786,10 +786,10 @@
                     }
                 } else {
                     return true;
-                }  
+                }
             });
             if(questionsFlagCheck){
-                component.set("v.nextFlag", true);                    
+                component.set("v.nextFlag", true);
             }
             else{
                 component.set("v.nextFlag", false);
@@ -800,13 +800,14 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-            }            
+            }
         } else if(licenseWrapper[tabNumber].subheader == "Financial Guarantee"){
             var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.isMandatoryQues == true || (item.regex != undefined && item.regex != "");
-            });                            
+            });
             var errorMessage = "Please fill valid data";
+            var approExpirationFlag = component.get("v.approExpirationFlag");
             var financequestionsFlagCheck = validateFields.every(function validateFields(item, index) {
                 if(item.renderedOnUi){
                     if(item.isMandatoryQues){
@@ -850,7 +851,7 @@
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                     return false;
-                                }  
+                                }
                             }
                         } else {
                             var valueVal = item.value;
@@ -859,7 +860,7 @@
                             } else {
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                 return false;
-                            }  
+                            }
                         }
                     } else {
                         if(item.regex != undefined && item.regex != ""){
@@ -877,11 +878,11 @@
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                             return false;
-                                        } 
+                                        }
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
-                                    } 
+                                    }
                                 } else if(item.regex == "Policy-Amount"){
                                     var valueVal = item.value;
                                     if(valueVal!="" && valueVal!=null){
@@ -904,7 +905,7 @@
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
-                                    }  
+                                    }
                                 }
                             } else {
                                 return true;
@@ -915,13 +916,32 @@
                     }
                 } else {
                     return true;
-                }  
+                }
             });
-            if(financequestionsFlagCheck){
-                component.set("v.nextFlag", true);                    
+            var finExpirationDate = "";
+            var finEffectiveDate = "";
+            for(var i=0; i<fieldsWrapper.length; i++){
+                if(fieldsWrapper[i].fieldAPIName == "Expiration_Date_of_Bond__c" && fieldsWrapper[i].value != "")  {
+                        finExpirationDate = fieldsWrapper[i].value;
+                }
+                if(fieldsWrapper[i].fieldAPIName == "Effective_Date_of_Bond__c" && fieldsWrapper[i].value != "")  {
+                        finEffectiveDate = fieldsWrapper[i].value;
+                }
+            }
+            if(finExpirationDate < finEffectiveDate){
+                approExpirationFlag = false;
+                errorMessage = 'Expiration Date should be greater than Effective Date!';
+            }
+            else if(finExpirationDate > finEffectiveDate){
+                approExpirationFlag = true;
+            }
+            if(financequestionsFlagCheck && approExpirationFlag){
+                component.set("v.nextFlag", true);
+                component.set("v.approExpirationFlag", true);
             }
             else{
                 component.set("v.nextFlag", false);
+                component.set("v.approExpirationFlag", false);
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
@@ -929,7 +949,7 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-            }            
+            }
         } else if(licenseWrapper[tabNumber].subheader == "Qualifying Information"){
             var qualificationValidation = licenseWrapper[tabNumber].mandatorySubsection;
             var qualificationValid = false;
@@ -958,9 +978,9 @@
             } else {
                 qualificationValid = true;
             }
-            
+
             if(qualificationValid){
-                component.set("v.nextFlag", true);                    
+                component.set("v.nextFlag", true);
             }
             else{
                 component.set("v.nextFlag", false);
@@ -971,12 +991,12 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-            }     
+            }
         }
         else {
-            component.set("v.nextFlag", true);  
+            component.set("v.nextFlag", true);
         }
-    },    
+    },
     handleComponentEventHelper : function(component, event){
         var messageReceived = event.getParam("message");
         var tabsList = component.get("v.licenseWrapper");
@@ -994,7 +1014,7 @@
                     }
                 }
             }
-        } 
+        }
         component.set("v.licenseWrapper",tabsList);
     }
 })
