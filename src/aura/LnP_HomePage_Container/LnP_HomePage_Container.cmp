@@ -10,9 +10,9 @@
             <c:ToDo_Tasks />   
             
         </aura:if>
-        <aura:if isTrue="{!!v.isValidCommunityUser}">
+        <!--<aura:if isTrue="{!!v.isValidCommunityUser}"> -->
             <c:LnP_DynamicPortalArticleRenderer isLoggedIn="{!v.isLoggedIn}" />
-        </aura:if>
+       <!-- </aura:if>  -->
         <aura:set attribute="else">
         	<lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
         </aura:set>
