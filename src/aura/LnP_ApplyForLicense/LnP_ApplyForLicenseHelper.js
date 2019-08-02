@@ -1041,12 +1041,30 @@
 					return true;
 				}  
 			});
-			
-			if(financequestionsFlagCheck){
-				component.set("v.nextFlag", true);     
-			}
+            var finExpirationDate = "";
+            var finEffectiveDate = "";
+            for (var i = 0; i < fieldsWrapper.length; i++) {
+                if (fieldsWrapper[i].fieldAPIName == "Expiration_Date_of_Bond__c" && fieldsWrapper[i].value != "") {
+                    finExpirationDate = fieldsWrapper[i].value;
+                }
+                if (fieldsWrapper[i].fieldAPIName == "Effective_Date_of_Bond__c" && fieldsWrapper[i].value != "") {
+                    finEffectiveDate = fieldsWrapper[i].value;
+                }
+            }
+            if (finExpirationDate < finEffectiveDate) {
+                approExpirationFlag = false;
+                errorMessage = 'Expiration Date should be greater than Effective Date!';
+            }
+            else if (finExpirationDate > finEffectiveDate) {
+                approExpirationFlag = true;
+            }
+            if (financequestionsFlagCheck && approExpirationFlag) {
+                component.set("v.nextFlag", true);
+                component.set("v.approExpirationFlag", true);
+            }
 			else{
-				component.set("v.nextFlag", false);              
+                component.set("v.nextFlag", false);      
+                component.set("v.approExpirationFlag", false);        
 				var toastEvent = $A.get("e.force:showToast");
 				toastEvent.setParams({
 					"title": "ERROR!",
