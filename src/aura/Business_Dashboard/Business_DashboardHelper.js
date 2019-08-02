@@ -28,6 +28,7 @@
                 console.log(response.getReturnValue());
                 console.log('business::'+ JSON.stringify(data));
                 component.set('v.businessList',data);
+                component.set("v.businessListLoaded",true);
                 for(var item in data){
                     component.set("v.existingAcc",true);
                     break;
@@ -169,7 +170,7 @@
         $A.enqueueAction(action);
     },
     
-     getAddressDetails : function(component,event,helper){
+    getAddressDetails : function(component,event,helper){
         console.log('in get address details component');
        
         var action = component.get("c.getAddressData");

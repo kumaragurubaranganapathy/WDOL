@@ -101,8 +101,8 @@
         	component.set("v.todayDate",tDate);
         	
             helper.getCourseDetails(component,event,helper);
-			
-			helper.getAddressDetails(component,event,helper);
+            
+            helper.getAddressDetails(component,event,helper);
         }
         if(licenseId != null && licenseId !='' && isdisplayLicenseDetails === true){ 
             
