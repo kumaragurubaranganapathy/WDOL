@@ -49,11 +49,10 @@
             }
         });
         $A.enqueueAction(action);  
-    },
-    
+    },    
     searchCourse : function(component, event, helper) {
         var Program = component.find("Program").get("v.value");
-        var CourseType = component.find("CourseType").get("v.value");
+        //var CourseType = component.find("CourseType").get("v.value");
         var credOptVal = [];
         if(Program !=""){
             component.set("v.disableLicenseType",false);
@@ -64,17 +63,26 @@
             component.set("v.licensureLevelOptions",valueList);
         }
         var Licensurelevel = component.find("licensureLevel").get("v.value");
-        console.log('Licensurelevel'+Licensurelevel);
-       
-      //  var toastEvent = $A.get("e.force:showToast");
-        if(Program != "" && CourseType != ""){
-            component.set("v.showSearchFields", true);
-            
-        }
-		
+        //console.log('Licensurelevel'+Licensurelevel);       
+        //var toastEvent = $A.get("e.force:showToast");
+        //if(Program != "" && CourseType != ""){
+        //    component.set("v.showSearchFields", true);     
+        //}		
 	},
     fetchCourseDetails: function(component, event, helper){
-        helper.searchCourse(component, event);
+        var Program = component.find("Program").get("v.value");
+        var CourseType = component.find("CourseType").get("v.value");
+        if(Program != "" && CourseType != ""){
+            helper.searchCourse(component, event);
+        }else{
+            var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title": "Error!",
+                "message": "Please fill the mandatory fields.",
+                "type": "error"
+            });
+            toastEvent.fire(); 
+        }	        
     },
     navigateToCustomPlace1 : function(component, event, helper) {
 		helper.navigateToCustomPlace1(component, event);

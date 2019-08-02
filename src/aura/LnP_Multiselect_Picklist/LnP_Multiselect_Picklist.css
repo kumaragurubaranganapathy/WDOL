@@ -122,3 +122,45 @@
         width: 5rem;
     }
 }
+.THIS .icon-chevron.icon-bottom:before, .THIS .icon-chevron.icon-bottom:after {
+    position: absolute;
+    content: '';
+    display: block;
+    right: .15rem;
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    pointer-events: none;
+}
+.THIS .icon-chevron.icon-bottom:after {
+    border-bottom: 5px solid rgb(6, 28, 63);
+    top: 0px;
+}
+.THIS .icon-chevron.icon-bottom:before {
+    border-top: 5px solid rgb(6, 28, 63);
+    bottom: -5px;
+}
+.THIS input {
+    font-weight: bold;
+}
+.THIS input::-webkit-input-placeholder { 
+  	color: #1b1c1a;
+    font-weight: 800;
+    -webkit-text-fill-color:#1b1c1a;
+}
+.THIS input::-moz-placeholder { 
+  	color: #1b1c1a;
+    font-weight: 800;
+    -webkit-text-fill-color:#1b1c1a;
+}
+.THIS input:-ms-input-placeholder { 
+  	color: #1b1c1a;
+    font-weight: 800;
+    -webkit-text-fill-color:#1b1c1a;
+}
+.THIS input:-moz-placeholder {
+    color: #1b1c1a;
+    font-weight: 800;
+    -webkit-text-fill-color:#1b1c1a;
+}
