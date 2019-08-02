@@ -1160,9 +1160,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 
             }   
         }
-        if(childlicenseRecordID!=null)
+        if(childlicenseRecordID!=null && licenseID[0].Application_Method__c =='Upgrade')
         {
-            List<MUSW__License2__c> lic = [SELECT id,Upgraded_License__c FROM MUSW__License2__c where id=:childlicenseRecordID AND Application_Method__c =:'Upgrade'];
+            List<MUSW__License2__c> lic = [SELECT id,Upgraded_License__c FROM MUSW__License2__c where id=:childlicenseRecordID];
             if(!lic.isEmpty()){
                 lic[0].Upgraded_License__c = licenseID[0].id;
                 update lic[0];
