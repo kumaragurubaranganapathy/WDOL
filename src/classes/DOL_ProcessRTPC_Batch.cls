@@ -14,7 +14,7 @@ global with sharing class DOL_ProcessRTPC_Batch implements Database.Batchable<sO
 
     global Database.QueryLocator start(Database.BatchableContext BC){
         System.debug('DOL_Epayment_ProcessRemittanceData::start...');
-        Datetime dt = Datetime.now().addMinutes(0); // Get date time for one 15 min back
+        Datetime dt = Datetime.now().addMinutes(-15); // Get date time for one 15 min back
         return Database.getQueryLocator([ select id, File_Name__c, INFO__c, Input__c, Status__c, Input_Type__c 
                                         from DOL_Integration_Batch_Input__c 
                                         where Status__c = 'UNPROCESSED' and 
