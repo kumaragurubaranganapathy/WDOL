@@ -2430,6 +2430,17 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Adjustment_Reason__c</picklist>
+            <values>
+                <fullName>Reapplied Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refund</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Agency_Code__c</picklist>
             <values>
                 <fullName>3000</fullName>
@@ -2495,6 +2506,10 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
             <values>
+                <fullName>IAP to another state agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>New Title Application</fullName>
                 <default>false</default>
             </values>
@@ -2528,6 +2543,10 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
             <values>
                 <fullName>Transfer of Ownership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2746,6 +2765,10 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
             <values>
+                <fullName>Miscellaneous Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
             </values>
@@ -2801,6 +2824,10 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Unlicensed</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>MUSW__Group__c</picklist>
@@ -2835,59 +2862,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <picklistValues>
             <picklist>MUSW__Type__c</picklist>
             <values>
-                <fullName>DC - Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC - Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC - Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC - Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC Fine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCQ - Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCQ - Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCQ - Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCQ - Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCR - Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCR - Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCR - Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCR - Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DCR - Renewal Late Fee</fullName>
+                <fullName>Account Maintenance %28AMR%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2895,7 +2870,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Expedited Service Fee</fullName>
+                <fullName>Endorsement</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2903,91 +2878,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Interpretive Determination Report</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lien Copy Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF - Installer App Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF - Installer Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Community Expansion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Community Late Renewal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Community Late Renewal over 2 yrs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Community New License</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Community Permit Revision Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Community Renewal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Dealer Branch Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Dealer Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Dealer Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Installer Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Installer Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Manufacturer App Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Manufacturer Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Manufacturer Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Permit Revision Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Salesperson App Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Salesperson Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MNF Salesperson Renewal Fee</fullName>
+                <fullName>General</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2995,127 +2886,11 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Miscellaneous Review</fullName>
+                <fullName>Reinstatement</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Miscellaneous Review - Additional Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NSF Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Consultation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS Sanitary Permit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS application for review%2C petition for variance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS application for review%2C petition for variance Revision Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Component Manual Design</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Component Manual Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Experimental System</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Holding Tank Individual Site Design</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Pit Privy Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Soil Saturation Determination Report</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>POWTS-Vault Privy Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rehab %26 Recycle Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Revision to previously approved plan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Application fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Exam fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Initial Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Reinstatement Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Reinstatement Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Reinstatement Exam Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Reinstatement Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Reinstatement Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SP-Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Soil Based Individual Site Design At Grade</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Soil Saturation Determination Report</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supplemental Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Application</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Replacement Fee</fullName>
+                <fullName>Renewal</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3128,58 +2903,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
             <values>
                 <fullName>Trust Expense - Staff Hours</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Current Certificate Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Current Certificate Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Exam Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Late Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Proof of Current Certificate Credential Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Reinstatement Application Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Reinstatement Exam Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Reinstatement Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Reinstatement Late Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Renewal Fee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UDC-Renewal Fee With Late CE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
