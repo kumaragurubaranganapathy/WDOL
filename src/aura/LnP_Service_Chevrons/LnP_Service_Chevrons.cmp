@@ -85,13 +85,13 @@
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
                                                 <div>
-                                                    <ui:inputText disabled = "true" value="{!responses.question}"/>
+                                                    <ui:outputRichText  value="{!responses.question}"/>
                                                 </div>
                                                 <!-- <p> -->  
                                                 <aura:if isTrue="{!responses.answer != null}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
-                                                        <ui:outputText value="{!responses.answer}"/>
+                                                        <ui:outputRichText value="{!responses.answer}"/>
                                                         <!-- CR <aura:if isTrue="{!and(responses.hasChild, responses.value == No)}" >
                                                  {!varRes + 1}
                                                 </aura:if>   -->  
