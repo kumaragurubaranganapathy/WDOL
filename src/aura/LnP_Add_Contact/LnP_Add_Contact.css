@@ -1,6 +1,7 @@
 .THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__control{
     padding-left:0;
     width:50%;
+    float:unset;
 }
 .THIS.contact-details-wrapper{
     padding: 1.5rem 2rem;
@@ -14,6 +15,12 @@
     font-size:1.25rem;
     font-weight:bold;
     margin-bottom:1.5rem;
+}
+.THIS.contact-details-wrapper .slds-form-element__icon{
+    padding-top:0;
+}
+.THIS.contact-details-wrapper .slds-form-element__label{
+    padding-right:0;
 }
 
 @media t(mqSmall){
