@@ -1042,7 +1042,7 @@
 				}  
 			});
 			
-			if(financequestionsFlagCheck && approExpirationFlag){
+			if(financequestionsFlagCheck){
 				component.set("v.nextFlag", true);     
 			}
 			else{
