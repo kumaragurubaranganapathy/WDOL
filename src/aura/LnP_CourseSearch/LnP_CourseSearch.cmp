@@ -63,9 +63,7 @@ _______________________________________________________________
     <aura:attribute name="CourseRecordTypeId" type="String" />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    
     <div class="page-width">
-        
         <div class="page-header padding-top-30">
             <h1>Course Search</h1>
         </div>
@@ -82,8 +80,6 @@ _______________________________________________________________
             </lightning:breadcrumbs>
         </aura:if>
         <div class="screen-one" id="screenOneStyles">
-            
-            
             <aura:if isTrue="{!v.screenOne}">
                 <!--div class="section-header slds-p-top_x-small padding-bottom-20">
                     Search a Course
@@ -93,11 +89,9 @@ _______________________________________________________________
                     <div multipleRows="true">
                         <!-- <div class="slds-grid"> -->
                         <!-- <lightning:layoutItem> -->
-                        
                         <aura:if isTrue="{!v.optionsExist}">
                             <div class="slds-p-around_medium program field-size field-style">
                                 <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
-                                
                                 <lightning:select name="Program" label="What program are you interested in?"
                                                   aura:id="Program" value="Appraisers" required="true" onchange="{!c.searchCourse}">
                                     <!--option text="Select an Option" value="" /-->
@@ -109,22 +103,17 @@ _______________________________________________________________
                             </div>
                             <!-- </div> -->
                         </aura:if>
-						
                         <div class="course-type field-size field-style">
-                                          
                             <lightning:select name="CourseType" label="Course Type" aura:id="CourseType" value="" required="true" onchange="{!c.searchCourse}">
                                 <option text="Select an Option" value="" />
                                 <aura:iteration items="{!v.courseTypeOptions}" var="opt">
                                     <option text="{!opt}" value="{!opt}" label="{!opt}" />
                                 </aura:iteration>
                             </lightning:select>
-                            
                             <!-- <c:LnP_Multiselect_Picklist options="{!v.courseTypeOptions}" aura:id="CourseType" /> -->
                         </div>
-						<div class="licensure field-size field-style">
-                            
+                        <div class="licensure field-size field-style">
                             <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
-                            
                             <lightning:select name="licensureLevel" label="What licensure level?"
                                               aura:id="licensureLevel" value="" disabled="{!v.disableLicenseType}">
                                 <option text="Select an Option" value="" />
@@ -134,31 +123,22 @@ _______________________________________________________________
                             </lightning:select>
                             <!-- </div> -->
                         </div>
-                        
                         <!-- <div class="slds-col slds-size_1-of-3 slds-p-vertical_large slds-p-horizontal_large"> -->
-                        
                         <!-- </div> -->
-                        
-                        
                         <!-- </lightning:layoutItem> -->
                         <!-- </div> -->
                         <!-- Start of form -->
-                        <!-- <div class="slds-form-element"> -->
-                        
+                        <!-- <div class="slds-form-element"> -->                        
                         <aura:if isTrue="true">
                             <!-- <div class="slds-grid"> -->
                             <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                             <!--   Provider/School Name: -->
                             <div class="school field-size field-style">
-                                
-                                
                                 <lightning:input aura:id="schoolName" label="Provider/School Name"
                                                  placeholder="Enter Name" name="schoolName" type="text" />
                             </div>
                             <!-- </div> -->
                             <div class="field-size field-style">
-                                
-                                
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <!--  Course Name:-->
                                 <lightning:input aura:id="courseName" label="Course Name"
@@ -166,21 +146,15 @@ _______________________________________________________________
                             </div>
                             <!-- </div> -->
                             <div class="field-size field-style">
-                                
-                                
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <!-- Course Number: -->
                                 <lightning:input aura:id="courseNumber" label="Course Number"
                                                  placeholder="Enter Course Number" name="courseNumber" type="text" />
                             </div>
-                            <!-- </div> -->
-                            
-                            <!-- </div> -->
-                            
+                            <!-- </div> -->                            
+                            <!-- </div> --> 
                             <!-- <div class="slds-grid "> -->
                             <div class="field-size field-style">
-                                
-                                
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <!-- Clock Hours: -->
                                 <lightning:input aura:id="clockHours" type="number" label="Clock Hours"
@@ -188,8 +162,6 @@ _______________________________________________________________
                             </div>
                             <!-- </div> -->
                             <div class="field-size field-style">
-                                
-                                
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <span class="slds-form-element__label">Topic: </span>
                                 <!--   <lightning:inputField  class="slds-m-vertical_large" label="Topic" fieldName="Course_Topic__c" /> -->
@@ -197,8 +169,6 @@ _______________________________________________________________
                                 <!-- </div> -->
                             </div>
                             <div class="field-size field-style">
-                                
-                                
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <!--  <span class="slds-form-element__label" for="Status">Status: </span>   
                                 <lightning:input aura:id="Status" label="Status" variant="label-hidden" fieldName="Course_Status__c" /> -->
@@ -211,12 +181,10 @@ _______________________________________________________________
                             </div>
                             <!-- </div> -->
                             <div class="field-size field-style">
-                                
-                                
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
-                                 <span class="slds-form-element__label">Delivery Method: </span> 
-                        <!--  <lightning:input aura:id="DeliveryMethod" label="Delivery Method" variant="label-hidden" fieldName="Delivery_Method__c" /> -->
-                               <!-- <lightning:select name="DeliveryMethod" label="Delivery Method" aura:id="DeliveryMethod"
+                                <span class="slds-form-element__label">Delivery Method: </span> 
+                                <!--  <lightning:input aura:id="DeliveryMethod" label="Delivery Method" variant="label-hidden" fieldName="Delivery_Method__c" /> -->
+                                <!-- <lightning:select name="DeliveryMethod" label="Delivery Method" aura:id="DeliveryMethod"
                                                   value="">
                                     <option text="Select an Option" value="" />
                                     <aura:iteration items="{!v.deliveryMethodOptions}" var="option">
@@ -226,22 +194,19 @@ _______________________________________________________________
                                 <c:LnP_Multiselect_Picklist options="{!v.deliveryMethodOptions}" aura:id="DeliveryMethod" />
                                 <!-- </div> -->
                             </div>
-                            <!-- </div> -->
-                            
+                            <!-- </div> -->                            
                         </aura:if>
                         <!-- </div> -->
                     </div>
                     <!-- </div>    -->
-                </div>
-                
+                </div>                
                 <div class="section-one-button-container slds-grid slds-float_right slds-p-around_medium">
                     <lightning:button variant="neutral" type="button" name="cancel" label="Cancel"
                                       onclick="{!c.cancelSearchWithNum}" class="cancel-button" />
                     <lightning:button variant="brand" type="submit" name="Search" label="Search"
                                       onclick="{!c.fetchCourseDetails}" class="next-button" />
                 </div>
-            </aura:if>
-            
+            </aura:if>            
         </div>
         <div class="screen-two">
             <aura:if isTrue="{!v.screenTwo}">
@@ -269,9 +234,6 @@ _______________________________________________________________
                             </div>
                         </aura:iteration>
                     </aura:if>
-                    <aura:if isTrue="{!v.searchThree}">
-                        
-                    </aura:if>
                 </div>
                 <div class="slds-m-bottom_medium slds-m-top_xx-large">
                     <span class="heading"><b>Course Search Results</b></span>
@@ -282,8 +244,7 @@ _______________________________________________________________
                 <lightning:datatable class="button-borders slds-max-medium-table_stacked" columns="{!v.columns}" data="{!v.data}" keyField="id"
                                      errors="{!v.errors}" hideCheckboxColumn="true" sortedBy="{!v.sortBy}"
                                      sortedDirection="{!v.sortDirection}" onsort="{!c.handleSort}" onrowaction="{!c.handleRowAction}"
-                                     resizeColumnDisabled="true" />
-                
+                                     resizeColumnDisabled="true" />                
                 <div class="slds-m-vertical_xx-large pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.applicationFilt}" dispList="{!v.dispList}" />
                 </div>
@@ -294,13 +255,12 @@ _______________________________________________________________
                 <div class="slds-m-vertical_medium subheader">
                     <span>{!v.courseNameToDisplayDetails}</span>
                 </div>
-                
                 <div class="buttons-right text-size">
                     <span>Information as of </span><span>{!v.date}</span>
                 </div>
                 <aura:iteration items="{!v.detailData}" var="item">
                     <div class="card table-border">
-                                                <lightning:layout class="slds-p-around_small bottom-border slds-wrap">
+                        <lightning:layout class="slds-p-around_small bottom-border slds-wrap">
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                 <div class="text-style">Course Name:<span>&nbsp;</span></div>
                                 <div class="text-style-val">{!item.Course_Title__c}</div>
@@ -377,8 +337,7 @@ _______________________________________________________________
                         </div>
                         <aura:if isTrue="{!v.showEvents}">
                             <div class="">
-                                <div
-                                     class="section-name bottom-border slds-m-top_medium slds-p-bottom_x-small slds-m-horizontal_small">
+                                <div class="section-name bottom-border slds-m-top_medium slds-p-bottom_x-small slds-m-horizontal_small">
                                     Event Information</div>
                                 <div class="section-content slds-p-around_small">
                                     <table class="slds-table slds-max-medium-table_stacked slds-table_bordered">
@@ -392,27 +351,21 @@ _______________________________________________________________
                                                 </th>
                                                 <th class="" scope="col">
                                                     <div class="slds-truncate text-size">Event State</div>
-                                                </th>
-                                                
+                                                </th> 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
                                             <tr class="slds-hint-parent">
-                                                
                                                 <td data-label="Event Date">
                                                     <div class="slds-truncate">{!item.Event_Date__c}</div>
                                                 </td>
-                                                
                                                 <td data-label="City">
                                                     <div class="slds-truncate">{!item.Event_City__c}</div>
                                                 </td>
-                                                
                                                 <td data-label="Event State">
                                                     <div class="slds-truncate">{!item.Event_State__c}</div>
                                                 </td>
                                             </tr>
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -422,7 +375,7 @@ _______________________________________________________________
                 </aura:iteration>
                 <div class="buttons-right slds-m-vertical_small slds-m-left_small">
                     <lightning:button variant="brand" class="" type="button"
-                                      name="cancel" label="SEARCH ANOTHER LICENSE" onclick="{!c.modifySearch}" />
+                                      name="cancel" label="Search Another License" onclick="{!c.modifySearch}" />
                 </div>
             </aura:if>
         </div>
