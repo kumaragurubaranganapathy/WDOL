@@ -94,7 +94,7 @@
             var totalTabNumber = component.get("v.totalTabs");
             component.set("v.submitButtonDisable", "true");  
             if(component.get("v.saveAndSubmit") != true){
-              component.set("v.currentTab", tabNumber+1);  
+                component.set("v.currentTab", tabNumber+1);  
             }
             tabNumber++;
             var action = component.get("c.insertApplication");
@@ -189,12 +189,12 @@
             }
             component.set('v.questionsAnswers',a);
             component.set('v.attachmentResponse',attRes);
-             if(component.get("v.saveAndSubmit") != true){
+            if(component.get("v.saveAndSubmit") != true){
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-             }
+            }
         }
     },
-     SaveAndSubmit : function(component, event, helper) {
+    SaveAndSubmit : function(component, event, helper) {
         window.setTimeout(
             $A.getCallback(function() {
                 var isBizLic = component.get("v.isbusinsessLicense");
@@ -404,7 +404,13 @@
                 if(noFees){
                     window.location.href=$A.get("$Label.c.Polaris_Portal_URL")+'s/user-feedback';
                 }else{
-                    window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;        
+                    var str ='/cart?id='+id;
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": str
+                    });
+                    urlEvent.fire();
+                    //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
                 }
                 
             }
