@@ -72,6 +72,7 @@
             <lightning:breadcrumb class="breadcumb" label="{!'LicenseType&nbsp;:'+v.licenseType}" />
             
         </lightning:breadcrumbs>-->
+        <div class="subheader">{!'Apply for a new license : '+v.board}</div>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" board="{!v.board}" licenseType="{!v.licenseType}"/>
         <aura:if isTrue="{!v.showErrorMsgs}">
             <ul class="error-messages slds-theme_error">
