@@ -133,6 +133,9 @@
                     console.log('licenseWrapper ' + JSON.stringify(component.get("v.licenseWrapper")));
                     component.set("v.totalTabs", sectionList.length);
                     this.hideSpinner(component, event);
+                    if(component.get("v.saveAndSubmit") == true){
+                        this.SaveAndSubmit(component,event,helper); 
+                    }
                     var tabsList = component.get("v.licenseWrapper");
                     var currentTab = component.get("v.currentTab");
                     if(currentTab == 2 && component.get("v.PhysicalAddressModified")){
@@ -182,8 +185,25 @@
             }
             component.set('v.questionsAnswers',a);
             component.set('v.attachmentResponse',attRes);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+             if(component.get("v.saveAndSubmit") != true){
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+             }
         }
+    },
+     SaveAndSubmit : function(component, event, helper) {
+        window.setTimeout(
+            $A.getCallback(function() {
+                var isBizLic = component.get("v.isbusinsessLicense");
+                
+                var str = isBizLic?'/business':'/newdashboard';
+                var urlEvent = $A.get("e.force:navigateToURL");
+                urlEvent.setParams({
+                    "url": str
+                });
+                urlEvent.fire();
+            }), 2000
+        );
+        
     },
     submit : function(component, event, helper) {
         // var enteredAttestText = component.get("v.attestValue");

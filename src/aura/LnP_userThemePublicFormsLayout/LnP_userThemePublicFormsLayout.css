@@ -35,7 +35,9 @@
     src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf); /*1560421450000*/
 }
 
-
+.THIS .required{
+    color:t(fieldclr);
+}
 .THIS {
     min-height:100vh;
 }
@@ -73,7 +75,9 @@ background-color :token(primary);
 border-radius: 5px;
 }*/
 /*added by sanjana*/
-
+.THIS .siteforcePanelsContainer .slds-modal__header h2{
+    font-size:15px;
+}
 .THIS .validate .slds-radio__label .slds-form-element__label{
     height: auto;
     font-family: 'PublicSans-Regular';
@@ -153,7 +157,8 @@ border-radius: 5px;
     font-size: token(fieldlabelsize);
     line-height:1;
     font-weight: token(txtfontweight);
-    color: token(fieldclr);    
+    color: token(fieldclr); 
+    max-width: none;
 }
 
 .THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input{
@@ -224,7 +229,7 @@ flex-basis:auto;
 .THIS .page-content .slds-checkbox .slds-checkbox_faux{
     border:1px solid #71767a;
 }
-.THIS select{
+.THIS select, .THIS input{
     border: 1px solid #5b616b;
     height:42px;
     

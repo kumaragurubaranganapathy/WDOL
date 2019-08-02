@@ -30,7 +30,9 @@
         alert(event.getSource().get("v.value"));
     },
     SaveAndSubmit : function(component, event, helper){
-        helper.SaveAndSubmit(component, event, helper);
+       // helper.SaveAndSubmit(component, event, helper);
+       component.set("v.saveAndSubmit",true);
+       helper.goToNextTab(component, event, helper);
     },
     submit : function(component, event, helper) {        
         helper.submit(component, event, helper);

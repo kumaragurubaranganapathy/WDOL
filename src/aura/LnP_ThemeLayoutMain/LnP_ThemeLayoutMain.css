@@ -37,7 +37,7 @@
     width:100%;
 }
 .THIS .main-content {
-    min-height:calc(100vh - 86px);
+    min-height:calc(100vh - 106px);
 }
 .THIS .main-content .contentRegion{
     padding:0;
@@ -102,6 +102,10 @@
     line-height:1.2;    
 }
 /*common style for tabs end*/
+.THIS select, .THIS input{
+    border: 1px solid #5b616b;
+    height:42px;
+}
 .THIS .slds-button.slds-button_brand{
     background:t(linksColor);
     font-weight:bold;
@@ -118,6 +122,9 @@
     text-transform:capitalize;
     color:t(LnGFormTitleColor);
     font-weight:bold;
+}
+.THIS .required{
+    color:t(fieldclr);
 }
 @media t(mqSmall){
     .THIS .slds-table tbody td{
