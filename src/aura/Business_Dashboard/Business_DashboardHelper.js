@@ -28,6 +28,7 @@
                 console.log(response.getReturnValue());
                 console.log('business::'+ JSON.stringify(data));
                 component.set('v.businessList',data);
+                component.set("v.businessListLoaded",true);
                 for(var item in data){
                     component.set("v.existingAcc",true);
                     break;
