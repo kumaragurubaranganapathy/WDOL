@@ -19,8 +19,9 @@
                 <!--{!v.customLblMap.LnP_ApplyLicense} -->
                 Manage your professional and business license online
             </h1>
+            
             <aura:if isTrue="{!not(empty(v.articleList))}">
-                <aura:iteration items="{!v.articleList}" var="art" indexVar="artNo">
+                <aura:iteration items="{!v.articleList}" var="art" indexVar="artNo">                    
                     <lightning:layout class="">
                         <lightning:layoutItem class="license-needs-wrapper" size="12" mediumDeviceSize="12">
                             
@@ -44,7 +45,7 @@
                                                     <aura:iteration items="{!bodyArtList}" var="bodyArtListItem" indexVar="bodyArtListItemNo">
                                                         <aura:if isTrue="{!bodyArtListItem.Article_Content_Type__c == 'Link'}">
                                                             <li class="license-item">
-                                                                <a href="{!bodyArtListItem.Article_Link_URL__c}" class="license-link" target="_blank">{!bodyArtListItem.Article_Title__c}</a>
+                                                                <a href="{!bodyArtListItem.Article_Link_URL__c}" class="{!art.childArticlesHeader[0].Article_Title__c == 'Getting started'?'license-link inactive-link':'license-link active-link'}" target="_blank">{!bodyArtListItem.Article_Title__c}</a>
                                                             </li>
                                                         </aura:if>
                                                         <aura:if isTrue="{!bodyArtListItem.Article_Content_Type__c == 'Paragraph'}">
@@ -92,7 +93,7 @@
                                              onclick="{!c.handleFooterButtonAction}" 
                                              class="footer-button">
                                             
-                                            <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Sign In/Create an Account')?'slds-hide':'home-button'}" variant="brand" />
+                                            <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Sign in or Create an account')?'slds-hide':'home-button'}" variant="brand" />
                                         </div>
                                     </aura:if>
                                 </aura:iteration>
