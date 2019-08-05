@@ -9,7 +9,7 @@
         <duplicateRuleFilterItems>
             <field>Last_4_Digits_of_SSN__c</field>
             <operation>equals</operation>
-            <value></value>
+            <value>null</value>
             <sortOrder>1</sortOrder>
             <table>Contact</table>
         </duplicateRuleFilterItems>
@@ -18,20 +18,6 @@
             <operation>equals</operation>
             <value>false</value>
             <sortOrder>2</sortOrder>
-            <table>Contact</table>
-        </duplicateRuleFilterItems>
-        <duplicateRuleFilterItems>
-            <field>LastName</field>
-            <operation>notEqual</operation>
-            <value></value>
-            <sortOrder>3</sortOrder>
-            <table>Contact</table>
-        </duplicateRuleFilterItems>
-        <duplicateRuleFilterItems>
-            <field>birthdate_text__c</field>
-            <operation>notEqual</operation>
-            <value></value>
-            <sortOrder>4</sortOrder>
             <table>Contact</table>
         </duplicateRuleFilterItems>
     </duplicateRuleFilter>
