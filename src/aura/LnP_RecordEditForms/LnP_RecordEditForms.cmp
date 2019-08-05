@@ -99,7 +99,7 @@
                                     {!and(v.currentEditValue,itemRow==v.cardIndex)} = (and(v.currentEditValue,itemRow==v.cardIndex)<br></br> -->
                                     
                                     <aura:iteration items="{!item.fields}" var="rec">
-                                        <lightning:layoutItem class="marginItem" size="{!v.isAMRFlow?'12':'3'}">                                            
+                                        <lightning:layoutItem class="marginItem" size="{!v.isAMRFlow?'12':'6'}" smallDeviceSize="3">                                            
                                             <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
                                                 <div class="{!(v.sectionName == 'Qualifying Postsecondary Education'?'QPE':'') + (v.sectionName == 'Qualifying Experience'?'QE':'') + (v.sectionName == 'Qualifying Course'?'QC':'')+itemRow + 'showHide slds-truncate field-item itemLayout '}">
                                                     <label>{!rec.label}</label> 
@@ -114,9 +114,9 @@
                                                 <div class="{!(v.sectionName == 'Qualifying Postsecondary Education'?'QPE':'') + (v.sectionName == 'Qualifying Experience'?'QE':'') + (v.sectionName == 'Qualifying Course'?'QC':'')+itemRow + 'showHide field-item slds-hide itemLayoutInp '}">                                                    
                                                     <label class="{!(rec.required?' required':'')}">{!rec.label}</label> 
                                                     <aura:if isTrue="{!rec.required || rec.regex != null}">
-                                                        <lightning:inputfield label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ')+ (rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?' slds-hide ':' '):' ') +(rec.required?' required':'')+' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
+                                                        <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ')+ (rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?' slds-hide ':' '):' ') +(rec.required?' required':'')+' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
                                                         <aura:set attribute="else">
-                                                            <lightning:inputfield label="{!rec.label}" name="{!itemRow}" aura:id="inputEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') +' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
+                                                            <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') +' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
                                                         </aura:set>
                                                     </aura:if>
                                                 </div>
@@ -173,9 +173,9 @@
                             <div class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide':' slds-col slds-size_12-of-12 field-size qfield-margin in-field recItem'):' slds-col slds-size_12-of-12 field-size qfield-margin recItem in-field')}">
                                 <label class="{!(rec.required?' required':'')}">{!rec.label}</label> 
                                 <aura:if isTrue="{!rec.required || rec.regex != null}">
-                                    <lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide label-hidden test':'label-hidden'):'label-hidden')+(rec.required?' required':'')}" onchange="{!c.inputClick}" id="{!rec.masking}"/>
+                                    <lightning:inputfield autocomplete="off" fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide label-hidden test':'label-hidden'):'label-hidden')+(rec.required?' required':'')}" onchange="{!c.inputClick}" id="{!rec.masking}"/>
                                     <aura:set attribute="else">
-                                        <lightning:inputfield fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden checkbox-style" onchange="{!c.inputClick}" id="{!rec.masking}"/>
+                                        <lightning:inputfield autocomplete="off" fieldName="{!rec.fieldName}" required="true" aura:id="inputCmp" class="label-hidden checkbox-style" onchange="{!c.inputClick}" id="{!rec.masking}"/>
                                     </aura:set>
                                 </aura:if>
                             </div>

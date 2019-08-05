@@ -126,6 +126,9 @@
 .THIS .required{
     color:t(fieldclr);
 }
+.THIS .slds-input, .THIS .slds-select, .THIS .slds-text-area{
+    border-radius : 0;
+}
 @media t(mqSmall){
     .THIS .slds-table tbody td{
         padding:0.75rem;
