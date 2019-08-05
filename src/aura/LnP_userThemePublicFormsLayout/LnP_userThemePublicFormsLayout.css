@@ -570,12 +570,18 @@ margin-right:10%;
     color:t(buttonNeutral);
     border : solid 1px t(buttonNeutral);
 }
+.THIS .slds-input, .THIS .slds-select, .THIS .slds-text-area{
+    border-radius : 0;
+}
 
 @media only screen and (max-width:767.9px){    
-    .THIS .cancel-button,.THIS .next-button{
+    .THIS .next-button{
         display:block;
         width:100%;
         margin-bottom:6px;
+    }
+    .THIS .cancel-button{
+        
     }
     .THIS .next-button{
         margin-left:0;
@@ -599,6 +605,9 @@ margin-right:10%;
 @media t(mqSmall){
     .THIS .body{
         width: 100%;; 
+    }
+    .THIS .cancel-button{
+        width:111px;
     }
     .THIS .side-bar{
         width: 100%;  

@@ -34,6 +34,7 @@
     <aura:attribute name ="ServiceLink" type="List" />
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
     <aura:attribute name="showMoreDashboard" type="Boolean" default="false" />
+    <aura:attribute name="businessListLoaded" type="Boolean" default="false" />
     <aura:registerEvent name="loadAccountName" type="c:LnP_FetchAccounId" />
     
     <!-- Pending draft Application -->
@@ -49,15 +50,15 @@
         
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <h1 class="screen-title">{!'Business ' + v.breadcrumbLabel}<!--{!v.breadcrumbLabel} --></h1>
-            <lightning:breadcrumbs class="breadcrumb-wrapper"> 
-                <lightning:breadcrumb class="transform-text breadcumb" label="Business Dashboard" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/>
+            <!-- <lightning:breadcrumbs class="breadcrumb-wrapper"> 
+                <lightning:breadcrumb class="transform-text breadcumb" label="Business Management" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/> 
                 <lightning:breadcrumb class="{!or(v.screenTwo,v.screenThree)?'transform-text breadcumb':'slds-hide'}" label="{!v.breadcrumbLabel}" href="javascrit:void(0)" onclick="{!c.navigateToScreenTwo}"/>
                 <lightning:breadcrumb class="{!v.screenThree?'transform-text breadcumb':'slds-hide'}" label="License 123456789" href="javascrit:void(0)" onclick="{!c.navigateToScreenThree}"/>
-            </lightning:breadcrumbs>
+            </lightning:breadcrumbs> -->
         </aura:if>
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
-                <h2 class="page-title">Business Dashboard</h2>
+                <h2 class="page-title">Business Management</h2>                
                 <div class="biz-welcome">   
                     <div class="add-biz-wrapper">
                         <lightning:button name="Add Business" label="Add business" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
@@ -67,34 +68,36 @@
                     
                 </div>
             </div>
-            <div class="business-dashboard-body">
-                <aura:if isTrue="{!v.businessList.length!=0?'true':'false'}">
-                    <lightning:layout class="slds-wrap business-wrapper">
-                        <aura:iteration items="{!v.businessList}" var="business">
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="slds-box business-card">
-                                <div class="biz-name-wrapper" title="{!business.Name}">
-                                    <a href="javascript:void(0)" title="{!business.Name}" class="business-name" id="{!business.Id}" onclick="{!c.businessDetails}">{!business.Name}</a>
-                                </div>
-                                <div class="biz-address">
-                                    {!business.Email__c?business.Email__c: 'Email address unavailable'}
-                                </div>
-                                <div class="biz-ubi">
-                                    <div class="ubi-label">
-                                        UBI
+            <aura:if isTrue="{!v.businessListLoaded}">
+                <div class="business-dashboard-body">
+                    <aura:if isTrue="{!v.businessList.length!=0?'true':'false'}">                    
+                        <lightning:layout class="slds-wrap business-wrapper">
+                            <aura:iteration items="{!v.businessList}" var="business">
+                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="slds-box business-card">
+                                    <div class="biz-name-wrapper" title="{!business.Name}">
+                                        <a href="javascript:void(0)" title="{!business.Name}" class="business-name" id="{!business.Id}" onclick="{!c.businessDetails}">{!business.Name}</a>
                                     </div>
-                                    <div class="ubi-num">
-                                        {!business.UBI_Number__c?business.UBI_Number__c: 'N/A'}
-                                        <!--{!if(!empty(business.UBI_Number__c), business.UBI_Number__c, 'NA')}-->
+                                    <div class="biz-address slds-truncate" title="{!business.Email__c?business.Email__c: 'Email address unavailable'}">
+                                        {!business.Email__c?business.Email__c: 'Email address unavailable'}
                                     </div>
-                                </div>
-                            </lightning:layoutItem>
-                        </aura:iteration>
-                    </lightning:layout>
-                    <aura:set attribute="else">
-                        <c:StatusAlertForAddingBusinessComponent/>
-                   </aura:set>
-                </aura:if>
-            </div>
+                                    <div class="biz-ubi">
+                                        <div class="ubi-label">
+                                            UBI
+                                        </div>
+                                        <div class="ubi-num slds-truncate" title="{!business.UBI_Number__c?business.UBI_Number__c: 'N/A'}">
+                                            {!business.UBI_Number__c?business.UBI_Number__c: 'N/A'}
+                                            <!--{!if(!empty(business.UBI_Number__c), business.UBI_Number__c, 'NA')}-->
+                                        </div>
+                                    </div>
+                                </lightning:layoutItem>
+                            </aura:iteration>
+                        </lightning:layout>
+                        <aura:set attribute="else">
+                            <c:StatusAlertForAddingBusinessComponent/>
+                        </aura:set>
+                    </aura:if>
+                </div>
+            </aura:if>
         </aura:if>
         <aura:if isTrue="{!v.thirdpartybillingcode}">
             <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="Create Code" label="Create Code" onclick="{!c.createcode}"/>
@@ -550,6 +553,9 @@
                     </aura:if>
                 </lightning:tabset>
             </aura:if>
+            <div class="back-btn-wrapper">
+                <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToScreenOne}" />
+            </div>
         </aura:if>
         <aura:if isTrue="{!v.screenThree}">
             <c:Business_LicenseScreen />

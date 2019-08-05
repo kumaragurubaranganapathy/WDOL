@@ -174,6 +174,27 @@ public class DOL_AppUtility {
         return Schema.SObjectType.Renewal_Application__c.getRecordTypeInfosByName().get(name).getRecordTypeId();
     }
 
+    // Get Field API_NAME for given sObject
+    // @author Laltu Banerjee
+    public static Set<String> getSobjectFields(String sObjectApiName){
+        SObjectType sObjType = Schema.getGlobalDescribe().get(sObjectApiName);
+        Set<String> fieldApiNameSet = sObjType.getDescribe().fields.getMap().keySet();
+        return fieldApiNameSet;
+    }
+
+    // Get Generic Query String
+    // Will return a select query with all fields
+    // The return string qualified for query
+    // User need to add where condition into return query string
+    //@author Laltu Banerjee
+    public static String getQueryString(String sObjectApiName){
+        Set<String> fieldApiNameSet = getSobjectFields(sObjectApiName);
+        String queryString = 'Select ';
+        queryString += String.join(new List<String>(fieldApiNameSet),' ,');
+        queryString += ' from '+sObjectApiName;
+        return queryString;
+    }
+
     //Do not delete this wrapper 
     //Added by Sumeet Kanjilal for processing flow of Journal 
     //Wrapper scenario in Finance Application related US- 

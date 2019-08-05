@@ -10,6 +10,9 @@
     },   
     // Validate input fields and submit add business.
     validateFields : function(component,event,helper){
+        component.set("v.buttonDisable",true);
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        component.set("v.loadingSpinner",true);
         var fieldsWrapper = component.get("v.validateFields");
         var validateFields = fieldsWrapper.filter(function(item){
             return  item.Required__c == true || item.Regex_Validation__c != "";
@@ -68,6 +71,8 @@
             component.find("editForm").submit();                  
         }
         else{
+            component.set("v.loadingSpinner",false);
+            component.set("v.buttonDisable",false);
             component.set("v.nextFlag", false);
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({

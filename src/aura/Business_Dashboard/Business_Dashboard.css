@@ -1,5 +1,5 @@
 .THIS.business-outer-wrapper{
-    padding: 2rem 7.5rem;
+    padding: 2rem 8.3vw;
 }
 /*.THIS .license-outer-wrapper{
     padding:40px 100px;
@@ -10,11 +10,14 @@
     color:t(LnGFormTitleColor);
     font-weight:600;
 }
-.THIS .alt-email.field-style{
-    display:block;
-}
 .THIS .bottom-border{
     border-bottom: 1px solid #d4d4d4; 
+}
+.THIS .back-btn-wrapper{
+    margin-top:1rem;
+}
+.THIS .alt-email.field-style{
+    display:block;
 }
 .THIS .tabs-wrapper .slds-tabs_default__nav{
     border-bottom:solid 2px t(actionPanelBG);
@@ -28,10 +31,20 @@
 .THIS .screen-title{
     font-size:1.25rem;
     font-weight:600;
-    color:t(LnGFormTitleColor);    
+    color:t(LnGFormTitleColor);  
+    margin-bottom:1.5rem;
+}
+.THIS .table-head,.THIS .table-title{
+    margin-top:1rem;
+}
+.THIS .transform-text.breadcumb{
+    text-transform:unset;
 }
 .THIS .data-table{
     height:15rem;
+}
+.THIS .tab-style.slds-tabs_default__content{
+    padding-top:0;
 }
 .THIS .license-details-wrapper{
     border-radius: 4px;
@@ -160,9 +173,7 @@
     display:flex;
     justify-content:flex-end;
 }
-.THIS .business-wrapper{
-    justify-content:space-between;   
-}
+
 .THIS .biz-ubi{
     font-size:1rem;
     color:t(LnGFormTitleColor);
@@ -172,11 +183,18 @@
     font-weight:600;
     padding-bottom:0.25rem;    
 }
+.THIS .business-wrapper{
+    align-items:stretch;
+}
 .THIS .business-card{
     margin-bottom:1.5rem;
-    width:26vW;
+    width:26.7vW;
     border: solid 1px t(bizCardBorder);
     padding: 1.75rem 1.5rem;
+    border-radius:0;
+}
+.THIS .business-card:nth-child(3n+2){
+    margin:0 1vw 1.5rem;
 }
 .THIS .nav-links ul{
     border: solid 1px t(primary);

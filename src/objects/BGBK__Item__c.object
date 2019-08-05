@@ -275,6 +275,29 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Created_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created Date Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Sent_to_AFRS__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(
+  IF(ISBLANK(Journal_Voucher_Detail__c),
+    &quot;&quot;,
+    TEXT(Journal_Voucher_Detail__r.JournalVoucher__r.Document_Date__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date Sent to AFRS</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Debit_Credit__c</fullName>
         <externalId>false</externalId>
         <formula>IF( BGBK__Amount__c  &gt; 0, &quot;DR&quot;, IF (BGBK__Amount__c &lt; 0, &quot;CR&quot;, &quot;Amount is 0&quot;))</formula>
@@ -401,6 +424,16 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Journal_Voucher_Reference__c</fullName>
+        <externalId>false</externalId>
+        <formula>Journal_Voucher_Detail__r.JournalVoucher__c</formula>
+        <label>Journal Voucher Reference</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Payable_Receipt__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -468,6 +501,46 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Target_Accounting_System__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case( 
+    BGBK__Fund__r.Accounting_System__c, 
+    &quot;AFRS&quot;,IF(
+        IF(BGBK__Amount__c &lt;0,
+            CASE(BGBK__Type__c , 
+                &quot;001X&quot;,1,&quot;006X&quot;,1,&quot;008R&quot;,1,&quot;012X&quot;,1,&quot;049X&quot;,1,&quot;071X&quot;,1,
+                &quot;074R&quot;,1,&quot;090X&quot;,1,&quot;132X&quot;,1,&quot;198R&quot;,1,&quot;214X&quot;,1,&quot;298X&quot;,1,
+                &quot;449X&quot;,1,&quot;455X&quot;,1,&quot;803X&quot;,1,&quot;966X&quot;,1,
+                0
+            ), 
+            CASE(BGBK__Type__c, 
+                &quot;001R&quot;,1,&quot;006R&quot;,1,&quot;008X&quot;,1,&quot;012R&quot;,1,&quot;049R&quot;,1,&quot;071R&quot;,1,
+                &quot;074X&quot;,1,&quot;199X&quot;,1,&quot;951X&quot;,1,&quot;955X&quot;,1, &quot;965X&quot;,1,
+                0
+            )
+        )=1,
+            &quot;AFRS&quot;,
+            &quot;N/A&quot;
+    ),
+    IF(BGBK__Amount__c &lt; 0,
+        IF(Transaction_Code_Type__c == &quot;R&quot;,
+            &quot;TMS&quot;,
+            &quot;N/A&quot; 
+        ),
+        IF(Transaction_Code_Type__c == &quot;X&quot;,
+            &quot;TMS&quot;,
+            &quot;N/A&quot;
+        )
+    )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Accounting System</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Transaction_Code__c</fullName>
         <externalId>false</externalId>
         <formula>LEFT( Text(BGBK__Type__c)  , 3)</formula>
@@ -478,8 +551,29 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Transaction_Effective_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>BGBK__Transaction__r.BGBK__Effective_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction Effective Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_code_type_merge__c</fullName>
+        <externalId>false</externalId>
+        <formula>Transaction_Code__c + Transaction_Code_Type__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction code type merge</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Item</label>
-	<listViews>
+    <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>BGBK__Amount__c</columns>
@@ -489,7 +583,44 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <columns>BGBK__Fund__c</columns>
         <columns>GL_To_AFRS__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>BGBK__Fund__c</field>
+            <operation>contains</operation>
+            <value>06L-02-77-000008</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>7/17/2019 12:00 AM</value>
+        </filters>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Search</fullName>
+        <columns>NAME</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Fee_Payment__c</columns>
+        <columns>Transaction_Code__c</columns>
+        <columns>BGBK__Fund__c</columns>
+        <columns>GL_To_AFRS__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>BGBK__Fund__c</field>
+            <operation>contains</operation>
+            <value>01P</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>7/22/2019 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Transaction_Code__c</field>
+            <operation>equals</operation>
+            <value>965</value>
+        </filters>
+        <label>Search</label>
     </listViews>
     <nameField>
         <displayFormat>IT-{00000000}</displayFormat>

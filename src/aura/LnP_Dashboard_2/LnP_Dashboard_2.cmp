@@ -144,7 +144,7 @@
         <div class="screen-title">
             Individual Account
         </div>
-        <nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
+        <!-- <nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
             <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
                 <li class="slds-breadcrumb__item slds-var-p-right_xx-small">
                     <a href="javascript:void(0);" class="{!v.DisplayLicense_Details?'breadcrumb-style':'slds-hide'}"
@@ -168,7 +168,7 @@
                 </aura:if>
                 
             </ol>
-        </nav>
+        </nav> -->
         
         <c:LnP_ServerActionService aura:id="server" />
         
@@ -615,6 +615,9 @@
                     <!--</aura:if>-->
                     
                 </div>
+            </div>
+            <div class="back-btn-wrapper">
+                <lightning:button class="back-btn" label="Back" onclick="{!c.backToDashboard}" />
             </div>
         </aura:if>
         <aura:if isTrue="{!v.displayAssociationForm}">

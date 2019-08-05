@@ -13,11 +13,13 @@
 .THIS .slds-form-element__control{
     width:50%;
 }
-.THIS ul.biz li:before{
-    content:"\2714\0020";
-}
+/*.THIS ul.biz li:before{
+content:"\2714\0020";
+} */
 .THIS ul.biz li{
-        font-size: 14px;
+    font-size: 14px;
+    list-style-type: disc;
+    margin-left: 1rem;
 }
 .THIS .new-wrapper{
     margin:1rem 0;
@@ -26,7 +28,7 @@
     margin-top:1rem;
 }
 .THIS .link-help{
-	padding-bottom:0.5rem;
+    padding-bottom:0.5rem;
 }
 .THIS .task-subject{
     padding-bottom:5px;
