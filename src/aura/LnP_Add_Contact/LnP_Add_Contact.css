@@ -1,0 +1,38 @@
+.THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__control{
+    padding-left:0;
+    width:50%;    
+}
+.THIS.contact-details-wrapper{
+    padding: 1.5rem 2rem;
+    border: solid 1px #d6d7d9;
+}
+.THIS.contact-details-wrapper .slds-align_absolute-center{
+    justify-content:flex-end;
+}
+.THIS.add-contact-title{
+    color:t(LnGFormTitleColor);
+    font-size:1.25rem;
+    font-weight:bold;
+    margin-bottom:1.5rem;
+}
+.THIS.contact-details-wrapper .slds-form-element_horizontal .slds-form-element__icon{
+    padding-top:0;
+    float:unset;
+}
+.THIS.contact-details-wrapper .slds-form-element__label{
+    padding-right:0;
+}
+.THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__label{
+    float:unset;
+}
+@media t(mqSmall){
+    .THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__control{        
+        width:100%;
+    }
+    .THIS.contact-details-wrapper{
+        padding:1rem;
+    }
+    .THIS .add-contact-title{
+        margin-bottom:1rem;
+    } 
+}
