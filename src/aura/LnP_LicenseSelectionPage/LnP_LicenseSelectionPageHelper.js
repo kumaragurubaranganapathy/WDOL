@@ -90,7 +90,7 @@
     },
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
-       // component.find("button1").set('v.disabled',false);
+		component.find("button1").set('v.disabled',true);
         component.set("v.eliTypeQues",[]);
         helper.fetchApplicationInstructionHelper(component,event,helper);
         
@@ -119,7 +119,7 @@
         //appTypeGridDiv.classList.add("slds-hide");
         eliTypeGridDiv.classList.add("slds-hide");
         appInstructions.classList.add("slds-hide");
-        component.find("button1").set('v.disabled',true);
+        
         //appTypeDiv.classList.add("slds-hide");
         //appTypeGridDiv.classList.add("slds-hide");
         
@@ -170,7 +170,7 @@
                             helper.restrictTemporaryLicenses(component,event,helper);
                         }
                         
-                        helper.hideOrShowSpinner(component, event, helper);
+                        //helper.hideOrShowSpinner(component, event, helper);
                         if(applicationMethod != ''){  
                             window.setTimeout(
                                 $A.getCallback(function() {
@@ -213,6 +213,9 @@
                                     //}
                                 }), 2000);
                         }
+						window.setTimeout($A.getCallback(function() {
+                              helper.hideOrShowSpinner(component, event, helper);      
+                        }), 2000);
                     } 
                 });
                 $A.enqueueAction(action);
