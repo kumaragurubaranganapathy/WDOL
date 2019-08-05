@@ -64,10 +64,10 @@
                         if (applicationMethod) {
                             window.setTimeout(
                                 $A.getCallback(function () {
-                                    eliTypeGridDiv.classList.remove("slds-hide");
+                                   // eliTypeGridDiv.classList.remove("slds-hide");
                                     component.set("v.eliQuesNo", 1);
                                     if (eliQuesList.length == 0) {
-                                        eliTypeGridDiv.classList.add("slds-hide");
+                                     //   eliTypeGridDiv.classList.add("slds-hide");
 
                                     }
                                 }), 1000);
@@ -107,7 +107,8 @@
         var optionJSONArr = [];
         var eliQuestions = component.find('eliRadios');
         var account = sessionStorage.getItem("accountRecordID");
-        //eliQuestions.forEach(eliQuestions => {
+        console.log('account record id in renewal--' + account);
+        //eliQuestions.forEach(function(eliQuestions){
         if (component.get("v.isDirectProceed") == false && eliQuestions != undefined) {
             for (var ii = 0; ii < eliQuestions.length; ii++) {
                 console.log('loopValue ' + eliQuestions[ii].get("v.value"));
@@ -139,7 +140,8 @@
                         isRenewal: true,
                         licId: component.get("v.licID")
                     }, "",
-                    $A.getCallback(response => {
+                    $A.getCallback(function (response) {
+                        console.log('in cal back');
                         applicationId = response;
                         sessionStorage.setItem("applicationId", applicationId);
                         console.log('applicationId ' + applicationId);
@@ -153,7 +155,7 @@
                         });
                         urlEvent.fire();
                     }),
-                    $A.getCallback(errors => {
+                    $A.getCallback(function (errors) {
                     }),
                     false, ""
                 );
@@ -184,11 +186,12 @@
             if (state === "SUCCESS") {
                 var response = actionResult.getReturnValue();
                 console.log('Response::' + response);
-                if (response[0] != '') {
+                if(response[0] != 'null'){
+                    
                     $A.util.removeClass(component.find("readyHeader"), 'slds-hide');
                     component.set("v.instructions", response[0]);
-                } else {
-                    $A.util.addClass(component.find("readyHeader"), 'slds-hide');
+                }else{
+                    $A.util.addClass(component.find("readyHeader"), 'slds-hide'); 
                 }
                 console.log('First Instr::' + response[0]);
                 var tempList = [];
