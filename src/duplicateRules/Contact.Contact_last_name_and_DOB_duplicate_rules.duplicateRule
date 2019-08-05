@@ -4,23 +4,6 @@
     <actionOnUpdate>Block</actionOnUpdate>
     <alertText>Please set the unique last name and date of birth combination</alertText>
     <description xsi:nil="true"/>
-    <duplicateRuleFilter>
-        <booleanFilter xsi:nil="true"/>
-        <duplicateRuleFilterItems>
-            <field>Last_4_Digits_of_SSN__c</field>
-            <operation>equals</operation>
-            <value>null</value>
-            <sortOrder>1</sortOrder>
-            <table>Contact</table>
-        </duplicateRuleFilterItems>
-        <duplicateRuleFilterItems>
-            <field>Duplicate_Verified__c</field>
-            <operation>equals</operation>
-            <value>false</value>
-            <sortOrder>2</sortOrder>
-            <table>Contact</table>
-        </duplicateRuleFilterItems>
-    </duplicateRuleFilter>
     <duplicateRuleMatchRules>
         <matchRuleSObjectType>Contact</matchRuleSObjectType>
         <matchingRule>Contact_last_name_and_DOB_duplicate_rules_matching_rule</matchingRule>
