@@ -430,7 +430,8 @@
     //Close the modal popup and redirect to cart page
     closeModel: function(component, event) {
         component.set("v.isOpen", false);
-        var str ='/user-feedback';
+		var isBizLic = component.get("v.isbusinsessLicense");
+        var str ='/user-feedback?isBizLic='+isBizLic;
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str
