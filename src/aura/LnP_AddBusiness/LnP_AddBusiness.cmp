@@ -22,10 +22,16 @@
                                                                {"lName":"Business_Phone__c", "Required__c":true, "Error_Message__c":"Business Phone should be in xxx.xxx.xxxx format.", "ValidationCriteria__c":"10,3,3,.", "Regex_Validation__c":"^\\(?([0-9]{3})\\)?[.]?([0-9]{3})[.]?([0-9]{4})$"},
                                                                {"lName":"Extension__c", "Required__c":false, "Error_Message__c":"", "ValidationCriteria__c":"", "Regex_Validation__c":""},
                                                                {"lName":"Business_Website__c", "Required__c":false, "Error_Message__c":"", "ValidationCriteria__c":"", "Regex_Validation__c":""}]' />  
+    <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
+    <aura:attribute name="buttonDisable" type="Boolean" default="false" />
+    
     <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" /> 
     <!--<div class="{!v.isOpen?'slds-hide':'show-btn'}">
         <lightning:button name="Add Business" label="Add Business" class="add-biz-btn" variant="brand" onclick="{!c.handleClick}" />
     </div> -->
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
+    </aura:if>
     <div class="add-biz-wrapper">
         <div class="add-biz-title">
             <h1>Add a new business</h1>
@@ -69,7 +75,7 @@
                     </aura:iteration>
                     <div class="btn-wrapper">
                         <lightning:button variant="Neutral" type="button" label="Back" name="Cancel" class="btnHeight"  onclick="{! c.returnBusiness }"/>
-                        <lightning:button variant="brand" type="button" name="Save" label="Save" onclick="{!c.validateFields}"/>
+                        <lightning:button variant="brand" type="button" name="Save" label="Save" onclick="{!c.validateFields}" disabled="{!v.buttonDisable}" />
                     </div>
                 </div>
             </lightning:recordEditForm>

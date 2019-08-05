@@ -5,6 +5,7 @@
             var state = response.getState();
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();
+                console.log('result123'+ JSON.stringify(result));
                 if(result == '') {
                     /*var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
@@ -207,7 +208,7 @@
         urlEvent.fire();
     },
     redirectBusiness : function(component,event){
-        var str ='/business';
+        var str ='/new-business';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str

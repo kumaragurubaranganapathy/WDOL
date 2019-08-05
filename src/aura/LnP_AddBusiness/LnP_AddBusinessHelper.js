@@ -7,6 +7,7 @@
             if (state === "SUCCESS") {
                 var status = response.getReturnValue()
                 var toastEvent = $A.get("e.force:showToast");
+                component.set("v.loadingSpinner",false);
                 if (status) {
                     toastEvent.setParams({
                         "type": "Success",
@@ -15,7 +16,7 @@
                     });
                     var compEvent = component.getEvent("businessRefresh");
                     compEvent.setParams({ "refreshFlag": "true" });
-                    compEvent.fire();
+                    compEvent.fire();                    
                     var str ='/business';
                     var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
@@ -28,10 +29,13 @@
                         "title": "Error!",
                         "message": "Something went wrong"
                     });
+                    component.set("v.buttonDisable",false);
                 }
                 toastEvent.fire();
                 
             } else if (state === "ERROR") {
+                component.set("v.loadingSpinner",false);
+                component.set("v.buttonDisable",false);
             }
         });
         $A.enqueueAction(action);
