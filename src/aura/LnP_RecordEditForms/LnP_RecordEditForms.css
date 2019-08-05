@@ -5,6 +5,9 @@
     border-radius: 5px;
   	border: solid 1.5px #e3e4ea;
 }
+.THIS .amr-flow.recItem{
+    padding-bottom:0;
+}
 /*added for qualifying info*/
 .THIS .recordDetail .edit-field .slds-form-element__control{
     width:50%;
@@ -44,7 +47,10 @@
     text-overflow:ellipsis;
 }
 .THIS .recItem textarea{
-    color:t(fieldclr);
+    color:t(fieldclr);   
+    /* height: 42px; */
+    border: solid 1px #5b616b;
+    background-color: #ffffff;
 }
 .THIS .form-wrapper .pol-endo{
     width:100%;
@@ -112,9 +118,9 @@
 .THIS .inlineField .slds-form-element__static{
    padding-left: 20%; 
 }
-.THIS i{
-    font-size: 19px;
+.THIS i{    
     cursor: pointer;
+    font-size:19px;
     padding: 3px;
 }
 .THIS i:hover {
