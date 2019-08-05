@@ -128,7 +128,13 @@
                                        'Grade__c':''
                                       }
                 component.set("v.userfeedback",newUserfeedback);
-                var str ='/newdashboard';
+				var sPageURL = document.URL;
+                var isbusiness;
+                if(sPageURL.includes('isBizLic=')){
+                    var sURLVariables = sPageURL.split('=');
+                    isbusiness= sURLVariables[1];
+                }
+                var str = isbusiness ? '/business' : '/newdashboard';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
@@ -142,7 +148,13 @@
         
     },
     skipFeedback : function(component,event) {
-        var str ='/newdashboard';
+		var sPageURL = document.URL;
+        var isbusiness;
+        if(sPageURL.includes('isBizLic=')){
+        	var sURLVariables = sPageURL.split('=');
+        	isbusiness= sURLVariables[1];
+        }
+        var str =  isbusiness ? '/business' : '/newdashboard';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str
