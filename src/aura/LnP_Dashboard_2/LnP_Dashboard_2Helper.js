@@ -1019,5 +1019,14 @@
     },
     showMore : function(component,event){
         component.set("v.showMoreAMR",!component.get("v.showMoreAMR"));
+    },
+    backToDashboard : function(component,event){
+        component.set("v.DisplayLicense_Details","false");        
+        component.set("v.DisplayUploadDocumentsBreadCrumb","false");  
+        component.set("v.DisplayLicense_Upload_documents","false");        
+        component.set("v.DisplayDashboardHeader","true");
+        component.set("v.DisplayDashboardTabs","true");        
+        component.set("v.DisplayAdditonalQulaificationsBreadCrumb","false");
+        component.set("v.DisplayLicense_Additional_Qualification","false");        
     }
 })

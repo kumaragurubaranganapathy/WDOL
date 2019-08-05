@@ -1,7 +1,3 @@
-@font-face{
-    font-family:'NotoSansTC-Regular';
-    src:url('/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
-}
 .THIS.footerWrapper{
     background: t(LnGFooterColor);
     padding:0 5rem;
@@ -18,8 +14,18 @@
     display:flex;      
 }
 .THIS .footerListLink{    
-    font-size: 0.625rem;
+    font-size: 0.8125rem;
     color:t(actionPanelBG);    
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+}
+.THIS .footerListLink img{
+    width:0.75rem;
+    margin-left:0.25rem;
+}
+.THIS .footerListLink.copyright{
+    color:t(LnGFormTitleColor);
 }
 .THIS .footerListItem{
     padding-right:1.875rem;
