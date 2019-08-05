@@ -376,6 +376,9 @@
     },
     showMore : function(component,event,helper){
         helper.showMore(component,event);
+    },
+    backToDashboard : function(component,event,helper){
+        helper.backToDashboard(component,event);
     }
     
 })
