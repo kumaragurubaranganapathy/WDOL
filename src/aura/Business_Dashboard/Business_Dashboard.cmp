@@ -48,11 +48,11 @@
         
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <h1 class="screen-title">{!'Business ' + v.breadcrumbLabel}<!--{!v.breadcrumbLabel} --></h1>
-            <lightning:breadcrumbs class="breadcrumb-wrapper"> 
+            <!-- <lightning:breadcrumbs class="breadcrumb-wrapper"> 
                 <lightning:breadcrumb class="transform-text breadcumb" label="Business Dashboard" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/>
                 <lightning:breadcrumb class="{!or(v.screenTwo,v.screenThree)?'transform-text breadcumb':'slds-hide'}" label="{!v.breadcrumbLabel}" href="javascrit:void(0)" onclick="{!c.navigateToScreenTwo}"/>
                 <lightning:breadcrumb class="{!v.screenThree?'transform-text breadcumb':'slds-hide'}" label="License 123456789" href="javascrit:void(0)" onclick="{!c.navigateToScreenThree}"/>
-            </lightning:breadcrumbs>
+            </lightning:breadcrumbs> -->
         </aura:if>
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
@@ -556,6 +556,9 @@
                     </aura:if>
                 </lightning:tabset>
             </aura:if>
+            <div class="back-btn-wrapper">
+                <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToScreenOne}" />
+            </div>
         </aura:if>
         <aura:if isTrue="{!v.screenThree}">
             <c:Business_LicenseScreen />
