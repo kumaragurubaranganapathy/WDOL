@@ -127,8 +127,8 @@
                                             </aura:if>
                                         </div>	
                                         <lightning:layout horizontalAlign="left" class="slds-m-vertical_small addRecbtn ">
-                                            <lightning:button class="button-style cancel-button" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
-                                            <lightning:button class="{!v.sectionName+' button-style add-button'}" variant="neutral" label="Add" title="Add" type="text" onclick="{!c.validate}"/>
+                                            <lightning:button class="button-style cancel-button" variant="neutral" label="Cancel" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                                            <lightning:button class="{!v.sectionName+' button-style add-button'}" variant="brand" label="Add" title="Add" type="text" onclick="{!c.validate}"/>
                                         </lightning:layout>
                                     </div>
                                 </lightning:recordEditForm>
