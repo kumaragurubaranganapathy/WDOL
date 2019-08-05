@@ -1306,7 +1306,7 @@ Individual Account
            </aura:if>
            <aura:if isTrue="{!v.PendingMaintananceRequestApplicationsDataList.length != 0}">
                <div class="">
-                   <div class="table-name">Maintanance Request Applications</div>
+                   <div class="table-name">Maintenance Request Applications</div>
                    <div class="table-height">
                        
                        <div style="height: 100%; position: relative;">
@@ -1372,7 +1372,7 @@ Individual Account
    <lightning:tab class="tab-style" label="Completed Requests" id="ProfessionalCompletedRequestTab">
        <aura:if isTrue="{!v.CompletedMaintananceRequestApplicationsDataList.length !=0}">
            <div class="">
-               <div class="comp-desc">**Below are the maintance requests completed in last
+               <div class="comp-desc">**Below are the maintenance requests completed in last
                    twelve months</div>
                <div class="table-height">
                    
