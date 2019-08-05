@@ -63,6 +63,30 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
+	<fieldUpdates>
+        <fullName>Set_MUSW_Expiration_Date_to_current_date</fullName>
+        <field>MUSW__Expiration_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Expiration Date to current date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Set Expiration Date to current date when license is sunset</fullName>
+        <actions>
+            <name>Set_MUSW_Expiration_Date_to_current_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Sunset</value>
+        </criteriaItems>
+        <description>set Expiration Date to current date when license is sunset</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>License Parcel filled  - Geolocation blank</fullName>
         <actions>
@@ -98,4 +122,5 @@
         <description>Queue Assignment for Appraisal Management Company</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+	
 </Workflow>
