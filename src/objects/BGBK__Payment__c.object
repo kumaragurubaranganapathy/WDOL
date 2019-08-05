@@ -833,7 +833,7 @@
     </validationRules>
     <validationRules>
         <fullName>Licensee_does_not_match_the_account</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Validation to ensure Licensee matches the account on the Deposit</description>
         <errorConditionFormula>NOT(ISBLANK( BGBK__Deposit__c)) &amp;&amp; (BGBK__Deposit__r.MUSW__Account__c  &lt;&gt;   BGBK__License2__r.MUSW__Primary_Licensee__c)</errorConditionFormula>
         <errorMessage>Licensee does not match the account on the Deposit</errorMessage>
