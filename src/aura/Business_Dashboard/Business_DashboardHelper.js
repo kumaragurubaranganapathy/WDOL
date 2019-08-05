@@ -99,16 +99,22 @@
         evt.fire();
     },
     navigateToScreenOne : function (component,event,helper) {
-        component.set("v.screenOne", true);
+        var accDetail = component.get("v.accountDetail");
+        if(accDetail){
+            component.set("v.screenOne", true);
         component.set("v.screenTwo", false);
         component.set("v.screenThree", false);
         component.set("v.isDisplayTabs", true);
         component.set("v.courseDetail",false);
+        }
+        else
+            this.navigateToScreenTwo(component,event);
+        
     },
     navigateToScreenTwo :  function(component,event){
         component.set("v.screenOne",false);
         component.set("v.screenTwo", true);
-        component.set("v.isDisplayTabs", true);
+        //component.set("v.isDisplayTabs", true);
         component.set("v.courseDetail",false);
         component.set("v.screenThree", false);
         component.set("v.accountDetail",true);
@@ -346,7 +352,7 @@
             "url": str
         });
         urlEvent.fire(); 
-    }
+    }   
     
     
 })
