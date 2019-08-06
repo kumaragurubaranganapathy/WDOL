@@ -184,7 +184,7 @@
     <fields>
         <fullName>Major_Group__c</fullName>
         <externalId>false</externalId>
-        <formula>RIGHT(LEFT(Name, 6),2)</formula>
+        <formula>IF(RIGHT(LEFT(Name, 6),2)="xx","",RIGHT(LEFT(Name, 6),2))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Major Group</label>
         <required>false</required>
@@ -196,7 +196,7 @@
     <fields>
         <fullName>Major_Source__c</fullName>
         <externalId>false</externalId>
-        <formula>RIGHT(LEFT(Name, 9),2)</formula>
+        <formula>IF(RIGHT(LEFT(Name, 9),2)="xx","",RIGHT(LEFT(Name, 9),2))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Major Source</label>
         <required>false</required>
@@ -220,7 +220,7 @@
     <fields>
         <fullName>Sub_Source__c</fullName>
         <externalId>false</externalId>
-        <formula>RIGHT(LEFT(Name, 16),6)</formula>
+        <formula>IF(RIGHT(LEFT(Name, 16),6)="xxxxxx","",RIGHT(LEFT(Name, 16),6))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Sub Source</label>
         <required>false</required>
