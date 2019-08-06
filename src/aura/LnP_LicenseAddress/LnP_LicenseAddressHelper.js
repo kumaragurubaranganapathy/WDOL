@@ -406,9 +406,9 @@
         console.log('Final address type===' + finalAddresstype);
         var county;
         if(finalAddresstype == 'MAILING ADDRESS'){
-            county = component.get("v.mailingAddressparcel.County__c");
+            county = component.get("v.selectedCounty");
         }else{
-            county = component.get("v.physicalAddressParcel.County__c");
+            county = component.get("v.selectedPhysicalCounty");
         }
         console.log('county=== '+ county);
         if(selectedAddress === 'OriginalAddress'){
@@ -443,7 +443,7 @@
                         component.set("v.mailingAddressparcel.MUSW__City__c", parcelList[0].MUSW__City__c);
                         component.set("v.defaultCountry",parcelList[0].Country__c);
                         if(!($A.util.isEmpty(parcelList[0].County__c) || $A.util.isUndefined(parcelList[0].County__c))){
-                            component.set("v.mailingAddressparcel.County__c",parcelList[0].County__c);
+                            component.set("v.defaultCounty",parcelList[0].County__c);
                             component.set("v.OutOfCountry", true);
                         }else{
                             component.set("v.isOutOfCountry", false);
@@ -472,7 +472,7 @@
                         component.set("v.physicalAddressParcel.MUSW__City__c", parcelList[0].MUSW__City__c);
                         component.set("v.defaultCountry",parcelList[0].Country__c);
                         if(!($A.util.isEmpty(parcelList[0].County__c) || $A.util.isUndefined(parcelList[0].County__c))){
-                            component.set("v.physicalAddressParcel.County__c",parcelList[0].County__c);
+                            component.set("v.defaultPhysicalCounty",parcelList[0].County__c);
                             component.set("v.isPhysicalOutOfCountry", true);
                         }else{
                             component.set("v.isPhysicalOutOfCountry", false);
@@ -550,7 +550,7 @@
                             console.log('defaultCountry :' +component.get("v.defaultCountry"));
                             component.set("v.isPhysicalAndMailingSame", false);
                             if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
-                                component.set("v.mailingAddressparcel.County__c",allAddressList[i].County__c);
+                                component.set("v.defaultCounty",allAddressList[i].County__c);
                                 component.set("v.isOutOfCountry", true);
                             }else{
                                 component.set("v.isOutOfCountry", false);
@@ -584,9 +584,9 @@
                             console.log('defaultCountry :' +component.get("v.defaultCountry"));
                             component.set("v.isPhysicalAndMailingSame", true);
                             if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
-                                component.set("v.physicalAddressParcel.County__c",allAddressList[i].County__c);
+                                component.set("v.defaultPhysicalCounty",allAddressList[i].County__c);
                                 component.set("v.isPhysicalOutOfCountry", true);
-								 component.set("v.mailingAddressparcel.County__c",allAddressList[i].County__c);
+								 component.set("v.defaultCounty",allAddressList[i].County__c);
                                 component.set("v.isOutOfCountry", true);
                             }else{
                                 component.set("v.isPhysicalOutOfCountry", false);
@@ -629,7 +629,7 @@
                             component.set("v.isPhysicalAndMailingSame", false);
                             component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
                             if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
-                                component.set("v.physicalAddressParcel.County__c",allAddressList[i].County__c);
+                                component.set("v.defaultPhysicalCounty",allAddressList[i].County__c);
                                 component.set("v.isPhysicalOutOfCountry", true);
                             }else{
                                 component.set("v.isPhysicalOutOfCountry", false);
@@ -655,6 +655,7 @@
                         
                     }
                 }
+                 console.log('defaultCountry last:' +component.get("v.defaultCountry"));
             }
             else
             {
