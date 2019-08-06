@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>Doc_Number_Prefix__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:nil="true">240K</value>
     </values>
     <values>
         <field>Is_Active__c</field>
