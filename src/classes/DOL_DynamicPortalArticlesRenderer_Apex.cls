@@ -17,13 +17,13 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
                                                                  Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c,
                                                                  (SELECT Article_body_sections_to_display__c,Article_Body__c,Article_Content_Type__c,Article_Link_URL__c,
                                                                  Article_Status__c,Article_Sub_description__c,Article_Title__c,Display_Page__c,External_Id__c,
-                                                                 Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c FROM Related_Articles__r where Article_Status__c = 'Active' ORDER BY Order_of_Display__c ASC)
+                                                                 Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c FROM Related_Articles__r where Article_Status__c = 'Active' ORDER BY Order_of_Display__c,Article_Title__c ASC)
                                                          FROM Portal_Article__c 
                                                          WHERE Parent_Article__c = null AND 
                                                                Order_of_Display__c !=null AND 
                                                                RecordType.name='Main' AND 
                                                                Article_Status__c = 'Active' AND 
-                                                               Display_Page__c =: displayPage ORDER BY Order_of_Display__c ASC];
+                                                               Display_Page__c =: displayPage ORDER BY Order_of_Display__c,Article_Title__c ASC];
                                                                
         return JSON.serialize(segregrateArticles(parentPortalArticlesList)); 
     
@@ -38,13 +38,13 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
                                                                  Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c,
                                                                  (SELECT Article_body_sections_to_display__c,Article_Body__c,Article_Content_Type__c,Article_Link_URL__c,
                                                                  Article_Status__c,Article_Sub_description__c,Article_Title__c,Display_Page__c,External_Id__c,
-                                                                 Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c FROM Related_Articles__r where Article_Status__c = 'Active' ORDER BY Order_of_Display__c ASC)
+                                                                 Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c FROM Related_Articles__r where Article_Status__c = 'Active' ORDER BY Order_of_Display__c,Article_Title__c ASC)
                                                          FROM Portal_Article__c 
                                                          WHERE Parent_Article__c = null AND 
                                                                Order_of_Display__c !=null AND 
                                                                RecordType.name='Main' AND 
                                                                Article_Status__c = 'Active' AND 
-                                                               Article_Title__c =: articleTitle ORDER BY Order_of_Display__c ASC];
+                                                               Article_Title__c =: articleTitle ORDER BY Order_of_Display__c,Article_Title__c ASC];
                                                                
         return JSON.serialize(segregrateArticles(parentPortalArticlesList)); 
     
@@ -59,13 +59,13 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
                                                                  Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c,
                                                                  (SELECT Article_body_sections_to_display__c,Article_Body__c,Article_Content_Type__c,Article_Link_URL__c,
                                                                  Article_Status__c,Article_Sub_description__c,Article_Title__c,Display_Page__c,External_Id__c,
-                                                                 Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c FROM Related_Articles__r where Article_Status__c = 'Active' ORDER BY Order_of_Display__c ASC)
+                                                                 Id,Name,Order_of_Display__c,Parent_Article__c,RecordType.name,Internal_Article_Redirection__c FROM Related_Articles__r where Article_Status__c = 'Active' ORDER BY Order_of_Display__c,Article_Title__c ASC)
                                                          FROM Portal_Article__c 
                                                          WHERE Parent_Article__c = null AND 
                                                                Order_of_Display__c !=null AND 
                                                                RecordType.name='Main' AND 
                                                                Article_Status__c = 'Active' AND 
-                                                               External_Id__c =:externalId ORDER BY Order_of_Display__c ASC];
+                                                               External_Id__c =:externalId ORDER BY Order_of_Display__c,Article_Title__c ASC];
                                                                
         return JSON.serialize(segregrateArticles(parentPortalArticlesList)); 
     
