@@ -60,8 +60,8 @@
         <label>AFRS Interface Total Amount</label>
         <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
         <summaryFilterItems>
-            <field>Journal_Voucher_Detail__c.Target_Accounting_System__c</field>
-            <operation>equals</operation>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
             <value>AFRS</value>
         </summaryFilterItems>
         <summaryFilterItems>
@@ -81,8 +81,8 @@
         <label>AFRS PDF Total Amount</label>
         <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
         <summaryFilterItems>
-            <field>Journal_Voucher_Detail__c.Target_Accounting_System__c</field>
-            <operation>equals</operation>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
             <value>AFRS</value>
         </summaryFilterItems>
         <summaryFilterItems>
@@ -342,26 +342,28 @@
     </fields>
     <fields>
         <fullName>Fiscal_Month__c</fullName>
+        <encrypted>false</encrypted>
         <externalId>false</externalId>
         <label>Fiscal Month</label>
-        <precision>2</precision>
+        <length>2</length>
         <required>false</required>
-        <scale>0</scale>
+        
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Fiscal_Year__c</fullName>
+        <encrypted>false</encrypted>
         <externalId>false</externalId>
         <label>Fiscal Year</label>
-        <precision>2</precision>
+        <length>2</length>
         <required>false</required>
-        <scale>0</scale>
+        
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -468,6 +470,49 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>TMS_Interface_Total_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>TMS Interface Total Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>TMS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+     <fields>
+        <fullName>TMS_PDF_Total_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>TMS PDF Total Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>TMS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_PDF__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+    
         <fullName>Refund__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
