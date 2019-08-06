@@ -58,7 +58,7 @@ public class DE_LandingPageCustomLabels {
         
         mapCommonHeaderLabels.put('Course Search','Course Search;'+System.Label.Polaris_Portal_Education+',');
         
-        mapCommonHeaderLabels.put('Complaints','Complaints;'+System.Label.Polaris_Portal_Complaint+',');
+        mapCommonHeaderLabels.put('File a Complaint','File a Complaint;'+System.Label.Polaris_Portal_Complaint+',');
         
         if(isValidUser){
             

@@ -6,7 +6,7 @@
     flex: none;
 }
 .THIS .slds-path__nav{
-    padding:0 27px;
+    /*padding:0 27px;*/
     display:flex;
     justify-content:center;
 }
@@ -19,7 +19,7 @@
 .THIS .six-circles .slds-path__title{
     white-space: normal;
     left: 11px;
-    display: flex;
+    
     justify-content: center;
 }
 .THIS .five-circles hr{
@@ -47,43 +47,43 @@
     top: -7px;
 }
 .THIS .success li {
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  line-height: 2em;
-  border-radius:5rem;
-  background: dodgerblue;
-  margin: 0 1em;
-  display: inline-block;
-  color: white;
-  position: relative;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    line-height: 2em;
+    border-radius:5rem;
+    background: dodgerblue;
+    margin: 0 1em;
+    display: inline-block;
+    color: white;
+    position: relative;
     box-shadow:0 0 0 1px red;
     box-sizing:border-box;
-
+    
 }
-.THIS a[title="Attachments"]+span{
+.THIS a[title="Attachments"]+span,.THIS a[title="Endorsement"]+span{
     left:-32px;
 }
 .THIS a[title="Questions"]+span{
-   left: -20px;
+    left: -20px;
 }   
 .THIS .success li::before{
-  content:'';
-  position: absolute;
-  top: .9em;
-  left: -4em;
-  width: 4em;
-  height: .2em;
-  background: dodgerblue;
-  z-index: -1;
+    content:'';
+    position: absolute;
+    top: .9em;
+    left: -4em;
+    width: 4em;
+    height: .2em;
+    background: dodgerblue;
+    z-index: -1;
 }
 .THIS .success li:first-child::before {
-  display: none;
+    display: none;
 }
 .THIS .success .test{
-position:absolute;
-display:flex;
-color:black;
+    position:absolute;
+    display:flex;
+    color:black;
 }
 .THIS .slds-path__title{
     overflow: visible;
@@ -91,19 +91,19 @@ color:black;
     width: 0;
     position: relative;
     left: -56px;
+    display:flex;
 }
 
 .THIS .icon{
     vertical-align: middle;
-   /* height: 50px;*/
+    /* height: 50px;*/
 }
 .THIS .slds-path__nav{
-      margin: 0 auto;
-    width: 90%;
+    margin: 0 auto;
+    /*width: 90%; */
     overflow: visible;
 }
-.THIS .pathwidth{
-    max-width: 65%;
+.THIS .pathwidth{    
     margin: 0 auto;
     padding-bottom:25px;
     padding-top:25px;
@@ -111,8 +111,8 @@ color:black;
 .THIS .subsubheader{    
     color: t(LnGFormTitleColor);
     font-size:14px;
-   
-   
+    
+    
 }
 .THIS .active-path{
     border-top: 1px solid #2f853d;
@@ -146,121 +146,131 @@ color:black;
     
 }
 .THIS .outer-circle {
-	background: #eff1ff;
-	border-radius: 50%;
-	height:16px;
-	width:16px;
+    background: #eff1ff;
+    border-radius: 50%;
+    height:16px;
+    width:16px;
     position: relative;
     box-shadow: 0 0 0 2px #215393;
     margin:10px 0;
 }
 .THIS .red-circle {
-  height: 16px;
-  width: 16px;
-  background: #e2574c;
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px #e2574c;
-  margin:10px 0;
+    height: 16px;
+    width: 16px;
+    background: #e2574c;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #e2574c;
+    margin:10px 0;
 }
 .THIS .green-circle{
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px #2f853d;
-  margin:10px 0;
-  background: #2f853d;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #2f853d;
+    margin:10px 0;
+    background: #2f853d;
 }
 @media t(mqSmall){
-	.THIS .icon{
+    .THIS .icon{
         height: 40px;
-	}
-	.THIS hr {
-		width: 20px;
-		margin: 20px 0;
+    }
+    .THIS hr {
+        width: 20px;
+        margin: 20px 0;
         
-	}
-	.THIS .inactive-path-title{
-		display: none;
-	}
-	/*.THIS .is-not-current{
-		display: none;
-	}*/
+        
+    }
+    .THIS .six-circles hr,.THIS .five-circles hr,.THIS .four-circles hr,.THIS .three-circles hr,.THIS .two-circles hr{
+        top:-10px; 
+    }
+    .THIS .inactive-path-title{
+        display: none;
+    }
+    .THIS span.inactive-path-title.slds-path__title{
+        display: none;
+    }
+    .THIS .span.is-complete-path.slds-path__title{
+        display: none;
+    }
+    
+    
     .THIS .outer-circle {
-         height: 10px;
-         width: 10px;
+        height: 10px;
+        width: 10px;
     }
     .THIS .green-circle{
         height: 10px;
         width: 10px; 
     }
     .THIS .red-circle {
-         height: 10px;
-         width: 10px;
+        height: 10px;
+        width: 10px;
     }
     .THIS .hr{
-       margin: 21px 0;
+        margin: 21px 0;
     }
-	.THIS .is-complete-path{
-		display: none;
-	}
-	.THIS .slds-path__nav{
-   		margin: 0 10px;
-  }
-  
-  .THIS .pathwidth {
-    width: 100%;
-  }
+    .THIS .is-complete-path{
+        display: none;
+    }
+    .THIS .slds-path__nav{
+        /*margin: 0 10px;*/
+    }
+    
+    .THIS .pathwidth {
+        width: 100%;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
-	.THIS hr {
-		width: 45px;
-		margin: 32px 0;
-	}
+    .THIS hr {
+        width: 45px;
+        margin: 32px 0;
+    }
     .THIS .is-complete-path{
-		display: none;
-	}
-	.THIS .inactive-path-title{
-		display: none;
-	}
-	.THIS .is-not-current{
-		display: none;
-	}
+        display: none;
+    }
+    .THIS .inactive-path-title{
+        display: none;
+    }
+    .THIS .is-not-current{
+        display: none;
+    }
 }
 .THIS .inactive-path-title{
-   text-overflow: ellipsis;   
-   color: token(darkgrey);
-   font-size: 13px;
+    text-overflow: ellipsis;   
+    color: token(darkgrey);
+    font-size: 13px;
 }
 .THIS .active-path-title{
-   text-overflow: ellipsis;   
-   color: token(LnGNameColor);
-   font-size: 13px;
-   font-weight:600;
+    text-overflow: ellipsis;   
+    color: token(LnGNameColor);
+    font-size: 13px;
+    font-weight:600;
 }
 .THIS .is-complete-path{
-   text-overflow: ellipsis;   
-   color: token(LnGNameColor);
-   font-size: 13px;
+    text-overflow: ellipsis;   
+    color: token(LnGNameColor);
+    font-size: 13px;
+    
 }
 @media t(mqLarge){
-  .THIS hr {
-   
-    margin: 1.5rem 0;
-    border-top: 1px solid #d6d7d9;
-   width: 65px;
-  }
-  .THIS .mobile-tab-view{
-	display:none;
-  }
+    .THIS hr {
+        
+        margin: 1.5rem 0;
+        border-top: 1px solid #d6d7d9;
+        width: 65px;
+    }
+    .THIS .mobile-tab-view{
+        display:none;
+    }
 }
 .THIS hover{
-   cursor: pointer; 
+    cursor: pointer; 
 }
 .THIS img{
-   cursor: pointer; 
+    cursor: pointer; 
 }
 .THIS span{
-   cursor: pointer; 
+    cursor: pointer; 
 }
 .THIS .mandatory-fields{
     padding:0 0 20px;

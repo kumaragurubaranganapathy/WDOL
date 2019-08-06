@@ -50,18 +50,20 @@
 .THIS .nav-links{
     display: flex;    
 }
-.THIS .nav-links li.active-link{
-    /*border-bottom: solid 4px t(actionPanelBG); */
-    padding-bottom:1.5rem;
+/*.THIS .nav-links li.active-link{
+    border-bottom: solid 4px t(actionPanelBG);
+    padding-bottom:1.25rem; 
 }
+.THIS .nav-links li.active-link a{
+    font-weight:bold;
+} */
 .THIS .morelinks {
     color: token(headertxt);
     font-family: token(publicSansfontfamily);
     font-size: token(licensefontsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
-    line-height: normal;
-    text-transform:capitalize;
+    line-height: normal;    
 }
 .THIS .nav-links li{
     padding:1.5rem 0;
@@ -79,17 +81,13 @@
 .THIS .nav-links li:last-of-type{
     margin-right:0;
 }
-/*.THIS .nav-links li.active-link a{
-    font-weight:bold;
-} */
 .THIS .profile-menu-link .slds-button.slds-button_neutral,.THIS .nav-links a,.THIS .login-wrapper a{
      color: token(headerLinks);
     font-family: token(publicSansfontfamily);
     font-size: 1rem;
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
-    line-height: normal;
-    text-transform:capitalize;
+    line-height: normal;    
 }
 .THIS .register-div{
     padding-right:1.25rem;

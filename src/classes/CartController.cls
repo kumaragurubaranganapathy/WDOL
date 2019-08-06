@@ -418,7 +418,7 @@ public with sharing class CartController
         get
         {
             pmtMethods = new Selectoption[]{};
-
+			List<String> BackOffice_Payment_MethodsList = System.Label.BackOffice_Payment_Methods.split(',');
             //initial payment method OR
             //multiple payment methods where initial payment method is not Deposit
             if(receiptVOs.size() <= 1 || receiptVOs[0].pmtMethodSelected != 'Deposit') 
@@ -432,8 +432,15 @@ public with sharing class CartController
                 // Parse Custom Metadata type Payment Methods and construct the select option pmtMethods
                 for(BGBK__Payment_Method__mdt method : methods) {
                     // If its a internal we show, or if we are a portal user, the method should be portal accessible
-                    if (!isPortalUser || (isPortalUser && method.BGBK__isPortal_Accessible__c)) {
+                    if (isPortalUser && method.BGBK__isPortal_Accessible__c) {
                         pmtMethods.add(new SelectOption(method.Label,method.Label));
+                    }
+					if(!isPortalUser){
+                        if(BackOffice_Payment_MethodsList != null){
+                            if(BackOffice_Payment_MethodsList.contains(method.Label)){
+                                pmtMethods.add(new SelectOption(method.Label,method.Label));
+                            }
+                        } 
                     }
                 }
 

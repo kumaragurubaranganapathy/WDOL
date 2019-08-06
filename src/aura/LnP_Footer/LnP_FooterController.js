@@ -10,5 +10,6 @@
             }
         });
         $A.enqueueAction(action);
+        helper.getContactInfo(component,event);
     },
 })

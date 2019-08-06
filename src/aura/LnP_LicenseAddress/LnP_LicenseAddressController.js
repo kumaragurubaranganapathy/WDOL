@@ -2,10 +2,12 @@
     doInit: function(component, event, helper){
         component.set("v.defaultCountry" , 'United States');
         component.set("v.defaultState" , 'WA');
+        component.set("v.defaultCounty" , 'Adams');
         component.set("v.defaultcanadianProvince" , 'British Columbia');
         component.set("v.defaultPhysicalCountry" , 'United States');
         component.set("v.defaultPhysicalState" , 'WA');
         component.set("v.defaultPhysicalcanadianProvince" , 'British Columbia');
+        component.set("v.defaultPhysicalCounty" , 'Adams');
         component.set("v.isState", true);
         component.set("v.isOutOfCountry",true);
         component.set("v.isPhysicalState", true);
@@ -185,7 +187,7 @@
     onCityChange : function(component, event, helper){
         console.log('reaching');
         if(component.get("v.mailingAddressparcel.MUSW__City__c") != null && component.get("v.mailingAddressparcel.MUSW__State__c") != null){
-        	helper.countyFetchHelper(component, event, helper);
+        	//helper.countyFetchHelper(component, event, helper);
         }
     },
     
@@ -243,8 +245,8 @@
     },
     autoPopulatePhysicalAddress: function(component ,event, helper){
         var physicalCountry = component.get("v.defaultPhysicalCountry");
-        console.log('physicalCountry==' + physicalCountry);
-        var county = component.get("v.physicalAddressCounty");
+        console.log('physicalCountry==' + physicalCountry + component.get("v.defaultState"));
+        var county = component.get("v.defaultPhysicalCounty");
         var countyValue;
         var isChecked = component.find("isPhysicalAndMailingSame").get("v.checked");
         console.log("isChecked==" + isChecked);
@@ -255,8 +257,9 @@
             var street2 = mailingPhysicalAddress.MUSW__Unit__c; 
             var city = mailingPhysicalAddress.MUSW__City__c;
             var country = component.get("v.defaultCountry");
-            if(country =='United States' && component.get("v.defaultState") =='WA'){
-                countyValue = mailingPhysicalAddress.County__c;
+            if(country =='United States' && component.get("v.defaultState") == 'WA'){
+                console.log('Enteredd method===' );
+                component.set("v.defaultPhysicalCounty",mailingPhysicalAddress.County__c);
                 component.set("v.isPhysicalOutOfCountry",true);
             }else{
                 component.set("v.isPhysicalOutOfCountry",false);
@@ -283,7 +286,6 @@
                     component.set("v.isPhysicalState", false);
                 }
             component.set("v.physicalAddressParcel.Zip_Postal_Code__c", zip);
-            component.set("v.physicalAddressParcel.County__c", countyValue);
             helper.updateExistingMailingAddress(component, event, helper, isChecked);
         }else{
             component.set("v.defaultPhysicalCountry", physicalCountry);
