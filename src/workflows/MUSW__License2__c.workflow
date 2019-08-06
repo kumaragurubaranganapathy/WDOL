@@ -72,6 +72,30 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Pre_Licensure_Number_populate</fullName>
+        <field>Pre_License_Number__c</field>
+        <formula>Name</formula>
+        <name>Pre-Licensure Number populate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Populate Pre Licensure Number</fullName>
+        <actions>
+            <name>Pre_Licensure_Number_populate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Generate Fee</value>
+        </criteriaItems>
+        <description>Populates the Pre-Licensure Number field on License, the moment License is created.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
     <rules>
         <fullName>Set Expiration Date to current date when license is sunset</fullName>
         <actions>
@@ -122,5 +146,5 @@
         <description>Queue Assignment for Appraisal Management Company</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-	
+
 </Workflow>
