@@ -43,13 +43,13 @@
         <!-- Fetch the dropdown values basis the configuration  made in the MUSW__License2__c object  -->
         <lightning:recordEditForm aura:id="recordViewForm" objectApiName="MUSW__License2__c" >
             <div class= "slds-grid card-wrapper slds-wrap">
-                <div class="slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1">
                     <h2 class="header-style">Program Selection</h2>
                     <p class="slds-medium-size_11-of-12">Select the Program Type for which you are seeking a license. Next, select the specific license type from the License Type dropdown.</p>
                 </div>
-                <div class="slds-small-size_1-of-1 slds-medium-size_1-of-2 prof-choice">
+                <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1 prof-choice">
                     
-                    <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}"/> 
+                    <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}" /> 
                     <!-- <aura:if isTrue="{!Credential_Type__c.apiname !='Unlicensed'}"> -->
                     <lightning:inputField aura:id="licenseType" class="slds-hide slds-m-vertical_large" label="Select a License Type" fieldName="Credential_Type__c" value="" onchange="{!c.resetApplicationMethod}"/>
                     <lightning:inputField aura:id="getApplicationMethod" class="application slds-hide slds-m-vertical_large" required="true" label="Application Method" fieldName="Application_Method__c" value="" onchange="{!c.fetchAppTypeEliQuestions}"/>

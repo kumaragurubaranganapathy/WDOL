@@ -55,14 +55,12 @@
 .THIS .account-label{
     margin-bottom:1rem;
 }
-.THIS .slds-form-element__control{
-    width:80%;
-}
 .THIS .slds-form-element__label, .THIS .app-type{
     font-size: 14px;
     color: t(fieldclr);
     font-weight:normal;
     padding-right:0;
+    margin-bottom:0.25rem;
 }
 .THIS .slds-form-element__label{
     line-height:1.5;
@@ -155,6 +153,18 @@
     box-shadow:none;
     border:1px solid #1b1c1a;
     font-weight: token(btnfontweight);
+}
+.THIS .slds-form-element__control{
+    width:50%;
+    clear:left;
+    padding-left:0;
+    margin-top:0.25rem;
+}
+.THIS .slds-form-element_horizontal:not(.slds-is-editing){
+    padding:0;
+}
+.THIS .prof-choice{
+    margin-top:1rem;
 }
 
 @media screen and (max-width:767.9px) {
