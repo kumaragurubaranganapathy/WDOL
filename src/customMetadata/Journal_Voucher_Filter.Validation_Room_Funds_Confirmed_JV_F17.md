@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>Item_Payment_Method__c</field>
-        <value xsi:type="xsd:string">Check</value>
+        <value xsi:type="xsd:string">Check/Cashier&apos;s Check</value>
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
