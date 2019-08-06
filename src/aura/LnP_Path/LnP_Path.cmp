@@ -16,12 +16,12 @@
     <aura:registerEvent name="LnP_setCurrTabEvent" type="c:LnP_setCurrTabEvent"/>
     <aura:handler name="LnP_getAttJSON" event="c:LnP_getAttJSON" action="{!c.getAttJSON}"/>
 	<!--aura:handler name="change" value="{!v.attValidation}" action="{!c.attValidationChange}"/-->
-
+    <!-- <c:ErrorStatus/> -->
 	<div class="{!((v.showPath==false)? 'slds-hide':'slds-show')+' slds-path'}">
         <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
 			<span class="{!(((var+1)==v.currentTab)?'': 'slds-hide')+' '}">
                 <!--<div class="subheader">{!tabPath.subheader}</div>-->
-                <!--<div class="subheader">{!v.isAMRFlow?('Submit Request: ' + v.flowType):('Apply for a new license : ' + v.board)}</div>-->
+              <!--  <div class="subheader">{!v.isAMRFlow?('Submit Request: ' + v.flowType):('Apply for a new license : ' + v.board)}</div>-->
 				<div class="subsubheader">{!tabPath.subsubheader}</div>
 			</span>
 		</aura:iteration>

@@ -26,7 +26,9 @@
                 }else{
                     component.set(auraAttr, result);
                 }
+                component.set("v.loaded", true);
             }else{
+                component.set("v.loaded", true);
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
@@ -102,6 +104,7 @@
         }
     },
     searchWithNum : function(component, event) {
+        component.set("v.loaded", false);
         var objectApi =  'MUSW__License_Parcel__c';
         var fieldsList = ['MUSW__License2__r.License_Printable_Name__c','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c',
 'MUSW__License2__r.MUSW__Status__c','MUSW__License2__r.Sub_Status__c','MUSW__Parcel__r.MUSW__City__c','MUSW__License2__r.Related_License__c',
@@ -210,10 +213,10 @@
                             {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
                             {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                             {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
-                            {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
-                            {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                             {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
-                            {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},                            
+                            {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
+                            {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                            {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                             {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                              { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                         ]);
@@ -231,7 +234,9 @@
                         });
                         toastEvent.fire();
                     }
+                    component.set("v.loaded", true);
                 }else{
+                    component.set("v.loaded", true);
                     var errors = response.getError();
                     if (errors) {
                         var message = "";
@@ -252,6 +257,7 @@
             });
             $A.enqueueAction(action);
         } else {
+            component.set("v.loaded", true);
             toastEvent.setParams({
                 "title": "Error!",
                 "message": "Please fill atleast one field.",
@@ -265,6 +271,7 @@
         component.find("licenseNumber").set("v.value", "");
 	},
     fetchLicenseDetails : function(component, event, helper, licenseId, licenseType) {
+        component.set("v.loaded", false);
         if(licenseId != "" && licenseId != undefined){
             component.set("v.licenseId", licenseId);
             var selectedTab = component.get("v.selectedTabId");
@@ -338,8 +345,16 @@
                 component.set("v.screenTwo", false);
                 component.set("v.screenThree", true);
               //  this.fetchEndorsementDetails(component, event, helper, licenseId);
+                component.set("v.loaded", true);
             }else{
-                 alert("error!!!!!");
+                component.set("v.loaded", true);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message": "No results found.",
+                    "type": "error"
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);
@@ -432,6 +447,7 @@
     	}	            
     },
     searchWithDetails : function(component, event) {
+        component.set("v.loaded", false);
         var selectedTab = component.get("v.selectedTabId");
         var objectApi =  'MUSW__License_Parcel__c';
         var searchTwoArray=[];
@@ -559,10 +575,10 @@
                                 {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
-                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
-                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
+                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                                 {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
@@ -572,7 +588,9 @@
                             component.set("v.screenOne", false);
                             component.set("v.searchTwo",true);
                             component.set("v.searchTwoArray",searchTwoArray);
+                            component.set("v.loaded", true);
                             } else {
+                            component.set("v.loaded", true);
                             toastEvent.setParams({
                                 "title": "Error!",
                                 "message": "No results found.",
@@ -581,6 +599,7 @@
                             toastEvent.fire();
                         }
                     }else{
+                        component.set("v.loaded", true);
                         var errors = response.getError();
                         if (errors) {
                             var message = "";
@@ -601,6 +620,7 @@
                 });
                 $A.enqueueAction(action);
             } else {
+                component.set("v.loaded", true);
                 toastEvent.setParams({
                     "title": "Error!",
                     "message": "Please fill atleast one field.",
@@ -753,10 +773,10 @@
                                 {label: 'UBI Number', fieldName: 'UBI_Number', type: 'Number', sortable : true},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
-                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
-                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
+                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                                {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                                 {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                                  { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
@@ -766,7 +786,9 @@
                             component.set("v.screenOne", false);
                             component.set("v.searchTwo",true);
                             component.set("v.searchTwoArray",searchTwoArray);
+                            component.set("v.loaded", true);
                             } else {
+                            component.set("v.loaded", true);
                             toastEvent.setParams({
                                 "title": "Error!",
                                 "message": "No results found.",
@@ -775,6 +797,7 @@
                             toastEvent.fire();
                         }
                     }else{
+                        component.set("v.loaded", true);
                         var errors = response.getError();
                         if (errors) {
                             var message = "";
@@ -795,6 +818,7 @@
                 });
                 $A.enqueueAction(action);
             } else {
+                component.set("v.loaded", true);
                 toastEvent.setParams({
                     "title": "Error!",
                     "message": "Please fill atleast one field.",
