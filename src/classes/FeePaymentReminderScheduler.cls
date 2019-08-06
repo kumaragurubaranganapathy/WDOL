@@ -18,7 +18,7 @@ global class FeePaymentReminderScheduler implements Schedulable {
         }
         if(finePaymentNoticeList.size()>0){
             List<ContentDocumentLink> clinkListForPaymentReminder = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: finePaymentIdSet and ContentDocument.title like '%Fine_Payment_Reminder%' ];
-            String sub= 'Fine payment past due';
+            String sub= 'Fine Payment Past Due';
             sendPaymentReminder(finePaymentNoticeList,clinkListForPaymentReminder,sub);
         }
         if(fineCollectionNoticeList.size()>0){
@@ -50,7 +50,8 @@ global class FeePaymentReminderScheduler implements Schedulable {
                     String sub = 'Final Order for Case # ['+fine.MUSW__License2__r.name+'] – '+ subLine;
                     message.setSubject(sub);
                     message.setEntityAttachments(new List<Id>{feeToContentVersionMap.get(fine.Id)});
-                    message.setPlainTextBody('Please find attached a copy of your DHP letter');
+                    String bdy = 'Please find attached a copy of '+subLine+' letter';
+                    message.setPlainTextBody(bdy);
                     emailList.add(message);
                 }
             }
