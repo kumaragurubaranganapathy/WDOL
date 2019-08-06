@@ -249,7 +249,7 @@ _______________________________________________________________
                     <br />
                     <!--  <span> T = Trainee L = State Licensed R = Certified Residential G = Certified General</span> -->
                 </div>
-                <lightning:datatable class="button-borders slds-max-medium-table_stacked" columns="{!v.columns}" data="{!v.data}" keyField="id"
+                <lightning:datatable class="button-borders slds-max-medium-table_stacked" columns="{!v.columns}" data="{!v.dispList}" keyField="id"
                                      errors="{!v.errors}" hideCheckboxColumn="true" sortedBy="{!v.sortBy}"
                                      sortedDirection="{!v.sortDirection}" onsort="{!c.handleSort}" onrowaction="{!c.handleRowAction}"
                                      resizeColumnDisabled="true" />                
