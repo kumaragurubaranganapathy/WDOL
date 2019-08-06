@@ -1335,6 +1335,42 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+			<fullName>wadol_Professional_Code__c</fullName>
+			<externalId>false</externalId>
+			<formula>CASE(TEXT(  License_type__c  ),
+	&quot;Architect&quot;,&quot;20810&quot;,
+	&quot;Camping Resort Company&quot;,&quot;27706&quot;,
+	&quot;Camping Resort Salesperson&quot;,&quot;27708&quot;,
+	&quot;Cemetery&quot;,&quot;21701&quot;,
+	&quot;Professional Engineer&quot;,&quot;23201&quot;,
+	&quot;Professional Land Surveyor&quot;,&quot;23203&quot;,
+	&quot;Embalmer Intern&quot;,&quot;24002&quot;,
+	&quot;Funeral Director&quot;,&quot;24003&quot;,
+	&quot;Funeral Director Intern&quot;,&quot;24004&quot;,
+	&quot;Funeral Establishment&quot;,&quot;24005&quot;,
+	&quot;Prearrangement Funeral Services&quot;,&quot;24006&quot;,
+	&quot;Funeral Establishment Branch&quot;,&quot;24008&quot;,
+	&quot;Geologist&quot;,&quot;29940&quot;,
+	&quot;Landscape Architect&quot;,&quot;24901&quot;,
+	&quot;Notary Public&quot;,&quot;25601&quot;,
+	&quot;On-site Wastewater Designer&quot;,&quot;23251&quot;,
+	&quot;On-site Wastewater Inspector&quot;,&quot;23252&quot;,
+	&quot;Certified General Appraiser&quot;,&quot;27011&quot;,  
+	&quot;State Licensed Appraiser&quot;,&quot;27016&quot;,
+	&quot;Certified Residential Appraiser&quot;,&quot;27017&quot;,
+	&quot;Appraisal Management Company&quot;,&quot;27030&quot;,
+	&quot;Timeshare Company&quot;,&quot;21804&quot;,
+	&quot;Timeshare Salesperson&quot;,&quot;21805&quot;,
+	&quot; &quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>MUSW__Amount__c</fullName>
         <deprecated>false</deprecated>
