@@ -16,7 +16,7 @@
     <aura:registerEvent name="LnP_setCurrTabEvent" type="c:LnP_setCurrTabEvent"/>
     <aura:handler name="LnP_getAttJSON" event="c:LnP_getAttJSON" action="{!c.getAttJSON}"/>
 	<!--aura:handler name="change" value="{!v.attValidation}" action="{!c.attValidationChange}"/-->
-    <c:ErrorStatus/>
+    <!-- <c:ErrorStatus/> -->
 	<div class="{!((v.showPath==false)? 'slds-hide':'slds-show')+' slds-path'}">
         <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
 			<span class="{!(((var+1)==v.currentTab)?'': 'slds-hide')+' '}">
