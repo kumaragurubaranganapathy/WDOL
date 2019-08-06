@@ -42,7 +42,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Deposit_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -160,18 +164,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-	<fields>
-        <fullName>Reapply_Amount__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Reapply Amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
@@ -1163,7 +1155,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
+                <valueName>Cemetery</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
@@ -1171,7 +1163,12 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
@@ -1180,11 +1177,6 @@
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
@@ -1208,11 +1200,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
+                <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
@@ -1220,11 +1212,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
+                <valueName>Appraiser Course</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
+                <valueName>Appraiser Trainee</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1232,7 +1224,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
+                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1240,7 +1232,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <valueName>Temporary Certified General</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1252,11 +1244,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
+                <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1264,7 +1260,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Academic Intern</valueName>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1276,23 +1280,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer Intern</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Prearrangement Funeral Services</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Director</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer</valueName>
+                <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Engineers</controllingFieldValue>
@@ -1304,11 +1296,11 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
+                <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
@@ -1334,42 +1326,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-	<fields>
-			<fullName>wadol_Professional_Code__c</fullName>
-			<externalId>false</externalId>
-			<formula>CASE(TEXT(  License_type__c  ),
-	&quot;Architect&quot;,&quot;20810&quot;,
-	&quot;Camping Resort Company&quot;,&quot;27706&quot;,
-	&quot;Camping Resort Salesperson&quot;,&quot;27708&quot;,
-	&quot;Cemetery&quot;,&quot;21701&quot;,
-	&quot;Professional Engineer&quot;,&quot;23201&quot;,
-	&quot;Professional Land Surveyor&quot;,&quot;23203&quot;,
-	&quot;Embalmer Intern&quot;,&quot;24002&quot;,
-	&quot;Funeral Director&quot;,&quot;24003&quot;,
-	&quot;Funeral Director Intern&quot;,&quot;24004&quot;,
-	&quot;Funeral Establishment&quot;,&quot;24005&quot;,
-	&quot;Prearrangement Funeral Services&quot;,&quot;24006&quot;,
-	&quot;Funeral Establishment Branch&quot;,&quot;24008&quot;,
-	&quot;Geologist&quot;,&quot;29940&quot;,
-	&quot;Landscape Architect&quot;,&quot;24901&quot;,
-	&quot;Notary Public&quot;,&quot;25601&quot;,
-	&quot;On-site Wastewater Designer&quot;,&quot;23251&quot;,
-	&quot;On-site Wastewater Inspector&quot;,&quot;23252&quot;,
-	&quot;Certified General Appraiser&quot;,&quot;27011&quot;,  
-	&quot;State Licensed Appraiser&quot;,&quot;27016&quot;,
-	&quot;Certified Residential Appraiser&quot;,&quot;27017&quot;,
-	&quot;Appraisal Management Company&quot;,&quot;27030&quot;,
-	&quot;Timeshare Company&quot;,&quot;21804&quot;,
-	&quot;Timeshare Salesperson&quot;,&quot;21805&quot;,
-	&quot; &quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Professional Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MUSW__Amount__c</fullName>
@@ -1505,113 +1461,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Professional_code__c</fullName>
-        <externalId>false</externalId>
-        <label>Professional Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Route_to_Miscellaneous_queue__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Route to Miscellaneous queue</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Sequence_number__c</fullName>
-        <externalId>false</externalId>
-        <label>Sequence Number</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Status</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>pending</fullName>
-                    <default>true</default>
-                    <label>Pending</label>
-                </value>
-                <value>
-                    <fullName>completed</fullName>
-                    <default>false</default>
-                    <label>Completed</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-	<fullName>ValidationNumber__c</fullName>
-        <description>for Capturing the Validation Number from the Customer Envelope record</description>
-        <externalId>false</externalId>
-        <label>Validation Number</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Validation_number__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Customer Envelope</label>
-        <referenceTo>Customer_Envelope__c</referenceTo>
-        <relationshipLabel>Deposits</relationshipLabel>
-        <relationshipName>Deposits</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Voucher_Number__c</fullName>
-        <description>1966</description>
-        <externalId>false</externalId>
-        <label>Voucher #</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>wadol_Program_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Program Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>Application_Type</valueSetName>
-        </valueSet>
-    </fields>
-	<fields>
         <fullName>Over_Short_Revenue_Code__c</fullName>
         <description>Captures the overshort revenue code from the Master Configuration list</description>
         <externalId>false</externalId>
@@ -1669,6 +1518,29 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Professional_code__c</fullName>
+        <externalId>false</externalId>
+        <label>Professional Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reapply_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Reapply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>RevenueCodeSubString__c</fullName>
         <description>Captures the revenue code over short</description>
         <externalId>false</externalId>
@@ -1680,6 +1552,138 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Route_to_Miscellaneous_queue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Route to Miscellaneous queue</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sequence_number__c</fullName>
+        <externalId>false</externalId>
+        <label>Sequence Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>pending</fullName>
+                    <default>true</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ValidationNumber__c</fullName>
+        <description>for Capturing the Validation Number from the Customer Envelope record</description>
+        <externalId>false</externalId>
+        <label>Validation Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Validation_number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Envelope</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Deposits</relationshipLabel>
+        <relationshipName>Deposits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Voucher_Number__c</fullName>
+        <description>1966</description>
+        <externalId>false</externalId>
+        <label>Voucher #</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>wadol_Professional_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(  License_type__c  ),
+	&quot;Architect&quot;,&quot;20810&quot;,
+	&quot;Camping Resort Company&quot;,&quot;27706&quot;,
+	&quot;Camping Resort Salesperson&quot;,&quot;27708&quot;,
+	&quot;Cemetery&quot;,&quot;21701&quot;,
+	&quot;Professional Engineer&quot;,&quot;23201&quot;,
+	&quot;Professional Land Surveyor&quot;,&quot;23203&quot;,
+	&quot;Embalmer Intern&quot;,&quot;24002&quot;,
+	&quot;Funeral Director&quot;,&quot;24003&quot;,
+	&quot;Funeral Director Intern&quot;,&quot;24004&quot;,
+	&quot;Funeral Establishment&quot;,&quot;24005&quot;,
+	&quot;Prearrangement Funeral Services&quot;,&quot;24006&quot;,
+	&quot;Funeral Establishment Branch&quot;,&quot;24008&quot;,
+	&quot;Geologist&quot;,&quot;29940&quot;,
+	&quot;Landscape Architect&quot;,&quot;24901&quot;,
+	&quot;Notary Public&quot;,&quot;25601&quot;,
+	&quot;On-site Wastewater Designer&quot;,&quot;23251&quot;,
+	&quot;On-site Wastewater Inspector&quot;,&quot;23252&quot;,
+	&quot;Certified General Appraiser&quot;,&quot;27011&quot;,  
+	&quot;State Licensed Appraiser&quot;,&quot;27016&quot;,
+	&quot;Certified Residential Appraiser&quot;,&quot;27017&quot;,
+	&quot;Appraisal Management Company&quot;,&quot;27030&quot;,
+	&quot;Timeshare Company&quot;,&quot;21804&quot;,
+	&quot;Timeshare Salesperson&quot;,&quot;21805&quot;,
+	&quot; &quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>wadol_Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Type</valueSetName>
+        </valueSet>
     </fields>
     <label>Deposit</label>
     <listViews>
@@ -1700,7 +1704,7 @@
     </listViews>
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Appraisal Management Company Queue</label>
@@ -1711,7 +1715,7 @@
     </listViews>
     <listViews>
         <fullName>Camping_Resorts_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <columns>wadol_Program_Type__c</columns>
         <columns>License_type__c</columns>
@@ -1725,7 +1729,8 @@
     <listViews>
         <fullName>Miscellaneous_Deposit</fullName>
         <columns>NAME</columns>
-        <columns>ValidationNumber__c</columns><filterScope>Queue</filterScope>
+        <columns>ValidationNumber__c</columns>
+        <filterScope>Queue</filterScope>
         <label>Miscellaneous</label>
         <queue>Miscellaneous</queue>
         <sharedTo>
@@ -1767,7 +1772,8 @@
     <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_Deposit</fullName>
         <columns>NAME</columns>
-        <columns>ValidationNumber__c</columns><filterScope>Queue</filterScope>
+        <columns>ValidationNumber__c</columns>
+        <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
         <queue>Real_Estate_Appraiser_Courses_Queue</queue>
         <sharedTo>
