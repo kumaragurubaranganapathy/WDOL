@@ -107,13 +107,16 @@
         <type>Currency</type>
     </fields>
     <label>Lockbox Envelope</label>
-    <listViews>
+	<listViews>
         <fullName>All_Lockbox_Envelopes</fullName>
         <columns>NAME</columns>
         <columns>Lockbox_number__c</columns>
+        <columns>Lockbox_Amount__c</columns>
         <columns>Amount__c</columns>
+        <columns>Polaris_NCR_Amount__c</columns>
+        <columns>Date__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Lockbox Envelopes</label>
