@@ -581,7 +581,7 @@ public without sharing class Add_BusinessController {
         }
         
         if(sObjectName == 'Associations__c'){
-            columnHeaderList = new List<String>{'Name','License Number','Status','Invitation Status','Actions'};
+            columnHeaderList = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status','Actions'};
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                     sObjList =[select id,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
         }
@@ -590,7 +590,6 @@ public without sharing class Add_BusinessController {
         return JSON.serialize(wrapperObj,true);
         
     }
-    
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
         String licenseType ='';
