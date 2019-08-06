@@ -3,6 +3,13 @@
 .THIS .btnCenter{
     margin:0 auto;
 }
+.THIS.alert-wrapper{
+    display:flex;
+    justify-content:center;
+}
+.THIS .slds-combobox_container input:focus{
+    border-color:t(fieldclr);
+}
 .THIS .btnHeight{
     height:auto;
 }
@@ -47,7 +54,8 @@
     border:solid 1px t(grayBorder);
 }
 .THIS .biz-fields-wrapper .field-size div input{
-    height:1rem;
+     height: 42px;
+    box-shadow: none;
 }
 .THIS .biz-fields-wrapper .slds-checkbox [type=checkbox]{
     position:relative;
@@ -80,7 +88,7 @@
     .THIS.add-biz-wrapper{
         margin: 1rem;
     }
-    .THIS .add-biz-wrapper .field-size .slds-form-element__control{
+    .THIS .field-size .slds-form-element__control{
         width:100%;
     }
     .THIS .biz-fields-wrapper{
