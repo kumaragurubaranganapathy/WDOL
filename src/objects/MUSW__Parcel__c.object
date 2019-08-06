@@ -1773,6 +1773,20 @@ CASE( MUSW__AlertCode__c,
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	 <enableEnhancedLookup>true</enableEnhancedLookup>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Parcels</relationshipLabel>
+        <relationshipName>Parcels</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Parcel</label>
     <listViews>
         <fullName>MUSW__All</fullName>
