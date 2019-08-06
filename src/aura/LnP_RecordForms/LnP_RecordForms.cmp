@@ -33,7 +33,7 @@
                 <lightning:messages />
                 <div class="slds-grid slds-wrap">
                     <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">
-                        <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' || field.apiname == 'Social_Security_Number_Encrypted__c' || field.apiname == 'ITIN__c' || field.apiname == 'Reason_for_No_SSN__c' || field.apiname == 'NO_SSN_ITIN__c' ? 'true' : 'false'}">
+                        <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' || field.apiname == 'Social_Security_Number_Encrypted__c' || field.apiname == 'ITIN__c' || field.apiname == 'NO_SSN_ITIN__c' ? 'true' : 'false'}">
                             <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' ? 'true' : 'false'}">
                                 <aura:if isTrue="{!field.required || field.regex != undefined}">
                                     <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.required?'required':'')+' slds-show field-size multi-field'}" onchange="{!c.selectUniqueID}" />
