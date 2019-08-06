@@ -8,6 +8,10 @@
      font-size: token(fieldlabelsize);
      color:t(fieldclr);
 }
+.THIS .quesclr .uiOutputRichText,.THIS .revAndSubCompletionFont .uiOutputRichText{
+    font-size: token(fieldlabelsize);
+    line-height: 1.5;
+}
 .THIS .validate .uiOutputRichText{
      font-size: token(fieldlabelsize);
 }
@@ -122,7 +126,7 @@
     padding-left: 30px;
 }
 .THIS .buttonpos{
-    margin:0 9rem;
+    margin:0;
     padding-top: 45px;
     padding-bottom: 22px;
     border-top:1px solid #5b616b;
@@ -219,7 +223,7 @@
    padding:10px 0 0 0;
 }
 .THIS{
-    margin: 0 40px;
+    margin: 0 7.5rem;
 }
 
 .THIS .btn-wrapper{      
@@ -238,15 +242,12 @@
     max-width: 872px;
 }
 .THIS .subheader{
-    font-size:16px;
-    padding-left:9.7rem;
+    font-size:1rem;    
     padding-bottom: 0.5rem;
     margin-top:1rem;
-    font-weight: t(txtfontweight);
-    font-style: t(txtfontstyle);
+    font-weight: 600;    
     line-height: 1.3;
-    color: #00202a;
-    border-bottom:0.5px solid #d6d7d9;
+    color: t(LnGFormTitleColor);    
 }
 .THIS .field-size .slds-form-element__label{
     max-width:100%;
@@ -280,8 +281,10 @@
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
-    padding:15px 15px 15px 0;
-    
+    padding:15px 15px 15px 0;  
+}
+.THIS .Endorsement .uiOutputRichText ul{
+    margin-left:1rem;
 }
 .THIS .addressBtn{
     display:none;
@@ -306,6 +309,7 @@
 }
 .THIS .validate .uiInputTextArea{
     border:1px solid #5b616b;
+    margin-bottom: 0.8rem;
 }
 .THIS .dispItem,.THIS .GuaranteedispItem {
     margin-bottom:-11px;
@@ -348,8 +352,8 @@
 }
 .THIS .personal-info {
     display:block;
-    width:96%;
-    max-width:872px;
+    /*width:96%;
+    max-width:872px; */
     margin:0px auto;
     padding-top:25px;
 }
@@ -388,11 +392,11 @@
         display: flex;
         flex-direction: column;
     }
-.THIS .personal-info{
+   .THIS .personal-info{
         width:85%;
     }
      .THIS .sectionwidth{
-        margin-left: 31px;
+        margin-left: 0;
     }
     .THIS .dispItem .field-item .slds-form-element__control,.THIS .dispItem,.THIS .validate .field-item .slds-form-element__control,.THIS .validate{
         width:100%;
@@ -401,7 +405,7 @@
             margin-bottom: 0.8rem;
     }
     .THIS .subheader{
-        padding-left:8rem;
+        padding-left:29px;
     }
     .THIS .buttonpos button {
         width: 242px;

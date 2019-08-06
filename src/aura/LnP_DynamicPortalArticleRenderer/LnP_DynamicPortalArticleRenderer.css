@@ -111,12 +111,21 @@
 .THIS .license-item{
     padding-bottom:1rem;
 }
-.THIS .license-link:hover{
+.THIS .license-link.inactive-link:hover{
     text-decoration:none;
+}
+.THIS .license-link.inactive-link{
+    pointer-events:none;
 }
 .THIS .license-link{
     color:t(headerColor);    
     font-weight:600;
+    font-size:1rem;
+    
+}
+.THIS .active-link.license-link{
+    color:t(linksColor);
+    font-weight:normal;
 }
 .THIS .action-item{
     margin:4rem 2rem 2rem;
