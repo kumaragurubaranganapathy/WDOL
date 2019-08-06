@@ -1,6 +1,6 @@
 .THIS.footerWrapper{
     background: t(LnGFooterColor);
-    padding:0 5rem;
+    padding:0.25rem 5rem;
     position:relative;
     bottom:0;
     width:100%;
@@ -15,21 +15,29 @@
 }
 .THIS .footerListLink{    
     font-size: 0.8125rem;
-    color:t(actionPanelBG);    
-    text-transform: capitalize;
+    color:t(actionPanelBG);   
     display: flex;
     align-items: center;
+    /*font-family:'Merriweather-Regular'; */
 }
 .THIS .footerListLink img{
     width:0.75rem;
-    margin-left:0.25rem;
+    margin-left:0.25rem;    
 }
 .THIS .footerListLink.copyright{
     color:t(LnGFormTitleColor);
 }
 .THIS .footerListItem{
-    padding-right:1.875rem;
+    padding:0 0.5rem;
     margin:0;
+    border-right:solid 1px t(fieldclr);
+}
+.THIS .footerListItem:first-of-type{
+    padding-left:0;
+}
+.THIS .footerListItem:last-of-type{
+    padding-right:0;
+    border-right:none;
 }
 .THIS .footerListItem:last-child{
     padding-right:0;
