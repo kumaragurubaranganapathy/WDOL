@@ -192,8 +192,8 @@
                 var data = response.getReturnValue();
                 console.log(JSON.stringify(data));
                 console.log('dataAddress::'+data);
-               
-                for(var key = 0; key < data.length; key++){
+                if (!($A.util.isEmpty(data) || $A.util.isUndefined(data))){
+                  for(var key = 0; key < data.length; key++){
                    
                     if(data[key].Address_Type__c == 'Mailing Address' && !(data[key].is_Physical_and_Mailing_Address_Same__c) ){
                         mailingAddress.push(data[key]);
@@ -214,7 +214,9 @@
                       
                     }
                    
+                }  
                 }
+                
               component.set("v.AddressData",data);
             }                          
         });
