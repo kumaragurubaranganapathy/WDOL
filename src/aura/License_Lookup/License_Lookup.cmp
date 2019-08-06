@@ -70,17 +70,10 @@ _______________________________________________________________
     <aura:attribute name="licenseNameToDisplayDetails" type="String" default="License" />
     <aura:attribute name="licenseRecordType" type="String"/>
     
-    <aura:attribute name="loaded" type="Boolean" default="false" />
-    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:if isTrue="{!v.loaded}">
-        <aura:set attribute="else">
-             <lightning:spinner alternativeText="Loading" size="medium" />
-        </aura:set>
-    </aura:if>
     <div class="page-width">
         <div class="page-header">
-            <h1 class="">License lookup</h1>
+            <h1 class="padding-top-30">License Lookup</h1>
         </div>
         <!--aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <lightning:breadcrumbs class="boxsize">
@@ -98,7 +91,7 @@ _______________________________________________________________
                 <!--div class="slds-p-top_x-small padding-bottom-20">
                     This search only provides information about the below license types we've issued. If you didn't find what you were looking for, you may want to check <a href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
                 </div-->
-                <div class="license-desc slds-p-top_x-small padding-bottom-20">
+                <div class="slds-p-top_x-small padding-bottom-20">
                 	This search only provides information about license types issued by the Washington State Department of Licensing. If you were looking for a license not provided by the Washington State Department of Licensing, you may want to check <a target="_blank" href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
                 </div>
                 <div class="slds-hide slds-m-top_medium">
@@ -110,34 +103,34 @@ _______________________________________________________________
                 <div class="slds-m-top_medium slds-box">
                     <div class="slds-form-element">
                         <div class="">
-                            <div class="field-padding licenseinp">
+                            <div class="slds-p-around_medium licenseinp">
                                 <lightning:select name="Profession" label="Profession" aura:id="Profession" value="">
-                                    <option text="Select a profession" value=""/>
+                                    <option text="Select an Option" value=""/>
                                     <aura:iteration items="{!v.professionOptions}" var="option">
                                         <option text="{!option}" value="{!option}"/>
                                     </aura:iteration>
                                 </lightning:select>
                             </div>
-                            <div class="field-padding licenseinp ">
+                            <div class="slds-p-around_medium licenseinp ">
                                 <lightning:input aura:id="licenseNumber" label="License Number" type="text" placeholder="Enter License Number" />
+                            </div>
+                            <div class="slds-p-around_medium alignRight">
+                                <lightning:button variant="neutral" class="cancel-button" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithNum}"/>
+                                <lightning:button variant="brand" class="next-button" type="submit" name="Search" label="Search" onclick="{!c.searchWithNum}"/>
                             </div>
                         </div>
                     </div>   
                 </div>
-                <div class="slds-m-top_large license-buttons searchNum alignRight">
-                    <!--lightning:button variant="neutral" class="cancel-button" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithNum}"/-->
-                    <lightning:button variant="brand" class="next-button" type="submit" name="Search" label="Search" onclick="{!c.searchWithNum}"/>
-                </div>
-                <div class="heading slds-m-top_x-large">Search with License Details</div>
+                <div class="section-header slds-m-top_medium">Search with License Details</div>
                 <div class="sub-section-header slds-m-vertical_medium">If you don’t have a License Number or UBI, you may use any of the ﬁelds below to search</div>
-                <div class="slds-box divBox slds-m-top_medium">
+                <div class="slds-box divBox slds-m-vertical_medium">
                     <lightning:tabset selectedTabId="{!v.selectedTabId}">
                         <lightning:tab class="licensetabset" label="Professional License" aura:id="tab1" tabindex="1" id="tab1">
                             <!-- Start of form -->
                             <div class="slds-form-element slds-p-around_medium">
                                 <div class="slds-wrap  licensetab">
-                                    <lightning:select class="field-item help-text field-padding" name="licenseType" label="License Type" aura:id="licenseType" value="">
-                                        <option text="Select a license type" value=""/>
+                                    <lightning:select class="field-item help-text slds-p-around_medium" name="licenseType" label="License Type" aura:id="licenseType" value="">
+                                        <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.licenseTypeOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
@@ -150,27 +143,27 @@ _______________________________________________________________
                                         </aura:iteration>
                                     </lightning:select-->
                                     <lightning:input aura:id="firstName" label="First Name" placeholder="Enter First Name"
-                                                     class="field-item field-padding"
+                                                     class="field-item slds-p-around_medium"
                                                      name="firstName"/>
                                     <lightning:input aura:id="middleName" label="Middle Name" placeholder="Enter Middle Name"
-                                                     class="field-item field-padding"
+                                                     class="field-item slds-p-around_medium"
                                                      name="middleName"/>                                    
                                 </div>
                                 <div class="slds-wrap licensetab">
                                     <lightning:input aura:id="lastName" label="Last Name" placeholder="Enter Last Name"
-                                                     class="field-item field-padding"
+                                                     class="field-item slds-p-around_medium"
                                                      name="lastName"/> 
                                     <lightning:input aura:id="city" label="City" placeholder="Enter City"
-                                                     class="field-item field-padding"
+                                                     class="field-item slds-p-around_medium"
                                                      name="city"/> 
-                                    <lightning:select class="field-item field-padding" name="County" label="County" aura:id="country" value="">
-                                        <option text="Select a county" value=""/>
+                                    <lightning:select class="field-item slds-p-around_medium" name="County" label="County" aura:id="country" value="">
+                                        <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.countryOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
-                                    <lightning:select class="field-item  field-padding" name="licenseStatus" label="License Status" aura:id="licenseStatus" value="">
-                                        <option text="Select a license status" value=""/>
+                                    <lightning:select class="field-item  slds-p-around_medium" name="licenseStatus" label="License Status" aura:id="licenseStatus" value="">
+                                        <option text="Select an Option" value=""/>
                                         <option value="Active" >Active</option>
                                         <option value="Inactive" >Inactive</option>
                                         <option value="Expired" >Expired</option>
@@ -186,8 +179,8 @@ _______________________________________________________________
                             <!-- Start of form -->
                             <div class="slds-form-element slds-p-around_medium">
                                 <div class="slds-wrap businesstab">
-                                    <lightning:select class="field-item help-text field-padding" name="licenseType" label="License Type" aura:id="licenseTypeBusiness" value="">
-                                        <option text="Select a license type" value=""/>
+                                    <lightning:select class="field-item help-text  slds-p-around_medium" name="licenseType" label="License Type" aura:id="licenseTypeBusiness" value="">
+                                        <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.licenseTypeOptionsBusiness}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
@@ -199,25 +192,25 @@ _______________________________________________________________
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select-->
-                                    <lightning:input aura:id="businessName" label="Business Name or Doing Business As" placeholder="Enter Name"
-                                                     class="field-item field-padding"
+                                    <lightning:input aura:id="businessName" label="Business Name/Doing Business As" placeholder="Enter Name"
+                                                     class="field-item  slds-p-around_medium"
                                                      name="businessName"/>
                                     <lightning:input aura:id="ubiNumber" label="UBI Number" placeholder="Enter UBI Number"
-                                                     class="field-item field-padding"
+                                                     class="field-item  slds-p-around_medium"
                                                      name="ubiNumber"/>
                                 </div>
                                 <div class="slds-wrap  businesstab">
                                     <lightning:input aura:id="cityBusiness" label="City" placeholder="Enter City"
-                                                     class="field-item field-padding"
+                                                     class="field-item  slds-p-around_medium"
                                                      name="city"/>
-                                    <lightning:select class="field-item field-padding" name="County" label="County" aura:id="countryBusiness" value="">
-                                        <option text="Select a county" value=""/>
+                                    <lightning:select class="field-item  slds-p-around_medium" name="County" label="County" aura:id="countryBusiness" value="">
+                                        <option text="Select an Option" value=""/>
                                         <aura:iteration items="{!v.countryOptionsBusiness}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
-                                    <lightning:select class="field-item field-padding" name="licenseStatus" label="License Status" aura:id="licenseStatusBusiness" value="">
-                                        <option text="Select a license status" value=""/>
+                                    <lightning:select class="field-item  slds-p-around_medium" name="licenseStatus" label="License Status" aura:id="licenseStatusBusiness" value="">
+                                        <option text="Select an Option" value=""/>
                                         <option value="Active" >Active</option>
                                         <option value="Inactive" >Inactive</option>
                                         <option value="Expired" >Expired</option>
@@ -230,11 +223,11 @@ _______________________________________________________________
                             <!-- End of form -->
                         </lightning:tab>
                     </lightning:tabset>
-                </div>
-                <div class="slds-m-top_large">
-                    <div class="license-buttons alignRight btnAlign">
-                        <!--lightning:button class="cancel-button" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithDetails}"/-->
-                        <lightning:button class="next-button" variant="brand" type="submit" name="Search" label="Search" onclick="{!c.searchWithDetails}"/>
+                    <div class="slds-p-around_medium">
+                        <div class="slds-p-around_medium alignRight btnAlign">
+                            <lightning:button class="cancel-button" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithDetails}"/>
+                            <lightning:button class="next-button" variant="brand" type="submit" name="Search" label="Search" onclick="{!c.searchWithDetails}"/>
+                        </div>
                     </div>
                 </div>
             </aura:if>
@@ -248,10 +241,10 @@ _______________________________________________________________
                         <lightning:button variant="neutral" class="modify-btn" type="button" name="cancel" label="Modify Search" onclick="{!c.modifySearch}"/>
                     </span>
                 </div>
-                <div class="search-details slds-m-top_x-small slds-m-bottom_xx-large">
+                <div class="search-details slds-m-vertical_x-large">
                     <aura:if isTrue="{!v.searchOne}">
                         <aura:iteration items="{!v.searchOneArray}" var="option">
-                            <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                            <div class="slds-col slds-size_1-of-3 slds-small-size_1-of-1 slds-form-element_horizontal slds-form-element">
                                 <div class="slds-form-element__label">{!option.label} :</div>
                                 <div class="slds-form-element__control btnnrml">{!option.value}</div>
                             </div>
@@ -320,29 +313,29 @@ _______________________________________________________________
                     <div class="card table-border">
                         <aura:if isTrue="{!v.licenseRecordType == 'Business'?'false':'true'}">
                             <lightning:layout class="slds-p-around_small bottom-border slds-wrap">            
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="text-element slds-form-element_horizontal slds-form-element row-margin">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                     <div class="text-style">License Number:<span>&nbsp;</span></div>
                                     <div class="text-style-val">{!item.MUSW__License2__r.Name}</div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="text-element slds-form-element_horizontal slds-form-element row-margin">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                     <div class="text-style">License Type:<span>&nbsp;</span></div>
                                     <div class="text-style-val">{!item.MUSW__License2__r.Credential_Type__c}</div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="text-element slds-form-element_horizontal slds-form-element row-margin">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                     <div class="text-style">Status:<span>&nbsp;</span></div>
                                     <div class="text-style-val">{!item.MUSW__License2__r.MUSW__Status__c}</div>
                                 </lightning:layoutItem>
                             </lightning:layout>
                             <lightning:layout class="slds-p-around_small slds-wrap">
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Name:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__License2__r.License_Printable_Name__c}</div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">First Issue Date:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__License2__r.Original_Issue_Date__c}</div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Sub-status:<span>&nbsp;</span></div>
                                     <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c}">
                                         <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || item.License__r.Sub_Status__c == 'Surrendered'}">
@@ -355,77 +348,70 @@ _______________________________________________________________
                                         </aura:set>
                                     </aura:if>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">City:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__Parcel__r.MUSW__City__c}</div>
                                 </lightning:layoutItem>
-                                <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Current Issue Date:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__License2__r.MUSW__Issue_Date__c}</div>
                                 </div>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Discipline:<span>&nbsp;</span></div>
-                                    <div class="field-style-val">
-                                    	<aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
-                                            Yes
-                                        	<aura:set attribute="else">
-                                                No
-                                            </aura:set>
-                                        </aura:if>
-                                    </div>
+                                    <div class="field-style-val">{!item.MUSW__License2__r.AIDS_Affidavit__c}</div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">State:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__Parcel__r.MUSW__State__c}</div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Expiration Date:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__License2__r.MUSW__Expiration_Date__c}</div>
                                 </lightning:layoutItem>
-                                <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Program:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__License2__r.Application_Type__c}</div>
                                 </div>
-                                <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
+                                <lightning:layoutItem size="4" mediumDevicesize="4" class="slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Country:<span>&nbsp;</span></div>
                                     <div class="field-style-val">{!item.MUSW__Parcel__r.Country__c}</div>
                                 </lightning:layoutItem>
                             </lightning:layout>
                             <aura:set attribute="else">
                                 <div class="slds-grid slds-p-around_small bottom-border">            
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
                                         <div class="text-style">License Number:<span>&nbsp;</span></div>
                                         <div class="text-style-val">{!item.MUSW__License2__r.Name}</div>
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
                                         <div class="text-style">License Type:<span>&nbsp;</span></div>
                                         <div class="text-style-val">{!item.MUSW__License2__r.Credential_Type__c}</div>
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element row-margin">
                                         <div class="text-style">Status:<span>&nbsp;</span></div>
                                         <div class="text-style-val">{!item.MUSW__License2__r.MUSW__Status__c}</div>
                                     </div>
                                 </div>
                                 <div class="slds-grid slds-p-around_small slds-wrap">
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Business Name:<span>&nbsp;</span></div>
                                         <div class="field-style-val">{!item.MUSW__License2__r.License_Printable_Name__c}</div>
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Doing business as:<span>&nbsp;</span></div>
                                         <div class="field-style-val">{!item.MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c}</div>
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Phone:<span>&nbsp;</span></div>
                                         <div class="field-style-val"><a href="{!'tel:'+item.MUSW__License2__r.Phone__c}">{!item.MUSW__License2__r.Phone__c}</a></div>
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">First Issue Date:<span>&nbsp;</span></div>
                                         <div class="field-style-val">{!item.MUSW__License2__r.Original_Issue_Date__c}</div>
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Sub-status:<span>&nbsp;</span></div>
                                         
                                         <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c}">
@@ -439,7 +425,7 @@ _______________________________________________________________
                                             </aura:set>
                                     	</aura:if>
                                     </div>
-                                    <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Address:<span>&nbsp;</span></div>
                                         <div class="field-style-val">
                                         	<aura:if isTrue="{!item.MUSW__Parcel__r}">
@@ -460,30 +446,23 @@ _______________________________________________________________
                                     </div>           
                                     <div class="slds-col slds-size_2-of-3">
                                         <div class="slds-grid">
-                                            <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
                                                 <div class="field-style">Current Issue Date:<span>&nbsp;</span></div>
                                                 <div class="field-style-val">{!item.MUSW__License2__r.MUSW__Issue_Date__c}</div>
                                             </div>
-                                            <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
                                                 <div class="field-style">Program:<span>&nbsp;</span></div>
                                                 <div class="field-style-val">{!item.MUSW__License2__r.Application_Type__c}</div>
                                             </div>
                                         </div>
                                         <div class="slds-grid">
-                                            <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
                                                 <div class="field-style">Expiration Date:<span>&nbsp;</span></div>
                                                 <div class="field-style-val">{!item.MUSW__License2__r.MUSW__Expiration_Date__c}</div>
                                             </div>
-                                            <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
+                                            <div class="slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
                                                 <div class="field-style">Discipline:<span>&nbsp;</span></div>
-                                                <div class="field-style-val">
-                                                <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
-                                                    Yes
-                                                    <aura:set attribute="else">
-                                                        No
-                                                    </aura:set>
-                                                </aura:if>
-                                                </div>
+                                                <div class="field-style-val">{!item.MUSW__License2__r.AIDS_Affidavit__c}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -557,7 +536,7 @@ _______________________________________________________________
                         </aura:if>
                     </div>
                 </aura:iteration>
-                <div class="buttons slds-m-top_x-large">
+                <div class="buttons slds-m-top_large">
                 	<div class="buttons-left">
                         <lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace2}"/>
                     </div>
