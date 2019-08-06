@@ -69,6 +69,7 @@
     <aura:attribute name="PeerRelationTableColumnsList" type="List" />
     <aura:attribute name="PeerRelationTableDataList" type="List" />
     <aura:attribute name="IsCurrentLicenseParent" type="Boolean" />
+    <aura:attribute name="hasActiveSupervisorEndorsement" type="Boolean" />
     
     <aura:attribute name="BusinessLicenseTableColumnsList" type="List" />
     <aura:attribute name="BusinessLicenseTableDataList" type="List" />
@@ -322,7 +323,7 @@
                     <aura:if isTrue="{!v.PeerRelationTableDataList.length != 0 || v.BusinessLicenseTableDataList.length != 0 || v.IsCurrentLicenseParent}">
                         
                         <div class="section-name bottom-border slds-p-bottom_x-small">Relationships</div>
-                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                        <aura:if isTrue="{!and(v.IsCurrentLicenseParent,v.hasActiveSupervisorEndorsement)}">
                             <div class="add-licensee slds-p-vertical_small">
                                 <lightning:button variant="brand" label="Add Licensee" title="Add Licensee" onclick="{!c.openAssociationForm}"
                                                   />

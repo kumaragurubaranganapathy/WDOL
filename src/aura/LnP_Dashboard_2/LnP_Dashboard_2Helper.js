@@ -457,6 +457,8 @@
                 
                 component.set("v.endorsementData",endorsementDatavar);
                 
+                component.set("v.hasActiveSupervisorEndorsement",endorsementDatavar.includes("Supervisor"));
+                
             }else if (state === "ERROR") {
                 
                 var errors = response.getError();
