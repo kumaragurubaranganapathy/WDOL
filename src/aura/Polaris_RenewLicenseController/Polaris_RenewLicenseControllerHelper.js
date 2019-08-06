@@ -780,7 +780,7 @@
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
-                    "message": errorMessage,
+                    "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
                     "type": "error"
                 });
                 toastEvent.fire();
@@ -852,7 +852,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage,
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
                         "type": "error"
                     });
                     toastEvent.fire();
@@ -988,7 +988,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage,
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
                         "type": "error"
                     });
                     toastEvent.fire();
@@ -1030,7 +1030,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage,
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
                         "type": "error"
                     });
                     toastEvent.fire();

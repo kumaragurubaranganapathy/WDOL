@@ -56,7 +56,7 @@
                 var result = response.getReturnValue();
                 var filteredResults = [];
                 for(var i=0; i<result.length; i++){
-                    if(result[i].Credential_Type__c != undefined && result[i].Credential_Type__c != "Appraiser Course" && result[i].Credential_Type__c != "Architect Firms" && filteredResults.indexOf(result[i].Credential_Type__c)==-1){
+                    if(result[i].Credential_Type__c != undefined && result[i].Credential_Type__c != "Appraiser Course" && result[i].Credential_Type__c != "Architect Firms" && result[i].Credential_Type__c != 'Appraisal Controlling Person' && filteredResults.indexOf(result[i].Credential_Type__c)==-1){
                         filteredResults.push(result[i].Credential_Type__c);
                     }
                 }

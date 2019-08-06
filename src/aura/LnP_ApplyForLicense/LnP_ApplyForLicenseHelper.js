@@ -330,8 +330,8 @@
         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {
             component.set("v.showNotaryEndo",true);
-            //component.set("v.showEndoMessage",true);
-            //component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
+            component.set("v.showEndoMessage",true);
+            component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
         }
         else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
         {            
@@ -873,7 +873,7 @@
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
-                    "message": errorMessage,
+                    "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
                     "type": "error"
                 });
                 toastEvent.fire();
@@ -897,7 +897,7 @@
                                     if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
                                         return true;
                                     }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
                                         return false;
                                     }  
                                 }
@@ -906,7 +906,7 @@
                                 if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
                                     return true;
                                 } else {
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
                                     return false;
                                 }  
                             }
@@ -945,7 +945,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage,
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
                         "type": "error"
                     });
                     toastEvent.fire();

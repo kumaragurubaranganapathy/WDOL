@@ -142,7 +142,7 @@ public class Polaris_ApplyForLicenseController {
         for(Question__c Ques : lstQuestions )
         {
             LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
-            labelToFields.label = Ques.Question_Body__c.replaceAll('\\<.*?>',''); 
+            labelToFields.label = Ques.Question_Body__c.replaceAll('<span[^>]*>',''); 
             labelToFields.labelId = Ques.Id;
             labelToFields.fieldType = Ques.Data_Type__c;
             labelToFields.hasChild = Ques.Has_dependent_questions__c;
