@@ -6,6 +6,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 	<tabVisibilities>
+        <tab>Cash_Register__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<tabVisibilities>
         <tab>Miscellaneous_Fee__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
