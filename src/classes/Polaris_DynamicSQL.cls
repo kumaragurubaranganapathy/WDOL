@@ -1,4 +1,4 @@
-public without sharing class Polaris_DynamicSQL {
+public with sharing class Polaris_DynamicSQL {
     public  String FieldName ;
     public  String Operator ;
     public  String FieldValue;
@@ -162,7 +162,7 @@ String pemail = (String)pdata.get('email');*/
             sqlObj.FieldValue = mapValues.get(attributeName);
             system.debug('FieldValue1234 '+strFieldName);
             if(strFieldName =='MULTIPICKLIST') {
-                sqlObj.Operator = 'in';
+                sqlObj.Operator = 'includes';
             } else {
                  sqlObj.Operator = '=';
             }
@@ -591,7 +591,7 @@ String pemail = (String)pdata.get('email');*/
             // system.debug('FieldValue1234 '+strFieldName);
             sqlObj.FieldType   = strFieldName != null ? strFieldName :'';
             if(strFieldName != null && strFieldName =='MULTIPICKLIST') {
-                sqlObj.Operator = 'in';
+                sqlObj.Operator = 'includes';
             } else {
                 sqlObj.Operator = '=';
             }
