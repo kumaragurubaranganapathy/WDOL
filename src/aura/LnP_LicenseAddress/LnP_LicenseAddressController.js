@@ -64,7 +64,13 @@
                 state = 'Not Applicable';
             }
             console.log('state==' + state);
-            county = mailingPhysicalAddress.County__c;
+            if(state =='WA'){
+                county = component.get("v.defaultCounty");
+            }
+            else{
+                component.set("v.isOutOfCountry",false);
+            }
+            component.set("v.selectedCounty",county);
             zip = mailingPhysicalAddress.Zip_Postal_Code__c;
         }else{
             mailingPhysicalAddress = component.get("v.physicalAddressParcel");
@@ -83,7 +89,13 @@
                 state = 'Not Applicable';
             }
             console.log('state==' + state);
-            county = mailingPhysicalAddress.County__c;
+            if(state =='WA'){
+                county = component.get("v.defaultPhysicalCounty");
+            }
+            else{
+                component.set("v.isOutOfCountry",false);
+            }
+            component.set("v.selectedPhysicalCounty",county);
             zip = mailingPhysicalAddress.Zip_Postal_Code__c;
         }
         helper.getValidatedAddressHelper(component, event, helper, selectedAddressType, mailingPhysicalAddress, street, street2, state, city, country, county, zip);

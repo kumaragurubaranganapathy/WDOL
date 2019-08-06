@@ -153,17 +153,17 @@
                 <value>
                     <fullName>draft</fullName>
                     <default>false</default>
-                    <label>draft</label>
+                    <label>Draft</label>
                 </value>
                 <value>
                     <fullName>pending</fullName>
                     <default>false</default>
-                    <label>pending</label>
+                    <label>Pending</label>
                 </value>
                 <value>
                     <fullName>processed</fullName>
                     <default>false</default>
-                    <label>processed</label>
+                    <label>Processed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -206,15 +206,15 @@
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Validation_number__c</columns>
-        <columns>Lockbox_Envelope__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>Has_DHP_Deposits__c</columns>
-        <columns>Total_amount__c</columns>
-        <columns>Number_of_documents__c</columns>
         <columns>wadol_DefaultProgramType__c</columns>
+        <columns>Status__c</columns>
+        <columns>Total_amount__c</columns>
+        <columns>CREATED_DATE</columns>
         <columns>Number_of_payments__c</columns>
-        <filterScope>Mine</filterScope>
+        <columns>Number_of_documents__c</columns>
+        <columns>DHP__c</columns>
+        <columns>Lockbox_Envelope__c</columns>
+        <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>

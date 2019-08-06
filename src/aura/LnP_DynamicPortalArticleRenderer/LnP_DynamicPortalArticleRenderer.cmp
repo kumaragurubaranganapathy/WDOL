@@ -21,6 +21,7 @@
             </h1>
             
             <aura:if isTrue="{!not(empty(v.articleList))}">
+                
                 <aura:iteration items="{!v.articleList}" var="art" indexVar="artNo">                    
                     <lightning:layout class="">
                         <lightning:layoutItem class="license-needs-wrapper" size="12" mediumDeviceSize="12">
@@ -45,7 +46,7 @@
                                                     <aura:iteration items="{!bodyArtList}" var="bodyArtListItem" indexVar="bodyArtListItemNo">
                                                         <aura:if isTrue="{!bodyArtListItem.Article_Content_Type__c == 'Link'}">
                                                             <li class="license-item">
-                                                                <a href="{!bodyArtListItem.Article_Link_URL__c}" class="{!art.childArticlesHeader[0].Article_Title__c == 'Getting started'?'license-link inactive-link':'license-link active-link'}" target="_blank">{!bodyArtListItem.Article_Title__c}</a>
+                                                                <a href="{!bodyArtListItem.Article_Link_URL__c}" class="{!art.childArticlesHeader[0].Article_Title__c == 'Get Started'?'license-link inactive-link':'license-link active-link'}" target="_blank">{!bodyArtListItem.Article_Title__c}</a>
                                                             </li>
                                                         </aura:if>
                                                         <aura:if isTrue="{!bodyArtListItem.Article_Content_Type__c == 'Paragraph'}">

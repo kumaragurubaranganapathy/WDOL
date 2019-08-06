@@ -4,24 +4,25 @@
 .THIS label{
     font-size: 16px;
 }
-.THIS .subheader{
-    font-size:16px;
-    padding-left:9.7rem;
-    padding-bottom: 0.5rem;
-    margin-top:1rem;
-    font-weight: t(txtfontweight);
-    font-style: t(txtfontstyle);
-    line-height: 1.3;
-    color: #00202a;
-    border-bottom:0.5px solid #d6d7d9;
-}
 .THIS .Information .slds-form-element__label span{
     color:t(sentenceclr);
+}
+.THIS .subheader{
+    font-size:1rem;    
+    padding-bottom: 0.5rem;
+    margin-top:1rem;
+    font-weight: 600;    
+    line-height: 1.3;
+    color: t(LnGFormTitleColor);  
+    /*border-bottom:0.5px solid #d6d7d9;*/
 }
 .THIS .field-item .slds-input{
     border:1px solid #5b616b;
     height:42px;
     margin-bottom: 0.8rem;
+}
+.THIS .addressBtn{
+    display:none;
 }
 .THIS ul.error-messages {
     font-size: 14px;
@@ -83,7 +84,7 @@
     height:20px;
 }
 .THIS .buttonpos{
-    margin: 0 9rem;
+    margin: 0;
     padding-top: 45px;
     padding-bottom: 22px;
     border-top: 1px solid #5b616b;
@@ -138,7 +139,7 @@
     padding-left: 30px;
 }
 .THIS .buttonpos{
-    margin:0 11%;
+    margin:0;
     padding-top: 22px;
     padding-bottom: 22px;
 }
@@ -226,7 +227,7 @@
    padding:10px 0 0 0;
 }
 .THIS{
-    margin: 0 40px;
+    margin: 0 7.5rem;
 }
 
 .THIS .btn-wrapper{      
@@ -240,21 +241,11 @@
 }
 .THIS .info{
    
-    width: 96%;
-    margin: 0 auto;
-    max-width: 872px;
+   /* width: 96%;
+    max-width: 872px;*/
+     margin: 0 auto;
 }
-.THIS .subheader{
-    font-size:16px;
-    padding-left:9.7rem;
-    padding-bottom: 0.5rem;
-    margin-top:1rem;
-    font-weight: t(txtfontweight);
-    font-style: t(txtfontstyle);
-    line-height: 1.3;
-    color: #00202a;
-    border-bottom:0.5px solid #d6d7d9;
-}
+
 .THIS .btn-lnp{
     width:auto;
     background: t(primary);
@@ -310,8 +301,8 @@
 }
 .THIS .personal-info {
     display:block;
-    width:96%;
-    max-width:872px;
+   /* width:96%;
+    max-width:872px;*/
     margin:0px auto;
     padding-top:25px;
 }
@@ -384,5 +375,9 @@
   
     .THIS .subheader {
         margin-left: 0;
+        padding-left:29px;
+    }
+    .THIS .info{
+        padding-left: 23px;
     }
 }

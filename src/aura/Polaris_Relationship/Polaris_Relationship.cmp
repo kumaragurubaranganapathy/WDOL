@@ -11,7 +11,7 @@
     </div>
     <aura:if isTrue="{!v.licenseDetail}">       
         
-        <c:LnP_Relationship sObjectName="Associations__c" queryId="{!v.licenseId}" />        
+        <c:LnP_Relationship parentLicense="{!v.licenseId}"  sObjectName="Associations__c" queryId="{!v.licenseId}" />        
         <div class="add-association">
             <c:LnP_Add_Association  parentLicense="{!v.licenseId}" />
         </div>
