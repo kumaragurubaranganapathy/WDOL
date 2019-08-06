@@ -88,7 +88,7 @@
         </aura:if>
         <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
             <aura:if isTrue="{!and(or(section.sectionName=='Personal Information',section.sectionName=='Business Information'), v.currentTab==section.tabIndex)}">
-                <div class="sectionwidth info headings">{!section.sectionName}</div>
+                <!--<div class="sectionwidth info headings">{!section.sectionName}</div> -->
                 <div class="personal-info">                    
                     <c:LnP_RecordForms isSSNchanged="{!v.isSSNchanged}" aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
                 </div>
@@ -352,7 +352,7 @@
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' dispItem slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input type="date" name="{!section.sectionName+questionItem}"  value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 datelabel"/>
+                                                        <lightning:input autocomplete="off" type="date" name="{!section.sectionName+questionItem}"  value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 datelabel"/>
                                                     </div>
                                                 </aura:if>
                                                 <!--<table class="slds-table slds-table_cell-buffer slds-table_bordered">
