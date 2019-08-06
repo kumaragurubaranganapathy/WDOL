@@ -64,14 +64,14 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                  if(objJVFilterMeta.Item_Payment_Method__c == 'Any' ){
                     strFilterKey= objJVFilterMeta.Item_Intake_Method__c+objJVFilterMeta.Item_FundAccSystem__c+objJVFilterMeta.Item_Transaction_Code__c+objJVFilterMeta.Item_Fund_GL__c; 
                  }else{
-                    strFilterKey= objJVFilterMeta.Item_Intake_Method__c+objJVFilterMeta.Item_Payment_Method__c+objJVFilterMeta.Item_FundAccSystem__c+objJVFilterMeta.Item_Transaction_Code__c+objJVFilterMeta.Item_Fund_GL__c;
+                 	strFilterKey= objJVFilterMeta.Item_Intake_Method__c+objJVFilterMeta.Item_Payment_Method__c+objJVFilterMeta.Item_FundAccSystem__c+objJVFilterMeta.Item_Transaction_Code__c+objJVFilterMeta.Item_Fund_GL__c;
                 }
                 mapJVFilterJVName.put(strFilterKey, objJVFilterMeta.JV_name__c);
                 mapJVFilterAddToPDF.put(strFilterKey, objJVFilterMeta.Add_To_PDF__c);
                 mapJVFilterAddToInterface.put(strFilterKey, objJVFilterMeta.Add_To_Interface__c);
             }
             objJV.Journal_Voucher_Type__c= objJVMeta.MasterLabel;
-	    objJV.Document_Type__c = objJVMeta.MasterLabel;
+            objJV.Document_Type__c = objJVMeta.MasterLabel;
             objJV.Document_Title__c = objJVMeta.JV_Document_Title__c;
             objJV.Agency_Name__c='Department of Licensing';
             objJV.Agency_No__c='2400';
@@ -84,6 +84,16 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             objJV.Approved__c=true;
             objJV.Approved_by_Date__c=date.today();
             objJV.Date_of_Deposit__c=date.today();
+            string sTemp =String.Valueof(FiscalMonth);
+             if(sTemp.length() == 1){
+                 sTemp = '0'+ sTemp;
+             }
+             objJV.Fiscal_Month__c =sTemp;
+             sTemp =String.Valueof(FiscalYear);
+             if(sTemp.length() == 1){
+                 sTemp = '0'+ sTemp;
+             }
+             objJV.Fiscal_Year__c =sTemp;
             //objJV.Fiscal_Month__c =FiscalMonth;
             //objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
@@ -91,9 +101,9 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             if(currentSeq > 9998){
                 currentSeq =0;
             } else{
-                currentSeq++;
+            	currentSeq++;
             }
-            string sTemp =String.Valueof(currentSeq);
+             sTemp =String.Valueof(currentSeq);
             if(sTemp.length() == 1){
                 sTemp = '000'+ sTemp;
             }
@@ -137,7 +147,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         strQuery+= 'AND BGBK__Fund__r.GL__c IN (\'';
         strQuery += String.join(new List<string>(lstGL), '\',\'') + '\')';
         strQuery+= 'AND Intake_Method__c IN (\'';
-        strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')';   
+        strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')';	
         return Database.getQueryLocator(strQuery);
     }
     public void execute(Database.BatchableContext objContext, List<BGBK__Item__c> lstItemRecords) {
@@ -158,7 +168,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             if((mapJVFilterJVName.containsKey(strFilterKey) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))) ||(mapJVFilterJVName.containsKey(strFilterKeyWithoutIM) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKeyWithoutIM))) ){
                 system.debug('strFilterKey$$'+strFilterKey);
                 if(mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))){
-                    objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKey));
+                	objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKey));
                 }else{
                     objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKeyWithoutIM));
                 }
