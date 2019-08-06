@@ -216,7 +216,9 @@ application.MUSW_Account__c = account;*/
         application.Stage__c = 0;
 		application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
-        application.MUSW__Account__c = account;
+        if( account != '' && account != null && account !='undefined'){
+            application.MUSW__Account__c = account;
+        }
         if(branchLicense.contains(licenseType)){
             application.Branch_License__c = true;
             application.Parent_License__c = LicenseUpgradeRecordID;
@@ -253,8 +255,8 @@ application.MUSW_Account__c = account;*/
         application.Credential_Type__c = licenseType; 
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
+        application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
-		application.MUSW__Status__c  = 'Draft';
         if(isRenewal != null && isRenewal != ''){
             application.isRenewal__c = Boolean.valueOf(isRenewal);   
         }
@@ -381,7 +383,7 @@ insert bgckList;
         @AuraEnabled public string noAccount {get;set;}
     }
     @AuraEnabled
-    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType) {
+    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType, string Obj) {
         List<String> result = new List<String>();
         String condition1 = 'Application_Type__c = \''+Board+'\'';
         String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
@@ -389,14 +391,16 @@ insert bgckList;
         String condition4 = 'Required__c = True'; 
         String condition5 = 'Active__c = True';
         String condition6 = 'Default__c = True';
-        String condition7 = 'Object__c = \'MUSW__License2__c\'';
+        String condition7 = 'Object__c = \''+obj+'\'';
+        //String condition7 = 'Object__c = \'MUSW__License2__c\'';
         list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
         list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
         
         String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
-        
-        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6 + ' AND ' + condition7;
+        system.debug('News Query::'+appInstructionList);
+
+        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7;
         masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
@@ -404,7 +408,7 @@ insert bgckList;
             result.add(appInstructionList[0].Instructions__c);             
         }
         else{
-            result.add('');
+            result.add('null');
         }
         if(!masterSubListOnAppInstrList.isEmpty()){
             for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
