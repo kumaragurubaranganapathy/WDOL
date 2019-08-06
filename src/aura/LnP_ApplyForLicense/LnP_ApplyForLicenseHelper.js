@@ -1141,7 +1141,7 @@
                 var labelFieldsMap = tabsList[i].labelFieldsMap;
                 for(var j=0;j<labelFieldsMap.length; j++){
                     if(labelFieldsMap[j].label == "I certify that I do not have a Social Security Number or Individual Taxpayer Identification Number."){
-                        if(messageReceived == "Reason for No SSN"){
+                        if (messageReceived == "No SSN or ITIN"){
                             labelFieldsMap[j].renderedOnUi = true;
                         }
                         else{

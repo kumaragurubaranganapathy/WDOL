@@ -84,8 +84,8 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             objJV.Approved__c=true;
             objJV.Approved_by_Date__c=date.today();
             objJV.Date_of_Deposit__c=date.today();
-            objJV.Fiscal_Month__c =FiscalMonth;
-            objJV.Fiscal_Year__c =FiscalYear;
+            //objJV.Fiscal_Month__c =FiscalMonth;
+            //objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
             objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Automated').getRecordTypeId();
             if(currentSeq > 9998){
