@@ -4,12 +4,12 @@
     margin: 0px auto;
 }
 .THIS .page-header h1{
-  font-family: t(publicSansfontfamily);
-  font-size: 20px;
-  font-weight: 600;
-  font-style: t(txtfontstyle);
-  line-height: 1.48;
-  color: t(LnGFormTitleColor);
+    font-family: t(publicSansfontfamily);
+    font-size: 24px;
+    font-weight: 600;
+    font-style: t(txtfontstyle);
+    line-height: 1.48;
+    color: t(LnGFormTitleColor);
 }
 .THIS .prof-select .slds-form-element__control{
     width:50%;
@@ -28,6 +28,12 @@
 .THIS .slds-form-element label.slds-form-element__label {
     font-size: 15px;
     font-weight: bold;
+}
+.THIS select, .THIS input, .THIS textarea,
+.THIS .slds-select, .THIS .slds-input,
+.THIS .field-item div input, .THIS .field-item div select{
+    font-size:17px;
+    font-weight:200;
 }
 .THIS .slds-select_container:after{
    	border-top: 6px solid t(black);
@@ -337,4 +343,45 @@
         width: 90%;
         margin: 0px auto;
     }
+}
+.THIS input::-webkit-input-placeholder,
+.THIS textarea::-webkit-input-placeholder{
+  	font-size:17px;	
+}
+.THIS input::-moz-placeholder,
+.THIS textarea::-moz-placeholder {
+  	font-size:17px;
+}
+.THIS input:-ms-input-placeholder,
+.THIS textarea:-ms-input-placeholder {
+  	font-size:17px;
+}
+.THIS input:-moz-placeholder,
+.THIS textarea:-moz-placeholder {
+  	font-size:17px;
+}
+.THIS .complaint-btn-wrapper button.slds-button {
+    width: 130px;
+    font-size: 17px;
+}
+@media t(mqSmall){
+.THIS .complaint-btn-wrapper button.slds-button {
+    width: 100%;    
+}
+.THIS .page-header h1, .THIS .heading, .THIS .sec-header {
+	font-size:16px;
+}
+.THIS .sub-header, .THIS .sub-section, .THIS .subheader span {
+     font-size:14px;   
+}
+.THIS .confirmation-content div {
+    font-size: 14px;
+}
+.THIS .confirmation-content div.slds-text-heading_medium, .THIS .slds-text-heading_medium {
+    font-size: 18px;
+    font-weight:600
+}
+.THIS .confirmation-header > div {
+    font-size: 16px;
+}
 }
