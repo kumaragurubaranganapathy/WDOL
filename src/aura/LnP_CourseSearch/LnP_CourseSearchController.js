@@ -52,7 +52,8 @@
     },    
     searchCourse : function(component, event, helper) {
         var Program = component.find("Program").get("v.value");
-        //var CourseType = component.find("CourseType").get("v.value");
+        var CourseType = component.find("CourseType").get("v.value");
+       
         var credOptVal = [];
         if(Program !=""){
             component.set("v.disableLicenseType",false);
@@ -60,10 +61,21 @@
             console.log('temp::'+JSON.stringify(temp));
             console.log('program:'+ Program);
             var valueList = temp[Program];
-            component.set("v.licensureLevelOptions",valueList);
+          //  component.set("v.licensureLevelOptions",valueList);
         }
         var Licensurelevel = component.find("licensureLevel").get("v.value");
-        //console.log('Licensurelevel'+Licensurelevel);       
+        console.log('Licensurelevel'+Licensurelevel);  
+        var preQualifying = component.get("v.preQualifyingOptions");
+        var qualifyingElective = component.get("v.qualifyingElectiveOptions");
+        var continuingEducation = component.get("v.continuingEducationOptions");
+        
+        if(CourseType == 'Pre-Qualifying Course'){
+            component.set("v.licensureLevelOptions",preQualifying);
+        }else if(CourseType == 'Qualifying Elective Course'){
+            component.set("v.licensureLevelOptions",qualifyingElective);
+        }else if(CourseType == 'Continuing Education Course'){
+            component.set("v.licensureLevelOptions",continuingEducation);
+        }
         //var toastEvent = $A.get("e.force:showToast");
         //if(Program != "" && CourseType != ""){
         //    component.set("v.showSearchFields", true);     

@@ -17,18 +17,26 @@ _______________________________________________________________
     <aura:attribute name="prgmLicMap" type="Map" />
     
     <aura:attribute name="screenThree" type="Boolean" default="false" />
-    <aura:attribute name="picklistList" type="List"
-                    default="[{'objectApi':'MUSW__License2__c', 'fieldsName':'Course_Type__c', 'auraAttr':'v.courseTypeOptions'},
-                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Course_Topic__c', 'auraAttr':'v.courseTopicOptions'},
-                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Course_Status__c', 'auraAttr':'v.courseStatusOptions'},
-                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Delivery_Method__c', 'auraAttr':'v.deliveryMethodOptions'}]" />
-    
     <aura:attribute name="programOptions" type="List" />
     <aura:attribute name="courseTypeOptions" type="List" />
     <aura:attribute name="licensureLevelOptions" type="List" />
     <aura:attribute name="courseTopicOptions" type="List" />
     <aura:attribute name="courseStatusOptions" type="List" />
     <aura:attribute name="deliveryMethodOptions" type="List" />
+    <aura:attribute name="preQualifyingOptions" type="List" />
+    <aura:attribute name="qualifyingElectiveOptions" type="List" />
+    <aura:attribute name="continuingEducationOptions" type="List" />
+    
+    <aura:attribute name="picklistList" type="List"
+                    default="[{'objectApi':'MUSW__License2__c', 'fieldsName':'Course_Type__c', 'auraAttr':'v.courseTypeOptions'},
+                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Course_Topic__c', 'auraAttr':'v.courseTopicOptions'},
+                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Course_Status__c', 'auraAttr':'v.courseStatusOptions'},
+                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Delivery_Method__c', 'auraAttr':'v.deliveryMethodOptions'},
+                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Pre_Qualifying_Licensure_Levels__c', 'auraAttr':'v.preQualifyingOptions'},
+                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Qualifying_Elective_Licensure_Levels__c', 'auraAttr':'v.qualifyingElectiveOptions'},
+                             {'objectApi':'MUSW__License2__c', 'fieldsName':'Continuing_Education_Licensure_Levels__c', 'auraAttr':'v.continuingEducationOptions'}]" />
+    
+    
     <aura:attribute name="optionName" type="Object[]" />
     
     <!--for datatable-->
@@ -161,13 +169,13 @@ _______________________________________________________________
                                                  placeholder="Enter Clock Hours" name="clockHours" />
                             </div>
                             <!-- </div> -->
-                            <div class="field-size field-style">
-                                <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
+                         <!--   <div class="field-size field-style">
+                               
                                 <span class="slds-form-element__label">Topic: </span>
-                                <!--   <lightning:inputField  class="slds-m-vertical_large" label="Topic" fieldName="Course_Topic__c" /> -->
+                              
                                 <c:LnP_Multiselect_Picklist options="{!v.courseTopicOptions}" aura:id="Topic" />
-                                <!-- </div> -->
-                            </div>
+                                
+                            </div> -->
                             <div class="field-size field-style">
                                 <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                                 <!--  <span class="slds-form-element__label" for="Status">Status: </span>   
@@ -217,7 +225,7 @@ _______________________________________________________________
                                           label="Modify Search" onclick="{!c.modifySearch}" />
                     </span>
                 </div>
-                <div class="search-details slds-m-vertical_large">
+                <div class="search-details  slds-m-top_x-small slds-m-bottom_x-large">
                     <aura:if isTrue="{!v.searchOne}">
                         <aura:iteration items="{!v.searchOneArray}" var="option">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
@@ -235,9 +243,9 @@ _______________________________________________________________
                         </aura:iteration>
                     </aura:if>
                 </div>
-                <div class="slds-m-bottom_medium slds-m-top_xx-large">
-                    <span class="heading"><b>Course Search Results</b></span>
-                    <span class="buttons-right text-style text-size">Click on any row below for more information</span>
+                <div class="slds-m-bottom_medium">
+                    <span class="heading">Course Search Results</span>
+                    <span class="sub-section slds-m-left_medium buttons-right">Click on any row below for more information</span>
                     <br />
                     <!--  <span> T = Trainee L = State Licensed R = Certified Residential G = Certified General</span> -->
                 </div>
@@ -267,7 +275,7 @@ _______________________________________________________________
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                 <div class="text-style">Provider/School Name:<span>&nbsp;</span></div>
-                                <div class="text-style-val">{!item.Ultimate_Parent_Account__r.Name}</div>
+                                <div class="text-style-val">{!item.Provider_Account_Name__c}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="slds-form-element_horizontal slds-form-element row-margin">
                                 <div class="text-style">Status:<span>&nbsp;</span></div>
@@ -288,7 +296,7 @@ _______________________________________________________________
                                 <div class="field-style-val">{!item.Course_Type__c}</div>
                             </div-->
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Pre-Qualifying Hours:<span>&nbsp;</span></div>
+                                <div class="field-style fieldSize">Pre-Qualifying Clock Hours:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours_Pre_Qualifying__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
@@ -296,11 +304,18 @@ _______________________________________________________________
                                 <div class="field-style-val">{!item.MUSW__Issue_Date__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Licensure Level:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.What_Licensure_Level__c}</div>
+                                <div class="field-style fieldSize">Pre Qualifying Licensure Level:<span>&nbsp;</span></div>
+                                <div class="field-style-val">{!item.Pre_Qualifying_Licensure_Levels__c}</div>
+                                
+                                <div class="field-style fieldSize">Qualifying Elective Licensure Level:<span>&nbsp;</span></div>
+                                <div class="field-style-val">{!item.Qualifying_Elective_Licensure_Levels__c}</div>
+                                
+                                <div class="field-style fieldSize">Continuing Education Licensure Level:<span>&nbsp;</span></div> 
+                                <div class="field-style-val">{!item.Continuing_Education_Licensure_Levels__c}</div>
+                                
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Qualifying Elective:<span>&nbsp;</span></div>
+                                <div class="field-style fieldSize">Qualifying Elective Clock Hours:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours_Qualifying_Elective__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
@@ -312,7 +327,7 @@ _______________________________________________________________
                                 <div class="field-style-val">{!item.Delivery_Method__c}</div>
                             </div>
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Continuing Education:<span>&nbsp;</span></div>
+                                <div class="field-style fieldSize">Continuing Education Clock Hours:<span>&nbsp;</span></div>
                                 <div class="field-style-val">{!item.Clock_Hours_Continuing_Education__c}
                                 </div>
                             </div>
