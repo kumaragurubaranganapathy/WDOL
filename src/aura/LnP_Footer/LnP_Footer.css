@@ -42,3 +42,35 @@
 .THIS .footerListItem:last-child{
     padding-right:0;
 }
+@media t(mqSmall){
+    .THIS .footerList{
+        flex-direction:column;
+        width:100%;
+        align-items:center;
+    }
+    .THIS .footerList li{
+        width:100%;
+    }
+    .THIS .botNav{
+        justify-content:center;
+    }
+    .THIS.footerWrapper{
+        padding:0.25rem 1rem;
+    }
+    .THIS .footerListItem{
+        padding:0.5rem 0;
+        margin:0;
+        border-right:none;
+        border-bottom:solid 1px t(fieldclr);
+    }
+    .THIS .footerListItem:last-of-type{
+        padding-bottom:0;
+        border-bottom:none;
+    }
+    .THIS .footerListItem:first-of-type{
+        padding-top:0;
+    }
+    .THIS .footerListLink{
+        justify-content:center;
+    }    
+}
