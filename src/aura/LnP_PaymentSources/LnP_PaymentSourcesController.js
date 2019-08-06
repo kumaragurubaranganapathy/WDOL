@@ -6,17 +6,14 @@
         
         var action = component.get("c.getPayment");
         //var action1 = component.get("c.getReceiptInfo");
-        var Customer_Enveloper_PaymentMethods =$A.get("$Label.c.Customer_Enveloper_PaymentMethods");
-		var Customer_Enveloper_PaymentMethodsArray = Customer_Enveloper_PaymentMethods.split(',');
+        
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 var result = response.getReturnValue();
                 var paymentMethodMap = [];
                 for(var key in result){
-                    if(Customer_Enveloper_PaymentMethodsArray.includes(key)){
-                        paymentMethodMap.push({key: key, value: result[key]});
-                    } 
+                    paymentMethodMap.push({key: key, value: result[key]});
                 }
                 component.set("v.paymentMethodMap", paymentMethodMap);
             }
