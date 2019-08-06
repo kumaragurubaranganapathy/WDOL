@@ -3,34 +3,34 @@
 		var tDate = new Date();
         component.set("v.todayDate",tDate);
 	},
-    fetchPeerRelationShipDataRecords :function(component, event, helper){
-        var action = component.get("c.setPeerRelationShipTable");                                    
-                                    action.setParams({
-                                       "licenseId" :component.get("v.queryId")
-                                    });
-                                    
-                                    action.setCallback(this,function(response){                                        
-                                        var state = response.getState();                                        
-                                        if (state === "SUCCESS") {                                            
-                                            var resp = response.getReturnValue();                                            
-                                            console.log("In fetchPeerRelationShipDataRecords....return response"+resp);                                            
-                                            var PeerRelationshipTableData = JSON.parse(resp);                                            
-                                            var PeerRelationshipTableColumnData = PeerRelationshipTableData["tableHeader"];                                             
-                                            var PeerRelationshipTableHeaderData = PeerRelationshipTableData["tableData"];                                            
-                                            var isParent  = PeerRelationshipTableData["miscellaneousData"] == "true"?true:false;                                             
-                                             component.set("v.PeerRelationTableColumnsList",PeerRelationshipTableColumnData);                                             
-                                             component.set("v.PeerRelationTableDataList",PeerRelationshipTableHeaderData);                                            
-                                             component.set("v.IsCurrentLicenseParent",isParent);                                             
-                                            console.log("fetchPeerRelationShipDataRecords   :::::  "+JSON.stringify(resp));
-                                            
-                                        }else if (state === "ERROR") {                                            
-                                            var errors = response.getError();                                            
-                                            console.error("fetchPeerRelationShipDataRecords   :::::  "+JSON.stringify(errors));
-                                        }    
-                                    });
-                                    $A.enqueueAction(action);    
-        
+    fetchPeerRelationShipDataRecords : function(component, event, helper){        
+        //console.log("In fetchPeerRelationShipDataRecords...."+licenseDat);        
+        var action = component.get("c.setPeerRelationShipTable");        
+        action.setParams({"licenseId" : component.get("v.parentLicense")});        
+        action.setCallback(this,function(response){            
+            var state = response.getState();            
+            if (state === "SUCCESS") {                
+                var resp = response.getReturnValue();
+                console.log("In fetchPeerRelationShipDataRecords....return response"+resp);                
+                var PeerRelationshipTableData = JSON.parse(resp);                
+                var PeerRelationshipTableColumnData = PeerRelationshipTableData["tableHeader"];                
+                var PeerRelationshipTableHeaderData = PeerRelationshipTableData["tableData"];                
+                var isParent  = PeerRelationshipTableData["miscellaneousData"] == "true"?true:false;                
+                component.set("v.PeerRelationTableColumnsList",PeerRelationshipTableColumnData);                
+                component.set("v.PeerRelationTableDataList",PeerRelationshipTableHeaderData);                
+                component.set("v.IsCurrentLicenseParent",isParent);                
+                console.log("fetchPeerRelationShipDataRecords   :::::  "+JSON.stringify(resp));
+                
+            }else if (state === "ERROR") {
+                
+                var errors = response.getError();
+                
+                console.error("fetchPeerRelationShipDataRecords   :::::  "+JSON.stringify(errors));
+            }    
+        });
+        $A.enqueueAction(action);    
     },
+	
     getRelationShipTableData :function(component,event, helper){
         console.log("inside helper ::sObjectName::"+ component.get("v.sObjectName"));
          console.log("inside helper ::queryId::"+ component.get("v.queryId"));

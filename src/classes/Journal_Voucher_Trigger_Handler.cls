@@ -105,12 +105,12 @@ update objJVseq;
                 if(sTemp.length() == 1){
                     sTemp = '0'+ sTemp;
                 }
-                //voucher.Fiscal_Month__c =sTemp;
+                voucher.Fiscal_Month__c =sTemp;
                 sTemp =String.Valueof(FiscalYear);
                 if(sTemp.length() == 1){
                     sTemp = '0'+ sTemp;
                 }
-                //voucher.Fiscal_Year__c =sTemp;
+                voucher.Fiscal_Year__c =sTemp;
                 voucher.Biennium_Year__c= String.valueOf(BienniumYear);
             }
         }

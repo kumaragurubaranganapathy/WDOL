@@ -240,6 +240,30 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Send_GL__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+  IF( 
+    Debit_Credit__c = &quot;CR&quot;,  
+    CASE(AFRS_Transaction_Code__c &amp; Reversal__c, 
+      &quot;049&quot;,1,&quot;071&quot;,1,&quot;074R&quot;,1,&quot;090&quot;,1,&quot;455&quot;,1,&quot;966&quot;,1, 
+      0 
+    ), 
+    CASE(AFRS_Transaction_Code__c &amp; Reversal__c, 
+      &quot;049R&quot;,1,&quot;071R&quot;,1,&quot;074&quot;,1, &quot;951&quot;,1, &quot;955&quot;,1, &quot;965&quot;,1, 
+      0 
+    ) 
+  )=1, 
+  True, 
+  False
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Send_GL?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Statewide_Voucher_Number__c</fullName>
         <externalId>false</externalId>
         <formula>JournalVoucher__r.IAP_Receipt__r.Sender_Agency__c</formula>
@@ -309,7 +333,7 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
     <fields>
         <fullName>Target_Accounting_Systems__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXXX&quot;,&quot;AFRS&quot;)&amp; &quot;-&quot; &amp; IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXX&quot;,&quot;TMS&quot;)</formula>
+        <formula>IF(ISBLANK(AFRS_Transaction_Code__c),&quot;XXXX&quot;,&quot;AFRS&quot;)&amp; &quot;-&quot; &amp; IF(ISBLANK(TMS_Transaction_Code__c),&quot;XXX&quot;,&quot;TMS&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Target Accounting Systems</label>
         <required>false</required>

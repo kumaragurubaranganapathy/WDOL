@@ -492,7 +492,7 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
     <fields>
         <fullName>Transaction_Code_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>RIGHT(text(BGBK__Type__c),1)</formula>
+        <formula>IF(RIGHT(text(BGBK__Type__c),1)="R","R","")</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Transaction Code Type</label>
         <required>false</required>

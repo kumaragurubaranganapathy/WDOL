@@ -61,6 +61,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
         Map<String, String> mapRefundIDItemID = new Map<String, String>();
      	Map<String, String> mapItemIDRefundID = new Map<String, String>();
      	Map<String, String> mapRefundIDjvID = new Map<String, String>();
+     	decimal currentSeq=0 ;
      
         String sToBeGroupedFields= null;
      for(BGBK__Item__c objItem : lstItemRecords){
@@ -88,6 +89,10 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
      system.debug('mapRefundIDItemID'+mapRefundIDItemID);
      system.debug('mapRefundIDItem$$'+mapRefundIDItem);
      system.debug('mapItemIDRefundID'+mapItemIDRefundID);
+     JV_Sequence__c objJVseq =[SELECT Current_sequence__c,id from JV_Sequence__c limit 1];
+        if(objJVseq.id != null){
+            currentSeq=objJVseq.Current_sequence__c;
+        }
      //Insert JV
      for(String refundID:mapRefundIDItem.keySet()){
          system.debug('refundID$$'+refundID);
@@ -105,10 +110,36 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJV.Approved__c=true;
             objJV.Approved_by_Date__c=date.today();
             objJV.Date_of_Deposit__c=date.today();
+         	string sTemp =String.Valueof(FiscalMonth);
+             if(sTemp.length() == 1){
+                 sTemp = '0'+ sTemp;
+             }
+             objJV.Fiscal_Month__c =sTemp;
+             sTemp =String.Valueof(FiscalYear);
+             if(sTemp.length() == 1){
+                 sTemp = '0'+ sTemp;
+             }
+             objJV.Fiscal_Year__c =sTemp;
             //objJV.Fiscal_Month__c =FiscalMonth;
             //objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
             objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Automated').getRecordTypeId();
+         	if(currentSeq > 9998){
+                currentSeq =0;
+            } else{
+            	currentSeq++;
+            }
+             sTemp =String.Valueof(currentSeq);
+            if(sTemp.length() == 1){
+                sTemp = '000'+ sTemp;
+            }
+            else if(sTemp.length() == 2){
+                sTemp = '00'+ sTemp;
+            }
+            else if(sTemp.length() == 3){
+                sTemp = '0'+ sTemp;
+            }
+            objJV.Current_Document_Number__c='240V'+ sTemp;
          
          	lstJV.add(objJV);
      	}
@@ -117,6 +148,10 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             for(Journal_Voucher__c objJV:lstJV){
                 mapRefundIDjvID.put(objJV.Refund1__c, objJV.Id);
             }
+        }
+     if(objJVseq.id != null){
+            objJVseq.Current_sequence__c=currentSeq;
+            update objJVseq;
         }
      system.debug('mapRefundIDjvID$$'+mapRefundIDjvID);
         for(BGBK__Item__c objItem : lstItemRecords){

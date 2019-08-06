@@ -570,9 +570,6 @@ margin-right:10%;
     color:t(buttonNeutral);
     border : solid 1px t(buttonNeutral);
 }
-.THIS .slds-input, .THIS .slds-select, .THIS .slds-text-area{
-    border-radius : 0;
-}
 
 @media only screen and (max-width:767.9px){    
     .THIS .next-button{
@@ -580,9 +577,7 @@ margin-right:10%;
         width:100%;
         margin-bottom:6px;
     }
-    .THIS .cancel-button{
-        
-    }
+  
     .THIS .next-button{
         margin-left:0;
     }
@@ -609,6 +604,7 @@ margin-right:10%;
     .THIS .cancel-button{
         width:111px;
     }
+
     .THIS .side-bar{
         width: 100%;  
     }
@@ -677,4 +673,7 @@ margin-right:10%;
         
         font-size:0.8125rem;
     }
+}
+.THIS .slds-spinner_container {
+    position:fixed;
 }

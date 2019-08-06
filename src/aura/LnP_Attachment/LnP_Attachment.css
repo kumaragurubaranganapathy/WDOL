@@ -58,3 +58,8 @@
 .THIS button{
 	width: 0px;
 }
+@media t(mqSmall){
+    .THIS .slds-file-selector_files .slds-file-selector__button{
+        max-height:unset;
+    }
+}

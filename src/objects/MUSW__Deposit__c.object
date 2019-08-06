@@ -1515,12 +1515,12 @@
                 <value>
                     <fullName>pending</fullName>
                     <default>true</default>
-                    <label>pending</label>
+                    <label>Pending</label>
                 </value>
                 <value>
                     <fullName>completed</fullName>
                     <default>false</default>
-                    <label>completed</label>
+                    <label>Completed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1648,19 +1648,17 @@
     <label>Deposit</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
-		<columns>ValidationNumber__c</columns>
-        <columns>wadol_Program_Type__c</columns>
-        <columns>Contact__c</columns>
-        <columns>MUSW__Account__c</columns>
-        <columns>Form_number__c</columns>
-        <columns>Validation_number__c</columns>
-        <columns>Amount__c</columns>
-        <columns>Sequence_number__c</columns>
+        <columns>ValidationNumber__c</columns>
+        <columns>Status__c</columns>
+        <columns>MUSW__Available_Amount__c</columns>
+        <columns>MUSW__Paid_Amount__c</columns>
+        <columns>MUSW__Used_Amount__c</columns>
+        <columns>CREATED_DATE</columns>
         <columns>Date__c</columns>
-        <columns>Document_type__c</columns>
-        <columns>Professional_code__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>License__c</columns>
+        <columns>wadol_Professional_Code__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
