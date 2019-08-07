@@ -185,14 +185,27 @@
             });
             action.setCallback(this, function(response){
                 var state = response.getState();
+                
             //   alert("state---"+state);
                 if (state === "SUCCESS"){
                     console.log("state---"+state);
-                    var rows = response.getReturnValue();  
-                    console.log('rows: '+response.getReturnValue());
+                    var rowsData = response.getReturnValue(); 
+                    var rows = [];
+                   // console.log('rowsData: '+response.getReturnValue());
+                   // console.log('Status --',rowsData[0].MUSW__Status__c);
+                    
+                    for(var i = 0; i< rowsData.length ; i++){
+                     //   console.log('in for loop',rowsData[i]);
+                     //   console.log('in for loop status',rowsData[i].MUSW__Status__c);
+                        
+                        if(rowsData[i].MUSW__Status__c == 'Active' || rowsData[i].MUSW__Status__c == 'Cancelled'){
+                            rows.push(rowsData[i]);
+                         //   console.log('rows--', JSON.stringify(rows));
+                        }
+                    }
+                  //  console.log('rows length',rows.length);
                     if(rows.length!=0){
                         
-                         
                         component.set('v.columns', [
                             {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
                             {label: 'Course Name', fieldName: 'Course_Title__c', type: 'Text', sortable : true},
