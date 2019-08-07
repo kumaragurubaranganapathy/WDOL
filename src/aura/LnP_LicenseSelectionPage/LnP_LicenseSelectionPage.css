@@ -11,7 +11,10 @@
 }
 .THIS .card-wrapper p,.THIS .card-wrapper span,.THIS .card-wrapper li{
     color:t(fieldclr);
-    font-size: token(fieldlabelsize);
+    font-size: token(fieldlabelsize);    
+}
+.THIS .card-wrapper p{
+    font-family:t(merrifontfamily);
 }
 .THIS .slds-radio .slds-form-element__label{
     padding-right: .5rem;

@@ -4,6 +4,9 @@
 .THIS .personal-info .slds-checkbox.certificate-checkbox br{
     display:none;
 }
+/*.THIS .personal-info .slds-media.slds-listbox__option .slds-media__body span[title*="--None--"]{
+    display:none;
+} */
 .THIS .dispItem .uiOutputRichText{
      font-size: token(fieldlabelsize);
      color:t(fieldclr);
@@ -199,7 +202,7 @@
     font-size:16px;
 }
 .THIS .attValidationStyle{
-    padding-left: 25px;
+    padding-left: 13px;
     padding-bottom: 25px;
     color: red;
     font-size:14px;
@@ -248,6 +251,7 @@
     font-weight: 600;    
     line-height: 1.3;
     color: t(LnGFormTitleColor);
+    font-family:t(merrifontfamily);
    /* border-bottom:0.5px solid #d6d7d9;*/  
 }
 .THIS .field-size .slds-form-element__label{
@@ -269,7 +273,7 @@
 }*/
 .THIS .background-section{
     background-color:t(white);
-    margin: 20px 0px;
+    margin: 0px;
    
 }
 .THIS .address-button:nth-child(2){
@@ -282,7 +286,7 @@
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
-    padding:15px 15px 15px 0;  
+    padding:0 15px 15px 0;  
 }
 .THIS .Endorsement .uiOutputRichText ul{
     margin-left:1rem;
