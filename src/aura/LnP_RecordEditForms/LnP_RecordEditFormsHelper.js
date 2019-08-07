@@ -60,23 +60,22 @@
                     sectionList = sectionList.labelFieldsMap;
                     for(var i=0;i<sectionList.length;i++){
                         if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'LnP_BackgroundSection__c' && obj=='LnP_BackgroundSection__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label, "required":sectionList[i].isMandatoryQues, "regex":sectionList[i].regex, "error":sectionList[i].errormsg});
+                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label, "required":sectionList[i].isMandatoryQues, "regex":sectionList[i].regex, "error":sectionList[i].errormsg, "masking":sectionList[i].validationCriteria});
                         }
                         else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Endorsement__c' && obj=='Endorsement__c'){
                             recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
                         }
-                        else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Electronic_Notary_Provider_Information__c' && obj=='Electronic_Notary_Provider_Information__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
-                        }
-                        else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Education_History__c' && obj=='Education_History__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
-                        }
+                            else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Electronic_Notary_Provider_Information__c' && obj=='Electronic_Notary_Provider_Information__c'){
+                                recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
+                            }
                                 else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Education_History__c' && obj=='Education_History__c'){
+                                    recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
                                 }
                     }
                     component.set('v.recordList', recordList);
                     for(var i=0;i<dataList.length;i++){
                         dataRows.push({"id": dataList[i].Id, "fields": recordList});
+                        
                     }
                     component.set('v.dataRows', dataRows);
                     component.set('v.count', dataRows[0]);
