@@ -948,11 +948,7 @@ public with sharing class CartController
                 Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
                 populateFeeAndInvoicePayment(receipts, feePaymentIds);
                 depositPayments = populateDepositPayment(receipts);
-                if(cart.BGBK__Last_Payment_Amount__c == null)
-                    cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
-                else
-                    cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
-                update cart;
+                m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
             } else {
                 if(sp != null)
                     Database.rollback(sp);        
