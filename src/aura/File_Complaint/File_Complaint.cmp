@@ -22,8 +22,8 @@
     
     <aura:attribute name="currentTab" type="Integer" default="1" />
     <aura:attribute name="totalTabs" type="Integer" default="3" />
-    <aura:attribute name="pathTabs" type="string[]" default="['Respondent Information','Your Information','Complaint Description']"/>
-    <aura:attribute name="path" type="List" default="[{'header': 'Respondent Information'},
+    <aura:attribute name="pathTabs" type="string[]" default="['Complaint Information','Your Information','Complaint Description']"/>
+    <aura:attribute name="path" type="List" default="[{'header': 'Complaint Information'},
                                                       {'header': 'Your Information'},
                                                       {'header': 'Complaint Description'}]"/>
     
