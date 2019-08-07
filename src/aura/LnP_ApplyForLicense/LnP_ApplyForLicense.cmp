@@ -90,7 +90,7 @@
             <aura:if isTrue="{!and(or(section.sectionName=='Personal Information',section.sectionName=='Business Information'), v.currentTab==section.tabIndex)}">
                 <!--<div class="sectionwidth info headings">{!section.sectionName}</div> -->
                 <div class="personal-info">                    
-                    <c:LnP_RecordForms isSSNchanged="{!v.isSSNchanged}" aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
+                    <c:LnP_RecordForms personalInfoFlow="true" isSSNchanged="{!v.isSSNchanged}" aura:id ="recordObjectForm" recordId="{!v.recordId}" objectApiName ="{!v.objectName}" section ="{!section}" applicationId="{!v.applicationId}"/>
                 </div>
                 <aura:set attribute="else">
                     <aura:if isTrue="{!and(or(section.sectionName=='Course Information'), v.currentTab==section.tabIndex)}">
