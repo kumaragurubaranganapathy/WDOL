@@ -8,7 +8,7 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
             if(lic.MUSW__Applicant__c  != null && lic.MUSW__Parcel__c != null){
                 licenseIds.add(lic.id);
             }
-    	}
+        }
         licenseList = [select id,Name,Send_information_to_ASC__c from MUSW__License2__c  where id=:licenseIds];
         
         if(Dol_IntegrationUtil.isNotEmpty(licenseList)){
@@ -24,7 +24,7 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
     if(trigger.isupdate && trigger.isafter){
         for (MUSW__License2__c lic : trigger.new){
             if(lic.MUSW__Applicant__c  != null && lic.MUSW__Parcel__c != null &&
-               							(lic.MUSW__Applicant__c != trigger.oldmap.get(lic.id).MUSW__Applicant__c
+                                        (lic.MUSW__Applicant__c != trigger.oldmap.get(lic.id).MUSW__Applicant__c
                                           || lic.MUSW__Parcel__c != trigger.oldmap.get(lic.id).MUSW__Parcel__c 
                                           || lic.MUSW__Status__c != trigger.oldmap.get(lic.id).MUSW__Status__c 
                                           || lic.MUSW__Expiration_Date__c != trigger.oldmap.get(lic.id).MUSW__Expiration_Date__c
@@ -32,7 +32,7 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
               ){
                 licenseIds.add(lic.id);
             }
-    	}
+        }
         licenseList = [select id,Name,MUSW__Status__c,MUSW__Expiration_Date__c , MUSW__Type__c ,Send_information_to_ASC__c,
                        MUSW__Applicant__c,MUSW__Applicant__r.UID__c,MUSW__Applicant__r.LastName,MUSW__Applicant__r.FirstName,
                        MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.Phone,MUSW__Applicant__r.Company_Name__c,
