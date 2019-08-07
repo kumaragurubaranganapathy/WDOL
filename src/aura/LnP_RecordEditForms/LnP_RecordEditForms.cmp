@@ -116,7 +116,7 @@
                                                     <aura:if isTrue="{!rec.required || rec.regex != null}">
                                                         <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ')+ (rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?' slds-hide ':' '):' ') +(rec.required?' required':'')+' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
                                                         <aura:set attribute="else">
-                                                            <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') +' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
+                                                            <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField1" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.label=='Current'? ' checkbox-style ':' ') +' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
                                                         </aura:set>
                                                     </aura:if>
                                                 </div>
