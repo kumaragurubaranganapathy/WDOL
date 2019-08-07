@@ -73,8 +73,6 @@
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
-
-
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
@@ -83,22 +81,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Legal_Action_Documents__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Public_Disciplinary_Action__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Disciplinary_Action_End_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Physical_Exhibit__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Include_in_Hearing_File__c</field>
@@ -106,10 +92,6 @@
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
-
-
-
-
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
