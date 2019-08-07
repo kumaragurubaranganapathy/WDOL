@@ -321,7 +321,7 @@
             for(var i=0; i<informationForm.length; i++){ 
                 component.find("informationForm")[i].set("v.value", "");
             }
-            component.set("v.applicationId",'');
+            //component.set("v.applicationId",'');
             component.set("v.currentTab", 1);
             component.set("v.screenOne", true);
             component.set("v.screenTwo", false);
@@ -349,7 +349,7 @@
             for(var i=0; i<informationForm.length; i++){ 
                 component.find("informationForm")[i].set("v.value", "");
             }
-            component.set("v.applicationId",'');
+            //component.set("v.applicationId",'');
             component.find('complaintSummary').set('v.value','');
             component.set("v.currentTab", 1);
             component.set("v.screenOne", true);
