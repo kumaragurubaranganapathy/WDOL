@@ -37,6 +37,7 @@ content:"\2714\0020";
     border-bottom: solid 1px t(taskUnderline);  	
     margin-bottom:32px;
     font-family:t(merrifontfamily);
+    color:t(LnGFormTitleColor);
 }
 .THIS .task-body{
     display:flex;
@@ -44,6 +45,7 @@ content:"\2714\0020";
 }
 .THIS .other-lic{
     font-family:t(merrifontfamily);
+    color:t(LnGFormTitleColor);
 }
 .THIS .field-style{
     display:flex;
@@ -52,6 +54,7 @@ content:"\2714\0020";
 .THIS .label-style{    
     font-weight: 600;
     padding-right:5px;
+    color:t(LnGFormTitleColor);
 }
 .THIS .data-style{
     font-size: 15px;
@@ -123,11 +126,11 @@ content:"\2714\0020";
 }
 .THIS .license-item:first-of-type{
     padding-left:0;
-    border-left:none;
+    border:none;
 }
 .THIS .license-item:last-of-type{
     padding-right:0;
-    border-right:none;
+    border:none;
 }
 .THIS .license-item .field-style{
     padding-bottom:20px;
@@ -154,6 +157,8 @@ content:"\2714\0020";
     padding: 2rem 0;
     font-size:1.25rem;
     font-family:t(merrifontfamily);
+    font-weight:600;
+    color:t(LnGFormTitleColor);
 }
 @media screen and (max-width: 1279.9px){
     .THIS.todo-wrapper{
