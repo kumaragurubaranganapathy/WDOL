@@ -47,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -75,6 +76,16 @@
             <restricted>true</restricted>
             <valueSetName>Address_Type</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>City_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>City__c</fullName>
@@ -146,9 +157,9 @@
         <fullName>Credits__c</fullName>
         <externalId>false</externalId>
         <label>Credits</label>
-        <precision>5</precision>
+        <precision>14</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -281,10 +292,11 @@
         <fullName>Hours__c</fullName>
         <externalId>false</externalId>
         <label>Hours</label>
-        <length>255</length>
+        <precision>14</precision>
         <required>false</required>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -355,9 +367,9 @@
         <fullName>Monthly_Hours__c</fullName>
         <externalId>false</externalId>
         <label>Monthly Hours</label>
-        <precision>5</precision>
+        <precision>14</precision>
         <required>false</required>
-        <scale>1</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -1027,17 +1039,7 @@
                 <controllingFieldValue>Canada</controllingFieldValue>
                 <valueName>Palau</valueName>
             </valueSettings>
-        </valueSet> 
-    </fields>
-	<fields>
-        <fullName>City_Text__c</fullName>
-        <externalId>false</externalId>
-        <label>City</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
@@ -1091,10 +1093,11 @@
         <fullName>Total_Hours__c</fullName>
         <externalId>false</externalId>
         <label>Total Hours</label>
-        <length>10</length>
+        <precision>14</precision>
         <required>false</required>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1188,6 +1191,10 @@
             </values>
             <values>
                 <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ashland</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1904,7 +1911,7 @@
             </values>
             <values>
                 <fullName>United States</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Uruguay</fullName>
@@ -1949,34 +1956,6 @@
                 <fullName>Adams</fullName>
                 <default>false</default>
             </values>
-			<values>
-                <fullName>Barron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bayfield</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brown</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buffalo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burnett</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Calumet</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chippewa</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Clark</fullName>
                 <default>false</default>
@@ -1986,43 +1965,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Crawford</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dane</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dodge</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Door</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Douglas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dunn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eau Claire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Florence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fond du Lac</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Forest</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2030,51 +1973,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Green Lake</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iowa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jackson</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Jefferson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Juneau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kenosha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kewaunee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>La Crosse</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lafayette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Langlade</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2082,155 +1981,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manitowoc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marathon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marinette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marquette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Menominee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Milwaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monroe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oconto</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oneida</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outagamie</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ozaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pepin</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Polk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Racine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Richland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rock</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rusk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Croix</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sauk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sawyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shawano</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sheboygan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taylor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trempealeau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vernon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vilas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Walworth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washburn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washington</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waukesha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waupaca</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waushara</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Winnebago</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wood</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2616,6 +2367,14 @@
             </values>
             <values>
                 <fullName>State Licensed Appraiser Exam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Engineering Geology Exam %28PE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Hydrogeology Exam %28PE%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3815,7 +3574,7 @@
                 <fullName>Oregon</fullName>
                 <default>false</default>
             </values>
-			<values>
+            <values>
                 <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
@@ -3869,7 +3628,7 @@
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -4023,6 +3782,10 @@
             </values>
             <values>
                 <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ashland</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4785,34 +4548,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Barron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bayfield</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brown</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buffalo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burnett</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Calumet</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chippewa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Clark</fullName>
                 <default>false</default>
             </values>
@@ -4821,43 +4556,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Crawford</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dane</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dodge</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Door</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Douglas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dunn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eau Claire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Florence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fond du Lac</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Forest</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4865,51 +4564,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Green Lake</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iowa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jackson</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Jefferson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Juneau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kenosha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kewaunee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>La Crosse</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lafayette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Langlade</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4917,155 +4572,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manitowoc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marathon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marinette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marquette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Menominee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Milwaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monroe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oconto</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oneida</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outagamie</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ozaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pepin</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Polk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Racine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Richland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rock</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rusk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Croix</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sauk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sawyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shawano</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sheboygan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taylor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trempealeau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vernon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vilas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Walworth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washburn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washington</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waukesha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waupaca</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waushara</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Winnebago</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wood</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5443,6 +4950,14 @@
             </values>
             <values>
                 <fullName>State Licensed Appraiser Exam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Engineering Geology Exam %28PE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Hydrogeology Exam %28PE%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6626,7 +6141,7 @@
                 <fullName>Oregon</fullName>
                 <default>false</default>
             </values>
-			<values>
+            <values>
                 <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
@@ -6680,7 +6195,7 @@
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -7596,34 +7111,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Barron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bayfield</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brown</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buffalo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burnett</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Calumet</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chippewa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Clark</fullName>
                 <default>false</default>
             </values>
@@ -7632,43 +7119,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Crawford</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dane</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dodge</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Door</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Douglas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dunn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eau Claire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Florence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fond du Lac</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Forest</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7676,51 +7127,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Green Lake</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iowa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jackson</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Jefferson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Juneau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kenosha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kewaunee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>La Crosse</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lafayette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Langlade</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7728,155 +7135,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manitowoc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marathon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marinette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marquette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Menominee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Milwaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monroe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oconto</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oneida</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outagamie</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ozaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pepin</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Polk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Racine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Richland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rock</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rusk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Croix</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sauk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sawyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shawano</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sheboygan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taylor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trempealeau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vernon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vilas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Walworth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washburn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washington</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waukesha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waupaca</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waushara</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Winnebago</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wood</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8254,6 +7513,14 @@
             </values>
             <values>
                 <fullName>State Licensed Appraiser Exam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Engineering Geology Exam %28PE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Hydrogeology Exam %28PE%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9437,7 +8704,7 @@
                 <fullName>Oregon</fullName>
                 <default>false</default>
             </values>
-			<values>
+            <values>
                 <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
@@ -9491,7 +8758,7 @@
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -10361,7 +9628,7 @@
             </values>
             <values>
                 <fullName>United States</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Uruguay</fullName>
@@ -10407,34 +9674,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Barron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bayfield</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brown</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buffalo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Burnett</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Calumet</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chippewa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Clark</fullName>
                 <default>false</default>
             </values>
@@ -10443,43 +9682,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Crawford</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dane</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dodge</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Door</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Douglas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dunn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Eau Claire</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Florence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fond du Lac</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Forest</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10487,51 +9690,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Green</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Green Lake</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iowa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Iron</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jackson</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Jefferson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Juneau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kenosha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kewaunee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>La Crosse</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lafayette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Langlade</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10539,155 +9698,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manitowoc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marathon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marinette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Marquette</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Menominee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Milwaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monroe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oconto</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oneida</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Outagamie</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ozaukee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pepin</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Polk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Portage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Racine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Richland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rock</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rusk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saint Croix</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sauk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sawyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shawano</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sheboygan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Taylor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trempealeau</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vernon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vilas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Walworth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washburn</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Washington</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waukesha</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waupaca</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Waushara</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Winnebago</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wood</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11065,6 +10076,14 @@
             </values>
             <values>
                 <fullName>State Licensed Appraiser Exam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Engineering Geology Exam %28PE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington State Hydrogeology Exam %28PE%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12248,7 +11267,7 @@
                 <fullName>Oregon</fullName>
                 <default>false</default>
             </values>
-			<values>
+            <values>
                 <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
@@ -12302,7 +11321,7 @@
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -12396,7 +11415,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes> 
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
