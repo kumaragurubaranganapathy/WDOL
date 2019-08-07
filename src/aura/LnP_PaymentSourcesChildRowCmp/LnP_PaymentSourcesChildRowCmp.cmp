@@ -61,17 +61,17 @@
                              type="text" ></lightning:input>
         	</td>
             <td>
-            <lightning:input placeholder="License Number" label="License Number"  aura:id="LiecenseNumber"  value="{!v.receiptRec.License_Number__c}"
+            <lightning:input placeholder="Account Number" label="Account Number"  aura:id="AccountNumber"  value="{!v.receiptRec.License_Number__c}"
                              type="text" ></lightning:input>
         	</td>
             <td>
             <lightning:input placeholder="Applicant Name" label="Applicant Name"  aura:id="ApplicantName"  value="{!v.receiptRec.Applicant_Name__c}"
                              type="text" ></lightning:input>
         	</td>
-              <td>
+            <!-- BUG - 5666 <td>
             <lightning:input placeholder="JV Number" label="JV Number"  style="width:50%;" aura:id="JVNumber"  value="{!v.receiptRec.JV_Number__c}"
                              type="text" ></lightning:input>
-        	</td>
+        	</td> -->
         </tr>
              
            
