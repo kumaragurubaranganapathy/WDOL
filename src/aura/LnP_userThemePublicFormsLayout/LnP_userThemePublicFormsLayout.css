@@ -199,7 +199,7 @@ width:auto;
 flex-basis:auto;
 } */
 .THIS .screen-one .section-header{/*license lookup */
-    font-family: token(publicSansfontfamily);
+    font-family: token(merrifontfamily);
     font-size: token(btnfontsize);
     line-height:1;
     font-weight: token(txtfontweight);
@@ -216,7 +216,7 @@ flex-basis:auto;
     color: token(placeholderColor);
 }
 .THIS .sub-header,.THIS .sub-section,.THIS .subheader span{
-    font-family: token(publicSansfontfamily);
+    font-family: token(merrifontfamily);
     font-size: token(senfontsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
@@ -324,7 +324,7 @@ padding:0;
     font-weight: token(txtfontweight);
 } 
 .THIS .screen-two .slds-m-bottom_medium .sub-header{
-    font-family: t(publicSansfontfamily);
+    font-family: t(merrifontfamily);
     font-size: 22px;
     font-weight: 500;
     font-style: t(txtfontstyle);
@@ -372,6 +372,9 @@ margin-right:10%;
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     color: token(fieldclr);
+}
+.THIS .headings{
+    font-family: token(merrifontfamily);
 }
 /* review and submit declaration statements*/
 .THIS .sentences,.THIS .field-item .slds-text-longform{
