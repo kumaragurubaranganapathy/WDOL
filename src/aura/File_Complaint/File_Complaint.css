@@ -4,7 +4,7 @@
     margin: 0px auto;
 }
 .THIS .page-header h1{
-    font-family: t(publicSansfontfamily);
+    font-family: t(merrifontfamily);
     font-size: 24px;
     font-weight: 600;
     font-style: t(txtfontstyle);
@@ -15,12 +15,12 @@
     width:50%;
 }
 .THIS .page-content .heading{
-  font-family: t(publicSansfontfamily);
-  font-size: 20px;
-  font-weight: t(txtfontweight);
-  font-style: t(txtfontstyle);
-  line-height: normal;
-  color: t(fieldclr);
+    font-family: t(merrifontfamily);
+    font-size: 20px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(fieldclr);
 }
 .THIS .complaint-path {
     padding:50px 0px 70px;
@@ -382,6 +382,9 @@
     font-weight:600
 }
 .THIS .confirmation-header > div {
+    font-size: 16px;
+}
+.THIS .page-content .heading{
     font-size: 16px;
 }
 }

@@ -243,7 +243,7 @@ _______________________________________________________________
             <div class="screen-two">
                 <button class="slds-button slds-button--brand color-black button-float" onclick="{!c.downloadCsv}">Download As CSV</button>
                 <div class="headerWrap">
-                    <span class="sub-header"><span>{!v.licenseNameToDisplay}</span> Search Criteria</span>
+                    <span class="sub-header merriweather-font"><span class="merriweather-font">{!v.licenseNameToDisplay}</span> Search Criteria</span>
                     <span>
                         <lightning:button variant="neutral" class="modify-btn" type="button" name="cancel" label="Modify Search" onclick="{!c.modifySearch}"/>
                     </span>
@@ -305,14 +305,14 @@ _______________________________________________________________
                         </div>
                     </aura:set>
                 </aura:if>
-                <div class="">
+                <div class="license-buttons">
                 	<lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace1}"/>
                 </div>
             </div>
         </aura:if> 
         <aura:if isTrue="{!v.screenThree}">
             <div class="screen-three">
-                <div class="slds-m-top_medium slds-m-bottom_x-large subheader"><span>{!v.licenseNameToDisplayDetails}</span></div>
+                <div class="slds-m-top_medium slds-m-bottom_x-large subheader merriweather-font"><span class="merriweather-font">{!v.licenseNameToDisplayDetails}</span></div>
                 <div class="text-size">
                     <span>Information as of </span><span>{!v.date}</span>
                 </div>
@@ -444,16 +444,16 @@ _______________________________________________________________
                                         <div class="field-style-val">
                                         	<aura:if isTrue="{!item.MUSW__Parcel__r}">
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Name}">
-                                                <div>{!item.MUSW__Parcel__r.Name}<span>,</span></div>
+                                                <div>{!item.MUSW__Parcel__r.Name}</div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.MUSW__State__c}">
-                                                <div>{!item.MUSW__Parcel__r.MUSW__State__c}<span>,</span></div>
+                                                <span>{!item.MUSW__Parcel__r.MUSW__State__c}<span>&nbsp;</span></span>
                                                 </aura:if>
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Zip_Postal_Code__c}">
-                                                <div>{!item.MUSW__Parcel__r.Zip_Postal_Code__c}<span>,</span></div>
+                                                <span>{!item.MUSW__Parcel__r.Zip_Postal_Code__c}</span>
                                                 </aura:if>
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Country__c}">
-                                                <div>{!item.MUSW__Parcel__r.Country__c}<span>.</span></div>
+                                                <div>{!item.MUSW__Parcel__r.Country__c}</div>
                                                 </aura:if>
                                             </aura:if>
                                         </div>
@@ -558,7 +558,7 @@ _______________________________________________________________
                     </div>
                 </aura:iteration>
                 <div class="buttons slds-m-top_x-large">
-                	<div class="buttons-left">
+                	<div class="license-buttons buttons-left">
                         <lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace2}"/>
                     </div>
                     <div class="buttons-right">

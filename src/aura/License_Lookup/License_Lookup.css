@@ -5,7 +5,7 @@
     padding-bottom:60px;
 }
 .THIS .page-header h1{
-    font-family: t(publicSansfontfamily);
+    font-family: t(merrifontfamily);
     font-size: 20px;
     font-weight: 600;
     font-style: t(txtfontstyle);
@@ -14,7 +14,7 @@
     padding-top: 35px;
 }
 .THIS .heading{
-    font-family: t(publicSansfontfamily);
+    font-family: t(merrifontfamily);
     font-size: 20px;
     font-weight: t(txtfontweight);
     font-style: t(txtfontstyle);
@@ -90,6 +90,9 @@
 }
 .THIS .sub-header{
     line-height:32px;
+}
+.THIS .subheader span .merriweather-font{
+    font-family: t(merrifontfamily);
 }
 .THIS .slds-button.slds-button_neutral.modify-btn {
     height:auto;
@@ -460,12 +463,23 @@ padding: 4px 5px;
 	font-size:15px;
     font-weight:bold;
 }
+.THIS .license-buttons button {
+	width:130px;
+	font-size:17px;        
+}
 @media screen and (min-width:1024px){
+    
+    .THIS .license-buttons {
+     	font-size:17px;
+     }
     .THIS .text-style, .THIS .text-style-val {
         font-size: 18px;
     }
 }
 @media t(mqSmall){
+.THIS .license-buttons button {
+    width:100%;     
+}
 .THIS .page-header h1, .THIS .heading {
 	font-size:16px;
 }

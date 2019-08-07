@@ -22,8 +22,8 @@
     
     <aura:attribute name="currentTab" type="Integer" default="1" />
     <aura:attribute name="totalTabs" type="Integer" default="3" />
-    <aura:attribute name="pathTabs" type="string[]" default="['Respondent Information','Your Information','Complaint Description']"/>
-    <aura:attribute name="path" type="List" default="[{'header': 'Respondent Information'},
+    <aura:attribute name="pathTabs" type="string[]" default="['Complaint Information','Your Information','Complaint Description']"/>
+    <aura:attribute name="path" type="List" default="[{'header': 'Complaint Information'},
                                                       {'header': 'Your Information'},
                                                       {'header': 'Complaint Description'}]"/>
     
@@ -90,7 +90,7 @@
             <!--<aura:if isTrue="{!v.screenOne}">-->
             <div class="{!v.screenOne?'':'slds-hide'}">
                 <!--h2 class="heading">Complaint Against</h2-->
-                <div class="sub-header slds-p-top_small slds-p-bottom_medium">Provide information about a professional or a business against whom you are filing a complaint</div>
+                <div class="sub-header slds-p-top_small slds-p-bottom_medium">You can file a complaint against a person or business, or you can report unlicensed activity.</div>
                 <div class="">
                     <lightning:select class="field-item" name="Profession" label="Profession" required="true" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
                         <option text="Select a profession" value=""/>
@@ -105,6 +105,7 @@
                     </div>
                 </aura:if>
                 <aura:if isTrue="{!v.businessScreen}">
+                    <div class="heading slds-m-top_x-large slds-m-bottom_medium">Business you wish to file a complaint against</div>
                     <div class="slds-box slds-m-bottom_medium">
                         <!-- Start of form -->
                         <div class="slds-form-element">
@@ -152,6 +153,7 @@
                     </div>
                 </aura:if>
                 <aura:if isTrue="{!v.professionalScreen}">
+                    <div class="heading slds-m-top_x-large slds-m-bottom_medium">Professional you wish to file a complaint against</div>
                     <div class="slds-box">
                         <!-- Start of form -->
                         <div class="slds-form-element">
@@ -342,7 +344,10 @@
                         </li>
                     </ol>
                     Our recommended disciplinary actions don’t establish legal opinion. We don’t have the authority to recover funds, award damages, or make judicial determinations. To pursue these remedies, you should seek legal advice.
-                </div>	
+                </div>
+                <div class="slds-m-vertical_medium">
+                	If you wish to return to the  state of Washington's Manage Your Professional and Business Licenses Online page, you can do so at any time by clicking on the "Home" button in the main menu at the top of this page.
+                </div>
             </div>
         </div>
         </aura:if>

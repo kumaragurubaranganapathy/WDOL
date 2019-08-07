@@ -175,18 +175,21 @@
         var board = component.get("v.board");
         var licenseType = component.get("v.licenseType");
         var applicationMethod = component.get("v.appMethod");
+        var RenewReinstate = component.get("v.RenewReinstate");
         var action = component.get("c.fetchInstructions");
         action.setParams({
             "Board": board,
             "LicenseType": licenseType,
-            "ApplicationType": applicationMethod
+            "ApplicationType": applicationMethod,
+            "Obj":'Renewal_Application__c',
+            "RenewReinstate":RenewReinstate
         });
         action.setCallback(this, function (actionResult) {
             var state = actionResult.getState();
             if (state === "SUCCESS") {
                 var response = actionResult.getReturnValue();
                 console.log('Response::' + response);
-                if(response[0] != 'null'){
+                if(response[0] != ''){
                     
                     $A.util.removeClass(component.find("readyHeader"), 'slds-hide');
                     component.set("v.instructions", response[0]);
