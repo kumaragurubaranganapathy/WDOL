@@ -7,7 +7,7 @@ public class LnP_PublicFormsApexController {
          }
          catch(Exception e){
             HandleException.LogException(e,'LnP_PublicFormsApexController','getFormsJSON');
-         } 
+         }  
           
          return mapJSON;
     }
@@ -58,7 +58,7 @@ public class LnP_PublicFormsApexController {
     public static String userlogin(string usrnm, string pwd){
     string loginMessage = '';
     string errorMsg = '';
-    string startUrl='/s/to-do'; 
+    string startUrl='/s'; 
           try{
             PageReference lgn = Site.login(usrnm, pwd, startUrl);
             aura.redirect(lgn);
