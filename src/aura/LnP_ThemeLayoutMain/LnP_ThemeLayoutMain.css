@@ -31,7 +31,13 @@
     src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf);
 }
 .THIS *{
-    font-family : t(publicSansfontfamily);
+    font-family : t(btnfontfamily);
+}
+.THIS .merriweather-font{
+    font-family: t(merrifontfamily);
+}
+.THIS h1,.THIS h2,.THIS h3,.THIS h4,.THIS h5,.THIS h6{
+    font-family: t(merrifontfamily);
 }
 .THIS .header{
     width:100%;
@@ -125,6 +131,9 @@
 }
 .THIS .required{
     color:t(fieldclr);
+}
+.THIS .slds-input, .THIS .slds-select, .THIS .slds-text-area{
+    border-radius : 0;
 }
 @media t(mqSmall){
     .THIS .slds-table tbody td{
