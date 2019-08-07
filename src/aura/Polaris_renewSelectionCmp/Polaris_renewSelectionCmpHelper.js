@@ -189,7 +189,7 @@
             if (state === "SUCCESS") {
                 var response = actionResult.getReturnValue();
                 console.log('Response::' + response);
-                if(response[0] != 'null'){
+                if(response[0] != ''){
                     
                     $A.util.removeClass(component.find("readyHeader"), 'slds-hide');
                     component.set("v.instructions", response[0]);
