@@ -5,16 +5,18 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
     
     if(trigger.isinsert && trigger.isafter){
         for (MUSW__License2__c lic : trigger.new){
-            if(lic.MUSW__Applicant__c  != null && lic.MUSW__Parcel__c != null){
+            if(lic.MUSW__Applicant__c  != null && lic.MUSW__Status__c  != 'Generate Fee' ){
                 licenseIds.add(lic.id);
             }
         }
-        licenseList = [select id,Name,Send_information_to_ASC__c from MUSW__License2__c  where id=:licenseIds];
+        licenseList = [select id,Name,MUSW__Status__c,Send_information_to_ASC__c from MUSW__License2__c  where id=:licenseIds];
         
         if(Dol_IntegrationUtil.isNotEmpty(licenseList)){
             for(MUSW__License2__c lic :licenseList){
-                lic.Send_information_to_ASC__c = true;
-                licenseListtoUpdt.add(lic);
+                if(lic.MUSW__Status__c  != 'Generate Fee'){
+                    lic.Send_information_to_ASC__c = true;
+                    licenseListtoUpdt.add(lic);
+                } 
             }
         }
         if(Dol_IntegrationUtil.isNotEmpty(licenseListtoUpdt)){
@@ -23,33 +25,24 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
     }
     if(trigger.isupdate && trigger.isafter){
         for (MUSW__License2__c lic : trigger.new){
-            if(lic.MUSW__Applicant__c  != null && lic.MUSW__Parcel__c != null &&
-                                        (lic.MUSW__Applicant__c != trigger.oldmap.get(lic.id).MUSW__Applicant__c
-                                          || lic.MUSW__Parcel__c != trigger.oldmap.get(lic.id).MUSW__Parcel__c 
+            if(lic.MUSW__Applicant__c  != null && (lic.MUSW__Applicant__c != trigger.oldmap.get(lic.id).MUSW__Applicant__c
                                           || lic.MUSW__Status__c != trigger.oldmap.get(lic.id).MUSW__Status__c 
                                           || lic.MUSW__Expiration_Date__c != trigger.oldmap.get(lic.id).MUSW__Expiration_Date__c
-                                          || lic.MUSW__Type__c != trigger.oldmap.get(lic.id).MUSW__Type__c)
-              ){
+                                          || lic.MUSW__Type__c != trigger.oldmap.get(lic.id).MUSW__Type__c))
                 licenseIds.add(lic.id);
             }
-        }
-        licenseList = [select id,Name,MUSW__Status__c,MUSW__Expiration_Date__c , MUSW__Type__c ,Send_information_to_ASC__c,
-                       MUSW__Applicant__c,MUSW__Applicant__r.UID__c,MUSW__Applicant__r.LastName,MUSW__Applicant__r.FirstName,
-                       MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.Phone,MUSW__Applicant__r.Company_Name__c,
-                       MUSW__Parcel__c, MUSW__Parcel__r.MUSW__Street2__c, MUSW__Parcel__r.MUSW__City__c ,MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Post_Zip_Code__c
-                       from MUSW__License2__c  where id=:licenseIds];
+        licenseList = [select id,Send_information_to_ASC__c,(select id,MUSW__Parcel__c from MUSW__License2_Parcels__r where Mailing__c = true) from MUSW__License2__c  where id=:licenseIds];
         
         if(Dol_IntegrationUtil.isNotEmpty(licenseList)){
             for(MUSW__License2__c lic :licenseList){
-                lic.Send_information_to_ASC__c = true;
-                licenseListtoUpdt.add(lic);
+                if(Dol_IntegrationUtil.isNotEmpty(lic.MUSW__License2_Parcels__r)){
+                    lic.Send_information_to_ASC__c = true;
+                    licenseListtoUpdt.add(lic);  
+                }
             }
-        }
+        }  
         if(Dol_IntegrationUtil.isNotEmpty(licenseListtoUpdt)){
             upsert licenseListtoUpdt;
         }    
     }
-    
-
-
 }
