@@ -1110,6 +1110,15 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
+	<fields>
+        <fullName>Manual_IAP_JV_Created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Manual IAP JV Created?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Number_of_Payable_Receipt_Record__c</fullName>
         <externalId>false</externalId>
@@ -1468,7 +1477,7 @@
         <fullName>Validation_number__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Validation number</label>
+        <label>Customer Envelope</label>
         <referenceTo>Customer_Envelope__c</referenceTo>
         <relationshipLabel>Receipts</relationshipLabel>
         <relationshipName>Receipts</relationshipName>
@@ -1561,6 +1570,37 @@
             <value>Processed</value>
         </filters>
         <label>US Bank Settlement</label>
+    </listViews>
+	<listViews>
+        <fullName>Collection_Agency</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <columns>MUSW__Amount_Rejected__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Sent_to_Collections__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>Collection Agency</label>
+    </listViews>
+	<listViews>
+        <fullName>IAP</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Validation_number__c</columns>
+        <columns>Manual_IAP_JV_Created__c</columns>
+        <columns>IAP_Doc__c</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Payment_Method__c</field>
+            <operation>equals</operation>
+            <value>Inter-agency Payment</value>
+        </filters>
+        <filters>
+            <field>Manual_IAP_JV_Created__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>IAP</label>
     </listViews>
     <nameField>
         <displayFormat>R-{0000000}</displayFormat>
