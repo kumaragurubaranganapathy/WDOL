@@ -70,7 +70,7 @@
     searchCourse : function(component, event) {
        // alert('Search Called!!');
         var objectApi =  'MUSW__License2__c';
-        var fieldsList = ['Name','Id','Course_Name__c','Course_Number__c','Credential_Type__c','Application_Type__c','What_Licensure_Level__c','What_program_are_you_interested_in__c','Course_Status__c','Course_Title__c','Course_Topic__c','Course_Type__c','Provider_School_Name__c','Clock_Hours__c','Delivery_Method__c'];
+        var fieldsList = ['Name','Id','Course_Name__c','Course_Number__c','Credential_Type__c','Application_Type__c','Pre_Qualifying_Licensure_Levels__c','Qualifying_Elective_Licensure_Levels__c','Continuing_Education_Licensure_Levels__c','What_program_are_you_interested_in__c','Course_Status__c','Course_Title__c','Course_Topic__c','Course_Type__c','Provider_School_Name__c','Provider_Account_Name__c','Delivery_Method__c','Clock_Hours__c','Clock_Hours_Pre_Qualifying__c','Clock_Hours_Qualifying_Elective__c','Clock_Hours_Continuing_Education__c','MUSW__Status__c'];
         var ProgramValue =  component.find("Program").get("v.value");
         var LicenseType;
         if(ProgramValue == 'Appraisers'){
@@ -84,7 +84,7 @@
         var courseNameValue =  component.find("courseName").get("v.value")
         var courseNumberValue =  component.find("courseNumber").get("v.value")
         var clockHoursValue =  component.find("clockHours").get("v.value")
-        var TopicValue =  component.find("Topic").get("v.value")
+      //  var TopicValue =  component.find("Topic").get("v.value")
         var StatusValue = component.find("Status").get("v.value");
         var DeliveryMethodValue = component.find("DeliveryMethod").get("v.value");
         var courseRecordTypeVal = component.get("v.CourseRecordTypeId");
@@ -117,9 +117,9 @@
         if(clockHoursValue!= "" ){
             searchOneArray.push({label:"Clock Hours", value:clockHoursValue});
         }
-        if(TopicValue!= ""){
+      /*  if(TopicValue!= ""){
             searchOneArray.push({label:"Topic", value:TopicValue});
-        }
+        }*/
         if(StatusValue!= ""){
             searchOneArray.push({label:"Status", value:StatusValue});
         }
@@ -132,19 +132,50 @@
         console.log(searchOneArray);
         
         if(searchOneArray.length!=0){
-            var criteria = {
-                 "Ultimate_Parent_Account__r.Name" : schoolNameValue,
+            if(CourseTypeValue == 'Pre-Qualifying Course'){
+                var criteria = {
+                "Ultimate_Parent_Account__r.Name" : schoolNameValue,
                 "Credential_Type__c" : LicenseType,
                 "Course_Type__c" : CourseTypeValue,
-                "What_Licensure_Level__c" : licensureLevelValue,
+                "Pre_Qualifying_Licensure_Levels__c" : licensureLevelValue,
                 "Course_Title__c" : courseNameValue,
                 "Name" : courseNumberValue,
                 "Clock_Hours__c" : clockHoursValue,
-                "Course_Topic__c" : TopicValue,
+               // "Course_Topic__c" : TopicValue,
                 "MUSW__Status__c" : StatusValue,
                 "Delivery_Method__c" : DeliveryMethodValue,
                 "RecordTypeId" : courseRecordTypeVal 
-            };
+            }; 
+            }else if(CourseTypeValue == 'Qualifying Elective Course'){
+                 var criteria = {
+                "Ultimate_Parent_Account__r.Name" : schoolNameValue,
+                "Credential_Type__c" : LicenseType,
+                "Course_Type__c" : CourseTypeValue,
+                "Qualifying_Elective_Licensure_Levels__c" : licensureLevelValue,
+                "Course_Title__c" : courseNameValue,
+                "Name" : courseNumberValue,
+                "Clock_Hours__c" : clockHoursValue,
+               // "Course_Topic__c" : TopicValue,
+                "MUSW__Status__c" : StatusValue,
+                "Delivery_Method__c" : DeliveryMethodValue,
+                "RecordTypeId" : courseRecordTypeVal 
+            }; 
+            }else if(CourseTypeValue == 'Continuing Education Course'){
+                 var criteria = {
+                "Ultimate_Parent_Account__r.Name" : schoolNameValue,
+                "Credential_Type__c" : LicenseType,
+                "Course_Type__c" : CourseTypeValue,
+                "Continuing_Education_Licensure_Levels__c" : licensureLevelValue,
+                "Course_Title__c" : courseNameValue,
+                "Name" : courseNumberValue,
+                "Clock_Hours__c" : clockHoursValue,
+               // "Course_Topic__c" : TopicValue,
+                "MUSW__Status__c" : StatusValue,
+                "Delivery_Method__c" : DeliveryMethodValue,
+                "RecordTypeId" : courseRecordTypeVal 
+            }; 
+            }
+           
             var action = component.get("c.generateQuery");
             action.setParams({
                 'objectName':objectApi,
@@ -154,26 +185,40 @@
             });
             action.setCallback(this, function(response){
                 var state = response.getState();
+                
             //   alert("state---"+state);
                 if (state === "SUCCESS"){
                     console.log("state---"+state);
-                    var rows = response.getReturnValue();  
-                    console.log('rows: '+response.getReturnValue());
+                    var rowsData = response.getReturnValue(); 
+                    var rows = [];
+                   // console.log('rowsData: '+response.getReturnValue());
+                   // console.log('Status --',rowsData[0].MUSW__Status__c);
+                    
+                    for(var i = 0; i< rowsData.length ; i++){
+                     //   console.log('in for loop',rowsData[i]);
+                     //   console.log('in for loop status',rowsData[i].MUSW__Status__c);
+                        
+                        if(rowsData[i].MUSW__Status__c == 'Active' || rowsData[i].MUSW__Status__c == 'Cancelled'){
+                            rows.push(rowsData[i]);
+                         //   console.log('rows--', JSON.stringify(rows));
+                        }
+                    }
+                  //  console.log('rows length',rows.length);
                     if(rows.length!=0){
                         
-                         
                         component.set('v.columns', [
+                            {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
                             {label: 'Course Name', fieldName: 'Course_Title__c', type: 'Text', sortable : true},
                             {label: 'Provider/School', fieldName: 'Provider_Account_Name__c', type: 'Text', sortable : true},
-                            {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
                             {label: 'Course Type', fieldName: 'Course_Type__c', type: 'Picklist', sortable : true},                            
                             {label: 'Delivery Method', fieldName: 'Delivery_Method__c', type: 'Picklist', sortable : true},
-                            {label: 'Clock Hours', fieldName: 'Clock_Hours__c', type: 'Number', sortable : true},
+                            {label: 'Clock Hours', fieldName: 'Clock_Hours__c', type: 'number', sortable : true},
                             {label: 'Course Status', fieldName: 'MUSW__Status__c', type: 'Picklist', sortable : true},
                             {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                             { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                          /*{label: 'Licensure Levels', fieldName: 'What_Licensure_Level__c', type: 'Picklist', sortable : true} */
                         ]);
+                        console.log('rows--',JSON.stringify(rows));
                         component.set("v.data", rows);
                         component.set("v.applicationFilt",rows);
                         component.set("v.screenTwo", true);
@@ -262,6 +307,9 @@
                                   'Ultimate_Parent_Account__r.Name',
                                   'Course_Title__c',
                                   'Id',
+                              'Pre_Qualifying_Licensure_Levels__c',
+                              'Qualifying_Elective_Licensure_Levels__c',
+                              'Continuing_Education_Licensure_Levels__c',
                                   'Clock_Hours_Continuing_Education__c',
                                   'Clock_Hours_Pre_Qualifying__c',
                                   'Clock_Hours_Qualifying_Elective__c',
@@ -336,7 +384,7 @@
         component.find("courseName").get("v.value","");
         component.find("courseNumber").get("v.value","");
         component.find("clockHours").get("v.value","");
-        component.find("Topic").get("v.value","")
+      //  component.find("Topic").get("v.value","")
         component.find("Status").get("v.value","");
         component.find("DeliveryMethod").get("v.value","");
 	},
