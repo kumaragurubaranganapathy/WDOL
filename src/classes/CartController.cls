@@ -948,7 +948,6 @@ public with sharing class CartController
                 Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
                 populateFeeAndInvoicePayment(receipts, feePaymentIds);
                 depositPayments = populateDepositPayment(receipts);
-                m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
             } else {
                 if(sp != null)
                     Database.rollback(sp);        
@@ -966,7 +965,8 @@ public with sharing class CartController
             }
 
             //rs = m_cs.getCartReceipts();
-            //m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
+            if(processSuccessful)
+                m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
         }
         catch (Exception e)
         {
