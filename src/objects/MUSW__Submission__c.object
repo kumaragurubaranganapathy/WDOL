@@ -267,6 +267,17 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>Disciplinary_Action_End_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the date until when the disciplinary action should show up in public search</inlineHelpText>
+        <label>Disciplinary Action End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <fields>
         <fullName>Include_in_Hearing_File__c</fullName>
         <defaultValue>false</defaultValue>
@@ -290,7 +301,177 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <fields>
+	<fields>
+        <fullName>Legal_Action_Documents__c</fullName>
+        <externalId>false</externalId>
+        <label>Legal Action Documents</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Agreed Order</fullName>
+                    <default>false</default>
+                    <label>Agreed Order</label>
+                </value>
+                <value>
+                    <fullName>Cease and Desist - Formal</fullName>
+                    <default>false</default>
+                    <label>Cease and Desist - Formal</label>
+                </value>
+                <value>
+                    <fullName>Default Order - BAP</fullName>
+                    <default>false</default>
+                    <label>Default Order - BAP</label>
+                </value>
+                <value>
+                    <fullName>Default Order - Formal</fullName>
+                    <default>false</default>
+                    <label>Default Order - Formal</label>
+                </value>
+                <value>
+                    <fullName>Final Order</fullName>
+                    <default>false</default>
+                    <label>Final Order</label>
+                </value>
+                <value>
+                    <fullName>Intent to Issue Cease &amp; Desist Order</fullName>
+                    <default>false</default>
+                    <label>Intent to Issue Cease &amp; Desist Order</label>
+                </value>
+                <value>
+                    <fullName>Permanent Cease &amp; Desist Order</fullName>
+                    <default>false</default>
+                    <label>Permanent Cease &amp; Desist Order</label>
+                </value>
+                <value>
+                    <fullName>Intent to Deny - Formal</fullName>
+                    <default>false</default>
+                    <label>Intent to Deny - Formal</label>
+                </value>
+                <value>
+                    <fullName>Statement of Charges - BAP</fullName>
+                    <default>false</default>
+                    <label>Statement of Charges - BAP</label>
+                </value>
+                <value>
+                    <fullName>Statement of Charges - Formal</fullName>
+                    <default>false</default>
+                    <label>Statement of Charges - Formal</label>
+                </value>
+                <value>
+                    <fullName>Temporary Cease &amp; Desist Order</fullName>
+                    <default>false</default>
+                    <label>Temporary Cease &amp; Desist Order</label>
+                </value>
+                <value>
+                    <fullName>Order of Summary Suspension</fullName>
+                    <default>false</default>
+                    <label>Order of Summary Suspension</label>
+                </value>
+                <value>
+                    <fullName>Agreed Order - Amended</fullName>
+                    <default>false</default>
+                    <label>Agreed Order - Amended</label>
+                </value>
+                <value>
+                    <fullName>Default Order - Amended</fullName>
+                    <default>false</default>
+                    <label>Default Order - Amended</label>
+                </value>
+                <value>
+                    <fullName>Prehearing Conference Order</fullName>
+                    <default>false</default>
+                    <label>Prehearing Conference Order</label>
+                </value>
+                <value>
+                    <fullName>Ex Parte Order of Summary Suspension</fullName>
+                    <default>false</default>
+                    <label>Ex Parte Order of Summary Suspension</label>
+                </value>
+                <value>
+                    <fullName>Order of Director Deny Pet. 4 Recon.</fullName>
+                    <default>false</default>
+                    <label>Order of Director Deny Pet. 4 Recon.</label>
+                </value>
+                <value>
+                    <fullName>Initial Order - BAP</fullName>
+                    <default>false</default>
+                    <label>Initial Order - BAP</label>
+                </value>
+                <value>
+                    <fullName>Initial Order - Formal</fullName>
+                    <default>false</default>
+                    <label>Initial Order - Formal</label>
+                </value>
+                <value>
+                    <fullName>BAP Scheduled Letter</fullName>
+                    <default>false</default>
+                    <label>BAP Scheduled Letter</label>
+                </value>
+                <value>
+                    <fullName>Intent to Deny - BAP</fullName>
+                    <default>false</default>
+                    <label>Intent to Deny - BAP</label>
+                </value>
+                <value>
+                    <fullName>SOC-Notice of Order of Sum. Susp.</fullName>
+                    <default>false</default>
+                    <label>SOC-Notice of Order of Sum. Susp.</label>
+                </value>
+                <value>
+                    <fullName>Subpoena</fullName>
+                    <default>false</default>
+                    <label>Subpoena</label>
+                </value>
+                <value>
+                    <fullName>Order Vacating Default Order</fullName>
+                    <default>false</default>
+                    <label>Order Vacating Default Order</label>
+                </value>
+                <value>
+                    <fullName>Response to Petition For Review</fullName>
+                    <default>false</default>
+                    <label>Response to Petition For Review</label>
+                </value>
+                <value>
+                    <fullName>Petition For Review</fullName>
+                    <default>false</default>
+                    <label>Petition For Review</label>
+                </value>
+                <value>
+                    <fullName>Cease and Desist - BAP</fullName>
+                    <default>false</default>
+                    <label>Cease and Desist - BAP</label>
+                </value>
+                <value>
+                    <fullName>Education Letter</fullName>
+                    <default>false</default>
+                    <label>Education Letter</label>
+                </value>
+                <value>
+                    <fullName>Withdrawal</fullName>
+                    <default>false</default>
+                    <label>Withdrawal</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+	<fields>
+        <fullName>Physical_Exhibit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if the document is a physical exhibit.</inlineHelpText>
+        <label>Physical Exhibit</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+	<fields>
         <fullName>Is_Backend_Submission__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Checkbox to indicate whether it is backend submission or not</description>
