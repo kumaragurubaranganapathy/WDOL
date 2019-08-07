@@ -2975,6 +2975,22 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <errorConditionFormula>AND( MUSW__Fee_Paid__c = true,  ISCHANGED(MUSW__Amount__c ), PRIORVALUE(MUSW__Amount__c ) &gt; MUSW__Amount__c)</errorConditionFormula>
         <errorMessage>Cannot change the Amount below the Amount already paid on this Fee. Increase Amount or click Cancel</errorMessage>
     </validationRules>
+
+    <validationRules>
+        <fullName>License_Needed_on_Compliance_Fee</fullName>
+        <active>true</active>
+        <description>When the complaint or Inspection field is not blank the license needs to be populated.</description>
+        <errorConditionFormula>AND(OR(
+NOT(ISBLANK(MUSW__Complaint2__c)),
+NOT(ISBLANK(Inspection__c))
+),
+ISBLANK(MUSW__License2__c),
+ISPICKVAL( MUSW__Type__c ,&quot;Fine&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>MUSW__License__c</errorDisplayField>
+        <errorMessage>The license number needs to be entered to create a fine.</errorMessage>
+    </validationRules>
+
     <validationRules>
         <fullName>MUSW__Fee_Amount_Paid_Over_Amount</fullName>
         <active>true</active>

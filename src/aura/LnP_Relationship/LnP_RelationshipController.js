@@ -2,7 +2,7 @@
 	doInit : function(component, event, helper) {
         helper.doInit(component,event);
         helper.getRelationShipTableData(component, event, helper);
-		//helper.fetchPeerRelationShipDataRecords(component, event, helper);
+		helper.fetchPeerRelationShipDataRecords(component, event, helper);
     },
     
     onCancelAccnConClick: function(component,event,helper){
