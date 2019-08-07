@@ -252,7 +252,7 @@
                     </div>
                     <lightning:layout class="biz-details-wrapper slds-wrap" aura:id="biz-wrapper">
                         <lightning:layoutItem size="12" mediumDeviceSize="9" class="user-info-wrapper">
-                            <div class="Account-name">{!v.SelectedAccountDetails.Name}</div>
+                            <h1 class="Account-name">{!v.SelectedAccountDetails.Name}</h1>
                             <lightning:layout class="slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="4">
                                     <div class="field-style">

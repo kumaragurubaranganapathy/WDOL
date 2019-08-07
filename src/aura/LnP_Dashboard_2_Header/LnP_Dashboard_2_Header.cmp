@@ -37,7 +37,7 @@
         </div>
         <lightning:layout class="slds-wrap intro-wrapper">
             <lightning:layoutItem size="12" mediumDeviceSize="9" class="user-info-wrapper">
-                <div class="contact-name">{!v.ContactObj.Name}</div>  
+                <h1 class="contact-name">{!v.ContactObj.Name}</h1>  
                 <lightning:layout class="slds-wrap contact-details">
                     <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
                         <div class="field-style">
