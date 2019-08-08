@@ -149,7 +149,7 @@
                                         <div class="headings">Mandatory Submissions Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
-                                            <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
+                                            <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1 sentenceResp">
                                                 <div>
                                                     <ui:inputText disabled = "true" value="{!attResponses.attachment}"/>
                                                     <aura:if isTrue="{!(((attResponses.uploadOrAck == true &amp;&amp; attResponses.fileNos == 0) || (attResponses.uploadOrAck == null &amp;&amp; (attResponses.acknowledgeResponse == null || attResponses.acknowledgeResponse == false))) &amp;&amp; attResponses.isMandatorySub == true)}"> 

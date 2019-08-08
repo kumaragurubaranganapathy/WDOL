@@ -242,17 +242,17 @@
     cancel : function(component, event, helper){
     	window.location.href = component.get("v.redirectURL");
     },
+
     
-    maskInput : function(component,event){        
+    maskInput : function(component,event){  
+        var numbers=event.getSource().get('v.value');
         var fieldname=event.getSource().get('v.fieldName');
-        if(fieldname=="MobilePhone" || fieldname=="Phone"){
-            var numbers=event.getSource().get('v.value');
-            if(numbers.length===10){
+        if(fieldname=="Phone_Primary_Contact__c" || fieldname=="Business_Phone__c"){
+            if(numbers.length==10){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
                 event.getSource().set('v.value',phone); 
-            }            
-            
+            }
         }
     },
     

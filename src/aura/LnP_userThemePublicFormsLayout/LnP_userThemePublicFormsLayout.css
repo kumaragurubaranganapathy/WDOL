@@ -157,7 +157,7 @@ border-radius: 5px;
 }
 /*fields label and input style*/
 .THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
-,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label{
+,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label,.THIS .self-service-wrapper label{
     font-family: token(publicSansfontfamily);
     font-size: token(fieldlabelsize);
     line-height:1.5;
@@ -185,7 +185,7 @@ border-radius: 5px;
     margin: 0 0 0.8rem;
     box-sizing: border-box;
 }
-.THIS .field-item .slds-form-element__control{
+.THIS .field-item .slds-form-element__control,.THIS .self-service-wrapper .slds-form-element__control{
     width:50%;
 }
 .THIS .field-size .slds-form-element__control{
@@ -420,6 +420,14 @@ margin-right:10%;
     box-shadow:none;
     
 }
+.THIS .sentenceResp .uiOutputRichText{
+    color:t(sentenceclr);
+    font-size:t(fieldlabelsize);
+}
+.THIS .sentenceResp .revAndSubCompletionFont .uiOutputRichText{
+    color:t(fieldclr);
+    font-size:t(fieldlabelsize);
+}
 .THIS .ques .quesclr{
     color:token(LnGPlaceholderText);
     height: auto;
@@ -432,6 +440,8 @@ margin-right:10%;
 .THIS .slds-select, .THIS .slds-input{
     border-radius:unset;
     font-size: token(fieldlabelsize);
+    box-shadow:none;
+    border:1px solid t(gray);
 }
 .THIS .slds-select{
     z-index:1;

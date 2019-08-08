@@ -1,6 +1,13 @@
 .THIS.self-service-wrapper{
     padding:1.5rem 7.5rem;
 }
+.THIS .slds-form-element__control{
+    padding-left:0;
+}
+.THIS .btnalign{
+    float: left;
+    padding-left: 5px;
+}
 .THIS .service-btn-container button{
     height: 42px;
     border-radius: 5px;
@@ -36,7 +43,7 @@
 }
 
 .THIS .amr-title{
-    font-size:1.25rem;
+    font-size:1rem;
     margin-bottom:1rem;
     color:t(LnGFormTitleColor); 
     font-weight:600;
