@@ -40,6 +40,10 @@
 .THIS .merriweather-font{
     font-family: t(merrifontfamily);
 }
+.THIS :focus{
+	box-shadow:none;
+	outline:none;
+}
 .THIS .required{
     color:t(fieldclr);
 }
