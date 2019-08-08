@@ -57,6 +57,7 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
+        <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
         <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
@@ -88,7 +89,7 @@
                                         
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
-                                            <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
+                                            <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
                                                 <div>
                                                     <ui:outputRichText  value="{!responses.question}"/>
                                                 </div>
@@ -117,7 +118,7 @@
                                         <div class="headings">Mandatory Submission Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
-                                            <div class = "slds-size--1-of-2 slds-medium-size--1-of-2 slds-small-size--1-of-1">
+                                            <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
                                                 <div>
                                                     <ui:inputText disabled = "true" value="{!attResponses.attachment}"/>
                                                     <aura:if isTrue="{!(((attResponses.uploadOrAck == true &amp;&amp; attResponses.fileNos == 0) || (attResponses.uploadOrAck == null &amp;&amp; (attResponses.acknowledgeResponse == null || attResponses.acknowledgeResponse == false))) &amp;&amp; attResponses.isMandatorySub == true)}"> 
@@ -192,7 +193,7 @@
                                     <aura:set attribute="else">
                                         <div class="{!((varSection+1)==v.currentTab)?'section-wrapper':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <div class="{!(question.questionSection!='null')?'section headings':'slds-hide'}">{!question.questionSection}</div>
+                                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
                                                 <div class="{!(question.questionSection!='null')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
@@ -320,9 +321,9 @@
             </aura:if>
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section">
-            <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
-            <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+            <lightning:button variant="neutral" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
+            <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->
