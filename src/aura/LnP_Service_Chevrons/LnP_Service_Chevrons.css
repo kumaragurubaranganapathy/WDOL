@@ -239,3 +239,35 @@
 .THIS .personal-info .field-item > .slds-form-element__label {
     position: relative;
 }
+.THIS .sectionwidth.headings{
+    font-family:t(merrifontfamily);
+}
+@media t(mqSmall){
+    .THIS.content-wrapper{
+        margin:1rem;
+    }
+    .THIS .personal-info .field-item{
+        padding-bottom:0.5rem;
+    }
+    .THIS .field-item{
+        width:100%;
+    }
+    .THIS.content-wrapper .field-item .slds-form-element__control{
+        width:100%;
+    }
+    .THIS .subheader{
+        font-size:1rem;
+    }
+    .THIS .button-section.slds-m-top_xx-large{
+        margin-top:1rem;
+        display:flex;
+        flex-direction:column;
+    }
+    .THIS .button-section button{
+        width:100%;
+    }
+    .THIS .button-section .back-button{
+        margin-bottom:0.5rem;
+    }
+    
+}
