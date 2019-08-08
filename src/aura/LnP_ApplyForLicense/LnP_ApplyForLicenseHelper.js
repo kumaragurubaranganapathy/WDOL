@@ -172,10 +172,16 @@
             var attRes = [];
             for (var key in tabsList) {
                 if (tabsList.hasOwnProperty(key)) {
-                    if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Questions' ){
+                    if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Questions' || (tabsList[key].sectionName =='Endorsement' && component.get("v.licenseType")!='Notary Public')|| tabsList[key].sectionName =='Financial Guarantee' ){
                         for (var question in tabsList[key].labelFieldsMap){
                             if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
-                                a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
+                                if(tabsList[key].labelFieldsMap[question].multiValues != null && tabsList[key].labelFieldsMap[question].multiValues!='') {
+                                    a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString()}); 
+                                }
+                                 else {
+                                   a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value}); 
+                                }
+                                
                             }						
                         }
                     }                
@@ -830,6 +836,18 @@
 									errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                     return false;
 								}
+                            } else if(item.regex == "Future-Date"){
+                                var valueVal = item.value;
+                                var today = new Date();
+                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                compareDate = new Date(compareDate);
+                                var enteredDate = new Date(valueVal);
+                                if(enteredDate > compareDate){
+                                    return true;
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                    return false;
+                                } 
                             } else {
                                 var regexExp = new RegExp(item.regex);
                                 var valueVal = item.value;
@@ -854,7 +872,29 @@
                             var valueVal = item.value;
                             if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                 if(item.regex == "Date-Validation"){
-                                    return true;
+                                    var valueVal = item.value;
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate < compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                        return false;
+                                    }
+                                } else if(item.regex == "Future-Date"){
+                                    var valueVal = item.value;
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate > compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    } 
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
@@ -889,7 +929,7 @@
                 });
                 toastEvent.fire();
             }            
-        } 
+        }  
             else if(licenseWrapper[tabNumber].subheader == "Endorsement"){
                 var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
                 var validateFields = fieldsWrapper.filter(function(item){

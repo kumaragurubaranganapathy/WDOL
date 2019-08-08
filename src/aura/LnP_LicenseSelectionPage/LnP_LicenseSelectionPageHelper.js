@@ -3,6 +3,8 @@
     resetAttributesHelper :  function(component, event, helper){
         var eliTypeGridDiv = document.getElementById("eliTypeGridDiv");
         var appInstructions = document.getElementById("applicationInstuctionDiv");
+        component.find("getApplicationMethod").set('v.value',"");
+        component.set('v.applicationMethodList',[]);
         console.log("inside reset::");
         $A.util.removeClass(component.find("licenseType"), 'slds-hide');	
         $A.util.removeClass(component.find("getApplicationMethod"), 'slds-hide');
@@ -14,8 +16,15 @@
         $A.util.addClass(component.find("accountPickerId"), 'slds-hide');	
         component.set("v.otherInstructions", []);
         $A.util.addClass(component.find("reqDocTextDiv"), 'slds-hide');
-        
-        
+        var programtype = component.find("board").get("v.value");
+        var applicationMethod = component.get('v.LiceneMethodMap');
+        component.set('v.licenseList',[]);
+        var stringofdaya = applicationMethod[programtype];
+        if(stringofdaya != undefined) {
+            component.set("v.licenseList",stringofdaya.sort());
+        }
+        console.log('licenseType',stringofdaya);
+       
     },
     
     getUrlParam : function(paramName) {
@@ -119,7 +128,6 @@
         //appTypeGridDiv.classList.add("slds-hide");
         eliTypeGridDiv.classList.add("slds-hide");
         appInstructions.classList.add("slds-hide");
-        
         //appTypeDiv.classList.add("slds-hide");
         //appTypeGridDiv.classList.add("slds-hide");
         
@@ -170,7 +178,7 @@
                             helper.restrictTemporaryLicenses(component,event,helper);
                         }
                         
-                        //helper.hideOrShowSpinner(component, event, helper);
+                       // helper.hideOrShowSpinner(component, event, helper);
                         if(applicationMethod != ''){  
                             window.setTimeout(
                                 $A.getCallback(function() {
@@ -206,7 +214,6 @@
                                         }
                                         
                                     }
-                                    
                                     //var eliChild = document.getElementById('eliQuesDiv').children;
                                     //for(var i=0; i<eliChild.length; i++){
                                     //eliChild[0].classList.remove("slds-hide");
@@ -722,5 +729,23 @@
     },
     setApplicationTypeHelper : function (component, event, helper){
         var appTypeValue = component.find("appTypeField").get("v.value");  
+    },
+    fetchApplicationmethods : function (component, event, helper){
+        var action = component.get("c.getPicklistOptions");
+        action.setParams({
+            "sObj": 'MUSW__License2__c', 
+            "conField": 'Credential_Type__c',
+            "depField": 'Application_Method__c',
+        }); 
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            var response = actionResult.getReturnValue();
+            if (state === "SUCCESS"){
+                console.log('success');  
+                console.log('applicationMethodMap'+response);
+                component.set('v.applicationMethodMap',response);
+            }
+        });
+         $A.enqueueAction(action);
     }
 })

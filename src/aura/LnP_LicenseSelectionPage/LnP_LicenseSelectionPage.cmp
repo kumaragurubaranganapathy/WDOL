@@ -19,15 +19,21 @@
     
     <aura:attribute name="header" type="Boolean" default="false"/>
     <aura:attribute name="contactRecId" type="Id" />
+    <aura:attribute name="ObjectName" type="MUSW__License2__c" />
     <aura:attribute name="LicenseUpgradeRecordID" type="String" />
     <aura:attribute name="accounts" type="Object[]"/>
     <aura:attribute name="licenses" type="Object[]"/>
     <aura:attribute name="conid" type="Id"/>
     <aura:attribute name="instructions" type="String" />
+    <aura:attribute name="ProfessionType" type="List" />
     <aura:attribute name="otherInstructions" type="List"/>
     <aura:attribute name="testOptions" type="List" />
     <aura:attribute name="tempLicenses" type="List"/>
+    <aura:attribute name="licenseList" type="List"/>
     <aura:attribute name="Get_Result" type="String" />
+    <aura:attribute name="applicationMethodMap" type="Map" />
+    <aura:attribute name="LiceneMethodMap" type="Map" />
+    <aura:attribute name="applicationMethodList" type="List" />
     <aura:handler event="c:Dol_FetchAccountName" action="{!c.getAccountName}" name="Dol_FetchAccountName"/>
     <aura:attribute name="proceedTemporaryLicense" type="Boolean" default="False" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -49,11 +55,38 @@
                 </div>
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1 prof-choice">
                     
-                    <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}" /> 
+                    <lightning:select value="" aura:id="board" name="Application_Type__c" label="Select a Profession" onchange="{!c.resetAttributes}" class="application  slds-m-vertical_large">
+                        <option value="" >--None--</option>
+                        <aura:iteration items="{!v.ProfessionType}" var="license">
+                            <option value="{!license}" >{!license}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    
+                   <!-- <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}" /> -->
                     <!-- <aura:if isTrue="{!Credential_Type__c.apiname !='Unlicensed'}"> -->
-                    <lightning:inputField aura:id="licenseType" class="slds-hide slds-m-vertical_large" label="Select a License Type" fieldName="Credential_Type__c" value="" onchange="{!c.resetApplicationMethod}"/>
-                    <lightning:inputField aura:id="getApplicationMethod" class="application slds-hide slds-m-vertical_large" required="true" label="Application Method" fieldName="Application_Method__c" value="" onchange="{!c.fetchAppTypeEliQuestions}"/>
-                    <!-- </aura:if> -->
+                   <!-- <lightning:inputField options ="{!v.licenseList}" aura:id="licenseType" class="slds-hide slds-m-vertical_large" label="Select a License Type" fieldName="Credential_Type__c" value="" onchange="{!c.resetApplicationMethod}"/>-->
+                 
+                   <!-- <lightning:inputField  aura:id="licenseType" class="slds-hide" label="Select a License Type" fieldName="Credential_Type__c" value="{!v.licenseList[0]}" /> -->
+                    <lightning:select value="" aura:id="licenseType" name="Credential_Type__c" label="Select a License Type" onchange="{!c.resetApplicationMethod}" class="application slds-hide slds-m-vertical_large">
+                         <option value="" >--None--</option>
+                        <aura:iteration items="{!v.licenseList}" var="license">
+                            <option value="{!license}" >{!license}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    
+                    <lightning:select value=""  aura:id="getApplicationMethod" name="Application_Method__c" label="Application Method" onchange="{!c.fetchAppTypeEliQuestions}" class="application slds-hide slds-m-vertical_large">
+                        <option value="" >--None--</option>
+                        <aura:iteration items="{!v.applicationMethodList}" var="license">
+                            
+                            <option value="{!license}" >{!license}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    
+                  
+                   
+                    
+                    
+                    
                     <aura:if isTrue="{!v.accounts.length > 0}">
                         <div class="slds-hide account-wrapper" id="accountPickerId">
                             <!--<div class="account-label">Account: {!v.Get_Result}</div>-->
