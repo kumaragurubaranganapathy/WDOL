@@ -297,7 +297,8 @@ application.MUSW_Account__c = account;*/
                 parcel.MUSW__State__c = par.MUSW__State__c;
                 parcel.MUSW__Street2__c = par.MUSW__Street2__c;
                 parcel.Zip_Postal_Code__c = par.Zip_Postal_Code__c;
-                parcel.County__c = par.County__c ;
+				parcel.County__c = par.County__c ;
+                parcel.is_Physical_and_Mailing_Address_Same__c = par.is_Physical_and_Mailing_Address_Same__c;
                 lstupdateParcel.add(parcel);
             }
         }
