@@ -414,7 +414,7 @@ public without sharing class LnP_DashboardApexController_2 {
             
             columnHeaderList  = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status'}; 
                 
-               columnDataList = [SELECT id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c WHERE Parent_License__c =: licenseId AND Status__c IN : statusFilterList AND Child_License__r.Credential_Type__c LIKE : '%'+license_Custom_Metadata.Child_License_Credential__c+'%'] ;
+               columnDataList = [SELECT id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c WHERE Child_License__c =: licenseId AND Status__c IN : statusFilterList AND Parent_License__r.Credential_Type__c LIKE : '%'+license_Custom_Metadata.Parent_License_Credential__c+'%'] ;
             
             wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
