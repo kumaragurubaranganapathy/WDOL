@@ -1,4 +1,22 @@
 public class Dol_UploadDocumenttoSAN {
+    
+    @AuraEnabled 
+    public static List<String> getSelectOptionValues(sObject objObject, string fld) {
+      system.debug('objObject:' + objObject);
+      system.debug('fld:' + fld);
+      List <String> allOpts = new list <String> ();
+      Schema.sObjectType objType = objObject.getSObjectType();
+      Schema.DescribeSObjectResult objDescribe = objType.getDescribe();
+      map < String, Schema.SObjectField > fieldMap = objDescribe.fields.getMap();
+      list < Schema.PicklistEntry > values =
+       fieldMap.get(fld).getDescribe().getPickListValues();
+      for (Schema.PicklistEntry a: values) {
+       allOpts.add(a.getValue());
+      }
+      system.debug('allOpts ---->' + allOpts);
+      return allOpts;
+    }
+    
     @AuraEnabled
     public static User getUser() {
         Id userId = UserInfo.getUserId();
@@ -24,7 +42,7 @@ public class Dol_UploadDocumenttoSAN {
         System.debug('result'+result);
         return result;
     }
-    @AuraEnabled
+    
     public static String backofficeUplaod(String recordId, String docName, String user) {
         String status ='';
         String professionCode;
@@ -56,34 +74,30 @@ public class Dol_UploadDocumenttoSAN {
         
     }
     
-    /*@AuraEnabled
-    public static String portalUplaod(String submissionId, String attachmentId) {
+    /*@AuraEnabled -- enhancement code
+    public static String backofficeUplaod(String recordId, String docName, String user, String imagetype, String archDate) {
         String status ='';
         String professionCode;
-        String attachName;
-        Blob body;
-        String fileType;
-        if(Dol_IntegrationUtil.isNotBlank(submissionId) && Dol_IntegrationUtil.isNotBlank(attachmentId)){
-            List<MUSW__Submission__c>  submissionList  = [SELECT id,SAN_Image_Type__c, MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=: submissionId And MUSW__License2__c != null And MUSW__License2__r.Profession_Code__c != null ];
+        System.debug('imagetype'+imagetype);
+        System.debug('archDate'+archDate);
+        if(Dol_IntegrationUtil.isNotBlank(recordId) && Dol_IntegrationUtil.isNotBlank(docName) && Dol_IntegrationUtil.isNotBlank(user)){
+            List<MUSW__Submission__c>  submissionList  = [SELECT id, MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=: recordId And MUSW__License2__c != null And MUSW__License2__r.Profession_Code__c != null ];
             if(Dol_IntegrationUtil.isNotEmpty(submissionList)){
                 professionCode = submissionList[0].MUSW__License2__r.Profession_Code__c;
-                fileType = submissionList[0].SAN_Image_Type__c != null ? submissionList[0].SAN_Image_Type__c : '';
             }
-            //else professionCode = 'No code';
-            List<attachment> attachList = [select id,Name,Body,CreatedDate from attachment where id= :attachmentId];
-            if(Dol_IntegrationUtil.isNotEmpty(attachList)){
-                    attachName = attachList[0].Name;
-                	body = attachList[0].Body;
-                }
+            else professionCode = 'No code';
             UploadData uploadobj = new UploadData();
+            uploadobj.userName  = user;
             uploadobj.professionCode = professionCode;
-            uploadobj.recordID = submissionId;
-            uploadobj.fileName = attachName;
-            uploadobj.fileType = fileType;
-            uploadobj.fileData = body;
-            uploadobj.createDate = string.valueOf(attachList[0].CreatedDate);
+            uploadobj.polarisId  = recordId;
+            uploadobj.imageName = docName;
+            
+            //uploadobj.imageURL = 'docName';
+            uploadobj.imageType = imagetype;
+            //uploadobj.areaCode = 'BUS';
+            //uploadobj.departmentCode = 'AUC';
             System.debug('uploadobj=='+uploadobj);
-            HttpResponse response = Dol_RestAPIservice.portalUploadToSAN(uploadobj);
+            HttpResponse response = Dol_RestAPIservice.BackOfficeUploadToSAN(uploadobj);
             if(response.getStatusCode() == 200){
                 status = 'uploadsuccess';
             }
@@ -94,8 +108,10 @@ public class Dol_UploadDocumenttoSAN {
         
     }*/
     
-    @AuraEnabled
-    public static String portalUpload(Map<String,String> submissionToFile) {
+    
+    
+    @Future(callout=true)
+        public static void  portalUploadFuture(Map<String,String> submissionToFile) {
         String status ='';
         String professionCode;
         String attachName;
@@ -110,7 +126,7 @@ public class Dol_UploadDocumenttoSAN {
         if(submissionToFile!= null){
             List<String> contentDocIds = submissionToFile.values();
             if(Dol_IntegrationUtil.isNotEmpty(contentDocIds)){
-                contentVersionList = [SELECT id,VersionData,ContentDocumentId,Title,FileExtension,CreatedDate FROM ContentVersion where id =:contentDocIds];
+                contentVersionList = [SELECT id,VersionData,ContentDocumentId,Title,FileExtension,CreatedDate FROM ContentVersion where ContentDocumentId =:contentDocIds];
                 System.debug('contentVersionList'+contentVersionList);
             }
             Set<String> submissionIds = submissionToFile.keySet();
@@ -127,21 +143,21 @@ public class Dol_UploadDocumenttoSAN {
                 }
             }  
             for(ContentVersion contversion : contentVersionList){
-                 if(contentToSubMissionMap.containsKey(contversion.id)){
+                 if(contentToSubMissionMap.containsKey(contversion.ContentDocumentId)){
                      Blob filecontent = contversion.VersionData;
                         String profCode;
-                        if(contentToSubMissionMap.get(contversion.Id).MUSW__License2__c!= null && contentToSubMissionMap.get(contversion.Id).MUSW__License2__r.Profession_Code__c !=null){
-                            profCode = contentToSubMissionMap.get(contversion.Id).MUSW__License2__r.Profession_Code__c;
+                        if(contentToSubMissionMap.get(contversion.ContentDocumentId).MUSW__License2__c!= null && contentToSubMissionMap.get(contversion.ContentDocumentId).MUSW__License2__r.Profession_Code__c !=null){
+                            profCode = contentToSubMissionMap.get(contversion.ContentDocumentId).MUSW__License2__r.Profession_Code__c;
                         }
                         System.debug('profCode'+profCode);
                         String docType;
-                        if(contentToSubMissionMap.get(contversion.Id).SAN_Image_Type__c!= null){
-                            docType = contentToSubMissionMap.get(contversion.Id).SAN_Image_Type__c;
+                        if(contentToSubMissionMap.get(contversion.ContentDocumentId).SAN_Image_Type__c!= null){
+                            docType = contentToSubMissionMap.get(contversion.ContentDocumentId).SAN_Image_Type__c;
                         }
                         System.debug('docType'+docType);
                         UploadData uploadobj = new UploadData();
                         uploadobj.professionCode = profCode;
-                        uploadobj.polarisId  = contentToSubMissionMap.get(contversion.Id).id;
+                        uploadobj.polarisId  = contentToSubMissionMap.get(contversion.ContentDocumentId).id;
                         uploadobj.imageName = contversion.Title + '.' + contversion.FileExtension;
                         uploadobj.imageType = docType;
                         uploadobj.imageData = contversion.VersionData;
@@ -163,7 +179,7 @@ public class Dol_UploadDocumenttoSAN {
                 else status ='uploadfailed';
         }
             system.debug('status'+status);
-        return status;
+       // return status;
         
     }
             
@@ -183,5 +199,6 @@ public class Dol_UploadDocumenttoSAN {
         public String attachmentId ;
 	
 	}
+       
 
 }
