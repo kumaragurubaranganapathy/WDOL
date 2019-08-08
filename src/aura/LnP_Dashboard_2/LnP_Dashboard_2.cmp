@@ -142,9 +142,9 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
     </aura:if>
     <div aura:id="body" class="dashboard-wrapper">
-        <h1 class="screen-title">
+        <div class="screen-title">
             Individual Account
-        </h1>
+        </div>
         <!-- <nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
             <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
                 <li class="slds-breadcrumb__item slds-var-p-right_xx-small">
@@ -372,6 +372,16 @@
                                                     <tbody>
                                                         <aura:iteration items="{!v.peerLicensePaginationData}" var="tableData" indexVar="ind">
                                                             <tr class="slds-hint-parent">
+                                                                <td data-label="License number" class="cell-style">
+                                                                    <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Name:tableData.Parent_License__r.Name}">
+                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                            {!tableData.Child_License__r.Name}
+                                                                            <aura:set attribute="else">
+                                                                                {!tableData.Parent_License__r.Name}
+                                                                            </aura:set>
+                                                                        </aura:if>
+                                                                    </div>
+                                                                </td>
                                                                 <td data-label="Name" class="cell-style">
                                                                     <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Applicant_Full_Name__c:tableData.Parent_License__r.Applicant_Full_Name__c}">
                                                                         <aura:if isTrue="{!v.IsCurrentLicenseParent}">
@@ -381,33 +391,43 @@
                                                                             </aura:set>
                                                                         </aura:if>
                                                                     </div>
-                                                                </td>
-                                                                <td data-label="Profession" class="cell-style">
-                                                                    <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Application_Type__c:tableData.Parent_License__r.Application_Type__c}">
-                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                            {!tableData.Child_License__r.Application_Type__c}
-                                                                            <aura:set attribute="else">
-                                                                                {!tableData.Parent_License__r.Application_Type__c}
-                                                                            </aura:set>
-                                                                        </aura:if>
-                                                                    </div>
-                                                                </td>
+                                                                </td>                                            
                                                                 <td data-label="License type" class="cell-style">
                                                                     <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Credential_Type__c:tableData.Parent_License__r.Credential_Type__c}">
                                                                         <aura:if isTrue="{!v.IsCurrentLicenseParent}">
                                                                             {!tableData.Child_License__r.Credential_Type__c}
                                                                             <aura:set attribute="else">
-                                                                                {!tableData.Parent_License__r.Credential_Type__c}
+                                                                                {!tableData.Parent_License__r.Credential_Type__c} 
                                                                             </aura:set>
                                                                         </aura:if>
                                                                     </div>
                                                                 </td>
-                                                                <td data-label="Email" class="cell-style">
-                                                                    <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.Email__c:tableData.Parent_License__r.Application_Type__c}">
+                                                                <td data-label="License Status" class="cell-style">
+                                                                    <div class="slds-truncate" title="{!v.IsCurrentLicenseParent?tableData.Child_License__r.MUSW__Status__c:tableData.Parent_License__r.MUSW__Status__c}">
                                                                         <aura:if isTrue="{!v.IsCurrentLicenseParent}">
-                                                                            {!tableData.Child_License__r.Email__c}
+                                                                            {!tableData.Child_License__r.MUSW__Status__c} 
                                                                             <aura:set attribute="else">
-                                                                                {!tableData.Parent_License__r.Email__c}
+                                                                                {!tableData.Parent_License__r.MUSW__Status__c} 
+                                                                            </aura:set>
+                                                                        </aura:if>
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Association Type" class="cell-style">
+                                                                    <div class="slds-truncate" title="{!tableData.Association_Type__c}">
+                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                            {!tableData.Association_Type__c} 
+                                                                            <aura:set attribute="else">
+                                                                                {!tableData.Association_Type__c} 
+                                                                            </aura:set>
+                                                                        </aura:if>
+                                                                    </div>
+                                                                </td> 
+                                                                <td data-label="Invitation status" class="cell-style">
+                                                                    <div class="slds-truncate" title="{!tableData.Status__c}">
+                                                                        <aura:if isTrue="{!v.IsCurrentLicenseParent}">
+                                                                            {!tableData.Status__c} 
+                                                                            <aura:set attribute="else">
+                                                                                {!tableData.Status__c} 
                                                                             </aura:set>
                                                                         </aura:if>
                                                                     </div>
