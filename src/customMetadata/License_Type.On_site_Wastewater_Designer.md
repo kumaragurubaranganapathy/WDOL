@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Application_Type__c</field>
-        <value xsi:type="xsd:string">Professional Engineer and Land Surveyor</value>
+        <value xsi:type="xsd:string">On-site Wastewater</value>
     </values>
     <values>
         <field>Credential_Type__c</field>
