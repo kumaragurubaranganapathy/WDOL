@@ -25,6 +25,7 @@
                     toastEvent.fire(); 
                 component.set("v.isOneLocation",true);
                 component.set("v.isAddLocation",false);
+                component.set("v.remove",false);
                 if(component.get("v.isAMR")){
                     helper.setRequestLocationTable(component,event,helper);
                 }else{

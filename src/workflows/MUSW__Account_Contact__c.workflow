@@ -130,6 +130,15 @@
             <operation>equals</operation>
             <value>Active</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__Account_Contact__c.Role__c</field>
+            <operation>equals</operation>
+            <value>Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__Account_Contact__c.invitation_send_date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

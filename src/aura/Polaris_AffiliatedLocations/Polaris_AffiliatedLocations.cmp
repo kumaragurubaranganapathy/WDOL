@@ -72,12 +72,13 @@
                         <tbody>
                             <aura:iteration items="{!v.affLocationTableList}" var="tableData" indexVar="ind">
                                 <tr class="slds-hint-parent">
+                                    <aura:if isTrue="{!v.removeAction}">
                                     <td  class="cell-style"> 
-                                        <aura:if isTrue="{!v.removeAction}">
                                             <div class="slds-truncate" Id="{!tableData.Id}"  ></div>
                                             <input class="slds" type="checkbox" value="{!v.checkbox}" data-id="{!tableData.Id}" onchange="{!c.onSelect}" />
-                                        </aura:if>
+                                       
                                     </td>
+                                      </aura:if>
                                     <td data-label="Designated_Engineer_License__c" class="cell-style"> 
                                         <aura:if isTrue="{!tableData.Designated_Engineer_License__c}">
                                             <div class="slds-truncate" title="{!tableData.Designated_Engineer_License__c}">{!tableData.Designated_Engineer_License__c}</div>
