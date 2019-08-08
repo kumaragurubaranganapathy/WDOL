@@ -1,5 +1,11 @@
 ({	
     doInit : function(component,event,helper){
+        console.log("requestId"+ component.get("v.requestId"));
+        console.log("licenseId" + component.get("v.licenseId") );
+      	console.log("isAMR" + component.get("v.isAMR"));
+        if(component.get("v.isAMR") != true){
+            component.set("v.addAction", true);
+        }
        	component.set("v.defaultCountry" , 'United States');
         component.set("v.defaultState" , 'WA');
         component.set("v.defaultcanadianProvince" , 'British Columbia');
@@ -14,10 +20,60 @@
 	addLocation : function(component,event,helper){
         helper.addLocation(component,event);
     },
+    
     cancelLoc : function(component,event,helper){
         helper.cancelLoc(component,event);
     },
     
+    onChange : function(component,event,helper){
+    	var actionSelected = component.find('select').get('v.value');
+        if(actionSelected == "Add Affiliation"){
+             component.set("v.addAction", true);
+             component.set("v.removeAction", false);
+        }else{
+            component.set("v.removeAction", true);
+            component.set("v.addAction", false);
+        }
+    },
+    
+    onSelect : function(component,event,helper){
+        console.log("inside");
+    	var selected = event.target.getAttribute("data-id");
+        console.log('selected::'+ selected);
+        
+        var value = component.get("v.checkbox");
+        var actionType = (value)?false:true;
+        console.log('value::'+value);
+        component.set("v.checkbox",actionType);
+        var locList = component.get("v.locationList");
+        if(actionType){
+        
+            locList.push(selected);
+            console.log('locList::'+locList);
+        }else{
+            locList.remove(selected);
+            var filtered = locList.filter(function(value, index, arr){
+            
+                return value != selected ;
+            
+            });
+           locList =  filtered;
+        }
+        console.log('locList::'+locList);
+        component.set("v.locationList",locList);
+        if(component.get("v.locationList").length != 0){
+            console.log('inside event ');
+            debugger;
+            var compEvent = component.getEvent("LnP_Location");
+			compEvent.setParams({"callRemoveAffiliate" : true });
+			compEvent.fire();
+        }
+        
+    },
+    RequestRemove : function(component,event,helper){
+        console.log("inside RequestRemove::");
+        helper.RemoveAffiliateRequest(component,event,helper);
+    },
     onRemoveClick : function(component,event,helper){
         var dataId = event.currentTarget.getAttribute('data-id');
         component.set("v.selectedParcelId",dataId);
@@ -26,7 +82,11 @@
     },
     
     saveLocation : function(component,event,helper){
-    component.set("v.parcel.Application_BG__c",component.get("v.applicationId") );
+    if(component.get('v.isAMR') ==  true){
+            component.set("v.parcel.Request__c",component.get("v.requestId"));
+    }else{
+         component.set("v.parcel.Application_BG__c",component.get("v.applicationId") );
+    }    
     helper.saveLocation(component,event,helper);
     },
       onCountryChange: function(component, event, helper){
