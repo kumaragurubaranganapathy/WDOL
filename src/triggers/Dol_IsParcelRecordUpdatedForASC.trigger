@@ -11,12 +11,16 @@ trigger Dol_IsParcelRecordUpdatedForASC on MUSW__Parcel__c (before update) {
              parcelIds.add(par.id);
          }
     }
+    System.debug('parcelIds'+parcelIds);
     if(Dol_IntegrationUtil.isNotEmpty(parcelIds)){
-        parcelList = [select id,IsParcelRecordUpdatedForASC__c  from MUSW__Parcel__c  where id =:parcelIds];
+        parcelList = [select id,IsParcelRecordUpdatedForASC__c,(Select id from MUSW__Parcel_License2s__r where Mailing__c =true)  from MUSW__Parcel__c  where id =:parcelIds];
     }
+
     for(MUSW__Parcel__c parcel : parcelList){
-        for(MUSW__Parcel__c par : trigger.new){
-             par.IsParcelRecordUpdatedForASC__c = true;
+        if(Dol_IntegrationUtil.isNotEmpty(parcel.MUSW__Parcel_License2s__r)){ 
+            for(MUSW__Parcel__c par : trigger.new){
+                par.IsParcelRecordUpdatedForASC__c = true;
+            }     
         }
     }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Validation Room Funds Confirmed JV</label>
+    <label>Fee Payment Pay from Overshort</label>
     <protected>false</protected>
     <values>
         <field>Batch_Time__c</field>
-        <value xsi:type="xsd:double">18.0</value>
+        <value xsi:type="xsd:double">12.0</value>
     </values>
     <values>
         <field>Doc_Number_Prefix__c</field>
-        <value xsi:type="xsd:string">240E</value>
+        <value xsi:type="xsd:string">240</value>
     </values>
     <values>
         <field>Is_Active__c</field>
@@ -16,10 +16,10 @@
     </values>
     <values>
         <field>JV_Document_Title__c</field>
-        <value xsi:type="xsd:string">CRJS</value>
+        <value xsi:type="xsd:string">Over/Short</value>
     </values>
     <values>
         <field>JV_Explanation_of_Entry__c</field>
-        <value xsi:type="xsd:string">CRJS to record validation room receipts (distribuion of) fees for Professions and Real Estate.</value>
+        <value xsi:type="xsd:string">JV from RAC code or 01P to Over / Short per tab in Global Fee Table</value>
     </values>
 </CustomMetadata>

@@ -30,12 +30,12 @@ public class Dol_UploadDocumenttoSAN_Test {
         insert contentlink; 
         
         Map<String,String> mapSubimissionToFile = new Map<String,String>();
-		mapSubimissionToFile.put(sub.id,contentVersion_1.id);
+		mapSubimissionToFile.put(sub.id,contentVersion_2.contentdocumentid);
         
         test.startTest();
          Dol_UploadDocumenttoSAN.getProfCode(sub.id);
          Dol_UploadDocumenttoSAN.backofficeUplaod(sub.id, 'docName', 'user') ;
-         Dol_UploadDocumenttoSAN.portalUpload(mapSubimissionToFile) ;
+         Dol_UploadDocumenttoSAN.portalUploadFuture(mapSubimissionToFile) ;
          test.stopTest();
     }
     
