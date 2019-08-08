@@ -900,7 +900,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
 
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.License__c = LicenseObj.Id; 
-                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c;
+                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('(<[^>]*>)+','');
                         system.debug('ans.QuestionDOL__r.RecordType.DeveloperName---'+ans.QuestionDOL__r.RecordType.DeveloperName);
                         system.debug('question body===' + ans.QuestionDOL__r.Question_Body__c);
                        
@@ -1198,7 +1198,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         List<Account>  lstacc = new List<Account>();
         for(Id applicationID : appId){
             String appliID = '\''+applicationID+'\'';
-            applicationList = Database.query('Select Id,MUSW__Account__r.Id,Parent_License__c,MUSW__Account__r.UBI_Number__c,Branch_License__c,MUSW__Account__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Website__c,MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,MUSW__Account__r.Name,MUSW__Account__r.Doing_Business_As_1__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Course_Provider__c,Stage__c, MUSW__Applicant__c, Application_Type__c,MUSW__Account__r.Business_Structure__c,Application_Method__c, Credential_Type__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r) from MUSW__Application2__c where Id = '+appliID);
+            applicationList = Database.query('Select Id,MUSW__Account__r.Id,Parent_License__c,MUSW__Account__r.UBI_Number__c,Branch_License__c,MUSW__Account__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Website__c,MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,MUSW__Account__r.Name,MUSW__Account__r.Doing_Business_As_1__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Course_Provider__c,Stage__c, MUSW__Applicant__c, MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName,Application_Type__c,MUSW__Account__r.Business_Structure__c,Application_Method__c, Credential_Type__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r) from MUSW__Application2__c where Id = '+appliID);
             for(MUSW__Application2__c application : applicationList){
                 system.debug('application::'+application);
                 MUSW__License2__c  mstLicense =  new MUSW__License2__c();
@@ -1349,6 +1349,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How will your name appear') && firstName == '' ){
                                firstName  = ans.Answer_Text__c +' ';
                             }
+                            if(ans.QuestionDOL__r.Question_Body__c.contains('First Name or initial') && firstName == '' &&  ans.Answer_Text__c  != null &&  ans.Answer_Text__c  !='' ){
+                                firstName  = ans.Answer_Text__c +' ';
+                            }
                             
                             if(ans.QuestionDOL__r.Question_Body__c.contains('Doing Business As') && doingBusinessAs == '' ){
                                doingBusinessAs  = ans.Answer_Text__c +' ';
@@ -1362,7 +1365,16 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                 LastName = ans.Answer_Text__c;
                             }
                             
-                            
+                             if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && firstName == '' ){
+                                 firstName  = application.MUSW__Applicant__r.FirstName;
+                            }
+                            if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && MiddleName == '' ){
+                                 MiddleName  = application.MUSW__Applicant__r.MiddleName;
+                            }
+                            if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && LastName == '' ){
+                                 LastName  = application.MUSW__Applicant__r.LastName;
+                            }
+							
                             if(ans.QuestionDOL__r.RecordType.DeveloperName == 'Financial_Guarantee'){
                             //system.debug('after If : ans.Question__r.RecordType.DeveloperName::'+ans.Question__r.RecordType.DeveloperName);
     
@@ -1416,7 +1428,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 System.debug('mstLicense : '+mstLicense);
                  
                 if(mstLicense.RecordTypeId == individualRT){
-                    mstLicense.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
+                    if(MiddleName!=null)
+                    {mstLicense.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;}
+                    else {mstLicense.License_Printable_Name__c = firstName+' '+ LastName;}
                     mstLicense.Print_First_Name__c = firstName;
                     mstLicense.Print_Middle_Name__c = MiddleName;
                     mstLicense.Print_Last_Name__c = LastName;

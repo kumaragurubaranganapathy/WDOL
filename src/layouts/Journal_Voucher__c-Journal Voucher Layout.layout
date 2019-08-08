@@ -17,8 +17,16 @@
                 <field>Approved__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Total__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Biennium_Year__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fiscal_Month__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -26,7 +34,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Fiscal_Month__c</field>
+                <field>Refund1__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -34,6 +42,11 @@
                 <behavior>Edit</behavior>
                 <field>Journal_Voucher_Type__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IAP_Receipt__c</field>
+            </layoutItems>
+
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -43,6 +56,10 @@
         <editHeading>true</editHeading>
         <label>Header</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Document_Title__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Agency_No__c</field>
@@ -90,6 +107,10 @@
                 <behavior>Edit</behavior>
                 <field>Approved_By__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Date_of_Deposit__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -129,7 +150,20 @@
                 <field>AFRS_PDF_Total_Amount__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TMS_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_Interface_Total_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_PDF_Total_Amount__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -176,11 +210,15 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Target_Accounting_System__c</fields>
+        <fields>AFRS_Transaction_Code__c</fields>
+        <fields>TMS_Transaction_Code__c</fields>
+        <fields>General_Ledger_Account__c</fields>
         <fields>Amount__c</fields>
-        <fields>Fund__c</fields>
-        <fields>Transaction_Code__c</fields>
         <fields>Debit_Credit__c</fields>
+        <fields>Fund__c</fields>
+        <fields>Major_Group__c</fields>
+        <fields>Major_Source__c</fields>
+        <fields>Sub_Source__c</fields>
         <relatedList>Journal_Voucher_Detail__c.JournalVoucher__c</relatedList>
     </relatedLists>
     <relatedLists>

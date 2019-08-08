@@ -139,6 +139,7 @@ public class Polaris_AMRLinkCntrl {
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
         application.Stage__c = 0;
+        application.Status__c = 'Draft';
         application.Service_Request_Type__c = ServiceRequestType;
         application.Contact__c = getContactId;
         if(licId != null && licId != ''){

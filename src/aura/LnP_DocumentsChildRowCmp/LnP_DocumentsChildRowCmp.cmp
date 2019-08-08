@@ -21,6 +21,9 @@
     <aura:attribute name="paymentSourceTotal" type="Integer" access="public" />
     <aura:attribute name="industryFormMap" type="Map" />  
     
+    <!-- change date : 7/8/2019 -->
+    <aura:attribute name="ValidationNumber" type="String" default='DEP' />
+    
     
     <!-- aura attributes-->  
     <aura:attribute name="listControllingValues" type="list" default="[]" description="to store controller field values"/>

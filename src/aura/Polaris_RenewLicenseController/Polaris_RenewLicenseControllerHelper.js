@@ -169,7 +169,7 @@
             var certArray =[]; 
             for (var key in tabsList) {
                 if (tabsList.hasOwnProperty(key)) {
-                    if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Questions'){
+                    if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Questions' || (tabsList[key].sectionName =='Endorsement' && component.get("v.licenseType")!='Notary Public')|| tabsList[key].sectionName =='Financial Guarantee' ){
                         for (var question in tabsList[key].labelFieldsMap){
                             if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].value != null ){
                                 a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value });
@@ -522,7 +522,8 @@
             var fieldsWrapper = JSON.parse(licenseWrapper[tabNumber].fieldJson);
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
-            });                
+            });   
+            console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
             var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
             var errorMessage = "Please fill valid data";
             var errorMsgsArray = [];
@@ -531,7 +532,7 @@
                     if(item.Required__c){
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
@@ -609,8 +610,9 @@
                                 return false;
                             }
                         } else {
+                            //if(fieldValuesWrapper[index].get("v.value") !=)
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                 return true;
                             } else {
                                 errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
@@ -621,7 +623,7 @@
                     } else {
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != "" && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                            if(valueVal != "" && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
@@ -725,11 +727,33 @@
                     if(item.isMandatoryQues){
                         if(item.regex != undefined && item.regex != ""){
                             if(item.regex == "Date-Validation"){
-                                return true;
+                                var valueVal = item.value;
+								var today = new Date();
+								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+								compareDate = new Date(compareDate);
+								var enteredDate = new Date(valueVal);
+								if(enteredDate < compareDate){
+									return true;
+								}else{
+									errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                    return false;
+								}
+                            } else if(item.regex == "Future-Date"){
+                                var valueVal = item.value;
+                                var today = new Date();
+                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                compareDate = new Date(compareDate);
+                                var enteredDate = new Date(valueVal);
+                                if(enteredDate > compareDate){
+                                    return true;
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                    return false;
+                                } 
                             } else {
                                 var regexExp = new RegExp(item.regex);
                                 var valueVal = item.value;
-                                if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
                                     return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -738,7 +762,7 @@
                             }
                         } else {
                             var valueVal = item.value;
-                            if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != "" ){
+                            if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                 return true;
                             } else {
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -748,16 +772,38 @@
                     } else {
                         if(item.regex != undefined && item.regex != ""){
                             var valueVal = item.value;
-                            if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != "" ){
+                            if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                 if(item.regex == "Date-Validation"){
-                                    return true;
+                                    var valueVal = item.value;
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate < compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                        return false;
+                                    }
+                                } else if(item.regex == "Future-Date"){
+                                    var valueVal = item.value;
+                                    var today = new Date();
+                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    compareDate = new Date(compareDate);
+                                    var enteredDate = new Date(valueVal);
+                                    if(enteredDate > compareDate){
+                                        return true;
+                                    }else{
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                        return false;
+                                    } 
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
                                     if(regexExp.test(valueVal)){
                                         return true;
                                     }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "");+" is required.";
                                         return false;
                                     }  
                                 }
@@ -780,12 +826,12 @@
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
-                    "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
+                    "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, "").replace(/&quot;/g, '"'),
                     "type": "error"
                 });
                 toastEvent.fire();
             }            
-        } 
+        }  
             else if(licenseWrapper[tabNumber].subheader == "Endorsement"){
                 var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
                 var validateFields = fieldsWrapper.filter(function(item){
@@ -801,32 +847,32 @@
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
                                         return true;
                                     }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
                                         return false;
                                     }  
                                 }
                             } else {
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     return true;
                                 } else {
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
                                     return false;
                                 }  
                             }
                         } else {
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     if(item.regex == "Date-Validation"){
                                         //
                                     } else {
                                         var regexExp = new RegExp(item.regex);
                                         var valueVal = item.value;
-                                        if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                        if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -852,7 +898,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, "").replace(/&quot;/g, '"'),
                         "type": "error"
                     });
                     toastEvent.fire();
@@ -869,7 +915,7 @@
                         if(item.isMandatoryQues){
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!=""){
+                                if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                     if(item.regex == "Future-Date"){
                                         var valueVal = item.value;
                                         var today = new Date();
@@ -907,7 +953,7 @@
                                 }
                             } else {
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!="" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     return true;
                                 } else {
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -917,7 +963,7 @@
                         } else {
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!="" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     if(item.regex == "Future-Date"){
                                         var valueVal = item.value;
                                         var today = new Date();
@@ -964,10 +1010,10 @@
                 var finEffectiveDate = "";
                 for(var i=0; i<fieldsWrapper.length; i++){
                     if(fieldsWrapper[i].fieldAPIName == "Expiration_Date_of_Bond__c" && fieldsWrapper[i].value != "")  {
-                        finExpirationDate = fieldsWrapper[i].value;
+                            finExpirationDate = fieldsWrapper[i].value;
                     }
                     if(fieldsWrapper[i].fieldAPIName == "Effective_Date_of_Bond__c" && fieldsWrapper[i].value != "")  {
-                        finEffectiveDate = fieldsWrapper[i].value;
+                            finEffectiveDate = fieldsWrapper[i].value;
                     }
                 } 
                 if(finExpirationDate < finEffectiveDate){
@@ -979,7 +1025,7 @@
                 }
                 
                 if(financequestionsFlagCheck && approExpirationFlag){
-                    component.set("v.nextFlag", true);
+                    component.set("v.nextFlag", true);     
                     component.set("v.approExpirationFlag", true);
                 }
                 else{
@@ -988,7 +1034,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, "").replace(/&quot;/g, '"'),
                         "type": "error"
                     });
                     toastEvent.fire();
@@ -996,27 +1042,37 @@
             }else if(licenseWrapper[tabNumber].subheader == "Qualifying Information"){
                 var qualificationValidation = licenseWrapper[tabNumber].mandatorySubsection;
                 var qualificationValid = false;
-                var counter = 0;
-                if(qualificationValidation != null){
+                var sectionName = "";
+                var errorSections =[];
+                var enteredSections = [];
+                if(qualificationValidation != "" && qualificationValidation != null){
                     if(document.getElementsByClassName('tile-wrap').length != undefined && document.getElementsByClassName('tile-wrap').length != 0){
                         var qualifications = document.getElementsByClassName('tile-wrap');
                         for(var i=0; i<qualifications.length; i++){
                             if(qualifications[i].firstElementChild != null){
                                 if(qualifications[i].firstElementChild.classList.contains('recordDetail')){
-                                    counter = counter+1;
+                                    sectionName = qualifications[i].firstElementChild.firstChild.innerHTML
+                                    enteredSections.push(sectionName);
                                 }
                             }
                         }
                         var mandatoryqualification = qualificationValidation.split(",");
-                        if(mandatoryqualification.length != undefined && mandatoryqualification.length !=0 && mandatoryqualification.length == counter){
+                        var qualificationValid = mandatoryqualification.filter(function(item){
+                            if(enteredSections.includes(item)){
+                                return true;
+                            }else{
+                                errorSections.push(item);
+                            }
+                        })
+                        if(errorSections.length==0){
                             qualificationValid = true;
                         } else {
                             qualificationValid = false;
-                            errorMessage = "Please fill the mandatory sections";
+                            errorMessage = "Please fill "+errorSections[0]+" section";
                         }
                     } else {
                         qualificationValid = false;
-                        errorMessage = "Please fill the mandatory sections";
+                        errorMessage = "Please fill "+qualificationValidation+" sections";
                     }
                 } else {
                     qualificationValid = true;
@@ -1030,15 +1086,15 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "ERROR!",
-                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, ""),
+                        "message": errorMessage.replace(/<\/?[^>]+(>|$)/g, "").replace(/&quot;/g, '"'),
                         "type": "error"
                     });
                     toastEvent.fire();
                 }     
             }
-                else {
-                    component.set("v.nextFlag", true);  
-                }
+            else {
+                component.set("v.nextFlag", true);  
+            }
     },
     
     

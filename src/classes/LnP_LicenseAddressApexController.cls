@@ -557,12 +557,62 @@ parcel.License__c = licenseId;
     
     
      @AuraEnabled
-    public static String setLocationTable(String applicationId){
-        try{  
-            List<String> columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Action'};
+    public static String setRequestLocationTable(String requestId){
+        try{
             Id LocationRT = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
             List<SObject> columnDataList;
-            columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Application_BG__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+            List<String> columnHeaderList ;
+            columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+            columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Action'};
+            
+            LnP_LicenseAddressApexController.lightningDataTableWrapper wrapperObj = new LnP_LicenseAddressApexController.lightningDataTableWrapper(columnHeaderList,columnDataList);
+            return JSON.serialize(wrapperObj,true);
+            
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    @AuraEnabled 
+    public static Boolean removeAffiliationRequest(List<Id> parcelIdList,Id RequestId){
+        
+        try{
+            Request__c req = new Request__c(id = RequestId );
+            req.Service_Request_Type__c = 'Remove Affiliations';
+            update req;
+            
+            List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
+            for( Id parcelId : parcelIdList){
+                MUSW__Parcel__c parcel = new MUSW__Parcel__c(id= parcelId );
+                parcel.Request__c = RequestId ;
+                parcelList.add(parcel);
+            }
+            if(!parcelList.isEmpty()){
+                update parcelList;
+            }
+              return true;  
+          }catch(Exception e){
+                System.debug('e.getMessage()');
+                return false;
+       }
+    }    
+    
+    @AuraEnabled
+    public static String setLocationTable(String applicationId, Boolean isAMR){
+        try{
+            System.debug('applicationId::'+ applicationId);
+            System.debug('isAMR::'+isAMR);  
+            
+            Id LocationRT = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
+            List<SObject> columnDataList;
+            List<String> columnHeaderList ;
+            if(isAMR){
+                columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+                columnHeaderList = new List<String>{'select','Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code'};
+            }else{
+                columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Action'};
+                columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Application_BG__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+            }
             LnP_LicenseAddressApexController.lightningDataTableWrapper wrapperObj = new LnP_LicenseAddressApexController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             return JSON.serialize(wrapperObj,true);
             

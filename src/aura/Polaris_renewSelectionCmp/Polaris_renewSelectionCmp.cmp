@@ -54,15 +54,15 @@
             
             <div id="eliTypeGridDiv" class="slds-grid card-wrapper slds-wrap slds-m-top_xx-large">
                 <div id="eliTextDiv"
-                     class="slds-m-right_xx-large slds-large-size_1-of-3 slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                     class="slds-m-right_xx-large slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1">
                     <h2 class="header-style">Eligibility</h2>
                     <p>By answering the following questions, eligibility for the license application will be determined.
                         Confirmation will be noted if eligibility is met.</p>
                 </div>
-                <div id="eliQuesDiv" class="slds-large-size_1-of-3 slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <div id="eliQuesDiv" class="slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1">
                     <aura:iteration items="{!v.eliTypeQues}" var="question" indexVar="questionIndex">
                         <div
-                             class="{!(v.eliQuesNo == (questionIndex + 1) || lessthan((questionIndex + 1),v.eliQuesNo))?'questions':''+' slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1'}">
+                             class="{!(v.eliQuesNo == (questionIndex + 1) || lessthan((questionIndex + 1),v.eliQuesNo))?'questions':''+'questions slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1'}">
                             <ui:outputRichText class="slds-text-longform slds-form-element__label"  value="{!question.quesBody}"/>
                             <lightning:radioGroup class="radio" name="{!questionIndex + '-' + question.quesId}"
                                                    aura:id="eliRadios" options="{!v.radiooptions }"

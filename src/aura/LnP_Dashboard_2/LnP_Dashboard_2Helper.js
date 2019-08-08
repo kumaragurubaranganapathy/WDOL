@@ -992,7 +992,45 @@
             
         });
         $A.enqueueAction(action);
-    }, 
+    },
+    
+    setAbandonedStatus : function(component,event, helper, record_Id){
+        
+        var action = component.get("c.setAbandonStatus");
+        
+        action.setParams({"record_Id_String":record_Id});
+        
+        action.setCallback(this,function(response){
+            
+            var state = response.getState();
+            
+            if (state === "SUCCESS") {
+            
+            var res = response.getReturnValue();
+            
+            if(res == true){
+                
+                this.setDraftNewLicenseApplicationsTableData(component,event, helper);
+                
+                this.setDraftRenewalApplicationsTableData(component,event, helper);
+                
+                 this.showToast(component, event, helper,"you have successfully deleted","success"); 
+                 
+            }if(res == false){
+                
+                this.showToast(component, event, helper,"Seems like there is an error.\n please contact your system administrator","error");
+            }
+                
+            }else if (state === "ERROR") {
+                
+                var errors = response.getError();
+                
+                console.error(JSON.stringify(errors));
+            }    
+        });
+        $A.enqueueAction(action);    
+        
+    },
     
     getHelptextHelper : function(component, event, obj, license_Status, license_Sub_Status){
         var action = component.get("c.helptextFetch");

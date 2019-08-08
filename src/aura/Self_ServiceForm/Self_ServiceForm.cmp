@@ -14,6 +14,9 @@
     <aura:attribute name="contactName" type="String" />
     <aura:attribute name="AMRName" type="String" />
     <aura:attribute name="fieldsValidated" type="Boolean" default="true" />
+    <aura:attribute name="outputcode" type="String" default=""/>
+
+    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <!-- Form start -->
     <div class="self-service-wrapper">
@@ -30,13 +33,13 @@
                         <h2 class="contact-name">{!v.contactName}</h2>
                         <aura:iteration items="{!v.fieldApiNames}" var="field">
                             <div class="input-field">
-                                <lightning:inputField aura:id="input-fields" fieldName="{!field}" onchange="{!c.maskInput}" />
+                                <lightning:inputField aura:id="input-fields" fieldName="{!field}" onchange="{!c.maskInput}" class="amrfield" />
                             </div>
                         </aura:iteration>
                     </div>
                     <div class="service-btn-container">
-                        <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}" name="save" label="Save" onclick="{!c.validateFields}" />
+                        <lightning:button variant="neutral" type="cancel" name="cancel"  label="Cancel" class="cancel-button" onclick="{!c.cancel}" />
+                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}"  name="save" label="Save" onclick="{!c.validateFields}" class="add-button" />
                     </div>
                 </div>
             </lightning:recordEditForm>
@@ -56,7 +59,7 @@
                 <div class="slds-grid slds-wrap slds-p-horizontal_xx-large slds-p-vertical_large service-form-container">
                     <aura:iteration items="{!v.fieldApiNames}" var="field">
                         <div class="slds-col slds-size_1-of-2">
-                            <lightning:inputField fieldName="{!field}"/>
+                            <lightning:inputField fieldName="{!field}" value="{!v.outputcode}"/>
                         </div>
                     </aura:iteration>
                     <div class="slds-align_absolute-center slds-p-around_medium service-btn-container">
@@ -76,9 +79,9 @@
             <div class="slds-form-element slds-form-element_horizontal">
                 <lightning:input type="text" label="Website" value="{!v.existWebsite}"/>
             </div>
-            <div class="slds-align_absolute-center slds-p-around_medium ">
-                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.saveWebsite}"/>
+            <div class="slds-align_absolute-center slds-p-around_medium btnalign ">
+                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" class="cancel-button" onclick="{!c.cancel}"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.saveWebsite}" class="add-button"/>
             </div>
         </aura:if>
         <aura:if isTrue="{!v.showPrintForm}">

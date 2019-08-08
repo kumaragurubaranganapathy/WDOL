@@ -310,12 +310,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_Bg2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This a duplicate lookup created explicitly to get duplicate Related lists.</description>
+        <externalId>false</externalId>
+        <label>License Bg2</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Qualifying Experience</relationshipLabel>
+        <relationshipName>LnP_BackgroundSections_2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>License_Bg__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>License Bg</label>
         <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>Employment History</relationshipLabel>
+        <relationshipLabel>Qualifying Education</relationshipLabel>
         <relationshipName>LnP_BackgroundSections</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -1978,10 +1991,6 @@
             </values>
             <values>
                 <fullName>Lincoln</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4576,10 +4585,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
                 <default>false</default>
             </values>
@@ -7143,10 +7148,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
                 <default>false</default>
             </values>
@@ -9707,10 +9708,6 @@
             </values>
             <values>
                 <fullName>Lincoln</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
                 <default>false</default>
             </values>
             <values>

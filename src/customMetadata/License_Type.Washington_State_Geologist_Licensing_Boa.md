@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Application_Type__c</field>
-        <value xsi:type="xsd:string">Geologist</value>
+        <value xsi:type="xsd:string">Geologists</value>
     </values>
     <values>
         <field>Credential_Type__c</field>

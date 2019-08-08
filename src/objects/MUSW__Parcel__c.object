@@ -1728,6 +1728,19 @@ CASE( MUSW__AlertCode__c,
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	 <fields>
+        <fullName>Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Affiliated Location</relationshipLabel>
+        <relationshipName>Affiliated_Locations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Parcel</label>
     <listViews>
         <fullName>MUSW__All</fullName>

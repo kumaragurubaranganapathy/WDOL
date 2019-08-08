@@ -282,11 +282,6 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Manual JV</fullName>
-                    <default>false</default>
-                    <label>Manual JV</label>
-                </value>
-                <value>
                     <fullName>Manual CreditJournal - User Created</fullName>
                     <default>false</default>
                     <label>Manual CreditJournal - User Created</label>
@@ -324,7 +319,11 @@
                 <value>
                     <fullName>Manual IAP -user created to ensure document # matches OFM/AFRS</fullName>
                     <default>false</default>
-                    <label>Manual IAP -user created to ensure document # matches OFM/AFRS</label>
+                </value>
+                <value>
+                    <fullName>Automated JV</fullName>
+                    <default>false</default>
+		    <label>Automated JV</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -458,7 +457,7 @@
         <fullName>Refund1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Refund1</label>
+        <label>Refund</label>
         <referenceTo>BGBK__Refund2__c</referenceTo>
         <relationshipLabel>Journal Vouchers</relationshipLabel>
         <relationshipName>Journal_Vouchers</relationshipName>
@@ -510,20 +509,7 @@
         <type>Summary</type>
     </fields>
     <fields>
-    
-        <fullName>Refund__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Refund</label>
-        <referenceTo>BGBK__Refund__c</referenceTo>
-        <relationshipLabel>Journal Vouchers</relationshipLabel>
-        <relationshipName>Journal_Vouchers</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
+
         <fullName>TMS_Status__c</fullName>
         <defaultValue>&quot;Not Processed&quot;</defaultValue>
         <externalId>false</externalId>
@@ -619,39 +605,7 @@
         <picklistValues>
             <picklist>Document_Type__c</picklist>
             <values>
-                <fullName>Manual CRJSfor Daily -Lockbox  240Q</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual CreditJournal - User Created</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual IAP -user created to ensure document %23 matches OFM%2FAFRS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual JV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual JV -Remittance JV from a validation number</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual JV -User Created - Correction JV or one system to another JV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ManualTransfer - System Generated to other agencies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ManualTransfer - User Created</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RemittanceTransfer in POLARIS - User Created</fullName>
+                <fullName>Automated JV</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -736,10 +690,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manual JV</fullName>
-                <default>false</default>
-            </values>
-            <values>
+
                 <fullName>Manual JV -Remittance JV from a validation number</fullName>
                 <default>false</default>
             </values>

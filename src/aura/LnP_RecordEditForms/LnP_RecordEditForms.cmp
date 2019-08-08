@@ -87,7 +87,7 @@
             <!--added by sanjana--> 
             <aura:iteration items="{!v.dataRows}" var="item" indexVar="itemRow">
                 <div class="{!v.isAMRFlow?'recordDetail slds-large-size_12-of-12':'recordDetail slds-large-size_12-of-12'}">
-                    
+                    <div class="section-name slds-hide">{!v.sectionName}</div>
                     <lightning:recordEditForm aura:id="editFormDetails" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}" recordId="{!item.id}" onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleEditSubmit}">
                         <div class="">
                             <div class="form-wrapper slds-wrap row">                                

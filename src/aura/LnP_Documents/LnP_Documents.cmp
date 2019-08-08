@@ -81,7 +81,8 @@
                     <aura:iteration items="{!v.depositList}" var="item" indexVar="index">
                         <c:LnP_DocumentsChildRowCmp aura:id="childComponent" depositRec="{#item}" rowIndex="{!index}" industryMap="{!v.industryMap}" 
                                                     formnum="{!v.formnum}" defaultProgramType="{#v.defaultProgramType}" changedDefaultProgramType="{!v.changedDefaultProgramType}" amountDifference="{!v.amountDifference}"
-                                                    paymentSourceTotal = "{#v.paymentSourceTotal}" industryFormMap="{!v.industryFormMap}"/>
+                                                    paymentSourceTotal = "{#v.paymentSourceTotal}" industryFormMap="{!v.industryFormMap}"
+                                                    ValidationNumber = "{!v.customerEnvelopeRec.Validation_number__c}"/>
                     </aura:iteration>
                 </tbody>
             </table>
