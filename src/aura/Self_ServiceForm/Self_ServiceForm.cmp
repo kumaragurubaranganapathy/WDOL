@@ -48,7 +48,7 @@
         </aura:if>
         <!-- Form end -->
         <aura:if isTrue="{!v.address}">
-            <c:LnP_LicenseAddress changeOnlyMailingAdd="false" applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
+            <c:LnP_LicenseAddress applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
             <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" onclick="{!c.cancel}"/>
         </aura:if>
          <aura:if isTrue="{!v.iscontactAddress}">
