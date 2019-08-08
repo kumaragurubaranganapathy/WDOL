@@ -33,6 +33,7 @@
         var currentAmount = component.find("amount");
         var _depositRec= component.get("v.depositRec");
         var Today_date = new Date();
+        _depositRec['Name'] = component.get("v.ValidationNumber") +'_'+ Number(component.get("v.rowIndex")+1);
         _depositRec['Sequence_number__c'] = Number(component.get("v.rowIndex"))+1;
         _depositRec['Date__c'] = Today_date;
         
@@ -60,6 +61,7 @@
         var currentAmount = component.find("amount");
         var _depositRec= component.get("v.depositRec");
         var Today_date = new Date();
+         _depositRec['Name'] = component.get("v.ValidationNumber")+'_'+Number(component.get("v.rowIndex")+1);
         _depositRec['Sequence_number__c'] = Number(component.get("v.rowIndex"))+1;
         _depositRec['Date__c'] = Today_date;
         

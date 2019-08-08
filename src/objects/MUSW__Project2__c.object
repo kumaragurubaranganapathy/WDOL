@@ -56,6 +56,20 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+<<<<<<< HEAD
+=======
+    <fields>
+        <fullName>Close_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Projects that are no longer valid/closed or stop selling interests in</inlineHelpText>
+        <label>Close Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
     <fields>
         <fullName>County_Name__c</fullName>
         <externalId>false</externalId>
@@ -442,6 +456,10 @@
     </fields>
     <fields>
         <fullName>Date_Deed_Verified__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Date Deed Verified</label>
         <required>false</required>
@@ -451,6 +469,10 @@
     </fields>
     <fields>
         <fullName>Division_Name__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Division Name</label>
         <length>40</length>
@@ -462,6 +484,10 @@
     </fields>
     <fields>
         <fullName>Driving_Direction__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Driving Direction</label>
         <length>32768</length>
@@ -472,6 +498,10 @@
     </fields>
     <fields>
         <fullName>Fire_Dept_Name__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Fire Dept Name</label>
         <length>40</length>
@@ -507,6 +537,10 @@
     </fields>
     <fields>
         <fullName>Govt_Lot__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Govt Lot</label>
         <length>20</length>
@@ -517,7 +551,24 @@
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>Land_Owner_Type__c</fullName>
+=======
+        <fullName>Intervals__c</fullName>
+        <externalId>false</externalId>
+        <label>Intervals</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Land_Owner_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Land Owner Type</label>
         <length>20</length>
@@ -528,7 +579,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>Lot__c</fullName>
+=======
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Lot__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Lot</label>
         <length>15</length>
@@ -579,6 +648,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <inlineHelpText>Objective or proposal details</inlineHelpText>
         <label>Description</label>
@@ -591,6 +664,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__End_Date__c</fullName>
         <deprecated>false</deprecated>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -716,6 +793,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Muni_Code__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Muni Code</label>
         <length>10</length>
@@ -727,6 +808,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Muni_Type__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Muni Type</label>
         <length>10</length>
@@ -738,6 +823,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Municipality_Name__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Municipality Name</label>
         <length>30</length>
@@ -749,6 +838,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Municipality_Type__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Municipality Type</label>
         <length>40</length>
@@ -759,7 +852,47 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>Quarter__c</fullName>
+=======
+        <fullName>Open_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date Project was opened/allowed to start selling into project</inlineHelpText>
+        <label>Open Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Project Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quarter__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Quarter</label>
         <length>20</length>
@@ -771,6 +904,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Range__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Range</label>
         <length>10</length>
@@ -782,6 +919,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Release__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Release</label>
         <length>20</length>
@@ -793,6 +934,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Section__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Section</label>
         <length>15</length>
@@ -804,6 +949,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Site_Area_Code__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Site Area Code</label>
         <length>10</length>
@@ -817,6 +966,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>Site_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <defaultValue>&apos;System Number&apos;</defaultValue>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>true</externalId>
         <label>Site Id</label>
         <length>20</length>
@@ -828,6 +981,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Site_Phone_Number__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Site Phone Number</label>
         <required>false</required>
@@ -837,6 +994,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Subdivision__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Subdivision</label>
         <length>60</length>
@@ -848,6 +1009,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Tax_Id__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Tax Id</label>
         <length>50</length>
@@ -859,6 +1024,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Town__c</fullName>
+<<<<<<< HEAD
+=======
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <externalId>false</externalId>
         <label>Town</label>
         <length>20</length>
@@ -868,6 +1037,21 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
+<<<<<<< HEAD
+=======
+    <fields>
+        <fullName>Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
     <label>Project</label>
     <listViews>
         <fullName>MUSW__All</fullName>
@@ -875,11 +1059,20 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <columns>MUSW__Alert_Indicator__c</columns>
         <columns>OWNER.ALIAS</columns>
         <columns>MUSW__Status__c</columns>
+<<<<<<< HEAD
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
     </listViews>
     <nameField>
+=======
+        <columns>Site_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+>>>>>>> b623097d4aeb7a7a85f081cf6699ce72ce2b6bb2
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

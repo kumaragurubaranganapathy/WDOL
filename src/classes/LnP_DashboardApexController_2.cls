@@ -106,6 +106,62 @@ public without sharing class LnP_DashboardApexController_2 {
     }
     
     @AuraEnabled
+    public static boolean setAbandonStatus(String record_Id_String){
+        
+        Boolean operationsuccesssful = false;
+        
+        try{
+            
+            operationsuccesssful = false;
+            
+            Id  record_Id = record_Id_String;
+            
+            Schema.SObjectType sObjType = record_Id.getSobjectType();
+            
+            String sobjName =  sObjType.getDescribe().getName();
+            
+            SObject sObj =     sObjType.newSObject(record_Id);
+            
+            if(sobjName == 'Renewal_Application__c'){
+                
+               sObj.put('Renewal_Status__c','Abandoned');
+               
+               UPDATE sObj;
+               
+               operationsuccesssful = true;
+            }
+            if(sobjName == 'MUSW__Application2__c'){
+                
+               sObj.put('MUSW__Status__c','Abandoned');
+               
+               UPDATE sObj;
+               
+               operationsuccesssful = true;
+            }
+            if(sobjName == 'Request__c'){
+                
+               sObj.put('Status__c','Abandoned');
+               
+               UPDATE sObj;
+               
+               operationsuccesssful = true;
+            }            
+            
+        return  operationsuccesssful;
+        
+        }catch(Exception e){
+            
+            DOL_CreateErrorLog_Exception.addError(e,'LnP_DashboardApexController_2','setAbandonStatus');
+            
+            operationsuccesssful = false;
+            
+            return  operationsuccesssful;   
+        }
+        
+        
+    }
+    
+    @AuraEnabled
     public static String setCurrentLicenseTable(){
         try{  
             
@@ -614,7 +670,7 @@ public without sharing class LnP_DashboardApexController_2 {
             return JSON.serialize(helptextMap);
         }
         catch(Exception e){
-            DOL_CreateErrorLog_Exception.addError(e,'<class name>','<method name>');
+            DOL_CreateErrorLog_Exception.addError(e,'LnP_DashboardApexController_2','helptextFetch');
             return JSON.serialize(helptextMap);       
         }
     }
