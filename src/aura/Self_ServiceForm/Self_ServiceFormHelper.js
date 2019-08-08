@@ -1,9 +1,7 @@
 ({
 	doInit : function(component, event, helper) {
 		var recordId = decodeURIComponent(window.location.search.substring(1).split('par1=')[1].split('&par2=')[0]);
-        console.log('recordId==' + recordId);
-        var value = decodeURIComponent(window.location.search.substring(1).split('par1=')[1].split('&par2=')[1]);  
-        console.log('value==' + value);
+        var value = decodeURIComponent(window.location.search.substring(1).split('par1=')[1].split('&par2=')[1]);        
         if(value.toLowerCase() == "contact"){
             component.set("v.objectApiName", 'Contact');
             component.set("v.fieldApiNames", ['Email','Other_Email__c','MobilePhone','Phone']);
@@ -35,11 +33,7 @@
             component.set("v.AMRName",'Update Contact Information');
             component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
         }
-        else if(value.toLowerCase() == "mailingaddress"){
-			component.set("v.contactId",recordId);
-            component.set("v.iscontactAddress", true);
-          
-        }
+        
         else if(value.toLowerCase() == "billingcode"){
 			component.set("v.objectApiName", 'Account');
             component.set("v.fieldApiNames", ['ThirdPary_Billing_Code__c']);

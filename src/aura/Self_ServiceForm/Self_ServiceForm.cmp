@@ -12,9 +12,7 @@
     <aura:attribute name="existingBillingCode" type="String" default="" description="store existing third party Billing code"/>
     <aura:attribute name="appId" type="String" />
     <aura:attribute name="contactName" type="String" />
-    <aura:attribute name="contactId" type="Id" />
     <aura:attribute name="AMRName" type="String" />
-    <aura:attribute name="iscontactAddress" type="Boolean" default="false" />
     <aura:attribute name="fieldsValidated" type="Boolean" default="true" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <!-- Form start -->
@@ -48,10 +46,6 @@
             <c:LnP_LicenseAddress applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
             <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" onclick="{!c.cancel}"/>
         </aura:if>
-         <aura:if isTrue="{!v.iscontactAddress}">
-            <c:LnP_LicenseAddress changeAddress="true" contactId ="{!v.contactId}" aura:id="lnpStoreAddress"/>
-        </aura:if>
-        
         <aura:if isTrue="{!v.thirdpartybillingcode}">
             <h1 class="screen-title">Get Billing Code</h1>
             <lightning:recordEditForm recordId="{!v.recordIDforSSAMR}"

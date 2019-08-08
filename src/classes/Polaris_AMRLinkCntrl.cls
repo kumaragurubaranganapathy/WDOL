@@ -5,7 +5,6 @@ public class Polaris_AMRLinkCntrl {
     {       
         return [SELECT id,MasterLabel,AMR_Type__c,Order_Number__c,Board__c,Service_Request_Type__c,License_Type__c,Application_Method__c FROM AMR_Link__mdt where Board__c =:board AND License_Type__c =:licenseType AND Application_Method__c=:applicationMethod AND Display_In_Related_Tab__c=false ORDER BY Order_Number__c ASC  ];
     }
-	
 	@AuraEnabled
     public static void printUpdateLicense(String licId,String printType)
     {
@@ -48,7 +47,17 @@ public class Polaris_AMRLinkCntrl {
       }
       
     }
-    
+     @AuraEnabled
+    public static String fetchContactInfo()
+    {
+        List<User> userInfoData = new List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        
+        return [Select id,Full_Name__c FROM Contact where id=:userInfoData[0].Contact.Id].Full_Name__c;
+        
+    }
     
     @AuraEnabled
     public static String fetchWebsiteInfo(String licId)
@@ -61,12 +70,55 @@ public class Polaris_AMRLinkCntrl {
         }
         return websiteInfo;
     }
+	
+	@AuraEnabled
+    public static Account fetchAccountInfo(String licId)
+    {
+        Account acct = null;
+        list<Account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:licId];
+        system.debug('acctlist==='+acctlist);
+        if(!acctlist.isEmpty())
+        {
+            acct = acctlist[0];
+        }
+        return acct;
+    }
+	
     @AuraEnabled
     public static void updateWebsiteInfo(String licId,String websiteInfo)
-    {        
-        MUSW__License2__c lic = [SELECT id,Website__c FROM MUSW__License2__c where id=:licId ];
-        lic.Website__c =  websiteInfo;
-        update lic;
+    {   
+        system.debug('websiteInfo==='+ websiteInfo+'==licId=='+licId);
+        if(String.isNotBlank(websiteInfo) && websiteInfo == 'createCode' && String.isNotBlank(licId)){
+        String value = 'success';
+        /*List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        //system.debug('userInfoData==='+userInfoData);
+        string AccountId= userInfoData[0].Contact.AccountId;
+        //string AccountId= userInfoData[0].AccountId;*/
+        list<account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:licId];
+        system.debug('acctlist==='+acctlist);
+        if(!acctlist.isEmpty())
+        {
+            string randomcharacter= Polaris_AMRLinkCntrl.generateRandomString(6);  
+            system.debug('randomcharacter==='+randomcharacter);
+            Account  accts= new Account();
+            accts.id=acctlist[0].id;
+            //accts.id=AccountId;
+            accts.ThirdPary_Billing_Code__c=randomcharacter;
+            system.debug('accts==='+accts);
+            upsert  accts;
+            }
+        //return value;===============================
+        }else{
+            system.debug('dferfer'+ websiteInfo);
+            MUSW__License2__c lic = [SELECT id,Website__c FROM MUSW__License2__c where id=:licId ];
+            lic.Website__c =  websiteInfo;
+            update lic;
+        }
     }
     @AuraEnabled
     public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType)
@@ -103,17 +155,7 @@ public class Polaris_AMRLinkCntrl {
         return appId = application.Id;
         
     }
-     @AuraEnabled
-    public static String fetchContactInfo()
-    {
-        List<User> userInfoData = new List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        
-        return [Select id,Full_Name__c FROM Contact where id=:userInfoData[0].Contact.Id].Full_Name__c;
-        
-    }
+    
     @AuraEnabled 
     public static List<selectListWrapper> getPickListData(String mainLicense){
     List<String> str = new List<String>();
@@ -131,6 +173,45 @@ public class Polaris_AMRLinkCntrl {
       }
       return listWrapper;
     }
+	@AuraEnabled 
+    public static String createCodeValue(String test)
+    {            
+       system.debug('createcode===');
+        String value = 'success';
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        system.debug('userInfoData==='+userInfoData);
+        string AccountId= userInfoData[0].Contact.AccountId;
+        list<account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:AccountId];
+        system.debug('acctlist==='+acctlist);
+        if(!acctlist.isEmpty())
+        {
+            string randomcharacter= Polaris_AMRLinkCntrl.generateRandomString(5);  
+            Account  accts= new Account();
+            accts.id=acctlist[0].id;
+            accts.ThirdPary_Billing_Code__c=randomcharacter;
+            system.debug('accts==='+accts);
+            upsert  accts;
+            }
+        return value;
+    }
+
+    
+    public static String generateRandomString(Integer len) {
+    final String chars = '0123456789';
+    String randStr = '';
+    while (randStr.length() < len) {
+       Integer idx = Math.mod(Math.abs(Crypto.getRandomInteger()), chars.length());
+       randStr += chars.substring(idx, idx+1);
+    }
+    return randStr; 
+}
+
     
     //method to create application.
     @AuraEnabled
