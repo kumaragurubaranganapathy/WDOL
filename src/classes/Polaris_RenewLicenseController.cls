@@ -233,7 +233,7 @@ public class Polaris_RenewLicenseController {
             {
                 for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest)
                 {
-                    if(req.body!=null && req.body.Question == Ques.Id)
+                    if(req.body!=null && req.body.Question == Ques.Id && req.body.Answer != null)
                     {
                         if(req.body.Answer.contains(';'))
                         {

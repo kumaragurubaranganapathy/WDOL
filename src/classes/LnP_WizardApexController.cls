@@ -177,9 +177,10 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         return var;
     }
     @AuraEnabled
-    public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){ 
+    public static Map<String, List<String>> getPicklistOptions(string sObj, String conField, String depField){ 
         Map<String, List<String>> mapConDep = new Map<String, List<String>>();
-        mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(sObj, conField, depField);
+        MUSW__License2__c mapval = new MUSW__License2__c();
+        mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(mapval, conField, depField);
         system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
         return mapConDep;
     }
@@ -417,5 +418,29 @@ insert bgckList;
         
         return result;
     }
+    @AuraEnabled
+    public static Map<String,List<String>> fetchLicenseType(String typeOFLicense) {
+        Map<String,List<String>> lstLicenseType = new  Map<String,List<String>> ();
+         List<License_Type__mdt> lstlicenseTypess= new  List<License_Type__mdt>();
+        if(typeOFLicense == 'Individual') {
+                  lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
+                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c =:typeOFLicense];  
+        }  else {
+              lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
+                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c !='Individual'];  
+        }
+
+        for( License_Type__mdt license : lstlicenseTypess) 
+        {
+            if(lstLicenseType.containsKey(license.Application_Type__c)) {
+                lstLicenseType.get(license.Application_Type__c).add(license.Credential_Type__c);
+            } else {
+                lstLicenseType.put(license.Application_Type__c, new List<String>{license.Credential_Type__c});
+            }
+        }
+        return lstLicenseType;
+       }
+       
+        
     
 }
