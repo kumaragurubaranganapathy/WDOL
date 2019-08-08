@@ -28,10 +28,10 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">Location</value>
+        <value xsi:type="xsd:string">Location,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>
-        <value xsi:type="xsd:string">Update Location</value>
+        <value xsi:type="xsd:string">Add Affiliations</value>
     </values>
 </CustomMetadata>
