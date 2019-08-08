@@ -10,7 +10,7 @@
     <aura:attribute name="value" type="List" default="option1"/>
     <aura:attribute name="applicationId" type="Id" default="a2pr00000006ga7"/>
     <aura:handler name ="LnP_PassValues" event="c:LnP_PassValues" action="{!c.handlePassValuesEvent}"/>
-    <aura:handler name="LnP_Location" event="c:LnP_LocationEvent" action="{!c.handleLocationEvent}" />
+    <!--<aura:handler name="LnP_Location" event="c:LnP_LocationEvent" action="{!c.handleLocationEvent}" />-->
     <aura:attribute name="removeAffiliate" type="Boolean" default="false" />
     <aura:handler name="LnP_setCurrTabEvent" event="c:LnP_setCurrTabEvent" action="{!c.getCurrTab}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
