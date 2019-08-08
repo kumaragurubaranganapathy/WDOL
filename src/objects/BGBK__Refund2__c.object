@@ -77,11 +77,6 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-        <displayedFields>
-            <field>BGBK__Reason__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
         <label>Refund2 Basic</label>
     </fieldSets>
     <fields>
@@ -212,9 +207,24 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Incorrect License</fullName>
+                    <fullName>Incorrect License Type</fullName>
                     <default>false</default>
-                    <label>Incorrect License</label>
+                    <label>Incorrect License Type</label>
+                </value>
+                <value>
+                    <fullName>Ineligible for License</fullName>
+                    <default>false</default>
+                    <label>Ineligible for License</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Licenses</fullName>
+                    <default>false</default>
+                    <label>Duplicate Licenses</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
