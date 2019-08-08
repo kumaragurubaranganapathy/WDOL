@@ -490,9 +490,11 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Question_Body__c</fields>
+        <fields>QuestionDOL__c</fields>
+        <fields>Question_Section__c</fields>
+        <fields>Question2__c</fields>
         <fields>Answer_Text__c</fields>
-        <relatedList>Answer__c.License__c</relatedList>
+        <relatedList>BGCK__Answer__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>MUSW__Manage_Submissions</customButtons>
