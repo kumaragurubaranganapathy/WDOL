@@ -900,7 +900,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
 
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.License__c = LicenseObj.Id; 
-                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c;
+                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('(<[^>]*>)+','');
                         system.debug('ans.QuestionDOL__r.RecordType.DeveloperName---'+ans.QuestionDOL__r.RecordType.DeveloperName);
                         system.debug('question body===' + ans.QuestionDOL__r.Question_Body__c);
                        
@@ -1348,6 +1348,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                        //-----------Completed by Babita------------------
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How will your name appear') && firstName == '' ){
                                firstName  = ans.Answer_Text__c +' ';
+                            }
+                            if(ans.QuestionDOL__r.Question_Body__c.contains('First Name or initial') && firstName == '' &&  ans.Answer_Text__c  != null &&  ans.Answer_Text__c  !='' ){
+                                firstName  = ans.Answer_Text__c +' ';
                             }
                             
                             if(ans.QuestionDOL__r.Question_Body__c.contains('Doing Business As') && doingBusinessAs == '' ){
