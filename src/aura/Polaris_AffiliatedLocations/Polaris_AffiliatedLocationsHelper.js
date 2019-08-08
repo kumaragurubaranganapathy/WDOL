@@ -271,6 +271,7 @@
                         "type": 'Success'
                     });
                     toastEvent.fire(); 
+                component.set("v.remove",false);
                    if(component.get("v.isAMR")){
                     helper.setRequestLocationTable(component,event,helper);
                    }else{
