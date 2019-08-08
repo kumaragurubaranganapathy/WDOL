@@ -4,15 +4,15 @@
     <protected>false</protected>
     <values>
         <field>Batch_Time__c</field>
-        <value xsi:type="xsd:double">13.0</value>
-    </values>
-    <values>
-        <field>Doc_Number_Prefix__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Doc_Number_Prefix__c</field>
+        <value xsi:type="xsd:string">240Q</value>
+    </values>
+    <values>
         <field>Is_Active__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>JV_Document_Title__c</field>

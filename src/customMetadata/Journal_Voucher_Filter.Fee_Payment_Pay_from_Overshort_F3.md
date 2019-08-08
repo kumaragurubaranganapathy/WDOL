@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Lockbox Funds Confirmed JV F3</label>
+    <label>Fee Payment Pay from Overshort F3</label>
     <protected>false</protected>
     <values>
         <field>Add_To_Interface__c</field>
@@ -16,15 +16,15 @@
     </values>
     <values>
         <field>Item_Fund_GL__c</field>
-        <value xsi:type="xsd:string">3210</value>
+        <value xsi:type="xsd:string">7140</value>
     </values>
     <values>
         <field>Item_Intake_Method__c</field>
-        <value xsi:type="xsd:string">Validation Room</value>
+        <value xsi:type="xsd:string">Portal</value>
     </values>
     <values>
         <field>Item_Payment_Method__c</field>
-        <value xsi:type="xsd:string">Lockbox</value>
+        <value xsi:type="xsd:string">Any</value>
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
@@ -32,10 +32,10 @@
     </values>
     <values>
         <field>JV_name__c</field>
-        <value xsi:type="xsd:string">Lockbox Funds Confirmed JV</value>
+        <value xsi:type="xsd:string">Fee Payment Pay from Overshort F3</value>
     </values>
     <values>
         <field>Journal_Voucher_mtd__c</field>
-        <value xsi:type="xsd:string">Lockbox_Funds_Confirmed_JV</value>
+        <value xsi:type="xsd:string">Fee_Payment_Pay_From_Overshort</value>
     </values>
 </CustomMetadata>

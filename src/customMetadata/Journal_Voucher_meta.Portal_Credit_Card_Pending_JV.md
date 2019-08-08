@@ -4,11 +4,11 @@
     <protected>false</protected>
     <values>
         <field>Batch_Time__c</field>
-        <value xsi:type="xsd:double">7.0</value>
+        <value xsi:type="xsd:double">3.0</value>
     </values>
     <values>
         <field>Doc_Number_Prefix__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">240V</value>
     </values>
     <values>
         <field>Is_Active__c</field>
