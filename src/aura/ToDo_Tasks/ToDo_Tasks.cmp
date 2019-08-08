@@ -268,27 +268,6 @@ _______________________________________________________________
                                 </div> 
                                 <div class="field-style">
                                     <span class="label-style">Name: </span>
-                                    <span class="data-style">{!task.Child_Licensee_Name__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">Profession: </span>
-                                    <span class="data-style">{!task.Child_Profession__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Type: </span>
-                                    <span class="data-style">{!task.Child_License_Type__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Number: </span>
-                                    <span class="data-style">{!task.Child_License_Name__c}</span>
-                                </div>
-                            </lightning:layoutItem>                        
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title other-lic">
-                                    Invited By
-                                </div> 
-                                <div class="field-style">
-                                    <span class="label-style">Name: </span>
                                     <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
                                 </div>
                                 <div class="field-style">
@@ -304,6 +283,28 @@ _______________________________________________________________
                                     <span class="data-style">{!task.Parent_License_Name__c}</span>
                                 </div>
                             </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                <div class="license-title other-lic">
+                                    Invited By
+                                </div> 
+                                <div class="field-style">
+                                    <span class="label-style">Name: </span>
+                                    <span class="data-style">{!task.Child_Licensee_Name__c}</span>
+                                </div>
+                                <div class="field-style">
+                                    <span class="label-style">Profession: </span>
+                                    <span class="data-style">{!task.Child_Profession__c}</span>
+                                </div>
+                                <div class="field-style">
+                                    <span class="label-style">License Type: </span>
+                                    <span class="data-style">{!task.Child_License_Type__c}</span>
+                                </div>
+                                <div class="field-style">
+                                    <span class="label-style">License Number: </span>
+                                    <span class="data-style">{!task.Child_License_Name__c}</span>
+                                </div>
+                            </lightning:layoutItem>                        
+
                             <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
                                 <div class="license-title designation">
                                     Designation
