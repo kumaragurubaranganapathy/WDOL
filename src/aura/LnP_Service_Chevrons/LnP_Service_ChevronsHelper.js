@@ -36,8 +36,8 @@
                 this.hideSpinner(component, event);
                 this.getAMRMetadata(component,event,helper);
             }else{
-              //  window.location.href = "./error";
-               console.log("error" +  state);
+                //  window.location.href = "./error";
+                console.log("error" +  state);
             }
         });
         $A.enqueueAction(action);
@@ -51,8 +51,10 @@
         //var recordID =  sessionStorage.getItem("accountRecordID");
         var flowType = sessionStorage.getItem("ServiceRequestType");
         var recordId = sessionStorage.getItem("recordId");
+        var accountRecordId = sessionStorage.getItem("accountRecordId");
+        var contactRecordId = sessionStorage.getItem("contactRecordId");        
         var objectName = "";
-       /* if(applicationId!=null){
+        /* if(applicationId!=null){
             //set licenseType, etc -> coming from dashboard
         }else{
             if(licenseType==null||applicationType==null||board==null){
@@ -66,6 +68,8 @@
         component.set("v.applicationId", applicationId);
         component.set("v.flowType", flowType);
         component.set("v.recordId", recordId);
+        component.set("v.accountRecordId", accountRecordId);
+        component.set("v.contactRecordId", contactRecordId);
         sessionStorage.clear();
     },
     
@@ -75,19 +79,19 @@
         action.setParams({"board" : component.get("v.board"),
                           "ServiceRequestType" :  component.get("v.flowType"),
                           "licenseType" :  component.get("v.licenseType")})
-         action.setCallback(this, function(actionResult){
-                var state = actionResult.getState();
-                console.log("state::"+state);
-                if (state === "SUCCESS"){
-                    var result = actionResult.getReturnValue();
-                    console.log("AMR::"+JSON.stringify(result));
-                    component.set("v.amrData",result);
-                }else{
-                    console.log("Error");
-                }
-                
-            });
-            $A.enqueueAction(action);
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            console.log("state::"+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log("AMR::"+JSON.stringify(result));
+                component.set("v.amrData",result);
+            }else{
+                console.log("Error");
+            }
+            
+        });
+        $A.enqueueAction(action);
     },
     
     goToPreviousTab : function(component, event, helper) {
@@ -196,7 +200,7 @@
         // if(enteredAttestText==userName)
         this.checkboxValidation(component, event);
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true")
-        {                      
+        {          
             var action = component.get("c.callCompositeAPI");
             action.setParams({"applicationId" : component.get("v.applicationId"),
                               "description" : component.get("v.Description")});
@@ -233,20 +237,20 @@
         var questionNumber = '';
         if(event.getSource().get("v.name").includes('License Information'))
         {
-             questionNumber = event.getSource().get("v.name").split('License Information')[1];
+            questionNumber = event.getSource().get("v.name").split('License Information')[1];
         }
-       	else if(event.getSource().get("v.name").includes('Request Information'))
+        else if(event.getSource().get("v.name").includes('Request Information'))
         {
-             questionNumber = event.getSource().get("v.name").split('Request Information')[1];
+            questionNumber = event.getSource().get("v.name").split('Request Information')[1];
         }
-        else 
-        {          
-            questionNumber = event.getSource().get("v.name").split('Endorsement')[1];
-        }
+            else 
+            {          
+                questionNumber = event.getSource().get("v.name").split('Endorsement')[1];
+            }
         
         
-            var tabsList = component.get("v.licenseWrapper");
-            var currentTab = component.get("v.currentTab");
+        var tabsList = component.get("v.licenseWrapper");
+        var currentTab = component.get("v.currentTab");
         //alert('trigger : '+tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse);
         //alert('message : '+tabsList[currentTab-1].labelFieldsMap[questionNumber].message);
         if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
@@ -258,41 +262,41 @@
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
         }
-            var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
-            var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
-            var childQuestionsArray = [];
-            if(hasChildQuestion){
-                for(var index=0; index<tabsList[currentTab-1].labelFieldsMap.length ; index++){
-                    if(tabsList[currentTab-1].labelFieldsMap[index].parentQuestionId == questionNumberId){
-                        childQuestionsArray.push(index);
-                    } 
-                }
-                if(childQuestionsArray.length>0){
-                    for(var i=0; i<childQuestionsArray.length; i++){
-                        var mapIndex = childQuestionsArray[i];
-                        if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer == response){
-                            tabsList[currentTab-1].labelFieldsMap[mapIndex].renderedOnUi=true;
-                        } else {
-                            for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length ; j++){
-                                if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId == questionNumberId){
-                                    if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer == response){
-                                        tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;                       
-                                    }else{
-                                        if(tabsList[currentTab-1].labelFieldsMap[j].hasChild){
-                                            questionNumberId = tabsList[currentTab-1].labelFieldsMap[j].labelId;
-                                            tabsList[currentTab-1].labelFieldsMap[j].value = '';
-                                            tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;    
-                                        } else {
-                                            tabsList[currentTab-1].labelFieldsMap[j].value = '';
-                                            tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;
-                                        }                                             
-                                    }
+        var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
+        var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
+        var childQuestionsArray = [];
+        if(hasChildQuestion){
+            for(var index=0; index<tabsList[currentTab-1].labelFieldsMap.length ; index++){
+                if(tabsList[currentTab-1].labelFieldsMap[index].parentQuestionId == questionNumberId){
+                    childQuestionsArray.push(index);
+                } 
+            }
+            if(childQuestionsArray.length>0){
+                for(var i=0; i<childQuestionsArray.length; i++){
+                    var mapIndex = childQuestionsArray[i];
+                    if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer == response){
+                        tabsList[currentTab-1].labelFieldsMap[mapIndex].renderedOnUi=true;
+                    } else {
+                        for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length ; j++){
+                            if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId == questionNumberId){
+                                if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer == response){
+                                    tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;                       
+                                }else{
+                                    if(tabsList[currentTab-1].labelFieldsMap[j].hasChild){
+                                        questionNumberId = tabsList[currentTab-1].labelFieldsMap[j].labelId;
+                                        tabsList[currentTab-1].labelFieldsMap[j].value = '';
+                                        tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;    
+                                    } else {
+                                        tabsList[currentTab-1].labelFieldsMap[j].value = '';
+                                        tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;
+                                    }                                             
                                 }
                             }
-                        } 
-                    }
+                        }
+                    } 
                 }
             }
+        }
         component.set("v.licenseWrapper",tabsList);
     },
     
@@ -347,7 +351,7 @@
                     }else{
                         document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback" ;
                     }
-                            
+                    
                 }), 2000);
         }
     },
@@ -451,8 +455,8 @@
                 var result = actionResult.getReturnValue();
                 console.log('result::'+result);
             }else{
-              //  window.location.href = "./error";
-               console.log("error" +  state);
+                //  window.location.href = "./error";
+                console.log("error" +  state);
             }
         });
         $A.enqueueAction(action);
