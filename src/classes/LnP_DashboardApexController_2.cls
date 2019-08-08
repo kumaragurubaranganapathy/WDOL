@@ -248,7 +248,19 @@ public without sharing class LnP_DashboardApexController_2 {
     @AuraEnabled
     public static String PendingNewLicenseApplicationsTable(){
         try{  
+            
             Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
+            
+            List<String> businessLicensesTobeIgnored = new List<String>();
+            
+            List<Portal_Dashboard_Settings__mdt> business_dashboardSettings = [SELECT Dashboard_Type__c,DeveloperName,Id,Label,Language,License_Statuses__c,License_Types__c,MasterLabel FROM Portal_Dashboard_Settings__mdt where DeveloperName = 'Business_Dashboard'];
+            
+            if(business_dashboardSettings != null && business_dashboardSettings.size() > 0){
+                
+                String allLisenceTypes = business_dashboardSettings.get(0).License_Types__c;
+                
+                businessLicensesTobeIgnored = allLisenceTypes.split(',');   
+            }
             
             List<String> columnHeaderList = new List<String>{'Application#','Profession','License Type','Application Method','Status','Sub-status'};
                 /*  List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};*/
@@ -256,7 +268,9 @@ public without sharing class LnP_DashboardApexController_2 {
             statusFilterList = dashboardSettings.Pending_Applications_statuses__c.split(',');
             List<SObject> columnDataList = [Select id,Name,Application_Number__c,Application_Type__c,Credential_Type__c,Application_Method__c,MUSW__Status__c,Sub_Status__c
                                             from MUSW__License2__c
-                                            where MUSW__Status__c In: statusFilterList  AND 
+                                            where 
+                                            Credential_Type__c NOT In :businessLicensesTobeIgnored AND
+                                            MUSW__Status__c In: statusFilterList  AND 
                                             RecordType.Name = 'Individual' AND 
                                             MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId()) ORDER BY CreatedDate asc];
             
@@ -278,7 +292,10 @@ public without sharing class LnP_DashboardApexController_2 {
                     
                     List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c, Renewal_Expiration_Date__c,Renewal_Status__c,Application_Type__c,Sub_Status__c
                                                     from Renewal_Application__c
-                                                    where Renewal_Status__c In: statusFilterList AND Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId()) ORDER BY CreatedDate asc];
+                                                    where
+                                                     License__r.RecordType.Name = 'Individual' AND 
+                                                     Renewal_Status__c In: statusFilterList AND 
+                                                     Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId()) ORDER BY CreatedDate asc];
             
             LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
