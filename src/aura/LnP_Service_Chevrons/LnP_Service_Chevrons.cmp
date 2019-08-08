@@ -10,6 +10,8 @@
     <aura:attribute name="value" type="List" default="option1"/>
     <aura:attribute name="applicationId" type="Id" default="a2pr00000006ga7"/>
     <aura:handler name ="LnP_PassValues" event="c:LnP_PassValues" action="{!c.handlePassValuesEvent}"/>
+    <aura:handler name="LnP_Location" event="c:LnP_LocationEvent" action="{!c.handleLocationEvent}" />
+    <aura:attribute name="removeAffiliate" type="Boolean" default="false" />
     <aura:handler name="LnP_setCurrTabEvent" event="c:LnP_setCurrTabEvent" action="{!c.getCurrTab}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name ="recordId" type="String"/>
@@ -190,7 +192,7 @@
                                     <aura:set attribute="else">
                                         <div class="{!((varSection+1)==v.currentTab)?'section-wrapper':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <div class="{!(question.questionSection!='null')?'section headings':'slds-hide'}">{!question.questionSection}</div>
+                                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
                                                 <div class="{!(question.questionSection!='null')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
@@ -291,9 +293,9 @@
                                 </aura:if>
                             </aura:set>
                         </aura:if>
-                        <aura:if isTrue="{!and(section.sectionName=='Locations',v.currentTab==section.tabIndex)}">
+                        <aura:if isTrue="{!and(section.sectionName=='Location',v.currentTab==section.tabIndex)}">
                             <div class="aff-loc">
-                                <c:Polaris_AffiliatedLocations applicationId = "{!v.applicationId}" />
+                                <c:Polaris_AffiliatedLocations aura:id="affiliated" isAMR ="true" requestId = "{!v.applicationId}" licenseId="{!v.recordId}"/>
                             </div>
                         </aura:if>
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">
@@ -319,8 +321,8 @@
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section">
             <lightning:button variant="brand" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
-            <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+            <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->

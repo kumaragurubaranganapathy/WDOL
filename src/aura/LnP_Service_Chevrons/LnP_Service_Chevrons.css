@@ -4,6 +4,18 @@
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
+.THIS .devide-list .field-item{
+    width:100%;
+}
+.THIS .field-item .uiOutputRichText{
+    font-size:t(fieldlabelsize);
+    color:t(sentenceclr);
+    
+}
+.THIS .field-item .revAndSubCompletionFont .uiOutputRichText{
+    font-size:t(fieldlabelsize);
+    color:t(fieldclr);
+}
 .THIS label{
     font-size: 16px;
 }
@@ -16,11 +28,11 @@
 .THIS .DeclrtnWidth.slds-form-element__control{
     width:auto;
 }
-.THIS .section{
-    font-size: 18px;
-    color:t(LnGFormTitleColor);    
-    padding-bottom:0.5rem;    
-    font-weight:600;    
+.THIS .sectionwidth{
+    width: 100%;
+    height: 30px;
+    border-bottom: .5px solid #d6d7d9;
+    margin-bottom: 1rem;   
 }
 .THIS .sectiondetail{
     margin: 0 0 1.5rem;    
@@ -79,7 +91,7 @@
     padding-left: 30px;
 }
 .THIS .attestation{
-    margin-bottom:1rem;
+    padding-bottom:25px;
 }
 .THIS .pull-right{
     margin-left: auto;
@@ -122,11 +134,12 @@
 }
 .THIS .uiInput--default.uiInput--input{
     border:none;
-    font-size:0.875rem;
+    font-size:t(fieldlabelsize);
     color:t(LnGFormTitleColor);
     background-color: t(LnGWhite);    
     cursor: not-allowed; 
     padding-left: 0;
+    font-weight:t(txtfontweight);
 }
 .THIS .reviewHeading{
     font-weight: 600;   
@@ -214,12 +227,13 @@
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
+    border-color:t(LnGGrayText);
 }
 .THIS .personal-info .field-item > .slds-form-element__label:before {
     position: absolute;
     content: "*";
     color: red;
-    top: -5px;
+    top: 0;
     left: -5px;
 }
 .THIS .personal-info .field-item > .slds-form-element__label {
