@@ -695,7 +695,11 @@ public with sharing class Add_BusinessController {
             }  
             
             Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
+<<<<<<< HEAD
             List<String> columnHeaderList = new List<String>{'Course','Course Name','Course Type','Delivery Method','Clock Hours', 'Status'};
+=======
+            List<String> columnHeaderList = new List<String>{'Course #','Course Name','Course Type','Delivery Method','Clock Hours', 'Status'};
+>>>>>>> 58391bc10e1b7a59fb0997aa6a1be8274772a63d
                 //List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 
                 List<SObject> columnDataList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
