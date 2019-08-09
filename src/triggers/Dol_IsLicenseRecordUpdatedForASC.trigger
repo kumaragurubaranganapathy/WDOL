@@ -1,11 +1,5 @@
 trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, after update) {
-    /*Checking whehter triggers have been disabled for the user or not*/
-    Global_Settings__c globalSetting = Global_Settings__c.getInstance(UserInfo.getUserId());
-    if(globalSetting.Disable_Triggers__c == true) {
-        /*If the triggers have been disabled, then do not call the trigger handler*/
-        return;
-    }
-	List<Id> licenseIds  = new List<Id>();
+    List<Id> licenseIds  = new List<Id>();
     List<MUSW__License2__c> licenseList = new List<MUSW__License2__c>();
     List<MUSW__License2__c> licenseListtoUpdt = new List<MUSW__License2__c>();
     

@@ -1,11 +1,5 @@
 trigger Dol_IsContactRecordUpdatedForASC on Contact (before update) {
-     /*Checking whether triggers have been disabled for the user or not*/
-    Global_Settings__c gs = Global_Settings__c.getInstance(UserInfo.getUserId());
-    if(gs.Disable_Triggers__c == true){
-        // If the triggers have been disabled, then do not call the trigger handler
-        return;
-    }
-	List<Id> contactIds  = new List<Id>();
+     List<Id> contactIds  = new List<Id>();
      List<Contact> ContactList = new List<Contact>();
    
      for(Contact con : trigger.new){

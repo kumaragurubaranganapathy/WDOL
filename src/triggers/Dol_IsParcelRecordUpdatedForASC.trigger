@@ -1,11 +1,5 @@
 trigger Dol_IsParcelRecordUpdatedForASC on MUSW__Parcel__c (before update) {
-     /*Checking whehter triggers have been disabled for the user or not*/
-    Global_Settings__c globalSetting = Global_Settings__c.getInstance(UserInfo.getUserId());
-    if(globalSetting.Disable_Triggers__c == true) {
-        /*If the triggers have been disabled, then do not call the trigger handler*/
-        return;
-    }
-	List<Id> parcelIds  = new List<Id>();
+     List<Id> parcelIds  = new List<Id>();
      List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
    
      for(MUSW__Parcel__c par : trigger.new){
