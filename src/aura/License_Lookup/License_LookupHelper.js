@@ -210,15 +210,16 @@
                         } 
                         component.set('v.columns', [
                             //{label: 'Type', fieldName: 'Type', type: 'Name', sortable : true},
-                            {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
+                            {label: 'Name', fieldName: 'Name', type: 'button', sortable : true, typeAttributes: 
+                             { label: {fieldName: 'Name'}, name: 'view_details', title: {fieldName: 'Name'}}},
                             {label: 'License', fieldName: 'License_Number', type: 'Number', sortable : true},
                             {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
                             {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                             {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                             {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                             {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
-                            {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
-                             { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
+                            //{label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
+                             //{ label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                         ]);
                         component.set("v.data", rows);
                         component.set("v.applicationFilt",rows);
@@ -572,15 +573,16 @@
                                 }
                             } 
                             component.set('v.columns', [
-                                {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
+                                {label: 'Name', fieldName: 'Name', type: 'button', sortable : true, typeAttributes: 
+                                 { label: {fieldName: 'Name'} , name: 'view_details', title: {fieldName: 'Name'}}},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                                 {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
-                                {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
-                                 { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
+                                //{label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
+                                 //{ label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
                             component.set("v.data", rows);
                             component.set("v.applicationFilt",rows);
@@ -768,7 +770,8 @@
                                 }
                             }
                             component.set('v.columns', [
-                                {label: 'Business Name', fieldName: 'Business_Name', type: 'Text', sortable : true},
+                                {label: 'Business Name', fieldName: 'Business_Name', type: 'Text', sortable : true, typeAttributes: 
+                                 { label: {fieldName: 'Business_Name'}, name: 'view_details', title: {fieldName: 'Business_Name'}}},
                                 {label: 'Doing Business As', fieldName: 'Doing_Business_As', type: 'Text', sortable : true},
                                 {label: 'UBI Number', fieldName: 'UBI_Number', type: 'Number', sortable : true},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
@@ -777,8 +780,8 @@
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                                 {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
-                                {label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
-                                 { label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
+                                //{label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
+                                 //{ label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
                             ]);
                             component.set("v.data", rows);
                             component.set("v.applicationFilt",rows);
