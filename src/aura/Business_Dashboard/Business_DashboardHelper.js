@@ -54,6 +54,9 @@
                 component.set("v.accEmail",accList[i].Email__c);
                 component.set("v.accPhone",accList[i].Business_Phone__c);
                 component.set("v.accUBI",accList[i].UBI_Number__c);
+                if(accList[i].Course_Provider__c  != null && accList[i].Course_Provider__c== true){
+                     component.set("v.courseProvider",accList[i].Course_Provider__c);
+                }
             }           
         }
         
@@ -100,21 +103,30 @@
     },
     navigateToScreenOne : function (component,event,helper) {
         var accDetail = component.get("v.accountDetail");
-        if(accDetail){
+        component.set("v.screenOne", true);
+        component.set("v.screenTwo", false);
+        component.set("v.screenThree", false);
+        component.set("v.isDisplayTabs", true);
+        component.set("v.courseDetail",false);
+        
+        /*if(!accDetail){
             component.set("v.screenOne", true);
         component.set("v.screenTwo", false);
         component.set("v.screenThree", false);
         component.set("v.isDisplayTabs", true);
         component.set("v.courseDetail",false);
         }
+        
         else
-            this.navigateToScreenTwo(component,event);
+            this.navigateToScreenTwo(component,event); */
+        
         
     },
     navigateToScreenTwo :  function(component,event){
         component.set("v.screenOne",false);
         component.set("v.screenTwo", true);
-        component.set("v.isDisplayTabs", true);
+        //component.set("v.selectedAccount",accId);
+        //component.set("v.isDisplayTabs", true);
         component.set("v.courseDetail",false);
         component.set("v.screenThree", false);
         component.set("v.accountDetail",true);
@@ -177,15 +189,47 @@
     },
     
     getAddressDetails : function(component,event,helper){
+        console.log('in get address details component');
+       
         var action = component.get("c.getAddressData");
         action.setParams({'Id': component.get("v.licenseId")});
         action.setCallback(this, function(response) {
             var state = response.getState();
+            var mailingAddress = [];
+            var physicalAddress = [];
+            var sameAddress = [];
+            
             if (state === "SUCCESS") {
                 
                 var data = response.getReturnValue();
+                console.log(JSON.stringify(data));
                 console.log('dataAddress::'+data);
-                component.set("v.AddressData",data);
+                if (!($A.util.isEmpty(data) || $A.util.isUndefined(data))){
+                  for(var key = 0; key < data.length; key++){
+                   
+                    if(data[key].Address_Type__c == 'Mailing Address' && !(data[key].is_Physical_and_Mailing_Address_Same__c) ){
+                        mailingAddress.push(data[key]);
+                        console.log('mailingAddress--'+mailingAddress);
+                        component.set("v.MailingAddressData",mailingAddress);
+                        
+                    }else if(data[key].Address_Type__c == 'Physical Address'){
+                        physicalAddress.push(data[key]);
+                        console.log('physicalAddress--'+physicalAddress);
+                        component.set("v.PhysicalAddressData",physicalAddress);
+                        
+                    }else if(data[key].is_Physical_and_Mailing_Address_Same__c){
+                        sameAddress.push(data[key]);
+                       console.log('same address--'+ JSON.stringify(sameAddress));
+                              console.log('same address--'+ sameAddress[0].MUSW__City__c);
+                       component.set("v.MailingAddressData",sameAddress[0]);
+                       component.set("v.PhysicalAddressData",sameAddress[0]);
+                      
+                    }
+                   
+                }  
+                }
+                
+              component.set("v.AddressData",data);
             }                          
         });
         $A.enqueueAction(action);
@@ -322,7 +366,7 @@
             "url": str
         });
         urlEvent.fire(); 
-    }
+    }   
     
     
 })
