@@ -1,11 +1,14 @@
 .THIS.feedback-wrapper{
-    padding:1.25rem;
+    margin:2rem 7.5rem;
 }
 .THIS .star-wrapper {
     padding-bottom:0.5rem;
 }
 .THIS .feedback-title,.THIS .feedback-link{
     padding-bottom:1rem;
+}
+.THIS .feedback-title{
+    font-weight:600;
 }
 .THIS .link-wrapper a{
     word-break:break-word;
@@ -19,7 +22,8 @@
     .THIS .slds-button + .slds-button{
         margin-left:0;
     }    
-    .THIS .feedback-wrapper{
-        padding:0.5rem;
+    .THIS.feedback-wrapper{
+        padding:1rem;
     }
+    
 }

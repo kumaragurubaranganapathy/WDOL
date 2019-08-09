@@ -380,12 +380,12 @@
                             <br/>
                             <apex:outputText label="Email Receipt To" value="{!email}" id="email" />
                             <br/>
-                            <!--<apex:outputPanel >
-                                <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
+                            <apex:outputPanel >
+                               <!-- <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
                                     it will also update the email address for the
                                     contact record.
-                                </p>
-                            </apex:outputPanel>-->
+                                </p> -->
+                            </apex:outputPanel>
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
 
                             <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Process_DateTime__c}"
