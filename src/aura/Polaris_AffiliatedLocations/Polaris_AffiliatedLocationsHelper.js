@@ -1,6 +1,7 @@
 ({
 	addLocation : function(component,event){
         component.set("v.isAddLocation",true);
+        
     },
     cancelLoc : function(component,event){
         component.set("v.isAddLocation",false);
@@ -16,13 +17,22 @@
             if(actionResult.getState() ==="SUCCESS"){ 
                 var Result = actionResult.getReturnValue();
                 console.log('Result::'+ Result);
+                
                 var toastEvent = $A.get("e.force:showToast");
+                if(component.get("v.remove")){
+                     toastEvent.setParams({
+                        "title": 'Success',
+                        "message": 'Record Removed Succesfully' ,
+                        "type": 'Success'
+                    });
+                }else{
                     toastEvent.setParams({
                         "title": 'Success',
                         "message": 'Record inserted Succesfully' ,
                         "type": 'Success'
                     });
-                    toastEvent.fire(); 
+                }
+                toastEvent.fire(); 
                 component.set("v.isOneLocation",true);
                 component.set("v.isAddLocation",false);
                 component.set("v.remove",false);
@@ -267,7 +277,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": 'Success',
-                        "message": 'Record inserted Succesfully' ,
+                        "message": 'Record removed Succesfully' ,
                         "type": 'Success'
                     });
                     toastEvent.fire(); 

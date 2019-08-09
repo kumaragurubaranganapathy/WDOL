@@ -18,6 +18,22 @@
         helper.setLocationTable(component,event,helper); 
     },
 	addLocation : function(component,event,helper){
+        var clearParcel = {'sobjectType': 'MUSW__Parcel__c',
+        					'Designated_Engineer_License__c':'',
+        					'Designated_Land_Surveyor_License__c':'',
+                    		'MUSW__Street2__c ': '',                                                
+                           'MUSW__Unit__c ': '',
+                           'MUSW__City__c ': '',
+                           'Country__c ':'',
+                           'County__c' : '',
+                           'MUSW__State__c ' :'',
+                           'Canadian_provinces__c ':'',
+                           'Zip_Postal_Code__c' : '',
+                           'Address_Type__c' : '',
+                           'Application_BG__c ':'',
+                           'Request__c':''
+                          };
+        component.set("v.parcel",clearParcel);
         helper.addLocation(component,event);
     },
     
