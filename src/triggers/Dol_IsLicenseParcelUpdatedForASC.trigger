@@ -1,4 +1,9 @@
 trigger Dol_IsLicenseParcelUpdatedForASC on MUSW__License_Parcel__c (after insert, after update) {
+    Global_Settings__c gs = Global_Settings__c.getInstance(UserInfo.getUserId());
+    if(gs.Disable_Triggers__c == true){
+        // If the triggers have been disabled, then do not call the trigger handler
+        return;
+    }
      List<Id> permitParcelIds  = new List<Id>();
      List<MUSW__License_Parcel__c> permitParcelList = new List<MUSW__License_Parcel__c>();
      List<MUSW__License_Parcel__c> updtPermitParcelList = new List<MUSW__License_Parcel__c>();

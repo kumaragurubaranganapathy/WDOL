@@ -1,5 +1,10 @@
 trigger Polaris_LicenseParcelTrigger on MUSW__License_Parcel__c (after insert, after update , before insert ,before update) {
-    Polaris_LicenseParcelTriggerHandler handler = new Polaris_LicenseParcelTriggerHandler(Trigger.isExecuting, Trigger.size);
+    Global_Settings__c gs = Global_Settings__c.getInstance(UserInfo.getUserId());
+    if(gs.Disable_Triggers__c == true){
+        // If the triggers have been disabled, then do not call the trigger handler
+        return;
+    }    
+	Polaris_LicenseParcelTriggerHandler handler = new Polaris_LicenseParcelTriggerHandler(Trigger.isExecuting, Trigger.size);
     
     if( Trigger.isInsert )
     {
