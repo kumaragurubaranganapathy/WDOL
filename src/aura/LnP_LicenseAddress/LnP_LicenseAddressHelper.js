@@ -389,7 +389,10 @@
         var applicationId= component.get("v.applicationId");
         console.log('applicationId=='+ applicationId);
         var selectedAddress = component.get("v.userSelectedAddr");
-        if(($A.util.isEmpty(selectedAddress) || $A.util.isUndefined(selectedAddress))){
+        var selectedAddressFromDocument = document.querySelector('input[name="locations"]:checked').value;
+        console.log('selectedAddress from document===' + selectedAddressFromDocument);
+        console.log('selectedAddress===' + selectedAddress);
+        if(($A.util.isEmpty(selectedAddress) || $A.util.isUndefined(selectedAddress)) || selectedAddressFromDocument == 'OriginalAddress'){
             selectedAddress = 'OriginalAddress';
         }
         console.log('selectedAddress=='+ selectedAddress);
@@ -472,7 +475,7 @@
                         console.log('Entered block 2');
                         component.set("v.physicalAddressParcel.MUSW__Street2__c", parcelList[0].MUSW__Street2__c);
                         component.set("v.physicalAddressParcel.MUSW__City__c", parcelList[0].MUSW__City__c);
-                        component.set("v.defaultCountry",parcelList[0].Country__c);
+                        component.set("v.defaultPhysicalCountry",parcelList[0].Country__c);
                         if(!($A.util.isEmpty(parcelList[0].County__c) || $A.util.isUndefined(parcelList[0].County__c))){
                             component.set("v.defaultPhysicalCounty",parcelList[0].County__c);
                             component.set("v.isPhysicalOutOfCountry", true);
@@ -979,7 +982,7 @@
                         console.log('Entered block 2');
                         component.set("v.physicalAddressParcel.MUSW__Street2__c", parcelList[0].MUSW__Street2__c);
                         component.set("v.physicalAddressParcel.MUSW__City__c", parcelList[0].MUSW__City__c);
-                        component.set("v.defaultCountry",parcelList[0].Country__c);
+                        component.set("v.defaultPhysicalCountry",parcelList[0].Country__c);
                         if(!($A.util.isEmpty(parcelList[0].County__c) || $A.util.isUndefined(parcelList[0].County__c))){
                             component.set("v.defaultPhysicalCounty",parcelList[0].County__c);
                             component.set("v.isPhysicalOutOfCountry", true);
