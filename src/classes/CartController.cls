@@ -1404,7 +1404,8 @@ public with sharing class CartController
             return cancel();
         }else{
             // selectedTab = label.Str_Fees;
-            PageReference pageRef = new PageReference('/s/user-feedback'); // Srujan - added to show Feedback Component
+            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback';
+            PageReference pageRef = new PageReference(portalURL); // Srujan - added to show Feedback Component
             return pageRef; 
         }
     }

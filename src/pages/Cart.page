@@ -6,18 +6,18 @@
 
     <apex:includeScript value="/support/console/26.0/integration.js" />
     <style>
-        @font-face {
-            font-family: 'PublicSans-Regular';
-            src: url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf);
-        }
+        @font-face{
+    		font-family:'SourceSansPro-Regular';
+    		src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+		}
         
-        @font-face {
-            font-family: 'NotoSansTC-Regular';
-            src: url('/lightningwashington/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
-        }
+        @font-face{
+    		font-family:'Merriweather-Regular';
+    		src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf);
+		}
         
         body {
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .individualPalette {
@@ -34,14 +34,14 @@
         }
         
         .pageDescription {
-            font-family: 'PublicSans-Regular';
+            font-family: 'Merriweather-Regular';
         }
         
         .text-description {
             padding-left: 43px;
             font-size: 11px;
             padding-bottom: 20px;
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .footerWrapper {
@@ -132,7 +132,7 @@
             border-right-color: #205493;
             border-left-color: #205493;
             font-size: 11px;
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .bPageBlock {
@@ -206,7 +206,7 @@
         
         .pbBody {
             background-color: white!important;
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .continute_btn {
@@ -568,9 +568,12 @@
                                     <apex:param name="currentReceiptIndex" value="{!index}" assignTo="{!currentReceiptIndex}"/>
                                 </apex:actionSupport>
                             </apex:selectList>
-                            <apex:outputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
-                                <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />  
+                            <apex:outputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && isPortalUser && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
+                                <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />
                             </apex:outputText>
+                            <apex:inputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && !isPortalUser  && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
+                                <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />
+                            </apex:inputText>
                         </apex:pageBlockSection>
                         <apex:outputPanel rendered="{!rvo.r.MUSW__Payment_Method__c = 'Deposit'}">
                             <apex:pageBlockSection columns="1" id="depositCheckout">
