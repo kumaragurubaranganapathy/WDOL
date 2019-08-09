@@ -172,6 +172,20 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>Customer_Envelope__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Envelope</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Licenses</relationshipLabel>
+        <relationshipName>Licenses</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>AQB_Approval_Expiration_Date__c</fullName>
         <externalId>false</externalId>
@@ -31293,9 +31307,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </sharingReasons>
     <validationRules>
         <fullName>Can_not_select_region_value</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>OR(
    AND(
+$User.Bypass_Validation_Workflow_Rules__c = FALSE,
       ISCHANGED(Application_Type__c),
       NOT(ISPICKVAL(Application_Type__c,&quot;Funerals&quot;)),
       NOT(ISPICKVAL(Application_Type__c,&quot;Cemeteries&quot;))
