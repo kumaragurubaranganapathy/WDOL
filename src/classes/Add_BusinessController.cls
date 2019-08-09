@@ -219,7 +219,9 @@ public with sharing class Add_BusinessController {
         
         List<MUSW__License2__c> courseList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,MUSW__Status__c,
                                               Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,MUSW__Primary_Licensee__c,
+                                              Course_Status__c, Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                               Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,Is_Renewal_Eligible__c,
+                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,MUSW__Expiration_Date__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         
@@ -377,8 +379,24 @@ public with sharing class Add_BusinessController {
     
     //method to get Address details 
     @AuraEnabled 
+    public static List<MUSW__Parcel__c> getAddressData(String Id){
         
+      /*  List<LnP_Parcel__c>  addressData = [SELECT id, Name,Address_Type__c,Street__c,City__c,State__c,Zip_Postal_Code__c,License__c,is_Physical_and_Mailing_Address_Same__c FROM LnP_Parcel__c WHERE License__c=:Id limit 4];
         if(!addressData .isEmpty()){
+            return addressData;
+        }else{
+            return null;
+        }*/
+        Set<Id> parcelIds = new Set<Id>();
+        List<MUSW__Parcel__c>addressData = new List<MUSW__Parcel__c>();
+        for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c where MUSW__License2__c=:Id]){
+            parcelIds.add(licenseParcelInstance.MUSW__Parcel__c);
+        }
+        if(!parcelIds.isEmpty()){
+            addressData = [Select id, Application_BG__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
+                          is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c FROM MUSW__Parcel__c where Id IN :parcelIds];
+        }
+         if(!addressData.isEmpty()){
             return addressData;
         }else{
             return null;
@@ -677,6 +695,7 @@ public with sharing class Add_BusinessController {
             }  
             
             Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
+            List<String> columnHeaderList = new List<String>{'Course #','Course Name','Course Type','Delivery Method','Clock Hours', 'Status'};
                 //List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 
                 List<SObject> columnDataList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
@@ -684,6 +703,8 @@ public with sharing class Add_BusinessController {
                                                 Course_Status__c,Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                                 Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
                                                 Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c,Sub_Status__c,MUSW__Status__c
+                                                FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordType.Id =: courseRecordTypeId AND Ultimate_Parent_Account__c =: accountID ORDER BY CreatedDate asc];
+            system.debug('columnDataList---'+columnDataList);
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
             return JSON.serialize(wrapperObj,true);
