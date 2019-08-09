@@ -704,7 +704,7 @@ public class Polaris_ServiceRequestController {
                     update lstEduHist;                
                 } 
                 List<BGCK__Answer__c> lstNewAnswers = new List<BGCK__Answer__c>();
-                List<BGCK__Answer__c> lstAnswers = [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c FROM BGCK__Answer__c where Request__c=:applicationId];
+                List<BGCK__Answer__c> lstAnswers = [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c FROM BGCK__Answer__c where Request__c=:applicationId];
                 List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
                 String providerName = '';
                 if(lstAnswers != null && lstAnswers.size()>0 && appList[0].License_Type__c == 'Notary Public'){
@@ -719,7 +719,9 @@ public class Polaris_ServiceRequestController {
                 system.debug('lstAnswers '+lstAnswers);
                 if(lstAnswers != null && lstAnswers.size()>0){
                     for(BGCK__Answer__c ans : lstAnswers){
-                        //ans.Request__c = appList[0].Id;                    
+                        //ans.Request__c = appList[0].Id; 
+						ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('<[^>]*>',''); 
+                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('</span[^>]*>','');						
                         if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
                         {
                             Endorsement__c endorsment = new Endorsement__c();
@@ -753,7 +755,7 @@ public class Polaris_ServiceRequestController {
                         }
                         lstNewAnswers.add(ans);
                     }
-                    //update lstAnswers;
+                    update lstAnswers;
                     system.debug('lstEndorsements'+lstEndorsements);
                     insert lstEndorsements;
                     if(appListOtherDetils[0].License_Type__c == 'Notary Public' && lstEndorsements.size()>0)
