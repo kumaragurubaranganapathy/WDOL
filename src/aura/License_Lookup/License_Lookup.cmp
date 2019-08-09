@@ -75,7 +75,7 @@ _______________________________________________________________
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.loaded}">
         <aura:set attribute="else">
-             <lightning:spinner alternativeText="Loading" size="medium" />
+            <lightning:spinner alternativeText="Loading" size="medium" />
         </aura:set>
     </aura:if>
     <div class="page-width">
@@ -99,7 +99,7 @@ _______________________________________________________________
                     This search only provides information about the below license types we've issued. If you didn't find what you were looking for, you may want to check <a href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
                 </div-->
                 <div class="license-desc slds-p-top_x-small padding-bottom-20">
-                	This search only provides information about license types issued by the Washington State Department of Licensing. If you were looking for a license not provided by the Washington State Department of Licensing, you may want to check <a target="_blank" href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
+                    This search only provides information about license types issued by the Washington State Department of Licensing. If you were looking for a license not provided by the Washington State Department of Licensing, you may want to check <a target="_blank" href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
                 </div>
                 <div class="slds-hide slds-m-top_medium">
                     <aura:iteration items="{!v.licnseType}" var="eachLicense">
@@ -112,7 +112,7 @@ _______________________________________________________________
                         <div class="">
                             <div class="field-padding licenseinp">
                                 <lightning:select name="Profession" label="Profession" aura:id="Profession" value="">
-                                    <option text="Select a profession" value=""/>
+                                    <option text="Select a Profession" value=""/>
                                     <aura:iteration items="{!v.professionOptions}" var="option">
                                         <option text="{!option}" value="{!option}"/>
                                     </aura:iteration>
@@ -240,13 +240,12 @@ _______________________________________________________________
             </aura:if>
         </div>
         <aura:if isTrue="{!v.screenTwo}">
-            <div class="screen-two">
-                <button class="slds-button slds-button--brand color-black button-float" onclick="{!c.downloadCsv}">Download As CSV</button>
+            <div class="screen-two">                
                 <div class="headerWrap">
                     <span class="sub-header merriweather-font"><span class="merriweather-font">{!v.licenseNameToDisplay}</span> Search Criteria</span>
-                    <span>
+                    <!--<span>
                         <lightning:button variant="neutral" class="modify-btn" type="button" name="cancel" label="Modify Search" onclick="{!c.modifySearch}"/>
-                    </span>
+                    </span> -->
                 </div>
                 <div class="search-details slds-m-top_x-small slds-m-bottom_xx-large">
                     <aura:if isTrue="{!v.searchOne}">
@@ -268,7 +267,7 @@ _______________________________________________________________
                 </div>
                 <div class="slds-m-bottom_medium">
                     <span class="heading">Search Results</span>
-                    <span class="sub-section slds-m-left_medium">Click on any row below for more information</span>
+                    <!--<span class="sub-section slds-m-left_medium">Click on any row below for more information</span> -->
                 </div>
                 <aura:if isTrue="{!$Browser.isPhone}">
                     <lightning:datatable
@@ -305,8 +304,11 @@ _______________________________________________________________
                         </div>
                     </aura:set>
                 </aura:if>
+                <div class="download-link-wrapper">
+                    <a class="download-link" onclick="{!c.downloadCsv}">Download As CSV</a>
+                </div>
                 <div class="license-buttons">
-                	<lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace1}"/>
+                    <lightning:button class="cancel-button new-search" variant="neutral" type="button" name="Back" label="New Search" onclick="{!c.navigateToCustomPlace1}"/>
                 </div>
             </div>
         </aura:if> 
@@ -366,9 +368,9 @@ _______________________________________________________________
                                 <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
                                     <div class="field-style">Discipline:<span>&nbsp;</span></div>
                                     <div class="field-style-val">
-                                    	<aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
+                                        <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
                                             Yes
-                                        	<aura:set attribute="else">
+                                            <aura:set attribute="else">
                                                 No
                                             </aura:set>
                                         </aura:if>
@@ -437,12 +439,12 @@ _______________________________________________________________
                                             <aura:set attribute="else">
                                                 <div class="field-style-val">None</div>
                                             </aura:set>
-                                    	</aura:if>
+                                        </aura:if>
                                     </div>
                                     <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Address:<span>&nbsp;</span></div>
                                         <div class="field-style-val">
-                                        	<aura:if isTrue="{!item.MUSW__Parcel__r}">
+                                            <aura:if isTrue="{!item.MUSW__Parcel__r}">
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Name}">
                                                 <div>{!item.MUSW__Parcel__r.Name}<span>,</span></div>
                                                 </aura:if>
@@ -477,12 +479,12 @@ _______________________________________________________________
                                             <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
                                                 <div class="field-style">Discipline:<span>&nbsp;</span></div>
                                                 <div class="field-style-val">
-                                                <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
-                                                    Yes
-                                                    <aura:set attribute="else">
-                                                        No
-                                                    </aura:set>
-                                                </aura:if>
+                                                    <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
+                                                        Yes
+                                                        <aura:set attribute="else">
+                                                            No
+                                                        </aura:set>
+                                                    </aura:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -558,7 +560,7 @@ _______________________________________________________________
                     </div>
                 </aura:iteration>
                 <div class="buttons slds-m-top_x-large">
-                	<div class="license-buttons buttons-left">
+                    <div class="license-buttons buttons-left">
                         <lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace2}"/>
                     </div>
                     <div class="buttons-right">

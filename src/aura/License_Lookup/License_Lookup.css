@@ -13,6 +13,12 @@
     color: t(LnGFormTitleColor);
     padding-top: 35px;
 }
+.THIS .download-link-wrapper{
+    margin-bottom:1rem;
+}
+.THIS .cancel-button.new-search{
+    width:auto;
+}
 .THIS .heading{
     font-family: t(merrifontfamily);
     font-size: 20px;
@@ -240,8 +246,9 @@ padding: 4px 5px;
     text-transform: capitalize;
     letter-spacing: 0px;
 }
-.THIS .pagination-wrapper {
+.THIS .pagination-wrapper.slds-m-vertical_xx-large {
     text-align:center;
+    margin:1.5rem 0;
 }
 .THIS .slds-is-active .slds-tabs_default__link{
     text-decoration: none;

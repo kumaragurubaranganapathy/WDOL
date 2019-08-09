@@ -209,9 +209,9 @@
                           	}
                         } 
                         component.set('v.columns', [
-                            {label: 'Type', fieldName: 'Type', type: 'Name', sortable : true},
+                            //{label: 'Type', fieldName: 'Type', type: 'Name', sortable : true},
                             {label: 'Name', fieldName: 'Name', type: 'Name', sortable : true},
-                            {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
+                            {label: 'License', fieldName: 'License_Number', type: 'Number', sortable : true},
                             {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
                             {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                             {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
