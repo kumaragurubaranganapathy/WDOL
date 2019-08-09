@@ -1,4 +1,4 @@
-public with sharing class Add_BusinessController {
+public without sharing class Add_BusinessController {
     
     //get BusinessAccount RecordType Id 
     @AuraEnabled 
@@ -19,7 +19,7 @@ public with sharing class Add_BusinessController {
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-       //system.debug('licenseType'+licenseType+'board');
+       // system.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = ServiceRequestType; 
         application.License_Type__c = ServiceRequestType;        
@@ -319,7 +319,7 @@ public with sharing class Add_BusinessController {
             
             List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
             
-            List<String> columnHeaderList = new List<String>{'License','License Type','Expiration Date','Status','Sub-status'};
+            List<String> columnHeaderList = new List<String>{'License#','License Type','Expiration Date','Status','Sub-status'};
                 //List<String> statusFilterList = new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
                 
                 List<String> statusFilterList = new List<String>();
@@ -362,7 +362,7 @@ public with sharing class Add_BusinessController {
     
     //method to get endorsement details 
     @AuraEnabled 
-    public static String[] getEndorsementData(String licenseId){
+     public static String[] getEndorsementData(String licenseId){
         
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
@@ -402,6 +402,7 @@ public with sharing class Add_BusinessController {
             return null;
         }
     }
+    
     
     // Method to update task status and related record on accept or declined of action.
     @AuraEnabled 
@@ -536,25 +537,32 @@ public with sharing class Add_BusinessController {
     }
     
     @AuraEnabled
-    public static Boolean createTask(Id accountContact,String Email,String accountName,String accountId,String designation){
+    public static Boolean createTask(Id accountContact,String Email,String accountName,String accountId,String designation,Boolean DCP){
         try{
             task t = new task();
             t.Whatid = accountContact;
-            t.Status = DOL_AppConstants.PENDING;
+            t.Status = 'Pending';
             t.Email__c = Email;
-            t.Subject = DOL_AppConstants.INVITATION_TO_BE_BUSINESS_ADMIN;
-            t.Type = DOL_AppConstants.CONTACT_RELATIONSHIP;
+            t.Subject = 'Invitation to be a Business Admin';
+            t.Type = 'Contact Relationship';
             t.Designation__c = designation;
             t.Business_Name__c = accountName;
-            t.AccountId__c = accountId;
+            t.isDCP__c = DCP;
+            if(accountName.contains('-')){
+                List<String> lst = accountName.split('-');
+                if(lst[1] == 'Appraisal Management Company'){
+                    t.Main_License_Type__c = 'Appraisal Management Companies'; 
+                    
+                }
+                t.AccountId__c = accountId;
+            }
             insert t;
             return true;
         }catch(Exception e){
-            HandleException.LogException(e,DOL_AppConstants.ADD_BUSINESSCONTROLLER,DOL_AppConstants.CREATETASK);  
-            return false;          
+            System.debug(e.getMessage());
+            return false;
         }
     }
-    
     @AuraEnabled
     public static Boolean createAssociationTask(Id associationID){
         Associations__c association = [SELECT id, Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
@@ -576,32 +584,23 @@ public with sharing class Add_BusinessController {
     
     
     @AuraEnabled
-    public static String getRelationShip(String sObjectName,String queryId,String Type){
+    public static String getRelationShip(String sObjectName,String queryId){
         
         List<sObject> sObjList; 
         List<String> columnHeaderList;
         List<String> statusFilterList;
-        String role = (Type == 'Administrators') ? 'Administrator': 'Owner';
-        System.debug('role::'+role);
-        System.debug('Type::'+ Type);
-        System.debug('AccountId::'+queryId);
         if(sObjectName == 'MUSW__Account_Contact__c'){
-            if(Type == 'Administrators'){
-                System.debug('inside admin::');
-                columnHeaderList = new List<String>{'Name','Role','Email','Status','Actions'};
-            }else{
-                System.debug('inside owner');
-                columnHeaderList = new List<String>{'Name','Role','DCP','Email','Status','Actions'};
-            }
-            
-            statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
-            sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted' and Role__c =:role]; 
+            columnHeaderList = new List<String>{'Name','Role','Admin','DCP','Email','Status','Actions'};
+                statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
+                    sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted']; 
         }
+        
         if(sObjectName == 'Associations__c'){
             columnHeaderList = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status','Actions'}; 
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
-                    sObjList =[select id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
+                    sObjList =[select id,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
         }
+        
         Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,sObjList);
         return JSON.serialize(wrapperObj,true);
         
@@ -610,11 +609,10 @@ public with sharing class Add_BusinessController {
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
         String licenseType ='';
-        System.debug('Checkkkk######## License Id'+licenseId);
         
         MUSW__License2__c lic = [SELECT id,MUSW__Status__c,Credential_Type__c FROM MUSW__License2__c where id=:licenseId];
         licenseType = lic.Credential_Type__c;
-        System.debug('Checkkkk######## '+licenseType);
+        
         
         List<String> columnHeaderList;   
         List<String> statusFilterList = new List<String>{'Active'};
@@ -664,7 +662,7 @@ public with sharing class Add_BusinessController {
                 statusFilterList = dashboardSettings.get(0).Pending_Applications_statuses__c.split(',');
             } 
             system.debug('accountID::'+accountID);
-            List<String> columnHeaderList = new List<String>{'Application','Profession','License Type','Application Method','Status','Sub-status'};
+            List<String> columnHeaderList = new List<String>{'Application#','Profession','License Type','Application Method','Status','Sub-status'};
                 //List<String> statusFilterList = new List<String>{'In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();        
             List<SObject> columnDataList = [Select id,Name,Application_Number__c,Application_Type__c,Credential_Type__c,Application_Method__c,MUSW__Status__c,Sub_Status__c
@@ -695,7 +693,7 @@ public with sharing class Add_BusinessController {
             }  
             
             Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
-            List<String> columnHeaderList = new List<String>{'Course','Course Name','Course Type','Delivery Method','Clock Hours', 'Status'};
+           List<String> columnHeaderList = new List<String>{'Course #','Course Name','Course Type','Delivery Method','Clock Hours', 'Status'};
                 //List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 
                 List<SObject> columnDataList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
@@ -727,7 +725,7 @@ public with sharing class Add_BusinessController {
                 statusFilterList = dashboardSettings.get(0).Pending_Applications_statuses__c.split(',');
             } 
             
-            List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status','Type'};
+            List<String> columnHeaderList = new List<String>{'License#','Profession','License Type','Expiration Date','Status','Sub-status','Type'};
                 //List<String> statusFilterList = new List<String>{'Submitted','In-Review','Pending Payment','Payment Pending','Pending Additional Qualification','Pending Action'};
                 
                 List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c,format(Renewal_Expiration_Date__c),Renewal_Status__c,Application_Type__c
@@ -747,7 +745,7 @@ public with sharing class Add_BusinessController {
     public static String PendingMaintananceRequestApplicationsTable(String accountID){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'Request','Request Type', 'Request Against', 'Status'};
+            List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Status'};
                 List<String> statusFilterList = new List<String>{'Under Review'};
                     List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
                                                     from Request__c
