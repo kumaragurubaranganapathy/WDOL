@@ -12,24 +12,12 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Validation_number__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>wadol_DefaultProgramType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Total_amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Number_of_payments__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Number_of_documents__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -39,15 +27,27 @@
                 <behavior>Edit</behavior>
                 <field>Status__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Lockbox_Envelope__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Validation_number__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Number_of_documents__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Total_amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Lockbox_Envelope__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -83,6 +83,43 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Credential__c</fields>
+        <fields>Application_Method__c</fields>
+        <fields>MUSW__Status__c</fields>
+        <fields>MUSW__Applicant__c</fields>
+        <fields>MUSW__Primary_Licensee__c</fields>
+        <fields>MUSW__Issue_Date__c</fields>
+        <fields>MUSW__Renewal_Date__c</fields>
+        <fields>MUSW__Expiration_Date__c</fields>
+        <fields>MUSW__Alert_Indicator__c</fields>
+        <relatedList>MUSW__License2__c.Customer_Envelope__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>SAN_Image_Name__c</fields>
+        <fields>SAN_File_Link__c</fields>
+        <relatedList>MUSW__Submission__c.CustomerEnvelope__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Application_Type__c</fields>
+        <fields>Renewal_Reinstatement_Type__c</fields>
+        <fields>License__c</fields>
+        <relatedList>Renewal_Application__c.Customer_Envelope__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>License__c</fields>
+        <relatedList>Request__c.Customer_Envelope__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>ValidationNumber__c</fields>
+        <fields>Amount__c</fields>
+        <relatedList>MUSW__Deposit__c.Validation_number__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>MUSW__Iss_Track_No__c</fields>
         <fields>MUSW__Payment_Method__c</fields>
         <fields>MUSW__Amount_Tendered__c</fields>
@@ -90,15 +127,6 @@
         <fields>CREATEDBY_USER</fields>
         <relatedList>MUSW__Receipt__c.Validation_number__c</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-		<fields>ValidationNumber__c</fields>
-        <relatedList>MUSW__Deposit__c.Validation_number__c</relatedList>
-    </relatedLists>
-	<relatedLists>
-        <fields>NAME</fields>
-        <relatedList>MUSW__Submission__c.CustomerEnvelope__c</relatedList>
-	</relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

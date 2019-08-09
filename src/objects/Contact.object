@@ -6083,7 +6083,7 @@ CASE( MUSW__AlertCode__c,
         <fullName>Contact_Birthday_Cannot_Be_Future</fullName>
         <active>true</active>
         <description>Birthday Cannot Be Future Date</description>
-        <errorConditionFormula>(( Birthdate &gt;= TODAY()) || ((TODAY()-Birthdate) / 365.2425 &lt; 16)||(YEAR(Birthdate) &lt; 1800)) &amp;&amp; $User.Bypass_Validation_Workflow_Rules__c = FALSE &amp;&amp; $User.Is_Portal_User__c = FALSE</errorConditionFormula>
+        <errorConditionFormula>AND(NOT( $User.Bypass_Validation_Workflow_Rules__c),(( Birthdate &gt;= TODAY()) || ((TODAY()-Birthdate) / 365.2425 &lt; 16)||(YEAR(Birthdate) &lt; 1800)) &amp;&amp; $User.Bypass_Validation_Workflow_Rules__c = FALSE &amp;&amp; $User.Is_Portal_User__c = FALSE)</errorConditionFormula>
         <errorMessage>Birthdate must be in the past and Licensee should be 16yrs or older.</errorMessage>
     </validationRules>
     <validationRules>

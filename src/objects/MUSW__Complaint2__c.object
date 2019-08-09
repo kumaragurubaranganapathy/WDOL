@@ -11551,7 +11551,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>Cannot_change_program_after_case_number</fullName>
         <active>true</active>
         <description>Program cannot be changed after case number is assigned</description>
-        <errorConditionFormula>AND( Case_Number_Assigned__c = TRUE, 
+        <errorConditionFormula>AND( $User.Bypass_Validation_Workflow_Rules__c = FALSE,Case_Number_Assigned__c = TRUE, 
 ISCHANGED(Program_Type__c) )</errorConditionFormula>
         <errorMessage>Program cannot be changed after case number has been assigned.</errorMessage>
     </validationRules>
@@ -11559,7 +11559,7 @@ ISCHANGED(Program_Type__c) )</errorConditionFormula>
         <fullName>Cannot_send_notification_is_contact_null</fullName>
         <active>true</active>
         <description>Cannot send case open notification is contact is null</description>
-        <errorConditionFormula>AND(Send_Case_Open_Notification__c = true,  ISBLANK(MUSW__Primary_Contact__c ))</errorConditionFormula>
+        <errorConditionFormula>AND($User.Bypass_Validation_Workflow_Rules__c = FALSE,Send_Case_Open_Notification__c = true,  ISBLANK(MUSW__Primary_Contact__c ))</errorConditionFormula>
         <errorDisplayField>MUSW__Primary_Contact__c</errorDisplayField>
         <errorMessage>Please populate a respondent in contact field to send out a notification</errorMessage>
     </validationRules>
