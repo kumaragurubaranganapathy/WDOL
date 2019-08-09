@@ -239,6 +239,8 @@
             "Board": board, 
             "LicenseType": licenseType, 
             "ApplicationType": applicationMethod,
+            "Obj":'MUSW__License2__c',
+            "RenewReinstate":''
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
