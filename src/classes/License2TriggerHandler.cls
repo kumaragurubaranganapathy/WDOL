@@ -10,6 +10,7 @@
 
 public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public static user u;
+    public static boolean runAgain = true;
     public License2TriggerHandler() {
         u = [Select Id, UserType, Is_Portal_User__c From User where Id = :UserInfo.getUserId()];
     }
@@ -23,7 +24,11 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-        afterMethod();
+        if(runAgain == true) {
+         runAgain= false;
+         afterMethod();
+        }
+
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
