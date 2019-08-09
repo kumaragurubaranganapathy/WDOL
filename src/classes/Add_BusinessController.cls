@@ -1,4 +1,4 @@
-public without sharing class Add_BusinessController {
+public with sharing class Add_BusinessController {
     
     //get BusinessAccount RecordType Id 
     @AuraEnabled 
@@ -19,7 +19,7 @@ public without sharing class Add_BusinessController {
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-       // system.debug('licenseType'+licenseType+'board');
+       //system.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = ServiceRequestType; 
         application.License_Type__c = ServiceRequestType;        
@@ -219,9 +219,7 @@ public without sharing class Add_BusinessController {
         
         List<MUSW__License2__c> courseList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,MUSW__Status__c,
                                               Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,MUSW__Primary_Licensee__c,
-                                              Course_Status__c, MUSW__Expiration_Date__c,Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                               Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,Is_Renewal_Eligible__c,
-                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         
@@ -362,7 +360,7 @@ public without sharing class Add_BusinessController {
     
     //method to get endorsement details 
     @AuraEnabled 
-     public static String[] getEndorsementData(String licenseId){
+    public static String[] getEndorsementData(String licenseId){
         
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
@@ -379,9 +377,7 @@ public without sharing class Add_BusinessController {
     
     //method to get Address details 
     @AuraEnabled 
-    public static List<LnP_Parcel__c> getAddressData(String Id){
         
-        List<LnP_Parcel__c>  addressData = [SELECT id, Name,Address_Type__c,Street__c,City__c,State__c,Zip_Postal_Code__c,License__c,is_Physical_and_Mailing_Address_Same__c FROM LnP_Parcel__c WHERE License__c=:Id limit 4];
         if(!addressData .isEmpty()){
             return addressData;
         }else{
@@ -522,32 +518,25 @@ public without sharing class Add_BusinessController {
     }
     
     @AuraEnabled
-    public static Boolean createTask(Id accountContact,String Email,String accountName,String accountId,String designation,Boolean DCP){
+    public static Boolean createTask(Id accountContact,String Email,String accountName,String accountId,String designation){
         try{
             task t = new task();
             t.Whatid = accountContact;
-            t.Status = 'Pending';
+            t.Status = DOL_AppConstants.PENDING;
             t.Email__c = Email;
-            t.Subject = 'Invitation to be a Business Admin';
-            t.Type = 'Contact Relationship';
+            t.Subject = DOL_AppConstants.INVITATION_TO_BE_BUSINESS_ADMIN;
+            t.Type = DOL_AppConstants.CONTACT_RELATIONSHIP;
             t.Designation__c = designation;
             t.Business_Name__c = accountName;
-            t.isDCP__c = DCP;
-            if(accountName.contains('-')){
-                List<String> lst = accountName.split('-');
-                if(lst[1] == 'Appraisal Management Company'){
-                    t.Main_License_Type__c = 'Appraisal Management Companies'; 
-                    
-                }
-                t.AccountId__c = accountId;
-            }
+            t.AccountId__c = accountId;
             insert t;
             return true;
         }catch(Exception e){
-            System.debug(e.getMessage());
-            return false;
+            HandleException.LogException(e,DOL_AppConstants.ADD_BUSINESSCONTROLLER,DOL_AppConstants.CREATETASK);  
+            return false;          
         }
     }
+    
     @AuraEnabled
     public static Boolean createAssociationTask(Id associationID){
         Associations__c association = [SELECT id, Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
@@ -569,34 +558,45 @@ public without sharing class Add_BusinessController {
     
     
     @AuraEnabled
-    public static String getRelationShip(String sObjectName,String queryId){
+    public static String getRelationShip(String sObjectName,String queryId,String Type){
         
         List<sObject> sObjList; 
         List<String> columnHeaderList;
         List<String> statusFilterList;
+        String role = (Type == 'Administrators') ? 'Administrator': 'Owner';
+        System.debug('role::'+role);
+        System.debug('Type::'+ Type);
+        System.debug('AccountId::'+queryId);
         if(sObjectName == 'MUSW__Account_Contact__c'){
-            columnHeaderList = new List<String>{'Name','Role','Admin','DCP','Email','Status','Associated Licensees','Actions'};
-                statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
-                    sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted']; 
+            if(Type == 'Administrators'){
+                System.debug('inside admin::');
+                columnHeaderList = new List<String>{'Name','Role','Email','Status','Actions'};
+            }else{
+                System.debug('inside owner');
+                columnHeaderList = new List<String>{'Name','Role','DCP','Email','Status','Actions'};
+            }
+            
+            statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
+            sObjList =[select id,Name,Role__c,Full_Name__c,DCP__c,Email__c,isAdminContact__c,Status__c,resend_Invitation__c from MUSW__Account_Contact__c where MUSW__Account__c =: queryId and Status__c != 'Deleted' and Role__c =:role]; 
         }
-        
         if(sObjectName == 'Associations__c'){
-            columnHeaderList = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status','Actions'};
+            columnHeaderList = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status','Actions'}; 
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
-                    sObjList =[select id,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
+                    sObjList =[select id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
         }
-        
         Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,sObjList);
         return JSON.serialize(wrapperObj,true);
         
     }
+    
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
         String licenseType ='';
+        System.debug('Checkkkk######## License Id'+licenseId);
         
         MUSW__License2__c lic = [SELECT id,MUSW__Status__c,Credential_Type__c FROM MUSW__License2__c where id=:licenseId];
         licenseType = lic.Credential_Type__c;
-        
+        System.debug('Checkkkk######## '+licenseType);
         
         List<String> columnHeaderList;   
         List<String> statusFilterList = new List<String>{'Active'};
@@ -677,7 +677,6 @@ public without sharing class Add_BusinessController {
             }  
             
             Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
-            List<String> columnHeaderList = new List<String>{'Course Name','Course Type','Licensure Level','Delivery Method','Clock Hours', 'Status'};
                 //List<String> statusFilterList = new List<String>{'Submitted','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 
                 List<SObject> columnDataList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,
@@ -685,8 +684,6 @@ public without sharing class Add_BusinessController {
                                                 Course_Status__c,Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                                 Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
                                                 Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c,Sub_Status__c,MUSW__Status__c
-                                                FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordTypeId =: courseRecordTypeId AND MUSW__Primary_Licensee__c =: accountID ORDER BY CreatedDate asc];
-            
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
             return JSON.serialize(wrapperObj,true);
