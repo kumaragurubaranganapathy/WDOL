@@ -3284,6 +3284,37 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Print_Renewal_Letter__c</fullName>
+        <externalId>false</externalId>
+        <label>Print Renewal Letter</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <fields>
         <fullName>Provider_Type__c</fullName>
         <externalId>false</externalId>
@@ -4834,6 +4865,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Business_Compact_Layout</compactLayoutAssignment>
         <description>for Business Type License</description>
         <label>Business</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -6821,6 +6867,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for Course Information</description>
         <label>Course</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -8643,6 +8704,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for all Delegated Agent</description>
         <label>Delegated Agent Record Type</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -10562,6 +10638,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>for Individual Type License</description>
         <label>Individual22</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -12553,6 +12644,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for all Manufactured homes.</description>
         <label>Manufactured Homes Record Type</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -14477,6 +14583,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type if the application type doesn&apos;t appear on any other record types.</description>
         <label>Individual</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -16459,6 +16580,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <active>true</active>
         <description>For unlicensed business or professional</description>
         <label>Unlicensed</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
@@ -18489,6 +18625,21 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>Record Type for Portal user</description>
         <label>eSLA Portal</label>
+		<picklistValues>
+            <picklist>Print_Renewal_Letter__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Application_Method__c</picklist>
             <values>
