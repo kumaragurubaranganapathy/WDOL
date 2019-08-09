@@ -1092,8 +1092,8 @@ Individual Account
                                                    </div>
                                                </td>
                                                <td data-label="Actions" class="cell-style action-cell table-btn">
-                                                   <div data-recordId="{!tableData.id}">
-                                                       <lightning:button label="Delete" title="Neutral action" />
+                                                   <div class="slds-truncate" onclick="{!c.deleteDraftMaintananceRequestApplication}" data-recordId="{!tableData.Id}">
+														<lightning:button label="Delete" />
                                                    </div>
                                                </td>
                                            </tr>

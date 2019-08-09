@@ -34,7 +34,12 @@
     font-family:'PublicSans-Regular';
     src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf); /*1560421450000*/
 }
-
+.THIS h1,.THIS h2,.THIS h3,.THIS h4,.THIS h5,.THIS h6{
+    font-family: t(merrifontfamily);
+}
+.THIS .merriweather-font{
+    font-family: t(merrifontfamily);
+}
 .THIS .required{
     color:t(fieldclr);
 }
@@ -155,7 +160,7 @@ border-radius: 5px;
 ,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label{
     font-family: token(publicSansfontfamily);
     font-size: token(fieldlabelsize);
-    line-height:1;
+    line-height:1.5;
     font-weight: token(txtfontweight);
     color: token(fieldclr); 
     max-width: none;
@@ -572,11 +577,12 @@ margin-right:10%;
 }
 
 @media only screen and (max-width:767.9px){    
-    .THIS .cancel-button,.THIS .next-button{
+    .THIS .next-button{
         display:block;
         width:100%;
         margin-bottom:6px;
     }
+  
     .THIS .next-button{
         margin-left:0;
     }
@@ -600,6 +606,10 @@ margin-right:10%;
     .THIS .body{
         width: 100%;; 
     }
+    .THIS .cancel-button{
+        width:111px;
+    }
+
     .THIS .side-bar{
         width: 100%;  
     }
@@ -668,4 +678,7 @@ margin-right:10%;
         
         font-size:0.8125rem;
     }
+}
+.THIS .slds-spinner_container {
+    position:fixed;
 }

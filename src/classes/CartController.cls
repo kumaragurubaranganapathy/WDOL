@@ -354,7 +354,14 @@ public with sharing class CartController
             for (MUSW__Fee__c f : fees)
             {
                 system.debug('feessss'+f);
-                Boolean selected = m_selectedFees == null || m_selectedFees.containsKey(f.Id);
+                Boolean selected;
+                if(m_selectedFees != null){
+                    selected = m_selectedFees.containsKey(f.Id);
+                }else{
+                    selected = false;
+                }
+                //commented as a part of bug 5532 by Abhilasha
+                //Boolean selected = m_selectedFees == null || m_selectedFees.containsKey(f.Id);
                 feeVOs.add(new FeeVO(f, selected));
                 m_totalOwed += f.MUSW__Outstanding_Fee__c;
                 
@@ -958,11 +965,6 @@ monexaSessionKey = gateway.getSessionKey(r.MUSW__Amount_Tendered__c);
                 Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
                 populateFeeAndInvoicePayment(receipts, feePaymentIds);
                 depositPayments = populateDepositPayment(receipts);
-                if(cart.BGBK__Last_Payment_Amount__c == null)
-                    cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
-                else
-                    cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
-                update cart;
             } else {
                 if(sp != null)
                     Database.rollback(sp);        
@@ -979,7 +981,8 @@ monexaSessionKey = gateway.getSessionKey(r.MUSW__Amount_Tendered__c);
                 }
             }
             //rs = m_cs.getCartReceipts();
-            //m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
+			if(processSuccessful)
+                m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
         }
         catch (Exception e)
         {

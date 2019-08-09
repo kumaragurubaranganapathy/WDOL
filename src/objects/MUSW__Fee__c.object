@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Fee_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -89,6 +93,11 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Adjustment_Reason__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Fee Adjust</label>
     </fieldSets>
     <fieldSets>
@@ -105,7 +114,7 @@
         </availableFields>
         <description>Fee Payment Correction page (corrects either fees or payments)</description>
         <displayedFields>
-            <field>MUSW__License2__c</field>
+            <field>License_Number__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -256,21 +265,10 @@
         </displayedFields>
         <label>New/Edit Fees</label>
     </fieldSets>
-	<fields>
-        <fullName>Licensee_Email__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__License2__r.MUSW__Primary_Licensee__r.Email__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Licensee Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>AFRS_AR_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLAR&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xAFRS AR Code</label>
         <length>200</length>
@@ -283,6 +281,7 @@
     <fields>
         <fullName>AFRS_Cash_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLCH&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xAFRS Cash Code</label>
         <length>200</length>
@@ -293,19 +292,20 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>AFRS_Revenue_Code__c</fullName>
-        <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <fullName>AR_Date_Formula__c</fullName>
+        <description>Gets the Invoice date from related Invoice record.</description>
         <externalId>false</externalId>
-        <label>AFRS Revenue Code</label>
-        <length>200</length>
+        <formula>BGBK__Invoice__r.BGBK__Invoice_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AR Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>AR_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AR Date</label>
         <required>false</required>
@@ -323,43 +323,8 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Acc_AR_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>&quot;AR_&quot;+text(MUSW__Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Acc AR Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Acc_Cash_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>&quot;Cash_&quot;+text(MUSW__Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Acc Cash Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Acc_Rev_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>&quot;Rev_&quot;+text(MUSW__Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Acc Rev Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Account_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Number</label>
         <length>15</length>
@@ -417,108 +382,6 @@
                     <label>5212000</label>
                 </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
-                <valueName>4656000</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
-                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
-                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
-                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
-                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
-                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
-                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
-                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
-                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
-                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
-                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
-                <valueName>4733000</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Application fee</controllingFieldValue>
-                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
-                <controllingFieldValue>DC Fine</controllingFieldValue>
-                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
-                <valueName>4730000</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community New License</controllingFieldValue>
-                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
-                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
-                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
-                <valueName>4732000</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
-                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
-                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
-                <controllingFieldValue>Title Application</controllingFieldValue>
-                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
-                <valueName>4655000</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
-                <valueName>5212000</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
-                <valueName>4990000</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -549,95 +412,31 @@
                     <label>PLANREV</label>
                 </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community New License</controllingFieldValue>
-                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
-                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Application fee</controllingFieldValue>
-                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>Title Application</controllingFieldValue>
-                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
-                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
-                <valueName>CREDENT</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
-                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
-                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
-                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
-                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
-                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
-                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
-                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
-                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
-                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
-                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
-                <valueName>PLANREV</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
-                <valueName>EXAM</valueName>
-            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Adjustment_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Adjustment Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Refund</fullName>
+                    <default>false</default>
+                    <label>Refund</label>
+                </value>
+                <value>
+                    <fullName>Reapplied Payment</fullName>
+                    <default>false</default>
+                    <label>Reapplied Payment</label>
+                </value>
+            </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
@@ -667,6 +466,7 @@
     </fields>
     <fields>
         <fullName>Agency__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Agency</label>
         <length>200</length>
@@ -721,91 +521,6 @@
                     <label>22100</label>
                 </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community New License</controllingFieldValue>
-                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
-                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
-                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
-                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
-                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
-                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
-                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
-                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Application fee</controllingFieldValue>
-                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
-                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>Title Application</controllingFieldValue>
-                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
-                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
-                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
-                <controllingFieldValue>NSF Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
-                <controllingFieldValue>DC Fine</controllingFieldValue>
-                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
-                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
-                <valueName>22100</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -849,6 +564,7 @@
     <fields>
         <fullName>BGBK__Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -906,6 +622,7 @@
     </fields>
     <fields>
         <fullName>Budget_Period__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Budget Period</label>
         <length>80</length>
@@ -954,6 +671,21 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Days_since_created__c</fullName>
+        <description>Captures Days since created</description>
+        <externalId>false</externalId>
+        <formula>TODAY() - DATEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days since created</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Department__c</fullName>
         <externalId>false</externalId>
         <label>Department</label>
@@ -971,91 +703,6 @@
                     <label>1652100000</label>
                 </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community New License</controllingFieldValue>
-                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
-                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
-                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
-                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
-                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
-                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
-                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
-                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Application fee</controllingFieldValue>
-                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
-                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>Title Application</controllingFieldValue>
-                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
-                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
-                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
-                <controllingFieldValue>NSF Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
-                <controllingFieldValue>DC Fine</controllingFieldValue>
-                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
-                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
-                <valueName>1652100000</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -1075,6 +722,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -1083,6 +731,18 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Fee_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Fee Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Fee_amount_for_labor_charge__c</fullName>
@@ -1192,20 +852,20 @@
         <fullName>License_Number__c</fullName>
         <description>Captures the related License number</description>
         <externalId>false</externalId>
-        <formula>IF(OR(ISNULL( Fine__c ), Fine__c = ""), 
-			IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = ""), 
-			If(OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =""), 
-			If(OR(ISNULL( Renewal_Application__c), Renewal_Application__c = ""), 
-			If(OR(ISNULL( Request__c), Request__c = ""), 
-			If(OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = ""), 
-			IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = ""), 
-			"", MUSW__License2__r.Name), 
-			Miscellaneous_Fee__r.Name), 
-			Request__r.Name), 
-			Renewal_Application__r.Name), 
-			MUSW__Application2__r.Name), 
-			MUSW__Permit2__r.Name), 
-			Fine__r.Name)</formula>
+        <formula>IF(OR(ISNULL( Fine__c ), Fine__c = &quot;&quot;), 
+IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
+If(OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =&quot;&quot;), 
+If(OR(ISNULL( Renewal_Application__c), Renewal_Application__c = &quot;&quot;), 
+If(OR(ISNULL( Request__c), Request__c = &quot;&quot;), 
+If(OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = &quot;&quot;), 
+IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
+&quot;&quot;, MUSW__License2__r.Name), 
+Miscellaneous_Fee__r.Name), 
+Request__r.Name), 
+Renewal_Application__r.Name), 
+MUSW__Application2__r.Name), 
+MUSW__Permit2__r.Name), 
+Fine__r.Name)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number</label>
         <required>false</required>
@@ -1226,6 +886,18 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Licensee_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__License2__r.MUSW__Primary_Licensee__r.Email__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Licensee Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MUSW__Amended_Amount__c</fullName>
@@ -1299,6 +971,7 @@
         <fullName>MUSW__Check_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Check Number</label>
         <length>25</length>
@@ -1340,6 +1013,7 @@
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -1351,6 +1025,7 @@
         <fullName>MUSW__Effective_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
@@ -1377,6 +1052,7 @@
         <fullName>MUSW__Fee_Paid_Date2__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the fee payment was made. The System populates the value when a payment is allocated to the fee.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Paid Date</label>
         <required>false</required>
@@ -1388,6 +1064,7 @@
         <fullName>MUSW__Fee_Paid_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Paid Date/Time</label>
         <required>false</required>
@@ -1511,6 +1188,7 @@
         <fullName>MUSW__Payment_Comment__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Payment Comments</label>
         <required>false</required>
@@ -1645,6 +1323,7 @@
         <fullName>MUSW__Receipt_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Receipt Number</label>
         <length>50</length>
@@ -1792,6 +1471,7 @@
     </fields>
     <fields>
         <fullName>Profession_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Profession Code</label>
         <length>5</length>
@@ -1866,98 +1546,6 @@
                     <label>16500P2PLLC</label>
                 </value>
             </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>MNF Dealer Branch Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community New License</controllingFieldValue>
-                <controllingFieldValue>MNF Community Expansion</controllingFieldValue>
-                <controllingFieldValue>MNF Community Renewal</controllingFieldValue>
-                <controllingFieldValue>MNF Community Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Dealer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer App Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF - Installer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Salesperson Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Community Late Renewal over 2 yrs</controllingFieldValue>
-                <controllingFieldValue>MNF Permit Revision Fee</controllingFieldValue>
-                <controllingFieldValue>MNF Manufacturer App Fee</controllingFieldValue>
-                <valueName>16500P2MHPL</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>POWTS application for review, petition for variance Revision Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Review</controllingFieldValue>
-                <controllingFieldValue>POWTS-Experimental System</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review - Additional Fee</controllingFieldValue>
-                <controllingFieldValue>Revision to previously approved plan</controllingFieldValue>
-                <controllingFieldValue>POWTS-Holding Tank Individual Site Design</controllingFieldValue>
-                <controllingFieldValue>Soil Based Individual Site Design At Grade</controllingFieldValue>
-                <controllingFieldValue>POWTS-Vault Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Pit Privy Fee</controllingFieldValue>
-                <controllingFieldValue>POWTS-Component Manual Design</controllingFieldValue>
-                <controllingFieldValue>SP-Application fee</controllingFieldValue>
-                <controllingFieldValue>SP-Initial Credential Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Exam fee</controllingFieldValue>
-                <controllingFieldValue>SP-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>Soil Saturation Determination Report</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>Miscellaneous Review</controllingFieldValue>
-                <controllingFieldValue>SP-Reinstatement Credential Fee</controllingFieldValue>
-                <controllingFieldValue>Interpretive Determination Report</controllingFieldValue>
-                <controllingFieldValue>Holding Tank Component Manual, Ver.2.0, SBD-10855-P</controllingFieldValue>
-                <controllingFieldValue>POWTS Consultation</controllingFieldValue>
-                <controllingFieldValue>POWTS application for review, petition for variance</controllingFieldValue>
-                <controllingFieldValue>POWTS Sanitary Permit</controllingFieldValue>
-                <valueName>16500P2PSSP</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>DCQ - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Application Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>DC - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Application Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Late Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Exam Fee</controllingFieldValue>
-                <controllingFieldValue>DCQ - Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Credential Fee</controllingFieldValue>
-                <controllingFieldValue>DCR - Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Proof of Current Certificate Credential Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Late Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee With Late CE</controllingFieldValue>
-                <controllingFieldValue>UDC-Renewal Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Late Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Reinstatement Exam Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Application Fee</controllingFieldValue>
-                <controllingFieldValue>UDC-Current Certificate Credential Fee</controllingFieldValue>
-                <valueName>16500P2UDCP</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Title Replacement Fee</controllingFieldValue>
-                <controllingFieldValue>Lien Copy Fee</controllingFieldValue>
-                <controllingFieldValue>Expedited Service Fee</controllingFieldValue>
-                <controllingFieldValue>Title Application</controllingFieldValue>
-                <controllingFieldValue>Supplemental Fee</controllingFieldValue>
-                <controllingFieldValue>Rehab &amp; Recycle Fee</controllingFieldValue>
-                <valueName>16500P2MHTL</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -1976,21 +1564,6 @@ MUSW__Permit2__r.MUSW__Account__c )</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Days_since_created__c</fullName>
-        <description>Captures Days since created</description>
-        <externalId>false</externalId>
-        <formula>TODAY() - DATEVALUE(CreatedDate)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Days since created</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2073,17 +1646,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>Fee_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Fee Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>Renewal_Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -2113,6 +1675,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <fields>
         <fullName>Revenue_Account_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Account Code</label>
         <length>200</length>
@@ -2125,6 +1688,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Revenue_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Code</label>
         <length>200</length>
@@ -2137,6 +1701,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>TMS_AR_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLAR&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS AR Code</label>
         <length>200</length>
@@ -2149,6 +1714,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>TMS_Cash_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLCH&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS Cash Code</label>
         <length>200</length>
@@ -2161,6 +1727,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>TMS_Revenue_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS Revenue Code</label>
         <length>200</length>
@@ -2172,6 +1739,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <fields>
         <fullName>Upsert_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Upsert ID</label>
         <length>255</length>
@@ -2208,6 +1776,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Voided_Receipt_Check_Number__c</fullName>
         <description>2011</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voided Receipt Check Number</label>
         <length>50</length>
@@ -2220,6 +1789,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Voided_Receipt_Payment_Method__c</fullName>
         <description>2011 : Voided Receipt Payment Method</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voided Receipt Payment Method</label>
         <length>50</length>
@@ -2232,6 +1802,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Voucher_Number__c</fullName>
         <description>1966</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voucher #</label>
         <length>255</length>
@@ -2269,32 +1840,28 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <label>Fee</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>Related_To__c</columns>
         <columns>NAME</columns>
         <columns>MUSW__Amount__c</columns>
         <columns>MUSW__Amount_Paid__c</columns>
+        <columns>MUSW__Outstanding_Fee__c</columns>
         <columns>Application_Type__c</columns>
-        <columns>Related_To__c</columns>
-        <columns>MUSW__Fee_Paid__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
-        <columns>MUSW__License2__c</columns>
-        <columns>MUSW__License1__c</columns>
-        <columns>MUSW__License__c</columns>
         <columns>LAST_UPDATE</columns>
-        <columns>TMS_Revenue_Code__c</columns>
-        <columns>TMS_Cash_Code__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATEDBY_USER</field>
-            <operation>contains</operation>
-            <value>David</value>
-        </filters>
         <label>All</label>
     </listViews>
     <listViews>
         <fullName>DSHS_Fees</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>Agency_Code__c</columns>
+        <columns>MUSW__Amount__c</columns>
+        <columns>MUSW__Amount_Paid__c</columns>
+        <columns>Voucher_Number__c</columns>
+        <columns>License_Number__c</columns>
+        <columns>BGBK__Invoice__c</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Agency_Code__c</field>
             <operation>equals</operation>
@@ -2303,7 +1870,12 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <filters>
             <field>CREATED_DATE</field>
             <operation>equals</operation>
-            <value>LAST_MONTH</value>
+            <value>THIS_MONTH</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>MUSW__Fee__c.MUSW__All</value>
         </filters>
         <label>DSHS Fees</label>
     </listViews>
@@ -2338,11 +1910,14 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <columns>NAME</columns>
         <columns>MUSW__Amount__c</columns>
         <columns>MUSW__Outstanding_Fee__c</columns>
+        <columns>Days_since_created__c</columns>
         <columns>MUSW__Fee_Paid__c</columns>
         <columns>Account_Number__c</columns>
         <columns>AR_Date__c</columns>
         <columns>ARed__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>MUSW__Amount_Paid__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>MUSW__Outstanding_Fee__c</field>
@@ -2350,6 +1925,27 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             <value>0</value>
         </filters>
         <label>Outstanding Fees</label>
+    </listViews>
+    <listViews>
+        <fullName>Paid_Fees</fullName>
+        <columns>Related_To__c</columns>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount__c</columns>
+        <columns>MUSW__Outstanding_Fee__c</columns>
+        <columns>MUSW__Fee_Paid__c</columns>
+        <columns>Account_Number__c</columns>
+        <columns>AR_Date__c</columns>
+        <columns>ARed__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>MUSW__Amount_Paid__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Amount_Paid__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>Paid Fees</label>
     </listViews>
     <listViews>
         <fullName>Search</fullName>
@@ -2363,10 +1959,21 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>Revenue_Code__c</columns>
+        <columns>MUSW__Amount_Paid__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>MUSW__Outstanding_Fee__c</field>
             <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>David</value>
+        </filters>
+        <filters>
+            <field>MUSW__Amount_Paid__c</field>
+            <operation>equals</operation>
             <value>0</value>
         </filters>
         <label>Search</label>
@@ -2429,7 +2036,17 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
                 <default>false</default>
             </values>
         </picklistValues>
-        
+        <picklistValues>
+            <picklist>Adjustment_Reason__c</picklist>
+            <values>
+                <fullName>Reapplied Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refund</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Agency_Code__c</picklist>
             <values>
@@ -2975,7 +2592,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <errorConditionFormula>AND( MUSW__Fee_Paid__c = true,  ISCHANGED(MUSW__Amount__c ), PRIORVALUE(MUSW__Amount__c ) &gt; MUSW__Amount__c)</errorConditionFormula>
         <errorMessage>Cannot change the Amount below the Amount already paid on this Fee. Increase Amount or click Cancel</errorMessage>
     </validationRules>
-
     <validationRules>
         <fullName>License_Needed_on_Compliance_Fee</fullName>
         <active>true</active>
@@ -2990,7 +2606,6 @@ ISPICKVAL( MUSW__Type__c ,&quot;Fine&quot;)
         <errorDisplayField>MUSW__License__c</errorDisplayField>
         <errorMessage>The license number needs to be entered to create a fine.</errorMessage>
     </validationRules>
-
     <validationRules>
         <fullName>MUSW__Fee_Amount_Paid_Over_Amount</fullName>
         <active>true</active>

@@ -15,6 +15,10 @@
         <value xsi:type="xsd:string">Architects</value>
     </values>
     <values>
+        <field>Display_In_Related_Tab__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
         <field>Generate_Fee__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>
@@ -28,7 +32,7 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">License Information,Attachments,Review and Submit</value>
+        <value xsi:type="xsd:string">Request Information,Attachments,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>

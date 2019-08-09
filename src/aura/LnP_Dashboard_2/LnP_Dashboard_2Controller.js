@@ -324,6 +324,7 @@
     deleteDraftLicenseApplication: function(component, event, helper) {
         var ctarget = event.currentTarget;
         var application_Id = ctarget.getAttribute("data-recordId");
+        helper.setAbandonedStatus(component, event, helper,application_Id);
     },
     editDraftRenewApplications  : function(component, event, helper){
         var ctarget = event.currentTarget;
@@ -339,6 +340,13 @@
     deleteDraftRenewApplications: function(component, event, helper) {
         var ctarget = event.currentTarget;
         var Renew_application_Id = ctarget.getAttribute("data-recordId");
+        helper.setAbandonedStatus(component, event, helper,Renew_application_Id);
+    },
+    
+    deleteDraftMaintananceRequestApplication: function(component, event, helper) {
+        var ctarget = event.currentTarget;
+        var Request_Id = ctarget.getAttribute("data-recordId");
+        helper.setAbandonedStatus(component, event, helper,Request_Id);
     },
     CEAuditAMR : function(component,event,helper){
         var ctarget = event.currentTarget;
