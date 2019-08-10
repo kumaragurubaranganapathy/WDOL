@@ -1072,10 +1072,10 @@ listApp.add(applicationChild);*/
             }   
         }
                 //Calling method to  store 3rd party
-        if(!mapSubmissionToFile.isEmpty()){
-            Polaris_RenewLicenseController.updateLinkedEntityId(mapSubmissionToFile);
+       // if(!mapSubmissionToFile.isEmpty()){
+         //   Polaris_RenewLicenseController.updateLinkedEntityId(mapSubmissionToFile);
           //  string success = Dol_UploadDocumenttoSAN.portalUpload(mapSubmissionToFile);
-        }
+       // }
         return licenseID;
     }
     
