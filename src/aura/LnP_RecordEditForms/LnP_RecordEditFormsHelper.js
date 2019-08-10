@@ -47,6 +47,7 @@
             var appId = component.get("v.applicationId");
             var action = component.get('c.returnIds');
             var dataRows=[];
+            var count=[];
             var recordList =[];
             console.log('flowType:' + component.get("v.flowType"));
             console.log('Record Id==' + recordTypeID + 'applicationId==' + appId + 'ObjectName== ' + obj);
@@ -59,23 +60,25 @@
                     sectionList = sectionList.labelFieldsMap;
                     for(var i=0;i<sectionList.length;i++){
                         if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'LnP_BackgroundSection__c' && obj=='LnP_BackgroundSection__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label, "required":sectionList[i].isMandatoryQues, "regex":sectionList[i].regex, "error":sectionList[i].errormsg});
+                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label, "required":sectionList[i].isMandatoryQues, "regex":sectionList[i].regex, "error":sectionList[i].errormsg, "masking":sectionList[i].validationCriteria});
                         }
                         else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Endorsement__c' && obj=='Endorsement__c'){
                             recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
                         }
-                        else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Electronic_Notary_Provider_Information__c' && obj=='Electronic_Notary_Provider_Information__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
-                        }
-                        else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Education_History__c' && obj=='Education_History__c'){
-                            recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
-                        }
+                            else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Electronic_Notary_Provider_Information__c' && obj=='Electronic_Notary_Provider_Information__c'){
+                                recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
+                            }
+                                else if(sectionList[i].questionSectionClass== sectionName && sectionList[i].fieldObjName == 'Education_History__c' && obj=='Education_History__c'){
+                                    recordList.push({"fieldName": sectionList[i].fieldAPIName, "label": sectionList[i].label});
+                                }
                     }
                     component.set('v.recordList', recordList);
                     for(var i=0;i<dataList.length;i++){
                         dataRows.push({"id": dataList[i].Id, "fields": recordList});
+                        
                     }
                     component.set('v.dataRows', dataRows);
+                    component.set('v.count', dataRows[0]);
                 }
             });
             $A.enqueueAction(action);
@@ -110,9 +113,34 @@
         if(currElem.get("v.fieldName")==="Current__c"){
             currentValue = currElem.get("v.value");
             component.set("v.currentValue",currentValue);            
-        }      
+        } 
+        var currElement = event.getSource().get('v.value'); 
+        console.log('currElement--'+currElement);
+        var currfield=event.getSource().get('v.fieldName');
+        console.log('currfield--'+currfield);
+        var masking = event.getSource().get('v.id');
+        console.log('masking--'+masking);
+        var patternArray;
+        if(!($A.util.isEmpty(masking) || $A.util.isUndefined(masking))){
+          patternArray = masking.split(",")  
+        }
+            
+       
+        var strlength=patternArray[0];
+        var sliceIndex=patternArray[1];
+        var intervalIndex=patternArray[2];
+        var delimiter=patternArray[3];
+        var endIndex=(+sliceIndex)+(+intervalIndex);
+        if(currfield=="Supervisor_Phone_Number__c"){
+            if(currElement.length==strlength){
+                var trimmedNo = ('' + currElement).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, sliceIndex)+delimiter+trimmedNo.slice(sliceIndex,endIndex) + delimiter + trimmedNo.slice(endIndex);
+                event.getSource().set('v.value',phone); 
+            }
+        }
     },
-    inputEditClick : function(component,event){        
+    inputEditClick : function(component,event){ 
+        console.log("in input edit click");
         var currElem = event.getSource();
         //var inputFields = component.find("inputEditField");
         var currentValue;
@@ -125,6 +153,22 @@
             component.set("v.currentEditValue",currentValue);
             component.set("v.cardIndex",cardIndex);            
         }
+        var currElement = event.getSource().get('v.value'); 
+        var currfield=event.getSource().get('v.fieldName');
+        var masking = event.getSource().get('v.id');
+        var patternArray=masking.split(",")
+        var strlength=patternArray[0];
+        var sliceIndex=patternArray[1];
+        var intervalIndex=patternArray[2];
+        var delimiter=patternArray[3];
+        var endIndex=(+sliceIndex)+(+intervalIndex);
+        if(currfield=="Supervisor_Phone_Number__c"){
+            if(currElement.length==strlength){
+                var trimmedNo = ('' + currElement).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, sliceIndex)+delimiter+trimmedNo.slice(sliceIndex,endIndex) + delimiter + trimmedNo.slice(endIndex);
+                event.getSource().set('v.value',phone); 
+            }
+        }
         /*inputFields.forEach(function(elem){
             var fieldName = elem.get("v.fieldName");
             if(fieldName==="Current__c"){
@@ -136,11 +180,17 @@
                 $A.util.removeClass(elem,'slds-hide');            
         }); */
     },
-    test: function(component,event){ 
-        /*   console.log("in test");
+    mobileFormat: function(component,event){
         var currElement = event.getSource().get('v.value'); 
-        var currfield=event.getSource().get('v.fieldName')
-        if(currfield=="Start_date__c"){
+        var currfield=event.getSource().get('v.fieldName');
+        if(currfield=="Supervisor_Phone_Number__c"){
+            if(currElement.length==10){
+                var trimmedNo = ('' + currElement).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
+                event.getSource().set('v.value',phone); 
+            }
+        }
+        /*if(currfield=="Start_date__c"){
         var d = new Date(currElement);
         var month = d.getMonth()+1;
         var year =  d.getFullYear();
@@ -150,6 +200,7 @@
         }*/
     },
     validate : function(component, event, helper) {
+        console.log('in validate');
         var classList = event.getSource().get("v.class");
         var blockID = event.getSource().get("v.name");
         var totalFieldsList = component.get("v.sectionList").labelFieldsMap;
@@ -174,7 +225,7 @@
             component.set("v.editForm", true);
             var fieldValuesWrapper = component.find("validateEditField");
             fieldValuesWrapper = fieldValuesWrapper.filter(function(item){
-               return item.get("v.class").includes('itemRow='+blockID); 
+                return item.get("v.class").includes('itemRow='+blockID); 
             });
         }else{
             component.set("v.editForm", false);
@@ -182,11 +233,12 @@
         }
         var validateFlagCheck = sectionFieldsList.every(function(item, index){
             if(!fieldValuesWrapper[index].get("v.class").includes('slds-hide')){
-                 if(item.isMandatoryQues){
+                if(item.isMandatoryQues){
                     if(item.regex != undefined && item.regex != null && item.regex != ""){
-                        if(item.regex == "Date-Validation"){
-                            var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != "" && valueVal != null){
+                        var valueVal = fieldValuesWrapper[index].get("v.value");
+                        if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
+                            if(item.regex == "Date-Validation"){
+                                var valueVal = fieldValuesWrapper[index].get("v.value");
                                 var today = new Date();
                                 var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
                                 compareDate = new Date(compareDate);
@@ -195,24 +247,25 @@
                                     return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                	return false;
+                                    return false;
                                 }
-                            }else{
-                                errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                return false;
+                            } else {
+                                var regexExp = new RegExp(item.regex);
+                                var valueVal = fieldValuesWrapper[index].get("v.value");
+                                if(regexExp.test(valueVal)){
+                                    return true;
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                    return false;
+                                }  
                             }
-                        } else {
-                            var regexExp = new RegExp(item.regex);
-                            var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null && regexExp.test(valueVal)){
-                                return true;
-                            }else{
-                                errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
-                                return false;
-                            }  
+                        }else{
+                            errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                            return false;
                         }
                     } else {
-                        if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
+                        var valueVal = fieldValuesWrapper[index].get("v.value");
+                        if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                             return true;
                         } else {
                             errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -221,20 +274,18 @@
                     }
                 } else {
                     if(item.regex != undefined && item.regex != null && item.regex != ""){
-                        if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null){
+                        var valueVal = fieldValuesWrapper[index].get("v.value");
+                        if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                             if(item.Regex_Validation__c == "Date-Validation"){
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(valueVal != "" && valueVal != null){
-                                    var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                    compareDate = new Date(compareDate);
-                                    var enteredDate = new Date(valueVal);
-                                    if(enteredDate < compareDate){
-                                        return true;
-                                    }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-                                    	return false;
-                                    }
+                                var today = new Date();
+                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                console.log('compareDate 1 :',compareDate)
+                                compareDate = new Date(compareDate);
+                                console.log('compareDate 2--',compareDate);
+                                var enteredDate = new Date(valueVal);
+                                if(enteredDate < compareDate){
+                                    return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
                                     return false;
@@ -242,7 +293,7 @@
                             } else {
                                 var regexExp = new RegExp(item.regex);
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
-                                if(fieldValuesWrapper[index].get("v.value") != '' && fieldValuesWrapper[index].get("v.value") != null && regexExp.test(valueVal)){
+                                if(regexExp.test(valueVal)){
                                     return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -260,7 +311,9 @@
                 return true;
             }
         });
+        console.log('validateFlagCheck--',validateFlagCheck);
         if(validateFlagCheck){
+            console.log('edit form --',component.get("v.editForm"));
             if(component.get("v.editForm")){
                 if(component.find("editFormDetails").length!=undefined){
                     component.find("editFormDetails")[blockID].submit();
@@ -281,28 +334,5 @@
             toastEvent.fire();
             event.preventDefault();
         }
-        
-        /*var inputCmp = component.find("inputCmp");
-        var errorFound = false;
-        inputCmp.forEach(function(entry) {
-            var value = entry.get("v.value");
-            var classes = entry.get("v.class");
-            if(classes !=  undefined && classes.includes('mandatory')&&value==null){
-                errorFound = true;
-            }       
-        });
-        if(errorFound== true){
-            console.log('errors!');
-            var resultsToast = $A.get("e.force:showToast");
-            resultsToast.setParams({
-                "title": "Missing fields",
-                "message": "Add mandatory fields."
-            });
-            resultsToast.fire();
-            event.preventDefault();
-        }else{
-            console.log('no errors!');
-            //component.find("editForm").onsubmit();
-        }*/
     },
 })

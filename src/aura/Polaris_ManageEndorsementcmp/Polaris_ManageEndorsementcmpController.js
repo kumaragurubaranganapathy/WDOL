@@ -10,7 +10,8 @@
         //console.log('onchange : ',JSON.stringify(component.get("v.licenseWrapper")));
     },
     viewProvider: function(component, event, helper) {
-		helper.viewProviderHelper(component, event, helper);
+        component.set("v.endorsementID",event.getSource().get("v.value"));
+		helper.viewProviderHelper(component, event, helper,component.get("v.endorsementID"));
 	},
     deleteProvider: function(component, event, helper){
         helper.deleteProviderHelper(component, event, helper);
@@ -45,6 +46,7 @@
             "message": "Provider Added"
         });
         component.set("v.isModalOpen",false);
+        helper.viewProviderHelper(component, event, helper,component.get("v.endorsementID"));
     },
     submit : function(component, event, helper){
        console.log('onchange : ',JSON.stringify(component.get("v.licenseWrapper")));

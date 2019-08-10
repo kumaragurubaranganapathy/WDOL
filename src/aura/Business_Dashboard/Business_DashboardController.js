@@ -1,7 +1,8 @@
 ({
 	doInit : function(component, event, helper) {
 		helper.getRecordTypeId(component,event,helper);
-        helper.fetchData(component,event, helper);        
+        helper.fetchData(component,event, helper);
+        helper.getLicenseDetails(component,event,helper);     
 	},
     doRender : function(component,event,helper){
         helper.doRender(component,event);
@@ -101,6 +102,8 @@
         	component.set("v.todayDate",tDate);
         	
             helper.getCourseDetails(component,event,helper);
+            
+            helper.getAddressDetails(component,event,helper);
         }
         if(licenseId != null && licenseId !='' && isdisplayLicenseDetails === true){ 
             
@@ -142,5 +145,5 @@
     },
     addBusiness : function(component,event,helper){
         helper.addBusiness(component,event);
-    }
+    }    
 })

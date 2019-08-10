@@ -92,11 +92,11 @@
         });
         $A.enqueueAction(action);
     },
-    viewProviderHelper: function(component, event, helper) {
+    viewProviderHelper: function(component, event, helper,endoId) {
         component.set("v.showProvider",false);
         var action = component.get("c.fetchProvider");
         action.setParams({            
-            "endoId": event.getSource().get("v.value"),
+            "endoId": endoId,
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
@@ -122,7 +122,7 @@
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
             if (state === "SUCCESS"){
-                helper.viewProviderHelper(component, event, helper);
+                helper.viewProviderHelper(component, event, helper,component.get("v.endorsementID"));
                 //do something
             }
         });

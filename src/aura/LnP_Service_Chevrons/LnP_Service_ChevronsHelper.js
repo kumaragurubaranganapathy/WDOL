@@ -206,13 +206,23 @@
                 var state = actionResult.getState();
                 if (state === "SUCCESS"){
                     var result = actionResult.getReturnValue();
+					component.set("v.storeServerValue", result[0].Id);
+					component.set("v.serverStatus", "success");  
                     this.hideSpinner(component, event);
-                    // Set popup property values before displayiong pop up.
+                    var AMRvalues = component.get("v.amrData");
+                    if(!AMRvalues.Generate_Fee__c)
+                    {
+                        // Set popup property values before displayiong pop up.
                     component.set("v.popupHeader", "Successfully Submitted");
                     component.set("v.popupBody", "Thank you for submission of your application.");
-                    component.set("v.serverStatus", "success"); 
-                    component.set("v.storeServerValue", result[0].Id);                    
+                    //component.set("v.serverStatus", "success"); 
+                    //component.set("v.storeServerValue", result[0].Id);                    
                     component.set("v.isOpen", true);
+                    }
+                    else
+                    {
+                       helper.closeModel(component, event);
+                    }
                 }else{
                     console.log("Submit Error->"+error);
                     //handle error as well

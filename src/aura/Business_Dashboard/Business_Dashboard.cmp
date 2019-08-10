@@ -15,6 +15,8 @@
     <aura:attribute name="LicenseData" type="MUSW__License2__c" />
     <aura:attribute name="EndorsementData" type="String[]" />
     <aura:attribute name="AddressData" type="List" />
+    <aura:attribute name="PhysicalAddressData" type="List" />
+    <aura:attribute name="MailingAddressData" type="List" />
     <aura:attribute name="existingAcc" type="boolean" default="false" />
     <aura:attribute name="isDisplayTabs" type="boolean" default="true"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -48,8 +50,8 @@
         
         <aura:if isTrue="{!or(v.screenTwo, v.screenThree)}">
             <h1 class="screen-title">{!'Business ' + v.breadcrumbLabel}<!--{!v.breadcrumbLabel} --></h1>
-            <!-- <lightning:breadcrumbs class="breadcrumb-wrapper"> 
-                <lightning:breadcrumb class="transform-text breadcumb" label="Business Dashboard" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/>
+            <!--<lightning:breadcrumbs class="breadcrumb-wrapper"> 
+                <lightning:breadcrumb class="transform-text breadcumb" label="Business Management" href="javascrit:void(0)" onclick="{!c.navigateToScreenOne}"/> 
                 <lightning:breadcrumb class="{!or(v.screenTwo,v.screenThree)?'transform-text breadcumb':'slds-hide'}" label="{!v.breadcrumbLabel}" href="javascrit:void(0)" onclick="{!c.navigateToScreenTwo}"/>
                 <lightning:breadcrumb class="{!v.screenThree?'transform-text breadcumb':'slds-hide'}" label="License 123456789" href="javascrit:void(0)" onclick="{!c.navigateToScreenThree}"/>
             </lightning:breadcrumbs> -->
@@ -92,6 +94,7 @@
                         </lightning:layout>
                         <aura:set attribute="else">
                             <c:StatusAlertForAddingBusinessComponent/>
+                            
                         </aura:set>
                     </aura:if>
                 </div>
@@ -107,8 +110,8 @@
                     {!'Information as of ' + v.todayDate}
                 </div>
                 <div class="actions-wrapper slds-hide_medium">                        
-                        <a class="action-link" href="javascript:void(0)" onclick="{!c.showMoreAMR}">{!v.showMoreAMR?'Hide actions':'Actions'}</a>
-                    </div>
+                    <a class="action-link" href="javascript:void(0)" onclick="{!c.showMoreAMR}">{!v.showMoreAMR?'Hide actions':'Actions'}</a>
+                </div>
                 <lightning:layout class="slds-wrap amr-wrapper">
                     
                     <lightning:layoutItem size="12" mediumDeviceSize="{!empty(v.ServiceLink)?'12':'9'}">
@@ -158,29 +161,29 @@
                                     </lightning:layoutItem>
                                     
                                     <lightning:layoutItem size="12" class="phy-address" mediumDeviceSize="4">
-                                        <aura:iteration items="{!v.AddressData}" var="addressvar">
-                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Physical Address'}">
-                                                <div class="label-style">Physical Address:</div> 
-                                                <div class="address">
-                                                    {!addressvar.Street__c},<br />
-                                                    {!addressvar.City__c},<br />
-                                                    {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
-                                                </div>
-                                            </aura:if>
+                                        <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
+                                            
+                                            <div class="label-style">Physical Address:</div> 
+                                            <div class="address">
+                                                {!addressvar.MUSW__Street2__c},<br />
+                                                {!addressvar.MUSW__City__c},<br />
+                                                {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
+                                            </div>
+                                            
                                         </aura:iteration>  
                                     </lightning:layoutItem>
                                     
                                     
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
-                                        <aura:iteration items="{!v.AddressData}" var="addressvar">
-                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Mailing Address'}">
-                                                <div class="label-style">Mailing Address:</div> 
-                                                <div class="address">
-                                                    {!addressvar.Street__c},<br />
-                                                    {!addressvar.City__c},<br />
-                                                    {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
-                                                </div>
-                                            </aura:if>
+                                        <aura:iteration items="{!v.MailingAddressData}" var="addressvar">
+                                            
+                                            <div class="label-style">Mailing Address:</div> 
+                                            <div class="address">
+                                                {!addressvar.MUSW__Street2__c},<br />
+                                                {!addressvar.MUSW__City__c},<br />
+                                                {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
+                                            </div>
+                                            
                                         </aura:iteration>
                                     </lightning:layoutItem> 
                                     
@@ -204,8 +207,8 @@
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Expiration Date: </span>
-                                            <aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}"/>
+                                            <aura:if isTrue="{!v.LicenseData.Expiration_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.Expiration_Date__c}"/>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>                        
@@ -250,7 +253,7 @@
                     </div>
                     <lightning:layout class="biz-details-wrapper slds-wrap" aura:id="biz-wrapper">
                         <lightning:layoutItem size="12" mediumDeviceSize="9" class="user-info-wrapper">
-                            <div class="Account-name">{!v.SelectedAccountDetails.Name}</div>
+                            <h1 class="Account-name">{!v.SelectedAccountDetails.Name}</h1>
                             <lightning:layout class="slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="4">
                                     <div class="field-style">
@@ -373,18 +376,13 @@
                                             </lightning:layoutItem>                                            
                                             <lightning:layoutItem size="12" class="contact-item" mediumDeviceSize="4">
                                                 <div class="label-style">Physical Address:</div> 
-                                                <aura:if isTrue="{!!empty(v.AddressData)}">
+                                                <aura:if isTrue="{!!empty(v.PhysicalAddressData)}">
                                                     <aura:iteration items="{!v.AddressData}" var="addressvar">
-                                                        
-                                                        
-                                                        
                                                         <div class="address data-style">
-                                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Physical Address'}">
-                                                                {!addressvar.Street__c},<br />
-                                                                {!addressvar.City__c},<br />
-                                                                {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
-                                                                
-                                                            </aura:if>
+                                                            
+                                                            {!addressvar.MUSW__Street2__c},<br />
+                                                            {!addressvar.MUSW__City__c},<br />
+                                                            {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
                                                         </div>
                                                         
                                                     </aura:iteration> 
@@ -397,18 +395,18 @@
                                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
                                                 <div class="label-style">Mailing Address:</div> 
                                                 <aura:if isTrue="{!!empty(v.AddressData)}">
-                                                    <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                                    <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
                                                         
                                                         
                                                         
                                                         <div class="address data-style">
-                                                            <aura:if isTrue = "{!addressvar.Address_Type__c == 'Mailing Address'}">
-                                                                {!addressvar.Street__c},<br />
-                                                                {!addressvar.City__c},<br />
-                                                                {!addressvar.State__c} - {!addressvar.Zip_Postal_Code__c}
-                                                                
-                                                                
-                                                            </aura:if>
+                                                            
+                                                            {!addressvar.MUSW__Street2__c},<br />
+                                                            {!addressvar.MUSW__City__c},<br />
+                                                            {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                            
+                                                            
+                                                            
                                                         </div>
                                                     </aura:iteration>
                                                     <aura:set attribute="else">
@@ -437,7 +435,7 @@
                                                 <div class="contact-item">
                                                     <div class="label-style">Expiration Date: </div> 
                                                     <div class="data-style">
-                                                        {!v.LicenseData.MUSW__Expiration_Date__c?v.LicenseData.MUSW__Expiration_Date__c:'None'}
+                                                        {!v.LicenseData.Expiration_Date__c?v.LicenseData.Expiration_Date__c:'None'}
                                                     </div>
                                                 </div>      
                                             </lightning:layoutItem>
@@ -467,17 +465,17 @@
                                                 </div>                                                
                                             </lightning:layoutItem>                         
                                         </lightning:layout>
-										<aura:if isTrue="{!v.EndorsementData.length != 0}">
-                                        <div class="">
-                                            <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
-                                            <div class="section-content slds-p-around_small">
-                                                <aura:iteration items="{!v.EndorsementData}" var="item">
-                                                    <div class="section-list">{!item}</div>
-                                                </aura:iteration>
+                                        <aura:if isTrue="{!v.EndorsementData.length != 0}">
+                                            <div class="">
+                                                <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
+                                                <div class="section-content slds-p-around_small">
+                                                    <aura:iteration items="{!v.EndorsementData}" var="item">
+                                                        <div class="section-list">{!item}</div>
+                                                    </aura:iteration>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </aura:if>
-                                        <!-- <div class="section-wrapper">
+                                        </aura:if>
+                                        <!--<div class="section-wrapper">
                                             <div class="section-header">
                                                 Endorsements
                                             </div>
@@ -489,7 +487,7 @@
                                                     </aura:if>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                       
                                         <div class="{!v.LicenseData.Credential_Type__c=='Engineering/Land Surveying Company'?'section-wrapper':'slds-hide'}">
                                             <div class="section-header">
                                                 Affiliated Locations
@@ -514,7 +512,7 @@
             </div>
             
             <aura:if isTrue="{!!v.courseDetail}">
-                <lightning:tabset class="tabs-wrapper">
+                <lightning:tabset class="tabs-wrapper" >
                     <aura:if isTrue="{!v.accountDetail}">
                         <aura:if isTrue = "{!v.isCourseProvider}"> 
                             <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >
@@ -522,10 +520,12 @@
                                 <!-- data is injected Dynamically-->
                             </lightning:tab>
                         </aura:if>
-                        <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Licenses" id="Licenses" >
-                            <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" />--> 
-                            <!-- data is injected Dynamically-->
-                        </lightning:tab>
+                        <aura:if isTrue = "{!v.isCourseProvider == False}"> 
+                            <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Licenses" id="Licenses" >
+                                <!--<c:Business_LicenseScreen accountId="{!v.selectedAccount}" />--> 
+                                <!-- data is injected Dynamically-->
+                            </lightning:tab>
+                        </aura:if>
                     </aura:if>
                     <aura:if isTrue="{!v.branchExam}">
                         <lightning:tab class="tab-style"  onactive="{!c.setBreadCrumb}" label="Branches" id="Branches" >
@@ -549,11 +549,13 @@
                         <!--<c:LnP_CompletedRequest CompletedRequestData="{!v.CompletedRequestData}" CompletedRequestColumns="{!v.CompletedRequestColumns}" />-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>
+                    <!--
                     <aura:if isTrue="{!v.branchExam}">
                         <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Exam" id="Exam" >
                             <c:LnP_ExamReschedule licenseData = "{!v.LicenseData}"/>
                         </lightning:tab>
                     </aura:if>
+                    -->
                 </lightning:tabset>
             </aura:if>
             <div class="back-btn-wrapper">
