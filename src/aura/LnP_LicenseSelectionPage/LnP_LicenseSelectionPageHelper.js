@@ -240,7 +240,7 @@
             "LicenseType": licenseType, 
             "ApplicationType": applicationMethod,
             "Obj":'MUSW__License2__c',
-            "RenewReinstate":''
+            "renewalReinstate":''
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();

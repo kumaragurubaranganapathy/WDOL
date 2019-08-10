@@ -259,7 +259,7 @@ _______________________________________________________________
                     <aura:if isTrue="{!v.searchTwo}">
                         <aura:iteration items="{!v.searchTwoArray}" var="option">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="slds-form-element__label">{!option.label} :</div>
+                                <div class="slds-form-element__label">{!option.label}:<span>&nbsp;</span></div>
                                 <div class="slds-form-element__control btnnrml">{!option.value}</div>
                             </div>
                         </aura:iteration>
@@ -446,16 +446,16 @@ _______________________________________________________________
                                         <div class="field-style-val">
                                             <aura:if isTrue="{!item.MUSW__Parcel__r}">
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Name}">
-                                                <div>{!item.MUSW__Parcel__r.Name}<span>,</span></div>
+                                                    <div>{!item.MUSW__Parcel__r.Name}</div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.MUSW__State__c}">
-                                                <div>{!item.MUSW__Parcel__r.MUSW__State__c}<span>,</span></div>
+                                                    <span>{!item.MUSW__Parcel__r.MUSW__State__c}<span>&nbsp;</span></span>
                                                 </aura:if>
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Zip_Postal_Code__c}">
-                                                <div>{!item.MUSW__Parcel__r.Zip_Postal_Code__c}<span>,</span></div>
+                                                    <span>{!item.MUSW__Parcel__r.Zip_Postal_Code__c}</span>
                                                 </aura:if>
                                                 <aura:if isTrue="{!item.MUSW__Parcel__r.Country__c}">
-                                                <div>{!item.MUSW__Parcel__r.Country__c}<span>.</span></div>
+                                                    <div>{!item.MUSW__Parcel__r.Country__c}</div>
                                                 </aura:if>
                                             </aura:if>
                                         </div>

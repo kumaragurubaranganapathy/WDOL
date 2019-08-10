@@ -51,7 +51,7 @@
                     </ul>
                 </div>
             </div>
-            
+            <aura:if  isTrue ="{!v.eliTypeQues.length >0}">
             <div id="eliTypeGridDiv" class="slds-grid card-wrapper slds-wrap slds-m-top_xx-large">
                 <div id="eliTextDiv"
                      class="slds-m-right_xx-large slds-large-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1">
@@ -72,6 +72,7 @@
                     </aura:iteration>
                 </div>
             </div>
+        </aura:if>  
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class="proceed-btn-wrapper">
             <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand"

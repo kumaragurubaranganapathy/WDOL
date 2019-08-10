@@ -135,30 +135,65 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
         If(articlesToArrange != null){
             
             Integer totalArticleBodyItems = articlesToArrange.size();
-        
+            
             Integer Optimal_Articles_Section = 6;
             
             Integer calculated_Articles_Per_Section = (Math.floor(articlesToArrange.size()/no_Of_Sections)).intValue();
             
-            Integer Additional_calculated_Articles_Per_Section = Math.mod(articlesToArrange.size(),no_Of_Sections);
+            Integer Additional_calculated_Articles_Per_Section = Math.mod(articlesToArrange.size(),no_Of_Sections);          
+            
             
             integer i = 0;
             
-            for( ; i < (articlesToArrange.size()-Additional_calculated_Articles_Per_Section) ; i++){
-                
-                Integer selected_Section_To_Push = (Math.floor(i/calculated_Articles_Per_Section)).intValue();
-                
-                arrangedArticles.get(selected_Section_To_Push).add(articlesToArrange.get(i));
-            }
+            /*for( ; i < (articlesToArrange.size()-Additional_calculated_Articles_Per_Section) ; i++){
+
+Integer selected_Section_To_Push = (Math.floor(i/calculated_Articles_Per_Section)).intValue();
+
+arrangedArticles.get(selected_Section_To_Push).add(articlesToArrange.get(i));
+}
+
+for( ;i<articlesToArrange.size();i++){
+
+arrangedArticles.get(2).add(articlesToArrange.get(i));
+} */
             
-            for( ;i<articlesToArrange.size();i++){
-                
-                arrangedArticles.get(0).add(articlesToArrange.get(i));
+            //check for dynamic size
+            
+            Integer j = 0;
+            
+            for ( ; j < no_Of_Sections ; j++ ){
+                for( ; i < articlesToArrange.size() ; i++){
+                    
+                    //Integer selected_Section_To_Push = (Math.floor(i/calculated_Articles_Per_Section)).intValue();
+                    
+                    
+                    if(j == 0){
+                        if(i < calculated_Articles_Per_Section + Additional_calculated_Articles_Per_Section ){
+                            arrangedArticles.get(j).add(articlesToArrange.get(i));   
+                        }
+                        else{                            
+                            break;
+                        }
+                    }
+                    else {
+                        if((i - (j*calculated_Articles_Per_Section)) <= calculated_Articles_Per_Section){
+                            arrangedArticles.get(j).add(articlesToArrange.get(i));   
+                        }
+                        else{                            
+                            break;
+                        }
+                        
+                    }
+                    
+                }
             }
-             
+            /*for( ;i<articlesToArrange.size();i++){
+
+arrangedArticles.get(0).add(articlesToArrange.get(i));
+}  */
         }
         
-         return arrangedArticles; 
+        return arrangedArticles; 
         
     }
     
