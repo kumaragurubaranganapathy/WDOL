@@ -1005,7 +1005,7 @@ listApp.add(applicationChild);*/
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
-                            endorsment.License__c = liceseIDRenewal;
+                            endorsment.License__c = liceseIDRenewal.Id;
                             lstEndorsements.add(endorsment);
                         }
                         else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
@@ -1017,7 +1017,7 @@ listApp.add(applicationChild);*/
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
-                            endorsment.License__c = liceseIDRenewal;
+                            endorsment.License__c = liceseIDRenewal.Id;
                             lstEndorsements.add(endorsment);
                         }
                         lstAnswers.add(ans);
@@ -1091,7 +1091,7 @@ listApp.add(applicationChild);*/
         
         List<MUSW__Application2__c> applicationList = [SELECT Id,isRenewal__c,Physical_Address_Modified_On_Renewal__c,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c,MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
         system.debug('applicationList : '+applicationList);
-        liceseIDRenewal = [Select Id,Application__c,Bond_Number__c,recordTypeId, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c From MUSW__License2__c where Application__c IN:appId];
+        liceseIDRenewal = [Select Id,Application__c,Bond_Number__c,recordTypeId, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c From MUSW__License2__c where Application__c IN:appId limt 1];
         system.debug('liceseIDRenewal : '+liceseIDRenewal);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
@@ -1120,7 +1120,7 @@ mstLicense.RecordTypeId = businessRT;
             mstLicense.Application__c = application.id;
             //mstLicense.MUSW__Applicant__c = application.MUSW_Applicant__c;
             //mstLicense.MUSW__Primary_Licensee__c = '001r000000Cax8Y';
-            liceseIDRenewal = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
+           // liceseIDRenewal = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
             mstLicense.Renewal_Status__c = 'Generate Fee';
             mstLicense.License__c = liceseIDRenewal.Id;
             mstLicense.Renewal_Reinstatement_Type__c = renewReinstate;
