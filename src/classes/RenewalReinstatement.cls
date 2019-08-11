@@ -42,7 +42,9 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
                 MUSW__License2__c license = new MUSW__License2__c(id= rene.License__c);
                 license.MUSW__Status__c = 'Active';
                 license.Application_Type__c = rene.Application_Type__c;
-                if(rene.License__r.Is_Late_Renewal_Eligible__c || rene.License__r.Is_Reinstatement_Eligible__c){
+                license.MUSW__Issue_Date__c = System.today();
+                system.debug('MUSW__Issue_Date__c ::'+license.MUSW__Issue_Date__c);
+            /*    if(rene.License__r.Is_Late_Renewal_Eligible__c || rene.License__r.Is_Reinstatement_Eligible__c){
                 
                     license.MUSW__Issue_Date__c = System.today();
                     system.debug('MUSW__Issue_Date__c ::'+license.MUSW__Issue_Date__c);
@@ -51,7 +53,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
                         license.MUSW__Issue_Date__c  = idDateMap.get(rene.License__c) + 1;
                         system.debug('MUSW__Issue_Date__c ::'+license.MUSW__Issue_Date__c);
                     }
-                }    
+                }  */  
                 
                 licenseList.add(license);  
                 system.debug('licenseList---'+licenseList);
