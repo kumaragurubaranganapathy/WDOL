@@ -10,7 +10,7 @@ public class LnP_UpdateOvershortAmountClass {
         if(DepositId != null) {
             MUSW__Deposit__c depositRec = [SELECT Id,Over_Short_Revenue_Code__c,MUSW__Available_Amount__c,Overshort_Amount__c,wadol_Program_Type__c FROM MUSW__Deposit__c WHERE Id = :DepositId];
             
-            if((depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)) && depositRec.MUSW__Available_Amount__c > depositRec.Overshort_Amount__c){
+            if((depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)) && (depositRec.MUSW__Available_Amount__c > depositRec.Overshort_Amount__c || depositRec.Overshort_Amount__c == null)){
                 //update MUSW__Deposit__c overshort Amount with available amount.
                 depositRec.Overshort_Amount__c = depositRec.MUSW__Available_Amount__c;
                 depositRec.Overshort_Modified__c = True;
