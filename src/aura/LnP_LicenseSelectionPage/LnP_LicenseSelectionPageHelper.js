@@ -100,9 +100,7 @@
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
 		component.find("button1").set('v.disabled',true);
-        component.set("v.eliTypeQues",[]);
-        helper.fetchApplicationInstructionHelper(component,event,helper);
-        
+        component.set("v.eliTypeQues",[]);        
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
