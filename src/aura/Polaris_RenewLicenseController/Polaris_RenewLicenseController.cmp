@@ -50,7 +50,7 @@
     <aura:attribute name="errorMsgsList" type="List"/>
     <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
     <aura:attribute name="saveAndSubmit" type="Boolean" default="false" />
-    
+    <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleEvent}"/> 
     <aura:registerEvent name="AddressModifiedEvent" type="c:AddressModifiedEvent" />
     <aura:handler event="c:RefreshComponentEvent" action="{!c.handleComponentEvent}"/>
     <force:recordData
@@ -173,7 +173,7 @@
                                             <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
                                             <div class="slds-form-element">
                                                 <div class="slds-form-element__control">
-                                                    <div class="slds-checkbox certificate-checkbox">
+                                                    <div class="{!(question.renderedOnUi?'':'slds-hide')+ ' slds-checkbox certificate-checkbox'}">
                                                         <input type="checkbox" name="{!'cert'+questionItem}" id="{!'cert'+questionItem}" onchange="{!c.onCheckboxChange}"/>
                                                         <label class="slds-checkbox__label" for="{!'cert'+questionItem}">
                                                             <span class="slds-checkbox_faux"></span>

@@ -29,6 +29,7 @@
                     sectionList.push(obj);
                 }
                 component.set("v.section",sectionList);
+                
                 console.log("resultWrapper", JSON.stringify(component.get("v.licenseWrapper")));
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
@@ -522,8 +523,7 @@
             var fieldsWrapper = JSON.parse(licenseWrapper[tabNumber].fieldJson);
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
-            });   
-            console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
+            });                
             var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
             var errorMessage = "Please fill valid data";
             var errorMsgsArray = [];
@@ -532,7 +532,7 @@
                     if(item.Required__c){
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
@@ -1110,5 +1110,26 @@
             }
         });
         $A.enqueueAction(action);
+    },
+    
+    handleEventHelper : function(component,event,helper){
+        var messageReceived = event.getParam("message");
+        var tabsList = component.get("v.licenseWrapper");
+        for(var i=0;i<tabsList.length; i++){
+            if(tabsList[i].sectionName == "Review and Submit"){
+                var labelFieldsMap = tabsList[i].labelFieldsMap;
+                for(var j=0;j<labelFieldsMap.length; j++){
+                    if(labelFieldsMap[j].label == "I certify that I do not have a Social Security Number or Individual Taxpayer Identification Number."){
+                        if(messageReceived == "No SSN or ITIN"){
+                            labelFieldsMap[j].renderedOnUi = true;
+                        }
+                        else{
+                            labelFieldsMap[j].renderedOnUi = false;
+                        }
+                    }
+                }
+            }
+        } 
+        component.set("v.licenseWrapper",tabsList);
     }
 })
