@@ -89,9 +89,9 @@
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Generate Fee</value>
+            <field>MUSW__License2__c.Name</field>
+            <operation>notEqual</operation>
+            <value>null</value>
         </criteriaItems>
         <description>Populates the Pre-Licensure Number field on License, the moment License is created.</description>
         <triggerType>onCreateOnly</triggerType>
