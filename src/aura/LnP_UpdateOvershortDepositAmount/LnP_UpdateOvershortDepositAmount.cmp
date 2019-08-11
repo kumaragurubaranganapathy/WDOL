@@ -10,6 +10,7 @@
         </div>
     </aura:if>
     <aura:attribute name="ErrorMsg" type="Boolean" default="false"/>
+    <aura:attribute name="ErrorMsg2" type="Boolean" default="false"/>
     <aura:attribute name="HideSpinner" type="Boolean" default="false"/>
     <aura:attribute name="smsg" type="Boolean" default="false"/>
     <aura:attribute name="OkMsg" type="Boolean" default="false"/>
@@ -27,6 +28,11 @@
      <aura:if isTrue="{!v.ErrorMsg}">
         <ui:message title="Error" severity="error" closable="false">
            <ui:outputText value="{!$Label.c.OverShortDepositErrorMessage}"/>
+        </ui:message>
+    </aura:if>
+    <aura:if isTrue="{!v.ErrorMsg2}">
+        <ui:message title="Error" severity="error" closable="false">
+           Send to Overshort cannot be processed.
         </ui:message>
     </aura:if>
     <aura:if isTrue="{!v.HideSpinner}" >
