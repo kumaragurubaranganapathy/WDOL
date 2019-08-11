@@ -135,6 +135,7 @@
     <aura:attribute name="ServiceLink" type="List" />
     <aura:attribute name="DraftAMRDataPaginationList" type="List" />
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
+    <aura:attribute name="pendingApp" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     
@@ -193,7 +194,7 @@
                                 <div class="card table-border">
                                     <lightning:layout class="slds-wrap lic-details-wrapper bottom-border">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">License Number: </div>
+                                            <div class="label-style text-style">{!v.pendingApp?'Application Number:':'License Number:'}</div>
                                             <div class="data-style">{!item.Name}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
