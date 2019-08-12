@@ -93,7 +93,7 @@
     <rules>
         <fullName>Send email about acceptance of Account Admin</fullName>
         <actions>
-            <name>Send Email About Acceptance of Account Admin to Contact</name>
+            <name>Send Email About Acceptance of Account Admin</name>
             <type>Alert</type>
         </actions>
         <actions>
