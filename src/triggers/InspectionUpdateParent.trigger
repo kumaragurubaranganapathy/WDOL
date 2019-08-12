@@ -3,11 +3,7 @@ trigger InspectionUpdateParent on MUSW__Inspection__c (before update)
   /* 
    *  this trigger runs recursively for the chain of Inspections all the way to the root Inspection
    */
-    Global_Settings__c gs = Global_Settings__c.getInstance(UserInfo.getUserId());
-    if(gs.Disable_Triggers__c == true){
-        // If the triggers have been disabled, then do not call the trigger handler
-        return;
-    }
+    
     MUSW__Inspection__c[] recs = trigger.new;
     
     Set<Id> closedIds = new Set<Id>();

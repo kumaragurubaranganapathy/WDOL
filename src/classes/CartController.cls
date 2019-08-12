@@ -927,10 +927,15 @@ public with sharing class CartController
     }
 
     public void processEPayment(){
+        System.debug(' fees '+ fees);
+        System.debug(' receipt '+ receiptVOs);
+        system.debug(' inside processEPayment');
         Savepoint sp = null;
+        
         if(cart.BGBK__Contact__c != null && cart.BGBK__Contact__r.Name == null) {
             Contact c = [SELECT Name,Email,AccountId From Contact WHERE Id =:cart.BGBK__Contact__c];
             cart.BGBK__Contact__r = c;
+            system.debug('****c***'+c);
         }
         Map<MUSW__Receipt__c, Decimal> rsAmt = new Map<MUSW__Receipt__c, Decimal>();
         for (ReceiptVO rvo : receiptVOs){
@@ -943,45 +948,65 @@ public with sharing class CartController
         }
         preparePayables();
         try{
+            Set<Id> feePaymentIds = new Set<Id>();
             processSuccessful = m_ps.processPayment(payables, rsAmt, accountSelected, cart.BGBK__Process_DateTime__c);
-            system.debug('process successfull '+processSuccessful); 
+            system.debug('process successfull '+processSuccessful);
             if(processSuccessful)   {
-                onPaymentConfirmation();
-                m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
+                Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
+                populateFeeAndInvoicePayment(receipts, feePaymentIds);
+                depositPayments = populateDepositPayment(receipts);
+                if(cart.BGBK__Last_Payment_Amount__c == null)
+                    cart.BGBK__Last_Payment_Amount__c = Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
+                else
+                    cart.BGBK__Last_Payment_Amount__c += Decimal.valueOf(ePaymentReturnSession.PaymentAmount);
+                update cart;
             } else {
                 if(sp != null)
-                    Database.rollback(sp);     
+                    Database.rollback(sp);        
+                // this call is made for testing the clean receipt method.      
+                // Within the org, it should throw a exception, so it will go to the catch, but can't be handled via tests.     
+                //cleanReceiptsAfterPaymentFail(receiptVOs);      
             }
+            MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
+            rs.clear();
+            for(MUSW__Receipt__c receipt : allCartReceipt){
+                if(receipt.id == receiptId){
+                    rs.add(receipt);
+                    break;
+                }
+            }
+
+            //rs = m_cs.getCartReceipts();
+            //m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
         }
         catch (Exception e)
         {
             if(sp != null)
                 Database.rollback(sp);
-            Id errorId = DOL_CreateErrorLog_Exception.logApplicationError(e);
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()+' Please check with Salesforce Team with Id '+errorId ));
+            //cleanReceiptsAfterPaymentFail(receiptVOs);
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()));
             return;
         }
         
     }
-    
-    // Below Method will be called in Case ePayment Confirmation
+
     public void onPaymentConfirmation(){
+    	
         String feePaymentQuery = 'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
-            +'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
-            +'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
-            +'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
-            +'FROM MUSW__Fee_Payment__c '
-            +'WHERE MUSW__Receipt__c = :receiptId';
-        feePayments = (List<MUSW__Fee_Payment__c>)Database.query(feePaymentQuery);
-        for(MUSW__Fee_Payment__c fp : feePayments){
-            fp.BGBK__Cart__c = cart.Id;
-        }
-        update feePayments;
-        
+        				+'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
+        				+'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
+        				+'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
+        				+'FROM MUSW__Fee_Payment__c '
+						+'WHERE MUSW__Receipt__c = :receiptId';
+		feePayments = (List<MUSW__Fee_Payment__c>)Database.query(feePaymentQuery);
+        MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
         rs.clear();
-        String receiptQuery = DOL_AppUtility.getQueryString('MUSW__Receipt__c');
-        receiptQuery += ' WHERE Id = :receiptId';
-        rs.add( ((List<MUSW__Receipt__c>)Database.query(receiptQuery)).get(0) );
+        for(MUSW__Receipt__c receipt : allCartReceipt){
+            if(receipt.id == receiptId){
+                rs.add(receipt);
+                break;
+            }
+        }
     }
 
     /*Vinanthi :Added below method for US 1835*/
@@ -1379,8 +1404,7 @@ public with sharing class CartController
             return cancel();
         }else{
             // selectedTab = label.Str_Fees;
-            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback';
-            PageReference pageRef = new PageReference(portalURL); // Srujan - added to show Feedback Component
+            PageReference pageRef = new PageReference('/s/user-feedback'); // Srujan - added to show Feedback Component
             return pageRef; 
         }
     }

@@ -1,6 +1,6 @@
 public class Polaris_RenewLicenseController {
     public static Contact currentContact {get;set;}
-    public static MUSW__License2__c liceseIDRenewal {get;set;}
+    public static String liceseIDRenewal {get;set;}
     public static List<MUSW__Application2__c> lstApps {get;set;}
     public static String sections {get;set;}
     public static Map<String,String> mapMandatorySubsection {get;set;}
@@ -1005,7 +1005,7 @@ listApp.add(applicationChild);*/
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
-                            endorsment.License__c = liceseIDRenewal.Id;
+                            endorsment.License__c = liceseIDRenewal;
                             lstEndorsements.add(endorsment);
                         }
                         else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c' )
@@ -1017,7 +1017,7 @@ listApp.add(applicationChild);*/
                             endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                             endorsment.Renewal_Reinstatement_Application__c = licenseID;
                             endorsment.Created_for_New_Application__c = True;
-                            endorsment.License__c = liceseIDRenewal.Id;
+                            endorsment.License__c = liceseIDRenewal;
                             lstEndorsements.add(endorsment);
                         }
                         lstAnswers.add(ans);
@@ -1072,11 +1072,10 @@ listApp.add(applicationChild);*/
             }   
         }
                 //Calling method to  store 3rd party
-      //  if(!mapSubmissionToFile.isEmpty()){
-           // Polaris_RenewLicenseController.updateLinkedEntityId(mapSubmissionToFile);
-           // Polaris_RenewLicenseController.updateLinkedEntityId(mapSubmissionToFile);
+        if(!mapSubmissionToFile.isEmpty()){
+            Polaris_RenewLicenseController.updateLinkedEntityId(mapSubmissionToFile);
           //  string success = Dol_UploadDocumenttoSAN.portalUpload(mapSubmissionToFile);
-       // }
+        }
         return licenseID;
     }
     
@@ -1084,15 +1083,13 @@ listApp.add(applicationChild);*/
         List<Renewal_Application__c> lstLisence = new List<Renewal_Application__c>();
         List<MUSW__License2__c> liceList = new List<MUSW__License2__c>();
         //Id licID;
-        Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
-        Id individualRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Individual').getRecordTypeId();
+        Id businessRT = SObjectType.Renewal_Application__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
+        Id individualRT = SObjectType.Renewal_Application__c.getRecordTypeInfosByDeveloperName().get('Individual').getRecordTypeId();
         // For Course Renewal Applications
         Id courseRT = SObjectType.Renewal_Application__c.getRecordTypeInfosBYDeveloperName().get('Course').getRecordTypeId();
         
-        List<MUSW__Application2__c> applicationList = [SELECT Id,isRenewal__c,Physical_Address_Modified_On_Renewal__c,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c,MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
+        List<MUSW__Application2__c> applicationList = [SELECT Id,isRenewal__c,Physical_Address_Modified_On_Renewal__c,Application_Type__c,Application_Method__c,Credential_Type__c,MUSW__Account__c,MUSW__Applicant__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Parent_Object_API_Name__c from Answers1__r) FROM MUSW__Application2__c where id IN: appId];
         system.debug('applicationList : '+applicationList);
-        liceseIDRenewal = [Select Id,Application__c,Bond_Number__c,recordTypeId, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c From MUSW__License2__c where Application__c IN:appId limt 1];
-        system.debug('liceseIDRenewal : '+liceseIDRenewal);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
             mstLicense.Applicant__c = application.MUSW__Applicant__c;
@@ -1120,20 +1117,16 @@ mstLicense.RecordTypeId = businessRT;
             mstLicense.Application__c = application.id;
             //mstLicense.MUSW__Applicant__c = application.MUSW_Applicant__c;
             //mstLicense.MUSW__Primary_Licensee__c = '001r000000Cax8Y';
-           // liceseIDRenewal = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
+            liceseIDRenewal = [Select Id,Application__c From MUSW__License2__c where Application__c =:application.id][0].Id;
             mstLicense.Renewal_Status__c = 'Generate Fee';
-            mstLicense.License__c = liceseIDRenewal.Id;
+            mstLicense.License__c = liceseIDRenewal;
             mstLicense.Renewal_Reinstatement_Type__c = renewReinstate;
-            //MUSW__License2__c lic = [SELECT Id, Bond_Number__c, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c FROM MUSW__License2__c where Id =: liceseIDRenewal];
+            MUSW__License2__c lic = [SELECT Id, Bond_Number__c, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c FROM MUSW__License2__c where Id =: liceseIDRenewal];
             //Added for pol
             Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get('Renewal_Application__c').getDescribe().SObjectType.getDescribe().fields.getMap();
             Map<String,String>  mapValueToStr =  new Map<String,String>();
             
-             String printableName = '';
-             String firstName = '' ;
-             String MiddleName = '';
-             String LastName = '';
-             String doingBusinessAs = '';
+
             
             //--------Added by Babita---------------
             if(application.Answers1__r != null && application.Answers1__r.size()>0) {
@@ -1145,35 +1138,6 @@ mstLicense.RecordTypeId = businessRT;
                         {   
                             mapValueToStr.put(ans.QuestionDOL__r.QuestionFieldAPI__c,ans.Answer_Text__c);
                         }
-                        
-                         if(ans.QuestionDOL__r.Question_Body__c.contains('How will your name appear') && firstName == '' ){
-                               firstName  = ans.Answer_Text__c +' ';
-                            }
-                            if(ans.QuestionDOL__r.Question_Body__c.contains('First Name or initial') && firstName == '' &&  ans.Answer_Text__c  != null &&  ans.Answer_Text__c  !='' ){
-                                firstName  = ans.Answer_Text__c +' ';
-                            }
-                            
-                            if(ans.QuestionDOL__r.Question_Body__c.contains('Doing Business As') && doingBusinessAs == '' ){
-                               doingBusinessAs  = ans.Answer_Text__c +' ';
-                            }
-                            
-                            if(ans.QuestionDOL__r.Question_Body__c=='Middle Name or initial' && MiddleName == '' ){
-                                MiddleName = ans.Answer_Text__c +' ';
-                            }
-                            
-                            if(ans.QuestionDOL__r.Question_Body__c=='Last Name' && LastName == '' ){
-                                LastName = ans.Answer_Text__c;
-                            }
-                            
-                            if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && firstName == '' ){
-                                 firstName  = application.MUSW__Applicant__r.FirstName;
-                            }
-                            if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && MiddleName == '' ){
-                                 MiddleName  = application.MUSW__Applicant__r.MiddleName;
-                            }
-                            if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && LastName == '' ){
-                                 LastName  = application.MUSW__Applicant__r.LastName;
-                            }
                     }
                 if(!mapValueToStr.isEmpty()) {
                     System.debug('****Inside IF****');
@@ -1206,15 +1170,15 @@ mstLicense.RecordTypeId = businessRT;
                         String answerText = ans.Answer_Text__c;
                         String stringToDate = '';
                         if(quesBody == 'Bond / Policy Number'){
-                            liceseIDRenewal.Bond_Number__c = String.valueOf(answerText);
+                            lic.Bond_Number__c = String.valueOf(answerText);
                         }
                         
                         if(quesBody == 'Bond / Insurance Company Name'){
-                            liceseIDRenewal.Surety_Bond_Company_Name__c = String.valueOf(answerText);
+                            lic.Surety_Bond_Company_Name__c = String.valueOf(answerText);
                         }
                         
                         if(quesBody == 'Bond / Policy Amount'){
-                            liceseIDRenewal.Policy_Amount__c = String.valueOf(answerText);
+                            lic.Policy_Amount__c = String.valueOf(answerText);
                         }
                         
                         if(quesBody == 'Effective Date'){
@@ -1224,7 +1188,7 @@ mstLicense.RecordTypeId = businessRT;
                             Integer day = Integer.valueOf(stringToDate.subString(8));
                             Date d = Date.newInstance(year, month, day);
                             
-                            liceseIDRenewal.Effective_Date_of_Bond__c = d;
+                            lic.Effective_Date_of_Bond__c = d;
                         }
                         
                         if(quesBody == 'Expiration Date'){
@@ -1234,7 +1198,7 @@ mstLicense.RecordTypeId = businessRT;
                             Integer day = Integer.valueOf(stringToDate.subString(8));
                             Date d = Date.newInstance(year, month, day);
                             
-                            liceseIDRenewal.Expiration_Date_of_Bond__c = d;
+                            lic.Expiration_Date_of_Bond__c = d;
                         }
                     }            
                     
@@ -1243,27 +1207,17 @@ mstLicense.RecordTypeId = businessRT;
                 }
             }
             //---------Completed by Babita
-               if(liceseIDRenewal.RecordTypeId == individualRT){
-                    liceseIDRenewal.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
-                    liceseIDRenewal.Print_First_Name__c = firstName;
-                    liceseIDRenewal.Print_Middle_Name__c = MiddleName;
-                    liceseIDRenewal.Print_Last_Name__c = LastName;
-                }
-                if(liceseIDRenewal.RecordTypeId == businessRT){
-                    liceseIDRenewal.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
-                } 
             
-            liceList.add(liceseIDRenewal);
+            liceList.add(lic);
             lstLisence.add(mstLicense);
         }
         
-       
         if(!lstLisence.isEmpty()){
             insert lstLisence;
             update liceList;
         }
         
-        List<Endorsement__c> lstEndo = [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,Renewal_Reinstatement_Application__c,License__c,Status__c FROM Endorsement__c where  License__c =:liceseIDRenewal.Id];
+        List<Endorsement__c> lstEndo = [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,Renewal_Reinstatement_Application__c,License__c,Status__c FROM Endorsement__c where  License__c =:liceseIDRenewal];
         for(Endorsement__c endo : lstEndo)
         {
             if(endo.Status__c == 'Renew'){
@@ -1411,6 +1365,5 @@ mstLicense.RecordTypeId = businessRT;
             upsert lstFiles;
         } 
     }
-    
     
 }

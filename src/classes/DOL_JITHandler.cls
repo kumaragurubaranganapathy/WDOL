@@ -190,12 +190,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
               alias = username;  
             }
             user.Alias = alias;
-            transient string tempNickName = String.valueOf(Math.random()) + '-' + contact.LastName  ;
-            if (tempNickName.length() > 30 ) {
-                tempNickName = tempNickName.substring(2, 30) ;
-            }
-            
-            user.CommunityNickname = tempNickName ;
+            user.CommunityNickname  = alias;
         }
         
         if( Dol_IntegrationUtil.isNotBlank(fedId)) {

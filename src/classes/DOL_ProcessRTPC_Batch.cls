@@ -1,4 +1,3 @@
-
 /**
 * User Story: ****
 * Class Name: DOL_ProcessRTPC_Batch
