@@ -87,6 +87,7 @@
     goToNextTab : function(component, event, helper) {
        	this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
+			component.set("v.isSSNchanged", false);
             component.set("v.showEndoMessage",false);
             component.set("v.errorMsgsList", []);
             component.set("v.showErrorMsgs", false); 
@@ -829,7 +830,7 @@
 								var today = new Date();
 								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
 								compareDate = new Date(compareDate);
-								var enteredDate = new Date(valueVal);
+                                var enteredDate = new Date(valueVal);
 								if(enteredDate < compareDate){
 									return true;
 								}else{
@@ -838,11 +839,11 @@
 								}
                             } else if(item.regex == "Future-Date"){
                                 var valueVal = item.value;
+                                var enteredDate = new Date(valueVal);
                                 var today = new Date();
                                 var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
                                 compareDate = new Date(compareDate);
-                                var enteredDate = new Date(valueVal);
-                                if(enteredDate > compareDate){
+                                if(enteredDate > today){
                                     return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -885,11 +886,11 @@
                                     }
                                 } else if(item.regex == "Future-Date"){
                                     var valueVal = item.value;
-                                    var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                    compareDate = new Date(compareDate);
                                     var enteredDate = new Date(valueVal);
-                                    if(enteredDate > compareDate){
+                                    var today = new Date();
+                                    //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    //compareDate = new Date(compareDate);
+                                    if(enteredDate > today){
                                         return true;
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -929,7 +930,7 @@
                 });
                 toastEvent.fire();
             }            
-        }  
+        } 
             else if(licenseWrapper[tabNumber].subheader == "Endorsement"){
                 var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
                 var validateFields = fieldsWrapper.filter(function(item){
@@ -1017,10 +1018,10 @@
                                     if(item.regex == "Future-Date"){
                                         var valueVal = item.value;
                                         var today = new Date();
-                                        var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                        compareDate = new Date(compareDate);
+                                        //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        //compareDate = new Date(compareDate);
                                         var enteredDate = new Date(valueVal);
-                                        if(enteredDate > compareDate){
+                                        if(enteredDate > today){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -1065,10 +1066,10 @@
                                     if(item.regex == "Future-Date"){
                                         var valueVal = item.value;
                                         var today = new Date();
-                                        var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                        compareDate = new Date(compareDate);
+                                        //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        //compareDate = new Date(compareDate);
                                         var enteredDate = new Date(valueVal);
-                                        if(enteredDate > compareDate){
+                                        if(enteredDate > today){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -1156,17 +1157,21 @@
                         }
                         var mandatoryqualification = qualificationValidation.split(",");
                         var qualificationValid = mandatoryqualification.filter(function(item){
-                            if(enteredSections.includes(item)){
+                            if(enteredSections.includes(item.trim())){
                                 return true;
                             }else{
                                 errorSections.push(item);
                             }
                         })
+                        var errorMsg = "";
                         if(errorSections.length==0){
                             qualificationValid = true;
                         } else {
                             qualificationValid = false;
-                            errorMessage = "Please fill "+errorSections[0]+" section";
+                            for(var j=0;j<errorSections.length;j++){
+                                errorMsg = errorMsg!=""?errorMsg+","+errorSections[j]:errorMsg+""+errorSections[j];
+                        	}
+                            errorMessage = errorMsg.includes(",")?"Please fill "+errorMsg+" sections":"Please fill "+errorMsg+" section";
                         }
                     } else {
                         qualificationValid = false;
