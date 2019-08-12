@@ -10,8 +10,7 @@
                           "Email": component.get("v.accountEmail"),
                           "accountName": component.get("v.accountName"),
                           "accountId": component.get("v.accountId"),
-                          "designation": component.get("v.designation"),
-                          "DCP": component.get("v.isDCP")});
+                          "designation": component.get("v.designation")});
         action.setCallback(this, function (response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -40,31 +39,9 @@
         compEvent.setParams({"refresh" : "true" });
         compEvent.fire();
     },
-    
-    designatedCheck : function(component,eventfields){
-        var action = component.get("c.checkDCP");
-				   action.setParams({ "accountId" : component.get("v.accountId")});
-				   action.setCallback(this,function(response){
-					   var state = response.getState();
-					   //console.log("state::"+state);
-					   if(state === 'SUCCESS'){
-						   var result = response.getReturnValue();
-						   //console.log("result::"+result);
-						   if(result){
-							   component.set("v.showform",false);
-							   component.set("v.showMessage",true);
-						   }else{
-							 component.find('myform').submit(eventfields); 
-						   }
-					   }
-				   });
-				$A.enqueueAction(action);
-    },
-    
-    
-     validateFieldvalues : function(component,event){
+    validateFieldvalues : function(component,event){
 		var eventFields = event.getParam("fields");
-		var fieldNames = ['First_Name__c','Middle_Name__c','Last_Name__c','Role__c','Phone__c','Email__c','Other_Position__c'];
+		var fieldNames = ['First_Name__c','Last_Name__c','Phone__c','Email__c'];
 		var ErrorFields = [];
 			 if (!eventFields.First_Name__c) {  
 				ErrorFields.push('First Name');
@@ -74,9 +51,6 @@
 			 }*/
 			 if (!eventFields.Last_Name__c) {  
 				ErrorFields.push('Last Name');
-			 }
-			 if (!eventFields.Role__c) {  
-				ErrorFields.push('Role');
 			 }
 			 if (!eventFields.Phone__c) {  
 				ErrorFields.push('Phone');

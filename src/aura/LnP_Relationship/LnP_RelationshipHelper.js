@@ -30,14 +30,15 @@
         });
         $A.enqueueAction(action);    
     },
-	
+    
     getRelationShipTableData :function(component,event, helper){
         console.log("inside helper ::sObjectName::"+ component.get("v.sObjectName"));
-         console.log("inside helper ::queryId::"+ component.get("v.queryId"));
+        console.log("inside helper ::queryId::"+ component.get("v.queryId"));
+        console.log('Type::'+ component.get("v.Type"));        
         var action = component.get("c.getRelationShip");
-        
         action.setParams({'sObjectName': component.get("v.sObjectName"),
-                          'queryId': component.get("v.queryId")
+                          'queryId': component.get("v.queryId"),
+                          'Type': component.get("v.Type")
                          });
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -73,8 +74,6 @@
     
     removeAccountContactRecord : function(cmp,event,helper){
         var action = cmp.get("c.removeAcconContactRecord");
-         console.log('inside delete record');
-        console.log("cmp.get(v.accountContact)::"+ JSON.stringify(cmp.get("v.accountContact")));
         action.setParams ({"accConId": cmp.get("v.accountContact"),"action":cmp.get("v.actionClicked")});
          action.setCallback(this, function (response) {
                 var state = response.getState();
