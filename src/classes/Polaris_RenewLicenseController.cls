@@ -1084,8 +1084,8 @@ listApp.add(applicationChild);*/
         List<Renewal_Application__c> lstLisence = new List<Renewal_Application__c>();
         List<MUSW__License2__c> liceList = new List<MUSW__License2__c>();
         //Id licID;
-        Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
-        Id individualRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Individual').getRecordTypeId();
+        Id businessRT = SObjectType.Renewal_Application__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
+        Id individualRT = SObjectType.Renewal_Application__c.getRecordTypeInfosByDeveloperName().get('Individual').getRecordTypeId();
         // For Course Renewal Applications
         Id courseRT = SObjectType.Renewal_Application__c.getRecordTypeInfosBYDeveloperName().get('Course').getRecordTypeId();
         
@@ -1244,13 +1244,16 @@ mstLicense.RecordTypeId = businessRT;
                 }
             }
             //---------Completed by Babita
-               if(liceseIDRenewal.RecordTypeId == individualRT){
+            Id individualLicRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Universal_Default_License_Record_Type').getRecordTypeId();
+            Id BusinessLicRT =  SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
+             
+               if(liceseIDRenewal.RecordTypeId == individualLicRT){
                     liceseIDRenewal.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
                     liceseIDRenewal.Print_First_Name__c = firstName;
                     liceseIDRenewal.Print_Middle_Name__c = MiddleName;
                     liceseIDRenewal.Print_Last_Name__c = LastName;
                 }
-                if(liceseIDRenewal.RecordTypeId == businessRT){
+                if(liceseIDRenewal.RecordTypeId == BusinessLicRT){
                     liceseIDRenewal.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
                 } 
             
