@@ -1068,5 +1068,11 @@
         component.set("v.DisplayDashboardTabs","true");        
         component.set("v.DisplayAdditonalQulaificationsBreadCrumb","false");
         component.set("v.DisplayLicense_Additional_Qualification","false");        
-    }
+    },
+    setdefaultTab : function(component,event){
+        var currURL = document.URL;
+        if(/app-flow/.test(currURL)){            
+             component.set("v.defaultTab","ProfessionalPendingApplicationsTab"); 
+         }        
+     }
 })

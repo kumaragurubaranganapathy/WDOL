@@ -1,5 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
+        helper.setDefaultTab(component,event,helper);
 		helper.getRecordTypeId(component,event,helper);
         helper.fetchData(component,event, helper);
         helper.getLicenseDetails(component,event,helper);     
