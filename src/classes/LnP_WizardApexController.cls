@@ -397,6 +397,7 @@ insert bgckList;
         String condition7 = 'Object__c = \''+obj+'\'';
         //String condition7 = 'Object__c = \'MUSW__License2__c\'';
         String condition8 ='';
+        String condition9 = 'Order_No__c';
         if(renewalReinstate=='Renewal')
         {
             condition8 = 'AND Show_For__c includes (\'Credential Renewal\')';
@@ -411,7 +412,7 @@ insert bgckList;
         String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
         
-        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 +condition8;
+        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
         masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
