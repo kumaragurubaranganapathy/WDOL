@@ -1418,8 +1418,8 @@
                                                 <aura:iteration items="{!v.completeRequestPaginationList}" var="tableData" indexVar="ind">
                                                     <tr class="slds-hint-parent">
                                                         <td data-label="Request#">
-                                                            <aura:if isTrue="{!tableData.name}">
-                                                                <div class="slds-truncate" title="{!tableData.name}">{!tableData.name}</div>
+                                                            <aura:if isTrue="{!tableData.Name}">
+                                                                <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                                 <aura:set attribute="else">None</aura:set>
                                                             </aura:if>
                                                         </td>
@@ -1438,9 +1438,7 @@
                                                         <td data-label="Completion date">
                                                             <aura:if isTrue="{!tableData.endTime}">
                                                                 <div class="slds-truncate" title="{!tableData.End_Time__c}">
-                                                                    <lightning:formattedDateTime
-                                                                                                 value="{!tableData.End_Time__c}"
-                                                                                                 />
+                                                                    <lightning:formattedDateTime value="{!tableData.End_Time__c}" year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
                                                                 </div>
                                                                 <aura:set attribute="else">None</aura:set>
                                                             </aura:if>

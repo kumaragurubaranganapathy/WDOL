@@ -956,6 +956,12 @@
                 console.log('In LnP_Dashboard_2.aura-helper::setPendingMaintanceRequestTableData '+JSON.stringify(pendingMaintanceRequestTable));
                 
                 component.set("v.CompletedMaintananceRequestApplicationsColumnList",completedMaintananceRequestApplicationsColumnData);
+				for(var i =0; i<completedMaintananceRequestApplicationsTableData.length;i++)
+                {
+                    if(completedMaintananceRequestApplicationsTableData[i].End_Time__c!=null && completedMaintananceRequestApplicationsTableData[i].End_Time__c!='')
+                        completedMaintananceRequestApplicationsTableData[i].End_Time__c = new Date(completedMaintananceRequestApplicationsTableData[i].End_Time__c);                    
+                }
+                component.set("v.CompletedMaintananceRequestApplicationsDataList",completedMaintananceRequestApplicationsTableData);
                 
                 component.set("v.CompletedMaintananceRequestApplicationsDataList",completedMaintananceRequestApplicationsTableData);
                 
