@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Automation Rule Result outcomes</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fieldSets>
+        <fullName>MUSW__New_Edit_Automation_Results</fullName>
+        <availableFields>
+            <field>MUSW__Expression__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MUSW__Track_No__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>New/Edit Automation Results</description>
+        <displayedFields>
+            <field>MUSW__Action_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Group__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Order__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Table__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Field__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Value__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Transform__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Active__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>New/Edit Automation Results</label>
+    </fieldSets>
+    <fields>
+        <fullName>MUSW__Action_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies the action that the result operation should apply.</description>
+        <externalId>false</externalId>
+        <label>Action Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Add Adjusted Calendar Days</fullName>
+                    <default>false</default>
+                    <label>Add Adjusted Calendar Days</label>
+                </value>
+                <value>
+                    <fullName>Add Business Day Hours</fullName>
+                    <default>false</default>
+                    <label>Add Business Day Hours</label>
+                </value>
+                <value>
+                    <fullName>Add Business Days</fullName>
+                    <default>false</default>
+                    <label>Add Business Days</label>
+                </value>
+                <value>
+                    <fullName>Add Calendar Days</fullName>
+                    <default>false</default>
+                    <label>Add Calendar Days</label>
+                </value>
+                <value>
+                    <fullName>Add Calendar Hours</fullName>
+                    <default>false</default>
+                    <label>Add Calendar Hours</label>
+                </value>
+                <value>
+                    <fullName>Add Error</fullName>
+                    <default>false</default>
+                    <label>Add Error</label>
+                </value>
+                <value>
+                    <fullName>Add Letter</fullName>
+                    <default>false</default>
+                    <label>Add Letter</label>
+                </value>
+                <value>
+                    <fullName>Add Notification</fullName>
+                    <default>false</default>
+                    <label>Add Notification</label>
+                </value>
+                <value>
+                    <fullName>Add Record</fullName>
+                    <default>false</default>
+                    <label>Add Record</label>
+                </value>
+                <value>
+                    <fullName>Add Record - Duplicate Check</fullName>
+                    <default>true</default>
+                    <label>Add Record - Duplicate Check</label>
+                </value>
+                <value>
+                    <fullName>Add Records</fullName>
+                    <default>false</default>
+                    <label>Add Records</label>
+                </value>
+                <value>
+                    <fullName>Add Records - Duplicate Check</fullName>
+                    <default>false</default>
+                    <label>Add Records - Duplicate Check</label>
+                </value>
+                <value>
+                    <fullName>Clone Record</fullName>
+                    <default>false</default>
+                    <label>Clone Record</label>
+                </value>
+                <value>
+                    <fullName>Decrement Number</fullName>
+                    <default>false</default>
+                    <label>Decrement Number</label>
+                </value>
+                <value>
+                    <fullName>Divide Number</fullName>
+                    <default>false</default>
+                    <label>Divide Number</label>
+                </value>
+                <value>
+                    <fullName>Email Report</fullName>
+                    <default>false</default>
+                    <label>Email Report</label>
+                </value>
+                <value>
+                    <fullName>Increment Number</fullName>
+                    <default>false</default>
+                    <label>Increment Number</label>
+                </value>
+                <value>
+                    <fullName>Maximum</fullName>
+                    <default>false</default>
+                    <label>Maximum</label>
+                </value>
+                <value>
+                    <fullName>Minimum</fullName>
+                    <default>false</default>
+                    <label>Minimum</label>
+                </value>
+                <value>
+                    <fullName>Multiply Number</fullName>
+                    <default>false</default>
+                    <label>Multiply Number</label>
+                </value>
+                <value>
+                    <fullName>New Value (Numeric Field)</fullName>
+                    <default>false</default>
+                    <label>New Value (Numeric Field)</label>
+                </value>
+                <value>
+                    <fullName>New Value (Text Field)</fullName>
+                    <default>false</default>
+                    <label>New Value (Text Field)</label>
+                </value>
+                <value>
+                    <fullName>New Value - Duplicate Check</fullName>
+                    <default>false</default>
+                    <label>New Value - Duplicate Check</label>
+                </value>
+                <value>
+                    <fullName>Send Email</fullName>
+                    <default>false</default>
+                    <label>Send Email</label>
+                </value>
+                <value>
+                    <fullName>Sum Numbers</fullName>
+                    <default>false</default>
+                    <label>Sum Numbers</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Determines whether the result operation should be applied or ignored.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Automation_Rule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the rule this result operation is part of.</description>
+        <externalId>false</externalId>
+        <label>Automation Rule</label>
+        <referenceTo>MUSW__Automation_Rule__c</referenceTo>
+        <relationshipName>Results</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Expression__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Javascript formula expression for Assess rules only. BasicGov formulas in the Value field is the equivalent for all other rule types.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Expression</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MUSW__Field__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies where to store the result value of this operation.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Field</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Group_Order__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Indicates the result operation order (visual only).</description>
+        <externalId>false</externalId>
+        <formula>If(MUSW__Group__c &gt;9, text(MUSW__Group__c),&quot;0&quot; &amp;text(MUSW__Group__c)) &amp; &quot; - &quot;&amp; If(MUSW__Order__c &gt;9, text(MUSW__Order__c),&quot;0&quot; &amp;text(MUSW__Order__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Group-Order</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Group__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used to group operation results, typically per record outcomes. This may have more than one resulting record impacted by using Group.</description>
+        <externalId>false</externalId>
+        <label>Group</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Order__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <precision>2</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Table__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies what table the applied operation should receive the updated or inserted result record.</description>
+        <externalId>false</externalId>
+        <label>Table</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Account</fullName>
+                    <default>false</default>
+                    <label>Account</label>
+                </value>
+                <value>
+                    <fullName>Attachment</fullName>
+                    <default>false</default>
+                    <label>Attachment</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Application2__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Application2__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Complaint2__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Complaint2__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Condition__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Condition__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Fee__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Fee__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Inspection__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Inspection__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Inspection_Violation__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Inspection_Violation__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__License2__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__License2__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Milestone__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Milestone__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Parcel__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Parcel__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Permit2__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Permit2__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Project2__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Project2__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Review__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Review__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Submission__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Submission__c</label>
+                </value>
+                <value>
+                    <fullName>MUSW__Work_Item__c</fullName>
+                    <default>false</default>
+                    <label>MUSW__Work_Item__c</label>
+                </value>
+                <value>
+                    <fullName>Task</fullName>
+                    <default>false</default>
+                    <label>Task</label>
+                </value>
+                <value>
+                    <fullName>Variable</fullName>
+                    <default>false</default>
+                    <label>Variable</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__Track_No__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>Unique number of the filter that is used to migrate rule filter data.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Tracking Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Transform__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Instructions for applied result records before being saved. This allows more than 1 record to be applied within a single group.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Transform</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Value__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Specifies a static value, merge field, and/or formula outcome value to calculate.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>Automation Result</label>
+    <nameField>
+        <displayFormat>{0000000}</displayFormat>
+        <label>Result Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Results</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>MUSW__Value_Check_Syntax</fullName>
+        <active>true</active>
+        <description>Check syntax</description>
+        <errorConditionFormula>OR( 
+ ISBLANK(MUSW__Value__c), 
+ CONTAINS(MUSW__Value__c, &quot;&lt;content&quot;) 
+     &amp;&amp; !REGEX(MUSW__Value__c, &apos;[a-zA-Z\\s\\d]*(&lt;content(\\s+\\w+=&quot;?[\\w\\s]+&quot;?)*&gt;\\w+(\\.\\w+){1,2}&lt;/content&gt;)?[a-zA-Z\\s\\d]*&apos;) 
+     &amp;&amp; !REGEX(MUSW__Value__c, &apos;[a-zA-Z\\s\\d]*(&lt;content-diff(\\s+\\w+=&quot;?[\\w\\s]+&quot;?)*&gt;\\w+(\\.\\w+){1,2}&lt;/content-diff&gt;)?[a-zA-Z\\s\\d]*&apos;), 
+/*
+ CONTAINS(MUSW__Value__c, &quot;{!&quot;) 
+    &amp;&amp; !REGEX(MUSW__Value__c,&apos;[a-zA-Z\\s\\d]*(\\{\\!\\$?\\w+(\\.\\w+){1,2\\)?[a-zA-Z\\s\\d]*&apos;), 
+*/
+ CONTAINS(MUSW__Value__c, &quot;&lt;today&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;today(\\s+\\w+=&quot;?[\\w\\s]+&quot;?)*/&gt;&apos;), 
+ CONTAINS(MUSW__Value__c, &quot;&lt;now&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;now/&gt;&apos;), 
+ CONTAINS(MUSW__Value__c, &quot;&lt;user&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;user/&gt;&apos;), 
+ CONTAINS(MUSW__Value__c, &quot;&lt;formula&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;formula&gt;.*&lt;/formula&gt;&apos;), 
+ ISPICKVAL(MUSW__Action_Type__c,&quot;Add Letter&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;letter(\\s+\\w+=&quot;?[\\w\\s]+&quot;?)*/&gt;&apos;), 
+ ISPICKVAL(MUSW__Action_Type__c,&quot;Send Email&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;email(\\s+\\w+=&quot;?[\\w\\s]+&quot;?)*/&gt;&apos;), 
+ ISPICKVAL(MUSW__Action_Type__c,&quot;Email Report&quot;) &amp;&amp; !REGEX(MUSW__Value__c, &apos;&lt;report(\\s+\\w+=&quot;?[\\w\\s]+&quot;?)*/&gt;&apos;) 
+)</errorConditionFormula>
+        <errorDisplayField>MUSW__Value__c</errorDisplayField>
+        <errorMessage>Invalid Result Value syntax for selected Action Type</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>MUSW__New_Edit_Results</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New/Edit Results</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/musw__bulkAddEdit?pid={!MUSW__Automation_Rule__c.Id}&amp;type=MUSW__Automation_Result__c&amp;defaults=MUSW__Group__c=1,MUSW__Order__c=1,MUSW__Active__c=true&amp;minrows=5</url>
+    </webLinks>
+</CustomObject>

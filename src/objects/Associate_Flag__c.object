@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is for create a flag based on severity</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Look up to Account</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Associate Flags</relationshipLabel>
+        <relationshipName>Associates</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Application_Type__c</fullName>
+        <description>Application Type</description>
+        <externalId>false</externalId>
+        <label>Application Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Application_Type</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Look up to Contact</description>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Associate Flags</relationshipLabel>
+        <relationshipName>Associates</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Credential__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to License Object</description>
+        <externalId>false</externalId>
+        <label>Credential</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Associate Flags</relationshipLabel>
+        <relationshipName>Associates</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Description for the flag to check</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <description>Effective Date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>End Date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(Severity__c), 
+&apos;Low&apos;, Image(&apos;/resource/Flag_Low&apos;, &apos;Good&apos;, 30, 30),
+&apos;Medium&apos;, Image(&apos;/img/msg_icons/warning32.png&apos;, &apos;Warning&apos; , 30, 30),
+&apos;High&apos;, Image(&apos;/img/msg_icons/error32.png&apos;, &apos;Bad&apos;, 30, 30),
+&apos;Info&apos;, Image(&apos;/img/msg_icons/info32.png&apos;, &apos;Bad&apos;, 30, 30),
+&apos;&apos;
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PTO_Plan_Review__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup for PTO/Plan Review(Permit Object)</description>
+        <externalId>false</externalId>
+        <label>PTO/Plan Review</label>
+        <referenceTo>MUSW__Permit2__c</referenceTo>
+        <relationshipLabel>Associate Flags</relationshipLabel>
+        <relationshipName>Associates</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Severity__c</fullName>
+        <externalId>false</externalId>
+        <label>Severity</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Info</fullName>
+                    <default>false</default>
+                    <label>Info</label>
+                </value>
+                <value>
+                    <fullName>Low</fullName>
+                    <default>false</default>
+                    <label>Low</label>
+                </value>
+                <value>
+                    <fullName>Medium</fullName>
+                    <default>false</default>
+                    <label>Medium</label>
+                </value>
+                <value>
+                    <fullName>High</fullName>
+                    <default>false</default>
+                    <label>High</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Associate Flag</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>A{0000}</displayFormat>
+        <label>Flag Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Associate Flags</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>End_Date_Validation</fullName>
+        <active>true</active>
+        <description>End Date validation -- date can be future or today&apos;s date</description>
+        <errorConditionFormula>End_Date__c &lt;  TODAY()</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>Cannot be Past date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Select_atleast_one_lookup</fullName>
+        <active>false</active>
+        <description>Ensure at least one of the following lookup fields is populated: Account, Contact, Credential, PTO/Plan Review.</description>
+        <errorConditionFormula>AND( ISBLANK( Account__c ) , ISBLANK( Contact__c ) , ISBLANK( Credential__c ),  ISBLANK( PTO_Plan_Review__c ))</errorConditionFormula>
+        <errorMessage>Ensure at least one of the following lookup fields is not blank: Account, Contact, Credential, PTO/Plan Review.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

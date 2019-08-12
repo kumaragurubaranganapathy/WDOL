@@ -1,0 +1,23 @@
+<aura:component controller = "Lnp_CommonHeader_AC" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="isPageLoaded" type="Boolean" default="false" />
+    <aura:attribute name="isLoggedIn" type="Boolean" default="false" />
+    <aura:attribute name="isValidCommunityUser" type="Boolean" default="false" /> 
+    <aura:attribute name="helpPage" type="Boolean" default="false" /> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!v.isPageLoaded}">
+        <aura:if isTrue="{!and(v.isLoggedIn,!v.helpPage)}">       
+            
+            <c:ToDo_Tasks />   
+            
+        </aura:if>
+        <!--<aura:if isTrue="{!!v.isValidCommunityUser}"> -->
+            <c:LnP_DynamicPortalArticleRenderer isLoggedIn="{!v.isLoggedIn}" />
+       <!-- </aura:if>  -->
+        <aura:set attribute="else">
+        	<lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
+        </aura:set>
+    </aura:if>
+    <!--<c:Search_test />-->
+    <!--<c:LnP_HomePageNews />-->
+    <!--<c:ToDo_Tasks /> -->	
+</aura:component>

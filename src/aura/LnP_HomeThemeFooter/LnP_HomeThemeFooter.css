@@ -1,0 +1,156 @@
+.THIS {
+}
+.THIS .footer-Icon{  
+    margin-top: 28px;
+    margin-left: 28px;
+    width: 43px;
+    margin-bottom: 14px;                            
+}                                   
+.THIS .container {
+    background: token(blackhue);
+	padding: 0 100px;
+	border-bottom: 10px solid token(skyblue);
+}                                         
+.THIS .main_footer {
+    font-size: 40px; 
+	color: token(white);
+	font-family: 'Open Sans', Helvetica, Arial,sans-serif;
+}   
+.THIS.slds-global-header{
+		background: token(blue);
+		height: 240px;
+		border-bottom: 10px solid token(skyblue);
+		color: token(white);		
+	}	
+.THIS .toggle-footer-btn {
+		background-color: token(skyblue);
+		display: block;
+		float: right;
+		font: normal normal 25px/40px Arial,Sans-Serif;
+		width: 40px;
+		height: 40px;
+		margin-right: 20px;
+		text-align: center;
+		text-decoration: none;
+	}  	
+@media t(mqLarge){   
+														
+	.THIS .column-width {	
+		width: 1000px;
+		margin-left: 252px;
+		margin-top: 32px;
+	}	
+    .THIS .grid-Left-Align{
+   		margin-left: 334px;
+	}  
+	.THIS .footer-Image{
+		width: 194px;
+		position: absolute;
+		margin-left: 42px;
+	}
+	
+	.THIS .showmore{
+		margin-top: .7%;
+	}
+	.THIS .showless{
+		margin-top: -3.5%;
+	}
+}    
+
+@media t(mqMedium){
+     .THIS.slds-global-header{		
+		height: 231px;		
+			}	                                                               
+    .THIS .column-width {    	
+        margin-left: 170px;
+    	margin-top: 37px;
+        width: -webkit-fill-available;
+	}
+    .THIS .grid-Left-Align{
+   	    margin-left: 33px;
+    	margin-top: -3px;
+	}                                                                
+                                                                    
+    .THIS .footer-Image{
+    	width: 133px;
+    	margin: 31px;
+    	position: absolute;
+    	
+	}
+	
+	
+    .THIS .showmore{
+		/*margin-top: -1.9%;*/
+	}
+}
+                                                                                           
+.THIS .sub-footer{
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+	padding: 20px 0 0 0;
+    font-weight: 400 !important;
+	font-size:15px;
+}
+.THIS a{
+	color:token(white);
+}                                                                            
+.THIS .btn-padded {
+    padding-right: 178px;
+    padding-top: 28px;
+                                                                          
+}                                                                                                                                                       
+.THIS .white-font{
+	color:token(white);
+    margin-left: 83px;
+    margin-top: -53px;                                                                                     
+}   
+.THIS .image-Margin  {
+     margin-bottom: 19px;                                                                                       
+}                                                                                                                                                                                                                                                                                                                                                              
+.THIS .fb-icon{
+	 background-image: url('resource/PortalImages/facebookicon.png'); 
+}                                                                                        
+.THIS .font-adjust{
+	margin: 0;
+    border: 1px solid white;
+    border-radius: 20%;
+}                                                                                                                                                                               
+@media t(mqSmall){
+    .THIS.slds-global-header{
+        height: 120px;
+        border-bottom: 5px solid token(skyblue);
+    	
+	}
+ 
+    
+	.THIS .footer-Image {
+        width: 64px;
+        margin-top: 5px;
+        position: absolute;
+        margin-left: 30px;
+	}	
+                                                                                            
+    .THIS .grid-Left-Align {
+        margin-left: 115px;
+        margin-top: 12px;
+	}                                                                                         
+
+	.THIS .column-width {
+        font-size: 5px;
+        width: 211px;
+	}   
+                                                                                            
+    .THIS .showmore {
+    	margin-top: 2.1%;
+	}   
+                                                                                            
+    .THIS .toggle-footer-btn {
+	
+		width: 28px;
+		height: 28px;
+		
+	}
+    .THIS ul{
+        font-size: 6px;
+  }                                                                                                                                                                       
+}

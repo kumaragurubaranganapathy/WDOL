@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>EquipmentPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>EquipmentPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Chlorinator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Chlorinator</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Commercial_System__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Commercial System</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Depth_Limiting_Form_Factor_Orgnl_Grade__c</fullName>
+        <description>Depth to Limiting Factor From Original Grade (inches)</description>
+        <externalId>false</externalId>
+        <label>Depth to Limiting Factor From Original G</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Design_Wastewater_Flow_GPD__c</fullName>
+        <externalId>false</externalId>
+        <label>Design Wastewater Flow (GPD)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1000 gpd or less</fullName>
+                    <default>false</default>
+                    <label>1000 gpd or less</label>
+                </value>
+                <value>
+                    <fullName>1000 - 2000 gpd</fullName>
+                    <default>false</default>
+                    <label>1000 - 2000 gpd</label>
+                </value>
+                <value>
+                    <fullName>&gt; 5000 gpd</fullName>
+                    <default>false</default>
+                    <label>&gt; 5000 gpd</label>
+                </value>
+                <value>
+                    <fullName>2001 - 5000 gpd</fullName>
+                    <default>false</default>
+                    <label>2001 - 5000 gpd</label>
+                </value>
+                <value>
+                    <fullName>5000 gpd or less</fullName>
+                    <default>false</default>
+                    <label>5000 gpd or less</label>
+                </value>
+                <value>
+                    <fullName>5000 - 10000 gpd</fullName>
+                    <default>false</default>
+                    <label>5000 - 10000 gpd</label>
+                </value>
+                <value>
+                    <fullName>greater than 10000 gpd</fullName>
+                    <default>false</default>
+                    <label>greater than 10000 gpd</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Dispersal_Area_Reduced__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Dispersal Area Reduced</description>
+        <externalId>false</externalId>
+        <label>Dispersal Area Reduced</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Effluent_Filter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Effluent Filter</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Experiment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Experiment</description>
+        <externalId>false</externalId>
+        <label>Experiment</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Floodplain__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Floodplain</description>
+        <externalId>false</externalId>
+        <label>Floodplain</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Flow_Rate__c</fullName>
+        <description>Flow Rate (GPD)</description>
+        <externalId>false</externalId>
+        <label>Flow Rate (GPD)</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HUD_One__c</fullName>
+        <description>HUD# One</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>HUD# One</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HUD_Three__c</fullName>
+        <description>HUD# Three</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>HUD# Three</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HUD_Two__c</fullName>
+        <description>HUD# Two</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>HUD# Two</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Length__c</fullName>
+        <description>Length</description>
+        <externalId>false</externalId>
+        <label>Length</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__CustomerId__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>CustomerId</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the equipment</inlineHelpText>
+        <label>Description</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MUSW__Fixture_Color__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Fixture Color</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Black</fullName>
+                    <default>false</default>
+                    <label>Black</label>
+                </value>
+                <value>
+                    <fullName>Brown</fullName>
+                    <default>false</default>
+                    <label>Brown</label>
+                </value>
+                <value>
+                    <fullName>Spun Aluminum</fullName>
+                    <default>false</default>
+                    <label>Spun Aluminum</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__GIS_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>GIS ID</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__GIS_ObjectID__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIS ObjectID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Geolocation__c</fullName>
+        <deprecated>false</deprecated>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <inlineHelpText>Location of the equipment</inlineHelpText>
+        <label>Geolocation</label>
+        <required>false</required>
+        <scale>9</scale>
+        <trackTrending>false</trackTrending>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Install_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the equipment was installed (Optional)</inlineHelpText>
+        <label>Install Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Issued_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Filled in when a permanent sequence number is issued. It prevents subsequent triggering of the sequence number code.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Issued No.</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__LastModifiedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>LastModifiedDate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__LightType__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>LightType</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Metal Halide</fullName>
+                    <default>false</default>
+                    <label>Metal Halide</label>
+                </value>
+                <value>
+                    <fullName>Mercury</fullName>
+                    <default>false</default>
+                    <label>Mercury</label>
+                </value>
+                <value>
+                    <fullName>Metal Halide Coated</fullName>
+                    <default>false</default>
+                    <label>Metal Halide Coated</label>
+                </value>
+                <value>
+                    <fullName>Mercury Coated</fullName>
+                    <default>false</default>
+                    <label>Mercury Coated</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>false</default>
+                    <label>NA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__Manufacture_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date of equipment manufacture</inlineHelpText>
+        <label>Manufacture Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Manufacturer__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The company name of the manufacturer of the equipment</inlineHelpText>
+        <label>Manufacturer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__MeterInstallDate__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>MeterInstallDate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__MeterSize__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>MeterSize</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Model__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The manufacturer&apos;s model name</inlineHelpText>
+        <label>Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__ModuleInstallDate__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>ModuleInstallDate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__ModuleSerialNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>ModuleSerialNumber</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Parcel__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Parcel related to the Equipment</inlineHelpText>
+        <label>Parcel</label>
+        <referenceTo>MUSW__Parcel__c</referenceTo>
+        <relationshipLabel>Equipments</relationshipLabel>
+        <relationshipName>Equipments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Serial_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The serial number on the equipment</inlineHelpText>
+        <label>Serial Number</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__SubType__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SubType</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>MUSW__Equipment_SubTypes</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MUSW__Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of equipment (Required - No default).</inlineHelpText>
+        <label>Type</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>MUSW__Equipment_Types</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Maintenance Required</description>
+        <externalId>false</externalId>
+        <label>Maintenance Required</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Make__c</fullName>
+        <description>Make</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Make</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Method__c</fullName>
+        <description>Method</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Method</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <description>Model</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_Submittal_Item__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>New Submittal Item</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Permit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup for Permit</description>
+        <externalId>false</externalId>
+        <label>Permit</label>
+        <referenceTo>MUSW__Permit2__c</referenceTo>
+        <relationshipLabel>Equipments</relationshipLabel>
+        <relationshipName>Equipments</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Replacement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Replacement?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Replacement_of_Existing_System__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Replacement of Existing System</description>
+        <externalId>false</externalId>
+        <label>Replacement of Existing System</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sanitary_Permit_Issued__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Sanitary Permit Issued</description>
+        <externalId>false</externalId>
+        <label>Sanitary Permit Issued</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Size__c</fullName>
+        <description>Size</description>
+        <externalId>false</externalId>
+        <label>Size</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>State_Previously_Titled__c</fullName>
+        <description>State Previously Titled</description>
+        <externalId>false</externalId>
+        <label>State Previously Titled</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>State_Provinces</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tank_Replacement_Only__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Tank Replacement Only</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type_of_Component_Manual__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Component Manual</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>At-Grade Component Manual</fullName>
+                    <default>false</default>
+                    <label>At-Grade Component Manual</label>
+                </value>
+                <value>
+                    <fullName>In-ground Component Manual</fullName>
+                    <default>false</default>
+                    <label>In-ground Component Manual</label>
+                </value>
+                <value>
+                    <fullName>Mound Component Manual</fullName>
+                    <default>false</default>
+                    <label>Mound Component Manual</label>
+                </value>
+                <value>
+                    <fullName>Pressure Distribution Component Manual</fullName>
+                    <default>false</default>
+                    <label>Pressure Distribution Component Manual</label>
+                </value>
+                <value>
+                    <fullName>Other - Please specify</fullName>
+                    <default>false</default>
+                    <label>Other - Please specify</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>UV_Disinfection__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>UV Disinfection</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VIN__c</fullName>
+        <description>VIN Number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>VIN Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Width__c</fullName>
+        <description>Width</description>
+        <externalId>false</externalId>
+        <label>Width</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year_Made__c</fullName>
+        <description>Year Made</description>
+        <externalId>false</externalId>
+        <label>Year Made</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Equipment</label>
+    <listViews>
+        <fullName>MUSW__All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Description__c</columns>
+        <columns>MUSW__Type__c</columns>
+        <columns>MUSW__SubType__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Number</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Equipments</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>MUSW__Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MUSW__Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MUSW__SubType__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>MUSW__Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MUSW__SubType__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MUSW__Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MUSW__Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MUSW__SubType__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>MUSW__Type__c</searchFilterFields>
+        <searchFilterFields>MUSW__SubType__c</searchFilterFields>
+        <searchResultsAdditionalFields>MUSW__Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MUSW__Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MUSW__SubType__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

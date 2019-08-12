@@ -1,0 +1,62 @@
+.THIS.association {
+    position:relative;
+    z-index:1;
+}
+.THIS .slds-icon-utility-search{
+    display:none;
+}
+.THIS .slds-media__figure,.THIS .slds-combobox__input-entity-icon{
+    display:none;
+}
+.THIS [class*=slds-input-has-icon_left] .slds-combobox__input.slds-combobox__input-value{
+    padding-left:0.75rem;
+}
+.THIS .add-asso-title{
+    color:t(LnGFormTitleColor);
+    font-size:1.25rem;
+    font-weight:bold;
+    margin-bottom:1.5rem;
+}
+.THIS .association-fields-wrapper{
+    padding:1.5rem 2rem;
+    border:solid 1px t(grayBorder);
+}
+.THIS .association-fields-wrapper .slds-form-element{
+    display:flex;
+    flex-direction:column;
+}
+.THIS .association-fields-wrapper .slds-form-element__control{
+    padding:0;
+    width:50%;
+}
+.THIS .association-fields-wrapper .slds-form-element__label{
+    color:t(fieldclr);
+    font-size:0.875rem;
+}
+.THIS .association-fields-wrapper .slds-align_absolute-center{
+    justify-content:flex-end;
+}
+.THIS .association-fields-wrapper .slds-p-around_medium{
+    padding:1rem 0 0;
+}
+@media t(mqSmall){
+    .THIS .association-fields-wrapper{
+        padding:1rem;        
+    }
+    .THIS .association-fields-wrapper .slds-form-element__control{
+        padding:0;
+        width:100%;
+    }
+    .THIS .association-fields-wrapper .slds-align_absolute-center{
+        flex-direction:column;        
+    }
+    .THIS .association-fields-wrapper .slds-button + .slds-button{
+        margin:0.5rem 0 0;
+    }
+    .THIS .association-fields-wrapper .lightning-record-form-cancel, .THIS .association-fields-wrapper .lightning-record-form-submit, .THIS .association-fields-wrapper .slds-button{
+        width:100%;
+    }
+	.THIS .add-asso-title{
+        margin-bottom:1rem;
+    }    
+}

@@ -1,0 +1,87 @@
+.THIS.self-service-wrapper{
+    padding:1.5rem 7.5rem;
+}
+.THIS .service-btn-container button{
+    height: 42px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    max-height: 3rem;
+}
+.THIS .service-btn-container{
+    padding:1.75rem 0;
+    display:flex;
+    justify-content:flex-end;
+}
+.THIS .input-field-wrapper{
+    padding:1.875rem 3rem;
+    border:solid 1px t(grayBorder);
+    border-radius:4px;
+}
+.THIS .input-field:last-of-type{
+    margin-bottom:0;
+}
+.THIS .input-field{
+    margin-bottom:1.5rem;
+}
+.THIS .input-field .slds-form-element__control{
+    padding:0;
+    width:50%;
+}
+.THIS .input-field .slds-form-element__label{
+    font-size:1rem;
+    font-weight:bold;
+    color:t(LnGFormTitleColor);
+    padding-bottom:0.5rem;
+}
+
+.THIS .amr-title{
+    font-size:1.25rem;
+    margin-bottom:1rem;
+    color:t(LnGFormTitleColor); 
+    font-weight:600;
+}
+.THIS .contact-name{
+    color:t(LnGFormTitleColor);
+    font-size:1.25rem;
+    margin-bottom:1rem;
+    font-weight:600;
+}
+
+@media t(mqSmall){
+    .THIS .service-form-container {
+        padding: .5rem 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .THIS .service-form-container>div {        
+        padding: 0;
+        margin: 0 0 .5rem;
+    }
+    .THIS .service-btn-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .THIS .service-btn-container button{
+        width: 100%;
+        margin: 0 0 .5rem;
+    }
+    .THIS .screen-title{
+        font-size:1.25rem;
+        font-weight:600;
+        color:t(LnGFormTitleColor);    
+    }
+    .THIS.self-service-wrapper{
+        padding:1rem;
+    }
+    .THIS .input-field{
+        margin-bottom:1rem;
+    }
+    .THIS .service-form-container .input-field-wrapper{
+        padding:1rem;
+    }
+    .THIS .input-field .slds-form-element__control{
+		width:100%;        
+    }
+}

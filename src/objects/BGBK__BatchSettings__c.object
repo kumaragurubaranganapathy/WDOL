@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>BGBK__Batch_Object__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Object from which the batch needs to be run.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Batch Object</label>
+        <length>40</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Batch_Size__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of records per batch that will be processed.</description>
+        <externalId>false</externalId>
+        <label>Batch Size</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Default_Filters__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Filter requirements to narrow down the records that need to be processed.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Default Filters</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Maximum_Records__c</fullName>
+        <deprecated>false</deprecated>
+        <description>If the number of records returned by the Batch is greater than the number specified, they get capped; they will not be returned.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the number of records returned by the Batch is greater than the Maximum they get capped</inlineHelpText>
+        <label>Maximum Records</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Minimum_Records__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The minimum threshold, including filters and the percentage, that are required for the Batch to run.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The minimum threshold, including filters and the percentage, for the Batch to run</inlineHelpText>
+        <label>Minimum Records</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Profile_Access__c</fullName>
+        <deprecated>false</deprecated>
+        <description>For DRE1, this setting controls which profile has access to the batch option on the batch screen. An empty value means that all profiles can access the option. This is not applicable for DRE 2.0.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Profile Access</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Randomize_Percentage__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Percentage of the number of records that needs to be processed.</description>
+        <externalId>false</externalId>
+        <label>Randomize Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Randomize_Rounding_Method__c</fullName>
+        <defaultValue>&quot;CEILING&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If the number of returned records has a decimal place, this determines whether the number will be rounded up (ceiling) or down (floor).</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>FLOOR/CEILING</inlineHelpText>
+        <label>Randomize Rounding Method</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__ScheduledJobIds__c</fullName>
+        <deprecated>false</deprecated>
+        <description>List of comma-delimited Apex Scheduled Job ID&apos;s for this batch</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>ScheduledJobIds</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Batch Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

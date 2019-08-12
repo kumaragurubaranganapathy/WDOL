@@ -1,0 +1,81 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"  access="global">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    
+    <aura:attribute name="sectionList" type ="LnP_ApplyForLicenseWrapper"/>
+    <aura:attribute name="applicationId" type="Id"/>
+    <aura:attribute name="selectionString" type="String[]" default="[]"/>
+    <aura:attribute name="SelectedMultiValues" type="String[]" default="[]"/>
+    <aura:attribute name="recId" type="Id"/>
+    <aura:attribute name="sectionName" type="String" />
+    <aura:attribute name="docList" type="List"/>
+    <aura:attribute name="ProviderList" type="List" />
+    <aura:attribute name="effectiveDate" type="Date"/>
+    <aura:attribute name="pDetails" type="String" default="" />
+    <aura:attribute name="showProviderD" type="boolean" default="false"/>
+    <aura:attribute name="recordList" type="List" />
+    <aura:attribute name="flowType" type="String" />
+    <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
+    <!--<aura:handler  name="init" value="{!this}" action="{!c.doinit}"/>-->
+    
+    <c:LnP_RecordEditForms sectionList ="{!v.sectionList}" sectionName="{!v.sectionName}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}" isAMRFlow="{!v.isAMRFlow}" /> 
+    <!--<aura:if isTrue="{!v.ProviderList.length!=0?'true':'false'}"> 
+    <lightning:card title="Provider Details">
+        <p class="slds-p-horizontal_small">            
+            <table>
+            <thead>
+                <th>Name Of Provider</th>
+                <th class="slds-m-left_xx-large">Effective Date</th>
+                <th class="slds-m-left_xx-large">Provider Details</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.ProviderList}" var="doc" indexVar="index">
+                    <tr>
+                        <td>{!doc.proname}</td>
+                        <td class="slds-m-left_xx-large">{!doc.effdate}</td>
+                        <td class="slds-m-left_xx-large">{!doc.pDetails}</td>
+                        <td> <lightning:button aura:id="button" value="{!index}" label="Remove" onclick="{!c.remove}"/></td>
+                    </tr>              
+                </aura:iteration>        
+            </tbody>
+        </table>
+
+            
+                     </p>
+    </lightning:card>
+        </aura:if>
+    <br/><br/>
+    <lightning:button aura:id="APdetails" variant="brand" label="+ Add Provider Details" title="Add Record" onclick="{! c.showAddRecord }" class="addRecbtn "/>
+    <div class="addRecord slds-hide full-width">    
+        
+        
+        <div class="">            
+            <lightning:messages />
+            <div class="slds-grid slds-wrap row">
+                
+                <aura:iteration items="{!v.recordList}" var="question" indexVar="questionItem">
+                    <aura:if isTrue="{!question.fieldType=='Picklist'}">                               
+                        <lightning:select aura:id="picklist" name="{!questionItem}" label="{!question.label}" value="{!question.value}" required="true" onchange="{!c.selectChange}">
+                            <aura:iteration items="{!question.fieldValueOptions}" var="option">
+                                <option value="{!option}">{!option}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                        
+                    </aura:if>                    
+                </aura:iteration>
+                <lightning:input class="slds-m-left_xx-large" type="date" name="effectiveDate" label="Effective Date" value="{!v.effectiveDate}" required="true" />
+                <aura:if isTrue="{!v.showProviderD}">
+                <lightning:input class="slds-m-left_xx-large" type="text" name="Provider Details" label="Provider Details" value="{!v.pDetails}" required="true" />
+                </aura:if>
+                <lightning:inputfield  fieldName="Application_BG__c" value="{!v.applicationId}" class="slds-hide"/> 
+                
+            </div>	
+            <lightning:layout horizontalAlign="left" class="slds-m-top_large addRecbtn ">
+                <lightning:button class="button-style" variant="neutral" label="CANCEL" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                <lightning:button class="button-style" variant="neutral" label="ADD" title="ADD" type="text" onclick="{!c.addDetails}"/>
+            </lightning:layout>
+        </div>
+        
+    </div>-->
+</aura:component>

@@ -1,0 +1,304 @@
+.THIS.business-outer-wrapper{
+    padding: 2rem 8.3vw;
+}
+/*.THIS .license-outer-wrapper{
+    padding:40px 100px;
+    width:100%;
+}*/
+.THIS .page-title{
+    font-size:1.25rem;
+    color:t(LnGFormTitleColor);
+    font-weight:600;
+}
+.THIS .bottom-border{
+    border-bottom: 1px solid #d4d4d4; 
+}
+.THIS .back-btn-wrapper{
+    margin-top:1rem;
+}
+.THIS .alt-email.field-style{
+    display:block;
+}
+.THIS .tabs-wrapper .slds-tabs_default__nav{
+    border-bottom:solid 2px t(actionPanelBG);
+}
+.THIS .biz-details-wrapper.expanded-actions{
+    align-items:flex-start; 
+}
+.THIS .breadcrumb-wrapper{
+    margin:0.5rem 0 1rem;
+}
+.THIS .screen-title{
+    font-size:1.25rem;
+    font-weight:600;
+    color:t(LnGFormTitleColor);  
+    margin-bottom:1.5rem;
+}
+.THIS .table-head,.THIS .table-title{
+    margin-top:1rem;
+}
+.THIS .transform-text.breadcumb{
+    text-transform:unset;
+}
+.THIS .data-table{
+    height:15rem;
+}
+.THIS .tab-style.slds-tabs_default__content{
+    padding-top:0;
+}
+.THIS .license-details-wrapper{
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border: solid 1px t(sectionBorder);
+}
+.THIS .details-header{
+    padding:16px 32px;   
+    border-bottom: solid 1px t(headerUnderline);
+}
+.THIS .header-item{    
+    font-size: 16px;
+    font-weight: 600;    
+    color: t(headerItemColor);   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 30%;
+    margin-right: 2rem;
+}
+.THIS .header-item:last-of-type{
+    margin-right:0;
+}
+.THIS .info-date{
+    text-align:right;
+    padding-bottom:10px;
+}
+.THIS .details-body{
+    padding:20px 32px 0;
+}
+.THIS .name-details{
+    padding-bottom:1.75rem;    
+    font-size: 1rem;    
+    color: t(LnGFormTitleColor);
+}
+.THIS .issue-item, .THIS .contact-item{
+    padding-bottom:1rem;
+}
+.THIS .section-wrapper{
+    padding-bottom:1rem;
+}
+.THIS .section-header{  
+  font-size: 1rem;
+  font-weight: bold;  
+  color: t(headerItemColor);
+  padding-bottom:0.5rem;
+  border-bottom:solid 1px t(headerUnderline);
+}
+.THIS .data-style{
+    font-weight:normal;
+}
+.THIS .field-style{  
+    display:flex; 
+    padding-bottom:1rem;
+    font-size:1rem;        
+    color:t(LnGFormTitleColor);
+}
+.THIS .field-style.address{
+    display:block;
+}
+.THIS .table-height{
+    height:auto;
+}
+.THIS .help-text-wrapper{
+    display:flex;    
+}
+.THIS .help-text-wrapper .slds-form-element__icon{
+    padding-top:0;
+}
+.THIS .empty-state{
+    margin-top:1.5rem;
+}
+.THIS .label-style{
+    font-weight:bold;  
+    padding-right:0.25rem;
+}
+.THIS .business-name{
+    font-size:1.25rem;
+	color:t(primary);	
+    text-decoration:underline;
+    white-space:nowrap; 
+    font-weight:bold;
+}
+.THIS .biz-name-wrapper{
+    margin-bottom:0.5rem;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.THIS .biz-address{
+    margin-bottom:1.5rem;
+}
+.THIS .data-style{
+    word-break:break-word;
+}
+.THIS .business-det{
+    padding-top:10px;
+}
+.THIS .section-details{
+    padding-top:16px;
+}
+.THIS .options-wrapper{
+    padding-top:32px;
+}
+.THIS .sidebar-options li{
+    text-align:right;
+    padding-bottom:10px
+}
+.THIS .sidebar-options li a{
+    text-decoration:underline;
+    color:t(headertxt);
+}
+.THIS .tabs-wrapper{
+    padding-top:54px;
+}
+.THIS .Account-name{
+    font-size:1.75rem;
+    font-weight:bold;    
+    margin-bottom:1.25rem;
+    color:t(LnGFormTitleColor);
+}
+.THIS .biz-welcome{
+    text-align:right;
+    margin-bottom:1.5rem;
+}
+.THIS .sidebar-links .links-wrapper{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.THIS .biz-ubi{
+    font-size:1rem;
+    color:t(LnGFormTitleColor);
+    line-height:1.73;
+}
+.THIS .ubi-label{
+    font-weight:600;
+    padding-bottom:0.25rem;    
+}
+.THIS .business-wrapper{
+    align-items:stretch;
+}
+.THIS .business-card{
+    margin-bottom:1.5rem;
+    width:26.7vW;
+    border: solid 1px t(bizCardBorder);
+    padding: 1.75rem 1.5rem;
+    border-radius:0;
+}
+.THIS .business-card:nth-child(3n+2){
+    margin:0 1vw 1.5rem;
+}
+.THIS .nav-links ul{
+    border: solid 1px t(primary);
+    background : t(actionPanelBG);
+    height:100%;
+}
+.THIS .nav-links li{
+    padding:22px 30px;    
+    border-bottom: solid 1px t(actionItemsBorder);      
+}
+.THIS .nav-links li a{
+    color:t(LnGWhite);
+    font-size:1rem;
+    font-family:t(btnfontfamily);
+}
+.THIS .user-info-wrapper{
+    padding:1.5rem 2rem;    
+    border: solid 1px t(grayBorder);
+    border-right:none;
+}
+.THIS .links-wrapper.exp-wrapper{
+    position:relative;
+}
+.THIS .links-list.expanded{
+    height:auto;
+    position:absolute;
+    z-index:1000;
+}
+.THIS .pagination-wrapper{
+    margin-top:1.5rem;
+}
+.THIS .add-biz-btn{
+     
+    padding: 0.625rem 1.5rem;    
+    font-size:1rem;    
+    line-height:1.29;
+}
+@media only screen and (max-width:767.9px){
+    .THIS .sidebar-options li{
+        text-align:left;
+    }    
+    .THIS .details-header{
+        padding:16px;
+    }
+    .THIS .details-body{
+        padding:16px;
+    }
+    .THIS .name-details{
+        padding-bottom:12px;
+    }
+    .THIS .phy-address{
+        padding-bottom:12px;
+    }
+    .THIS .header-item{
+        padding-bottom:1rem;
+        width:100%;
+    }
+    .THIS .header-item:last-of-type{
+        padding-bottom:0;
+    }
+    .THIS.business-outer-wrapper{
+        padding:1.25rem 1rem;
+    }
+    .THIS .business-card{
+        width:100%;
+        padding:1rem 1.25rem;
+        margin-bottom:1rem;
+    }
+    .THIS .business-card:last-of-type{
+        margin-bottom:0;
+    }
+    .THIS .add-biz-btn{
+        width:100%;
+    }
+    .THIS .biz-welcome{
+        margin:1.25rem 0; 
+    }
+    .THIS .user-info-wrapper{
+        border-right:solid 1px t(grayBorder);
+        padding:1.5rem 1rem;
+    }
+    .THIS .action-link{
+        color:t(LnGFormTitleColor);
+        font-weight:600;
+    }
+    .THIS .actions-wrapper{
+        margin-bottom:1rem;
+        text-align:right;
+    }
+    .THIS .links-list.expanded{
+        right:0;        
+    }
+    .THIS .biz-details-wrapper{
+        flex-direction:column-reverse;
+    }
+    .THIS .mobile-exp{
+        position:absolute;
+        z-index:1000;
+        right:0;
+    }
+    .THIS .nav-links{
+        position:relative;
+    }
+    .THIS .amr-wrapper{
+        flex-direction:column-reverse;
+    }
+}

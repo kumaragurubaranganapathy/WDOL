@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Used to store the API names of contact &amp; Contact Archival Objects</description>
+    <fields>
+        <fullName>ArchivedContactFieldName__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ArchivedContactFieldName</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContactFieldName__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ContactFieldName</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>showOnMergeTable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>showOnMergeTable</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>ContactMergeField</label>
+    <pluralLabel>ContactMergeFields</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

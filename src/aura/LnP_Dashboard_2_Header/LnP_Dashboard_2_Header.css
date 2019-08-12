@@ -1,0 +1,115 @@
+.THIS .PageTitle{
+    font-size : 0.8125rem;
+}
+.THIS .header-wrapper{
+    padding-bottom:36px;
+}
+.THIS .contact-name{
+    font-size:2rem;    
+    color:t(LnGFormTitleColor);
+    padding-bottom:1.25rem;
+    font-weight:bold;
+}
+.THIS .contact-item{
+    width:30%;
+    margin-right:2rem;
+}
+.THIS .field-style{    
+    padding-bottom:0.5rem;
+    font-size:1rem;      
+    color:t(LnGFormTitleColor);
+}
+.THIS .label-style{
+    font-weight:bold;   
+    
+}
+.THIS .change-link{
+    color:t(linksColor);
+   	font-size:1rem;
+    padding-bottom:0.25rem;
+    border-bottom:solid 1px t(linksColor);
+}
+.THIS .field-style.address{
+    display:block;
+}
+.THIS .nav-links ul{
+    border: solid 1px t(primary);
+    background : t(actionPanelBG);
+    height:100%;
+}
+.THIS .nav-links li{
+    padding:22px 30px;    
+    border-bottom: solid 1px t(actionItemsBorder);      
+}
+.THIS .nav-links li a{
+    color:t(LnGWhite);
+    font-size:1rem;    
+}
+.THIS .header-wrapper{    
+    color: t(LnGBackgroundGray);
+    padding:2rem 2.5rem;    
+    border-radius: 10px;
+    background:t(primary);
+    box-shadow: 3px 3px 12px 0 rgba(208, 208, 208, 0.5);
+}
+.THIS .welcome-banner{    
+    font-size: 1.25rem; 
+    
+}
+.THIS .welcome-text{    
+    font-size:16px;  
+    padding-bottom:1rem;
+}
+.THIS .intro-wrapper{    
+    display:flex;
+    align-items:normal;
+}
+.THIS .user-info-wrapper{
+    padding:2rem;    
+    border: solid 1px t(grayBorder);
+    border-right:none;
+}
+.THIS .change-link:hover{
+    text-decoration:none;
+}
+.THIS .alt-email.field-style{
+    display:block;
+}
+@media only screen and (max-width:767.9px){
+    .THIS .header-wrapper{
+        padding:1.25rem 1.5rem;
+    }
+    .THIS .welcome-banner{
+        padding:0;
+    }
+    .THIS .user-info-wrapper{
+        padding:20px;
+    }
+    .THIS .contact-item{
+        width:100%; 
+        margin-right:0;
+    }    
+    .THIS .contact-name{
+        padding-bottom:1rem;
+        font-size:1.5rem;
+    }
+    .THIS .change-link-wrapper{
+        margin-bottom:1rem;
+    }
+    .THIS .address-item{
+        margin-bottom:0.5rem;
+    }    
+    
+    .THIS .intro-wrapper{
+        flex-direction:column-reverse;
+    }
+    .THIS .nav-links.exp-links{
+        position:relative;
+    }
+    .THIS .nav-links .exp-links-inner{
+        position:absolute;
+        z-index:1000;
+        right:0;
+        height:auto;
+    }
+}

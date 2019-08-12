@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Cart Settings</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>BGBK__Allow_Existing_Receipt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Set this to TRUE to enable the &quot;Existing receipt&quot; option for the payment method.</description>
+        <externalId>false</externalId>
+        <label>Allow Paying with Existing Receipt</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Allow_Multiple_Payment_Methods__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Set this to TRUE to display the &quot;Add Payment Method&quot; button on the cart&apos;s checkout page.</description>
+        <externalId>false</externalId>
+        <label>Allow Multiple Payment Methods</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Allow_Partial_Payments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Set this to TRUE to disable validation on the payment amount and allow users to pay less than the outstanding amount on the cart.</description>
+        <externalId>false</externalId>
+        <label>Allow Partial Payments</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Allow_Pay_By_Deposit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Set this to TRUE to enable the deposit option for the payment method.</description>
+        <externalId>false</externalId>
+        <label>Allow Pay By Deposit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__BG_Verification_PIN_API_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field API Name on the cart object. The value of this field is used for validation when a fee needs to be transferred from one cart to another.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>API Name of the Cart field containing the PIN to be shared for pushing fees to this Cart. Fees are transferred.</inlineHelpText>
+        <label>Verification PIN API Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Cart_Expiration_Hours__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Deprecated - set to null.</description>
+        <externalId>false</externalId>
+        <label>Manual Cart Expiration Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Cart_Page__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Cart Page</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Enable_Cashier_Cart__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Set this to TRUE if the Cashiering module is used.</description>
+        <externalId>false</externalId>
+        <label>Enable Cashier Cart</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Enable_High_Volume__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Set this to TRUE if the system needs to process more than 50 items in the cart in a single transaction.</description>
+        <externalId>false</externalId>
+        <label>Enable High Volume</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payable_Parents__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Deprecated.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>List of object API names whose Fees can be paid (e.g. Lien__c, Obj1__c). Super parents and Invoices need not be included.</inlineHelpText>
+        <label>Payable Parents</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Credentials__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Payment Gateway Credentials</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Data_Encryption_Key__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Needs to be 16 characters long. Otherwise will throw error. Example can be &apos;BasicGovPayments&apos;</inlineHelpText>
+        <label>Payment Gateway Data Encryption Key</label>
+        <length>16</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Form_Post_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Payment Gateway Form Post URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Requires_Authentication__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <externalId>false</externalId>
+        <label>Payment Gateway Requires Authentication</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Requires_Credentials__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <externalId>false</externalId>
+        <label>Payment Gateway Requires Credentials</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Requires_Initialization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <externalId>false</externalId>
+        <label>Payment Gateway Requires Initialization</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Gateway_Response_Protocol__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Payment Gateway Response Protocol</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Receipt_Sender_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Display name of the OrgWide email address (return address) that needs to be used for sending emails to the receipt.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Display Name of the OrgWide Email Address that needs to be used for sending the receipt</inlineHelpText>
+        <label>Receipt Sender Name</label>
+        <length>45</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfxIdsfxId__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>sfxId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Cart Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,168 @@
+<!--*************************************************************************************************************
+**************************************************************************************************************
+** Name             : BusinessSecurityCode
+** Description      : Page to obtain security code for business 
+** Version          : 1.0
+** Built By         : 
+**------------------------------------------------------------------------------------------------------------------------
+** Modification Log:
+**--------------------------
+** Developer                    Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**																			
+** Review Log:
+**---------------
+** Reviewer                     Date                    Version             Description
+**------------------------------------------------------------------------------------------------------------------------
+**
+*************************************************************************************************************-->
+
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" docType="html-5.0" cache="true" applyHtmlTag="true" applyBodyTag="false" controller="ForgotSecurityCode_CC">
+    <html lang='en'>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="shortcut icon" href="{!URLFOR($Resource.favicon)}" type="image/x-icon" />
+            <!-- Include script and CSS Files -->
+            <c:Resources />
+            
+            <!-- Include script and CSS Files -->
+            <title>Security Code</title>
+            
+        </head>
+        <body class="internal">
+            <c:Header />
+            <main class="pageSection">
+                <div class="container headerMain">
+                    <div id="internal-header" class="col-sm-6">
+                        <!-- start white header -->
+                        <h1> Business Security Code </h1>
+                    </div>
+                </div>
+                <!-- end the top white header -->
+                <section class="below-the-fold">
+                    <!-- start grey section -->
+                    <div class="container">
+                        <apex:pageMessages />
+                        <apex:form styleClass="animated-form" rendered="{!ISNULL(SecurityCode)}">
+                            <div class="row">
+                                <p>
+                                    In order to obtain the security code for a business, enter the business email or FEIN and click ‘Submit’. 
+                                    The security code will be sent to the email address on file for that business in eLicense. 
+                                    If you believe the business email on file is incorrect, please refer to the “Contact” section to contact 
+                                    your licensing Board
+                                </p>
+                                <div class="radioWrapper">
+                                    <input type="radio" class="showFieldSwicth" name="EmailSocialRadio" value="email" id="ShowEmail" />
+                                    <label for="ShowEmail">Email</label>
+                                </div>
+                                <div class="radioWrapper">
+                                    <input type="radio" class="showFieldSwicth" name="EmailSocialRadio" value="fein" id="showSocial" />
+                                    <label for="showSocial">FEIN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row rowPadding">
+                                <div class="col-sm-3" style="display:none" id="EmailBlock">
+                                    <div class="form-group required">
+                                        <apex:outputLabel value="Business Email" for="EmailId"/>
+                                        <apex:inputText value="{!email}" id="EmailId" label="Email" styleClass="form-control " html-aria-required="true" />
+                                        <span></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-3" style="display:none" id="feinBlock">
+                                    <div class="form-group required">
+                                        <apex:outputLabel value="FEIN" for="fein"/>
+                                        <apex:inputText id="fein" value="{!FEINnumber}" maxlength="10" styleClass="form-control " html-aria-required="true" />
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row btn-paddingMid">
+                                <apex:commandButton styleClass="btn btn-primary" Id="Submit" value="Submit"></apex:commandButton>
+                                <apex:actionFunction name="onValidationComplete" action="{!findBusinessSecurityCode}"/>
+                            </div>
+                        </apex:form>
+                        <apex:outputpanel rendered="{!!ISNULL(SecurityCode)}">
+                            <p>
+                                The security code has been emailed to the business email on file. Please follow the instructions in the email to add the business.
+                            </p>
+                            
+                        </apex:outputpanel>
+                    </div>
+                </section>
+            </main>
+            <c:Footer /><!-- Footer goes before the end of body -->
+        </body>
+        <script>
+        function showMessage(){
+            if({!isError}){
+                MODAL_UTILITY.errorMessageModal('{!errorMessage}');
+            }
+        }
+        
+        var validationMapper = {};
+        // On page load
+        $(function() {
+            ForgorSecurityCode.loadEvents();
+            showMessage();
+        });
+        
+        ;
+        ForgorSecurityCode = {
+            loadEvents: function() {
+                $("[id$=Submit]").on('click', function(e) {
+                    e.preventDefault();
+                    var selValue = $('input[name=EmailSocialRadio]:checked').val(); 
+                    if (validationMapper.forgotSecurityCode.validator.errors().length <= 0) {
+                        if(selValue == 'fein'){
+                            $("[id$=EmailId]").val('');
+                        } else {
+                            $("[id$=fein]").val('');
+                        }
+                        onValidationComplete();
+                    } else {
+                        MODAL_UTILITY.errorMessageModal(validationMapper.forgotSecurityCode.validator.errorHtml());
+                    }
+                });
+                $(".showFieldSwicth").on('click', function() {
+                    validationMapper.forgotSecurityCode = {};
+                    if ($(this).attr('Id') == 'ShowEmail') {
+                        validationMapper.forgotSecurityCode.validationObject = {
+                            fields: [{
+                                id: "EmailId",
+                                required: "true",
+                                name: "Email",
+                                validator: "Email",
+                                watch: true
+                            }]
+                        }
+                        $("#EmailBlock").show();
+                        
+                        $("#feinBlock").hide();
+                        
+                    } else if ($(this).attr('Id') == 'showSocial') {
+                        validationMapper.forgotSecurityCode.validationObject = {
+                            fields: [{
+                                id: "fein",
+                                required: "true",
+                                name: "FEIN",
+                                //validator: "FEIN",
+                                watch: true
+                            }]
+                        }
+                        $("#EmailBlock").hide();
+                        
+                        $("#feinBlock").show();
+                        
+                    }
+                    validationMapper.forgotSecurityCode.validator = new ValidationEngine(validationMapper.forgotSecurityCode.validationObject);
+                });
+            }
+        }
+        </script>
+        
+        
+    </html>
+</apex:page>

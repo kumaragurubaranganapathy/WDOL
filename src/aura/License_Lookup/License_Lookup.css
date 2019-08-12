@@ -1,0 +1,524 @@
+.THIS.page-width {
+    width: 82%;
+    max-width: 1200px;
+    margin: 0px auto;
+    padding-bottom:60px;
+}
+.THIS .page-header h1{
+    font-family: t(merrifontfamily);
+    font-size: 20px;
+    font-weight: 600;
+    font-style: t(txtfontstyle);
+    line-height: 1.48;
+    color: t(LnGFormTitleColor);
+    padding-top: 35px;
+}
+.THIS .heading{
+    font-family: t(merrifontfamily);
+    font-size: 20px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(fieldclr);
+}
+.THIS .licenseinp label, .THIS .licenseinp label span,
+.THIS .licensetab label, .THIS .licensetab label span,
+.THIS .businesstab label, .THIS .businesstab label span{
+    font-size:15px;
+    font-weight:600;
+    color: t(LnGFormTitleColor);
+}
+.THIS .licenseinp .field-item div input, .THIS .licenseinp select,
+.THIS .licensetab .field-item div input, .THIS .licensetab select,
+.THIS .businesstab .field-item div input, .THIS .businesstab select,
+.THIS .licenseinp input.slds-input{
+    font-size:17px;
+    font-weight:200;
+}
+.THIS .licenseinp input::-webkit-input-placeholder,
+.THIS .field-item div input::-webkit-input-placeholder{
+  	font-size:17px;	
+}
+.THIS .field-item div input::-moz-placeholder {
+  	font-size:17px;
+}
+.THIS .field-item div input:-ms-input-placeholder {
+  	font-size:17px;
+}
+.THIS .field-item div input:-moz-placeholder {
+  	font-size:17px;
+}
+.THIS .license-buttons button{
+    font-size:17px;
+    padding:5px 25px;
+}
+.THIS .breadcumb a{
+    font-size:14px;
+    font-weight:500;
+}
+.THIS .button-borders .slds-table_header-fixed_container{
+    padding-top:0;
+}
+.THIS .sub-section-header{
+    display:none;
+}
+.THIS .footer{
+    text-align:right;
+}
+.THIS .text-size {
+    padding-bottom:8px;
+    text-align:right;
+}
+.THIS .card-head .text-style, .THIS .card-head .text-style-val {
+    font-size: 18px;
+}
+.THIS .legal-text {
+    font-size: 14px;
+    padding-top: 5px;
+}
+.THIS .slds-page-header,.THIS .lightningBreadcrumbs div{
+    padding-bottom:10px;
+}
+.THIS .slds-page-header{
+    height:auto;
+}
+.THIS .slds-tabs_default__nav{
+    margin-left:0;
+}
+.THIS .sub-header, .THIS .sub-section,.THIS .subheader span{
+    color: t(fieldclr);
+}
+.THIS .sub-header{
+    line-height:32px;
+}
+.THIS .subheader span .merriweather-font{
+    font-family: t(merrifontfamily);
+}
+.THIS .slds-button.slds-button_neutral.modify-btn {
+    height:auto;
+    line-height:32px;
+    padding-bottom:0px;
+    border:0px;
+    background: transparent;
+}
+.THIS .field-padding{
+    padding: 11px 21px;
+}
+.THIS .field-style{
+    vertical-align: top;
+}
+.THIS .slds-tabs_default__item{
+    padding: .25rem 1.5rem;
+}
+.THIS .lightningBreadcrumbs,.THIS .screen-two,.THIS .screen-three{
+    padding: 5px 0px;
+    line-height: 1;
+}
+.THIS .screen-two{
+    padding-top: 35px;
+}
+.THIS .headerWrap span.sub-header {
+    font-size: 20px;
+}
+.THIS .slds-button_icon-bare .slds-button__icon{
+    display:none;
+}
+.THIS .slds-text-title_caps{
+    text-transform:none;
+}
+.THIS .slds-is-sortable .slds-th__action:hover,.THIS .slds-is-sortable .slds-th__action:focus{
+    background: #d6d7d9;
+}
+.THIS .slds-table th.slds-has-focus,.THIS .slds-has-focus,.THIS .slds-table th:focus{
+    box-shadow:none;
+    
+}
+
+.THIS table.slds-table_header-fixed tbody tr:first-child th, 
+.THIS table.slds-table_header-fixed tbody tr:first-child td{
+    
+   
+    border-top: solid 1px #5b616b;
+}
+.THIS table.slds-table.slds-max-medium-table_stacked.slds-table_bordered thead th div {
+    text-align: left;
+}
+.THIS .search-result .slds-cell-fixed{
+        background: #d6d7d9;
+    min-height:4rem;
+    position:static;
+      
+}
+.THIS .search-result .slds-has-focus .slds-th__action{
+     background: #d6d7d9;
+}
+.THIS .search-result .slds-table thead tr th:last-child div{
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    padding-left: 8px;
+}
+/*.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
+background: t(sectionBG);
+}*/
+.THIS .search-result .slds-table_header-fixed_container.slds-scrollable_x{
+    overflow-x:hidden;
+} 
+/*.THIS .search-result .slds-table th,.THIS .search-result .slds-table td {
+padding: 4px 5px;
+}*/
+.THIS .slds-table tbody tr:hover td,.THIS .slds-table tbody tr:hover th{
+     background: t(white);
+}
+
+.THIS .breadcumb a {
+    color: t(fieldclr);
+    font-weight:t(btnfontweight);
+}
+.THIS .slds-breadcrumb__item:before{
+    margin-top:3%;
+}
+.THIS .text-right{
+    text-align:right;
+}
+.THIS .color-white{
+    color: t(white);
+}
+
+.THIS .button-float{
+    float: right;
+}
+.THIS .button-borders .slds-button{
+    border: none;
+    color: black;
+    box-shadow: none;
+    text-decoration: underline;
+}
+.THIS .button-borders .slds-button_neutral{
+    height:auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-family: token(btnfontfamily);
+    font-size: token(btnfontsize);
+    font-weight: token(txtfontweight);
+    
+}
+.THIS .button-borders a,.THIS .slds-th__action{
+    height: 18px;
+    font-family: token(publicSansfontfamily);
+    font-size: t(senfontsize);
+    font-weight: t(btnfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color:token(LnGFormTitleColor);
+    box-shadow:none;
+    background:transparent;
+}
+.THIS .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.THIS .screen-three .buttons-left {
+    text-align:left;
+}
+.THIS .screen-three .buttons-right{
+    text-align:right;
+}
+
+.THIS .bottom-border{
+    border-bottom: 1px solid #d4d4d4; 
+}
+.THIS .table-border{
+    border-radius: .25rem;
+    border: 1px solid #d4d4d4;
+}
+.THIS .bottom-border .row-margin{
+    margin-bottom :0;
+}
+
+.THIS .transform-text{
+    text-transform: capitalize;
+    letter-spacing: 0px;
+}
+.THIS .pagination-wrapper {
+    text-align:center;
+}
+.THIS .slds-is-active .slds-tabs_default__link{
+    text-decoration: none;
+    font-family: token(publicSansfontfamily);
+    font-size: token(licensefontsize);
+    font-weight: token(btnfontweight);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    color: token(licensetxt);
+}
+
+.THIS .licenseinp, .THIS .select-help{
+   	font-size:12px;
+    width:50%;
+}
+.THIS .screen-one .divBox{
+    padding:0;
+}
+.THIS .alignRight{
+    text-align:right;
+}
+
+    
+/*common style for tabs end*/
+ .THIS .screen-one ul{
+       background:t(LnGWhite);
+}  
+
+
+@media screen and (min-width: 1280px){
+   .THIS .screen-one ul li:nth-child(-n+2){
+        width:50%
+    }
+    .THIS .divBox .slds-tabs_default__overflow-button{
+        visibility:hidden;
+        padding:0;
+    }
+   
+}
+/*common style for tabs end*/
+@media t(mqSmall){ 
+    .THIS.page-width {
+        width: 90%;
+    }
+    .THIS .licenseinp,.THIS .licensetab .field-item,.THIS .businesstab .field-item{
+        width:100%;
+    }
+   
+    .THIS #data-table table.slds-table, .THIS #data-table table.slds-table {
+        width: 100% !important;
+        border: 0;
+    }
+    .THIS #data-table .slds-scrollable_y {
+        width: 100% !important;
+    }
+    .THIS #data-table table.slds-table thead, .THIS #data-table table.slds-table thead {
+        position: absolute!important;
+        margin: -1px!important;
+        border: 0!important;
+        padding: 0!important;
+        width: 1px!important;
+        height: 1px!important;
+        overflow: hidden!important;
+        clip: rect(0 0 0 0)!important;
+    }
+    .THIS #data-table table.slds-table tr, .THIS #data-table table.slds-table tr {
+        display: block;
+        border: 1px solid #d4d4d4;
+        border-radius: 5px;
+        margin: 15px 0px;
+    }
+    .THIS #data-table .slds-table_header-fixed_container::before {
+        border: 0px;
+    }
+    .THIS #data-table table.slds-table .slds-button {
+        height: auto;
+        padding: 0px;
+        font-weight: 200;    
+    }
+    .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover th, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS #data-table table.slds-table:not(.slds-no-row-hover) tbody tr:hover th {
+        background-color: inherit!important;
+        box-shadow: none!important;
+    }
+    .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table td, .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table td {
+        display: block;
+        padding: 8px 15px;
+        max-width: 100%;
+        width: 100%;
+        clear: both;
+        white-space: normal;
+        overflow: hidden;
+        text-align: left;
+        border-top: 0px;
+    }
+    .THIS #data-table table.slds-table th, .THIS #data-table table.slds-table th {
+        border-top: 0;
+        border-right:none;
+    }
+    .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before {
+        padding-bottom: .25rem;
+    }
+    .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before, .THIS #data-table table.slds-table th:before, .THIS #data-table table.slds-table td:before {
+        font-size: .75rem;
+        line-height: 1.25;
+        color: #696969;
+        text-transform: uppercase;
+        letter-spacing: .0625rem;
+        display: block;
+        padding-bottom: .25rem;
+        content: attr(data-label);
+    }
+    .THIS #data-table .slds-table_header-fixed_container {
+        padding: 0px;
+    }
+    .THIS .screen-two .search-details>div{
+        width:100%
+    }
+    .THIS .screen-two .search-details .slds-form-element__label,.THIS .screen-two .search-details .slds-form-element__control{
+        display:inline;
+    }
+    .THIS table.slds-table_header-fixed tbody tr:first-child th, 
+    .THIS table.slds-table_header-fixed tbody tr:first-child td{
+        
+        border-right: none;
+        
+    }
+    .THIS .screen-three .btn-bg{
+        width:100%;
+    }
+    .THIS .screen-three,.THIS .screen-two{
+        padding:0;
+    }
+    .THIS .select-help{
+        width:100%;
+    }
+    .THIS .headerWrap {
+        clear: both;
+        padding-top: 10px;
+    }
+    .THIS .headerWrap > span {
+        display: block;
+    }
+    .THIS .headerWrap span button {
+        padding: 0px;
+    }
+    .THIS .headerWrap span.sub-header {
+        line-height: 1.2;
+        padding-bottom: 15px;
+    }
+    .THIS .slds-form-element_horizontal.slds-form-element.slds-size_4-of-12 {
+        width: 100%;
+    }
+    .THIS .slds-size_1-of-3.slds-form-element_horizontal.slds-form-element, 
+    .THIS .slds-size_1-of-2.slds-form-element_horizontal.slds-form-element{
+        width: 100%;
+    }
+    .THIS .slds-grid {
+        flex-wrap:wrap;    
+    }
+    .THIS .bottom-border .row-margin {
+        margin-bottom: 0.5em;
+    }
+    .THIS .buttons {
+        display: block;
+    }
+    .THIS .screen-three .buttons-left {
+        text-align:right;
+        margin-bottom:10px;
+    }
+    .THIS .screen-three .buttons-right{
+        text-align:right;
+    }
+}
+.THIS .slds-table thead th{
+    padding: 12px 6px;    
+}
+.THIS .slds-table tbody td {
+    padding: 24px 6px;   
+}
+.THIS span.slds-truncate {
+    text-overflow: initial;
+    white-space: normal;
+}
+.THIS .button-borders a {
+    padding: 0px 3px;
+    text-align: left;
+}
+.THIS .slds-table thead tr th:last-child div {
+    justify-content: flex-start;
+}
+.THIS input, .THIS select {
+    line-height: 42px;
+}
+.THIS .buttons .next-button {
+    font-size: 17px;
+}
+.THIS .text-element {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding-right: 30px;
+	box-sizing: border-box;
+}
+.THIS .text-style, .THIS .field-style {
+	flex: 1;
+}
+.THIS .text-style-val, .THIS .field-style-val {
+	flex: 1;
+}
+.THIS .section-name {
+	font-size: 15px;
+	font-weight: bold;
+}
+.THIS .section-list {
+    font-size: 15px;
+    padding-bottom: 6px;
+}
+.THIS .slds-table_bordered thead th div {
+	font-size:15px;
+    font-weight:bold;
+}
+.THIS .license-buttons button {
+	width:130px;
+	font-size:17px;        
+}
+@media screen and (min-width:1024px){
+    
+    .THIS .license-buttons {
+     	font-size:17px;
+     }
+    .THIS .text-style, .THIS .text-style-val {
+        font-size: 18px;
+    }
+}
+@media t(mqSmall){
+.THIS .license-buttons button {
+    width:100%;     
+}
+.THIS .page-header h1, .THIS .heading {
+	font-size:16px;
+}
+.THIS .license-desc {
+	font-size: 14px;
+}
+.THIS .field-padding {
+    padding: 10px 5px;
+}
+.THIS .searchNum {
+	margin-top:15px;
+}
+.THIS .slds-tabs_default__item {
+    padding: .25rem .5rem;
+}
+.THIS .button-float {
+    float: none;
+    margin: 15px 0px;
+}
+.THIS .headerWrap span.sub-header {
+    line-height: 1.2;
+    padding-bottom: 0px;
+    font-size: 18px;
+}
+.THIS .search-details {
+    margin: 40px 0px;
+}
+.THIS .screen-two span.sub-section {
+    display: block;
+    margin-left: 0px;
+    font-size: 14px;
+    color: #6f6f6f;
+    padding-top: 5px;
+}
+.THIS .screen-two .search-details .slds-form-element__label, .THIS .screen-two .search-details .slds-form-element__control {
+    font-size: 14px;
+}
+.THIS .license-buttons .cancel-button {
+    width: 100%;
+    margin-bottom: 12px;
+}
+}

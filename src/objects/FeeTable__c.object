@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>List of All Fees across Boards</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Account_Code__c</fullName>
+        <description>Account Code</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Account Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Number__c</fullName>
+        <description>Account Number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Account Number</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Add_Additional_Fee__c</fullName>
+        <description>If configured, additional Transaction Fee will be attached to the Parent fee</description>
+        <externalId>false</externalId>
+        <label>Add Additional Fee</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>FEE-OIT-TRANS</fullName>
+                    <default>false</default>
+                    <label>FEE-OIT-TRANS</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <description>Fee Amount</description>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>11</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Board__c</fullName>
+        <description>Board</description>
+        <externalId>false</externalId>
+        <label>Board</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Architects Board</fullName>
+                    <default>false</default>
+                    <label>Architects Board</label>
+                </value>
+                <value>
+                    <fullName>Accountancy Board</fullName>
+                    <default>false</default>
+                    <label>Accountancy Board</label>
+                </value>
+                <value>
+                    <fullName>Board of Embalmers and Funeral Directors</fullName>
+                    <default>false</default>
+                    <label>Board of Embalmers and Funeral Directors</label>
+                </value>
+                <value>
+                    <fullName>Engineers and Surveyors Board</fullName>
+                    <default>false</default>
+                    <label>Engineers and Surveyors Board</label>
+                </value>
+                <value>
+                    <fullName>Board of Pharmacy</fullName>
+                    <default>false</default>
+                    <label>Board of Pharmacy</label>
+                </value>
+                <value>
+                    <fullName>Casino Control Commission</fullName>
+                    <default>false</default>
+                    <label>Casino Control Commission</label>
+                </value>
+                <value>
+                    <fullName>Chemical Dependency Professionals Board</fullName>
+                    <default>false</default>
+                    <label>Chemical Dependency Professionals Board</label>
+                </value>
+                <value>
+                    <fullName>Chiropractic Board</fullName>
+                    <default>false</default>
+                    <label>Chiropractic Board</label>
+                </value>
+                <value>
+                    <fullName>Cosmetology and Barber Board</fullName>
+                    <default>false</default>
+                    <label>Cosmetology and Barber Board</label>
+                </value>
+                <value>
+                    <fullName>Counselor, Social Worker &amp; MFT Board</fullName>
+                    <default>false</default>
+                    <label>Counselor, Social Worker &amp; MFT Board</label>
+                </value>
+                <value>
+                    <fullName>Dental Board</fullName>
+                    <default>false</default>
+                    <label>Dental Board</label>
+                </value>
+                <value>
+                    <fullName>Dept of Commerce Manufactured Homes</fullName>
+                    <default>false</default>
+                    <label>Dept of Commerce Manufactured Homes</label>
+                </value>
+                <value>
+                    <fullName>Medical Board</fullName>
+                    <default>false</default>
+                    <label>Medical Board</label>
+                </value>
+                <value>
+                    <fullName>Motor Vehicle Repair Board</fullName>
+                    <default>false</default>
+                    <label>Motor Vehicle Repair Board</label>
+                </value>
+                <value>
+                    <fullName>Nursing Board</fullName>
+                    <default>false</default>
+                    <label>Nursing Board</label>
+                </value>
+                <value>
+                    <fullName>Vision Professionals Board</fullName>
+                    <default>false</default>
+                    <label>Vision Professionals Board</label>
+                </value>
+                <value>
+                    <fullName>OTPTAT Board</fullName>
+                    <default>false</default>
+                    <label>OTPTAT Board</label>
+                </value>
+                <value>
+                    <fullName>Psychology Board</fullName>
+                    <default>false</default>
+                    <label>Psychology Board</label>
+                </value>
+                <value>
+                    <fullName>ODH Sanitarian Registration</fullName>
+                    <default>false</default>
+                    <label>ODH Sanitarian Registration</label>
+                </value>
+                <value>
+                    <fullName>Speech and Hearing Professionals Board</fullName>
+                    <default>false</default>
+                    <label>Speech and Hearing Professionals Board</label>
+                </value>
+                <value>
+                    <fullName>Veterinary Medical Board</fullName>
+                    <default>false</default>
+                    <label>Veterinary Medical Board</label>
+                </value>
+                <value>
+                    <fullName>Sanitarian Board</fullName>
+                    <default>false</default>
+                    <label>Sanitarian Board</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Expiry_Date__c</fullName>
+        <description>Fee Expiry Date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Expiry Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fee_Type__c</fullName>
+        <description>Fee Name on the Cart</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Fee Name on the Cart</label>
+        <length>255</length>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Status_Field_API_Name__c</fullName>
+        <description>Parent Status Field API Name</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Parent Status Field API Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rule_Name__c</fullName>
+        <description>Rules Name referenced from Rules Engine to generate Fees</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Rule Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_value_Before_Fee_Generation__c</fullName>
+        <description>Status value Before Fee Generation</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Status value Before Fee Generation</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Fee Table</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Board__c</columns>
+        <columns>Fee_Type__c</columns>
+        <columns>Amount__c</columns>
+        <columns>Add_Additional_Fee__c</columns>
+        <columns>Account_Number__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Fees</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>Board__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Fee_Expiration_Config</fullName>
+        <columns>NAME</columns>
+        <columns>Expiry_Date__c</columns>
+        <columns>Status_value_Before_Fee_Generation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Expiry_Date__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Fee Expiration Config</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>License_Assignment_Queue_FeeTable</fullName>
+        <filterScope>Queue</filterScope>
+        <label>License Assignment Queue</label>
+        <queue>License_Assignment_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Fee Table ID</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Fee Table</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Board__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Fee_Table_ID_should_not_be_modified</fullName>
+        <active>true</active>
+        <description>Fee Table ID should not be modified</description>
+        <errorConditionFormula>NOT(CONTAINS($Profile.Name , $Label.Str_System_Administrator)) &amp;&amp; 
+PRIORVALUE(Name) != null &amp;&amp; 
+ISCHANGED(Name)</errorConditionFormula>
+        <errorMessage>Fee Table ID should not be modified</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Unique_check_for_Fee_Table_ID</fullName>
+        <active>true</active>
+        <errorConditionFormula>and(
+    Name = VLOOKUP
+       ($ObjectType.FeeTable__c.Fields.Name , $ObjectType.FeeTable__c.Fields.Name, Name ),
+
+    not(
+     Id=VLOOKUP
+         ($ObjectType.FeeTable__c.Fields.Id , $ObjectType.FeeTable__c.Fields.Name, Name )))</errorConditionFormula>
+        <errorMessage>Fee Table ID must be unique</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

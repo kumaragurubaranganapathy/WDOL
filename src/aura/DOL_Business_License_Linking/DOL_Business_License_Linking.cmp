@@ -1,0 +1,107 @@
+<!--
+* name 		    : DOL_Business_License_Linking
+* @description 	: To link license to  logged in users contact
+* @author 		: Mangesh
+* @date 		: 07/11/2019
+* MODIFICATION LOG:
+* DEVELOPER                     DATE                               DESCRIPTION
+_________________________________________________________________________________
+* Mangesh	      07/11/2019	      A Brief Desc about the Change
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" controller="DOL_License_Linking" >
+    <aura:attribute name="licenseTypeList" type="List" description="Holds the lists of licenseType"/>
+    <aura:attribute name="accountColumnList" type="List" description="Holds the lists ofaccount"/>
+    <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
+    <aura:attribute name="linkingScreen" type="Boolean" default="true" description="checks if linking screen or not"/>
+    <aura:attribute name="options" type="List" description="contains options for radio group" default="[
+                                                                                                       {'label': 'Email', 'value': 'Email'},
+                                                                                                       {'label': 'Mail', 'value': 'Mail'},
+                                                                                                       {'label': 'Phone', 'value': 'Phone'}
+                                                                                                       ]"/>
+    <aura:attribute name="value" type="String" default=""/>
+    <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
+    
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
+    </aura:if>
+    <div class="biz-link-wrapper">
+        <aura:if isTrue="{!v.linkingScreen}">
+            <div class="biz-link-title">
+                Link an existing business profile
+            </div>
+            <div class="new-wrapper">
+                <div class="ser-title link-title">
+                    Link your Business License with an Activation Code
+                </div>
+                <p class="link-help">If you have received an activation code, enter it below.</p>
+                <p class="link-help">If you would like to request an activation code, please click <a href="javascript:void(0)" onclick="{!c.redirectRequest}">here</a></p>                
+                
+                
+                <div class="token-wrapper">
+                    <lightning:input aura:id="securityTokenBusiness" label="Activation Code"
+                                     name="securityToken"
+                                     value=""
+                                     required="true"
+                                     class="activation-code" /> 
+                    
+                </div>
+                
+                <div id="buttonDataBusiness" class ="button-wrapper">
+                    <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
+                    <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.searchAccount}">Verify Code</button>
+                    
+                </div>                
+            </div>
+            <aura:if isTrue="{!not(empty(v.accountColumnListData))}">
+                <div class=" slds-show new-wrapper" id= "businessDiv">
+                    <div class="ser-title">
+                        Confirm and link business profile
+                    </div>
+                    <p class="link-help">
+                        If this is your business profile, link it to your Polaris account
+                    </p>
+                    
+                    <aura:iteration items="{!v.accountColumnListData}" var="biz" indexVar="ind">
+                        <lightning:layout class="token-wrapper">                
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="biz-details">                        
+                                {!biz.Name}
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="biz-details"> 
+                                <span class="field-style">UBI:</span>
+                                <span class="data-style">{!biz.UBI_Number__c}</span>
+                                
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="6" class="biz-details">                        
+                                <span class="field-style">Address:</span>
+                                <span class="data-style">{!biz.ShippingAddress}</span>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                        <div id="buttonDataBusiness2" class ="button-wrapper">
+                            <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
+                            <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.linkContactToAccount}">Link License</button>
+                            
+                        </div>               
+                    </aura:iteration>  
+                </div>
+            </aura:if>
+            <aura:set attribute="else">
+                <div class="biz-link-title">
+                    Request an activation code for linking a business license
+                </div>
+                <div class="new-wrapper">
+                    <div class="ser-title link-title">
+                        Choose a method to receive an activation code
+                    </div>
+                    <div class="token-wrapper">
+                        <lightning:radioGroup name="radioGroup"                          
+                                              options="{! v.options }"
+                                              value="{! v.value }"
+                                              type="radio"
+                                              class="radio-style"               />
+                        
+                    </div>
+                </div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

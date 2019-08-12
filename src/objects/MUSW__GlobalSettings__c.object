@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>MUSW__Admin_Password__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Legacy.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Admin Password</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Admin_Username__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Legacy.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Admin Username</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Associate_Contacts_Citizen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If checked, all Contacts will be associated to the Citizen Account. Otherwise, a new Person Account will be created for them. This association allows contacts to become searchable. It is typically not used when person Accounts are used.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, all Contacts will be associated to the Citizen Account. Otherwise a new Person Account will be created for them.</inlineHelpText>
+        <label>Associate Contacts to Citizen</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Attachment_Delete_Access__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Attachments are typically prevented from being deleted. Usernames in this list are users that are instead allowed to delete attachments.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>List of user names (comma separated) allowed to delete attachments. Leave blank if anyone is allowed to delete.</inlineHelpText>
+        <label>Attachment Delete Access</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__ContactDistinctFields__c</fullName>
+        <defaultValue>&apos;lastname, mailingstreet&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Legacy.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Contact fields determining record uniqueness. Fieldname list (comma delimited)
+eg. lastname, mailingstreet</inlineHelpText>
+        <label>ContactDistinctFields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Disable_Triggers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>A Global flag to disable all MUSW triggers. This should only be done during data migration phases.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if loading data to disable triggers from running</inlineHelpText>
+        <label>Disable Triggers</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Dissociate_Accounts_Contacts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If checked, new Accounts won&apos;t have Contacts created for them; it not mirror person Accounts as associated Contacts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, new Accounts won&apos;t have Contacts created for them</inlineHelpText>
+        <label>Accounts dont create matching Contacts</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Dissociate_Contacts_Person_Account__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>When selected, the system does not mirror Contacts with an associated person Account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>BG Person Accounts. If true, person Accounts are not created. Typically this setting is false.</inlineHelpText>
+        <label>Contacts don&apos;t create Person Accounts</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Formula_Evaluator_Class__c</fullName>
+        <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Formula Evaluator Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Generate_Documents_as_Files__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>By default, documents are generated as Salesforce Attachments (unchecked). Checking this option will generate documents as Salesforce Files.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>By default, documents are generated as Salesforce Attachments (unchecked). Checking this option will generate documents as Salesforce Files.</inlineHelpText>
+        <label>Generate Documents as Files</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Organization_Country__c</fullName>
+        <defaultValue>&quot;US&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Legacy.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>eg US, CANADA, etc.</inlineHelpText>
+        <label>Organization Country</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MUSW__Purge_Historic_Logs_Asynchronously__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>When selected, MUSW logs outside of immediate mode will always be cleaned up; historic Event Logs will always be purged asynchronously. Deselect this box if you experience Apex async limit exceptions.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected historic Event Logs will always be purged asynchronously. Uncheck this box if you experience Apex async limit exceptions.</inlineHelpText>
+        <label>Purge Historic Logs Asynchronously</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MUSW__Set_ParcelName_As_Address_And_Number__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If checked, the parcel name is update with the parcel&apos;s address and number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, the parcel name is update with the parcel&apos;s address and number</inlineHelpText>
+        <label>Set Parcel Name with Address and Number</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>MUSW Global Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

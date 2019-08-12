@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Shows an available time and place for an exam and maximum capacity.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Enrollment__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of exams scheduled for this date/time</inlineHelpText>
+        <label>Enrollment</label>
+        <summaryForeignKey>Exam__c.Exam_Schedule__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Exam_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date that the exam is offered</inlineHelpText>
+        <label>Exam Date</label>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Exam_Location_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Physical address of testing site</inlineHelpText>
+        <label>Exam Location Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Exam_Location__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Location of Exam</inlineHelpText>
+        <label>Exam Location</label>
+        <length>80</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maximum_Capacity__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Maximum number of attendees for an exam</inlineHelpText>
+        <label>Maximum Capacity</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Seats_Available__c</fullName>
+        <externalId>false</externalId>
+        <formula>Maximum_Capacity__c  -  Enrollment__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Number of seats still available for exam</inlineHelpText>
+        <label>Seats Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time_of_Exam__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Time that the Exam is being offered</inlineHelpText>
+        <label>Time of Exam</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <label>Exam Schedule</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Time_of_Exam__c</columns>
+        <columns>Exam_Date__c</columns>
+        <columns>Exam_Location__c</columns>
+        <columns>Exam_Location_Address__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Exam_Schedules_2019</fullName>
+        <columns>NAME</columns>
+        <columns>Exam_Date__c</columns>
+        <columns>Exam_Location__c</columns>
+        <columns>Exam_Location_Address__c</columns>
+        <columns>Maximum_Capacity__c</columns>
+        <columns>Seats_Available__c</columns>
+        <columns>Time_of_Exam__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Exam_Date__c</field>
+            <operation>lessThan</operation>
+            <value>12/31/2019</value>
+        </filters>
+        <filters>
+            <field>Exam_Date__c</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019</value>
+        </filters>
+        <label>Exam Schedules 2019</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Exam Schedule</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Exam Schedules</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Exam_Location__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Time_of_Exam__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Exam_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Enrollment__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Maximum_Capacity__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Seats_Available__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Exam_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Exam_Location__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Time_of_Exam__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Maximum_Capacity__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Seats_Available__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Enrollment__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Exam_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Exam_Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Enrollment__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Maximum_Capacity__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Seats_Available__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>
