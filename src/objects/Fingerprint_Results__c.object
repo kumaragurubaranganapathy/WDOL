@@ -182,6 +182,18 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+	<fields>
+        <fullName>Account_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Contact</label>
+        <referenceTo>MUSW__Account_Contact__c</referenceTo>
+        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
+        <relationshipName>Fingerprinting_Background_Results</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Fingerprinting/Background Results</label>
     <nameField>
         <displayFormat>FR - {00000}</displayFormat>

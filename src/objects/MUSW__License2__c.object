@@ -4243,6 +4243,47 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <valueSetName>license_specific_email_addresses</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Account_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>DCP</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>DCP Not available</errorMessage>
+            <filterItems>
+                <field>MUSW__Account_Contact__c.DCP__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <filterItems>
+                <field>MUSW__Account_Contact__c.License__r.Id</field>
+                <operation>equals</operation>
+                <valueField>$Source.Id</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>MUSW__Account_Contact__c</referenceTo>
+        <relationshipLabel>Licenses</relationshipLabel>
+        <relationshipName>Licenses</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DCP_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;/&apos;&amp; Account_Contact__r.Id , Account_Contact__r.Full_Name__c, &apos;self&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DCP Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>License</label>
     <listViews>
         <fullName>Active_Converted</fullName>
