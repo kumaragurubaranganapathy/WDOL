@@ -1,7 +1,7 @@
 public class CashRegisterTriggerHandler {
     public static void handleBeforeInsert(List<Cash_Register__c> newList){
         Id validationRoomRecTypeId = Schema.SObjectType.Cash_Register__c.getRecordTypeInfosByName().get('Validation Room').getRecordTypeId();
-        List<AggregateResult> aggRes = [Select sum(MUSW__Amount_Tendered__c),MUSW__Payment_Method__c from MUSW__Receipt__c where createdDate = Today group by MUSW__Payment_Method__c ];
+        List<AggregateResult> aggRes = [Select sum(MUSW__Amount_Tendered__c),MUSW__Payment_Method__c from MUSW__Receipt__c where createdDate = Today and Intake_Method__c = 'Validation Room' group by MUSW__Payment_Method__c ];
         Map<String,Decimal> paymentTypeToAmountMap = new Map<String,Decimal>();
         for(AggregateResult agr :aggRes){
             paymentTypeToAmountMap.put((String)agr.get('MUSW__Payment_Method__c'),(Decimal)agr.get('expr0'));
