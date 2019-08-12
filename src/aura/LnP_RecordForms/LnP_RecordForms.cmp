@@ -44,13 +44,15 @@
                                 </aura:if>
                                 <aura:set attribute="else">
                                     <aura:if isTrue="{!field.required || field.regex != undefined}">
-                                        <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" onchange="{!c.getpattern}"/>                        	
-                                        <aura:set attribute="else">
+                                        <aura:if isTrue="{!field.apiname == 'NO_SSN_ITIN__c'}">
                                             <div class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">
-                                                <label>{!field.label}</label>
-                                                <lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}" class="{!field.apiname == v.flagHideAndShow ? 'slds-show field-size multi-field field-adjust' : 'slds-hide'}" variant="label-hidden" /> 
+                                            	<label>{!field.label}</label>
+                                                <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.required?' required':'')+' field-size multi-field'}" variant="label-hidden"/>                        	
                                             </div>
-                                        </aura:set>
+                                            <aura:set attribute="else">
+                                            	<lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" onchange="{!c.getpattern}"/>                        	
+                                            </aura:set>
+                                        </aura:if>
                                     </aura:if>
                                 </aura:set>
                             </aura:if>

@@ -1,13 +1,13 @@
 ({	
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
-        var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		var dayShortNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        var month = localDate.getMonth();
-        var date = localDate.getDate();
-        var year = localDate.getFullYear();
-        var day = localDate.getDay();
-        localDate = dayShortNames[day]+' '+monthShortNames[month]+' '+date+' '+year+' '+localDate.getHours()+':'+localDate.getMinutes()+':'+localDate.getSeconds();
+        //var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		//var dayShortNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        //var month = localDate.getMonth();
+        //var date = localDate.getDate();
+        //var year = localDate.getFullYear();
+        //var day = localDate.getDay();
+        //localDate = dayShortNames[day]+' '+monthShortNames[month]+' '+date+' '+year+' '+localDate.getHours()+':'+localDate.getMinutes()+':'+localDate.getSeconds();
         component.set("v.date", localDate);
         var action = component.get("c.getPicklistFieldValues");
         action.setParams({
@@ -150,27 +150,27 @@
                                     if(row.MUSW__License2__r.License_Printable_Name__c){
                                     	row.Name = row.MUSW__License2__r.License_Printable_Name__c;
                                     } else {
-                                        row.Name = "";
+                                        row.Name = "None";
                                     }
                                     if(row.MUSW__License2__r.Name){
                                     	row.License_Number = row.MUSW__License2__r.Name;
                                     } else {
-                                        row.License_Number = "";
+                                        row.License_Number = "None";
                                     }
                                     if(row.MUSW__License2__r.AIDS_Affidavit__c){
                                         row.Discipline = row.MUSW__License2__r.AIDS_Affidavit__c;
                                     } else {
-                                        row.Discipline = "";
+                                        row.Discipline = false;
                                     }
                                     if(row.MUSW__License2__r.Credential_Type__c){
                                         row.License_Type = row.MUSW__License2__r.Credential_Type__c;
                                     } else {
-                                        row.License_Type = "";
+                                        row.License_Type = "None";
                                     }
                                     if(row.MUSW__License2__r.MUSW__Status__c){
                                         row.Status = row.MUSW__License2__r.MUSW__Status__c;
                                     } else {
-                                        row.Status = "";
+                                        row.Status = "None";
                                     }
                                     if(row.MUSW__License2__r.Sub_Status__c){
                                         if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
@@ -184,27 +184,27 @@
                                     if(row.MUSW__License2__r.RecordType){
                                         row.Type = row.MUSW__License2__r.RecordType.Name;
                                     } else {
-                                        row.Type = "";
+                                        row.Type = "None";
                                     }
                                     if(row.MUSW__License2__r.Id){
                                         row.Id = row.MUSW__License2__r.Id;
                                     } else {
-                                        row.Id = "";
+                                        row.Id = "None";
                                     }
                                 } else {
-                                    row.Name = "";
-                                    row.License_Number = "";
-                                    row.Discipline = "";
-                                    row.License_Type = "";
-                                    row.Status = "";
-                                    row.Sub_Status = "";
-                                    row.Type = "";
-                                    row.Id = "";
+                                    row.Name = "None";
+                                    row.License_Number = "None";
+                                    row.Discipline = "None";
+                                    row.License_Type = "None";
+                                    row.Status = "None";
+                                    row.Sub_Status = "None";
+                                    row.Type = "None";
+                                    row.Id = "None";
                                 }
                                 if(row.MUSW__Parcel__r.MUSW__City__c){
                                     row.City = row.MUSW__Parcel__r.MUSW__City__c;
                                 } else {
-                                    row.City = "";
+                                    row.City = "None";
                                 }
                           	}
                         } 
@@ -213,7 +213,7 @@
                             {label: 'Name', fieldName: 'Name', type: 'button', sortable : true, typeAttributes: 
                              { label: {fieldName: 'Name'}, name: 'view_details', title: {fieldName: 'Name'}}},
                             {label: 'License', fieldName: 'License_Number', type: 'Number', sortable : true},
-                            {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
+                            {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true, title:{fieldName: 'License_Type'}},
                             {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                             {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                             {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
@@ -334,10 +334,11 @@
                 for(var i=0; i<result.length; i++){
                     if(result[i].MUSW__License2__r.MUSW__Expiration_Date__c){
                         if($A.get("$SObjectType.CurrentUser.Id")){
-                            
+                            component.set("v.loggedIn", true);
                         }else{
+                            component.set("v.loggedIn", false);
                             var date = new Date(result[i].MUSW__License2__r.MUSW__Expiration_Date__c);
-                            result[i].MUSW__License2__r.MUSW__Expiration_Date__c = date.getFullYear()+'-'+(parseInt(date.getMonth())+1);
+                            result[i].MUSW__License2__r.MUSW__Expiration_Date__c = new Date(date.getFullYear()+'-'+(parseInt(date.getMonth())+1));
                         }
                     }
                 }
@@ -521,30 +522,30 @@
                                         if(row.MUSW__License2__r.License_Printable_Name__c){
                                             row.Name = row.MUSW__License2__r.License_Printable_Name__c;
                                         } else {
-                                            row.Name = "";
+                                            row.Name = "None";
                                         }
                                     } else {
-                                        row.Name = "";
+                                        row.Name = "None";
                                     }
                                     if(row.MUSW__License2__r.Name){
                                         row.License_Number = row.MUSW__License2__r.Name;
                                     } else {
-                                        row.License_Number = "";
+                                        row.License_Number = "None";
                                     }
                                     if(row.MUSW__License2__r.Credential_Type__c){
                                         row.License_Type = row.MUSW__License2__r.Credential_Type__c;
                                     } else {
-                                        row.License_Type = "";
+                                        row.License_Type = "None";
                                     }
                                     if(row.MUSW__License2__r.AIDS_Affidavit__c){
                                         row.Discipline = row.MUSW__License2__r.AIDS_Affidavit__c;
                                     } else {
-                                        row.Discipline = "";
+                                        row.Discipline = false;
                                     }
                                     if(row.MUSW__License2__r.MUSW__Status__c){
                                         row.Status = row.MUSW__License2__r.MUSW__Status__c;
                                     } else {
-                                        row.Status = "";
+                                        row.Status = "None";
                                     }
                                     if(row.MUSW__License2__r.Sub_Status__c){
                                         if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
@@ -558,17 +559,17 @@
                                     if(row.MUSW__License2__r.RecordType){
                                         row.Type = row.MUSW__License2__r.RecordType.Name;
                                     } else {
-                                        row.Type = "";
+                                        row.Type = "None";
                                     }
                                     if(row.MUSW__License2__r){
                                         row.Id = row.MUSW__License2__r;
                                     } else {
-                                        row.Id = "";
+                                        row.Id = "None";
                                     }
                                     if(row.MUSW__Parcel__r.MUSW__City__c){
                                         row.City = row.MUSW__Parcel__r.MUSW__City__c;
                                     } else {
-                                        row.City = "";
+                                        row.City = "None";
                                     }
                                 }
                             } 
@@ -576,7 +577,7 @@
                                 {label: 'Name', fieldName: 'Name', type: 'button', sortable : true, typeAttributes: 
                                  { label: {fieldName: 'Name'} , name: 'view_details', title: {fieldName: 'Name'}}},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
-                                {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
+                                {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true, title:{fieldName: 'License_Type'}},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                                 {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
@@ -707,41 +708,41 @@
                                     if(row.MUSW__License2__r.License_Printable_Name__c){
                                         row.Business_Name = row.MUSW__License2__r.License_Printable_Name__c;
                                     } else {
-                                        row.Business_Name = "";
+                                        row.Business_Name = "None";
                                     }
                                     if(row.MUSW__License2__r.MUSW__Primary_Licensee__r){
                                         if(row.MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c){
                                             row.Doing_Business_As = row.MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c;
                                         } else {
-                                            row.Doing_Business_As = "";
+                                            row.Doing_Business_As = "None";
                                         }
                                     }else {
-                                        row.Doing_Business_As = "";
+                                        row.Doing_Business_As = "None";
                                     }
                                     if(row.MUSW__License2__r.UBI_Number__c){
                                         row.UBI_Number = row.MUSW__License2__r.UBI_Number__c;
                                     } else {
-                                        row.UBI_Number = "";
+                                        row.UBI_Number = "None";
                                     }
                                     if(row.MUSW__License2__r.Name){
                                         row.License_Number = row.MUSW__License2__r.Name;
                                     } else {
-                                        row.License_Number = "";
+                                        row.License_Number = "None";
                                     }
                                     if(row.MUSW__License2__r.Credential_Type__c){
                                         row.License_Type = row.MUSW__License2__r.Credential_Type__c;
                                     } else {
-                                        row.License_Type = "";
+                                        row.License_Type = "None";
                                     }
                                     if(row.MUSW__License2__r.AIDS_Affidavit__c){
                                         row.Discipline = row.MUSW__License2__r.AIDS_Affidavit__c;
                                     } else {
-                                        row.Discipline = "";
+                                        row.Discipline = false;
                                     }
                                     if(row.MUSW__License2__r.MUSW__Status__c){
                                         row.Status = row.MUSW__License2__r.MUSW__Status__c;
                                     } else {
-                                        row.Status = "";
+                                        row.Status = "None";
                                     }
                                     if(row.MUSW__License2__r.Sub_Status__c){
                                         if(row.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || row.MUSW__License2__r.Sub_Status__c == 'Surrendered'){
@@ -755,27 +756,27 @@
                                     if(row.MUSW__License2__r.RecordType){
                                         row.Type = row.MUSW__License2__r.RecordType.Name;
                                     } else {
-                                        row.Type = "";
+                                        row.Type = "None";
                                     }
                                     if(row.MUSW__License2__r){
                                         row.Id = row.MUSW__License2__r;
                                     } else {
-                                        row.Id = "";
+                                        row.Id = "None";
                                     }
                                     if(row.MUSW__Parcel__r.MUSW__City__c){
                                         row.City = row.MUSW__Parcel__r.MUSW__City__c;
                                     } else {
-                                        row.City = "";
+                                        row.City = "None";
                                     }
                                 }
                             }
                             component.set('v.columns', [
-                                {label: 'Business Name', fieldName: 'Business_Name', type: 'Text', sortable : true, typeAttributes: 
+                                {label: 'Business Name', fieldName: 'Business_Name', type: 'button', sortable : true, typeAttributes: 
                                  { label: {fieldName: 'Business_Name'}, name: 'view_details', title: {fieldName: 'Business_Name'}}},
                                 {label: 'Doing Business As', fieldName: 'Doing_Business_As', type: 'Text', sortable : true},
                                 {label: 'UBI Number', fieldName: 'UBI_Number', type: 'Number', sortable : true},
                                 {label: 'License Number', fieldName: 'License_Number', type: 'Number', sortable : true},
-                                {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true},
+                                {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true, title:{fieldName: 'License_Type'}},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
                                 {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
