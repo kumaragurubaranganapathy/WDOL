@@ -731,7 +731,7 @@ public with sharing class Add_BusinessController {
                 
                 List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c,format(Renewal_Expiration_Date__c),Renewal_Status__c,Application_Type__c
                                                 from Renewal_Application__c
-                                                where Licensee__c =: accountID AND Renewal_Status__c In: statusFilterList ORDER BY CreatedDate asc];
+                                                where  License__r.MUSW__Primary_Licensee__c =:  accountID AND Renewal_Status__c In: statusFilterList ORDER BY CreatedDate asc];
             
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
