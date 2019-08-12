@@ -1,5 +1,6 @@
 ({
     doInit : function(component, event, helper) {
+        helper.setdefaultTab(component, event, helper);
         helper.setJSON(component, event, helper);
         helper.setCurrentLicensesTableData(component, event, helper);
         helper.setRelationshipTableData(component, event, helper);

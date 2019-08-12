@@ -136,6 +136,7 @@
     <aura:attribute name="DraftAMRDataPaginationList" type="List" />
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
     <aura:attribute name="pendingApp" type="Boolean" default="false" />
+    <aura:attribute name="defaultTab" type="String" default="ProfessionalLicensesTab" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     
@@ -702,7 +703,7 @@
         </aura:if>
         
         <aura:if isTrue="{!v.DisplayDashboardTabs}">
-            <lightning:tabset selectedTabId="ProfessionalLicensesTab" class="tabs-wrapper" onselect="{!c.refreshList}">
+            <lightning:tabset selectedTabId="{!v.defaultTab}" class="tabs-wrapper" onselect="{!c.refreshList}">
                 <lightning:tab class="tab-style" label="Licenses" id="ProfessionalLicensesTab">
                     <div>
                         <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
