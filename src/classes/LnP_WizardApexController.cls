@@ -394,6 +394,7 @@ insert bgckList;
         String condition6 = 'Default__c = True';
         String condition7 = 'Object__c = \''+obj+'\'';
         //String condition7 = 'Object__c = \'MUSW__License2__c\'';
+        String condition9 = 'Order_No__c';
         list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
         list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
         
@@ -401,7 +402,7 @@ insert bgckList;
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
         system.debug('News Query::'+appInstructionList);
 
-        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7;
+        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + ' ORDER BY ' + condition9;
         masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
