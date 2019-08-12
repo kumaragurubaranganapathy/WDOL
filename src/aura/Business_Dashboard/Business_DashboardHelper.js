@@ -366,6 +366,12 @@
             "url": str
         });
         urlEvent.fire(); 
+    },
+    setDefaultTab : function(component,event){
+        var currURL = document.URL;
+       if(/app-flow/.test(currURL)){            
+            component.set("v.defaultTab","Pending Applications"); 
+        }
     }   
     
     

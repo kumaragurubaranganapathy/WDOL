@@ -35,6 +35,7 @@
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
     <aura:attribute name="showMoreDashboard" type="Boolean" default="false" />
     <aura:attribute name="businessListLoaded" type="Boolean" default="false" />
+    <aura:attribute name="defaultTab" type="String" default="Licenses" /> <!-- for selecting default tab based on flow -->
     <aura:registerEvent name="loadAccountName" type="c:LnP_FetchAccounId" />
     
     <!-- Pending draft Application -->
@@ -512,7 +513,7 @@
             </div>
             
             <aura:if isTrue="{!!v.courseDetail}">
-                <lightning:tabset class="tabs-wrapper" >
+                <lightning:tabset selectedTabId="{!v.defaultTab}" class="tabs-wrapper" >
                     <aura:if isTrue="{!v.accountDetail}">
                         <aura:if isTrue = "{!v.isCourseProvider}"> 
                             <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >

@@ -135,6 +135,8 @@
     <aura:attribute name="ServiceLink" type="List" />
     <aura:attribute name="DraftAMRDataPaginationList" type="List" />
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
+    <aura:attribute name="pendingApp" type="Boolean" default="false" />
+    <aura:attribute name="defaultTab" type="String" default="ProfessionalLicensesTab" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     
@@ -193,7 +195,7 @@
                                 <div class="card table-border">
                                     <lightning:layout class="slds-wrap lic-details-wrapper bottom-border">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">License Number: </div>
+                                            <div class="label-style text-style">{!v.pendingApp?'Application Number:':'License Number:'}</div>
                                             <div class="data-style">{!item.Name}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
@@ -701,7 +703,7 @@
         </aura:if>
         
         <aura:if isTrue="{!v.DisplayDashboardTabs}">
-            <lightning:tabset selectedTabId="ProfessionalLicensesTab" class="tabs-wrapper" onselect="{!c.refreshList}">
+            <lightning:tabset selectedTabId="{!v.defaultTab}" class="tabs-wrapper" onselect="{!c.refreshList}">
                 <lightning:tab class="tab-style" label="Licenses" id="ProfessionalLicensesTab">
                     <div>
                         <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
@@ -1416,8 +1418,8 @@
                                                 <aura:iteration items="{!v.completeRequestPaginationList}" var="tableData" indexVar="ind">
                                                     <tr class="slds-hint-parent">
                                                         <td data-label="Request#">
-                                                            <aura:if isTrue="{!tableData.name}">
-                                                                <div class="slds-truncate" title="{!tableData.name}">{!tableData.name}</div>
+                                                            <aura:if isTrue="{!tableData.Name}">
+                                                                <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                                 <aura:set attribute="else">None</aura:set>
                                                             </aura:if>
                                                         </td>
@@ -1434,11 +1436,9 @@
                                                             </aura:if>
                                                         </td>
                                                         <td data-label="Completion date">
-                                                            <aura:if isTrue="{!tableData.endTime}">
+                                                            <aura:if isTrue="{!tableData.End_Time__c}">
                                                                 <div class="slds-truncate" title="{!tableData.End_Time__c}">
-                                                                    <lightning:formattedDateTime
-                                                                                                 value="{!tableData.End_Time__c}"
-                                                                                                 />
+                                                                    <lightning:formattedDateTime value="{!tableData.End_Time__c}" year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
                                                                 </div>
                                                                 <aura:set attribute="else">None</aura:set>
                                                             </aura:if>

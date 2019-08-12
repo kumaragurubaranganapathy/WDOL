@@ -16,7 +16,10 @@
                 if(Errormsg == response.getReturnValue()){
                     component.set("v.ErrorMsg", true);
                     $A.get('e.force:refreshView').fire();
-                } else if(response.getState() === "SUCCESS") {
+                }else if(response.getReturnValue() == 'Send to Overshort cannot be processed.'){
+				    component.set("v.ErrorMsg2", true);
+                    $A.get('e.force:refreshView').fire();        	
+                }else if(response.getState() === "SUCCESS") {
 					component.set("v.smsg", true);
 					$A.get('e.force:refreshView').fire();
 				} else {

@@ -57,6 +57,16 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Close_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Projects that are no longer valid/closed or stop selling interests in</inlineHelpText>
+        <label>Close Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>County_Name__c</fullName>
         <externalId>false</externalId>
         <label>County Name</label>
@@ -517,6 +527,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Intervals__c</fullName>
+        <externalId>false</externalId>
+        <label>Intervals</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Land_Owner_Type__c</fullName>
         <externalId>false</externalId>
         <label>Land Owner Type</label>
@@ -526,6 +548,19 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Lot__c</fullName>
@@ -759,6 +794,38 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Open_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Date Project was opened/allowed to start selling into project</inlineHelpText>
+        <label>Open Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Quarter__c</fullName>
         <externalId>false</externalId>
         <label>Quarter</label>
@@ -868,6 +935,18 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>Project</label>
     <listViews>
         <fullName>MUSW__All</fullName>
@@ -875,9 +954,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <columns>MUSW__Alert_Indicator__c</columns>
         <columns>OWNER.ALIAS</columns>
         <columns>MUSW__Status__c</columns>
+        <columns>Site_Id__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Name</label>

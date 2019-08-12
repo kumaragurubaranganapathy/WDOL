@@ -44,9 +44,10 @@
     },
     fetchAppTypeEliQuestions : function(component, event, helper){
        component.find("button1").set('v.disabled',true);
-         helper.firePassValueEventHelper(component, event, helper);
+        helper.firePassValueEventHelper(component, event, helper);
     	helper.fetchAppTypeEliQuestionsHelper(component, event, helper);
-       
+        helper.fetchApplicationInstructionHelper(component, event, helper);        
+      
 	},
     showOrHideQuestion : function(component, event, helper){
         component.find("button1").set('v.disabled',true);
@@ -154,7 +155,7 @@
             var eliQuestions= component.find('eliRadios');
             var answersMarked = false;
             if(component.get("v.eliTypeQues").length == 1){
-                if(eliQuestions.get('v.value') != 'No') {
+                if (eliQuestions.get('v.value') != 'No' && eliQuestions.get('v.value') != undefined) {
                     answersMarked = true;
                 }
                 

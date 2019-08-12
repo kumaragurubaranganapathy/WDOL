@@ -332,59 +332,14 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Governing Persons</fullName>
-                    <default>false</default>
-                    <label>Governing Persons</label>
-                </value>
-                <value>
                     <fullName>Administrator</fullName>
                     <default>false</default>
                     <label>Administrator</label>
                 </value>
-                <value>
-                    <fullName>Controlling person</fullName>
+				<value>
+                    <fullName>Owner</fullName>
                     <default>false</default>
-                    <label>Controlling person</label>
-                </value>
-                <value>
-                    <fullName>Designated Controlling Person</fullName>
-                    <default>false</default>
-                    <label>Designated Controlling Person</label>
-                </value>
-                <value>
-                    <fullName>Designated Architect</fullName>
-                    <default>false</default>
-                    <label>Designated Architect</label>
-                </value>
-                <value>
-                    <fullName>Designated Engineer</fullName>
-                    <default>false</default>
-                    <label>Designated Engineer</label>
-                </value>
-                <value>
-                    <fullName>Designated Land Surveyor</fullName>
-                    <default>false</default>
-                    <label>Designated Land Surveyor</label>
-                </value>
-                <value>
-                    <fullName>Qualifying Principal</fullName>
-                    <default>false</default>
-                    <label>Qualifying Principal</label>
-                </value>
-                <value>
-                    <fullName>Agency Principal</fullName>
-                    <default>false</default>
-                    <label>Agency Principal</label>
-                </value>
-                <value>
-                    <fullName>Qualified Agent</fullName>
-                    <default>false</default>
-                    <label>Qualified Agent</label>
-                </value>
-                <value>
-                    <fullName>Designated Funeral Director</fullName>
-                    <default>false</default>
-                    <label>Designated Funeral Director</label>
+                    <label>Owner</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -683,45 +638,9 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Agency Principal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Controlling person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Designated Architect</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Designated Controlling Person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Designated Engineer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Designated Funeral Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Designated Land Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Governing Persons</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Qualified Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Qualifying Principal</fullName>
-                <default>false</default>
-            </values>
+                    <fullName>Owner</fullName>
+                    <default>false</default>
+                </values>
         </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>

@@ -10,7 +10,7 @@ public class LnP_UpdateOvershortAmountClass {
         if(DepositId != null) {
             MUSW__Deposit__c depositRec = [SELECT Id,Over_Short_Revenue_Code__c,MUSW__Available_Amount__c,Overshort_Amount__c,wadol_Program_Type__c FROM MUSW__Deposit__c WHERE Id = :DepositId];
             
-            if(depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)){
+            if((depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)) && (depositRec.MUSW__Available_Amount__c > depositRec.Overshort_Amount__c || depositRec.Overshort_Amount__c == null)){
                 //update MUSW__Deposit__c overshort Amount with available amount.
                 depositRec.Overshort_Amount__c = depositRec.MUSW__Available_Amount__c;
                 depositRec.Overshort_Modified__c = True;
@@ -18,15 +18,16 @@ public class LnP_UpdateOvershortAmountClass {
                 String ProgramType = depositRec.wadol_Program_Type__c;
                 List<Master_ConfigData_Listing__c> mastConfigList = new List<Master_ConfigData_Listing__c>();
                 mastConfigList =[Select Id, Revenue_Account_Code__c,Listing_Type__c,Program_Type__c from Master_ConfigData_Listing__c where Listing_Type__c ='Overshort Queue' AND Program_Type__c INCLUDES(:ProgramType)];
-                System.debug('*******mastConfigList*****'+mastConfigList);
                 if(!mastConfigList.isEmpty()){
                     depositRec.Over_Short_Revenue_Code__c = mastConfigList[0].Revenue_Account_Code__c;
                 }
                 
                 update depositRec;
                 return 'True';
-            }else{
+            }else if(depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositUpperLimit)){
                 return 'False';
+            }else{
+                return 'Send to Overshort cannot be processed.';
             }
         }
         return null;

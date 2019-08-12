@@ -22,10 +22,6 @@
                 <field>Credential_Type__c</field>
             </layoutItems>
 			<layoutItems>
-                <behavior>Edit</behavior>
-                <field>Customer_Envelope__c</field>
-            </layoutItems>
-			<layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Validation_Number__c</field>
             </layoutItems>
@@ -145,7 +141,35 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Polaris_DHP__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Account_Contact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>DCP_Full_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>UBI_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Pre_License_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Website__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_DES__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -172,13 +196,13 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Renewal_Date__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Print_License_Email__c</field>
+                <field>Print_Renewal_Letter__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Print_License_DES__c</field>
+                <field>Print_Renewal_Coupon__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -201,10 +225,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Renewal_Cycle_End_Date__c</field>
-            </layoutItems>
-			<layoutItems>
-                <behavior>Edit</behavior>
-                <field>Print_Renewal_Coupon__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -754,6 +774,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Time_Frame_Name__c</fields>
         <fields>Type__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
@@ -776,6 +797,20 @@
         <fields>Account_Admin__c</fields>
         <fields>Status__c</fields>
         <relatedList>MUSW__Account_Contact__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Status__c</fields>
+        <relatedList>MUSW__Project2__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Parcel_Number2__c</fields>
+        <fields>MUSW__City__c</fields>
+        <fields>MUSW__Primary_Zoning__c</fields>
+        <fields>MUSW__Alert_Indicator__c</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <relatedList>MUSW__Parcel__c.License__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

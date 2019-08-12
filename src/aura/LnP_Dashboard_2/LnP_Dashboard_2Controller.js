@@ -1,5 +1,6 @@
 ({
     doInit : function(component, event, helper) {
+        helper.setdefaultTab(component, event, helper);
         helper.setJSON(component, event, helper);
         helper.setCurrentLicensesTableData(component, event, helper);
         helper.setRelationshipTableData(component, event, helper);
@@ -29,6 +30,7 @@
         var value = component.get("v.helptextcontent");
         console.log('value::'+value);
     },
+    
     handleAssociationSubmissionSuccess: function(component, event, helper){
         
         var params = event.getParams();
@@ -277,6 +279,8 @@
         
         component.set("v.licenseId",licenseId);
         
+        component.set("v.pendingApp",false);
+        
         helper.fetchLicenseDetails(component, event, helper, licenseId);
         
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
@@ -293,6 +297,8 @@
         var licenseId = event.target.getAttribute("data-licenseId");
         
         component.set("v.licenseId",licenseId);
+        
+        component.set("v.pendingApp",true);
         
         helper.fetchLicenseDetails(component, event, helper, licenseId);
         

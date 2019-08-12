@@ -182,7 +182,7 @@
             "LicenseType": licenseType,
             "ApplicationType": applicationMethod,
             "Obj":'Renewal_Application__c',
-            "RenewReinstate":RenewReinstate
+            "renewalReinstate":RenewReinstate
         });
         action.setCallback(this, function (actionResult) {
             var state = actionResult.getState();

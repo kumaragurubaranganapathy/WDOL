@@ -109,8 +109,20 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Polaris_DHP__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
                 <field>Pre_License_Number__c</field>
-            </layoutItems>            
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_DES__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_Email__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -136,14 +148,7 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Renewal_Date__c</field>
             </layoutItems>
-			<layoutItems>
-                <behavior>Edit</behavior>
-                <field>Print_License_Email__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Print_License_DES__c</field>
-            </layoutItems>
+
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -166,7 +171,11 @@
                 <behavior>Readonly</behavior>
                 <field>Renewal_Cycle_End_Date__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Renewal_Letter__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_Renewal_Coupon__c</field>
             </layoutItems>
