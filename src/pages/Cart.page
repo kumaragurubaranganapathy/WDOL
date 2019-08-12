@@ -340,7 +340,7 @@
                             </apex:column>
                             
                             <apex:repeat value="{!$ObjectType.BGBK__Bill__c.FieldSets.BGBK__Invoice_Basic}" var="ff">                
-                                <apex:column headerValue="{!ff.label}" rendered="{!!isPortalUser}">
+                                <apex:column headerValue="{!ff.label}" ><!--rendered="{!!isPortalUser}"> Commenting as a part of bug 6064 -->
                                     <apex:outputField value="{!inv.i[ff]}"/>
                                 </apex:column>
                             </apex:repeat>
