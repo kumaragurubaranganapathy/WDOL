@@ -1436,7 +1436,7 @@
                                                             </aura:if>
                                                         </td>
                                                         <td data-label="Completion date">
-                                                            <aura:if isTrue="{!tableData.endTime}">
+                                                            <aura:if isTrue="{!tableData.End_Time__c}">
                                                                 <div class="slds-truncate" title="{!tableData.End_Time__c}">
                                                                     <lightning:formattedDateTime value="{!tableData.End_Time__c}" year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
                                                                 </div>
