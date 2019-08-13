@@ -373,7 +373,7 @@ public without sharing class LnP_DashboardApexController_2 {
             
             List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Status'};
                 List<String> statusFilterList = new List<String>{'Under Review'};
-                    List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
+                    List<SObject> columnDataList = [Select  id,name,Status__c,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
             
