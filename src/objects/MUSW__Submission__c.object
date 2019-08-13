@@ -980,6 +980,28 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Default_Prof_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(CustomerEnvelope__r.wadol_DefaultProgramType__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Default Profession Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_File_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(SAN_Image_URL__c, SAN_Image_URL__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SAN File Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Status__c</fullName>
         <description>Status = Accepted when the document satisfies the submission requirement. Status = Additional Info. Required when the document does not satisfy the submission requirement and should be sent back to the Applicant.</description>
         <externalId>false</externalId>
@@ -1002,8 +1024,29 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
                     <default>false</default>
                     <label>Additional Info. Required</label>
                 </value>
+                <value>
+                    <fullName>Unresolved</fullName>
+                    <default>false</default>
+                    <label>Unresolved</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Validation_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>CustomerEnvelope__r.Validation_number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Validation Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
 	<fields>
         <fullName>Physical_Exhibit__c</fullName>
@@ -1070,6 +1113,119 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+	<listViews>
+        <fullName>RBS_Queue</fullName>
+        <columns>Validation_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>Default_Prof_Type__c</columns>
+        <columns>SAN_Image_URL__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>License_Renewal__c</columns>
+        <columns>Request__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SAN_Prof_Code__c</field>
+            <operation>contains</operation>
+            <value>20810,21701,23201,23203,23207,24001,24002,24003,24004,24005,24006,24008,24009,29940,24901,23251,23252,20401,20402,20403,20405,20811,21702,21703,23204,23206</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Accepted</value>
+        </filters>
+        <filters>
+            <field>CustomerEnvelope__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>RBS Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>RBS_Unresolved_Submissions</fullName>
+        <columns>NAME</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>SAN_Image_Name__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>Profession_Code__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CustomerEnvelope__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>SAN_Prof_Code__c</field>
+            <operation>equals</operation>
+            <value>20810,21701,23201,23203,23207,24001,24002,24003,24004,24005,24006,24008,24009,29940,24901,23251,23252,20401,20402,20403,20405,20811,21702,21703,23204,23206</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Submitted</value>
+        </filters>
+        <label>RBS - Unresolved Submissions</label>
+    </listViews>
+    <listViews>
+        <fullName>RE_Queue</fullName>
+        <columns>Validation_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>Default_Prof_Type__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>License_Renewal__c</columns>
+        <columns>Request__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SAN_Prof_Code__c</field>
+            <operation>equals</operation>
+            <value>27706,27708,25601,27010,27011,27016,27017,27030,21804,21805,27035,27012,27036,27037,27032</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Accepted</value>
+        </filters>
+        <filters>
+            <field>CustomerEnvelope__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>RE Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>RE_Unresolved_Submissions</fullName>
+        <columns>NAME</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>SAN_Image_Name__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>Profession_Code__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CustomerEnvelope__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>SAN_Prof_Code__c</field>
+            <operation>equals</operation>
+            <value>27706,27708,25601,27010,27011,27016,27017,27030,21804,21805,27035,27012,27036,27037,27032</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Submitted</value>
+        </filters>
+        <label>RE - Unresolved Submissions</label>
     </listViews>
     <nameField>
         <label>Title</label>

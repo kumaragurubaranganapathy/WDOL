@@ -13,6 +13,14 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Primary_Licensee__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Validation_Number__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Customer_Envelope__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Application_Type__c</field>
@@ -107,6 +115,18 @@
                 <behavior>Edit</behavior>
                 <field>Polaris_DHP__c</field>
             </layoutItems>
+			            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Pre_License_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_DES__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_Email__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -153,6 +173,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Renewal_Cycle_End_Date__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Renewal_Coupon__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Renewal_Letter__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -702,6 +730,11 @@
         <fields>Description__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>Alert__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Status__c</fields>
+        <relatedList>MUSW__Project2__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
