@@ -8,6 +8,10 @@
     
     padding-left:0;
 }
+.THIS .ssn-question{
+    display:flex;
+    flex-direction:column;
+}
 .THIS .input-field-wrapper{
     display:flex;
     flex-direction:column;
@@ -47,6 +51,16 @@
 	font-size: 14px;
     color:t(LnGFormGray);
     
+}
+.THIS .id-field.field-size{
+    margin-bottom:0;
+}
+.THIS .id-field{
+    display:flex;
+	width:100%;    
+}
+.THIS .id-field-input{
+    width:100%;
 }
 .THIS .account-name{
     display:flex;
