@@ -13,6 +13,14 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Primary_Licensee__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Validation_Number__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Customer_Envelope__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Application_Type__c</field>

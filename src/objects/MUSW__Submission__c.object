@@ -980,6 +980,28 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Default_Prof_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(CustomerEnvelope__r.wadol_DefaultProgramType__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Default Profession Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_File_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(SAN_Image_URL__c, SAN_Image_URL__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SAN File Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Status__c</fullName>
         <description>Status = Accepted when the document satisfies the submission requirement. Status = Additional Info. Required when the document does not satisfy the submission requirement and should be sent back to the Applicant.</description>
         <externalId>false</externalId>
@@ -1002,8 +1024,29 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
                     <default>false</default>
                     <label>Additional Info. Required</label>
                 </value>
+                <value>
+                    <fullName>Unresolved</fullName>
+                    <default>false</default>
+                    <label>Unresolved</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Validation_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>CustomerEnvelope__r.Validation_number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Validation Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
 	<fields>
         <fullName>Physical_Exhibit__c</fullName>
