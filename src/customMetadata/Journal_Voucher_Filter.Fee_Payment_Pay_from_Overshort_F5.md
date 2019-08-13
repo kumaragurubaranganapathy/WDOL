@@ -32,7 +32,7 @@
     </values>
     <values>
         <field>JV_name__c</field>
-        <value xsi:type="xsd:string">Fee Payment Pay from Overshort F5</value>
+        <value xsi:type="xsd:string">Fee Payment Pay from Overshort</value>
     </values>
     <values>
         <field>Journal_Voucher_mtd__c</field>
