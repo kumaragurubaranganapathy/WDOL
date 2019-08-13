@@ -176,7 +176,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="certificationsValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="certifications headings">Certifications</div><br/>
+                                        <div class="certifications headings">I certify that</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                             <!--<div class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                             <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
