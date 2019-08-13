@@ -190,7 +190,7 @@
     
     uploadpendingdocuments :function(component, event, helper){
         console.log('uploadpendingdocuments');
-        var license_Id = event.currentTarget.getAttribute("data-id");
+        var license_Id = component.get("v.pendingLicenseId");
         var license_Number = event.currentTarget.getAttribute("data-number");
         helper.uploadPendingdocumentsHelper(component, event, helper,license_Id,license_Number);
     },
