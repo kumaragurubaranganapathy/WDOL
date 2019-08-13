@@ -7,10 +7,7 @@
     },    
     handleSuccess : function(component,event,helper){        
         helper.handleSuccess(component,event,helper)   
-    },
-	handleError : function(component,event,helper){        
-        helper.handleError(component,event,helper)   
-    }, 	
+    },   
     // Validate input fields and submit add business.
     validateFields : function(component,event,helper){
         component.set("v.buttonDisable",true);
