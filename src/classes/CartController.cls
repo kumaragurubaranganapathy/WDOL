@@ -81,6 +81,7 @@ public with sharing class CartController
     public boolean requestFromEPayment {get; set;}
     public DOL_ePaymentReturnSession ePaymentReturnSession {get; set;}
     public List<Profile> portalProfiles {get;set;}
+	public String isBisuneesLic {get;set;}
 	
     public CartController(ApexPages.StandardSetController c)
     {
@@ -95,7 +96,7 @@ public with sharing class CartController
         currURL = String.valueOf(URL.getSalesforceBaseUrl().toExternalForm());
         m_isNotFromVF = false;
         checkReceiptAmount = true;
-        
+        isBisuneesLic =System.currentPageReference().getParameters().get('isBLic');
         encryptedSessionInfo = System.currentPageReference().getParameters().get('session');
         if( encryptedSessionInfo != null){
             activeTab = 'confirm';
@@ -1379,7 +1380,8 @@ public with sharing class CartController
             return cancel();
         }else{
             // selectedTab = label.Str_Fees;
-            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback';
+			String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback&isBizLic='+isBisuneesLic;
+            //String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback';
             PageReference pageRef = new PageReference(portalURL); // Srujan - added to show Feedback Component
             return pageRef; 
         }
