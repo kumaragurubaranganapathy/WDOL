@@ -144,13 +144,13 @@
     <fields>
         <fullName>Applicant_Licensee_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(License__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; License__r.MUSW__Applicant__r.Id &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
+        <formula>IF(License__c != NULL,  HYPERLINK($Label.Polaris_Contact&amp; License__r.MUSW__Applicant__r.Id &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
 
-IF(License__c = NULL &amp;&amp; Renewal_Application__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;Renewal_Application__r.Applicant__r.Id&amp;&apos;/view&apos;, Renewal_Application__r.License__r.Applicant_Full_Name__c),
+IF(License__c = NULL &amp;&amp; Renewal_Application__c != NULL,  HYPERLINK($Label.Polaris_Contact&amp;Renewal_Application__r.Applicant__r.Id&amp;&apos;/view&apos;, Renewal_Application__r.License__r.Applicant_Full_Name__c),
 
-IF(Endorsement__c != NULL ,  HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/&apos;&amp; Endorsement__r.License__r.MUSW__Applicant__r.Id&amp;&apos;/view&apos;,Endorsement__r.License__r.Applicant_Full_Name__c ), 
+IF(Endorsement__c != NULL ,  HYPERLINK($Label.Polaris_Contact&amp; Endorsement__r.License__r.MUSW__Applicant__r.Id&amp;&apos;/view&apos;,Endorsement__r.License__r.Applicant_Full_Name__c ), 
 
-HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/&apos;&amp;Request__r.Contact__r.Id&amp;&apos;/view&apos;, Request__r.Contact__r.Full_Name__c))))</formula>
+HYPERLINK($Label.Polaris_Contact&amp;Request__r.Contact__r.Id&amp;&apos;/view&apos;, Request__r.Contact__r.Full_Name__c))))</formula>
         <label>Applicant/Licensee Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
