@@ -347,7 +347,7 @@ _______________________________________________________________
             </aura:iteration>
         </aura:if>
         <aura:if isTrue="{!v.AddBusinessAccountsStatusAlert}">
-            <c:StatusAlertForAddingBusinessComponent/>
+            <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
         </aura:if>
         <lightning:layout class="additional-services slds-wrap">
             <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
