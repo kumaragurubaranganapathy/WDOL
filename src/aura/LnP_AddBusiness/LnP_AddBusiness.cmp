@@ -59,8 +59,8 @@
                               onchange="{!c.fieldchange}"
                               />-->
         <div class="biz-fields-wrapper">
-            <lightning:recordEditForm density="comfy" aura:id="editForm" recordId="{!v.recordTypeId}" objectApiName="Account"  onsuccess="{!c.handleSuccess}"  >
-                <lightning:messages />
+            <lightning:recordEditForm density="comfy" aura:id="editForm" recordId="{!v.recordTypeId}" objectApiName="Account"  onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}" >
+                <!--lightning:messages /-->
                 <div class="slds-grid slds-wrap txtalign">
                     <aura:iteration items="{!v.validateFields}" var="fieldlist" indexVar="fieldCount">
                         <aura:if isTrue="{!fieldlist.Required__c || fieldlist.Regex_Validation__c !=''}">
