@@ -1365,7 +1365,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                 LastName = ans.Answer_Text__c;
                             }
                             
-                             if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && firstName == '' ){
+                             if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license')|| ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && ans.Answer_Text__c.contains('Use my full legal name') && firstName == '' ){
                                  firstName  = application.MUSW__Applicant__r.FirstName;
                             }
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && MiddleName == '' ){
