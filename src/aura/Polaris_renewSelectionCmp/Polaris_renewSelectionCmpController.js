@@ -5,7 +5,7 @@
     showOrHideEliQuestion : function(component, event, helper){
         helper.showOrHideEliQuestionHelper(component, event, helper);
     },
-    startApplication : function(component, event, helper){        
-        helper.startApplicationHelper(component, event, helper);
+    startApplication : function(component, event, helper){ 
+        helper.validateform(component, event, helper);
     },
 })

@@ -212,5 +212,42 @@
         });
 
         $A.enqueueAction(action);
+    },
+    validateform : function(component,event,helper) {
+        if(document.getElementById("eliTypeGridDiv") != undefined) {
+                    var getEligibility = document.getElementById("eliTypeGridDiv").classList.contains('slds-hide');
+         if(!getEligibility ) {
+           
+            var eliQuestions= component.find('eliRadios');
+            var answersMarked = false;
+            if(component.get("v.eliTypeQues").length == 1){
+                if(eliQuestions.get('v.value') != 'No' && eliQuestions.get('v.value') != undefined) {
+                    answersMarked = true;
+                }
+                
+            } else {
+                answersMarked = eliQuestions.every(function eliQuestionAns(qes) {
+                    return qes.get("v.value") != 'No' && qes.get("v.value") != undefined;
+                });  
+            }
+            if(!answersMarked) {
+                component.find("button1").set('v.disabled',true);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Failure!",
+                    "message": "Please do not apply until you meet all eligibility criteria",
+                    "type": "Error"
+                });
+                toastEvent.fire();
+                component.find("button1").set('v.disabled',false);
+            } else {
+                component.find("button1").set('v.disabled',false);   
+                helper.startApplicationHelper(component, event, helper);
+            }
+        }
+        } else {
+            helper.startApplicationHelper(component, event, helper);
+        }
+
     }
 })

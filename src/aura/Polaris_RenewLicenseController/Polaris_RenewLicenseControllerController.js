@@ -3,7 +3,11 @@
         console.log('inside init');
         helper.setApplicationType(component, event, helper);
         helper.fetchDataFromServer(component, event, helper); 
-       
+        var flowType = component.get('v.RenewReinstate');
+        if(flowType != undefined){
+            document.title = flowType;
+        }
+
     },
     previousTab : function(component, event, helper) {
 		helper.goToPreviousTab(component, event, helper);
@@ -57,6 +61,7 @@
     SaveAndSubmit : function(component, event, helper) {
        component.set("v.saveAndSubmit",true);
        helper.goToNextTab(component, event, helper);
+       helper.SaveAndSubmit(component, event, helper); 
     },
     
     handleComponentEvent : function(component,event,helper){

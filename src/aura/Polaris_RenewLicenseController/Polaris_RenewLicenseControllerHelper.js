@@ -197,6 +197,14 @@
         }
     },
     SaveAndSubmit : function(component, event, helper) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "title": "Warning!",
+            "message": "You will have 30 days to complete this application before it expires.",
+            "type": "Warning"
+        });
+        
+        toastEvent.fire();
         window.setTimeout(
             $A.getCallback(function() {
                 var isBizLic = component.get("v.isbusinsessLicense");
@@ -524,7 +532,8 @@
             var fieldsWrapper = JSON.parse(licenseWrapper[tabNumber].fieldJson);
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
-            });                
+            });   
+            console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
             var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
             var errorMessage = "Please fill valid data";
             var errorMsgsArray = [];
@@ -533,7 +542,7 @@
                     if(item.Required__c){
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
@@ -611,8 +620,9 @@
                                 return false;
                             }
                         } else {
+                            //if(fieldValuesWrapper[index].get("v.value") !=)
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                            if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                 return true;
                             } else {
                                 errorMessage = item.Error_Message__c != undefined? item.Error_Message__c: item.Name+" error";
@@ -623,7 +633,7 @@
                     } else {
                         if(item.Regex_Validation__c != undefined && item.Regex_Validation__c != ""){
                             var valueVal = fieldValuesWrapper[index].get("v.value");
-                            if(valueVal != "" && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != undefined && valueVal.trim() != ""){
+                            if(valueVal != "" && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
@@ -740,10 +750,10 @@
 								}
                             } else if(item.regex == "Future-Date"){
                                 var valueVal = item.value;
-                                var today = new Date();
-                                //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                //compareDate = new Date(compareDate);
                                 var enteredDate = new Date(valueVal);
+                                var today = new Date();
+                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                compareDate = new Date(compareDate);
                                 if(enteredDate > today){
                                     return true;
                                 }else{
@@ -787,10 +797,10 @@
                                     }
                                 } else if(item.regex == "Future-Date"){
                                     var valueVal = item.value;
+                                    var enteredDate = new Date(valueVal);
                                     var today = new Date();
                                     //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
                                     //compareDate = new Date(compareDate);
-                                    var enteredDate = new Date(valueVal);
                                     if(enteredDate > today){
                                         return true;
                                     }else{
@@ -847,32 +857,32 @@
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
                                         return true;
                                     }else{
-                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                        errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
                                         return false;
                                     }  
                                 }
                             } else {
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     return true;
                                 } else {
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
                                     return false;
                                 }  
                             }
                         } else {
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     if(item.regex == "Date-Validation"){
                                         //
                                     } else {
                                         var regexExp = new RegExp(item.regex);
                                         var valueVal = item.value;
-                                        if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim() != "" && regexExp.test(valueVal)){
+                                        if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -915,7 +925,7 @@
                         if(item.isMandatoryQues){
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!=""){
+                                if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                     if(item.regex == "Future-Date"){
                                         var valueVal = item.value;
                                         var today = new Date();
@@ -953,7 +963,7 @@
                                 }
                             } else {
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!="" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     return true;
                                 } else {
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -963,7 +973,7 @@
                         } else {
                             if(item.regex != undefined && item.regex != ""){
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.trim()!=undefined && valueVal.trim()!="" ){
+                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     if(item.regex == "Future-Date"){
                                         var valueVal = item.value;
                                         var today = new Date();
