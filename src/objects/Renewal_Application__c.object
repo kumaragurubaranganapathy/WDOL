@@ -1265,10 +1265,10 @@ FALSE)))))))</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+     <fields>
         <fullName>Time_to_Renewal_Reinstatement__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - Renewed_Date__c, License__r.MUSW__Issue_Date__c - Renewed_Date__c)</formula>
+        <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - DATEVALUE(CreatedDate), Renewed_Date__c - DATEVALUE(CreatedDate))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Time to Renewal/Reinstatement</label>
         <precision>18</precision>
