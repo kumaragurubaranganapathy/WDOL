@@ -46,16 +46,6 @@
         component.set("v.accountId",accntId);
         helper.addAccountContact(component,event,helper);
     },
-	handleError : function(component,event,helper){
-        component.set("v.loadingSpinner",false);
-        var toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            "type": "Error",
-            "title": "Error!",
-            "message": "Something went wrong. Please contact system admin."
-        });
-        toastEvent.fire();
-    },
     handleClick : function(component,event){
         var str ='/new-business';
         var urlEvent = $A.get("e.force:navigateToURL");
