@@ -38,7 +38,7 @@
         }else{         
         if(AMRType== 'Self Service')
         {
-            if(link == 'Update Address'){
+            if(link == 'Update Address (Mailing Address)'){
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=address';
             }
             else if(link == 'Update Website')
