@@ -155,6 +155,19 @@
         <label>Submission Review Overview</label>
     </fieldSets>
     <fields>
+        <fullName>Activity_Log__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Activity Log</label>
+        <referenceTo>Investigation_Notes__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Application_Type__c</fullName>
         <description>Application Type</description>
         <externalId>false</externalId>
