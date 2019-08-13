@@ -60,12 +60,12 @@
         });
         $A.enqueueAction(action);
     },
-    removeHelper : function(component, event, helper) {
+    removeHelper : function(component, event, helper,endorsementID) {
         
         var action = component.get("c.removeEndorsement");
         
         action.setParams({            
-            "endoId": event.getSource().get("v.value"),
+            "endoId": endorsementID,
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
@@ -123,7 +123,7 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 helper.viewProviderHelper(component, event, helper,component.get("v.endorsementID"));
-                //do something
+                component.set("v.showProvider",false);
             }
         });
         $A.enqueueAction(action);
@@ -152,7 +152,7 @@
             }
         });
         $A.enqueueAction(action);
-        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+        console.log('component.get("v.requestId")',component.get("v.requestId"));
         
     },
     submitHelper : function(component, event, helper) {
@@ -186,6 +186,13 @@
                     window.location.href= $A.get("$Label.c.Polaris_Portal_Dashboard");        
                 }), 10);
         }
+    },
+     addProviderHelper: function(component, event, helper) {
+        var parcedValue = event.getParam("value").split(',');
+        var endorsementID = parcedValue[0]; 
+        component.set("v.endorsementID",endorsementID);
+        
+        component.set("v.isModalOpen",true);
     }
     
 })

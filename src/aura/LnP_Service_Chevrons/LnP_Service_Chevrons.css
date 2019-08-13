@@ -12,12 +12,21 @@
     color:t(sentenceclr);
     
 }
+.THIS .uiInputTextArea{
+    border:1px solid #5b616b;
+  
+    
+}
 .THIS .field-item .revAndSubCompletionFont .uiOutputRichText{
     font-size:t(fieldlabelsize);
     color:t(fieldclr);
 }
 .THIS label{
     font-size: 16px;
+}
+.THIS .hiddenLabel label{
+    display:none;
+    
 }
 .THIS .slds-form-element__label{
     font-size: 14px; 
@@ -202,8 +211,9 @@
 .THIS .background-section{
     background-color:t(white);
     margin: 20px 0px;
-    padding: 22px;
+    
 }
+
 .THIS .tile-wrap{
     display:flex;
     flex-wrap: wrap;

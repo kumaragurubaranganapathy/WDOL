@@ -57,7 +57,8 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-        <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>
+       <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
+         <h1 class="subheader">{!v.flowType}</h1>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
         <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
@@ -74,7 +75,7 @@
                         <aura:if isTrue="{!and((section.sectionName=='Qualifying Information' ), v.currentTab==section.tabIndex)}">
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
-                                    <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
+                                    <div class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
                                     <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
                                         <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" flowType="{!v.flowType}" /> 
@@ -203,7 +204,7 @@
                                             </aura:iteration>
                                         </ui:inputSelect> 
                                     </div-->
-                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list hiddenLabel slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:select name="{!section.sectionName+questionItem}"  value="{!question.value}" onchange="{!c.showDependentQuestions}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
@@ -259,7 +260,7 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
-                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' field-item devide-list hiddenLabel slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:input type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
@@ -302,7 +303,7 @@
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
-                                    <div style="padding-top:50px" class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>
+                                  <!--  <div class="{!(question.questionSection!='null')?'section':'slds-hide'}">{!question.questionSection}</div>-->
                                     <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
                                         <c:Polaris_NotaryEndorsement sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}" docList="{!question.multiValues}" flowType="{!v.flowType}"/> 

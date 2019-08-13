@@ -26,12 +26,12 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-        <span class="page-info">Manage Endorsement</span>
+        <h1 class="subheader">Manage Endorsement</h1>
         
         <aura:if isTrue="{!not(empty(v.endorsementList))}">               
             
             
-            <lightning:card title="Endorsement Details">
+          <!--  <lightning:card title="Endorsement Details">
                 <p class="slds-p-horizontal_small">
                     <table>
                         <thead>
@@ -60,8 +60,41 @@
                             </aura:iteration>        
                         </tbody>
                     </table>
+                    
                 </p>
-            </lightning:card>
+            </lightning:card>-->
+             <div class="spaceBottm">Endorsement Details
+                     <p class="slds-p-vertical_small">
+                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                         <thead>
+                        <tr class="slds-line-height_reset">
+                        <th class="" scope="col">Endorsement Type</th>
+                        <th class="" scope="col">Status</th>
+                        <th class="" scope="col">Date Requested</th>
+                        <th class="" scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.endorsementList}" var="doc">
+                                 <tr>
+                                <td>{!doc.Endorsement_Type__c}</td>
+                                <td>{!doc.Status__c}</td>
+                                <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
+                                 <td>
+                                    <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
+                                        <aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
+                                            <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
+                                            <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
+                                        </aura:if>                                        
+                                        
+                                        <lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove"  />                                        
+                                    </lightning:buttonMenu></td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                 </p>
+            </div>
             <aura:set attribute="else">
             	<div class="no-endorse">
                 	There are no endorsements currently	
@@ -69,28 +102,31 @@
             </aura:set>
         </aura:if>
         <aura:if isTrue="{!v.showProvider}">          
-            <lightning:card title="Provider Details">
-                <p class="slds-p-horizontal_small">
-                    <table>
+           
+                <div class="spaceBottm">Provider Details
+                <p class="slds-p-vertical_small">
+                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
                         <thead>
-                            <th>Provider Name</th>
-                            <th>Effective Date</th>
-                            <th>Description</th>
-                            <th></th>
+                            <tr class="slds-line-height_reset">
+                            <th class="" scope="col">Provider Name</th>
+                            <th class="" scope="col">Effective Date</th>
+                            <th class="" scope="col">Description</th>
+                            <th class="" scope="col"></th>
+                            </tr>
                         </thead>
                         <tbody>
                             <aura:iteration items="{!v.providerList}" var="doc">
                                 <tr>
-                                    <td>{!doc.Provider_Name__c}</td>
-                                    <td>{!doc.Effective_Date__c}</td>
-                                    <td>{!doc.Description__c}</td>
-                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" onclick="{!c.deleteProvider}"/> </td>
-                                </tr>              
+                                    <td >{!doc.Provider_Name__c}</td>
+                                    <td >{!doc.Effective_Date__c}</td>
+                                    <td >{!doc.Description__c}</td>
+                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" onclick="{!c.deleteProvider}" class="cancel-button"/> </td>
+                                 </tr>           
                             </aura:iteration>        
                         </tbody>
                     </table>
                 </p>
-            </lightning:card>
+        </div>
         </aura:if>
         
         <aura:if isTrue="{!v.isModalOpen}">
