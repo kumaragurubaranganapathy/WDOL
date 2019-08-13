@@ -947,7 +947,7 @@
                                 } else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
-                                    if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
+                                    if( item.multiValues.length > 0|| valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" && regexExp.test(valueVal)){
                                         return true;
                                     }else{
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
@@ -956,7 +956,7 @@
                                 }
                             } else {
                                 var valueVal = item.value;
-                                if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
+                                if(item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     return true;
                                 } else {
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.label.replace(/<\/?[^>]+(>|$)/g, "")+" is required.";
