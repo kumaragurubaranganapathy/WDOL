@@ -13,8 +13,16 @@
     z-index:0;
 }
 .THIS .slds-file-selector_files .slds-file-selector__button{
-    color: #ffffff;
-    background: t(primary);
+    /*color: #ffffff;
+    background: t(primary);*/
+    width: 200px;
+    height: 42px;
+    background: #ffffff;
+    border-radius: 5px;
+    border: solid 2px #0872b9;
+    color: t(primary);
+    text-align: center;
+    max-height: 42px;
 }
 .THIS .attach-title{
     font-weight:600;
@@ -53,7 +61,9 @@
      z-index:0;
 }
 .THIS lightning-primitive-icon{
-	margin-left: -6px;
+	/*margin-left: -6px;*/
+    margin-left: 34px;
+    
 }
 .THIS button{
 	width: 0px;

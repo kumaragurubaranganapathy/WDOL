@@ -61,7 +61,7 @@
         $A.enqueueAction(action);
     },
     removeHelper : function(component, event, helper,endorsementID) {
-        
+        component.set("v.loadingSpinner",true);
         var action = component.get("c.removeEndorsement");
         
         action.setParams({            
@@ -87,6 +87,7 @@
                 var result = actionResult.getReturnValue();
                 console.log(result);
                 component.set("v.endorsementList",result);
+                 component.set("v.loadingSpinner",false);
                 
             }
         });
@@ -129,7 +130,7 @@
         $A.enqueueAction(action);
     },
     addEndorsemet : function(component, event, helper) {  
-        
+        component.set("v.loadingSpinner",true);
         var requestId='';
         var action = component.get("c.insertRequest");
         action.setParams({            
@@ -148,7 +149,8 @@
                 sessionStorage.setItem("licenseType", component.get("v.licenseType"));
                 sessionStorage.setItem("applicationType", component.get("v.applicationMethod"));
                 sessionStorage.setItem("requestId", requestId);
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';
+                component.set("v.loadingSpinner",false);
             }
         });
         $A.enqueueAction(action);

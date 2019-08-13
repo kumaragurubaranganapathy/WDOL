@@ -30,6 +30,9 @@
         component.set("v.endorsementID",event.getSource().get("v.value"));
 		helper.viewProviderHelper(component, event, helper,component.get("v.endorsementID"));
 	},
+    goBack : function (component, event, helper){
+        window.history.back();
+    },
     deleteProvider: function(component, event, helper){
         helper.deleteProviderHelper(component, event, helper);
     },

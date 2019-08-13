@@ -162,7 +162,9 @@
             <div class="slds-backdrop slds-backdrop_open"></div>
         </aura:if>
         <lightning:button variant="brand" label="Add Endorsement" title="Add Endorsement" onclick="{! c.showAddRecord }" class="slds-m-vertical_large addRecbtn"/>
-        
+         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
+            <lightning:button aura:id="buttonBack" label="Back" title="Back" onclick="{! c.goBack }"  class="back-button"/>
+         </div>
         
         <!-- <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
     <div class="slds-grid slds-wrap">
