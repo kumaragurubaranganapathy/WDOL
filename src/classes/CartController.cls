@@ -473,6 +473,7 @@ public with sharing class CartController
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
             }
+			pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
             return pmtMethods;
         }
         set;
