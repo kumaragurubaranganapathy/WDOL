@@ -1,0 +1,98 @@
+<!-- *************************************************************************
+Component Name : Polaris_SAWInfo_Page
+Created By : Srujan K
+Creation Date : 14-Aug-2019
+
+Modification Log
+Name			Date			Issue
+_______________________________________________________________
+*******************************************************************************-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" >
+    <aura:attribute name="listOne" type="List" default="['Go to SecureAccess Washington.',
+                                                        'Click Sign Up! and follow the onscreen instructions to create a Username and Password (login).',
+                                                        'SAW will send you an email.',
+                                                        'Click the link in the email to activate your SAW account. The link will take you to the SecureAccess Washington screen.',
+                                                        'Enter your Username and Password and click Login.',
+                                                        'Continue to Add the Business and Profession Licensing System service.'
+                                                        ]" />
+    <aura:attribute name="listTwo" type="List" default="['Go to SecureAccess Washington.',                                                        
+                                                        'Enter your Username and Password and click Login.',
+                                                        'Continue to Add the Business and Profession Licensing System service.'
+                                                        ]" />
+    <aura:attribute name="listThree" type="List" default="['At the list of services, click the red Add a New Service button.',                                                        
+                                                          'At the Add a New Service screen, click I would like to browse a list of services.',
+                                                          'Scroll down the list of state agencies and select Department of Licensing.',
+                                                          'At the Services from DOL screen, click the Apply button for DOL Business and Professions Licensing System.',
+                                                          'At the Registration Complete screen, click OK.',
+                                                          'At the list of services, click the DOL Business and Professions Licensing System hyperlink.',
+                                                          'At the Now Accessing Department of Licensing screen, click Continue.',
+                                                          'Continue to Register for multi-factor authentication (MFA)'
+                                                          ]" />
+    <aura:attribute name="listFour" type="List" default="['Click Begin on the MFA screen and follow the onscreen instructions to register.',                                                        
+                                                         'When you reach the Now Accessing Department of Licensing screen, click Continue.',
+                                                         'You are now at the Home page of the Business and Professions Licensing System website for Department of Licensing. '
+                                                         ]" />
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
+    <div class="info-outer-wrapper">
+        <h1 class="info-title">
+            Getting Started With SAW
+        </h1>
+        <div class="info-wrapper">
+            <p class="info-text">To access our Business and Professions Licensing System website, you’ll need a SecureAccess Washington (SAW) Username and Password (login).</p>
+            <p class="info-text">You already have a SAW login if you:</p>
+            <ul class="list-style">
+                <li>
+                    Have a License eXpress account for your driver and vehicle licenses
+                </li>
+                <li>
+                    Have done business online with Department of Revenue, Department of Labor and Industries, or the Employment Security Department   
+                </li>             
+            </ul>
+            <p>You can use an existing SAW login to access our website.</p>
+            
+            <h2>If you don’t have a SAW login or want to create a new one</h2>
+            <ol>
+                <aura:iteration items="{!v.listOne}" var="listItem">
+                    
+                    <li>{!listItem}</li>
+                    
+                </aura:iteration>
+            </ol>
+            <h2>If you want to use an existing SAW login</h2>
+            <ol>
+                <aura:iteration items="{!v.listTwo}" var="listItem">
+                    
+                    <li>{!listItem}</li>
+                    
+                </aura:iteration>
+            </ol>
+            <h2>Add the Business and Profession Licensing System service</h2>
+            <ol>
+                <aura:iteration items="{!v.listThree}" var="listItem">
+                    
+                    <li>{!listItem}</li>
+                    
+                </aura:iteration>
+            </ol>
+            <h2>Register for multi-factor authentication (MFA)</h2>
+            <p>This is an extra layer of security for your account to prevent identify theft and fraud.</p>
+            <ol>
+                <aura:iteration items="{!v.listFour}" var="listItem" indexVar="listNo">
+                    
+                    <li>
+                        {!listItem}
+                    	<ul class="{!listNo == 0?'':'slds-hide'}">
+                        	<li>You must enter at least one email and one phone number during the registration process.</li>
+                        </ul>
+                    </li>
+                    
+                </aura:iteration>
+            </ol>
+        </div>
+        <div class="btn-wrapper">
+        	<a class="slds-button slds-button_brand" href="https://test-secureaccess.wa.gov/myFortress/saw/select.do" target="blank"> Register to SAW </a>
+        </div>
+    </div>
+    
+</aura:component>

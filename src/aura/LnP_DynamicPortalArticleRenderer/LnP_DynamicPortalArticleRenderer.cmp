@@ -94,7 +94,7 @@
                                              onclick="{!c.handleFooterButtonAction}" 
                                              class="footer-button">
                                             
-                                            <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Sign in or create an account')?'slds-hide':'home-button'}" variant="brand" />
+                                             <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Sign in or create an account')?'slds-hide':'home-button'}" variant="brand" onclick="{!c.redirectToHelp}"/>
                                         </div>
                                     </aura:if>
                                 </aura:iteration>

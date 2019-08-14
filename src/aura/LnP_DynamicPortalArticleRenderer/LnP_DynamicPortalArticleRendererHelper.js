@@ -145,5 +145,13 @@
     },
     showLess : function(component,event){
         component.set("v.isShowMore",false);
+    },
+    redirectToHelp :  function(component,event){
+        var str ='/saw-help';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
     }
 })
