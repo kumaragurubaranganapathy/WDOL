@@ -146,5 +146,8 @@
     },
     addBusiness : function(component,event,helper){
         helper.addBusiness(component,event);
-    }    
+    },
+    goToCart : function(component,event,helper){
+        helper.goToCart(component,event);
+    }   
 })
