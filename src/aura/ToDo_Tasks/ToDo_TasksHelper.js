@@ -1,5 +1,6 @@
 ({
     doInit : function(component, event, helper) {
+        console.log('Entering task doInit');
         var action = component.get("c.getTodoList");
         action.setCallback(this, function(response){
             var state = response.getState();
@@ -60,6 +61,7 @@
                 var hasBusinessAccounts = response.getReturnValue();
                 console.log(hasBusinessAccounts);
                 component.set('v.AddBusinessAccountsStatusAlert',!hasBusinessAccounts);
+                component.set('v.isLoaded',true);
             }                          
         });
         $A.enqueueAction(action);    
@@ -214,5 +216,52 @@
             "url": str
         });
         urlEvent.fire();
+    },
+    goToProfDashboard : function(component,event){
+        var str ='/newdashboard';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    bizLicApp : function(component,event){
+        var str ='/licenseSelectionPage?biz-lic';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    goToBizDashboard : function(component,event){
+        var str ='/business';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    openTrainingApp : function(component,event){
+        var str ='/licenseSelectionPage';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+	
+    fetchData : function (component,event,helper) {
+        var action = component.get("c.getAllAccounts");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var data = response.getReturnValue();                
+                if(data){
+                    component.set("v.isBusiness",true);
+                }                                  
+            }                          
+        });
+        $A.enqueueAction(action);
     }
+    
 })

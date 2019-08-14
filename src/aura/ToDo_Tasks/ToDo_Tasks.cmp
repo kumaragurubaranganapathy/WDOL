@@ -371,31 +371,29 @@ _______________________________________________________________
             <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
         </aura:if>
         <lightning:layout class="additional-services slds-wrap">
-            <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
-                <div class="ind-account-wrapper">
-                    <h1 class="ser-title">
-                        Individual Account
-                    </h1>
-                    <div class="ser-btn-wrapper">
-                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Create an Individual Account" /> 
+                <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
+                    <div class="ind-account-wrapper">
+                        <h2 class="ser-title">
+                            Professional License
+                        </h2>
+                        <div class="ser-btn-wrapper">
+                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply for a professional license" /> 
+                        </div>
                     </div>
-                </div>
-                <div class="intro-section">                    
-                    <lightning:layout class="intro-wrapper slds-wrap">
-                        <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper">
-                            <h1 class="ser-title">
-                                Have an existing License?
-                            </h1>                           
-                            <div class="ser-btn-wrapper slds-m-bottom_large">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkProfLic}" label="Link a Professional license to your account" /> 
-                            </div>
-                            <div class="ser-btn-wrapper">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
-                            </div>
-                        </lightning:layoutItem>                
-                    </lightning:layout>
-                </div> 
-                <!--<div class="ser-desc">
+                    <div class="intro-section">                    
+                        <lightning:layout class="intro-wrapper slds-wrap">
+                            <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper">
+                                <h1 class="ser-title">
+                                    Have an existing professional license?
+                                </h1>                           
+                                <div class="ser-btn-wrapper slds-m-bottom_large">
+                                    <lightning:button class="{!v.AddBusinessAccountsStatusAlert?'ser-btn pro-license':'slds-hide'}" variant="brand" onclick="{!c.linkProfLic}" label="Link an existing professional license" /> 
+                                    <lightning:button class="{!v.AddBusinessAccountsStatusAlert?'slds-hide':'ser-btn pro-license'}" variant="brand" onclick="{!c.goToProfDashboard}" label="Manage an existing professional license" /> 
+                                </div>                            
+                            </lightning:layoutItem>                
+                        </lightning:layout>
+                    </div> 
+                    <!--<div class="ser-desc">
                     Washington Department of Licensing helps you obtain professional licenses
                 </div>
                 <div class="ser-links">
@@ -405,14 +403,24 @@ _______________________________________________________________
                         <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Relationships</a></li>                        
                     </ul>
                 </div> -->                
-            </lightning:layoutItem>
-            <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
-                <div class="ind-account-wrapper">
-                    <h1 class="ser-title">
-                        Business licenses
-                     </h1>
-                   
-                <!--<div class="ser-desc">
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
+                    <div class="ind-account-wrapper">
+                        <h2 class="ser-title">
+                            Business Licenses
+                        </h2>
+                        
+                        <div class="bizlayout">
+                            <p class="list-desc">You must have a business profile before you can:</p>
+                            <ul class="biz">
+                                <li>Apply for or renew a business license</li>
+                                <li>Update business license information</li>
+                                <li>Pay license fees for others</li>
+                                <li>Add a training course</li>                            
+                            </ul>
+                        </div>
+                        
+                        <!--<div class="ser-desc">
                     Washington Department of Licensing helps you obtain business licenses.
                 </div>
                 <div class="ser-links">
@@ -423,13 +431,38 @@ _______________________________________________________________
                         <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Understand how to manage Businesses</a></li>    
                     </ul>
                 </div> -->
-                    <div class="ser-btn-wrapper">
-                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Add a business" /> 
+                        <div class="ser-btn-wrapper create-biz">
+                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create a business profile " /> 
+                        </div>
                     </div>
-                </div>
-                  <div class="ser-btn-wrapper">
+                    
                     <div class="businessStatus">
-                        <h1 class="ser-title newbiz-wrapper">Once you add a business,you’ll be able to:</h1>
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
+                        <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
+                        
+                        
+                        <aura:if isTrue="{!v.isBusiness}">
+                            <div class="ser-btn-wrapper">
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.bizLicApp}" label="Apply for a business license" />  
+                            </div>
+                            <div class="ser-btn-wrapper">
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.goToBizDashboard}" label="Manage a business profile or license" />  
+                            </div>
+                            <div class="ser-btn-wrapper">
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add a training course" />  
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="ser-btn-wrapper">
+                                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    
+                    <!-- <div class="ser-btn-wrapper">
+                    <div class="businessStatus">
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
+                        <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
                         <div class="bizlayout">
                             <ul class="biz">
                                 <li>Apply for a business license</li>
@@ -440,10 +473,13 @@ _______________________________________________________________
                             </ul>
                         </div>
                     </div>
-                </div>
-              
-            </lightning:layoutItem>
-        </lightning:layout>
+                    <div class="ser-btn-wrapper">
+                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
+                    </div>
+                </div> -->
+                    
+                </lightning:layoutItem>
+            </lightning:layout>
     </div>
     <!-- Pop up start -->
     <aura:if isTrue="{!v.isOpen}">             

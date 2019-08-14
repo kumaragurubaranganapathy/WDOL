@@ -206,4 +206,30 @@ public without Sharing class  Polaris_TodoList{
         User currentUserDetails = [SELECT Name from User Where ID = :UserInfo.getUserId() LIMIT 1];
         return currentUserDetails.Name;
     }
+
+     @AuraEnabled
+    public static List<Account> getAllAccounts(){
+        Set<Id> accntIdSet = new Set<Id>();
+        List<Account> accList = new List<Account>();
+        User currentUser = [SELECT Id, Name,firstName ,lastName, ContactId , IsActive, IsPortalEnabled, MUSW__Successor__c, ProfileId , email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+        List<MUSW__Account_Contact__c> accntConList = [SELECT Id,MUSW__Contact__c,Account_Admin__c,MUSW__Account__c,MUSW__Account__r.Name,MUSW__Account__r.Type_of_Ownership__c,
+                                                       MUSW__Account__r.Security_Code__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Business_Alias__c ,MUSW__Account__r.Doing_Business_As_1__c ,MUSW__Account__r.Website,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Fax,MUSW__Account__r.Email__c,
+                                                       MUSW__Account__r.Email_Primary_Contact__c,MUSW__Account__r.FEIN_Number_Encrypted__c,MUSW__Account__r.Social_Security_Number_Encrypted__c,
+                                                       MUSW__Account__r.UBI_Number__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Phone__c,Name 
+                                                       FROM MUSW__Account_Contact__c WHERE MUSW__Contact__c =: currentUser.ContactId  AND MUSW__Account__c != null and Status__c = 'Active' and Account_Admin__c = true] ; 
+        for(MUSW__Account_Contact__c accCon : accntConList ){
+            accntIdSet.add(accCon.MUSW__Account__c);
+        }
+        if(accntIdSet!=null && !accntIdSet.isEmpty()){
+            accList= [select Id,(select id,isAdminContact__c,Account_Admin__c from MUSW__Account_Contacts__r where MUSW__Contact__c = :currentUser.ContactId and Account_Admin__c =true),
+                      Name,Type_of_Ownership__c,Doing_Business_As_1__c,First_Name_Primary_Contact__c,Last_Name_Primary_Contact__c,Phone_Primary_Contact__c,
+                      UBI_Number__c,Email__c,Business_Phone__c,Extension__c,Website, Business_Website__c, Business_Structure__c, Business_Alias__c 
+                      from Account where id in:accntIdSet];
+        }
+        else{
+            
+            
+        }
+        return accList;
+    }
 }

@@ -1,7 +1,8 @@
 ({
 	doInit : function(component, event, helper) {
-        helper.doInit(component, event, helper);
-        helper.showBusinessAccountAlert(component, event, helper);
+        helper.doInit(component, event);
+        helper.fetchData(component,event);
+        helper.showBusinessAccountAlert(component, event);
     },
     declineRequest : function(component, event, helper) {
         var taskId = event.getSource().get("v.name");
@@ -94,6 +95,19 @@
     },
     redirectBusiness : function(component,event,helper){
         helper.redirectBusiness(component,event);
-    }    
+    },
+    
+    goToProfDashboard : function(component,event,helper){
+        helper.goToProfDashboard(component,event);
+    },
+    bizLicApp : function(component,event,helper){
+        helper.bizLicApp(component,event);
+    },
+    goToBizDashboard : function(component,event,helper){
+        helper.goToBizDashboard(component,event);
+    },
+    openTrainingApp : function(component,event,helper){
+        helper.openTrainingApp(component,event);
+    }
  
 })
