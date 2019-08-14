@@ -10,9 +10,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <content>MUSW__ComplaintPageDefaults</content>
+        <content>MUSW__PageDefaults</content>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Scontrol</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -28,7 +28,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>MUSW__ComplaintPageDefaults</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -40,11 +42,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Complaint_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
+        <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -52,10 +50,8 @@
         <fullName>Complaint_Compact_Layout</fullName>
         <fields>Name</fields>
         <fields>License__c</fields>
-        <fields>MUSW__Primary_Contact__c</fields>
         <fields>MUSW__Status__c</fields>
         <fields>SubStatus__c</fields>
-        <fields>Licensee_Email__c</fields>
         <label>Complaint Compact Layout</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -64,14 +60,14 @@
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
-    <enableFeeds>true</enableFeeds>
+    <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Advertising_w_o_a_License__c</fullName>
         <description>Civil penalty amount for advertising without a license.</description>
@@ -80,7 +76,6 @@
         <precision>8</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -88,11 +83,9 @@
     <fields>
         <fullName>Alleged_Violation__c</fullName>
         <description>Description of violation from the perspective of the Investigator.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alleged Violation</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -104,7 +97,6 @@
         <precision>11</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -115,18 +107,15 @@
         <description>Indicates when a complaint was received anonymously.</description>
         <externalId>false</externalId>
         <label>Anonymous</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Attorney_Email__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attorney Email</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -134,11 +123,9 @@
     </fields>
     <fields>
         <fullName>Attorney_Phone_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attorney Phone Number</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
@@ -148,7 +135,6 @@
         <externalId>false</externalId>
         <label>Case Dispositions</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -239,7 +225,6 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Case Number Assigned</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -247,45 +232,322 @@
     <fields>
         <fullName>Citation_Date__c</fullName>
         <description>Date of civil citation</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Citation Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Close_of_Escrow_New_Home__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Close of Escrow (New Home)</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Closed_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Complainant_Business_City__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Business City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Business_County__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Business County</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Adams</fullName>
+                    <default>false</default>
+                    <label>Adams</label>
+                </value>
+                <value>
+                    <fullName>Asotin</fullName>
+                    <default>false</default>
+                    <label>Asotin</label>
+                </value>
+                <value>
+                    <fullName>Benton</fullName>
+                    <default>false</default>
+                    <label>Benton</label>
+                </value>
+                <value>
+                    <fullName>Chelan</fullName>
+                    <default>false</default>
+                    <label>Chelan</label>
+                </value>
+                <value>
+                    <fullName>Clallam</fullName>
+                    <default>false</default>
+                    <label>Clallam</label>
+                </value>
+                <value>
+                    <fullName>Clark</fullName>
+                    <default>false</default>
+                    <label>Clark</label>
+                </value>
+                <value>
+                    <fullName>Columbia</fullName>
+                    <default>false</default>
+                    <label>Columbia</label>
+                </value>
+                <value>
+                    <fullName>Cowlitz</fullName>
+                    <default>false</default>
+                    <label>Cowlitz</label>
+                </value>
+                <value>
+                    <fullName>Douglas</fullName>
+                    <default>false</default>
+                    <label>Douglas</label>
+                </value>
+                <value>
+                    <fullName>Ferry</fullName>
+                    <default>false</default>
+                    <label>Ferry</label>
+                </value>
+                <value>
+                    <fullName>Franklin</fullName>
+                    <default>false</default>
+                    <label>Franklin</label>
+                </value>
+                <value>
+                    <fullName>Garfield</fullName>
+                    <default>false</default>
+                    <label>Garfield</label>
+                </value>
+                <value>
+                    <fullName>Grant</fullName>
+                    <default>false</default>
+                    <label>Grant</label>
+                </value>
+                <value>
+                    <fullName>Grays Harbor</fullName>
+                    <default>false</default>
+                    <label>Grays Harbor</label>
+                </value>
+                <value>
+                    <fullName>Island</fullName>
+                    <default>false</default>
+                    <label>Island</label>
+                </value>
+                <value>
+                    <fullName>Jefferson</fullName>
+                    <default>false</default>
+                    <label>Jefferson</label>
+                </value>
+                <value>
+                    <fullName>King</fullName>
+                    <default>false</default>
+                    <label>King</label>
+                </value>
+                <value>
+                    <fullName>Kitsap</fullName>
+                    <default>false</default>
+                    <label>Kitsap</label>
+                </value>
+                <value>
+                    <fullName>Kittitas</fullName>
+                    <default>false</default>
+                    <label>Kittitas</label>
+                </value>
+                <value>
+                    <fullName>Klickitat</fullName>
+                    <default>false</default>
+                    <label>Klickitat</label>
+                </value>
+                <value>
+                    <fullName>Lewis</fullName>
+                    <default>false</default>
+                    <label>Lewis</label>
+                </value>
+                <value>
+                    <fullName>Lincoln</fullName>
+                    <default>false</default>
+                    <label>Lincoln</label>
+                </value>
+                <value>
+                    <fullName>Mason</fullName>
+                    <default>false</default>
+                    <label>Mason</label>
+                </value>
+                <value>
+                    <fullName>Null</fullName>
+                    <default>false</default>
+                    <label>Null</label>
+                </value>
+                <value>
+                    <fullName>Okanogan</fullName>
+                    <default>false</default>
+                    <label>Okanogan</label>
+                </value>
+                <value>
+                    <fullName>Out Of Country</fullName>
+                    <default>false</default>
+                    <label>Out Of Country</label>
+                </value>
+                <value>
+                    <fullName>Pacific</fullName>
+                    <default>false</default>
+                    <label>Pacific</label>
+                </value>
+                <value>
+                    <fullName>Pend Oreille</fullName>
+                    <default>false</default>
+                    <label>Pend Oreille</label>
+                </value>
+                <value>
+                    <fullName>Pierce</fullName>
+                    <default>false</default>
+                    <label>Pierce</label>
+                </value>
+                <value>
+                    <fullName>San Juan</fullName>
+                    <default>false</default>
+                    <label>San Juan</label>
+                </value>
+                <value>
+                    <fullName>Skagit</fullName>
+                    <default>false</default>
+                    <label>Skagit</label>
+                </value>
+                <value>
+                    <fullName>Skamania</fullName>
+                    <default>false</default>
+                    <label>Skamania</label>
+                </value>
+                <value>
+                    <fullName>Snohomish</fullName>
+                    <default>false</default>
+                    <label>Snohomish</label>
+                </value>
+                <value>
+                    <fullName>Spokane</fullName>
+                    <default>false</default>
+                    <label>Spokane</label>
+                </value>
+                <value>
+                    <fullName>Stevens</fullName>
+                    <default>false</default>
+                    <label>Stevens</label>
+                </value>
+                <value>
+                    <fullName>Thurston</fullName>
+                    <default>false</default>
+                    <label>Thurston</label>
+                </value>
+                <value>
+                    <fullName>Unknown County</fullName>
+                    <default>false</default>
+                    <label>Unknown County</label>
+                </value>
+                <value>
+                    <fullName>Wahkiakum</fullName>
+                    <default>false</default>
+                    <label>Wahkiakum</label>
+                </value>
+                <value>
+                    <fullName>Walla Walla</fullName>
+                    <default>false</default>
+                    <label>Walla Walla</label>
+                </value>
+                <value>
+                    <fullName>Whatcom</fullName>
+                    <default>false</default>
+                    <label>Whatcom</label>
+                </value>
+                <value>
+                    <fullName>Whitman</fullName>
+                    <default>false</default>
+                    <label>Whitman</label>
+                </value>
+                <value>
+                    <fullName>Yakima</fullName>
+                    <default>false</default>
+                    <label>Yakima</label>
+                </value>
+                <value>
+                    <fullName>Out Of State</fullName>
+                    <default>false</default>
+                    <label>Out Of State</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Complainant_Business_Email__c</fullName>
+        <description>Complainant Business Email</description>
+        <externalId>false</externalId>
+        <label>Complainant Business Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Business_License_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Business License Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Business_Mailing_Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Business Mailing Address</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Business_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Business Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Complainant_Business_Phone__c</fullName>
         <description>Complainant Business Phone</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Phone</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
@@ -295,7 +557,6 @@
         <externalId>false</externalId>
         <label>Complainant Business State</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -306,12 +567,21 @@
     </fields>
     <fields>
         <fullName>Complainant_City__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant City</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Doing_Business_As__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Doing Business As</label>
+        <length>100</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -319,11 +589,9 @@
     </fields>
     <fields>
         <fullName>Complainant_Email__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Email</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -331,23 +599,20 @@
     </fields>
     <fields>
         <fullName>Complainant_First_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant First Name</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Complainant_Full_Name__c</fullName>
+        <fullName>Complainant_Individual_City__c</fullName>
         <externalId>false</externalId>
-        <formula>Complainant_First_Name__c +  IF(ISBLANK(Complainant_Middle_Name__c), &quot;&quot;, Complainant_Middle_Name__c)  + Complainant_Last_Name__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Complainant Full Name</label>
+        <label>Complainant Individual City</label>
+        <length>50</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -355,13 +620,629 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Complainant_Individual_County__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual County</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Adams</fullName>
+                    <default>false</default>
+                    <label>Adams</label>
+                </value>
+                <value>
+                    <fullName>Asotin</fullName>
+                    <default>false</default>
+                    <label>Asotin</label>
+                </value>
+                <value>
+                    <fullName>Benton</fullName>
+                    <default>false</default>
+                    <label>Benton</label>
+                </value>
+                <value>
+                    <fullName>Chelan</fullName>
+                    <default>false</default>
+                    <label>Chelan</label>
+                </value>
+                <value>
+                    <fullName>Clallam</fullName>
+                    <default>false</default>
+                    <label>Clallam</label>
+                </value>
+                <value>
+                    <fullName>Clark</fullName>
+                    <default>false</default>
+                    <label>Clark</label>
+                </value>
+                <value>
+                    <fullName>Columbia</fullName>
+                    <default>false</default>
+                    <label>Columbia</label>
+                </value>
+                <value>
+                    <fullName>Cowlitz</fullName>
+                    <default>false</default>
+                    <label>Cowlitz</label>
+                </value>
+                <value>
+                    <fullName>Douglas</fullName>
+                    <default>false</default>
+                    <label>Douglas</label>
+                </value>
+                <value>
+                    <fullName>Ferry</fullName>
+                    <default>false</default>
+                    <label>Ferry</label>
+                </value>
+                <value>
+                    <fullName>Franklin</fullName>
+                    <default>false</default>
+                    <label>Franklin</label>
+                </value>
+                <value>
+                    <fullName>Garfield</fullName>
+                    <default>false</default>
+                    <label>Garfield</label>
+                </value>
+                <value>
+                    <fullName>Grant</fullName>
+                    <default>false</default>
+                    <label>Grant</label>
+                </value>
+                <value>
+                    <fullName>Grays Harbor</fullName>
+                    <default>false</default>
+                    <label>Grays Harbor</label>
+                </value>
+                <value>
+                    <fullName>Island</fullName>
+                    <default>false</default>
+                    <label>Island</label>
+                </value>
+                <value>
+                    <fullName>Jefferson</fullName>
+                    <default>false</default>
+                    <label>Jefferson</label>
+                </value>
+                <value>
+                    <fullName>King</fullName>
+                    <default>false</default>
+                    <label>King</label>
+                </value>
+                <value>
+                    <fullName>Kitsap</fullName>
+                    <default>false</default>
+                    <label>Kitsap</label>
+                </value>
+                <value>
+                    <fullName>Kittitas</fullName>
+                    <default>false</default>
+                    <label>Kittitas</label>
+                </value>
+                <value>
+                    <fullName>Klickitat</fullName>
+                    <default>false</default>
+                    <label>Klickitat</label>
+                </value>
+                <value>
+                    <fullName>Lewis</fullName>
+                    <default>false</default>
+                    <label>Lewis</label>
+                </value>
+                <value>
+                    <fullName>Lincoln</fullName>
+                    <default>false</default>
+                    <label>Lincoln</label>
+                </value>
+                <value>
+                    <fullName>Mason</fullName>
+                    <default>false</default>
+                    <label>Mason</label>
+                </value>
+                <value>
+                    <fullName>Null</fullName>
+                    <default>false</default>
+                    <label>Null</label>
+                </value>
+                <value>
+                    <fullName>Okanogan</fullName>
+                    <default>false</default>
+                    <label>Okanogan</label>
+                </value>
+                <value>
+                    <fullName>Out Of Country</fullName>
+                    <default>false</default>
+                    <label>Out Of Country</label>
+                </value>
+                <value>
+                    <fullName>Pacific</fullName>
+                    <default>false</default>
+                    <label>Pacific</label>
+                </value>
+                <value>
+                    <fullName>Pend Oreille</fullName>
+                    <default>false</default>
+                    <label>Pend Oreille</label>
+                </value>
+                <value>
+                    <fullName>Pierce</fullName>
+                    <default>false</default>
+                    <label>Pierce</label>
+                </value>
+                <value>
+                    <fullName>San Juan</fullName>
+                    <default>false</default>
+                    <label>San Juan</label>
+                </value>
+                <value>
+                    <fullName>Skagit</fullName>
+                    <default>false</default>
+                    <label>Skagit</label>
+                </value>
+                <value>
+                    <fullName>Skamania</fullName>
+                    <default>false</default>
+                    <label>Skamania</label>
+                </value>
+                <value>
+                    <fullName>Snohomish</fullName>
+                    <default>false</default>
+                    <label>Snohomish</label>
+                </value>
+                <value>
+                    <fullName>Spokane</fullName>
+                    <default>false</default>
+                    <label>Spokane</label>
+                </value>
+                <value>
+                    <fullName>Stevens</fullName>
+                    <default>false</default>
+                    <label>Stevens</label>
+                </value>
+                <value>
+                    <fullName>Thurston</fullName>
+                    <default>false</default>
+                    <label>Thurston</label>
+                </value>
+                <value>
+                    <fullName>Unknown County</fullName>
+                    <default>false</default>
+                    <label>Unknown County</label>
+                </value>
+                <value>
+                    <fullName>Wahkiakum</fullName>
+                    <default>false</default>
+                    <label>Wahkiakum</label>
+                </value>
+                <value>
+                    <fullName>Walla Walla</fullName>
+                    <default>false</default>
+                    <label>Walla Walla</label>
+                </value>
+                <value>
+                    <fullName>Whatcom</fullName>
+                    <default>false</default>
+                    <label>Whatcom</label>
+                </value>
+                <value>
+                    <fullName>Whitman</fullName>
+                    <default>false</default>
+                    <label>Whitman</label>
+                </value>
+                <value>
+                    <fullName>Yakima</fullName>
+                    <default>false</default>
+                    <label>Yakima</label>
+                </value>
+                <value>
+                    <fullName>Out Of State</fullName>
+                    <default>false</default>
+                    <label>Out Of State</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_First_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual First Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual Last Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_License_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual License Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_Mailing_Address__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual Mailing Address</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Complainant_Individual_State__c</fullName>
+        <externalId>false</externalId>
+        <label>Complainant Individual State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Alabama</fullName>
+                    <default>false</default>
+                    <label>Alabama</label>
+                </value>
+                <value>
+                    <fullName>Alaska</fullName>
+                    <default>false</default>
+                    <label>Alaska</label>
+                </value>
+                <value>
+                    <fullName>Arizona</fullName>
+                    <default>false</default>
+                    <label>Arizona</label>
+                </value>
+                <value>
+                    <fullName>Arkansas</fullName>
+                    <default>false</default>
+                    <label>Arkansas</label>
+                </value>
+                <value>
+                    <fullName>California</fullName>
+                    <default>false</default>
+                    <label>California</label>
+                </value>
+                <value>
+                    <fullName>Colorado</fullName>
+                    <default>false</default>
+                    <label>Colorado</label>
+                </value>
+                <value>
+                    <fullName>Connecticut</fullName>
+                    <default>false</default>
+                    <label>Connecticut</label>
+                </value>
+                <value>
+                    <fullName>Delaware</fullName>
+                    <default>false</default>
+                    <label>Delaware</label>
+                </value>
+                <value>
+                    <fullName>Florida</fullName>
+                    <default>false</default>
+                    <label>Florida</label>
+                </value>
+                <value>
+                    <fullName>Georgia</fullName>
+                    <default>false</default>
+                    <label>Georgia</label>
+                </value>
+                <value>
+                    <fullName>Guam</fullName>
+                    <default>false</default>
+                    <label>Guam</label>
+                </value>
+                <value>
+                    <fullName>Hawaii</fullName>
+                    <default>false</default>
+                    <label>Hawaii</label>
+                </value>
+                <value>
+                    <fullName>Idaho</fullName>
+                    <default>false</default>
+                    <label>Idaho</label>
+                </value>
+                <value>
+                    <fullName>Illinois</fullName>
+                    <default>false</default>
+                    <label>Illinois</label>
+                </value>
+                <value>
+                    <fullName>Indiana</fullName>
+                    <default>false</default>
+                    <label>Indiana</label>
+                </value>
+                <value>
+                    <fullName>Iowa</fullName>
+                    <default>false</default>
+                    <label>Iowa</label>
+                </value>
+                <value>
+                    <fullName>Kansas</fullName>
+                    <default>false</default>
+                    <label>Kansas</label>
+                </value>
+                <value>
+                    <fullName>Kentucky</fullName>
+                    <default>false</default>
+                    <label>Kentucky</label>
+                </value>
+                <value>
+                    <fullName>Louisiana</fullName>
+                    <default>false</default>
+                    <label>Louisiana</label>
+                </value>
+                <value>
+                    <fullName>Maine</fullName>
+                    <default>false</default>
+                    <label>Maine</label>
+                </value>
+                <value>
+                    <fullName>Maryland</fullName>
+                    <default>false</default>
+                    <label>Maryland</label>
+                </value>
+                <value>
+                    <fullName>Massachusetts</fullName>
+                    <default>false</default>
+                    <label>Massachusetts</label>
+                </value>
+                <value>
+                    <fullName>Michigan</fullName>
+                    <default>false</default>
+                    <label>Michigan</label>
+                </value>
+                <value>
+                    <fullName>Minnesota</fullName>
+                    <default>false</default>
+                    <label>Minnesota</label>
+                </value>
+                <value>
+                    <fullName>Mississippi</fullName>
+                    <default>false</default>
+                    <label>Mississippi</label>
+                </value>
+                <value>
+                    <fullName>Missouri</fullName>
+                    <default>false</default>
+                    <label>Missouri</label>
+                </value>
+                <value>
+                    <fullName>Montana</fullName>
+                    <default>false</default>
+                    <label>Montana</label>
+                </value>
+                <value>
+                    <fullName>Nebraska</fullName>
+                    <default>false</default>
+                    <label>Nebraska</label>
+                </value>
+                <value>
+                    <fullName>Nevada</fullName>
+                    <default>false</default>
+                    <label>Nevada</label>
+                </value>
+                <value>
+                    <fullName>New Hampshire</fullName>
+                    <default>false</default>
+                    <label>New Hampshire</label>
+                </value>
+                <value>
+                    <fullName>New Jersey</fullName>
+                    <default>false</default>
+                    <label>New Jersey</label>
+                </value>
+                <value>
+                    <fullName>New Mexico</fullName>
+                    <default>false</default>
+                    <label>New Mexico</label>
+                </value>
+                <value>
+                    <fullName>New York</fullName>
+                    <default>false</default>
+                    <label>New York</label>
+                </value>
+                <value>
+                    <fullName>North Carolina</fullName>
+                    <default>false</default>
+                    <label>North Carolina</label>
+                </value>
+                <value>
+                    <fullName>North Dakota</fullName>
+                    <default>false</default>
+                    <label>North Dakota</label>
+                </value>
+                <value>
+                    <fullName>Ohio</fullName>
+                    <default>false</default>
+                    <label>Ohio</label>
+                </value>
+                <value>
+                    <fullName>Oklahoma</fullName>
+                    <default>false</default>
+                    <label>Oklahoma</label>
+                </value>
+                <value>
+                    <fullName>Oregon</fullName>
+                    <default>false</default>
+                    <label>Oregon</label>
+                </value>
+                <value>
+                    <fullName>Pennsylvania</fullName>
+                    <default>false</default>
+                    <label>Pennsylvania</label>
+                </value>
+                <value>
+                    <fullName>Rhode Island</fullName>
+                    <default>false</default>
+                    <label>Rhode Island</label>
+                </value>
+                <value>
+                    <fullName>South Carolina</fullName>
+                    <default>false</default>
+                    <label>South Carolina</label>
+                </value>
+                <value>
+                    <fullName>South Dakota</fullName>
+                    <default>false</default>
+                    <label>South Dakota</label>
+                </value>
+                <value>
+                    <fullName>Tennessee</fullName>
+                    <default>false</default>
+                    <label>Tennessee</label>
+                </value>
+                <value>
+                    <fullName>Texas</fullName>
+                    <default>false</default>
+                    <label>Texas</label>
+                </value>
+                <value>
+                    <fullName>Utah</fullName>
+                    <default>false</default>
+                    <label>Utah</label>
+                </value>
+                <value>
+                    <fullName>Vermont</fullName>
+                    <default>false</default>
+                    <label>Vermont</label>
+                </value>
+                <value>
+                    <fullName>Virginia</fullName>
+                    <default>false</default>
+                    <label>Virginia</label>
+                </value>
+                <value>
+                    <fullName>Washington</fullName>
+                    <default>false</default>
+                    <label>Washington</label>
+                </value>
+                <value>
+                    <fullName>West Virginia</fullName>
+                    <default>false</default>
+                    <label>West Virginia</label>
+                </value>
+                <value>
+                    <fullName>Wisconsin</fullName>
+                    <default>false</default>
+                    <label>Wisconsin</label>
+                </value>
+                <value>
+                    <fullName>Wyoming</fullName>
+                    <default>false</default>
+                    <label>Wyoming</label>
+                </value>
+                <value>
+                    <fullName>Washington D.C.</fullName>
+                    <default>false</default>
+                    <label>Washington D.C.</label>
+                </value>
+                <value>
+                    <fullName>American Samoa</fullName>
+                    <default>false</default>
+                    <label>American Samoa</label>
+                </value>
+                <value>
+                    <fullName>Northern Mariana Islands</fullName>
+                    <default>false</default>
+                    <label>Northern Mariana Islands</label>
+                </value>
+                <value>
+                    <fullName>Puerto Rico</fullName>
+                    <default>false</default>
+                    <label>Puerto Rico</label>
+                </value>
+                <value>
+                    <fullName>U.S. Virgin Islands</fullName>
+                    <default>false</default>
+                    <label>U.S. Virgin Islands</label>
+                </value>
+                <value>
+                    <fullName>Marshall Islands</fullName>
+                    <default>false</default>
+                    <label>Marshall Islands</label>
+                </value>
+                <value>
+                    <fullName>Armed Forces Pacific</fullName>
+                    <default>false</default>
+                    <label>Armed Forces Pacific</label>
+                </value>
+                <value>
+                    <fullName>Armed Forces Americas</fullName>
+                    <default>false</default>
+                    <label>Armed Forces Americas</label>
+                </value>
+                <value>
+                    <fullName>Armed Forces Europe</fullName>
+                    <default>false</default>
+                    <label>Armed Forces Europe</label>
+                </value>
+                <value>
+                    <fullName>Fed St Micronesia</fullName>
+                    <default>false</default>
+                    <label>Fed St Micronesia</label>
+                </value>
+                <value>
+                    <fullName>Palau</fullName>
+                    <default>false</default>
+                    <label>Palau</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Complainant_Information_Business_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Name</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -369,12 +1250,10 @@
     </fields>
     <fields>
         <fullName>Complainant_Last_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Last Name</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -382,12 +1261,10 @@
     </fields>
     <fields>
         <fullName>Complainant_Mailing_Address__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Mailing Address</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -395,12 +1272,10 @@
     </fields>
     <fields>
         <fullName>Complainant_Middle_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Middle Name</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -408,33 +1283,27 @@
     </fields>
     <fields>
         <fullName>Complainant_Phone_Alternate__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Phone (Alternate)</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
     </fields>
     <fields>
         <fullName>Complainant_Phone_Main__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Phone (Main)</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
     </fields>
     <fields>
         <fullName>Complainant_Phone_Mobile__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Phone (Mobile)</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
@@ -444,7 +1313,6 @@
         <externalId>false</externalId>
         <label>Complainant State</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -455,12 +1323,10 @@
     </fields>
     <fields>
         <fullName>Complainant_Zipcode__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Zipcode</label>
         <length>10</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -471,7 +1337,6 @@
         <externalId>false</externalId>
         <label>Complaint Source</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -522,7 +1387,6 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Complaint Submission Agree</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -534,18 +1398,15 @@
         <precision>12</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Contract_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contract Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -558,18 +1419,15 @@
         <precision>8</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>DOL_Attorney_Email__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOL Attorney Email</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -577,12 +1435,10 @@
     </fields>
     <fields>
         <fullName>DOL_Attorney_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOL Attorney Name</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -617,33 +1473,27 @@
     </fields>
     <fields>
         <fullName>Date_Assigned__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Assigned</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Date_Investigation_Closed__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Investigation Closed</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Date_Investigation_Opened__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Investigation Opened</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -651,22 +1501,18 @@
     <fields>
         <fullName>Date_Opened__c</fullName>
         <defaultValue>TODAY()</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Opened</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Date_Reopened__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Reopened</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -674,44 +1520,36 @@
     <fields>
         <fullName>Date_Submitted_To_Court__c</fullName>
         <description>Date the complaint is submitted for prosecution</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Submitted To Court</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Date_Work_Started__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Work Started</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Date_Work_Stopped__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Work Stopped</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Date_Work_Was_Completed__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Work Was Completed</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -733,22 +1571,18 @@
     <fields>
         <fullName>Delivery_Date__c</fullName>
         <description>Date the certified mail was delivered.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Email_of_Construction_Site_Owner__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email of Construction Site Owner</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -756,60 +1590,21 @@
     </fields>
     <fields>
         <fullName>External_Case_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Case Number</label>
         <length>30</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>First_Inspection_created_date__c</fullName>
-        <description>date of the earliest inspection created date of all inspections</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>First Inspection created date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>If_no_please_provide_reasoning__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>If no, please provide reasoning</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>In_Compliance__c</fullName>
-        <description>In-Compliance</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Out of Compliance - End</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Incident_Address__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Address</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -817,35 +1612,20 @@
     </fields>
     <fields>
         <fullName>Incident_City__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident City</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Incident_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Incident Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Incident_Description__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Description</label>
         <length>3000</length>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -856,7 +1636,6 @@
         <externalId>false</externalId>
         <label>Incident State</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -867,12 +1646,10 @@
     </fields>
     <fields>
         <fullName>Incident_Zipcode__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Zipcode</label>
         <length>10</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -892,74 +1669,40 @@
     <fields>
         <fullName>Investigation_Completed_Date__c</fullName>
         <description>Date the investigation was completed.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Investigation Completed Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Investigation_Due_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Investigation Due Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Investigator_Name__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Investigator Name</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Complaints</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Jurisdiction_Found__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Jurisdiction Found?</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Legal_Notes__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Notes</label>
         <length>3000</length>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>License_Id__c</fullName>
-        <description>Foreign Key for Data Migration of Legacy Data</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>License Id</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License_Type__c</fullName>
@@ -983,7 +1726,6 @@
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1037,18 +1779,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Licensee_Notified__c</fullName>
-        <description>Date the licensee was notified by the board that a complaint was filed against them.</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Licensee Notified</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Licensee_State__c</fullName>
         <externalId>false</externalId>
         <formula>Text(License__r.MUSW__Parcel__r.MUSW__State__c)</formula>
@@ -1061,17 +1791,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>List_of_Unpaid_Items__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>List of Unpaid Items</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>MUSW__AlertCode__c</fullName>
         <deprecated>false</deprecated>
         <description>Numeric value that determines the alert indicator color.  Updated by AlertParentUpdate trigger on Task object</description>
@@ -1080,7 +1799,6 @@
         <precision>2</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1116,12 +1834,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__City__c</fullName>
         <deprecated>false</deprecated>
         <description>If Parcel is selected this value will be filled in via workflow from the Parcel City field</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1131,11 +1847,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Closed_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>The date that the complaint was closed on.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1144,11 +1858,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Description of the complaint.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -1163,7 +1875,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <label>Geolocation</label>
         <required>false</required>
         <scale>9</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Location</type>
@@ -1172,12 +1883,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Filled in when a permanent sequence number is issued. This prevents subsequent triggering of the sequence number code.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1192,7 +1901,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>17</precision>
         <required>false</required>
         <scale>8</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1207,7 +1915,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>17</precision>
         <required>false</required>
         <scale>8</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1220,7 +1927,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Origin</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1267,7 +1973,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints as Primary Owner</relationshipLabel>
         <relationshipName>Complaint2s</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1283,7 +1988,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaint2s</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1300,7 +2004,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>PrimaryComplaint2s</relationshipName>
         <required>false</required>
-        <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1312,32 +2015,26 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Priority</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>true</sorted>
-                <value>
-                    <fullName>Immediate</fullName>
-                    <default>false</default>
-                    <label>1 - Immediate</label>
-                </value>
+                <sorted>false</sorted>
                 <value>
                     <fullName>High</fullName>
                     <default>false</default>
-                    <label>2 - High</label>
+                    <label>High</label>
                 </value>
                 <value>
-                    <fullName>Routine</fullName>
-                    <default>false</default>
-                    <label>3 - Routine</label>
+                    <fullName>Medium</fullName>
+                    <default>true</default>
+                    <label>Medium</label>
                 </value>
                 <value>
                     <fullName>Low</fullName>
                     <default>false</default>
-                    <label>4 - Low</label>
+                    <label>Low</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1353,7 +2050,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaint2s</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1365,7 +2061,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>State/ Prov.</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1742,22 +2437,16 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>true</sorted>
+                <sorted>false</sorted>
                 <value>
                     <fullName>Closed</fullName>
                     <default>false</default>
                     <label>Closed</label>
-                </value>
-                <value>
-                    <fullName>Inspection/Audit</fullName>
-                    <default>false</default>
-                    <label>Inspection/Audit</label>
                 </value>
                 <value>
                     <fullName>Intake</fullName>
@@ -1775,14 +2464,19 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Legal</label>
                 </value>
                 <value>
+                    <fullName>Re-Open</fullName>
+                    <default>false</default>
+                    <label>Re-Open</label>
+                </value>
+                <value>
                     <fullName>Management Review</fullName>
                     <default>false</default>
                     <label>Management Review</label>
                 </value>
                 <value>
-                    <fullName>Re-Open</fullName>
+                    <fullName>Inspection/Audit</fullName>
                     <default>false</default>
-                    <label>Re-Open</label>
+                    <label>Inspection/Audit</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1791,12 +2485,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Street__c</fullName>
         <deprecated>false</deprecated>
         <description>If Parcel is selected this value will be filled in via workflow from the Parcel Address field</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Street</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1806,12 +2498,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Subject__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Subject</label>
         <length>255</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1842,7 +2532,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1857,7 +2546,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>14</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1869,7 +2557,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Type</label>
         <required>false</required>
-        <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1898,12 +2585,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Unit__c</fullName>
         <deprecated>false</deprecated>
         <description>Allows the user to specify an individual unit in a multiunit building or address.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unit</label>
         <length>16</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1913,16 +2598,50 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Zip__c</fullName>
         <deprecated>false</deprecated>
         <description>If Parcel is selected this value will be filled in via workflow from the Parcel Post/Zip Code field.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Zip/ Post Code</label>
         <length>12</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Complainant_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Complainant_First_Name__c +  IF(ISBLANK(Complainant_Middle_Name__c), &quot;&quot;, Complainant_Middle_Name__c)  + Complainant_Last_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Complainant Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Respondent_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Primary_Contact__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Respondent Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Investigator_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Investigator Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Complaints</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Master_Complaint__c</fullName>
@@ -1935,34 +2654,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Modified_Penalty_Amount__c</fullName>
-        <description>Modified penalty amount.</description>
-        <externalId>false</externalId>
-        <label>Modified Penalty Amount</label>
-        <precision>8</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Move_In_Date_New_Home__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Move-In Date (New Home)</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Open_Case__c</fullName>
@@ -1970,40 +2664,15 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <inlineHelpText>Check this box to open open a case for the complaint and assign case number.</inlineHelpText>
         <label>Open Case</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Other_Agency_Description__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Other Agency Description</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Out_of_Compliance__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Out of Compliance - Begin</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Outcome_Summary__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Case Closing Comments</label>
         <length>300</length>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -2014,7 +2683,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Outcome</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2063,23 +2731,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>PPE_Allegations__c</fullName>
         <description>PPE Board Allegations textbox</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Allegations</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>PPE_Investigation_Findings__c</fullName>
-        <description>PPE Board Investigation Findings textbox</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Investigation Findings</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -2096,36 +2750,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Phone_Number_of_Construction_Site_Owner__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Phone Number of Construction Site Owner</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Phone</type>
-    </fields>
-    <fields>
-        <fullName>Principal_Amount_Due__c</fullName>
-        <description>Principal amount due excluding interest and fees.</description>
-        <externalId>false</externalId>
-        <label>Principal Amount Due</label>
-        <precision>14</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
         <fullName>Program_Generated__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Indicates when a Complaint was generated by a program area.</description>
         <externalId>false</externalId>
         <label>Program Generated</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -2135,7 +2764,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Program Type</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2169,17 +2797,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Recommendations__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Recommendations</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>Record_Type1__c</fullName>
         <externalId>false</externalId>
         <formula>RecordType.DeveloperName</formula>
@@ -2192,62 +2809,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Referred_to_Legal__c</fullName>
-        <description>Date the complaint nature was updated to referred to legal. Updated via workflow.</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Referred to Legal</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Refund_Credit_Date__c</fullName>
-        <description>To enter the date on the Refund / Credit Date</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Refund / Credit Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Refund_Credit__c</fullName>
-        <description>This is created for entering any Refund or Credit due on the Complaint</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Refund / Credit</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Release__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Respondent_Attorney_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Attorney Name</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2255,12 +2821,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_City__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business City</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2271,7 +2835,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Respondent Business County</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2499,11 +3062,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Email__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Email</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -2511,12 +3072,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_License_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business License Number</label>
         <length>20</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2524,12 +3083,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Mailing_Address__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Mailing Address</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2537,12 +3094,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Name</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2550,11 +3105,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Phone__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Phone</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
@@ -2564,7 +3117,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Respondent Business State</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2575,12 +3127,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Zipcode__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Zipcode</label>
         <length>10</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2588,12 +3138,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_City__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent City</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2604,7 +3152,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Respondent County</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2832,12 +3379,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Doing_Business_As__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Doing Business As</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2845,11 +3390,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Email__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Email</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -2857,12 +3400,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_First_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent First Name</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2870,12 +3411,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Last_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Last Name</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2883,12 +3422,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_License_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent License Number</label>
         <length>20</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2899,7 +3436,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Respondent License Type</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2910,12 +3446,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Mailing_Address__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Mailing Address</label>
         <length>100</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2923,58 +3457,29 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Middle_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Middle Name</label>
         <length>50</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Respondent_Notified__c</fullName>
-        <description>Date the licensee was notified by the board that a complaint was filed against them.</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Respondent Notified</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Respondent_Phone_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Phone Number</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
-    </fields>
-    <fields>
-        <fullName>Respondent_Phone__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Primary_Contact__r.Phone</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Respondent Phone</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Respondent_State__c</fullName>
         <externalId>false</externalId>
         <label>Respondent State</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2985,28 +3490,14 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Zipcode__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Zipcode</label>
         <length>10</length>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Response_Received__c</fullName>
-        <description>Date the licensee responded to the notification of a complaint.</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Response Received</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Responsible_Account__c</fullName>
@@ -3017,22 +3508,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Returned_Date_Unsuccessful_Delivery__c</fullName>
-        <description>Date certified mail was returned if delivery was unsuccessful.</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Returned Date (Unsuccessful Delivery)</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Review__c</fullName>
@@ -3043,7 +3521,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <relationshipLabel>Complaints</relationshipLabel>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -3054,28 +3531,15 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <inlineHelpText>Check this box to send out a case open notification to licensee and complainant</inlineHelpText>
         <label>Send Case Open Notification</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Settlement_Conference_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Settlement Conference Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>SubStatus__c</fullName>
         <externalId>false</externalId>
         <label>SubStatus</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -3240,22 +3704,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 </value>
             </valueSetDefinition>
             <valueSettings>
-                <controllingFieldValue>Management Review</controllingFieldValue>
-                <valueName>Board</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Management Review</controllingFieldValue>
-                <valueName>Case Manager</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Management Review</controllingFieldValue>
-                <valueName>DART</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Management Review</controllingFieldValue>
-                <valueName>Program</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Closed</controllingFieldValue>
                 <valueName>Merged</valueName>
             </valueSettings>
@@ -3319,25 +3767,29 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <controllingFieldValue>Legal</controllingFieldValue>
                 <valueName>Withdrawn</valueName>
             </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Management Review</controllingFieldValue>
+                <valueName>Board</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Management Review</controllingFieldValue>
+                <valueName>Case Manager</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Management Review</controllingFieldValue>
+                <valueName>DART</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Management Review</controllingFieldValue>
+                <valueName>Program</valueName>
+            </valueSettings>
         </valueSet>
-    </fields>
-    <fields>
-        <fullName>Submitted_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Submitted Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Subtype__c</fullName>
         <externalId>false</externalId>
         <label>Subtype</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -3368,7 +3820,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <inlineHelpText>Check if a summary suspension case</inlineHelpText>
         <label>Summary Suspension</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -3448,12 +3899,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </listViews>
     <listViews>
         <fullName>Funeral_and_Cemeteries_Intake_Complaint2</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>Program_Type__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>MUSW__Type__c</columns>
-        <columns>Complainant_Business_Phone__c</columns>
         <filterScope>Queue</filterScope>
         <label>Funeral and Cemeteries Intake</label>
         <queue>Funeral_and_Cemeteries_Intake</queue>
@@ -3491,11 +3936,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
-        <columns>MUSW__Type__c</columns>
-        <columns>MUSW__Status__c</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Notaries_Intake_Complaint2</fullName>
@@ -3552,14 +3996,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         </sharedTo>
     </listViews>
     <nameField>
-        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Complaints</pluralLabel>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Compliance</fullName>
@@ -3626,6 +4067,181 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Withdrawal of charges or dismissed before hearing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complainant_Business_County__c</picklist>
+            <values>
+                <fullName>Adams</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asotin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chelan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clallam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Columbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cowlitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Douglas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ferry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Franklin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Garfield</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grays Harbor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jefferson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>King</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitsap</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kittitas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Klickitat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lewis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lincoln</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mason</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Okanogan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pend Oreille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pierce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Juan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skagit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skamania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Snohomish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spokane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stevens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thurston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown County</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wahkiakum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walla Walla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whatcom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yakima</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3812,7 +4428,429 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
+                <fullName>Palau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pennsylvania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rhode Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Carolina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Dakota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tennessee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Texas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U%2ES%2E Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utah</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vermont</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virginia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington D%2EC%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Virginia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wisconsin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wyoming</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complainant_Individual_County__c</picklist>
+            <values>
+                <fullName>Adams</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asotin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chelan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clallam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Columbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cowlitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Douglas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ferry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Franklin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Garfield</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grays Harbor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jefferson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>King</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitsap</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kittitas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Klickitat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lewis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lincoln</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mason</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Okanogan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pend Oreille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pierce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Juan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skagit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skamania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Snohomish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spokane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stevens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thurston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown County</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wahkiakum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walla Walla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whatcom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yakima</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complainant_Individual_State__c</picklist>
+            <values>
+                <fullName>Alabama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alaska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arizona</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arkansas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armed Forces Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armed Forces Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armed Forces Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>California</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colorado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Connecticut</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delaware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fed St Micronesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florida</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hawaii</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Idaho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illinois</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iowa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kansas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kentucky</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshall Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maryland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massachusetts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Michigan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minnesota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mississippi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missouri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nebraska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nevada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Hampshire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Carolina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Dakota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Northern Mariana Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ohio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oklahoma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oregon</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4064,10 +5102,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4341,10 +5375,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -4443,15 +5473,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Immediate</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Low</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Routine</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4754,22 +5776,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Intake</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Investigation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Legal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Management Review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Re-Open</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5241,10 +6247,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6613,10 +7615,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -6789,6 +7787,181 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Withdrawal of charges or dismissed before hearing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complainant_Business_County__c</picklist>
+            <values>
+                <fullName>Adams</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asotin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chelan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clallam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Columbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cowlitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Douglas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ferry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Franklin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Garfield</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grays Harbor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jefferson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>King</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitsap</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kittitas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Klickitat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lewis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lincoln</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mason</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Okanogan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pend Oreille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pierce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Juan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skagit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skamania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Snohomish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spokane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stevens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thurston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown County</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wahkiakum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walla Walla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whatcom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yakima</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6975,7 +8148,429 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
+                <fullName>Palau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pennsylvania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rhode Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Carolina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Dakota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tennessee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Texas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U%2ES%2E Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utah</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vermont</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virginia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington D%2EC%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Virginia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wisconsin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wyoming</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complainant_Individual_County__c</picklist>
+            <values>
+                <fullName>Adams</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asotin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chelan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clallam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Columbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cowlitz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Douglas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ferry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Franklin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Garfield</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grays Harbor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jefferson</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>King</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kitsap</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kittitas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Klickitat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lewis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lincoln</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mason</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Okanogan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pend Oreille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pierce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Juan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skagit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skamania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Snohomish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spokane</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stevens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thurston</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown County</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wahkiakum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walla Walla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whatcom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yakima</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Complainant_Individual_State__c</picklist>
+            <values>
+                <fullName>Alabama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alaska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arizona</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arkansas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armed Forces Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armed Forces Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armed Forces Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>California</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colorado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Connecticut</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delaware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fed St Micronesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florida</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hawaii</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Idaho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illinois</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iowa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kansas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kentucky</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshall Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maryland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massachusetts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Michigan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minnesota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mississippi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missouri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nebraska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nevada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Hampshire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Carolina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Dakota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Northern Mariana Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ohio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oklahoma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oregon</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7227,10 +8822,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7516,10 +9107,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -7618,15 +9205,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Immediate</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Low</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Routine</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8427,10 +10006,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -9796,10 +11371,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -10005,7 +11576,7 @@ ISCHANGED(Program_Type__c) )</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Status_Needed_to_set_Master_Complaint</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>&quot;Merged With Complaint&quot; should only be populated when status is closed and sub status is merged.</description>
         <errorConditionFormula>OR(
 AND(
