@@ -34,6 +34,8 @@ _______________________________________________________________
     <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
     <aura:attribute name="LicenseColumnListData" type="List" description="Holds the lists of accounts"/>
     <aura:attribute name="AddBusinessAccountsStatusAlert" type="Boolean" default="false"/>
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isBusiness" type="Boolean" default="false"/>
     
     
     <div class="todo-wrapper">
