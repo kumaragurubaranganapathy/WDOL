@@ -238,7 +238,7 @@
                                                 </aura:set>
                                             </aura:if>
                                         </lightning:layoutItem>
-                                        <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
+                                        <!--lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">City: </div>
                                             <aura:if isTrue="{!item.LnP_Parcels__r.records[0].City__c}">
                                                 <div class="data-style">{!item.LnP_Parcels__r.records[0].City__c}</div>
@@ -246,7 +246,7 @@
                                                     <div class="data-style">None</div>
                                                 </aura:set>
                                             </aura:if>
-                                        </lightning:layoutItem>
+                                        </lightning:layoutItem-->
                                         <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">Current Issue Date: </div>
                                             <aura:if isTrue="{!item.MUSW__Issue_Date__c}">
@@ -259,7 +259,7 @@
                                                 </aura:set>
                                             </aura:if>
                                         </lightning:layoutItem>
-                                        <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
+                                        <!--lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">State: </div>
                                             <aura:if isTrue="{!item.LnP_Parcels__r.records[0].State_Province__c}">
                                                 <div class="data-style">{!item.LnP_Parcels__r.records[0].State_Province__c}</div>
@@ -267,7 +267,7 @@
                                                     <div class="data-style">None</div>
                                                 </aura:set>
                                             </aura:if>
-                                        </lightning:layoutItem>
+                                        </lightning:layoutItem-->
                                         <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">Expiration Date: </div>
                                             <aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
@@ -280,7 +280,7 @@
                                                 </aura:set>
                                             </aura:if>
                                         </lightning:layoutItem>
-                                        <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
+                                        <!--lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">Program: </div>
                                             <aura:if isTrue="{!item.Application_Type__c}">
                                                 <div class="data-style">{!item.Application_Type__c}</div>
@@ -297,7 +297,7 @@
                                                     <div class="data-style">None</div>
                                                 </aura:set>
                                             </aura:if>
-                                        </lightning:layoutItem>
+                                        </lightning:layoutItem-->
                                     </lightning:layout>
                                     <aura:if isTrue="{!v.endorsementData.length != 0}">
                                         <div class="">

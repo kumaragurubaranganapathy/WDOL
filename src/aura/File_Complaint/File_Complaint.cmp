@@ -203,19 +203,19 @@
             <!--<aura:if isTrue="{!v.screenTwo}">-->
             <div class="{!v.screenTwo?'':'slds-hide'}">
             	<!--h2 class="sec-header">Respondent Information</h2-->
-                <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Give us information about yourself to reach out to you and update you about the progress of this complaint</div>
+                <div class="sub-header slds-p-top_x-small slds-p-bottom_small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
                 <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
                 <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div-->
-                <aura:if isTrue="{!v.displayMessage}">
-                    <div class="sub-header slds-p-top_x-small slds-p-bottom_medium">{!$Label.c.File_Complaint_Conditional_Anonymous_Text}</div>
-                	<aura:set attribute="else">
-                    	<div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
-                    </aura:set>
-                </aura:if>
                 <aura:if isTrue="{!v.anonymousComplaint}">
                     <div class="slds-p-vertical_small chkbox-container">
                         <lightning:input type="checkbox" label="File anonymously" name="AnonymousComplaint" checked="{!v.anonymousComplaintCheckbox}"/>
                     </div>
+                </aura:if>
+				<aura:if isTrue="{!v.displayMessage}">
+                    <div class="sub-header slds-p-top_x-small slds-p-bottom_medium">{!$Label.c.File_Complaint_Conditional_Anonymous_Text}</div>
+                	<aura:set attribute="else">
+                    	<div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
+                    </aura:set>
                 </aura:if>
                 <div class="slds-box">
                     <!-- Start of form -->
