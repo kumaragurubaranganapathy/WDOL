@@ -176,39 +176,20 @@
     }
     .THIS hr {
         width: 20px;
-        margin: 20px 0;   
+        margin: 21px 0;   
     }
     .THIS .slds-path__scroller{
-        padding:0 30px;
+        padding:0 60px;
     }
     .THIS .six-circles hr,.THIS .five-circles hr,.THIS .four-circles hr,.THIS .three-circles hr,.THIS .two-circles hr{
         top:-10px; 
     }
-    .THIS .inactive-path-title{
+    .THIS .inactive-path-title,.THIS span.inactive-path-title.slds-path__title,.THIS .span.is-complete-path.slds-path__title{
         display: none;
     }
-    .THIS span.inactive-path-title.slds-path__title{
-        display: none;
-    }
-    .THIS .span.is-complete-path.slds-path__title{
-        display: none;
-    }
-    
-    
-    .THIS .outer-circle {
+    .THIS .outer-circle,.THIS .green-circle,.THIS .red-circle  {
         height: 10px;
         width: 10px;
-    }
-    .THIS .green-circle{
-        height: 10px;
-        width: 10px; 
-    }
-    .THIS .red-circle {
-        height: 10px;
-        width: 10px;
-    }
-    .THIS .hr{
-        margin: 21px 0;
     }
     .THIS .is-complete-path{
         display: none;
@@ -222,7 +203,7 @@
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
-    .THIS hr {
+    /*.THIS hr {
         width: 45px;
         margin: 32px 0;
     }
@@ -234,6 +215,36 @@
     }
     .THIS .is-not-current{
         display: none;
+    }*/
+    .THIS .icon{
+        height: 40px;
+    }
+    .THIS hr {
+        width: 20px;
+        margin: 21px 0;   
+    }
+    .THIS .slds-path__scroller{
+        padding:0 60px;
+    }
+    .THIS .six-circles hr,.THIS .five-circles hr,.THIS .four-circles hr,.THIS .three-circles hr,.THIS .two-circles hr{
+        top:-10px; 
+    }
+    .THIS .inactive-path-title,.THIS span.inactive-path-title.slds-path__title,.THIS .span.is-complete-path.slds-path__title{
+        display: none;
+    }
+    .THIS .outer-circle,.THIS .green-circle,.THIS .red-circle  {
+        height: 10px;
+        width: 10px;
+    }
+    .THIS .is-complete-path{
+        display: none;
+    }
+    .THIS .slds-path__nav{
+        /*margin: 0 10px;*/
+    }
+    
+    .THIS .pathwidth {
+        width: 100%;
     }
 }
 .THIS .inactive-path-title{

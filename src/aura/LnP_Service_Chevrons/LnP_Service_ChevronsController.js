@@ -63,5 +63,8 @@
 	},
     certificateCheckbox: function(component, event, helper) {
 		helper.certificateCheckbox(component, event);
-	}
+	},
+    goBack : function (component, event, helper){
+        window.history.back();
+    }
 })
