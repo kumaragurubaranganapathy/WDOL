@@ -103,7 +103,7 @@
             //var wrapperforsection = component.get("v.licenseWrapper");
             
             // var currentsectionName = wrapperforsection[curTab].sectionName
-            action.setParams({"dataString" : JSON.stringify(component.get("v.licenseWrapper")), "tabNumber" : tabNumber, "appId" : component.get("v.applicationId"),"Board": component.get("v.board"), "LicenseType": component.get("v.licenseType"),  "ApplicationType": component.get("v.applicationType"),"upgradeLicenseId": component.get("v.licenseRecordID")});
+            action.setParams({"dataString" : JSON.stringify(component.get("v.licenseWrapper")), "tabNumber" : tabNumber, "appId" : component.get("v.applicationId"),"Board": component.get("v.board"), "LicenseType": component.get("v.licenseType"),  "ApplicationType": component.get("v.applicationType")});
             var serverActionStatus = false;
             this.showSpinner(component, event);
             action.setCallback(this, function(actionResult){
