@@ -359,12 +359,13 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         for(String str : submissionList){
             str = str.trim();
         }
-		String strSubmission;
+        String strSubmission;
         String mastSubCond1 = 'Application_Type__c = \''+Board+'\'';
         String mastSubCond2 = 'Application_Method__c =\''+ApplicationType+'\'';
         String mastSubCond3 = 'Credential_Type__c =\''+LicenseType+'\'';
         String mastSubCond4 = 'Title__c IN: XXX ORDER BY  Order_No__c ASC';
-        String strSubmission = 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
+        MUSW__License2__c upgradeLic;
+        strSubmission = 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ; 
         system.debug('submissionList'+submissionList);
         masterSubmissionList = Utilityclass_withsharing.queryRecordsInClause(strSubmission,submissionList);
         system.debug('masterSubmissionList12345'+masterSubmissionList);
@@ -1241,11 +1242,11 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                              acc.Parentid = application.MUSW__Account__c;
                              mstLicense.isBranch_License__c = true;
                              acc.RecordTypeId = branchLicenseRT;
-							 mstLicense.Ultimate_Parent_Account__c = application.Parent_License__r.Ultimate_Parent_Account__c;
-						}
-						else{
-							mstLicense.Ultimate_Parent_Account__c = application.MUSW__Account__c; 
-						}
+                             mstLicense.Ultimate_Parent_Account__c = application.Parent_License__r.Ultimate_Parent_Account__c;
+                        }
+                        else{
+                            mstLicense.Ultimate_Parent_Account__c = application.MUSW__Account__c; 
+                        }
                         //insert acc;
                         lstacc.add(acc);
                         
@@ -1378,7 +1379,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') && ans.Answer_Text__c.contains('Use my full legal name') && LastName == '' ){
                                  LastName  = application.MUSW__Applicant__r.LastName;
                             }
-							
+                            
                             if(ans.QuestionDOL__r.RecordType.DeveloperName == 'Financial_Guarantee'){
                             //system.debug('after If : ans.Question__r.RecordType.DeveloperName::'+ans.Question__r.RecordType.DeveloperName);
     
