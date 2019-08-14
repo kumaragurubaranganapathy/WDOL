@@ -359,6 +359,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         for(String str : submissionList){
             str = str.trim();
         }
+		String strSubmission;
         String mastSubCond1 = 'Application_Type__c = \''+Board+'\'';
         String mastSubCond2 = 'Application_Method__c =\''+ApplicationType+'\'';
         String mastSubCond3 = 'Credential_Type__c =\''+LicenseType+'\'';
