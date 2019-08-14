@@ -45,7 +45,7 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
     <description>Violation cited on Complaints</description>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
@@ -55,7 +55,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>Add_Edit_Violations</fullName>
         <description>Add/Edit Violations button &amp; Page</description>
@@ -93,6 +93,7 @@
     </fieldSets>
     <fields>
         <fullName>Abatement_Requirement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Abatement Requirement</label>
         <length>32768</length>
@@ -103,6 +104,7 @@
     </fields>
     <fields>
         <fullName>Additional_Details__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Additional Details</label>
         <length>32768</length>
@@ -113,6 +115,7 @@
     </fields>
     <fields>
         <fullName>Cited_DateTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Cited Date</label>
         <required>false</required>
@@ -227,6 +230,7 @@
         <fullName>MUSW__Cited_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Cited Date</label>
         <required>false</required>
@@ -238,6 +242,7 @@
         <fullName>MUSW__Comments_Long__c</fullName>
         <deprecated>false</deprecated>
         <description>Longer field that replaces the 255 character comments field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -250,6 +255,7 @@
         <fullName>MUSW__Comments__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated; replaced by Description.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <required>false</required>
@@ -290,6 +296,7 @@
         <fullName>MUSW__Compliance_Due_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Due date for the violation to be closed (abated); this is often used in letters.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Compliance Due Date</label>
         <required>false</required>
@@ -301,6 +308,7 @@
         <fullName>MUSW__Corrected_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date violation was actually closed (abated).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Corrected Date</label>
         <required>false</required>
@@ -379,6 +387,7 @@
     <fields>
         <fullName>MUSW__Location__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Location</label>
         <length>30</length>
@@ -416,14 +425,19 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Corrected</fullName>
-                    <default>false</default>
-                    <label>Corrected</label>
+                    <fullName>Allegation</fullName>
+                    <default>true</default>
+                    <label>Allegation</label>
                 </value>
                 <value>
-                    <fullName>Open</fullName>
-                    <default>true</default>
-                    <label>Open</label>
+                    <fullName>Finding</fullName>
+                    <default>false</default>
+                    <label>Finding</label>
+                </value>
+                <value>
+                    <fullName>Charged</fullName>
+                    <default>false</default>
+                    <label>Charged</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -479,6 +493,7 @@
     </fields>
     <fields>
         <fullName>Title__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Title</label>
         <length>45</length>
@@ -553,6 +568,6 @@
         <openType>sidebar</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/apex/ViolationAddEdit?pid={!MUSW__Permit2__c.Id}{!MUSW__Parcel__c.Id}{!MUSW__Complaint2__c.Id}</url>
+        <url>/apex/ViolationAddEdit?pid={!MUSW__Permit2__c.Id}{!MUSW__Parcel__c.Id}</url>
     </webLinks>
 </CustomObject>
