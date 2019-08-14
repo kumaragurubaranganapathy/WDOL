@@ -69,6 +69,7 @@ public with sharing class LnP_UpdateOvershortAmountClass {
                     receiptRec = new MUSW__Receipt__c();
                     receiptRec.MUSW__Amount_Tendered__c =  FeeRec.MUSW__Outstanding_Fee__c;
                     receiptRec.MUSW__Payment_Method__c ='Overshort';
+					receiptRec.Intake_Method__c ='Validation Room';
             }else{
                 return 'Validation Error';
             }
