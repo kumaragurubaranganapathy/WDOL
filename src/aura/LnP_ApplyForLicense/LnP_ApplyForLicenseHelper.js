@@ -217,11 +217,12 @@
                 var isBizLic = component.get("v.isbusinsessLicense");
                 
                 var str = isBizLic?'/business':'/newdashboard';
-                var urlEvent = $A.get("e.force:navigateToURL");
+				window.location.href = str;
+                /*var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
                 });
-                urlEvent.fire();
+                urlEvent.fire();*/
             }), 2000
         );
         
