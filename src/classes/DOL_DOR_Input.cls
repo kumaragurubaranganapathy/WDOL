@@ -38,12 +38,16 @@ public class DOL_DOR_Input {
 		public String dorLocPhysicalState;
 		public String dorLocPhysicalZip;
 		public String dorLocOpenDate;
-		public String dorGovPerFirstName;
-		public String dorGovPerMiddleName;
-		public String dorGovPerLastName;
 		public String dorTradeName;
 		public String dolProfCode;
 		public String fileName;
+		public List<GovernPerson> governPerson;
+
+	public class GovernPerson {
+		public String dorGovPerLastName;
+		public String dorGovPerFirstName;
+		public String dorGovPerMiddleName;
+	}
     
     public static DOL_DOR_Input parse(String json) {
 		return (DOL_DOR_Input) System.JSON.deserialize(json, DOL_DOR_Input.class);
