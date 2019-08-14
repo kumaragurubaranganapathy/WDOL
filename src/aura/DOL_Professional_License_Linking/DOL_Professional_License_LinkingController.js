@@ -57,5 +57,18 @@
     },
     redirectRequest : function(component,event,helper){
         helper.redirectRequest(component,event,helper);
+    },
+    sendEmail : function(component,event,helper){
+       var value = component.get("v.value");
+       component.set('v.media',value); 
+       
+       component.set('v.disabled',false);
+    },
+    sendEmailFinal : function(component,event,helper) {
+        var value = component.get('v.media');
+        if(value =='Email') {
+            helper.sendEmailHelper(component,event,helper);
+        }  
     }
+
 })

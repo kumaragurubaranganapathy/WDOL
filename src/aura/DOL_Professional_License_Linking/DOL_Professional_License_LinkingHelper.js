@@ -141,6 +141,38 @@
             "url": str
         });
         urlEvent.fire();*/
+    },
+    sendEmailHelper : function(component,event){
+      var action = component.get("c.sendActivationCodeEmail");
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS"){
+                    var toastEvent = $A.get("e.force:showToast");
+                    var message = response.getReturnValue();
+                    toastEvent.setParams({
+                        "title": "",
+                        "message": message,
+                        "type": "Success"
+                    });
+                    toastEvent.fire();                    
+                    component.set("v.loadingSpinner",false);
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": "/to-do"
+                    });
+                    urlEvent.fire();
+                } else {
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "Error!",
+                        "message": result,
+                        "type": "Error"
+                    });
+                    toastEvent.fire();  
+                    component.set("v.loadingSpinner",false);
+                }
+        });
+        $A.enqueueAction(action); 
     }
     
 })
