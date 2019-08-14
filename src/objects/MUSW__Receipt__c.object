@@ -1211,7 +1211,7 @@
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Reason_for_DHP__c</fullName>
         <description>US-1656</description>
         <externalId>false</externalId>
@@ -1219,7 +1219,27 @@
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>ACH Return</fullName>
+                    <default>false</default>
+                    <label>ACH Return</label>
+                </value>
+                <value>
+                    <fullName>Bounced Check</fullName>
+                    <default>false</default>
+                    <label>Bounced Check</label>
+                </value>
+                <value>
+                    <fullName>Credit Card Chargeback</fullName>
+                    <default>false</default>
+                    <label>Credit Card Chargeback</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Remitter__c</fullName>
