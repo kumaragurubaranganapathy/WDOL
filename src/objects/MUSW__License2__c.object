@@ -1788,7 +1788,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <fullName>Is_Renewal_Eligible__c</fullName>
         <description>Formula to determine renewal eligibility</description>
         <externalId>false</externalId>
-        <formula>IF(TODAY() &gt;= Renewal_Eligible_Start_Date__c  &amp;&amp; Is_Reinstatement_Eligible__c==False , TRUE, FALSE)</formula>
+        <formula>IF(TODAY() &gt;= Renewal_Eligible_Start_Date__c  &amp;&amp; Is_Reinstatement_Eligible__c==False &amp;&amp; Polaris_DHP__c ==False , TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Is Renewal Eligible?</label>
         <trackHistory>false</trackHistory>

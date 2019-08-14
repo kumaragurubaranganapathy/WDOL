@@ -51,7 +51,7 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
                     licenseDHPTask.RecordTypeId = recordTypeId;
                     licenseDHPTask.Type = 'DHP';
                     licenseDHPTask.Description = 'DHP Reminder';
-                    licenseDHPTask.Status = 'Open';
+                    licenseDHPTask.Status = 'Pending';
                     licenseDHPTask.Subject = 'Bounced Check';
                     updaterelatedRenewalApplications.add(relatedRenewalApplicationRecord);
                     insertLicenseDHPTask.add(licenseDHPTask);

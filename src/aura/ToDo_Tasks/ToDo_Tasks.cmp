@@ -344,6 +344,27 @@ _______________________________________________________________
                         </div>
                     </div>
                 </aura:if>
+				<aura:if isTrue="{!task.Type == 'DHP' }"> <!-- DHP Task-->
+                    <div class="task-wrapper">
+                        <div class="task-subject">
+                            Bad Payment: {!task.Subject}
+                        </div>
+                        <lightning:layout class="license-outer-wrapper slds-wrap">
+                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                <div class="field-style">
+                                    <span class="label-style">Comments: </span>
+                                    <span class="data-style">{!task.Subject}</span>
+                                </div>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                        <!--<div class="button-wrapper license-btn">                                    
+                            <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                            <div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
+                            <lightning:button class="accept-btn"  variant="brand"   label="Reschedule Exam" value="{!task}" onclick="{!c.openModelReschedule}"/>
+                            </div>
+                        </div>-->
+                    </div>
+                </aura:if>
             </aura:iteration>
         </aura:if>
         <aura:if isTrue="{!v.AddBusinessAccountsStatusAlert}">
