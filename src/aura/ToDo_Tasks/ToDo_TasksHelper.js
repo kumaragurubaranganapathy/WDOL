@@ -256,7 +256,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 var data = response.getReturnValue();                
-                if(data){
+                if(data.length!==0){
                     component.set("v.isBusiness",true);
                 }                                  
             }                          

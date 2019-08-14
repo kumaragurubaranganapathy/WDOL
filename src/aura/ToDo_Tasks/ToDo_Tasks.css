@@ -22,7 +22,7 @@ content:"\2714\0020";
     margin-left: 1rem;
 }
 .THIS .new-wrapper{
-    margin:1rem 0;
+    margin:1rem 0 0;
 }
 .THIS .newbiz-wrapper{
     margin-top:1rem;
@@ -83,7 +83,6 @@ content:"\2714\0020";
     padding-top:30px;
     display:flex;
     justify-content:space-between;
-    align-items:normal;
 }
 .THIS .ind-account-wrapper{
     padding-bottom:1.25rem;
@@ -167,7 +166,7 @@ content:"\2714\0020";
 .THIS .ser-btn-wrapper{
     margin-top:1rem;
 }
-.THIS .ind-account-wrapper .ser-btn-wrapper{
+.THIS .ind-account-wrapper .ser-btn-wrapper, .THIS .new-wrapper .ser-btn-wrapper{
     margin-top:0;
 }
 @media screen and (max-width: 1279.9px){
