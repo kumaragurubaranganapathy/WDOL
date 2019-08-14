@@ -368,7 +368,15 @@
     <fields>
         <fullName>Intake_Method__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK(BGBK__Fee__c),IF( ISBLANK(Fee_Payment__c) , IF( ISBLANK( BGBK__Receipt__c ) , text(Payable_Receipt__r.MUSW__Receipt__r.Intake_Method__c) , text(BGBK__Receipt__r.Intake_Method__c) ) , text(Fee_Payment__r.MUSW__Receipt__r.Intake_Method__c) ),&quot;N/A&quot;)</formula>
+        <formula>IF(ISBLANK(Deposit__c),
+  IF(ISBLANK(BGBK__Fee__c),
+    IF( ISBLANK(Fee_Payment__c) , 
+      IF( ISBLANK( BGBK__Receipt__c ) , 
+        text(Payable_Receipt__r.MUSW__Receipt__r.Intake_Method__c) , 
+        text(BGBK__Receipt__r.Intake_Method__c) ) , 
+      text(Fee_Payment__r.MUSW__Receipt__r.Intake_Method__c) )
+    ,&quot;N/A&quot;),
+  &quot;Validation Room&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Intake Method</label>
         <required>false</required>
