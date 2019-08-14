@@ -81,7 +81,7 @@ public with sharing class CartController
     public boolean requestFromEPayment {get; set;}
     public DOL_ePaymentReturnSession ePaymentReturnSession {get; set;}
     public List<Profile> portalProfiles {get;set;}
-    
+    public string checkOptionName {get;set;} //- Added as a part of bug 6337 by Abhilasha 
     
     //Navigation Variables
     public Integer counter = 0;    // To track number of records parsed
@@ -90,7 +90,7 @@ public with sharing class CartController
     
     public CartController(ApexPages.StandardSetController c)
     {
-        
+        checkOptionName = 'Check/Cashier\'s Check'; // Added as a part of bug 6337 by Abhilasha
         processSuccessful = false;
         totalSelected = 0;
         totalSelectedOutstanding = 0;

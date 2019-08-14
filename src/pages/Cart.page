@@ -637,6 +637,13 @@
                                 <apex:inputField label="Voucher Number" id="voucherCheckNumber" value="{!rvo.r.Voucher_Number__c}" />
                             </apex:pageBlockSection>
                         </apex:outputPanel>
+						<!-- Added as a part of bug 6337 by Abhilasha -->
+                        <apex:outputPanel id="formNumberInput" rendered="{!rvo.r.MUSW__Payment_Method__c = checkOptionName || rvo.r.MUSW__Payment_Method__c = 'Money Order'}" >
+                            <apex:pageBlockSection columns="1" id="formNumberInputCheckout">
+                                <apex:inputField label="Form Number" id="formNumberInputField" value="{!rvo.r.Form_Number__c}"
+                                />
+                            </apex:pageBlockSection>
+                        </apex:outputPanel>
                         <!--Added by Vinanthi-->
                         <apex:outputPanel id="PIN" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Pay by Employer'}">
                             <apex:pageBlockSection columns="1" id="PINCheckout">
