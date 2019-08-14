@@ -7,11 +7,14 @@
     <aura:attribute name="parentLicense" type="string" />
     <aura:attribute name="licenseRecord" type="MUSW__License2__c" />
     <aura:attribute name="today" type="Date" /> 
+	<aura:attribute name="loadingSpinner" type="Boolean" default="true" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="associationFields" type="String[]" default="['Association_Type__c','Child_License__c']" />
     <aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
     <lightning:notificationsLibrary aura:id="notifLib"/>
-    
+    <aura:if isTrue="{!v.loadingSpinner}">
+        <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
+    </aura:if>
     
     <div class="association-wrapper">
         <div class="{!v.isAssociationOpen?'slds-hide':'slds-float_right'}">
