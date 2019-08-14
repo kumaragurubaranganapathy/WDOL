@@ -315,7 +315,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         return parser;
     }
     
-   public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
+   public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType,String upgradeLicenseId){
         Set<String> submissionList  = new Set<String>(); 
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<MUSW__Master_Submission_List__c> masterSubmissionList = new List<MUSW__Master_Submission_List__c>();
@@ -363,7 +363,19 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         String mastSubCond2 = 'Application_Method__c =\''+ApplicationType+'\'';
         String mastSubCond3 = 'Credential_Type__c =\''+LicenseType+'\'';
         String mastSubCond4 = 'Title__c IN: XXX ORDER BY  Order_No__c ASC';
-        String strSubmission = 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
+          MUSW__License2__c upgradeLic;
+        System.debug('upgradeLicenseId:'+upgradeLicenseId);
+        if(upgradeLicenseId!=null)
+        {
+            upgradeLic = [SELECT id,Credential_Type__c FROM MUSW__License2__c where id=:upgradeLicenseId limit 1];
+        } 
+        if(upgradeLic != null){
+            String mastSubCond5 = 'Show_For_License__c =\''+upgradeLic.Credential_Type__c+'\'';        
+            strSubmission = 'Select Id, Show_For_License__c,Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ( ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+' AND '+mastSubCond5+' ) OR (Title__c IN: XXX) ORDER BY  Order_No__c ASC' ;
+        }
+        else{
+            strSubmission = 'Select Id, Show_For_License__c,Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4+ ' ORDER BY  Order_No__c ASC ' ;
+        }
         system.debug('submissionList'+submissionList);
         masterSubmissionList = Utilityclass_withsharing.queryRecordsInClause(strSubmission,submissionList);
         system.debug('masterSubmissionList12345'+masterSubmissionList);
@@ -431,7 +443,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         return wrapperList;
     }
     @AuraEnabled 
-    public static String insertApplication(String dataString, Integer tabNumber, Id appId, String Board, String LicenseType, String ApplicationType){
+    public static String insertApplication(String dataString, Integer tabNumber, Id appId, String Board, String LicenseType, String ApplicationType,String upgradeLicenseId){
         Boolean questionsIncomplete = false;
         Boolean FGquestionsIncomplete = false;
         Boolean CIquestionsIncomplete = false;
@@ -452,7 +464,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
             system.debug('accountId---'+accountId);
         }
-        wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType);
+        wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType,upgradeLicenseId);
         System.debug('Wrapper'+JSON.serialize(wrapperList));
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
