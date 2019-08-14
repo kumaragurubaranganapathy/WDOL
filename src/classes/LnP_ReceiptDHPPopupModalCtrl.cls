@@ -4,21 +4,20 @@
  * 
  */ 
 
-public class LnP_ReceiptDHPPopupModalCtrl {
+public with sharing class LnP_ReceiptDHPPopupModalCtrl {
     
     @AuraEnabled
     public static String saveLicenseandReceipt(Id receiptId){
         try{
             MUSW__Receipt__c receiptRec = [Select Id,
-										   Name,
+                                           Name,
                                            MUSW__Amount_Tendered__c,
                                            MUSW__Check_Number__c,
                                            MUSW__Payment_Method__c,
                                            DHP__c,
                                            Inactivate_License_Date__c,
-                                           Override_25_Handling_Fee__c,
-                                           Sent_to_Collections__c,
-                                           Reason_for_DHP__c 
+                                           //Reason_for_DHP__c,
+                                           Override_25_Handling_Fee__c
                                            FROM MUSW__Receipt__c
                                            WHERE Id = :receiptId
                                           ];
@@ -82,6 +81,7 @@ public class LnP_ReceiptDHPPopupModalCtrl {
                     licRec.MUSW__Status__c = 'Inactive';
                     licRec.DHP_Stamp_Date__c = System.today();
                     licRec.Polaris_Dishonored_Receipt_ID__c = receiptRec.Name;
+                    system.debug('licRec.Polaris_Dishonored_Receipt_ID__c : '+licRec.Polaris_Dishonored_Receipt_ID__c);
                     licenseToBeUpdatedwithDHP.add(licRec);
                 }
                 system.debug('Before Update ' + licenseToBeUpdatedwithDHP);
