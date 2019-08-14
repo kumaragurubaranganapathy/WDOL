@@ -285,7 +285,8 @@
                                 }else{ 
                                     that.hideSpinner(component, event);
 									var isBizLic = component.get("v.isbusinsessLicense");
-									var str ='/cart?id='+id+'&isBLic='+isBizLic;
+									//var str ='/cart?id='+id+'&isBLic='+isBizLic;
+									var str ='/cart?id='+id;
                                     var urlEvent = $A.get("e.force:navigateToURL");
                                     urlEvent.setParams({
                                         "url": str
@@ -455,7 +456,8 @@
     closeModel: function(component, event) {
         component.set("v.isOpen", false);
 		var isBizLic = component.get("v.isbusinsessLicense");
-        var str ='/user-feedback?isBizLic='+isBizLic;
+        //var str ='/user-feedback?isBizLic='+isBizLic;
+		var str ='/user-feedback';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str
