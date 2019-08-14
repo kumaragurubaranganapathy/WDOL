@@ -660,13 +660,13 @@
                                                       density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}"
                                                       onerror="{!c.handleAssociationSubmissionError}" recordTypeId="{!v.setAssociationRecordTypeId}">
                                 <lightning:messages />
-                                <lightning:inputField fieldName="Name__c" />
+                                <!--<lightning:inputField fieldName="Name__c" />-->
                                 <lightning:inputField fieldName="Association_Type__c" />
                                 <lightning:inputField fieldName="Child_License__c" />
                                 <lightning:inputField fieldName="Status__c" value="Invited" class="slds-hide" />
                                 <lightning:inputField fieldName="Parent_License__c" value="{!v.detailLicenseData[0].Id}"
                                                       />
-                                <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee"
+                                <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee" onclick = "{!c.showSpinner}"
                                                   />
                             </lightning:recordEditForm>
                         </div>

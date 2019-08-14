@@ -1,6 +1,7 @@
 ({
     doInit : function(component, event, helper) {
 		helper.fetchLicenseDetailsHelper(component, event, helper);
+		component.set("v.loadingSpinner",false);
 	},
 	handleClick : function(component, event) {
 		component.set("v.isOpen",true);
@@ -16,6 +17,7 @@
 	},
     
     saveData : function(component,event){
+		component.set("v.loadingSpinner",true);
         //alert('Associations :'+component.get("v.licenseRecord.No_of_Associations__c")+'license Type:'+component.get("v.licenseRecord.Credential_Type__c"));
         if(component.get("v.licenseRecord.No_of_Associations__c")>=3 && (component.get("v.licenseRecord.Credential_Type__c") === 'Certified General Appraiser' || component.get("v.licenseRecord.Credential_Type__c") === 'Certified Residential Appraiser'))
         {
@@ -45,6 +47,7 @@
 	},
     
     handleSuccess : function(component, event, helper) {
+		component.set("v.loadingSpinner",false);
         component.find('notifLib').showToast({
             "variant": "success",
             "title": "Association Created",

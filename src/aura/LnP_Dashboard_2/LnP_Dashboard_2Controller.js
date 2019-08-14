@@ -30,6 +30,9 @@
         var value = component.get("v.helptextcontent");
         console.log('value::'+value);
     },
+	showSpinner: function(component, event, helper){
+        component.set("v.loadingSpinner",true);
+    },
     
     handleAssociationSubmissionSuccess: function(component, event, helper){
         
@@ -50,7 +53,7 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
-                
+                component.set("v.loadingSpinner",false);
                 if(response.getReturnValue()){
                     
                     helper.showToast(component, event, helper,"Association has been succesfully created ","success");  
