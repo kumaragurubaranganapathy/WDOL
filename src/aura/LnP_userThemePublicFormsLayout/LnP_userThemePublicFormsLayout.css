@@ -106,7 +106,7 @@ border-radius: 5px;
 .THIS .personal-info .slds-checkbox_faux{
     border:1px solid #5b616b;
 }
-.THIS .personal-info .slds-input:focus,.THIS .slds-select:focus,.THIS .validate .uiInputTextArea:focus{
+.THIS .personal-info .slds-input:focus,.THIS .slds-select:focus,.THIS .uiInputTextArea:focus{
     box-shadow:none;
     border: solid 1px #5b616b
 }
@@ -358,6 +358,12 @@ padding:0;
     box-shadow: none;
     text-decoration: underline;
     padding-bottom:3rem;
+}
+.THIS .buttonpos{
+    margin: 0;
+    padding-top: 45px;
+    padding-bottom: 22px;
+    border-top: 1px solid #5b616b;
 }
 .THIS .personal-info .slds-button_icon-bare{
     color:t(primary);
@@ -694,6 +700,11 @@ margin-right:10%;
     .THIS .slds-tabs_default__overflow-button .slds-button{
         
         font-size:0.8125rem;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .THIS .personal-info .field-size .slds-form-element__control{
+        width:100%
     }
 }
 .THIS .slds-spinner_container {
