@@ -1438,8 +1438,11 @@ system.debug('!!!underpayment : ');
         //Added by Abhilasha as a part of bug:4012
         if(con == null){ //check if existing cart has contact.
             if(cart.BGBK__Contact__c != null){
-                Id AccountId = [Select AccountId From Contact Where Id = :cart.BGBK__Contact__c limit 1].AccountId;
-                for(ReceiptVO rvo : receiptVOs){
+                Contact cont = [Select Id,AccountId,Email From Contact Where Id = :cart.BGBK__Contact__c limit 1];
+                Id AccountId = cont.AccountId;
+                String contEmail = cont.Email; 
+                email = contEmail; // for bug 6292
+				for(ReceiptVO rvo : receiptVOs){
                     if(rvo.r.MUSW__Receipt_Paid_by__c == null){
                         rvo.r.MUSW__Receipt_Paid_By__c = cart.BGBK__Contact__c;
                         rvo.r.MUSW__Paid_By__c = AccountId;

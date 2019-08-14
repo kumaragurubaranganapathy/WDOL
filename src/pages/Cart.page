@@ -370,7 +370,7 @@
                             --->
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
                             <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Contact__c}" id="contact">
-                                <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection"
+                                <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection,email"
                                 />
                             </apex:inputField>
                             <br/>
