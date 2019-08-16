@@ -42,6 +42,7 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
             List<Renewal_Application__c> updaterelatedRenewalApplications = new List<Renewal_Application__c>();
             List<Task> insertLicenseDHPTask = new List<Task>();
             Id recordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByName().get('Reminder').getRecordTypeId();
+			User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
             for(Renewal_Application__c relatedRenewalApplicationRecord :relatedRenewalApplications ){
                 if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true && trigger.NewMap.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c != trigger.OldMap.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c){
                     System.debug('Update');
@@ -52,6 +53,7 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
                     licenseDHPTask.Type = 'DHP';
                     licenseDHPTask.Description = 'DHP Reminder';
                     licenseDHPTask.Status = 'Pending';
+					licenseDHPTask.Email__c=currentUser.Email;
                     licenseDHPTask.Subject = 'Bounced Check';
                     updaterelatedRenewalApplications.add(relatedRenewalApplicationRecord);
                     insertLicenseDHPTask.add(licenseDHPTask);
