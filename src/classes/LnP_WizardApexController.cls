@@ -193,7 +193,7 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         system.debug('queryStr '+queryStr);
         system.debug('applicationType : '+applicationType);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = '003r000000EOhBB';
+        Id getContactId = null;
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
@@ -273,6 +273,7 @@ application.MUSW_Account__c = account;*/
         if(lic!=null)
         {
             lic.Application__c = application.Id;
+            lic.Renew_Reinstatement_in_progress__c = true;
             update lic;
         }
         Set<Id> parcelIds = new Set<Id>();

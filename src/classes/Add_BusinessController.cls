@@ -332,10 +332,10 @@ public with sharing class Add_BusinessController {
             Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();
             List<SObject> columnDataList;
             if(branch){    
-                columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c,Application_Method__c FROM MUSW__License2__c WHERE recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
+                columnDataList = [SELECT id, Name, Application_Type__c,Renew_Reinstatement_in_progress__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c,Application_Method__c FROM MUSW__License2__c WHERE recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
                 
             }else{
-                columnDataList = [SELECT id, Name, Application_Type__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c,Application_Method__c FROM MUSW__License2__c WHERE Ultimate_Parent_Account__c =:AccountId AND recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND isBranch_License__c= false ];
+                columnDataList = [SELECT id, Name, Application_Type__c,Renew_Reinstatement_in_progress__c,Application__c,Application__r.isRenewal__c,MUSW__Primary_Licensee__c, Credential_Type__c, MUSW__Expiration_Date__c,Is_Renewal_Eligible__c,Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c, MUSW__Status__c, Sub_Status__c,Application_Method__c FROM MUSW__License2__c WHERE Ultimate_Parent_Account__c =:AccountId AND recordTypeId = :businessRT and MUSW__Status__c IN:statusFilterList AND isBranch_License__c= false ];
             }                           
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
