@@ -134,9 +134,10 @@ public without Sharing class DOL_License_Linking {
         List<MUSW__Account_Contact__c> lstAssociation = new List<MUSW__Account_Contact__c>();
         List<BGBK__Cart__c> lstCart = new List<BGBK__Cart__c>();
         List<MUSW__License2__c> lstlicense = new List<MUSW__License2__c>();
-        List<Contact>  lstContacts =[select id, (select id,Contact__c from Requests__r),(select id,MUSW__Contact__c from MUSW__Account_Contacts__r),
-                                  (select id,MUSW__Applicant__c from  MUSW__License2s__r),(select id,BGBK__Contact__c from  BGBK__Carts__r) 
+        List<Contact>  lstContacts =[select id, (select id,ownerId,Contact__c from Requests__r),(select id,ownerId,MUSW__Contact__c from MUSW__Account_Contacts__r),
+                                  (select id,MUSW__Applicant__c,ownerId from  MUSW__License2s__r),(select id,ownerId,BGBK__Contact__c from  BGBK__Carts__r) 
                                    from  Contact where Id =:contactId LIMIT 1];
+
         if(!lstContacts.isEmpty()) {
             if(!lstContacts[0].Requests__r.isEmpty()){
                lstrequset.addAll(lstContacts[0].Requests__r); 
@@ -153,10 +154,12 @@ public without Sharing class DOL_License_Linking {
         } 
         
         User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+        Id owner = currentUser.Id;
         Savepoint sp = Database.setSavepoint();
         if(!lstlicense.isEmpty()){
             for(MUSW__License2__c license : lstlicense){
                 license.MUSW__Applicant__c = currentUser.ContactId;
+                license.ownerId = owner;
             }
             try{
               Database.update(lstlicense);
@@ -172,6 +175,7 @@ public without Sharing class DOL_License_Linking {
        if(!lstrequset.isEmpty()){
             for(Request__c request : lstrequset){
                 request.Contact__c = currentUser.ContactId;
+                request.ownerId = owner;
             }
             try {
                 Database.update(lstrequset);
@@ -186,6 +190,7 @@ public without Sharing class DOL_License_Linking {
         if(!lstAssociation.isEmpty()){
             for(MUSW__Account_Contact__c accCon : lstAssociation){
                 accCon.MUSW__Contact__c = currentUser.ContactId;
+                accCon.ownerId = owner;
             }
             try {
               //  Utilityclass_withsharing.updateList(lstAssociation);
@@ -200,6 +205,7 @@ public without Sharing class DOL_License_Linking {
         if(!lstCart.isEmpty()){
             for(BGBK__Cart__c cart : lstCart){
                 cart.BGBK__Contact__c = currentUser.ContactId;
+                cart.ownerId = owner;
             }
             try {
                 Database.update(lstCart);
@@ -229,6 +235,24 @@ public without Sharing class DOL_License_Linking {
         return options;
         
     }
+    @AuraEnabled
+    public static string sendActivationEmail(){
+        DOL_AppUtility.isAuthenticatedUser() ;
+        User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email 
+                            from User Where ID = :UserInfo.getUserId() LIMIT 1];
+        List<Contact> currentContact = [Select Email,Id,Last_4_Digits_of_SSN__c,FirstName,LastName,Birthdate 
+                                        from Contact where ID =: currentUser.ContactId lIMIT 1];
+        string message='';
+        String maskedEmail ='';
+
+        if(!currentContact.isEmpty()) {
+            List<String> email= new List<String>();
+            email.add(currentContact[0].Email);
+            maskedEmail = email[0].replaceAll('(^[^@]{3}|(?!^)\\G)[^@]', '$1*');
+        }
+        message = 'Activation code will be emailed to' + ' ' + maskedEmail;
+        return message;
+    } 
     @AuraEnabled
     public static string sendActivationCodeEmail(){
         DOL_AppUtility.isAuthenticatedUser() ;
@@ -271,7 +295,7 @@ public without Sharing class DOL_License_Linking {
         
         if(!mails.isEmpty()){
             Messaging.sendEmail(mails);
-            String maskedEmail = email[0].replaceAll('(^[^@]{3}|(?!^)\\G)[^@]', '$1*');
+            string maskedEmail = email[0].replaceAll('(^[^@]{3}|(?!^)\\G)[^@]', '$1*');
             message = Label.Activation_Code_Sent_Message + ' ' + maskedEmail;
         }
         
