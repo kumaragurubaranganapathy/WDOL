@@ -337,11 +337,22 @@
     },
     editDraftRenewApplications  : function(component, event, helper){
         var ctarget = event.currentTarget;
+        var renewReinste = '';
+        
+        if(ctarget.getAttribute("data-reinstatement")==='true')
+        {
+            renewReinste = 'Reinstatement';
+        }
+        else
+        {
+            renewReinste = 'Renewal';
+        }
         sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
         sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
         sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
         sessionStorage.setItem("flowType", "Application");
-        sessionStorage.setItem("renewalReinstate", "Renewal");
+        sessionStorage.setItem("renewalReinstate", renewReinste);
         window.location.href='/lightningwashington/s/polaris-renewal';  
         
     },

@@ -259,15 +259,25 @@ public without sharing class LnP_DashboardApexController_2 {
     @AuraEnabled
     public static String setDraftRenewApplicationsTable(){
         
+        
+        
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Last Updated'};
         //    List<String> statusFilterList = new List<String>{'Draft', 'Pending','Submission Failed'};
                     List<String> statusFilterList = new List<String>();
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-                List<SObject> columnDataList = [Select id,Name,License__r.name, Application_Type__c,Credential_Type__c,Renewal_Expiration_Date__c,Renewal_Status__c, LastModifiedDate
+                
+        List<SObject> columnDataList = [Select id,Name,Application_Type__c,Is_Reinstatement_Eligible__c,Application__c,MUSW__Expiration_Date__c,Application__r.LastModifiedDate,Application__r.isRenewal__c,Credential_Type__c,Application_Method__c, LastModifiedDate,MUSW__Status__c,Application__r.MUSW__Status__c
+                                        from MUSW__License2__c
+                                        where Application__r.MUSW__Status__c IN :statusFilterList AND Application__r.isRenewal__c = True AND MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY Application__r.CreatedDate asc];
+        
+        /*
+        List<SObject> columnDataList = [Select id,Name,License__r.name, Application_Type__c,Credential_Type__c,Renewal_Expiration_Date__c,Renewal_Status__c, LastModifiedDate
                                                 from Renewal_Application__c
                                                 where Renewal_Status__c In: statusFilterList AND Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId()) ORDER BY CreatedDate asc];
-        
+                
+        */
+       
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
         return JSON.serialize(wrapperObj,true); 
