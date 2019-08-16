@@ -1229,6 +1229,7 @@ system.debug('!!!underpayment : ');
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = 'Draft';
+		receipt.MUSW__Payment_Gateway_Transaction_Number__c = 'temp'; // BG Case 10041
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
