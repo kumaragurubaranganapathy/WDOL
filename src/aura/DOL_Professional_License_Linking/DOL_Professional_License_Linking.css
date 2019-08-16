@@ -36,13 +36,54 @@
 .THIS .link-help{
 	padding-bottom:0.5rem;
 }
+.THIS .slds-button:disabled{
+    background: t(LnGGrayText);
+}
+.THIS .proceed-btn{
+    width: 130px;
+    height: 42px;
+}
+.THIS .sentenceflex{
+    display:flex;
+}
+.THIS .txtStyle{
+    color:t(primary);
+}
+.THIS .txtclr{
+    color:t(gray);
+}
 .THIS .button-wrapper{
     display:flex;
     justify-content:flex-end;
     margin-top:1.25rem;
 }
-.THIS .radio-style .slds-form-element__control{
+.THIS .btnAlign{
+    text-align:right;
+    margin-top:20px;
+}
+.THIS .test{
+    height:42px;
+   
+}
+/*.THIS .radio-style .slds-form-element__control{
     display:flex;
+}*/
+.THIS .emailInp{
+    display:inline-block
+}
+.THIS .flexdisp{
+    display:flex;
+}
+.THIS .itemBtm{
+    padding-top:10px;
+}
+.THIS .flexdisp .slds-form-element__label{
+    font-weight:bold;
+}
+.THIS .emaillabel{
+    font-size: 13px;
+    margin-left: 15px;
+    margin-top:4px;
 }
 .THIS .radio-style .slds-radio{
     margin-right:8rem;

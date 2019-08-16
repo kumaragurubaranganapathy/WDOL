@@ -112,7 +112,7 @@
                     component.set("v.loadingSpinner",false);
                     var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
-                        "url": "/to-do"
+                        "url": "/newdashboard"
                     });
                     urlEvent.fire();
                 } else {
@@ -146,7 +146,9 @@
       var action = component.get("c.sendActivationCodeEmail");
         action.setCallback(this, function(response){
             var state = response.getState();
+            var result = response.getReturnValue();
             if (state === "SUCCESS"){
+                 
                     var toastEvent = $A.get("e.force:showToast");
                     var message = response.getReturnValue();
                     toastEvent.setParams({
@@ -173,6 +175,35 @@
                 }
         });
         $A.enqueueAction(action); 
-    }
+    },
+      sendActivationEmail : function(component,event,helper){
+      var action = component.get("c.sendActivationEmail");
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            var result = response.getReturnValue();
+            if (state === "SUCCESS"){
+                   var message = response.getReturnValue();
+                   component.set('v.emailID',message);
+                   
+                   component.set('v.disabled',false);
+                } else {
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "Error!",
+                        "message": 'Error occoured please contact system admin!!',
+                        "type": "Error"
+                    });
+                    toastEvent.fire();  
+                    component.set("v.loadingSpinner",false);
+                }
+        });
+        $A.enqueueAction(action); 
+    },
+    sendMail : function(component,event,helper){
+    
+   
+     component.set('v.disabled',false);
+     component.set('v.emailID','')
+}
     
 })
