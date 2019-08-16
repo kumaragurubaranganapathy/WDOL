@@ -115,10 +115,10 @@
     <fields>
         <fullName>Convenience_fees__c</fullName>
         <externalId>false</externalId>
-        <label>Convenience fees</label>
+        <label>Voucher Payment</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -137,10 +137,10 @@
     <fields>
         <fullName>Startup__c</fullName>
         <externalId>false</externalId>
-        <label>Startup</label>
+        <label>Opening Balance</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -201,7 +201,7 @@
         <label>Total check + Credit card</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -225,7 +225,7 @@
         <label>Total credit card receipts</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>

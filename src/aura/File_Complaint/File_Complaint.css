@@ -15,12 +15,12 @@
     width:50%;
 }
 .THIS .page-content .heading{
-  font-family: t(merrifontfamily);
-  font-size: 20px;
-  font-weight: t(txtfontweight);
-  font-style: t(txtfontstyle);
-  line-height: normal;
-  color: t(fieldclr);
+    font-family: t(merrifontfamily);
+    font-size: 20px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(fieldclr);
 }
 .THIS .complaint-path {
     padding:50px 0px 70px;
@@ -169,6 +169,7 @@
   box-shadow: 0 0 0 5px #e2574c;
   margin:10px;
 }
+ 
 @media t(mqSmall){
 	.THIS .slds-path__title {
         overflow: visible;
@@ -227,6 +228,7 @@
   .THIS .mobile-tab-view{
 	display:none;
   }
+    
 }
 .THIS hover{
    cursor: pointer; 
@@ -364,6 +366,15 @@
     width: 130px;
     font-size: 17px;
 }
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+      
+      
+        .THIS.page-width{
+            margin: 0 7.5rem;
+            width: auto;
+        }
+       
+} 
 @media t(mqSmall){
 .THIS .complaint-btn-wrapper button.slds-button {
     width: 100%;    
@@ -382,6 +393,9 @@
     font-weight:600
 }
 .THIS .confirmation-header > div {
+    font-size: 16px;
+}
+.THIS .page-content .heading{
     font-size: 16px;
 }
 }
