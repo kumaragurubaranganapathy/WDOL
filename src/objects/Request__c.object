@@ -177,6 +177,17 @@
         <type>Lookup</type>
     </fields>
 	<fields>
+        <fullName>Exam_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Exam__r.Exam_Type__c)</formula>
+        <label>Exam Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
         <fullName>Validation_Number__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
