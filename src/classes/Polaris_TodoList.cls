@@ -188,7 +188,34 @@ public without Sharing class  Polaris_TodoList{
              return hasBusinessAccounts = true;
         }
     }
-    
+        @AuraEnabled
+    public static boolean hasLicenses(){
+        
+        Boolean hasLicenses = true;
+        
+        try{
+            
+            List<MUSW__License2__c> accList = [select id from  MUSW__License2__c where owner.id =: UserInfo.getUserId() ];
+            
+            If(accList != null){
+                
+                if(accList.size()!=0){
+                    
+                    hasLicenses = true;
+                    
+                }else{
+                    
+                    hasLicenses = false;
+                }
+            }
+            
+            return hasLicenses;
+            
+        }catch(Exception Ex){
+            
+            return hasLicenses = true;
+        }
+    }
     public class ToDoWrapper{
         @AuraEnabled
         public string businessName;
