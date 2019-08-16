@@ -53,7 +53,7 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         if( licenseRecord == null ){
             throw new CustomException('License record not found');
         }
-        if(! ( licenseRecord.Is_Renewal_Eligible__c || licenseRecord.Is_Late_Renewal_Eligible__c ) ){
+        if(! ( licenseRecord.Is_Renewal_Eligible__c || licenseRecord.Is_Reinstatement_Eligible__c ) ){
             throw new CustomException('MUSW__License2__c record with Id '+licenseRecord.Id+' is not eligible for Renewal');
         }
         List<Renewal_Application__c> renewalApps =  licenseRecord.Renewal_Applications__r;
@@ -82,8 +82,22 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         tempRenewalApplication.Licensee__c = licenseRecord.MUSW__Primary_Licensee__c;
         tempRenewalApplication.License__c = licenseRecord.Id;
         tempRenewalApplication.Renewal_Status__c = 'Generate Fee';
-        tempRenewalApplication.Renewal_Reinstatement_Type__c = 'Renewal';
+        if(licenseRecord.Is_Renewal_Eligible__c)
+            tempRenewalApplication.Renewal_Reinstatement_Type__c = 'Renewal';
+        else
+            tempRenewalApplication.Renewal_Reinstatement_Type__c = 'Reinstatement';
         tempRenewalApplication.RecordTypeId = getRenewalAppRecordTypeId(licenseRecord.RecordType.Name);
+        // below are exception Application Type
+        if(licenseRecord.Application_Type__c == 'Camping Resorts'){
+            tempRenewalApplication.Camping_Resorts__c = licenseRecord.Camping_Resorts__c;
+            tempRenewalApplication.Initial_Contracts__c = licenseRecord.Initial_Contracts__c;
+        }else if(licenseRecord.Application_Type__c == 'Timeshares'){
+            tempRenewalApplication.Timeshare_Projects__c = licenseRecord.Timeshare_Projects__c;
+            tempRenewalApplication.Apartment_Units__c = licenseRecord.Apartment_Units__c;
+            tempRenewalApplication.Interval_fees__c = licenseRecord.Interval_fees__c;
+            tempRenewalApplication.Advertising_Fees__c = licenseRecord.Advertising_Fees__c;
+            tempRenewalApplication.Pieces_of_Personal_Property__c = licenseRecord.Pieces_of_Personal_Property__c;
+        }
         DOL_Dao.save(tempRenewalApplication);
         tempNCRFileData.INFO__C += ' Renewal_Application__c created '+tempRenewalApplication.Id;
     }
@@ -113,10 +127,11 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
             feeIdList.add(fee.Id);
         }
         MUSW__Receipt__c ncrReceipt = new MUSW__Receipt__c();
-        ncrReceipt.MUSW__Payment_Method__c = 'NCR Payment';
+        ncrReceipt.MUSW__Payment_Method__c = 'NCR Cash';
         ncrReceipt.MUSW__Paid_By__c = licenseRecord.MUSW__Primary_Licensee__c;
         ncrReceipt.MUSW__Receipt_Paid_by__c = licenseRecord.MUSW__Applicant__c;
         ncrReceipt.Selected_Fees__c = String.join(feeIdList, ',');
+        ncrReceipt.Intake_Method__c = 'Counter';
         insert ncrReceipt;
         tempNCRFileData.INFO__C += ' Receipt Created = '+ncrReceipt.Id;
         // Here cartId is null , as we are not creating any cart

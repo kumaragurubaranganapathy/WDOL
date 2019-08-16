@@ -81,7 +81,7 @@ public with sharing class CartController
     public boolean requestFromEPayment {get; set;}
     public DOL_ePaymentReturnSession ePaymentReturnSession {get; set;}
     public List<Profile> portalProfiles {get;set;}
-    
+    public string checkOptionName {get;set;} //- Added as a part of bug 6337 by Abhilasha 
     
     //Navigation Variables
     public Integer counter = 0;    // To track number of records parsed
@@ -90,7 +90,7 @@ public with sharing class CartController
     
     public CartController(ApexPages.StandardSetController c)
     {
-        
+        checkOptionName = 'Check/Cashier\'s Check'; // Added as a part of bug 6337 by Abhilasha
         processSuccessful = false;
         totalSelected = 0;
         totalSelectedOutstanding = 0;
@@ -476,6 +476,7 @@ public with sharing class CartController
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
             }
+			pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
             return pmtMethods;
         }
         set;
@@ -1228,6 +1229,7 @@ system.debug('!!!underpayment : ');
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = 'Draft';
+		receipt.MUSW__Payment_Gateway_Transaction_Number__c = 'temp'; // BG Case 10041
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
@@ -1437,8 +1439,11 @@ system.debug('!!!underpayment : ');
         //Added by Abhilasha as a part of bug:4012
         if(con == null){ //check if existing cart has contact.
             if(cart.BGBK__Contact__c != null){
-                Id AccountId = [Select AccountId From Contact Where Id = :cart.BGBK__Contact__c limit 1].AccountId;
-                for(ReceiptVO rvo : receiptVOs){
+                Contact cont = [Select Id,AccountId,Email From Contact Where Id = :cart.BGBK__Contact__c limit 1];
+                Id AccountId = cont.AccountId;
+                String contEmail = cont.Email; 
+                email = contEmail; // for bug 6292
+				for(ReceiptVO rvo : receiptVOs){
                     if(rvo.r.MUSW__Receipt_Paid_by__c == null){
                         rvo.r.MUSW__Receipt_Paid_By__c = cart.BGBK__Contact__c;
                         rvo.r.MUSW__Paid_By__c = AccountId;

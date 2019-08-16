@@ -340,7 +340,7 @@
                             </apex:column>
                             
                             <apex:repeat value="{!$ObjectType.BGBK__Bill__c.FieldSets.BGBK__Invoice_Basic}" var="ff">                
-                                <apex:column headerValue="{!ff.label}" rendered="{!!isPortalUser}">
+                                <apex:column headerValue="{!ff.label}" ><!--rendered="{!!isPortalUser}"> Commenting as a part of bug 6064 -->
                                     <apex:outputField value="{!inv.i[ff]}"/>
                                 </apex:column>
                             </apex:repeat>
@@ -370,7 +370,7 @@
                             --->
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
                             <apex:inputField rendered="{!!isPortalUser}" value="{!cart.BGBK__Contact__c}" id="contact">
-                                <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection"
+                                <apex:actionSupport event="onchange" action="{!contactChanged}" reRender="reconcileSection,email"
                                 />
                             </apex:inputField>
                             <br/>
@@ -635,6 +635,13 @@
                        <apex:outputPanel id="voucher" rendered="{!rvo.r.MUSW__Payment_Method__c = 'Voucher'}" >
                             <apex:pageBlockSection columns="1" id="voucherCheckCheckout">
                                 <apex:inputField label="Voucher Number" id="voucherCheckNumber" value="{!rvo.r.Voucher_Number__c}" />
+                            </apex:pageBlockSection>
+                        </apex:outputPanel>
+						<!-- Added as a part of bug 6337 by Abhilasha -->
+                        <apex:outputPanel id="formNumberInput" rendered="{!rvo.r.MUSW__Payment_Method__c = checkOptionName || rvo.r.MUSW__Payment_Method__c = 'Money Order'}" >
+                            <apex:pageBlockSection columns="1" id="formNumberInputCheckout">
+                                <apex:inputField label="Form Number" id="formNumberInputField" value="{!rvo.r.Form_Number__c}"
+                                />
                             </apex:pageBlockSection>
                         </apex:outputPanel>
                         <!--Added by Vinanthi-->

@@ -20,7 +20,7 @@ public without sharing class LnP_DashboardApexController_2 {
         Associations__c association = [SELECT id, Association_Type__c,Parent_License__r.MUSW__Applicant__c,Parent_License__r.Application_Type__c,Parent_License__r.Credential_Type__c,Parent_License__r.Name,Child_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Child_License__r.Name,Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
         Contact childcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Child_License__r.MUSW__Applicant__c];
         Contact parentcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Parent_License__r.MUSW__Applicant__c];
-        
+        List<User> childConCommunityUserId = [select id from User where ContactId =: childcon.Id AND Is_Portal_User__c = true AND IsActive = true LIMIT 1];
         try{
             task t = new task();
             t.Whatid = associationID;
@@ -29,15 +29,20 @@ public without sharing class LnP_DashboardApexController_2 {
             t.Subject = 'Invitation to get asociated to a Business License';
             t.Type = 'License Relationship';
             t.Designation__c =  association.Association_Type__c;
-            t.Child_Licensee_Name__c =  childcon.Full_Name__c;
-            t.Child_License_Name__c =  association.Parent_License__r.Name;
-            t.Child_License_Type__c =  association.Parent_License__r.Credential_Type__c;
-            t.Child_Profession__c =  association.Parent_License__r.Application_Type__c;
-            t.Parent_Licensee_Name__c =  parentcon.Full_Name__c;
-            t.Parent_License_Name__c =  association.Child_License__r.Name;
-            t.Parent_License_Type__c =  association.Child_License__r.Credential_Type__c;
-            t.Parent_Profession__c =  association.Child_License__r.Application_Type__c;
-            t.Child_License_Id__c = association.Child_License__c;
+            t.Child_Licensee_Name__c    =  childcon.Full_Name__c;
+            t.Child_License_Name__c     =  association.Child_License__r.Name;
+            t.Child_License_Type__c     =  association.Child_License__r.Credential_Type__c;
+            t.Child_Profession__c       =  association.Child_License__r.Application_Type__c;
+            t.Parent_Licensee_Name__c   =  parentcon.Full_Name__c;
+            t.Parent_License_Name__c    =  association.Parent_License__r.Name;
+            t.Parent_License_Type__c    =  association.Parent_License__r.Credential_Type__c;
+            t.Parent_Profession__c      =  association.Parent_License__r.Application_Type__c;
+            t.Child_License_Id__c       =  association.Child_License__c;
+            
+            if(childConCommunityUserId != null && childConCommunityUserId.size() > 0){
+                
+                t.OwnerId = childConCommunityUserId.get(0).Id;
+            }
             
             insert t;
             return true;
@@ -368,7 +373,7 @@ public without sharing class LnP_DashboardApexController_2 {
             
             List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Status'};
                 List<String> statusFilterList = new List<String>{'Under Review'};
-                    List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
+                    List<SObject> columnDataList = [Select  id,name,Status__c,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
             
@@ -385,9 +390,9 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String CompletedMaintananceRequestApplicationsTable(){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Completion Date'};
-                List<String> statusFilterList = new List<String>{'Approve'};
-                    List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, End_Time__c
+            List<String> columnHeaderList = new List<String>{'Request','Request Type', 'Request Against', 'Completion Date'};
+                List<String> statusFilterList = new List<String>{'Approved'};
+                    List<SObject> columnDataList = [Select  id,Name,License_Type__c, Service_Request_Type__c, End_Time__c
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
             

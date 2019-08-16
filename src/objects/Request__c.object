@@ -105,6 +105,33 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Customer_Envelope__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Envelope</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Account Maintenance Requests</relationshipLabel>
+        <relationshipName>Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Validation_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Validation Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
         <description>Application Type</description>
@@ -542,7 +569,7 @@
                 </value>
                 <value>
                     <fullName>Draft</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Draft</label>
                 </value>
                 <value>

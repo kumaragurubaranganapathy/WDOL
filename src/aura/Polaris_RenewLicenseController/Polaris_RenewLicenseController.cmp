@@ -271,7 +271,7 @@
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
-                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span>
+                                                        <span class="slds-form-element__label"><lightning:formattedRichText class="slds-text-longform" value="{!question.label}"/></span>
                                                         <lightning:input name="{!!section.sectionName+questionItem}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if>

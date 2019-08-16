@@ -40,7 +40,7 @@
         var _Inactivate_License_Date__c = event.getParams("fields").records[component.get("v.recordId")].fields.Inactivate_License_Date__c.value;
         var _Override_25_Handling_Fee__c = event.getParams("fields").records[component.get("v.recordId")].fields.Override_25_Handling_Fee__c.value;
         var _Reason_for_DHP__c = event.getParams("fields").records[component.get("v.recordId")].fields.Reason_for_DHP__c.value;
-        if(_DHP__c === true  &&  _Inactivate_License_Date__c !== null && _Override_25_Handling_Fee__c === true ){
+        if(_DHP__c === true  &&  _Inactivate_License_Date__c !== null ){
             component.find("recordViewForm").set("v.mode","readonly");
         }else{
             console.log("success");

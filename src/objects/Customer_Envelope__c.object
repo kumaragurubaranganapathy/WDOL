@@ -238,18 +238,29 @@
                 <value>
                     <fullName>draft</fullName>
                     <default>false</default>
-                    <label>draft</label>
+                    <label>Draft</label>
                 </value>
                 <value>
                     <fullName>pending</fullName>
                     <default>false</default>
-                    <label>pending</label>
+                    <label>Pending</label>
                 </value>
                 <value>
                     <fullName>processed</fullName>
                     <default>false</default>
-                    <label>processed</label>
+                    <label>Processed</label>
                 </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Submissions Attached</fullName>
+                    <default>false</default>
+                    <label>Submissions Attached</label>
+                </value>
+                
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -354,9 +365,11 @@
     </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Validation_number__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Validation_number__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

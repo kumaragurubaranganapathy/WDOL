@@ -638,13 +638,13 @@ Individual Account
                                          density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}"
                                          onerror="{!c.handleAssociationSubmissionError}" recordTypeId="{!v.setAssociationRecordTypeId}">
                    <lightning:messages />
-                   <lightning:inputField fieldName="Name__c" />
+                   <!--<lightning:inputField fieldName="Name__c" />-->
                    <lightning:inputField fieldName="Association_Type__c" />
                    <lightning:inputField fieldName="Child_License__c" />
                    <lightning:inputField fieldName="Status__c" value="Invited" class="slds-hide" />
                    <lightning:inputField fieldName="Parent_License__c" value="{!v.detailLicenseData[0].Id}"
                                          />
-                   <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee"
+                   <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee" onclick = "{!c.showSpinner}"
                                      />
                </lightning:recordEditForm>
            </div>
@@ -1396,8 +1396,8 @@ Individual Account
                                    <aura:iteration items="{!v.completeRequestPaginationList}" var="tableData" indexVar="ind">
                                        <tr class="slds-hint-parent">
                                            <td data-label="Request#">
-                                               <aura:if isTrue="{!tableData.name}">
-                                                   <div class="slds-truncate" title="{!tableData.name}">{!tableData.name}</div>
+                                               <aura:if isTrue="{!tableData.Name}">
+                                                   <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>
                                            </td>
@@ -1414,11 +1414,9 @@ Individual Account
                                                </aura:if>
                                            </td>
                                            <td data-label="Completion date">
-                                               <aura:if isTrue="{!tableData.endTime}">
+                                               <aura:if isTrue="{!tableData.End_Time__c}">
                                                    <div class="slds-truncate" title="{!tableData.End_Time__c}">
-                                                       <lightning:formattedDateTime
-                                                                                    value="{!tableData.End_Time__c}"
-                                                                                    />
+                                                       <lightning:formattedDateTime value="{!tableData.End_Time__c}" year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
                                                    </div>
                                                    <aura:set attribute="else">None</aura:set>
                                                </aura:if>

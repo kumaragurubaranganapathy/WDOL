@@ -95,9 +95,10 @@ public class Dol_UBISearchTransform {
                                     newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
                                     newAccountCon.First_Name__c = govdetail.firstName != null ? govdetail.firstName.trim() : '' ;
                                     newAccountCon.MUSW__Account__c = accountId;
-                                    //Hardcording the Role and Status field as per user Story 1436.
-                                	newAccountCon.Role__c = 'Governing Persons';
-                                	newAccountCon.Status__c = 'Active';
+                                    //Hardcording role to "Owner" as per user  BUG 6237.
+                                    newAccountCon.Role__c = Label.SOS_Role ;
+                                    //Hardcording Status field as per user Story 1436.
+                                    newAccountCon.Status__c = 'Active';
                                     newAccountConList.add(newAccountCon);
                                 }
                         }else if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isEmpty(accountConList)){
@@ -108,8 +109,9 @@ public class Dol_UBISearchTransform {
                                 newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
                                 newAccountCon.First_Name__c = govdetail.firstName != null ? govdetail.firstName.trim() : '' ;
                                 newAccountCon.MUSW__Account__c = accountId;
-                                //Hardcording the Role and Status field as per user Story 1436.
-                                newAccountCon.Role__c = 'Governing Persons';
+                                //Hardcording role to "Owner" as per user  BUG 6237.
+                                newAccountCon.Role__c = Label.SOS_Role ;
+                                //Hardcording Status field as per user Story 1436.
                                 newAccountCon.Status__c = 'Active';
                                 newAccountConList.add(newAccountCon);
                             } 

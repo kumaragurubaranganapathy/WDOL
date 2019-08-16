@@ -610,7 +610,7 @@ public class Polaris_ServiceRequestController {
         setapplicationId.add(applicationId);
         String appCondition = 'Id=\''+applicationId+'\'';
         // String strApp = 'Select Id, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
-        String strApp = 'Select Id, Service_Request_Type__c,Stage__c, License__c,Form_JSON__c, Profession__c,  License_Type__c from Request__c where '+appCondition;
+        String strApp = 'Select Id, Service_Request_Type__c,End_Time__c,Stage__c, License__c,Form_JSON__c, Profession__c,  License_Type__c from Request__c where '+appCondition;
         system.debug('StrApp Query--->'+strApp);
         appList = Utilityclass_withsharing.queryRecords(strApp);
         system.debug('Applist In AController--->'+appList);
@@ -674,6 +674,7 @@ public class Polaris_ServiceRequestController {
                 if(appList[0].License_Type__c == 'Notary Public' && appList[0].Service_Request_Type__c == 'Endorsement')
                 {
                     appList[0].Status__c = 'Approved';
+					appList[0].End_Time__c = system.now();
                 }
                 else
                 {

@@ -15,6 +15,14 @@
                 <behavior>Edit</behavior>
                 <field>Profession__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Validation_Number__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Customer_Envelope__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>License__c</field>
@@ -263,7 +271,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>QuestionDOL__c</fields>
+        <fields>Response_Name__c</fields>
         <fields>Question_Section__c</fields>
         <fields>Question2__c</fields>
         <fields>Answer_Text__c</fields>

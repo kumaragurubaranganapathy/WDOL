@@ -13,6 +13,14 @@
                 <behavior>Required</behavior>
                 <field>Application_Type__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Validation_Number__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Customer_Envelope__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Credential_Type__c</field>
@@ -116,10 +124,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_Last_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Polaris_DHP__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -406,6 +410,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Region__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Polaris_DHP__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
