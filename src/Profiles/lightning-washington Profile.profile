@@ -25819,6 +25819,11 @@
         <field>Sandbox_Refresh_PII_Masking__mdt.MaskingString__c</field>
         <readable>false</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Master_Submission_List__c.Show_For_License__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Sandbox_Refresh_PII_Masking__mdt.Masking__c</field>

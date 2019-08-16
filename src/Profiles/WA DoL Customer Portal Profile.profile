@@ -29952,6 +29952,11 @@
         <field>Portal_Article__c.Parent_Article__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Master_Submission_List__c.Show_For_License__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <layoutAssignments>
         <layout>Portal_Article__c-Child Article Layout</layout>
         <recordType>Portal_Article__c.Body</recordType>

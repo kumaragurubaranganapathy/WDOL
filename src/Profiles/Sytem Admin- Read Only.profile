@@ -12144,6 +12144,11 @@
         <field>Exam__c.Historical_Exam_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Master_Submission_List__c.Show_For_License__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Exam__c.License__c</field>

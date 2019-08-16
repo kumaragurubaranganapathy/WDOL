@@ -26814,6 +26814,11 @@
         <field>MUSW__Receipt__c.MUSW__Payment_Method__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>MUSW__Master_Submission_List__c.Show_For_License__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <layoutAssignments>
         <layout>AMR_Link__mdt-AMR Link Layout</layout>
     </layoutAssignments>
