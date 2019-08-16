@@ -1062,77 +1062,44 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <controllingFieldValue>Architects</controllingFieldValue>
                 <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Manufactured Homes</controllingFieldValue>
                 <controllingFieldValue>Program Unknown</controllingFieldValue>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <controllingFieldValue>Manufactured Homes</controllingFieldValue>
                 <controllingFieldValue>Delegated Municipality</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <controllingFieldValue>Misc Payments</controllingFieldValue>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <controllingFieldValue>Misc Payments</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
                 <valueName>Unlicensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Collection Agency</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Collection Agency Branch</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Out Of State Collection Agency Branch</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Out Of State Collection Agency</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1167,12 +1134,73 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1217,18 +1245,6 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <valueSettings>
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Professional Engineer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
         </valueSet>
     </fields>
