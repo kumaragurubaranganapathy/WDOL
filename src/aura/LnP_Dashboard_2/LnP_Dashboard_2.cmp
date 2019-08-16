@@ -767,13 +767,13 @@
                                                         <td data-label="Actions" class="cell-style action-cell">
                                                             <div class="table-btn">
                                                                 <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
-                                                                    <aura:if isTrue="{!and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c),tableData.Renew_Reinstatement_in_progress__c == 'false')}">
+                                                                    <aura:if isTrue="{!and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c),tableData.Renew_Reinstatement_in_progress__c == false)}">
                                                                         <lightning:button variant="brand" label="Renew" value="{!join(',','Renewal',tableData.Id,tableData.Application_Type__c,tableData.Credential_Type__c,tableData.Application_Method__c,tableData.Application__c,tableData.Application__r.isRenewal__c)}"
                                                                                           title="Renewal"
                                                                                           onclick="{!c.renewLicense}"
                                                                                           />
                                                                     </aura:if>
-                                                                    <aura:if isTrue="{!and(tableData.Is_Reinstatement_Eligible__c,Renew_Reinstatement_in_progress__c == 'false')}">
+                                                                    <aura:if isTrue="{!and(tableData.Is_Reinstatement_Eligible__c,Renew_Reinstatement_in_progress__c == false)}">
                                                                         <lightning:button variant="brand" label="Reinstate" title="Reinstate" value="{!join(',','Reinstatement',tableData.Id,tableData.Application_Type__c,tableData.Credential_Type__c,tableData.Application_Method__c,tableData.Application__c,tableData.Application__r.isRenewal__c)}"
                                                                                           onclick="{!c.renewLicense}"
                                                                                           />
