@@ -3,6 +3,7 @@
         helper.doInit(component, event);
         helper.fetchData(component,event);
         helper.showBusinessAccountAlert(component, event);
+        helper.showLicenseAlert(component, event);
     },
     declineRequest : function(component, event, helper) {
         var taskId = event.getSource().get("v.name");

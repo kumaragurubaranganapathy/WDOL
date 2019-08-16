@@ -66,6 +66,19 @@
         });
         $A.enqueueAction(action);    
     },
+        showLicenseAlert : function(component, event, helper) {
+        var action = component.get("c.hasLicenses");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var hasBusinessAccounts = response.getReturnValue();
+                console.log(hasBusinessAccounts);
+                component.set('v.licenseList',!hasBusinessAccounts);
+                component.set('v.isLoaded',true);
+            }                          
+        });
+        $A.enqueueAction(action);    
+    },
     
     actionRequest : function(component, event, helper,subject) {
         console.log('inside actionRequest');
