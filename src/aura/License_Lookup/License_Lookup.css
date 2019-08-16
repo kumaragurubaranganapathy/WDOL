@@ -423,6 +423,17 @@ padding: 4px 5px;
         text-align:right;
     }
 }
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+      
+        .THIS .licenseinp{
+            width:100%;
+        }
+        .THIS .page-width{
+            margin: 0 7.5rem;
+            width: auto;
+        }
+       
+}  
 .THIS .slds-table thead th{
     padding: 12px 6px;    
 }
@@ -530,4 +541,9 @@ padding: 4px 5px;
     width: 100%;
     margin-bottom: 12px;
 }
+}
+.THIS .slds-table th:focus, .THIS .slds-table th.slds-has-focus, 
+.THIS .slds-table [role=gridcell]:focus, .THIS .slds-table [role=gridcell].slds-has-focus{
+	border:0;
+	box-shadow:none;
 }
