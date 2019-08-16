@@ -15,11 +15,21 @@ public class mapDemo {
             mapDemo.Location location = new mapDemo.Location();
             location.Street = inspection.MUSW__Parcel__r.MUSW__Street__c;
             location.City = inspection.MUSW__Parcel__r.MUSW__City__c;
-            location.PostalCode = inspection.MUSW__Parcel__r.MUSW__Post_Zip_Code__c;
+            location.PostalCode = inspection.MUSW__Parcel__r.Zip_Postal_Code__c;
             location.State = inspection.MUSW__Parcel__r.MUSW__State__c;
             location.Country = inspection.MUSW__Parcel__r.Country__c;
-            route+=location.Street.replace(' ','+')+','+location.City.replace(' ','+')+','+
-                location.State.replace(' ','+')+'+'+location.PostalCode.replace(' ','+');
+            if(location.Street!=null){
+                route+=location.Street.replace(' ','+')+',';
+            }
+            if(location.City!=null){
+                route+=location.City.replace(' ','+')+',';
+            }
+            if(location.State!=null){
+                route+=location.State.replace(' ','+')+',';
+            }
+            if(location.PostalCode!=null){
+                route+=location.PostalCode.replace(' ','+');
+            }
             marker.location = location;
             marker.icon = 'utility:salesforce1';
             marker.title = inspection.name;
