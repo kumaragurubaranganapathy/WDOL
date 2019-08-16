@@ -129,6 +129,19 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Show_For_License__c</fullName>
+        <externalId>false</externalId>
+        <label>Show For License</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
     <fields>
         <fullName>Credential_Type__c</fullName>
         <description>List of license types</description>
