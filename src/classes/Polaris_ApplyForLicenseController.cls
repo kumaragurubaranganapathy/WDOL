@@ -1354,7 +1354,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How will your name appear') && firstName == '' ){
                                firstName  = ans.Answer_Text__c +' ';
                             }
-                            if(ans.QuestionDOL__r.Question_Body__c.contains('First Name or initial') && firstName == '' &&  ans.Answer_Text__c  != null &&  ans.Answer_Text__c  !='' ){
+                            if(ans.QuestionDOL__r.Question_Body__c.contains('First Name or initial') && firstName == '' ){
                                 firstName  = ans.Answer_Text__c +' ';
                             }
                             
