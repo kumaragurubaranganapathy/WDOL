@@ -525,7 +525,7 @@
         <type>Email</type>
         <unique>false</unique>
     </fields>
-    <fields>
+	<fields>
         <fullName>Associated_Business_License_Number__c</fullName>
         <externalId>false</externalId>
         <label>Associated Business License Number</label>
@@ -1351,6 +1351,22 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Unlicensed</valueName>
+            </valueSettings>
+			<valueSettings>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Collection Agency</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Collection Agency Branch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Out Of State Collection Agency Branch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <valueName>Out Of State Collection Agency</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
