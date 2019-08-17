@@ -14,8 +14,12 @@
     <aura:attribute name="cloneDisabled" type="Boolean" default="true"/>
     <aura:attribute name="updateDisabled" type="Boolean" default="true"/>
     <aura:attribute name="defaultProgramType" type="String" access="public"  />
-    
+    <aura:attribute name="slipPrinterInput" type="String" access="public"  />
     <aura:attribute name="disableNext" type="boolean" />
+    
+    <!-- change date : 13/8/2019 -->
+    <aura:attribute name="ValidationNumber" type="String" default='DEP' />
+    
 <!-- handlers -->
     <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
     <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
