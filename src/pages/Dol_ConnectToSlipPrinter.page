@@ -1,0 +1,35 @@
+<apex:page controller="Dol_ConnectToSlipPrinter" sidebar="false" showHeader="false" standardStylesheets="false" lightningStylesheets="true">
+    <apex:form >
+        <apex:pagemessages />
+    </apex:form> 
+    
+   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    
+    
+	<script >
+        function myFunction(){
+            var param = "{!printParameter}";
+            var xmlHttp = new XMLHttpRequest();
+            window.$Label = window.$Label || {};
+            $Label.customLabel= '{!($Label.Dol_SlipPrinterLocalHost )}';
+            var endPoint =  $Label.customLabel+param;
+            xmlHttp.open("GET", endPoint, true);
+            xmlHttp.send();
+            xmlHttp.responseType = 'text';
+            xmlHttp.onreadystatechange = function() {
+                closewindow();
+            if (this.readyState == 4 && this.status == 200) {
+              console.log('onreadystatechange');
+            }
+        };
+        console.log("Request sent");
+        }
+            var $ = jQuery;
+            $( window ).ready(function() {
+                myFunction();
+            });
+        function closewindow(){
+                window.close();
+            }
+    </script> 
+</apex:page>

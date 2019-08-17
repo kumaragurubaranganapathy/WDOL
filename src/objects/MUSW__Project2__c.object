@@ -882,8 +882,8 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Site_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <defaultValue>&apos;System Number&apos;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Site Id</label>
         <length>20</length>
@@ -891,7 +891,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Site_Phone_Number__c</fullName>
