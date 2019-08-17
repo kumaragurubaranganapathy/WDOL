@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>Notary Public</fullName>
+        <fullName>Appraisal Management Companies</fullName>
         <default>false</default>
-        <label>Notary Public</label>
+        <label>Appraisal Management Companies</label>
+    </customValue>
+    <customValue>
+        <fullName>Appraisers - Real Estate</fullName>
+        <default>false</default>
+        <label>Appraisers - Real Estate</label>
+    </customValue>
+    <customValue>
+        <fullName>Architects</fullName>
+        <default>false</default>
+        <label>Architects</label>
+    </customValue>
+    <customValue>
+        <fullName>Camping Resorts</fullName>
+        <default>false</default>
+        <label>Camping Resorts</label>
+    </customValue>
+    <customValue>
+        <fullName>Cemeteries</fullName>
+        <default>false</default>
+        <label>Cemeteries</label>
+    </customValue>
+    <customValue>
+        <fullName>Delegated Municipality</fullName>
+        <default>false</default>
+        <label>Delegated Municipality</label>
+    </customValue>
+    <customValue>
+        <fullName>Engineers</fullName>
+        <default>false</default>
+        <label>Engineers</label>
+    </customValue>
+    <customValue>
+        <fullName>Funerals</fullName>
+        <default>false</default>
+        <label>Funerals</label>
     </customValue>
     <customValue>
         <fullName>Geologist</fullName>
@@ -11,11 +46,46 @@
         <label>Geologist</label>
     </customValue>
     <customValue>
+        <fullName>Landscape Architects</fullName>
+        <default>false</default>
+        <label>Landscape Architects</label>
+    </customValue>
+    <customValue>
+        <fullName>Land Surveyors</fullName>
+        <default>false</default>
+        <label>Land Surveyors</label>
+    </customValue>
+    <customValue>
+        <fullName>Manufactured Homes</fullName>
+        <default>false</default>
+        <label>Manufactured Homes</label>
+    </customValue>
+    <customValue>
+        <fullName>Misc Payments</fullName>
+        <default>false</default>
+        <label>Misc Payments</label>
+    </customValue>
+    <customValue>
+        <fullName>Notary Public</fullName>
+        <default>false</default>
+        <label>Notary Public</label>
+    </customValue>
+    <customValue>
+        <fullName>On-site Wastewater</fullName>
+        <default>false</default>
+        <label>On-site Wastewater</label>
+    </customValue>
+    <customValue>
+        <fullName>Program Unknown</fullName>
+        <default>false</default>
+        <label>Program Unknown</label>
+    </customValue>
+    <customValue>
         <fullName>Timeshares</fullName>
         <default>false</default>
         <label>Timeshares</label>
     </customValue>
-	<customValue>
+    <customValue>
         <fullName>Update/Close Company</fullName>
         <default>false</default>
         <label>Update/Close Company</label>
@@ -26,74 +96,37 @@
         <label>Update Legal Name</label>
     </customValue>
     <customValue>
-        <fullName>Architects</fullName>
+        <fullName>Regulatory Compliance</fullName>
         <default>false</default>
-        <label>Architects</label>
+        <label>Regulatory Compliance</label>
     </customValue>
     <customValue>
-        <fullName>Appraisers - Real Estate</fullName>
+        <fullName>Remove Owner</fullName>
         <default>false</default>
-        <label>Appraisers - Real Estate</label>
+        <label>Remove Owner</label>
     </customValue>
     <customValue>
-        <fullName>Camping Resorts</fullName>
+        <fullName>Collection Agency</fullName>
         <default>false</default>
-        <label>Camping Resorts</label>
+        <label>Collection Agency</label>
     </customValue>
     <customValue>
-        <fullName>Funerals</fullName>
+        <fullName>Trades Credential</fullName>
         <default>false</default>
-        <label>Funerals</label>
+        <isActive>false</isActive>
+        <label>Trades Credential</label>
     </customValue>
     <customValue>
-        <fullName>Engineers</fullName>
+        <fullName>Plan Review</fullName>
         <default>false</default>
-        <label>Engineers</label>
+        <isActive>false</isActive>
+        <label>Plan Review</label>
     </customValue>
     <customValue>
-        <fullName>Appraisal Management Companies</fullName>
+        <fullName>Permit to Operate</fullName>
         <default>false</default>
-        <label>Appraisal Management Companies</label>
-    </customValue>
-    <customValue>
-        <fullName>On-site Wastewater</fullName>
-        <default>false</default>
-        <label>On-site Wastewater</label>
-    </customValue>
-    <customValue>
-        <fullName>Landscape Architects</fullName>
-        <default>false</default>
-        <label>Landscape Architects</label>
-    </customValue>
-    <customValue>
-        <fullName>Cemeteries</fullName>
-        <default>false</default>
-        <label>Cemeteries</label>
-    </customValue>
-    <customValue>
-        <fullName>Land Surveyors</fullName>
-        <default>false</default>
-        <label>Land Surveyors</label>
-    </customValue>
-    <customValue>
-        <fullName>Delegated Municipality</fullName>
-        <default>false</default>
-        <label>Delegated Municipality</label>
-    </customValue>
-    <customValue>
-        <fullName>Manufactured Homes</fullName>
-        <default>false</default>
-        <label>Manufactured Homes</label>
-    </customValue>
-    <customValue>
-        <fullName>Program Unknown</fullName>
-        <default>false</default>
-        <label>Program Unknown</label>
-    </customValue>
-    <customValue>
-        <fullName>Misc Payments</fullName>
-        <default>false</default>
-        <label>Misc Payments</label>
+        <isActive>false</isActive>
+        <label>Permit to Operate</label>
     </customValue>
     <customValue>
         <fullName>Manufactured Homes Communities</fullName>
@@ -144,28 +177,10 @@
         <label>Real Estate Appraisers</label>
     </customValue>
     <customValue>
-        <fullName>Permit to Operate</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Permit to Operate</label>
-    </customValue>
-    <customValue>
-        <fullName>Trades Credential</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Trades Credential</label>
-    </customValue>
-    <customValue>
         <fullName>Collection Agencies</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Collection Agencies</label>
-    </customValue>
-    <customValue>
-        <fullName>Plan Review</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Plan Review</label>
     </customValue>
     <customValue>
         <fullName>Examination</fullName>
@@ -427,5 +442,5 @@
     </customValue>
     <description>This refers to the application type being applied for: Application Types- Trades Credential, Plan Review, Permit To Operate, etc.</description>
     <masterLabel>Application Type</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

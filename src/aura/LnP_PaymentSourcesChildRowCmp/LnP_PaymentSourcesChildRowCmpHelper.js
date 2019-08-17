@@ -43,4 +43,9 @@
         
         
     },
+    onPrint : function(component,event,helper){
+        var printInput = component.get("v.slipPrinterInput");
+        console.log('printInput&&&'+printInput);
+        window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'_blank');
+    },
 })
