@@ -4,6 +4,8 @@
 		helper.getRecordTypeId(component,event,helper);
         helper.fetchData(component,event, helper);
         helper.getLicenseDetails(component,event,helper);
+		var redirect = sessionStorage.getItem("fromAddbusiness");
+        var businessAccountID = sessionStorage.getItem("businessAccountId");
 		if(redirect){
             var accId = businessAccountID;
             component.set("v.selectedAccount",accId);
