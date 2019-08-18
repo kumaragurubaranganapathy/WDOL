@@ -16,7 +16,9 @@
                     });
                     var compEvent = component.getEvent("businessRefresh");
                     compEvent.setParams({ "refreshFlag": "true" });
-                    compEvent.fire();                    
+                    compEvent.fire();
+					sessionStorage.setItem("fromAddbusiness", true);
+					sessionStorage.setItem("businessAccountId", component.get("v.accountId"));
                     var str ='/business';
                     var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
@@ -32,8 +34,6 @@
                     component.set("v.buttonDisable",false);
                 }
                 toastEvent.fire();
-                sessionStorage.setItem("fromAddbusiness", true);
-        		sessionStorage.setItem("businessAccountId", component.get("v.accountId"));
             } else if (state === "ERROR") {
                 component.set("v.loadingSpinner",false);
                 component.set("v.buttonDisable",false);
