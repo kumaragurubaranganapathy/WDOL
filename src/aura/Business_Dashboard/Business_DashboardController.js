@@ -3,7 +3,23 @@
         helper.setDefaultTab(component,event,helper);
 		helper.getRecordTypeId(component,event,helper);
         helper.fetchData(component,event, helper);
-        helper.getLicenseDetails(component,event,helper);     
+        helper.getLicenseDetails(component,event,helper);
+		if(redirect){
+            var accId = businessAccountID;
+            component.set("v.selectedAccount",accId);
+            helper.businessDetails(component,event,helper);
+            helper.setSelectedAccountData(component,event,helper,accId);
+            window.setTimeout(
+                $A.getCallback(function() {
+                    component.set("v.accountDetail",true);
+                    component.set("v.licenseDetail",false);
+                    component.set("v.courseDetail",false);
+                    component.set("v.breadcrumbLabel","courses");
+                    sessionStorage.removeItem("fromAddbusiness");
+                    sessionStorage.removeItem("businessAccountId");
+                }), 1000
+            );
+        }		
 	},
     doRender : function(component,event,helper){
         helper.doRender(component,event);
