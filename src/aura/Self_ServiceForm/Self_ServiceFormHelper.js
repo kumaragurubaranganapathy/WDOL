@@ -249,7 +249,7 @@
     maskInput : function(component,event){  
         var numbers=event.getSource().get('v.value');
         var fieldname=event.getSource().get('v.fieldName');
-        if(fieldname=="Phone_Primary_Contact__c" || fieldname=="Business_Phone__c"){
+        if(fieldname=="MobilePhone" || fieldname=="Phone"){
             if(numbers.length==10){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
