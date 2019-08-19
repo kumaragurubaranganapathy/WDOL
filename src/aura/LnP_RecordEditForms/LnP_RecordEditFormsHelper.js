@@ -230,16 +230,7 @@
 									errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
 									return false;
 								}
-							}  else if(item.regex == "minimum-value"){
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                var minValue = parseInt(item.minValue);
-                                if(valueVal >= minValue){
-                                    return true;
-                                }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                    return false;
-                                }
-                            } else {
+							} else {
 								var regexExp = new RegExp(item.regex);
 								var valueVal = fieldValuesWrapper[index].get("v.value");
 								if(regexExp.test(valueVal)){
@@ -278,16 +269,7 @@
 									errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
 									return false;
 								}
-							} else if(item.regex == "minimum-value"){
-                                var valueVal = fieldValuesWrapper[index].get("v.value");
-                                var minValue = parseInt(item.minValue);
-                                if(valueVal >= minValue){
-                                    return true;
-                                }else{
-                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
-                                    return false;
-                                }
-                            } else {
+							} else {
 								var regexExp = new RegExp(item.regex);
 								var valueVal = fieldValuesWrapper[index].get("v.value");
 								if(regexExp.test(valueVal)){

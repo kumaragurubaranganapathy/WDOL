@@ -876,11 +876,4 @@ public with sharing class Add_BusinessController {
         }
         return redirect;
     }
-	
-	@auraEnabled
-    public static String validateUBI(id accountId, String ubi){  
-        String sReturnVal = '';
-        sReturnVal = Dol_UBISearchTransform.transformAndSave(accountId, ubi);
-        return sReturnVal;
-    }
 }
