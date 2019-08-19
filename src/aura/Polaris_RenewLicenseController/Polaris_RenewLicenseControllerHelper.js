@@ -764,6 +764,15 @@
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                     return false;
                                 } 
+                            }  else if(item.regex == "minimum-value"){
+                                var valueVal = item.value;
+                                var minValue = parseInt(item.minValue);
+                                if(valueVal >= minValue){
+                                    return true;
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+                                    return false;
+                                }
                             } else {
                                 var regexExp = new RegExp(item.regex);
                                 var valueVal = item.value;
@@ -811,7 +820,16 @@
                                         errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                         return false;
                                     } 
-                                } else {
+                                }  else if(item.regex == "minimum-value"){
+									var valueVal = item.value;
+									var minValue = parseInt(item.minValue);
+									if(valueVal >= minValue){
+										return true;
+									}else{
+										errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
+										return false;
+									}
+								} else {
                                     var regexExp = new RegExp(item.regex);
                                     var valueVal = item.value;
                                     if(regexExp.test(valueVal)){
