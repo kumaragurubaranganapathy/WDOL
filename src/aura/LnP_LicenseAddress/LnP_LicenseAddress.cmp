@@ -77,7 +77,7 @@
     
     <!--- code for modifying address of a contact -->
     <aura:attribute name= "changeAddress" type ="Boolean" default= "false"></aura:attribute>
-    
+    <aura:attribute name= "changeOnlyMailingAdd" type ="Boolean" default= "true"/>
     <aura:if isTrue= "{!v.changeAddress}">
         
         <div id="usAddr" class ="usAddress">
@@ -228,6 +228,7 @@
             </div>
         </div>
         <br/><br/>
+		<aura:if isTrue="{!v.changeOnlyMailingAdd}">
         <div id="usAddr" class = "usAddress">
             <div class="address-type">
                 <h1>Your Physical Address</h1>
@@ -276,7 +277,7 @@
               <!-- <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div> 
         </div>
-        
+        </aura:if>
         <aura:if isTrue="{!v.isAddrVerification == 'YES'}"> 
             <c:Dol_AddressVerificationCmp applicationId="{!v.applicationId}"/>
         </aura:if>
