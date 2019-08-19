@@ -1,5 +1,5 @@
 .THIS.todo-wrapper{
-    padding:1.5rem 7.5rem;
+    margin:1.5rem 7.5rem;
 }
 .THIS .table-width{
     width:100%;
@@ -22,7 +22,7 @@ content:"\2714\0020";
     margin-left: 1rem;
 }
 .THIS .new-wrapper{
-    margin:1rem 0;
+    margin:1rem 0 0;
 }
 .THIS .newbiz-wrapper{
     margin-top:1rem;
@@ -36,10 +36,16 @@ content:"\2714\0020";
     font-weight:bold;        
     border-bottom: solid 1px t(taskUnderline);  	
     margin-bottom:32px;
+    font-family:t(merrifontfamily);
+    color:t(LnGFormTitleColor);
 }
 .THIS .task-body{
     display:flex;
     align-items:center;
+}
+.THIS .other-lic{
+    font-family:t(merrifontfamily);
+    color:t(LnGFormTitleColor);
 }
 .THIS .field-style{
     display:flex;
@@ -48,6 +54,7 @@ content:"\2714\0020";
 .THIS .label-style{    
     font-weight: 600;
     padding-right:5px;
+    color:t(LnGFormTitleColor);
 }
 .THIS .data-style{
     font-size: 15px;
@@ -85,6 +92,10 @@ content:"\2714\0020";
     font-size: 1.25rem;
     font-weight: bold;
     padding-bottom:1.25rem;    
+    font-family:t(merrifontfamily);
+}
+.THIS .ind-account-wrapper .ser-btn-wrapper.create-biz{
+    margin-top:1rem;	
 }
 .THIS .ser-desc{
     font-size: 12px;
@@ -108,6 +119,7 @@ content:"\2714\0020";
     padding-bottom:13px;
     border-bottom: solid 1px #d9d4d4;
     margin-bottom:32px;
+    font-family:t(merrifontfamily);
 }
 .THIS .license-item{
     width:33%;
@@ -117,11 +129,11 @@ content:"\2714\0020";
 }
 .THIS .license-item:first-of-type{
     padding-left:0;
-    border-left:none;
+    border:none;
 }
 .THIS .license-item:last-of-type{
     padding-right:0;
-    border-right:none;
+    border:none;
 }
 .THIS .license-item .field-style{
     padding-bottom:20px;
@@ -145,13 +157,19 @@ content:"\2714\0020";
     justify-content:flex-end;
 }
 .THIS .intro-text{
-    padding: 40px 0 60px;
-    font-size:16px;
+    padding: 2rem 0;
+    font-size:1.25rem;
+    font-family:t(merrifontfamily);
+    font-weight:600;
+    color:t(LnGFormTitleColor);
 }
-@media screen and (max-width: 1279.9px){
-    .THIS.todo-wrapper{
-        padding:16px;
-    }
+.THIS .ser-btn-wrapper{
+    margin-top:1rem;
+}
+.THIS .ind-account-wrapper .ser-btn-wrapper, .THIS .new-wrapper .ser-btn-wrapper{
+    margin-top:0;
+}
+@media screen and (max-width: 1279.9px){    
     .THIS .task-wrapper{
         padding:16px;
     }
@@ -207,5 +225,18 @@ content:"\2714\0020";
     }
     .THIS .field-style{
         padding-bottom:10px;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+     .THIS .ser-btn-wrapper button{
+        width:auto;
+    }
+    .THIS.todo-wrapper{
+        margin:1.5rem 5.5rem;
+    }
+}
+@media t(mqSmall){
+    .THIS.todo-wrapper{
+        margin:1rem;
     }
 }
