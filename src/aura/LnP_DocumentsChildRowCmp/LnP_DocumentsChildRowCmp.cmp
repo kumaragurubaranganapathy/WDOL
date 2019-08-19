@@ -23,7 +23,7 @@
     
     <!-- change date : 7/8/2019 -->
     <aura:attribute name="ValidationNumber" type="String" default='DEP' />
-    
+     <aura:attribute name="slipPrinterInput" type="String" access="public"  />
     
     <!-- aura attributes-->  
     <aura:attribute name="listControllingValues" type="list" default="[]" description="to store controller field values"/>

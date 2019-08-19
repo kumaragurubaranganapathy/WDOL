@@ -38,7 +38,7 @@
             savedTotalAmount += parseInt(_insertedDepositList[i].Amount__c);
         }
         //this logic if checks once document total == payment source total then no furture updates should happen
-        if(component.get("v.paymentSourceTotal") <= savedTotalAmount){
+        if(component.get("v.paymentSourceTotal") < savedTotalAmount){
             alert("Amount Total should be equal to Payment Source Total");
         }else{    
             //else update the current record
