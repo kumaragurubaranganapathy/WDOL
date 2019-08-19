@@ -16,7 +16,9 @@
                     });
                     var compEvent = component.getEvent("businessRefresh");
                     compEvent.setParams({ "refreshFlag": "true" });
-                    compEvent.fire();                    
+                    compEvent.fire();
+					sessionStorage.setItem("fromAddbusiness", true);
+					sessionStorage.setItem("businessAccountId", component.get("v.accountId"));
                     var str ='/business';
                     var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
@@ -32,7 +34,6 @@
                     component.set("v.buttonDisable",false);
                 }
                 toastEvent.fire();
-                
             } else if (state === "ERROR") {
                 component.set("v.loadingSpinner",false);
                 component.set("v.buttonDisable",false);
@@ -48,11 +49,22 @@
     },
 	handleError : function(component,event,helper){
         component.set("v.loadingSpinner",false);
+        var errors = event.getParam('detail');
+        var errorMessage = "";
+        if (errors) {
+            if(errors.includes('DUPLICATES_DETECTED')){
+                errorMessage = "Please use a unique UBI Number as Account with this number already exists.";
+            }else{
+                errorMessage = "Something went wrong. Please contact system admin.";
+            }
+        } else {
+            errorMessage = "Something went wrong. Please contact system admin.";
+        }
         var toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             "type": "Error",
             "title": "Error!",
-            "message": "Something went wrong. Please contact system admin."
+            "message": errorMessage
         });
         toastEvent.fire();
         component.set("v.buttonDisable",false);
