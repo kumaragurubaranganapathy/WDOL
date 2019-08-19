@@ -220,8 +220,8 @@
         });
         
         toastEvent.fire();
-        window.setTimeout(
-			$A.getCallback(function() {
+       // window.setTimeout(
+		//	$A.getCallback(function() {
                 // smth after two seconds
                 // check component.isValid() if you want to work with component
                 var isBizLic = component.get("v.isbusinsessLicense");
@@ -232,8 +232,8 @@
                 urlEvent.setParams({
                     "url": str	
                 });
-                urlEvent.fire();*/
-            }), 2000
+                urlEvent.fire();
+          //  }), 2000
         );
         
     },
