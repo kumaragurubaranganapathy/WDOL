@@ -235,7 +235,7 @@ public class Polaris_RenewLicenseController {
                 {
                     if(req.body!=null && req.body.Question == Ques.Id && req.body.Answer != null)
                     {
-                        if(req.body.Answer.contains(';'))
+                        if(req.body.Answer!= null && req.body.Answer.contains(';'))
                         {
                             labelToFields.multiValues = req.body.Answer.split(';');
                             labelToFields.acknowledgeResponse = req.body.Hardcopy;
