@@ -14,17 +14,18 @@ _______________________________________________________________
                                                         'SAW will send you an email.',
                                                         'Click the link in the email to activate your SAW account. The link will take you to the SecureAccess Washington screen.',
                                                         'Enter your Username and Password and click Login.',
-                                                        'Continue to Add the Business and Profession Licensing System service.'
+                                                        'Continue to Add a new service.'
                                                         ]" />
     <aura:attribute name="listTwo" type="List" default="['Go to SecureAccess Washington.',                                                        
                                                         'Enter your Username and Password and click Login.',
-                                                        'Continue to Add the Business and Profession Licensing System service.'
+                                                        'Continue to Add a new service.'
                                                         ]" />
-    <aura:attribute name="listThree" type="List" default="['At the list of services, click the red Add a New Service button.',                                                        
+    <aura:attribute name="listThree" type="List" default="[                                                       
                                                           'At the Add a New Service screen, click I would like to browse a list of services.',
                                                           'Scroll down the list of state agencies and select Department of Licensing.',
                                                           'At the Services from DOL screen, click the Apply button for DOL Business and Professions Licensing System.',
                                                           'At the Registration Complete screen, click OK.',
+                                                          'SAW will send you an email, letting you know you have been approved.',
                                                           'At the list of services, click the DOL Business and Professions Licensing System hyperlink.',
                                                           'At the Now Accessing Department of Licensing screen, click Continue.',
                                                           'Continue to Register for multi-factor authentication (MFA)'
@@ -67,7 +68,7 @@ _______________________________________________________________
                     
                 </aura:iteration>
             </ol>
-            <h2>Add the Business and Profession Licensing System service</h2>
+            <h2>Add a new service</h2>
             <ol>
                 <aura:iteration items="{!v.listThree}" var="listItem">
                     
