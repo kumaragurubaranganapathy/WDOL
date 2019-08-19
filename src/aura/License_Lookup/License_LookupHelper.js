@@ -40,6 +40,14 @@
         });
         $A.enqueueAction(action);  
     },
+    preventLeaving: function(event) {
+        window.addEventListener("beforeunload", this.leaveHandler(event));
+    },
+    leaveHandler: function(event) {
+        if(window.performance.navigation.type == 1){
+            component.set("v.popup", true);
+        }
+    }, 
     fetchLicenseTypes : function(component, event, auraAttr, licenseType) {
         var action = component.get("c.generateQuery");
         var criteria = {
@@ -286,6 +294,7 @@
                                   'MUSW__License2__r.MUSW__Primary_Licensee__r.Doing_Business_As_1__c',
                                   'MUSW__License2__r.Phone__c',
                                   'MUSW__License2__r.AIDS_Affidavit__c',
+                                  'MUSW__License2__r.Project_Address__c',
                                   'MUSW__License2__r.Original_Issue_Date__c',
                                   'MUSW__License2__r.Sub_Status__c',
                                   'MUSW__Parcel__r.Name',
@@ -308,6 +317,7 @@
                                   'MUSW__License2__r.License_Printable_Name__c',
                                   'MUSW__License2__r.Original_Issue_Date__c',
                                   'MUSW__License2__r.AIDS_Affidavit__c',
+                                  'MUSW__License2__r.Project_Address__c',
                                   'MUSW__License2__r.Sub_Status__c',
                                   'MUSW__Parcel__r.MUSW__City__c',
                                   'MUSW__License2__r.MUSW__Issue_Date__c',

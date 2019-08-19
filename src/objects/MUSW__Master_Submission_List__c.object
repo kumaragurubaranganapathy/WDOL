@@ -704,6 +704,28 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Public_Disciplinary_Action__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this box to make the disciplinary action public</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to make the disciplinary action public</inlineHelpText>
+        <label>Public Disciplinary Action</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Public_Distribution_URL__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Public Distribution URL</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Service_Request_Type__c</fullName>
         <externalId>false</externalId>
         <label>Service Request Type</label>
