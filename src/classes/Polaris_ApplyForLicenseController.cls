@@ -486,7 +486,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
             system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
-            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Questions')){
+            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') 
+               || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Review and Submit')){
                 listFields.addAll(objWrapper.labelFieldsMap);
             }
             if(objWrapper.sectionName.contains('Attachments')){
@@ -502,7 +503,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             Integer refcount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                 refcount++;
-                if((fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
+                if(fieldMap.questionSectionClass =='Certifications' || (fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                     requestDetails.method = 'POST';
@@ -1104,6 +1105,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         ans.License__c = licenseID[0].Id; 
                         ans.Question2__c = ans.QuestionDOL__r.Question_Body__c;
                         System.debug('ans.Question2__c==' + ans.Question2__c);
+                        if(ans.Question_Section__c == 'Certifications') {
+                            ans.Answer_Text__c = 'Yes'; 
+                        }
                         if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
                         {
                             Endorsement__c endorsment = new Endorsement__c();

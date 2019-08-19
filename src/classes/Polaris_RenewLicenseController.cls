@@ -505,7 +505,8 @@ return parser;
         List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
         for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
             system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
-            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Questions')){
+            if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement') 
+               || objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Review and Submit')){
                 listFields.addAll(objWrapper.labelFieldsMap);
             }
             if(objWrapper.sectionName.contains('Attachments')){
@@ -520,7 +521,7 @@ return parser;
 			Integer refcount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                 refcount++;
-                if((fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' && fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
+                if(fieldMap.questionSectionClass =='Certifications' || (fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' && fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
                     requestDetails.method = 'POST';
@@ -990,7 +991,10 @@ listApp.add(applicationChild);*/
                 if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
                     for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                         ans.Question2__c = ans.QuestionDOL__r.Question_Body__c;
-                        ans.Renewal_Reinstatement_Application__c = licenseID;                    
+                        ans.Renewal_Reinstatement_Application__c = licenseID;  
+                        if(ans.Question_Section__c == 'Certifications') {
+                            ans.Answer_Text__c = 'Yes'; 
+                        }
                         if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes' && ans.QuestionDOL__r.Parent_Object_API_Name__c== 'Renewal_Application__c')
                         {
                             Endorsement__c endorsment = new Endorsement__c();
