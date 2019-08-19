@@ -295,8 +295,10 @@ String pemail = (String)pdata.get('email');*/
                                                                 for(MUSW__License_Parcel__c license : lstrec){
                                                                     licenseID.add(String.valueOf(license.MUSW__License2__c));
                                                                 }
+                                                                if(!getDeliplinaryAction(licenseID).isEmpty()){
+                                                                    mapDeciplinary = getDeliplinaryAction(licenseID);
+                                                                }
                                                                 
-                                                                mapDeciplinary = getDeliplinaryAction(licenseID);
                                                             }
                                                             if(!mapDeciplinary.isEmpty()) {
                                                                 for(String abc : mapDeciplinary.keySet()) {
@@ -307,7 +309,7 @@ String pemail = (String)pdata.get('email');*/
                                                                         if(abc == sob.MUSW__License2__c) {
                                                                             system.debug('mapDeciplinaryinside123 '+mapDeciplinary);
                                                                             sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
-                                                                           // sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
+                                                                            sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
                                                                         }
                                                                     }
                                                                 }
@@ -436,7 +438,7 @@ String pemail = (String)pdata.get('email');*/
                                                                         if(abc == sob.MUSW__License2__c) {
                                                                             sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
                                                                             system.debug('mapDeciplinary.get(abc)'+mapDeciplinary.get(abc));
-                                                                            //sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
+                                                                            sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
                                                                         }
                                                                     }
                                                                 }
@@ -753,7 +755,7 @@ String pemail = (String)pdata.get('email');*/
     
     public  static  Map<String, disciPlinaryAction> getDeliplinaryAction (Set<String> lstname) {
         Map<String,disciPlinaryAction> mapDesciplinaryAction = new Map<String,disciPlinaryAction>();
-        List<MUSW__Submission__c> lstSub  = [select MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ];
+        List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ];
         Set<Id> setDoc = new Set<ID>();
         List<ContentDocumentLink> lstCon;
         if(!lstSub.isEmpty()) {
@@ -768,45 +770,12 @@ String pemail = (String)pdata.get('email');*/
                         // count++;
                         system.debug('inside later');
                         obj.isDisciplinaryAction = true;
-                        obj.documentId =''  ;
-                        obj.submissionId =sub.Id; 
+                        obj.documentId = sub.Public_Distribution_URL__c;
                         mapDesciplinaryAction.put(key,obj); 
-                         
-                        system.debug('setDoc'+setDoc);
+
                     }
                 }
             }  
-        }
-        List<ContentDistribution> lstPublic = new List<ContentDistribution>();
-        if(!setDoc.isEmpty()){
-            lstCon= [select id,LinkedEntityId,contentDocumentID from ContentDocumentLink where LinkedEntityId =:setDoc];
-        }
-        system.debug('lstcon'+lstCon);
-        Set<String> setcontn = new Set<String>();
-        for(ContentDocumentLink lst : lstCon) {
-            setcontn.add(lst.contentDocumentID);
-        }
-        if(!setcontn.isEmpty()) {
-            lstPublic= [Select Id,ContentDocumentId, DistributionPublicUrl  FROM ContentDistribution WHERE ContentDocumentId =:setcontn ];
-        }
-        Map<String,String> tempMap = new Map<String,String>();
-        for(ContentDocumentLink cont : lstCon) {
-            for(ContentDistribution contPub :lstPublic) {
-                if(cont.contentDocumentID == contPub.ContentDocumentId) {
-                    String url = contPub.DistributionPublicUrl;
-                    tempMap.put(cont.LinkedEntityId,url);   
-                }
-            }
-        }
-        system.debug('lstPublic'+lstPublic);
-        for(String key: mapDesciplinaryAction.keySet()){
-            for(String keySet : tempMap.keySet()) {
-                if(keySet == mapDesciplinaryAction.get(key).submissionId) {
-                    system.debug('tempMap.get(key)'+tempMap.get(keySet));
-                    mapDesciplinaryAction.get(key).documentId = tempMap.get(keySet);
-                }
-                
-            }
         }
         return mapDesciplinaryAction;
     }
