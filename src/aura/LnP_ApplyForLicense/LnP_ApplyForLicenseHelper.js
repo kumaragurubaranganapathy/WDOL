@@ -234,8 +234,7 @@
                 });
                 urlEvent.fire();
           //  }), 2000
-       // );
-	   
+        );
         
     },
     submit : function(component, event, helper) {
