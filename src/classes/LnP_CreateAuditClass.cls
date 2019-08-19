@@ -76,15 +76,15 @@ public class LnP_CreateAuditClass {
         Id recordTypeId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('CE Audit Review').getRecordTypeId();
         system.debug(' ce audit review record type '+recordTypeId);
         for(Renewal_Application__c renApp : appList){
-            MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
-                Renewal_Application__c = renApp.Id,
-                recordTypeId = recordTypeId,
-                Application_Type__c = renApp.Application_Type__c,
-                License__c = renApp.License__c,
-                MUSW__Status__c =  'Audit Pending',
-                Review_Type__c = 'CE Audit',
-                License_Type__c = renApp.Credential_Type__c
-            );
+            MUSW__Review__c newAuditReviewRec = new MUSW__Review__c();
+                newAuditReviewRec.Renewal_Application__c = renApp.Id;
+                newAuditReviewRec.recordTypeId = recordTypeId;
+                newAuditReviewRec.Application_Type__c = renApp.Application_Type__c;
+                newAuditReviewRec.License__c = renApp.License__c;
+                newAuditReviewRec.MUSW__Status__c =  'Audit Pending';
+                newAuditReviewRec.Review_Type__c = 'CE Audit';
+                newAuditReviewRec.License_Type__c = renApp.Credential_Type__c;
+            
             renApp.Selected_for_Audit__c = true;
             updateFlagforAuditList.add(renApp);
             auditList.add(newAuditReviewRec);
