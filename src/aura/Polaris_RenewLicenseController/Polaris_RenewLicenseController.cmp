@@ -146,7 +146,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="AttachmentValidation" class='slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings">Mandatory Submissions Review</div><br/>
+                                        <div class="headings">Submissions Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1 sentenceResp">
