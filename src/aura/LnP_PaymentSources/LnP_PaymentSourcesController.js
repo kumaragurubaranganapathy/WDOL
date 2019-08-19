@@ -14,11 +14,9 @@
                 var result = response.getReturnValue();
                 var paymentMethodMap = [];
                 for(var key in result){
-                    
                     if(Customer_Enveloper_PaymentMethodsArray.includes(key)){
-                        console.log('*****'+key);
-                    	paymentMethodMap.push({key: key, value: result[key]});
-                    }    
+                        paymentMethodMap.push({key: key, value: result[key]});
+                    } 
                 }
                 component.set("v.paymentMethodMap", paymentMethodMap);
             }
