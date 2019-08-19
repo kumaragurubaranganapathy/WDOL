@@ -1,5 +1,5 @@
 .THIS.todo-wrapper{
-    padding:1.5rem 7.5rem;
+    margin:1.5rem 7.5rem;
 }
 .THIS .table-width{
     width:100%;
@@ -169,10 +169,7 @@ content:"\2714\0020";
 .THIS .ind-account-wrapper .ser-btn-wrapper, .THIS .new-wrapper .ser-btn-wrapper{
     margin-top:0;
 }
-@media screen and (max-width: 1279.9px){
-    .THIS.todo-wrapper{
-        padding:16px;
-    }
+@media screen and (max-width: 1279.9px){    
     .THIS .task-wrapper{
         padding:16px;
     }
@@ -228,5 +225,18 @@ content:"\2714\0020";
     }
     .THIS .field-style{
         padding-bottom:10px;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+     .THIS .ser-btn-wrapper button{
+        width:auto;
+    }
+    .THIS.todo-wrapper{
+        margin:1.5rem 5.5rem;
+    }
+}
+@media t(mqSmall){
+    .THIS.todo-wrapper{
+        margin:1rem;
     }
 }
