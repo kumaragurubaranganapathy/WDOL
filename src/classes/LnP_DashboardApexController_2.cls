@@ -193,7 +193,7 @@ public without sharing class LnP_DashboardApexController_2 {
             
             List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status'};
                 List<String> statusFilterList = licenseStatusesToBeFiltered;//new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
-            List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,MUSW__Expiration_Date__c,MUSW__Status__c,Sub_Status__c,
+            List<SObject> columnDataList = [Select id,Name,Application_Type__c,Renew_Reinstatement_in_progress__c,Credential_Type__c,MUSW__Expiration_Date__c,MUSW__Status__c,Sub_Status__c,
                                             RecordType.Name,Is_Renewal_Eligible__c, Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c,Application__r.isRenewal__c,Application_Method__c,
                                             CreatedDate
                                             from MUSW__License2__c
@@ -241,6 +241,18 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String DraftNewLicenseApplicationsTable(){
+        List<String> businessLicensesTobeIgnored;
+        
+        List<String> licenseStatusesToBeFiltered;            
+        
+        Portal_Dashboard_Settings__mdt business_dashboardSettings = [SELECT Dashboard_Type__c,DeveloperName,Id,Label,Language,License_Statuses__c,License_Types__c,MasterLabel FROM Portal_Dashboard_Settings__mdt where DeveloperName = 'Business_Dashboard'];
+         
+        if(business_dashboardSettings != null){
+            
+            String allLisenceTypes = business_dashboardSettings.License_Types__c;
+            
+            businessLicensesTobeIgnored = allLisenceTypes.split(',');                
+        }
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         
         List<String> columnHeaderList = new List<String>{'Profession','License Type','Application Method','Status','Last Updated'};
@@ -249,7 +261,7 @@ public without sharing class LnP_DashboardApexController_2 {
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
         List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,Application_Method__c, LastModifiedDate,isRenewal__c,MUSW__Status__c
                                         from MUSW__Application2__c
-                                        where MUSW__Status__c IN :statusFilterList AND  MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
+                                        where MUSW__Status__c IN :statusFilterList AND isRenewal__c = False AND Credential_Type__c NOT In :businessLicensesTobeIgnored AND MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
         
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
@@ -359,7 +371,7 @@ public without sharing class LnP_DashboardApexController_2 {
         try{  
             
             List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status',''};
-                List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
+            List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                     
                     List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c, Renewal_Expiration_Date__c,Renewal_Status__c,Application_Type__c,Sub_Status__c
                                                     from Renewal_Application__c
@@ -386,7 +398,7 @@ public without sharing class LnP_DashboardApexController_2 {
                     List<SObject> columnDataList = [Select  id,name,Status__c,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate)
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
-            
+            system.debug('**********columnDataList********'+columnDataList.size());
             LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
             return JSON.serialize(wrapperObj,true); 
@@ -400,7 +412,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String CompletedMaintananceRequestApplicationsTable(){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'Request','Request Type', 'Request Against', 'Completion Date'};
+            List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Completion Date'};
                 List<String> statusFilterList = new List<String>{'Approved'};
                     List<SObject> columnDataList = [Select  id,Name,License_Type__c, Service_Request_Type__c, End_Time__c
                                                     from Request__c
@@ -419,7 +431,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String fetchLicenseDetailsTable(String licenseId){
         
         if(licenseId != null){
-            List<MUSW__License2__c> msusLicenseData = [select id,Name,RecordTypeId, Credential_Type__c, MUSW__Status__c, Sub_Status__c,MUSW__Applicant__r.Name,Original_Issue_Date__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, Application_Type__c,Application_Method__c,
+            List<MUSW__License2__c> msusLicenseData = [select id,Name,Polaris_DHP__c,RecordTypeId, Credential_Type__c, MUSW__Status__c, Sub_Status__c,MUSW__Applicant__r.Name,Original_Issue_Date__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, Application_Type__c,Application_Method__c,
                                                        (select id,name, State_Province__c, Country__c, City__c from LnP_Parcels__r ) from MUSW__License2__c where id =: licenseId LIMIT 1];
             return JSON.serialize(msusLicenseData);   
         }else{
@@ -475,7 +487,8 @@ public without sharing class LnP_DashboardApexController_2 {
             
             columnHeaderList  = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status'}; 
                 
-                columnDataList = [SELECT id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c WHERE Parent_License__c =: licenseId AND Status__c IN : statusFilterList AND Child_License__r.Credential_Type__c LIKE : '%'+license_Custom_Metadata.Child_License_Credential__c+'%'] ;
+                columnDataList = [SELECT id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c
+                                  WHERE Parent_License__c =: licenseId AND Status__c IN : statusFilterList AND Child_License__r.Credential_Type__c LIKE : '%'+license_Custom_Metadata.Child_License_Credential__c+'%'] ;
             
             wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
@@ -483,9 +496,10 @@ public without sharing class LnP_DashboardApexController_2 {
             
         }else if(license_Custom_Metadata != null && !(license_Custom_Metadata.Is_Parent__c)){
             
-            columnHeaderList  = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status'}; 
+            columnHeaderList  = new List<String>{'License Number','Name','License Type','License Status','Association Type','Invitation Status'};
                 
-               columnDataList = [SELECT id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c WHERE Child_License__c =: licenseId AND Status__c IN : statusFilterList AND Parent_License__r.Credential_Type__c LIKE : '%'+license_Custom_Metadata.Parent_License_Credential__c+'%'] ;
+                columnDataList = [SELECT id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c
+                                  WHERE Child_License__c =: licenseId AND Status__c IN : statusFilterList AND Parent_License__r.Credential_Type__c LIKE : '%'+license_Custom_Metadata.Parent_License_Credential__c+'%'] ;
             
             wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
@@ -495,6 +509,7 @@ public without sharing class LnP_DashboardApexController_2 {
         return JSON.serialize(wrapperObj);
         
     }
+
     
     @AuraEnabled
     public static Contact getContact(){
