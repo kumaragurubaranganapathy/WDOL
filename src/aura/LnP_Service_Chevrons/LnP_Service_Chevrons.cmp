@@ -85,6 +85,7 @@
                             <aura:set attribute="else">
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
+									<aura:if isTrue="{!v.flowType!='License History Request'}">
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings underline">Questions Review</div><br/>
                                         
@@ -170,7 +171,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    </aura:if>
                                     <div id="AttestationValidation" class='field-item attest-fields'>                
                                         <div class="headings attestation">Signature</div>
                                         <div class="attestBody">Declare before proceeding.</div>

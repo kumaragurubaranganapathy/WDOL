@@ -199,8 +199,7 @@
         // var userName = component.get("v.currentUser.Name");
         // if(enteredAttestText==userName)
         this.checkboxValidation(component, event);
-        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true")
-        {          
+                  
             var action = component.get("c.callCompositeAPI");
             action.setParams({"applicationId" : component.get("v.applicationId"),
                               "description" : component.get("v.Description")});
@@ -237,7 +236,7 @@
             $A.enqueueAction(action);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        
     },
     
     showDependentQuestionsHelper : function(component, event, helper){        
@@ -385,6 +384,10 @@
         }
         else {
             component.set("v.submitButtonDisable", "true");
+        }
+		if(component.get("v.flowType")=='License History Request' && component.get("v.attestationStatus") == true)
+        {
+            component.set("v.submitButtonDisable", "false");
         }
     },
     toEnableSubmitButtonCheck: function(component, event, helper) {
