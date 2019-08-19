@@ -1212,7 +1212,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         List<Account>  lstacc = new List<Account>();
         for(Id applicationID : appId){
             String appliID = '\''+applicationID+'\'';
-            applicationList = Database.query('Select Id,MUSW__Account__r.Id,Parent_License__c,Parent_License__r.Ultimate_Parent_Account__c,MUSW__Account__r.UBI_Number__c,Branch_License__c,MUSW__Account__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Website__c,MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,MUSW__Account__r.Name,MUSW__Account__r.Doing_Business_As_1__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Course_Provider__c,Stage__c, MUSW__Applicant__c, MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName,Application_Type__c,MUSW__Account__r.Business_Structure__c,Application_Method__c, Credential_Type__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r) from MUSW__Application2__c where Id = '+appliID);
+            applicationList = Database.query('Select Id,MUSW__Account__r.Id,Parent_License__c,Parent_License__r.Ultimate_Parent_Account__c,Parent_License__r.Ultimate_Parent_Account__r.Name,MUSW__Account__r.UBI_Number__c,Branch_License__c,MUSW__Account__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Website__c,MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,MUSW__Account__r.Name,MUSW__Account__r.Doing_Business_As_1__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Course_Provider__c,Stage__c, MUSW__Applicant__c, MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName,Application_Type__c,MUSW__Account__r.Business_Structure__c,Application_Method__c, Credential_Type__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r) from MUSW__Application2__c where Id = '+appliID);
             for(MUSW__Application2__c application : applicationList){
                 system.debug('application::'+application);
                 MUSW__License2__c  mstLicense =  new MUSW__License2__c();
@@ -1452,9 +1452,11 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     mstLicense.Print_Middle_Name__c = MiddleName;
                     mstLicense.Print_Last_Name__c = LastName;
                 }
-                if(mstLicense.RecordTypeId == businessRT){
-                    mstLicense.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
-                } 
+                  if(application.Branch_License__c){
+                      mstLicense.License_Printable_Name__c =  application.Parent_License__r.Ultimate_Parent_Account__r.Name+' '+ doingBusinessAs;
+                   }else{
+                        mstLicense.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
+                    }
  
                 lstLisence.add(mstLicense);
             }
