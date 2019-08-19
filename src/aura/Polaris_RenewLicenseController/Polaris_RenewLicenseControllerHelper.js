@@ -162,7 +162,11 @@
             $A.enqueueAction(action);
             //Added to save the personal imformation
             if(component.find("recordObjectForm") != null){
-                component.find("recordObjectForm").find("editForm").submit();   
+                if(component.find("recordObjectForm")!=undefined && component.find("recordObjectForm").length!=undefined){
+                    component.find("recordObjectForm")[0].find("editForm").submit();   
+                }else{
+                    component.find("recordObjectForm").find("editForm").submit(); 
+                }
             }
             var tabsList = component.get("v.licenseWrapper");
             console.log('tabsList '+tabsList);
@@ -209,7 +213,7 @@
             $A.getCallback(function() {
                 var isBizLic = component.get("v.isbusinsessLicense");
                 
-                var str = isBizLic?'/business':'/newdashboard';
+                var str = isBizLic?'/lightningwashington/s/business':'/lightningwashington/s/newdashboard';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
@@ -533,8 +537,8 @@
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
             });   
-            console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
-            var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
+            //console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
+            var fieldValuesWrapper = (component.find("recordObjectForm")!=undefined && component.find("recordObjectForm").length!=undefined)?component.find("recordObjectForm")[0].find("validateField"):component.find("recordObjectForm").find("validateField");               
             var errorMessage = "Please fill valid data";
             var errorMsgsArray = [];
             var PatternAndFlagCheck = validateFields.filter(function(item, index) {

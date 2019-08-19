@@ -160,12 +160,22 @@
             $A.enqueueAction(action);
             //Added to save the personal imformation
             
-            if(component.find("recordObjectForm") != null && component.find("recordObjectForm").find("editForm") != null){
-                component.find("recordObjectForm").find("editForm").submit();            
-            }
-            if(component.find("recordObjectForm") != null && component.find("recordObjectForm").find("createAccountForm") != null){
-                //var fields = event.getParam("fields");
-                component.find("recordObjectForm").find("createAccountForm").submit();            
+            if(component.find("recordObjectForm")!=undefined && component.find("recordObjectForm").length!=undefined){
+                if(component.find("recordObjectForm") != null && component.find("recordObjectForm")[0].find("editForm") != null){
+                    component.find("recordObjectForm")[0].find("editForm").submit();            
+                }
+                if(component.find("recordObjectForm") != null && component.find("recordObjectForm")[0].find("createAccountForm") != null){
+                    //var fields = event.getParam("fields");
+                    component.find("recordObjectForm")[0].find("createAccountForm").submit();            
+                }
+            }else{
+                if(component.find("recordObjectForm") != null && component.find("recordObjectForm").find("editForm") != null){
+                    component.find("recordObjectForm").find("editForm").submit();            
+                }
+                if(component.find("recordObjectForm") != null && component.find("recordObjectForm").find("createAccountForm") != null){
+                    //var fields = event.getParam("fields");
+                    component.find("recordObjectForm").find("createAccountForm").submit();            
+                }
             }
             var tabsList = component.get("v.licenseWrapper");
             console.log('tabsList '+tabsList);
@@ -210,21 +220,21 @@
         });
         
         toastEvent.fire();
-       // window.setTimeout(
-         //   $A.getCallback(function() {
+        window.setTimeout(
+			$A.getCallback(function() {
                 // smth after two seconds
                 // check component.isValid() if you want to work with component
                 var isBizLic = component.get("v.isbusinsessLicense");
                 
-                var str = isBizLic?'/business':'/newdashboard';
+                var str = isBizLic?'/lightningwashington/s/business':'/lightningwashington/s/newdashboard';
 			//	window.location.href = str;
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str	
                 });
                 urlEvent.fire();*/
-            //}), 2000
-        //);
+            }), 2000
+        );
         
     },
     submit : function(component, event, helper) {
@@ -626,8 +636,8 @@
             var validateFields = fieldsWrapper.filter(function(item){
                 return  item.Required__c == true || (item.Regex_Validation__c != undefined && item.Regex_Validation__c != "");
             });   
-            console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
-            var fieldValuesWrapper = component.find("recordObjectForm").find("validateField");                 
+            //console.log('validatingFields'+ component.find("recordObjectForm").find("validateField"));
+            var fieldValuesWrapper = (component.find("recordObjectForm")!=undefined && component.find("recordObjectForm").length!=undefined)?component.find("recordObjectForm")[0].find("validateField"):component.find("recordObjectForm").find("validateField");          
             var errorMessage = "Please fill valid data";
             var errorMsgsArray = [];
             var PatternAndFlagCheck = validateFields.filter(function(item, index) {
