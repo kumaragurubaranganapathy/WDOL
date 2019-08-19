@@ -20,7 +20,6 @@
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();  
                 console.log('result---'+result);
-               
                 if(auraAttr == 'v.deliveryMethodOptions' || auraAttr == 'v.courseTopicOptions' ){
                     for(var i=0; i<result.length; i++){
                         picklistArray.push({Name: result[i] , isSelected: false});
@@ -30,8 +29,9 @@
 				else{
                      component.set(auraAttr, result);
                 }
-                
+                component.set("v.loaded", true);
             }else{
+                component.set("v.loaded", true);
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
@@ -69,6 +69,7 @@
     },
     searchCourse : function(component, event) {
        // alert('Search Called!!');
+        component.set("v.loaded", false);
         var objectApi =  'MUSW__License2__c';
         var fieldsList = ['Name','Id','Course_Name__c','Course_Number__c','Credential_Type__c','Application_Type__c','Pre_Qualifying_Licensure_Levels__c','Qualifying_Elective_Licensure_Levels__c','Continuing_Education_Licensure_Levels__c','What_program_are_you_interested_in__c','Course_Status__c','Course_Title__c','Course_Topic__c','Course_Type__c','Provider_School_Name__c','Provider_Account_Name__c','Delivery_Method__c','Clock_Hours__c','Clock_Hours_Pre_Qualifying__c','Clock_Hours_Qualifying_Elective__c','Clock_Hours_Continuing_Education__c','MUSW__Status__c'];
         var ProgramValue =  component.find("Program").get("v.value");
@@ -185,14 +186,27 @@
             });
             action.setCallback(this, function(response){
                 var state = response.getState();
+                
             //   alert("state---"+state);
                 if (state === "SUCCESS"){
                     console.log("state---"+state);
-                    var rows = response.getReturnValue();  
-                    console.log('rows: '+response.getReturnValue());
+                    var rowsData = response.getReturnValue(); 
+                    var rows = [];
+                   // console.log('rowsData: '+response.getReturnValue());
+                   // console.log('Status --',rowsData[0].MUSW__Status__c);
+                    
+                    for(var i = 0; i< rowsData.length ; i++){
+                     //   console.log('in for loop',rowsData[i]);
+                     //   console.log('in for loop status',rowsData[i].MUSW__Status__c);
+                        
+                        if(rowsData[i].MUSW__Status__c == 'Active' || rowsData[i].MUSW__Status__c == 'Cancelled'){
+                            rows.push(rowsData[i]);
+                         //   console.log('rows--', JSON.stringify(rows));
+                        }
+                    }
+                  //  console.log('rows length',rows.length);
                     if(rows.length!=0){
                         
-                         
                         component.set('v.columns', [
                             {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
                             {label: 'Course Name', fieldName: 'Course_Title__c', type: 'Text', sortable : true},
@@ -212,7 +226,9 @@
                         component.set("v.screenOne", false);
                         component.set("v.searchOne",true);
             			component.set("v.searchOneArray",searchOneArray);
+                        component.set("v.loaded", true);
                     } else {
+                        component.set("v.loaded", true);
                         toastEvent.setParams({
                             "title": "Error!",
                             "message": "No results found.",
@@ -221,6 +237,7 @@
                         toastEvent.fire();
                     }
                 }else{
+                    component.set("v.loaded", true);
                     var errors = response.getError();
                     if (errors) {
                         var message = "";
@@ -278,7 +295,8 @@
         }
     },
      fetchLicenseDetails : function(component, event, helper, licenseId, licenseType) {
-         console.log('licenseId'+licenseId);
+        console.log('licenseId'+licenseId);
+        component.set("v.loaded", false);
         if(licenseId != "" && licenseId != undefined){
             component.set("v.licenseId", licenseId);
             var objectApi =  'MUSW__License2__c';
@@ -333,8 +351,16 @@
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
                 component.set("v.screenThree", true);
+                component.set("v.loaded", true);
             }else{
-                 alert("error!!!!!");
+                component.set("v.loaded", true);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message": "No results found.",
+                    "type": "error"
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);

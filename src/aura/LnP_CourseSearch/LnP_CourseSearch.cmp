@@ -70,7 +70,14 @@ _______________________________________________________________
     <aura:attribute name="licenseRecordType" type="String" />
     <aura:attribute name="CourseRecordTypeId" type="String" />
     
+    <aura:attribute name="loaded" type="Boolean" default="false" />
+    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.loaded}">
+        <aura:set attribute="else">
+             <lightning:spinner alternativeText="Loading" size="medium" />
+        </aura:set>
+    </aura:if>
     <div class="page-width">
         <div class="page-header padding-top-30">
             <h1>Course Search</h1>
@@ -229,7 +236,7 @@ _______________________________________________________________
                     <aura:if isTrue="{!v.searchOne}">
                         <aura:iteration items="{!v.searchOneArray}" var="option">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="slds-form-element__label">{!option.label}&nbsp;:</div>
+                                <div class="slds-form-element__label">{!option.label}:<span>&nbsp;</span></div>
                                 <div class="slds-form-element__control btnnrml">{!option.value}</div>
                             </div>
                         </aura:iteration>
@@ -237,7 +244,7 @@ _______________________________________________________________
                     <aura:if isTrue="{!v.searchTwo}">
                         <aura:iteration items="{!v.searchTwoArray}" var="option">
                             <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="slds-form-element__label">{!option.label}&nbsp;:</div>
+                                <div class="slds-form-element__label">{!option.label}:<span>&nbsp;</span></div>
                                 <div class="slds-form-element__control btnnrml">{!option.value}</div>
                             </div>
                         </aura:iteration>
@@ -285,70 +292,71 @@ _______________________________________________________________
                                 <div class="text-style-val">{!item.MUSW__Status__c}</div>
                             </lightning:layoutItem>
                         </lightning:layout>
-                        <div class="slds-grid slds-p-around_small slds-wrap">
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Clock Hours:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Clock_Hours__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">First Issue Date:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Original_Issue_Date__c}</div>
-                            </div>
-                            <!--div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Course Type:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Course_Type__c}</div>
-                            </div-->
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Pre-Qualifying Clock Hours:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Clock_Hours_Pre_Qualifying__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Current Issue Date:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.MUSW__Issue_Date__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Pre Qualifying Licensure Level:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Pre_Qualifying_Licensure_Levels__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Qualifying Elective Licensure Level:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Qualifying_Elective_Licensure_Levels__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Continuing Education Licensure Level:<span>&nbsp;</span></div> 
-                                <div class="field-style-val">{!item.Continuing_Education_Licensure_Levels__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Qualifying Elective Clock Hours:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Clock_Hours_Qualifying_Elective__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Expiration Date:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.MUSW__Expiration_Date__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Delivery Method:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Delivery_Method__c}</div>
-                            </div>
-                            <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="field-style fieldSize">Continuing Education Clock Hours:<span>&nbsp;</span></div>
-                                <div class="field-style-val">{!item.Clock_Hours_Continuing_Education__c}
+                        <div class="slds-grid courseSearch slds-p-around_small slds-wrap">
+                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Pre Qualifying Licensure Level:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Pre_Qualifying_Licensure_Levels__c}</div>
+                                </div>
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Qualifying Elective Licensure Level:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Qualifying_Elective_Licensure_Levels__c}</div>
+                                </div>
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Continuing Education Licensure Level:<span>&nbsp;</span></div> 
+                                    <div class="field-style-val">{!item.Continuing_Education_Licensure_Levels__c}</div>
+                                </div>		
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Delivery Method:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Delivery_Method__c}</div>
                                 </div>
                             </div>
+                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Clock Hours<span>&nbsp;</span></div>
+                                    <!--div class="field-style-val">{!item.Clock_Hours__c}</div-->
+                                </div>
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Pre-Qualifying Clock Hours:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Clock_Hours_Pre_Qualifying__c}</div>
+                                </div>
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Qualifying Elective Clock Hours:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Clock_Hours_Qualifying_Elective__c}</div>
+                                </div>
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Continuing Education Clock Hours:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Clock_Hours_Continuing_Education__c}</div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">First Issue Date:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.Original_Issue_Date__c}</div>
+                                </div>	
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Current Issue Date:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.MUSW__Issue_Date__c}</div>
+                                </div>
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                    <div class="field-style fieldSize">Expiration Date:<span>&nbsp;</span></div>
+                                    <div class="field-style-val">{!item.MUSW__Expiration_Date__c}</div>
+                                </div>
+                            </div>		
                         </div>
                         <div class="">
                             <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Course
                                 Provider Contact Information</div>
-                            <div class="slds-grid section-content slds-p-around_small">
-                                <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                            <div class="slds-grid course-provider slds-size_2-of-5 section-content slds-p-around_small">
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Phone Number:<span>&nbsp;</span></div>
                                     <div class="field-style-val"><a href="{!'tel:'+item.License_Phone__c}">{!item.License_Phone__c}</a></div>
                                 </div>
-                                <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Email:<span>&nbsp;</span></div>
                                     <div class="field-style-val"><a href="{!'mailto:'+item.License_Email__c}">{!item.License_Email__c}</a></div>
                                 </div>
-                                <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Website:<span>&nbsp;</span></div>
                                     <div class="field-style-val"><a href="{!'//'+item.Website__c}" target="_blank">{!item.Website__c}</a></div>
                                 </div>
