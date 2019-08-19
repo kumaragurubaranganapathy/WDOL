@@ -219,7 +219,7 @@
                                         <div class="error checkbox-error slds-m-top_large">{!v.declarationError}</div>
                                     </div>
                                     
-                                    <aura:if isTrue = "{!v.isbusinsessLicense}">
+                                    
                                         <div id="emailDistributionListValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                             <div class="emailDistribution headings">Email Distribution List</div><br/>
                                             <div class="slds-form-element">
@@ -235,7 +235,7 @@
                                             </div>
                                             <div class="error checkbox-error slds-m-top_large">{!v.emailDistributionError}</div>
                                         </div> 
-                                    </aura:if>  
+                                     
                                     <aura:if isTrue="{!v.licenseType=='Appraiser Course'}">
                                         <div class="slds-form-element__control slds-p-bottom_medium">
                                             <div >
