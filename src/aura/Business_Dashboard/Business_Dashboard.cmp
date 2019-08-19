@@ -64,9 +64,7 @@
                     <div class="add-biz-wrapper">
                         <lightning:button name="Add Business" label="Add business" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
                     </div>
-                    
                     <!-- <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/> -->
-                    
                 </div>
             </div>
             <aura:if isTrue="{!v.businessListLoaded}">
@@ -306,7 +304,7 @@
                                     </lightning:layoutItem>
                                 </aura:iteration>
                             </lightning:layout>
-							<lightning:layout class="action-links slds-wrap"> 
+                            <lightning:layout class="action-links slds-wrap"> 
                                 <lightning:layoutItem size="12" mediumDeviceSize="4" class="change-link-wrapper">
                                     <a class="change-link" onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Business Information</a>
                                 </lightning:layoutItem>        
@@ -471,7 +469,7 @@
                                                 </div>                                                
                                             </lightning:layoutItem>                         
                                         </lightning:layout>
-                                        <aura:if isTrue="{!v.EndorsementData.length != 0}">
+                                       <!-- <aura:if isTrue="{!v.EndorsementData.length != 0}">
                                             <div class="">
                                                 <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
                                                 <div class="section-content slds-p-around_small">
@@ -480,7 +478,7 @@
                                                     </aura:iteration>
                                                 </div>
                                             </div>
-                                        </aura:if>
+                                        </aura:if>-->
                                         <!--<div class="section-wrapper">
                                             <div class="section-header">
                                                 Endorsements
