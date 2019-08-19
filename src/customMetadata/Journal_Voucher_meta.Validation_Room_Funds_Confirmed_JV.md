@@ -4,22 +4,22 @@
     <protected>false</protected>
     <values>
         <field>Batch_Time__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:double">18.0</value>
     </values>
     <values>
         <field>Doc_Number_Prefix__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">240V</value>
     </values>
     <values>
         <field>Is_Active__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>JV_Document_Title__c</field>
-        <value xsi:type="xsd:string">CRJS</value>
+        <value xsi:type="xsd:string">Journal Voucher</value>
     </values>
     <values>
         <field>JV_Explanation_of_Entry__c</field>
-        <value xsi:type="xsd:string">CRJS to record validation room receipts (distribuion of) fees for Professions and Real Estate.</value>
+        <value xsi:type="xsd:string">Journal Voucher to record validation room receipts (distribuion of) fees for Professions and Real Estate.</value>
     </values>
 </CustomMetadata>
