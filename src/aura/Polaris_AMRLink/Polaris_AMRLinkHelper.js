@@ -176,5 +176,13 @@
     },
     showMoreActions : function(component,event){
         component.set("v.showMore",!component.get("v.showMore"));
+    },
+
+    updateBusinessAMR : function(component,event){
+        var licenseType = component.get("v.licenseType");
+        var businessLicenseType =$A.get("$Label.c.Business_Licenses");        
+        var businsessLicenseArray = businessLicenseType.split(',');
+        var isbusinsessLicense = businsessLicenseArray.includes(licenseType);        
+        component.set('v.isBusinessLicense',isbusinsessLicense);
     }
 })

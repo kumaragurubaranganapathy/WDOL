@@ -14,6 +14,7 @@
     <aura:attribute name="branchLicense" type="String" /> 
     <aura:attribute name="amrLinkNum" type="Integer" /> 
     <aura:attribute name="showMore" type="Boolean" default="false" /> 
+    <aura:attribute name="isBusinessLicense" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     
@@ -21,7 +22,7 @@
         <div class="{!'nav-links' + (v.showMore?' exp-link':'')}">
             <ul class="links-list">
                 <aura:iteration items="{!v.ServiceLink}" var="link" indexVar="amrIndex">                                        
-                    <li class="{!v.showMore?'amr-item':(amrIndex>2?'slds-hide':'amr-item')}">   	
+                    <li class="{!(and(link.MasterLabel == 'Update Legal Name',v.isBusinessLicense)?'slds-hide':(v.showMore?'amr-item':(amrIndex>2?'slds-hide':'amr-item')))}">   	
                         <lightning:button variant="base" label="{!link.MasterLabel}" title="{!link.MasterLabel}" value="{!join(',',v.recordId,link.MasterLabel,link.Board__c,link.License_Type__c,link.Application_Method__c,link.Service_Request_Type__c,link.AMR_Type__c)}"  class="amr-buttons" onclick = "{!c.startAMR}"/>
                         <!--<a href="javascript:void(0)" title="{!link.MasterLabel}" value="{!join(',',v.recordId,link.MasterLabel,link.Board__c,link.License_Type__c,link.Application_Method__c,link.Service_Request_Type__c,link.AMR_Type__c)}"  class="" onclick = "{!c.startAMR}">{!link.MasterLabel}</a> -->
                     </li>

@@ -6,6 +6,7 @@
         console.log('application tyep ID : ',component.get("v.applicationMethod"));
         helper.fetchServiceLinkFromServerHelper(component, event, helper); 
         helper.getpickListValues(component,event,helper);
+        helper.updateBusinessAMR(component,event);
     },
     
     startAMR : function(component, event, helper) {   
