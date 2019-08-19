@@ -67,7 +67,7 @@
                 <tbody>
                     <aura:iteration items="{!v.receiptList}" var="item" indexVar="index">
                         <c:LnP_PaymentSourcesChildRowCmp receiptRec="{!item}" rowIndex="{!index}" paymentMethodMap="{!v.paymentMethodMap}"
-                                                         disableNext="{!v.isDisabled}" ValidationNumber = "{!v.customerEnvelopeRec.Validation_number__c}"/>
+                                                         disableNext="{!v.isDisabled}"/>
                         <br/>
                     </aura:iteration>
                 </tbody>

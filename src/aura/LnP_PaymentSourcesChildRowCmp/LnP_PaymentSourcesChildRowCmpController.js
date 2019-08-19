@@ -96,11 +96,11 @@
         
         var _receiptRec= component.get("v.receiptRec");    
         var objToday = new window.Date();
-        var sequenceNumber =  String(_receiptRec.Sequence_number__c);
+        var sequenceNumber =  String(Number(component.get("v.rowIndex"))+1);
         var pad = "000";
         var seqNo = pad.substring(0, pad.length - sequenceNumber.length) + sequenceNumber;        
-      //  _receiptRec['Sequence_number__c'] = seqNo;
-       // _receiptRec['Date__c'] = objToday;
+        _receiptRec['Sequence_number__c'] = seqNo;
+        _receiptRec['Date__c'] = objToday;
          console.log("receiptRec : "+JSON.stringify(_receiptRec));
         
          //BUG 6416 : Slip Printer Input value '35' digits 
@@ -119,7 +119,7 @@
         }
         finalAmount = spaces +'$'+ String(_receiptRec.MUSW__Amount_Tendered__c);
        
-        var _slipPrinterInput = component.get("v.ValidationNumber") +' '+seqNo+' '+formattedDate +' '+finalAmount ;
+        var _slipPrinterInput = component.get("v.ValidationNumber") +' '+_receiptRec.Sequence_number__c+' '+formattedDate +' '+finalAmount ;
         component.set("v.slipPrinterInput", _slipPrinterInput);  
         
         var _AddRowEvt = component.getEvent("AddRowEvt");
