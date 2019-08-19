@@ -12,6 +12,8 @@ _______________________________________________________________
     <aura:attribute name="screenTwo" type="Boolean" default="false"/>
     <aura:attribute name="screenThree" type="Boolean" default="false"/>
     
+    <aura:attribute name="popup" type="Boolean" default="false"/>
+    
     <aura:attribute name="picklistList" type="List" default="[{'objectApi':'MUSW__License2__c', 'fieldsName':'Application_Type__c', 'auraAttr':'v.professionOptions'},
                                                              {'objectApi':'MUSW__License2__c', 'fieldsName':'MUSW__Status__c', 'auraAttr':'v.licenseStatusOptions'},
                                                              {'objectApi':'MUSW__Parcel__c', 'fieldsName':'County__c', 'auraAttr':'v.countryOptions'},
@@ -100,7 +102,7 @@ _______________________________________________________________
                     This search only provides information about the below license types we've issued. If you didn't find what you were looking for, you may want to check <a href="https://fortress.wa.gov/dol/bpdlicensequery/">here</a>
                 </div-->
                 <div class="license-desc slds-p-top_x-small padding-bottom-20">
-                   This search only provides information about the license types we issue. If you don't find what you’re looking for, you can check our <a target="_blank" href="https://fortress.wa.gov/dol/bpdlicensequery/">business &amp; professional license search.</a>
+                    This search only provides information about the license types we issue. If you don't find what you’re looking for, you can check our <a target="_blank" href="https://fortress.wa.gov/dol/bpdlicensequery/">business &amp; professional license search.</a>
                 </div>
                 <div class="slds-hide slds-m-top_medium">
                     <aura:iteration items="{!v.licnseType}" var="eachLicense">
@@ -662,6 +664,14 @@ _______________________________________________________________
                                 </div>
                             </div>
                         </aura:if>
+                        <aura:if isTrue="{!(item.MUSW__License2__r.Project_Address__c!=undefined &amp;&amp; item.MUSW__License2__r.Project_Address__c!='')?'true':'false'}">
+                            <div class="">
+                                <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Disciplinary Action</div>
+                                <div class="section-content slds-p-around_small">
+                                    <a target="_blank" href="{!item.MUSW__License2__r.Project_Address__c}">Download</a>
+                                </div>
+                            </div>
+                        </aura:if>
                         <aura:if isTrue="{!v.licenseRelationData.length!=0?'true':'false'}">
                             <div class="">
                                 <div class="section-name bottom-border slds-m-top_medium slds-p-bottom_x-small slds-m-horizontal_small">License Relationships</div>
@@ -731,4 +741,35 @@ _______________________________________________________________
         </aura:if>
         <div class="legal-text">Use of lists of individuals provided on this site for commercial purposes is prohibited under Chapter 42.56 of the Revised Code of Washington.</div>
     </div>
+    <!-- Page refresh pop up start -->
+    <!--aura:if isTrue="{!v.popup}">             
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2>Are you sure you want to leave the page?</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>You will loose the unsaved data if you leave the page.</p>
+                    <p>Press OK to continue, or Cancel to stay on the current page.</p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" 
+                                      label="OK"
+                                      title="Proceed"
+                                      onclick="{!c.proceedPageAway}"/>
+                    <lightning:button variant="neutral" 
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{!c.stopPageAway}"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if-->
+    <!--Page refresh pop up end -->
 </aura:component>

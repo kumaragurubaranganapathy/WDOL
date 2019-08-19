@@ -1,5 +1,6 @@
 ({	
     doInit : function(component, event, helper) {
+        //helper.preventLeaving(event);
         var picklistArray = component.get("v.picklistList");
         var objectApi;
         var fieldsName;
@@ -18,6 +19,14 @@
             licenseType = licenseTypePicklist[i].licenseType;
             helper.fetchLicenseTypes(component, event, auraAttr, licenseType);
         }
+	},
+    proceedPageAway : function(component, event, helper) {
+        component.set("v.popup", false);
+		return true;
+	},
+    stopPageAway : function(component, event, helper) {
+        component.set("v.popup", false);
+		event.preventDefault();
 	},
     navigateToCustomPlace1 : function(component, event, helper) {
 		helper.navigateToCustomPlace1(component, event);
