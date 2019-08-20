@@ -1,52 +1,4 @@
 ({
-    fetchDisplayEndorsementDetails : function(component, event, helper) {
-        
-        var action = component.get("c.fetchEndorsementTypeData");
-        action.setParams({
-            "licenseType": component.get("v.licenseType")             
-        });
-        action.setCallback(this, function(actionResult){
-            var state = actionResult.getState();
-            if (state === "SUCCESS"){
-                var result = actionResult.getReturnValue();
-                var endorsementList = component.get("v.endorsementList");
-                var currentEndoList = [];
-                for(var i=0 ; i<endorsementList.length; i++)
-                {
-                    if(endorsementList[i].Status__c=='Active')
-                    {
-                        currentEndoList.push(endorsementList[i].Endorsement_Type__c);
-                    }
-                }
-                var counter = 0;
-                if(endorsementList.length>0)
-                {
-                    for (var i=0 ; i<currentEndoList.length; i++)
-                    {
-                        for (var j=0 ; j<result.length; j++)
-                         {
-                          	if(result[j]==currentEndoList[i])
-                            {
-                                counter++;
-                            }
-                         }
-                    }
-                    if(counter==result.length)
-                    {
-                        component.set("v.ShowAddEndorsement",false);
-                    }
-                    else
-                    {
-                        component.set("v.ShowAddEndorsement",true);
-                    }
-                }
-                
-            }else{
-                window.location.href = "./error";
-            }
-        });
-        $A.enqueueAction(action);
-    },
     fetchDataFromServer : function(component, event, helper) {        
         var manageEndorsement = sessionStorage.getItem("ServiceRequestType");//endorsement
         var recordID = sessionStorage.getItem("licId"); //Licence Id
@@ -119,7 +71,6 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 helper.fetchEndorsement(component, event, helper);
-                helper.fetchDisplayEndorsementDetails(component, event, helper);
             }
         });
         $A.enqueueAction(action);
@@ -193,7 +144,6 @@
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
                 requestId = result;
-                sessionStorage.setItem("recordId", component.get("v.recordId"));                
                 sessionStorage.setItem("ServiceRequestType", component.get("v.manageEndorsement"));                
                 sessionStorage.setItem("board", component.get("v.board"));
                 sessionStorage.setItem("licenseType", component.get("v.licenseType"));

@@ -3,7 +3,6 @@
         helper.fetchDataFromServer(component, event, helper);
         helper.fetchEndorsement(component, event, helper);
         helper.fetchAssociationHelper(component, event, helper);
-        helper.fetchDisplayEndorsementDetails(component, event, helper);
     },
      handleValueSelect : function(component, event, helper) {   
         var parcedValue = event.getParam("value").split(',');
