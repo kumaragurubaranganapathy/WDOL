@@ -278,6 +278,7 @@
 		<members>DOL_ProcessRTPC_Batch</members>
 		<members>DOL_ProcessPayment</members>
 		<members>DOL_License_Linking</members>
+		<members>LnP_generateFeeRecords_Class</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -532,6 +533,8 @@
 		<members>Lnp_PayfromOverShort</members>
 		<members>DOL_Professional_License_Linking</members>
 		<members>DOL_Business_License_Linking</members>
+		<members>Lnp_GenerateFeeRecords</members>
+		<members>Lnp_GenerateFeeRecords_Renewals</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
@@ -5429,6 +5432,9 @@
 		<members>System_Admin_Contact_Message</members>
 	    <members>Activation_Code_Sent_Message</members>
 		<members>Phone_number_Activation_code</members>
+		<members>Fee_Generation_Check_Status</members>
+	    <members>Fee_Generation_Completed_Status</members>
+		<members>Fee_Generation_Status_Error</members>
         <name>CustomLabel</name>
     </types>
 
