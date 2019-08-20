@@ -167,5 +167,9 @@
     },
     goToCart : function(component,event,helper){
         helper.goToCart(component,event);
+    },
+	// US 1976
+    GoToBusinessCart :function(component,event,helper){
+        helper.GoToBusinessCart(component,event);
     }
 })
