@@ -85,7 +85,7 @@
                             <aura:set attribute="else">
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
-									<aura:if isTrue="{!v.flowType!='License History Request'}">
+                                    <aura:if isTrue="{!v.flowType!='License History Request'}">
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings underline">Questions Review</div><br/>
                                         
@@ -225,7 +225,7 @@
                                                     </div>
                                                     
                                                 </aura:if>
-                                                <aura:if isTrue="{!question.fieldType=='Yes_No'}">
+                                                <aura:if isTrue="{!and(question.fieldType=='Yes_No'  , question.endorsementType==null)}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:radioGroup name="{!section.sectionName+questionItem}"                                                                              
@@ -235,6 +235,17 @@
                                                                               onchange="{!c.showDependentQuestions}"/>
                                                     </div>
                                                 </aura:if>
+                                                <aura:if isTrue="{!and(question.fieldType=='Yes_No' , question.endorsementType!=null)}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value,  !question.renderedOnUi)?'slds-hide':'')+ (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:radioGroup name="{!section.sectionName+questionItem}"                                                                              
+                                                                              options="{!question.radioValueOptions}"
+                                                                              value="{!question.value}"
+                                                                              type="radio"
+                                                                              onchange="{!c.showDependentQuestions}"/>
+                                                    </div>
+                                                </aura:if>
+                                                
                                                 
                                                 
                                                 <aura:if isTrue="{!question.fieldType=='Checkbox'}">
@@ -322,9 +333,10 @@
                 </aura:set>
             </aura:if>
         </aura:iteration>
+        
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
             <lightning:button variant="neutral" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
-			 <lightning:button variant="neutral" label="Previous" title="Previous" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'btn btn-lnp prevBtn back-button':'slds-hide'}"/>
+            <lightning:button variant="neutral" label="Previous" title="Previous" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'btn btn-lnp prevBtn back-button':'slds-hide'}"/>
             <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
             <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
         </div>
