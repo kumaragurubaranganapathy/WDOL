@@ -370,7 +370,7 @@ _______________________________________________________________
                 </aura:if>
             </aura:iteration>
         </aura:if>
-        <aura:if isTrue="{!v.AddBusinessAccountsStatusAlert}">
+        <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
             <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
         </aura:if>
         <lightning:layout class="additional-services slds-wrap">
