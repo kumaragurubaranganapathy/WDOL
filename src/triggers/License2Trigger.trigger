@@ -38,7 +38,7 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
     }
 	if(trigger.isAfter && trigger.isUpdate){     
         System.debug('Starttttt');
-            List<Renewal_Application__c> relatedRenewalApplications = [SELECT Id,License__c, Renewal_Status__c, License__r.MUSW__Status__c,License__r.Polaris_DHP__c,Renewal_Reinstatement_Type__c FROM Renewal_Application__c WHERE License__c IN :Trigger.newMap.keySet() AND Renewal_Reinstatement_Type__c='Renewal'];
+            List<Renewal_Application__c> relatedRenewalApplications = [SELECT Id,License__c, Renewal_Status__c, License__r.MUSW__Status__c,License__r.Polaris_DHP__c,Renewal_Reinstatement_Type__c,License__r.MUSW__Applicant__r.Email,License__r.MUSW__Applicant__c,License__r.CreatedById,License__r.Name FROM Renewal_Application__c WHERE License__c IN :Trigger.newMap.keySet() AND Renewal_Reinstatement_Type__c='Renewal'];
             List<Renewal_Application__c> updaterelatedRenewalApplications = new List<Renewal_Application__c>();
             List<Task> insertLicenseDHPTask = new List<Task>();
             Id recordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByName().get('Reminder').getRecordTypeId();
@@ -53,8 +53,11 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
                     licenseDHPTask.Type = 'DHP';
                     licenseDHPTask.Description = 'DHP Reminder';
                     licenseDHPTask.Status = 'Pending';
-					licenseDHPTask.Email__c=currentUser.Email;
                     licenseDHPTask.Subject = 'Bounced Check';
+					licenseDHPTask.Email__c=relatedRenewalApplicationRecord.License__r.MUSW__Applicant__r.Email;
+                    licenseDHPTask.WhoId = relatedRenewalApplicationRecord.License__r.MUSW__Applicant__c;
+                    licenseDHPTask.OwnerId = relatedRenewalApplicationRecord.License__r.CreatedById;
+                    licenseDHPTask.Parent_License_Name__c = relatedRenewalApplicationRecord.License__r.Name;
                     updaterelatedRenewalApplications.add(relatedRenewalApplicationRecord);
                     insertLicenseDHPTask.add(licenseDHPTask);
                 }

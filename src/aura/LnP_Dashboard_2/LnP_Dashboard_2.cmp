@@ -285,6 +285,16 @@
                                                 </aura:set>
                                             </aura:if>
                                         </lightning:layoutItem>
+										<lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
+                                            <div class="label-style">Bad Payment: </div>
+                                            <aura:if isTrue="{!item.Polaris_DHP__c}">
+                                                <div class="data-style">
+                                                    <lightning:input type="checkbox" name="input3" checked="{!item.Polaris_DHP__c}" disabled="true"/>
+                                                </div>
+                                                <aura:set attribute="else">
+                                                    <div class="data-style">None</div>
+                                                </aura:set>
+                                            </aura:if>
                                         <!--lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">Program: </div>
                                             <aura:if isTrue="{!item.Application_Type__c}">
