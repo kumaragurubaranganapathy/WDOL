@@ -6,6 +6,7 @@
         // helper.getAccountName(component, event, helper);
         //  helper.restrictTemporaryLicenses(component,event,helper);
         var accountID = helper.getUrlParam('accId');
+		var docURL = document.URL;
         if(accountID){
             component.set("v.selectedAccountId",accountID);
             sessionStorage.setItem("accountRecordID",accountID);
@@ -13,6 +14,9 @@
         var selectedAccountId = component.get('v.selectedAccountId');
         var licenseType = 'Individual';
         if(selectedAccountId != null  && selectedAccountId != '') {
+            licenseType = 'Business';
+        }
+		else if(/biz-lic/.test(docURL)){
             licenseType = 'Business';
         }
         var action = component.get("c.fetchLicenseType");
