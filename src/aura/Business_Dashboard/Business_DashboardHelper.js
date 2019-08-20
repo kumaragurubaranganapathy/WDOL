@@ -86,6 +86,9 @@
                     component.set("v.mainAccountName",accountMap["Account"][0].Name);
                     component.set("v.ParcelObj",accountMap);
                     component.set("v.isCourseProvider",accountMap["Account"][0].Course_Provider__c);
+                    if(accountMap["Account"][0].Course_Provider__c == true){
+                        component.set("v.defaultTab",'Courses');
+                    }  
                     
                 }
             }
@@ -293,7 +296,12 @@
                 this.injectComponent('c:Polaris_Relationship',attr,tab);
                 break;
             case 'Branches':
-                var attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true"};
+                var attr;
+                if(component.get("v.LicenseData.Credential_Type__c")== 'Engineering/Land Surveying Company'){
+                    attr =  {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "false",affiliatedLocation : "true"};
+                }else{
+                  attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true"};   
+                }
                 this.injectComponent('c:Business_LicenseScreen',attr, tab);
                 break;
             case 'Draft Applications':
