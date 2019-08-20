@@ -29,6 +29,11 @@
             if (state === "SUCCESS") {
                 console.log("Successfully returned");
                 var name = a.getReturnValue();  
+                if(name!=""){
+                    if(name.includes("Birthdate must be")){
+                        name = "Birthdate must be in the past and Licensee should be 16years or older.";
+                    }
+                }
                
                 if(name == 'User created successfully'){
                     component.set("v.popupHeader", "Successfully Registered");
