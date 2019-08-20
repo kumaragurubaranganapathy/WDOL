@@ -4,7 +4,7 @@ trigger Polaris_LicenseParcelTrigger on MUSW__License_Parcel__c (after insert, a
         // If the triggers have been disabled, then do not call the trigger handler
         return;
     }    
-	Polaris_LicenseParcelTriggerHandler handler = new Polaris_LicenseParcelTriggerHandler(Trigger.isExecuting, Trigger.size);
+	/*Polaris_LicenseParcelTriggerHandler handler = new Polaris_LicenseParcelTriggerHandler(Trigger.isExecuting, Trigger.size);
     
     if( Trigger.isInsert )
     {
@@ -27,5 +27,5 @@ trigger Polaris_LicenseParcelTrigger on MUSW__License_Parcel__c (after insert, a
         {
             handler.OnAfterUpdate(trigger.New ,trigger.Old,Trigger.NewMap,Trigger.OldMap);
         }
-    }
+    }*/
 }
