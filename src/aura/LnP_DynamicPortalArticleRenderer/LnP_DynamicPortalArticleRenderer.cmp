@@ -13,16 +13,13 @@
     
     
     <aura:if isTrue = "{!v.articlesLoaded}">
-        <div class="main-wrapper">            
-            <h1 class="{!v.isLoggedIn?'slds-hide':'main-title'}">
-                
-                <!--{!v.customLblMap.LnP_ApplyLicense} -->
-                Manage Your Professional and Business Licenses Online
-            </h1>
+        <div class="main-wrapper">          
+            
             
             <aura:if isTrue="{!not(empty(v.articleList))}">
                 
-                <aura:iteration items="{!v.articleList}" var="art" indexVar="artNo">                    
+                <aura:iteration items="{!v.articleList}" var="art" indexVar="artNo">  
+                    <!--{!art.childArticlesHeader} -->
                     <lightning:layout class="">
                         <lightning:layoutItem class="license-needs-wrapper" size="12" mediumDeviceSize="12">
                             
@@ -94,7 +91,7 @@
                                              onclick="{!c.handleFooterButtonAction}" 
                                              class="footer-button">
                                             
-                                             <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Sign in or create an account')?'slds-hide':'home-button'}" variant="brand" onclick="{!c.redirectToHelp}"/>
+                                            <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Sign in or create an account')?'slds-hide':'home-button'}" variant="brand" onclick="{!c.redirectToHelp}"/>
                                         </div>
                                     </aura:if>
                                 </aura:iteration>
