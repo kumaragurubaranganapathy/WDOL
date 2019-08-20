@@ -287,3 +287,8 @@
 .THIS .mandatory-fields{
     padding:0 0 20px;
 }
+@media t(mqSmall){
+    .THIS .is-not-current,.THIS .green-circle, .THIS .red-circle{
+        display:none;
+    }
+}
