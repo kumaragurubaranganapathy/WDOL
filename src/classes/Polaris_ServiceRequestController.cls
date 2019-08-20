@@ -7,7 +7,7 @@ public class Polaris_ServiceRequestController {
      public static List<User> lstUserInfoData {get;set;}
     
     @AuraEnabled(cacheable = true)
-    public static String fetchData(String board,String licenseType,String requestType, String requestId, String flowType)
+    public static String fetchData(String board,String licenseType,String requestType, String requestId, String flowType, String licID)
     {
         system.debug('board : '+board+'  licenseType : '+licenseType+' requestType : '+requestType+' requestId: '+requestId+' flowType:'+flowType);
         //Creating the conditions for fetching the data       
@@ -41,6 +41,7 @@ public class Polaris_ServiceRequestController {
         {
             lstQuestions = lstTempQuestions;
         }
+		List <Endorsement__c> lstendo = Polaris_ServiceRequestService.fetchEndorsements(licID);
         //Fetching the Master submission list in the system per licenseType and applicationType for general application and comity
         lstMasterSubmission = new List<MUSW__Master_Submission_List__c>();
         List<MUSW__Master_Submission_List__c> lstTempMasterSubmission = Polaris_ServiceRequestService.fetchMasterSubmissionDetails(board,licenseType,requestType,flowType);

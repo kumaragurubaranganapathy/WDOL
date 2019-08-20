@@ -12,6 +12,7 @@
             "licenseType": licenseType, 
             "requestType": applicationType,
             "flowType": flowType,
+			"licID":component.get("v.recordId")
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
