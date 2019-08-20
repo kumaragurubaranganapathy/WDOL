@@ -422,7 +422,7 @@ Individual Account
                                                        <div class="slds-truncate">
                                                            <aura:if isTrue="{!tableData.Status__c == 'Active'}">
                                                                
-                                                               <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button_brand"
+                                                               <a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Separate" href="javascript:void(0)" class="slds-button_brand"
                                                                   onclick="{!c.opendisplayRemovePeerRelationShipModal}">Separate</a>
                                                                
                                                            </aura:if>
@@ -516,7 +516,7 @@ Individual Account
                                                <td data-label="Actions" class="cell-style action-cell">
                                                    <div class="slds-truncate">
                                                        <aura:if isTrue="{!tableData.Status__c == 'Active'}">
-                                                           <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button_brand"
+                                                           <a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Separate" href="javascript:void(0)" class="slds-button_brand"
                                                               onclick="{!c.opendisplayRemoveBusinessRelationShipModal}">Separate</a>
                                                        </aura:if>
 														<aura:if isTrue="{!tableData.Status__c == 'Invited'}">
