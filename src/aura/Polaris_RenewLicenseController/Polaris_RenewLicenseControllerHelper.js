@@ -256,7 +256,7 @@
                     component.set("v.storeServerValue", result);
                     this.closeModel(component, event, helper);
                 }else{
-                    console.log("Submit Error->"+error);
+                    console.log("Submit Error->");
                     //handle error as well
                 }
                 
