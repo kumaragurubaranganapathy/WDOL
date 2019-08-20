@@ -328,17 +328,33 @@ _______________________________________________________________
                 </aura:if>
                 <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
                     <div class="task-wrapper">
-                        <div class="task-subject">
-                            Exam Expired: {!task.Subject}
-                        </div>
-                        <lightning:layout class="license-outer-wrapper slds-wrap">
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="field-style">
-                                    <span class="label-style">Email: </span>
-                                    <span class="data-style">{!task.Email__c}</span>
-                                </div>
-                            </lightning:layoutItem>
-                        </lightning:layout>
+                           <div class="task-subject">
+                                Reschedule Exam : {!task.Subject}
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Email: </span>
+                                        <span class="data-style">{!task.Email__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Exam Name: </span>
+                                        <span class="data-style">{!task.Subject}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Exam Status: </span>
+                                        <span class="data-style">{!task.Description}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Number: </span>
+                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Due Date: </span>
+                                        <span class="data-style">{!task.ActivityDate}</span>
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
                         <div class="button-wrapper license-btn">                                    
                             <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
                             <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
