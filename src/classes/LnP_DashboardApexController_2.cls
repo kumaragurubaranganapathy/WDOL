@@ -302,7 +302,7 @@ public without sharing class LnP_DashboardApexController_2 {
         //List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn'};
                     List<String> statusFilterList = new List<String>();
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-                List<SObject> columnDataList = [Select  id,License_Type__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate)
+                List<SObject> columnDataList = [Select  id,License_Type__c,License__c,Profession__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate)
                                                 from Request__c
                                                 where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
         

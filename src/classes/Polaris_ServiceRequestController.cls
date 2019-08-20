@@ -115,6 +115,7 @@ public class Polaris_ServiceRequestController {
             labelToFields.questionSectionClass = Ques.Section__c;
             labelToFields.message = Ques.Message__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
+			labelToFields.endorsementType=Ques.Endorsement_Type__c;
             if(questionSection == Ques.Section__c || Ques.Section__c==null)
             {
                 labelToFields.questionSection ='null';
@@ -134,6 +135,20 @@ public class Polaris_ServiceRequestController {
             {
                 labelToFields.isChild = false;
                 labelToFields.renderedOnUi = true;
+            }
+			//added code to remove endorsement questions
+            Integer countEndoQuesVisible = 0;
+            for(Endorsement__c endo : lstendo)
+            {
+                system.debug('endo.Endorsement_Type__c'+endo.Endorsement_Type__c);
+                if(endo.Endorsement_Type__c == Ques.Endorsement_Type__c )
+                {
+                    countEndoQuesVisible++;   
+                }
+            }
+            if(countEndoQuesVisible!=0)
+            {
+                labelToFields.renderedOnUi = false;
             }
             labelToFields.fieldAPIName = Ques.QuestionFieldAPI__c;
             labelToFields.fieldObjName = Ques.QuestionObjectName__c;

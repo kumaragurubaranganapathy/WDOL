@@ -1112,8 +1112,13 @@
                                                                 </div>
                                                             </td>
                                                             <td data-label="Actions" class="cell-style table-btn">
-                                                                <div data-recordId="{!tableData.id}">
-                                                                    <lightning:button label="Edit" variant="brand" title="Neutral action" />
+                                                                <div class="table-edit" onclick="{!c.editDraftRequestApplications}" data-recordId="{!tableData.Id}"
+                                                                     data-licenseType="{!tableData.License_Type__c}"
+                                                                     data-board="{!tableData.Profession__c}"
+                                                                     data-applicationType="General Application"
+                                                                     data-serviceRequest="{!tableData.Service_Request_Type__c}"
+                                                                     data-licenseId="{!tableData.License__c}">
+                                                                    <lightning:button variant="brand" label="Edit" title="Neutral action" />
                                                                 </div>
                                                             </td>
                                                             <td data-label="Actions" class="cell-style action-cell table-btn">

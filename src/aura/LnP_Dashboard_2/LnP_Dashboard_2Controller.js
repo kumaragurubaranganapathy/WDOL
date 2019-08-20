@@ -362,6 +362,18 @@
         var Renew_application_Id = ctarget.getAttribute("data-recordId");
         helper.setAbandonedStatus(component, event, helper,Renew_application_Id);
     },
+	editDraftRequestApplications: function(component, event, helper){
+        var ctarget = event.currentTarget;
+        
+        sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-serviceRequest"));                
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
+        sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+        sessionStorage.setItem("recordId", ctarget.getAttribute("data-licenseId"));
+        window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';   
+        
+    },
     
     deleteDraftMaintananceRequestApplication: function(component, event, helper) {
         var ctarget = event.currentTarget;
