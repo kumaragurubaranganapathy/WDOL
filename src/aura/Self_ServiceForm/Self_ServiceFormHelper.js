@@ -249,7 +249,7 @@
     maskInput : function(component,event){  
         var numbers=event.getSource().get('v.value');
         var fieldname=event.getSource().get('v.fieldName');
-        if(fieldname=="MobilePhone" || fieldname=="Phone"){
+        if(fieldname=="MobilePhone" || fieldname=="Phone"|| fieldname=="Phone_Primary_Contact__c"|| fieldname=="Business_Phone__c"){
             if(numbers.length==10){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
@@ -273,6 +273,26 @@
                 errorCount++;
             }
             else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12){
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": "Business Phone should be 10 digits",
+                    "type": "error"
+                });
+                toastEvent.fire();
+                errorCount++;
+            }
+             if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12){
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": "Mobile Phone should be 10 digits",
+                    "type": "error"
+                });
+                toastEvent.fire();
+                errorCount++;
+            }
+            else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12){
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
