@@ -240,6 +240,11 @@ public without sharing class LnP_DashboardApexController_2 {
     }
     
     @AuraEnabled
+    public static String updateAssociateRelationship(String associateId,String status){
+        return JSON.serialize(Polaris_RelationshipsUtilty.updateAssociationRecord(associateId, Status));
+    }
+    
+    @AuraEnabled
     public static String DraftNewLicenseApplicationsTable(){
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         
@@ -437,7 +442,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String getBusinessRelationShipData(String license_id){
         
         List<String> columnHeaderList = new List<String>{'Name','Role','License Type','Phone','Email'};
-            List<String> statusFilterList = new List<String>{'Active'};
+            List<String> statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                 List<SObject> columnDataList = [Select Id,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
                                                 Parent_License__r.Credential_Type__c,Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c,Parent_License__r.MUSW__Primary_Licensee__r.Email__c        
                                                 FROM Associations__c
@@ -453,7 +458,7 @@ public without sharing class LnP_DashboardApexController_2 {
         
         List<String> columnHeaderList;   
         
-        List<String> statusFilterList = new List<String>{'Active'};
+        List<String> statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
             
             List<SObject> columnDataList;
         

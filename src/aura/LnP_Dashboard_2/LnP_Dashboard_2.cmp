@@ -97,11 +97,17 @@
        />
 
 <aura:attribute name="displayRemoveAccountContactModal" type="Boolean" default="false"
-       />
+				/>
 <aura:attribute name="displayRemovePeerRelationShipModal" type="Boolean" default="false"
-       />
+				/>
+<aura:attribute name="PeerRelationShipModalAction" type="String"
+				/>                
 <aura:attribute name="displayRemoveBusinessRelationShipModal" type="Boolean" default="false"
-       />
+				/>
+<aura:attribute name="BusinessRelationShipModalAction" type="Boolean" default="false"
+				/>                    
+				
+<aura:attribute name= "associationModalMessage" type = "String"/> 
 
 <aura:attribute name="Lincese_Details_LastDate" type="String" />
 <aura:attribute name="LicenseNumberBreadCrumb" type="String" />
@@ -338,7 +344,7 @@ Individual Account
                                     class="slds-modal slds-fade-in-open">
                                <div class="slds-modal__container">
                                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                                       Are you sure you want to dissociate the licensee?
+                                       {!v.associationModalMessage}
                                    </div>
                                    <footer class="slds-modal__footer">
                                        <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemovePeerRelationShipModal}">Back</button>
@@ -420,6 +426,20 @@ Individual Account
                                                                   onclick="{!c.opendisplayRemovePeerRelationShipModal}">Separate</a>
                                                                
                                                            </aura:if>
+															<aura:if isTrue="{!tableData.Status__c == 'Invited'}">
+																
+																<a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Cancel" href="javascript:void(0)" class="slds-button_brand"
+																   onclick="{!c.opendisplayRemovePeerRelationShipModal}">Cancel</a>
+																
+															</aura:if>
+														<aura:if isTrue="{!tableData.Status__c == 'No Response'}">
+															
+															<a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "remove" href="javascript:void(0)" class="slds-button_brand"
+															   onclick="{!c.opendisplayRemovePeerRelationShipModal}">remove</a>
+															&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+															<a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "resend" href="javascript:void(0)" class="slds-button_brand"
+															   onclick="{!c.opendisplayRemovePeerRelationShipModal}">resend</a>
+														</aura:if>  														   
                                                        </div>
                                                    </td>
                                                </tr>
@@ -444,7 +464,7 @@ Individual Account
                                     class="slds-modal slds-fade-in-open">
                                <div class="slds-modal__container">
                                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                                       Are you sure you want to dissociate the licensee?
+                                       {!v.associationModalMessage}
                                    </div>
                                    <footer class="slds-modal__footer">
                                        <button class="slds-button slds-button_neutral" onclick="{!c.closedisplayRemoveBusinessRelationShipModal}">Back</button>
@@ -499,6 +519,20 @@ Individual Account
                                                            <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button_brand"
                                                               onclick="{!c.opendisplayRemoveBusinessRelationShipModal}">Separate</a>
                                                        </aura:if>
+														<aura:if isTrue="{!tableData.Status__c == 'Invited'}">
+															
+															<a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Cancel" href="javascript:void(0)" class="slds-button_brand"
+															   onclick="{!c.opendisplayRemovePeerRelationShipModal}">Cancel</a>
+															
+														</aura:if>
+														<aura:if isTrue="{!tableData.Status__c == 'No Response'}">
+															
+															<a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "remove" href="javascript:void(0)" class="slds-button_brand"
+															   onclick="{!c.opendisplayRemovePeerRelationShipModal}">remove</a>
+															&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+															<a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "resend" href="javascript:void(0)" class="slds-button_brand"
+															   onclick="{!c.opendisplayRemovePeerRelationShipModal}">resend</a>
+														</aura:if> 													   
                                                    </div>
                                                </td>
                                            </tr>
@@ -797,7 +831,7 @@ Individual Account
                                 class="slds-modal slds-fade-in-open">
                            <div class="slds-modal__container">
                                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                                   Are you sure you want to dissociate the licensee?
+                                   {!v.associationModalMessage}
                                </div>
                                <footer class="slds-modal__footer">
                                    <button class="slds-button slds-button_neutral" onclick="{!c.closeRemoveAccountContactRelationModal}">Back</button>

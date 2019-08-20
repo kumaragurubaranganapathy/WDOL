@@ -225,7 +225,9 @@
         
         var account_ContactId = event.currentTarget.getAttribute("data-id");
         component.set("v.removeAccountContactRelationId",account_ContactId);
+        component.set("v.associationModalMessage","Are you sure you want to dissociate the licensee?");
         component.set("v.displayRemoveAccountContactModal","true");
+        
         
     },
     
@@ -240,6 +242,8 @@
         
         component.set("v.removeAssociationtRelationId",associateId);
         
+        component.set("v.associationModalMessage","Are you sure you want to dissociate the licensee?");
+        
         component.set("v.displayRemoveBusinessRelationShipModal","true");
     },
     
@@ -251,9 +255,36 @@
     
     opendisplayRemovePeerRelationShipModal : function(component, event, helper){
         
+        var associationMessage;
+        
         var associateId = event.currentTarget.getAttribute("data-id");
         
+        var actionOnModal = event.currentTarget.getAttribute("data-action");
+        
+        if(actionOnModal === "Separate"){
+            
+            associationMessage = "Are you sure you want to dissociate the licensee?";
+            
+        }
+        if(actionOnModal === "Cancel"){
+            
+            associationMessage = "Are you sure you want to cancel the Invitaion?";    
+        }
+        if(actionOnModal === "resend"){
+            
+            associationMessage = "Are you sure you want to resend the invitation?";
+            
+        }
+        if(actionOnModal === "remove"){
+            
+            associationMessage = "Are you sure you want to remove the Invitaion?";    
+        }
+        
         component.set("v.removeAssociationtRelationId",associateId);
+        
+        component.set("v.associationModalMessage", associationMessage);
+        
+        component.set("v.PeerRelationShipModalAction",actionOnModal);
         
         component.set("v.displayRemovePeerRelationShipModal","true");
     },
@@ -266,7 +297,16 @@
         
         var associateId = event.currentTarget.getAttribute("data-id");
         
-        helper.removeremoveAssociationRelationHelper(component, event, helper,associateId);  
+        var peerModalAction = component.get("v.PeerRelationShipModalAction");
+        
+        if(peerModalAction === "Separate"){
+        
+            helper.removeremoveAssociationRelationHelper(component, event, helper,associateId);
+            
+        }if(actionOnModal === "Cancel" || actionOnModal === "resend" || actionOnModal === "remove"){
+            
+            helper.updateAssociationRelationHelper(component, event, helper,associateId,actionOnModal);
+        }
         
         component.set("v.displayRemovePeerRelationShipModal","false");
         
