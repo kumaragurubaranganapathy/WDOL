@@ -9,6 +9,7 @@
     <aura:attribute name ="requestId" type="String" />
     <aura:attribute name ="providerList" type="List" />
     <aura:attribute name="endorsementList" type="List"/>
+    <aura:attribute name="ShowAddEndorsement" type="boolean" default="true"/>    
     <aura:attribute name="isModalOpen" type="boolean" default="false"/>
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
     <aura:attribute name="disableRemove" type="boolean" default="true"/>
@@ -76,21 +77,21 @@
                         </thead>
                         <tbody>
                             <aura:iteration items="{!v.endorsementList}" var="doc">
-                                 <tr>
-                                <td>{!doc.Endorsement_Type__c}</td>
-                                <td>{!doc.Status__c}</td>
-                                <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>
-                                 <td>
-									<aura:if isTrue="{!v.disableRemove}">
-                                    <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
-                                        <aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
-                                            <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
-                                            <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
+                                <tr>
+                                    <td>{!doc.Endorsement_Type__c}</td>
+                                    <td>{!doc.Status__c}</td>
+                                    <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>                                    
+                                    <td>
+                                        <aura:if isTrue="{!v.disableRemove}">
+                                            <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
+                                                <aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
+                                                    <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
+                                                    <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
+                                                </aura:if>
+                                                <lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove"  />
+                                            </lightning:buttonMenu>
                                         </aura:if>
-											<lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove"/>
-                                    </lightning:buttonMenu>
-									</aura:if>
-									</td>
+                                    </td>
                                 </tr>
                             </aura:iteration>
                         </tbody>
@@ -163,10 +164,12 @@
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </aura:if>
+        <aura:if  isTrue="{!v.ShowAddEndorsement}">
         <lightning:button variant="brand" label="Add Endorsement" title="Add Endorsement" onclick="{! c.showAddRecord }" class="slds-m-vertical_large addRecbtn"/>
-         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
+    </aura:if >    
+    <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
             <lightning:button aura:id="buttonBack" label="Back" title="Back" onclick="{! c.goBack }"  class="back-button"/>
-         </div>
+    </div>
         
         <!-- <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
     <div class="slds-grid slds-wrap">
@@ -271,4 +274,6 @@
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
     <!-- pop up end -->
+    
+    
 </aura:component>

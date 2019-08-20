@@ -11,7 +11,7 @@
             "board": board, 
             "licenseType": licenseType, 
             "requestType": applicationType,
-            "flowType": flowType 
+            "flowType": flowType,
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
@@ -199,7 +199,7 @@
         // var userName = component.get("v.currentUser.Name");
         // if(enteredAttestText==userName)
         this.checkboxValidation(component, event);
-                  
+        
             var action = component.get("c.callCompositeAPI");
             action.setParams({"applicationId" : component.get("v.applicationId"),
                               "description" : component.get("v.Description")});
@@ -209,10 +209,9 @@
                 var state = actionResult.getState();
                 if (state === "SUCCESS"){
                     var result = actionResult.getReturnValue();
-					component.set("v.storeServerValue", result[0].Id);
-					component.set("v.serverStatus", "success");       
+                    component.set("v.storeServerValue", result[0].Id);
+					component.set("v.serverStatus", "success");                     
                     this.hideSpinner(component, event);
-                    // Set popup property values before displayiong pop up.
                     var AMRvalues = component.get("v.amrData");
                     if(!AMRvalues.Generate_Fee__c)
                     {
@@ -227,6 +226,7 @@
                     {
                        helper.closeModel(component, event);
                     }
+                    
                 }else{
                     console.log("Submit Error->"+error);
                     //handle error as well
@@ -385,7 +385,7 @@
         else {
             component.set("v.submitButtonDisable", "true");
         }
-		if(component.get("v.flowType")=='License History Request' && component.get("v.attestationStatus") == true)
+        if(component.get("v.flowType")=='License History Request' && component.get("v.attestationStatus") == true)
         {
             component.set("v.submitButtonDisable", "false");
         }
