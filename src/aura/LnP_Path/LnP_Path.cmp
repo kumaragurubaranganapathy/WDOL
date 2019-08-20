@@ -16,7 +16,7 @@
     <aura:registerEvent name="LnP_setCurrTabEvent" type="c:LnP_setCurrTabEvent"/>
     <aura:handler name="LnP_getAttJSON" event="c:LnP_getAttJSON" action="{!c.getAttJSON}"/>
 	<!--aura:handler name="change" value="{!v.attValidation}" action="{!c.attValidationChange}"/-->
-    <!-- <c:ErrorStatus/> -->
+    
 	<div class="{!((v.showPath==false)? 'slds-hide':'slds-show')+' slds-path'}">
         <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
 			<span class="{!(((var+1)==v.currentTab)?'': 'slds-hide')+' '}">
@@ -33,8 +33,12 @@
         <div class="slds-grid slds-path__track pathwidth">
             <div class="slds-grid slds-path__scroller-container">
                 <div class="slds-path__scroller" role="application">
+                    
 					<ul class="{!(v.totalTabs == 6?'six-circles':'')+(v.totalTabs == 5?'five-circles':'')+(v.totalTabs == 4?'four-circles':'')+(v.totalTabs == 3?'three-circles':'')+(v.totalTabs == 2?'two-circles':'')+' slds-path__nav'}" role="listbox">
 						<aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
+                           
+                            
+                            <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"-->
 							<li data-id="{!(var+1)}" class="slds-path__item" role="presentation">
 								<a style="cursor: default;" title="{!tabPath.header}">
                                     <!-- {!(var+1) + ' '}{!v.currentTab} -->
@@ -68,8 +72,10 @@
 							</li>
 							<aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">
                                
-								<hr id="totaltabs" class="{!(lessthan((var+1),v.currentTab)==true)?'active-path':''}"></hr>
+								<hr id="totaltabs" class="{!'slds-show_medium ' + ((lessthan((var+1),v.currentTab)==true)?'active-path':'')}"></hr>
+                                <hr id="{!var}" class="{!'slds-hide_medium ' + (or(var == v.currentTab-1 , var == v.currentTab-2 )?(var == v.currentTab-2?'active-path':''):'slds-hide')}"></hr>
 							</aura:if>
+                            
 						</aura:iteration>
 					</ul>
                     
