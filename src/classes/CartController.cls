@@ -104,10 +104,12 @@ public with sharing class CartController
         checkReceiptAmount = true;
         isBisuneesLic =System.currentPageReference().getParameters().get('isBLic');
         //Check if it is business cart
+        // Commented to Fix SIT / UAT issues
+        /*
         objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
-        if (objContact.BusinessCartToOpen__c != null){
+        if (objContact!=null && objContact.BusinessCartToOpen__c != null){
             m_accId =objContact.BusinessCartToOpen__c;
-        }
+        }*/
         encryptedSessionInfo = System.currentPageReference().getParameters().get('session');
         if( encryptedSessionInfo != null){
             activeTab = 'confirm';
@@ -211,11 +213,13 @@ public with sharing class CartController
     public void initOrder()
     {
         // clearoff account id from contact US 1976
-        if(objContact.BusinessCartToOpen__c != ''){
+        // Commented to Fix SIT / UAT issues
+        /*
+        if([objContact.BusinessCartToOpen__c != ''){
             objContact.BusinessCartToOpen__c ='';
             update objContact;
         }
-        
+        */
         ApexPages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=10');
         // don't run if coming from Monexa
         if (m_pid == null && m_cartId == null && m_invoiceId == null && m_depositId == null && m_feeId==null && !UserInfo.getUserType().contains('CustomerSuccess') && UserInfo.getUserType() != 'CspLitePortal') return;
