@@ -1,1 +1,0 @@
-@isTest private class DRE2Test_MUSW_Account_Contact_c { @isTest static void insertUpdateDelete() { DRE.DRETestExternalManager.run('MUSW__Account_Contact__c'); } }
