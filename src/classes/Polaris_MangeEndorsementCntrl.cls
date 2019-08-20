@@ -97,6 +97,29 @@ public class Polaris_MangeEndorsementCntrl {
         return JSON.serialize(lstLicenseWrapper); 
     }
     
+    
+        @AuraEnabled
+    public static List<String> fetchEndorsementTypeData(String licenseType)
+    {
+        List<Endorsement_Add_Selection__mdt> lstEndoTypesMetaData = [Select id,Endorsement_Types__c,License_Type__c FROM Endorsement_Add_Selection__mdt WHERE License_Type__c=:licenseType ];
+        List<String> lstEndoTypes = new List<String>();
+        String endoType;
+        if(!lstEndoTypesMetaData.isEmpty())
+        {
+            for(Endorsement_Add_Selection__mdt endo : lstEndoTypesMetaData )
+            {
+                endoType = endo.Endorsement_Types__c;
+            }
+        }        
+        if(endoType != null)
+        {
+            lstEndoTypes = endoType.split(',');
+        }
+        system.debug('endoType--'+endoType);
+        system.debug('lstEndoTypes--'+lstEndoTypes);
+        return lstEndoTypes;
+    }
+    
     @AuraEnabled
     public static Integer fetchAssociations(String licId)
     {
@@ -120,7 +143,7 @@ public class Polaris_MangeEndorsementCntrl {
     public static Void removeProvider(String providerId)
     {
        Electronic_Notary_Provider_Information__c prov = [SELECT id,Description__c,Effective_Date__c,Provider_Name__c FROM Electronic_Notary_Provider_Information__c where Id =:providerId ];
-    	delete prov;
+        delete prov;
     }
     
     @AuraEnabled

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Endorsement_Types__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Endorsement Types</label>
+        <length>131072</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>License_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>License Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Academic Intern</fullName>
+                    <default>true</default>
+                    <label>Academic Intern</label>
+                </value>
+                <value>
+                    <fullName>Appraisal Controlling Person</fullName>
+                    <default>false</default>
+                    <label>Appraisal Controlling Person</label>
+                </value>
+                <value>
+                    <fullName>Appraisal Management Company</fullName>
+                    <default>false</default>
+                    <label>Appraisal Management Company</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Course</fullName>
+                    <default>false</default>
+                    <label>Appraiser Course</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Trainee</fullName>
+                    <default>false</default>
+                    <label>Appraiser Trainee</label>
+                </value>
+                <value>
+                    <fullName>Architect</fullName>
+                    <default>false</default>
+                    <label>Architect</label>
+                </value>
+                <value>
+                    <fullName>Architect Firm</fullName>
+                    <default>false</default>
+                    <label>Architect Firm</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Company</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Company</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Salesperson</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Cemetery</fullName>
+                    <default>false</default>
+                    <label>Cemetery</label>
+                </value>
+                <value>
+                    <fullName>Certificate of Removal Registration</fullName>
+                    <default>false</default>
+                    <label>Certificate of Removal Registration</label>
+                </value>
+                <value>
+                    <fullName>Certified General Appraiser</fullName>
+                    <default>false</default>
+                    <label>Certified General Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Certified Residential Appraiser</fullName>
+                    <default>false</default>
+                    <label>Certified Residential Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Cremated Remains Disposition Permit</fullName>
+                    <default>false</default>
+                    <label>Cremated Remains Disposition Permit</label>
+                </value>
+                <value>
+                    <fullName>Crematory</fullName>
+                    <default>false</default>
+                    <label>Crematory</label>
+                </value>
+                <value>
+                    <fullName>Delegated Municipality Agent</fullName>
+                    <default>false</default>
+                    <label>Delegated Municipality Agent</label>
+                </value>
+                <value>
+                    <fullName>Embalmer</fullName>
+                    <default>false</default>
+                    <label>Embalmer</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Intern</fullName>
+                    <default>false</default>
+                    <label>Embalmer Intern</label>
+                </value>
+                <value>
+                    <fullName>Engineering/Land Surveying Company</fullName>
+                    <default>false</default>
+                    <label>Engineering/Land Surveying Company</label>
+                </value>
+                <value>
+                    <fullName>Engineering Corporations</fullName>
+                    <default>false</default>
+                    <label>Engineering Corporations</label>
+                </value>
+                <value>
+                    <fullName>Engineer in Training</fullName>
+                    <default>false</default>
+                    <label>Engineer in Training</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director</fullName>
+                    <default>false</default>
+                    <label>Funeral Director</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Intern</fullName>
+                    <default>false</default>
+                    <label>Funeral Director Intern</label>
+                </value>
+                <value>
+                    <fullName>Funeral Establishment</fullName>
+                    <default>false</default>
+                    <label>Funeral Establishment</label>
+                </value>
+                <value>
+                    <fullName>Funeral Establishment Branch</fullName>
+                    <default>false</default>
+                    <label>Funeral Establishment Branch</label>
+                </value>
+                <value>
+                    <fullName>Geologist</fullName>
+                    <default>false</default>
+                    <label>Geologist</label>
+                </value>
+                <value>
+                    <fullName>Geologist In Training</fullName>
+                    <default>false</default>
+                    <label>Geologist In Training</label>
+                </value>
+                <value>
+                    <fullName>In State Collection Agency</fullName>
+                    <default>false</default>
+                    <label>In State Collection Agency</label>
+                </value>
+                <value>
+                    <fullName>Landscape Architect</fullName>
+                    <default>false</default>
+                    <label>Landscape Architect</label>
+                </value>
+                <value>
+                    <fullName>Land Surveying Corporations</fullName>
+                    <default>false</default>
+                    <label>Land Surveying Corporations</label>
+                </value>
+                <value>
+                    <fullName>Land Surveying LLC</fullName>
+                    <default>false</default>
+                    <label>Land Surveying LLC</label>
+                </value>
+                <value>
+                    <fullName>Land Surveyor in Training</fullName>
+                    <default>false</default>
+                    <label>Land Surveyor in Training</label>
+                </value>
+                <value>
+                    <fullName>Manufactured Homes Dealer</fullName>
+                    <default>false</default>
+                    <label>Manufactured Homes Dealer</label>
+                </value>
+                <value>
+                    <fullName>Notary Public</fullName>
+                    <default>false</default>
+                    <label>Notary Public</label>
+                </value>
+                <value>
+                    <fullName>On-site Wastewater Designer</fullName>
+                    <default>false</default>
+                    <label>On-site Wastewater Designer</label>
+                </value>
+                <value>
+                    <fullName>On-site Wastewater Inspector</fullName>
+                    <default>false</default>
+                    <label>On-site Wastewater Inspector</label>
+                </value>
+                <value>
+                    <fullName>Out State Collection Agency</fullName>
+                    <default>false</default>
+                    <label>Out State Collection Agency</label>
+                </value>
+                <value>
+                    <fullName>Prearrangement Funeral Services</fullName>
+                    <default>false</default>
+                    <label>Prearrangement Funeral Services</label>
+                </value>
+                <value>
+                    <fullName>Professional Engineer</fullName>
+                    <default>false</default>
+                    <label>Professional Engineer</label>
+                </value>
+                <value>
+                    <fullName>Professional Land Surveyor</fullName>
+                    <default>false</default>
+                    <label>Professional Land Surveyor</label>
+                </value>
+                <value>
+                    <fullName>Registered Appraiser Trainee</fullName>
+                    <default>false</default>
+                    <label>Registered Appraiser Trainee</label>
+                </value>
+                <value>
+                    <fullName>State Licensed Appraiser</fullName>
+                    <default>false</default>
+                    <label>State Licensed Appraiser</label>
+                </value>
+                <value>
+                    <fullName>Temporary Certified General</fullName>
+                    <default>false</default>
+                    <label>Temporary Certified General</label>
+                </value>
+                <value>
+                    <fullName>Temporary Certified Residential</fullName>
+                    <default>false</default>
+                    <label>Temporary Certified Residential</label>
+                </value>
+                <value>
+                    <fullName>Temporary State Licensed</fullName>
+                    <default>false</default>
+                    <label>Temporary State Licensed</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Company</fullName>
+                    <default>false</default>
+                    <label>Timeshare Company</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Salesperson</fullName>
+                    <default>false</default>
+                    <label>Timeshare Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Unlicensed</fullName>
+                    <default>false</default>
+                    <label>Unlicensed</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous Fee</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous Fee</label>
+                </value>
+                <value>
+                    <fullName>Update/Close Company</fullName>
+                    <default>false</default>
+                    <label>Update/Close Company</label>
+                </value>
+                <value>
+                    <fullName>Update Legal Name</fullName>
+                    <default>false</default>
+                    <label>Update Legal Name</label>
+                </value>
+                <value>
+                    <fullName>Compliance</fullName>
+                    <default>false</default>
+                    <label>Compliance</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Endorsement Add Selection</label>
+    <pluralLabel>Endorsement Add Selections</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

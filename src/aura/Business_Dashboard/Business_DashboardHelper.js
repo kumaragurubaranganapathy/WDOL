@@ -240,7 +240,7 @@
     },
     updateBusinessInfoHelper : function(component, event, helper) {
         var requestId='';
-        var ServiceRequestType = 'Update/Close Company';
+        var ServiceRequestType = 'Update Company Information';
         
         var action = component.get("c.insertRequest");
         action.setParams({            
