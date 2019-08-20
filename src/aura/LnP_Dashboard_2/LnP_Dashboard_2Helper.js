@@ -659,6 +659,47 @@
             }
         });
         $A.enqueueAction(action);
+    },
+    
+    updateAssociationRelationHelper : function(component,event, helper,associateId,status){
+        
+        console.log('In LnP_Dashboard_2.aura-helper::updateAssociationRelationHelper');
+        
+        var action = component.get("c.updateAssociateRelationship");
+        
+        action.setParams({"associateId":associateId, "status": status});
+        
+        action.setCallback(this, function(response) {
+            
+            var state = response.getState();
+            
+            if (state === "SUCCESS") {
+                
+                var resp = JSON.parse(response.getReturnValue());
+                
+                var message = resp["message"];
+                
+                var type = resp["isSuccess"] ? "success": "error";
+                
+                this.showToast(component, event, helper,message,type);
+                
+                if(type === "success"){
+                    
+                    var licenseDat = component.get("v.detailLicenseData");
+                    
+                    this.fetchBusinessRelationShipRecords(component, event, helper,licenseDat[0].id);
+                    
+                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);
+                }
+                
+            } else if (state === "ERROR") {
+                
+                var errors = response.getError();
+                
+                console.error(JSON.stringify(errors));
+            }
+        });
+        $A.enqueueAction(action);
     },  
     
     showToast : function(component, event, helper,message,type) {
