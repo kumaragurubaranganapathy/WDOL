@@ -16,6 +16,10 @@
      font-size: token(fieldlabelsize);
      color:t(fieldclr);
 }
+.THIS .disptest .slds-rich-text-editor__output span{
+    color:t(sentenceclr);
+}
+
 .THIS .quesclr .uiOutputRichText,.THIS .revAndSubCompletionFont .uiOutputRichText{
     font-size: token(fieldlabelsize);
     line-height: 1.5;
@@ -231,7 +235,7 @@
    padding:10px 0 0 0;
 }
 .THIS{
-    margin: 0 5.5rem;
+    margin: 0 7.5rem;
 }
 
 .THIS .btn-wrapper{      
@@ -384,17 +388,7 @@
 .THIS .required.field-size.slds-form-element label abbr.slds-required {
     display: none;
 }
-@media only screen and (min-width: 768px)and (max-width: 1024px){
-    
-    .THIS .buttonpos{
-        
-      margin:0;
-        
-    }
-    .THIS .addRecbtn{
-        padding:5px;
-    }
-}
+
 
 @media t(mqSmall){
 
@@ -430,4 +424,21 @@
     .THIS .id-field .account-label{
         display:inline-block;
     }
+    
+}
+@media only screen and (min-width: 768px)and (max-width: 1023px){
+    
+    .THIS {
+        margin: 0 5.5rem;
+    }
+    .THIS .buttonpos{
+        
+        margin:0;
+        
+    }
+    .THIS .addRecbtn{
+        padding:5px;
+    }
+    
+    
 }

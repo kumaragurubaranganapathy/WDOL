@@ -28,18 +28,17 @@
 .THIS .input-field:last-of-type{
     margin-bottom:0;
 }
-.THIS .input-field{
-    margin-bottom:1.5rem;
-}
+
 .THIS .input-field .slds-form-element__control{
     padding:0;
     width:50%;
+    margin-bottom:0.8rem
 }
 .THIS .input-field .slds-form-element__label{
-    font-size:1rem;
-    font-weight:bold;
-    color:t(LnGFormTitleColor);
-    padding-bottom:0.5rem;
+    font-size:t(fieldlabelsize);
+    font-weight:normal;
+    color:t(fieldclr);
+    padding-bottom:5px;
 }
 
 .THIS .amr-title{
@@ -47,6 +46,9 @@
     margin-bottom:1rem;
     color:t(LnGFormTitleColor); 
     font-weight:600;
+}
+.THIS .amrfield{
+    padding:0;
 }
 .THIS .contact-name{
     color:t(LnGFormTitleColor);
@@ -83,7 +85,7 @@
         padding:1rem;
     }
     .THIS .input-field{
-        margin-bottom:1rem;
+        margin-bottom:0;
     }
     .THIS .service-form-container .input-field-wrapper{
         padding:1rem;
