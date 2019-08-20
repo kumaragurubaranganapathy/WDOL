@@ -66,6 +66,17 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Applicant_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.CreatedById</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Applicant Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Applicant_Licensee_Name__c</fullName>
         <externalId>false</externalId>
         <formula>IF(License__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
@@ -118,6 +129,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>40</length>
@@ -153,6 +165,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Completion_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Completion Date</label>
         <required>false</required>
@@ -172,6 +185,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Name</label>
         <length>40</length>
@@ -182,6 +196,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Provider_or_School__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Provider or School</label>
         <length>255</length>
@@ -192,6 +207,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Title__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Title</label>
         <length>255</length>
@@ -224,37 +240,13 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <restricted>true</restricted>
             <valueSetName>Credential</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <valueName>Temporary Certified Residential</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraiser Course</controllingFieldValue>
@@ -267,18 +259,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <valueSettings>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <valueName>Certificate of Removal Registration</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <valueName>Geologist in Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Academic Intern</controllingFieldValue>
@@ -303,6 +283,38 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <valueSettings>
                 <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
                 <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <valueName>Geologist in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
@@ -371,6 +383,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <valueSettings>
                 <controllingFieldValue>Cemetery</controllingFieldValue>
                 <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -447,6 +463,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     <fields>
         <fullName>End_date__c</fullName>
         <description>This is the end date of the education history.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End date</label>
         <required>false</required>
@@ -455,6 +472,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Exam_Approval_Expiry_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exam Approval Expiry Date</label>
         <required>false</required>
@@ -463,6 +481,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Exam_Pass_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exam Pass Date</label>
         <required>false</required>
@@ -495,6 +514,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Exam_Result_Expiry_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exam Result Expiry Date</label>
         <required>false</required>
@@ -530,6 +550,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Email__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License_Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -700,6 +731,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Major__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Major</label>
         <length>100</length>
@@ -710,6 +742,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Minor__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Minor</label>
         <length>100</length>
@@ -720,6 +753,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Name_of_Institution__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Name of Institution</label>
         <length>100</length>
@@ -739,9 +773,21 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     <fields>
         <fullName>Other__c</fullName>
         <description>Other Institution name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_License_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent License Name</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -774,6 +820,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Provider__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Provider</label>
         <length>40</length>
@@ -828,6 +875,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Scheduled_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Scheduled Date</label>
         <required>false</required>
@@ -836,6 +884,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Score__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Score</label>
         <length>100</length>
@@ -847,6 +896,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     <fields>
         <fullName>Start_Date__c</fullName>
         <description>This is the start date at the insitution</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -1183,9 +1233,21 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Trainer_License__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Trainer License</label>
         <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Who_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Applicant__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Who_Id</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

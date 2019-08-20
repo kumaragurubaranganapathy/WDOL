@@ -89,6 +89,7 @@ public with sharing class LnP_generateFeeRecords_Class {
         }catch(Exception e){DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_generateFeeRecords_Class','generateFeeRecords');return 'False';}
         
     }
+	@AuraEnabled
     public static String generateFeeRecords_Renewals(Id renewalId) {
         try{
                                     
@@ -97,12 +98,12 @@ public with sharing class LnP_generateFeeRecords_Class {
             List<MUSW__Fee__c> InsertedfeeList = new List<MUSW__Fee__c>();
             
             String FeeGenartionCheckStatus = Label.Fee_Generation_Check_Status;
-            String FeeGenartionCompletedStatus = Label.Fee_Generation_Completed_Status;
+            String FeeGenartionCompletedStatus = Label.Fee_Generation_Completed_Status_Renewal;
             String FeeGenarationStatusError =Label.Fee_Generation_Status_Error;
             
             Renewal_Application__c renewal_Rec = new Renewal_Application__c();
             
-            renewal_Rec =[Select Id,Renewal_Status__c,Renewal_Reinstatement_Type__c,Credential_Type__c,Application_Type__c,Applicant__c,License_Account__c,License__c,License__r.Is_Late_Renewal_Eligible__c, License__r.Deployed__c from Renewal_Application__c where License__c != null AND License__r.Deployed__c = False AND License_Account__c = null AND Application_Type__c != null];
+            renewal_Rec =[Select Id,Renewal_Status__c,Renewal_Reinstatement_Type__c,Credential_Type__c,Application_Type__c,Applicant__c,License_Account__c,License__c,License__r.Is_Late_Renewal_Eligible__c, License__r.Deployed__c from Renewal_Application__c where License__c != null AND License__r.Deployed__c = False AND License_Account__c = null AND Application_Type__c != null AND Id =:renewalId];
             
             
             String renewalApplicationMethod = renewal_Rec.Renewal_Reinstatement_Type__c;
@@ -119,7 +120,7 @@ public with sharing class LnP_generateFeeRecords_Class {
                 Query ='Select Name,Id,Active__c,Agency__c,is_Late_Renewal__c,License_Type__c,Credential_Type__c,Profession_Code__c,Revenue_Code__c,Fee_Calculation_Type__c,Fee_Type__c,Base__c,Business_Structure__c,Fee_Formula_Amount__c,Is_Endorsement__c,Application_Type__c,Portal_Name__c,Agency_Number__c,Credential__c,Application_Method__c from MUSW__Master_Fee_List__c where Active__c = True AND Base__c != null AND Is_Endorsement__c = False AND is_Late_Renewal__c = False AND Application_Method__c =: renewalApplicationMethod AND Credential_Type__c =: renewalCredentialType AND Application_Type__c =: renewalApplicationType';
                 
                 }else if(renewal_Rec.License__r.Is_Late_Renewal_Eligible__c == True ){
-                    Query ='Select Name,Id,Active__c,Agency__c,is_Late_Renewal__c,License_Type__c,Credential_Type__c,Profession_Code__c,Revenue_Code__c,Fee_Calculation_Type__c,Fee_Type__c,Base__c,Business_Structure__c,Fee_Formula_Amount__c,Is_Endorsement__c,Application_Type__c,Portal_Name__c,Agency_Number__c,Credential__c,Application_Method__c from MUSW__Master_Fee_List__c where Active__c = True AND Base__c != null AND Is_Endorsement__c = False AND is_Late_Renewal__c = True AND Application_Method__c =: renewalApplicationMethod AND Credential_Type__c =: renewalCredentialType AND Application_Type__c =: renewalApplicationType';
+                    Query ='Select Name,Id,Active__c,Agency__c,is_Late_Renewal__c,License_Type__c,Credential_Type__c,Profession_Code__c,Revenue_Code__c,Fee_Calculation_Type__c,Fee_Type__c,Base__c,Business_Structure__c,Fee_Formula_Amount__c,Is_Endorsement__c,Application_Type__c,Portal_Name__c,Agency_Number__c,Credential__c,Application_Method__c from MUSW__Master_Fee_List__c where Active__c = True AND Base__c != null AND Is_Endorsement__c = False AND Application_Method__c =: renewalApplicationMethod AND Credential_Type__c =: renewalCredentialType AND Application_Type__c =: renewalApplicationType';
                 }
                 
             

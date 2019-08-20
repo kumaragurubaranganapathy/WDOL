@@ -1,12 +1,12 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
                 access="global" controller="Polaris_DynamicSQL">
     <aura:attribute name="picklistList" type="List" default="[{'objectApi':'MUSW__Complaint2__c', 'fieldsName':'Program_Type__c', 'auraAttr':'v.professionOptions'},
-                                                              {'objectApi':'MUSW__Complaint2__c', 'fieldsName':'Respondent_County__c', 'auraAttr':'v.countyOptions'},
-                                                              {'objectApi':'MUSW__Complaint2__c', 'fieldsName':'Respondent_State__c', 'auraAttr':'v.stateOptions'}]" />
+                                                             {'objectApi':'MUSW__Complaint2__c', 'fieldsName':'Respondent_County__c', 'auraAttr':'v.countyOptions'},
+                                                             {'objectApi':'MUSW__Complaint2__c', 'fieldsName':'Respondent_State__c', 'auraAttr':'v.stateOptions'}]" />
     
     
     <aura:attribute name="professionOptions" type="List" />
-	<aura:attribute name="licenseStatusOptions" type="List" />
+    <aura:attribute name="licenseStatusOptions" type="List" />
     <aura:attribute name="countyOptions" type="List" />
     <aura:attribute name="stateOptions" type="List" />
     
@@ -24,8 +24,8 @@
     <aura:attribute name="totalTabs" type="Integer" default="3" />
     <aura:attribute name="pathTabs" type="string[]" default="['Respondent Information','Your Information','Complaint Description']"/>
     <aura:attribute name="path" type="List" default="[{'header': 'Respondent Information'},
-                                                      {'header': 'Your Information'},
-                                                      {'header': 'Complaint Description'}]"/>
+                                                     {'header': 'Your Information'},
+                                                     {'header': 'Complaint Description'}]"/>
     
     <aura:attribute name="complaintWrapper" type="List" />
     
@@ -44,308 +44,313 @@
     <!-- <aura:attribute name="professionDisable" type="Boolean" default="false"/> -->
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-	
+    
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="page-width">
-    	<div aura:id="complaintApplication" class="complaint-application">
-        <div class="page-header">
-        	<h1 class="padding-top-30">File a Complaint</h1>
-        	<div class="complaint-path">
-                <!-- path -->
-                <div class="slds-grid slds-path__track">
-                    <div class="slds-grid slds-path__scroller-container">
-                        <div class="slds-path__scroller" role="application">
-                           <ul class="slds-path__nav" role="listbox">
-                                <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
-                                    <li class="slds-path__item" role="presentation">
-                                        <a style="cursor: default;" title="{!tabPath.header}" href="javascript:void(0)">
-                                            <aura:if isTrue="{!tabPath.errorImage}">
-                                                <div id ="{!'ExcIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}">
-                                                    <div class="red-circle" ></div>
+        <div aura:id="complaintApplication" class="complaint-application">
+            <div class="page-header">
+                <h1 class="padding-top-30">File a Complaint</h1>
+                <div class="complaint-path">
+                    <!-- path -->
+                    <div class="slds-grid slds-path__track">
+                        <div class="slds-grid slds-path__scroller-container">
+                            <div class="slds-path__scroller" role="application">
+                                <ul class="slds-path__nav" role="listbox">
+                                    <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
+                                        <li class="slds-path__item" role="presentation">
+                                            <a style="cursor: default;" title="{!tabPath.header}" href="javascript:void(0)">
+                                                <aura:if isTrue="{!tabPath.errorImage}">
+                                                    <div id ="{!'ExcIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}">
+                                                        <div class="red-circle" ></div>
+                                                    </div>
+                                                    <aura:set attribute="else">
+                                                        <div id ="{!'TickIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' green-circle icon'}"></div>
+                                                    </aura:set>
+                                                </aura:if>
+                                                <div id ="{!'CurrIcon'+(var+1)}" class="{!(((var+1)==v.currentTab)?'is-current':(greaterthan((var+1),v.currentTab)==true?'is-not-current':'slds-hide'))+' icon'}">
+                                                    <div class="outer-circle" ></div>
                                                 </div>
-                                                <aura:set attribute="else">
-                                                    <div id ="{!'TickIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' green-circle icon'}"></div>
-                                                 </aura:set>
-                                            </aura:if>
-                                            <div id ="{!'CurrIcon'+(var+1)}" class="{!(((var+1)==v.currentTab)?'is-current':(greaterthan((var+1),v.currentTab)==true?'is-not-current':'slds-hide'))+' icon'}">
-                                                  <div class="outer-circle" ></div>
-                                            </div>
-                                        </a>
-                                        <span class="{!(((var+1)==v.currentTab)?'active-path-title':(lessthan((var+1),v.currentTab)==true?'is-complete-path':'inactive-path-title'))+' slds-path__title'}">{!tabPath.header}</span>
-                                    </li>
-                                    <aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">
+                                            </a>
+                                            <span class="{!(((var+1)==v.currentTab)?'active-path-title':(lessthan((var+1),v.currentTab)==true?'is-complete-path':'inactive-path-title'))+' slds-path__title'}">{!tabPath.header}</span>
+                                        </li>
+                                        <aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">
                                             <hr id="totaltabs" class="{!'slds-show_medium ' + ((lessthan((var+1),v.currentTab)==true)?'active-path':'')}"></hr>
                                             <hr id="{!var}" class="{!'slds-hide_medium ' + (or(var == v.currentTab-1 , var == v.currentTab-2 )?(var == v.currentTab-2?'active-path':''):'slds-hide')}"></hr>
                                         </aura:if>
-                                </aura:iteration>
-                            </ul>
-                        </div>
-                    </div>   	
+                                    </aura:iteration>
+                                </ul>
+                            </div>
+                        </div>   	
+                    </div>
                 </div>
+                <!-- path -->
             </div>
-            <!-- path -->
-        </div>
-        <div class="page-content">
-            <!--<aura:if isTrue="{!v.screenOne}">-->
-            <div class="{!v.screenOne?'':'slds-hide'}">
-                <!--h2 class="heading">Complaint Against</h2-->
-                <div class="sub-header slds-p-top_small slds-p-bottom_medium">Provide information about a professional or a business against whom you are filing a complaint</div>
-                <div class="">
-                    <lightning:select class="field-item" name="Profession" label="Profession" required="true" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
-                        <option text="Select a profession" value=""/>
-                        <aura:iteration items="{!v.professionOptions}" var="profession">
-                            <option text="{!profession}" value="{!profession}"/>
-                        </aura:iteration>
-                    </lightning:select>
-                </div>
-                <aura:if isTrue="{!v.professionalScreen}">
-                    <div class="slds-p-vertical_small chkbox-container">
-                        <lightning:input type="checkbox" label="Check this box if you want to enter business related information" name="businessDisplay" checked="{!v.businessScreen}"/>
+            <div class="page-content">
+                <!--<aura:if isTrue="{!v.screenOne}">-->
+                <div class="{!v.screenOne?'':'slds-hide'}">
+                    <!--h2 class="heading">Complaint Against</h2-->
+                    <div class="sub-header slds-p-top_small slds-p-bottom_medium">You can file a complaint against a person or business, or you can report unlicensed activity.</div>
+                    <div class="">
+                        <lightning:select class="field-item" name="Profession" label="Profession" required="true" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
+                            <option text="Select a profession" value=""/>
+                            <aura:iteration items="{!v.professionOptions}" var="profession">
+                                <option text="{!profession}" value="{!profession}"/>
+                            </aura:iteration>
+                        </lightning:select>
                     </div>
-                </aura:if>
-                <aura:if isTrue="{!v.businessScreen}">
-                    <div class="slds-box slds-m-bottom_medium">
-                        <!-- Start of form -->
-                        <div class="slds-form-element">
-                            <div class="slds-wrap">
-                                <lightning:input aura:id="businessForm" label="Business Name" placeholder="Enter Business Name"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="businessName"/>
-                                <lightning:input aura:id="businessForm" label="Doing Business As" placeholder="Enter Doing Business As"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="doingBusinessAs"/>
-                                <lightning:input aura:id="businessForm" label="License Number" placeholder="Enter Number"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="licenseNumber"/>
-                            </div>
-                            <div class=" slds-wrap">
-                                <lightning:input aura:id="businessForm" label="Email" placeholder="Enter Email"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="email" type="email"/>
-                                <lightning:input aura:id="businessForm" label="Phone" placeholder="xxx.xxx.xxxx"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
-                                <lightning:input aura:id="businessForm" label="Address" placeholder="Enter Address"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="address"/>
-                            </div>
-                            <div class="slds-wrap">
-                                <lightning:input aura:id="businessForm" label="City" placeholder="Enter City"
-                                             class="field-item  slds-p-around_medium"
-                                             name="city"/>
-                                <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="Washington">
-                                    <option text="Select a state" value=""/>
-                                    <aura:iteration items="{!v.stateOptions}" var="option">
-                                        <option text="{!option}" value="{!option}"/>
-                                    </aura:iteration>
-                                </lightning:select>
-                                <lightning:select class="field-item  slds-p-around_medium" name="county" label="County" aura:id="businessForm" value="">
-                                    <option text="Select a county" value=""/>
-                                    <aura:iteration items="{!v.countyOptions}" var="option">
-                                        <option text="{!option}" value="{!option}"/>
-                                    </aura:iteration>
-                                </lightning:select>
-                            </div>
+                    <aura:if isTrue="{!v.professionalScreen}">
+                        <div class="slds-p-vertical_small chkbox-container">
+                            <lightning:input type="checkbox" label="Check this box if you want to enter business related information" name="businessDisplay" checked="{!v.businessScreen}"/>
                         </div>
-                        <!-- End of form -->
-                    </div>
-                </aura:if>
-                <aura:if isTrue="{!v.professionalScreen}">
+                    </aura:if>
+                    <aura:if isTrue="{!v.businessScreen}">
+                        <div class="heading slds-m-top_x-large slds-m-bottom_medium">Business you wish to file a complaint against</div>
+                        <div class="slds-box slds-m-bottom_medium">
+                            <!-- Start of form -->
+                            <div class="slds-form-element">
+                                <div class="slds-wrap">
+                                    <lightning:input aura:id="businessForm" label="Business Name" placeholder="Enter Business Name"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="businessName"/>
+                                    <lightning:input aura:id="businessForm" label="Doing Business As" placeholder="Enter Doing Business As"
+                                                     class="field-item slds-p-around_medium"
+                                                     name="doingBusinessAs"/>
+                                    <lightning:input aura:id="businessForm" label="License Number" placeholder="Enter Number"
+                                                     class="field-item slds-p-around_medium"
+                                                     name="licenseNumber"/>
+                                </div>
+                                <div class=" slds-wrap">
+                                    <lightning:input aura:id="businessForm" label="Email" placeholder="Enter Email"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="email" type="email"/>
+                                    <lightning:input aura:id="businessForm" label="Phone" placeholder="xxx.xxx.xxxx"
+                                                     class="field-item slds-p-around_medium"
+                                                     name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
+                                    <lightning:input aura:id="businessForm" label="Address" placeholder="Enter Address"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="address"/>
+                                </div>
+                                <div class="slds-wrap">
+                                    <lightning:input aura:id="businessForm" label="City" placeholder="Enter City"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="city"/>
+                                    <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="Washington">
+                                        <option text="Select a state" value=""/>
+                                        <aura:iteration items="{!v.stateOptions}" var="option">
+                                            <option text="{!option}" value="{!option}"/>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                    <lightning:select class="field-item  slds-p-around_medium" name="county" label="County" aura:id="businessForm" value="">
+                                        <option text="Select a county" value=""/>
+                                        <aura:iteration items="{!v.countyOptions}" var="option">
+                                            <option text="{!option}" value="{!option}"/>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                            </div>
+                            <!-- End of form -->
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.professionalScreen}">
+                        <div class="heading slds-m-top_x-large slds-m-bottom_medium">Professional you wish to file a complaint against</div>
+                        <div class="slds-box">
+                            <!-- Start of form -->
+                            <div class="slds-form-element">
+                                <div class="slds-wrap ">
+                                    <lightning:input aura:id="professionalForm" label="First Name" placeholder="Enter First Name"
+                                                     class="field-item slds-p-around_medium"
+                                                     name="firstName"/>
+                                    <lightning:input aura:id="professionalForm" label="Last Name" placeholder="Enter Last Name"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="lastName"/>
+                                    <lightning:input aura:id="professionalForm" label="License Number" placeholder="Enter License Number"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="licenseNumber"/>
+                                </div>
+                                <div class="slds-wrap">
+                                    <lightning:input aura:id="professionalForm" label="Email" placeholder="Enter Email"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="email" type="email"/>
+                                    <lightning:input aura:id="professionalForm" label="Phone" placeholder="xxx.xxx.xxxx"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
+                                    <lightning:input aura:id="professionalForm" label="Address" placeholder="Enter Address"
+                                                     class="field-item  slds-p-around_medium"
+                                                     name="address"/>
+                                </div>
+                                <div class="slds-wrap">
+                                    <lightning:input aura:id="professionalForm" label="City" placeholder="Enter City"
+                                                     class="field-item slds-p-around_medium"
+                                                     name="city"/>
+                                    <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="professionalForm" value="Washington">
+                                        <option text="Select a state" value=""/>
+                                        <aura:iteration items="{!v.stateOptions}" var="option">
+                                            <option text="{!option}" value="{!option}"/>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                    <lightning:select class="field-item slds-p-around_medium" name="county" label="County" aura:id="professionalForm" value="">
+                                        <option text="Select a county" value=""/>
+                                        <aura:iteration items="{!v.countyOptions}" var="option">
+                                            <option text="{!option}" value="{!option}"/>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                            </div>
+                            <!-- End of form -->
+                        </div>
+                    </aura:if>
+                </div>
+                <!--</aura:if>-->
+                <!--<aura:if isTrue="{!v.screenTwo}">-->
+                <div class="{!v.screenTwo?'':'slds-hide'}">
+                    <!--h2 class="sec-header">Respondent Information</h2-->
+                    <div class="sub-header slds-p-top_x-small slds-p-bottom_small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
+                    <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
+                <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div-->
+                    <aura:if isTrue="{!v.anonymousComplaint}">
+                        <div class="slds-p-vertical_small chkbox-container">
+                            <lightning:input type="checkbox" label="File anonymously" name="AnonymousComplaint" checked="{!v.anonymousComplaintCheckbox}"/>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.displayMessage}">
+                        <div class="sub-header slds-p-top_x-small slds-p-bottom_medium">{!$Label.c.File_Complaint_Conditional_Anonymous_Text}</div>
+                        <aura:set attribute="else">
+                            <div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
+                        </aura:set>
+                    </aura:if>
                     <div class="slds-box">
                         <!-- Start of form -->
                         <div class="slds-form-element">
-                            <div class="slds-wrap ">
-                                <lightning:input aura:id="professionalForm" label="First Name" placeholder="Enter First Name"
+                            <div class="slds-wrap">
+                                <lightning:input aura:id="informationForm" label="First Name" placeholder="Enter First Name"
                                                  class="field-item slds-p-around_medium"
-                                                 name="firstName"/>
-                                <lightning:input aura:id="professionalForm" label="Last Name" placeholder="Enter Last Name"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="lastName"/>
-                                <lightning:input aura:id="professionalForm" label="License Number" placeholder="Enter License Number"
-                                                 class="field-item  slds-p-around_medium"
-                                                 name="licenseNumber"/>
+                                                 name="firstName" required="{!(!v.anonymousComplaintCheckbox)}"/>
+                                <lightning:input aura:id="informationForm" label="Last Name" placeholder="Enter Last Name"
+                                                 class="field-item slds-p-around_medium"
+                                                 name="lastName" required="{!(!v.anonymousComplaintCheckbox)}"/>
+                                <lightning:input aura:id="informationForm" label="Business Name" placeholder="Enter Business Name"
+                                                 class="field-item slds-p-around_medium"
+                                                 name="businessName"/>
                             </div>
                             <div class="slds-wrap">
-                                <lightning:input aura:id="professionalForm" label="Email" placeholder="Enter Email"
+                                <lightning:input aura:id="informationForm" label="Email" placeholder="Enter Email"
                                                  class="field-item  slds-p-around_medium"
-                                                 name="email" type="email"/>
-                                <lightning:input aura:id="professionalForm" label="Phone" placeholder="xxx.xxx.xxxx"
-                                                 class="field-item  slds-p-around_medium"
+                                                 name="email" type="email" required="{!(!v.anonymousComplaintCheckbox)}"/>
+                                <lightning:input aura:id="informationForm" label="Phone" placeholder="xxx.xxx.xxxx"
+                                                 class="field-item slds-p-around_medium"
                                                  name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
-                                <lightning:input aura:id="professionalForm" label="Address" placeholder="Enter Address"
-                                                 class="field-item  slds-p-around_medium"
+                                <lightning:input aura:id="informationForm" label="Address" placeholder="Enter Address"
+                                                 class="field-item slds-p-around_medium"
                                                  name="address"/>
                             </div>
                             <div class="slds-wrap">
-                                <lightning:input aura:id="professionalForm" label="City" placeholder="Enter City"
-                                             class="field-item slds-p-around_medium"
-                                             name="city"/>
-                                <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="professionalForm" value="Washington">
-                                    <option text="Select a state" value=""/>
-                                    <aura:iteration items="{!v.stateOptions}" var="option">
-                                        <option text="{!option}" value="{!option}"/>
-                                    </aura:iteration>
-                                </lightning:select>
-                                <lightning:select class="field-item slds-p-around_medium" name="county" label="County" aura:id="professionalForm" value="">
-                                    <option text="Select a county" value=""/>
-                                    <aura:iteration items="{!v.countyOptions}" var="option">
-                                        <option text="{!option}" value="{!option}"/>
-                                    </aura:iteration>
-                                </lightning:select>
-                            </div>
-                        </div>
-                        <!-- End of form -->
-                    </div>
-                </aura:if>
-            </div>
-            <!--</aura:if>-->
-            <!--<aura:if isTrue="{!v.screenTwo}">-->
-            <div class="{!v.screenTwo?'':'slds-hide'}">
-            	<!--h2 class="sec-header">Respondent Information</h2-->
-                <div class="sub-header slds-p-top_x-small slds-p-bottom_small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
-                <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
-                <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div-->
-                <aura:if isTrue="{!v.anonymousComplaint}">
-                    <div class="slds-p-vertical_small chkbox-container">
-                        <lightning:input type="checkbox" label="File anonymously" name="AnonymousComplaint" checked="{!v.anonymousComplaintCheckbox}"/>
-                    </div>
-                </aura:if>
-				<aura:if isTrue="{!v.displayMessage}">
-                    <div class="sub-header slds-p-top_x-small slds-p-bottom_medium">{!$Label.c.File_Complaint_Conditional_Anonymous_Text}</div>
-                	<aura:set attribute="else">
-                    	<div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
-                    </aura:set>
-                </aura:if>
-                <div class="slds-box">
-                    <!-- Start of form -->
-                    <div class="slds-form-element">
-                        <div class="slds-wrap">
-                            <lightning:input aura:id="informationForm" label="First Name" placeholder="Enter First Name"
-                                             class="field-item slds-p-around_medium"
-                                             name="firstName" required="{!(!v.anonymousComplaintCheckbox)}"/>
-                            <lightning:input aura:id="informationForm" label="Last Name" placeholder="Enter Last Name"
-                                             class="field-item slds-p-around_medium"
-                                             name="lastName" required="{!(!v.anonymousComplaintCheckbox)}"/>
-                            <lightning:input aura:id="informationForm" label="Business Name" placeholder="Enter Business Name"
-                                                 class="field-item slds-p-around_medium"
-                                                 name="businessName"/>
-                        </div>
-                        <div class="slds-wrap">
-                            <lightning:input aura:id="informationForm" label="Email" placeholder="Enter Email"
-                                             class="field-item  slds-p-around_medium"
-                                             name="email" type="email" required="{!(!v.anonymousComplaintCheckbox)}"/>
-                            <lightning:input aura:id="informationForm" label="Phone" placeholder="xxx.xxx.xxxx"
-                                             class="field-item slds-p-around_medium"
-                                             name="phone" type="tel" pattern="[0-9]{3}.[0-9]{3}.[0-9]{4}" onchange="{!c.changepattern}"/>
-                            <lightning:input aura:id="informationForm" label="Address" placeholder="Enter Address"
-                                             class="field-item slds-p-around_medium"
-                                             name="address"/>
-                        </div>
-                        <div class="slds-wrap">
-                            <!--<lightning:select class="field-item slds-small-size_12-of-12 slds-medium-size_4-of-12 slds-p-around_large" name="city" label="City" aura:id="informationForm" value="">
+                                <!--<lightning:select class="field-item slds-small-size_12-of-12 slds-medium-size_4-of-12 slds-p-around_large" name="city" label="City" aura:id="informationForm" value="">
                                 <option text="Select an Option" value=""/>
                                 <aura:iteration items="{!v.cityOptions}" var="option">
                                     <option text="{!option}" value="{!option}"/>
                                 </aura:iteration>
                             </lightning:select>-->
-                            <lightning:input aura:id="informationForm" label="City" placeholder="Enter City"
-                                             class="field-item  slds-p-around_medium"
-                                             name="city"/>
-                            <lightning:select value="Washington" class="field-item  slds-p-around_medium" name="state" label="State" aura:id="informationForm" >
-                                <option text="Select an Option" value=""/>
-                                <aura:iteration items="{!v.stateOptions}" var="option">
-                                    <aura:if isTrue="{!option=='Washington'}">
-                                    	<option text="{!option}" selected="true" value="{!option}"/>
-                                    </aura:if>
-                                    <option text="{!option}" value="{!option}"/>
-                                </aura:iteration>
-                            </lightning:select>
-                            <lightning:input aura:id="informationForm" label="Zip Code" placeholder="Enter Zip Code"
-                                             class="field-item  slds-p-around_medium"
-                                             name="zipcode"/>
+                                <lightning:input aura:id="informationForm" label="City" placeholder="Enter City"
+                                                 class="field-item  slds-p-around_medium"
+                                                 name="city"/>
+                                <lightning:select value="Washington" class="field-item  slds-p-around_medium" name="state" label="State" aura:id="informationForm" >
+                                    <option text="Select an Option" value=""/>
+                                    <aura:iteration items="{!v.stateOptions}" var="option">
+                                        <aura:if isTrue="{!option=='Washington'}">
+                                            <option text="{!option}" selected="true" value="{!option}"/>
+                                        </aura:if>
+                                        <option text="{!option}" value="{!option}"/>
+                                    </aura:iteration>
+                                </lightning:select>
+                                <lightning:input aura:id="informationForm" label="Zip Code" placeholder="Enter Zip Code"
+                                                 class="field-item  slds-p-around_medium"
+                                                 name="zipcode"/>
+                            </div>
+                        </div>
+                        <!-- End of form -->
+                    </div>
+                </div>
+                <!--</aura:if>-->
+                <!--<aura:if isTrue="{!v.screenThree}">-->
+                <div class="{!v.screenThree?'':'slds-hide'}">
+                    <div class="complaint-summary">
+                        <h2 class="sec-header">Complaint Summary</h2>
+                        <div class="sub-header slds-p-top_x-small slds-p-bottom_large">A summary of your complaint; this should include dates, other parties involved, and any efforts you have already made to resolve the problem. 
+                            Describe events in the order they occurred.</div>
+                        <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter complaint summary here" variant="label-hidden"/>
+                    </div>
+                    <div class="attachments slds-m-vertical_medium">
+                        <h2 class="sec-header">Attachments</h2>
+                        <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Attach copies of any relevant documents or evidence such as contracts, photographs, medical records, billing statements, personal notes etc. It is very important that you do not dispose of any information or evidence even after you have filed a complaint.</div>
+                        <div class="slds-box">
+                            <aura:if isTrue="{!v.applicationId}">
+                                <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="Attachment One" />
+                            </aura:if>
                         </div>
                     </div>
-                    <!-- End of form -->
-                </div>
-            </div>
-            <!--</aura:if>-->
-            <!--<aura:if isTrue="{!v.screenThree}">-->
-            <div class="{!v.screenThree?'':'slds-hide'}">
-            	<div class="complaint-summary">
-                	<h2 class="sec-header">Complaint Summary</h2>
-                    <div class="sub-header slds-p-top_x-small slds-p-bottom_large">A summary of your complaint; this should include dates, other parties involved, and any efforts you have already made to resolve the problem. 
-    Describe events in the order they occurred.</div>
-                    <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter complaint summary here" variant="label-hidden"/>
-                </div>
-                <div class="attachments slds-m-vertical_xx-large">
-                	<h2 class="sec-header">Attachments</h2>
-                    <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Attach copies of any relevant documents or evidence such as contracts, photographs, medical records, billing statements, personal notes etc. It is very important that you do not dispose of any information or evidence even after you have filed a complaint.</div>
-                    <div class="slds-box">
-                        <aura:if isTrue="{!v.applicationId}">
-                        	<c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="Attachment One" />
-                        </aura:if>
+                    <div class="declaration slds-m-vertical_large">
+                        <h2 class="sec-header">Submit Complaint</h2>
+                        <div class="">
+                            <div class="sub-header slds-p-top_x-small">By submitting this complaint, I agree and understand that the information provided may be used in efforts to resolve this complaint and will typically be shared with the party complained against. It may also be used to enforce applicable state laws. Under Washington's Open Record Laws, this complaint will be available for public review upon request, after this department's action is completed.</div>
+                            <!--lightning:input class="slds-p-top_medium" type="checkbox" label="I Agree" name="agreeBox" checked="{!v.agreeCheck}"/-->
+                        </div>
                     </div>
                 </div>
-                <div class="declaration">
-                	<h2 class="sec-header slds-p-bottom_x-small">Submit Complaint</h2>
-                    <div class="">
-                    	<div class="sub-header slds-p-top_x-small">By submitting this complaint, I agree and understand that the information provided may be used in efforts to resolve this complaint and will typically be shared with the party complained against. It may also be used to enforce applicable state laws. Under Washington's Open Record Laws, this complaint will be available for public review upon request, after this department's action is completed.</div>
-                    	<!--lightning:input class="slds-p-top_medium" type="checkbox" label="I Agree" name="agreeBox" checked="{!v.agreeCheck}"/-->
+                <!--</aura:if>-->
+                <div class="slds-grid buttons complaint-btn-wrapper">
+                    <div class="slds-small-size_4-of-4 slds-medium-size_1-of-4 left">
+                        <lightning:button class="{!(v.screenTwo || v.screenThree)?'back-button':'slds-hide'}" variant="neutral" type="button" name="back" label="Back" onclick="{!c.backToPrevious}"/>
                     </div>
-                </div>
+                    <div class="slds-small-size_4-of-4 slds-medium-size_3-of-4 right submit-btn-wrapper">
+                        <lightning:button class="{!(v.screenOne)?'slds-hide':'cancel-button'}" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelComplaint}"/>
+                        <lightning:button class="{!(v.screenOne || v.screenTwo)?'next-button':'slds-hide'}" variant="brand" type="submit" name="Next" label="Next" onclick="{!c.goToNext}"/>
+                        <lightning:button class="{!(v.screenThree)?'next-button':'slds-hide'}" variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.submitComplaint}" disabled="{!(!v.agreeCheck)}"/>
+                    </div>
+                </div>            
             </div>
-            <!--</aura:if>-->
-            <div class="slds-grid buttons complaint-btn-wrapper">
-                <div class="slds-small-size_4-of-4 slds-medium-size_1-of-4 left">
-                    <lightning:button class="{!(v.screenTwo || v.screenThree)?'back-button':'slds-hide'}" variant="neutral" type="button" name="back" label="Back" onclick="{!c.backToPrevious}"/>
-                </div>
-                <div class="slds-small-size_4-of-4 slds-medium-size_3-of-4 right submit-btn-wrapper">
-                    <lightning:button class="{!(v.screenOne)?'slds-hide':'cancel-button'}" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelComplaint}"/>
-                    <lightning:button class="{!(v.screenOne || v.screenTwo)?'next-button':'slds-hide'}" variant="brand" type="submit" name="Next" label="Next" onclick="{!c.goToNext}"/>
-                    <lightning:button class="{!(v.screenThree)?'next-button':'slds-hide'}" variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.submitComplaint}" disabled="{!(!v.agreeCheck)}"/>
-                </div>
-            </div>            
-        </div>
         </div>
         <aura:if isTrue="{!v.isOpen}">
-        <div aura:id="complaintApplicationConfirmation" class="confirmation-message">
-        	<div class="confirmation-header ">
-                <h2 class="slds-text-heading_medium">We have received your Complaint</h2>
-            	<div class="">Your Complaint Reference Number is</div>
-                <div class="">{!v.complaintId}</div>
-            </div>
-            <div class="confirmation-content">
-            <div class="slds-text-heading_medium textFormat">What happens after you submit your complaint</div>
-                <div>
-                    <ol>
-                        <li>
-                            <ul>
-                                <div>We determine if the complaint is covered by Washington State laws.</div>
-                                <li>If it is not something covered by the laws, we will notify you.</li>
-                                <li>If it appears to be covered by the laws, we may conduct an investigation. The investigator will act as an impartial, fact-finding third party. During the investigation, they are not representing you (the complainant), the Department or professional board, or the person or business you filed your complaint against (the respondent). The investigator may contact the respondent to ask for a response, which may include providing them with a copy of your complaint. The length of time an investigation takes depends on current case load and the complexity of the case.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <div>After all the facts have been gathered, we evaluate the information.</div>
-                                <li>If the evidence doesn’t support a violation of the laws, the case will be dismissed.</li>
-                                <li>If a violation has occurred, the Department or professional board may recommend disciplinary action based on the severity of the violation. One or more of the following actions may be taken:</li>
+            <div aura:id="complaintApplicationConfirmation" class="confirmation-message">
+                <div class="confirmation-header ">
+                    <h2 class="slds-text-heading_medium">We have received your Complaint</h2>
+                    <div class="">Your Complaint Reference Number is</div>
+                    <div class="slds-p-bottom_medium">{!v.complaintId}</div>
+                </div>
+                <div class="confirmation-content">
+                    <div class="slds-text-heading_medium textFormat">What happens after you submit your complaint</div>
+                    <div>
+                        <ol>
+                            <li>
                                 <ul>
-                                    <li>Issuing a reprimand</li>
-                                    <li>Imposing a fine</li>
-                                    <li>Suspending or revoking the license</li>
-                                    <li>The respondent may request a hearing to dispute the program’s recommended disciplinary action.</li>
-                                    <li>We will notify you of the outcome of your complaint.</li>
+                                    <div>We determine if the complaint is covered by Washington State laws.</div>
+                                    <li>If it is not something covered by the laws, we will notify you.</li>
+                                    <li>If it appears to be covered by the laws, we may conduct an investigation. The investigator will act as an impartial, fact-finding third party. During the investigation, they are not representing you (the complainant), the Department or professional board, or the person or business you filed your complaint against (the respondent). The investigator may contact the respondent to ask for a response, which may include providing them with a copy of your complaint. The length of time an investigation takes depends on current case load and the complexity of the case.</li>
                                 </ul>
-                            </ul>
-                        </li>
-                    </ol>
-                    Our recommended disciplinary actions don’t establish legal opinion. We don’t have the authority to recover funds, award damages, or make judicial determinations. To pursue these remedies, you should seek legal advice.
-                </div>	
+                            </li>
+                            <li>
+                                <ul>
+                                    <div>After all the facts have been gathered, we evaluate the information.</div>
+                                    <li>If the evidence doesn’t support a violation of the laws, the case will be dismissed.</li>
+                                    <li>If a violation has occurred, the Department or professional board may recommend disciplinary action based on the severity of the violation. One or more of the following actions may be taken:</li>
+                                    <ul>
+                                        <li>Issuing a reprimand</li>
+                                        <li>Imposing a fine</li>
+                                        <li>Suspending or revoking the license</li>
+                                        <li>The respondent may request a hearing to dispute the program’s recommended disciplinary action.</li>
+                                        <li>We will notify you of the outcome of your complaint.</li>
+                                    </ul>
+                                </ul>
+                            </li>
+                        </ol>
+                        Our recommended disciplinary actions don’t establish legal opinion. We don’t have the authority to recover funds, award damages, or make judicial determinations. To pursue these remedies, you should seek legal advice.
+                    </div>
+                    <div class="slds-m-vertical_medium">
+                        If you wish to return to the  state of Washington's Manage Your Professional and Business Licenses Online page, you can do so at any time by clicking on the "Home" button in the main menu at the top of this page.
+                    </div>
+                </div>
             </div>
-        </div>
         </aura:if>
     </div>
 </aura:component>
