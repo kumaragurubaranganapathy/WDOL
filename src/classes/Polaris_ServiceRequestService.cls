@@ -91,4 +91,8 @@ public static List<User> fetchUserDetails () {
         return result;
         
     }
+	public static List<Endorsement__c> fetchEndorsements(String licID)
+    {
+        return [SELECT id,Endorsement_Type__c,License__c FROM Endorsement__c WHERE Status__c='Active' AND License__c=:licID];
+    }
 }
