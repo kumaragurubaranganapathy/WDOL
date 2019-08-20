@@ -207,6 +207,15 @@
         padding: 0;
         margin: 0 0 .5rem;
     }
+    .THIS .inactive-path-title,.THIS span.inactive-path-title.slds-path__title,.THIS span.is-complete-path.slds-path__title{
+        display: none;
+    }
+    .THIS .slds-path__item div.is-not-current,.THIS .slds-path__item div.green-circle, .THIS .slds-path__item div.red-circle{
+        display:none;
+    }
+    .THIS a[title="Your Information"]+span{
+        left: 0;
+    }  
 }
 .THIS .inactive-path-title{
    text-overflow: ellipsis;   
@@ -336,7 +345,7 @@
         text-align: center;
     }  
     .THIS hr {
-        width: calc(100%/3);
+        width: calc(100%/6);
         margin: 30px 0;
         position: relative;
         top: -11.5px;
