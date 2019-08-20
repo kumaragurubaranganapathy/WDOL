@@ -89,6 +89,7 @@ public with sharing class LnP_generateFeeRecords_Class {
         }catch(Exception e){DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_generateFeeRecords_Class','generateFeeRecords');return 'False';}
         
     }
+	@AuraEnabled
     public static String generateFeeRecords_Renewals(Id renewalId) {
         try{
                                     
