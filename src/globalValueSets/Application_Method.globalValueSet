@@ -71,9 +71,14 @@
         <label>Additional Secured Party</label>
     </customValue>
     <customValue>
+            <fullName>Reciprocity</fullName>
+            <default>false</default>
+            <label>Reciprocity</label>
+        </customValue>
+        <customValue>
         <fullName>Comity</fullName>
         <default>false</default>
-        <label>Comity/Reciprocity</label>
+        <label>Comity</label>
     </customValue>
     <customValue>
         <fullName>Endorsement</fullName>
@@ -169,5 +174,5 @@
     </customValue>
     <description>This refers to the application method being applied for- General Application, Examination, etc.</description>
     <masterLabel>Application Method</masterLabel>
-    <sorted>true</sorted>
+    <sorted>false</sorted>
 </GlobalValueSet>
