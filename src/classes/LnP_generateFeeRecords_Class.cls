@@ -98,7 +98,7 @@ public with sharing class LnP_generateFeeRecords_Class {
             List<MUSW__Fee__c> InsertedfeeList = new List<MUSW__Fee__c>();
             
             String FeeGenartionCheckStatus = Label.Fee_Generation_Check_Status;
-            String FeeGenartionCompletedStatus = Label.Fee_Generation_Completed_Status;
+            String FeeGenartionCompletedStatus = Label.Fee_Generation_Completed_Status_Renewal;
             String FeeGenarationStatusError =Label.Fee_Generation_Status_Error;
             
             Renewal_Application__c renewal_Rec = new Renewal_Application__c();
