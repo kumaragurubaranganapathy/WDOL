@@ -199,7 +199,7 @@
                      //   console.log('in for loop',rowsData[i]);
                      //   console.log('in for loop status',rowsData[i].MUSW__Status__c);
                         
-                        if(rowsData[i].MUSW__Status__c == 'Active' || rowsData[i].MUSW__Status__c == 'Cancelled'){
+                        if(rowsData[i].MUSW__Status__c == 'Active' || rowsData[i].MUSW__Status__c == 'Canceled'){
                             rows.push(rowsData[i]);
                          //   console.log('rows--', JSON.stringify(rows));
                         }
