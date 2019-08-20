@@ -170,6 +170,6 @@
             "url": str
         });
         urlEvent.fire();
-    },
+    }
     
 })
