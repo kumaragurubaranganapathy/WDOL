@@ -73,16 +73,14 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
             
         }
         
-        Map<Id,MUSW__Fee__c> updateFeeRec = new Map<Id,MUSW__Fee__c>();        
+        
+        Map<Id,MUSW__Fee__c> updateFeeRec ;
         if(!FeeIds.isEmpty()){
-           list<MUSW__Fee__c> feeLst = new list<MUSW__Fee__c>([Select Id,  
-                            Agency_Code__c, 
-                            Voucher_Number__c 
-                            from MUSW__Fee__c
-                            where Id IN : FeeIds]);
-            for(MUSW__Fee__c feerec : feeLst){
-                updateFeeRec.put(feerec.Id,feerec);
-            }
+            updateFeeRec = new Map<Id,MUSW__Fee__c>([Select Id, 
+                                                     Agency_Code__c, 
+                                                     Voucher_Number__c 
+                                                     from MUSW__Fee__c
+                                                     where Id IN : FeeIds]);
         }
         
         List<MUSW__Fee__c> finalFeesToUpdate = new List<MUSW__Fee__c>();
