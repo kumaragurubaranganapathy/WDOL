@@ -291,6 +291,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
     }
     
     global void finish(Database.BatchableContext objBatchableContext) {
+	system.debug('lstJVID$$'+lstJVID);
         decimal count = 0;
         List<Journal_Voucher__c> lstJVtoDelete= new List<Journal_Voucher__c>();
         for(journal_voucher__c objJV : lstJV){
