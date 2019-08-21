@@ -126,14 +126,14 @@
     },
     confirmUBIDetails : function(component, event, helper){
         var values = component.get("v.ubiDetails");
-        /*var fieldValues = component.find("validateField");
+        var fieldValues = component.find("validateField");
         for(var i=0; i<fieldValues.length; i++){
             if(fieldValues[i].get("v.fieldName") == 'Name'){
                 fieldValues[i].set("v.value", values.Name);
-                var auraID = component.find("validateField")[i];
-                $A.util.addClass(auraID, 'disable');
+                //var auraID = component.find("validateField")[i];
+                //$A.util.addClass(auraID, 'disable');
             }
-        }*/
+        }
         component.set("v.ubiValidationResponse", "Active");
         component.set("v.ubiValidated", true);
         component.set("v.isOpen", false);
