@@ -392,7 +392,7 @@ Description    : This method is updating the Next notification date on license
 Return Type    : void
 Parameter      : Nil
 *********************************************************************************/
-    public void Notificationdate() {
+   /* public void Notificationdate() {
         
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
@@ -431,7 +431,7 @@ Parameter      : Nil
             }
         }
         
-    }
+    } */
     
     /*********************************************************************************
     Method Name    : DRESequence
