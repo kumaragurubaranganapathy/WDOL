@@ -39,7 +39,7 @@
                                              data-reschedule="{!examRescheduleInstance.Reschedule_Possible__c}"
                                              data-board="{!examRescheduleInstance.Program_Type__c}"
                                              data-requestType="Reschedule Exam">
-                                            <lightning:button variant="brand" label="Reschedule Exam" title="Reschedule Exam"
+                                            <lightning:button variant="brand" label="Reschedule" title="Reschedule"
                                                               />
                                         </div>
                                     </aura:if>
@@ -53,7 +53,7 @@
                                                  data-status="{!examRescheduleInstance.Status__c}"
                                                  data-board="{!examRescheduleInstance.Program_Type__c}"
                                                  data-requestType="Submit Exam Results">
-                                                <lightning:button variant="brand" label="Submit Exam Results" title="Submit Exam Results"
+                                                <lightning:button variant="brand" label="Submit" title="Submit"
                                                                   />
                                                 
                                             </div>
