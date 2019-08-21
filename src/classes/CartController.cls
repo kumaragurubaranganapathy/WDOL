@@ -104,12 +104,14 @@ public with sharing class CartController
         checkReceiptAmount = true;
         isBisuneesLic =System.currentPageReference().getParameters().get('isBLic');
         //Check if it is business cart
-        // Commented to Fix SIT / UAT issues
-        /*
-        objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
-        if (objContact!=null && objContact.BusinessCartToOpen__c != null){
-            m_accId =objContact.BusinessCartToOpen__c;
-        }*/
+        
+        if(isPortalUser){
+            objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
+            if (objContact!=null && objContact.BusinessCartToOpen__c != null){
+                m_accId =objContact.BusinessCartToOpen__c;
+            }
+        }
+        
         encryptedSessionInfo = System.currentPageReference().getParameters().get('session');
         if( encryptedSessionInfo != null){
             activeTab = 'confirm';
@@ -212,14 +214,13 @@ public with sharing class CartController
     
     public void initOrder()
     {
-        // clearoff account id from contact US 1976
-        // Commented to Fix SIT / UAT issues
-        /*
-        if([objContact.BusinessCartToOpen__c != ''){
+         //clearoff account id from contact US 1976
+         
+        if(isPortalUser && objContact.BusinessCartToOpen__c != ''){
             objContact.BusinessCartToOpen__c ='';
             update objContact;
         }
-        */
+        
         ApexPages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=10');
         // don't run if coming from Monexa
         if (m_pid == null && m_cartId == null && m_invoiceId == null && m_depositId == null && m_feeId==null && !UserInfo.getUserType().contains('CustomerSuccess') && UserInfo.getUserType() != 'CspLitePortal') return;
@@ -1038,7 +1039,8 @@ public with sharing class CartController
         if(lstAcc.size()>0){
             string sPin=BGBK.CartManager.getCartPIN(lstAcc[0]);
             BGBK.CartManager.transferFeesToCart(feeIds, lstAcc[0].id, pinToTransferFee); 
-            PageReference pageRef = new PageReference('/s/newdashboard');
+            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/newdashboard';
+          	PageReference pageRef = new PageReference(portalURL); 
             return pageRef;
         } else{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835

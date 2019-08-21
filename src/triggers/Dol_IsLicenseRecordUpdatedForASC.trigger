@@ -15,8 +15,9 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
                 licenseIds.add(lic.id);
             }
         }
-        licenseList = [select id,Name,MUSW__Status__c,Send_information_to_ASC__c from MUSW__License2__c  where id=:licenseIds];
-        
+		if(!licenseIds.isEmpty()){   // Added the check before query to ensure query is fired only when the licenseIDs are present  
+			licenseList = [select id,Name,MUSW__Status__c,Send_information_to_ASC__c from MUSW__License2__c  where id=:licenseIds];
+        }
         if(Dol_IntegrationUtil.isNotEmpty(licenseList)){
             for(MUSW__License2__c lic :licenseList){
                 if(lic.MUSW__Status__c  != 'Generate Fee'){
@@ -37,8 +38,9 @@ trigger Dol_IsLicenseRecordUpdatedForASC on MUSW__License2__c (after insert, aft
                                           || lic.MUSW__Type__c != trigger.oldmap.get(lic.id).MUSW__Type__c))
                 licenseIds.add(lic.id);
             }
+		if(!licenseIds.isEmpty()){   // Added the check before query to ensure query is fired only when the licenseIDs are present  
         licenseList = [select id,Send_information_to_ASC__c,(select id,MUSW__Parcel__c from MUSW__License2_Parcels__r where Mailing__c = true) from MUSW__License2__c  where id=:licenseIds];
-        
+        }
         if(Dol_IntegrationUtil.isNotEmpty(licenseList)){
             for(MUSW__License2__c lic :licenseList){
                 if(Dol_IntegrationUtil.isNotEmpty(lic.MUSW__License2_Parcels__r)){

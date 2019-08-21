@@ -260,71 +260,71 @@ _______________________________________________________________
             </div>
      </aura:if>-->
                 <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
-                    <div class="task-wrapper">
-                        <div class="task-subject">
-                            Invitation to get asociated to a Business License
-                        </div>
-                        <lightning:layout class="license-outer-wrapper slds-wrap">
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title other-lic">
-                                    Your License
-                           </div> 
-                           <div class="field-style">
-                               <span class="label-style">Name: </span>
-                               <span class="data-style">{!task.Child_Licensee_Name__c}</span>
-                           </div>
-                           <div class="field-style">
-                               <span class="label-style">Profession: </span>
-                               <span class="data-style">{!task.Child_Profession__c}</span>
-                           </div>
-                           <div class="field-style">
-                               <span class="label-style">License Type: </span>
-                               <span class="data-style">{!task.Child_License_Type__c}</span>
-                           </div>
-                           <div class="field-style">
-                               <span class="label-style">License Number: </span>
-                               <span class="data-style">{!task.Child_License_Name__c}</span>
-                           </div>
- 
-                            </lightning:layoutItem>
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title other-lic">
-                                    Invited By
-                                </div> 
-                                <div class="field-style">
-                                    <span class="label-style">Name: </span>
-                                    <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">Profession: </span>
-                                    <span class="data-style">{!task.Parent_Profession__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Type: </span>
-                                    <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Number: </span>
-                                    <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                </div>
-                            </lightning:layoutItem>                        
-
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title designation">
-                                    Designation
-                                </div>
-                                <div class="data-style">
-                                    {!task.Designation__c}
-                                </div>
-                            </lightning:layoutItem>
-                        </lightning:layout>
-                        <div class="button-wrapper license-btn">                                    
-                            <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
-                            <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
-                                <lightning:button class="accept-btn"  variant="brand"   label="Accept"/>
+                <div class="task-wrapper">
+                    <div class="task-subject">
+                        You have been invited to join a business
+                    </div>
+                    <lightning:layout class="license-outer-wrapper slds-wrap">
+                        <!--<lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                            <div class="license-title other-lic">
+                                Your License
+                            </div> 
+                            <div class="field-style">
+                                <span class="label-style">Name: </span>
+                                <span class="data-style">{!task.Child_Licensee_Name__c}</span>
                             </div>
+                            <div class="field-style">
+                                <span class="label-style">Profession: </span>
+                                <span class="data-style">{!task.Child_Profession__c}</span>
+                            </div>
+                            <div class="field-style">
+                                <span class="label-style">License Type: </span>
+                                <span class="data-style">{!task.Child_License_Type__c}</span>
+                            </div>
+                            <div class="field-style">
+                                <span class="label-style">License Number: </span>
+                                <span class="data-style">{!task.Child_License_Name__c}</span>
+                            </div>
+                            
+                        </lightning:layoutItem> -->
+                        <lightning:layoutItem size="12"  class="license-item biz-invite">
+                            <div class="license-title other-lic">
+                                Invited By
+                            </div> 
+                            <div class="field-style">
+                                <span class="label-style">Name: </span>
+                                <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
+                            </div>
+                            <!--<div class="field-style">
+                                <span class="label-style">Profession: </span>
+                                <span class="data-style">{!task.Parent_Profession__c}</span>
+                            </div>
+                            <div class="field-style">
+                                <span class="label-style">License Type: </span>
+                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+                            </div> -->
+                            <div class="field-style">
+                                <span class="label-style">License Number: </span>
+                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                            </div>
+                        </lightning:layoutItem>                        
+                        
+                       <!-- <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                            <div class="license-title designation">
+                                Designation
+                            </div>
+                            <div class="data-style">
+                                {!task.Designation__c}
+                            </div>
+                        </lightning:layoutItem> -->
+                    </lightning:layout>
+                    <div class="button-wrapper license-btn">                                    
+                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                        <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
+                            <lightning:button class="accept-btn"  variant="brand"   label="Accept"/>
                         </div>
                     </div>
+                </div>
                 </aura:if>
                 <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
                     <div class="task-wrapper">
