@@ -84,9 +84,7 @@
                                         Business Name
                                     </label>
                                     <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'')}"  onchange="{!c.fieldchange}" variant="{!fieldlist.lName == 'Name'?'label-hidden':''}"/>
-                                    <div class="{!fieldlist.lName == 'Course_Provider__c'?'course-text':'slds-hide'}">
-                                    	To be able to submit course approval applications, you need to check this box.
-                                    </div>
+                                    
                                 </aura:set>
                             </aura:if> 
                             <aura:set attribute="else">
@@ -96,7 +94,10 @@
                                         <aura:if isTrue="{!fieldlist.lName == 'Name'}">
                                             <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}"/>
                                         </aura:if>
-                                    	<lightning:inputField fieldName="{!fieldlist.lName}" class="field-size multi-field"  onchange="{!c.fieldchange}" />  
+                                        <lightning:inputField fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.lName == 'Course_Provider__c'?' course-field':'')}"  onchange="{!c.fieldchange}" />  
+                                        <div class="{!fieldlist.lName == 'Course_Provider__c'?'course-text':'slds-hide'}">
+                                            To be able to submit course approval applications, you need to check this box.
+                                        </div>
                                     </aura:set>
                                 </aura:if>
                             </aura:set>
