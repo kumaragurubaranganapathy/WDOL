@@ -232,13 +232,15 @@
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
+		var upgradeLicenseIdValue = component.find("licensePickerId").get("v.value");
         var action = component.get("c.fetchInstructions");
         action.setParams({
             "Board": board, 
             "LicenseType": licenseType, 
             "ApplicationType": applicationMethod,
             "Obj":'MUSW__License2__c',
-            "renewalReinstate":''
+            "renewalReinstate":'',
+			"upgradeLicenseIdValue": upgradeLicenseIdValue
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
