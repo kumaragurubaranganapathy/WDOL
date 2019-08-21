@@ -6,7 +6,7 @@
 }
 .THIS .page-header h1{
     font-family: t(merrifontfamily);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 600;
     font-style: t(txtfontstyle);
     line-height: 1.48;
@@ -458,17 +458,17 @@ padding: 4px 5px;
     font-size: 17px;
 }
 .THIS .text-element {
-	display: flex;
+	/*display: flex;
 	justify-content: flex-start;
 	align-items: flex-start;
-	padding-right: 30px;
+	padding-right: 30px;*/
 	box-sizing: border-box;
 }
 .THIS .text-style, .THIS .field-style {
-	flex: 1;
+	/*flex: 1;*/
 }
 .THIS .text-style-val, .THIS .field-style-val {
-	flex: 1;
+	/*flex: 1;*/
 }
 .THIS .section-name {
 	font-size: 15px;
@@ -546,4 +546,20 @@ padding: 4px 5px;
 .THIS .slds-table [role=gridcell]:focus, .THIS .slds-table [role=gridcell].slds-has-focus{
 	border:0;
 	box-shadow:none;
+}
+.THIS ::-webkit-input-placeholder { 
+	color: t(fieldclr);
+	-webkit-text-fill-color:t(fieldclr);
+}
+.THIS ::-moz-placeholder { 
+	color: t(fieldclr);
+	-webkit-text-fill-color:t(fieldclr);
+}
+.THIS :-ms-input-placeholder { 
+	color: t(fieldclr);
+	-webkit-text-fill-color:t(fieldclr);
+}
+.THIS :-moz-placeholder {
+	color: t(fieldclr);
+	-webkit-text-fill-color:t(fieldclr);
 }

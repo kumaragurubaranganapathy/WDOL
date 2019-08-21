@@ -34,8 +34,6 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onBeforeInsert() {
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
-            SObjectTriggerHandler handler = new SObjectTriggerHandler(Trigger.New,SObjectTriggerHandler.Action.BeforeInsert);
-            handler.process();
         }else{
             //if(!test.isRunningTest()){
             //Added to restrict users from updating credential number- Bug#2488
@@ -64,8 +62,6 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onBeforeUpdate() {
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
-            SObjectTriggerHandler handler = new SObjectTriggerHandler(Trigger.New,SObjectTriggerHandler.Action.beforeupdate);               
-            handler.process();
         }
         beforeMethod();
         
@@ -396,7 +392,7 @@ Description    : This method is updating the Next notification date on license
 Return Type    : void
 Parameter      : Nil
 *********************************************************************************/
-    public void Notificationdate() {
+   /* public void Notificationdate() {
         
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
@@ -435,7 +431,7 @@ Parameter      : Nil
             }
         }
         
-    }
+    } */
     
     /*********************************************************************************
     Method Name    : DRESequence

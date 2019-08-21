@@ -314,13 +314,13 @@
                             <div class="{!'links-wrapper' + (v.showMoreDashboard?(v.expandedMenu?' exp-wrapper':' mobile-exp'):' slds-show_medium')}">
                                 <ul class="{! 'links-list' + (v.expandedMenu?' expanded':'')}">
                                     <li data-index="1" aura:id="action-item"><a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">Apply Business License</a></li>
-                                    <!--li data-index="2" aura:id="action-item"><a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a></li-->
-                                    <li data-index="3" aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);">Payment Cart</a></li>
-                                    <li data-index="4" aura:id="action-item"><a onclick="{!c.updateBusinessInfo}" href="javascript:void(0);">Update Company Information</a></li>
-                                    <li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li>
-                                    <!--li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li-->
-                                    <li data-index="7" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Request Name Change</a></li>
-                                    <li data-index="8" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.BillingCode}" href="javascript:void(0);">Get Billing Code</a></li>
+                                    <li data-index="2" aura:id="action-item"><a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a></li>
+                                    <li data-index="3" aura:id="action-item"><a onclick="{!c.updateBusinessInfo}" href="javascript:void(0);">Update/Close Business</a></li>
+                                    <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li>
+                                    <li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li>
+                                    <li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Request Name Change</a></li>
+                                    <li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.BillingCode}" href="javascript:void(0);">Get Billing Code</a></li>
+                                    <li data-index="6" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.GoToBusinessCart}" href="javascript:void(0);">Payment Cart</a></li> <!-- US 1976 -->
                                     
                                     <li aura:id="more-action" onclick="{!c.showMoreActions}"><a href="javascript:void(0);">{!v.expandedMenu?'Less Actions':'More Actions'}</a></li>
                                 </ul>
@@ -517,6 +517,7 @@
             
             <aura:if isTrue="{!!v.courseDetail}">
                 <lightning:tabset selectedTabId="{!v.defaultTab}" class="tabs-wrapper" >
+                  
                     <aura:if isTrue="{!v.accountDetail}">
                         <aura:if isTrue = "{!v.isCourseProvider}"> 
                             <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >

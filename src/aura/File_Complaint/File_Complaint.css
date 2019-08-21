@@ -3,9 +3,26 @@
     max-width: 1200px;
     margin: 0px auto;
 }
+.THIS .sub-header{
+    font-family: t(btnfontfamily);
+    line-height:1.5;
+}
+.THIS .confirmation-header h2,.THIS .textFormat{
+    font-size:30px;
+    font-weight:t(btnfontweight);
+    margin-bottom:1rem;
+}
+
+.THIS .confirmation-header h2{
+    margin-bottom:0.8rem;
+}
+.THIS .confirmation-content{
+    padding: 1.5rem 2rem;
+    border: solid 1px #d6d7d9;
+}
 .THIS .page-header h1{
     font-family: t(merrifontfamily);
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 600;
     font-style: t(txtfontstyle);
     line-height: 1.48;
@@ -15,8 +32,8 @@
     width:50%;
 }
 .THIS .page-content .heading{
-    font-family: t(merrifontfamily);
-    font-size: 20px;
+    font-family: t(btnfontfamily);
+    font-size: 16px;
     font-weight: t(txtfontweight);
     font-style: t(txtfontstyle);
     line-height: normal;
@@ -49,6 +66,7 @@
 .THIS .sec-header {
     font-size:20px;
     line-height: 1;
+    font-weight:bold;
 }
 .THIS .success li {
   width: 2rem;
@@ -98,9 +116,10 @@
     display:none;
 }
 .THIS .fileupload .slds-file-selector__button{
-    color:t(white);
-    background:t(primary);
+    color:t(white) !important;
+    background:t(primary) !important;
 }
+
 .THIS .fileupload .slds-file-selector__text{
     margin-left:1rem;
     font-size:t(senfontsize);
@@ -128,6 +147,9 @@
 .THIS .slds-path__item{
     min-width: 0;
 }
+.THIS a[title="Your Information"]+span{
+    left: -42px;
+}  
 .THIS .slds-path__title{
     overflow:inherit;
     white-space: inherit;
@@ -213,9 +235,6 @@
     .THIS .slds-path__item div.is-not-current,.THIS .slds-path__item div.green-circle, .THIS .slds-path__item div.red-circle{
         display:none;
     }
-    .THIS a[title="Your Information"]+span{
-        left: 0;
-    }  
 }
 .THIS .inactive-path-title{
    text-overflow: ellipsis;   
@@ -345,7 +364,7 @@
         text-align: center;
     }  
     .THIS hr {
-        width: calc(100%/6);
+        width: calc(100%/3);
         margin: 30px 0;
         position: relative;
         top: -11.5px;

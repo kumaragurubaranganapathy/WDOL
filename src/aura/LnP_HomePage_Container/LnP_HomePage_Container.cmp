@@ -5,17 +5,23 @@
     <aura:attribute name="helpPage" type="Boolean" default="false" /> 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.isPageLoaded}">
-        <aura:if isTrue="{!and(v.isLoggedIn,!v.helpPage)}">       
-            
-            <c:ToDo_Tasks />   
-            
-        </aura:if>
-        <!--<aura:if isTrue="{!!v.isValidCommunityUser}"> -->
+        <div class="home-wrapper">
+            <h1 class="main-title">             
+                
+                Manage Your Professional and Business Licenses Online
+            </h1>
+            <aura:if isTrue="{!and(v.isLoggedIn,!v.helpPage)}">       
+                
+                <c:ToDo_Tasks />   
+                
+            </aura:if>
+            <!--<aura:if isTrue="{!!v.isValidCommunityUser}"> -->
             <c:LnP_DynamicPortalArticleRenderer isLoggedIn="{!v.isLoggedIn}" />
-       <!-- </aura:if>  -->
-        <aura:set attribute="else">
-        	<lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
-        </aura:set>
+            <!-- </aura:if>  -->
+            <aura:set attribute="else">
+                <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
+            </aura:set>
+        </div>
     </aura:if>
     <!--<c:Search_test />-->
     <!--<c:LnP_HomePageNews />-->

@@ -421,6 +421,32 @@
         
         
     },
+    // US 1976
+    GoToBusinessCart:function(component,event) {
+        
+        var accid = component.get("v.SelectedAccountDetails.Id");
+        var action = component.get("c.updateBusinessAccIDonContact");
+        action.setParams({'accountId': accid});
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                
+                
+                var str ='/cart';
+                var urlEvent = $A.get("e.force:navigateToURL");
+                urlEvent.setParams({
+                    "url": str
+                });	
+        urlEvent.fire(); 
+            }                          
+        });
+        $A.enqueueAction(action);
+        
+        //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?accid='+accid;
+        //var url=$A.get("$Label.c.Polaris_Portal_URL")+'cart?accid='+accid;
+        //window.open(url);
+        sessionStorage.setItem("businessAccId", accid);
+    }
     
     
 })

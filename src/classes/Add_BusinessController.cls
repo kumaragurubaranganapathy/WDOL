@@ -883,4 +883,15 @@ public with sharing class Add_BusinessController {
         sReturnVal = Dol_UBISearchTransform.transformAndSave(accountId, ubi);
         return sReturnVal;
     }
+  @AuraEnabled
+    public static void updateBusinessAccIDonContact(String accountId){
+        
+        if(accountId != null){
+            User objUser = [select id,contactid from user where id=: userinfo.getUserId() limit 1];
+            contact objCon = new Contact ();
+            objCon.id = objUser.contactid;
+            objCon.BusinessCartToOpen__c =accountId;
+            update objCon;
+        }
+    } 
 }

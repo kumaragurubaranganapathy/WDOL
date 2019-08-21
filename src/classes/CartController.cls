@@ -14,6 +14,7 @@ public with sharing class CartController
     public MUSW__Payable_Receipt__c[] depositPayments {get; private set;}
     public Account a { get; set; }
     public Contact con { get; set; }
+    public Contact objContact { get; set; }// US 1976
     public Id m_reconcileOriginalContact;
     public BGBK__Cart__c reconcileCart { get; private set;}
     public String email { get; set; }
@@ -58,6 +59,9 @@ public with sharing class CartController
     private BGBK.ReceiptService m_rs;
     private Id m_pid;
     @TestVisible private Id m_cartId;
+    private Id m_accId;
+    
+    public string isBLic; 
     private Id m_invoiceId;
     private Id m_feeId;
     private Id m_depositAccountId;
@@ -99,6 +103,15 @@ public with sharing class CartController
         m_isNotFromVF = false;
         checkReceiptAmount = true;
         isBisuneesLic =System.currentPageReference().getParameters().get('isBLic');
+        //Check if it is business cart
+        
+        if(isPortalUser){
+            objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
+            if (objContact!=null && objContact.BusinessCartToOpen__c != null){
+                m_accId =objContact.BusinessCartToOpen__c;
+            }
+        }
+        
         encryptedSessionInfo = System.currentPageReference().getParameters().get('session');
         if( encryptedSessionInfo != null){
             activeTab = 'confirm';
@@ -141,8 +154,13 @@ public with sharing class CartController
             system.debug('the else if m_cs' +m_cs);
             
         }
-        else
+        else if (m_accId != null)
         {
+            m_cs =  new BGBK.CartService(m_accId);
+            system.debug('Account cart ##$$ m_cs' +m_cs);
+            
+        }
+        else {
             m_cs = (m_pid != null || m_cartId != null) ? new BGBK.CartService(m_pid, m_cartId) : new BGBK.CartService();
         system.debug('the else m_cs' +m_cs);
         
@@ -196,6 +214,12 @@ public with sharing class CartController
     
     public void initOrder()
     {
+         //clearoff account id from contact US 1976
+         
+        if(isPortalUser && objContact.BusinessCartToOpen__c != ''){
+            objContact.BusinessCartToOpen__c ='';
+            update objContact;
+        }
         
         ApexPages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=10');
         // don't run if coming from Monexa
@@ -1009,13 +1033,14 @@ public with sharing class CartController
         for(MUSW__Fee__c objFee:fees){
             feeIds.add(objFee.Id);
         }
-        List<Account> lstAcc =[SELECT id,PIN__c from Account WHERE PIN__c =:pinToTransferFee];
+        List<Account> lstAcc =[SELECT id,ThirdPary_Billing_Code__c from Account WHERE ThirdPary_Billing_Code__c =:pinToTransferFee];
         
         //List<BGBK__Cart__c> lstCart =[SELECT id,BGBK__Account__c from BGBK__Cart__c WHERE PIN__c =:pinToTransferFee];
         if(lstAcc.size()>0){
             string sPin=BGBK.CartManager.getCartPIN(lstAcc[0]);
             BGBK.CartManager.transferFeesToCart(feeIds, lstAcc[0].id, pinToTransferFee); 
-            PageReference pageRef = new PageReference('/s/newdashboard');
+            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/newdashboard';
+          	PageReference pageRef = new PageReference(portalURL); 
             return pageRef;
         } else{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835
