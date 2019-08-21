@@ -387,7 +387,7 @@ insert bgckList;
         @AuraEnabled public string noAccount {get;set;}
     }
     @AuraEnabled
-    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType, string Obj, string renewalReinstate) {
+    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType, string Obj, string renewalReinstate,string upgradeLicenseIdValue) {
         List<String> result = new List<String>();
         String condition1 = 'Application_Type__c = \''+Board+'\'';
         String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
@@ -399,6 +399,11 @@ insert bgckList;
         //String condition7 = 'Object__c = \'MUSW__License2__c\'';
         String condition8 ='';
         String condition9 = 'Order_No__c';
+		MUSW__License2__c upgradeLicense = new MUSW__License2__c();
+        if(upgradeLicenseIdValue!=null){
+         upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue limit 1];
+        }
+        String condition10 = 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
         if(renewalReinstate=='Renewal')
         {
             condition8 = 'AND Show_For__c includes (\'Credential Renewal\')';
@@ -413,8 +418,15 @@ insert bgckList;
         String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
         
-        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
-        masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
+		String Str2 ='';
+        if(ApplicationType == 'Upgrade' && upgradeLicenseIdValue != null){
+          Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+         
+        }
+        else{
+        Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+        }
+		masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
         if(!appInstructionList.isEmpty()){
