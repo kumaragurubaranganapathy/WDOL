@@ -1039,7 +1039,8 @@ public with sharing class CartController
         if(lstAcc.size()>0){
             string sPin=BGBK.CartManager.getCartPIN(lstAcc[0]);
             BGBK.CartManager.transferFeesToCart(feeIds, lstAcc[0].id, pinToTransferFee); 
-            PageReference pageRef = new PageReference('/s/newdashboard');
+            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/newdashboard';
+          	PageReference pageRef = new PageReference(portalURL); 
             return pageRef;
         } else{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835
