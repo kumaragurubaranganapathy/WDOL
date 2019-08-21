@@ -104,7 +104,15 @@
             }
         }
         if(fieldname=="UBI_Number__c"){
-			component.set("v.ubiValidated", false);
+            component.set("v.ubiValidated", false);
+            /*var fieldValues = component.find("validateField");
+            for(var i=0; i<fieldValues.length; i++){
+                if(fieldValues[i].get("v.fieldName") == 'Name'){
+                    var auraID = component.find("validateField")[i];
+                    $A.util.removeClass(auraID, 'disable');
+                }
+            }*/
+            numbers = numbers.replace(/\s/gi, "");
             if(numbers.length==9){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'-'+trimmedNo.slice(3,6) + '-' + trimmedNo.slice(6);
@@ -112,110 +120,89 @@
             }
         }        
     },
-	validateUBINumber : function(component, event, helper) {
+    cancelUBIDetails : function(component, event, helper){
+        component.set("v.ubiValidated", false);
+        component.set("v.isOpen", false);
+    },
+    confirmUBIDetails : function(component, event, helper){
+        var values = component.get("v.ubiDetails");
+        /*var fieldValues = component.find("validateField");
+        for(var i=0; i<fieldValues.length; i++){
+            if(fieldValues[i].get("v.fieldName") == 'Name'){
+                fieldValues[i].set("v.value", values.Name);
+                var auraID = component.find("validateField")[i];
+                $A.util.addClass(auraID, 'disable');
+            }
+        }*/
+        component.set("v.ubiValidationResponse", "Active");
+        component.set("v.ubiValidated", true);
+        component.set("v.isOpen", false);
+    },
+    validateUBINumber : function(component, event, helper) {
         var ubi = component.get("v.ubiValueEntered");
-        var accountId = component.get("v.accountId");
         var valid = true;
-        console.log('ubi.length**=='+ubi.length);
-        var ubiLength = ubi.length;
-        console.log('accountId=='+accountId);
+        if(ubi==undefined){
+            ubi=""
+        }
+        
+        if(ubi!=undefined && ubi!=""){
+            ubi = ubi.replace(/\s/gi, "");
+        }
+        
         if(ubi == '' || ubi == null){
             valid = false;
-            helper.showToast(component, event, "Error!", "error", "UBI nummber cannot be blank.");
+            helper.showToast(component, event, "Error!", "error", "UBI cannot be blank.");
         }
         else if(ubi != '' && ubi != null && ubi.length < 11){
             valid = false;
-            helper.showToast(component, event, "Error!", "error", "UBI number length cannot be less than 9 characters");            
-        }        
-        var action = component.get("c.validateUBI");
-        action.setParams({
-            'accountId' : accountId,
-            'ubi': ubi,
-        });
-        console.log('after setting param');
+            helper.showToast(component, event, "Error!", "error", "UBI length cannot be less than 9 characters");            
+        }
+        else {
+            ubi = ubi.replace(/-/gi, "");   
+        }
+        
         if(valid === true){
+            var action = component.get("c.validateUBI");
+            action.setParams({
+                'ubi': ubi,
+            });
             action.setCallback(this, function(actionResult){
                 if(actionResult.getState() === "SUCCESS"){
                     var result = actionResult.getReturnValue();
-                    if(result == 'success'){
-                        console.log('success==');
+                    if(result!=null || result!=""){
+                        if(result.AccountNumber == "200"){
+                            if(result.UBI_Status__c == "Active"){
+                                component.set("v.ubiDetails",result);
+                                component.set("v.isOpen", true);
+                            }
+                            if(result.UBI_Status__c == "Inactive"){
+                                component.set("v.ubiValidationResponse", "Inactive");
+                                component.set("v.ubiValidated", true);
+                        		helper.showToast(component, event, "Warning!", "warning", "UBI Status of "+result.Name+" is Inactive");
+                            }
+                        }
+                        if(result.AccountNumber == "404"){
+                            component.set("v.ubiValidationResponse", "NA");
+                            component.set("v.ubiValidated", true);
+                        	helper.showToast(component, event, "Warning!", "Warning", "No match found for the UBI.");
+                        }
+                        if(result.AccountNumber == undefined || result.AccountNumber == null || result.AccountNumber == ""){
+                            component.set("v.ubiValidationResponse", "NA");
+                            component.set("v.ubiValidated", true);
+                        	helper.showToast(component, event, "Error!", "error", "Error Occoured from SOS");
+                        }
+                    } else {
+                        component.set("v.ubiValidationResponse", "NA");
                         component.set("v.ubiValidated", true);
-                        component.set("v.ubiValidationResponse", "Active");
-                        helper.showToast(component, event, "Success!", "success", "Your Search result has been updated successfully.");
-                        //helper.setDefaultFields(component);
-                        //$A.get('e.force:refreshView').fire();
-                        //helper.closeQuickAction(component, event, helper);
-                    }
-                    if(result == ""){
-                        component.set("v.ubiValidated", true);
-                        component.set("v.ubiValidationResponse", "Active");
-                        helper.showToast(component, event, "Success!", "success", "Your Search result has been updated successfully.");
-                    }
-                    //follwoing two conditions have been removed as per User Story 1436
-                    /*if(result == 'MismatchInactive'){
-                    console.log('MismatchInactive==');
-                    helper.showToast(component, event, "Warning!", "warning", "Business name is Mismatch and UBI Status is not Active");
-                    helper.setDefaultFields(component);
-                    $A.get('e.force:refreshView').fire();
-                }
-                result.contains(Mismatch)
-                if(result == 'Mismatch'){
-                    console.log('Mismatch==');
-                    helper.showToast(component, event, "Warning!", "warning", "Business name is Mismatch.");
-                    helper.setDefaultFields(component);
-                    $A.get('e.force:refreshView').fire();
-                }*/                
-                if(result.includes('Mismatch')){
-                    console.log('Mismatch==');
+                        helper.showToast(component, event, "Error!", "error", "Error Occoured from SOS");
+                    }                    
+                } else {
+                    component.set("v.ubiValidationResponse", "NA");
                     component.set("v.ubiValidated", true);
-                    component.set("v.ubiValidationResponse", "Inactive");
-                    var businessName =  result.split('***')[1];
-                    var acctName =  result.split('***')[2];
-                    var errormsg = 'Business name '+businessName+' retrieved from SOS is not matching with Account Name '+acctName+'.';
-                    helper.showToast(component, event, "Warning!", "warning", errormsg);
-                    //$A.get('e.force:refreshView').fire();
-                    //helper.setDefaultFields(component);
-                    //helper.closeQuickAction(component, event, helper);
-                }
-                if(result == 'Inactive'){
-                    console.log('Inactive==');
-                    component.set("v.ubiValidated", true);
-                    component.set("v.ubiValidationResponse", "Inactive");
-                    helper.showToast(component, event, "Warning!", "warning", "UBI Status is not Active");
-                    //$A.get('e.force:refreshView').fire();
-                    //helper.setDefaultFields(component);
-                    //helper.closeQuickAction(component, event, helper);                    
-                }
-                if(result == 'UBI not found'){
-                    console.log('UBI not found==');
-                    component.set("v.ubiValidated", true);
-                    component.set("v.ubiValidationResponse", "Inactive");
-                    helper.showToast(component, event, "Warning!", "Warning", "No match found for the UBI.");
-                    //helper.setDefaultFields(component);
-                    //$A.get('e.force:refreshView').fire();
-                    //helper.closeQuickAction(component, event, helper);
-                }                
-                if(result == 'Unknown error occoured'){
-                    console.log('error occoured==');
-                    component.set("v.ubiValidated", true);
-                    component.set("v.ubiValidationResponse", "Inactive");
-                    helper.showToast(component, event, "Error!", "error", "Error Occoured");
-                    //helper.setDefaultFields(component);
-                    //$A.get('e.force:refreshView').fire();
-                    //helper.closeQuickAction(component, event, helper);
-                }                
-                if(result == 'error from SOS'){
-                    console.log('error occoured==');
-                    component.set("v.ubiValidated", true);
-                    component.set("v.ubiValidationResponse", "Inactive");
                     helper.showToast(component, event, "Error!", "error", "Error Occoured from SOS");
-                    //helper.setDefaultFields(component);
-                    //$A.get('e.force:refreshView').fire();
-                    //helper.closeQuickAction(component, event, helper);
                 }
-            }
             });
+            $A.enqueueAction(action);
         }        
-        $A.enqueueAction(action);
     },
 })
