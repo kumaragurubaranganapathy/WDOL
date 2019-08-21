@@ -15,8 +15,8 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         //End of ReceiptUserSharing
         
         //Share the Receipt records when the Delegated Admin is the applicant
-        ReceiptCreatedbyDelegate DelegateController = new ReceiptCreatedbyDelegate();
-        DelegateController.shareReceiptRecords(Trigger.New);
+        //ReceiptCreatedbyDelegate DelegateController = new ReceiptCreatedbyDelegate();
+        //DelegateController.shareReceiptRecords(Trigger.New);
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
