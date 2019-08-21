@@ -635,7 +635,8 @@ public class Polaris_ServiceRequestController {
         // System.debug('appList '+appList);
         Boolean checkSuccess = false;
         //Modified code for handling 25 subrequest governor limit
-        
+        if(stringJSON!=null)
+        {
         LnP_JSONParser ansWrapper= Polaris_ServiceRequestController.getJSONWrapper(stringJSON);
         List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
         for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
@@ -821,6 +822,7 @@ public class Polaris_ServiceRequestController {
                 }
                 update appList[0];
         }
+		}
         //Calling method to  store 3rd party
         if(!mapSubmissionToFile.isEmpty()){
             Polaris_ServiceRequestController.updateLinkedEntityId(mapSubmissionToFile);
