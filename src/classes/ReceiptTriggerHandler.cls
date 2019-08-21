@@ -28,7 +28,7 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         
         for(SObject sobj: trigger.new) {
             
-        
+            
             MUSW__Receipt__c receipt = (MUSW__Receipt__c)sobj;
             SObject oldrecord = Trigger.oldMap.get(receipt.Id);
             MUSW__Receipt__c oldreceipt = (MUSW__Receipt__c)oldrecord;
@@ -52,7 +52,7 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         }
         // End of the code of Chiranth 
         
-       
+        
         
         //Added by Rishap for US1966
         Map<Id,Id> mapReceipttoFee = new Map<Id,Id>();
@@ -60,25 +60,31 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         List<MUSW__Fee_Payment__c> feePaymentforCurrentReceipt = new List<MUSW__Fee_Payment__c>();
         if(!receiptIds.isEmpty()){
             feePaymentforCurrentReceipt = new List<MUSW__Fee_Payment__c>([Select Id,
-                                                                                                     MUSW__Receipt__c, 
-                                                                                                     MUSW__Fee__c 
-                                                                                                     from MUSW__Fee_Payment__c 
-                                                                                                     where MUSW__Receipt__c IN : receiptIds]);
+                                                                          MUSW__Receipt__c, 
+                                                                          MUSW__Fee__c 
+                                                                          from MUSW__Fee_Payment__c 
+                                                                          where MUSW__Receipt__c IN : receiptIds]);
             if(!feePaymentforCurrentReceipt.isEmpty()){
                 for(MUSW__Fee_Payment__c feepay : feePaymentforCurrentReceipt){
                     FeeIds.add(feepay.MUSW__Fee__c);
                     mapReceipttoFee.put(feepay.MUSW__Receipt__c, feepay.MUSW__Fee__c);                    
                 }
             }
-        
+            
         }
         
+        Map<Id,MUSW__Fee__c> updateFeeRec = new Map<Id,MUSW__Fee__c>();        
+        if(!FeeIds.isEmpty()){
+           list<MUSW__Fee__c> feeLst = new list<MUSW__Fee__c>([Select Id,  
+                            Agency_Code__c, 
+                            Voucher_Number__c 
+                            from MUSW__Fee__c
+                            where Id IN : FeeIds]);
+            for(MUSW__Fee__c feerec : feeLst){
+                updateFeeRec.put(feerec.Id,feerec);
+            }
+        }
         
-        Map<Id,MUSW__Fee__c> updateFeeRec = new Map<Id,MUSW__Fee__c>([Select Id, 
-                                                                      Agency_Code__c, 
-                                                                      Voucher_Number__c 
-                                                                      from MUSW__Fee__c
-                                                                      where Id IN : FeeIds]);
         List<MUSW__Fee__c> finalFeesToUpdate = new List<MUSW__Fee__c>();
         for(SObject sobj: trigger.new){
             MUSW__Receipt__c rec = (MUSW__Receipt__c)sobj;
