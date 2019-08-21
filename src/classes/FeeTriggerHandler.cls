@@ -57,7 +57,7 @@ public class FeeTriggerHandler implements BGCM.ITriggerHandler{
         //End of FeeUsersharing
         isTrue =false;
         //Share the Fee records when the Delegated Admin is the applicant
-        FeeCreatedByDelegate DelegateController = new FeeCreatedByDelegate();
+        //FeeCreatedByDelegate DelegateController = new FeeCreatedByDelegate();
         System.debug('Entered fee trigger');
       //  DelegateController.shareFeeRecords(Trigger.New);
         System.debug('Entered fee trigger again');
