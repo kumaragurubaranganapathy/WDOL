@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Update Legal Name</label>
+    <label>Request for Information</label>
     <protected>false</protected>
     <values>
         <field>AMR_Type__c</field>
@@ -12,11 +12,11 @@
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">Timeshares</value>
+        <value xsi:type="xsd:string">Appraisers - Real Estate</value>
     </values>
     <values>
         <field>Display_In_Related_Tab__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Generate_Fee__c</field>
@@ -24,18 +24,18 @@
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">Timeshare Company</value>
+        <value xsi:type="xsd:string">State Licensed Appraiser</value>
     </values>
     <values>
         <field>Order_Number__c</field>
-        <value xsi:type="xsd:double">4.0</value>
+        <value xsi:type="xsd:double">7.0</value>
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">Request Information,Attachments,Review and Submit</value>
+        <value xsi:type="xsd:string">General Information,Attachments,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>
-        <value xsi:type="xsd:string">Update Legal Name</value>
+        <value xsi:type="xsd:string">Request for Information</value>
     </values>
 </CustomMetadata>
