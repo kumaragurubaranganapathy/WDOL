@@ -10,14 +10,15 @@
     padding-bottom:1.25rem;
     font-weight:bold;
 }
-.THIS .contact-item{
+/*.THIS .contact-item{
     width:30%;
     margin-right:2rem;
-}
-.THIS .field-style{    
+} */
+.THIS .intro-wrapper .field-style{    
     padding-bottom:0.5rem;
     font-size:1rem;      
     color:t(LnGFormTitleColor);
+    display:flex;
 }
 .THIS .label-style{
     font-weight:bold;   
@@ -29,11 +30,7 @@
     padding-bottom:0.25rem;
     border-bottom:solid 1px t(linksColor);
 }
-.THIS .field-style.address{
-    display:block;
-}
-.THIS .nav-links ul{
-    border: solid 1px t(primary);
+.THIS .nav-links ul{    
     background : t(actionPanelBG);
     height:100%;
 }
@@ -71,9 +68,6 @@
 }
 .THIS .change-link:hover{
     text-decoration:none;
-}
-.THIS .alt-email.field-style{
-    display:block;
 }
 @media only screen and (max-width:767.9px){
     .THIS .header-wrapper{

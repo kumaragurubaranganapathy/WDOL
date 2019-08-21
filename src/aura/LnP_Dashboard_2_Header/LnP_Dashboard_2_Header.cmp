@@ -39,7 +39,7 @@
             <lightning:layoutItem size="12" mediumDeviceSize="9" class="user-info-wrapper">
                 <h1 class="contact-name">{!v.ContactObj.Name}</h1>  
                 <lightning:layout class="slds-wrap contact-details">
-                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="contact-item">
+                    <lightning:layoutItem size="12" mediumDeviceSize="6" class="contact-item">
                         <div class="field-style">
                             <div class="label-style">Email:</div>
                             <div class="data-style slds-truncate" title="{!v.ContactObj.Email?v.ContactObj.Email:'None'}">{!v.ContactObj.Email?v.ContactObj.Email:'None'}</div>
@@ -65,7 +65,7 @@
                     <aura:if isTrue="{!not(empty(v.ParcelObj))}">
                         <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
                             <aura:if isTrue = "{!parcel.MUSW__Parcel__r.Address_Type__c == 'MAILING ADDRESS'}">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
+                                <lightning:layoutItem size="12" mediumDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
                                     <div class="field-style address">
                                         <div class="label-style">Mailing address:</div>
                                         <div class="data-style">{!parcel.MUSW__Parcel__r.MUSW__Street__c}, {!parcel.MUSW__Parcel__r.MUSW__City__c}, {!parcel.MUSW__Parcel__r.MUSW__State__c} - {!parcel.MUSW__Parcel__r.Zip_Postal_Code__c}</div>
@@ -78,7 +78,7 @@
                             
                         </aura:iteration>
                         <aura:set attribute="else">
-                            <lightning:layoutItem size="12" mediumDeviceSize="4" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
+                            <lightning:layoutItem size="12" mediumDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
                                 <div class="field-style address">
                                     <div class="label-style">Mailing address:</div>
                                     <div class="data-style">None</div>
