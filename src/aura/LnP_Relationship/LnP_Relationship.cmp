@@ -28,8 +28,9 @@
             <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
         </aura:if>
         <aura:if isTrue="{!v.sObjectName == 'MUSW__Account_Contact__c'}">
-            <h1 class="table-title">{!v.Type}</h1>
+            
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
+                <h2 class="table-title">{!v.Type}</h2>
                 <div>
                     <div class="table-height">
                         
@@ -101,16 +102,17 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.CurrentLicenseTableDataList}" dispList="{!v.dispList}" pgSize="4" />
                 </div>
-                <aura:set attribute="else">
+                <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no {!v.Type}  to display
                     </div>
-                </aura:set>
+                </aura:set> -->
             </aura:if>
         </aura:if>
         <aura:if isTrue="{!v.sObjectName == 'Associations__c'}">
-            <h1 class="table-title">Licensee Relationships</h1>
+           
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
+                 <h2 class="table-title">Licensee Relationships</h2>
                 <div class="table-height">
                     <div>
                         <div class="table-scroll">
@@ -215,11 +217,11 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.CurrentLicenseTableDataList}" dispList="{!v.dispList}" pgSize="4" />
                 </div>
-                <aura:set attribute="else">
+                <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no Associations to display
                     </div>
-                </aura:set>
+                </aura:set> -->
             </aura:if>
         </aura:if>
         
