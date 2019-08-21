@@ -789,7 +789,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         setapplicationId.add(applicationId);
         String appCondition = 'Id=\''+applicationId+'\'';
         // String strApp = 'Select Id, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
-        String strApp = 'Select Id, Stage__c, Form_JSON__c, Upgrading_License__c,Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
+        String strApp = 'Select Id, MUSW__Account__c, Stage__c, Form_JSON__c, Upgrading_License__c,Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
         system.debug('StrApp Query--->'+strApp);
         appList = Utilityclass_withsharing.queryRecords(strApp);
         system.debug('Applist In AController--->'+appList);
