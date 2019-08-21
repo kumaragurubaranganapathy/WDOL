@@ -149,7 +149,7 @@ _______________________________________________________________
                             <!-- <div class="slds-col slds-size_1-of-4 slds-p-vertical_large slds-p-horizontal_large"> -->
                             <!--   Provider/School Name: -->
                             <div class="school field-size field-style">
-                                <lightning:input aura:id="schoolName" label="Provider/School Name"
+                                <lightning:input aura:id="schoolName" label="Provider or School Name"
                                                  placeholder="Enter Name" name="schoolName" type="text" />
                             </div>
                             <!-- </div> -->
@@ -270,7 +270,7 @@ _______________________________________________________________
         </div>
         <div class="screen-three">
             <aura:if isTrue="{!v.screenThree}">
-                <div class="slds-m-vertical_medium subheader">
+                <div class="slds-m-vertical_medium heading">
                     <span>{!v.courseNameToDisplayDetails}</span>
                 </div>
                 <div class="buttons-right text-size">
@@ -284,7 +284,7 @@ _______________________________________________________________
                                 <div class="text-style-val">{!item.Course_Title__c}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="text-element slds-form-element_horizontal slds-form-element row-margin">
-                                <div class="text-style">Provider/School Name:<span>&nbsp;</span></div>
+                                <div class="text-style">Provider or School Name:<span>&nbsp;</span></div>
                                 <div class="text-style-val">{!item.Provider_Account_Name__c}</div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="4" class="text-element slds-form-element_horizontal slds-form-element row-margin">

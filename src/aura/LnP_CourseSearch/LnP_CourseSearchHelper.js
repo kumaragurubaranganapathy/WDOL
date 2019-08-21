@@ -201,7 +201,7 @@
                         
                         if(rowsData[i].MUSW__Status__c == 'Active' || rowsData[i].MUSW__Status__c == 'Canceled'){
                             rows.push(rowsData[i]);
-                         //   console.log('rows--', JSON.stringify(rows));
+                            console.log('rows--', JSON.stringify(rows));
                         }
                     }
                   //  console.log('rows length',rows.length);
@@ -210,7 +210,7 @@
                         component.set('v.columns', [
                             {label: 'Course Number', fieldName: 'Name', type: 'Text', sortable : true},
                             {label: 'Course Name', fieldName: 'Course_Title__c', type: 'Text', sortable : true},
-                            {label: 'Provider/School', fieldName: 'Provider_Account_Name__c', type: 'Text', sortable : true},
+                            {label: 'Provider or School', fieldName: 'Provider_Account_Name__c', type: 'Text', sortable : true},
                             {label: 'Course Type', fieldName: 'Course_Type__c', type: 'Picklist', sortable : true},                            
                             {label: 'Delivery Method', fieldName: 'Delivery_Method__c', type: 'Picklist', sortable : true},
                             {label: 'Clock Hours', fieldName: 'Clock_Hours__c', type: 'number', sortable : true},
