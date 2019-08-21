@@ -878,10 +878,21 @@ public with sharing class Add_BusinessController {
     }
 	
 	@auraEnabled
-    public static String validateUBI(id accountId, String ubi){  
-        String sReturnVal = '';
-        sReturnVal = Dol_UBISearchTransform.transformAndSave(accountId, ubi);
-        return sReturnVal;
+    public static Account validateUBI(String ubi){  
+        Account acc = new Account();
+        HttpResponse response = Dol_RestAPIservice.callSOSservice(ubi);
+        if(response.getStatusCode() == 200) {
+          String rr = response.getBody();
+          Map<String,Object> responseMap = (Map<String, Object>) JSON.deserializeUntyped(rr);  
+          Map<String,Object> dataMap = (Map<String,Object>)responseMap.get('entity');
+          acc.UBI_Status__c = (String)dataMap.get('active');
+          acc.Name =(String)dataMap.get('businessName');  
+          acc.Description =(String)dataMap.get('typeDescription');   
+          acc.AccountNumber = '200';  
+        } else {
+           acc.AccountNumber = '404'; 
+        }
+        return acc;
     }
   @AuraEnabled
     public static void updateBusinessAccIDonContact(String accountId){
