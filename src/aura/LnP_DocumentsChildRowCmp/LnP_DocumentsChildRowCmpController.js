@@ -40,24 +40,37 @@
         _depositRec['Sequence_number__c'] = seq ;  
         _depositRec['Date__c'] = Today_date;
         
-         //BUG 6416 : Slip Printer Input value '35' digits 
-        //date in six digit ex. MMDDYY : 081619
-        var Date = Today_date.getDate();
-        var month = (Today_date.getMonth() + 1)  < 10 ?  '0'+String(Today_date.getMonth() + 1) : String(Today_date.getMonth() + 1) ;
-        var year = String(Today_date.getYear()).slice(1);     
-        var formattedDate = month+Date+year;     
+        //slip printer logic
+        var _slipPrinterInput = component.get("v.ValidationNumber").replace("-","");
+        //length : 12
         
-        //amount should be of 10 digits ex. if amount entered is 10.00 then amount will be '    $10.00'     
-        var amount = _depositRec.Amount__c ;
-        var spaces = '', finalAmount = '';
-        var remainingCharacters = (10 - _depositRec.Amount__c.length);
-        // - 1 is for the $ sign appended after in the final amount
-        for(i = 0; i < remainingCharacters-1 ; i++){
+        //for slip printer : sequence number  should start with 000
+        var slipSequenceNumber =  String(component.get("v.rowIndex"));        
+        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        //length : 16
+        
+        //BUG 6416 : Slip Printer Input value '35' digits 
+        //date in eight digit ex. MM/DD/YY : 081619
+        var Date = Today_date.getDate();
+        var month = (Today_date.getMonth() + 1)  < 10 ?  "0"+String(Today_date.getMonth() + 1) : String(Today_date.getMonth() + 1) ;
+        var year = String(Today_date.getYear()).slice(1);     
+        var formattedDate = month+'/'+Date+'/'+year;        
+        _slipPrinterInput = _slipPrinterInput  + ' ' + formattedDate;
+        //lenght : 25
+        
+        //-1 for space while 35 is standard size
+        var remainingChars = 35 - _slipPrinterInput.length - 1 ; //9
+        //logic for adding comma for thousand separator
+        var formattedAmount = String(_depositRec.Amount__c).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+        
+        //logic for amount with preceeding spaces 
+        var spaces = '';
+        var remainingCharacters = (remainingChars - formattedAmount.length);        
+        for(i = 0; i < remainingCharacters ; i++){
             spaces = spaces + ' ';
         }
-        finalAmount = spaces +'$'+ String(_depositRec.Amount__c);
-       
-        var _slipPrinterInput = component.get("v.ValidationNumber") +' '+_depositRec.Sequence_number__c+' '+formattedDate +' '+finalAmount ;
+        formattedAmount = spaces + formattedAmount;        
+        _slipPrinterInput =_slipPrinterInput + ' ' + formattedAmount ;
         component.set("v.slipPrinterInput", _slipPrinterInput); 
         //logic ends here
         
@@ -85,7 +98,7 @@
         // fire the AddNewRowEvt Lightning Event 
         var currentAmount = component.find("amount");
         var _depositRec= component.get("v.depositRec");
-               var Today_date = new window.Date();
+        var Today_date = new window.Date();
         _depositRec['Name'] = component.get("v.ValidationNumber") +'_'+ Number(component.get("v.rowIndex")+1);
         var pad = '000';
         var sequenceNumber = String(Number(component.get("v.rowIndex"))+1);;
@@ -93,24 +106,37 @@
         _depositRec['Sequence_number__c'] = seq ;  
         _depositRec['Date__c'] = Today_date;
         
-         //BUG 6416 : Slip Printer Input value '35' digits 
-        //date in six digit ex. MMDDYY : 081619
-        var Date = Today_date.getDate();
-        var month = (Today_date.getMonth() + 1)  < 10 ?  '0'+String(Today_date.getMonth() + 1) : String(Today_date.getMonth() + 1) ;
-        var year = String(Today_date.getYear()).slice(1);     
-        var formattedDate = month+Date+year;     
+        //slip printer logic
+        var _slipPrinterInput = component.get("v.ValidationNumber").replace("-","");
+        //length : 12
         
-        //amount should be of 10 digits ex. if amount entered is 10.00 then amount will be '    $10.00'     
-        var amount = _depositRec.Amount__c ;
-        var spaces = '', finalAmount = '';
-        var remainingCharacters = (10 - _depositRec.Amount__c.length);
-        // - 1 is for the $ sign appended after in the final amount
-        for(i = 0; i < remainingCharacters-1 ; i++){
+        //for slip printer : sequence number  should start with 000
+        var slipSequenceNumber =  String(component.get("v.rowIndex"));        
+        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        //length : 16
+        
+             //BUG 6416 : Slip Printer Input value '35' digits 
+        //date in eight digit ex. MM/DD/YY : 081619
+        var Date = Today_date.getDate();
+        var month = (Today_date.getMonth() + 1)  < 10 ?  "0"+String(Today_date.getMonth() + 1) : String(Today_date.getMonth() + 1) ;
+        var year = String(Today_date.getYear()).slice(1);     
+        var formattedDate = month+'/'+Date+'/'+year;        
+        _slipPrinterInput = _slipPrinterInput  + ' ' + formattedDate;
+        //lenght : 25
+        
+        //-1 for space while 35 is standard size
+        var remainingChars = 35 - _slipPrinterInput.length - 1 ; //9
+        //logic for adding comma for thousand separator
+        var formattedAmount = String(_depositRec.Amount__c).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+        
+        //logic for amount with preceeding spaces 
+        var spaces = '';
+        var remainingCharacters = (remainingChars - formattedAmount.length);        
+        for(i = 0; i < remainingCharacters ; i++){
             spaces = spaces + ' ';
         }
-        finalAmount = spaces +'$'+ String(_depositRec.Amount__c);
-       
-        var _slipPrinterInput = component.get("v.ValidationNumber") +' '+_depositRec.Sequence_number__c+' '+formattedDate +' '+finalAmount ;
+        formattedAmount = spaces + formattedAmount;        
+        _slipPrinterInput =_slipPrinterInput + ' ' + formattedAmount ;
         component.set("v.slipPrinterInput", _slipPrinterInput); 
         //logic ends here
         
@@ -139,37 +165,45 @@
     Update_AddNewRow : function(component,event,helper){
         
         var _depositRec= component.get("v.depositRec");  
+        console.log("depositRec : "+JSON.stringify(_depositRec));
+        
+        //slip printer logic
         var Today_date = new window.Date();
-       // _depositRec['Name'] = component.get("v.ValidationNumber") +'_'+ Number(component.get("v.rowIndex")+1);
         var pad = '000';
-        var sequenceNumber = String(_depositRec.Sequence_number__c);
-        var seq = pad.substring(0,pad.length - sequenceNumber.length ) + sequenceNumber;        
-       // _depositRec['Sequence_number__c'] = seq ;  
-       // _depositRec['Date__c'] = Today_date;
+        var _slipPrinterInput = component.get("v.ValidationNumber").replace("-","");
+        //length : 12
         
-         //BUG 6416 : Slip Printer Input value '35' digits 
-        //date in six digit ex. MMDDYY : 081619
+        //for slip printer : sequence number  should start with 000
+        var slipSequenceNumber =  String(component.get("v.rowIndex"));        
+        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        //length : 16
+        
+             //BUG 6416 : Slip Printer Input value '35' digits 
+        //date in eight digit ex. MM/DD/YY : 081619
         var Date = Today_date.getDate();
-        var month = (Today_date.getMonth() + 1)  < 10 ?  '0'+String(Today_date.getMonth() + 1) : String(Today_date.getMonth() + 1) ;
+        var month = (Today_date.getMonth() + 1)  < 10 ?  "0"+String(Today_date.getMonth() + 1) : String(Today_date.getMonth() + 1) ;
         var year = String(Today_date.getYear()).slice(1);     
-        var formattedDate = month+Date+year;     
+        var formattedDate = month+'/'+Date+'/'+year;        
+        _slipPrinterInput = _slipPrinterInput  + ' ' + formattedDate;
+        //lenght : 25
         
-        //amount should be of 10 digits ex. if amount entered is 10.00 then amount will be '    $10.00'     
-        var amount = _depositRec.Amount__c ;
-        var spaces = '', finalAmount = '';
-        var remainingCharacters = (10 - _depositRec.Amount__c.length);
-        // - 1 is for the $ sign appended after in the final amount
-        for(i = 0; i < remainingCharacters-1 ; i++){
+        //-1 for space while 35 is standard size
+        var remainingChars = 35 - _slipPrinterInput.length - 1 ; //9
+        //logic for adding comma for thousand separator
+        var formattedAmount = String(_depositRec.Amount__c).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+        
+        //logic for amount with preceeding spaces 
+        var spaces = '';
+        var remainingCharacters = (remainingChars - formattedAmount.length);        
+        for(i = 0; i < remainingCharacters ; i++){
             spaces = spaces + ' ';
         }
-        finalAmount = spaces +'$'+ String(_depositRec.Amount__c);
-       
-        var _slipPrinterInput = component.get("v.ValidationNumber") +' '+seq+' '+formattedDate +' '+finalAmount ;
+        formattedAmount = spaces + formattedAmount;        
+        _slipPrinterInput =_slipPrinterInput + ' ' + formattedAmount ;
         component.set("v.slipPrinterInput", _slipPrinterInput); 
         //logic ends here
         
-        //Cheking amount logic starts
-        console.log("depositRec : "+JSON.stringify(_depositRec));
+        
         var _AddRowEvt = component.getEvent("AddRowEvt");
         _AddRowEvt.setParams({"depositInstance" : _depositRec,"callType" : "update"});
         _AddRowEvt.fire();
