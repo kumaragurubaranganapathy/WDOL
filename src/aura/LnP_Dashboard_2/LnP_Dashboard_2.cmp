@@ -198,17 +198,17 @@
                         <lightning:layoutItem size="12" mediumDeviceSize="{!empty(v.ServiceLink)?'12':'9'}">
                             <aura:iteration items="{!v.detailLicenseData}" var="item">
                                 <div class="card table-border">
-                                    <lightning:layout class="slds-wrap lic-details-wrapper bottom-border">
+                                    <lightning:layout class="slds-wrap lic-details-wrapper bottom-border header-details">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">{!v.pendingApp?'Application Number:':'License Number:'}</div>
+                                            <div class="label-style text-style slds-truncate" title="{!v.pendingApp?'Application Number:':'License Number:'}">{!v.pendingApp?'Application Number:':'License Number:'}</div>
                                             <div class="data-style slds-truncate" title="{!item.Name}">{!item.Name}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">License Type: </div>
+                                            <div class="label-style text-style slds-truncate" title="License Type:">License Type: </div>
                                             <div class="data-style slds-truncate" title="{!item.Credential_Type__c}">{!item.Credential_Type__c}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
-                                            <div class="label-style text-style">Status: </div>
+                                            <div class="label-style text-style slds-truncate" title="Status:">Status: </div>
                                             <aura:if isTrue="{!item.MUSW__Status__c}">
                                                 <div class="data-style slds-truncate" title="{!item.MUSW__Status__c}">{!item.MUSW__Status__c}</div>
                                                 <aura:set attribute="else">
