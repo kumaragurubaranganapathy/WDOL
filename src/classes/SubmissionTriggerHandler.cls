@@ -26,7 +26,7 @@ public class SubmissionTriggerHandler implements BGCM.ITriggerHandler{
         //controller.SubmissionShare_RecordInsert(Trigger.New);
         
         //Share the Submission records when the Delegated Admin is the applicant on the License        
-        SubmissionCreatedByDelegate delController = new SubmissionCreatedByDelegate();
-        delController.shareSubmissionRecords(Trigger.New);
+       // SubmissionCreatedByDelegate delController = new SubmissionCreatedByDelegate();
+       // delController.shareSubmissionRecords(Trigger.New);
     }
 }
