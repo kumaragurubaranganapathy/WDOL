@@ -109,6 +109,12 @@
     },
     openTrainingApp : function(component,event,helper){
         helper.openTrainingApp(component,event);
-    }
+    },
+    StartRequestInformation : function(component,event,helper){
+        helper.StartRequestInformationHelper(component,event);
+    },
+    StartRequestEducationInformation : function(component,event,helper){
+        helper.StartRequestEducationInformationHelper(component,event);
+    },
  
 })

@@ -79,7 +79,67 @@
         });
         $A.enqueueAction(action);    
     },
-    
+    StartRequestEducationInformationHelper : function(component, event) {
+        var ctarget = event.currentTarget;
+        var requestId='';        
+        var action = component.get("c.insertEducationRequestInformation");
+        action.setParams({            
+            "licId": ctarget.getAttribute("data-license"),
+            "licenseType": ctarget.getAttribute("data-licenseType"),
+            "board":ctarget.getAttribute("data-board"),
+            "ServiceRequestType": ctarget.getAttribute("data-requestType"),
+            "ExamRecordId" :ctarget.getAttribute("data-edurecord"),            
+        });
+        action.setCallback(this, function(actionResult){
+            console.log('get results----');
+            var state = actionResult.getState();
+            console.log('state---'+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result----'+result);
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+                sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+                sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));                
+                sessionStorage.setItem("requestId", requestId);
+                sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+               // sessionStorage.setItem("taskDescription", ctarget.getAttribute("data-description"));                
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+       
+    },
+    StartRequestInformationHelper : function(component, event) {
+        var ctarget = event.currentTarget;
+        var requestId='';        
+        var action = component.get("c.insertRequestInformation");
+        action.setParams({            
+            "licId": ctarget.getAttribute("data-license"),
+            "licenseType": ctarget.getAttribute("data-licenseType"),
+            "board":ctarget.getAttribute("data-board"),
+            "ServiceRequestType": ctarget.getAttribute("data-requestType"),            
+        });
+        action.setCallback(this, function(actionResult){
+            console.log('get results----');
+            var state = actionResult.getState();
+            console.log('state---'+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result----'+result);
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+                sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+                sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));                
+                sessionStorage.setItem("requestId", requestId);
+                sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+                sessionStorage.setItem("taskDescription", ctarget.getAttribute("data-description"));                
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+       
+    },
     actionRequest : function(component, event, helper,subject) {
         console.log('inside actionRequest');
         var action = component.get("c.updateTask");
