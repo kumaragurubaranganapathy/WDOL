@@ -1658,4 +1658,13 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             upsert lstFiles;
         } 
     }
+	private static Id getCommunityUserContactId(){
+        Id contactId;
+        for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
+            contactId = userRecord.contactId;
+        }
+        System.debug('contactId===' + contactId);
+        return contactId;
+        
+    }
 }
