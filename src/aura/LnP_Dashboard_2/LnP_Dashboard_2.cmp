@@ -201,18 +201,18 @@
                                     <lightning:layout class="slds-wrap lic-details-wrapper bottom-border">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
                                             <div class="label-style text-style">{!v.pendingApp?'Application Number:':'License Number:'}</div>
-                                            <div class="data-style">{!item.Name}</div>
+                                            <div class="data-style slds-truncate" title="{!item.Name}">{!item.Name}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
                                             <div class="label-style text-style">License Type: </div>
-                                            <div class="data-style">{!item.Credential_Type__c}</div>
+                                            <div class="data-style slds-truncate" title="{!item.Credential_Type__c}">{!item.Credential_Type__c}</div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style row-margin">
                                             <div class="label-style text-style">Status: </div>
                                             <aura:if isTrue="{!item.MUSW__Status__c}">
-                                                <div class="data-style">{!item.MUSW__Status__c}</div>
+                                                <div class="data-style slds-truncate" title="{!item.MUSW__Status__c}">{!item.MUSW__Status__c}</div>
                                                 <aura:set attribute="else">
-                                                    <div class="data-style">None</div>
+                                                    <div class="data-style slds-truncate" title="None">None</div>
                                                 </aura:set>
                                             </aura:if>
                                         </lightning:layoutItem>
