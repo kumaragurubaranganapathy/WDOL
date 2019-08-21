@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>JV_Document_Title__c</field>
-        <value xsi:type="xsd:string">CRJS</value>
+        <value xsi:type="xsd:string">Journal Voucher</value>
     </values>
     <values>
         <field>JV_Explanation_of_Entry__c</field>
