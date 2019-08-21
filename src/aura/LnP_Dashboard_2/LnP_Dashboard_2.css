@@ -32,9 +32,9 @@
 .THIS .bottom-border{
     border-bottom: 1px solid #d4d4d4; 
 }
-.THIS .table-border{
-    border-radius: .25rem;
-    border: 1px solid #d4d4d4;
+.THIS .table-border{    
+    border: 1px solid #d4d4d4;    
+    height:100%;
 }
 .THIS .tabs-wrapper .slds-tabs_default__nav{
     border-bottom: solid 2px t(actionPanelBG);
@@ -186,7 +186,7 @@ padding: 10px;
     height:auto;
 }
 .THIS .screen-title{
-    font-size:1.25rem;
+    font-size:1.875rem;
     color:t(LnGFormTitleColor);
     font-weight:600; 
     line-height:26px;
@@ -206,6 +206,9 @@ padding: 10px;
 .THIS .add-licensee{
     display:flex;
     justify-content:flex-end;
+}
+.THIS .amr-wrapper{
+    align-items:normal;
 }
 @media (max-width: 30em)
     {

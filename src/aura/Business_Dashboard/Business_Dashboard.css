@@ -25,6 +25,9 @@
 .THIS .biz-details-wrapper.expanded-actions{
     align-items:flex-start; 
 }
+.THIS .biz-details-wrapper{
+    align-items:normal;
+}
 .THIS .breadcrumb-wrapper{
     margin:0.5rem 0 1rem;
 }
@@ -46,8 +49,7 @@
 .THIS .tab-style.slds-tabs_default__content{
     padding-top:0;
 }
-.THIS .license-details-wrapper{
-    border-radius: 4px;    
+.THIS .license-details-wrapper{    
     border: solid 1px t(sectionBorder);
 }
 .THIS .details-header{
@@ -195,8 +197,7 @@
 .THIS .business-card:nth-child(3n+2){
     margin:0 1vw 1.5rem;
 }
-.THIS .nav-links ul{
-    border: solid 1px t(primary);
+.THIS .nav-links ul{    
     background : t(actionPanelBG);
     height:100%;
 }
@@ -214,6 +215,9 @@
     border: solid 1px t(grayBorder);
     border-right:none;
 }
+.THIS .nav-links .links-wrapper{
+    height:100%;
+}
 .THIS .links-wrapper.exp-wrapper{
     position:relative;
 }
@@ -230,6 +234,15 @@
     padding: 0.625rem 1.5rem;    
     font-size:1rem;    
     line-height:1.29;
+}
+.THIS .amr-wrapper{
+    align-items:normal;
+}
+.THIS .amr-links .links-wrapper{
+    display:flex;
+}
+.THIS .amr-links .nav-links, .THIS .amr-links .links-wrapper{
+    min-height:100%;
 }
 @media only screen and (max-width:767.9px){
     .THIS .sidebar-options li{

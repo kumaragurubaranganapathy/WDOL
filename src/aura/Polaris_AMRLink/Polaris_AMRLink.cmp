@@ -37,8 +37,9 @@
         
     </div> 
     
-    <div class="slds-m-around_xx-large"> 
-        <aura:if isTrue="{!v.isModalOpen}">
+    <aura:if isTrue="{!v.isModalOpen}">
+        <div class="slds-m-around_xx-large"> 
+            
             <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
                     <!-- Modal/Popup Box Header Starts here-->
@@ -72,7 +73,7 @@
                 </div>
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
-        </aura:if>
-    </div>
-    
+            
+        </div>
+    </aura:if>
 </aura:component>
