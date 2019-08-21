@@ -29,11 +29,12 @@
         <ui:message title="Confirmation" severity="confirm" closable="false">
            Successfully generated fee records.
         </ui:message>
-		 <ui:button label="Close" class="slds-button slds-button--neutral cuf-publisherCancelButton uiButton slds-align_absolute-center" press="{!c.cancelBtn}"/> 
+        <ui:button label="Close" class="slds-button slds-button--neutral cuf-publisherCancelButton uiButton slds-align_absolute-center" press="{!c.cancelBtn}"/> 
     </aura:if>
     <aura:if isTrue="{!v.HideSpinner}" >
    	<div class="customSpinner">
         <lightning:spinner alternativeText="Loading" size="medium" class="slds-align_absolute-center" />
     </div>
     </aura:if>
+     
 </aura:component>

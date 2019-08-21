@@ -17,7 +17,10 @@
                 if(statusErrorLabel == response.getReturnValue()){
                    component.set("v.ErrorMsg", true);
 				   $A.get('e.force:refreshView').fire();
-            	}else if(response.getState() === "SUCCESS") {
+                }else if(Errormsg == response.getReturnValue()){
+                    component.set("v.emsg", true);
+				   $A.get('e.force:refreshView').fire();
+                }else if(response.getState() === "SUCCESS") {
 					component.set("v.smsg", true);
 					$A.get('e.force:refreshView').fire();
 				} else {
