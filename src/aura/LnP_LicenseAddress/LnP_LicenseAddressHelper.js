@@ -382,11 +382,28 @@
     },
     
     onsaveAddressHelper : function(component ,event, helper) {
-        console.log('onsaave1');
+        var accountRecordId= component.get("v.accountId");
+        var objectRecordName= component.get("v.objectName");
+        var accountOrContactId;
+        if($A.util.isEmpty(accountRecordId) || $A.util.isUndefined(accountRecordId) || accountRecordId =='null'){
+            accountOrContactId = component.get("v.contactId");
+        }else{
+            accountOrContactId = component.get("v.accountId");
+        }
+        console.log('onsaave1----' + accountOrContactId);
         var address; 
         var isAptInfo = component.get("v.isAddress2");
         console.log('isAptInfo=='+ isAptInfo);
-        var applicationId= component.get("v.applicationId");
+        var applicationId = '';
+        if(component.get("v.isAMR"))
+        {
+            applicationId= component.get("v.requestId");
+        }
+        else
+        {
+            applicationId= component.get("v.applicationId");
+        }
+        
         console.log('applicationId=='+ applicationId);
         var selectedAddress = component.get("v.userSelectedAddr");
         var selectedAddressFromDocument = document.querySelector('input[name="locations"]:checked').value;
@@ -431,7 +448,10 @@
             'applicationId':applicationId,
             'issuggestTrue' : issuggestTrue,
             'addresstype' : finalAddresstype,
-            'county' : county
+            'county' : county,
+            'accountOrContactId': accountOrContactId,
+            'objectRecordName' : objectRecordName,
+            'isAMR':component.get("v.isAMR"),
         });
         action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
