@@ -430,8 +430,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         
         return wrapperList;
     }
-    @AuraEnabled 
-    public static String insertApplication(String dataString, Integer tabNumber, Id appId, String Board, String LicenseType, String ApplicationType){
+        @AuraEnabled 
+    public static String insertApplication(String dataString, Integer tabNumber, Id appId, String Board, String LicenseType, String ApplicationType,Id upgradeLicenseId){
+        
         Boolean questionsIncomplete = false;
         Boolean FGquestionsIncomplete = false;
         Boolean CIquestionsIncomplete = false;
@@ -440,9 +441,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
-        mapAddress = getAddresses(setAppId);
         mapEducation = getBackgroundInformation(setAppId);
-        System.debug('dataString---->'+dataString);
+        System.debug('dataString---->'+dataString + 'Application Id---' + appId);
+        Id accountIdFromApplication; 
+        for(MUSW__Application2__c getAccountIdFromApplication: [Select Id, MUSW__Account__c From MUSW__Application2__c where Id = :appId]){
+            accountIdFromApplication = getAccountIdFromApplication.MUSW__Account__c;
+        }
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
         Integer questionsAnswered=0;
         Integer FGquestionsAnswered=0;
@@ -454,6 +458,16 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         }
         wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType);
         System.debug('Wrapper'+JSON.serialize(wrapperList));
+        Id contactAccountId;
+        Id contactRecordId = getCommunityUserContactId();
+        System.debug('contactRecordId for insert application===' + contactRecordId + 'accountIdFromApplication---' + accountIdFromApplication);
+        if(String.isNotBlank(accountIdFromApplication)){
+            contactAccountId = accountIdFromApplication;
+        }else{
+            contactAccountId = contactRecordId;
+        }
+        System.debug('Entered mapAddress method');
+        mapAddress = getAddresses(contactAccountId);
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         lstUserInfoData = new List<User>();
@@ -475,6 +489,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Questions')){
                 listFields.addAll(objWrapper.labelFieldsMap);
             }
+            
             if(objWrapper.sectionName.contains('Attachments')){
                 submissionFields = objWrapper.labelFieldsMap;
             }
@@ -705,7 +720,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 objWrapper.sectionError = true;
             } 
             if(objWrapper.sectionName.contains('Questions') && CIquestionsIncomplete==true){
-               // objWrapper.sectionError = true;
+                // objWrapper.sectionError = true;
             } 
             if(objWrapper.sectionName.contains('Attachments') && submissionsIncomplete == true){
                 objWrapper.sectionError = true;
@@ -721,25 +736,23 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                 objWrapper.sectionError = true;
                             }else{
                                 if(!mapAddress.containsKey('MAILING ADDRESS') || (!mapAddress.containsKey('PHYSICAL ADDRESS') && !mapAddress.get('MAILING ADDRESS')[0].is_Physical_and_Mailing_Address_Same__c)){
-                                    //if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
-                                        system.debug('inside the mandatory'+mapAddress.get('PHYSICAL ADDRESS'));
-                                        objWrapper.sectionError = true;
-                                    //}
+                                    system.debug('inside the mandatory'+mapAddress.get('PHYSICAL ADDRESS'));
+                                    objWrapper.sectionError = true;
                                 }
                             }   
                         }
                         /*commented by shiva
-                        if(lstMandatorySubsection != null){
-                    for(String mandatorySubSection : lstMandatorySubsection){
-                        system.debug('mandatorySubsection098'+ mandatorySubSection);
-                        if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
-                            if(mapAddress.isEmpty()){
-                                objWrapper.sectionError = true;
-                            } else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
-                                system.debug('inside the mandatory');
-                                objWrapper.sectionError = true;
-                            }
-                        }*/
+if(lstMandatorySubsection != null){
+for(String mandatorySubSection : lstMandatorySubsection){
+system.debug('mandatorySubsection098'+ mandatorySubSection);
+if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
+if(mapAddress.isEmpty()){
+objWrapper.sectionError = true;
+} else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
+system.debug('inside the mandatory');
+objWrapper.sectionError = true;
+}
+}*/
                         else if((mandatorySubSection == 'Qualifying Education' || mandatorySubSection == 'Qualifying Training' || mandatorySubSection == 'Qualifying Experience')  ){
                             if(mapEducation.isEmpty()){
                                 objWrapper.sectionError = true;
@@ -758,6 +771,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         system.debug('wrapperList123'+wrapperList);
         return JSON.serialize(wrapperList);
     }
+    
+    
     @AuraEnabled
     public static List<MUSW__License2__c> callCompositeAPI(String applicationId,String childlicenseRecordID){
         system.debug('childlicenseRecordID :'+childlicenseRecordID);
@@ -1535,11 +1550,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
     }
     
     //Fetch all the addresses
-    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Set<Id> appId){
+    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Id contactAccountId){
         Map<String, List<MUSW__Parcel__c>> mapAddress  =  new Map<String,List<MUSW__Parcel__c>>();
-        List<MUSW__Parcel__c> lstAddress  = [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
-                                                      is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c from MUSW__Parcel__c 
-                                                      where Application_BG__c IN :appId];
+        if(String.isNotBlank(contactAccountId)){
+        List<MUSW__Parcel__c> lstAddress  = [SELECT Id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,
+                                             Melissa_Address_Verified__c,MUSW__Primary_Contact__c, is_Physical_and_Mailing_Address_Same__c,
+                                             Address_Type__c, Canadian_provinces__c, County__c from MUSW__Parcel__c 
+                                             where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                             OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId)];
+        System.debug('lstAddress===' + lstAddress);
         if(!lstAddress.isEmpty()){
             for(MUSW__Parcel__c parcelAddress : lstAddress) {
                 if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
@@ -1548,6 +1567,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     mapAddress.put(parcelAddress.Address_Type__c, new List<MUSW__Parcel__c>{parcelAddress});
                 }
             }
+        }
+        System.debug('mapAddress from method===' + mapAddress);
         }
         return  mapAddress ;
     }
