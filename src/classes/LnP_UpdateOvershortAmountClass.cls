@@ -7,37 +7,38 @@ Created Date: 07/01/2019
 public with sharing class LnP_UpdateOvershortAmountClass {
  @AuraEnabled
     public static String updateovershortdepositMethod(Id DepositId) {
-        if(DepositId != null) {
-            MUSW__Deposit__c depositRec = [SELECT Id,Over_Short_Revenue_Code__c,MUSW__Available_Amount__c,Overshort_Amount__c,wadol_Program_Type__c FROM MUSW__Deposit__c WHERE Id = :DepositId];
-            if(depositRec.Overshort_Amount__c != null){
-                
-                return 'Send to Overshort cannot be processed.';
-            }
-            else if((depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)) ){
-                //update MUSW__Deposit__c overshort Amount with available amount.
-                depositRec.Overshort_Amount__c = depositRec.MUSW__Available_Amount__c;
-                depositRec.Overshort_Modified__c = True;
-                
-                String ProgramType = depositRec.wadol_Program_Type__c;
-                List<Master_ConfigData_Listing__c> mastConfigList = new List<Master_ConfigData_Listing__c>();
-                mastConfigList =[Select Id, Revenue_Account_Code__c,Listing_Type__c,Program_Type__c from Master_ConfigData_Listing__c where Listing_Type__c ='Overshort Queue' AND Program_Type__c INCLUDES(:ProgramType)];
-                if(!mastConfigList.isEmpty()){
-                    depositRec.Over_Short_Revenue_Code__c = mastConfigList[0].Revenue_Account_Code__c;
+        try{
+            if(DepositId != null) {
+                MUSW__Deposit__c depositRec = [SELECT Id,Over_Short_Revenue_Code__c,MUSW__Available_Amount__c,Overshort_Amount__c,wadol_Program_Type__c FROM MUSW__Deposit__c WHERE Id = :DepositId];
+                if(depositRec.Overshort_Amount__c != null){
+                    
+                    return 'Send to Overshort cannot be processed.';
                 }
-                
-                update depositRec;
-                return 'True';
-            }else if(depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositUpperLimit)){
-                return 'False';
+                else if((depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)) ){
+                    //update MUSW__Deposit__c overshort Amount with available amount.
+                    depositRec.Overshort_Amount__c = depositRec.MUSW__Available_Amount__c;
+                    depositRec.Overshort_Modified__c = True;
+                    
+                    String ProgramType = depositRec.wadol_Program_Type__c;
+                    List<Master_ConfigData_Listing__c> mastConfigList = new List<Master_ConfigData_Listing__c>();
+                    mastConfigList =[Select Id, Revenue_Account_Code__c,Listing_Type__c,Program_Type__c from Master_ConfigData_Listing__c where Listing_Type__c ='Overshort Queue' AND Program_Type__c INCLUDES(:ProgramType)];
+                    if(!mastConfigList.isEmpty()){
+                        depositRec.Over_Short_Revenue_Code__c = mastConfigList[0].Revenue_Account_Code__c;
+                    }
+                    
+                    update depositRec;
+                    return 'True';
+                }else if(depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositUpperLimit)){
+                    return 'False';
+                }
             }
-        }
-        return null;
+        }catch(Exception e){DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_UpdateOvershortAmountClass','payFromOverShort');return null;}return null;
     }
     
     @AuraEnabled
     public static String updateovershortreceiptMethod(Id ReceiptId) {
         if(ReceiptId != null) {
-             /*
+            /*
                 MUSW__Receipt__c ReceiptRec = [SELECT Id,MUSW__Amount_Available__c,Overshort_Amount__c FROM MUSW__Receipt__c WHERE Id = :ReceiptId];
                 if(ReceiptRec.MUSW__Amount_Available__c <= decimal.valueOf(System.Label.OverShortReceiptUpperLimit) && ReceiptRec.MUSW__Amount_Available__c > decimal.valueOf(System.Label.OverShortReceiptLowerLimit)){
                     ReceiptRec.Overshort_Amount__c = ReceiptRec.MUSW__Amount_Available__c;
@@ -48,12 +49,14 @@ public with sharing class LnP_UpdateOvershortAmountClass {
                     return 'False';
                 }
             */
+            
         }
         return null;
     }
     
     @AuraEnabled
     public static String payFromOverShort(Id feeId) {
+        try{
         if(feeId != null) {
            MUSW__Fee__c FeeRec = new MUSW__Fee__c();
            
@@ -61,6 +64,8 @@ public with sharing class LnP_UpdateOvershortAmountClass {
             FeeQuery += ' WHERE Id = :feeId';
             List<MUSW__Fee__c> FeeList = Database.query(FeeQuery);
            
+            
+            
             MUSW__Receipt__c receiptRec;
             
             FeeRec =Database.query(FeeQuery);
@@ -69,7 +74,7 @@ public with sharing class LnP_UpdateOvershortAmountClass {
                     receiptRec = new MUSW__Receipt__c();
                     receiptRec.MUSW__Amount_Tendered__c =  FeeRec.MUSW__Outstanding_Fee__c;
                     receiptRec.MUSW__Payment_Method__c ='Overshort';
-					receiptRec.Intake_Method__c ='Validation Room';
+                    receiptRec.Intake_Method__c ='Validation Room';
             }else{
                 return 'Validation Error';
             }
@@ -93,6 +98,6 @@ public with sharing class LnP_UpdateOvershortAmountClass {
             }
             
         }
-        return null;
+        }catch(Exception e){DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_UpdateOvershortAmountClass','payFromOverShort');return null;}return null;
     }
 }
