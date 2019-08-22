@@ -1,10 +1,11 @@
 ({
 	doInit : function(component,event) {
 		var tDate = new Date();
-        component.set("v.todayDate",tDate);
+        component.set("v.todayDate",tDate);        
 	},
+    
     fetchPeerRelationShipDataRecords : function(component, event, helper){        
-        //console.log("In fetchPeerRelationShipDataRecords...."+licenseDat);        
+       // console.log("In fetchPeerRelationShipDataRecords...."+licenseDat);        
         var action = component.get("c.setPeerRelationShipTable");        
         action.setParams({"licenseId" : component.get("v.parentLicense")});        
         action.setCallback(this,function(response){            
@@ -71,7 +72,24 @@
         });
         $A.enqueueAction(action);
     },
-    
+    removeOwnerRecordHelper:function(cmp,event,helper){
+        
+        var action = cmp.get("c.removeOwnerRecord");
+        action.setParams ({"accConId": event.getSource().get("v.value")});
+         action.setCallback(this, function (response) {
+                var state = response.getState();
+                if (state === "SUCCESS") {
+                    console.log('inside success');                    
+                     this.getRelationShipTableData(cmp,event,helper);  
+                   
+                } else if (state === "ERROR") {
+                    var errors = response.getError();
+                    console.error(JSON.stringify(errors));
+                }
+             component.set("v.loadingSpinner",false);
+            });
+            $A.enqueueAction(action); 
+    },
     removeAccountContactRecord : function(cmp,event,helper){
         var action = cmp.get("c.removeAcconContactRecord");
         action.setParams ({"accConId": cmp.get("v.accountContact"),"action":cmp.get("v.actionClicked")});

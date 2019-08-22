@@ -463,7 +463,21 @@ public with sharing class Add_BusinessController {
             return false;
         } 
         
-    }    
+    }  
+    @AuraEnabled 
+    public static Boolean removeOwnerRecord(String accConId ){
+        MUSW__Account_Contact__c accCon = [SELECT id,Status__c FROM MUSW__Account_Contact__c WHERE id=:accConId ];
+        try{
+            accCon.Status__c = 'Deleted';
+            update accCon;
+            return true;
+        }
+        catch(Exception e){
+            Polaris_CreateErrorLog_Exception.addError(e,'Add_BusinessController','removeOwnerRecord');
+            return false;
+        } 
+        
+    }
     
     @AuraEnabled 
     public static Boolean removeAcconContactRecord(MUSW__Account_Contact__c accConId ,string action){
@@ -731,7 +745,7 @@ public with sharing class Add_BusinessController {
                 
                 List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c,format(Renewal_Expiration_Date__c),Renewal_Status__c,Application_Type__c
                                                 from Renewal_Application__c
-                                                where  License__r.MUSW__Primary_Licensee__c =:  accountID AND Renewal_Status__c In: statusFilterList ORDER BY CreatedDate asc];
+                                                where  License__r.MUSW__Primary_Licensee__c =: accountID AND Renewal_Status__c In: statusFilterList ORDER BY CreatedDate asc];
             
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
@@ -894,7 +908,7 @@ public with sharing class Add_BusinessController {
         }
         return acc;
     }
-  @AuraEnabled
+     @AuraEnabled
     public static void updateBusinessAccIDonContact(String accountId){
         
         if(accountId != null){
@@ -904,5 +918,6 @@ public with sharing class Add_BusinessController {
             objCon.BusinessCartToOpen__c =accountId;
             update objCon;
         }
+    }
     } 
 }
