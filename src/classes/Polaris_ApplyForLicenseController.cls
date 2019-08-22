@@ -862,7 +862,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 system.debug('StrApp Query--->'+strAppOther);
                 system.debug('licenseID[0].Id --->'+licenseID[0].Id);
                 appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
-                //List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
+                List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
                 List<MUSW__License_Parcel__c> licenseParcelList = new List <MUSW__License_Parcel__c>();
                 if(!allAddressList.isEmpty()){
                     for(MUSW__Parcel__c parcelInstance : allAddressList){
