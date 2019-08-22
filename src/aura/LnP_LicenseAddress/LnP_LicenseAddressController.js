@@ -245,11 +245,11 @@
         
     },
     onsaveAddress: function(component ,event, helper) {
-        if(component.get("v.changeAddress")== true) {
-           helper.onsaveContactAddressHelper(component ,event, helper); 
-        } else {
+        //if(component.get("v.changeAddress")== true) {
+           //helper.onsaveContactAddressHelper(component ,event, helper); 
+       // } else {
             helper.onsaveAddressHelper(component ,event, helper); 
-        }
+        //}
        
     },
     handleDelete: function(component ,event, helper) {
