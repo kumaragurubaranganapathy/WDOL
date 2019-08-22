@@ -48,7 +48,7 @@
                                                         </aura:if>
                                                         <aura:if isTrue="{!bodyArtListItem.Article_Content_Type__c == 'Paragraph'}">
                                                             <li class="license-item">
-                                                                <div class="slds-text-body_regular">{!bodyArtListItem.Article_Title__c}</div>
+                                                                <div class="license-link">{!bodyArtListItem.Article_Title__c}</div>
                                                             </li>
                                                         </aura:if>
                                                         <aura:if isTrue="{!bodyArtListItem.Article_Content_Type__c == 'Button'}">

@@ -121,14 +121,12 @@
     pointer-events:none;
 }
 .THIS .license-link{
-    color:t(headerColor);    
-    font-weight:600;
-    font-size:1rem;
-    
+    color:t(headerColor);     
+    font-size:1rem;    
 }
 .THIS .active-link.license-link{
-    color:t(linksColor);
-    font-weight:normal;
+    color:t(linksColor);    
+    text-decoration:underline;    
 }
 .THIS .action-item{
     margin:4rem 2rem 2rem;
@@ -140,6 +138,7 @@
     margin-right:2rem;
     color:t(linksColor); 
     font-size:1rem;
+    text-decoration:none;
 }
 .THIS .home-button{
     padding: 0.625rem 1.875rem;    

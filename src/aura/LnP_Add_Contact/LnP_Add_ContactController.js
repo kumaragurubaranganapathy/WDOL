@@ -21,7 +21,11 @@
 			var message = 'Please Enter values in ';
 			for(var ind=0;ind < validationPassed.length;ind++ ){
                 console.log('Error::'+validationPassed[ind]);
-				message = message + ' , '+validationPassed[ind];
+				if(ind != 0 && validationPassed.length > 1){
+                    message = message + ',' + validationPassed[ind];
+                }else{
+                    message = message + validationPassed[ind];
+                }
 			}
 		
 			var toastEvent = $A.get("e.force:showToast");
