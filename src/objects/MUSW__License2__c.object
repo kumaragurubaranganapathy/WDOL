@@ -596,6 +596,20 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	    <fields>
+        <fullName>DaysFromJan31__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATE(YEAR(TODAY())+1,1, 31)-MUSW__Issue_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DaysFromJan31</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Business_Email__c</fullName>
         <externalId>false</externalId>
@@ -1169,6 +1183,10 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
                 <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect Firm</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -9307,6 +9325,14 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
+                <fullName>Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collection Agency Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified Residential Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -9396,6 +9422,14 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State Collection Agency Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State Collection Agency</fullName>
                 <default>false</default>
             </values>
             <values>
