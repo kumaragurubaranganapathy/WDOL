@@ -17,13 +17,8 @@
     <aura:attribute name="slipPrinterInput" type="String" access="public"  />
     <aura:attribute name="disableNext" type="boolean" />
     
-    <!-- change date : 23/8/2019 -->
-    <aura:attribute name= "formattedRowIndex" type="String"/>
-    
     <!-- change date : 13/8/2019 -->
     <aura:attribute name="ValidationNumber" type="String" default='DEP' />
-    <aura:attribute name="isClickedFirstTime" type="boolean" default="true"/>
-    <aura:attribute name="printTwice" type="boolean" default="false"/>
     
 <!-- handlers -->
     <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
@@ -32,8 +27,7 @@
     <!-- Table Row -->   
     <tr class="slds-text-title_caps">
         <td> 
-           <!-- {!'00' + (v.rowIndex)} -->
-            {!v.formattedRowIndex}
+            {!'00' + (v.rowIndex + 1)}
         </td>
         <td>
             <lightning:select aura:id="paymentMethod" value="{!v.receiptRec.MUSW__Payment_Method__c}" name="paymentMethod" onchange="{!c.enablePrintButton}" >

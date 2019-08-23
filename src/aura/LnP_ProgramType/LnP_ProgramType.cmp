@@ -24,7 +24,7 @@
     <lightning:layout class="slds-align_absolute-center" >
          <div> 
            <lightning:input type="checkbox" name="DHP" label="DHP"  aura:id="dhp" class="slds-p-vertical_small" 
-                            checked="{!v.customerEnvelopeRec.DHP__c}" />
+                            checked="{!v.customerEnvelopeRec.DHP__c}" onchange="{!c.selectChange}"/>
         </div>&nbsp;
         <div>
             <lightning:select aura:id="defaultPgmType" value="{!v.defaultProgramType}" name="defaultProgramType"   label="Default Profession Type" onchange="{!c.enableNextButton}">

@@ -1,14 +1,14 @@
 ({
     addReceiptRecord: function(component, event) {
         //get the account List from component  
-        //debugger;
+        debugger;
         if(component.get("v.insertedReceiptList").length !== 0){
             //back logic
             var _insertedReceiptList = [];
             _insertedReceiptList = component.get("v.insertedReceiptList");  
             //adding the blank record to the exixting list 
             _insertedReceiptList.push(component.get("v.paymentType"))   ;
-            //console.log("original insertedReceiptList "+JSON.stringify(component.get("v.insertedReceiptList")));
+            console.log("original insertedReceiptList "+JSON.stringify(component.get("v.insertedReceiptList")));
             component.set("v.receiptList", _insertedReceiptList);   
             _insertedReceiptList.pop();
             component.set("v.isDisabled",false);
@@ -25,7 +25,7 @@
     updateReceiptList : function(component, event,_callType){
         component.set("v.showSpinner", true);
         var _recRecList = event.getParam("receiptInstance");
-        //console.log("_recRecList : "+JSON.stringify(_recRecList));
+        console.log("_recRecList : "+JSON.stringify(_recRecList));
         var action = component.get("c.updateRecieptRec");        
         action.setParams({
             "recList": _recRecList
@@ -37,15 +37,15 @@
             _toastEvt.fire();
             component.set("v.showSpinner", false);
             if (state === "SUCCESS") {
-                //console.log("updated Record " + JSON.stringify(response.getReturnValue()));
+                console.log("updated Record " + JSON.stringify(response.getReturnValue()));
                 var updatedReceiptRec = response.getReturnValue();
                 var _insertedReceiptList = component.get("v.insertedReceiptList");
                 var _insertedReceiptList_Size = _insertedReceiptList.length;
                 for(var i=0  ; i < _insertedReceiptList_Size ; i++){
                     if(_insertedReceiptList[i].Id === updatedReceiptRec.Id){
-                        //console.log("before : "+_insertedReceiptList[i]);
+                        console.log("before : "+_insertedReceiptList[i]);
                         _insertedReceiptList[i] = updatedReceiptRec;
-                        //console.log("after : "+_insertedReceiptList[i]);
+                        console.log("after : "+_insertedReceiptList[i]);
                     }
                 }
                 component.set("v.insertedReceiptList",_insertedReceiptList);
@@ -66,7 +66,7 @@
                     }
                 }
                 component.set("v.receiptList",_receiptList); 
-                
+                 
                 this.updateFields(component, event,_callType); 
             }
             
@@ -75,12 +75,12 @@
     },
     
     saveRecieptList : function(component, event){
-        //debugger;
+        debugger;
         component.set("v.showSpinner", true);
         var _recRecList = event.getParam("receiptInstance");
         //component.set("v.currentReceiptRec",_recRecList);
         var _callType = event.getParam("callType");
-        //console.log("_recRecList : "+JSON.stringify(_recRecList));
+        console.log("_recRecList : "+JSON.stringify(_recRecList));
         var _insertedReceiptList = component.get("v.insertedReceiptList");
         
         var action = component.get("c.saveReciptRecords");
@@ -97,7 +97,7 @@
             if (state === "SUCCESS") {
                 
                 
-                //console.log("Response : Receipt List : " + JSON.stringify(response.getReturnValue()));                
+                console.log("Response : Receipt List : " + JSON.stringify(response.getReturnValue()));                
                 var returnReceiptRec = response.getReturnValue();                
                 component.set("v.receiptRec",returnReceiptRec);
                 
@@ -108,11 +108,15 @@
                 
                 //populating record to parent list
                 _insertedReceiptList.push(returnReceiptRec);    
-                //console.log("after insert :" + JSON.stringify(_insertedReceiptList));
+                console.log("after insert :" + JSON.stringify(_insertedReceiptList));
                 component.set("v.insertedReceiptList",_insertedReceiptList);
                 
                 //to populate the total fields
                 this.updateFields(component, event,_callType);           
+            }else {
+                var _toastEvt = component.getEvent("toastEvt");
+                _toastEvt.setParams({'state' : state , 'data' : 'Something went Wrong' });
+                _toastEvt.fire();
             }
         }); 
         $A.enqueueAction(action); 
@@ -121,7 +125,7 @@
     },
     
     updateFields : function(component, event,_callType){
-        //debugger;       
+        debugger;       
         var _insertedReceiptList = component.get("v.insertedReceiptList");
         var i,totalAmount = 0, _insertedReceiptList_size = _insertedReceiptList.length;
         for(i=0 ; i < _insertedReceiptList_size ; i++){
@@ -132,7 +136,7 @@
         component.set("v.isDisabled",false);
         
         
-        //console.log("payment type :" +JSON.stringify(component.get("v.paymentType")));
+        console.log("payment type :" +JSON.stringify(component.get("v.paymentType")));
         
         //to disable the Submit and Next button and add new row
         var _receiptList = component.get("v.receiptList");  
@@ -164,11 +168,11 @@
                                     'JV_Number__c' : currentReceiptRec.JV_Number__c
                                    };
                 _receiptList.push(_paymentType)  ; 
-                //console.log("IN CLONE : " + JSON.stringify(_receiptList));
+                console.log("IN CLONE : " + JSON.stringify(_receiptList));
                 component.set("v.receiptList", _receiptList); 
                 
                 break;
-            case 'UPDATE' : console.log("do nothing");
+            case 'UPDATE' : console.log("in progress");
                 break;
             default : console.log("do nothing");
                 
@@ -176,8 +180,8 @@
         
     } ,
     updateLinkReceiptToCstEnv : function(component,event){
-        //debugger;
-        component.set("v.showSpinner", true);
+        debugger;
+          component.set("v.showSpinner", true);
         var _insertedReceiptList = component.get("v.insertedReceiptList"); 
         var _customerEnvelopeRec = component.get("v.customerEnvelopeRec");       
         _customerEnvelopeRec['Number_of_payments__c'] = component.get("v.numOfPaymentSources");

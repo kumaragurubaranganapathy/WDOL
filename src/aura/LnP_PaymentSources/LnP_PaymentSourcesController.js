@@ -4,7 +4,8 @@
         
         helper.addReceiptRecord(component, event);
         
-        var action = component.get("c.getPayment");       
+        var action = component.get("c.getPayment");
+        //var action1 = component.get("c.getReceiptInfo");
         var Customer_Enveloper_PaymentMethods =$A.get("$Label.c.Customer_Enveloper_PaymentMethods");
 		var Customer_Enveloper_PaymentMethodsArray = Customer_Enveloper_PaymentMethods.split(',');
         action.setCallback(this, function(response) {
@@ -15,20 +16,30 @@
                 for(var key in result){
                     
                     if(Customer_Enveloper_PaymentMethodsArray.includes(key)){
-                        //console.log('*****'+key);
+                        console.log('*****'+key);
                     	paymentMethodMap.push({key: key, value: result[key]});
                     }    
                 }
                 component.set("v.paymentMethodMap", paymentMethodMap);
             }
         });
+        
+       /* action1.setCallback(this, function(response) {
+            var state = response.getState();
+            console.log('the data is' +response.getReturnValue());
+            if (state === "SUCCESS") {
+                component.set("v.receiptDetails",response.getReturnValue());
+            }
+        });*/
+        
+        
         $A.enqueueAction(action);
-       
+        //$A.enqueueAction(action1);
         
     },
     
     gotoURL:function(component,event,helper){
-        //debugger;
+        debugger;
         var _receiptList = component.get("v.receiptList"); 
         var isVitalCheck = null;
         if(_receiptList){
@@ -45,7 +56,11 @@
             var currentStep = component.get("v.stepNumber");
             currentStep = '3';
             component.set("v.stepNumber",currentStep);
-        }        
+        }
+        
+        
+        
+        
     },
     
     enableAddButton : function(component,event,helper){
@@ -60,13 +75,14 @@
     
     
     addNewRow_ : function(component,event,helper){
-        //debugger;   
+        debugger;   
         var _callType = event.getParam("callType");
         if(_callType === 'update'){
             helper.updateReceiptList(component,event,_callType);
         }else{
             helper.saveRecieptList(component,event);
-        }        
+        }
+        
     },
     
     goToPaymentSourcePage:function(component,event,helper){

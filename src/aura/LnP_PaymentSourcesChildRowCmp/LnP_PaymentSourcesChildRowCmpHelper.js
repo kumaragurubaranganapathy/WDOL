@@ -1,6 +1,6 @@
 ({
     enablePrintButton : function(component,event){
-        //debugger;
+        debugger;
         var receiptRec = component.get("v.receiptRec");
         var paymentType=component.find('paymentMethod').get('v.value');
         var number=component.find('checkNumber').get('v.value');
@@ -45,19 +45,7 @@
     },
     onPrint : function(component,event,helper){
         var printInput = component.get("v.slipPrinterInput");
-        //console.log('printInput='+printInput);
-        var printTwice = component.get("v.printTwice");
-        //console.log('printTwice='+printTwice);
-        
-        if(printTwice === true){
-            var printblabk = '                                   ';
-            window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printblabk,'_blank');
-            window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'_blank');
-        }
-        else{
-            window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'_blank');
-        }
-        component.set("v.isClickedFirstTime", false);
-        //console.log('isClickedFirstTimeafter print='+component.get("v.isClickedFirstTime"));
+        console.log('printInput&&&'+printInput);
+        window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'_blank');
     },
 })

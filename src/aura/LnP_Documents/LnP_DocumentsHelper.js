@@ -1,7 +1,7 @@
 ({ 
     
     addDepositRecord: function(component, event) {
-        //debugger;
+        debugger;
         //below if logic will limit the creation of child row once 'documentTotal' == 'paymentSourceTotal'
         if( component.find("documentTotal").get('v.value') !== component.get("v.paymentSourceTotal")){
             //below if checks is for back logic : if the already inserted record have value then use 'insertedDepositList' for iteration 
@@ -10,7 +10,7 @@
                 _insertedDepositList = component.get("v.insertedDepositList");  
                 //adding the blank record to the existing list 
                 _insertedDepositList.push(component.get("v.programType"))   ;
-                //console.log("original insertedDepositList "+JSON.stringify(component.get("v.insertedDepositList")));
+                console.log("original insertedDepositList "+JSON.stringify(component.get("v.insertedDepositList")));
                 component.set("v.depositList", _insertedDepositList);   
                 _insertedDepositList.pop();
                 component.set("v.isDisabledSubmit",false);
@@ -29,7 +29,7 @@
     
     //this function will execute when there is a update call from Child row
     updateDepositList : function(component, event,_callType){
-        //debugger; 
+        debugger; 
         
         var _insertedDepositList = component.get("v.insertedDepositList");
         var savedTotalAmount = 0;
@@ -44,7 +44,7 @@
             //else update the current record
             component.set("v.showSpinner", true);       
             var _depRecList = event.getParam("depositInstance");   
-            //console.log("_depRecList : "+JSON.stringify(_depRecList));
+            console.log("_depRecList : "+JSON.stringify(_depRecList));
             var action = component.get("c.updateDepositRec");        
             action.setParams({
                 "depList": _depRecList
@@ -57,7 +57,7 @@
                 _toastEvt.fire();
                 
                 if (state === "SUCCESS") {
-                    //console.log("updated Record " + JSON.stringify(response.getReturnValue()));
+                    console.log("updated Record " + JSON.stringify(response.getReturnValue()));
                     var updatedDepositRec = response.getReturnValue();
                     var _insertedDepositList = component.get("v.insertedDepositList");
                     var _insertedDepositList_Size = _insertedDepositList.length;
@@ -79,11 +79,11 @@
     },
     //this function will execute when there is a add or clone call from Child row
     saveDepositList : function(component, event){
-        //debugger;   
+        debugger;   
         component.set("v.showSpinner", true);
         var _depRecList = event.getParam("depositInstance");    
         var _callType = event.getParam("callType");
-        //console.log("_depRecList : "+JSON.stringify(_depRecList));
+        console.log("_depRecList : "+JSON.stringify(_depRecList));
         
         var _insertedDepositList = component.get("v.insertedDepositList");
         
@@ -100,9 +100,9 @@
             component.set("v.showSpinner", false);
             
             if (state === "SUCCESS") {               
-                //console.log('Deposit records saved successfully');               
+                console.log('Deposit records saved successfully');               
                 
-                //console.log("Response : Deposit List : " + JSON.stringify(response.getReturnValue()));
+                console.log("Response : Deposit List : " + JSON.stringify(response.getReturnValue()));
                 var returnDepositRec = response.getReturnValue();                
                 component.set("v.depositRec",returnDepositRec);
                 
@@ -113,7 +113,7 @@
                 
                 //populating parent list
                 _insertedDepositList.push(returnDepositRec);   
-                //console.log("after insert :" + JSON.stringify(_insertedDepositList));
+                console.log("after insert :" + JSON.stringify(_insertedDepositList));
                 component.set("v.insertedDepositList",_insertedDepositList);
                 
                 //to populate the total fields
@@ -128,7 +128,7 @@
     // this function will update the 'depositList' child iteration according to Add or clone cal from Child 
     // also update the fields 'numberOfDocuments' and 'documentTotal' on parent 
     updateFields : function(component, event,_callType){
-        //debugger;       
+        debugger;       
         var _insertedDepositList = component.get("v.insertedDepositList");
         var i,totalAmount = 0, _insertedDepositList_size = _insertedDepositList.length;
         for(i=0 ; i < _insertedDepositList_size ; i++){
@@ -139,7 +139,7 @@
         
         if( component.find("documentTotal").get('v.value') === component.get("v.paymentSourceTotal")){
             component.set("v.isDisabledSubmit",false);
-            //console.log("_callType : "+_callType);
+            console.log("_callType : "+_callType);
             if(_callType.toUpperCase() === 'ADD' || _callType.toUpperCase() === 'CLONE'){
                 var _depositList = component.get("v.depositList");           
                 component.set("v.depositList", _depositList); 
@@ -183,8 +183,8 @@
     CreateCERecord :function(component, event){
         component.set("v.showSpinner", true);
         var eventName = event.getSource().get("v.name");
-        //console.log("eventName : "+eventName);
-        //debugger;
+        console.log("eventName : "+eventName);
+        debugger;
         var _programType = component.get("v.defaultProgramType");
         var _insertedReceiptList = component.get("v.insertedReceiptList"); 
         var _insertedDepositList = component.get("v.insertedDepositList");
@@ -212,7 +212,7 @@
             component.set("v.showSpinner", false);
             
             if (state === "SUCCESS") { 
-                //console.log(JSON.stringify(response.getReturnValue()));
+                console.log(JSON.stringify(response.getReturnValue()));
                 //redirect to List view
                 if(eventName === 'submit_close'){
                     this.gotoListView(component, event);

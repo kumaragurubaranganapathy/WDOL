@@ -1,7 +1,12 @@
 ({
     doInit : function(component, event, helper) {
-        //debugger;
-        var action = component.get("c.getDefaultProgramType");       
+        debugger;
+        
+        
+        
+        var action = component.get("c.getDefaultProgramType");
+        //var action1 = component.get("c.getcustomerEnvelopeInfo");
+        
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -12,13 +17,21 @@
                         if( key !== 'Delegated Municipality' && key !== 'Manufactured Homes' && key !== 'Program Unknown' && key !== 'Misc Payments'){
                             industryMap.push({key: key, value: result[key]});
                         }                        
-                    }                    
+                    }
+                    
                     component.set("v.industryMap", industryMap);
                 }
             }
         });
         
-            
+        /* action1.setCallback(this, function(response) {
+                var state = response.getState();
+                console.log('the data is' +response.getReturnValue());
+                 if (state === "SUCCESS") {
+                     component.set("v.customerEnvelopDetails",response.getReturnValue());
+                 }
+            });
+*/            
         var action2 = component.get("c.getValidationNumberInfo");
         action2.setCallback(this, function(response) {
             var state = response.getState();
@@ -35,17 +48,17 @@
         }
     },
     
-   /* selectChange: function(component,event,helper) {
+    selectChange: function(component,event,helper) {
         //alert(JSON.stringify(component.get("v.customerEnvelopeRec")));
       //var checkCmp = component.find("dhp");
        // alert("checkCmp : "+checkCmp.get("v.value"));
        // resultCmp = cmp.find("checkResult");
        // resultCmp.set("v.value", ""+checkCmp.get("v.value"));
         
-    },*/
+    },
     gotoURL:function(component,event,helper){
-        //debugger;
-        //console.log('Enter Here');
+        debugger;
+        console.log('Enter Here');
         var currentStep = component.get("v.stepNumber");
         currentStep = '2';
         component.set("v.stepNumber",currentStep);
@@ -58,7 +71,7 @@
         }
     },
     gotoListView : function (component, event, helper) {
-        //debugger;
+        debugger;
         var servercall = component.get("c.deleteCustomerEnvelope");
         servercall.setParams({
             "custEnv": component.get("v.customerEnvelopeRec")
@@ -66,7 +79,7 @@
         servercall.setCallback(this,function(response){
             var state = response.getState();
             if(state === "SUCCESS"){
-                //console.log(JSON.stringify(response.getReturnValue()));
+                console.log(JSON.stringify(response.getReturnValue()));
             }
         });        
         
