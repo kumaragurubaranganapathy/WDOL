@@ -634,7 +634,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }catch(Exception error){
             if(sp != null) 
                 Database.rollback(sp);
-            throw new CustomException('error occured '+error.getMessage()+' stackTrace '+error.getStackTraceString());
+            throw error;
         }
     }
 
