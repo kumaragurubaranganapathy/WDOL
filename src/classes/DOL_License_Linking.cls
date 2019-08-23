@@ -235,58 +235,32 @@ public without Sharing class DOL_License_Linking {
         return options;
         
     }
-    @AuraEnabled
-    public static string sendActivationEmail(){
-        DOL_AppUtility.isAuthenticatedUser() ;
-        User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email 
-                            from User Where ID = :UserInfo.getUserId() LIMIT 1];
-        List<Contact> currentContact = [Select Email,Id,Last_4_Digits_of_SSN__c,FirstName,LastName,Birthdate 
-                                        from Contact where ID =: currentUser.ContactId lIMIT 1];
-        string message='';
-        String maskedEmail ='';
-
-        if(!currentContact.isEmpty()) {
-            List<String> email= new List<String>();
-            email.add(currentContact[0].Email);
-            maskedEmail = email[0].replaceAll('(^[^@]{3}|(?!^)\\G)[^@]', '$1*');
+        @AuraEnabled
+    public static List<String> getProgramPicklist () {
+      DOL_AppUtility.isAuthenticatedUser() ;
+      List<String> options = new List<String>();
+        if(!Polaris_UtilityClass.getProgramPicklist ().isEmpty()) {
+            options.addAll(Polaris_UtilityClass.getProgramPicklist());
         }
-        message = 'Activation code will be emailed to' + ' ' + maskedEmail;
-        return message;
-    } 
+        return options;
+        
+    }
     @AuraEnabled
-    public static string sendActivationCodeEmail(){
-        DOL_AppUtility.isAuthenticatedUser() ;
-        User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email 
-                            from User Where ID = :UserInfo.getUserId() LIMIT 1];
-        List<Contact> currentContact = [Select Email,Id,Last_4_Digits_of_SSN__c,FirstName,LastName,Birthdate 
-                                        from Contact where ID =: currentUser.ContactId lIMIT 1];
-        OrgWideEmailAddress orgWideAddress = [select Id, DisplayName, Address from OrgWideEmailAddress where DisplayName = :label.Str_Org_Wide_Address];
-          List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+    public static string sendActivationCodeEmail(String activationCode, String emailAdd){
+       DOL_AppUtility.isAuthenticatedUser() ;
+       OrgWideEmailAddress orgWideAddress = [select Id, DisplayName, Address from OrgWideEmailAddress where DisplayName = :label.Str_Org_Wide_Address];
+       List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
         String message='';
-        List<Contact> lstContact = new List<Contact>();
+       // List<Contact> lstContact = new List<Contact>();
         List<String> email= new List<String>();
-        if(!currentContact.isEmpty()) {
-            email.add(currentContact[0].Email);
-             lstContact = [SELECT Email,Id,Name,Security_Code__c 
-                                        from contact where Id !=: currentUser.ContactId
-                                        AND FirstName =:currentContact[0].FirstName 
-                                       AND LastName =: currentContact[0].LastName AND Last_4_Digits_of_SSN__c =:currentContact[0].Last_4_Digits_of_SSN__c Limit 1];
-            
-            
-        } else {
-            message =  Label.System_Admin_Contact_Message;
-            return message;
-        }
-        if(!lstContact.isEmpty() && orgWideAddress != null && !email.isEmpty()) {
-            for(Contact con : lstContact) {
-
+        email.add(emailAdd);
+        if( orgWideAddress != null && !email.isEmpty()) {
                 Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-                mail.setSubject('Activation code for professional linking license');
-                mail.setHtmlBody('ActivationCode : ' +con.Security_Code__c);
+                mail.setSubject('Activation code for linking license');
+                mail.setHtmlBody('ActivationCode : ' +activationCode);
                 mail.setToAddresses(email);
                 mail.setOrgWideEmailAddressId(orgWideAddress.Id);
                 mails.add(mail);
-            }
 
         } else {
             message= Label.System_Admin_Contact_Message;
@@ -295,10 +269,54 @@ public without Sharing class DOL_License_Linking {
         
         if(!mails.isEmpty()){
             Messaging.sendEmail(mails);
-            string maskedEmail = email[0].replaceAll('(^[^@]{3}|(?!^)\\G)[^@]', '$1*');
+            string maskedEmail = email[0].replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*');
             message = Label.Activation_Code_Sent_Message + ' ' + maskedEmail;
         }
         
+        return message;
+    }
+    @AuraEnabled
+    public static List<MUSW__License2__c> searchLicenseNumber(String ProgramType,String LicenseNumber){
+        DOL_AppUtility.isAuthenticatedUser() ;
+        String message ='';
+        List<MUSW__License2__c> lstLicense = new List<MUSW__License2__c>();
+        for(MUSW__License2__c license : [SELECT ID,MUSW__Applicant__r.Email,MUSW__Applicant__r.Security_Code__c,Ultimate_Parent_Account__r.Security_Code__c,Ultimate_Parent_Account__r.Email__c,
+                                         (select Parcel_Address__c from MUSW__License2_Parcels__r where Type__c ='Mailing' or Mailing__c =True Limit 1) 
+                                         FROM MUSW__License2__c WHERE Name =:LicenseNumber AND Application_Type__c =:ProgramType Limit 1]) 
+        {
+                 
+                  lstLicense.add(license); 
+            
+        }
+        return lstLicense; 
+    }
+    @AuraEnabled
+    public static string createReviewRecord(String Name, String licenseId) {
+        DOL_AppUtility.isAuthenticatedUser() ;
+        MUSW__License2__c license  = [select Credential_Type__c,Application_Type__c from MUSW__License2__c where id =:licenseId limit 1];
+        List<Master_ConfigData_Listing__c> lstQueue= [select id,Queue_Id__c from Master_ConfigData_Listing__c where Program_Type__c includes  (:license.Application_Type__c) and Queue_Name__c in ('RBS Queue','RE Queue') ];
+        List<Request__c> lstreview = new List<Request__c>();
+        String message ='';
+        if(license != null) {
+            Request__c request = new Request__c();
+            request.Description__c = name;
+            request.Service_Request_Type__c ='Sending Activation Code';
+            request.Status__c ='Pending';
+            request.Profession__c = license.Application_Type__c;
+            request.License_Type__c = license.Credential_Type__c;
+            if(!lstQueue.isEmpty())
+            request.ownerId =lstQueue[0].Queue_Id__c;
+            lstreview.add(request);
+        }
+        try{
+            if(!lstreview.isEmpty()) {
+                insert lstreview;
+                message ='Success';
+            }  
+        } catch (Exception ex) {
+            Polaris_CreateErrorLog_Exception.addError(ex,'DOL_License_Linking','createReviewRecord');
+            message = 'error';
+        }
         return message;
     }
 }
