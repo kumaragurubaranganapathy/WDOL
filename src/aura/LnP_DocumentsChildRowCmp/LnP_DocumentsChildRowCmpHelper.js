@@ -1,6 +1,6 @@
 ({
     enablePrintButton : function(component,event){
-        debugger;   
+       // debugger;   
         var depositRec = component.get("v.depositRec");
         var paymentType=component.find('programType').get('v.value');
         var number=component.find('formNumber').get('v.value');
@@ -40,7 +40,7 @@
         var depnedentFieldMap = component.get("v.industryFormMap");
         
         //for on Load:
-        console.log("Prrogram type "+component.get("v.depositRec").wadol_Program_Type__c )  ;
+        //console.log("Prrogram type "+component.get("v.depositRec").wadol_Program_Type__c )  ;
         if(component.get("v.depositRec").wadol_Program_Type__c !== ''){
             var ListOfDependentFields = depnedentFieldMap[component.get("v.depositRec").wadol_Program_Type__c];
             
@@ -55,7 +55,7 @@
         
         var controllerValueKey = event.getSource().get("v.value"); // get selected controller field value
         var depnedentFieldMap = component.get("v.industryFormMap");         
-        console.log('controllerValueKey --> ' + controllerValueKey);
+        //console.log('controllerValueKey --> ' + controllerValueKey);
         if (controllerValueKey != '') {
             var ListOfDependentFields = depnedentFieldMap[controllerValueKey];
             
@@ -86,7 +86,7 @@
     },
     onPrint : function(component,event,helper){
         var printInput = component.get("v.slipPrinterInput");
-        console.log('printInput&&&'+printInput);
+        //console.log('printInput&&&'+printInput);
         window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'_blank');
     },
 })
