@@ -12,9 +12,12 @@
     <aura:attribute name="existingBillingCode" type="String" default="" description="store existing third party Billing code"/>
     <aura:attribute name="appId" type="String" />
     <aura:attribute name="contactName" type="String" />
+    <aura:attribute name="contactId" type="Id" />
     <aura:attribute name="AMRName" type="String" />
+    <aura:attribute name="iscontactAddress" type="Boolean" default="false" />
     <aura:attribute name="fieldsValidated" type="Boolean" default="true" />
     <aura:attribute name="outputcode" type="String" default=""/>
+    <aura:attribute name="selectedDocumentId" type="string" default="069r0000001Z7RXAA0"/>
 
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -49,6 +52,10 @@
             <c:LnP_LicenseAddress changeOnlyMailingAdd="false" applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
             <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" onclick="{!c.cancel}"/>
         </aura:if>
+         <aura:if isTrue="{!v.iscontactAddress}">
+            <c:LnP_LicenseAddress changeAddress="true" contactId ="{!v.contactId}" aura:id="lnpStoreAddress"/>
+        </aura:if>
+        
         <aura:if isTrue="{!v.thirdpartybillingcode}">
             <h1 class="screen-title">Get Billing Code</h1>
             <lightning:recordEditForm recordId="{!v.recordIDforSSAMR}"
@@ -77,7 +84,7 @@
         </aura:if>
         <aura:if isTrue="{!v.customForm}">
             <div class="slds-form-element slds-form-element_horizontal">
-                <lightning:input type="text" label="Website" value="{!v.existWebsite}"/>
+                <lightning:input type="text" label="License Web Address" value="{!v.existWebsite}"/>
             </div>
             <div class="slds-align_absolute-center slds-p-around_medium btnalign ">
                 <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" class="cancel-button" onclick="{!c.cancel}"/>
@@ -86,12 +93,14 @@
         </aura:if>
         <aura:if isTrue="{!v.showPrintForm}">
             <div class="slds-form-element">
-                <lightning:select aura:id="printLicenseId" name="printLicense" label="How do you want to receive printed License?"  required="true">
+                <lightning:select aura:id="printLicenseId" name="printLicense" label="How do you want to receive your license?"  required="true">
                     <option value="">--None--</option>
-                    <option value="email">Receive printed license to email</option>
-                    <option value="DES">Receive printed license to Mailing Address</option>
+                    <option value="email">Send to My Email</option>
+                    <option value="DES">Send to My Mailing Address</option>
+                    <option value="download">Download License</option>
                 </lightning:select>
             </div>
+            
             <div class="slds-align_absolute-center slds-p-around_medium ">
                 <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
                 <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.printUpdate}"/>

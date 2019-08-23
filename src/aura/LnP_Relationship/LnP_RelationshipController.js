@@ -49,7 +49,7 @@
                             component.set("v.adminFlag",true);
                          	component.set("v.isModalOpen", true);
                         }
-                         
+                                                 
                     } 
                     component.set("v.accountContact",Objectlist[j]);
                 }else{
@@ -64,7 +64,14 @@
             component.set("v.associateFlag",true);   
         }
     }, 
-    
+    removeClickOwner:function(component,event,helper){
+        console.log("inside removeClickOwner");
+        var Objectlist = component.get("v.CurrentLicenseTableDataList");
+        for(var j=0;j<Objectlist.length;j++){
+            component.set("v.accountContact",Objectlist[j]);
+        }
+        helper.removeOwnerRecordHelper(component,event,helper);
+    },
     removeClick: function(component,event,helper){
         console.log("inside removeClick");
         var recData = event.getSource().get("v.value");

@@ -463,7 +463,21 @@ public with sharing class Add_BusinessController {
             return false;
         } 
         
-    }    
+    }  
+    @AuraEnabled 
+    public static Boolean removeOwnerRecord(String accConId ){
+        MUSW__Account_Contact__c accCon = [SELECT id,Status__c FROM MUSW__Account_Contact__c WHERE id=:accConId ];
+        try{
+            accCon.Status__c = 'Deleted';
+            update accCon;
+            return true;
+        }
+        catch(Exception e){
+            Polaris_CreateErrorLog_Exception.addError(e,'Add_BusinessController','removeOwnerRecord');
+            return false;
+        } 
+        
+    }
     
     @AuraEnabled 
     public static Boolean removeAcconContactRecord(MUSW__Account_Contact__c accConId ,string action){
@@ -610,10 +624,11 @@ public with sharing class Add_BusinessController {
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
         String licenseType ='';
+        System.debug('Checkkkk######## License Id'+licenseId);
         
         MUSW__License2__c lic = [SELECT id,MUSW__Status__c,Credential_Type__c FROM MUSW__License2__c where id=:licenseId];
         licenseType = lic.Credential_Type__c;
-        
+        System.debug('Checkkkk######## '+licenseType);
         
         List<String> columnHeaderList;   
         List<String> statusFilterList = new List<String>{'Active'};
@@ -731,7 +746,7 @@ public with sharing class Add_BusinessController {
                 
                 List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c,format(Renewal_Expiration_Date__c),Renewal_Status__c,Application_Type__c
                                                 from Renewal_Application__c
-                                                where  License__r.MUSW__Primary_Licensee__c =:  accountID AND Renewal_Status__c In: statusFilterList ORDER BY CreatedDate asc];
+                                                where  License__r.MUSW__Primary_Licensee__c =: accountID AND Renewal_Status__c In: statusFilterList ORDER BY CreatedDate asc];
             
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
@@ -878,7 +893,7 @@ public with sharing class Add_BusinessController {
             this.tableData = tableData!=null? tableData : new List<Sobject>();
         }
     }
-
+    
     @AuraEnabled
     public static Boolean checkActiveCart(){
         Boolean redirect = false;
@@ -914,7 +929,7 @@ public with sharing class Add_BusinessController {
         }
         return acc;
     }
-  @AuraEnabled
+     @AuraEnabled
     public static void updateBusinessAccIDonContact(String accountId){
         
         if(accountId != null){

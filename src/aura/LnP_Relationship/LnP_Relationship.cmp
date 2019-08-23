@@ -84,11 +84,13 @@
                                                         <a data-index="{!ind}" data-button="cancel" data-id="{!tableData.Id}" class="slds-button_brand slds-button"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
                                                     </aura:if>
                                                     <aura:if isTrue="{!and(tableData.Status__c == 'No Response',v.Type == 'Administrators')}">                                                        
-                                                        <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>
+                                                            <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>                                                        
                                                         <lightning:button class="rel-btn"  variant="neutral" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
                                                     </aura:if>
                                                     <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
-                                                        <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-button_brand slds-button" href="" onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
+                                                        <aura:if isTrue="{!(tableData.DCP__c==false)}">
+                                                            <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClickOwner}"/>
+                                                        </aura:if>
                                                     </aura:if>
                                                 </div>    
                                             </td>

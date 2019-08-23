@@ -206,7 +206,7 @@
                 <!--<aura:if isTrue="{!v.screenTwo}">-->
                 <div class="{!v.screenTwo?'':'slds-hide'}">
                     <!--h2 class="sec-header">Respondent Information</h2-->
-                    <div class="sub-header slds-p-top_x-small slds-p-bottom_small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
+                    <div class="sub-header slds-p-top_x-small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
                     <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
                 <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div-->
                     <aura:if isTrue="{!v.anonymousComplaint}">
@@ -276,14 +276,13 @@
                 <!--<aura:if isTrue="{!v.screenThree}">-->
                 <div class="{!v.screenThree?'':'slds-hide'}">
                     <div class="complaint-summary">
-                        <h2 class="sec-header">Complaint Summary</h2>
-                        <div class="sub-header slds-p-top_x-small slds-p-bottom_large">A summary of your complaint; this should include dates, other parties involved, and any efforts you have already made to resolve the problem. 
-                            Describe events in the order they occurred.</div>
-                        <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter complaint summary here" variant="label-hidden"/>
+                        <!--h2 class="sec-header">Complaint Summary</h2-->
+                        <div class="sub-header slds-p-top_x-small slds-p-bottom_small">Please include a timeline, other parties involved, and any efforts you have already made to resolve the problem.</div>
+                        <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter complaint description" variant="label-hidden"/>
                     </div>
                     <div class="attachments slds-m-vertical_medium">
                         <h2 class="sec-header">Attachments</h2>
-                        <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Attach copies of any relevant documents or evidence such as contracts, photographs, medical records, billing statements, personal notes etc. It is very important that you do not dispose of any information or evidence even after you have filed a complaint.</div>
+                        <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Attach any relevant documents, photos, or other evidence. Don’t dispose of any information or evidence, even after you submit your complaint.</div>
                         <div class="slds-box">
                             <aura:if isTrue="{!v.applicationId}">
                                 <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="Attachment One" />
@@ -293,7 +292,7 @@
                     <div class="declaration slds-m-vertical_large">
                         <h2 class="sec-header">Submit Complaint</h2>
                         <div class="">
-                            <div class="sub-header slds-p-top_x-small">By submitting this complaint, I agree and understand that the information provided may be used in efforts to resolve this complaint and will typically be shared with the party complained against. It may also be used to enforce applicable state laws. Under Washington's Open Record Laws, this complaint will be available for public review upon request, after this department's action is completed.</div>
+                            <div class="sub-header slds-p-top_x-small">By submitting this complaint, I agree the information I have provided is true and correct. I understand the Department of Licensing (DOL) cannot give refunds or legal advice. I also understand that DOL may refer my complaint to a more appropriate agency.</div>
                             <!--lightning:input class="slds-p-top_medium" type="checkbox" label="I Agree" name="agreeBox" checked="{!v.agreeCheck}"/-->
                         </div>
                     </div>

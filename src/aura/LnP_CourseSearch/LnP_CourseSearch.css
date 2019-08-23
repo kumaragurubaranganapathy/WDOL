@@ -205,7 +205,7 @@ padding: 4px 5px;
 }
 .THIS .button-borders .slds-button{
     border: none;
-    color: black;
+    color: t(buttonNeutral);
     box-shadow: none;
     text-decoration: underline;
     background:transparent;
@@ -535,7 +535,7 @@ padding: 4px 5px;
         width:auto;
     }
 }
-.THIS ::-webkit-input-placeholder { 
+/*.THIS ::-webkit-input-placeholder { 
 	color: t(fieldclr);
 	-webkit-text-fill-color:t(fieldclr);
 }
@@ -550,4 +550,12 @@ padding: 4px 5px;
 .THIS :-moz-placeholder {
 	color: t(fieldclr);
 	-webkit-text-fill-color:t(fieldclr);
+}*/
+.THIS a.link{
+    color: t(buttonNeutral);
+	text-decoration:underline;
+}
+.THIS a.link:hover {
+    color: t(buttonNeutral);
+	text-decoration:none;
 }

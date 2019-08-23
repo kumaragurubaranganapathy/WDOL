@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Update Mailing Address</label>
+    <label>Update Physical Address</label>
     <protected>false</protected>
     <values>
         <field>AMR_Type__c</field>
-        <value xsi:type="xsd:string">Self Service</value>
+        <value xsi:type="xsd:string">AMR</value>
     </values>
     <values>
         <field>Application_Method__c</field>
@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">Appraisal Management Companies</value>
+        <value xsi:type="xsd:string">Appraisers - Real Estate</value>
     </values>
     <values>
         <field>Display_In_Related_Tab__c</field>
@@ -24,18 +24,18 @@
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">Appraisal Controlling Person</value>
+        <value xsi:type="xsd:string">Appraiser Course</value>
     </values>
     <values>
         <field>Order_Number__c</field>
-        <value xsi:type="xsd:double">3.0</value>
+        <value xsi:type="xsd:double">2.0</value>
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Address,Attachments,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>
-        <value xsi:type="xsd:string">Update Address</value>
+        <value xsi:type="xsd:string">Update Physical Address</value>
     </values>
 </CustomMetadata>

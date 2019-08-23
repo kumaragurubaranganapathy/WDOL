@@ -30,10 +30,9 @@
         var value = component.get("v.helptextcontent");
         console.log('value::'+value);
     },
-	showSpinner: function(component, event, helper){
+    showSpinner: function(component, event, helper){
         component.set("v.loadingSpinner",true);
     },
-    
     handleAssociationSubmissionSuccess: function(component, event, helper){
         
         var params = event.getParams();
@@ -358,6 +357,7 @@
     
     editDraftLicenseApplication  : function(component, event, helper){
         var ctarget = event.currentTarget;
+        
         sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
         sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
         sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
@@ -396,13 +396,7 @@
         window.location.href='/lightningwashington/s/polaris-renewal';  
         
     },
-    
-    deleteDraftRenewApplications: function(component, event, helper) {
-        var ctarget = event.currentTarget;
-        var Renew_application_Id = ctarget.getAttribute("data-recordId");
-        helper.setAbandonedStatus(component, event, helper,Renew_application_Id);
-    },
-	editDraftRequestApplications: function(component, event, helper){
+    editDraftRequestApplications: function(component, event, helper){
         var ctarget = event.currentTarget;
         
         sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-serviceRequest"));                
@@ -413,6 +407,12 @@
         sessionStorage.setItem("recordId", ctarget.getAttribute("data-licenseId"));
         window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';   
         
+    },
+    
+    deleteDraftRenewApplications: function(component, event, helper) {
+        var ctarget = event.currentTarget;
+        var Renew_application_Id = ctarget.getAttribute("data-recordId");
+        helper.setAbandonedStatus(component, event, helper,Renew_application_Id);
     },
     
     deleteDraftMaintananceRequestApplication: function(component, event, helper) {

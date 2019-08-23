@@ -562,6 +562,7 @@
             } else if (actionResult.getState() ==="ERROR"){
                 //Error 
                 component.set("v.Spinner", false);
+                sessionStorage.clear();
                 var errors = actionResult.getError();
                 console.log(JSON.stringify(errors));
                 if (errors) {
@@ -572,7 +573,7 @@
                     console.log("Unknown error");
                 }
             }
-            
+            sessionStorage.clear();
         });
         $A.enqueueAction(action);
     },    

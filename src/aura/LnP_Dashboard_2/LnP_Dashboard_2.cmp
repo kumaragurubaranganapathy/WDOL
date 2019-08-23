@@ -95,6 +95,7 @@
     <aura:attribute name="dsiplaySpinner" type="Boolean" default="false" />
     <aura:attribute name="displayPendingLicense_Details" type="Boolean" default="false"
                     />
+    
     <aura:attribute name="displayRemoveAccountContactModal" type="Boolean" default="false"
                     />
     <aura:attribute name="displayRemovePeerRelationShipModal" type="Boolean" default="false"
@@ -103,7 +104,7 @@
                     />                
     <aura:attribute name="displayRemoveBusinessRelationShipModal" type="Boolean" default="false"
                     />
-    <aura:attribute name="BusinessRelationShipModalAction" type="Boolean" default="false"
+  <aura:attribute name="BusinessRelationShipModalAction" type="Boolean" default="false"
                     />                    
                     
     <aura:attribute name= "associationModalMessage" type = "String"/> 
@@ -152,7 +153,7 @@
         <h1 class="screen-title">
             Professional Licenses
         </h1>
-        <!-- <nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
+        <!--<nav role="navigation" aria-label="Breadcrumbs" class="{!v.DisplaylicenseNumberBreadCrumb?'breadcrumb-nav':'slds-hide'}">
             <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
                 <li class="slds-breadcrumb__item slds-var-p-right_xx-small">
                     <a href="javascript:void(0);" class="{!v.DisplayLicense_Details?'breadcrumb-style':'slds-hide'}"
@@ -182,9 +183,8 @@
         
         <aura:if isTrue="{!v.DisplayDashboardHeader}">
             <div id="LnP_Dashboard_2_HeaderCompId" class="header-wrapper">
-                
+
                 <c:LnP_Dashboard_2_Header/>
-                
             </div>
         </aura:if>
         
@@ -285,7 +285,7 @@
                                                 </aura:set>
                                             </aura:if>
                                         </lightning:layoutItem>
-										<lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
+                                        <lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">Bad Payment: </div>
                                             <aura:if isTrue="{!item.Polaris_DHP__c}">
                                                 <div class="data-style">
@@ -295,7 +295,7 @@
                                                     <div class="data-style">None</div>
                                                 </aura:set>
                                             </aura:if>
-										</lightning:layoutItem>
+                                        </lightning:layoutItem>
                                         <!--lightning:layoutItem class="field-style lic-details" size="12" mediumDeviceSize="4">
                                             <div class="label-style">Program: </div>
                                             <aura:if isTrue="{!item.Application_Type__c}">
@@ -315,7 +315,7 @@
                                             </aura:if>
                                         </lightning:layoutItem-->
                                     </lightning:layout>
-                                    <aura:if isTrue="{!v.endorsementData.length != 0}">
+                                    <!--<aura:if isTrue="{!v.endorsementData.length != 0}">
                                         <div class="">
                                             <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
                                             <div class="section-content slds-p-around_small">
@@ -324,7 +324,7 @@
                                                 </aura:iteration>
                                             </div>
                                         </div>
-                                    </aura:if>
+                                    </aura:if>-->
                                 </div>
                             </aura:iteration>
                         </lightning:layoutItem>
@@ -451,7 +451,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td data-label="Actions" class="cell-style action-cell">
-																	<div class="slds-truncate">
+                                                                    <div class="slds-truncate">
                                                                         <aura:if isTrue="{!tableData.Status__c == 'Active'}">
                                                                             
                                                                             <a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Separate" href="javascript:void(0)" class="slds-button_brand"
@@ -549,7 +549,7 @@
                                                             <td data-label="Actions" class="cell-style action-cell">
                                                                 <div class="slds-truncate">
                                                                     <aura:if isTrue="{!tableData.Status__c == 'Active'}">
-                                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Separate" href="javascript:void(0)" class="slds-button_brand"
+                                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button_brand"
                                                                            onclick="{!c.opendisplayRemoveBusinessRelationShipModal}">Separate</a>
                                                                     </aura:if>
                                                                     <aura:if isTrue="{!tableData.Status__c == 'Invited'}">
@@ -685,7 +685,7 @@
                 </div>
             </div>
             <div class="back-btn-wrapper">
-                <lightning:button class="back-btn" label="Back" onclick="{!c.backToDashboard}" />
+                <lightning:button class="btn btn-lnp back-button" label="Back" onclick="{!c.backToDashboard}" />
             </div>
         </aura:if>
         <aura:if isTrue="{!v.displayAssociationForm}">
@@ -701,11 +701,11 @@
                             </button>
                         </header>
                         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                            <lightning:recordEditForm aura:id="recordEditForm" objectApiName="Associations__c"
+                            <lightning:recordEditForm aura:id="createassociationrecordEditForm" objectApiName="Associations__c"
                                                       density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}"
                                                       onerror="{!c.handleAssociationSubmissionError}" recordTypeId="{!v.setAssociationRecordTypeId}">
                                 <lightning:messages />
-                                <!--<lightning:inputField fieldName="Name__c" />-->
+                               <!-- <lightning:inputField fieldName="Name__c" /> -->
                                 <lightning:inputField fieldName="Association_Type__c" />
                                 <lightning:inputField fieldName="Child_License__c" />
                                 <lightning:inputField fieldName="Status__c" value="Invited" class="slds-hide" />
@@ -721,11 +721,7 @@
             </div>
         </aura:if>
         
-        <aura:if isTrue="{!v.dsiplaySpinner}">
-            <div>
-                <lightning:spinner alternativeText="Loading" size="large" />
-            </div>
-        </aura:if>
+        
         <aura:if isTrue="{!v.DisplayLicense_Upload_documents}">
             <div>
                 <lightning:layout>
@@ -736,8 +732,7 @@
                         </div>
                     </lightning:layoutItem>
                     <div data-id="{!v.pendingLicenseId}">
-                        <lightning:button class="slds-m-top_small" label="Done" onclick="{!c.setLicenseToInReview}"
-                                          />
+                        <lightning:button class="slds-m-top_small" label="Done" onclick="{!c.setLicenseToInReview}"/>
                     </div>
                 </lightning:layout>
             </div>
@@ -771,7 +766,7 @@
                                             <tbody>
                                                 <aura:iteration items="{!v.licensePaginationList}" var="tableData" indexVar="ind">
                                                     <tr class="slds-hint-parent">
-                                                        <td data-label="License#" class="cell-style">
+                                                        <td data-label="License" class="cell-style">
                                                             <div class="slds-truncate" title="{!tableData.Name}">
                                                                 <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayLicenseDetails}">{!tableData.Name}</a></u>
                                                             </div>
@@ -794,10 +789,10 @@
                                                                 </aura:set>
                                                             </aura:if>
                                                         </td>
-                                                        <td data-label="Status" class="cell-style status-cell">
+                                                        <td data-label="Status" class="cell-style">
                                                             <div class="help-text-wrapper">
                                                                 <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
-                                                                <!-- <div onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
+                                                                <!--<div onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
                                                                      data-substatus="{!tableData.Sub_Status__c}">
                                                                     <lightning:helptext content="{!v.helptextcontent}" />
                                                                 </div> -->
@@ -986,7 +981,7 @@
                                                             <td data-label="Status" class="cell-style">
                                                                 <div class="help-text-wrapper">
                                                                     <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
-                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
+                                                                   <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
                                                                          data-substatus="">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
                                                                     </div> -->
@@ -1051,18 +1046,18 @@
                                                 <tbody>
                                                     <aura:iteration items="{!v.draftRenewPaginationList}" var="tableData" indexVar="ind">
                                                         <tr class="slds-hint-parent">
-                                                            <td data-label="License#" class="cell-style">
+                                                            <td data-label="License" class="cell-style">
                                                                
                                                                <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                             </td>
                                                             <td data-label="Profession" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.License__r.Application_Type__c}">{!tableData.Application_Type__c}</div>
+                                                                <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                                             </td>
                                                             <td data-label="License type" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.License__r.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
+                                                                <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                                             </td>
                                                             <td data-label="Expiration date" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.License__r.MUSW__Expiration_Date__c}">
+                                                                <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">
                                                                     <lightning:formattedDateTime
                                                                                                  value="{!tableData.MUSW__Expiration_Date__c}"
                                                                                                  />
@@ -1071,7 +1066,7 @@
                                                             <td data-label="Status" class="cell-style">
                                                                 <div class="help-text-wrapper">
                                                                     <div class="slds-truncate" title="{!tableData.Application__r.MUSW__Status__c}">{!tableData.Application__r.MUSW__Status__c}</div>
-                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="	Renewal/Reinstatement"
+                                                                   <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="	Renewal/Reinstatement"
                                                                          data-status="{!tableData.Application__r.MUSW__Status__c}"
                                                                          data-substatus="">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
@@ -1167,9 +1162,9 @@
                                                                 </div>
                                                             </td>
                                                             <td data-label="Actions" class="cell-style action-cell table-btn">
-																<div class="slds-truncate" onclick="{!c.deleteDraftMaintananceRequestApplication}" data-recordId="{!tableData.Id}">
-																	<lightning:button label="Delete" />
-																</div>
+                                                                <div class="slds-truncate" onclick="{!c.deleteDraftMaintananceRequestApplication}" data-recordId="{!tableData.Id}">
+                                                                    <lightning:button label="Delete" />
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </aura:iteration>
@@ -1215,8 +1210,8 @@
                                                 <tbody>
                                                     <aura:iteration items="{!v.pendingNewPaginationList}" var="tableData" indexVar="ind">
                                                         <tr class="slds-hint-parent">
-                                                            <td data-label="Application#">
-                                                                <div class="slds-truncate">
+                                                            <td data-label="Application">
+                                                                <div class="slds-truncate" title="{!tableData.Application_Number__c}">
                                                                     <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayPendingLicenseDetails}">{!tableData.Application_Number__c}</a></u>
                                                                 </div>
                                                             </td>
@@ -1232,7 +1227,7 @@
                                                             <td data-label="Status">
                                                                 <div class="help-text-wrapper">
                                                                     <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
-                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
+                                                                   <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
                                                                          data-substatus="{!tableData.Sub_Status__c}">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
                                                                     </div> -->
@@ -1307,7 +1302,7 @@
                                                 <tbody>
                                                     <aura:iteration items="{!v.pendingRenewPaginationList}" var="tableData" indexVar="ind">
                                                         <tr class="slds-hint-parent">
-                                                            <td data-label="License#">
+                                                            <td data-label="License">
                                                                 <div class="slds-truncate" title="{!tableData.License_Number__c}">{!tableData.License_Number__c}</div>
                                                             </td>
                                                             <td data-label="Profession">
@@ -1339,7 +1334,7 @@
                                                                         
                                                                         <aura:set attribute="else">None</aura:set>
                                                                     </aura:if>
-                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="Renewal/Reinstatement"
+                                                                    <!--<div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="Renewal/Reinstatement"
                                                                          data-status="{!tableData.Renewal_Status__c}"
                                                                          data-substatus="{!tableData.Sub_Status__c}">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
@@ -1385,7 +1380,7 @@
                         </aura:if>
                         <aura:if isTrue="{!v.PendingMaintananceRequestApplicationsDataList.length != 0}">
                             <div class="">
-                                <div class="table-name">Maintanance Request Applications</div>
+                                <div class="table-name">Maintenance Request Applications</div>
                                 <div class="table-height">
                                     
                                     <div style="height: 100%; position: relative;">
@@ -1403,7 +1398,7 @@
                                                 <tbody>
                                                     <aura:iteration items="{!v.pendingMaintainPaginationList}" var="tableData" indexVar="ind">
                                                         <tr class="slds-hint-parent">
-                                                            <td data-label="Request#">
+                                                            <td data-label="Request">
                                                                 <aura:if isTrue="{!tableData.Name}">
                                                                     <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                                     <aura:set attribute="else">None</aura:set>
@@ -1451,7 +1446,7 @@
                 <lightning:tab class="tab-style" label="Completed Requests" id="ProfessionalCompletedRequestTab">
                     <aura:if isTrue="{!v.CompletedMaintananceRequestApplicationsDataList.length !=0}">
                         <div class="">
-                            <div class="comp-desc">**Below are the maintance requests completed in last
+                            <div class="comp-desc">**Below are the maintenance requests completed in last
                                 twelve months</div>
                             <div class="table-height">
                                 
@@ -1470,7 +1465,7 @@
                                             <tbody>
                                                 <aura:iteration items="{!v.completeRequestPaginationList}" var="tableData" indexVar="ind">
                                                     <tr class="slds-hint-parent">
-                                                        <td data-label="Request#">
+                                                        <td data-label="Request">
                                                             <aura:if isTrue="{!tableData.Name}">
                                                                 <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                                 <aura:set attribute="else">None</aura:set>
@@ -1490,7 +1485,7 @@
                                                         </td>
                                                         <td data-label="Completion date">
                                                             <aura:if isTrue="{!tableData.End_Time__c}">
-                                                                <div class="slds-truncate" title="{!tableData.End_Time__c}">
+                                                                <div class="slds-truncate" title="{!tableData.End_Time__c}">                                                                   
                                                                     <lightning:formattedDateTime value="{!tableData.End_Time__c}" year="numeric" day="2-digit" month="long" hour="2-digit" minute="2-digit"/>
                                                                 </div>
                                                                 <aura:set attribute="else">None</aura:set>
@@ -1519,5 +1514,9 @@
         </aura:if>
         
     </div>
-    
+    <aura:if isTrue="{!v.dsiplaySpinner}">
+            <div>
+                <lightning:spinner alternativeText="Loading" size="large" />
+            </div>
+        </aura:if>
 </aura:component>

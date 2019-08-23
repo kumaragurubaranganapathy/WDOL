@@ -29,7 +29,7 @@
             }
                 else if(value.toLowerCase() == "businesscontact"){
                     component.set("v.objectApiName", 'Account');
-                    component.set("v.fieldApiNames", ['First_Name_Primary_Contact__c','Last_Name_Primary_Contact__c','Email_Primary_Contact__c','Email__c','Phone_Primary_Contact__c','Business_Phone__c']);
+                    component.set("v.fieldApiNames", ['First_Name_Primary_Contact__c','Last_Name_Primary_Contact__c','Email_Primary_Contact__c','Email__c','Phone_Primary_Contact__c','Extension__c','Business_Phone__c']);
                     component.set("v.recordIDforSSAMR",recordId);
                     component.set("v.recordEditForm",true);
                     component.set("v.AMRName",'Update Contact Information');
@@ -223,8 +223,20 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                response.getReturnValue();
+                if(component.find("printLicenseId").get("v.value")=='download')
+                {
+                    var conVerId = response.getReturnValue();
+                    //windows.location = 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER';
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER'
+                    });
+                    urlEvent.fire();
+                }
+                
                 window.location.href = component.get("v.redirectURL");
+                               
+                
             }
             else if (state === "ERROR") {
                 var errors = response.getError();
@@ -249,7 +261,7 @@
     maskInput : function(component,event){  
         var numbers=event.getSource().get('v.value');
         var fieldname=event.getSource().get('v.fieldName');
-        if(fieldname=="MobilePhone" || fieldname=="Phone"|| fieldname=="Phone_Primary_Contact__c"|| fieldname=="Business_Phone__c"){
+        if(fieldname=="MobilePhone" || fieldname=="Phone"||fieldname=="Phone_Primary_Contact__c"||fieldname=="Business_Phone__c"){
             if(numbers.length==10){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
