@@ -12,7 +12,7 @@
             "licenseType": licenseType, 
             "requestType": applicationType,
             "flowType": flowType,
-			"licID":component.get("v.recordId")
+            "licID":component.get("v.recordId")
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
@@ -53,6 +53,7 @@
         var flowType = sessionStorage.getItem("ServiceRequestType");
         var recordId = sessionStorage.getItem("recordId");
         var accountRecordId = sessionStorage.getItem("accountRecordId");
+        var taskDescription  = sessionStorage.getItem("taskDescription");
         var contactRecordId = sessionStorage.getItem("contactRecordId");        
         var objectName = "";
         /* if(applicationId!=null){
@@ -62,7 +63,7 @@
                 window.location.href = "./error";
             }
         }*/
-        
+        component.set("v.taskDescription", taskDescription);
         component.set("v.licenseType", licenseType);
         component.set("v.board", board);
         component.set("v.applicationType", applicationType);

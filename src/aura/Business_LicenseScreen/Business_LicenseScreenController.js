@@ -4,9 +4,17 @@
         var branch = component.get("v.BranchLicenses");
         console.log("branch::"+branch);
         console.log("accountId::"+component.get("v.accountId"));
-        helper.setCurrentLicensesTableData(component, event);
-        helper.getHelptextHelper(component, event, helper);
+        if(component.get('v.affiliatedLocation')){
+             helper.setLocationTable(component,event,helper);  
+        }else{
+            helper.setCurrentLicensesTableData(component, event);
+        	helper.getHelptextHelper(component, event, helper);  
+        }
         
+    },
+    
+    startAMR : function(component,event,helper){
+    	helper.addRequestHelper(component,event,helper);    
     },
     
     getHelpText : function(component, event, helper) {
