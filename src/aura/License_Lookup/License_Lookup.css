@@ -547,7 +547,7 @@ padding: 4px 5px;
 	border:0;
 	box-shadow:none;
 }
-.THIS ::-webkit-input-placeholder { 
+/*.THIS ::-webkit-input-placeholder { 
 	color: t(fieldclr);
 	-webkit-text-fill-color:t(fieldclr);
 }
@@ -562,4 +562,18 @@ padding: 4px 5px;
 .THIS :-moz-placeholder {
 	color: t(fieldclr);
 	-webkit-text-fill-color:t(fieldclr);
+}*/
+.THIS .slds-select_container:before {
+    border-bottom: 6px solid #000000;
+    top: 14px;
+}
+.THIS .slds-select_container:after {
+    border-top: 6px solid #000000;
+    bottom: 14px;
+}
+.THIS a.link{
+	text-decoration:underline;
+}
+.THIS a.link:hover {
+	text-decoration:none;
 }
