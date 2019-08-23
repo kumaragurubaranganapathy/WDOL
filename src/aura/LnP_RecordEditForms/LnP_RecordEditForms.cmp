@@ -103,7 +103,7 @@
                                         <lightning:layoutItem class="marginItem" size="{!v.isAMRFlow?'12':'6'}" smallDeviceSize="3">                                             
                                             <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
                                                 <div class="{!(v.sectionName == 'Qualifying Postsecondary Education'?'QPE':'') + (v.sectionName == 'Qualifying Experience'?'QE':'') + (v.sectionName == 'Qualifying Course'?'QC':'')+itemRow + 'showHide slds-truncate field-item itemLayout '}">
-                                                    <label>{!rec.label}</label> 
+                                                    <label>{!rec.label == 'Current?'?(v.sectionName == 'Qualifying Postsecondary Education'? 'Currently enrolled in school' : 'Currently Employed') : rec.label}</label>                                                    
                                                     <lightning:outputfield label="{!rec.label}" aura:id="outputEditfield" fieldName="{!rec.fieldName}" class="edit-field label-hidden inlineFields"  />
                                                 </div>
                                             </div>
@@ -172,7 +172,7 @@
                     <div class="slds-grid slds-wrap row">
                         <aura:iteration items="{!v.recordList}" var="rec">
                             <div class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide':' slds-col slds-size_12-of-12 field-size qfield-margin in-field recItem'):' slds-col slds-size_12-of-12 field-size qfield-margin recItem in-field')}">
-                                <label class="{!(rec.required?' required':'')}">{!rec.label}</label> 
+                                <label>{!rec.label == 'Current?'?(v.sectionName == 'Qualifying Postsecondary Education'? 'Currently enrolled in school' : 'Currently Employed') : rec.label}</label>                                                    
                                 <aura:if isTrue="{!rec.required || rec.regex != null}">
                                     <lightning:inputfield autocomplete="off" fieldName="{!rec.fieldName}" required="true" aura:id="validateField" class="{!(rec.label=='End Date'?(v.currentValue?'slds-hide label-hidden test':'label-hidden'):'label-hidden')+(rec.required?' required':'')}" onchange="{!c.inputClick}" id="{!rec.masking}"/>
                                     <aura:set attribute="else">
