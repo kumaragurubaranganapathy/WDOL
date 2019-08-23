@@ -251,7 +251,7 @@
             <div class="address-type">
                 <h1>Your Physical Address</h1>
             </div>
-            <lightning:input type="checkbox" aura:id="isPhysicalAndMailingSame" name="addrType" class="checkbox-style" value="{!v.physicalAddressParcel.is_Physical_and_Mailing_Address_Same__c}" checked="{!v.isPhysicalAndMailingSame}" label="Physical Address same as Mailing Address" onchange="{!c.autoPopulatePhysicalAddress}"/>
+            <!--<lightning:input type="checkbox" aura:id="isPhysicalAndMailingSame" name="addrType" class="checkbox-style" value="{!v.physicalAddressParcel.is_Physical_and_Mailing_Address_Same__c}" checked="{!v.isPhysicalAndMailingSame}" label="Physical Address same as Mailing Address" onchange="{!c.autoPopulatePhysicalAddress}"/>-->
             <lightning:select aura:id="physicalCountryPicklist" name="country" label="Country" value="{!v.defaultPhysicalCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="country">
                     <option text="{!country.label}" value="{!country.value}" selected="{!country.value==v.defaultPhysicalCountry}"/>
