@@ -571,6 +571,7 @@ return ListAddress;
         System.debug('parcl::'+ parcl );
         System.debug('removeLocation::'+ removeLocation);
         if(isAMR){
+            parcl.isUndo__c = true;
             if(parcl != null && !removeLocation ){
                 parcl.Status__c = 'Pending Add';
                 insert parcl ;
@@ -597,6 +598,7 @@ return ListAddress;
         MUSW__Parcel__c parcl = new MUSW__Parcel__c(id=parcelId); 
         if(isAMR){
              parcl.Status__c = 'Pending Remove';
+             parcl.isUndo__c = true;
         }else{
             parcl.Status__c = 'Inactive';
         }
@@ -690,8 +692,8 @@ return ListAddress;
             if(isAMR){
                 Set<String> AMRstatus = new Set<String>{'Pending Add','Pending Remove'};
                 Set<String> licenseStatus = new Set<String>{'Active','Pending Add','Pending Remove'};
-                columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
-                for(SObject objs : [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c IN:AMRstatus AND recordtypeid =:LocationRT]){
+                columnDataList = [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
+                for(SObject objs : [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c IN:AMRstatus AND recordtypeid =:LocationRT]){
                     columnDataList.add(objs);
                 }
                 columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};
