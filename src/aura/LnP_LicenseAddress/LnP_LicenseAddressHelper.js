@@ -1,4 +1,32 @@
 ({
+    getloggedInContactDetails: function(component , helper){
+        var action = component.get("c.getloggedInContactData");
+        action.setCallback(this, function(response){
+            var stateResponse = response.getState();
+            if (stateResponse === "SUCCESS") {              
+                var contactRecordId = response.getReturnValue();
+                if (!($A.util.isEmpty(contactRecordId) || $A.util.isUndefined(contactRecordId))) {
+                    component.set("v.contactId",contactRecordId);
+                    console.log('set contactId' + component.get("v.contactId"));
+                    //if(component.get('v.changeAddress')=== true){
+                    // this.getAddress(component, event, helper);  
+                    //} else {
+                           
+                    //}
+                    if(!component.get("v.isAMR")){
+                        
+                        this.getallAddress(component, event, helper);
+                    }
+        
+                }
+            }
+            else{
+                alert('Error with fetching contactId');
+            }
+        });
+        $A.enqueueAction(action); 
+    },
+    
     getCountryList: function(component, helper){
         var action = component.get("c.getStates");
         var parcelObject  = component.get("v.parcelObject");
@@ -152,8 +180,6 @@
         $A.enqueueAction(action); 
     },
     
-   
-        
     cancelAdressHelper: function(component, event){
         var elements = document.getElementsByClassName("addAddress");
         for(var i=0; i<elements.length; i++) {
@@ -169,7 +195,7 @@
         
         var originalAddress = street+', '+city+', '+state+', '+zip+', '+country;
         console.log('originalAddress==' + originalAddress);
-		component.set("v.isAddress2" , false);
+        component.set("v.isAddress2" , false);
         if(!($A.util.isEmpty(street2) || $A.util.isUndefined(street2))){
             component.set("v.isOriginalAdd2" , true);
             component.set("v.isAddress2" , true);
@@ -196,58 +222,58 @@
         if(!valid){;
                    helper.showToast(component, event, "Error!", "error", "Please fill in all required fields.");
                   }
-
+        
         else if(!regexForUS.test(zip) && country =="United States"){
             helper.showToast(component, event, "Error!", "error", "Please enter numeric value for zip for country United States.");
         }
-        else if(!regexForCanada.test(zip) && country =="Canada"){
-            helper.showToast(component, event, "Error!", "error", "Please enter ANA NAN format for zip for country Canada.");
-        }
-        else if(/[^a-zA-Z \-\/]/.test( city )){
-            helper.showToast(component, event, "Error!", "error", "Please remove special character from city.");
-        }
-            else {
-                var action = component.get("c.validateAddress");
-                action.setParams({
-                    'addrLine1': street,
-                    'addrLine2': street2,
-                    'city': city,
-                    'state': state,
-                    'zip' : zip,
-                });
-                action.setCallback(this, function(response){
-                    var state = response.getState();
-                    if(state === "SUCCESS"){
-                        console.log("step4");
-                        var addr = response.getReturnValue();
-                        if(addr.street != null){
-                            component.set("v.outputAddress" , addr);
-                            component.set("v.isAddAddressClicked" , true);
-                            var suggestedAddress = '';
-                            
-                            if(!($A.util.isEmpty(addr.street2) || $A.util.isUndefined(addr.street2))){
-                                component.set("v.issuggestedAdd2" , true);
-                                suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country+', '+addr.street2;
-                            }
-                            else {
-                                component.set("v.issuggestedAdd2" , false);
-                                suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country;
-                            }
-                            component.set("v.suggestedAddress" , suggestedAddress);
-                            helper.highlight (component, helper,suggestedAddress, originalAddress);
-                        }
-                    } else if (state === "ERROR") {
-                        var errors = response.getError();
-                        if (errors) {
-                            if (errors[0] && errors[0].message) {
-                                console.log("Error message: " + 
-                                            errors[0].message);
-                            }
-                        }  
-                    }     
-                });
-                $A.enqueueAction(action); 
-            } 
+            else if(!regexForCanada.test(zip) && country =="Canada"){
+                helper.showToast(component, event, "Error!", "error", "Please enter ANA NAN format for zip for country Canada.");
+            }
+                else if(/[^a-zA-Z \-\/]/.test( city )){
+                    helper.showToast(component, event, "Error!", "error", "Please remove special character from city.");
+                }
+                    else {
+                        var action = component.get("c.validateAddress");
+                        action.setParams({
+                            'addrLine1': street,
+                            'addrLine2': street2,
+                            'city': city,
+                            'state': state,
+                            'zip' : zip,
+                        });
+                        action.setCallback(this, function(response){
+                            var state = response.getState();
+                            if(state === "SUCCESS"){
+                                console.log("step4");
+                                var addr = response.getReturnValue();
+                                if(addr.street != null){
+                                    component.set("v.outputAddress" , addr);
+                                    component.set("v.isAddAddressClicked" , true);
+                                    var suggestedAddress = '';
+                                    
+                                    if(!($A.util.isEmpty(addr.street2) || $A.util.isUndefined(addr.street2))){
+                                        component.set("v.issuggestedAdd2" , true);
+                                        suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country+', '+addr.street2;
+                                    }
+                                    else {
+                                        component.set("v.issuggestedAdd2" , false);
+                                        suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country;
+                                    }
+                                    component.set("v.suggestedAddress" , suggestedAddress);
+                                    helper.highlight (component, helper,suggestedAddress, originalAddress);
+                                }
+                            } else if (state === "ERROR") {
+                                var errors = response.getError();
+                                if (errors) {
+                                    if (errors[0] && errors[0].message) {
+                                        console.log("Error message: " + 
+                                                    errors[0].message);
+                                    }
+                                }  
+                            }     
+                        });
+                        $A.enqueueAction(action); 
+                    } 
     },
     
     showToast : function(component, event, title, type, message) {
@@ -536,6 +562,7 @@
             } else if (actionResult.getState() ==="ERROR"){
                 //Error 
                 component.set("v.Spinner", false);
+                sessionStorage.clear();
                 var errors = actionResult.getError();
                 console.log(JSON.stringify(errors));
                 if (errors) {
@@ -546,21 +573,27 @@
                     console.log("Unknown error");
                 }
             }
-            
+            sessionStorage.clear();
         });
         $A.enqueueAction(action);
     },    
     
     getallAddress : function(component, event, helper) {
-        var applicationId= component.get("v.applicationId");
-        console.log('applicationId=== ' + applicationId);
-        console.log('getallAddress started');
+        var accountRecordId= component.get("v.accountId");
+        var objectRecordName= component.get("v.objectName");
+        console.log('accountRecordId===' + accountRecordId + 'Obhjecjjhjk---' + objectRecordName);  
+        var accountOrContactId;
+        if($A.util.isEmpty(accountRecordId) || $A.util.isUndefined(accountRecordId) || accountRecordId == 'null'){
+            accountOrContactId = component.get("v.contactId");
+        }else{
+            accountOrContactId = component.get("v.accountId");
+        }
+        console.log('accountOrContactId on get alladdress=== ' + accountOrContactId);
         var action=component.get("c.getAllAddress");
-        action.setParams({applicationId: applicationId });
+        action.setParams({accountOrContactId: accountOrContactId });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                console.log('getallAddress2');
                 component.set("v.allAddressList", response.getReturnValue());
                 var allAddressList = component.get("v.allAddressList");
                 console.log('allAddressList===' + JSON.stringify(allAddressList));
@@ -604,30 +637,30 @@
                             component.set("v.physicalAddressParcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
                             component.set("v.physicalAddressParcel.MUSW__City__c", allAddressList[i].MUSW__City__c);
                             component.set("v.defaultCountry",allAddressList[i].Country__c);
-							component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
-                             console.log('Country__c :' +allAddressList[i].Country__c);
+                            component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
+                            console.log('Country__c :' +allAddressList[i].Country__c);
                             console.log('defaultCountry :' +component.get("v.defaultCountry"));
                             component.set("v.isPhysicalAndMailingSame", true);
                             if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
                                 component.set("v.defaultPhysicalCounty",allAddressList[i].County__c);
                                 component.set("v.isPhysicalOutOfCountry", true);
-								 component.set("v.defaultCounty",allAddressList[i].County__c);
+                                component.set("v.defaultCounty",allAddressList[i].County__c);
                                 component.set("v.isOutOfCountry", true);
                             }else{
                                 component.set("v.isPhysicalOutOfCountry", false);
-								component.set("v.isOutOfCountry", false);
+                                component.set("v.isOutOfCountry", false);
                             }
                             if(allAddressList[i].Country__c =='Canada' ){
                                 component.set("v.isPhysicalCanadianProvince", true);
                                 component.set("v.defaultPhysicalcanadianProvince",allAddressList[i].Canadian_provinces__c);
                                 component.set("v.isPhysicalState",false);
                                 component.set("v.isPhysicalNotApplicable",false);
-								component.set("v.isCanadianProvince", true);
+                                component.set("v.isCanadianProvince", true);
                                 component.set("v.defaultcanadianProvince",allAddressList[i].Canadian_provinces__c);
                                 component.set("v.isState",false);
                                 component.set("v.isNotApplicable",false);
                             }else if(allAddressList[i].Country__c =='United States'){
-								component.set("v.isCanadianProvince", false);
+                                component.set("v.isCanadianProvince", false);
                                 component.set("v.isNotApplicable",false);
                                 component.set("v.isState",true);
                                 component.set("v.defaultState",allAddressList[i].MUSW__State__c);
@@ -637,7 +670,7 @@
                                 component.set("v.defaultPhysicalState",allAddressList[i].MUSW__State__c);
                             }
                                 else{
-									component.set("v.isNotApplicable",true);
+                                    component.set("v.isNotApplicable",true);
                                     component.set("v.isCanadianProvince", false);
                                     component.set("v.isState", false);
                                     component.set("v.isPhysicalNotApplicable",true);
@@ -645,7 +678,7 @@
                                     component.set("v.isPhysicalState", false);
                                 }
                             component.set("v.physicalAddressParcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-							component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
+                            component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
                             
                         }else{
                             console.log('Entered block 3');
@@ -680,7 +713,7 @@
                         
                     }
                 }
-                 console.log('defaultCountry last:' +component.get("v.defaultCountry"));
+                console.log('defaultCountry last:' +component.get("v.defaultCountry"));
             }
             else
             {
@@ -691,11 +724,39 @@
         
     },
     
+    //To fetch existing physical address from parcel
+    fetchPhysiscalAddHelper: function(component, event, helper){
+        var action=component.get("c.getPhysicalAddress");
+        action.setParams({licId: component.get("v.amrLicId") });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                component.set("v.physicalAddressParcelAMRRead", response.getReturnValue());
+                var allAddressList = component.get("v.allAddressList");
+                console.log('allAddressList===' + JSON.stringify(allAddressList));
+                /*if(!($A.util.isEmpty(allAddressList) || $A.util.isUndefined(allAddressList))){
+                    component.set("v.physicalAddressParcelAMRRead.Address_Type__c", allAddressList.Address_Type__c);
+                    component.set("v.physicalAddressParcelAMRRead.MUSW__Street2__c", allAddressList.MUSW__Street2__c);
+                    component.set("v.physicalAddressParcelAMRRead.MUSW__Unit__c", allAddressList.MUSW__Unit__c);
+                    component.set("v.physicalAddressParcelAMRRead.MUSW__City__c", allAddressList.MUSW__City__c);
+                    component.set("v.physicalAddressParcelAMRRead.MUSW__State__c", allAddressList.MUSW__State__c);
+                    component.set("v.physicalAddressParcelAMRRead.County__c", allAddressList.County__c);
+                    component.set("v.physicalAddressParcelAMRRead.Country__c", allAddressList.Country__c);
+                    component.set("v.physicalAddressParcelAMRRead.Zip_Postal_Code__c", allAddressList.Zip_Postal_Code__c);
+                }*/
+            }
+            else
+            {
+                console.log('No existing address');
+            }
+        });
+        $A.enqueueAction(action);        
+    },
     
     //forcontactupdate
     //
-        
-    getAddress : function(component, event, helper) {
+    
+    /*getAddress : function(component, event, helper) {
         var applicationId= component.get("v.contactId");
         console.log('applicationId=== ' + applicationId);
         console.log('getallAddress started');
@@ -748,30 +809,30 @@
                             component.set("v.physicalAddressParcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
                             component.set("v.physicalAddressParcel.MUSW__City__c", allAddressList[i].MUSW__City__c);
                             component.set("v.defaultCountry",allAddressList[i].Country__c);
-							component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
-                             console.log('Country__c :' +allAddressList[i].Country__c);
+                            component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
+                            console.log('Country__c :' +allAddressList[i].Country__c);
                             console.log('defaultCountry :' +component.get("v.defaultCountry"));
                             component.set("v.isPhysicalAndMailingSame", true);
                             if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
                                 component.set("v.defaultPhysicalCounty",allAddressList[i].County__c);
                                 component.set("v.isPhysicalOutOfCountry", true);
-								 component.set("v.defaultCounty",allAddressList[i].County__c);
+                                component.set("v.defaultCounty",allAddressList[i].County__c);
                                 component.set("v.isOutOfCountry", true);
                             }else{
                                 component.set("v.isPhysicalOutOfCountry", false);
-								component.set("v.isOutOfCountry", false);
+                                component.set("v.isOutOfCountry", false);
                             }
                             if(allAddressList[i].Country__c =='Canada' ){
                                 component.set("v.isPhysicalCanadianProvince", true);
                                 component.set("v.defaultPhysicalcanadianProvince",allAddressList[i].Canadian_provinces__c);
                                 component.set("v.isPhysicalState",false);
                                 component.set("v.isPhysicalNotApplicable",false);
-								component.set("v.isCanadianProvince", true);
+                                component.set("v.isCanadianProvince", true);
                                 component.set("v.defaultcanadianProvince",allAddressList[i].Canadian_provinces__c);
                                 component.set("v.isState",false);
                                 component.set("v.isNotApplicable",false);
                             }else if(allAddressList[i].Country__c =='United States'){
-								component.set("v.isCanadianProvince", false);
+                                component.set("v.isCanadianProvince", false);
                                 component.set("v.isNotApplicable",false);
                                 component.set("v.isState",true);
                                 component.set("v.defaultState",allAddressList[i].MUSW__State__c);
@@ -781,7 +842,7 @@
                                 component.set("v.defaultPhysicalState",allAddressList[i].MUSW__State__c);
                             }
                                 else{
-									component.set("v.isNotApplicable",true);
+                                    component.set("v.isNotApplicable",true);
                                     component.set("v.isCanadianProvince", false);
                                     component.set("v.isState", false);
                                     component.set("v.isPhysicalNotApplicable",true);
@@ -789,7 +850,7 @@
                                     component.set("v.isPhysicalState", false);
                                 }
                             component.set("v.physicalAddressParcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-							component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
+                            component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
                             
                         }else{
                             console.log('Entered block 3');
@@ -824,7 +885,7 @@
                         
                     }
                 }
-                 console.log('defaultCountry last:' +component.get("v.defaultCountry"));
+                console.log('defaultCountry last:' +component.get("v.defaultCountry"));
             }
             else
             {
@@ -833,7 +894,7 @@
         });
         $A.enqueueAction(action);
         
-    },
+    },*/
     //function not working
     setDefaultFields: function(component) {
         component.set("v.street", "");
@@ -878,16 +939,22 @@
     },
     
     updateExistingMailingAddress: function(component, event, helper, isChecked){
+        var accountOrContactId;
         var addressRecordData= component.get("v.saveAddressList");
         console.log('addressRecordData==' + JSON.stringify(addressRecordData));
         if(!($A.util.isEmpty(addressRecordData) || $A.util.isUndefined(addressRecordData))){
-            var appId = addressRecordData[0].Application_BG__c;
+            if($A.util.isEmpty(addressRecordData[0].Primary_Account__c) || $A.util.isUndefined(addressRecordData[0].Primary_Account__c) || addressRecordData[0].Primary_Account__c == 'null'){
+                accountOrContactId = addressRecordData[0].MUSW__Primary_Contact__c;
+            }else{
+                accountOrContactId = addressRecordData[0].Primary_Account__c;
+            }
+            //var contactRecordId = addressRecordData[0].MUSW__Primary_Contact__c;
             var recordId = addressRecordData[0].Id;
             var sObj = component.get("v.parcelObject");
-            console.log('appId==' + appId + 'recordId==' + recordId + 'sObj=' + JSON.stringify(sObj));
+            console.log('appId==' + appId + 'recordId==' + recordId + 'sObj=' + JSON.stringify(sObj) + 'accountOrContactId=' + accountOrContactId);
             var action = component.get("c.sameAddUpdate");
             action.setParams({
-                recordId : recordId,sobjectType : sObj.sobjectType, applicationId : appId , isSame: isChecked
+                recordId : recordId,sobjectType : sObj.sobjectType, accountOrContactId : accountOrContactId , isSame: isChecked
             });
             action.setCallback(this,function(response){
                 var state = response.getState();
@@ -911,13 +978,13 @@
             $A.enqueueAction(action);
         }
     },
-    onsaveContactAddressHelper : function(component ,event, helper) {
+    /*onsaveContactAddressHelper : function(component ,event, helper) {
         console.log('onsaave1');
         var address; 
         var isAptInfo = component.get("v.isAddress2");
         console.log('isAptInfo=='+ isAptInfo);
         var contactId= component.get("v.contactId");
-      //  console.log('applicationId=='+ applicationId);
+        //  console.log('applicationId=='+ applicationId);
         var selectedAddress = component.get("v.userSelectedAddr");
         if(($A.util.isEmpty(selectedAddress) || $A.util.isUndefined(selectedAddress))){
             selectedAddress = 'OriginalAddress';
@@ -1056,5 +1123,5 @@
             
         });
         $A.enqueueAction(action);
-    },     
+    },*/
 })

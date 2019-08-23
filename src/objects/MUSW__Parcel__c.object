@@ -223,6 +223,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	
     <fields>
         <fullName>Canadian_provinces__c</fullName>
         <externalId>false</externalId>
@@ -1727,6 +1728,19 @@ CASE( MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>Request_Parcel__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Request Parcel</label>
+    <referenceTo>Request__c</referenceTo>
+    <relationshipLabel>Address</relationshipLabel>
+    <relationshipName>Parcels</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
     </fields>
 	 <fields>
         <fullName>Request__c</fullName>

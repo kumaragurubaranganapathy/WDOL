@@ -5,6 +5,7 @@
     font-size: 16px;
     color:t(LnGFormTitleColor);
 }
+.THIS
 .THIS .address-type .address-fields span{
     color:t(fieldclr);
 }
@@ -24,6 +25,7 @@
     font-size:t(fieldlabelsize);
     color:t(fieldclr);
     font-weight:600;
+    padding-bottom:0;
 }
 .THIS .tile{
     padding:20px;
@@ -109,6 +111,9 @@
     border-left: solid 1px #eff1ff;
     border-right: solid 1px #eff1ff;
     overflow-x:hidden;
+}
+.THIS .addressTy{
+    padding-top:1.5rem;
 }
 /*.THIS .highlight {
     background-color: #d3d3d3;

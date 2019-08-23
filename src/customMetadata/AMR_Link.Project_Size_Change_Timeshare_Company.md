@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Project Size Change</label>
+    <label>Update Project Size</label>
     <protected>false</protected>
     <values>
         <field>AMR_Type__c</field>
@@ -36,6 +36,6 @@
     </values>
     <values>
         <field>Service_Request_Type__c</field>
-        <value xsi:type="xsd:string">Project Size Change</value>
+        <value xsi:type="xsd:string">Update Project Size</value>
     </values>
 </CustomMetadata>

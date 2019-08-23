@@ -2,10 +2,11 @@
     
     <aura:attribute name ="UserName" type="String"/>
     <aura:attribute name ="ContactObj" type="Contact"/>
-    <aura:attribute name = "ParcelObj" type ="MUSW__Parcel_Contact2__c[]"/>
+    <aura:attribute name = "ParcelObj" type ="MUSW__Parcel__c[]"/>
     <aura:attribute name ="portalURL" type ="String" default = "{!$Label.c.Polaris_Portal_Home}"/>
     <aura:attribute name="showAddress" type="Boolean" default="false" />
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
+    <aura:attribute name="activeCart" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div class="header-outer-wrapper">
         <!--<lightning:layout class="header-wrapper slds-wrap">
@@ -53,7 +54,7 @@
                             <div class="data-style">{!v.ContactObj.MobilePhone?v.ContactObj.MobilePhone:'None'}</div>
                         </div>
                         <div class="field-style">
-                            <div class="label-style">Business Phone:</div>
+                            <div class="label-style">Other Phone:</div>
                             <div class="data-style">{!v.ContactObj.Phone?v.ContactObj.Phone:'None'}</div>
                         </div>                        
                     </lightning:layoutItem>
@@ -64,11 +65,11 @@
                     </lightning:layoutItem>
                     <aura:if isTrue="{!not(empty(v.ParcelObj))}">
                         <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
-                            <aura:if isTrue = "{!parcel.MUSW__Parcel__r.Address_Type__c == 'MAILING ADDRESS'}">
+                            <aura:if isTrue = "{!parcel.Address_Type__c == 'MAILING ADDRESS'}">
                                 <lightning:layoutItem size="12" mediumDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
                                     <div class="field-style address">
                                         <div class="label-style">Mailing address:</div>
-                                        <div class="data-style">{!parcel.MUSW__Parcel__r.MUSW__Street__c}, {!parcel.MUSW__Parcel__r.MUSW__City__c}, {!parcel.MUSW__Parcel__r.MUSW__State__c} - {!parcel.MUSW__Parcel__r.Zip_Postal_Code__c}</div>
+                                        <div class="data-style">{!parcel.Country__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.Zip_Postal_Code__c}</div>
                                     </div>
                                 </lightning:layoutItem>
                                 <!--<div class="">{!parcel.MUSW__Street__c},</div>
@@ -99,7 +100,7 @@
             </lightning:layoutItem>
             <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!v.showMoreAMR?'nav-links exp-links':'nav-links slds-show_medium'}">
                 <ul class="{!v.showMoreAMR?'exp-links-inner':''}">
-                    <li aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);" target="_self" >Payment cart</a></li>
+                    <li class="{!v.activeCart?'cart-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);" target="_self" >Make a Payment</a></li>
                     <li aura:id="action-item"><a onclick="{!c.handleClick}" href="javascript:void(0);">Apply for new license</a></li>
                     <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change Legal Name</a></li>
                     

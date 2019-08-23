@@ -624,10 +624,11 @@ public with sharing class Add_BusinessController {
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
         String licenseType ='';
+        System.debug('Checkkkk######## License Id'+licenseId);
         
         MUSW__License2__c lic = [SELECT id,MUSW__Status__c,Credential_Type__c FROM MUSW__License2__c where id=:licenseId];
         licenseType = lic.Credential_Type__c;
-        
+        System.debug('Checkkkk######## '+licenseType);
         
         List<String> columnHeaderList;   
         List<String> statusFilterList = new List<String>{'Active'};
@@ -757,6 +758,26 @@ public with sharing class Add_BusinessController {
     }
     
     @AuraEnabled
+    public static String setLocationTable(String applicationId){
+        try{
+            System.debug('applicationId::'+ applicationId);
+            
+            Id LocationRT = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
+            List<SObject> columnDataList = new List<SObject>();
+            List<SObject> columnDataListReq;
+            List<String> columnHeaderList ;
+             Set<String> licenseStatus = new Set<String>{'Active','Pending Add','Pending Remove'};
+                columnHeaderList = new List<String>{'Designated Engineer','Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status'};
+                columnDataList = [SELECT id, Designated_Engineer_License__c,Status__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
+            Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
+            return JSON.serialize(wrapperObj,true);
+            
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    @AuraEnabled
     public static String PendingMaintananceRequestApplicationsTable(String accountID){
         try{  
             
@@ -872,7 +893,7 @@ public with sharing class Add_BusinessController {
             this.tableData = tableData!=null? tableData : new List<Sobject>();
         }
     }
-
+    
     @AuraEnabled
     public static Boolean checkActiveCart(){
         Boolean redirect = false;
@@ -919,5 +940,41 @@ public with sharing class Add_BusinessController {
             update objCon;
         }
     }
+    
+       @AuraEnabled
+    public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType)
+    {
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        Id getContactId = '003r000000EOhBB';
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
+        }
+        system.debug('licenseType'+licenseType+'board');
+        Request__c application = new Request__c();
+        application.Profession__c = board; 
+        application.License_Type__c = licenseType;        
+        application.Stage__c = 0;
+        application.Status__c = 'Draft';
+        application.Service_Request_Type__c = ServiceRequestType;
+        application.Contact__c = getContactId;
+        if(licId != null && licId != ''){
+            application.License__c = licId;  
+        }  
+        try
+        {          
+            insert application;
+        }
+        catch(Exception e){
+            HandleException.LogException(e,'Polaris_AMRLinkCntrl','insertRequest');            
+        }
+        string appId = '';
+        return appId = application.Id;
+        
     } 
 }

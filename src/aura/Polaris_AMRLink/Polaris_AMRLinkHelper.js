@@ -38,10 +38,10 @@
         }else{         
         if(AMRType== 'Self Service')
         {
-            if(link == 'Update Address (Mailing Address)'){
+            if(link == 'Update Mailing Address'){
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=address';
             }
-            else if(link == 'Update Website')
+            else if(link == 'Update License Webaddress')
             {
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=License';
             }else if(link == 'Print License'){
@@ -69,7 +69,7 @@
     },
     
     addRequestHelper : function(component, event, helper) {       
-        var requestId='';
+        var requestId='';        
         var action = component.get("c.insertRequest");
         action.setParams({            
             "licId": component.get("v.recordId"),
@@ -177,12 +177,12 @@
     showMoreActions : function(component,event){
         component.set("v.showMore",!component.get("v.showMore"));
     },
-
     updateBusinessAMR : function(component,event){
         var licenseType = component.get("v.licenseType");
         var businessLicenseType =$A.get("$Label.c.Business_Licenses");        
         var businsessLicenseArray = businessLicenseType.split(',');
         var isbusinsessLicense = businsessLicenseArray.includes(licenseType);        
         component.set('v.isBusinessLicense',isbusinsessLicense);
+        component.set("v.isAMRLoaded",true);
     }
 })

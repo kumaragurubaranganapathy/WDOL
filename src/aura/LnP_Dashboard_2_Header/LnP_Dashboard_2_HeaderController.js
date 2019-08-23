@@ -2,6 +2,7 @@
 	doInit : function(component, event, helper) {
 		helper.getContactId(component, event, helper);
         helper.getAddressDetails(component, event, helper);
+        helper.checkForCart(component,event,helper);
 	},
     handleClick : function(component, event, helper){
         var portal_Home_URL = component.get("v.portalURL");

@@ -5,9 +5,11 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
+                console.log('SUCCESS');
                 var result = response.getReturnValue();
                 console.log('result123'+ JSON.stringify(result));
                 if(result == '') {
+                    console.log('Entering if');
                     /*var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "No result found!",
@@ -16,7 +18,9 @@
                     });
                     toastEvent.fire(); */
                 } else  {
+                    console.log('Entering else');
                     component.set("v.taskList",result);
+                    //console.log('taskListtttttt'+v.taskList);
                 }
                 
                 

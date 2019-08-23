@@ -75,7 +75,7 @@
     
     openModelReschedule : function(component, event, helper) {
         var taskRecordForModel = event.getSource().get("v.value");
-        console.log('Value==' + taskRecordForModel);
+        console.log('Value==' + JSON.stringify(taskRecordForModel));
         component.set("v.taskRecordForModel", taskRecordForModel);
         console.log('subject==' + component.get("v.taskRecordForModel"));
         component.set("v.isOpenExam", true);

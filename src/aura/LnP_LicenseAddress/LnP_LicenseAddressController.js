@@ -1,5 +1,13 @@
 ({
     doInit: function(component, event, helper){
+        var objectData = sessionStorage.getItem('objectName');
+        var accountRecordId = sessionStorage.getItem("recordId");
+        component.set("v.accountId", accountRecordId);
+        component.set("v.objectName", objectData);
+        
+        console.log('objectData in Address===' + objectData + accountRecordId);
+        //sessionStorage.clear();
+        console.log("address isRenewal::" + component.get("v.isRenewal"));
         component.set("v.defaultCountry" , 'United States');
         component.set("v.defaultState" , 'WA');
         component.set("v.defaultCounty" , 'Adams');
@@ -12,14 +20,14 @@
         component.set("v.isOutOfCountry",true);
         component.set("v.isPhysicalState", true);
         component.set("v.isPhysicalOutOfCountry",true);
+        helper.getloggedInContactDetails(component , helper);
         helper.getCountryList(component , helper);
         helper.getStateList(component , helper);
         helper.getCountyList(component , helper);
         helper.getCanadianProvince(component , helper);
-        if(component.get('v.changeAddress')=== true){
-            helper.getAddress(component, event, helper);  
-        } else {
-             helper.getallAddress(component, event, helper);       
+        if(component.get("v.isAMR"))
+        {
+            helper.fetchPhysiscalAddHelper(component,event,helper);
         }
 
     },
@@ -101,7 +109,7 @@
         helper.getValidatedAddressHelper(component, event, helper, selectedAddressType, mailingPhysicalAddress, street, street2, state, city, country, county, zip);
         
     },
-    
+   
     cancelAddress: function(component, event, helper){
         helper.cancelAdressHelper(component, event, helper);  
     },
@@ -227,6 +235,7 @@
     
     onChange: function(component , event, helper) {
         var selectedAddress = document.querySelector('input[name="locations"]:checked').value;
+        console.log('selectedAddress===' + selectedAddress);
         component.set("v.userSelectedAddr" , selectedAddress);
         if(selectedAddress == 'SuggestedAddress'){
             var addr = component.get("v.issuggestedAdd2");
@@ -317,6 +326,9 @@
         }
         
     },
+    addPhysicalAddAMR:function(component,event,helper){        
+        component.set("v.openPhysicalAddressAMR",true);        
+    },
 	
     handleEvent : function(component,event,helper){
         console.log("inside handleEvent::");
@@ -324,5 +336,6 @@
         component.set("v.isRenewal",isRenewal);
         console.log("inside Address"+ component.get("v.isRenewal",isRenewal));
     }
+    
     
 })
