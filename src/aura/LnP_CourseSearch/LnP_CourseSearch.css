@@ -111,6 +111,9 @@
 .THIS .sub-header, .THIS .sub-section,.THIS .subheader span{
     color: t(fieldclr);
 }
+.THIS .sub-section {
+    font-family: t(publicSansfontfamily);
+}
 .THIS .screen-two .slds-table_header-fixed_container{
     padding-top:0;
 }
@@ -558,4 +561,7 @@ padding: 4px 5px;
 .THIS a.link:hover {
     color: t(buttonNeutral);
 	text-decoration:none;
+}
+.THIS tbody tr td lightning-primitive-cell-wrapper.slds-grid_align-end {
+    justify-content: flex-start;
 }

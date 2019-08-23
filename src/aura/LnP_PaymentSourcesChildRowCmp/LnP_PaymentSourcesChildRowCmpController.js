@@ -1,28 +1,30 @@
 ({
     doinit :  function(component, event, helper){
         //debugger;
-        helper.enablePrintButton(component,event);
+        var sequenceNumber =  String(component.get("v.rowIndex"));
+        var pad = "000";       
+        component.set("v.formattedRowIndex",pad.substring(0, pad.length - sequenceNumber.length) + sequenceNumber);
+        helper.enablePrintButton(component,event);  
     },
     AddNewRow : function(component, event, helper){
-        debugger;
+        //debugger;
         // fire the AddNewRowEvt Lightning Event 
         
         var _receiptRec= component.get("v.receiptRec");
         var objToday = new window.Date();
-        var sequenceNumber =  String(Number(component.get("v.rowIndex"))+1);
+        var sequenceNumber =  String(component.get("v.rowIndex"));
         var pad = "000";
         var seqNo = pad.substring(0, pad.length - sequenceNumber.length) + sequenceNumber;        
         _receiptRec['Sequence_number__c'] = seqNo;
         _receiptRec['Date__c'] = objToday;
-        console.log("receiptRec : "+JSON.stringify(_receiptRec));
+        //console.log("receiptRec : "+JSON.stringify(_receiptRec));
         
         //slip printer logic
         var _slipPrinterInput = component.get("v.ValidationNumber").replace("-","");
         //length : 12
         
-        //for slip printer : sequence number  should start with 000
-        var slipSequenceNumber =  String(component.get("v.rowIndex"));        
-        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        //for slip printer : sequence number  should start with 000                
+        _slipPrinterInput = _slipPrinterInput +' '+ seqNo;
         //length : 16
         
         //BUG 6416 : Slip Printer Input value '35' digits 
@@ -53,12 +55,13 @@
         _AddRowEvt.setParams({"receiptInstance" : _receiptRec,"callType" : "add"});
         _AddRowEvt.fire();
         component.set("v.printDisabled", true);
+       
         helper.onPrint(component,event,helper);
         
     },
     enablePrintButton : function(component,event,helper){
         helper.enablePrintButton(component,event);
-        console.log(component.get('v.receiptRec.MUSW__Payment_Method__c'));
+        //console.log(component.get('v.receiptRec.MUSW__Payment_Method__c'));
         if(component.get('v.receiptRec.MUSW__Payment_Method__c') != 'Inter-agency Payment'){
             component.set('v.receiptRec.IAP_Doc__c','');
             component.set('v.receiptRec.Sender_Agency__c','') ;
@@ -74,20 +77,19 @@
         // fire the AddNewRowEvt Lightning Event 
         var _receiptRec= component.get("v.receiptRec");
         var objToday = new window.Date();
-        var sequenceNumber =  String(Number(component.get("v.rowIndex"))+1);
+        var sequenceNumber =  String(component.get("v.rowIndex"));
         var pad = "000";
         var seqNo = pad.substring(0, pad.length - sequenceNumber.length) + sequenceNumber;        
         _receiptRec['Sequence_number__c'] = seqNo;
         _receiptRec['Date__c'] = objToday;
-        console.log("receiptRec : "+JSON.stringify(_receiptRec));
+        //console.log("receiptRec : "+JSON.stringify(_receiptRec));
         
         //slip printer logic
         var _slipPrinterInput = component.get("v.ValidationNumber").replace("-","");
         //length : 12
         
-        //for slip printer : sequence number  should start with 000
-        var slipSequenceNumber =  String(component.get("v.rowIndex"));        
-        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        //for slip printer : sequence number  should start with 000                
+        _slipPrinterInput = _slipPrinterInput +' '+ seqNo;
         //length : 16
         
         //BUG 6416 : Slip Printer Input value '35' digits 
@@ -118,12 +120,13 @@
         _AddRowEvt.setParams({"receiptInstance" : _receiptRec,"callType" : "clone"});
         _AddRowEvt.fire();
         component.set("v.cloneDisabled", true);
+       
         helper.onPrint(component,event,helper);
     },
     Update_AddNewRow : function(component,event,helper){
         
         var _receiptRec= component.get("v.receiptRec");  
-        console.log("receiptRec : "+JSON.stringify(_receiptRec));
+        //console.log("receiptRec : "+JSON.stringify(_receiptRec));
         
         //slip printer logic
         var objToday = new window.Date();        

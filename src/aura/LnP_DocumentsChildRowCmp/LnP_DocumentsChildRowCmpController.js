@@ -1,6 +1,9 @@
 ({
     doinit :  function(component, event, helper){
-        debugger;
+        //debugger;
+        var pad = '000';
+        var sequenceNumber = String(component.get("v.rowIndex"));
+        component.set("v.formattedRowIndex",pad.substring(0,pad.length - sequenceNumber.length ) + sequenceNumber);
         //  Added this to show the selected element value.
         var defaultProgramType = component.get("v.defaultProgramType");
         if (defaultProgramType && component.get("v.rowIndex") == 0) {
@@ -20,14 +23,14 @@
         helper.enablePrintButton(component,event);
     },    
     onControllerFieldChange: function(component, event, helper) {     
-        debugger;
+        //debugger;
         var _depositRec= component.get("v.depositRec");
         //on change of default types
         component.set("v.changedDefaultProgramType",event.getSource().get("v.value"));
         helper.getDependentFieldValues(component, event);       
     },    
     AddNewRow : function(component, event, helper){
-        debugger;
+        //debugger;
         // fire the AddNewRowEvt Lightning Event 
         
         var currentAmount = component.find("amount");
@@ -35,7 +38,7 @@
         var Today_date = new window.Date();
         _depositRec['Name'] = component.get("v.ValidationNumber") +'_'+ Number(component.get("v.rowIndex")+1);
         var pad = '000';
-        var sequenceNumber = String(Number(component.get("v.rowIndex"))+1);;
+        var sequenceNumber = String(component.get("v.rowIndex"));
         var seq = pad.substring(0,pad.length - sequenceNumber.length ) + sequenceNumber;        
         _depositRec['Sequence_number__c'] = seq ;  
         _depositRec['Date__c'] = Today_date;
@@ -46,7 +49,7 @@
         
         //for slip printer : sequence number  should start with 000
         var slipSequenceNumber =  String(component.get("v.rowIndex"));        
-        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        _slipPrinterInput = _slipPrinterInput +' '+ seq;
         //length : 16
         
         //BUG 6416 : Slip Printer Input value '35' digits 
@@ -78,7 +81,7 @@
         if(component.get("v.amountDifference") < currentAmount.get("v.value") || component.get("v.paymentSourceTotal") < currentAmount.get("v.value")  ){            
             alert("Amount Total should be equal to Payment Source Total");
         }else{
-            console.log("_depositRec : "+JSON.stringify(_depositRec));
+            //console.log("_depositRec : "+JSON.stringify(_depositRec));
             if(parseInt(currentAmount.get("v.value")) === component.get("v.amountDifference")){
                 component.set("v.cloneDisabled", true);
                 component.set("v.printDisabled", true);
@@ -94,14 +97,14 @@
         }
     },   
     Duplicate_AddNewRow : function(component,event,helper){
-        debugger;
+        //debugger;
         // fire the AddNewRowEvt Lightning Event 
         var currentAmount = component.find("amount");
         var _depositRec= component.get("v.depositRec");
         var Today_date = new window.Date();
         _depositRec['Name'] = component.get("v.ValidationNumber") +'_'+ Number(component.get("v.rowIndex")+1);
         var pad = '000';
-        var sequenceNumber = String(Number(component.get("v.rowIndex"))+1);;
+        var sequenceNumber = String(component.get("v.rowIndex"));
         var seq = pad.substring(0,pad.length - sequenceNumber.length ) + sequenceNumber;        
         _depositRec['Sequence_number__c'] = seq ;  
         _depositRec['Date__c'] = Today_date;
@@ -112,7 +115,7 @@
         
         //for slip printer : sequence number  should start with 000
         var slipSequenceNumber =  String(component.get("v.rowIndex"));        
-        _slipPrinterInput = _slipPrinterInput +' '+ (pad.substring(0, pad.length - slipSequenceNumber.length) + slipSequenceNumber);
+        _slipPrinterInput = _slipPrinterInput +' '+ seq;
         //length : 16
         
              //BUG 6416 : Slip Printer Input value '35' digits 
@@ -146,7 +149,7 @@
            (component.get("v.rowIndex") !== 0 && component.get("v.paymentSourceTotal") > currentAmount.get("v.value") &&  component.get("v.amountDifference") < parseInt(currentAmount.get("v.value")) ) ){            
             alert("Amount Total should be equal to Payment Source Total");
         }else{
-            console.log("_depositRec : "+JSON.stringify(_depositRec));
+            //console.log("_depositRec : "+JSON.stringify(_depositRec));
             if(parseInt(currentAmount.get("v.value")) === component.get("v.amountDifference")){
                 component.set("v.cloneDisabled", true);
                 component.set("v.printDisabled", true);
@@ -165,7 +168,7 @@
     Update_AddNewRow : function(component,event,helper){
         
         var _depositRec= component.get("v.depositRec");  
-        console.log("depositRec : "+JSON.stringify(_depositRec));
+        //console.log("depositRec : "+JSON.stringify(_depositRec));
         
         //slip printer logic
         var Today_date = new window.Date();

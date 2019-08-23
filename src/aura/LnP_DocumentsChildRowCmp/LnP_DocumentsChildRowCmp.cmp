@@ -21,6 +21,9 @@
     <aura:attribute name="paymentSourceTotal" type="Integer" access="public" />
     <aura:attribute name="industryFormMap" type="Map" />  
     
+    <!-- change date : 23/8/2019 -->
+    <aura:attribute name= "formattedRowIndex" type="String"/>
+    
     <!-- change date : 7/8/2019 -->
     <aura:attribute name="ValidationNumber" type="String" default='DEP' />
      <aura:attribute name="slipPrinterInput" type="String" access="public"  />
@@ -39,7 +42,8 @@
     <!-- Table Row -->   
     <tr class="slds-text-title_caps">
         <td> 
-            {!'00' + (v.rowIndex + 1)}
+            <!--  {!'00' + (v.rowIndex + 1)} -->
+           {!v.formattedRowIndex}
         </td>
         <td>
             

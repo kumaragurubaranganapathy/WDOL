@@ -17,14 +17,14 @@
             component.set("v.customForm", true);
             component.set("v.recordIDforSSAMR",recordId);   
             component.set("v.AMRName",'Update Website');
-            component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
+            component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));
             helper.fetchWebiste(component, event, helper);
         }
             else if(value.toLowerCase() == "print"){            
                 component.set("v.showPrintForm", true);
                 component.set("v.recordIDforSSAMR",recordId);            
-                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_NewDashboard"));
-                component.set("v.AMRName",'Print License');
+                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));
+                component.set("v.AMRName",'Generate License Document');
                 helper.fetchWebiste(component, event, helper);
             }
                 else if(value.toLowerCase() == "businesscontact"){
@@ -70,7 +70,7 @@
                                 }
                             });
                             $A.enqueueAction(action);              
-                            component.set("v.redirectURL",$A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
+                            component.set("v.redirectURL",$A.get("$Label.c.Polaris_Portal_Home"));
                         }
         
                             else if(value.toLowerCase() == "address"){			
@@ -99,7 +99,7 @@
                                     }
                                 });
                                 $A.enqueueAction(action);              
-                                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_NewDashboard"));             
+                                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));             
                             }
     },
     getContact : function(component, event, helper){
