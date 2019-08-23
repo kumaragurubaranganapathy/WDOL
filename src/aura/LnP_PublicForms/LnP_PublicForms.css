@@ -1,4 +1,5 @@
-.THIS {
+.THIS.content-wrapper{
+    margin:1.5rem 7.5rem;
 }
 .THIS .userpswd1 .slds-form-element__control{
     width:auto;
@@ -29,7 +30,7 @@
  .THIS .license-btn{
      padding: 73px 0px 0 0;
 }
- .THIS.page-header{
+ .THIS .page-header{
      font-weight: 400;
      color: token(blue);
      font-size: 28px;
@@ -41,9 +42,9 @@
  .THIS .sectionIconBar{
      text-align: center;
 }
- .THIS .section{
+/* .THIS .section{
      padding: 0 30px;
-}
+} */
  .THIS .login-form{
       width: 400px;
 }
@@ -91,7 +92,7 @@
     padding-bottom:0;
 }
  @media only screen and (min-width: 768px) and (max-width: 1023px){
-     .THIS.page-header{
+     .THIS .page-header{
          font-size: 35px;
     }
      .THIS .header{
@@ -111,7 +112,10 @@
     }
 }
  @media t(mqSmall){
-     .THIS.page-header{
+    .THIS.content-wrapper{
+        margin:1rem;
+    }
+     .THIS .page-header{
          font-size: 21px;
     }
     .THIS .control .slds-form-element__control .slds-checkbox {

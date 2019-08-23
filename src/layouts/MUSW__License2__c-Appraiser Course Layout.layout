@@ -31,11 +31,11 @@
                 <behavior>Edit</behavior>
                 <field>Course_Title__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Customer_Envelope__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Validation_Number__c</field>
             </layoutItems>
@@ -154,10 +154,10 @@
                 <field>Region__c</field>
             </layoutItems>
             <layoutItems>
-              <behavior>Edit</behavior>
-              <field>Pre_License_Number__c</field>
+                <behavior>Edit</behavior>
+                <field>Pre_License_Number__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_License_DES__c</field>
             </layoutItems>
@@ -305,7 +305,7 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Renewal_Date__c</field>
             </layoutItems>
-			            <layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_Renewal_Letter__c</field>
             </layoutItems>
@@ -405,7 +405,7 @@
     </layoutSections>
     <platformActionList>
         <actionListContext>Record</actionListContext>
-		<platformActionListItems>
+        <platformActionListItems>
             <actionName>MUSW__License2__c.Generate_Fees</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>19</sortOrder>
@@ -551,7 +551,7 @@
         <fields>MUSW__Required__c</fields>
         <fields>CREATED_DATE</fields>
         <fields>SAN_Image_URL__c</fields>
-		<fields>MUSW__Description__c</fields>
+        <fields>MUSW__Description__c</fields>
         <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>

@@ -21,7 +21,7 @@
                 <behavior>Required</behavior>
                 <field>Credential_Type__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Validation_Number__c</field>
             </layoutItems>
@@ -76,6 +76,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Application__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Renew_Reinstatement_in_progress__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -163,7 +167,7 @@
                 <behavior>Edit</behavior>
                 <field>Website__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_License_Email__c</field>
             </layoutItems>
@@ -482,11 +486,6 @@
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
-		<platformActionListItems>
-            <actionName>MUSW__License2__c.Generate_Fees</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>19</sortOrder>
-        </platformActionListItems>
         <platformActionListItems>
             <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
@@ -558,6 +557,16 @@
             <sortOrder>14</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>Letter</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>18</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>MUSW__License2__c.Generate_Fees</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>19</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>ChangeRecordType</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>15</sortOrder>
@@ -571,11 +580,6 @@
             <actionName>Share</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>17</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Letter</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>18</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -670,7 +674,7 @@
         <fields>MUSW__Required__c</fields>
         <fields>CREATED_DATE</fields>
         <fields>SAN_Image_URL__c</fields>
-		<fields>MUSW__Description__c</fields>
+        <fields>MUSW__Description__c</fields>
         <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -714,6 +718,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Parcel_Address__c</fields>
+        <fields>Mailing__c</fields>
+        <fields>Physical__c</fields>
         <relatedList>MUSW__License_Parcel__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -734,7 +740,7 @@
         <fields>Question2__c</fields>
         <fields>Answer_Text__c</fields>
         <relatedList>BGCK__Answer__c.License__c</relatedList>
-		<sortField>Question_Section__c</sortField>
+        <sortField>Question_Section__c</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
@@ -823,7 +829,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002QdLu</masterLabel>
+        <masterLabel>00hr0000002R0xb</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

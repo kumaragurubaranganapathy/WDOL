@@ -399,8 +399,8 @@ IF( BGBK__Fund__r.Accounting_System__c = &quot;AFRS&quot;,
         BGBK__Fund__r.Sub_Source__c,
     &quot;&quot;
 ) &amp; &quot;-&quot; &amp;
-IF(BGBK__Amount__c &gt; 0, &quot;DR&quot;, &quot;CR&quot;) &amp;
-IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</formula>
+IF(BGBK__Amount__c &gt; 0, &quot;DR&quot;, &quot;CR&quot;) &amp; &quot;-&quot; &amp;
+BGBK__Fund__r.GL__c</formula>
         <label>Journal Voucher Detail Grouping</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

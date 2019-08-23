@@ -17,11 +17,11 @@
                 <behavior>Required</behavior>
                 <field>Application_Type__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Customer_Envelope__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Validation_Number__c</field>
             </layoutItems>
@@ -152,7 +152,7 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Renewal_Date__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_Renewal_Coupon__c</field>
             </layoutItems>
@@ -493,7 +493,7 @@
             <actionType>CustomButton</actionType>
             <sortOrder>18</sortOrder>
         </platformActionListItems>
-		<platformActionListItems>
+        <platformActionListItems>
             <actionName>MUSW__License2__c.Generate_Fees</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>19</sortOrder>
@@ -610,7 +610,7 @@
         <fields>MUSW__Required__c</fields>
         <fields>CREATED_DATE</fields>
         <fields>SAN_Image_URL__c</fields>
-		<fields>MUSW__Description__c</fields>
+        <fields>MUSW__Description__c</fields>
         <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -654,6 +654,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Parcel_Address__c</fields>
+        <fields>Mailing__c</fields>
+        <fields>Physical__c</fields>
         <relatedList>MUSW__License_Parcel__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
