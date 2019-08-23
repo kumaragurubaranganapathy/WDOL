@@ -98,7 +98,7 @@
         console.log('componet.get("v.requestId")',componet.get("v.requestId"));
     },
     goToCart : function(component,event){
-        var action = component.get("c.checkActiveCart");
+        /*var action = component.get("c.checkActiveCart");
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -131,10 +131,39 @@
                 }
             }
         });
+        $A.enqueueAction(action); */
+        var str ='/cart';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire(); 
+        
+        
+    },
+    checkForCart : function(component,event,helper){
+        var action = component.get("c.checkActiveCart");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var checkResult = response.getReturnValue();
+                if(checkResult){
+                    component.set("v.activeCart",true);
+                }
+                else component.set("v.activeCart",false);
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
         $A.enqueueAction(action);
-        
-        
-        
     },
     updateAddress: function(component, event, helper) {
         var conId = component.get("v.ContactObj.Id") ;

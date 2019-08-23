@@ -45,7 +45,8 @@
     <aura:attribute name="amrData" type="AMR_Link__mdt" />
     <aura:attribute name="Description" type="String" />
     <aura:attribute name="accountRecordId" type="String" />
-    <aura:attribute name="contactRecordId" type="String" />    
+    <aura:attribute name="contactRecordId" type="String" />  
+    <aura:attribute name="taskDescription" type="String" />    
     <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
     <force:recordData
                       fields="Name, Email, UserType"
@@ -308,8 +309,13 @@
                             </aura:set>
                         </aura:if>
                         <aura:if isTrue="{!and(section.sectionName=='Location',v.currentTab==section.tabIndex)}">
-                            <div class="aff-loc">
+                            <div class="aff-loc address-sec">
                                 <c:Polaris_AffiliatedLocations aura:id="affiliated" isAMR ="true" requestId = "{!v.applicationId}" licenseId="{!v.recordId}"/>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!and(section.sectionName=='Address',v.currentTab==section.tabIndex)}">
+                            <div class="aff-loc address-sec">
+                                <c:LnP_LicenseAddress amrLicId="{!v.recordId}" isApplicationFlow="false" requestId="{!v.applicationId}" isAMR ="true" aura:id="lnpStoreAddress"/>
                             </div>
                         </aura:if>
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">
@@ -327,7 +333,10 @@
                             <!--<span class="slds-form-element__label">License Number :</span> {!v.recordId}-->
                             <span class="slds-form-element__label">License Type :</span> {!v.licenseType}
                             <span class="slds-form-element__label">Service Request Type :</span> {!v.flowType}
-                            <span class="slds-form-element__label">Description :</span> <ui:inputTextArea value="{!v.Description}" rows="5" />
+                            <aura:if isTrue="{!v.flowType == 'Request for Information'}">
+                                <span class="slds-form-element__label">Requested Infromation :</span> {!v.taskDescription}
+                            </aura:if>                            
+                            <span class="slds-form-element__label">Response :</span> <ui:inputTextArea value="{!v.Description}" rows="5" />
                         </aura:if>
                     </div>
                 </aura:set>
