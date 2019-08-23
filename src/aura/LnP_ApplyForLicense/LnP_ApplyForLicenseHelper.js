@@ -75,6 +75,8 @@
         component.set("v.licenseRecordID",licenseRecordID);
         component.set("v.objectName",objectName);
         sessionStorage.clear();
+		sessionStorage.setItem('objectName', component.get("v.objectName"));
+        sessionStorage.setItem('recordId', component.get("v.recordId"));
         
     },
     goToPreviousTab : function(component, event, helper) {

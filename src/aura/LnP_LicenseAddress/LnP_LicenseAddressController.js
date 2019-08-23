@@ -6,7 +6,7 @@
         component.set("v.objectName", objectData);
 
         console.log('objectData in Address===' + objectData + accountRecordId);
-        sessionStorage.clear();
+        //sessionStorage.clear();
         console.log("address isRenewal::" + component.get("v.isRenewal"));
         component.set("v.defaultCountry" , 'United States');
         component.set("v.defaultState" , 'WA');
