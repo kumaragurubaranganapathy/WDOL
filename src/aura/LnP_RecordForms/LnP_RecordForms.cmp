@@ -1,25 +1,25 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller ="Add_BusinessController">
     <aura:attribute name="fieldsList" type="List"/>
-    <aura:attribute name="recordId" type="Id" default=""/>
+    <aura:attribute name="recordId" type="Id"/>
     <aura:attribute name="objectApiName" type="String" default=""/>
     <aura:attribute name="section" type="List"/>
     <aura:attribute name="applicationId" type="Id"/>
-    <aura:attribute name="flagHideAndShow" type="String"/>
+    <aura:attribute name="flagHideAndShow" type="String" />
     <aura:attribute name="isRenewal" type="Boolean" default="false"/>
     <aura:attribute name="isSSNchanged" type="Boolean"/>
     <aura:attribute name="personalInfoFlow" type="Boolean" default="false" />    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:registerEvent name="CmpEvent" type="c:LnP_applyLicense"/> <!-- added by AD -->
-    
     <aura:if isTrue = "{!and (v.recordId == null, v.objectApiName == 'Account' )}">
         <lightning:recordEditForm  aura:id="createAccountForm"  objectApiName="{!v.objectApiName}" onsuccess="{!c.createAccount}">
             <lightning:messages />              
-            <div class="slds-grid slds-wrap">
-                <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">
-                    <aura:if isTrue="{!field.required || field.regex != undefined}">
-                        <lightning:inputField  aura:id="validateField" fieldName="{!field.apiname}"  class="{!(field.required?'required':'')+' in-create slds-show field-size multi-field'}"/>
+            <div class="slds-grid slds-wrap">                
+                <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">                    
+                    <aura:if isTrue="{!field.required || field.regex != undefined}">                     
                         
-                        <aura:set attribute="else">
+                        <lightning:inputField  aura:id="validateField" fieldName="{!field.apiname}"  class="{!(field.required?'required':'')+' in-create slds-show field-size multi-field'}" variant="{!field.apiname == 'Unique_ID_To_Provide__c'?'label-hidden':''}" />
+                        
+                        <aura:set attribute="else">                            
                             <lightning:inputField fieldName="{!field.apiname}"  class="{!and(v.personalInfoFlow,field.label == 'Former Name')?'slds-hide':'in-create slds-show field-size multi-field'}"/>
                         </aura:set>
                     </aura:if>
@@ -34,6 +34,7 @@
                 <lightning:messages />
                 <div class="slds-grid slds-wrap">
                     <aura:iteration items="{!v.fieldsList}" var="field" indexVar="fieldCount">
+                        
                         <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' || field.apiname == 'Social_Security_Number_Encrypted__c' || field.apiname == 'ITIN__c' || field.apiname == 'NO_SSN_ITIN__c' ? 'true' : 'false'}">
                             <aura:if isTrue="{!field.apiname == 'Unique_ID_To_Provide__c' ? 'true' : 'false'}">
                                 <aura:if isTrue="{!field.required || field.regex != undefined}">
@@ -46,6 +47,7 @@
                                         <lightning:helptext content="If you have a Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN or TIN), you are required by federal and state law to provide it for use in child support enforcement programs (42 U.S.C. 666(a)(13) and RCW 74.20A.320). Your SSN or ITIN may also be used for identification of records with similar names." />
                                     </div>
                                     <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.required?'required':'')+' slds-show field-size multi-field' + (field.apiname == 'Unique_ID_To_Provide__c'?' id-field-input':'')}" onchange="{!c.selectUniqueID}" variant="{!field.apiname == 'Unique_ID_To_Provide__c'?'label-hidden':''}"/>
+                                    
                                     <aura:set attribute="else">
                                         <lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}" class="slds-show field-size multi-field" onchange="{!c.selectUniqueID}" />
                                     </aura:set>
@@ -54,11 +56,11 @@
                                     <aura:if isTrue="{!field.required || field.regex != undefined}">
                                         <aura:if isTrue="{!field.apiname == 'NO_SSN_ITIN__c'}">
                                             <div class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">
-                                            	<label>{!field.label}</label>
+                                                <label>{!field.label}</label>
                                                 <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.apiname == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" variant="label-hidden"/>                        	
                                             </div>
                                             <aura:set attribute="else">
-                                            	<lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" onchange="{!c.getpattern}"/>                        	
+                                                <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" onchange="{!c.getpattern}"/>                        	
                                             </aura:set>
                                         </aura:if>
                                     </aura:if>
@@ -80,7 +82,7 @@
                                         </aura:set>
                                         
                                     </aura:if>
-                                    <aura:set attribute="else">
+                                    <aura:set attribute="else">                                        
                                         <lightning:inputField disabled="{!field.readOnly}" fieldName="{!field.apiname}" aura:id="{!field.apiname}" class="{!and(v.personalInfoFlow,field.label == 'Former Name')?'slds-hide':'slds-show field-size multi-field'}"/>
                                     </aura:set>
                                 </aura:if>

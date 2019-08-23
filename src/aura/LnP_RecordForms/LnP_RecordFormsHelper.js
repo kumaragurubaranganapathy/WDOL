@@ -6,8 +6,8 @@
         console.log("in getpattern");
         var numbers=event.getSource().get('v.value'); 
         var testobj=component.get('v.fieldsList');
-        var fieldname=event.getSource().get('v.fieldName');
-		if(fieldname == "Social_Security_Number_Encrypted__c"){
+        var fieldname=event.getSource().get('v.fieldName'); 
+        if(fieldname == "Social_Security_Number_Encrypted__c"){
             component.set("v.isSSNchanged", true);
         }
         for(var j=0;j<testobj.length;j++){
