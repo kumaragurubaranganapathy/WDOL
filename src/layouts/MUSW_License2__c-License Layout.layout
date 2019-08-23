@@ -9,6 +9,14 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>Application_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Credential_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
@@ -61,7 +69,11 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-	    <platformActionList>
+    <miniLayout>
+        <fields>Application_Type__c</fields>
+        <fields>Credential_Type__c</fields>
+    </miniLayout>
+    <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
             <actionName>NewEvent</actionName>

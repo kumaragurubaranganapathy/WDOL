@@ -90,13 +90,18 @@
         <fields>NAME</fields>
         <relatedList>BGCK__Choice__c.BGCK__Question_Type__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>BGCK__Body__c</fields>
+        <relatedList>BGCK__Question__c.BGCK__Question_Type__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4600000190Ix</masterLabel>
+        <masterLabel>00ht0000000VxJd</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -21,11 +21,11 @@
                 <behavior>Edit</behavior>
                 <field>Application_Method__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Customer_Envelope__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Validation_Number__c</field>
             </layoutItems>
@@ -53,7 +53,6 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Description__c</field>
             </layoutItems>
-            
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Selected_for_Audit__c</field>
@@ -70,7 +69,7 @@
                 <behavior>Edit</behavior>
                 <field>Upgrade_Checkbox__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_First_Name__c</field>
             </layoutItems>
@@ -159,7 +158,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Open_Complaints__c</field>
-            </layoutItems>  
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Pre_License_Number__c</field>
@@ -171,7 +170,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_License_Email__c</field>
-            </layoutItems>			
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -479,7 +478,7 @@
             <actionType>StandardButton</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
-		<platformActionListItems>
+        <platformActionListItems>
             <actionName>MUSW__License2__c.Generate_Fees</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>19</sortOrder>
@@ -651,7 +650,7 @@
         <fields>MUSW__Required__c</fields>
         <fields>CREATED_DATE</fields>
         <fields>SAN_Image_URL__c</fields>
-		<fields>MUSW__Description__c</fields>
+        <fields>MUSW__Description__c</fields>
         <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -672,7 +671,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-		<fields>RECORDTYPE</fields>
+        <fields>RECORDTYPE</fields>
         <relatedList>LnP_BackgroundSection__c.License_Bg__c</relatedList>
     </relatedLists>
     <relatedLists>
