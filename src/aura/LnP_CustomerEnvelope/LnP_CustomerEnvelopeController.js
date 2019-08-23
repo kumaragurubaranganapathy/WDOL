@@ -1,6 +1,6 @@
 ({
     doinit : function(component,event,helper){
-        debugger;
+        //debugger;
         component.set("v.stepNumber",'1');
         var value = helper.getParameterByName(component , event, 'inContextOfRef');
         var context = JSON.parse(window.atob(value));
@@ -32,9 +32,9 @@
         toastEvent.fire();
     },
     gotoURL:function(component,event,helper){
-        console.log('Enter Here');
+        //console.log('Enter Here');
         var evt = $A.get("e.force:navigateToComponent");
-        console.log('evt'+evt);
+        //console.log('evt'+evt);
         evt.setParams({
             componentDef: "c:LnP_PaymentSources",
             //componentAttributes :{ //your attribute}
@@ -45,7 +45,7 @@
         component.set("v.stepNumber",'2');
     },
     assignSteps : function(component,event,helper){
-        debugger;
+        //debugger;
         var _self= this;
         var container= component.find("container");         
         var stepNumber = component.get("v.stepNumber");
@@ -68,7 +68,7 @@
                 helper.createDynamicCompInsideContainer(container, "c:LnP_PaymentSources", attributeMap);
                 break;
             case '3' : container.set("v.body", []);
-                console.log("Case 3 " + component.get("v.defaultProgramType"));
+                //console.log("Case 3 " + component.get("v.defaultProgramType"));
                 var attributeMap = {"stepNumber": component.getReference("v.stepNumber"),
                                     "insertedDepositList" : component.getReference("v.insertedDepositList"),
                                     "insertedReceiptList" : component.getReference("v.insertedReceiptList"),
