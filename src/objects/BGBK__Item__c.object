@@ -357,7 +357,7 @@
     <fields>
         <fullName>GL_To_AFRS__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(IF( BGBK__Amount__c &lt;0 ,CASE(BGBK__Type__c , &quot;049X&quot;,1, &quot;071R&quot;,1, &quot;074R&quot;,1, &quot;090X&quot;,1, &quot;448X&quot;,1, &quot;455X&quot;,1, &quot;966X&quot;,1 ,0) , CASE(BGBK__Type__c , &quot;049R&quot;,1, &quot;071RX&quot;,1, &quot;074X&quot;,1, &quot;951X&quot;,1, &quot;955X&quot;,1, &quot;965X&quot;,1, 0))=1, BGBK__Fund__r.GL__c  , &quot; &quot;)</formula>
+        <formula>BGBK__Fund__r.GL__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>GL (To AFRS)</label>
         <required>false</required>

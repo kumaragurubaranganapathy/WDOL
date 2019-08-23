@@ -1185,6 +1185,10 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect Firm</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
                 <valueName>Appraiser Course</valueName>
             </valueSettings>
@@ -9321,6 +9325,14 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
+                <fullName>Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collection Agency Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Certified Residential Appraiser</fullName>
                 <default>false</default>
             </values>
@@ -9410,6 +9422,14 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Out State Collection Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State Collection Agency Branch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of State Collection Agency</fullName>
                 <default>false</default>
             </values>
             <values>

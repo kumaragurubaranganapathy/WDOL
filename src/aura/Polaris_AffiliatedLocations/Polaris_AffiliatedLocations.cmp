@@ -1,5 +1,4 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="LnP_LicenseAddressApexController">
-    
     <aura:attribute name="countryList" type="List" />
     <aura:attribute name="countyList" type="List" />
     <aura:attribute name="isCanadianProvince" type="Boolean" default="false" />
@@ -28,6 +27,8 @@
     <aura:attribute name="requestedHeaderList" type="List" />
     <aura:registerEvent name="LnP_Location" type="c:LnP_LocationEvent" />
     <aura:method name="performRemove" action="{!c.RequestRemove}" />
+    <aura:attribute name="status" type="String" />
+    <aura:attribute name="licenseData" type="String"/>
     <aura:attribute name="parcel" type="MUSW__Parcel__c" default="{'sobjectType': 'MUSW__Parcel__c',
                                                                   			'Designated_Engineer_License__c':'',
                                                                   			'Designated_Land_Surveyor_License__c':'',
@@ -45,13 +46,15 @@
                                                                    }" />
   <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
   <aura:attribute name="affLocTableColumnsList" type="List" default="['DE#/DLS#','Country','Address Line 1','State','County','Zip Code']"/>                      
-    <aura:if isTrue="{!v.isAMR}">
+    <aura:attribute name="isUndo" type="Boolean" default="false" />
+    <!--  <aura:if isTrue="{!v.isAMR}">
 		 <lightning:select aura:id="select" name="select Action" label="select Action" onchange="{! c.onChange }">
-        <option value="select Action">--select Action--</option>
+        <option value="select Action">select Action</option>
         <option value="Add Affiliation">Add Affiliation</option>
         <option value="Remove Affiliation">Remove Affiliation</option>
     </lightning:select>        
-    </aura:if>
+    </aura:if> 
+	-->
     <br></br>
     <br></br>
     <aura:if isTrue="{!v.affLocationTableList.length != 0}">        
@@ -72,13 +75,13 @@
                         <tbody>
                             <aura:iteration items="{!v.affLocationTableList}" var="tableData" indexVar="ind">
                                 <tr class="slds-hint-parent">
-                                    <aura:if isTrue="{!v.removeAction}">
+                                    <!--<aura:if isTrue="{!v.removeAction}">
                                     <td  class="cell-style"> 
                                             <div class="slds-truncate" Id="{!tableData.Id}"  ></div>
                                             <input class="slds" type="checkbox" value="{!v.checkbox}" data-id="{!tableData.Id}" onchange="{!c.onSelect}" />
                                        
                                     </td>
-                                      </aura:if>
+                                      </aura:if> -->
                                     <td data-label="Designated_Engineer_License__c" class="cell-style"> 
                                         <aura:if isTrue="{!tableData.Designated_Engineer_License__c}">
                                             <div class="slds-truncate" title="{!tableData.Designated_Engineer_License__c}">{!tableData.Designated_Engineer_License__c}</div>
@@ -121,12 +124,30 @@
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
-                                    <aura:if isTrue="{!v.isAMR ? false : true}">
+                                     <td data-label="Status__c" class="cell-style">
+                                        <aura:if isTrue="{!tableData.Status__c}">
+                                            <div class="slds-truncate" title="{!tableData.Status__c}">{!tableData.Status__c}</div>
+                                            <aura:set attribute="else">None</aura:set>
+                                        </aura:if>
+                                    </td>
+                                    <aura:if isTrue="{!v.isAMR ? true :false}">
                                     <td data-label="actions" class="cell-style action-cell">
                                         <div class="slds-truncate">
-                                           <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveClick}" target="_blank">Remove</a>
-									    </div>    
-                                    </td>
+                                           <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveAMRClick}" target="_blank">Remove</a>
+									    </div>  
+                                        <aura:if isTrue="{!and(or(tableData.Status__c == 'Pending Add',tableData.Status__c == 'Pending Remove'),tableData.isUndo__c == true) ? true :false}">
+                                                <div class="slds-truncate">
+                                                   <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" data-status="{!tableData.Status__c}" data-license="{tableData.License__c}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.undoAction}" target="_blank">undo</a>
+                                                </div> 
+                                        </aura:if>
+                                       </td>
+                                        <aura:set attribute="else">
+                                            <td data-label="actions" class="cell-style action-cell">
+                                                <div class="slds-truncate">
+                                                   <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveClick}" target="_blank">Remove</a>
+                                                </div>    
+                                            </td>  
+                                        </aura:set>
                                     </aura:if>
                                 </tr>  
                             </aura:iteration>
@@ -142,7 +163,7 @@
         </aura:set>
     </aura:if>
     
-    <aura:if isTrue="{!v.requestedLocationTableList.length != 0}">        
+    <!--<aura:if isTrue="{!v.requestedLocationTableList.length != 0}">        
         <div>
             <br></br>
             <br></br>
@@ -217,9 +238,8 @@
                 </div>
             </div>
         </div>
-    </aura:if>
+    </aura:if> -->
   
-    <aura:if isTrue="{!v.addAction}">
     <br></br>
     <div class="affiliated-loc-wrapper">
         
@@ -229,12 +249,12 @@
             <lightning:input  name="DELicense" label="Designated Engineer License#" value="{!v.parcel.Designated_Engineer_License__c}"  required="false" class="field-size address-fields"/>
             <lightning:input  name="DLSLicense" label="Designated Land Surveyor License#" value="{!v.parcel.Designated_Land_Surveyor_License__c}"  required="false" class="field-size field-margin address-fields"/>
             
-            <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
+            <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="countryInstance">
                     <option text="{!countryInstance.label}" value="{!countryInstance.value}"/>
                 </aura:iteration>
             </lightning:select>
-            <lightning:input title="street" name="street" label="Address Line 1" value="{!v.parcel.MUSW__Street2__c}"  required="true" class="field-size address-fields"/>
+            <lightning:input title="street" name="street" label="Address Line 1" value="{!v.parcel.MUSW__Street2__c}" class="field-size address-fields"/>
             <lightning:input  name="Unit" label="Address Line 2" value="{!v.parcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
             <lightning:input name="city" label="City" value="{!v.parcel.MUSW__City__c}" required="true" class="field-size address-fields" />
            <aura:if isTrue="{!v.isState}">
@@ -252,11 +272,11 @@
                 </lightning:select>
             </aura:if>
              <aura:if isTrue="{!v.isNotApplicable}">
-                <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
+                <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" class="field-size address-fields" disabled = "true"/>
             </aura:if>
            
-            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.parcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
-             <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountyChange}"> 
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.parcel.Zip_Postal_Code__c}"  class="field-size address-fields"/>
+             <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" class="field-size address-fields" onchange="{!c.onCountyChange}"> 
                     <aura:iteration items="{!v.countyList}" var="eachCounty">
                         <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
                     </aura:iteration>
@@ -268,7 +288,4 @@
             </div>
         </div>
     </div> 
-    </aura:if>
-    
-    
 </aura:component>
