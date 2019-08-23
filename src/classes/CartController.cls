@@ -34,6 +34,7 @@ public with sharing class CartController
     public String accountSelected { get; set; }
     public Id feeSelected { get; set; }
     public Boolean canCreate { get; private set; }
+    public Boolean isBusinessCart { get; set; } // US 1976
     public Boolean canPayPartial { get; private set; }
     public Boolean canPayMulti { get; private set; }
     public Boolean isFeeTransfer { get; private set; }
@@ -104,11 +105,12 @@ public with sharing class CartController
         checkReceiptAmount = true;
         isBisuneesLic =System.currentPageReference().getParameters().get('isBLic');
         //Check if it is business cart
-        
+        isBusinessCart = false;
         if(isPortalUser){
             objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
             if (objContact!=null && objContact.BusinessCartToOpen__c != null){
                 m_accId =objContact.BusinessCartToOpen__c;
+                isBusinessCart = true;
             }
         }
         
@@ -229,11 +231,17 @@ public with sharing class CartController
         system.debug('m_invoiceId::'+m_invoiceId);
         system.debug('m_depositId::'+m_depositId);
         system.debug('m_feeId::'+m_feeId);
+        con = m_cs.getActiveContact();            
+         a = m_cs.getActiveAccount();
+         cart = m_cs.getActiveCart();
+        if(isBusinessCart){
+          con = objContact; 
+          cart.BGBK__Contact__c =objContact.id;
+        }
+        
         if(requestFromEPayment){
             system.debug('isnide first if');
-            con = m_cs.getActiveContact();            
-            a = m_cs.getActiveAccount();
-            cart = m_cs.getActiveCart();
+            
             if(a != null)
                 accountSelected = a.Id;
             invoices = m_cs.getCartInvoices(true);
@@ -242,7 +250,11 @@ public with sharing class CartController
             system.debug('isnide first if con' +con);
             system.debug('isnide first if a' +a);
             if (con != null) email = con.Email;
-
+            system.debug('a.Email__c$$'+a.Email__c);
+            if(isBusinessCart) {
+                Account objAcc = [select Email__c from Account where id =: a.id];
+                email= objAcc.Email__c;// US 1976
+            }
             List<String> feeIdList = ePaymentReturnSession.sfdcFeeIds;
             system.debug('feeIdList = '+feeIdList);
             fees = new List<MUSW__Fee__c>();
@@ -306,10 +318,7 @@ public with sharing class CartController
             }
         }
         else{
-            con = m_cs.getActiveContact();            
-            a = m_cs.getActiveAccount();
-            //cart = BGBK.CartManager.getAllCartsForContact('003r000000G0MQu')[0];
-            cart = m_cs.getActiveCart();
+            
             // cart = m_cs.getCart();
             system.debug('cart$$'+cart);
             /* commented for a testing in elgin
@@ -340,6 +349,12 @@ public with sharing class CartController
             system.debug('the accountSelected' +accountSelected);
             system.debug('the con is' +con);
             if (con != null) email = con.Email;
+            if(isBusinessCart) {
+                Account objAcc = [select Email__c from Account where id =: a.id];
+                email= objAcc.Email__c;// US 1976
+                system.debug('email$$$'+email);
+                
+            }
             
             // remove invoiced fees from cart
             Set<Id> feesToRemove = new Set<Id>();
