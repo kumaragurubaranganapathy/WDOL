@@ -1,6 +1,7 @@
 ({
 	createDynamicCompInsideContainer : function(container, componentName , atrributeMap) 
-    {debugger;
+    {
+        //debugger;
         $A.createComponent
         (
             componentName,
