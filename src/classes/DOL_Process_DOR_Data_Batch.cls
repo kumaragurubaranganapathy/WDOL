@@ -29,7 +29,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         return Database.getQueryLocator([ 
                 select id, INFO__c, Input__c, File_Name__c, Status__c, Input_Type__c 
                 from DOL_Integration_Batch_Input__c 
-                where Status__c = 'UNPROCESSED' and Input_Type__c = 'DOR' 
+                where Status__c = 'UNPROCESSED' and Input_Type__c = 'DOR'
                 ]);
     }
     
@@ -87,7 +87,8 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                 tempExistingLicenseRecord = null;
                 tempDorInput = dorInputMap.get(batchInput.Id);
                 if( tempDorInput != null ){
-                    // get the updated records from DOR 
+                    // get the updated records from DOR
+                    validateDorInput(tempDorInput);
                     tempUpdatedLicense = getUpdatedLicense(tempDorInput);
                     tempUpdatedAccount = getUpdatedAccount(tempDorInput);
                     tempPhysicalParcel = getUpdatedPhysicalParcel(tempDorInput);
@@ -100,6 +101,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                     tempDORsObject = new DOR_sObject();
                     tempDORsObject.setSobjects(tempUpdatedLicense, tempUpdatedAccount, tempUpdatedAccContacts, 
                                                 tempPhysicalParcel, tempMailingParcel, tempExistingLicenseRecord);
+                    
                     tempDORsObject.validateRequiredData();
                     tempDORsObject.updateSFDCIdInRecords();
                     // save records to DB
@@ -116,13 +118,20 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                     batchInput.Status__c = 'FAILED';
                     batchInput.INFO__C += 'Some error occured during parsing';
                 }
-            }catch(Exception error){
+            }
+            catch(CustomException customErr){
+                batchInput.Status__c = 'FAILED';
+                batchInput.INFO__c += ' '+'error occured :- '+customErr.getMessage()+' stack trace '+customErr.getStackTraceString();
+                tempDorResponse = new DOR_Response();
+                tempDorResponse.setResponse(tempDorInput,tempDorInput.polarisID,'error occured :- '+customErr.getMessage());
+                dorResponses.add(tempDorResponse);
+            }
+            catch(Exception error){
                 batchInput.Status__c = 'FAILED';
                 batchInput.INFO__c += ' '+'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
                 tempDorResponse = new DOR_Response();
-                tempDorResponse.setResponse(tempDorInput,tempDorInput.polarisID,'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString());
+                tempDorResponse.setResponse(tempDorInput,tempDorInput.polarisID,'Salesforce Technical Error');
                 dorResponses.add(tempDorResponse);
-                DOL_CreateErrorLog_Exception.logApplicationError(error);
             }
         }
         DOL_Dao.save(records);
@@ -135,13 +144,25 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                 Map<String,String> headerMap = new  Map<String,String>();
                 headerMap.put('Content-Type','application/json');
                 String url = 'callout:DOL_Mule_API/v1/dorUpload';
+                String responseString = JSON.serialize(dorResponses);
                 //String url = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/dorUpload';
                 HttpResponse httpResp = DOL_HTTP_Utility.doHttpRequest(url,
                                                         'POST',
-                                                        JSON.serialize(dorResponses),
+                                                        responseString,
                                                         null,headerMap);
                 System.debug(httpResp.getStatusCode());
                 System.debug(httpResp.getBody());
+
+                String fileName = 'DOR_Response_file'+'_'+DOL_AppUtility.getDate('ddMMYYhhmmss')+'.txt';
+				DOL_Integration_Batch_Input__c batchInput = new DOL_Integration_Batch_Input__c();
+				batchInput.Input_Type__c = 'DOR';
+				batchInput.File_Name__c = fileName;
+				insert batchInput;
+                
+                Id contentDocId = DOL_ContentVersionUtility.createNewFile(batchInput.Id, responseString, fileName);
+                batchInput.INFO__c = 'Content Version created , contentDocumentId is '+contentDocId;
+				batchInput.Status__c = 'CONTENT VERSION CREATED';
+				update batchInput;
             }
         }
         catch(Exception error){
@@ -149,6 +170,30 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             DOL_CreateErrorLog_Exception.logApplicationError(error);
         }
     }
+
+    // Validate input Data
+    private void validateDorInput(DOL_DOR_Input dorInput){
+            if( String.isBlank(dorInput.polarisID) ){
+                // dorEntityName // dolProfCode // dorLicenseStatus
+                String respError = 'Required fields are missing :: ';
+                boolean invalidData = false;
+                if(String.isBlank(dorInput.dorEntityName) ){
+                    invalidData = true;
+                    respError += ' dorEntityName ,';
+                }
+                if(String.isBlank(dorInput.dolProfCode) ){
+                    invalidData = true;
+                    respError += ' dolProfCode ,';
+                }
+                if(String.isBlank(dorInput.dorLicenseStatus) ){
+                    invalidData = true;
+                    respError += ' dorLicenseStatus ';
+                }
+                if(invalidData){
+                    throw new CustomException(respError);
+                }
+            }
+        }
     
     /**
     * method 		: getUpdatedLicense
@@ -448,6 +493,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         public void validateRequiredData(){
             if(license == null)
                 throw new CustomException('License Data not found, so not able to process the record');
+            
         }
 
         public void updateSFDCIdInRecords(){
