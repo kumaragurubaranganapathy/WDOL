@@ -270,8 +270,8 @@ _______________________________________________________________
         </div>
         <div class="screen-three">
             <aura:if isTrue="{!v.screenThree}">
-                <div class="slds-m-vertical_medium heading">
-                    <span>{!v.courseNameToDisplayDetails}</span>
+                <div class="slds-m-vertical_medium">
+                    <span class="heading">{!v.courseNameToDisplayDetails}</span>
                 </div>
                 <div class="buttons-right text-size">
                     <span>Information as of </span><span>{!v.date}</span>
@@ -358,7 +358,7 @@ _______________________________________________________________
                                 </div>
                                 <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
                                     <div class="field-style fieldSize">Website:<span>&nbsp;</span></div>
-                                    <div class="field-style-val"><a href="{!'//'+item.Website__c}" target="_blank">{!item.Website__c}</a></div>
+                                    <div class="field-style-val"><a class="link" href="{!'//'+item.Website__c}" target="_blank">{!item.Website__c}</a></div>
                                 </div>
                             </div>
                         </div>
