@@ -1,6 +1,6 @@
 ({
     enablePrintButton : function(component,event){
-        debugger;
+        //debugger;
         var receiptRec = component.get("v.receiptRec");
         var paymentType=component.find('paymentMethod').get('v.value');
         var number=component.find('checkNumber').get('v.value');

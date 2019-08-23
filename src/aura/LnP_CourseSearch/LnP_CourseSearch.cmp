@@ -227,25 +227,25 @@ _______________________________________________________________
             <aura:if isTrue="{!v.screenTwo}">
                 <div class="headerWrap">
                     <span class="sub-header">Course Search Criteria</span>
-                    <span>
+                    <!--span>
                         <lightning:button variant="neutral" class="button-border modify-btn" type="button" name="cancel"
                                           label="Modify Search" onclick="{!c.modifySearch}" />
-                    </span>
+                    </span-->
                 </div>
                 <div class="search-details  slds-m-top_x-small slds-m-bottom_x-large">
                     <aura:if isTrue="{!v.searchOne}">
                         <aura:iteration items="{!v.searchOneArray}" var="option">
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="slds-form-element__label">{!option.label}:<span>&nbsp;</span></div>
-                                <div class="slds-form-element__control btnnrml">{!option.value}</div>
+                            <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                <div class="field-style">{!option.label}:<span>&nbsp;</span></div>
+                                <div class="field-style-val btnnrml">{!option.value}</div>
                             </div>
                         </aura:iteration>
                     </aura:if>
                     <aura:if isTrue="{!v.searchTwo}">
                         <aura:iteration items="{!v.searchTwoArray}" var="option">
-                            <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                <div class="slds-form-element__label">{!option.label}:<span>&nbsp;</span></div>
-                                <div class="slds-form-element__control btnnrml">{!option.value}</div>
+                            <div class="text-element slds-col slds-form-element_horizontal slds-form-element">
+                                <div class="field-style">{!option.label}:<span>&nbsp;</span></div>
+                                <div class="field-style-val btnnrml">{!option.value}</div>
                             </div>
                         </aura:iteration>
                     </aura:if>

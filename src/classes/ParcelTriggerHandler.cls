@@ -51,7 +51,5 @@ public class ParcelTriggerHandler implements BGCM.ITriggerHandler {
         //End of Parcel_UsersharingModel
 
         //Share the Parcel records when the Delegated Admin is the applicant on the Credential/Permit
-        PracelCreatedByDelegate DelegateController = new PracelCreatedByDelegate();
-        DelegateController.shareParcelRecords(Trigger.New);
     }
 }

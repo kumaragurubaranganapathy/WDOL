@@ -17,8 +17,11 @@
     <aura:attribute name="slipPrinterInput" type="String" access="public"  />
     <aura:attribute name="disableNext" type="boolean" />
     
+    <!-- change date : 23/8/2019 -->
+    <aura:attribute name= "formattedRowIndex" type="String"/>
+    
     <!-- change date : 13/8/2019 -->
-    <aura:attribute name="ValidationNumber" type="String" default='DEP' />
+    <aura:attribute name="ValidationNumber" type="String" default='DEP' />  
     
 <!-- handlers -->
     <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
@@ -27,7 +30,8 @@
     <!-- Table Row -->   
     <tr class="slds-text-title_caps">
         <td> 
-            {!'00' + (v.rowIndex + 1)}
+           <!-- {!'00' + (v.rowIndex)} -->
+            {!v.formattedRowIndex}
         </td>
         <td>
             <lightning:select aura:id="paymentMethod" value="{!v.receiptRec.MUSW__Payment_Method__c}" name="paymentMethod" onchange="{!c.enablePrintButton}" >
@@ -47,9 +51,9 @@
                            type="number" formatter="currency" step="0.01" ></lightning:input>
         </td>
         <td>          
-              <lightning:button disabled="{!v.printDisabled}" variant="brand" label="Print and New" onclick="{!c.AddNewRow}"/>
-              <lightning:button  disabled="{!v.cloneDisabled}" variant="brand" label="Print and Clone" onclick="{!c.Duplicate_AddNewRow}"/>
-              <lightning:button  disabled="{!v.updateDisabled}" variant="brand" label="Update and Print" onclick="{!c.Update_AddNewRow}"/>
+              <lightning:button disabled="{!v.printDisabled}" name="new" variant="brand" label="Print and New" onclick="{!c.AddNewRow}"/>
+              <lightning:button  disabled="{!v.cloneDisabled}" name="clone" variant="brand" label="Print and Clone" onclick="{!c.Duplicate_AddNewRow}"/>
+              <lightning:button  disabled="{!v.updateDisabled}" name="update"  variant="brand" label="Update and Print" onclick="{!c.Update_AddNewRow}"/>
         </td> 
         
     </tr>    
