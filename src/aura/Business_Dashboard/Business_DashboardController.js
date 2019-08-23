@@ -33,7 +33,9 @@
     updateBusinessInfo :function(component,event,helper){
         helper.updateBusinessInfoHelper(component,event,helper);  
     },
-    
+     updateBusinessName :function(component,event,helper){
+        helper.updateBusinessNameHelper(component,event,helper);  
+    },    
     handleLicenseLink :  function(component,event,helper){
         /*var link = $A.get("$Label.c.Polaris_Portal_Home")+"licenseSelectionPage";
         var result = component.get("v.mainAccountName");
@@ -168,7 +170,7 @@
     goToCart : function(component,event,helper){
         helper.goToCart(component,event);
     },
-	// US 1976
+    // US 1976
     GoToBusinessCart :function(component,event,helper){
         helper.GoToBusinessCart(component,event);
     }

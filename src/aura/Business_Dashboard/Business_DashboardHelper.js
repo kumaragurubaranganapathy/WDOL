@@ -238,6 +238,34 @@
         });
         $A.enqueueAction(action);
     },
+        updateBusinessNameHelper : function(component, event, helper) {
+        var requestId='';
+        var ServiceRequestType = 'Update Business Name';
+        
+        var action = component.get("c.insertRequest");
+        action.setParams({            
+            "acctId": component.get("v.SelectedAccountDetails.Id"),            
+            "ServiceRequestType": ServiceRequestType,           
+        });
+        action.setCallback(this, function(actionResult){
+            
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ServiceRequestType);                
+                sessionStorage.setItem("board", ServiceRequestType);
+                sessionStorage.setItem("licenseType", ServiceRequestType);
+                sessionStorage.setItem("applicationType", ServiceRequestType);
+                sessionStorage.setItem("requestId", requestId);
+                //sessionStorage.setItem("recordId", component.get("v.recordId"));
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+        
+    },
     updateBusinessInfoHelper : function(component, event, helper) {
         var requestId='';
         var ServiceRequestType = 'Update Company Information';
@@ -299,7 +327,7 @@
             case 'Branches':
                 var attr;
                 if(component.get("v.LicenseData.Credential_Type__c")== 'Engineering/Land Surveying Company'){
-                    attr =  {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "false",affiliatedLocation : "true"};
+                    attr =  {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "false",affiliatedLocation : "true",licenseType : component.get("v.LicenseData.Credential_Type__c"),board : component.get("v.LicenseData.Application_Type__c")};
                 }else{
                   attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true"};   
                 }

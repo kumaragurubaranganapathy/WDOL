@@ -59,7 +59,7 @@
         </aura:if>
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
-                <h2 class="page-title">Business Management</h2>                
+                <h1 class="page-title">Business Management</h1>                
                 <div class="biz-welcome">   
                     <div class="add-biz-wrapper">
                         <lightning:button name="Add Business" label="Add business" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
@@ -268,7 +268,7 @@
                                         <div class="data-style">{!v.SelectedAccountDetails.Email__c}</div>
                                     </div>                        
                                     <div class="field-style">
-                                        <div class="label-style">Phone:</div>
+                                        <div class="label-style">Business Phone:</div>
                                         <div class="data-style">{!v.SelectedAccountDetails.Business_Phone__c}</div>
                                     </div>
                                     <!--<div class="field-style"><span class="label-style">Email : </span></div>
@@ -318,7 +318,7 @@
                                     <li data-index="2" aura:id="action-item"><a onclick="{!c.updateBusinessInfo}" href="javascript:void(0);">Update Company Information</a></li>
                                    <!-- <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li> -->
                                     <!--<li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li> -->
-                                    <li data-index="3" class="list-item" aura:id="action-item"><a href="javascript:void(0);">Request Name Change</a></li>
+                                    <li data-index="3" class="list-item" aura:id="action-item"><a onclick="{!c.updateBusinessName}" href="javascript:void(0);">Update Business Name</a></li>
                                     <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.BillingCode}" href="javascript:void(0);">Get Billing Code</a></li>
                                     <li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.GoToBusinessCart}" href="javascript:void(0);">Payment Cart</a></li> <!-- US 1976 -->
                                     
@@ -542,11 +542,11 @@
                         <!--<c:Polaris_Relationship selectedAccount="{!v.selectedAccount}" mainAccountName="{!v.mainAccountName}" licenseId="{!v.licenseId}" licenseDetail="{!v.licenseDetail}" />-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>
-                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Draft Applications" id="Draft Applications" >
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Draft Applications or Requests" id="Draft Applications" >
                         <!--<c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/>-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>
-                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Pending Applications" id="Pending Applications" >
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Pending Applications or Requests" id="Pending Applications" >
                         <!--<c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" />-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>

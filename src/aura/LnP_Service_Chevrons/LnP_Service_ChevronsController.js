@@ -37,6 +37,7 @@
         helper.showDependentQuestionsHelper(component, event, helper);
     },
      attestValue: function(component, event, helper) {        
+        alert(event.getSource().get("v.value"));
     },
     submit : function(component, event, helper) { 
         helper.submit(component, event, helper);
