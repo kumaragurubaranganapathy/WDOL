@@ -26,7 +26,8 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     <c:LnP_ServerActionService aura:id="server"/>
      <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
-    </aura:if>
+	</aura:if>
+	<div class="content-wrapper">
     <span class="slds-hide page-header">{!v.pageHeader}</span>
 	<div  id="vv" class="slds-wrap">
       
@@ -107,5 +108,6 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
 			</div>
 		</aura:iteration>
         
-    </div>
+	</div>
+	</div>
 </aura:component>
