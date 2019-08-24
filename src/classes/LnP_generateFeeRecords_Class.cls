@@ -124,7 +124,7 @@ public with sharing class LnP_generateFeeRecords_Class {
             
             Renewal_Application__c renewal_Rec = new Renewal_Application__c();
             
-            renewal_Rec =[Select Id,Renewal_Status__c,Manual_Fee_Generation__c,Renewal_Reinstatement_Type__c,Credential_Type__c,Application_Type__c,Applicant__c,License_Account__c,License__c,License__r.Is_Late_Renewal_Eligible__c, License__r.Deployed__c from Renewal_Application__c where License__c != null AND License__r.Deployed__c = False AND License_Account__c = null AND Application_Type__c != null AND Id =:renewalId];
+            renewal_Rec =[Select Id,Renewal_Status__c,Manual_Fee_Generation__c,Renewal_Reinstatement_Type__c,Credential_Type__c,Application_Type__c,Applicant__c,License_Account__c,License__c,License__r.Is_Late_Renewal_Eligible__c, License__r.Deployed__c from Renewal_Application__c where Id =:renewalId];
             
             if(renewal_Rec.Renewal_Status__c != FeeGenartionCheckStatus){
                 return FeeGenarationStatusError;
