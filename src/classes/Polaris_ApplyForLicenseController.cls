@@ -1646,6 +1646,7 @@ objWrapper.sectionError = true;
         
         if(noFees){
             licList[0].No_Fee_Required__c = noFees;
+			licList[0].MUSW__Status__c = 'Pending Payment';
             update licList[0];
         }
         return noFees;    
