@@ -242,7 +242,7 @@
         var requestId='';
         var ServiceRequestType = 'Update Business Name';
         
-        var action = component.get("c.insertRequest");
+        var action = component.get("c.insertRequestBusiness");
         action.setParams({            
             "acctId": component.get("v.SelectedAccountDetails.Id"),            
             "ServiceRequestType": ServiceRequestType,           
@@ -270,7 +270,7 @@
         var requestId='';
         var ServiceRequestType = 'Update Company Information';
         
-        var action = component.get("c.insertRequest");
+        var action = component.get("c.insertRequestBusiness");
         action.setParams({            
             "acctId": component.get("v.SelectedAccountDetails.Id"),            
             "ServiceRequestType": ServiceRequestType,           

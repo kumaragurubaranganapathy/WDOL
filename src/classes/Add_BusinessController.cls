@@ -7,7 +7,7 @@ public with sharing class Add_BusinessController {
     }
     
     @AuraEnabled 
-    public static String insertRequest(String acctId,String ServiceRequestType){
+    public static String insertRequestBusiness(String acctId,String ServiceRequestType){
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -34,7 +34,7 @@ public with sharing class Add_BusinessController {
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'Add_BusinessController','insertRequest');            
+            HandleException.LogException(e,'Add_BusinessController','insertRequestBusiness');            
         }
         string appId = '';
         return appId = application.Id;
