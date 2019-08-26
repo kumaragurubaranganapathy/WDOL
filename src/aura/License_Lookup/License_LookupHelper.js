@@ -224,7 +224,7 @@
                             {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true, title:{fieldName: 'License_Type'}},
                             {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                             {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                            {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                            {label: 'Disciplinary Action', fieldName: 'Discipline', type: 'boolean', sortable : true},
                             {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                             //{label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                              //{ label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
@@ -590,7 +590,7 @@
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true, title:{fieldName: 'License_Type'}},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                                {label: 'Disciplinary Action', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                                 //{label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                                  //{ label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
@@ -789,7 +789,7 @@
                                 {label: 'License Type', fieldName: 'License_Type', type: 'Picklist', sortable : true, title:{fieldName: 'License_Type'}},
                                 {label: 'Status', fieldName: 'Status', type: 'Picklist', sortable : true},
                                 {label: 'Sub Status', fieldName: 'Sub_Status', type: 'Picklist', sortable : true},
-                                {label: 'Discipline', fieldName: 'Discipline', type: 'boolean', sortable : true},
+                                {label: 'Disciplinary Action', fieldName: 'Discipline', type: 'boolean', sortable : true},
                                 {label: 'City', fieldName: 'City', type: 'Text', sortable : true},
                                 //{label: 'View Details', type: 'button', initialWidth: 160, typeAttributes: 
                                  //{ label: 'More Details', name: 'view_details', title: 'Click to View Details'}},
