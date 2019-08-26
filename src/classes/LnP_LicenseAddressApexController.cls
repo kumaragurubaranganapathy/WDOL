@@ -279,7 +279,8 @@ return ListAddress;
                 //parcel.Address_Type__c = 'Physical Address';
                 parcel.is_Physical_and_Mailing_Address_Same__c = true;
                 allAddr = [Select id,name, MUSW__Primary_Contact__c, Primary_Account__c from MUSW__Parcel__c 
-                           where MUSW__Primary_Contact__c =:accountOrContactId OR Primary_Account__c = :accountOrContactId];
+                           where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c =:accountOrContactId) OR 
+                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId)];
                 system.debug('allAddr'+allAddr);
                 for(Integer i = 0; i < allAddr.size(); i++){
                     if(allAddr.get(i).id == parcel.id){
