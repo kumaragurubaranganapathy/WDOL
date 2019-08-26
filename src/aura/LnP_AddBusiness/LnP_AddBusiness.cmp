@@ -13,7 +13,7 @@
     <aura:attribute name="isOpen" type="Boolean" default="false" />
     <aura:attribute name="validateFields" type="List" default='[{"lName":"Name", "Required__c":true, "Error_Message__c":"Account Name is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
                                                                {"lName":"Business_Structure__c", "Required__c":true, "Error_Message__c":"Business Structure is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
-                                                               {"lName":"Doing_Business_As_1__c", "Required__c":false, "Error_Message__c":"Doing Business As is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
+                                                               /*{"lName":"Doing_Business_As_1__c", "Required__c":false, "Error_Message__c":"Doing Business As is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},*/
                                                                {"lName":"First_Name_Primary_Contact__c", "Required__c":true, "Error_Message__c":"Primary Contact First Name is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
                                                                {"lName":"Last_Name_Primary_Contact__c", "Required__c":true, "Error_Message__c":"Primary Contact Last Name is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
                                                                {"lName":"Phone_Primary_Contact__c", "Required__c":true, "Error_Message__c":"Primary Contact Phone should be in xxx.xxx.xxxx format.", "ValidationCriteria__c":"10,3,3,.", "Regex_Validation__c":"^\\(?([0-9]{3})\\)?[.]?([0-9]{3})[.]?([0-9]{4})$"},
