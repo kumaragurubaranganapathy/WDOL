@@ -753,11 +753,11 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         system.debug('mandatorySubsection098'+ mandatorySubSection);
                         if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                             if(mapAddress.isEmpty()){
-                                objWrapper.sectionError = true;
+                                //objWrapper.sectionError = true;
                             }else{
                                 if(!mapAddress.containsKey('MAILING ADDRESS') || (!mapAddress.containsKey('PHYSICAL ADDRESS') && !mapAddress.get('MAILING ADDRESS')[0].is_Physical_and_Mailing_Address_Same__c)){
                                     system.debug('inside the mandatory'+mapAddress.get('PHYSICAL ADDRESS'));
-                                    objWrapper.sectionError = true;
+                                    //objWrapper.sectionError = true;
                                 }
                             }   
                         }
