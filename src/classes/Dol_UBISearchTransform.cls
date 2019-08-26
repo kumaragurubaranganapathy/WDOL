@@ -149,4 +149,14 @@ public class Dol_UBISearchTransform {
             System.debug('status==' + status);
             return status;
     } 
+	
+	 @auraEnabled
+    public static String getAccountUBI (id accountId){
+        Account accObj = [select id, UBI_Number__c from Account where id=:accountId limit 1];
+        String accUBI = '';
+        if(accObj.UBI_Number__c!=null ||accObj.UBI_Number__c!='' ){
+            accUBI = accObj.UBI_Number__c;
+        }
+        return accUBI;
+    }
 }

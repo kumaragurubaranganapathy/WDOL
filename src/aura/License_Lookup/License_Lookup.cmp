@@ -109,7 +109,7 @@ _______________________________________________________________
                         <p>{!eachLicense}</p>
                     </aura:iteration>        
                 </div>
-                <div class="heading slds-m-top_medium">Search with License Number</div>
+                <div class="heading slds-m-top_medium">Search a Profession or With a License Number</div>
                 <div class="slds-m-top_medium slds-box">
                     <div class="slds-form-element">
                         <div class="">
@@ -421,7 +421,7 @@ _______________________________________________________________
                                     </div>
                                 </div>
                                 <lightning:layoutItem size="4" mediumDevicesize="4" class="text-element slds-form-element_horizontal slds-form-element">
-                                    <div class="field-style">Discipline:<span>&nbsp;</span></div>
+                                    <div class="field-style">Disciplinary Action:<span>&nbsp;</span></div>
                                     <div class="field-style-val">
                                         <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
                                             Yes
@@ -639,7 +639,7 @@ _______________________________________________________________
                                                 </div>
                                             </div>
                                             <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="field-style">Discipline:<span>&nbsp;</span></div>
+                                                <div class="field-style">Disciplinary Action:<span>&nbsp;</span></div>
                                                 <div class="field-style-val">
                                                     <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
                                                         Yes

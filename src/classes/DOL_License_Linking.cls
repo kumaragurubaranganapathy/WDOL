@@ -291,19 +291,21 @@ public without Sharing class DOL_License_Linking {
         return lstLicense; 
     }
     @AuraEnabled
-    public static string createReviewRecord(String Name, String licenseId) {
+    public static string createReviewRecord(String Name, String licenseId, String mail) {
         DOL_AppUtility.isAuthenticatedUser() ;
-        MUSW__License2__c license  = [select Credential_Type__c,Application_Type__c from MUSW__License2__c where id =:licenseId limit 1];
+        MUSW__License2__c license  = [select Id,Credential_Type__c,Application_Type__c from MUSW__License2__c where id =:licenseId limit 1];
         List<Master_ConfigData_Listing__c> lstQueue= [select id,Queue_Id__c from Master_ConfigData_Listing__c where Program_Type__c includes  (:license.Application_Type__c) and Queue_Name__c in ('RBS Queue','RE Queue') ];
         List<Request__c> lstreview = new List<Request__c>();
         String message ='';
         if(license != null) {
             Request__c request = new Request__c();
-            request.Description__c = name;
+            request.Description__c = mail;
             request.Service_Request_Type__c ='Sending Activation Code';
             request.Status__c ='Pending';
             request.Profession__c = license.Application_Type__c;
+            request.License__c = license.Id;
             request.License_Type__c = license.Credential_Type__c;
+            request.Service_Request_Type__c  ='Request Activation Code';
             if(!lstQueue.isEmpty())
             request.ownerId =lstQueue[0].Queue_Id__c;
             lstreview.add(request);
