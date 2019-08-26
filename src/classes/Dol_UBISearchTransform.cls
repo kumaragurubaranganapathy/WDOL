@@ -58,6 +58,7 @@ public class Dol_UBISearchTransform {
                         acc.UBI_Number__c = responseDeatil.entity.ubi !=null ? responseDeatil.entity.ubi.trim() : '';
                         acc.Business_Structure__c  = responseDeatil.entity.typeDescription !=null ? responseDeatil.entity.typeDescription.trim() : ''; 
                         acc.UBI_Status__c = businessStatus ;
+                        acc.Account_Status__c = businessStatus;
                         
                         accountConList = [Select id,Title__c,Last_Name__c,Middle_Name__c,First_Name__c from MUSW__Account_Contact__c where MUSW__Account__c =:accountId];
                         if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isNotEmpty(accountConList)){
@@ -84,12 +85,12 @@ public class Dol_UBISearchTransform {
                                 for(String govName : governingMap.keySet()){
                                     if(!accountConMap.containsKey(govName)){
                                         system.debug('accountConMapmismatch');
-                                    	uniqueGovList.add(governingMap.get(govName));
+                                        uniqueGovList.add(governingMap.get(govName));
                                     }
                                 }
-                            	system.debug('uniqueGovList'+uniqueGovList);
+                                system.debug('uniqueGovList'+uniqueGovList);
                                 for(Dol_SOSResponse.GoverningPersons govdetail : uniqueGovList){
-                                	MUSW__Account_Contact__c newAccountCon = new MUSW__Account_Contact__c();
+                                    MUSW__Account_Contact__c newAccountCon = new MUSW__Account_Contact__c();
                                     newAccountCon.Title__c = govdetail.title != null ? govdetail.title.trim() : '' ;
                                     newAccountCon.Last_Name__c = govdetail.lastName != null ? govdetail.lastName.trim() : '' ;
                                     newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
@@ -109,7 +110,7 @@ public class Dol_UBISearchTransform {
                                 newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
                                 newAccountCon.First_Name__c = govdetail.firstName != null ? govdetail.firstName.trim() : '' ;
                                 newAccountCon.MUSW__Account__c = accountId;
-                                //Hardcording role to "Owner" as per user  BUG 6237.
+                               //Hardcording role to "Owner" as per user  BUG 6237.
                                 newAccountCon.Role__c = Label.SOS_Role ;
                                 //Hardcording Status field as per user Story 1436.
                                 newAccountCon.Status__c = 'Active';
@@ -148,9 +149,9 @@ public class Dol_UBISearchTransform {
         }
             System.debug('status==' + status);
             return status;
-    } 
-	
-	 @auraEnabled
+    }
+    
+     @auraEnabled
     public static String getAccountUBI (id accountId){
         Account accObj = [select id, UBI_Number__c from Account where id=:accountId limit 1];
         String accUBI = '';
