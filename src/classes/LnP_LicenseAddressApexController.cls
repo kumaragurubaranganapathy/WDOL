@@ -485,7 +485,7 @@ return ListAddress;
                                                           existingParcel.Zip_Postal_Code__c = zip;
                                                           if(isAMR)
                                                           {
-                                                              //existingParcel.Request_Parcel__c = applicationId;
+                                                              existingParcel.Request_Parcel__c = applicationId;
                                                           }
                                                           parcelList.add(existingParcel);
                                                       }
@@ -531,7 +531,7 @@ return ListAddress;
                     }
                     else
                     {
-                        //parcel.Request_Parcel__c = applicationId;
+                        parcel.Request_Parcel__c = applicationId;
                     }
                     System.debug('parcel' + parcel);
                     if(parcel != null ){
