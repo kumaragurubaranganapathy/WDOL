@@ -284,10 +284,12 @@
       var action = component.get("c.createReviewRecord");
       var licenseId = component.get('v.LicenseID'); 
       var ReviewName = component.get('v.ReviewName'); 
-      var mail = component.get('v.mailID'); 
+      var mailtosend = 'Send Professional Activation Code to '+component.get('v.mailToSend'); 
+       var mail =  component.get('v.mailID');  
        action.setParams({
             "licenseId": licenseId, 
-            "Name":  ReviewName
+            "Name":  ReviewName,
+           "mail" : mailtosend
         });   
         action.setCallback(this, function(response){
             var state = response.getState();
