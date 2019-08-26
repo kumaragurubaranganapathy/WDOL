@@ -191,7 +191,7 @@ public without sharing class LnP_DashboardApexController_2 {
                 licenseStatusesToBeFiltered = licenseStatuses.split(',');                
             }
             
-            List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status'};
+            List<String> columnHeaderList = new List<String>{'License','License Type','Expiration Date','Status'};
                 List<String> statusFilterList = licenseStatusesToBeFiltered;//new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
             List<SObject> columnDataList = [Select id,Name,Application_Type__c,Renew_Reinstatement_in_progress__c,Credential_Type__c,MUSW__Expiration_Date__c,MUSW__Status__c,Sub_Status__c,
                                             RecordType.Name,Is_Renewal_Eligible__c, Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c,Application__r.isRenewal__c,Application_Method__c,

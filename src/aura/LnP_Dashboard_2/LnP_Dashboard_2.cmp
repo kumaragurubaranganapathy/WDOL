@@ -771,9 +771,9 @@
                                                                 <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayLicenseDetails}">{!tableData.Name}</a></u>
                                                             </div>
                                                         </td>
-                                                        <td data-label="Profession" class="cell-style">
+                                                       <!-- <td data-label="Profession" class="cell-style">
                                                             <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
-                                                        </td>
+                                                        </td> -->
                                                         <td data-label="License type" class="cell-style">
                                                             <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
                                                         </td>
@@ -798,12 +798,12 @@
                                                                 </div> -->
                                                             </div>
                                                         </td>
-                                                        <td data-label="Sub-status" class="cell-style">
+                                                        <!--<td data-label="Sub-status" class="cell-style">
                                                             <aura:if isTrue="{!tableData.Sub_Status__c}">
                                                                 <div class="slds-truncate" title="{!tableData.Sub_Status__c}">{!tableData.Sub_Status__c}</div>
                                                                 <aura:set attribute="else">None</aura:set>
                                                             </aura:if>
-                                                        </td>
+                                                        </td> -->
                                                         <td data-label="Actions" class="cell-style action-cell">
                                                             <div class="table-btn">
                                                                 <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
