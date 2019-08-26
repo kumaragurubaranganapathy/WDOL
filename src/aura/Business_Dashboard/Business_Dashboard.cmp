@@ -59,7 +59,7 @@
         </aura:if>
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
-                <h1 class="page-title">Business Management</h1>                
+                <h1 class="page-title">Manage My Businesses</h1> 
                 <div class="biz-welcome">   
                     <div class="add-biz-wrapper">
                         <lightning:button name="Add Business" label="Add business" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />

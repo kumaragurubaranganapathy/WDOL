@@ -60,9 +60,8 @@ _______________________________________________________________
         </div>  -->
             
             <aura:if isTrue="{!not(empty(v.taskList))}">
-                <h2 class="intro-text">
-                    <!--{!v.taskList?'You have new tasks which need your attention':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'}-->
-                    You have new tasks which need your attention
+                <h2 class="intro-text">                    
+                    Your To-Do's
                 </h2>
                 <aura:iteration items="{!v.taskList}" var="task">
                     <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
