@@ -940,7 +940,12 @@
     
     updateExistingMailingAddress: function(component, event, helper, isChecked){
         var accountOrContactId;
-        var addressRecordData= component.get("v.saveAddressList");
+        var addressRecordData;
+        if($A.util.isEmpty(component.get("v.saveAddressList")) || $A.util.isUndefined(component.get("v.saveAddressList"))){
+            addressRecordData= component.get("v.allAddressList");
+        }else{
+            addressRecordData= component.get("v.saveAddressList");
+        }
         console.log('addressRecordData==' + JSON.stringify(addressRecordData));
         if(!($A.util.isEmpty(addressRecordData) || $A.util.isUndefined(addressRecordData))){
             if($A.util.isEmpty(addressRecordData[0].Primary_Account__c) || $A.util.isUndefined(addressRecordData[0].Primary_Account__c) || addressRecordData[0].Primary_Account__c == 'null'){
@@ -951,7 +956,7 @@
             //var contactRecordId = addressRecordData[0].MUSW__Primary_Contact__c;
             var recordId = addressRecordData[0].Id;
             var sObj = component.get("v.parcelObject");
-            console.log('appId==' + appId + 'recordId==' + recordId + 'sObj=' + JSON.stringify(sObj) + 'accountOrContactId=' + accountOrContactId);
+            console.log('recordId==' + recordId + 'sObj=' + JSON.stringify(sObj) + 'accountOrContactId=' + accountOrContactId);
             var action = component.get("c.sameAddUpdate");
             action.setParams({
                 recordId : recordId,sobjectType : sObj.sobjectType, accountOrContactId : accountOrContactId , isSame: isChecked

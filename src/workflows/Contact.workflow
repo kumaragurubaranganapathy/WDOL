@@ -91,7 +91,7 @@
             <name>Contact_Update_Record_Type_on_Create</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Contact.LastName</field>
             <operation>notEqual</operation>
@@ -100,7 +100,7 @@
     </rules>
     <rules>
         <fullName>Contact Grace Period</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Contact.Contact_Status__c</field>
             <operation>equals</operation>

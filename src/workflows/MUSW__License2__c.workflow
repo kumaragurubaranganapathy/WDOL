@@ -121,7 +121,7 @@
             <name>License_Fill_Longitude_from_Parcel</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When a license&apos;s parcel lookup is filled and the Lat Long is blank the Lat Long fields should populate from the parcel.</description>
         <formula>NOT(ISBLANK(MUSW__Parcel__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

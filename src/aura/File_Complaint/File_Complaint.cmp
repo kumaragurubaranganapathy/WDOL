@@ -22,8 +22,8 @@
     
     <aura:attribute name="currentTab" type="Integer" default="1" />
     <aura:attribute name="totalTabs" type="Integer" default="3" />
-    <aura:attribute name="pathTabs" type="string[]" default="['Respondent Information','Your Information','Complaint Description']"/>
-    <aura:attribute name="path" type="List" default="[{'header': 'Respondent Information'},
+    <aura:attribute name="pathTabs" type="string[]" default="['Complaint Against','Your Information','Complaint Description']"/>
+    <aura:attribute name="path" type="List" default="[{'header': 'Complaint Against'},
                                                      {'header': 'Your Information'},
                                                      {'header': 'Complaint Description'}]"/>
     
@@ -106,7 +106,8 @@
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!v.businessScreen}">
-                        <div class="heading slds-m-top_x-large slds-m-bottom_medium">Business you wish to file a complaint against</div>
+                        <div class="heading slds-m-top_x-large">Business you wish to file a complaint against</div>
+                        <div class="slds-p-top_x-small slds-p-bottom_medium">Please provide as much information as you have available.</div>
                         <div class="slds-box slds-m-bottom_medium">
                             <!-- Start of form -->
                             <div class="slds-form-element">
@@ -154,7 +155,8 @@
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!v.professionalScreen}">
-                        <div class="heading slds-m-top_x-large slds-m-bottom_medium">Professional you wish to file a complaint against</div>
+                        <div class="heading slds-m-top_x-large">Person you wish to file a complaint against</div>
+                        <div class="slds-p-top_x-small slds-p-bottom_medium">Please provide as much information as you have available.</div>
                         <div class="slds-box">
                             <!-- Start of form -->
                             <div class="slds-form-element">
@@ -206,9 +208,11 @@
                 <!--<aura:if isTrue="{!v.screenTwo}">-->
                 <div class="{!v.screenTwo?'':'slds-hide'}">
                     <!--h2 class="sec-header">Respondent Information</h2-->
-                    <div class="sub-header slds-p-top_x-small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
+                    <aura:if isTrue="{!(!v.displayMessage)}">
+                    	<div class="sub-header slds-p-top_x-small">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
+                    </aura:if>
                     <!--div class="sub-header slds-p-top_x-small slds-p-bottom_large">If you choose to include your contact information, we’ll let you know the outcome of your complaint.</div>
-                <div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div-->
+                	<div class="sub-header slds-p-bottom_x-small bold-text">We may not be able to investigate some anonymous complaints.</div-->
                     <aura:if isTrue="{!v.anonymousComplaint}">
                         <div class="slds-p-vertical_small chkbox-container">
                             <lightning:input type="checkbox" label="File anonymously" name="AnonymousComplaint" checked="{!v.anonymousComplaintCheckbox}"/>
@@ -217,7 +221,9 @@
                     <aura:if isTrue="{!v.displayMessage}">
                         <div class="sub-header slds-p-top_x-small slds-p-bottom_medium">{!$Label.c.File_Complaint_Conditional_Anonymous_Text}</div>
                         <aura:set attribute="else">
-                            <div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
+                            <aura:if isTrue="{!v.anonymousComplaintCheckbox}">
+                            	<div class="sub-header slds-p-bottom_x-small bold-text">{!$Label.c.File_Complaint_Anonymous_Text}</div>
+                            </aura:if>
                         </aura:set>
                     </aura:if>
                     <div class="slds-box">
@@ -345,9 +351,9 @@
                         </ol>
                         Our recommended disciplinary actions don’t establish legal opinion. We don’t have the authority to recover funds, award damages, or make judicial determinations. To pursue these remedies, you should seek legal advice.
                     </div>
-                    <div class="slds-m-vertical_medium">
+                    <!--div class="slds-m-vertical_medium">
                         If you wish to return to the  state of Washington's Manage Your Professional and Business Licenses Online page, you can do so at any time by clicking on the "Home" button in the main menu at the top of this page.
-                    </div>
+                    </div-->
                 </div>
             </div>
         </aura:if>

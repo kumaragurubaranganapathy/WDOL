@@ -30,12 +30,12 @@
     width:100%;
 }
 .THIS .slds-combobox_container,.THIS .slds-combobox{
-   
+    
     width:100%;
 }
 
 .THIS .slds-form-element__static{
-	font-size: 16px; 
+    font-size: 16px; 
 }
 .THIS .multi-field .slds-form-element_horizontal{
     width:50%;
@@ -48,7 +48,7 @@
     margin-bottom:0;
 }
 .THIS .slds-form-element__label{
-	font-size: 14px;
+    font-size: 14px;
     color:t(LnGFormGray);
     
 }
@@ -57,7 +57,7 @@
 }
 .THIS .id-field{
     display:flex;
-	width:100%;    
+    width:100%;    
 }
 .THIS .id-field-input{
     width:100%;
@@ -68,7 +68,7 @@
     width:100%;
 }
 /*.THIS .input-multi-fields:nth-child(odd){
-    margin-right:10%; 
+margin-right:10%; 
 } */  
 .THIS .slds-input, .THIS .slds-select{    
     border-top: none;
@@ -92,11 +92,19 @@
 .THIS .addedfield1{
     margin-right:0;
 }
+.THIS .ssn-text{
+    width:50%;
+    margin-bottom:0.8rem;
+    font-size:0.875rem;
+}
 @media t(mqSmall){
     .THIS .field-inline div{
         display: inline;
     }
+    .THIS .ssn-text{
+        width:100%;       
+    }
     /* .THIS label.slds-form-element__label {
-        display: none;
-    } */
+    display: none;
+} */
 }
