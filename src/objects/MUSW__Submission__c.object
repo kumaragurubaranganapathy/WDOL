@@ -1152,7 +1152,8 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <listViews>
+	
+	<listViews>
         <fullName>RBS_Queue</fullName>
         <columns>Validation_Number__c</columns>
         <columns>NAME</columns>
@@ -1222,9 +1223,12 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <columns>Request__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>Profession_Code__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>SAN_Prof_Code__c</field>
+            <operation>equals</operation>
+            <value>27706,27708,25601,27010,27011,27016,27017,27030,21804,21805,27035,27012,27036,27037,27032</value>
+        </filters>
         <filters>
             <field>Status__c</field>
             <operation>notEqual</operation>
@@ -1262,6 +1266,7 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         </filters>
         <label>RE - Unresolved Submissions</label>
     </listViews>
+	
     <listViews>
         <fullName>Submissions_Queue_Submission</fullName>
         <filterScope>Queue</filterScope>
