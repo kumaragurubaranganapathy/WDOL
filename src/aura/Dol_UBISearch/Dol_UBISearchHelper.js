@@ -10,7 +10,21 @@
     },
     setDefaultFields : function(component, event, helper) {
         console.log('setDefaultFields');
-        component.set("v.ubiNumber" , "");
+        var accountId = component.get("v.recordId");
+        var action = component.get("c.getAccountUBI");
+        action.setParams({
+            'accountId' : accountId
+        });
+        action.setCallback(this, function(actionResult) { 
+            var state = actionResult.getState();
+            if(state == 'SUCCESS') {
+                var returnValue = actionResult.getReturnValue();
+                returnValue = returnValue.replace(/\./g,'-');
+                component.set('v.ubiNumber', returnValue);
+            }
+                       
+        });
+        $A.enqueueAction(action);
         
 		
 	},
