@@ -148,6 +148,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Melissa_Address_Verified__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Parcel__r.Melissa_Address_Verified__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Melissa Address Verified</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>	
+    <fields>
         <fullName>IsLicenseParcelUpdatedForASC__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To check if the address is Mailing address</description>

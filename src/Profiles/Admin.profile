@@ -18721,6 +18721,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>MUSW__License_Parcel__c.Melissa_Address_Verified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>false</editable>
         <field>MUSW__License_Parcel__c.Parcel_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>

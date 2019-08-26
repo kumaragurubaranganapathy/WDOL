@@ -77,20 +77,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Applicant_Licensee_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(License__c != NULL,  HYPERLINK($Label.Polaris_Contact&amp; License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
-
-IF(License__c = NULL &amp;&amp;  Renewal_Reinstatement_Application__c != NULL,  HYPERLINK($Label.Polaris_Contact&amp;Renewal_Reinstatement_Application__r.Applicant__r.Id&amp;&apos;/view&apos;, Renewal_Reinstatement_Application__r.License__r.Applicant_Full_Name__c),
-
-HYPERLINK($Label.Polaris_Contact&amp; Request__r.Contact__r.Id &amp;&apos;/view&apos;, Request__r.Contact__r.Full_Name__c)))</formula>
-        <label>Applicant/Licensee Name</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
