@@ -41,6 +41,7 @@ public class DOL_DOR_Input {
 		public String dorTradeName;
 		public String dolProfCode;
 		public String fileName;
+		public String dorEndorsementCode;
 		public List<GovernPerson> governPerson;
 
 	public class GovernPerson {
