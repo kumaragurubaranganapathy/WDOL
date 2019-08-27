@@ -140,7 +140,9 @@
                     isbusiness = parameters.get('isBLic');    
                 }else if(parameters.has('biz-lic') || parameters.has('accId')){
                     isbusiness = true;
-                }
+                }else if(parameters.has('isBizLic')){
+					isbusiness = parameters.get('isBizLic');   
+				}
                 var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
@@ -167,7 +169,9 @@
             isbusiness = parameters.get('isBLic');    
         }else if(parameters.has('biz-lic') || parameters.has('accId')){
             isbusiness = true;
-        }
+        }else if(parameters.has('isBizLic')){
+			isbusiness = parameters.get('isBizLic');   
+		}
         var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
