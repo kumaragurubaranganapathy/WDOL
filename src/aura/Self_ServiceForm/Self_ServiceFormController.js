@@ -19,6 +19,6 @@
         helper.maskInput(component,event);
     },
     validateFields : function(component,event,helper){
-        helper.validateFields(component,event);
+        //helper.validateFields(component,event);
     }
 })
