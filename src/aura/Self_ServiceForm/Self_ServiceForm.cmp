@@ -15,7 +15,7 @@
     <aura:attribute name="contactId" type="Id" />
     <aura:attribute name="AMRName" type="String" />
     <aura:attribute name="iscontactAddress" type="Boolean" default="false" />
-    <aura:attribute name="fieldsValidated" type="Boolean" default="true" />
+    <aura:attribute name="fieldsValidated" type="Boolean" default="false" />
     <aura:attribute name="outputcode" type="String" default=""/>
     <aura:attribute name="selectedDocumentId" type="string" default="069r0000001Z7RXAA0"/>
 
@@ -26,7 +26,7 @@
         <h1 class="amr-title">{!v.AMRName}</h1>
         
         <aura:if isTrue="{!v.recordEditForm}">
-            <lightning:recordEditForm recordId="{!v.recordIDforSSAMR}"
+            <lightning:recordEditForm aura:id="UpdateContactId" recordId="{!v.recordIDforSSAMR}"
                                       objectApiName="{!v.objectApiName}"
                                       onsuccess="{!c.cancel}">
                 <!-- the messages component is for error messages -->
