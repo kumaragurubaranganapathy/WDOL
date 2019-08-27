@@ -1,4 +1,4 @@
-global class Lnp_Journal_Voucher_Refund_SCHED {
+global class Lnp_Journal_Voucher_Refund_SCHED implements Schedulable {
    
 	global void execute(SchedulableContext sc){
         if(! Dol_IntegrationUtil.isBatchRunning('Lnp_Journal_Voucher_Refund')){
