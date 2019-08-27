@@ -213,7 +213,13 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             Journal_Voucher_Detail__c objJVD=new Journal_Voucher_Detail__c();
             
             objJVD.Target_Accounting_System__c =objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c;
-            objJVD.Transaction_Code__c = objJournalWrapper.objItemsData.Transaction_Code__c;
+            //objJVD.Transaction_Code__c = objJournalWrapper.objItemsData.Transaction_Code__c;
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS'){
+                objJVD.AFRS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;  
+            }
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'TMS'){
+                objJVD.TMS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;
+            }
             objJVD.Reversal__c = objJournalWrapper.objItemsData.Transaction_Code_Type__c;     
             objJVD.Agency__c =  objJournalWrapper.objItemsData.Agency__c;
             objJVD.Fund__c =  objJournalWrapper.objItemsData.BGBK__Fund__r.Fund__c;
