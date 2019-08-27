@@ -138,7 +138,9 @@
                 var str =  isbusiness =='true' ? '/business?app-flow' : '/newdashboard?app-flow';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
-                    "url": str
+                    //"url": str
+					/*Temporary fix*/
+					"url":$A.get("$Label.c.Polaris_Portal_Home");
                 });
                 urlEvent.fire();
             }
@@ -159,7 +161,9 @@
         var str =  isbusiness =='true' ? '/business?app-flow' : '/newdashboard?app-flow';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
-            "url": str
+				//"url": str
+				/*Temporary fix*/
+				"url":$A.get("$Label.c.Polaris_Portal_Home");
         });
         urlEvent.fire();
     }
