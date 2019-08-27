@@ -116,6 +116,7 @@ public with sharing class CartController
             activeTab = 'fees';
             requestFromEPayment = false; 
             m_pid = System.currentPageReference().getParameters().get('id');
+			isBLic = System.currentPageReference().getParameters().get('isBLic');
             system.debug('m_pid$$'+m_pid);
             m_cartId = System.currentPageReference().getParameters().get('cartId');
             m_invoiceId = System.currentPageReference().getParameters().get('invoiceId');
@@ -1366,7 +1367,9 @@ system.debug('!!!underpayment : ');
             return cancel();
         }else{
             // selectedTab = label.Str_Fees;
-            PageReference pageRef = new PageReference('/s/user-feedback'); // Srujan - added to show Feedback Component
+			//String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback&isBizLic='+isBisuneesLic;
+            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback?isBizLic='+isBLic;
+            PageReference pageRef = new PageReference(portalURL); // Srujan - added to show Feedback Component
             return pageRef; 
         }
     }
