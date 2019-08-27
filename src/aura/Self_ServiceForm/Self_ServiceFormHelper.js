@@ -274,7 +274,7 @@
         var inputFields = component.find("input-fields");
         var errorCount = 0;
         inputFields.forEach(function(elem){
-            if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12){
+            if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                 errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -285,7 +285,7 @@
                 toastEvent.fire();
                 
             }
-            else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12){
+            else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                 errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -296,7 +296,7 @@
                 toastEvent.fire();
                 
             }
-             if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12){
+             if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                  errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -307,7 +307,7 @@
                 toastEvent.fire();
                 
             }
-            else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12){
+            else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                 errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
