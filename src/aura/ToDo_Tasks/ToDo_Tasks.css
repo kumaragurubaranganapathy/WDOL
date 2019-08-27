@@ -13,9 +13,6 @@
 .THIS .slds-form-element__control{
     width:50%;
 }
-.THIS .license-item.biz-invite{
-    width:100%; 
-}
 /*.THIS ul.biz li:before{
 content:"\2714\0020";
 } */
@@ -127,9 +124,7 @@ content:"\2714\0020";
     margin-bottom:32px;
     font-family:t(merrifontfamily);
 }
-.THIS .license-item{
-    width:33%;
-    padding:0 40px;
+.THIS .license-item{    
     border-left: solid 1px #d9d4d4;
     border-right: solid 1px #d9d4d4;
 }
@@ -219,22 +214,37 @@ content:"\2714\0020";
         border-left:none;
         border-right:none;       
     }
+    .THIS .biz-invite.license-item{
+        padding:0;
+    }
     .THIS .license-item:first-of-type{
-        padding-left:0;
-        border-bottom: solid 1px #d9d4d4;
+        padding-left:0;        
         margin-bottom:16px;
     }
     .THIS .license-item:last-of-type{
-        padding-left:0;
-        border-top: solid 1px #d9d4d4;
-        padding-top:16px;
+        padding-left:0;        
+        margin-top:16px;
     }
     .THIS .field-style{
         padding-bottom:10px;
     }
+    .THIS .bad-payment.license-item{
+        margin:0;
+    }
+    .THIS .biz-invite.license-item:first-of-type{
+        border-bottom: none;
+        margin-bottom:0;
+    }
+    .THIS .biz-invite.license-item:last-of-type{        
+        border-top: none;
+        margin-top:0;
+    }
+    .THIS .license-item .field-style{
+        padding-bottom:1rem;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
-     .THIS .ser-btn-wrapper button{
+    .THIS .ser-btn-wrapper button{
         width:auto;
     }
     .THIS.todo-wrapper{
@@ -250,5 +260,11 @@ content:"\2714\0020";
 @media t(mqSmall){
     .THIS.todo-wrapper{
         margin:1rem;
+    }
+    .THIS .license-item.biz-invite{
+        width:100%; 
+    }
+    .THIS .license-item .field-style{
+        padding-bottom:1rem;
     }
 }
