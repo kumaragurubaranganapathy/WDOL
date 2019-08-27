@@ -1498,13 +1498,11 @@ objWrapper.sectionError = true;
                     mstLicense.Print_Middle_Name__c = MiddleName;
                     mstLicense.Print_Last_Name__c = LastName;
                 }
-                if(mstLicense.RecordTypeId == businessRT){
-                    if(application.Branch_License__c){
-                        mstLicense.License_Printable_Name__c =  application.Parent_License__r.Ultimate_Parent_Account__r.Name+' '+ doingBusinessAs;
-                    }else{
+                  if(application.Branch_License__c){
+                      mstLicense.License_Printable_Name__c =  application.Parent_License__r.Ultimate_Parent_Account__r.Name+' '+ doingBusinessAs;
+                   }else{
                         mstLicense.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
                     }
-                }
  
                 lstLisence.add(mstLicense);
             }
