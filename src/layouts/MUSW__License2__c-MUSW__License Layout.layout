@@ -644,6 +644,14 @@
         <fields>Date_Requested_for_Adding_Endorsement__c</fields>
         <relatedList>Endorsement__c.License__c</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Service_Request_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Contact__c</fields>
+        <relatedList>Request__c.License__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>MUSW__Type__c</fields>
