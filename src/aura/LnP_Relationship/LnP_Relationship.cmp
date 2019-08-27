@@ -30,7 +30,7 @@
         <aura:if isTrue="{!v.sObjectName == 'MUSW__Account_Contact__c'}">
             
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
-                <h2 class="table-title">{!v.Type}</h2>
+                <h2 class="{!v.Type == 'Administrators'?'slds-hide':'table-title'}">{!v.Type}</h2>
                 <div>
                     <div class="table-height">
                         

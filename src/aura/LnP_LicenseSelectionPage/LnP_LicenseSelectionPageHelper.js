@@ -232,7 +232,7 @@
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
-		var upgradeLicenseIdValue = component.find("licensePickerId").get("v.value");
+        var upgradeLicenseIdValue = component.get("v.showLicenseDropdown") ? component.find("licensePickerId").get("v.value") : '';
         var action = component.get("c.fetchInstructions");
         action.setParams({
             "Board": board, 
