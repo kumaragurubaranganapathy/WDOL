@@ -60,7 +60,8 @@ _______________________________________________________________
         </div>  -->
             
             <aura:if isTrue="{!not(empty(v.taskList))}">
-                <h2 class="intro-text">                    
+                <h2 class="intro-text">
+                    <!--{!v.taskList?'You have new tasks which need your attention':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'}-->
                     Your To-Do's
                 </h2>
                 <aura:iteration items="{!v.taskList}" var="task">
@@ -129,10 +130,10 @@ _______________________________________________________________
                                     </div>
                                     
                                 </lightning:layoutItem> -->
-                                <lightning:layoutItem size="12"  class="license-item biz-invite">
-                                    <div class="license-title other-lic">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
+                                    <!--<div class="license-title other-lic">
                                         Invited By
-                                    </div> 
+                                    </div>  -->
                                     <div class="field-style">
                                         <span class="label-style">Name: </span>
                                         <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
@@ -145,6 +146,8 @@ _______________________________________________________________
                                         <span class="label-style">License Type: </span>
                                         <span class="data-style">{!task.Parent_License_Type__c}</span>
                                     </div> -->
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
                                     <div class="field-style">
                                         <span class="label-style">License Number: </span>
                                         <span class="data-style">{!task.Parent_License_Name__c}</span>
@@ -174,7 +177,7 @@ _______________________________________________________________
                                 Provide Additional Information for License Application
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                     <div class="field-style">
                                         <span class="label-style">Application Number: </span>
                                         <span class="data-style">{!task.Parent_License_Name__c}</span>
@@ -184,7 +187,7 @@ _______________________________________________________________
                                         <span class="data-style">{!task.Parent_License_Type__c}</span>
                                     </div>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                     <div class="field-style">
                                         <span class="label-style">Information Required: </span>
                                         <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
@@ -210,7 +213,7 @@ _______________________________________________________________
                                 Reschedule Exam : {!task.Subject}
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                     <div class="field-style">
                                         <span class="label-style">Email: </span>
                                         <span class="data-style">{!task.Email__c}</span>
@@ -255,7 +258,7 @@ _______________________________________________________________
                                 Bad Payment: {!task.Subject}
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item bad-payment">
                                     <div class="field-style">
                                         <span class="label-style">Comments: </span>
                                         <span class="data-style">{!task.Subject}</span>
