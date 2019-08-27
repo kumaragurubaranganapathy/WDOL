@@ -52,7 +52,7 @@ public with sharing class CartController
     public String retUrl {get;set;}
     public Payment_Gateway_Settings__mdt paymentGatewaySettings {get; set;}
     public Id receiptId {get; set;}
-    
+    Public string isBLic{get;set;}
     @TestVisible private BGBK.CartService m_cs;
     private BGBK.PaymentService m_ps;
     private BGBK.ReceiptService m_rs;
