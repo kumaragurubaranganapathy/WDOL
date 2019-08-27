@@ -138,6 +138,8 @@
                 var parameters = new URLSearchParams(window.location.search);
                 if(parameters.has('isBLic')){
                     isbusiness = parameters.get('isBLic');    
+                }else if(parameters.has('biz-lic') || parameters.has('accId')){
+                    isbusiness = true;
                 }
                 var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
                 var urlEvent = $A.get("e.force:navigateToURL");
@@ -163,6 +165,8 @@
         var parameters = new URLSearchParams(window.location.search);
         if(parameters.has('isBLic')){
             isbusiness = parameters.get('isBLic');    
+        }else if(parameters.has('biz-lic') || parameters.has('accId')){
+            isbusiness = true;
         }
         var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
         var urlEvent = $A.get("e.force:navigateToURL");
