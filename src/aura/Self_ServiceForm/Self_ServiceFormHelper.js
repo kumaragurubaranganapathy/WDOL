@@ -321,6 +321,7 @@
         });
         if(errorCount===0){
             component.set("v.fieldsValidated",true);
+            component.find("UpdateContactId").submit();
         }
         else
         	component.set("v.fieldsValidated",false);
