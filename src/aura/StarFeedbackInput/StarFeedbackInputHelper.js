@@ -131,18 +131,10 @@
                 var isbuz = sessionStorage.getItem("isBusinesss");
                 var sPageURL = document.URL;
                 var isbusiness;
-                /*if(sPageURL.includes('isBizLic=')){
+                if(sPageURL.includes('isBizLic=')){
                     var sURLVariables = sPageURL.split('=');
                     isbusiness= sURLVariables[1];
-                } */
-                var parameters = new URLSearchParams(window.location.search);
-                if(parameters.has('isBLic')){
-                    isbusiness = parameters.get('isBLic');    
-                }else if(parameters.has('biz-lic') || parameters.has('accId')){
-                    isbusiness = true;
-                }else if(parameters.has('isBizLic')){
-					isbusiness = parameters.get('isBizLic');   
-				}
+                } 
                 var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
@@ -160,18 +152,10 @@
         var isbuz = sessionStorage.getItem("isBusinesss");
         var sPageURL = document.URL;
         var isbusiness;
-        /*if(sPageURL.includes('isBizLic=')){
+        if(sPageURL.includes('isBizLic=')){
         	var sURLVariables = sPageURL.split('=');
         	isbusiness= sURLVariables[1];
-        }*/
-        var parameters = new URLSearchParams(window.location.search);
-        if(parameters.has('isBLic')){
-            isbusiness = parameters.get('isBLic');    
-        }else if(parameters.has('biz-lic') || parameters.has('accId')){
-            isbusiness = true;
-        }else if(parameters.has('isBizLic')){
-			isbusiness = parameters.get('isBizLic');   
-		}
+        }
         var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
