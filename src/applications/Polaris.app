@@ -5,7 +5,7 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>Polaris</label>
+    <label>POLARIS</label>
     <tabs>MUSW__License2__c</tabs>
     <tabs>MUSW__Review__c</tabs>
     <tabs>standard-Account</tabs>
