@@ -47,8 +47,6 @@
         typeof result;
         var resultMap = JSON.parse(result);
         component.set("v.helptextmap", resultMap);
-        console.log('helptextmap::'+result);
-        console.log('size::'+result.prototype.size);
              component.set("v.loadingSpinner",false);
     }
      else if(state === 'ERROR'){                
