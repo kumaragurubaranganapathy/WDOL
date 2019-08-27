@@ -411,7 +411,12 @@
         component.find("button1").set('v.disabled',false);
     },
     startApplicationHelper : function(component, event, helper){
+        var isBusinessLicenseSelection =false;
         console.log('inside startApplicationHelper');
+        var parsedUrl = new URL(document.location);
+        if(parsedUrl != null){
+            isBusinessLicenseSelection = parsedUrl.searchParams.has('biz-lic');    
+        }
         // To disable button on click.
         var applicationId = "";
        let button = event.getSource();
@@ -479,17 +484,18 @@
                         console.log("result::"+ result);
                         console.log('121233' + sessionStorage.getItem("applicationId"));
                         console.log('test::'+sessionStorage.getItem("header"));
+                        var queryParam = isBusinessLicenseSelection ? '?biz-lic':'';
                         if(sessionStorage.getItem("header")){
                             console.log('inside headertrue');
                             sessionStorage.setItem("header","true");
                             sessionStorage.setItem("applicationId",result); 
                             sessionStorage.setItem("contactRecId",contactRecId); 
-                            window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license';
+                            window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license'+queryParam;
                         } 
                         else if(sessionStorage.getItem("header")){
                             var urlEvent = $A.get("e.force:navigateToURL");
                             console.log('%%%%%'+urlEvent);
-                            var str = "/lightningwashington/s/apply-for-license";
+                            var str = "/lightningwashington/s/apply-for-license"+queryParam;
                             console.log('$$$$$$'+str);
                             urlEvent.setParams({
                                 "url": str
