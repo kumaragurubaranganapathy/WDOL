@@ -155,7 +155,7 @@
 
                                             <aura:set attribute="else">
                                                 <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
+                                                    fieldName="{!field.apiname}"
                                                     class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
                                                     onchange="{!c.getpattern}" />
                                             </aura:set>
