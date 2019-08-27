@@ -275,6 +275,7 @@
         var errorCount = 0;
         inputFields.forEach(function(elem){
             if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12){
+                errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
@@ -282,9 +283,10 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-                errorCount++;
+                
             }
             else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12){
+                errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
@@ -292,9 +294,10 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-                errorCount++;
+                
             }
              if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12){
+                 errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
@@ -302,9 +305,10 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-                errorCount++;
+                
             }
             else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12){
+                errorCount++;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "ERROR!",
@@ -312,7 +316,7 @@
                     "type": "error"
                 });
                 toastEvent.fire();
-                errorCount++;
+                
             }
         });
         if(errorCount===0){
