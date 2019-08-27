@@ -268,7 +268,9 @@
                                     // no fees code ends
                                 }else{
                                     that.hideSpinner(component, event);
-                                    var str ='/cart?id='+id;
+									var isBizLic = component.get("v.isbusinsessLicense");
+									var str   ='/cart?id='+id+'&isBLic='+isBizLic;
+									//var str ='/cart?id='+id;
                                     var urlEvent = $A.get("e.force:navigateToURL");
                                     urlEvent.setParams({
                                         "url": str
