@@ -272,51 +272,55 @@
     
     validateFields : function(component,event){
         var inputFields = component.find("input-fields");
+        // var inputFields = component.find("UpdateContactId");
         var errorCount = 0;
         inputFields.forEach(function(elem){
-            if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
-                errorCount++;
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": "Mobile Phone should be 10 digits",
-                    "type": "error"
-                });
-                toastEvent.fire();
-                
-            }
-            else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
-                errorCount++;
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": "Business Phone should be 10 digits",
-                    "type": "error"
-                });
-                toastEvent.fire();
-                
-            }
-             if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
-                 errorCount++;
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": "Mobile Phone should be 10 digits",
-                    "type": "error"
-                });
-                toastEvent.fire();
-                
-            }
-            else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
-                errorCount++;
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": "Business Phone should be 10 digits",
-                    "type": "error"
-                });
-                toastEvent.fire();
-                
+            if(elem.get("v.value")!== null)
+            {
+                if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Mobile Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
+                else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Business Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
+                if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Mobile Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
+                else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Business Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
             }
         });
         if(errorCount===0){
