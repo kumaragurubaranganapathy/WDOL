@@ -145,6 +145,7 @@
                         applicationId = response;
                         sessionStorage.setItem("applicationId", applicationId);
                         console.log('applicationId ' + applicationId);
+                        component.set("v.spinner",false);
                         var accURL = window.location.href;
                         var accUrlShort = accURL.slice(0, accURL.lastIndexOf("/"));
                         accUrlShort = accUrlShort + "/polaris-renewal";//+ applicationId;

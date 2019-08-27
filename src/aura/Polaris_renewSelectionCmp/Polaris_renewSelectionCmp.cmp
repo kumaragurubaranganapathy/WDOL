@@ -10,6 +10,7 @@
     <aura:attribute name="appMethod" type="String" default="General Application" />
     <aura:attribute name="spinner" type="Boolean" default="False" />
     <aura:attribute name="instructions" type="String" />
+    <aura:attribute name="isdisabled" type="Boolean" default="false" /> 
     <aura:attribute name="otherInstructions" type="List" />
     <aura:attribute name="radiooptions" type="List" default="[
                                                              {'label': 'Yes', 'value': 'Yes'},
@@ -75,7 +76,7 @@
         </aura:if>  
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class="proceed-btn-wrapper">
-            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand"
+            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" disabled="{!v.isdisabled}"
                               onclick="{!c.startApplication}" />
         </div>
     </div>
