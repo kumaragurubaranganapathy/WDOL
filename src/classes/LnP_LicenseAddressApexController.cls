@@ -298,19 +298,14 @@ return ListAddress;
                 parcel.is_Physical_and_Mailing_Address_Same__c = false;
             }
             
-            try{
+            
                 update recList[0];
                 if(Dol_IntegrationUtil.isNotEmpty(allAddr)){
-                    try{
+                    
                         delete allAddr;
-                    }Catch(Exception e){
-                        System.debug('---EXCEPTION---'+e.getMessage());
-                    }     
+                        
                 }
-            }
-            Catch(Exception e){
-                System.debug('---EXCEPTION---'+e.getMessage());
-            }
+           
             listAddress = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c, Canadian_provinces__c, 
                            Country__c,Melissa_Address_Verified__c,Address_Type__c,is_Physical_and_Mailing_Address_Same__c, 
                            MUSW__Primary_Contact__c, County__c, Primary_Account__c, Application_BG__c from MUSW__Parcel__c
@@ -321,6 +316,12 @@ return ListAddress;
         }
         System.debug('The sameAdd listAddress is:'+listAddress);
         return listAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     public class selectOption{
