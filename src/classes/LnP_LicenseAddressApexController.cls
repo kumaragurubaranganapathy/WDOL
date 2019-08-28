@@ -16,7 +16,6 @@ public with sharing class LnP_LicenseAddressApexController {
     
     @AuraEnabled
     public static List<MUSW__Parcel__c> getAllAddress(Id accountOrContactId, Id applicationId){
-        try{
         system.debug('accountOrContactId==='+ accountOrContactId + 'application Id--' + applicationId);
         List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
         if(String.isNotBlank(accountOrContactId)){
@@ -32,12 +31,6 @@ public with sharing class LnP_LicenseAddressApexController {
             system.debug('allAddressList'+allAddressList);
         }
         return allAddressList;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
@@ -305,14 +298,19 @@ return ListAddress;
                 parcel.is_Physical_and_Mailing_Address_Same__c = false;
             }
             
-            
+            try{
                 update recList[0];
                 if(Dol_IntegrationUtil.isNotEmpty(allAddr)){
-                    
+                    try{
                         delete allAddr;
-                        
+                    }Catch(Exception e){
+                        System.debug('---EXCEPTION---'+e.getMessage());
+                    }     
                 }
-           
+            }
+            Catch(Exception e){
+                System.debug('---EXCEPTION---'+e.getMessage());
+            }
             listAddress = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c, Canadian_provinces__c, 
                            Country__c,Melissa_Address_Verified__c,Address_Type__c,is_Physical_and_Mailing_Address_Same__c, 
                            MUSW__Primary_Contact__c, County__c, Primary_Account__c, Application_BG__c from MUSW__Parcel__c
@@ -323,12 +321,6 @@ return ListAddress;
         }
         System.debug('The sameAdd listAddress is:'+listAddress);
         return listAddress;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     public class selectOption{
@@ -339,7 +331,6 @@ return ListAddress;
     
     @auraEnabled
     public static Dol_AddressValidationService.AddrWrapper validateAddress(String addrLine1,String addrLine2,String city, String state, String zip){
-        try{
         String licenseKey;
         Dol_AddressValidationService.AddrWrapper validatedAddress = new Dol_AddressValidationService.AddrWrapper();
         
@@ -406,12 +397,6 @@ return ListAddress;
         System.debug('zipRange'+zipRange);
         validatedAddress.country = address.getChildElement('Country', 'urn:mdWebServiceAddress').getChildElement('Name', 'urn:mdWebServiceAddress').getText() == 'United States of America' ? 'United States' : '';
         return validatedAddress;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled 
@@ -441,7 +426,6 @@ return ListAddress;
     
     @auraEnabled
     public static List<MUSW__Parcel__c> integrationsaveAddress(string selectedAddress,Boolean isAptInfo,String applicationId, Boolean issuggestTrue,String addresstype, String county, String accountOrContactId, String objectRecordName, Boolean isAMR){
-        try{
         List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
         String addres1;
         String aptInfo = '';
@@ -453,7 +437,7 @@ return ListAddress;
         system.debug('isAptInfo=='+isAptInfo + 'objectname---' + objectRecordName);
         system.debug('selectedAddress=='+selectedAddress);
         
-       
+        try{
             if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
                 selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
                 system.debug('selectedAddress='+selectedAddress);
@@ -509,9 +493,12 @@ return ListAddress;
                                                           parcelList.add(existingParcel);
                                                       }
                 if(!parcelList.isEmpty()){
-                    
+                    try{
                         upsert parcelList;
-                    
+                    }
+                    catch(DmlException e){
+                        System.debug('Error while updating existing Parcel ==' + e.getMessage());
+                    }
                     System.debug('updated parcelList'+parcelList);
                 }
                 else{
@@ -551,9 +538,12 @@ return ListAddress;
                     }
                     System.debug('parcel' + parcel);
                     if(parcel != null ){
-                        
+                        try{
                            upsert parcel; 
-                        
+                        }
+                        catch(DmlException e){
+                            System.debug('Error while inserting new Parcel---' + e.getMessage());
+                        }
                         if(Dol_IntegrationUtil.isNotBlank(parcel.id)){
                             List<MUSW__Parcel__c> insertedParcel = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,
                                                                     Zip_Postal_Code__c, Canadian_provinces__c, Country__c,County__c,
@@ -568,15 +558,12 @@ return ListAddress;
                     } 
                 }
             }
-        
+        }catch(Exception e){
+            System.debug('Dol_AddressValidationService - Exception: '+e);
+            DebugErrorLoggger.LogError(e, '', '','Dol_AddressValidationService','saveAddress','saveAddress Method failed');  
+        }
         system.debug('parcelList=='+parcelList);
         return parcelList;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     
@@ -870,19 +857,12 @@ return ListAddress;
     @AuraEnabled
     public static Id getloggedInContactData()
     {
-        try{
         Id contactId;
         for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
             contactId = userRecord.contactId;
         }
         System.debug('contactId===' + contactId);
         return contactId;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
        
     }
 }
