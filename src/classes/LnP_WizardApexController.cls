@@ -400,7 +400,7 @@ insert bgckList;
         String condition8 ='';
         String condition9 = 'Order_No__c';
 		MUSW__License2__c upgradeLicense = new MUSW__License2__c();
-        if(upgradeLicenseIdValue!=null || upgradeLicenseIdValue!=''){
+        if(upgradeLicenseIdValue!=null && upgradeLicenseIdValue!=''){
          upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue limit 1];
         }
         String condition10 = 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
