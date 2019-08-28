@@ -107,7 +107,7 @@ public with sharing class CartController
         //Check if it is business cart
         isBusinessCart = false;
         if(isPortalUser){
-            objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
+            objContact =[SELECT id,Name,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
             if (objContact!=null && objContact.BusinessCartToOpen__c != null){
                 m_accId =objContact.BusinessCartToOpen__c;
                 isBusinessCart = true;
