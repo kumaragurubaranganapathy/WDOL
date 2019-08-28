@@ -541,6 +541,17 @@ _______________________________________________________________
                                         </div>
                                     </div>
                                     <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
+                                    	<div class="field-style">Sub-status:<span>&nbsp;</span></div>
+                                        <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c}">
+                                            <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || item.License__r.Sub_Status__c == 'Surrendered'}">
+                                                <aura:set attribute="else">
+                                                    <div class="field-style-val">{!item.MUSW__License2__r.Sub_Status__c}</div>
+                                                </aura:set>
+                                            </aura:if>
+                                            <aura:set attribute="else">
+                                                <div class="field-style-val">None</div>
+                                            </aura:set>
+                                        </aura:if>
                                     </div>
                                     <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Phone:<span>&nbsp;</span></div>
@@ -565,17 +576,15 @@ _______________________________________________________________
                                         </div>
                                     </div>
                                     <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                                        <div class="field-style">Sub-status:<span>&nbsp;</span></div>
-                                        <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c}">
-                                            <aura:if isTrue="{!item.MUSW__License2__r.Sub_Status__c == 'Child Support Suspension' || item.License__r.Sub_Status__c == 'Surrendered'}">
-                                                <aura:set attribute="else">
-                                                    <div class="field-style-val">{!item.MUSW__License2__r.Sub_Status__c}</div>
-                                                </aura:set>
-                                            </aura:if>
-                                            <aura:set attribute="else">
-                                                <div class="field-style-val">None</div>
-                                            </aura:set>
-                                        </aura:if>
+                                         <div class="field-style">Program:<span>&nbsp;</span></div>
+                                         <div class="field-style-val">
+                                             <aura:if isTrue="{!item.MUSW__License2__r.Application_Type__c}">
+                                                 {!item.MUSW__License2__r.Application_Type__c}
+                                                 <aura:set attribute="else">
+                                                     None
+                                                 </aura:set>
+                                             </aura:if>
+                                         </div>  
                                     </div>
                                     <div class="text-element slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
                                         <div class="field-style">Address:<span>&nbsp;</span></div>
@@ -610,12 +619,12 @@ _______________________________________________________________
                                                 </div>
                                             </div>
                                             <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="field-style">Program:<span>&nbsp;</span></div>
+                                                <div class="field-style">Disciplinary Action:<span>&nbsp;</span></div>
                                                 <div class="field-style-val">
-                                                	<aura:if isTrue="{!item.MUSW__License2__r.Application_Type__c}">
-                                                        {!item.MUSW__License2__r.Application_Type__c}
+                                                    <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
+                                                        Yes
                                                         <aura:set attribute="else">
-                                                            None
+                                                            No
                                                         </aura:set>
                                                     </aura:if>
                                                 </div>
@@ -639,15 +648,6 @@ _______________________________________________________________
                                                 </div>
                                             </div>
                                             <div class="text-element slds-col slds-size_1-of-2 slds-form-element_horizontal slds-form-element">
-                                                <div class="field-style">Disciplinary Action:<span>&nbsp;</span></div>
-                                                <div class="field-style-val">
-                                                    <aura:if isTrue="{!item.MUSW__License2__r.AIDS_Affidavit__c == true}">
-                                                        Yes
-                                                        <aura:set attribute="else">
-                                                            No
-                                                        </aura:set>
-                                                    </aura:if>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
