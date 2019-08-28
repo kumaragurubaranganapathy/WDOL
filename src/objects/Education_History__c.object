@@ -758,7 +758,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <externalId>false</externalId>
         <label>License</label>
         <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>Education History</relationshipLabel>
+        <relationshipLabel>Exams</relationshipLabel>
         <relationshipName>Education_History</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -1288,7 +1288,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </listViews>
     <nameField>
         <displayFormat>EDUH-{000000}</displayFormat>
-        <label>Education History Name</label>
+        <label>Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Education History</pluralLabel>
@@ -10163,4 +10163,23 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Letter</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Letter</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/BGBL__LetterAttach?pid={!Education_History__c.Id}</url>
+    </webLinks>
 </CustomObject>
