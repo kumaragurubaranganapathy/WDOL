@@ -29,7 +29,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <!--<c:LnP_CommonHeader itemsList="{!v.itemsList}" /> -->
-    <div class="slds-global-header slds-grid_align-spread">
+    <div id="pageHeader" class="slds-global-header slds-grid_align-spread">
         <!--<div style="display: inline-block;float:left;"> 
             <a href="https://licensedev-dedpr_community.cs32.force.com/delawareLnP"><img src="" class="header-Image" alt=""/></a>
    <a class="burgerIcon" onclick="{!c.burgerIconOnClick}">

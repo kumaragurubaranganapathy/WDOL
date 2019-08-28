@@ -949,17 +949,18 @@
                                 var valueVal = item.value;
                                 if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                     if(item.regex == "Future-Date"){
+                                        // Date should be future and not greater than 4 years
                                         var valueVal = item.value;
                                         var today = new Date();
-                                        //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                        //compareDate = new Date(compareDate);
+                                        var compareDate = (today.getFullYear()+4)+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        compareDate = new Date(compareDate);
                                         var enteredDate = new Date(valueVal);
-                                        if(enteredDate > today){
+                                        if(enteredDate > today && enteredDate < compareDate){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                             return false;
-                                        }
+                                        } 
                                     } else if(item.regex == "Policy-Amount"){
                                         var valueVal = item.value;
                                         var minValue = parseInt(item.minValue);
@@ -997,12 +998,13 @@
                                 var valueVal = item.value;
                                 if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     if(item.regex == "Future-Date"){
+                                        // Date should be future and not greater than 4 years
                                         var valueVal = item.value;
                                         var today = new Date();
-                                        //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                        //compareDate = new Date(compareDate);
+                                        var compareDate = (today.getFullYear()+4)+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        compareDate = new Date(compareDate);
                                         var enteredDate = new Date(valueVal);
-                                        if(enteredDate > today){
+                                        if(enteredDate > today && enteredDate < compareDate){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
