@@ -56,12 +56,12 @@
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To store specialties / endorsements of a license (individual / business)</description>
-    <enableActivities>false</enableActivities>
+    <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
@@ -71,6 +71,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Added Through AMR</label>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -83,6 +84,7 @@
         <relationshipLabel>Endorsements</relationshipLabel>
         <relationshipName>Endorsements</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -91,6 +93,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Created for New Application</label>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -99,6 +102,7 @@
         <externalId>false</externalId>
         <label>First Issue Date</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -107,6 +111,7 @@
         <externalId>false</externalId>
         <label>Date Removed</label>
         <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -115,6 +120,7 @@
         <externalId>false</externalId>
         <label>Submitted Date</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -123,6 +129,7 @@
         <externalId>false</externalId>
         <label>Date Requested for Removing Endorsement</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -131,6 +138,7 @@
         <externalId>false</externalId>
         <label>Current Issue Date</label>
         <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -139,6 +147,7 @@
         <externalId>false</externalId>
         <label>Electronic Software Provider</label>
         <length>131072</length>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -148,6 +157,7 @@
         <externalId>false</externalId>
         <label>Endorsement Type</label>
         <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -303,6 +313,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Applicant</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -314,6 +325,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -325,6 +337,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Status</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -334,6 +347,7 @@
         <externalId>false</externalId>
         <label>License Type</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -350,6 +364,7 @@
         <relationshipLabel>Endorsements</relationshipLabel>
         <relationshipName>Endorsements</relationshipName>
         <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -360,6 +375,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Licensee Name</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -371,6 +387,7 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Type</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -384,6 +401,7 @@
         <relationshipLabel>Endorsements</relationshipLabel>
         <relationshipName>Endorsements</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -396,6 +414,7 @@
         <relationshipLabel>Endorsements</relationshipLabel>
         <relationshipName>Endorsements</relationshipName>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -404,6 +423,7 @@
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -471,7 +491,7 @@
     <label>Endorsement</label>
     <nameField>
         <displayFormat>END-{0000000}</displayFormat>
-        <label>Endorsement  icon Name</label>
+        <label>Endorsement icon Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Endorsements</pluralLabel>
@@ -838,4 +858,23 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+	<webLinks>
+        <fullName>Letter</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Letter</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/BGBL__LetterAttach?pid={!Endorsement__c.Id}</url>
+    </webLinks>
 </CustomObject>
