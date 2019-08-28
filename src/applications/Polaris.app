@@ -20,4 +20,5 @@
     <tabs>BGCK__Choice__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
     <tabs>User_Feedback__c</tabs>
+	<tabs>MUSW__Submission__c</tabs>
 </CustomApplication>
