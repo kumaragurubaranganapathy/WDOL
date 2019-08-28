@@ -101,10 +101,10 @@
                 <th>Maj Srce</th>
                 <th>Sub Source</th>
                 <th>DR<br/>CR</th>
-                <th>Amount</th>
-                <th>General Ledger Account</th>
-                <th>Subsidiary Account DR</th>
-                <th>Subsidiary Account CR</th>
+                <th width= "140">Amount    </th>
+                <th>General<br/>Ledger<br/>Account</th>
+                <th>Subsidiary<br/>Account<br/>DR</th>
+                <th>Subsidiary<br/>Account<br/>CR</th>
             </tr>
             <apex:repeat value="{!jvd}" var="item">
                 <tr>
@@ -126,7 +126,7 @@
                     <td>{!item.Major_Source__c}</td>
                     <td>{!item.Sub_Source__c}</td>
                     <td>{!item.Debit_Credit__c}</td>
-                    <td>{!item.Amount__c}</td>
+                    <td >{!item.Amount__c}</td>
                     <td>{!item.General_Ledger_Account__c}</td>
                     <td>{!item.Subsidiary_Account_Debit__c}</td>
                     <td>{!item.Subsidiary_Account_Credit__c}</td>
