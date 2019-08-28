@@ -331,6 +331,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_ID__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <externalId>false</externalId>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License_Number__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.Name</formula>
