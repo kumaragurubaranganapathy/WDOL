@@ -296,6 +296,7 @@ public without Sharing class DOL_License_Linking {
         MUSW__License2__c license  = [select Id,Credential_Type__c,Application_Type__c from MUSW__License2__c where id =:licenseId limit 1];
         List<Master_ConfigData_Listing__c> lstQueue= [select id,Queue_Id__c from Master_ConfigData_Listing__c where Program_Type__c includes  (:license.Application_Type__c) and Queue_Name__c in ('RBS Queue','RE Queue') ];
         List<Request__c> lstreview = new List<Request__c>();
+        List<User> lstUser = [Select ContactId from User  where  id =:UserInfo.getUserId() limit 1];
         String message ='';
         if(license != null) {
             Request__c request = new Request__c();
@@ -308,6 +309,7 @@ public without Sharing class DOL_License_Linking {
             request.Service_Request_Type__c  ='Request Activation Code';
             if(!lstQueue.isEmpty())
             request.ownerId =lstQueue[0].Queue_Id__c;
+            request.Contact__c = lstUser[0].ContactId;
             lstreview.add(request);
         }
         try{
@@ -316,7 +318,7 @@ public without Sharing class DOL_License_Linking {
                 message ='Success';
             }  
         } catch (Exception ex) {
-            Polaris_CreateErrorLog_Exception.addError(ex,'DOL_License_Linking','createReviewRecord');
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             message = 'error';
         }
         return message;
