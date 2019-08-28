@@ -367,5 +367,22 @@
               var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
               event.getSource().set('v.value',phone);    
           }
-    }   
+    },
+	redirectToHome: function(component, event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home");
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    printAcknowledgement: function(component, event){
+        document.getElementById("pageHeader").style.display = "none";
+        document.getElementById("pageFooter").style.display = "none";
+        document.getElementById("PrintButton").style.visibility = "hidden";
+        window.print();
+        document.getElementById("pageHeader").style.display = "block";
+        document.getElementById("pageFooter").style.display = "block";
+        document.getElementById("PrintButton").style.visibility = "visible";
+    },
 })

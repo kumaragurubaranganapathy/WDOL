@@ -29,4 +29,10 @@
     changepattern: function(component, event, helper) {
 		helper.changepattern(component, event);
 	},
+	redirectToHome: function(component, event, helper) {
+		helper.redirectToHome(component, event);
+	},
+    printAcknowledgement: function(component, event, helper) {
+		helper.printAcknowledgement(component, event);
+	},
 })
