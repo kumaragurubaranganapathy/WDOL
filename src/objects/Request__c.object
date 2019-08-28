@@ -65,32 +65,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-	<fields>
-        <fullName>Number_Of_Advertisements_To_Be_Reviewed__c</fullName>
-        <externalId>false</externalId>
-        <label>Number Of Advertisements To Be Reviewed</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Number_Of_Certifications__c</fullName>
-        <externalId>false</externalId>
-        <label>Number Of Certifications</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>Account_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -201,17 +175,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-	<fields>
-        <fullName>Exam_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>Text(Exam__r.Exam_Type__c)</formula>
-        <label>Exam Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
 	<fields>
         <fullName>Validation_Number__c</fullName>

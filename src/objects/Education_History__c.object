@@ -519,6 +519,18 @@
             <valueSetName>Exam_Type</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Exam_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encrypted>false</encrypted>
+        <externalId>true</externalId>
+        <label>Exam Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
     <fields>
         <fullName>HSW__c</fullName>
         <defaultValue>false</defaultValue>
