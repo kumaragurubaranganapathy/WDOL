@@ -474,6 +474,19 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+	<fields>
+        <fullName>Exam_Required_Score__c</fullName>
+        <description>Score required to pass the exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Score required to pass the exam</inlineHelpText>
+        <label>Exam Required Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Exam_Reschedule_via_DOL__c</fullName>
         <externalId>false</externalId>
