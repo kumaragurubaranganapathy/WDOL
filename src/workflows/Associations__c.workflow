@@ -159,7 +159,7 @@
             <name>Send_email_to_Parent_Licensee_about_Declination</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -177,7 +177,7 @@
             <name>Send_email_to_Parent_Licensee_about_acceptance</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -195,7 +195,7 @@
             <name>Send_email_to_parent_Licensee_about_cancelation</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -217,7 +217,7 @@
             <name>Update_Invited_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
