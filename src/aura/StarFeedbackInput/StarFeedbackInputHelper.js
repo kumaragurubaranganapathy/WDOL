@@ -135,7 +135,7 @@
                     var sURLVariables = sPageURL.split('=');
                     isbusiness= sURLVariables[1];
                 } 
-                var str =  isbusiness =='true' ? '/business?app-flow' : '/newdashboard?app-flow';
+                var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
@@ -156,7 +156,7 @@
         	var sURLVariables = sPageURL.split('=');
         	isbusiness= sURLVariables[1];
         }
-        var str =  isbusiness =='true' ? '/business?app-flow' : '/newdashboard?app-flow';
+        var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str
