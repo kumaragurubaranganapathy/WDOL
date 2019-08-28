@@ -277,6 +277,17 @@
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
+	<fields>
+        <fullName>Exam_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Exam__r.Exam_Type__c)</formula>
+        <label>Exam Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Form_JSON__c</fullName>
         <externalId>false</externalId>
@@ -489,6 +500,33 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    </fields>
+	    <fields>
+        <fullName>Number_Of_Advertisements_To_Be_Reviewed__c</fullName>
+        <externalId>false</externalId>
+        <label>Number Of Advertisements To Be Reviewed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_Of_Certifications__c</fullName>
+        <externalId>false</externalId>
+        <label>Number Of Certifications</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Permit_Plan_Review__c</fullName>
@@ -868,4 +906,16 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+		<webLinks>
+        <fullName>Letter</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Letter</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/BGBL__LetterAttach?pid={!Request__c.Id}</url>
+    </webLinks>
 </CustomObject>
