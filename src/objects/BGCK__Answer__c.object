@@ -63,6 +63,14 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
+	<fields>
+        <fullName>Response_Name__c</fullName>
+        <displayFormat>ANS-{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Response Name</label>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
     <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -170,14 +178,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
-    </fields>
-	<fields>
-        <fullName>Response_Name__c</fullName>
-        <displayFormat>ANS-{0000}</displayFormat>
-        <externalId>false</externalId>
-        <label>Response Name</label>
-        <trackTrending>false</trackTrending>
-        <type>AutoNumber</type>
     </fields>
     <fields>
         <fullName>BGCK__Valid__c</fullName>

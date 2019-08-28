@@ -3,7 +3,6 @@
 .THIS .business{
     list-style-position: inside;
     list-style: unset;
-    list-style-type: none;
     margin-left: 6%;
     font-size:t(fieldlabelsize);
 }
@@ -18,12 +17,22 @@
     width: 96%;
     max-width:872px;
     padding: 1rem;
-    background:#f3fafd;
-    border-left: 10px solid #b7dbfb;
+    background:#e1f3f8;
+    border-left: 10px solid #00bfe7;
 }
 .THIS .businessSubHeader{
     font-size:t(fieldlabelsize);
 }
 .THIS .bizlayout{
      margin-left: 8%;
+}
+.THIS .slds-icon-text-default{
+    fill:#000000;
+}
+@media t(mqSmall){
+    .THIS .businessStatus{
+        width:auto;
+        max-width:unset;
+        margin-bottom:1rem;
+    }
 }

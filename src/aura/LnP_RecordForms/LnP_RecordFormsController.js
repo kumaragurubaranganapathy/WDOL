@@ -3,7 +3,7 @@
         // alert('in doinit');
         var objectName = component.get("v.section.personalInfoObjectName");
         var appFieldName = component.get("v.section.fieldJson");
-        
+        console.log("isRenewal:::"+ component.get("v.isRenewal"));
         console.log("objectName"+objectName);
         var accountRecordId =  component.get("v.recordId");
         var savedAccountId = component.get("v.section.accountId");
@@ -46,17 +46,21 @@
                 });
                 var fieldValues = component.find("validateField");
                 for (var i=0; i<validFields.length; i++){
+                    console.log('validFields[i].apiname::'+validFields[i].apiname);
                     if(validFields[i].apiname == 'Unique_ID_To_Provide__c'){
                         var uniqueID = fieldValues[i].get("v.value");  
                         var compEvent = component.getEvent("CmpEvent");
                         if(fieldValues[i].get("v.value") == "No_SSN_or_ITIN"){
-                            component.set("v.flagHideAndShow", "Reason for No SSN");  
-                            compEvent.setParams({"message" : "Reason for No SSN" });
+                            console.log('NO_SSN_or_ITIN::'+fieldValues[i].get("v.value"));
+                            component.set("v.flagHideAndShow", "NO_SSN_ITIN__c");  
+                            compEvent.setParams({"message" : "No SSN or ITIN" }); 	
                             compEvent.fire();
+                            console.log('xyz::'+xyz);
                         } else {
                             component.set("v.flagHideAndShow", uniqueID);  
                             compEvent.setParams({"message" : uniqueID });
-                            compEvent.fire();   
+                            compEvent.fire(); 
+                            console.log('xyz::'+xyz);
                         } 
                     }
                 }         
@@ -72,15 +76,18 @@
     
     selectUniqueID:function(component, event, helper){
         var uniqueID = event.getSource().get("v.value");  
+        console.log("uniqueID::"+ uniqueID);
        	var compEvent = component.getEvent("CmpEvent");
         if(uniqueID != "No_SSN_or_ITIN"){
             component.set("v.flagHideAndShow", uniqueID);  
         	compEvent.setParams({"message" : uniqueID });
-        	compEvent.fire();          
+        	var xyz = compEvent.fire(); 
+            console.log('xyz::'+xyz);
         } else {
-            component.set("v.flagHideAndShow", "Reason for No SSN");  
-            compEvent.setParams({"message" : "Reason for No SSN" });
+            component.set("v.flagHideAndShow", "NO_SSN_ITIN__c");  
+            compEvent.setParams({"message" : "No SSN or ITIN" });
         	compEvent.fire();
+            console.log('xyz::'+xyz);
         }       
     },
     getpattern : function(component, event, helper) {

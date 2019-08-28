@@ -1,4 +1,52 @@
 ({
+    fetchDisplayEndorsementDetails : function(component, event, helper) {
+        
+        var action = component.get("c.fetchEndorsementTypeData");
+        action.setParams({
+            "licenseType": component.get("v.licenseType")             
+        });
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                var endorsementList = component.get("v.endorsementList");
+                var currentEndoList = [];
+                for(var i=0 ; i<endorsementList.length; i++)
+                {
+                    if(endorsementList[i].Status__c=='Active')
+                    {
+                        currentEndoList.push(endorsementList[i].Endorsement_Type__c);
+                    }
+                }
+                var counter = 0;
+                if(endorsementList.length>0)
+                {
+                    for (var i=0 ; i<currentEndoList.length; i++)
+                    {
+                        for (var j=0 ; j<result.length; j++)
+                         {
+                          	if(result[j]==currentEndoList[i])
+                            {
+                                counter++;
+                            }
+                         }
+                    }
+                    if(counter==result.length)
+                    {
+                        component.set("v.ShowAddEndorsement",false);
+                    }
+                    else
+                    {
+                        component.set("v.ShowAddEndorsement",true);
+                    }
+                }
+                
+            }else{
+                window.location.href = "./error";
+            }
+        });
+        $A.enqueueAction(action);
+    },
     fetchDataFromServer : function(component, event, helper) {        
         var manageEndorsement = sessionStorage.getItem("ServiceRequestType");//endorsement
         var recordID = sessionStorage.getItem("licId"); //Licence Id
@@ -60,17 +108,18 @@
         });
         $A.enqueueAction(action);
     },
-    removeHelper : function(component, event, helper) {
-        
+    removeHelper : function(component, event, helper,endorsementID) {
+        component.set("v.loadingSpinner",true);
         var action = component.get("c.removeEndorsement");
         
         action.setParams({            
-            "endoId": event.getSource().get("v.value"),
+            "endoId": endorsementID,
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 helper.fetchEndorsement(component, event, helper);
+                helper.fetchDisplayEndorsementDetails(component, event, helper);
             }
         });
         $A.enqueueAction(action);
@@ -87,6 +136,7 @@
                 var result = actionResult.getReturnValue();
                 console.log(result);
                 component.set("v.endorsementList",result);
+                 component.set("v.loadingSpinner",false);
                 
             }
         });
@@ -123,13 +173,13 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 helper.viewProviderHelper(component, event, helper,component.get("v.endorsementID"));
-                //do something
+                component.set("v.showProvider",false);
             }
         });
         $A.enqueueAction(action);
     },
     addEndorsemet : function(component, event, helper) {  
-        
+        component.set("v.loadingSpinner",true);
         var requestId='';
         var action = component.get("c.insertRequest");
         action.setParams({            
@@ -143,16 +193,18 @@
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
                 requestId = result;
+                sessionStorage.setItem("recordId", component.get("v.recordId"));                
                 sessionStorage.setItem("ServiceRequestType", component.get("v.manageEndorsement"));                
                 sessionStorage.setItem("board", component.get("v.board"));
                 sessionStorage.setItem("licenseType", component.get("v.licenseType"));
                 sessionStorage.setItem("applicationType", component.get("v.applicationMethod"));
                 sessionStorage.setItem("requestId", requestId);
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';
+                component.set("v.loadingSpinner",false);
             }
         });
         $A.enqueueAction(action);
-        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+        console.log('component.get("v.requestId")',component.get("v.requestId"));
         
     },
     submitHelper : function(component, event, helper) {
@@ -186,6 +238,13 @@
                     window.location.href= $A.get("$Label.c.Polaris_Portal_Dashboard");        
                 }), 10);
         }
+    },
+     addProviderHelper: function(component, event, helper) {
+        var parcedValue = event.getParam("value").split(',');
+        var endorsementID = parcedValue[0]; 
+        component.set("v.endorsementID",endorsementID);
+        
+        component.set("v.isModalOpen",true);
     }
     
 })

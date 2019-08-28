@@ -66,14 +66,11 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>Applicant_Licensee_Name__c</fullName>
+        <fullName>Applicant_Id__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(License__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp; License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;, License__r.Applicant_Full_Name__c),
-
-IF(License__c = NULL &amp;&amp;  Renewal_Reinstatement_Application__c != NULL,  HYPERLINK(&apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;Renewal_Reinstatement_Application__r.Applicant__r.Id&amp;&apos;/view&apos;, Renewal_Reinstatement_Application__r.License__r.Applicant_Full_Name__c),
-
-HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/&apos;&amp; Request__r.Contact__r.Id &amp;&apos;/view&apos;, Request__r.Contact__r.Full_Name__c)))</formula>
-        <label>Applicant/Licensee Name</label>
+        <formula>License__r.CreatedById</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Applicant Id</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -118,6 +115,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>40</length>
@@ -125,15 +123,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Comment__c</fullName>
-        <description>Historical Comment</description>
-        <externalId>false</externalId>
-        <label>Comment</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
@@ -162,6 +151,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Completion_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Completion Date</label>
         <required>false</required>
@@ -181,18 +171,18 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Name__c</fullName>
-        <businessStatus>Active</businessStatus>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Name</label>
         <length>40</length>
         <required>false</required>
-        <securityClassification>Public</securityClassification>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Course_Provider_or_School__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Provider or School</label>
         <length>255</length>
@@ -203,6 +193,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Course_Title__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Title</label>
         <length>255</length>
@@ -223,14 +214,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Submit_Exam_Results__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Submit Exam Results</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <fields>
         <fullName>Credential__c</fullName>
         <externalId>false</externalId>
@@ -243,12 +226,29 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <restricted>true</restricted>
             <valueSetName>Credential</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Academic Intern</controllingFieldValue>
-                <valueName>Academic Intern</valueName>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <valueName>Appraiser Course</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <valueName>Certified General Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <valueName>Certificate of Removal Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
@@ -263,10 +263,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>State Licensed Appraiser</valueName>
             </valueSettings>
@@ -275,85 +271,76 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <valueName>Temporary Certified Residential</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <valueName>Temporary State Licensed</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Geologist</controllingFieldValue>
                 <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <valueName>Geologist in Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
-                <valueName>Funeral Director Intern</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <valueName>Appraiser Course</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <valueName>Funeral Establishment</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
                 <valueName>Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <valueName>Embalmer Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Architect</controllingFieldValue>
                 <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
+                <valueName>Funeral Director Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
+                <valueName>Funeral Establishment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
@@ -368,28 +355,24 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <valueName>Funeral Director</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <valueName>Certified General Appraiser</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <valueName>Embalmer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <valueName>Geologist in Training</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
                 <valueName>Land Surveyor in Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <valueName>Certificate of Removal Registration</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
                 <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <valueName>Temporary Certified Residential</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -403,14 +386,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Current__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Current</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Degree__c</fullName>
@@ -474,6 +449,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     <fields>
         <fullName>End_date__c</fullName>
         <description>This is the end date of the education history.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End date</label>
         <required>false</required>
@@ -482,6 +458,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Exam_Approval_Expiry_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exam Approval Expiry Date</label>
         <required>false</required>
@@ -499,37 +476,15 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <type>Time</type>
     </fields>
     <fields>
-        <fullName>Exam_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>true</externalId>
-        <label>Exam Id</label>
-        <length>60</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Exam_Location__c</fullName>
-        <description>Address where the applicant will take the exam</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Address where the applicant will take the exam</inlineHelpText>
-        <label>Exam Location</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Exam_Pass_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exam Pass Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <fields>
+	<fields>
         <fullName>Exam_Required_Score__c</fullName>
         <description>Score required to pass the exam</description>
         <externalId>false</externalId>
@@ -543,7 +498,32 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Exam_Reschedule_via_DOL__c</fullName>
+        <externalId>false</externalId>
+        <label>Exam Reschedule via DOL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Exam_Result_Expiry_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exam Result Expiry Date</label>
         <required>false</required>
@@ -572,6 +552,29 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <valueSetName>Exam_Type</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Exam_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Exam Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Exam_Location__c</fullName>
+        <description>Address where the applicant will take the exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Address where the applicant will take the exam</inlineHelpText>
+        <label>Exam Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>HSW__c</fullName>
         <defaultValue>false</defaultValue>
@@ -592,11 +595,11 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>License_Id__c</fullName>
-        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <fullName>License_Email__c</fullName>
         <externalId>false</externalId>
-        <label>License Id</label>
-        <length>50</length>
+        <formula>License__r.Email__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License_Email</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -614,12 +617,52 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -654,50 +697,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
@@ -706,24 +705,16 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <valueName>Camping Resort Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Certificate of Removal Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -749,6 +740,22 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Professional Engineer</valueName>
             </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
     <fields>
@@ -766,6 +773,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Major__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Major</label>
         <length>100</length>
@@ -776,6 +784,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Minor__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Minor</label>
         <length>100</length>
@@ -786,6 +795,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Name_of_Institution__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Name of Institution</label>
         <length>100</length>
@@ -805,9 +815,21 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     <fields>
         <fullName>Other__c</fullName>
         <description>Other Institution name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_License_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent License Name</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -840,19 +862,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Provider__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Provider</label>
         <length>40</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Release__c</fullName>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -904,6 +917,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Scheduled_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Scheduled Date</label>
         <required>false</required>
@@ -912,6 +926,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     </fields>
     <fields>
         <fullName>Score__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Score</label>
         <length>100</length>
@@ -923,6 +938,7 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
     <fields>
         <fullName>Start_Date__c</fullName>
         <description>This is the start date at the insitution</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -1250,10 +1266,30 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         </valueSet>
     </fields>
     <fields>
+        <fullName>Submit_Exam_Results__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Submit Exam Results</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Trainer_License__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Trainer License</label>
         <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Who_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Applicant__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Who_Id</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1266,16 +1302,22 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <columns>License__c</columns>
         <columns>Name_of_Institution__c</columns>
         <columns>Major__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Education_History__c.Exam</value>
+        </filters>
         <label>All</label>
     </listViews>
     <listViews>
         <fullName>Exams</fullName>
         <columns>NAME</columns>
         <columns>Exam_Type__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>License_Type__c</columns>
         <columns>Status__c</columns>
+        <columns>Exam_Result_Expiry_Date__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
@@ -1344,10 +1386,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1874,10 +1912,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -2225,10 +2259,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -2270,6 +2300,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2349,6 +2383,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2610,10 +2655,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -2713,10 +2754,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Program_Type__c</picklist>
@@ -2766,10 +2803,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2957,10 +2990,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3127,10 +3156,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -3654,10 +3679,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -4005,10 +4026,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -4050,6 +4067,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4129,6 +4150,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4390,10 +4422,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -4493,10 +4521,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Program_Type__c</picklist>
@@ -4546,10 +4570,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4737,10 +4757,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4887,10 +4903,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -5414,10 +5426,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -5765,10 +5773,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -5810,6 +5814,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5889,6 +5897,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6150,10 +6169,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -6253,10 +6268,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Program_Type__c</picklist>
@@ -6306,10 +6317,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6497,10 +6504,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6667,10 +6670,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -7194,10 +7193,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -7545,10 +7540,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -7590,6 +7581,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7669,6 +7664,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7930,10 +7936,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -8033,10 +8035,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Program_Type__c</picklist>
@@ -8086,10 +8084,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8277,10 +8271,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8447,10 +8437,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Program Unknown</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -8974,10 +8960,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pakistan</fullName>
                 <default>false</default>
             </values>
@@ -9325,10 +9307,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -9370,6 +9348,10 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Landscape Architect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufactured Homes Dealer</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9449,6 +9431,17 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Some College</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Exam_Reschedule_via_DOL__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9710,10 +9703,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -9813,10 +9802,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Program_Type__c</picklist>
@@ -9866,10 +9851,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10057,10 +10038,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Oregon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>

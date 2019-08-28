@@ -17,19 +17,19 @@
             component.set("v.customForm", true);
             component.set("v.recordIDforSSAMR",recordId);   
             component.set("v.AMRName",'Update Website');
-            component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
+            component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));
             helper.fetchWebiste(component, event, helper);
         }
             else if(value.toLowerCase() == "print"){            
                 component.set("v.showPrintForm", true);
                 component.set("v.recordIDforSSAMR",recordId);            
-                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_NewDashboard"));
-                component.set("v.AMRName",'Print License');
+                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));
+                component.set("v.AMRName",'Generate License Document');
                 helper.fetchWebiste(component, event, helper);
             }
                 else if(value.toLowerCase() == "businesscontact"){
                     component.set("v.objectApiName", 'Account');
-                    component.set("v.fieldApiNames", ['First_Name_Primary_Contact__c','Last_Name_Primary_Contact__c','Email_Primary_Contact__c','Email__c','Phone_Primary_Contact__c','Business_Phone__c']);
+                    component.set("v.fieldApiNames", ['First_Name_Primary_Contact__c','Last_Name_Primary_Contact__c','Email_Primary_Contact__c','Email__c','Phone_Primary_Contact__c','Extension__c','Business_Phone__c']);
                     component.set("v.recordIDforSSAMR",recordId);
                     component.set("v.recordEditForm",true);
                     component.set("v.AMRName",'Update Contact Information');
@@ -70,7 +70,7 @@
                                 }
                             });
                             $A.enqueueAction(action);              
-                            component.set("v.redirectURL",$A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
+                            component.set("v.redirectURL",$A.get("$Label.c.Polaris_Portal_Home"));
                         }
         
                             else if(value.toLowerCase() == "address"){			
@@ -99,7 +99,7 @@
                                     }
                                 });
                                 $A.enqueueAction(action);              
-                                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_NewDashboard"));             
+                                component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));             
                             }
     },
     getContact : function(component, event, helper){
@@ -223,8 +223,20 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                response.getReturnValue();
+                if(component.find("printLicenseId").get("v.value")=='download')
+                {
+                    var conVerId = response.getReturnValue();
+                    //windows.location = 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER';
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER'
+                    });
+                    urlEvent.fire();
+                }
+                
                 window.location.href = component.get("v.redirectURL");
+                               
+                
             }
             else if (state === "ERROR") {
                 var errors = response.getError();
@@ -249,7 +261,7 @@
     maskInput : function(component,event){  
         var numbers=event.getSource().get('v.value');
         var fieldname=event.getSource().get('v.fieldName');
-        if(fieldname=="Phone_Primary_Contact__c" || fieldname=="Business_Phone__c"){
+        if(fieldname=="MobilePhone" || fieldname=="Phone"||fieldname=="Phone_Primary_Contact__c"||fieldname=="Business_Phone__c"){
             if(numbers.length==10){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
@@ -260,31 +272,60 @@
     
     validateFields : function(component,event){
         var inputFields = component.find("input-fields");
+        // var inputFields = component.find("UpdateContactId");
         var errorCount = 0;
         inputFields.forEach(function(elem){
-            if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12){
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": "Mobile Phone should be 10 digits",
-                    "type": "error"
-                });
-                toastEvent.fire();
-                errorCount++;
-            }
-            else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12){
-                var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": "Business Phone should be 10 digits",
-                    "type": "error"
-                });
-                toastEvent.fire();
-                errorCount++;
+            if(elem.get("v.value")!== null)
+            {
+                if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Mobile Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
+                else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Business Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
+                if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Mobile Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
+                else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
+                    errorCount++;
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "Business Phone should be 10 digits",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                    
+                }
             }
         });
         if(errorCount===0){
             component.set("v.fieldsValidated",true);
+            component.find("UpdateContactId").submit();
         }
         else
         	component.set("v.fieldsValidated",false);

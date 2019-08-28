@@ -58,7 +58,7 @@ public class DOL_SaveDataForIntegrationBatch {
             response.addErrorMsg('error occured '+error.getMessage());
             response.addErrorMsg(' stack trace '+error.getStackTraceString());
             response.setStatusCode(400);
-            DOL_CreateErrorLog_Exception.logApplicationError(error);
+            DOL_CreateErrorLog_Exception.logApplicationError(error,'DOL_SaveDataForIntegrationBatch','saveDataForIntegrationBatch');
         }
         return response;
     }

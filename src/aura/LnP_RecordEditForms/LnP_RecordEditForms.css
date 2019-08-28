@@ -1,8 +1,7 @@
 .THIS {
 }
 .THIS .form-wrapper{
-    background-color:t(LnGWhite);
-    border-radius: 5px;
+    background-color:t(LnGWhite);    
   	border: solid 1.5px #e3e4ea;
 }
 .THIS .amr-flow.recItem{
@@ -14,7 +13,7 @@
     margin-bottom:0.8rem;
 }
 .THIS .recItem label{
-    padding-bottom:5px; 
+    padding-bottom:0; 
 }
 .THIS .itemLayoutInp .slds-checkbox_standalone input{
    top:-8px;
@@ -204,4 +203,12 @@
     padding: 0;
     position: absolute;
     pointer-events: auto;
+}
+@media t(mqSmall){
+   .THIS .iconsLayout div{
+    width:100%
+}
+    .THIS .recordDetail .edit-field .slds-form-element__control{
+        width:100%;
+    }
 }

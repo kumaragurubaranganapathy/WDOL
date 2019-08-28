@@ -3,24 +3,48 @@
     max-width: 1200px;
     margin: 0px auto;
 }
+.THIS .sub-header{
+    font-family: t(btnfontfamily);
+    line-height:1.5;
+}
+.THIS .confirmation-header h2,.THIS .textFormat{
+    font-size:30px;
+    font-weight:t(btnfontweight);
+    margin-bottom:1rem;
+}
+.THIS .textFormat {
+    font-size: 20px;
+    font-family: t(merrifontfamily);
+    margin-bottom:0px;
+}
+.THIS .sub-header, .THIS .sub-section, .THIS .subheader span {
+    color: t(LnGFormTitleColor);
+}
+.THIS .confirmation-header h2{
+    margin-bottom:0.8rem;
+}
+.THIS .confirmation-content{
+    padding: 1.5rem 2rem;
+    border: solid 1px #d6d7d9;
+}
 .THIS .page-header h1{
-  font-family: t(publicSansfontfamily);
-  font-size: 20px;
-  font-weight: 600;
-  font-style: t(txtfontstyle);
-  line-height: 1.48;
-  color: t(LnGFormTitleColor);
+    font-family: t(merrifontfamily);
+    font-size: 30px;
+    font-weight: 600;
+    font-style: t(txtfontstyle);
+    line-height: 1.48;
+    color: t(LnGFormTitleColor);
 }
 .THIS .prof-select .slds-form-element__control{
     width:50%;
 }
 .THIS .page-content .heading{
-  font-family: t(publicSansfontfamily);
-  font-size: 20px;
-  font-weight: t(txtfontweight);
-  font-style: t(txtfontstyle);
-  line-height: normal;
-  color: t(fieldclr);
+    font-family: t(merrifontfamily);
+    font-size: 20px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(fieldclr);
 }
 .THIS .complaint-path {
     padding:50px 0px 70px;
@@ -28,6 +52,12 @@
 .THIS .slds-form-element label.slds-form-element__label {
     font-size: 15px;
     font-weight: bold;
+}
+.THIS select, .THIS input, .THIS textarea,
+.THIS .slds-select, .THIS .slds-input,
+.THIS .field-item div input, .THIS .field-item div select{
+    font-size:17px;
+    font-weight:200;
 }
 .THIS .slds-select_container:after{
    	border-top: 6px solid t(black);
@@ -43,6 +73,7 @@
 .THIS .sec-header {
     font-size:20px;
     line-height: 1;
+    font-weight:bold;
 }
 .THIS .success li {
   width: 2rem;
@@ -92,9 +123,10 @@
     display:none;
 }
 .THIS .fileupload .slds-file-selector__button{
-    color:t(white);
-    background:t(primary);
+    color:t(white) !important;
+    background:t(primary) !important;
 }
+
 .THIS .fileupload .slds-file-selector__text{
     margin-left:1rem;
     font-size:t(senfontsize);
@@ -122,6 +154,9 @@
 .THIS .slds-path__item{
     min-width: 0;
 }
+.THIS a[title="Your Information"]+span{
+    left: -42px;
+}  
 .THIS .slds-path__title{
     overflow:inherit;
     white-space: inherit;
@@ -163,6 +198,7 @@
   box-shadow: 0 0 0 5px #e2574c;
   margin:10px;
 }
+ 
 @media t(mqSmall){
 	.THIS .slds-path__title {
         overflow: visible;
@@ -200,6 +236,12 @@
         padding: 0;
         margin: 0 0 .5rem;
     }
+    .THIS .inactive-path-title,.THIS span.inactive-path-title.slds-path__title,.THIS span.is-complete-path.slds-path__title{
+        display: none;
+    }
+    .THIS .slds-path__item div.is-not-current,.THIS .slds-path__item div.green-circle, .THIS .slds-path__item div.red-circle{
+        display:none;
+    }
 }
 .THIS .inactive-path-title{
    text-overflow: ellipsis;   
@@ -221,6 +263,7 @@
   .THIS .mobile-tab-view{
 	display:none;
   }
+    
 }
 .THIS hover{
    cursor: pointer; 
@@ -337,4 +380,57 @@
         width: 90%;
         margin: 0px auto;
     }
+}
+.THIS input::-webkit-input-placeholder,
+.THIS textarea::-webkit-input-placeholder{
+  	font-size:17px;	
+}
+.THIS input::-moz-placeholder,
+.THIS textarea::-moz-placeholder {
+  	font-size:17px;
+}
+.THIS input:-ms-input-placeholder,
+.THIS textarea:-ms-input-placeholder {
+  	font-size:17px;
+}
+.THIS input:-moz-placeholder,
+.THIS textarea:-moz-placeholder {
+  	font-size:17px;
+}
+.THIS .complaint-btn-wrapper button.slds-button {
+    width: 130px;
+    font-size: 17px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+      
+      
+        .THIS.page-width{
+            margin: 0 5.5rem;
+            width: auto;
+        }
+       
+} 
+@media t(mqSmall){
+.THIS .complaint-btn-wrapper button.slds-button {
+    width: 100%;    
+}
+.THIS .page-header h1, .THIS .heading, .THIS .sec-header {
+	font-size:16px;
+}
+.THIS .sub-header, .THIS .sub-section, .THIS .subheader span {
+     font-size:14px;   
+}
+.THIS .confirmation-content div {
+    font-size: 14px;
+}
+.THIS .confirmation-content div.slds-text-heading_medium, .THIS .slds-text-heading_medium {
+    font-size: 18px;
+    font-weight:600
+}
+.THIS .confirmation-header > div {
+    font-size: 16px;
+}
+.THIS .page-content .heading{
+    font-size: 16px;
+}
 }

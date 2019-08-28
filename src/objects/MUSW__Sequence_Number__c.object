@@ -262,9 +262,19 @@
                     <label>Application_Type__c</label>
                 </value>
                 <value>
+                    <fullName>Credential_Type__c</fullName>
+                    <default>false</default>
+                    <label>Credential_Type__c</label>
+                </value>
+                <value>
                     <fullName>Provider_Type__c</fullName>
                     <default>false</default>
                     <label>Provider_Type__c</label>
+                </value>
+                <value>
+                    <fullName>Record_Type_Name__c</fullName>
+                    <default>false</default>
+                    <label>Record_Type_Name__c</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -316,6 +326,8 @@
         <columns>MUSW__Date_Field__c</columns>
         <columns>MUSW__Source_Type_Fields__c</columns>
         <columns>MUSW__Sequence_Field__c</columns>
+        <columns>MUSW__Mode__c</columns>
+        <columns>MUSW__Control__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

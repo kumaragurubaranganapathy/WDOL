@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>Duplicate_Verified__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ThirdPary_Billing_Code__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -40,6 +44,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Bus_Id__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PIN__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -166,6 +174,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>License_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Security_Code__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -395,6 +407,15 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Miscellaneous_Fee__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Parcel_Number2__c</fields>
+        <fields>MUSW__City__c</fields>
+        <fields>MUSW__Primary_Zoning__c</fields>
+        <fields>MUSW__Alert_Indicator__c</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <relatedList>MUSW__Parcel__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

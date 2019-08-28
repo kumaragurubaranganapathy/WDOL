@@ -1,7 +1,9 @@
 ({
 	doInit : function(component, event, helper) {
-        helper.doInit(component, event, helper);
-        helper.showBusinessAccountAlert(component, event, helper);
+        helper.doInit(component, event);
+        helper.fetchData(component,event);
+        helper.showBusinessAccountAlert(component, event);
+        helper.showLicenseAlert(component, event);
     },
     declineRequest : function(component, event, helper) {
         var taskId = event.getSource().get("v.name");
@@ -73,7 +75,7 @@
     
     openModelReschedule : function(component, event, helper) {
         var taskRecordForModel = event.getSource().get("v.value");
-        console.log('Value==' + taskRecordForModel);
+        console.log('Value==' + JSON.stringify(taskRecordForModel));
         component.set("v.taskRecordForModel", taskRecordForModel);
         console.log('subject==' + component.get("v.taskRecordForModel"));
         component.set("v.isOpenExam", true);
@@ -94,6 +96,25 @@
     },
     redirectBusiness : function(component,event,helper){
         helper.redirectBusiness(component,event);
-    }    
+    },
+    
+    goToProfDashboard : function(component,event,helper){
+        helper.goToProfDashboard(component,event);
+    },
+    bizLicApp : function(component,event,helper){
+        helper.bizLicApp(component,event);
+    },
+    goToBizDashboard : function(component,event,helper){
+        helper.goToBizDashboard(component,event);
+    },
+    openTrainingApp : function(component,event,helper){
+        helper.openTrainingApp(component,event);
+    },
+    StartRequestInformation : function(component,event,helper){
+        helper.StartRequestInformationHelper(component,event);
+    },
+    StartRequestEducationInformation : function(component,event,helper){
+        helper.StartRequestEducationInformationHelper(component,event);
+    },
  
 })

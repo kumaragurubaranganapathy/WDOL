@@ -440,19 +440,47 @@
         <type>Lookup</type>
     </fields>
     <listViews>
-        <fullName>MyActivities</fullName>
+        <fullName>CompletedTasks</fullName>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>DUE_DATE</columns>
+        <columns>STATUS</columns>
+        <columns>PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Mine</filterScope>
-        <label>My Activities</label>
+        <filters>
+            <field>IS_CLOSED</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>IS_RECURRENCE</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>LAST_UPDATE</field>
+            <operation>equals</operation>
+            <value>TODAY,LAST_N_DAYS:30</value>
+        </filters>
+        <label>CompletedTasks</label>
     </listViews>
     <listViews>
-        <fullName>MyDelegatedActivities</fullName>
+        <fullName>DelegatedTasks</fullName>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>DUE_DATE</columns>
+        <columns>STATUS</columns>
+        <columns>PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Delegated</filterScope>
-        <label>My Delegated Activities</label>
-    </listViews>
-    <listViews>
-        <fullName>MyTeamsActivities</fullName>
-        <filterScope>Team</filterScope>
-        <label>My Team&apos;s Activities</label>
+        <label>DelegatedTasks</label>
     </listViews>
     <listViews>
         <fullName>OpenTasks</fullName>
@@ -481,7 +509,7 @@
             <operation>greaterOrEqual</operation>
             <value>LAST_N_DAYS:30</value>
         </filters>
-        <label>ENCODED:{!FilterNames.Task_OpenTasks}</label>
+        <label>OpenTasks</label>
     </listViews>
     <listViews>
         <fullName>OverdueTasks</fullName>
@@ -510,7 +538,26 @@
             <operation>lessThan</operation>
             <value>TODAY</value>
         </filters>
-        <label>ENCODED:{!FilterNames.Task_OverdueTasks}</label>
+        <label>OverdueTasks</label>
+    </listViews>
+    <listViews>
+        <fullName>RecurringTasks</fullName>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>DUE_DATE</columns>
+        <columns>STATUS</columns>
+        <columns>PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>IS_RECURRENCE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>RecurringTasks</label>
     </listViews>
     <listViews>
         <fullName>TodaysTasks</fullName>
@@ -539,7 +586,35 @@
             <operation>equals</operation>
             <value>TODAY,LAST_N_DAYS:30</value>
         </filters>
-        <label>ENCODED:{!FilterNames.z_TodaysTasks}</label>
+        <label>TodaysTasks</label>
+    </listViews>
+    <listViews>
+        <fullName>UnscheduledTasks</fullName>
+        <columns>SUBJECT</columns>
+        <columns>WHO_NAME</columns>
+        <columns>WHAT_NAME</columns>
+        <columns>DUE_DATE</columns>
+        <columns>STATUS</columns>
+        <columns>PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>IS_CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>IS_RECURRENCE</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>DUE_DATE</field>
+            <operation>equals</operation>
+        </filters>
+        <label>UnscheduledTasks</label>
     </listViews>
     <recordTypes>
         <fullName>Inspection_Task</fullName>

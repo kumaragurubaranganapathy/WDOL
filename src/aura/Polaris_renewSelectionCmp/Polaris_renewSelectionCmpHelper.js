@@ -64,10 +64,10 @@
                         if (applicationMethod) {
                             window.setTimeout(
                                 $A.getCallback(function () {
-                                    eliTypeGridDiv.classList.remove("slds-hide");
+                                   // eliTypeGridDiv.classList.remove("slds-hide");
                                     component.set("v.eliQuesNo", 1);
                                     if (eliQuesList.length == 0) {
-                                        eliTypeGridDiv.classList.add("slds-hide");
+                                     //   eliTypeGridDiv.classList.add("slds-hide");
 
                                     }
                                 }), 1000);
@@ -107,7 +107,8 @@
         var optionJSONArr = [];
         var eliQuestions = component.find('eliRadios');
         var account = sessionStorage.getItem("accountRecordID");
-        //eliQuestions.forEach(eliQuestions => {
+        console.log('account record id in renewal--' + account);
+        //eliQuestions.forEach(function(eliQuestions){
         if (component.get("v.isDirectProceed") == false && eliQuestions != undefined) {
             for (var ii = 0; ii < eliQuestions.length; ii++) {
                 console.log('loopValue ' + eliQuestions[ii].get("v.value"));
@@ -139,10 +140,12 @@
                         isRenewal: true,
                         licId: component.get("v.licID")
                     }, "",
-                    $A.getCallback(response => {
+                    $A.getCallback(function (response) {
+                        console.log('in cal back');
                         applicationId = response;
                         sessionStorage.setItem("applicationId", applicationId);
                         console.log('applicationId ' + applicationId);
+                        component.set("v.spinner",false);
                         var accURL = window.location.href;
                         var accUrlShort = accURL.slice(0, accURL.lastIndexOf("/"));
                         accUrlShort = accUrlShort + "/polaris-renewal";//+ applicationId;
@@ -153,7 +156,7 @@
                         });
                         urlEvent.fire();
                     }),
-                    $A.getCallback(errors => {
+                    $A.getCallback(function (errors) {
                     }),
                     false, ""
                 );
@@ -173,22 +176,26 @@
         var board = component.get("v.board");
         var licenseType = component.get("v.licenseType");
         var applicationMethod = component.get("v.appMethod");
+        var RenewReinstate = component.get("v.RenewReinstate");
         var action = component.get("c.fetchInstructions");
         action.setParams({
             "Board": board,
             "LicenseType": licenseType,
-            "ApplicationType": applicationMethod
+            "ApplicationType": applicationMethod,
+            "Obj":'Renewal_Application__c',
+            "renewalReinstate":RenewReinstate
         });
         action.setCallback(this, function (actionResult) {
             var state = actionResult.getState();
             if (state === "SUCCESS") {
                 var response = actionResult.getReturnValue();
                 console.log('Response::' + response);
-                if (response[0] != '') {
+                if(response[0] != 'null'){
+                    
                     $A.util.removeClass(component.find("readyHeader"), 'slds-hide');
                     component.set("v.instructions", response[0]);
-                } else {
-                    $A.util.addClass(component.find("readyHeader"), 'slds-hide');
+                }else{
+                    $A.util.addClass(component.find("readyHeader"), 'slds-hide'); 
                 }
                 console.log('First Instr::' + response[0]);
                 var tempList = [];
@@ -206,5 +213,42 @@
         });
 
         $A.enqueueAction(action);
+    },
+    validateform : function(component,event,helper) {
+        if(document.getElementById("eliTypeGridDiv") != undefined) {
+                    var getEligibility = document.getElementById("eliTypeGridDiv").classList.contains('slds-hide');
+         if(!getEligibility ) {
+           
+            var eliQuestions= component.find('eliRadios');
+            var answersMarked = false;
+            if(component.get("v.eliTypeQues").length == 1){
+                if(eliQuestions.get('v.value') != 'No' && eliQuestions.get('v.value') != undefined) {
+                    answersMarked = true;
+                }
+                
+            } else {
+                answersMarked = eliQuestions.every(function eliQuestionAns(qes) {
+                    return qes.get("v.value") != 'No' && qes.get("v.value") != undefined;
+                });  
+            }
+            if(!answersMarked) {
+                component.find("button1").set('v.disabled',true);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Failure!",
+                    "message": "Please do not apply until you meet all eligibility criteria",
+                    "type": "Error"
+                });
+                toastEvent.fire();
+                component.find("button1").set('v.disabled',false);
+            } else {
+                component.find("button1").set('v.disabled',false);   
+                helper.startApplicationHelper(component, event, helper);
+            }
+        }
+        } else {
+            helper.startApplicationHelper(component, event, helper);
+        }
+
     }
 })

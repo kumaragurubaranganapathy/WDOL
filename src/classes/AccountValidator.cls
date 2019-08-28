@@ -1,9 +1,9 @@
 public class AccountValidator {
-    //Comment Added
+    
     public static ValidationError validate (ValidationError e, String recordId, String grouping, String licenseType, String applicationType){
 
       ValidationError error = new ValidationError();
-		System.debug('test');
+
         Account a = [SELECT Id, Name, Type, Phone,Email__c, AccountNumber, NumberOfEmployees, Security_Code__c, FEIN_Number_Encrypted__c, Account_Status__c, Business_Name__c, Track_No__c, Issued_Number__c, Last_4_Digits_of_FEIN__c,Email_Primary_Contact__c,Phone_Primary_Contact__c
                         FROM Account WHERE Id = :recordId];
                         

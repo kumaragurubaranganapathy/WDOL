@@ -3,6 +3,8 @@
     resetAttributesHelper :  function(component, event, helper){
         var eliTypeGridDiv = document.getElementById("eliTypeGridDiv");
         var appInstructions = document.getElementById("applicationInstuctionDiv");
+        component.find("getApplicationMethod").set('v.value',"");
+        component.set('v.applicationMethodList',[]);
         console.log("inside reset::");
         $A.util.removeClass(component.find("licenseType"), 'slds-hide');	
         $A.util.removeClass(component.find("getApplicationMethod"), 'slds-hide');
@@ -14,8 +16,15 @@
         $A.util.addClass(component.find("accountPickerId"), 'slds-hide');	
         component.set("v.otherInstructions", []);
         $A.util.addClass(component.find("reqDocTextDiv"), 'slds-hide');
-        
-        
+        var programtype = component.find("board").get("v.value");
+        var applicationMethod = component.get('v.LiceneMethodMap');
+        component.set('v.licenseList',[]);
+        var stringofdaya = applicationMethod[programtype];
+        if(stringofdaya != undefined) {
+            component.set("v.licenseList",stringofdaya.sort());
+        }
+        console.log('licenseType',stringofdaya);
+       
     },
     
     getUrlParam : function(paramName) {
@@ -90,7 +99,7 @@
     },
     
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
-        component.find("button1").set('v.disabled',false);
+		component.find("button1").set('v.disabled',true);
         component.set("v.eliTypeQues",[]);        
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
@@ -117,7 +126,6 @@
         //appTypeGridDiv.classList.add("slds-hide");
         eliTypeGridDiv.classList.add("slds-hide");
         appInstructions.classList.add("slds-hide");
-        component.find("button1").set('v.disabled',true);
         //appTypeDiv.classList.add("slds-hide");
         //appTypeGridDiv.classList.add("slds-hide");
         
@@ -168,7 +176,7 @@
                             helper.restrictTemporaryLicenses(component,event,helper);
                         }
                         
-                        helper.hideOrShowSpinner(component, event, helper);
+                       // helper.hideOrShowSpinner(component, event, helper);
                         if(applicationMethod != ''){  
                             window.setTimeout(
                                 $A.getCallback(function() {
@@ -204,13 +212,15 @@
                                         }
                                         
                                     }
-                                    
                                     //var eliChild = document.getElementById('eliQuesDiv').children;
                                     //for(var i=0; i<eliChild.length; i++){
                                     //eliChild[0].classList.remove("slds-hide");
                                     //}
                                 }), 2000);
                         }
+						window.setTimeout($A.getCallback(function() {
+                              helper.hideOrShowSpinner(component, event, helper);      
+                        }), 2000);
                     } 
                 });
                 $A.enqueueAction(action);
@@ -222,18 +232,22 @@
         var board = component.find("board").get("v.value");
         var licenseType = component.find("licenseType").get("v.value");
         var applicationMethod = component.find("getApplicationMethod").get("v.value");
+        var upgradeLicenseIdValue = component.get("v.showLicenseDropdown") ? component.find("licensePickerId").get("v.value") : '';
         var action = component.get("c.fetchInstructions");
         action.setParams({
             "Board": board, 
             "LicenseType": licenseType, 
             "ApplicationType": applicationMethod,
+            "Obj":'MUSW__License2__c',
+            "renewalReinstate":'',
+			"upgradeLicenseIdValue": upgradeLicenseIdValue
         });
         action.setCallback(this, function(actionResult){
             var state = actionResult.getState();
             if (state === "SUCCESS"){ 
                 var response = actionResult.getReturnValue();
                 console.log('Response::'+response);
-                if(response[0] != 'null'){
+                if(response[0] != ''){
                     $A.util.removeClass(component.find("readyHeader"), 'slds-hide');
                     component.set("v.instructions", response[0]);
                 }else{
@@ -397,7 +411,12 @@
         component.find("button1").set('v.disabled',false);
     },
     startApplicationHelper : function(component, event, helper){
+        var isBusinessLicenseSelection =false;
         console.log('inside startApplicationHelper');
+        var parsedUrl = new URL(document.location);
+        if(parsedUrl != null){
+            isBusinessLicenseSelection = parsedUrl.searchParams.has('biz-lic');    
+        }
         // To disable button on click.
         var applicationId = "";
        let button = event.getSource();
@@ -465,17 +484,18 @@
                         console.log("result::"+ result);
                         console.log('121233' + sessionStorage.getItem("applicationId"));
                         console.log('test::'+sessionStorage.getItem("header"));
+                        var queryParam = isBusinessLicenseSelection ? '?biz-lic':'';
                         if(sessionStorage.getItem("header")){
                             console.log('inside headertrue');
                             sessionStorage.setItem("header","true");
                             sessionStorage.setItem("applicationId",result); 
                             sessionStorage.setItem("contactRecId",contactRecId); 
-                            window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license';
+                            window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license'+queryParam;
                         } 
                         else if(sessionStorage.getItem("header")){
                             var urlEvent = $A.get("e.force:navigateToURL");
                             console.log('%%%%%'+urlEvent);
-                            var str = "/lightningwashington/s/apply-for-license";
+                            var str = "/lightningwashington/s/apply-for-license"+queryParam;
                             console.log('$$$$$$'+str);
                             urlEvent.setParams({
                                 "url": str
@@ -547,7 +567,7 @@
         var board=component.get("v.board");
         var licenseType=component.get("v.licenseType");
         var result ='';
-        component.find("button1").set('v.disabled',false);
+        //component.find("button1").set('v.disabled',false);
         try{
             return new Promise($A.getCallback(function(resolve, reject) {
                 console.log('inside promise');
@@ -717,5 +737,23 @@
     },
     setApplicationTypeHelper : function (component, event, helper){
         var appTypeValue = component.find("appTypeField").get("v.value");  
+    },
+    fetchApplicationmethods : function (component, event, helper){
+        var action = component.get("c.getPicklistOptions");
+        action.setParams({
+            "sObj": 'MUSW__License2__c', 
+            "conField": 'Credential_Type__c',
+            "depField": 'Application_Method__c',
+        }); 
+        action.setCallback(this, function(actionResult){
+            var state = actionResult.getState();
+            var response = actionResult.getReturnValue();
+            if (state === "SUCCESS"){
+                console.log('success');  
+                console.log('applicationMethodMap'+response);
+                component.set('v.applicationMethodMap',response);
+            }
+        });
+         $A.enqueueAction(action);
     }
 })

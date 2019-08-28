@@ -49,7 +49,7 @@ public class LnP_ApplyForLicenseWrapper {
         public List<MapRadioButtons> radioValueOptions = new List<MapRadioButtons>();
         public Boolean isGenericSub;
         public Boolean isMandatorySub;
-		public Decimal orderBy;
+        public Decimal orderBy;
         public List<MapRadioButtons> educationDetailsMap = new List<MapRadioButtons>();    
        public String validationCriteria;
     }

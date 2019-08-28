@@ -1,4 +1,4 @@
-public with sharing class Polaris_DynamicSQL {
+public without sharing class Polaris_DynamicSQL {
     public  String FieldName ;
     public  String Operator ;
     public  String FieldValue;
@@ -286,7 +286,7 @@ String pemail = (String)pdata.get('email');*/
                                                                    if(mapAllRec <> null && !mapAllRec.isEmpty())
                                                                        lstRecords.addAll(mapAllRec.values());
                                                                }
-                                                               Map<String,Boolean> mapDeciplinary = new Map<String,Boolean>();
+                                                               Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
                                                         if(showDeciplinary == true){
                                                             List<MUSW__License_Parcel__c> lstrec= (List<MUSW__License_Parcel__c>)lstRecords;
                                                             if(!lstRecords.isEmpty()) {
@@ -295,16 +295,21 @@ String pemail = (String)pdata.get('email');*/
                                                                 for(MUSW__License_Parcel__c license : lstrec){
                                                                     licenseID.add(String.valueOf(license.MUSW__License2__c));
                                                                 }
+                                                                if(!getDeliplinaryAction(licenseID).isEmpty()){
+                                                                    mapDeciplinary = getDeliplinaryAction(licenseID);
+                                                                }
                                                                 
-                                                                mapDeciplinary = getDeliplinaryAction(licenseID);
                                                             }
                                                             if(!mapDeciplinary.isEmpty()) {
                                                                 for(String abc : mapDeciplinary.keySet()) {
+                                                                    system.debug('mapDeciplinaryinside '+mapDeciplinary);
                                                                     // string isAction = mapDeciplinary.get(abc);
                                                                     // lstRecords.add(isAction);
                                                                     for(MUSW__License_Parcel__c sob : lstrec) {
                                                                         if(abc == sob.MUSW__License2__c) {
-                                                                            sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc);
+                                                                            system.debug('mapDeciplinaryinside123 '+mapDeciplinary);
+                                                                            sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
+                                                                            sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
                                                                         }
                                                                     }
                                                                 }
@@ -318,7 +323,7 @@ String pemail = (String)pdata.get('email');*/
     @AuraEnabled
     public static List<SObject> generateQueryWithOR(String objectName, List<String> lstFieldsName, 
                                                     Map<String,String> mapValues, Boolean bIsStatusIncluded, Boolean showDeciplinary){
-                                                          Map<String,Boolean> mapDeciplinary = new Map<String,Boolean>();
+                                                          Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
                                                         system.debug('inside');
                                                         system.debug('mapValues'+mapValues);
                                                         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
@@ -431,7 +436,9 @@ String pemail = (String)pdata.get('email');*/
                                                                     // lstRecords.add(isAction);
                                                                     for(MUSW__License_Parcel__c sob : lstrec) {
                                                                         if(abc == sob.MUSW__License2__c) {
-                                                                            sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc);
+                                                                            sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
+                                                                            system.debug('mapDeciplinary.get(abc)'+mapDeciplinary.get(abc));
+                                                                            sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
                                                                         }
                                                                     }
                                                                 }
@@ -447,7 +454,7 @@ String pemail = (String)pdata.get('email');*/
       @AuraEnabled
     public static List<SObject> generateQueryWithORDetails(String objectName, List<String> lstFieldsName, 
                                                     Map<String,String> mapValues, Boolean bIsStatusIncluded, Boolean showDeciplinary){
-                                                          Map<String,Boolean> mapDeciplinary = new Map<String,Boolean>();
+                                                          Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
                                                         system.debug('inside');
                                                         system.debug('mapValues'+mapValues);
                                                         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
@@ -556,11 +563,12 @@ String pemail = (String)pdata.get('email');*/
                                                             }
                                                             if(!mapDeciplinary.isEmpty()) {
                                                                 for(String abc : mapDeciplinary.keySet()) {
-                                                                    // string isAction = mapDeciplinary.get(abc);
-                                                                    // lstRecords.add(isAction);
+
                                                                     for(MUSW__License2__c sob : lstrec) {
+ 
                                                                         if(abc == sob.Id) {
-                                                                            sob.AIDS_Affidavit__c = mapDeciplinary.get(abc);
+                                                                            sob.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
+                                                                           // sob.Project_Address__c = mapDeciplinary.get(abc).documentId;
                                                                         }
                                                                     }
                                                                 }
@@ -745,28 +753,41 @@ String pemail = (String)pdata.get('email');*/
                                                               return   lstRecords; 
                                                           }
     
-    
-    private static  Map<String, Boolean> getDeliplinaryAction (Set<String> lstname) {
-        Map<String,Boolean> mapDesciplinaryAction = new Map<String,Boolean>();
-        List<MUSW__Submission__c> lstSub  = [select MUSW__License2__c ,ID  from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true];
+    public  static  Map<String, disciPlinaryAction> getDeliplinaryAction (Set<String> lstname) {
+        Map<String,disciPlinaryAction> mapDesciplinaryAction = new Map<String,disciPlinaryAction>();
+        List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ];
+        Set<Id> setDoc = new Set<ID>();
+        List<ContentDocumentLink> lstCon;
         if(!lstSub.isEmpty()) {
+            
             for(String key  : lstname) {
                 integer count = 0;
                 for (MUSW__Submission__c sub: lstSub) {
+                    system.debug('anyways'+sub);
+                    setDoc.add(sub.Id);
+                    disciPlinaryAction obj = new disciPlinaryAction();
                     if(key.equals(sub.MUSW__License2__c)){
-                        count++;
+                        // count++;
+                        system.debug('inside later');
+                        obj.isDisciplinaryAction = true;
+                        obj.documentId = sub.Public_Distribution_URL__c;
+                        mapDesciplinaryAction.put(key,obj); 
+
                     }
                 }
-                if(count >=1) {
-                    mapDesciplinaryAction.put(key,true);  
-                } else {
-                    mapDesciplinaryAction.put(key,false);  
-                }
-              
             }  
         }
         return mapDesciplinaryAction;
     }
+
+            
+    public class disciPlinaryAction
+    {
+         public String submissionId{set;get;}
+         public Boolean isDisciplinaryAction{set;get;}
+         public String documentId{set;get;}
+    }
+    //private Static Map<String,Boolean> getDeciplinarySubmissions()
     public class businessDataClass
     {
         @AuraEnabled public String address{set;get;}
@@ -801,7 +822,5 @@ String pemail = (String)pdata.get('email');*/
         @AuraEnabled public String phone{set;get;}
         @AuraEnabled public String city{set;get;}            
     }
-    
-    
     
 }

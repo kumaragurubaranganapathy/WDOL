@@ -300,10 +300,15 @@
             
             if (state === "SUCCESS") {
                 
-                helper.showToast(component, event, helper,"The documents are succesfully uploaded and you application is being reviewd","success"); 
+                console.log("Helper setLicenseToInReview");
                 
-                helper.setDefaults(component, event, helper);
+                this.showToast(component, event, helper,"The documents are succesfully uploaded and you application is being reviewd","success"); 
+                
+                //this.setDefaults(component, event, helper);
+                
                 this.setPendingNewLicenseApplicationsTableData(component, event, helper);
+                
+                this.setDefaults(component, event, helper);
                 
             }else if (state === "ERROR") {
                 
@@ -456,9 +461,8 @@
                 console.log("endorsementDatavar @@"+endorsementDatavar);
                 
                 component.set("v.endorsementData",endorsementDatavar);
-				
-				component.set("v.hasActiveSupervisorEndorsement",endorsementDatavar.includes("Supervisor"));
                 
+                component.set("v.hasActiveSupervisorEndorsement",endorsementDatavar.includes("Supervisor"));
                 
             }else if (state === "ERROR") {
                 
@@ -998,13 +1002,11 @@
                 console.log('In LnP_Dashboard_2.aura-helper::setPendingMaintanceRequestTableData '+JSON.stringify(pendingMaintanceRequestTable));
                 
                 component.set("v.CompletedMaintananceRequestApplicationsColumnList",completedMaintananceRequestApplicationsColumnData);
-				for(var i =0; i<completedMaintananceRequestApplicationsTableData.length;i++)
+                for(var i =0; i<completedMaintananceRequestApplicationsTableData.length;i++)
                 {
                     if(completedMaintananceRequestApplicationsTableData[i].End_Time__c!=null && completedMaintananceRequestApplicationsTableData[i].End_Time__c!='')
                         completedMaintananceRequestApplicationsTableData[i].End_Time__c = new Date(completedMaintananceRequestApplicationsTableData[i].End_Time__c);                    
                 }
-                component.set("v.CompletedMaintananceRequestApplicationsDataList",completedMaintananceRequestApplicationsTableData);
-                
                 component.set("v.CompletedMaintananceRequestApplicationsDataList",completedMaintananceRequestApplicationsTableData);
                 
             } else if (state === "ERROR") {
@@ -1116,5 +1118,11 @@
         component.set("v.DisplayDashboardTabs","true");        
         component.set("v.DisplayAdditonalQulaificationsBreadCrumb","false");
         component.set("v.DisplayLicense_Additional_Qualification","false");        
+    },
+    setdefaultTab : function(component,event){
+       var currURL = document.URL;
+       if(/app-flow/.test(currURL)){            
+            component.set("v.defaultTab","ProfessionalPendingApplicationsTab"); 
+        }        
     }
 })

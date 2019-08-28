@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Submission_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -211,6 +215,7 @@
     </fields>
     <fields>
         <fullName>ContentDocumentId__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ContentDocumentId</label>
         <length>255</length>
@@ -221,18 +226,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>SAN_Prof_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>SAN Prof. Code</label>
-        <length>40</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-	<fullName>CustomerEnvelope__c</fullName>
+        <fullName>CustomerEnvelope__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Customer Envelope</label>
@@ -245,7 +239,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Default_Prof_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(CustomerEnvelope__r.wadol_DefaultProgramType__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Default Profession Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Description_Long__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description Long</label>
         <length>32768</length>
@@ -255,8 +261,20 @@
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>Disciplinary_Action_End_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the date until when the disciplinary action should show up in public search</inlineHelpText>
+        <label>Disciplinary Action End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Document_API_Name__c</fullName>
         <description>API name of the document record. This file will be provided as a hyperlink to the user to download from the submission.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Document API Name</label>
         <length>255</length>
@@ -269,6 +287,7 @@
     <fields>
         <fullName>Extid_from_Submission_List__c</fullName>
         <description>Extid from Submission List</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Extid from Submission List</label>
         <length>50</length>
@@ -287,18 +306,49 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-	 <fields>
-        <fullName>Disciplinary_Action_End_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
+    <fields>
+        <fullName>Has_Public_Distribution__c</fullName>
+        <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <inlineHelpText>Specify the date until when the disciplinary action should show up in public search</inlineHelpText>
-        <label>Disciplinary Action End Date</label>
+        <label>Has Public Distribution</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Include_in_Hearing_File__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if the document is a part of the hearing file.</inlineHelpText>
+        <label>Include in Hearing File</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Inspection__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Inspection</label>
+        <referenceTo>MUSW__Inspection__c</referenceTo>
+        <relationshipLabel>Submissions</relationshipLabel>
+        <relationshipName>Submissions</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
-        <type>Date</type>
+        <type>Lookup</type>
     </fields>
-	<fields>
+    <fields>
+        <fullName>Is_Backend_Submission__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to indicate whether it is backend submission or not</description>
+        <externalId>false</externalId>
+        <label>Is Backend Submission</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Legal_Action_Documents__c</fullName>
         <externalId>false</externalId>
         <label>Legal Action Documents</label>
@@ -458,39 +508,6 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
-        <fullName>Include_in_Hearing_File__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <inlineHelpText>Check this box if the document is a part of the hearing file.</inlineHelpText>
-        <label>Include in Hearing File</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Inspection__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Inspection</label>
-        <referenceTo>MUSW__Inspection__c</referenceTo>
-        <relationshipLabel>Submissions</relationshipLabel>
-        <relationshipName>Submissions</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Is_Backend_Submission__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Checkbox to indicate whether it is backend submission or not</description>
-        <externalId>false</externalId>
-        <label>Is Backend Submission</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <fields>
         <fullName>Legal_Activity__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -508,6 +525,7 @@
         <fullName>LicenseQuestionKey__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>This combination key of license Id and question field API name is unique and external ID</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>LicenseQuestionKey</label>
         <length>255</length>
@@ -563,6 +581,7 @@
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>For Bluebeam files, this is &lt;Project Id&gt;:&lt;File Id&gt;</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External File Id</label>
         <length>80</length>
@@ -603,6 +622,7 @@
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -613,6 +633,7 @@
     <fields>
         <fullName>MUSW__Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -637,6 +658,7 @@
     <fields>
         <fullName>MUSW__Link__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Link</label>
         <required>false</required>
@@ -661,6 +683,7 @@
     <fields>
         <fullName>MUSW__Requested_DateTime__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Requested Date</label>
         <required>false</required>
@@ -695,6 +718,7 @@
     <fields>
         <fullName>MUSW__Submission_DateTime__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submission Date</label>
         <required>false</required>
@@ -744,6 +768,7 @@
     <fields>
         <fullName>MUSW__View_Links__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>View</label>
         <length>5000</length>
@@ -767,7 +792,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Physical_Exhibit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if the document is a physical exhibit.</inlineHelpText>
+        <label>Physical Exhibit</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Profession_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Profession Code</label>
         <length>20</length>
@@ -778,14 +814,36 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Public_Disciplinary_Action__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this box to make the disciplinary action public</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to make the disciplinary action public</inlineHelpText>
+        <label>Public Disciplinary Action</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Public_Distribution_URL__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Public Distribution URL</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Related_To__c</fullName>
         <externalId>false</externalId>
         <formula>IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
 	If(OR(ISNULL( MUSW__Application2__c ), MUSW__Application2__c = &quot;&quot;), 
 		IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
-	&quot;&quot;, HYPERLINK( &quot;../&quot; &amp; MUSW__License2__c, MUSW__License2__r.Name ,&quot;_parent&quot; )), 
-	HYPERLINK( &quot;../&quot; &amp; MUSW__Application2__c,MUSW__Application2__r.Name,&quot;_parent&quot; )), 
-	HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_parent&quot; ))</formula>
+	&quot;&quot;, HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp;&quot;/&quot;&amp;MUSW__License2__r.Id, MUSW__License2__r.Name ,&quot;_parent&quot; )), 
+	HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp;&quot;/&quot;&amp;MUSW__Application2__r.Id,MUSW__Application2__r.Name,&quot;_parent&quot; )), 
+	HYPERLINK( LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))&amp;&quot;/&quot;&amp;MUSW__Permit2__r.Id,MUSW__Permit2__r.Name,&quot;_parent&quot; ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Related To</label>
         <required>false</required>
@@ -809,6 +867,7 @@
     <fields>
         <fullName>SAN_Area_Code__c</fullName>
         <description>Area code of image processed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SAN Area Code</label>
         <length>3</length>
@@ -821,6 +880,7 @@
     <fields>
         <fullName>SAN_Department_Code__c</fullName>
         <description>Child departments under the areas</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SAN Department Code</label>
         <length>3</length>
@@ -831,8 +891,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>SAN_File_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(SAN_Image_URL__c, SAN_Image_URL__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SAN File Link</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>SAN_Image_Name__c</fullName>
         <description>Name of the image</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SAN Image Name</label>
         <length>100</length>
@@ -907,9 +979,23 @@
     <fields>
         <fullName>SAN_Image_URL__c</fullName>
         <description>URL of the image on SAN</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SAN Image URL</label>
         <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAN_Prof_Code__c</fullName>
+        <description>SAN Prof. Code</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>SAN Prof. Code</label>
+        <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -993,28 +1079,6 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Default_Prof_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(CustomerEnvelope__r.wadol_DefaultProgramType__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Default Profession Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>SAN_File_Link__c</fullName>
-        <externalId>false</externalId>
-        <formula>HYPERLINK(SAN_Image_URL__c, SAN_Image_URL__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>SAN File Link</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Status__c</fullName>
         <description>Status = Accepted when the document satisfies the submission requirement. Status = Additional Info. Required when the document does not satisfy the submission requirement and should be sent back to the Applicant.</description>
         <externalId>false</externalId>
@@ -1051,38 +1115,6 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         </valueSet>
     </fields>
     <fields>
-        <fullName>Validation_Number__c</fullName>
-        <externalId>false</externalId>
-        <formula>CustomerEnvelope__r.Validation_number__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Validation Number</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Physical_Exhibit__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <inlineHelpText>Check this box if the document is a physical exhibit.</inlineHelpText>
-        <label>Physical Exhibit</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-	<fields>
-        <fullName>Public_Disciplinary_Action__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Check this box to make the disciplinary action public</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Check this box to make the disciplinary action public</inlineHelpText>
-        <label>Public Disciplinary Action</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Type__c</fullName>
         <description>This field indicates whether an applicant/licensee should upload a hardcopy or softcopy submission, or whether the document is Board Action and should appear in the license lookup.</description>
         <externalId>false</externalId>
@@ -1095,6 +1127,17 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             <restricted>true</restricted>
             <valueSetName>Submission_Type</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Validation_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>CustomerEnvelope__r.Validation_number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Validation Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Submission</label>
     <listViews>
@@ -1109,24 +1152,7 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-    <listViews>
-        <fullName>Submission_Queue_Submission</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Submission Queue</label>
-        <queue>Submission_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Submissions_Queue_Submission</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Submissions Queue</label>
-        <queue>Submissions_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
+	
 	<listViews>
         <fullName>RBS_Queue</fullName>
         <columns>Validation_Number__c</columns>
@@ -1240,7 +1266,18 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         </filters>
         <label>RE - Unresolved Submissions</label>
     </listViews>
+	
+    <listViews>
+        <fullName>Submissions_Queue_Submission</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Submissions Queue</label>
+        <queue>Submissions_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Title</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>

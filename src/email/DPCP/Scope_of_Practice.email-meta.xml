@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Information provided on DPCP scope of practice</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS_Trades_Letterhead</letterhead>
+    <name>Scope of Practice</name>
+    <style>freeForm</style>
+    <subject>DSPS Response to Inquiry</subject>
+    <textOnly>{!Today}
+
+Dear {!MUSW__License2__c.Applicant_Full_Name__c},
+
+Credential holders are responsible for their own professional practice and for compliance with the law. The Department is unable to answer questions regarding:
+
+Billing issues
+Business advice
+Employer/employee disputes
+Legal opinions
+Potential or ongoing litigation
+Questions involving professional judgment or discretion
+Scope of practice
+
+The Department’s website provides a wide range of Online Services and materials to assist Industry, credential holders, and the public with questions about the practice of the various professions. These materials include the relevant Wisconsin Statutes, Wisconsin Administrative Code, meeting minutes, forms, and answers to frequently asked questions. The address for the Department’s website is http://dsps.wi.gov.
+
+…………………………
+
+If you need to know which trades credentials an individual or business must hold in order to do certain types of work, please see https://dsps.wi.gov/pages/Professions. Consult the relevant application forms for links to state statutes and code in order to determine which forms to submit.
+
+But if you are looking for information about Industry Services plan review, inspections, technical publications and forms, etc., please see – https://dsps.wi.gov/Pages/Programs.
+
+
+
+Thank you,
+The Wisconsin Department of Safety and Professional Services</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

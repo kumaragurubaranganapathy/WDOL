@@ -150,7 +150,7 @@ public class ReviewTriggerHandler implements BGCM.ITriggerHandler{
     public void beforemethod(){
         
         List<MUSW__Review__c> triggerNew = Trigger.New;
-        
+        /*
         for(MUSW__Review__c review: triggerNew) {
             if(review.MUSW__Permit2__c != null){
                  
@@ -166,7 +166,7 @@ public class ReviewTriggerHandler implements BGCM.ITriggerHandler{
                 }
                 
             }
-        }
+        }*/
         
         /*List<MUSW__Review__c> triggerNew = Trigger.New;
         System.debug('Entered after method');

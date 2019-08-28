@@ -29,7 +29,7 @@ global class DOL_ProcessIntContentDoc_Batch implements Database.Batchable<sObjec
                 input.Status__c = 'DATA LOADING COMPLETED';
             }
             catch(Exception error){
-                DOL_CreateErrorLog_Exception.logApplicationError(error);
+                DOL_CreateErrorLog_Exception.logApplicationError(error, 'DOL_ProcessIntContentDoc_Batch', 'execute');
                 input.Status__c = 'FAILED';
                 input.INFO__c += ' '+'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
             }

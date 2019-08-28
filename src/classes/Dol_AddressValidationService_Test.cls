@@ -81,7 +81,7 @@ public class Dol_AddressValidationService_Test{
      public static void testmethod1(){
          test.startTest();
          
-     		Dol_AddressValidationService.validateAddress('501 MURPHY RANCH RD','','MILPITAS', 'CA', '95035');
+            Dol_AddressValidationService.validateAddress('501 MURPHY RANCH RD','','MILPITAS', 'CA', '95035');
           test.stopTest();
   }
   
@@ -92,11 +92,11 @@ public class Dol_AddressValidationService_Test{
          contact con = new contact(LastName = 'test Last' , Accountid = acc.id);
          insert con;
          test.startTest();
-     		Dol_AddressValidationService.getObjAPI(con.id);
-         	MUSW__Parcel__c parcelobj = new MUSW__Parcel__c();
-         	Dol_AddressValidationService.getStates(parcelobj, 'MUSW__State__c');
-         	Dol_AddressValidationService.saveAddress('501 MURPHY RANCH RD,apt 286,MILPITAS,CA,95035,United States',false, con.id,'');
-        Dol_AddressValidationService.saveAddress('501 MURPHY RANCH RD,apt 286,MILPITAS,CA,95035,United States',TRUE, con.id,'');
+            Dol_AddressValidationService.getObjAPI(con.id);
+            MUSW__Parcel__c parcelobj = new MUSW__Parcel__c();
+            Dol_AddressValidationService.getStates(parcelobj, 'MUSW__State__c');
+            //Dol_AddressValidationService.saveAddress('501 MURPHY RANCH RD,apt 286,MILPITAS,CA,95035,United States',false, con.id);
+         //Dol_AddressValidationService.saveAddress('501 MURPHY RANCH RD,apt 286,MILPITAS,CA,95035,United States',TRUE, con.id);
           test.stopTest();
   }
   

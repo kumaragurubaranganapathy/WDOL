@@ -1,5 +1,6 @@
 ({
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
+        component.set("v.loadingSpinner", true);
         var action = component.get("c.getPicklistFieldValues");
         action.setParams({
             'objectName':objectApi,
@@ -17,7 +18,9 @@
                 }else{
                     component.set(auraAttr, result);
                 }
+                component.set("v.loadingSpinner", false);
             }else{
+                component.set("v.loadingSpinner", false);
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
@@ -177,6 +180,7 @@
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
                 component.set("v.screenThree", true);
+                component.set("v.agreeCheck", true);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 var toastEvent = $A.get("e.force:showToast");
@@ -196,6 +200,7 @@
             component.set("v.screenOne", false);
             component.set("v.screenTwo", true);
             component.set("v.screenThree", false);
+            component.set("v.agreeCheck", false);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         if(tabIndex == 2){
@@ -203,6 +208,7 @@
             component.set("v.screenOne", true);
             component.set("v.screenTwo", false);
             component.set("v.screenThree", false);
+            component.set("v.agreeCheck", false);
             component.set("v.anonymousComplaintCheckbox", false);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -296,14 +302,62 @@
             } 
         }
         if(tabIndex == 2){
+            if(professionValue != ""){
+                var professionValue = component.find("Profession").set("v.value","");
+                var professionalForm = component.find("professionalForm");          
+                for(var i=0; i<professionalForm.length; i++){ 
+                    component.find("professionalForm")[i].set("v.value", "");
+                }
+                component.set("v.professionalScreen", false);
+                if(component.get("v.businessScreen")){                    
+                    var businessForm = component.find("businessForm");
+                    for(var i=0; i<businessForm.length; i++){ 
+                        component.find("businessForm")[i].set("v.value", "");
+                    }
+                    component.set("v.businessScreen", false);
+                }                
+            } 
             var informationForm = component.find("informationForm");          
             for(var i=0; i<informationForm.length; i++){ 
                 component.find("informationForm")[i].set("v.value", "");
             }
+            //component.set("v.applicationId",'');
+            component.set("v.currentTab", 1);
+            component.set("v.screenOne", true);
+            component.set("v.screenTwo", false);
+            component.set("v.screenThree", false);
+            component.set("v.anonymousComplaintCheckbox", false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         if(tabIndex == 3){
+            if(professionValue != ""){
+                var professionValue = component.find("Profession").set("v.value","");
+                var professionalForm = component.find("professionalForm");          
+                for(var i=0; i<professionalForm.length; i++){ 
+                    component.find("professionalForm")[i].set("v.value", "");
+                }
+                component.set("v.professionalScreen", false);
+                if(component.get("v.businessScreen")){                    
+                    var businessForm = component.find("businessForm");
+                    for(var i=0; i<businessForm.length; i++){ 
+                        component.find("businessForm")[i].set("v.value", "");
+                    }
+                    component.set("v.businessScreen", false);
+                }                
+            } 
+            var informationForm = component.find("informationForm");          
+            for(var i=0; i<informationForm.length; i++){ 
+                component.find("informationForm")[i].set("v.value", "");
+            }
+            //component.set("v.applicationId",'');
             component.find('complaintSummary').set('v.value','');
-            component.set('v.agreeCheck', false);
+            component.set("v.currentTab", 1);
+            component.set("v.screenOne", true);
+            component.set("v.screenTwo", false);
+            component.set("v.screenThree", false);
+            component.set("v.agreeCheck", false);
+            component.set("v.anonymousComplaintCheckbox", false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 	},
     changepattern: function(component, event){
@@ -313,5 +367,22 @@
               var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
               event.getSource().set('v.value',phone);    
           }
-    }   
+    },
+	redirectToHome: function(component, event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home");
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    printAcknowledgement: function(component, event){
+        document.getElementById("pageHeader").style.display = "none";
+        document.getElementById("pageFooter").style.display = "none";
+        document.getElementById("PrintButton").style.visibility = "hidden";
+        window.print();
+        document.getElementById("pageHeader").style.display = "block";
+        document.getElementById("pageFooter").style.display = "block";
+        document.getElementById("PrintButton").style.visibility = "visible";
+    },
 })

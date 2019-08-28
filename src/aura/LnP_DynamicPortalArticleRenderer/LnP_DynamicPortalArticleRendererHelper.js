@@ -2,10 +2,13 @@
     doInit : function(component,event) {
         
         var action;
-        
+        var loggedIn = component.get("v.isLoggedIn");        
         var queryString = decodeURIComponent(window.location.search.substring(1));
         var allParams = queryString.split("&");
         var query_String_values = [];
+        if(loggedIn){
+            component.set("v.articleTitle","Other Professions")
+        }
         for(var i = 0; i<allParams.length; i++){
           var key_value_Pair = allParams[i].split("=");
               var key;
@@ -142,5 +145,13 @@
     },
     showLess : function(component,event){
         component.set("v.isShowMore",false);
+    },
+    redirectToHelp :  function(component,event){
+        var str ='/saw-help';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
     }
 })

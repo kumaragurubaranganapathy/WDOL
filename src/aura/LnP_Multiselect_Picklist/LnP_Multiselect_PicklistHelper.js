@@ -18,16 +18,16 @@
             else if(count === 1){
                 component.set("v.optionsSelected",selectedSingleVal);
             }
-            else if(count === 0){
-                component.set("v.optionsSelected",'');    
-            }
+                else if(count === 0){
+                    component.set("v.optionsSelected",'');    
+                }
         }
         catch(e){
             this.consoleLog(e.stack,true);
         }
     },
     //To open/close the picklist dropdown
-	toggleOpen : function(component, event) {
+    toggleOpen : function(component, event) {
         try{
             //document.querySelector('.slds-combobox__input').focus();
             var device = $A.get("$Browser.isIPhone");
@@ -36,6 +36,7 @@
                 if(event.keyCode === undefined || event.keyCode === 13){
                     var isOpenStatus = component.get("v.isOpen");
                     component.set("v.isOpen", !isOpenStatus);
+                    //component.set("v.isOpen", true);
                     this.doInit(component, event);
                 }
                 //If down arrow key is pressed
@@ -51,7 +52,7 @@
         catch(e){
             this.consoleLog(e.stack,true);
         }
-	},
+    },
     //To remove the pill or deselect an option
     handleRemoveOnly : function(component, event) {
         try{
@@ -67,35 +68,37 @@
     //To close the picklist on blur of the select input
     closePicklist : function(component, event,flag) {        
         try{
-        	setTimeout(function(){
-            var activeEle;
-            try{
-                activeEle = document.activeElement.className;
-                if((activeEle.indexOf('slds-listbox__item') === -1) && (activeEle.indexOf('slds-media__body') === -1) && (activeEle.indexOf('slds-truncate') === -1) && (activeEle.indexOf('listbox-wrapper') === -1)){
-                    if(document.activeElement !== event.currentTarget)
-                    component.set("v.isOpen", false);
+            setTimeout(function(){
+                var activeEle;
+                try{
+                    var ele = document.documentElement.activeElement || document.activeElement;
+                    
+                    activeEle = ele.className;
+                    if((activeEle.indexOf('slds-listbox__item') === -1) && (activeEle.indexOf('slds-media__body') === -1) && (activeEle.indexOf('slds-truncate') === -1) && (activeEle.indexOf('listbox-wrapper') === -1) && (activeEle.indexOf('slds-listbox') === -1)){
+                        if(document.activeElement !== event.currentTarget)
+                            component.set("v.isOpen", false);
+                    }
+                    //If browser is IE, and user clicks on scrollbar, pass focus to the input
+                    if(navigator.userAgent.match(/Trident/) !== null){
+                        if(activeEle.indexOf('listbox-wrapper') > -1){
+                            event.target.focus();
+                        } 
+                    }
+                } catch(e){
+                    var activeElement = document.body || null;
+                    activeEle = activeElement.className;
+                    if((activeEle.indexOf('slds-listbox__item') === -1) && (activeEle.indexOf('slds-media__body') === -1) && (activeEle.indexOf('slds-truncate') === -1) && (activeEle.indexOf('listbox-wrapper') === -1)){ 
+                        if(activeElement !== event.currentTarget)
+                            component.set("v.isOpen", false);
+                    }
+                    //If browser is IE, and user clicks on scrollbar, pass focus to the input
+                    if(navigator.userAgent.match(/Trident/) !== null){
+                        if(activeEle.indexOf('listbox-wrapper') > -1){
+                            event.target.focus();
+                        }  
+                    }
                 }
-                //If browser is IE, and user clicks on scrollbar, pass focus to the input
-                if(navigator.userAgent.match(/Trident/) !== null){
-                    if(activeEle.indexOf('listbox-wrapper') > -1){
-                        event.target.focus();
-                    } 
-                }
-            } catch(e){
-                var activeElement = document.body || null;
-                activeEle = activeElement.className;
-                if((activeEle.indexOf('slds-listbox__item') === -1) && (activeEle.indexOf('slds-media__body') === -1) && (activeEle.indexOf('slds-truncate') === -1) && (activeEle.indexOf('listbox-wrapper') === -1)){
-                    if(activeElement !== event.currentTarget)
-                    component.set("v.isOpen", false);
-                }
-                //If browser is IE, and user clicks on scrollbar, pass focus to the input
-                if(navigator.userAgent.match(/Trident/) !== null){
-                    if(activeEle.indexOf('listbox-wrapper') > -1){
-                        event.target.focus();
-                    }  
-                }
-            }
-        },100);
+            },100);
         }
         catch(e){
             this.consoleLog(e.stack,true);

@@ -3,6 +3,13 @@
 .THIS .btnCenter{
     margin:0 auto;
 }
+.THIS.alert-wrapper{
+    display:flex;
+    justify-content:center;
+}
+.THIS .slds-combobox_container input:focus{
+    border-color:t(fieldclr);
+}
 .THIS .btnHeight{
     height:auto;
 }
@@ -22,10 +29,13 @@
 .THIS .txtalign{
     text-align:left;
 }
-.THIS .required.field-size.slds-form-element label::before {
+.THIS .required.field-size.slds-form-element label::before, .THIS .required.label-style::before {
     content: '*';
     color: t(LnGErrorMsg);
     padding-right: 2px;
+}
+.THIS .required.label-style::before{
+    padding-right:0;
 }
 .THIS .required.field-size.slds-form-element label abbr.slds-required {
     display: none;
@@ -44,7 +54,8 @@
     border:solid 1px t(grayBorder);
 }
 .THIS .biz-fields-wrapper .field-size div input{
-    height:1rem;
+     height: 42px;
+    box-shadow: none;
 }
 .THIS .biz-fields-wrapper .slds-checkbox [type=checkbox]{
     position:relative;
@@ -55,11 +66,62 @@
     width:100%;
     margin-top:1rem;
 }
+.THIS .label-style{
+    font-size: 0.875rem;
+    line-height: 1;    
+    color: t(fieldclr);
+    margin-bottom:0.25rem;
+    font-weight:normal;
+}
+.THIS .field-size{
+    width:100%;
+}
+.THIS .biz-fields-wrapper .slds-listbox__option .slds-media__body{
+    font-weight:normal;
+    color:t(fieldclr);
+}
+.THIS .field-size div input{
+    font-weight:normal;
+}
+.THIS .field-size.course-field{
+    margin-bottom:0;
+}
+.THIS .course-text{
+    margin-bottom:1rem;
+}
+.THIS .course-field .slds-form-element_stacked.slds-form-element{
+    display:flex;
+}
+.THIS .course-field .slds-form-element__control.slds-grow{
+    flex:none;
+    width:auto;
+    order:1;
+}
+.THIS .course-field .slds-checkbox__label{
+    order:2;
+    display:flex;
+    align-items:center;
+}
+.THIS .course-field .slds-form-element__label{
+    padding-left:0.5rem;
+}
+.THIS .course-field lightning-helptext{
+    order:3;
+    display: flex;
+    align-items: center;
+}
+.THIS .course-field lightning-helptext .slds-form-element__icon{
+    padding-top:0;
+}
+.THIS .course-field .slds-checkbox.slds-checkbox_standalone{
+    display:flex;
+}
+
 @media t(mqSmall){
     .THIS.add-biz-wrapper{
         margin: 1rem;
     }
-    .THIS .field-size .slds-form-element__control{
+    .THIS .biz-fields-wrapper .field-size .slds-form-element__control{
         width:100%;
     }
     .THIS .biz-fields-wrapper{
@@ -74,4 +136,26 @@
     .THIS .btn-wrapper .slds-button + .slds-button{
         margin:0.5rem 0 0;
     }
+}
+.THIS .UbiHelptext{
+	position:relative;
+	padding-left:2rem;
+	padding-top:5rem;
+}
+.THIS .UbiHelptextContent {
+	display:none;
+	position:absolute;
+	top:-4px;
+	left:15px;
+}
+.THIS .UbiHelptext:hover + .UbiHelptextContent {
+	display:block;
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .THIS.add-biz-wrapper{
+        margin:2rem 5.5rem;
+    }
+}
+.THIS .disable {
+    pointer-events: none;
 }

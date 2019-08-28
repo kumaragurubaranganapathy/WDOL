@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>OwnerChange</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Timeshare_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>OwnerChange</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>OwnerChange_Real_Estate_Appraiser_Course</fullName>
         <field>OwnerId</field>
         <lookupValue>Real_Estate_Appraiser_Courses_Queue</lookupValue>
@@ -127,21 +137,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-License__c != NULL, 
-OR( 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Registered Appraiser Trainee&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Certified General Appraiser&apos;),	
-ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Trainee&apos;),	
-ISPICKVAL(License__r.Credential_Type__c, &apos;State Licensed Appraiser&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Certified Residential Appraiser&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Appraisal Permit&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified General&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified Residential&apos;),
-ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary State Licensed&apos;) 
-
-) 
-)</formula>
+        <formula>AND(  License__c != NULL,  OR(  ISPICKVAL(License__r.Credential_Type__c, &apos;Registered Appraiser Trainee&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Certified General Appraiser&apos;),	 ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Trainee&apos;),	 ISPICKVAL(License__r.Credential_Type__c, &apos;State Licensed Appraiser&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Certified Residential Appraiser&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Appraisal Permit&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified General&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified Residential&apos;), ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary State Licensed&apos;)   )  )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>

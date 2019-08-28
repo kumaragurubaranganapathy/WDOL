@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Dept of licensing-pending request to join firm</name>
+    <style>none</style>
+    <subject>Dept of Licensing - Pending request to join a firm</subject>
+    <textOnly>Department of Licensing - Pending request to join a firm 
+You have a pending request to join {!MUSW__Account_Contact__c.Title__c} . 
+You have 7 days to accept or deny their request. 
+
+Please login to your account to act on this request: Login 
+
+This is an automated email. Replies to this email are not monitored. To make sure you get our emails, please set your email filter to accept email from dol.wa.gov © 2019 DOL</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

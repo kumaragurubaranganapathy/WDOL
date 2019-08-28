@@ -3,9 +3,9 @@
     <aura:attribute name="CompletedRequestColumns" type="Object"/>
     <aura:attribute name="dispList" type="List"/>
     <div class="Completed-Requests">
-        <div class="table-head">Maintenance requests completed in last twelve months</div>
+        
         <aura:if isTrue="{!v.CompletedRequestData.length}">
-            
+            <div class="table-head">Maintenance requests completed in last twelve months</div>
             <div class="table-height slds-p-vertical_medium">
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-max-medium-table_stacked">
                     <thead>

@@ -34,7 +34,7 @@ public class FeePaymentCreatedByDelegate {
                 if(feepayment.MUSW__Fee__c != null) {
                     Feeids.put(feepayment.MUSW__Fee__c,feepayment.id);
                     //Accountids.add(feepayment.MUSW__Fee__r.MUSW__License2__r.MUSW__Primary_Licensee__c);
-                    system.debug('feepayment.MUSW__Fee__r.MUSW__License2__r.MUSW__Primary_Licensee__c'+feepayment.MUSW__Fee__r.MUSW__License2__r.MUSW__Primary_Licensee__c);
+                   // system.debug('feepayment.MUSW__Fee__r.MUSW__License2__r.MUSW__Primary_Licensee__c'+feepayment.MUSW__Fee__r.MUSW__License2__r.MUSW__Primary_Licensee__c);
                 }
                 feePaymentIds.add(feepayment.Id);
             }

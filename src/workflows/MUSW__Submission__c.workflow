@@ -10,24 +10,10 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Submission_Queue_Assignment</fullName>
-        <field>OwnerId</field>
-        <lookupValue>Submission_Queue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Submission Queue Assignment</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Orphaned Submission Queue Assignment</fullName>
         <actions>
             <name>Owner_Change_Submission_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Submission_Queue_Assignment</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>

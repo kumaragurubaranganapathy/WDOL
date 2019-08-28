@@ -8,7 +8,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Templates_Relationships/Licensee_invitation_notification_licensee</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Templates_Relationships/Licensee_invitation_notification_business</template>
     </alerts>
@@ -43,7 +43,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Templates_Relationships/Licensee_accept_licensee</template>
     </alerts>
@@ -66,7 +66,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Templates_Relationships/Designated_person_decline_business</template>
     </alerts>
@@ -78,7 +78,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Templates_Relationships/Designated_person_accept_business</template>
     </alerts>

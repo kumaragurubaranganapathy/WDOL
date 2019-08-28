@@ -13,17 +13,17 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Primary_Licensee__c</field>
             </layoutItems>
-			<layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Validation_Number__c</field>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Application_Type__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Customer_Envelope__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Application_Type__c</field>
+                <behavior>Readonly</behavior>
+                <field>Validation_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -115,7 +115,7 @@
                 <behavior>Edit</behavior>
                 <field>Polaris_DHP__c</field>
             </layoutItems>
-			            <layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Pre_License_Number__c</field>
             </layoutItems>
@@ -152,6 +152,14 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Renewal_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Renewal_Coupon__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Renewal_Letter__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -173,14 +181,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Renewal_Cycle_End_Date__c</field>
-            </layoutItems>
-			<layoutItems>
-                <behavior>Edit</behavior>
-                <field>Print_Renewal_Coupon__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Print_Renewal_Letter__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -494,6 +494,11 @@
             <sortOrder>18</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>MUSW__License2__c.Generate_Fees</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>19</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>2</sortOrder>
@@ -603,8 +608,9 @@
         <customButtons>MUSW__Manage_Submissions</customButtons>
         <fields>NAME</fields>
         <fields>MUSW__Required__c</fields>
-        <fields>MUSW__Submission_DateTime__c</fields>
+        <fields>CREATED_DATE</fields>
         <fields>SAN_Image_URL__c</fields>
+        <fields>MUSW__Description__c</fields>
         <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -612,17 +618,8 @@
         <fields>Service_Request_Type__c</fields>
         <fields>Status__c</fields>
         <fields>CREATED_DATE</fields>
+        <fields>Contact__c</fields>
         <relatedList>Request__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Agency__c</fields>
-        <fields>Status__c</fields>
-        <fields>Submitted_Date__c</fields>
-        <fields>Close_Date__c</fields>
-        <fields>Comments__c</fields>
-        <fields>AMR__c</fields>
-        <relatedList>Fingerprint_Results__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Add_Fees_to_Cart2</customButtons>
@@ -658,6 +655,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Parcel_Address__c</fields>
+        <fields>Mailing__c</fields>
+        <fields>Physical__c</fields>
         <relatedList>MUSW__License_Parcel__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -678,6 +677,8 @@
         <fields>Question2__c</fields>
         <fields>Answer_Text__c</fields>
         <relatedList>BGCK__Answer__c.License__c</relatedList>
+        <sortField>Question_Section__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <customButtons>Task.MUSW__Add_Multiple_Tasks</customButtons>

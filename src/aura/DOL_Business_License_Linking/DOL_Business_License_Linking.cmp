@@ -14,23 +14,32 @@ ________________________________________________________________________________
     <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
     <aura:attribute name="linkingScreen" type="Boolean" default="true" description="checks if linking screen or not"/>
     <aura:attribute name="options" type="List" description="contains options for radio group" default="[
-                                                                                                       {'label': 'Email', 'value': 'Email'},
+                                                                                                      {'label': 'Email', 'value': 'Email'},
                                                                                                        {'label': 'Mail', 'value': 'Mail'},
                                                                                                        {'label': 'Phone', 'value': 'Phone'}
                                                                                                        ]"/>
     <aura:attribute name="value" type="String" default=""/>
+         <aura:attribute name="emailID" type="String" />
+       <aura:attribute name="media" type="String" default=""/>
+    <aura:attribute name="mailID" type="String"  />
+     <aura:attribute name="emailToSend" type="String"  />
+     <aura:attribute name="mailToSend" type="String"  />
+    <aura:attribute name="LicenseID" type="String"  />
+    <aura:attribute name="ActivationCode" type="String"  />
+    <aura:attribute name="ReviewName" type="String"  />
     <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
-    
+     <aura:attribute name="programTypeList" type="List" description="Holds the lists of programType"/>
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="biz-link-wrapper">
         <aura:if isTrue="{!v.linkingScreen}">
-            <div class="biz-link-title">
+            <div class="page-header">
                 Link an existing business profile
             </div>
             <div class="new-wrapper">
-                <div class="ser-title link-title">
+                <div class="heading link-title">
                     Link your Business License with an Activation Code
                 </div>
                 <p class="link-help">If you have received an activation code, enter it below.</p>
@@ -42,13 +51,13 @@ ________________________________________________________________________________
                                      name="securityToken"
                                      value=""
                                      required="true"
-                                     class="activation-code" /> 
+                                     class="activation-code field-size" /> 
                     
                 </div>
                 
                 <div id="buttonDataBusiness" class ="button-wrapper">
-                    <button class="slds-button slds-button_neutral" onclick ="{!c.cancelBusiness}">Cancel</button>
-                    <button class="slds-button slds-button_brand slds-m-left_small" onclick ="{!c.searchAccount}">Verify Code</button>
+                    <button class="slds-button slds-button_neutral cancel-button" onclick ="{!c.cancelBusiness}">Cancel</button>
+                    <button class="slds-button slds-button_brand proceed-btn slds-m-left_small" onclick ="{!c.searchAccount}">Verify Code</button>
                     
                 </div>                
             </div>
@@ -85,21 +94,59 @@ ________________________________________________________________________________
                 </div>
             </aura:if>
             <aura:set attribute="else">
-                <div class="biz-link-title">
-                    Request an activation code for linking a business license
+                 <!-- <div class="biz-link-title">
+                    Request an activation code for linking a professional license
+                </div>-->
+                <div class="heading pad link-title">
+                    License Details
                 </div>
+               <div class="slds-m-bottom_small">Enter license details to request an activation code</div>
+               <div class="token-wrapper licensecon">
+                   <lightning:input aura:id="licenseNumber" label="License#"
+                                     name="License"
+                                     value=""
+                                     />
+                     <lightning:select aura:id="programToken" name="programType" label="Program Type" variant="Brand"  class="">
+                        <option value="" text="None"/>    
+                        <aura:iteration items="{!v.programTypeList}" var="programType">
+                            <option value="{!programType}">{!programType}</option>
+                        </aura:iteration>
+                    </lightning:select>
+               </div>
+                <div class="btnAlign">
+                        <lightning:button variant="neutral" label="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="Brand" label="Next" aura:id="btnProceed" class="proceed-btn" onclick= "{!c.searchLicenseActivation}"/>
+                   </div>
                 <div class="new-wrapper">
-                    <div class="ser-title link-title">
-                        Choose a method to receive an activation code
+                    <div class="heading pad link-title">
+                        Choose a method to receive an activation code                       
                     </div>
-                    <div class="token-wrapper">
-                        <lightning:radioGroup name="radioGroup"                          
+                    <div class="sentenceflex">
+                     <div class="">You can get activation code by calling on &nbsp; </div><div class="txtStyle">{!$Label.c.Phone_number_Activation_code}</div>
+                    </div>
+                        <div class="token-wrapper">
+                       <!-- <lightning:radioGroup name="radioGroup"                          
                                               options="{! v.options }"
-                                              value="{! v.value }"
+                                              value="{!v.value }"
                                               type="radio"
-                                              class="radio-style"               />
+                                              class="radio-style" onchange= "{!c.sendEmail}" />{!v.emailID}-->
+                        <div class="flexdisp">
+                        <lightning:input type="radio" name="select" label="Email" value="Email" onchange="{!c.sendEmail}"/>
+                        <div class="emaillabel">{!v.emailID}</div>
+                        </div>
+                        
+                        <div class="flexdisp itemBtm">
+                        <lightning:input type="radio" name="select" label="Mail" value="Mail"   onchange="{!c.sendEmail}"/>
+                        <div class="emaillabel">{!v.mailID}</div>
+                        </div>
+                   
                         
                     </div>
+                   <div class="btnAlign">
+                        <lightning:button variant="neutral" label="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="Brand" label="Proceed" aura:id="btnProceed"  onclick = "{!c.sendEmailFinal}"  disabled ="{!v.disabled}" class="proceed-btn"/>
+                   </div>
+
                 </div>
             </aura:set>
         </aura:if>

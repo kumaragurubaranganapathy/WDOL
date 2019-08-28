@@ -91,6 +91,7 @@
                     }  
                     
                 }
+                
             }
             
         });
@@ -237,11 +238,39 @@
         });
         $A.enqueueAction(action);
     },
+        updateBusinessNameHelper : function(component, event, helper) {
+        var requestId='';
+        var ServiceRequestType = 'Update Business Name';
+        
+        var action = component.get("c.insertRequestBusiness");
+        action.setParams({            
+            "acctId": component.get("v.SelectedAccountDetails.Id"),            
+            "ServiceRequestType": ServiceRequestType,           
+        });
+        action.setCallback(this, function(actionResult){
+            
+            var state = actionResult.getState();
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ServiceRequestType);                
+                sessionStorage.setItem("board", ServiceRequestType);
+                sessionStorage.setItem("licenseType", ServiceRequestType);
+                sessionStorage.setItem("applicationType", ServiceRequestType);
+                sessionStorage.setItem("requestId", requestId);
+                //sessionStorage.setItem("recordId", component.get("v.recordId"));
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('componet.get("v.requestId")',componet.get("v.requestId"));
+        
+    },
     updateBusinessInfoHelper : function(component, event, helper) {
         var requestId='';
-        var ServiceRequestType = 'Update/Close Company';
+        var ServiceRequestType = 'Update Company Information';
         
-        var action = component.get("c.insertRequest");
+        var action = component.get("c.insertRequestBusiness");
         action.setParams({            
             "acctId": component.get("v.SelectedAccountDetails.Id"),            
             "ServiceRequestType": ServiceRequestType,           
@@ -298,7 +327,7 @@
             case 'Branches':
                 var attr;
                 if(component.get("v.LicenseData.Credential_Type__c")== 'Engineering/Land Surveying Company'){
-                    attr =  {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "false",affiliatedLocation : "true"};
+                    attr =  {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "false",affiliatedLocation : "true",licenseType : component.get("v.LicenseData.Credential_Type__c"),board : component.get("v.LicenseData.Application_Type__c")};
                 }else{
                   attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true"};   
                 }
@@ -374,7 +403,78 @@
             "url": str
         });
         urlEvent.fire(); 
-    }   
+    },
+    setDefaultTab : function(component,event){
+        var currURL = document.URL;
+       if(/app-flow/.test(currURL)){            
+            component.set("v.defaultTab","Pending Applications"); 
+        }
+    },
+    goToCart : function(component,event){
+        var action = component.get("c.checkActiveCart");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var checkResult = response.getReturnValue();
+                if(checkResult){
+                    var str ='/cart';
+                    var urlEvent = $A.get("e.force:navigateToURL");
+                    urlEvent.setParams({
+                        "url": str
+                    });
+                    urlEvent.fire(); 
+                }else{
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "Error!",
+                        "message": "You do not have an active cart currently",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                }
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        
+        
+        
+    },
+    // US 1976
+    GoToBusinessCart:function(component,event) {
+        
+        var accid = component.get("v.SelectedAccountDetails.Id");
+        var action = component.get("c.updateBusinessAccIDonContact");
+        action.setParams({'accountId': accid});
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                
+                
+                var str ='/cart';
+                var urlEvent = $A.get("e.force:navigateToURL");
+                urlEvent.setParams({
+                    "url": str
+                });	
+        urlEvent.fire(); 
+            }                          
+        });
+        $A.enqueueAction(action);
+        
+        //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?accid='+accid;
+        //var url=$A.get("$Label.c.Polaris_Portal_URL")+'cart?accid='+accid;
+        //window.open(url);
+        sessionStorage.setItem("businessAccId", accid);
+    }
     
     
 })

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Use this field to specify the SObject API name to bind to when the &quot;Binding Object&quot; field does not list that particular SObject.  Only specify the &quot;Binding Object&quot; field or this one; not both. --></help>
+        <label><!-- Binding Object Alternate --></label>
+        <name>BGCM__BindingObjectAlternate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Binding Object --></label>
+        <name>BGCM__BindingObject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Binding Sequence --></label>
+        <name>BGCM__BindingSequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- To --></label>
+        <name>BGCM__To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>BGCM__Type__c</name>
+        <picklistValues>
+            <masterLabel>Apex</masterLabel>
+            <translation><!-- Apex --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flow</masterLabel>
+            <translation><!-- Flow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lightning Component</masterLabel>
+            <translation><!-- Lightning Component --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Module</masterLabel>
+            <translation><!-- Module --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visualforce Component</masterLabel>
+            <translation><!-- Visualforce Component --></translation>
+        </picklistValues>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- Only specify the &quot;Binding Object&quot; field or the &quot;Binding Object Alternate&quot; field; not both. --></errorMessage>
+        <name>BGCM__BindObj_Or_BindObjAlt</name>
+    </validationRules>
+</CustomObjectTranslation>

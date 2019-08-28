@@ -609,6 +609,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Complainant_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Complainant_First_Name__c +  IF(ISBLANK(Complainant_Middle_Name__c), &quot;&quot;, Complainant_Middle_Name__c)  + Complainant_Last_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Complainant Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Complainant_Individual_City__c</fullName>
         <externalId>false</externalId>
         <label>Complainant Individual City</label>
@@ -1622,6 +1634,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Incident_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Incident Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Incident_Description__c</fullName>
         <externalId>false</externalId>
         <label>Incident Description</label>
@@ -1656,6 +1677,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Investigation_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Investigation Comments</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Investigation_Completed_Date__c</fullName>
         <description>Date the investigation was completed.</description>
         <externalId>false</externalId>
@@ -1675,6 +1705,18 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Investigator_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Investigator Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Complaints</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Jurisdiction_Found__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1692,6 +1734,18 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>License_Id__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <externalId>false</externalId>
+        <label>License Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License_Type__c</fullName>
@@ -2596,42 +2650,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>Complainant_Full_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>Complainant_First_Name__c +  IF(ISBLANK(Complainant_Middle_Name__c), &quot;&quot;, Complainant_Middle_Name__c)  + Complainant_Last_Name__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Complainant Full Name</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Respondent_Phone__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Primary_Contact__r.Phone</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Respondent Phone</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Investigator_Name__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Investigator Name</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Complaints</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
     <fields>
         <fullName>Master_Complaint__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -2786,11 +2804,31 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Recommendations__c</fullName>
+        <externalId>false</externalId>
+        <label>Recommendations</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Record_Type1__c</fullName>
         <externalId>false</externalId>
         <formula>RecordType.DeveloperName</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Record_Type1</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3264,19 +3302,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Mason</label>
                 </value>
                 <value>
-                    <fullName>Null</fullName>
-                    <default>false</default>
-                    <label>Null</label>
-                </value>
-                <value>
                     <fullName>Okanogan</fullName>
                     <default>false</default>
                     <label>Okanogan</label>
-                </value>
-                <value>
-                    <fullName>Out Of Country</fullName>
-                    <default>false</default>
-                    <label>Out Of Country</label>
                 </value>
                 <value>
                     <fullName>Pacific</fullName>
@@ -3329,11 +3357,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Thurston</label>
                 </value>
                 <value>
-                    <fullName>Unknown County</fullName>
-                    <default>false</default>
-                    <label>Unknown County</label>
-                </value>
-                <value>
                     <fullName>Wahkiakum</fullName>
                     <default>false</default>
                     <label>Wahkiakum</label>
@@ -3357,6 +3380,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <fullName>Yakima</fullName>
                     <default>false</default>
                     <label>Yakima</label>
+                </value>
+				<value>
+                    <fullName>Out Of Country</fullName>
+                    <default>false</default>
+                    <label>Out Of Country</label>
                 </value>
                 <value>
                     <fullName>Out Of State</fullName>
@@ -3463,6 +3491,18 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Respondent_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Primary_Contact__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Respondent Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Respondent_State__c</fullName>
@@ -6402,10 +6442,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Null</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Okanogan</fullName>
                 <default>false</default>
             </values>
@@ -6455,10 +6491,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Thurston</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unknown County</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10158,10 +10190,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Null</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Okanogan</fullName>
                 <default>false</default>
             </values>
@@ -10211,10 +10239,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Thurston</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unknown County</fullName>
                 <default>false</default>
             </values>
             <values>

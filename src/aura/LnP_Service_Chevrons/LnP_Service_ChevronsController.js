@@ -1,5 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
+        
         console.log('Inside DoInit');
         helper.setApplicationType(component, event, helper);
         helper.fetchDataFromServer(component, event, helper);
@@ -7,7 +8,12 @@
     previousTab : function(component, event, helper) {
 		helper.goToPreviousTab(component, event, helper);
 	},
-    nextTab : function(component, event, helper) {        
+    nextTab : function(component, event, helper) {
+		 if(component.get("v.removeAffiliate")){
+                var affilComp = component.find("affiliated");
+                console.log("affilComp::"+ affilComp);
+                affilComp.performRemove();
+        }        
 		helper.goToNextTab(component, event, helper);		    
        // helper.checkMandatory(component, event, helper);
     },
@@ -35,14 +41,19 @@
     },
     submit : function(component, event, helper) { 
         helper.submit(component, event, helper);
-        console.log("flowType::"+ component.get("v.flowType"));
-        if(component.get("v.flowType") === 'AMC Controlling Person Registration'){
-        //	helper.updateAffiliation(component,event,helper);
-           }
     },
      handlePassValuesEvent :  function(component, event, helper){
      // alert('The item is: ');
     },
+    
+    handleLocationEvent : function(component,event,helper){
+        var message = event.getParam("callRemoveAffiliate");
+        console.log("message inside Event::"+ message);
+        if(message){
+            component.set("v.removeAffiliate",true);
+        }
+    },
+    
     getCurrTab : function(component, event, helper){
       helper.getCurrTabHelper(component, event, helper);
     },
@@ -53,5 +64,8 @@
 	},
     certificateCheckbox: function(component, event, helper) {
 		helper.certificateCheckbox(component, event);
-	}
+	},
+    goBack : function (component, event, helper){
+        window.history.back();
+    }
 })

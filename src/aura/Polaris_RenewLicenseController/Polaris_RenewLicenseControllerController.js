@@ -2,7 +2,12 @@
 	doInit : function(component, event, helper) {
         console.log('inside init');
         helper.setApplicationType(component, event, helper);
-        helper.fetchDataFromServer(component, event, helper);       
+        helper.fetchDataFromServer(component, event, helper); 
+        var flowType = component.get('v.RenewReinstate');
+        if(flowType != undefined){
+            document.title = flowType;
+        }
+
     },
     previousTab : function(component, event, helper) {
 		helper.goToPreviousTab(component, event, helper);
@@ -56,6 +61,7 @@
     SaveAndSubmit : function(component, event, helper) {
        component.set("v.saveAndSubmit",true);
        helper.goToNextTab(component, event, helper);
+       helper.SaveAndSubmit(component, event, helper); 
     },
     
     handleComponentEvent : function(component,event,helper){
@@ -64,6 +70,11 @@
         if(PhysicalAddressModified){
            component.set("v.PhysicalAddressModified",true);
         }
+    },
+    
+    handleEvent: function (component, event, helper) {
+        helper.handleEventHelper(component, event);
+        console.log("Event listener..." + event.getParam("message"));
         
-}
+	}
 })

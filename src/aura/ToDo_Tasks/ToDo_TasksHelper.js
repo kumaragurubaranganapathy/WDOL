@@ -1,12 +1,15 @@
 ({
     doInit : function(component, event, helper) {
+        console.log('Entering task doInit');
         var action = component.get("c.getTodoList");
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
+                console.log('SUCCESS');
                 var result = response.getReturnValue();
                 console.log('result123'+ JSON.stringify(result));
                 if(result == '') {
+                    console.log('Entering if');
                     /*var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "No result found!",
@@ -15,7 +18,9 @@
                     });
                     toastEvent.fire(); */
                 } else  {
+                    console.log('Entering else');
                     component.set("v.taskList",result);
+                    //console.log('taskListtttttt'+v.taskList);
                 }
                 
                 
@@ -60,11 +65,85 @@
                 var hasBusinessAccounts = response.getReturnValue();
                 console.log(hasBusinessAccounts);
                 component.set('v.AddBusinessAccountsStatusAlert',!hasBusinessAccounts);
+                component.set('v.isLoaded',true);
             }                          
         });
         $A.enqueueAction(action);    
     },
-    
+        showLicenseAlert : function(component, event, helper) {
+        var action = component.get("c.hasLicenses");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var hasBusinessAccounts = response.getReturnValue();
+                console.log(hasBusinessAccounts);
+                component.set('v.licenseList',!hasBusinessAccounts);
+                component.set('v.isLoaded',true);
+            }                          
+        });
+        $A.enqueueAction(action);    
+    },
+    StartRequestEducationInformationHelper : function(component, event) {
+        var ctarget = event.currentTarget;
+        var requestId='';        
+        var action = component.get("c.insertEducationRequestInformation");
+        action.setParams({            
+            "licId": ctarget.getAttribute("data-license"),
+            "licenseType": ctarget.getAttribute("data-licenseType"),
+            "board":ctarget.getAttribute("data-board"),
+            "ServiceRequestType": ctarget.getAttribute("data-requestType"),
+            "ExamRecordId" :ctarget.getAttribute("data-edurecord"),            
+        });
+        action.setCallback(this, function(actionResult){
+            console.log('get results----');
+            var state = actionResult.getState();
+            console.log('state---'+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result----'+result);
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+                sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+                sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));                
+                sessionStorage.setItem("requestId", requestId);
+                sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+               // sessionStorage.setItem("taskDescription", ctarget.getAttribute("data-description"));                
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+       
+    },
+    StartRequestInformationHelper : function(component, event) {
+        var ctarget = event.currentTarget;
+        var requestId='';        
+        var action = component.get("c.insertRequestInformation");
+        action.setParams({            
+            "licId": ctarget.getAttribute("data-license"),
+            "licenseType": ctarget.getAttribute("data-licenseType"),
+            "board":ctarget.getAttribute("data-board"),
+            "ServiceRequestType": ctarget.getAttribute("data-requestType"),            
+        });
+        action.setCallback(this, function(actionResult){
+            console.log('get results----');
+            var state = actionResult.getState();
+            console.log('state---'+state);
+            if (state === "SUCCESS"){
+                var result = actionResult.getReturnValue();
+                console.log('result----'+result);
+                requestId = result;
+                sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+                sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+                sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));                
+                sessionStorage.setItem("requestId", requestId);
+                sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+                sessionStorage.setItem("taskDescription", ctarget.getAttribute("data-description"));                
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
+            }
+        });
+        $A.enqueueAction(action);
+       
+    },
     actionRequest : function(component, event, helper,subject) {
         console.log('inside actionRequest');
         var action = component.get("c.updateTask");
@@ -214,5 +293,52 @@
             "url": str
         });
         urlEvent.fire();
+    },
+    goToProfDashboard : function(component,event){
+        var str ='/newdashboard';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    bizLicApp : function(component,event){
+        var str ='/licenseSelectionPage?biz-lic';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    goToBizDashboard : function(component,event){
+        var str ='/business';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+    openTrainingApp : function(component,event){
+        var str ='/licenseSelectionPage';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire();
+    },
+	
+    fetchData : function (component,event,helper) {
+        var action = component.get("c.getAllAccounts");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var data = response.getReturnValue();                
+                if(data.length!==0){
+                    component.set("v.isBusiness",true);
+                }                                  
+            }                          
+        });
+        $A.enqueueAction(action);
     }
+    
 })

@@ -69,7 +69,7 @@ public without sharing class CommunitiesRegistrationController {
         
         userType = UserInfo.getUserType();
         
-        List<User> users = [Select Id FROM User WHERE Name = 'System Administrator' LIMIT 1  ] ;
+        List<User> users = [Select Id FROM User WHERE Name = 'Sumeet Kanjilal' LIMIT 1  ] ;
         if (users.isEmpty() == false ) {
             DEFAULT_ACCOUNT_OWNERID = users[0].Id ;
         } else {

@@ -36,8 +36,12 @@ global class batchSendLicenseCertification implements Database.Batchable<sObject
                 message.setPlainTextBody('Please find attached a copy of your License Certificate');
                 emailList.add(message);
             }
+			lic.Print_License_Email__c='Completed';
         }
-        
+        if(!scope.isEmpty())
+        {
+            update scope;
+        }
         system.debug('emailList::'+emailList);
         if(emailList.size() > 0){
             Messaging.SendEmailResult[] results = Messaging.sendEmail(emailList);

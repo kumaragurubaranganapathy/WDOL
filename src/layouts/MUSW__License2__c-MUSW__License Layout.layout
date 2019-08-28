@@ -10,24 +10,56 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Application_Type__c</field>
+                <behavior>Edit</behavior>
+                <field>MUSW__Primary_Licensee__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Credential_Type__c</field>
+                <behavior>Edit</behavior>
+                <field>License_Printable_Name__c</field>
             </layoutItems>
-			<layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Validation_Number__c</field>
-            </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Customer_Envelope__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Validation_Number__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Application_Method__c</field>
+                <field>Subtype__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Paper_Application__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>No_of_years_inactive__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Expired_Date_Updated__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Upgrade_Checkbox__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_First_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Middle_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Last_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Military__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -35,7 +67,27 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Qualified_By__c</field>
+                <field>Deployed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Deployment_Start_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Deployment_End_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Application_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Credential_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Selected_for_Audit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -43,19 +95,39 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Application_Method__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Qualified_By__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>WADOL_Comity_Reciprocity_License__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Number_of_Units__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Security_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Profession_Code__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MUSW__Description__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Expired_Date_Updated__c</field>
+                <behavior>Readonly</behavior>
+                <field>Program_Mailing_PO_Box__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>NoEmail__c</field>
+                <field>Provider_Account_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Polaris_DHP__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -77,11 +149,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MUSW__Expiration_Date__c</field>
+                <field>MUSW__Primary__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MUSW__Issue_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MUSW__Expiration_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -92,20 +168,28 @@
                 <field>App_Submitted_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Upgraded_License__c</field>
+                <behavior>Readonly</behavior>
+                <field>Date_of_Birth__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>NoEmail__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Time_to_License__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Related_License__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>No_of_years_inactive__c</field>
+                <behavior>Edit</behavior>
+                <field>Region__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Security_Code__c</field>
+                <field>Pre_License_Number__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -122,41 +206,17 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MUSW__Primary_Licensee__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>License_Printable_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Program_Mailing_PO_Box__c</field>
-            </layoutItems>
-			<layoutItems>
-                <behavior>Edit</behavior>
-                <field>Polaris_DHP__c</field>
+                <field>MUSW__Applicant_is_Licensee__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Email__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Phone__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Date_of_Birth__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Last_4_SSN__c</field>
+                <behavior>Edit</behavior>
+                <field>MUSW__Parcel__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MUSW__Parcel__c</field>
+                <field>MUSW__Geolocation__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -183,6 +243,14 @@
                 <behavior>Edit</behavior>
                 <field>MUSW__Renewal_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_License_DES__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -204,6 +272,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Renewal_Cycle_End_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Renewal_Coupon__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -232,28 +304,24 @@
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
+        <customLabel>false</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Financials</label>
+        <label>Description Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>MUSW__Total_Fees__c</field>
+                <behavior>Edit</behavior>
+                <field>MUSW__Description__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>MUSW__Total_Payments__c</field>
+                <behavior>Edit</behavior>
+                <field>Square_Footage__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>MUSW__Total_Balance__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Bad_Check__c</field>
+                <field>RecordTypeId</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -262,19 +330,15 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Financial Guarantee</label>
+        <label>Financials</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Bond_Number__c</field>
+                <field>Expiration_Date_of_Bond__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Surety_Bond_Company_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Policy_Amount__c</field>
+                <behavior>Readonly</behavior>
+                <field>MUSW__Total_Fees__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -283,27 +347,12 @@
                 <field>Effective_Date_of_Bond__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Expiration_Date_of_Bond__c</field>
+                <behavior>Readonly</behavior>
+                <field>MUSW__Total_Payments__c</field>
             </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Continuing Education</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CE_Hours__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Credential_Ce_Audit_Eligible__c</field>
+                <field>MUSW__Total_Balance__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -315,42 +364,26 @@
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Client_Id__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>License_Id__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Send_information_to_ASC__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Pending_Audit__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>RecordTypeId</field>
+                <behavior>Readonly</behavior>
+                <field>CreatedById</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CreatedById</field>
+                <behavior>Edit</behavior>
+                <field>Prof_Code_Short_Desc__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Name</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -378,57 +411,47 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Delete</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>1</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Clone</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>2</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewTask</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewEvent</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>4</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>LogACall</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>5</sortOrder>
+            <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>SendEmail</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>6</sortOrder>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.ContentNote</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>7</sortOrder>
+            <sortOrder>4</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>8</sortOrder>
+            <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.ContentPost</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>9</sortOrder>
+            <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.QuestionPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>7</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewContact</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>8</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewOpportunity</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>9</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewLead</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>10</sortOrder>
         </platformActionListItems>
@@ -443,101 +466,100 @@
             <sortOrder>12</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Submit</actionName>
+            <actionName>PrintableView</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>13</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>ChangeOwnerOne</actionName>
+            <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>14</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>ChangeRecordType</actionName>
+            <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>15</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>PrintableView</actionName>
+            <actionName>ChangeOwnerOne</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>16</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Share</actionName>
+            <actionName>Submit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>17</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Letter</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>ChangeRecordType</actionName>
+            <actionType>StandardButton</actionType>
             <sortOrder>18</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Letter</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>19</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>MUSW__License2__c.Generate_Fees</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>20</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewTask</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>0</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NewEvent</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>1</sortOrder>
+        </platformActionListItems>
     </platformActionList>
-    <quickActionList>
-        <quickActionListItems>
-            <quickActionName>FeedItem.TextPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.ContentPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.MobileSmartActions</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.RypplePost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.LinkPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.PollPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.QuestionPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.ContentNote</quickActionName>
-        </quickActionListItems>
-    </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Name__c</fields>
-        <fields>Child_License__c</fields>
-        <fields>Child_Contact__c</fields>
-        <fields>Status__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_Date__c</fields>
+        <relatedList>Associations__c.Child_License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <relatedList>Associations__c.Parent_License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Parent_License__c</fields>
-        <fields>Start_Date__c</fields>
-        <relatedList>Associations__c.Child_License__c</relatedList>
+        <relatedList>Renewal_Application__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <relatedList>RelatedContentNoteList</relatedList>
+        <customButtons>MUSW__Manage_Submissions</customButtons>
+        <fields>NAME</fields>
+        <fields>MUSW__Required__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>MUSW__Description__c</fields>
+        <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Endorsement_Type__c</fields>
+        <fields>Parcel_Address__c</fields>
+        <fields>Mailing__c</fields>
+        <fields>Physical__c</fields>
+        <relatedList>MUSW__License_Parcel__c.MUSW__License2__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>QuestionDOL__c</fields>
+        <fields>Question_Section__c</fields>
+        <fields>Question2__c</fields>
+        <fields>Answer_Text__c</fields>
+        <relatedList>BGCK__Answer__c.License__c</relatedList>
+        <sortField>Question_Section__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
         <fields>Status__c</fields>
-        <fields>Date_Requested_for_Adding_Endorsement__c</fields>
-        <fields>Date_Granted__c</fields>
-        <relatedList>Endorsement__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Credential__c</fields>
-        <fields>Application_Method__c</fields>
-        <fields>MUSW__Status__c</fields>
-        <fields>MUSW__Applicant__c</fields>
-        <fields>MUSW__Primary_Licensee__c</fields>
-        <fields>MUSW__Issue_Date__c</fields>
-        <fields>MUSW__Renewal_Date__c</fields>
-        <fields>MUSW__Expiration_Date__c</fields>
-        <fields>MUSW__Alert_Indicator__c</fields>
-        <relatedList>MUSW__License2__c.Related_License__c</relatedList>
+        <fields>Exam_Type__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <relatedList>Education_History__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -545,49 +567,21 @@
         <fields>MUSW__Due_Date__c</fields>
         <fields>MUSW__Status__c</fields>
         <fields>LAST_UPDATE</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <relatedList>MUSW__Review__c.License__c</relatedList>
         <sortField>LAST_UPDATE</sortField>
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>MUSW__Type__c</fields>
-        <fields>MUSW__Street__c</fields>
+        <fields>MUSW__Due_Date__c</fields>
         <fields>MUSW__Status__c</fields>
-        <fields>MUSW__Closed_Date__c</fields>
-        <relatedList>MUSW__Complaint2__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <customButtons>MUSW__Manage_Submissions</customButtons>
-        <fields>NAME</fields>
-        <fields>MUSW__Required__c</fields>
-        <fields>MUSW__Submission_DateTime__c</fields>
-        <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Service_Request_Type__c</fields>
-        <fields>Status__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>Request__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Name_of_Institution__c</fields>
-        <fields>Start_Date__c</fields>
-        <fields>End_date__c</fields>
-        <fields>Major__c</fields>
-        <fields>State__c</fields>
-        <fields>Country__c</fields>
-        <fields>RECORDTYPE</fields>
-        <relatedList>Education_History__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>LnP_BackgroundSection__c.License_Bg__c</relatedList>
+        <fields>OWNER.ALIAS</fields>
+        <fields>LAST_UPDATE</fields>
+        <relatedList>MUSW__Inspection__c.MUSW__License2__c</relatedList>
+        <sortField>LAST_UPDATE</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <customButtons>Add_Fees_to_Cart2</customButtons>
@@ -596,6 +590,7 @@
         <fields>MUSW__Type__c</fields>
         <fields>MUSW__Amount__c</fields>
         <fields>MUSW__Amount_Waived__c</fields>
+        <fields>MUSW__Fee_Paid__c</fields>
         <fields>MUSW__Outstanding_Fee__c</fields>
         <fields>MUSW__Fee_Paid_Date2__c</fields>
         <relatedList>MUSW__Fee__c.MUSW__License2__c</relatedList>
@@ -613,52 +608,6 @@
         <relatedList>BGBK__Payment__c.BGBK__License2__c</relatedList>
         <sortField>CREATED_DATE</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Amount__c</fields>
-        <fields>MUSW__Available_Amount__c</fields>
-        <relatedList>MUSW__Deposit__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Address_Type__c</fields>
-        <fields>City__c</fields>
-        <fields>County__c</fields>
-        <fields>State_Province__c</fields>
-        <fields>Country__c</fields>
-        <fields>Zip_Postal_Code__c</fields>
-        <relatedList>LnP_Parcel__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Renewal_Reinstatement_Type__c</fields>
-        <fields>Auto_Renew__c</fields>
-        <fields>Total_Balance__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>Renewal_Application__c.License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Credential__c</fields>
-        <fields>Application_Method__c</fields>
-        <fields>MUSW__Status__c</fields>
-        <fields>MUSW__Applicant__c</fields>
-        <fields>MUSW__Primary_Licensee__c</fields>
-        <fields>MUSW__Issue_Date__c</fields>
-        <fields>MUSW__Renewal_Date__c</fields>
-        <fields>MUSW__Expiration_Date__c</fields>
-        <fields>MUSW__Alert_Indicator__c</fields>
-        <relatedList>MUSW__License2__c.Upgraded_License__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>QuestionDOL__c</fields>
-        <fields>Question_Section__c</fields>
-        <fields>Question2__c</fields>
-        <fields>BGCK__Question__c</fields>
-        <fields>Answer_Text__c</fields>
-        <relatedList>BGCK__Answer__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Task.MUSW__Add_Multiple_Tasks</customButtons>
@@ -685,14 +634,37 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <relatedList>LnP_BackgroundSection__c.License_Bg__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Endorsement_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>Date_Requested_for_Adding_Endorsement__c</fields>
+        <relatedList>Endorsement__c.License__c</relatedList>
+    </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Service_Request_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Contact__c</fields>
+        <relatedList>Request__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>MUSW__Type__c</fields>
-        <fields>MUSW__Due_Date__c</fields>
-        <fields>MUSW__Priority__c</fields>
-        <fields>OWNER.ALIAS</fields>
-        <relatedList>MUSW__Inspection__c.MUSW__License2__c</relatedList>
+        <fields>MUSW__Street__c</fields>
+        <fields>MUSW__Status__c</fields>
+        <fields>MUSW__Closed_Date__c</fields>
+        <relatedList>MUSW__Complaint2__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -709,8 +681,6 @@
         <fields>Description__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>Alert__c.License__c</relatedList>
-        <sortField>CREATED_DATE</sortField>
-        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

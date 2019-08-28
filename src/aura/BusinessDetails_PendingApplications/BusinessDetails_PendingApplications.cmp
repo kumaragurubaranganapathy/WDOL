@@ -30,10 +30,10 @@
     </aura:if>
     <aura:if isTrue = "{!v.PendingCourseApplicationsData.length != 0 || v.PendingNewLicenseApplications.length != 0 || v.PendingRenewalApplications.length != 0 || v.PendingMaintenanceRequestApplications.length != 0 }" >
         
-        <div class="Course-Applications slds-m-vertical_medium">
-            <div class="table-head">Course Applications</div>
-            <aura:if isTrue="{!v.PendingCourseApplicationsData.length}">
-                
+        
+        <aura:if isTrue="{!v.PendingCourseApplicationsData.length}">
+            <div class="Course-Applications slds-m-vertical_medium">
+                <div class="table-head">Course Applications</div>
                 <div class="slds-p-vertical_small table-height">
                     <div>
                         
@@ -51,33 +51,39 @@
                                 <tbody>
                                     <aura:iteration items="{!v.pendingCoursesPagination}" var="tableData" indexVar="ind">
                                         <tr class="slds-hint-parent">
-                                            <td data-label="Course name" class="cell-style">
-                                                <aura:if isTrue="{!tableData.Course_Name__c}">
-                                                    <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Name__c}</div>
+                                            <td data-label="Course #" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Name}">
+                                                    <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
+                                                    <aura:set attribute="else">None</aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td data-label="Course Name" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Course_Title__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Course_Title__c}">{!tableData.Course_Title__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
                                             <td data-label="Course type" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Course_Type__c}">
-                                                    <div class="slds-truncate" title="{!tableData.Course_Name__c}">{!tableData.Course_Type__c}</div>
+                                                    <div class="slds-truncate" title="{!tableData.Course_Type__c}">{!tableData.Course_Type__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="Licensure level" class="cell-style">
+                                            <!--   <td data-label="Licensure level" class="cell-style">
                                                 <aura:if isTrue="{!tableData.What_Licensure_Level__c}">
                                                     <div class="slds-truncate" title="{!tableData.What_Licensure_Level__c}">{!tableData.What_Licensure_Level__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
-                                            </td>
+                                            </td> -->
                                             <td data-label="Delivery method" class="cell-style">
                                                 <aura:if isTrue="{!tableData.Delivery_Method__c}">
                                                     <div class="slds-truncate" title="{!tableData.Delivery_Method__c}">{!tableData.Delivery_Method__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
-                                            <td data-label="Clock hours" class="cell-style">
-                                                <aura:if isTrue="{!tableData.Clock_Hours_Continuing_Education__c}">
-                                                    <div class="slds-truncate" title="{!tableData.Clock_Hours_Continuing_Education__c}">{!tableData.Clock_Hours_Continuing_Education__c}</div>
+                                            <td data-label="Clock Hours" class="cell-style">
+                                                <aura:if isTrue="{!tableData.Clock_Hours__c}">
+                                                    <div class="slds-truncate" title="{!tableData.Clock_Hours__c}">{!tableData.Clock_Hours__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>
@@ -109,19 +115,20 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingCourseApplicationsData}" dispList="{!v.pendingCoursesPagination}" pgSize="4" />
                 </div>
-                <aura:set attribute="else">
+                <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no course applications
                     </div>
-                </aura:set>
-            </aura:if> 
-        </div>
+                </aura:set> -->
+            </div>
+        </aura:if> 
         
         
-        <div class="New-License-Applications slds-m-vertical_xx-large">
-            <div class="table-head">New License Applications</div>
-            <aura:if isTrue="{!v.PendingNewLicenseApplications.length}">
-                
+        
+        
+        <aura:if isTrue="{!v.PendingNewLicenseApplications.length}">
+            <div class="New-License-Applications">
+                <div class="table-head">New License Applications</div>
                 <div class="table-height slds-p-vertical_small">
                     <div>
                         <div class="table-scroll">
@@ -212,20 +219,19 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingNewLicenseApplications}" dispList="{!v.pendingNewLicensePagination}" pgSize="4" />
                 </div>
-                <aura:set attribute="else">
+                <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no pending new license applications
                     </div>
-                </aura:set>
-                
-            </aura:if>
-        </div>
+                </aura:set> -->
+            </div>
+        </aura:if>
         
-        <div class="Renewal-Applications slds-m-vertical_xx-large">
-            
-            <div class="table-head">Renewal Applications</div>
-            <aura:if isTrue="{!v.PendingRenewalApplications.length}">
+        
+        <aura:if isTrue="{!v.PendingRenewalApplications.length}">
+            <div class="Renewal-Applications slds-m-vertical_xx-large">
                 
+                <div class="table-head">Renewal Applications</div>
                 <div class="table-height slds-p-vertical_small">
                     <div>
                         <div class="table-scroll">
@@ -305,18 +311,18 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingRenewalApplications}" dispList="{!v.pendingRenewPagination}" pgSize="4" />
                 </div>
-                <aura:set attribute="else">
+                <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no pending renewal applications
                     </div>
-                </aura:set>                
-                
-            </aura:if>
-        </div>       
-        <div class="Maintenance-Request-Applications slds-m-vertical_xx-large">
-            <div class="table-head">Maintenance Request Applications</div>
-            <aura:if isTrue="{!v.PendingMaintenanceRequestApplications.length}">    
-                
+                </aura:set>    -->             
+            </div>
+        </aura:if>
+        
+        
+        <aura:if isTrue="{!v.PendingMaintenanceRequestApplications.length}">    
+            <div class="Maintenance-Request-Applications slds-m-vertical_xx-large">
+                <div class="table-head">Maintenance Request Applications</div>
                 
                 <div class="table-height slds-p-vertical_small">
                     <div>
@@ -370,19 +376,19 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.PendingMaintenanceRequestApplications}" dispList="{!v.pendingMaintainPagination}" pgSize="4" />
                 </div>
-                <aura:set attribute="else">
+                <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no pending maintainance requests
                     </div>
-                </aura:set>
+                </aura:set> -->
                 
-                
-            </aura:if>
-        </div>
+            </div>
+        </aura:if>
+        
         
         <aura:set attribute="else">
             <div class="empty-state">
-            <div>There are no pending applications to display</div>
+                <div>There are no pending applications to display</div>
             </div>
         </aura:set> 
         

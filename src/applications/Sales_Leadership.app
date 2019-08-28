@@ -11,7 +11,6 @@
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>Monitor sales activity, and guide your team to help them meet and exceed sales targets.</description>
@@ -34,7 +33,8 @@
     <tabs>BGCK__Choice__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
     <tabs>Master_Exam_List__c</tabs>
-    <tabs>Master_ConfigData_Listing__c</tabs>
+    <tabs>LnP_Parcel__c</tabs>
+    <tabs>EpaymentRemittanceData__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Sales_Leadership_UtilityBar</utilityBar>
 </CustomApplication>

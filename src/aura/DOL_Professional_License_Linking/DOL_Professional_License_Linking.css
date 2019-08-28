@@ -1,12 +1,25 @@
-.THIS .prof-link-title {
-    font-size:1.25rem;
+.THIS .page-header{
+    font-family: t(merrifontfamily);
+    font-size: 30px;
+    font-weight: 600;
+    font-style: t(txtfontstyle);
+    line-height: 1.48;
+    color: t(LnGFormTitleColor);
+}
+.THIS .heading{
+    font-family: t(merrifontfamily);
+    font-size: 20px;
+    font-weight: t(txtfontweight);
+    font-style: t(txtfontstyle);
+    line-height: normal;
+    color: t(fieldclr);
+    padding-bottom: 20px;
+}
+.THIS .heading.pad{
+    padding-bottom: 10px; 
 }
 .THIS.prof-link-wrapper {
     margin:2rem 7.5rem;
-}
-.THIS .prof-link-title{
-    font-size:1.25rem;
-    font-weight:bold;
 }
 .THIS .spinner-style{
     height:100vh;
@@ -20,41 +33,90 @@
     margin-top: 1rem;
 }
 .THIS .new-wrapper{
-    margin:4rem 0;
-}
-.THIS .ser-title.link-title{
-    padding-bottom:0.5rem;
-}
-.THIS .ser-title{
-    font-size: 1rem;
-    font-weight: bold;
-    padding-bottom:2rem;    
+    margin:20px 0;
 }
 .THIS .activation-code .slds-form-element__control, .THIS .details-search .slds-form-element__control{
     width:50%;
 }
 .THIS .link-help{
+    line-height: 1.2;
 	padding-bottom:0.5rem;
+}
+.THIS .slds-button:disabled{
+    background: t(LnGGrayText);
+}
+.THIS .proceed-btn{
+    width: 130px;
+    height: 42px;
+}
+.THIS .sentenceflex{
+    display:flex;
+}
+.THIS .txtStyle{
+    color:t(primary);
+}
+.THIS .txtclr{
+    color:t(gray);
 }
 .THIS .button-wrapper{
     display:flex;
     justify-content:flex-end;
     margin-top:1.25rem;
 }
-.THIS .radio-style .slds-form-element__control{
+.THIS .btnAlign{
+    text-align:right;
+    margin-top:20px;
+}
+.THIS .test{
+    height:42px;
+   
+}
+/*.THIS .radio-style .slds-form-element__control{
     display:flex;
+}*/
+.THIS .emailInp{
+    display:inline-block
+}
+.THIS .flexdisp{
+    display:flex;
+}
+.THIS .itemBtm{
+    padding-top:10px;
+}
+.THIS .flexdisp .slds-form-element__label{
+    font-weight:bold;
+}
+.THIS .emaillabel{
+    font-size: 13px;
+    margin-left: 15px;
+    margin-top:4px;
 }
 .THIS .radio-style .slds-radio{
     margin-right:8rem;
+}
+.THIS .licensecon .slds-form-element__control{
+    width:50%;
+}
+.THIS .licensecon .slds-form-element{
+    margin-bottom: 0.8rem;
 }
 @media t(mqSmall){
     .THIS.prof-link-wrapper{
         margin:1rem;
     }
-    .THIS .activation-code .slds-form-element__control, .THIS .details-search .slds-form-element__control{
+    .THIS .activation-code.field-size .slds-form-element__control, .THIS .details-search .field-size .slds-form-element__control{
+        width:100%;
+    }
+    .THIS .licensecon .slds-form-element__control, .THIS .activation-code .slds-form-element__control {
         width:100%;
     }
     .THIS .new-wrapper{
         margin:2rem 0;
+    }
+    .THIS .page-header{
+        font-size:20px;
+    }
+    .THIS .heading {
+        font-size:16px;
     }
 }

@@ -44,7 +44,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
@@ -52,7 +52,7 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
@@ -90,11 +90,6 @@
         </displayedFields>
         <displayedFields>
             <field>MUSW__Amended_Amount__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Adjustment_Reason__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -268,7 +263,6 @@
     <fields>
         <fullName>AFRS_AR_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLAR&quot;</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xAFRS AR Code</label>
         <length>200</length>
@@ -281,9 +275,20 @@
     <fields>
         <fullName>AFRS_Cash_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLCH&quot;</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xAFRS Cash Code</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AFRS_Revenue_Code__c</fullName>
+        <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>AFRS Revenue Code</label>
         <length>200</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -305,7 +310,6 @@
     </fields>
     <fields>
         <fullName>AR_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AR Date</label>
         <required>false</required>
@@ -323,8 +327,43 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Acc_AR_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;AR_&quot;+text(MUSW__Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Acc AR Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Acc_Cash_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;Cash_&quot;+text(MUSW__Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Acc Cash Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Acc_Rev_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;Rev_&quot;+text(MUSW__Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Acc Rev Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Account_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Number</label>
         <length>15</length>
@@ -415,31 +454,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Adjustment_Reason__c</fullName>
-        <externalId>false</externalId>
-        <label>Adjustment Reason</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Refund</fullName>
-                    <default>false</default>
-                    <label>Refund</label>
-                </value>
-                <value>
-                    <fullName>Reapplied Payment</fullName>
-                    <default>false</default>
-                    <label>Reapplied Payment</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Agency_Code__c</fullName>
         <externalId>false</externalId>
         <label>Agency Code</label>
@@ -466,7 +480,6 @@
     </fields>
     <fields>
         <fullName>Agency__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Agency</label>
         <length>200</length>
@@ -564,7 +577,6 @@
     <fields>
         <fullName>BGBK__Due_Date__c</fullName>
         <deprecated>false</deprecated>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -622,7 +634,6 @@
     </fields>
     <fields>
         <fullName>Budget_Period__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Budget Period</label>
         <length>80</length>
@@ -722,7 +733,6 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -734,7 +744,6 @@
     </fields>
     <fields>
         <fullName>Fee_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Name</label>
         <length>100</length>
@@ -779,19 +788,6 @@
         <referenceTo>Fine__c</referenceTo>
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Handling_Fee__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Handling Fee</label>
-        <referenceTo>MUSW__Fee__c</referenceTo>
-        <relationshipLabel>Voided Fees</relationshipLabel>
-        <relationshipName>VoidedFees</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -853,19 +849,19 @@
         <description>Captures the related License number</description>
         <externalId>false</externalId>
         <formula>IF(OR(ISNULL( Fine__c ), Fine__c = &quot;&quot;), 
-IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
-If(OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =&quot;&quot;), 
-If(OR(ISNULL( Renewal_Application__c), Renewal_Application__c = &quot;&quot;), 
-If(OR(ISNULL( Request__c), Request__c = &quot;&quot;), 
-If(OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = &quot;&quot;), 
-IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
-&quot;&quot;, MUSW__License2__r.Name), 
-Miscellaneous_Fee__r.Name), 
-Request__r.Name), 
-Renewal_Application__r.Name), 
-MUSW__Application2__r.Name), 
-MUSW__Permit2__r.Name), 
-Fine__r.Name)</formula>
+			IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
+			If(OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =&quot;&quot;), 
+			If(OR(ISNULL( Renewal_Application__c), Renewal_Application__c = &quot;&quot;), 
+			If(OR(ISNULL( Request__c), Request__c = &quot;&quot;), 
+			If(OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = &quot;&quot;), 
+			IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
+			&quot;&quot;, MUSW__License2__r.Name), 
+			Miscellaneous_Fee__r.Name), 
+			Request__r.Name), 
+			Renewal_Application__r.Name), 
+			MUSW__Application2__r.Name), 
+			MUSW__Permit2__r.Name), 
+			Fine__r.Name)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number</label>
         <required>false</required>
@@ -971,7 +967,6 @@ Fine__r.Name)</formula>
         <fullName>MUSW__Check_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Check Number</label>
         <length>25</length>
@@ -1013,7 +1008,6 @@ Fine__r.Name)</formula>
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -1025,7 +1019,6 @@ Fine__r.Name)</formula>
         <fullName>MUSW__Effective_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
@@ -1052,7 +1045,6 @@ Fine__r.Name)</formula>
         <fullName>MUSW__Fee_Paid_Date2__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the fee payment was made. The System populates the value when a payment is allocated to the fee.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Paid Date</label>
         <required>false</required>
@@ -1064,7 +1056,6 @@ Fine__r.Name)</formula>
         <fullName>MUSW__Fee_Paid_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Paid Date/Time</label>
         <required>false</required>
@@ -1188,7 +1179,6 @@ Fine__r.Name)</formula>
         <fullName>MUSW__Payment_Comment__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Payment Comments</label>
         <required>false</required>
@@ -1323,7 +1313,6 @@ Fine__r.Name)</formula>
         <fullName>MUSW__Receipt_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Receipt Number</label>
         <length>50</length>
@@ -1471,7 +1460,6 @@ Fine__r.Name)</formula>
     </fields>
     <fields>
         <fullName>Profession_Code__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Profession Code</label>
         <length>5</length>
@@ -1624,20 +1612,34 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>Related_To__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(OR(ISNULL( Fine__c ), Fine__c = &quot;&quot;), 
-IF(OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
-If(OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =&quot;&quot;), 
-If(OR(ISNULL( Renewal_Application__c), Renewal_Application__c = &quot;&quot;), 
-If(OR(ISNULL( Request__c), Request__c = &quot;&quot;), 
-If(OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = &quot;&quot;), 
-IF(OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
-&quot;&quot;, HYPERLINK( &quot;../&quot; &amp; MUSW__License2__c, MUSW__License2__r.Name ,&quot;_parent&quot; )), 
-HYPERLINK( &quot;../&quot; &amp; Miscellaneous_Fee__c, Miscellaneous_Fee__r.Name ,&quot;_parent&quot; )),
-HYPERLINK( &quot;../&quot; &amp; Request__c,Request__r.Name,&quot;_parent&quot; )), 
-HYPERLINK( &quot;../&quot; &amp; Renewal_Application__c,Renewal_Application__r.Name,&quot;_parent&quot; )), 
-HYPERLINK( &quot;../&quot; &amp; MUSW__Application2__c,MUSW__Application2__r.Name,&quot;_parent&quot; )), 
-HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_parent&quot; )), 
-HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</formula>
+        <formula>IF(
+	OR(ISNULL( Fine__c ), Fine__c = &quot;&quot;), 
+	IF(
+		OR(ISNULL( MUSW__Permit2__c ), MUSW__Permit2__c = &quot;&quot;), 
+		If(
+			OR(ISNULL( MUSW__Application2__c), MUSW__Application2__c =&quot;&quot;), 
+			If(
+				OR(ISNULL( Renewal_Application__c), Renewal_Application__c = &quot;&quot;), 
+				If(
+					OR(ISNULL( Request__c), Request__c = &quot;&quot;), 
+					If(
+						OR(ISNULL( Miscellaneous_Fee__c), Miscellaneous_Fee__c = &quot;&quot;), 
+						IF(
+							OR(ISNULL( MUSW__License2__c ), MUSW__License2__c = &quot;&quot;), 
+							&quot; &quot;,IF($User.UIThemeDisplayed=&quot;Theme4d&quot;, HYPERLINK( &quot;#/sObject/&quot; &amp; MUSW__License2__c, MUSW__License2__r.Name ,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; MUSW__License2__c, MUSW__License2__r.Name ,&quot;_self&quot; ))							
+						), 
+						IF($User.UIThemeDisplayed=&quot;Theme4d&quot;,HYPERLINK( &quot;#/sObject/&quot; &amp; Miscellaneous_Fee__c, Miscellaneous_Fee__r.Name ,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; Miscellaneous_Fee__c, Miscellaneous_Fee__r.Name ,&quot;_parent&quot; ))
+					), 
+					IF($User.UIThemeDisplayed=&quot;Theme4d&quot;,HYPERLINK( &quot;#/sObject/&quot; &amp; Request__c,Request__r.Name,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; Request__c,Request__r.Name,&quot;_parent&quot; ))
+				), 
+				IF($User.UIThemeDisplayed=&quot;Theme4d&quot;,HYPERLINK( &quot;#/sObject/&quot; &amp; Renewal_Application__c,Renewal_Application__r.Name,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; Renewal_Application__c,Renewal_Application__r.Name,&quot;_parent&quot; ))
+			), 
+			IF($User.UIThemeDisplayed=&quot;Theme4d&quot;,HYPERLINK( &quot;#/sObject/&quot; &amp; MUSW__Application2__c,MUSW__Application2__r.Name,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; MUSW__Application2__c,MUSW__Application2__r.Name,&quot;_parent&quot; ))
+		), 
+		IF($User.UIThemeDisplayed=&quot;Theme4d&quot;,HYPERLINK( &quot;#/sObject/&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_parent&quot; ))
+	), 
+	IF($User.UIThemeDisplayed=&quot;Theme4d&quot;, HYPERLINK( &quot;#/sObject/&quot; &amp; Fine__c,Fine__r.Name,&quot;_self&quot; ),HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Related To</label>
         <required>false</required>
@@ -1675,7 +1677,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <fields>
         <fullName>Revenue_Account_Code__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Account Code</label>
         <length>200</length>
@@ -1688,7 +1689,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Revenue_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Code</label>
         <length>200</length>
@@ -1701,7 +1701,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>TMS_AR_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLAR&quot;</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS AR Code</label>
         <length>200</length>
@@ -1714,7 +1713,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>TMS_Cash_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLCH&quot;</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS Cash Code</label>
         <length>200</length>
@@ -1727,7 +1725,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>TMS_Revenue_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLRV&quot;</defaultValue>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS Revenue Code</label>
         <length>200</length>
@@ -1739,7 +1736,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <fields>
         <fullName>Upsert_ID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Upsert ID</label>
         <length>255</length>
@@ -1776,7 +1772,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Voided_Receipt_Check_Number__c</fullName>
         <description>2011</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voided Receipt Check Number</label>
         <length>50</length>
@@ -1789,7 +1784,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Voided_Receipt_Payment_Method__c</fullName>
         <description>2011 : Voided Receipt Payment Method</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voided Receipt Payment Method</label>
         <length>50</length>
@@ -1802,7 +1796,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <fields>
         <fullName>Voucher_Number__c</fullName>
         <description>1966</description>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voucher #</label>
         <length>255</length>
@@ -1827,7 +1820,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     </fields>
     <fields>
         <fullName>portal_name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Description</label>
         <length>255</length>
@@ -1840,60 +1832,22 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
     <label>Fee</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>Related_To__c</columns>
         <columns>NAME</columns>
         <columns>MUSW__Amount__c</columns>
-        <columns>MUSW__Amount_Paid__c</columns>
-        <columns>MUSW__Outstanding_Fee__c</columns>
         <columns>Application_Type__c</columns>
+        <columns>Related_To__c</columns>
+        <columns>MUSW__Fee_Paid__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>MUSW__License1__c</columns>
+        <columns>MUSW__License__c</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>TMS_Revenue_Code__c</columns>
+        <columns>TMS_Cash_Code__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-    </listViews>
-    <listViews>
-        <fullName>DSHS_Fees</fullName>
-        <columns>NAME</columns>
-        <columns>Agency_Code__c</columns>
-        <columns>MUSW__Amount__c</columns>
-        <columns>MUSW__Amount_Paid__c</columns>
-        <columns>Voucher_Number__c</columns>
-        <columns>License_Number__c</columns>
-        <columns>BGBK__Invoice__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Agency_Code__c</field>
-            <operation>equals</operation>
-            <value>3000</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>THIS_MONTH</value>
-        </filters>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>MUSW__Fee__c.MUSW__All</value>
-        </filters>
-        <label>DSHS Fees</label>
-    </listViews>
-    <listViews>
-        <fullName>ESD_Fees</fullName>
-        <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>Agency_Code__c</field>
-            <operation>equals</operation>
-            <value>5400</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>LAST_MONTH</value>
-        </filters>
-        <label>ESD Fees</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>License_Assignment_Queue_Fee</fullName>
@@ -1910,14 +1864,11 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <columns>NAME</columns>
         <columns>MUSW__Amount__c</columns>
         <columns>MUSW__Outstanding_Fee__c</columns>
-        <columns>Days_since_created__c</columns>
-        <columns>MUSW__Fee_Paid__c</columns>
-        <columns>Account_Number__c</columns>
-        <columns>AR_Date__c</columns>
-        <columns>ARed__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>MUSW__Amount_Paid__c</columns>
-        <columns>CREATEDBY_USER</columns>
+        <columns>AFRS_AR_Code__c</columns>
+        <columns>AFRS_Cash_Code__c</columns>
+        <columns>TMS_AR_Code__c</columns>
+        <columns>TMS_Cash_Code__c</columns>
+        <columns>TMS_Revenue_Code__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>MUSW__Outstanding_Fee__c</field>
@@ -1925,58 +1876,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             <value>0</value>
         </filters>
         <label>Outstanding Fees</label>
-    </listViews>
-    <listViews>
-        <fullName>Paid_Fees</fullName>
-        <columns>Related_To__c</columns>
-        <columns>NAME</columns>
-        <columns>MUSW__Amount__c</columns>
-        <columns>MUSW__Outstanding_Fee__c</columns>
-        <columns>MUSW__Fee_Paid__c</columns>
-        <columns>Account_Number__c</columns>
-        <columns>AR_Date__c</columns>
-        <columns>ARed__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>MUSW__Amount_Paid__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>MUSW__Amount_Paid__c</field>
-            <operation>greaterThan</operation>
-            <value>0</value>
-        </filters>
-        <label>Paid Fees</label>
-    </listViews>
-    <listViews>
-        <fullName>Search</fullName>
-        <columns>Related_To__c</columns>
-        <columns>NAME</columns>
-        <columns>MUSW__Amount__c</columns>
-        <columns>MUSW__Outstanding_Fee__c</columns>
-        <columns>MUSW__Fee_Paid_Date__c</columns>
-        <columns>AR_Date__c</columns>
-        <columns>BGBK__Cart__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Revenue_Code__c</columns>
-        <columns>MUSW__Amount_Paid__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>MUSW__Outstanding_Fee__c</field>
-            <operation>greaterThan</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>CREATEDBY_USER</field>
-            <operation>contains</operation>
-            <value>David</value>
-        </filters>
-        <filters>
-            <field>MUSW__Amount_Paid__c</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>Search</label>
     </listViews>
     <nameField>
         <displayFormat>{0000000}</displayFormat>
@@ -2033,17 +1932,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
             <values>
                 <fullName>PLANREV</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Adjustment_Reason__c</picklist>
-            <values>
-                <fullName>Reapplied Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Refund</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2122,10 +2010,6 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
             </values>
             <values>
                 <fullName>Non-Broker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reciprocity</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2592,7 +2476,7 @@ HYPERLINK( &quot;../&quot; &amp; Fine__c,Fine__r.Name,&quot;_parent&quot; ))</fo
         <errorConditionFormula>AND( MUSW__Fee_Paid__c = true,  ISCHANGED(MUSW__Amount__c ), PRIORVALUE(MUSW__Amount__c ) &gt; MUSW__Amount__c)</errorConditionFormula>
         <errorMessage>Cannot change the Amount below the Amount already paid on this Fee. Increase Amount or click Cancel</errorMessage>
     </validationRules>
-    <validationRules>
+     <validationRules>
         <fullName>License_Needed_on_Compliance_Fee</fullName>
         <active>true</active>
         <description>When the complaint or Inspection field is not blank the license needs to be populated.</description>

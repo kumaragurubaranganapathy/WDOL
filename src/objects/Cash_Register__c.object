@@ -246,6 +246,28 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Total_Check_Credit_Cards__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Check + Credit Cards</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Credit_Card_Receipts__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Credit Card Receipts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
     <fields>
         <fullName>ClosingCount50__c</fullName>
         <externalId>false</externalId>
@@ -965,6 +987,18 @@
     <label>Cash Register</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Cash_Register__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Cash_at_start_of_day_OP__c</columns>
+        <columns>Opening_cash_balance__c</columns>
+        <columns>Closing_cash_balance__c</columns>
+        <columns>Minus_startup_amount__c</columns>
+        <columns>Cash_at_End_of_Day__c</columns>
+        <columns>Total_Cash_in_Register_CC__c</columns>
+        <columns>Total_Receipts__c</columns>
+        <columns>CashierCC__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

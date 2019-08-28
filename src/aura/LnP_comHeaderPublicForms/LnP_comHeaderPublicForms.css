@@ -1,6 +1,7 @@
 .THIS.slds-global-header{
     height: auto;
     background: token(headerclr);
+    /*padding: 0 7.5rem;*/
     padding: 0 7.5rem;
 }
 .THIS li.links {
@@ -27,6 +28,7 @@
 .THIS .nav-grid, .THIS .nav-div, .THIS .menu-wrapper, .THIS .nav-links{
     height:100%;
 }
+
 .THIS .logo-wrapper{
     display:flex;
     align-items:center;
@@ -50,6 +52,10 @@
 .THIS .nav-links{
     display: flex;    
 }
+.THIS .guestlayout{
+    display:flex;
+    justify-content:center;
+}
 /*.THIS .nav-links li.active-link{
     border-bottom: solid 4px t(actionPanelBG);
     padding-bottom:1.25rem; 
@@ -69,7 +75,7 @@
     padding:1.5rem 0;
     display:flex;
     align-items:center;
-    margin-right: 2.77vW;
+    margin-right: 1.77vW;
     cursor:pointer;
 }
 .THIS .nav-links li a{
@@ -176,6 +182,7 @@
 .THIS .nav-links-wrapper{
     display:flex;
     align-items:center;
+    padding:0 2rem;
 }
 .THIS .menu-wrapper{
     width:100%;
@@ -187,6 +194,9 @@
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS.slds-global-header{
         height: 3.125rem;
+    }
+    .THIS .mob-logo-wrapper{
+        display:block !important;
     }
     .THIS .header-Image{
         display: none;
@@ -220,6 +230,30 @@
     .THIS li{
         margin: 14px 7px 0 14px; 
     } 
+    .THIS .nav-div{
+        width:100%;
+    }
+    .THIS .nav-div ul.nav-links li{
+        
+        padding:40px 20px 40px;
+        
+    }
+    .THIS .nav-grid{
+        height:0;
+    }
+    .THIS .login-wrapper{
+         padding-left: 33px;
+         padding-top: 19px;
+    }
+    .THIS .images-wrapper{
+        justify-content:center;
+    }
+    .THIS .logout-style{
+        margin-left:37%;
+    }
+    .THIS .link-style{
+        margin-right:7%;
+    }
 }
 /*only ipad pro*/
 @media only screen and (min-width: 1024px)and (max-width: 1024px){
@@ -350,7 +384,7 @@
 
     .THIS .nav-links a {
         color: #2b2826;
-        font-size: 13px;
+        font-size: 1rem;
     }
     .THIS .login-wrapper {
         /* padding: 1rem 0px 2rem 1rem;
@@ -425,17 +459,32 @@
         margin-right: 21px;
     }  
     .THIS .images-wrapper{
-        justify-content:space-around;
+        
+         padding:10px 35px 10px;
+    }
+    .THIS .nav-div ul.nav-links li{
+        
+        padding:27px 20px 27px;
+        
     }
     .THIS .user-wrapper{
         width:auto;
     }
     .THIS .nav-div{
         height:auto;
+        width:100%;
+    }
+    .THIS ul.nav-links li{
+        justify-content:left;
     }
     .THIS .nav-grid{
         align-items:flex-start;
         flex-direction:column;        
+    }
+	.THIS .login-div{
+       padding-left: 37px;
+       padding-top: 10px;
+       justify-content:left;
     }
 }
 /*.THIS .account-dropdown{

@@ -24,8 +24,7 @@ _______________________________________________________________
     <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
     <aura:attribute name="isOpenExam" type="boolean" default="false" description="Hide or Show popup boolean"/>
     <aura:attribute name="serverStatus" type="string" default=""/>
-    <aura:attribute name ="portalURL" type ="String" default = "{!$Label.c.Polaris_Portal_Home}"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name ="portalURL" type ="String" default = "{!$Label.c.Polaris_Portal_Home}"/>    
     <aura:attribute name ="hasSecurityCode" type = "Boolean" default = "false" ></aura:attribute>
     <aura:attribute name ="doesNotHaveSecurityCode" type = "Boolean" default = "false" ></aura:attribute>
     <aura:attribute name="licenseTypeList" type="List" description="Holds the lists of licenseType"/>
@@ -34,11 +33,15 @@ _______________________________________________________________
     <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
     <aura:attribute name="LicenseColumnListData" type="List" description="Holds the lists of accounts"/>
     <aura:attribute name="AddBusinessAccountsStatusAlert" type="Boolean" default="false"/>
+     <aura:attribute name="licenseList" type="Boolean" default="false"/>
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="isBusiness" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
-    
-    <div class="todo-wrapper">
-        
-        <!--<div class="intro-section">
+    <aura:if isTrue="{!v.isLoaded}">
+        <div class="todo-wrapper">
+            
+            <!--<div class="intro-section">
             
             <lightning:layout class="intro-wrapper slds-wrap">
                 <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper services">
@@ -55,324 +58,250 @@ _______________________________________________________________
                 </lightning:layoutItem>                
             </lightning:layout>
         </div>  -->
-        
-        <aura:if isTrue="{!not(empty(v.taskList))}">
-            <div class="intro-text">
-                {!v.taskList?'You have new tasks which need your attention':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'}
-            </div>
-            <aura:iteration items="{!v.taskList}" var="task">
-                <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
-                    <div class="task-wrapper">                    
-                        <h1 class="task-subject"><b>{!task.Subject}</b></h1>                        
-                        <lightning:layout class="slds-wrap task-body">
-                            <lightning:layoutItem size="12" mediumDeviceSize="9">
-                                <lightning:layout class="slds-wrap">
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                        <div class="label-style">Business Name: </div>
-                                        <div class="data-style">{!task.Business_Name__c}</div>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                        <div class="label-style">Designation: </div>
-                                        <div class="data-style">{!task.Designation__c}</div>
-                                    </lightning:layoutItem>
-                                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                        <div class="label-style">Type: </div>
-                                        <div class="data-style">{!task.Type}</div>
-                                    </lightning:layoutItem>                                    
-                                </lightning:layout>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
-                                <lightning:button class="{!or(task.Type == 'Renewal Reminder',task.Type == 'Payment Reminder')?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
-                                <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
-                                    <lightning:button variant="brand" type="submit" name="{!task.Id}" label="Accept" />
-                                </div>
-                                <lightning:button class="{!or(task.Type == 'License Verification',task.Type == 'Experience Verification')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Confirm" onclick="{!c.confirmRequest}"/>
-                                <lightning:button class="{!(task.Type == 'Renewal Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Renew" onclick="{!c.renewRequest}"/>
-                                <lightning:button class="{!(task.Type == 'Payment Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Pay Now" onclick="{!c.payFees}"/>
-                                
-                                
-                            </lightning:layoutItem>
-                        </lightning:layout>              	
-                        
-                        
-                    </div>
-                </aura:if>
-                
-                <!-- <aura:if isTrue="{!task.type == 'Validate Trainee Experience'}">
-      <div class="slds-box">
-             <div class="task-header">{!task.type}</div>
-                <hr></hr>
-                <div class="task-body">
-                  <div class="slds-grid slds-p-around_small slds-wrap">
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Trainee Name</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Name}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Profession</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             
-                         </div>
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">License Type</div>
-                             <div class="slds-form-element__control">:{!item.Sub_Status__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Branch</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Birth_City__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             
-                         </div>
-                         <div class="slds-col slds-size_1-of-3 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Branch</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Birth_City__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Address</div>
-                             <div class="slds-form-element__control"></div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <lightning:button class="color-black" variant="neutral" type="submit" name="decline" label="Decline" onclick="{!c.declineRequest}"/>
-                             <lightning:button class="color-black" variant="brand" type="submit" name="accept" label="Accept" onclick="{!c.acceptRequest}"/>
-                         </div>
-                    </div>                	
-                </div>
-            </div>
-     </aura:if>
-        <aura:if isTrue="{!task.type == 'Renew a Professional License'}">
-      <div class="slds-box">
-             <div class="task-header">{!task.type}</div>
-                <hr></hr>
-                <div class="task-body">
-                  <div class="slds-grid slds-p-around_small slds-wrap">
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Profession</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Name}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">License Type</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             
-                         </div>                         
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <lightning:button class="color-black" variant="brand" type="submit" name="proceed" label="Renew" onclick="{!c.renewRequest}"/>
-                         </div>
-                    </div>                	
-                </div>
-            </div>
-     </aura:if>      
-        <aura:if isTrue="{!task.type == 'Pay Fees for Business License Application'}">
-      <div class="slds-box">
-             <div class="task-header">{!task.type}</div>
-                <hr></hr>
-                <div class="task-body">
-                  <div class="slds-grid slds-p-around_small slds-wrap">
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Application Number</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Name}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Profession</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">License Type</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>                         
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <lightning:button class="color-black" variant="brand" type="submit" name="pay fees" label="pay fees" onclick="{!c.payFees}"/>
-                         </div>
-                    </div>                	
-                </div>
-            </div>
-     </aura:if>
-        <aura:if isTrue="{!task.type == 'Provide Additional Information for License Application'}">
-      <div class="slds-box">
-             <div class="task-header">{!task.type}</div>
-                <hr></hr>
-                <div class="task-body">
-                  <div class="slds-grid slds-p-around_small slds-wrap">
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Application Number</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Name}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Profession</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">License Type</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>                         
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <lightning:button class="color-black" variant="brand" type="submit" name="update" label="Update" onclick="{!c.updateRequest}"/>
-                         </div>
-                    </div>                	
-                </div>
-            </div>
-     </aura:if>  
-        <aura:if isTrue="{!task.type == 'Replace a Designated Person'}">
-      <div class="slds-box">
-             <div class="task-header">{!task.type}</div>
-                <hr></hr>
-                <div class="task-body">
-                  <div class="slds-grid slds-p-around_small slds-wrap">
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Business Name</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Name}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Profession</div>
-                             <div class="slds-form-element__control">:{!item.Original_Issue_Date__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">License Type</div>
-                             <div class="slds-form-element__control">:{!item.Sub_Status__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Branch</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Applicant__r.Birth_City__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Phone</div>
-                             <div class="slds-form-element__control">:{!item.MUSW__Issue_Date__c}</div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <div class="slds-form-element__label text-style">Address</div>
-                             <div class="slds-form-element__control"></div>
-                         </div>
-                         <div class="slds-col slds-size_1-of-4 slds-form-element_horizontal slds-form-element">
-                             <lightning:button class="color-black" variant="brand" type="submit" name="proceed" label="Proceed" onclick="{!c.proceedRequest}"/>
-                         </div>
-                    </div>                	
-                </div>
-            </div>
-     </aura:if>-->
-                <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
-                    <div class="task-wrapper">
-                        <div class="task-subject">
-                            Invitation to get asociated to a Business License
+            
+            <aura:if isTrue="{!not(empty(v.taskList))}">
+                <h2 class="intro-text">
+                    <!--{!v.taskList?'You have new tasks which need your attention':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'}-->
+                    Your To-Do's
+                </h2>
+                <aura:iteration items="{!v.taskList}" var="task">
+                    <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
+                        <div class="task-wrapper">                    
+                            <h1 class="task-subject"><b>{!task.Subject}</b></h1>                        
+                            <lightning:layout class="slds-wrap task-body">
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
+                                            <div class="label-style">Business Name: </div>
+                                            <div class="data-style">{!task.Business_Name__c}</div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
+                                            <div class="label-style">Designation: </div>
+                                            <div class="data-style">{!task.Designation__c}</div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
+                                            <div class="label-style">Type: </div>
+                                            <div class="data-style">{!task.Type}</div>
+                                        </lightning:layoutItem>                                    
+                                    </lightning:layout>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
+                                    <lightning:button class="{!or(task.Type == 'Renewal Reminder',task.Type == 'Payment Reminder')?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                    <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
+                                        <lightning:button variant="brand" type="submit" name="{!task.Id}" label="Accept" />
+                                    </div>
+                                    <lightning:button class="{!or(task.Type == 'License Verification',task.Type == 'Experience Verification')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Confirm" onclick="{!c.confirmRequest}"/>
+                                    <lightning:button class="{!(task.Type == 'Renewal Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Renew" onclick="{!c.renewRequest}"/>
+                                    <lightning:button class="{!(task.Type == 'Payment Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Pay Now" onclick="{!c.payFees}"/>
+                                    
+                                    
+                                </lightning:layoutItem>
+                            </lightning:layout>              	
+                            
+                            
                         </div>
-                        <lightning:layout class="license-outer-wrapper slds-wrap">
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title other-lic">
-                                    Your License
-                                </div> 
-                                <div class="field-style">
-                                    <span class="label-style">Name: </span>
-                                    <span class="data-style">{!task.Child_Licensee_Name__c}</span>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
+                        <div class="task-wrapper">
+                            <div class="task-subject">
+                                You have been invited to join a business
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <!--<lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                    <div class="license-title other-lic">
+                                        Your License
+                                    </div> 
+                                    <div class="field-style">
+                                        <span class="label-style">Name: </span>
+                                        <span class="data-style">{!task.Child_Licensee_Name__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Profession: </span>
+                                        <span class="data-style">{!task.Child_Profession__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Type: </span>
+                                        <span class="data-style">{!task.Child_License_Type__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Number: </span>
+                                        <span class="data-style">{!task.Child_License_Name__c}</span>
+                                    </div>
+                                    
+                                </lightning:layoutItem> -->
+                                <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
+                                    <!--<div class="license-title other-lic">
+                                        Invited By
+                                    </div>  -->
+                                    <div class="field-style">
+                                        <span class="label-style">Name: </span>
+                                        <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
+                                    </div>
+                                    <!--<div class="field-style">
+                                        <span class="label-style">Profession: </span>
+                                        <span class="data-style">{!task.Parent_Profession__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Type: </span>
+                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                    </div> -->
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
+                                    <div class="field-style">
+                                        <span class="label-style">License Number: </span>
+                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                    </div>
+                                </lightning:layoutItem>                        
+                                
+                               <!-- <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
+                                    <div class="license-title designation">
+                                        Designation
+                                    </div>
+                                    <div class="data-style">
+                                        {!task.Designation__c}
+                                    </div>
+                                </lightning:layoutItem> -->
+                            </lightning:layout>
+                            <div class="button-wrapper license-btn">                                    
+                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
+                                    <lightning:button class="accept-btn"  variant="brand"   label="Accept"/>
                                 </div>
-                                <div class="field-style">
-                                    <span class="label-style">Profession: </span>
-                                    <span class="data-style">{!task.Child_Profession__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Type: </span>
-                                    <span class="data-style">{!task.Child_License_Type__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Number: </span>
-                                    <span class="data-style">{!task.Child_License_Name__c}</span>
-                                </div>
-                            </lightning:layoutItem>                        
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title other-lic">
-                                    Invited By
-                                </div> 
-                                <div class="field-style">
-                                    <span class="label-style">Name: </span>
-                                    <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">Profession: </span>
-                                    <span class="data-style">{!task.Parent_Profession__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Type: </span>
-                                    <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                </div>
-                                <div class="field-style">
-                                    <span class="label-style">License Number: </span>
-                                    <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                </div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="license-title designation">
-                                    Designation
-                                </div>
-                                <div class="data-style">
-                                    {!task.Designation__c}
-                                </div>
-                            </lightning:layoutItem>
-                        </lightning:layout>
-                        <div class="button-wrapper license-btn">                                    
-                            <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
-                            <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
-                                <lightning:button class="accept-btn"  variant="brand"   label="Accept"/>
                             </div>
                         </div>
-                    </div>
-                </aura:if>
-                <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
-                    <div class="task-wrapper">
-                        <div class="task-subject">
-                            Exam Expired: {!task.Subject}
+                    </aura:if>
+                    <aura:if isTrue="{!task.Type == 'Request for Information' }"> <!-- Request for Information Task-->
+                        <div class="task-wrapper">
+                            <div class="task-subject">
+                                Provide Additional Information for License Application
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Application Number: </span>
+                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Type: </span>
+                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                    </div>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Information Required: </span>
+                                        <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+                                    </div>                                    
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <div class="button-wrapper license-btn">
+                                 <div class="slds-truncate" onclick="{!c.StartRequestInformation}" data-license="{!task.WhatId}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Request for Information"
+                                      data-description="{!task.Description}">
+                                            <lightning:button variant="brand" label="Update Information" title="Update Information"/>
+                                        </div>
+                                
+                            </div>
                         </div>
-                        <lightning:layout class="license-outer-wrapper slds-wrap">
-                            <lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
-                                <div class="field-style">
-                                    <span class="label-style">Email: </span>
-                                    <span class="data-style">{!task.Email__c}</span>
-                                </div>
-                            </lightning:layoutItem>
-                        </lightning:layout>
-                        <div class="button-wrapper license-btn">                                    
+                    </aura:if>
+                    <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
+                        <div class="task-wrapper">
+                            <div class="task-subject">
+                                Reschedule Exam : {!task.Subject}
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Email: </span>
+                                        <span class="data-style">{!task.Email__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Exam Name: </span>
+                                        <span class="data-style">{!task.Subject}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Exam Status: </span>
+                                        <span class="data-style">{!task.Description}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Number: </span>
+                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Due Date: </span>
+                                        <span class="data-style">{!task.ActivityDate}</span>
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <div class="button-wrapper license-btn">                                    
+                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
+                                <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Reschedule Exam"
+                                     data-edurecord="{!task.WhatId}"
+                                      data-description="{!task.Description}">
+                                            <lightning:button class="accept-btn"  variant="brand"   label="Reschedule Exam" />
+                                        </div>                               
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!task.Type == 'DHP' }"> <!-- DHP Task-->
+                        <div class="task-wrapper">
+                            <div class="task-subject">
+                                Bad Payment: {!task.Subject}
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item bad-payment">
+                                    <div class="field-style">
+                                        <span class="label-style">Comments: </span>
+                                        <span class="data-style">{!task.Subject}</span>
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <!--<div class="button-wrapper license-btn">                                    
                             <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
-                            <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
+                            <div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
                             <lightning:button class="accept-btn"  variant="brand"   label="Reschedule Exam" value="{!task}" onclick="{!c.openModelReschedule}"/>
-                            <!--</div>-->
+                            </div>
+                        </div>-->
+                        </div>
+                    </aura:if>
+                </aura:iteration>
+            </aura:if>
+            <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
+                <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
+            </aura:if>
+            <lightning:layout class="additional-services slds-wrap">
+                <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
+                    <div class="ind-account-wrapper">
+                        <h2 class="ser-title">
+                            Professional Licenses
+                        </h2>
+                        <div class="ser-btn-wrapper">
+                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply for a professional license" /> 
                         </div>
                     </div>
-                </aura:if>
-            </aura:iteration>
-        </aura:if>
-        <aura:if isTrue="{!v.AddBusinessAccountsStatusAlert}">
-            <c:StatusAlertForAddingBusinessComponent/>
-        </aura:if>
-        <lightning:layout class="additional-services slds-wrap">
-            <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
-                <div class="ind-account-wrapper">
-                    <div class="ser-title">
-                        Individual Account
-                    </div>
-                    <div class="ser-btn-wrapper">
-                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Create an Individual Account" /> 
-                    </div>
-                </div>
-                <div class="intro-section">                    
-                    <lightning:layout class="intro-wrapper slds-wrap">
-                        <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper">
-                            <div class="ser-title">
-                                Have an existing License?
-                            </div>                           
-                            <div class="ser-btn-wrapper slds-m-bottom_large">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkProfLic}" label="Link a Professional license to your account" /> 
-                            </div>
-                            <div class="ser-btn-wrapper">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
-                            </div>
-                        </lightning:layoutItem>                
-                    </lightning:layout>
-                </div> 
-                <!--<div class="ser-desc">
+                    <div class="intro-section">                    
+                        <lightning:layout class="intro-wrapper slds-wrap">
+                            <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper">
+                                <h1 class="ser-title">
+                                    Have an existing professional license?
+                                </h1>                           
+                                <div class="ser-btn-wrapper">
+                                    <lightning:button class="{!v.licenseList?'ser-btn pro-license':'slds-hide'}" variant="brand" onclick="{!c.linkProfLic}" label="Link an existing professional license" /> 
+                                    <lightning:button class="{!v.licenseList?'slds-hide':'ser-btn pro-license'}" variant="brand" onclick="{!c.goToProfDashboard}" label="Manage an existing professional license" /> 
+                                </div>                            
+                            </lightning:layoutItem>                
+                        </lightning:layout>
+                    </div> 
+                    <!--<div class="ser-desc">
                     Washington Department of Licensing helps you obtain professional licenses
                 </div>
                 <div class="ser-links">
@@ -382,14 +311,24 @@ _______________________________________________________________
                         <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Relationships</a></li>                        
                     </ul>
                 </div> -->                
-            </lightning:layoutItem>
-            <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
-                <div class="ind-account-wrapper">
-                    <div class="ser-title">
-                        Business licenses
-                     </div>
-                   
-                <!--<div class="ser-desc">
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
+                    <div class="ind-account-wrapper">
+                        <h2 class="ser-title">
+                            Business Licenses
+                        </h2>
+                        
+                        <div class="bizlayout">
+                            <p class="list-desc">You must have a business profile before you can:</p>
+                            <ul class="biz">
+                                <li>Apply for or renew a business license</li>
+                                <li>Update business license information</li>
+                                <li>Pay license fees for others</li>
+                                <li>Add a training course</li>                            
+                            </ul>
+                        </div>
+                        
+                        <!--<div class="ser-desc">
                     Washington Department of Licensing helps you obtain business licenses.
                 </div>
                 <div class="ser-links">
@@ -400,13 +339,38 @@ _______________________________________________________________
                         <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Understand how to manage Businesses</a></li>    
                     </ul>
                 </div> -->
-                    <div class="ser-btn-wrapper">
-                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Add a business" /> 
+                        <div class="ser-btn-wrapper create-biz">
+                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create a business profile " /> 
+                        </div>
                     </div>
-                </div>
-                  <div class="ser-btn-wrapper">
+                    
                     <div class="businessStatus">
-                        <div class="ser-title newbiz-wrapper">Once you add a business,you’ll be able to:</div>
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
+                        <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
+                        
+                        
+                        <aura:if isTrue="{!v.isBusiness}">
+                            <div class="ser-btn-wrapper">
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.bizLicApp}" label="Apply for a business license" />  
+                            </div>
+                            <div class="ser-btn-wrapper">
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.goToBizDashboard}" label="Manage a business profile or license" />  
+                            </div>
+                            <div class="ser-btn-wrapper">
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add a training course" />  
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="ser-btn-wrapper">
+                                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    
+                    <!-- <div class="ser-btn-wrapper">
+                    <div class="businessStatus">
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
+                        <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
                         <div class="bizlayout">
                             <ul class="biz">
                                 <li>Apply for a business license</li>
@@ -417,78 +381,82 @@ _______________________________________________________________
                             </ul>
                         </div>
                     </div>
+                    <div class="ser-btn-wrapper">
+                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
+                    </div>
+                </div> -->
+                    
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+        <!-- Pop up start -->
+        <aura:if isTrue="{!v.isOpen}">             
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- pop up header-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2>{!v.popupHeader}</h2>
+                    </header>
+                    <!-- pop up body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>{!v.popupBody}</p>
+                    </div>
+                    <!-- pop up footer -->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" 
+                                          label="OK"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                    </footer>
                 </div>
-              
-            </lightning:layoutItem>
-        </lightning:layout>
-    </div>
-    <!-- Pop up start -->
-    <aura:if isTrue="{!v.isOpen}">             
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container">
-                <!-- pop up header-->
-                <header class="slds-modal__header">
-                    <lightning:buttonIcon iconName="utility:close"
-                                          onclick="{! c.closeModel }"
-                                          alternativeText="close"
-                                          variant="bare-inverse"
-                                          class="slds-modal__close"/>
-                    <h2>{!v.popupHeader}</h2>
-                </header>
-                <!-- pop up body -->
-                <div class="slds-modal__content slds-p-around_medium">
-                    <p>{!v.popupBody}</p>
-                </div>
-                <!-- pop up footer -->
-                <footer class="slds-modal__footer">
-                    <lightning:button variant="neutral" 
-                                      label="OK"
-                                      title="Cancel"
-                                      onclick="{! c.closeModel }"/>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </aura:if>
-    <!-- pop up end -->
-    
-    <aura:if isTrue="{!v.isOpenExam}">
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <!-- pop up end -->
         
-        <!--###### MODAL BOX Start######--> 
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container">
-                <!-- ###### MODAL BOX HEADER Start ######-->
-                <header class="slds-modal__header">
-                    <lightning:buttonIcon iconName="utility:close"
-                                          onclick="{! c.closeModelExamReschedule }"
-                                          alternativeText="close"
-                                          variant="bare-inverse"
-                                          class="slds-modal__close"/>
-                </header>
-                <!--###### MODAL BOX BODY Part Start######-->
-                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <lightning:recordEditForm aura:id ="recordEditForm" 
-                                              onsubmit="{!c.handleSubmitExamReschedule}"
-                                              onsuccess="{!c.handleSuccessExamReschedule}"
-                                              objectApiName="Request__c"
-                                              >
-                        <lightning:messages />
-                        <lightning:inputField fieldName="License__c" value= "{!v.taskRecordForModel.Child_License_Id__c}" disabled = "true"/>
-                        <lightning:inputField fieldName="Profession__c" value ="{!v.taskRecordForModel.Child_Profession__c}" disabled = "true"/>
-                        <lightning:inputField fieldName="License_Type__c" value = "{!v.taskRecordForModel.Child_License_Type__c}" disabled = "true"/>
-                        <lightning:inputField fieldName="Service_Request_Type__c" value = "Reschedule Exam" disabled ="true"/>
-                        <lightning:inputField fieldName="Description__c" />
-                        <lightning:inputField fieldName="Status__c" value ="Under Review" class="slds-hide"/>
-                        <div class="slds-m-top_medium">
-                            <lightning:button variant="brand" type="submit" name="save" label="Save" />
-                        </div>
-                    </lightning:recordEditForm>
+        <aura:if isTrue="{!v.isOpenExam}">
+            
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModelExamReschedule }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:recordEditForm aura:id ="recordEditForm" 
+                                                  onsubmit="{!c.handleSubmitExamReschedule}"
+                                                  onsuccess="{!c.handleSuccessExamReschedule}"
+                                                  objectApiName="Request__c"
+                                                  >
+                            <lightning:messages />
+                            <lightning:inputField fieldName="License__c" value= "{!v.taskRecordForModel.Child_License_Id__c}" disabled = "true"/>
+                            <lightning:inputField fieldName="Profession__c" value ="{!v.taskRecordForModel.Child_Profession__c}" disabled = "true"/>
+                            <lightning:inputField fieldName="License_Type__c" value = "{!v.taskRecordForModel.Child_License_Type__c}" disabled = "true"/>
+                            <lightning:inputField fieldName="Service_Request_Type__c" value = "Reschedule Exam" disabled ="true"/>
+                            <lightning:inputField fieldName="Description__c" />
+                            <lightning:inputField fieldName="Status__c" value ="Under Review" class="slds-hide"/>
+                            <div class="slds-m-top_medium">
+                                <lightning:button variant="brand" type="submit" name="save" label="Save" />
+                            </div>
+                        </lightning:recordEditForm>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-        <!--###### MODAL BOX Part END Here ######-->
-        
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--###### MODAL BOX Part END Here ######-->
+            
+        </aura:if>
     </aura:if>
     
 </aura:component>

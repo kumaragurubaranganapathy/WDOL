@@ -66,17 +66,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-         <fullName>License_Status__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(License__r.MUSW__Status__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>License Status</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>License__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -87,17 +76,6 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Licensee_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>License__r.MUSW__Primary_Licensee__r.First_Name_Primary_Contact__c + &quot; &quot; + License__r.MUSW__Primary_Licensee__r.Last_Name_Primary_Contact__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Licensee Name</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <label>Associated Licensee</label>
     <nameField>

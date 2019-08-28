@@ -1,7 +1,9 @@
 .THIS .ul-listbox {
     width: 100%;
 }
-
+.THIS .slds-listbox:focus{
+    outline:0;
+}
 .THIS .slds-listbox__option .slds-icon-utility-check {
     opacity: 0;
 }
@@ -14,6 +16,12 @@
 .THIS .slds-size_small{
     width:19rem;
 }
+.THIS .slds-dropdown-trigger .slds-dropdown{
+    width:100%; 
+    overflow: auto;
+	position:relative;
+	z-index:2;    
+} 
 .THIS .placeholTxt{
     padding-left:10px;
 }
@@ -155,4 +163,13 @@
     color: #1b1c1a;
     font-weight: 800;
     -webkit-text-fill-color:#1b1c1a;
+}
+.THIS .slds-media__figure {
+    padding: 0px;
+    display: none;
+}
+.THIS .slds-media__body{
+    font-size:17px;
+    font-weight:200;
+    color: t(LnGFormTitleColor);
 }

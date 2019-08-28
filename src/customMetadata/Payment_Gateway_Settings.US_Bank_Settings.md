@@ -4,11 +4,11 @@
     <protected>false</protected>
     <values>
         <field>Biller_Group_ID__c</field>
-        <value xsi:type="xsd:string">XWI</value>
+        <value xsi:type="xsd:string">WA3</value>
     </values>
     <values>
         <field>Biller_ID__c</field>
-        <value xsi:type="xsd:string">X17</value>
+        <value xsi:type="xsd:string">DOL</value>
     </values>
     <values>
         <field>Endpoint__c</field>
@@ -16,6 +16,6 @@
     </values>
     <values>
         <field>Product_Code__c</field>
-        <value xsi:type="xsd:string">DeptComShopCart</value>
+        <value xsi:type="xsd:string">Licensing</value>
     </values>
 </CustomMetadata>

@@ -135,6 +135,10 @@
 .THIS .slds-input, .THIS .slds-select, .THIS .slds-text-area{
     border-radius : 0;
 }
+.THIS :focus{
+	box-shadow:none;
+	outline:none;
+}
 @media t(mqSmall){
     .THIS .slds-table tbody td{
         padding:0.75rem;

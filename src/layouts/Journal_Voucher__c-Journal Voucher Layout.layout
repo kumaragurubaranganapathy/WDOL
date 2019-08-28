@@ -34,10 +34,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Refund__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Refund1__c</field>
             </layoutItems>
         </layoutColumns>
@@ -49,10 +45,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IAP_Receipt__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Number__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -162,6 +154,14 @@
                 <behavior>Edit</behavior>
                 <field>TMS_Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_Interface_Total_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_PDF_Total_Amount__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -209,16 +209,19 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Target_Accounting_System__c</fields>
+        <fields>AFRS_Transaction_Code__c</fields>
+        <fields>TMS_Transaction_Code__c</fields>
+        <fields>General_Ledger_Account__c</fields>
         <fields>Amount__c</fields>
-        <fields>Fund__c</fields>
-        <fields>Transaction_Code__c</fields>
         <fields>Debit_Credit__c</fields>
+        <fields>Fund__c</fields>
+        <fields>Major_Group__c</fields>
+        <fields>Major_Source__c</fields>
+        <fields>Sub_Source__c</fields>
         <relatedList>Journal_Voucher_Detail__c.JournalVoucher__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>BGBK__Item__c.Journal_Voucher__c</relatedList>
+        <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>
@@ -228,13 +231,16 @@
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hr0000002QdOL</masterLabel>
+        <masterLabel>00hr0000002R0ii</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

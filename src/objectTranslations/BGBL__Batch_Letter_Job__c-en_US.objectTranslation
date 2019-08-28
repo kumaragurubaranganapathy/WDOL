@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Batch Duplex Printing --></label>
+        <name>BGBL__Batch_Duplex_Printing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch File Chunk Size --></label>
+        <name>BGBL__Batch_File_Chunk_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Name Prefix --></label>
+        <name>BGBL__Batch_Letter_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch Letter --></label>
+        <name>BGBL__Batch_Letter__c</name>
+        <relationshipLabel><!-- Letter Jobs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Record id&apos;s to filter children record results further --></help>
+        <label><!-- Child Iterate Ids --></label>
+        <name>BGBL__Child_Iterate_Ids__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed Time --></label>
+        <name>BGBL__End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- HasChildIds --></label>
+        <name>BGBL__HasChildIds__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Completed Jobs --></label>
+        <name>BGBL__Number_of_Completed_Jobs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Jobs --></label>
+        <name>BGBL__Number_of_Jobs__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used only in reporting which source org requested the letter. --></help>
+        <label><!-- Org Name --></label>
+        <name>BGBL__Org_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Output Type --></label>
+        <name>BGBL__Output_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override Parameters --></label>
+        <name>BGBL__Override_Parameters__c</name>
+    </fields>
+    <fields>
+        <help><!-- the original job in which this sub job spun from. --></help>
+        <label><!-- Parent Letter Job --></label>
+        <name>BGBL__Parent_Letter_Job__c</name>
+        <relationshipLabel><!-- Letter Jobs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Limit data scope of letter requests by including comma-delimited, single-quoted parent record id&apos;s to determine which parent records to work within the first/parent applied letter query. --></help>
+        <label><!-- Parent Query Ids --></label>
+        <name>BGBL__Parent_Query_Ids__c</name>
+    </fields>
+    <fields>
+        <label><!-- Print File Location --></label>
+        <name>BGBL__Print_File_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Print File Name --></label>
+        <name>BGBL__Print_File_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Print File --></label>
+        <name>BGBL__Print_File__c</name>
+    </fields>
+    <fields>
+        <help><!-- comma delimited list of contact ids up to a max of 2000 to have letter copies. Minimum 1 contact id. --></help>
+        <label><!-- Recipients --></label>
+        <name>BGBL__Recipients__c</name>
+    </fields>
+    <fields>
+        <label><!-- Save Batch File --></label>
+        <name>BGBL__Save_Batch_Letter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Save Generated Document as File --></label>
+        <name>BGBL__Save_Generated_Document_as_File__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only one letter in this job --></help>
+        <label><!-- Single --></label>
+        <name>BGBL__Single_Letter_Job__c</name>
+    </fields>
+    <fields>
+        <label><!-- Started Time --></label>
+        <name>BGBL__Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>BGBL__Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Queue (verifying...)</masterLabel>
+            <translation><!-- In Queue (verifying...) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processing</masterLabel>
+            <translation><!-- Processing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If still in &apos;In Queue&apos;, date and time in which job gets submitted. Sent immediately if this is blank. --></help>
+        <label><!-- Submit Time --></label>
+        <name>BGBL__Submit_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- TemplateId --></label>
+        <name>BGBL__TemplateId__c</name>
+    </fields>
+    <fields>
+        <label><!-- System Messages --></label>
+        <name>BGBL__debug__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Clone_x5 --></label>
+        <name>BGBL__Clone_x5</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Refresh_Status --></label>
+        <name>BGBL__Refresh_Status</name>
+    </webLinks>
+</CustomObjectTranslation>

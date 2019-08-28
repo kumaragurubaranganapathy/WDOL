@@ -7,8 +7,7 @@ public class Polaris_ServiceRequestController {
      public static List<User> lstUserInfoData {get;set;}
     
     @AuraEnabled(cacheable = true)
-    public static String fetchData(String board,String licenseType,String requestType, String requestId, String flowType)
-    {
+    public static String fetchData(String board,String licenseType,String requestType, String requestId, String flowType, String licID) {
         system.debug('board : '+board+'  licenseType : '+licenseType+' requestType : '+requestType+' requestId: '+requestId+' flowType:'+flowType);
         //Creating the conditions for fetching the data       
         Integer tabIndex = 1;
@@ -20,16 +19,14 @@ public class Polaris_ServiceRequestController {
       //  Map<String,String> mapTempSubsectionIcon = Polaris_ServiceRequestService.fetchSubsectionIcons(System.Label.Application_Management_Request);
         Map<String,String> mapTempSubsectionIcon = Polaris_ServiceRequestService.fetchSubsectionIcons(System.Label.Page_Name_For_License);
         mapSubsectionIcon = new Map<String,String>();
-        if(mapSubsectionIcon.isEmpty() && !mapTempSubsectionIcon.isEmpty())
-        {
+        if(mapSubsectionIcon.isEmpty() && !mapTempSubsectionIcon.isEmpty()){
             mapSubsectionIcon = mapTempSubsectionIcon;
         }
         //Fetching Section
         List<AMR_Link__mdt> lstSections = new List<AMR_Link__mdt>();
-       // List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();
+        //List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();
         lstSections = Polaris_ServiceRequestService.fetchSection(board,licenseType,requestType,flowType);
-        if(!lstSections.isEmpty())
-        {
+        if(!lstSections.isEmpty()){
             sections = lstSections[0].Sections__c;
         }
         system.debug('sections'+sections);
@@ -37,35 +34,32 @@ public class Polaris_ServiceRequestController {
         //Fetching the questions in the system per licenseType and applicationType for general application and comity
         lstQuestions = new List<Question__c>();
         List<Question__c> lstTempQuestions = Polaris_ServiceRequestService.fetchQuestionsDetails(board,licenseType,requestType,flowType);
-        if(!lstTempQuestions.isEmpty())
-        {
+        if(!lstTempQuestions.isEmpty()){
             lstQuestions = lstTempQuestions;
         }
+        List <Endorsement__c> lstendo = Polaris_ServiceRequestService.fetchEndorsements(licID);
+        system.debug('lstendo--'+lstendo);
         //Fetching the Master submission list in the system per licenseType and applicationType for general application and comity
         lstMasterSubmission = new List<MUSW__Master_Submission_List__c>();
         List<MUSW__Master_Submission_List__c> lstTempMasterSubmission = Polaris_ServiceRequestService.fetchMasterSubmissionDetails(board,licenseType,requestType,flowType);
-        if(!lstTempMasterSubmission.isEmpty())
-        {
+        if(!lstTempMasterSubmission.isEmpty()){
             lstMasterSubmission = lstTempMasterSubmission;
         }    
         
         lstApps = new List<Request__c>();
         List<Request__c> lstTempApplication =new List<Request__c>();
         lstTempApplication = Polaris_ServiceRequestService.fetchApplications(requestId);
-        if(!lstTempApplication.isEmpty())
-        { 
+        if(!lstTempApplication.isEmpty()){ 
             lstApps = lstTempApplication;
         }
-         if(lstApps.size() >0 && lstApps[0].Stage__c != null && lstApps[0].Form_JSON__c != '' )
-        {
+        if(lstApps.size() >0 && lstApps[0].Stage__c != null && lstApps[0].Form_JSON__c != '' ) {
             currentTab = Integer.valueOf(lstApps[0].Stage__c); 
             ansWrapper = getJSONWrapper(lstApps[0].Form_JSON__c);
         }
         
-                //List for Attachment section section
+        //List for Attachment section section
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> lstMapLabelFieldsForSubmission = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();   
-        for(MUSW__Master_Submission_List__c masterSubmissionRecord : lstMasterSubmission)
-        {
+        for(MUSW__Master_Submission_List__c masterSubmissionRecord : lstMasterSubmission){
             LnP_ApplyForLicenseWrapper.MapLabelToFields mapLabel = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
             mapLabel.label = masterSubmissionRecord.Name;
             mapLabel.conditionalAnswer = masterSubmissionRecord.Title__c;
@@ -95,7 +89,6 @@ public class Polaris_ServiceRequestController {
                 }
                 
             }
-            
             lstMapLabelFieldsForSubmission.add(mapLabel);
         }
         //Map for Question Section
@@ -103,8 +96,7 @@ public class Polaris_ServiceRequestController {
         
         String questionSection = '';
         system.debug('lstQuestions :'+lstQuestions);
-        for(Question__c Ques : lstQuestions )
-        {
+        for(Question__c Ques : lstQuestions ){
             LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
             labelToFields.label = Ques.Question_Body__c;
             labelToFields.labelId = Ques.Id;
@@ -114,36 +106,42 @@ public class Polaris_ServiceRequestController {
             labelToFields.submissionDetails = Ques.Submission_Title__c;
             labelToFields.questionSectionClass = Ques.Section__c;
             labelToFields.message = Ques.Message__c;
+            labelToFields.endorsementType=Ques.Endorsement_Type__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
-            if(questionSection == Ques.Section__c || Ques.Section__c==null)
-            {
+            if(questionSection == Ques.Section__c || Ques.Section__c==null){
                 labelToFields.questionSection ='null';
             }
-            else
-            {
+            else{
                 labelToFields.questionSection = Ques.Section__c;
                 questionSection = Ques.Section__c;
                 labelToFields.questionSectionDetail = Ques.Sub_Header__c;
             }
-            if(Ques.Parent_Question__c != null)
-            {
+            if(Ques.Parent_Question__c != null){
                 labelToFields.isChild = true;
                 labelToFields.renderedOnUi = false;
             }
-            else
-            {
+            else{
                 labelToFields.isChild = false;
                 labelToFields.renderedOnUi = true;
+            }
+            //added code to remove endorsement questions
+            Integer countEndoQuesVisible = 0;
+            for(Endorsement__c endo : lstendo){
+                system.debug('endo.Endorsement_Type__c'+endo.Endorsement_Type__c);
+                if(endo.Endorsement_Type__c == Ques.Endorsement_Type__c ){
+                    countEndoQuesVisible++;   
+                }
+            }
+            if(countEndoQuesVisible!=0){
+                labelToFields.renderedOnUi = false;
             }
             labelToFields.fieldAPIName = Ques.QuestionFieldAPI__c;
             labelToFields.fieldObjName = Ques.QuestionObjectName__c;
             labelToFields.conditionalAnswer = Ques.Triggering_Parent_Answer__c;
-            if(Ques.Possible_Responses__c != null && Ques.Data_Type__c == 'Picklist')
-            {
+            if(Ques.Possible_Responses__c != null && Ques.Data_Type__c == 'Picklist'){
                 labelToFields.fieldValueOptions = Ques.Possible_Responses__c.split(';');
             }
-            else if(Ques.Possible_Responses__c != null && (Ques.Data_Type__c == 'Radio'||Ques.Data_Type__c == 'Checkbox'||Ques.Data_Type__c == 'Yes_No'))
-            { 
+            else if(Ques.Possible_Responses__c != null && (Ques.Data_Type__c == 'Radio'||Ques.Data_Type__c == 'Checkbox'||Ques.Data_Type__c == 'Yes_No')){ 
                 for(String radio : Ques.Possible_Responses__c.split(';')){
                     LnP_ApplyForLicenseWrapper.MapRadioButtons radioMap = new LnP_ApplyForLicenseWrapper.MapRadioButtons();
                     radioMap.label = radio;
@@ -151,61 +149,46 @@ public class Polaris_ServiceRequestController {
                     labelToFields.radioValueOptions.add(radioMap);
                 }
             }
-            if(ansWrapper != null && ansWrapper.compositeRequest != null)
-            {
-                for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest)
-                {
-                    if(req.body!=null && req.body.Question == Ques.Id)
-                    {
-                        if(req.body.Answer.contains(';'))
-                        {
+            if(ansWrapper != null && ansWrapper.compositeRequest != null){
+                for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
+                    if(req.body!=null && req.body.Question == Ques.Id){
+                        if(req.body.Answer.contains(';')){
                             labelToFields.multiValues = req.body.Answer.split(';');
                             labelToFields.acknowledgeResponse = req.body.Hardcopy;
                         }
-                        else
-                        {
+                        else{
                             labelToFields.value = req.body.Answer;                            
                         }
                     }
-                    
                 }
             }
-            
-            if(mapOnQuestions.containsKey(Ques.Sub_Sub_Header__c))
-            {
+            if(mapOnQuestions.containsKey(Ques.Sub_Sub_Header__c)){
                 mapOnQuestions.get(Ques.Sub_Sub_Header__c).add(labelToFields);
             }
-            else
-            {
+            else{
                 mapOnQuestions.put(Ques.Sub_Sub_Header__c,new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>{labelToFields});  
             }
         }
         system.debug('lstOfSections : '+lstOfSections);
         
-        for(String section : lstOfSections)
-        {
+        for(String section : lstOfSections){
             LnP_ApplyForLicenseWrapper licenseWrapper = new LnP_ApplyForLicenseWrapper();
             licenseWrapper.sectionName = section;
             licenseWrapper.subheader = section;
             licenseWrapper.currentTab = currentTab;
             licenseWrapper.tabIndex = tabIndex;
-            if(!mapSubsectionIcon.isEmpty() && mapSubsectionIcon.containsKey(section+' icon'))
-            {
+            if(!mapSubsectionIcon.isEmpty() && mapSubsectionIcon.containsKey(section+' icon')){
                 licenseWrapper.icon = mapSubsectionIcon.get(section+' icon');              
             }
-            if(section =='Attachments')
-            {
+            if(section =='Attachments'){
                 licenseWrapper.sobjectType = 'Submission';
-                if(!lstMapLabelFieldsForSubmission.isEmpty())
-                {
+                if(!lstMapLabelFieldsForSubmission.isEmpty()){
                     licenseWrapper.labelFieldsMap.addAll(lstMapLabelFieldsForSubmission);
                 }
             }
-            else
-            {
+            else{
                 system.debug('mapOnQuestions : '+mapOnQuestions);
-                if(!mapOnQuestions.isEmpty() && mapOnQuestions.containsKey(section))
-                {
+                if(!mapOnQuestions.isEmpty() && mapOnQuestions.containsKey(section)){
                     licenseWrapper.labelFieldsMap.addAll(mapOnQuestions.get(section));
                 }
             }
@@ -214,11 +197,10 @@ public class Polaris_ServiceRequestController {
             tabIndex++;
         }
         system.debug('lstLicenseWrapper : '+JSON.serialize(lstLicenseWrapper));            
-       return JSON.serialize(lstLicenseWrapper); 
+        return JSON.serialize(lstLicenseWrapper); 
     }
     
     private static LnP_JSONParser getJSONWrapper(String formJson){
-        
         String strJsonForm = '';     
         strJsonForm = strJsonForm + formJson;             
         Map<String,Object> mapfield = (Map<String,Object>)JSON.deserializeUntyped(strJsonForm);        
@@ -228,7 +210,7 @@ public class Polaris_ServiceRequestController {
         return parser;
     }
     
-     public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
+    public static List<LnP_ApplyForLicenseWrapper> fetchSubmission(List<LnP_ApplyForLicenseWrapper> wrapperList,String Board, String LicenseType, String ApplicationType){
         Set<String> submissionList  = new Set<String>(); 
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<MUSW__Master_Submission_List__c> masterSubmissionList = new List<MUSW__Master_Submission_List__c>();
@@ -258,7 +240,7 @@ public class Polaris_ServiceRequestController {
                     for(String str : fieldMap.multiValues){
                         Map<String, String> mapAttachment = (Map<String, String>)JSON.deserialize(fieldMap.submissionDetails,Map<String, String>.class);
                         if(mapAttachment.containsKey(str)){
-                            submissionList.addAll(mapAttachment.get(str).split(','));
+							submissionList.addAll(mapAttachment.get(str).split(','));
                         }
                     }
                 }
@@ -325,8 +307,8 @@ public class Polaris_ServiceRequestController {
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
-       mapAddress = getAddresses(setAppId);
-       mapEducation = getBackgroundInformation(setAppId);
+        mapAddress = getAddresses(setAppId);
+        mapEducation = getBackgroundInformation(setAppId);
         System.debug('dataString---->'+dataString);
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
         Integer questionsAnswered=0;
@@ -341,13 +323,11 @@ public class Polaris_ServiceRequestController {
         lstUserInfoData = new List<User>();
         List<User> lstuserData  = Polaris_ServiceRequestService.fetchUserDetails();
         String getContactId ='';
-        if(!lstuserData.isEmpty())
-        {
+        if(!lstuserData.isEmpty()){
             lstUserInfoData = lstuserData;
         }
         
-        if(lstUserInfoData[0].ContactId != null)
-        {
+        if(lstUserInfoData[0].ContactId != null){
             getContactId = lstUserInfoData[0].ContactId;
         }
         LnP_JSONParser finalRequest = new LnP_JSONParser();
@@ -366,7 +346,6 @@ public class Polaris_ServiceRequestController {
             Integer count = 0;
             Integer questioncount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
-                
                 if((fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                     //system.debug('inside a methods');
                     LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
@@ -576,7 +555,8 @@ public class Polaris_ServiceRequestController {
                         if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                             if(mapAddress.isEmpty()){
                                 objWrapper.sectionError = true;
-                            } else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
+                            }
+							else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
                                 system.debug('inside the mandatory');
                                 objWrapper.sectionError = true;
                             }
@@ -584,7 +564,8 @@ public class Polaris_ServiceRequestController {
                         else if((mandatorySubSection == 'Qualifying Education' || mandatorySubSection == 'Qualifying Training' || mandatorySubSection == 'Qualifying Experience')  ){
                             if(mapEducation.isEmpty()){
                                 objWrapper.sectionError = true;
-                            } else if(mapEducation.get(mandatorySubSection) == null ||  mapEducation.get(mandatorySubSection).size() == 0 ){
+                            }
+							else if(mapEducation.get(mandatorySubSection) == null ||  mapEducation.get(mandatorySubSection).size() == 0 ){
                                 system.debug('inside the mandatory');
                                 objWrapper.sectionError = true;
                             }
@@ -592,8 +573,6 @@ public class Polaris_ServiceRequestController {
                     }
                 } 
             }
-            
-            
         }
         upsert application;
         system.debug('wrapperList123'+wrapperList);
@@ -604,13 +583,15 @@ public class Polaris_ServiceRequestController {
     public static List<Request__c> callCompositeAPI(String applicationId,String description){
         List<Request__c> appList =new List<Request__c>();
         Map<String,String> mapSubmissionToFile = new Map<String,String>();
+        Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get('Request__c').getDescribe().SObjectType.getDescribe().fields.getMap();
+        Map<String,String>  mapValueToStr =  new Map<String,String>();
         Set<Id>  setapplicationId =  new Set<Id> ();
         List<Request__c> licenseID;
         // string applicationId2 = string.valueOf(applicationId).substring(0, 15);
         setapplicationId.add(applicationId);
         String appCondition = 'Id=\''+applicationId+'\'';
         // String strApp = 'Select Id, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
-        String strApp = 'Select Id, Service_Request_Type__c,End_Time__c,Stage__c, License__c,Form_JSON__c, Profession__c,  License_Type__c from Request__c where '+appCondition;
+        String strApp = 'Select Id,Service_Request_Type__c,End_Time__c, Stage__c, License__c,Form_JSON__c, Profession__c,  License_Type__c from Request__c where '+appCondition;
         system.debug('StrApp Query--->'+strApp);
         appList = Utilityclass_withsharing.queryRecords(strApp);
         system.debug('Applist In AController--->'+appList);
@@ -618,189 +599,222 @@ public class Polaris_ServiceRequestController {
         stringJSON = appList[0].Form_JSON__c;
         // System.debug('appList '+appList);
         Boolean checkSuccess = false;
-        //Modified code for handling 25 subrequest governor limit
-        
-        LnP_JSONParser ansWrapper= Polaris_ServiceRequestController.getJSONWrapper(stringJSON);
-        List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
-        for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
-            requestDetailsList.add(req);
-        }
-        List<List<LnP_JSONParser.CompositeRequest>> compositeReq = Polaris_ServiceRequestService.partition(requestDetailsList,24);
-        System.debug('appList[0].Stage__c '+appList[0].Stage__c);
-        if(appList != null && appList.size()>0 && appList[0].Stage__c != -1){
-               for(List<LnP_JSONParser.CompositeRequest> record: compositeReq) {    
-               Map<String,List<LnP_JSONParser.CompositeRequest>> mapList = new  Map<String,List<LnP_JSONParser.CompositeRequest>>();
-               mapList.put('compositeRequest',record);
-               string strJsonForm = JSON.serialize(mapList);
-               strJsonForm = strJsonForm.replaceAll('\\bAnswer\\b', 'Answer_Text__c');
-               strJsonForm = strJsonForm.replaceAll('\\bQuestion\\b', 'QuestionDOL__c');
-               strJsonForm = strJsonForm.replaceAll('\\bApplication\\b', 'Request__c');
-               strJsonForm = strJsonForm.replaceAll('\\bMUSW_Application2\\b', 'Request__c');
-               strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
-               //stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
-               strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
-            
-            strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
-            strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
-            strJsonForm = strJsonForm.replace('{,', '{'); //prevent opening brace from having a comma after it
-            strJsonForm = strJsonForm.replace(',}', '}'); //prevent closing brace from having a comma before it
-            strJsonForm = strJsonForm.replace('[,', '['); //prevent opening bracket from having a comma after it
-            strJsonForm = strJsonForm.replace(',]', ']');            
-            // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
-            
-            system.debug('stringJSON '+strJsonForm);
-            //stringJSON.replaceAll('Answer', 'Answer__c');
-            system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
-            HttpRequest req = new HttpRequest();
-            String url = System.Label.CompositeAPIURL;
-            req.setEndpoint(url);
-            req.setMethod('POST');
-            String sessionId=UserInfo.getSessionId();
-            req.setHeader('Authorization', 'Bearer '+ sessionId);
-            req.setHeader('Content-Type','application/json');
-            req.setBody(strJsonForm);
-            req.setTimeout(60000);
-            Http http = new Http();
-            HTTPResponse res = http.send(req);
-            System.debug('ResponseBody'+res.getBody());
-            System.debug('Response ' + res.getStatusCode());
-            if(res.getStatusCode() == 200) {
-                checkSuccess = true;
+        if(appList[0].Service_Request_Type__c == 'License History Request'){
+            appList[0].Status__c = 'Under Review';
+            try{
+                update appList[0];
+            }catch(Exception e){
+                Polaris_CreateErrorLog_Exception.addError(e,'Polaris_ServiceRequestController','callCompositeAPI');            
             }
-            
         }
-            if(checkSuccess ) {
-                appList[0].Stage__c = -1;
-                if(appList[0].License_Type__c == 'Notary Public' && appList[0].Service_Request_Type__c == 'Endorsement')
-                {
-                    appList[0].Status__c = 'Approved';
-					appList[0].End_Time__c = system.now();
-                }
-                else
-                {
-                    appList[0].Status__c = 'Under Review';
-                }     
-                 appList[0].Description__c = description ;
-                //licenseID =insertLisence(setapplicationId);
-                //Setup  for the populating the details
-                List<Request__c> appListOtherDetils =new List<Request__c>();
-                // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
-                String strAppOther = 'Select Id,Stage__c, Profession__c,  License_Type__c, (select id,Request__c,ContentDocumentId__c from Submissions__r) ,(select Id,Answer_Text__c,License__c,Request__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c from Answers__r),(Select Id,License__c,Request__c FROM LnP_BackgroundSections__r),(Select Id,License__c,Request__c FROM LnP_Parcels__r) from Request__c where '+appCondition;
-                system.debug('StrApp Query--->'+strAppOther);
-                appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
-                List<LnP_Parcel__c> lstParcels = new List<LnP_Parcel__c>();            
-                if(appListOtherDetils[0].LnP_Parcels__r != null && appListOtherDetils[0].LnP_Parcels__r.size()>0){
-                    for(LnP_Parcel__c parcel : appListOtherDetils[0].LnP_Parcels__r){
-                        parcel.Request__c = appList[0].Id; 
-                        lstParcels.add(parcel);
-                    }
-                    update lstParcels;                
-                }
-                List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
-                if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
-                    for(LnP_BackgroundSection__c EduHist : appListOtherDetils[0].LnP_BackgroundSections__r){
-                        EduHist.Request__c = appList[0].Id; 
-                        lstEduHist.add(EduHist);
-                    }
-                    update lstEduHist;                
-                } 
-                List<BGCK__Answer__c> lstNewAnswers = new List<BGCK__Answer__c>();
-                List<BGCK__Answer__c> lstAnswers = [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c FROM BGCK__Answer__c where Request__c=:applicationId];
-                List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
-                String providerName = '';
-                if(lstAnswers != null && lstAnswers.size()>0 && appList[0].License_Type__c == 'Notary Public'){
-                    for(BGCK__Answer__c ans : lstAnswers)
-                    {                    
-                        if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' )
-                        {
-                            providerName = ans.Answer_Text__c;
-                        }
-                    }
-                }
-                system.debug('lstAnswers '+lstAnswers);
-                if(lstAnswers != null && lstAnswers.size()>0){
-                    for(BGCK__Answer__c ans : lstAnswers){
-                        //ans.Request__c = appList[0].Id;
-						ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('<[^>]*>',''); 
-                        ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('</span[^>]*>','');
-                        if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
-                        {
-                            Endorsement__c endorsment = new Endorsement__c();
-                            endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
-                            endorsment.License_Type__c = appList[0].License_Type__c;
-                            //endorsment.Status__c = 'Pending Add';
-                            if(appList[0].License_Type__c == 'Notary Public')
-                            {
-                                //endorsment.Electronic_Software_Provider__c = providerName;
-                                endorsment.Status__c = 'Active';
-                            }
-                            endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
-                            endorsment.Request__c = appList[0].Id;
-                            endorsment.Created_for_New_Application__c = True;
-                            endorsment.Added_Through_AMR__c = True;
-                             endorsment.License__c = appList[0].License__c;
-                            lstEndorsements.add(endorsment);
-                        }
-                        else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' )
-                        {
-                            Endorsement__c endorsment = new Endorsement__c();
-                            endorsment.Endorsement_Type__c = ans.Answer_Text__c;
-                            endorsment.License_Type__c = appList[0].License_Type__c;
-                            //endorsment.Status__c = 'Pending Add';
-                            endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
-                            endorsment.Request__c = appList[0].Id;
-                            endorsment.Created_for_New_Application__c = True;
-                            endorsment.Added_Through_AMR__c = True;
-                             endorsment.License__c = appList[0].License__c;
-                            lstEndorsements.add(endorsment);
-                        }
-                        lstNewAnswers.add(ans);
-                    }
-                    update lstAnswers;
-                    system.debug('lstEndorsements'+lstEndorsements);
-                    insert lstEndorsements;
-                    if(appListOtherDetils[0].License_Type__c == 'Notary Public' && lstEndorsements.size()>0)
-                    {
-                        List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Request__c =:appListOtherDetils[0].Id];
-                        
-                        for(Electronic_Notary_Provider_Information__c provider : lstproviders)
-                        {
-                            provider.Endorsement__c = lstEndorsements[0].Id;
-                        }
-                        update lstproviders;
-                    }          
-                    //add review record for endorsement
-                    /*if(appList[0].License_Type__c != 'Notary Public')
-                    {
-                        List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
-                        for(Endorsement__c endo :lstEndorsements){
-                            MUSW__Review__c review = new MUSW__Review__c();
-                            review.Name = 'Endorsement Review';
-                            review.Request__c = appList[0].Id;
-                            review.MUSW__Status__c = 'Pending';
-                            review.License__c = appList[0].License__c;
-                            review.Endorsement__c = endo.Id;
-                            lstReview.add(review);
-                        }              
-                        
-                        insert lstReview;
-                    }*/
-                }
-                List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>();            
-                if(appListOtherDetils[0].Submissions__r != null && appListOtherDetils[0].Submissions__r.size()>0){
-                    for(MUSW__Submission__c submissions : appListOtherDetils[0].Submissions__r){
-                        submissions.Request__c = appList[0].Id; 
-                        lstSubmissions.add(submissions);
-                        if(submissions!=null && submissions.ContentDocumentId__c != null ) {
-                            mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
-                        }
+        //Modified code for handling 25 subrequest governor limit
+        if(stringJSON!=null){
+            LnP_JSONParser ansWrapper= Polaris_ServiceRequestController.getJSONWrapper(stringJSON);
+            List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
+            for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
+                requestDetailsList.add(req);
+            }
+            List<List<LnP_JSONParser.CompositeRequest>> compositeReq = Polaris_ServiceRequestService.partition(requestDetailsList,24);
+            System.debug('appList[0].Stage__c '+appList[0].Stage__c);
+            if(appList != null && appList.size()>0 && appList[0].Stage__c != -1){
+                for(List<LnP_JSONParser.CompositeRequest> record: compositeReq) {    
+                    Map<String,List<LnP_JSONParser.CompositeRequest>> mapList = new  Map<String,List<LnP_JSONParser.CompositeRequest>>();
+                    mapList.put('compositeRequest',record);
+                    string strJsonForm = JSON.serialize(mapList);
+                    strJsonForm = strJsonForm.replaceAll('\\bAnswer\\b', 'Answer_Text__c');
+                    strJsonForm = strJsonForm.replaceAll('\\bQuestion\\b', 'QuestionDOL__c');
+                    strJsonForm = strJsonForm.replaceAll('\\bApplication\\b', 'Request__c');
+                    strJsonForm = strJsonForm.replaceAll('\\bMUSW_Application2\\b', 'Request__c');
+                    strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
+                    //stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
+                    strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
+                    
+                    strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
+                    strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
+                    strJsonForm = strJsonForm.replace('{,', '{'); //prevent opening brace from having a comma after it
+                    strJsonForm = strJsonForm.replace(',}', '}'); //prevent closing brace from having a comma before it
+                    strJsonForm = strJsonForm.replace('[,', '['); //prevent opening bracket from having a comma after it
+                    strJsonForm = strJsonForm.replace(',]', ']');            
+                    // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
+                    
+                    system.debug('stringJSON '+strJsonForm);
+                    //stringJSON.replaceAll('Answer', 'Answer__c');
+                    system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
+                    HttpRequest req = new HttpRequest();
+                    String url = System.Label.CompositeAPIURL;
+                    req.setEndpoint(url);
+                    req.setMethod('POST');
+                    String sessionId=UserInfo.getSessionId();
+                    req.setHeader('Authorization', 'Bearer '+ sessionId);
+                    req.setHeader('Content-Type','application/json');
+                    req.setBody(strJsonForm);
+                    req.setTimeout(60000);
+                    Http http = new Http();
+                    HTTPResponse res = http.send(req);
+                    System.debug('ResponseBody'+res.getBody());
+                    System.debug('Response ' + res.getStatusCode());
+                    if(res.getStatusCode() == 200) {
+                        checkSuccess = true;
                     }
                     
-                    update lstSubmissions;                
                 }
-                update appList[0];
-                
-            }   
+                if(checkSuccess ) {
+                    appList[0].Stage__c = -1;
+                    if(appList[0].License_Type__c == 'Notary Public' && appList[0].Service_Request_Type__c == 'Endorsement'){
+                        appList[0].Status__c = 'Approved';
+                        appList[0].End_Time__c = system.now();
+                    }
+                    else{
+                        appList[0].Status__c = 'Under Review';
+                    }                
+                    appList[0].Description__c = description ;
+                    //licenseID =insertLisence(setapplicationId);
+                    //Setup  for the populating the details
+                    List<Request__c> appListOtherDetils =new List<Request__c>();
+                    // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
+                    String strAppOther = 'Select Id,Stage__c, Profession__c,  License_Type__c, (select id,Request__c,ContentDocumentId__c from Submissions__r) ,(select Id,Answer_Text__c,License__c,Request__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c from Answers__r),(Select Id,License__c,Request__c FROM LnP_BackgroundSections__r),(Select Id,License__c,Request__c FROM LnP_Parcels__r) from Request__c where '+appCondition;
+                    system.debug('StrApp Query--->'+strAppOther);
+                    appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
+                    List<LnP_Parcel__c> lstParcels = new List<LnP_Parcel__c>();            
+                    if(appListOtherDetils[0].LnP_Parcels__r != null && appListOtherDetils[0].LnP_Parcels__r.size()>0){
+                        for(LnP_Parcel__c parcel : appListOtherDetils[0].LnP_Parcels__r){
+                            parcel.Request__c = appList[0].Id; 
+                            lstParcels.add(parcel);
+                        }
+                        update lstParcels;                
+                    }
+                    List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
+                    if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
+                        for(LnP_BackgroundSection__c EduHist : appListOtherDetils[0].LnP_BackgroundSections__r){
+                            EduHist.Request__c = appList[0].Id; 
+                            lstEduHist.add(EduHist);
+                        }
+                        update lstEduHist;                
+                    } 
+                    List<BGCK__Answer__c> lstNewAnswers = new List<BGCK__Answer__c>();
+                    List<BGCK__Answer__c> lstAnswers = [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.RecordType.DeveloperName FROM BGCK__Answer__c where Request__c=:applicationId];
+                    List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
+                    String providerName = '';
+                    if(lstAnswers != null && lstAnswers.size()>0 && appList[0].License_Type__c == 'Notary Public'){
+                        for(BGCK__Answer__c ans : lstAnswers){                    
+                            if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' ){
+                                providerName = ans.Answer_Text__c;
+                            }
+                        }
+                    }
+                    system.debug('lstAnswers '+lstAnswers);
+                    if(lstAnswers != null && lstAnswers.size()>0){
+                        for(BGCK__Answer__c ans : lstAnswers){
+                            //ans.Request__c = appList[0].Id; 
+                            ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('<[^>]*>',''); 
+                            ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('</span[^>]*>','');                   
+                            if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes'){
+                                Endorsement__c endorsment = new Endorsement__c();
+                                endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
+                                endorsment.License_Type__c = appList[0].License_Type__c;
+                                //endorsment.Status__c = 'Pending Add';
+                                if(appList[0].License_Type__c == 'Notary Public'){
+                                    //endorsment.Electronic_Software_Provider__c = providerName;
+                                    endorsment.Status__c = 'Active';
+                                }
+                                endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
+                                endorsment.Request__c = appList[0].Id;
+                                endorsment.Created_for_New_Application__c = True;
+                                endorsment.Added_Through_AMR__c = True;
+                                endorsment.License__c = appList[0].License__c;
+                                lstEndorsements.add(endorsment);
+                            }
+                            else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' ){
+                                Endorsement__c endorsment = new Endorsement__c();
+                                endorsment.Endorsement_Type__c = ans.Answer_Text__c;
+                                endorsment.License_Type__c = appList[0].License_Type__c;
+                                //endorsment.Status__c = 'Pending Add';
+                                endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
+                                endorsment.Request__c = appList[0].Id;
+                                endorsment.Created_for_New_Application__c = True;
+                                endorsment.Added_Through_AMR__c = True;
+                                endorsment.License__c = appList[0].License__c;
+                                lstEndorsements.add(endorsment);
+                            }
+                            lstNewAnswers.add(ans);
+                            //Added by Babita
+                            if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null && ans.QuestionDOL__r.Parent_Object_API_Name__c == 'MUSW__License2__c' && ans.QuestionDOL__r.RecordType.DeveloperName == 'Background_Questions'){
+                                   mapValueToStr.put(ans.QuestionDOL__r.QuestionFieldAPI__c,ans.Answer_Text__c);
+                            }
+                        }
+                        if(!mapValueToStr.isEmpty()) {
+                            for(String fieldName : mapValueToStr.keySet()){     
+                                if(mapValueToStr.get(fieldName) != null) {
+                                    system.debug('***fieldName***'+fieldName);
+                                    Schema.DisplayType targetType = fields.get(fieldName).getDescribe().getType();
+                                    System.debug('***targetType***'+targetType);
+                                    string strFieldName = String.valueOf(targetType);
+                                    if(strFieldName == 'TEXTAREA' || strFieldName =='MULTIPICKLIST' || strFieldName == 'TEXT'){
+                                        appList[0].put(fieldName,String.valueOf(mapValueToStr.get(fieldName)));
+                                    }
+                                    else if(strFieldName == 'DOUBLE') {
+                                        appList[0].put(fieldName,Double.valueOf(mapValueToStr.get(fieldName)));
+                                    }    
+                                }
+                            }
+                    	}
+                    	//Completed by Babita
+                        update lstAnswers;
+                        system.debug('lstEndorsements'+lstEndorsements);
+                        insert lstEndorsements;
+                        if(appListOtherDetils[0].License_Type__c == 'Notary Public' && lstEndorsements.size()>0){
+                            List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Request__c =:appListOtherDetils[0].Id];
+                            
+                            for(Electronic_Notary_Provider_Information__c provider : lstproviders){
+                                provider.Endorsement__c = lstEndorsements[0].Id;
+                            }
+                            update lstproviders;
+                        }          
+                        //add review record for endorsement
+                        /*if(appList[0].License_Type__c != 'Notary Public'){
+							List<MUSW__Review__c> lstReview = new List<MUSW__Review__c>();
+							for(Endorsement__c endo :lstEndorsements){
+								MUSW__Review__c review = new MUSW__Review__c();
+								review.Name = 'Endorsement Review';
+								review.Request__c = appList[0].Id;
+								review.MUSW__Status__c = 'Pending';
+								review.License__c = appList[0].License__c;
+								review.Endorsement__c = endo.Id;
+								lstReview.add(review);
+							}              
+							insert lstReview;
+						}*/
+                    }
+                    List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>();            
+                    if(appListOtherDetils[0].Submissions__r != null && appListOtherDetils[0].Submissions__r.size()>0){
+                        for(MUSW__Submission__c submissions : appListOtherDetils[0].Submissions__r){
+                            submissions.Request__c = appList[0].Id; 
+                            lstSubmissions.add(submissions);
+                            if(submissions!=null && submissions.ContentDocumentId__c != null ) {
+                                mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
+                            }
+                        }
+                        update lstSubmissions;                
+                    }
+                }   
+                System.debug('Service_Request_Type__c::'+ appList[0].Service_Request_Type__c);
+                if(appList[0].Service_Request_Type__c == 'Update Branches'){
+                    appList[0].Status__c = 'Under Review';
+                    List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
+                    for(MUSW__Parcel__c parcel : [select id,isUndo__c from MUSW__Parcel__c where Request__c =:applicationId]){
+                        parcel.isUndo__c = false;
+                        parcelList.add(parcel);
+                    }
+                    if(!parcelList.isEmpty()){
+                        update parcelList;
+                    }
+                }
+                try{
+                    update appList[0];
+                }catch(Exception e){
+                    Polaris_CreateErrorLog_Exception.addError(e,'Polaris_ServiceRequestController','callCompositeAPI');            
+                }
+            }
         }
         //Calling method to  store 3rd party
         if(!mapSubmissionToFile.isEmpty()){
@@ -860,19 +874,17 @@ public class Polaris_ServiceRequestController {
     
     @AuraEnabled
     public static boolean updateAffiliation(string requestId){
-        try{
-        List<Request__c> reqList = [select id,Account_Contact__c from Request__c where id=:requestId ];
-        
-            if(!reqList.isEmpty()){
-                MUSW__Account_Contact__c accCon = [select id,Status__c from MUSW__Account_Contact__c where id=:reqList[0].Account_Contact__c];
+		try{
+			List<Request__c> reqList = [select id,Account_Contact__c from Request__c where id=:requestId ];
+			if(!reqList.isEmpty()){
+				MUSW__Account_Contact__c accCon = [select id,Status__c from MUSW__Account_Contact__c where id=:reqList[0].Account_Contact__c];
                 accCon.Status__c = 'Active';
-                
-                task tsk = [select id,Status,Sub_status__c from task where Whatid=:accCon.id AND status=:'Pending' limit 1];
-                tsk.Status = 'Completed';
-                tsk.Sub_status__c = 'Accepted';
-                update tsk;
-            }
-            return true;
+				task tsk = [select id,Status,Sub_status__c from task where Whatid=:accCon.id AND status=:'Pending' limit 1];
+				tsk.Status = 'Completed';
+				tsk.Sub_status__c = 'Accepted';
+				update tsk;
+			}
+        return true;
         }catch(Exception e){
             Polaris_CreateErrorLog_Exception.addError(e,'Polaris_ServiceRequestController','updateAffiliation');
             return false;
@@ -903,10 +915,8 @@ public class Polaris_ServiceRequestController {
                 }
             } 
         }
-
-        if(!lstContent.isEmpty()) {
+		if(!lstContent.isEmpty()) {
             upsert lstFiles;
         } 
     }
-    
 }

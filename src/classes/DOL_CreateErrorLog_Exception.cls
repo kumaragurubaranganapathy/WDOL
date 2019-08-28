@@ -111,6 +111,7 @@ public class DOL_CreateErrorLog_Exception extends Exception {
         return null; 
     }
 
+	
     private static String getClassName(String stackTraceString){
         try{    
             stackTraceString = stackTraceString.substringBefore('\n');
@@ -139,6 +140,7 @@ public class DOL_CreateErrorLog_Exception extends Exception {
         log.Session_Id__c=UserInfo.getSessionId().substring(15);
         insert log;
     }
+	
     //Add delete record details
     public static void logDeleteDetails(String message, String cname,String cmethod ){
            Polaris_Custom_Exception__c exc = new Polaris_Custom_Exception__c();

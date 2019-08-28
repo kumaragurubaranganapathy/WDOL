@@ -29,7 +29,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <!--<c:LnP_CommonHeader itemsList="{!v.itemsList}" /> -->
-    <div class="slds-global-header slds-grid_align-spread">
+    <div id="pageHeader" class="slds-global-header slds-grid_align-spread">
         <!--<div style="display: inline-block;float:left;"> 
             <a href="https://licensedev-dedpr_community.cs32.force.com/delawareLnP"><img src="" class="header-Image" alt=""/></a>
    <a class="burgerIcon" onclick="{!c.burgerIconOnClick}">
@@ -46,20 +46,20 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                 <span></span>
             </div>
             <lightning:layout class="slds-wrap menu-outer-wrapper">
-                <lightning:layoutItem size="12" largeDeviceSize="3" class="logo-wrapper">
+                <lightning:layoutItem size="12" largeDeviceSize="2" class="logo-wrapper">
                     <div class="logo-div">
                         <!-- <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogo.svg'}" alt="logo" />-->
                         <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" onclick="{!c.redirectToHome}" />
                         
                     </div>
                 </lightning:layoutItem>
-                <lightning:layoutItem size="12" largeDeviceSize="9" class="nav-links-wrapper">
+                <lightning:layoutItem size="12" largeDeviceSize="10" class="nav-links-wrapper">
                     <div aura:id="global-menu" class="menu-wrapper">
                         <div class="mob-logo-wrapper slds-hide_medium">
                             <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" onclick="{!c.redirectToHome}" />
                         </div>
                         <lightning:layout class="nav-grid">                            
-                            <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'9':'10')}" class="">
+                            <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'9':'10')}" class="guestlayout">
                                 <div role="navigation" aria-labelledby="nav1" class="slds-col nav-div">                   
                                     <ul id="nav1" class="nav-links">
                                         <aura:iteration items="{!v.itemsList}" var="item">
@@ -93,7 +93,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                             <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'3':'2')}" class="login-wrapper">
                                 <aura:if isTrue="{!v.userType=='Guest'}">                            
                                     <div class="login-div">                                        
-                                        <a class="link-style" href="{!$Label.c.Polaris_Portal_Home+'login/'}" onclick="{!c.loginUser}">Sign In</a>
+                                        <a class="link-style" href="{!$Label.c.Polaris_Portal_Home+'login/'}" onclick="{!c.loginUser}">Login</a>
                                     </div>
                                     <aura:set attribute="else">
                                         <div class="user-wrapper">

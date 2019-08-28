@@ -1,4 +1,11 @@
-trigger DRE2_Associations_c on Associations__c (after insert, before update, before delete, after undelete) { BGCM.TriggerManager.execute('DRE2_Associations_c', new DRETriggerHandler()); 
+trigger DRE2_Associations_c on Associations__c (after insert, before update, before delete, after undelete) { 
+ /*Checking whehter triggers have been disabled for the user or not*/
+    Global_Settings__c globalSetting = Global_Settings__c.getInstance(UserInfo.getUserId());
+    if(globalSetting.Disable_Triggers__c == true) {
+        /*If the triggers have been disabled, then do not call the trigger handler*/
+        return;
+    }
+BGCM.TriggerManager.execute('DRE2_Associations_c', new DRETriggerHandler()); 
 
 if(Trigger.isBefore && Trigger.isUpdate){
 

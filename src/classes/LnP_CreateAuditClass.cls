@@ -76,15 +76,15 @@ public class LnP_CreateAuditClass {
         Id recordTypeId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('CE Audit Review').getRecordTypeId();
         system.debug(' ce audit review record type '+recordTypeId);
         for(Renewal_Application__c renApp : appList){
-            MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
-                Renewal_Application__c = renApp.Id,
-                recordTypeId = recordTypeId,
-                Application_Type__c = renApp.Application_Type__c,
-                License__c = renApp.License__c,
-                MUSW__Status__c =  'Audit Pending',
-                Review_Type__c = 'CE Audit',
-                License_Type__c = renApp.Credential_Type__c
-            );
+            MUSW__Review__c newAuditReviewRec = new MUSW__Review__c();
+                newAuditReviewRec.Renewal_Application__c = renApp.Id;
+                newAuditReviewRec.recordTypeId = recordTypeId;
+                newAuditReviewRec.Application_Type__c = renApp.Application_Type__c;
+                newAuditReviewRec.License__c = renApp.License__c;
+                newAuditReviewRec.MUSW__Status__c =  'Audit Pending';
+                newAuditReviewRec.Review_Type__c = 'CE Audit';
+                newAuditReviewRec.License_Type__c = renApp.Credential_Type__c;
+            
             renApp.Selected_for_Audit__c = true;
             updateFlagforAuditList.add(renApp);
             auditList.add(newAuditReviewRec);
@@ -108,16 +108,17 @@ public class LnP_CreateAuditClass {
         system.debug(' ce audit review record type '+recordTypeId);
         for(MUSW__License2__c licenseApp : licenseList){
             
-            Request__c newCEAuditRequest = new Request__c(
-                Profession__c = licenseApp.Application_Type__c,
-                License_Type__c = licenseApp.Credential_Type__c,
-                Service_Request_Type__c = 'CE Audit',
-                Stage__c = 0,
-                License__c = licenseApp.id,
-                Contact__c = licenseApp.MUSW__Applicant__c,
-                Status__c = 'Draft'
-           );
+            Request__c newCEAuditRequest = new Request__c();
+                newCEAuditRequest.Profession__c = licenseApp.Application_Type__c;
+                newCEAuditRequest.License_Type__c = licenseApp.Credential_Type__c;
+                newCEAuditRequest.Service_Request_Type__c = 'CE Audit';
+                newCEAuditRequest.Stage__c = 0;
+                newCEAuditRequest.License__c = licenseApp.id;
+                newCEAuditRequest.Contact__c = licenseApp.MUSW__Applicant__c;
+                newCEAuditRequest.Status__c = 'Draft';
+           
            requestList.add(newCEAuditRequest); 
+           
            
           /* MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
                 recordTypeId = recordTypeId,

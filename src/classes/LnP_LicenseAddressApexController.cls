@@ -15,16 +15,17 @@ public with sharing class LnP_LicenseAddressApexController {
     }
     
     @AuraEnabled
-    public static List<MUSW__Parcel__c> getAllAddress(Id accountOrContactId){
-        system.debug('accountOrContactId==='+ accountOrContactId);
+    public static List<MUSW__Parcel__c> getAllAddress(Id accountOrContactId, Id applicationId){
+        system.debug('accountOrContactId==='+ accountOrContactId + 'application Id--' + applicationId);
         List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
         if(String.isNotBlank(accountOrContactId)){
             for(MUSW__Parcel__c addressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                   MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
                                                   County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
-                                                  Primary_Account__c FROM MUSW__Parcel__c 
+                                                  Primary_Account__c,LastModifiedDate FROM MUSW__Parcel__c 
                                                   WHERE (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId)
-                                                  OR (Primary_Account__c!= null AND Primary_Account__c = :accountOrContactId)]){
+                                                  OR (Primary_Account__c!= null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId 
+                                                     ) order by LastModifiedDate desc]){
                                                       allAddressList.add(addressRecords);
                                                   }  
             system.debug('allAddressList'+allAddressList);
@@ -262,7 +263,8 @@ return ListAddress;
     
     
     @AuraEnabled
-    public static List<MUSW__Parcel__c> sameAddUpdate(String recordId, String sobjectType,String accountOrContactId, boolean isSame){
+    public static List<MUSW__Parcel__c> sameAddUpdate(String recordId, String sobjectType,String accountOrContactId, boolean isSame, String applicationId){
+        try{
         System.debug('---recordId---'+recordId);
         Id recId = (Id)recordId;
         List<MUSW__Parcel__c> listAddress = new List<MUSW__Parcel__c>();
@@ -278,8 +280,9 @@ return ListAddress;
                 MUSW__Parcel__c parcel = (MUSW__Parcel__c)recList[0];
                 //parcel.Address_Type__c = 'Physical Address';
                 parcel.is_Physical_and_Mailing_Address_Same__c = true;
-                allAddr = [Select id,name, MUSW__Primary_Contact__c, Primary_Account__c from MUSW__Parcel__c 
-                           where MUSW__Primary_Contact__c =:accountOrContactId OR Primary_Account__c = :accountOrContactId];
+                allAddr = [Select id,name, MUSW__Primary_Contact__c, Primary_Account__c, Application_BG__c from MUSW__Parcel__c 
+                           where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c =:accountOrContactId) OR 
+                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId)];
                 system.debug('allAddr'+allAddr);
                 for(Integer i = 0; i < allAddr.size(); i++){
                     if(allAddr.get(i).id == parcel.id){
@@ -295,29 +298,30 @@ return ListAddress;
                 parcel.is_Physical_and_Mailing_Address_Same__c = false;
             }
             
-            try{
+            
                 update recList[0];
                 if(Dol_IntegrationUtil.isNotEmpty(allAddr)){
-                    try{
+                    
                         delete allAddr;
-                    }Catch(Exception e){
-                        System.debug('---EXCEPTION---'+e.getMessage());
-                    }     
+                        
                 }
-            }
-            Catch(Exception e){
-                System.debug('---EXCEPTION---'+e.getMessage());
-            }
+           
             listAddress = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c, Canadian_provinces__c, 
                            Country__c,Melissa_Address_Verified__c,Address_Type__c,is_Physical_and_Mailing_Address_Same__c, 
-                           MUSW__Primary_Contact__c, County__c, Primary_Account__c from MUSW__Parcel__c
+                           MUSW__Primary_Contact__c, County__c, Primary_Account__c, Application_BG__c from MUSW__Parcel__c
                            where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c =:accountOrContactId) OR 
-                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId)];        
+                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId)];        
         } else{
             System.debug('The sameAdd recList empty is:');
         }
         System.debug('The sameAdd listAddress is:'+listAddress);
         return listAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     public class selectOption{
@@ -461,19 +465,20 @@ return ListAddress;
                                                       Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
                                                       Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
                                                       where Address_Type__c = :addresstype AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId) 
-                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId)) Limit 1]){
+                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND 
+                                                         Application_BG__c = :applicationId)) Limit 1]){
                                                           System.debug('existingParcel=='+ existingParcel);
                                                           existingParcel.MUSW__Street2__c = addres1;
                                                           existingParcel.MUSW__Unit__c = aptInfo;
                                                           existingParcel.MUSW__City__c = city;
                                                           existingParcel.Country__c = country;
                                                           existingParcel.County__c = countyVal;
-                                                          if(String.isNotBlank(objectRecordName)){
+                                                          if(objectRecordName!='Contact'){
                                                               existingParcel.Primary_Account__c = accountOrContactId;
                                                           }else{
                                                               existingParcel.MUSW__Primary_Contact__c = accountOrContactId;
                                                           }
-                                                          //existingParcel.Application_BG__c = applicationId;
+                                                          existingParcel.Application_BG__c = applicationId;
                                                           if(country!= 'Canada'){
                                                               existingParcel.MUSW__State__c = state; 
                                                               existingParcel.Canadian_provinces__c = null;
@@ -484,7 +489,7 @@ return ListAddress;
                                                           existingParcel.Zip_Postal_Code__c = zip;
                                                           if(isAMR)
                                                           {
-                                                              //existingParcel.Request_Parcel__c = applicationId;
+                                                              existingParcel.Request_Parcel__c = applicationId;
                                                           }
                                                           parcelList.add(existingParcel);
                                                       }
@@ -530,7 +535,7 @@ return ListAddress;
                     }
                     else
                     {
-                        //parcel.Request_Parcel__c = applicationId;
+                        parcel.Request_Parcel__c = applicationId;
                     }
                     System.debug('parcel' + parcel);
                     if(parcel != null ){
@@ -571,6 +576,7 @@ return ListAddress;
         System.debug('parcl::'+ parcl );
         System.debug('removeLocation::'+ removeLocation);
         if(isAMR){
+            parcl.isUndo__c = true;
             if(parcl != null && !removeLocation ){
                 parcl.Status__c = 'Pending Add';
                 insert parcl ;
@@ -597,6 +603,7 @@ return ListAddress;
         MUSW__Parcel__c parcl = new MUSW__Parcel__c(id=parcelId); 
         if(isAMR){
              parcl.Status__c = 'Pending Remove';
+             parcl.isUndo__c = true;
         }else{
             parcl.Status__c = 'Inactive';
         }
@@ -690,8 +697,8 @@ return ListAddress;
             if(isAMR){
                 Set<String> AMRstatus = new Set<String>{'Pending Add','Pending Remove'};
                 Set<String> licenseStatus = new Set<String>{'Active','Pending Add','Pending Remove'};
-                columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
-                for(SObject objs : [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c IN:AMRstatus AND recordtypeid =:LocationRT]){
+                columnDataList = [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
+                for(SObject objs : [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c IN:AMRstatus AND recordtypeid =:LocationRT]){
                     columnDataList.add(objs);
                 }
                 columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};

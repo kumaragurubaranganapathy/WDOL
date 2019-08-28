@@ -112,7 +112,7 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         {
             condition7 = 'AND Show_For__c includes (\'Credential Renewal\')';
         }
-        else if(renewalReinstate=='Reinstate')
+        else if(renewalReinstate=='Reinstatement')
         {
             condition7 = 'AND Show_For__c includes (\'Credential Reinstatement\')';
         }
@@ -177,9 +177,10 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         return var;
     }
     @AuraEnabled
-    public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){ 
+    public static Map<String, List<String>> getPicklistOptions(string sObj, String conField, String depField){ 
         Map<String, List<String>> mapConDep = new Map<String, List<String>>();
-        mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(sObj, conField, depField);
+        MUSW__License2__c mapval = new MUSW__License2__c();
+        mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(mapval, conField, depField);
         system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
         return mapConDep;
     }
@@ -192,7 +193,7 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         system.debug('queryStr '+queryStr);
         system.debug('applicationType : '+applicationType);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = '003r000000EOhBB';
+        Id getContactId = null;
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
@@ -216,7 +217,7 @@ application.MUSW_Account__c = account;*/
         application.Stage__c = 0;
 		application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
-        if( account != '' && account != null && account !='undefined'){
+                if( account != '' && account != null && account !='undefined'){
             application.MUSW__Account__c = account;
         }
         if(branchLicense.contains(licenseType)){
@@ -249,7 +250,7 @@ application.MUSW_Account__c = account;*/
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }   
-        MUSW__License2__c lic = [Select id,RecordType.name,MUSW__Primary_Licensee__c,Application__c FROM MUSW__License2__c WHERE id =:licId];
+        MUSW__License2__c lic = [Select id,RecordType.name,MUSW__Primary_Licensee__c,Ultimate_Parent_Account__c,Application__c FROM MUSW__License2__c WHERE id =:licId];
         MUSW__Application2__c application = new MUSW__Application2__c();
         application.Application_Type__c = board; 
         application.Credential_Type__c = licenseType; 
@@ -261,7 +262,7 @@ application.MUSW_Account__c = account;*/
             application.isRenewal__c = Boolean.valueOf(isRenewal);   
         }
         if(lic.recordType.name == 'Business') {
-            application.MUSW__Account__c = lic.MUSW__Primary_Licensee__c;
+            application.MUSW__Account__c = lic.Ultimate_Parent_Account__c;
         }
         try{
             insert application;
@@ -272,6 +273,7 @@ application.MUSW_Account__c = account;*/
         if(lic!=null)
         {
             lic.Application__c = application.Id;
+            lic.Renew_Reinstatement_in_progress__c = true;
             update lic;
         }
         Set<Id> parcelIds = new Set<Id>();
@@ -296,8 +298,8 @@ application.MUSW_Account__c = account;*/
                 parcel.MUSW__State__c = par.MUSW__State__c;
                 parcel.MUSW__Street2__c = par.MUSW__Street2__c;
                 parcel.Zip_Postal_Code__c = par.Zip_Postal_Code__c;
-                parcel.County__c = par.County__c ;
-				parcel.is_Physical_and_Mailing_Address_Same__c = par.is_Physical_and_Mailing_Address_Same__c;
+				parcel.County__c = par.County__c ;
+                parcel.is_Physical_and_Mailing_Address_Same__c = par.is_Physical_and_Mailing_Address_Same__c;
                 lstupdateParcel.add(parcel);
             }
         }
@@ -307,7 +309,8 @@ application.MUSW_Account__c = account;*/
             insert lstupdateParcel;
         }
         
-        List<BGCK__Answer__c> lstAnswer = [SELECT id,Name,BGCK__Valid__c,Answer_Text__c,QuestionDOL__c,Question_Section__c,License__c,Application_BG__c FROM BGCK__Answer__c WHERE License__c=:licId ];
+       /*  commented for not showing license answers in Renewal Application
+       List<BGCK__Answer__c> lstAnswer = [SELECT id,Name,BGCK__Valid__c,Answer_Text__c,QuestionDOL__c,Question_Section__c,License__c,Application_BG__c FROM BGCK__Answer__c WHERE License__c=:licId ];
         List<BGCK__Answer__c> lstUpdateAnswer = new List<BGCK__Answer__c>();
         if(!lstAnswer.isEmpty())
         {
@@ -328,7 +331,7 @@ application.MUSW_Account__c = account;*/
         {
             insert lstUpdateAnswer;
         }
-        
+        */
         /*//Background Information
 List<LnP_BackgroundSection__c> bgckList = new List<LnP_BackgroundSection__c>();
 for(LnP_BackgroundSection__c bgck  : [select id,RecordTypeId,Application_BG__c ,Name_of_Institution__c,Degree__c,Major__c,Minor__c,Start_Date__c,End_date__c,State__c,Job_Title__c,Country__c,City__c,Employer__c,Zip_code__c,County__c,Total_Hours__c,Street_Address__c,Provider__c,Name_of_Course__c,Trainer_License__c,Credits__c,Hours__c FROM LnP_BackgroundSection__c WHERE Application_BG__c =:licId and RecordTypeID != null]){
@@ -384,7 +387,7 @@ insert bgckList;
         @AuraEnabled public string noAccount {get;set;}
     }
     @AuraEnabled
-    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType, string Obj) {
+    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType, string Obj, string renewalReinstate,string upgradeLicenseIdValue) {
         List<String> result = new List<String>();
         String condition1 = 'Application_Type__c = \''+Board+'\'';
         String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
@@ -392,25 +395,45 @@ insert bgckList;
         String condition4 = 'Required__c = True'; 
         String condition5 = 'Active__c = True';
         String condition6 = 'Default__c = True';
-        String condition7 = 'Object__c = \''+obj+'\'';
+        String condition7 = 'Object__c = \''+Obj+'\'';
         //String condition7 = 'Object__c = \'MUSW__License2__c\'';
+        String condition8 ='';
         String condition9 = 'Order_No__c';
+		MUSW__License2__c upgradeLicense = new MUSW__License2__c();
+        if(upgradeLicenseIdValue!=null && upgradeLicenseIdValue!=''){
+         upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue limit 1];
+        }
+        String condition10 = 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
+        if(renewalReinstate=='Renewal')
+        {
+            condition8 = 'AND Show_For__c includes (\'Credential Renewal\')';
+        }
+        else if(renewalReinstate=='Reinstatement')
+        {
+            condition8 = 'AND Show_For__c includes (\'Credential Reinstatement\')';
+        }
         list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
         list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
         
         String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
-        system.debug('News Query::'+appInstructionList);
-
-        String Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + ' ORDER BY ' + condition9;
-        masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
+        
+		String Str2 ='';
+        if(ApplicationType == 'Upgrade' && upgradeLicenseIdValue != null){
+          Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+         
+        }
+        else{
+        Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+        }
+		masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
         if(!appInstructionList.isEmpty()){
             result.add(appInstructionList[0].Instructions__c);             
         }
         else{
-            result.add('null');
+            result.add('');
         }
         if(!masterSubListOnAppInstrList.isEmpty()){
             for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
@@ -421,5 +444,29 @@ insert bgckList;
         
         return result;
     }
+    @AuraEnabled
+    public static Map<String,List<String>> fetchLicenseType(String typeOFLicense) {
+        Map<String,List<String>> lstLicenseType = new  Map<String,List<String>> ();
+         List<License_Type__mdt> lstlicenseTypess= new  List<License_Type__mdt>();
+        if(typeOFLicense == 'Individual') {
+                  lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
+                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c =:typeOFLicense];  
+        }  else {
+              lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
+                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c !='Individual'];  
+        }
+
+        for( License_Type__mdt license : lstlicenseTypess) 
+        {
+            if(lstLicenseType.containsKey(license.Application_Type__c)) {
+                lstLicenseType.get(license.Application_Type__c).add(license.Credential_Type__c);
+            } else {
+                lstLicenseType.put(license.Application_Type__c, new List<String>{license.Credential_Type__c});
+            }
+        }
+        return lstLicenseType;
+       }
+       
+        
     
 }

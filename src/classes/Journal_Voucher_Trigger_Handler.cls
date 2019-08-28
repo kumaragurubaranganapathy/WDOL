@@ -10,11 +10,16 @@ public void onInsert(List<Journal_Voucher__c> journalVoucherList)
             system.debug('the current sequence number is' +currentSeq);
             
         }
-    Journal_Voucher__c jvRec=[Select id,Document_Type__c,Current_Document_Number__c from Journal_Voucher__c where id =: journalVoucherList[0].id]; 
+    //Journal_Voucher__c jvRec=[Select id,Document_Type__c,Current_Document_Number__c from Journal_Voucher__c where id =: journalVoucherList[0].id]; 
     if( journalVoucherList !=null && journalVoucherList.size()>0) {
         for(Journal_Voucher__c journalVoucherRec:journalVoucherList ){
             if(journalVoucherRec.Current_Document_Number__c == null){
-              currentSeq++;
+                if(currentSeq > 9998){
+                currentSeq =0;
+                } else{
+                    currentSeq++;
+                }
+              
                 
              objJVseq.Current_sequence__c=currentSeq++;
                 system.debug('the increased currentSeq' +currentSeq);
@@ -29,25 +34,89 @@ public void onInsert(List<Journal_Voucher__c> journalVoucherList)
                 sTemp = '0'+ sTemp;
             }
                 
-      if(jvRec.Document_Type__c == 'Manual CreditJournal - User Created' || jvRec.Document_Type__c == 'Manual JV -User Created - Correction JV or one system to another JV' ||
-         jvRec.Document_Type__c == 'Manual JV -Remittance JV from a validation number' || jvRec.Document_Type__c == 'RemittanceTransfer in POLARIS - User Created' ||
-         jvRec.Document_Type__c == 'ManualTransfer - User Created' || jvRec.Document_Type__c == 'ManualTransfer - System Generated to other agencies'
+      if(journalVoucherRec.Document_Type__c == 'Manual CreditJournal - User Created' || journalVoucherRec.Document_Type__c == 'Manual JV -User Created - Correction JV or one system to another JV' ||
+         journalVoucherRec.Document_Type__c == 'Manual JV -Remittance JV from a validation number' || journalVoucherRec.Document_Type__c == 'RemittanceTransfer in POLARIS - User Created' ||
+         journalVoucherRec.Document_Type__c == 'ManualTransfer - User Created' || journalVoucherRec.Document_Type__c == 'ManualTransfer - System Generated to other agencies'
           ){
-              jvRec.Current_Document_Number__c='240V'+sTemp;
+              journalVoucherRec.Current_Document_Number__c='240V'+sTemp;
                 }
                 
-                if(jvRec.Document_Type__c == 'Manual CRJSfor Daily -Lockbox  240Q'){
-                     jvRec.Current_Document_Number__c='240Q'+sTemp;
+                if(journalVoucherRec.Document_Type__c == 'Manual CRJSfor Daily -Lockbox  240Q'){
+                     journalVoucherRec.Current_Document_Number__c='240Q'+sTemp;
                    }
                 
-                if(jvRec.Document_Type__c == 'Manual IAP -user created to ensure document # matches OFM/AFRS'){
-                     jvRec.Current_Document_Number__c='';
+                if(journalVoucherRec.Document_Type__c == 'Manual IAP -user created to ensure document # matches OFM/AFRS'){
+                     journalVoucherRec.Current_Document_Number__c='';
                 }
             }
         }
     }
  
 update objJVseq;
-update jvRec;      
+    
     }
+    
+    
+    public void onBeforeInsert(List<Journal_Voucher__c> journalVoucherList){
+        system.debug('inside trigger');
+        Id manualrecTypeId = Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Manual').getRecordTypeId();
+        datetime currentTime= system.now();
+        Decimal currentHour= currentTime.hourGmt();
+        
+        //Code to calculate Fiscal Year,Fiscal Month and Biennium Year start
+        Date currentDate = system.today();
+        integer currentYear =currentDate.year();
+        integer currentMonth =currentDate.month();
+        integer BienniumYear = 0;
+        integer FiscalMonth  =0;
+        integer FiscalYear = 0;
+
+        if(math.mod(currentYear,2)==1){
+            if(currentMonth > 6){
+                BienniumYear =   currentYear+2;
+                FiscalMonth = currentMonth-6;
+                FiscalYear = 01;
+            }
+            else {
+                BienniumYear = currentYear;
+                FiscalYear = 02;
+                FiscalMonth = currentMonth + 18;
+            }
+            
+        }
+        else{
+            BienniumYear =   currentYear+1;
+            FiscalMonth = currentMonth + 6;
+            if(currentMonth > 6){
+                
+                
+                FiscalYear = 02;
+            }
+            else {
+                
+                FiscalYear = 01;
+                
+            }
+        }
+
+        for(Journal_Voucher__c voucher:journalVoucherList){
+            if(voucher.RecordTypeID == manualrecTypeId){
+                string sTemp =String.Valueof(FiscalMonth);
+                if(sTemp.length() == 1){
+                    sTemp = '0'+ sTemp;
+                }
+                voucher.Fiscal_Month__c =sTemp;
+                sTemp =String.Valueof(FiscalYear);
+                if(sTemp.length() == 1){
+                    sTemp = '0'+ sTemp;
+                }
+                voucher.Fiscal_Year__c =sTemp;
+                voucher.Biennium_Year__c= String.valueOf(BienniumYear);
+            }
+        }
+
+    }
+
+
+    
 }

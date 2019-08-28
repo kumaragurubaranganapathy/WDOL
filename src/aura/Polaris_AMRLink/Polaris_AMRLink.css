@@ -1,5 +1,5 @@
 .THIS .nav-links ul{
-    border: solid 1px t(primary);
+    border: none;
     background : t(actionPanelBG);
     height:100%;
 }
@@ -9,16 +9,19 @@
 }
 .THIS .nav-links li .slds-button{
     color:t(LnGWhite);
-    font-size:1rem;
-    font-family:t(btnfontfamily);
+    font-size:1rem;    
 }
 .THIS .nav-links.exp-link{
     position:absolute;
     z-index:1000;
+    background:t(actionPanelBG);
     
 }
 .THIS.links-wrapper.exp-links-wrapper{
     position:relative;
+}
+.THIS .amr-buttons{
+    text-align:left;
 }
 @media t(mqSmall){
     .THIS .nav-links ul{

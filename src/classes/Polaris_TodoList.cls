@@ -1,37 +1,105 @@
 /*
 Controller for ToDoList
 */
-public without Sharing class  Polaris_TodoList{
+public with Sharing class  Polaris_TodoList{
     
     @AuraEnabled
     public static List<task> getTodoList(){
         //Status =:'Pending',
         User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
-        
-        return [select id,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status =:'Pending' and Email__c=:currentUser.Email ];
-        
+        system.debug('currentUser :'+currentUser);
+        return [select id,Description,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status ='Pending' and Email__c=:currentUser.Email ];
     }
+    @AuraEnabled
+     public static String insertEducationRequestInformation(String licId,String licenseType, String board,String ServiceRequestType,String ExamRecordId)
+    {
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        Id getContactId = '003r000000EOhBB';
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
+        }
+        system.debug('licenseType'+licenseType+'board');
+        Request__c application = new Request__c();
+        application.Profession__c = board; 
+        application.License_Type__c = licenseType;        
+        application.Stage__c = 0;
+        application.Service_Request_Type__c = ServiceRequestType;
+        application.Contact__c = getContactId;
+        application.Exam__c = ExamRecordId;
+        
+        if(licId != null && licId != ''){
+            application.License__c = licId;  
+        }  
+        try
+        {          
+            insert application;
+        }
+        catch(Exception e){
+            HandleException.LogException(e,'ExamReschedule','insertRequest');            
+        }
+        string appId = '';
+        return appId = application.Id;
+    }
+    @AuraEnabled
+    public static String insertRequestInformation(String licId,String licenseType, String board,String ServiceRequestType){
+        Id getContactId ; 
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        
+        if(userInfoData[0].ContactId != null){
+            getContactId = userInfoData[0].ContactId;
+        }
+        system.debug('licenseType'+licenseType+'board');
+        Request__c application = new Request__c();
+        application.Profession__c = board; 
+        application.License_Type__c = licenseType;        
+        application.Stage__c = 0;
+        application.Service_Request_Type__c = ServiceRequestType;
+        application.Contact__c = getContactId;
+        application.License__c = licId;
+        try
+        {          
+            insert application;
+        }
+        catch(Exception e){
+            HandleException.LogException(e,'Polaris_TodoList','insertRequestInformation');            
+        }
+        string appId = '';
+        return appId = application.Id;
+    }
+    
     @AuraEnabled
     public static String fetchChildLicense(Id taskId)
     {
         Task ta =  [select id,Subject,Email__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where id =: taskId ];
         List<Associations__c> lstAssociation = [SELECT id, Status__c,Child_License__c,Child_License__r.MUSW__Expiration_Date__c From Associations__c where id=:ta.Whatid];
         for(Associations__c associ : lstAssociation)
-            {
-                associ.Status__c = 'Generate Fee';
-            }        
+        {
+            associ.Status__c = 'Generate Fee';
+        }        
         system.debug('lstAssociation from child : '+lstAssociation);
-           if(!lstAssociation.isEmpty()){   
-               ta.Sub_status__c = 'Accepted';
-               update ta;
-                update lstAssociation;
-           }
+        if(!lstAssociation.isEmpty()){   
+            ta.Sub_status__c = 'Accepted';
+            update ta;
+            update lstAssociation;
+        }
         return ta.Child_License_Id__c;
     }
     //method to insert Request
     @AuraEnabled
     public static String insertRequest(String accountContactId,String licenseType, String board,String ServiceRequestType){
-         
+        
         Id getContactId ; 
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
@@ -99,9 +167,9 @@ public without Sharing class  Polaris_TodoList{
             accList.add(acc);
         }
         if(!accList.isEmpty()){
-                update tskList;
-                update accList;
-                return 'Success';
+            update tskList;
+            update accList;
+            return 'Success';
         }else if(lstAssociationsOnChild.size() <= 1){
             for(Associations__c associ : lstAssociation)
             {
@@ -113,7 +181,7 @@ public without Sharing class  Polaris_TodoList{
                 }
                 lstUpdateAssociation.add(associ);
             }            
-           if(!lstUpdateAssociation.isEmpty()){
+            if(!lstUpdateAssociation.isEmpty()){
                 update tskList;
                 update lstUpdateAssociation;
                 return 'Success';
@@ -123,7 +191,7 @@ public without Sharing class  Polaris_TodoList{
         }
         else if(lstAssociationsOnChild.size() > 1)
         {
-                        
+            
             for(Associations__c associ : lstAssociation)
             {
                 
@@ -157,18 +225,18 @@ public without Sharing class  Polaris_TodoList{
                 return 'Success';
             }
         }
-            return 'Fail';                   
+        return 'Fail';                   
     }
     
     @AuraEnabled
     public static boolean hasBusinessAccounts(){
         
         Boolean hasBusinessAccounts = true;
-         
+        
         try{
-        
+            
             List<Account> accList = Add_BusinessController.getAllAccounts();
-        
+            
             If(accList != null){
                 
                 if(accList.size()!=0){
@@ -179,16 +247,43 @@ public without Sharing class  Polaris_TodoList{
                     
                     hasBusinessAccounts = false;
                 }
-        }
-        
-        return hasBusinessAccounts;
-        
+            }
+            
+            return hasBusinessAccounts;
+            
         }catch(Exception Ex){
             
-             return hasBusinessAccounts = true;
+            return hasBusinessAccounts = true;
         }
     }
-    
+        @AuraEnabled
+    public static boolean hasLicenses(){
+        
+        Boolean hasLicenses = true;
+        
+        try{
+            
+            List<MUSW__License2__c> accList = [select id from  MUSW__License2__c where owner.id =: UserInfo.getUserId() ];
+            
+            If(accList != null){
+                
+                if(accList.size()!=0){
+                    
+                    hasLicenses = true;
+                    
+                }else{
+                    
+                    hasLicenses = false;
+                }
+            }
+            
+            return hasLicenses;
+            
+        }catch(Exception Ex){
+            
+            return hasLicenses = true;
+        }
+    }
     public class ToDoWrapper{
         @AuraEnabled
         public string businessName;
@@ -206,4 +301,31 @@ public without Sharing class  Polaris_TodoList{
         User currentUserDetails = [SELECT Name from User Where ID = :UserInfo.getUserId() LIMIT 1];
         return currentUserDetails.Name;
     }
+    
+    @AuraEnabled
+    public static List<Account> getAllAccounts(){
+        Set<Id> accntIdSet = new Set<Id>();
+        List<Account> accList = new List<Account>();
+        User currentUser = [SELECT Id, Name,firstName ,lastName, ContactId , IsActive, IsPortalEnabled, MUSW__Successor__c, ProfileId , email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+        List<MUSW__Account_Contact__c> accntConList = [SELECT Id,MUSW__Contact__c,Account_Admin__c,MUSW__Account__c,MUSW__Account__r.Name,MUSW__Account__r.Type_of_Ownership__c,
+                                                       MUSW__Account__r.Security_Code__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Business_Alias__c ,MUSW__Account__r.Doing_Business_As_1__c ,MUSW__Account__r.Website,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Fax,MUSW__Account__r.Email__c,
+                                                       MUSW__Account__r.Email_Primary_Contact__c,MUSW__Account__r.FEIN_Number_Encrypted__c,MUSW__Account__r.Social_Security_Number_Encrypted__c,
+                                                       MUSW__Account__r.UBI_Number__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Phone__c,Name 
+                                                       FROM MUSW__Account_Contact__c WHERE MUSW__Contact__c =: currentUser.ContactId  AND MUSW__Account__c != null and Status__c = 'Active' and Account_Admin__c = true] ; 
+        for(MUSW__Account_Contact__c accCon : accntConList ){
+            accntIdSet.add(accCon.MUSW__Account__c);
+        }
+        if(accntIdSet!=null && !accntIdSet.isEmpty()){
+            accList= [select Id,(select id,isAdminContact__c,Account_Admin__c from MUSW__Account_Contacts__r where MUSW__Contact__c = :currentUser.ContactId and Account_Admin__c =true),
+                      Name,Type_of_Ownership__c,Doing_Business_As_1__c,First_Name_Primary_Contact__c,Last_Name_Primary_Contact__c,Phone_Primary_Contact__c,
+                      UBI_Number__c,Email__c,Business_Phone__c,Extension__c,Website, Business_Website__c, Business_Structure__c, Business_Alias__c 
+                      from Account where id in:accntIdSet];
+        }
+        else{
+            
+            
+        }
+        return accList;
+    }
+    
 }

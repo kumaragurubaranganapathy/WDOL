@@ -67,9 +67,10 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
+        <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>
         <layoutColumns/>
@@ -77,8 +78,14 @@
     </layoutSections>
     <relatedLists>
         <fields>MasterLabel</fields>
+        <fields>JV_name__c</fields>
         <fields>DeveloperName</fields>
         <fields>NamespacePrefix</fields>
+        <fields>Item_Intake_Method__c</fields>
+        <fields>Item_Payment_Method__c</fields>
+        <fields>Item_Transaction_Code__c</fields>
+        <fields>Item_Fund_GL__c</fields>
+        <fields>Item_FundAccSystem__c</fields>
         <relatedList>Journal_Voucher_Filter__mdt.Journal_Voucher_mtd__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -86,4 +93,10 @@
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
+    <summaryLayout>
+        <masterLabel>00hr0000002Qffw</masterLabel>
+        <sizeX>4</sizeX>
+        <sizeY>0</sizeY>
+        <summaryLayoutStyle>Default</summaryLayoutStyle>
+    </summaryLayout>
 </Layout>

@@ -6,18 +6,18 @@
 
     <apex:includeScript value="/support/console/26.0/integration.js" />
     <style>
-        @font-face {
-            font-family: 'PublicSans-Regular';
-            src: url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf);
-        }
+        @font-face{
+    		font-family:'SourceSansPro-Regular';
+    		src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+		}
         
-        @font-face {
-            font-family: 'NotoSansTC-Regular';
-            src: url('/lightningwashington/resource/Noto_Sans_TC/Noto_Sans_TC/NotoSansTC-Regular.otf');
-        }
+        @font-face{
+    		font-family:'Merriweather-Regular';
+    		src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf);
+		}
         
         body {
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .individualPalette {
@@ -34,14 +34,14 @@
         }
         
         .pageDescription {
-            font-family: 'PublicSans-Regular';
+            font-family: 'Merriweather-Regular';
         }
         
         .text-description {
             padding-left: 43px;
             font-size: 11px;
             padding-bottom: 20px;
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .footerWrapper {
@@ -132,7 +132,7 @@
             border-right-color: #205493;
             border-left-color: #205493;
             font-size: 11px;
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .bPageBlock {
@@ -206,7 +206,7 @@
         
         .pbBody {
             background-color: white!important;
-            font-family: 'PublicSans-Regular';
+            font-family: 'SourceSansPro-Regular';
         }
         
         .continute_btn {
@@ -220,7 +220,11 @@
     <apex:variable var="hasCC" value="false"/>
     
     <apex:form id="f">
-       
+		<!----
+        <apex:outputPanel rendered="{!isPortalUser}">
+			<img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
+		</apex:outputPanel>
+		--->
         <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '’s Cart', 'Your Cart')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
@@ -374,13 +378,13 @@
                                 />
                             </apex:inputField>
                             <br/>
-                            <apex:inputText label="Email Receipt To" value="{!email}" id="email" />
+                            <apex:outputText label="Email Receipt To" value="{!email}" id="email" />
                             <br/>
                             <apex:outputPanel >
-                                <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
+                               <!-- <p style="padding-left:37%;text-align:left;">Note: If you update the email address on this field,
                                     it will also update the email address for the
                                     contact record.
-                                </p>
+                                </p> -->
                             </apex:outputPanel>
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
 
@@ -564,8 +568,11 @@
                                     <apex:param name="currentReceiptIndex" value="{!index}" assignTo="{!currentReceiptIndex}"/>
                                 </apex:actionSupport>
                             </apex:selectList>
-                            <apex:inputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
-                                <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />  
+                            <apex:outputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && isPortalUser && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
+                                <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />
+                            </apex:outputText>
+                            <apex:inputText label="Payment Amount" value="{!rvo.amount}" rendered="{!!isblank(rvo.r.MUSW__Payment_Method__c) && !isPortalUser  && !(CONTAINS('Other', rvo.pmtMethodSelected) || CONTAINS('Deposit', rvo.r.MUSW__Payment_Method__c))}">
+                                <apex:actionSupport event="onkeyup" reRender="totals,totalPaymentPanel" />
                             </apex:inputText>
                         </apex:pageBlockSection>
                         <apex:outputPanel rendered="{!rvo.r.MUSW__Payment_Method__c = 'Deposit'}">
@@ -755,6 +762,7 @@
                                           </BGBK:CartConfirm>
                         
                         <apex:commandButton value="Print Receipt" reRender="tab,msg" action="{!printReceipt}" rendered="{!processSuccessful && receiptVOs.size>0}"/>
+						<!--Chiranth - Renamed the button to Continue-->
                         <apex:commandButton styleClass="continute_btn" value="Continue" action="{!backToItems}" />
                         <apex:commandButton value="Try Again" action="{!checkout}" reRender="tab,msg" rendered="{!!processSuccessful && (feeVOs.size > 0 || invoiceVOs.size > 0)}" />
                     </apex:outputPanel>                      
@@ -851,7 +859,8 @@
             </form>
         </apex:outputPanel>
     </apex:outputPanel>
-    <!---<div class="footer" data-aura-rendered-by="170:0">
+	<!----
+    <div class="footer" data-aura-rendered-by="170:0">
         <div class="footerWrapper cLnP_Footer" data-aura-rendered-by="173:0" data-aura-class="cLnP_Footer">
             <div class="slds-grid botNav" data-aura-rendered-by="174:0">
                 <ul class="footerList" data-aura-rendered-by="175:0">
@@ -866,5 +875,6 @@
                 </ul>
             </div>
         </div>
-    </div>  --->
+    </div>
+	--->
 </apex:page>

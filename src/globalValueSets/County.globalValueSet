@@ -196,6 +196,18 @@
         <label>Yakima</label>
     </customValue>
     <customValue>
+        <fullName>Ashland</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Ashland</label>
+    </customValue>
+    <customValue>
+        <fullName>Barron</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Barron</label>
+    </customValue>
+    <customValue>
         <fullName>Bayfield</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -532,12 +544,6 @@
         <label>Washburn</label>
     </customValue>
     <customValue>
-        <fullName>Out of State</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Out of State</label>
-    </customValue>
-    <customValue>
         <fullName>Washington</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -591,12 +597,19 @@
         <isActive>false</isActive>
         <label>Null</label>
     </customValue>
+	<customValue>
+        <fullName>Out of State</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Out of State</label>
+    </customValue>
     <customValue>
         <fullName>Out Of Country</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Out Of Country</label>
     </customValue>
+	
     <customValue>
         <fullName>Unknown County</fullName>
         <default>false</default>
@@ -605,5 +618,5 @@
     </customValue>
     <description>County Picklist</description>
     <masterLabel>County</masterLabel>
-    <sorted>true</sorted>
+    <sorted>false</sorted>
 </GlobalValueSet>

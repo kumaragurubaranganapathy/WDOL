@@ -18,43 +18,19 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Reschedule_Possible_Flag</fullName>
-        <field>Reschedule_Possible__c</field>
-        <literalValue>1</literalValue>
-        <name>Update Reschedule Possible Flag</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Update Exam Status On Expiration</fullName>
         <actions>
             <name>Update_Exam_Status</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
-        <description>Update the status of the exam if the exam expiration date is passed.</description>
-        <formula>TODAY() &gt; Exam_Result_Expiry_Date__c</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Update Reschedule Flag on Exam</fullName>
         <actions>
-            <name>Update_Reschedule_Possible_Flag</name>
+            <name>Update_Reschedule_Flag</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>Education_History__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Expired</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Education_History__c.Exam_Reschedule_via_DOL__c</field>
-            <operation>equals</operation>
-            <value>Yes</value>
-        </criteriaItems>
+        <description>Update the status of the exam if the exam expiration date is passed.</description>
+        <formula>TODAY() &gt; Exam_Result_Expiry_Date__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

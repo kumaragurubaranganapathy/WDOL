@@ -9,7 +9,8 @@
     <tabs>BGBL__Merge_Template__c</tabs>
     <tabs>BGBL__Query__c</tabs>
     <tabs>standard-report</tabs>
-    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <tabs>Master_Exam_List__c</tabs>
-    <tabs>Master_ConfigData_Listing__c</tabs>
+    <tabs>LnP_Parcel__c</tabs>
+    <tabs>EpaymentRemittanceData__c</tabs>
 </CustomApplication>

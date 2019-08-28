@@ -1,0 +1,219 @@
+<aura:component description="Dol_AddressVerificationCmp" controller="Dol_AddressValidationServiceBckOffice" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="outputAddress" type="Object" />
+    <aura:attribute name="title" type="String" default="Add a New Address"/>
+    <aura:attribute name="country" type="String[]"/>
+    <aura:attribute name="street" type="String"  default=""/>
+    <aura:attribute name="street2" type="String"  default=""/>
+    <aura:attribute name="city" type="String"  default=""/>
+    <aura:attribute name="state" type="String[]" />
+    <aura:attribute name="zip" type="String"  default=""/>
+
+    <aura:attribute name="originalAddress" type="String" />
+    <aura:attribute name="nonUsAddress" type="String" />
+    
+    <aura:attribute name="suggestedAddress" type="String" />
+    <aura:attribute name="Spinner" type="Boolean" default="false"/>
+    <aura:attribute name="isAddAddressClicked" type="Boolean" default="false"/>
+    <aura:attribute name="userSelectedAddr" type="String" />
+     <aura:attribute name="parcelObject" type="MUSW__Parcel__c" 
+                  												default="{ 'sobjectType' : 'MUSW__Parcel__c',
+                                                                         'MUSW__Street2__c' : '',
+                                                                         'MUSW__Unit__c' : '',
+                                                                         'MUSW__City__c' : '',
+                                                                         'MUSW__State__c' : 'WA',
+                                                                         'County__c' : 'Asotin',
+                                                                         'Country__c' : 'United States',
+                                                                         'Zip_Postal_Code__c' : '',
+                             }" />
+    <aura:attribute name="isAddressDiff" type="Boolean" default="false"/>
+    <aura:attribute name="isAddress2" type="Boolean" default="false"/>
+    <aura:attribute name="issuggestedAdd2" type="Boolean" default="false"/>
+    <aura:attribute name="isOriginalAdd2" type="Boolean" default="false"/>
+    
+    <aura:attribute name="isSelectedAddrTrue" type="Boolean" default="false"/>
+    <aura:attribute name="isAddrVerification" type="String"/>
+    <aura:attribute name="selectedAddressType" type="String" />
+    <aura:attribute name="outofState" type="String"/>
+    <aura:attribute name="isOutOfCountry" type="Boolean" default ="false"/>
+    <aura:attribute name="issuggestTrue" type="Boolean" default ="false"/>
+    <aura:attribute name="isStateWA" type="Boolean" default ="false"/>
+    <aura:attribute name="outofCounty" type="String" default =""/>
+    <aura:attribute name="countyValue" type="String" default =""/>
+    <aura:attribute name="Statevalue" type="String" default =""/>
+    <aura:attribute name="selectedState" type="String" default =""/>
+    <aura:attribute name="pathname" type="String" default =""/>
+    <aura:attribute name="parentSobjectID" type="String" default =""/>
+    <aura:attribute name="navigatetoRelatedList" type="Boolean" default ="false"/>
+    <aura:attribute name="selectedValue" type="String" default =""/>
+    
+    
+    
+    
+    <aura:handler name="init" action="{!c.doinit}" value="{!this}"/>
+    
+     <div class="address" style="width:50%;">
+            <!-- <aura:If isTrue= "{!v.hasApplicant == 'true'}"> -->
+                <div class="slds-m-around--xx-large">
+                    <aura:if isTrue="{!v.Spinner}">
+                        <div class="slds-spinner_container" style="position:fixed" aura:id="uploadSpinner">
+                            <div class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                     </div>
+                    </aura:if>
+
+                    <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                    <div class="slds-form--stacked">
+            			<div class="slds-form-element">  
+                			<div class="slds-form-element__control">                       
+                                <label class="slds-form-element__label" for="input-01">Country
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="slds-grid">
+                                    <div class="slds-col"><ui:inputSelect value="{!v.parcelObject.Country__c}" aura:id="countryVal" class="dynamic" change="{!c.onCountryChange}"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">  
+                			<div class="slds-form-element__control">                        
+                                <label class="slds-form-element__label" for="input-01">Street Address
+                                    <span class="required">*</span>
+                                </label>
+                                <ui:inputText aura:id="addressLine1" required="true"  value="{!v.street}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">  
+                			<div class="slds-form-element__control">                       
+                                <label class="slds-form-element__label" for="input-01">Apt, Suite, Building, Floor etc.
+                                </label>
+                                <ui:inputText aura:id="addressLine2" required="false"  value="{!v.street2}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">  
+                			<div class="slds-form-element__control">                        
+                                <label class="slds-form-element__label" for="input-01">City
+                                    <span class="required">*</span>
+                                </label>
+                                <ui:inputText aura:id="city" required="true" value="{!v.city}" blur="{!c.onCityChange}"/>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="slds-form-element">  
+                			<div class="slds-form-element__control">
+                                <label class="slds-form-element__label" for="input-07">State
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="slds-grid">
+                                    <div class="slds-col">
+                                        <aura:if isTrue="{!v.isOutOfCountry}">
+                                            <ui:inputText aura:id="stateNotFound" required="true" disabled="true" value="{!v.outofState}" class="dynamic"/>
+                                            <aura:set attribute="else">
+                                                <ui:inputSelect value="{!v.parcelObject.MUSW__State__c}" aura:id="stateval" class="dynamic" change="{!c.onStateUpdate}"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        
+                       <div class="slds-form-element">  
+                			<div class="slds-form-element__control">
+                                <label class="slds-form-element__label" for="input-07">County
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="slds-grid">
+                                    <div class="slds-col">
+                                        <aura:if isTrue="{!v.isStateWA}">
+                                            <ui:inputSelect  aura:id="county" class="dynamic" value="{!v.selectedValue}"/>
+                                            <aura:set attribute="else">
+                                                <ui:inputText aura:id="outofCounty" required="true" disabled="true" value="{!v.outofCounty}" class="dynamic"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       <div class="slds-form-element">  
+                			<div class="slds-form-element__control">                     
+                                <label class="slds-form-element__label" for="input-01">Zip
+                                    <span class="required">*</span>
+                                </label>
+                                <aura:if isTrue="{!v.isOutOfCountry}">
+                                	<ui:inputText aura:id="internationalzip" required="true" value="{!v.zip}"/>
+                                    <aura:set attribute="else">
+                        				<ui:inputText aura:id="uSzip" required="true" value="{!v.zip}" maxlength="5"/>
+                        			</aura:set>
+                                </aura:if> 
+                            </div>
+                        </div>
+                    </div>
+                   <div class="slds-m-around--medium">
+                        <!-- <lightning:button variant="neutral" label="Reset" onclick="{! c.resetTimeEntry }" /> -->
+                       <aura:if isTrue="{!v.isOutOfCountry}">
+                        	<lightning:button  label="Save Address" variant="brand" onclick="{!c.saveNonUSAAddress}"/>&nbsp;&nbsp;
+                        <aura:set attribute="else">
+                        	<lightning:button variant="brand" label="Add Address" onclick="{!c.getValidatedAddress}" />&nbsp;&nbsp;
+                        </aura:set>
+                       </aura:if>
+                       <lightning:button  label="Cancel" variant="brand" onclick="{!c.handleBack}"/>
+                    </div> 
+                    
+                    
+                </div>  
+        </div>
+    <aura:if isTrue="{!v.isAddAddressClicked}">
+        <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="title slds-text-heading--large">Add a New Address</h2><br/>
+                    <aura:if isTrue = "{!v.isAddressDiff}">
+                        <h2 class="title slds-text-heading--small">{!$Label.c.Address_Suggestion_Text}</h2>
+                    </aura:if>
+                  </div>
+                <div class="slds-modal__content slds-p-around--medium">
+               <fieldset class="slds-form-element">
+                <legend class="slds-form-element__legend slds-form-element__label"></legend>
+                <div class="slds-form-element__control slds-list_horizontal">
+                    <span class="slds-radio">
+                        <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
+                        <label class="slds-radio__label" for="original">
+                            <span class="slds-radio_faux"></span>
+                            <span class="slds-form-element__label">Original Address</span>
+                            <br/>
+                            <span id= "old" class="slds-form-element__label">{!v.originalAddress}</span>
+                        </label>
+                    </span>
+                   </div><br/>
+                  <div></div>
+                  <div class="slds-form-element__control slds-list_horizontal">
+                    <span class="slds-radio">
+                        <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
+                        <label class="slds-radio__label" for="suggested">
+                            <span class="slds-radio_faux"></span>
+                            <span class="slds-form-element__label">Suggested Address</span><br/>
+                            <span id= "new" class="slds-form-element__label"><aura:unescapedHtml value="{!v.suggestedAddress}" /></span>
+                        </label>
+                    </span>
+                </div>
+            </fieldset>
+                 <lightning:layout horizontalAlign="center">
+                        <lightning:layoutitem padding="around-small">
+                            <lightning:button  label="Save Address" variant="brand" onclick="{!c.saveUSAAddress}"/>
+                        </lightning:layoutitem>
+                    </lightning:layout>
+                </div>
+
+               <div class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}"/>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+      
+</aura:component>

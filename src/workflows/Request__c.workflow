@@ -132,16 +132,6 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
-        <fullName>Request Applicant Email Update</fullName>
-        <actions>
-            <name>Applicant_Email_Address_From_License_Obj</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>(ISBLANK(Request_Applicant__c))</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
 	<rules>
         <fullName>Send Email on Reschedule Exam Request Approval</fullName>
         <actions>
@@ -159,6 +149,16 @@
             <operation>equals</operation>
             <value>Approved</value>
         </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Request Applicant Email Update</fullName>
+        <actions>
+            <name>Applicant_Email_Address_From_License_Obj</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>(ISBLANK(Request_Applicant__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

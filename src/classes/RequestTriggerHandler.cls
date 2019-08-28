@@ -180,7 +180,7 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
         if(TimeslotsToUpdate.size()>0){
             List <Database.SaveResult > saveResults = new  List <Database.SaveResult >();
             saveResults=   database.update(TimeslotsToUpdate,false);
-            ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, saveResults, null, 'Sobject','Update records', null,'RequestTriggerHandler',Label.Str_High,'RequestTriggerHandler');
+            //ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, saveResults, null, 'Sobject','Update records', null,'RequestTriggerHandler',Label.Str_High,'RequestTriggerHandler');
         }
         
     }

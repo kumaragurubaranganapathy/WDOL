@@ -23,9 +23,9 @@ DESCRIPTION: Re-usable component for using a Multi-select picklist with pills.
     
     <div class="slds-clearfix">
         <aura:if isTrue="{!v.showDropdown}">
-            <div class="slds-form-element slds-float--left slds-p-right--small select-box">
+            <div class="slds-form-element select-box">
                 <div class="slds-form-element__control">
-                    <div class="slds-combobox_container slds-size_small">
+                    <div class="slds-combobox_container">
                         <div class="{!v.isOpen == true ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open' : 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger--click slds-combobox-picklist'}" aria-expanded="true">
                             <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" data-attr="phone" onclick="{!c.toggleOpen}">
                                 <!--<label class="slds-assistive-text">{!v.multiselectLabel}</label>-->
@@ -33,8 +33,8 @@ DESCRIPTION: Re-usable component for using a Multi-select picklist with pills.
                                 <!--<c:svgIcon svgPath="{!$Resource.ISD_LDSIcons + '/utility-sprite/svg/symbols.svg#chevrondown'}" containerClass="slds-input__icon slds-input__icon_right" category="utility" size="xx-small" name="chevrondown" class="icon-chevron" />-->
                             	<div class="icon-chevron icon-bottom slds-input__icon slds-input__icon_right" ></div>
                             </div>
-                            <div id="listbox-unique-id" class="listbox-wrapper" aura:id="listOptions" aria-label="Multi-select Picklist">
-                                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid ul-listbox" role="presentation" >
+                            <div class="listbox-wrapper" aura:id="listOptions" aria-label="Multi-select Picklist">
+                                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid ul-listbox" role="listbox" aria-label="Multi-select Picklist" tabindex="-1" onblur="{!c.closePicklist}" id="listbox-unique-id">
                                     <aura:iteration items="{!v.options}" var="o" indexVar="indx">
                                         <c:LnP_Multiselect_PicklistItem singleSelectitem="{!v.singleSelect}" itemObj="{!o}" options="{!v.options}" isOpen="{!v.isOpen}" optionID="{!indx}" seloptionID="{!v.seloptionID}" optionsSelected="{!v.optionsSelected}" closePicklist="{!c.closePicklist}" listItemClass="{!v.listItemClass}" />
                                     </aura:iteration>

@@ -40,17 +40,25 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>BGBL__ORDER_BY_Filter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>BGBL__Tracking_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>BGBL__ORDER_BY_Filter__c</field>
+                <field>BGBL__Track_No__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>BGBL__LIMIT_Filter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>BGBL__ORDER_BY_Direction_Short__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>

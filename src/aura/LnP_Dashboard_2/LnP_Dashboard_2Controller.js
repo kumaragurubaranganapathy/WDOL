@@ -1,5 +1,6 @@
 ({
     doInit : function(component, event, helper) {
+        helper.setdefaultTab(component, event, helper);
         helper.setJSON(component, event, helper);
         helper.setCurrentLicensesTableData(component, event, helper);
         helper.setRelationshipTableData(component, event, helper);
@@ -29,7 +30,7 @@
         var value = component.get("v.helptextcontent");
         console.log('value::'+value);
     },
-	showSpinner: function(component, event, helper){
+    showSpinner: function(component, event, helper){
         component.set("v.loadingSpinner",true);
     },
     handleAssociationSubmissionSuccess: function(component, event, helper){
@@ -205,7 +206,7 @@
     },
     
     setLicenseToInReview :function(component, event, helper){
-        var license_Id = event.currentTarget.getAttribute("data-id");
+        var license_Id = component.get("v.pendingLicenseId");
         helper.setLicenseToInReview(component, event, helper,license_Id);
     },
     
@@ -320,6 +321,8 @@
         
         component.set("v.licenseId",licenseId);
         
+        component.set("v.pendingApp",false);
+        
         helper.fetchLicenseDetails(component, event, helper, licenseId);
         
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
@@ -337,6 +340,8 @@
         
         component.set("v.licenseId",licenseId);
         
+        component.set("v.pendingApp",true);
+        
         helper.fetchLicenseDetails(component, event, helper, licenseId);
         
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
@@ -352,6 +357,7 @@
     
     editDraftLicenseApplication  : function(component, event, helper){
         var ctarget = event.currentTarget;
+        
         sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
         sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
         sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
@@ -371,12 +377,35 @@
     },
     editDraftRenewApplications  : function(component, event, helper){
         var ctarget = event.currentTarget;
+        var renewReinste = '';
+        
+        if(ctarget.getAttribute("data-reinstatement")==='true')
+        {
+            renewReinste = 'Reinstatement';
+        }
+        else
+        {
+            renewReinste = 'Renewal';
+        }
         sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
         sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
         sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
         sessionStorage.setItem("flowType", "Application");
-        sessionStorage.setItem("renewalReinstate", "Renewal");
+        sessionStorage.setItem("renewalReinstate", renewReinste);
         window.location.href='/lightningwashington/s/polaris-renewal';  
+        
+    },
+    editDraftRequestApplications: function(component, event, helper){
+        var ctarget = event.currentTarget;
+        
+        sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-serviceRequest"));                
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-applicationType"));
+        sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+        sessionStorage.setItem("recordId", ctarget.getAttribute("data-licenseId"));
+        window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';   
         
     },
     

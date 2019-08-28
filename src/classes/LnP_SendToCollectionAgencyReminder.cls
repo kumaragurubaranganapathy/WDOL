@@ -1,8 +1,9 @@
 global class LnP_SendToCollectionAgencyReminder implements Schedulable {
-    global String [] email = new String[] {'nazbegum@deloitte.com'};
+    //global String [] email = new String[] {'nazbegum@deloitte.com', 'pchaubal@deloitte.com'};
+    global List<String> email = Label.emailDistributionListForOutstandingFine.split(';');
     global void execute(SchedulableContext ctx) {
        // Map<Id,Id> licenseToAttachmentIdMap = new Map<Id,Id>();
-        List<MUSW__Fee__c> feeList = [SELECT Id,Name,Related_To_Name__c,MUSW__Outstanding_Fee__c,MUSW__Type__c FROM MUSW__Fee__c WHERE MUSW__Type__c =:'Fine' AND MUSW__Outstanding_Fee__c>0  AND CreatedDate < last_n_days:60];
+        List<MUSW__Fee__c> feeList = [SELECT Id,Name,Related_To_Name__c,MUSW__Outstanding_Fee__c,MUSW__Type__c FROM MUSW__Fee__c WHERE MUSW__Type__c =:'Fine' AND MUSW__Outstanding_Fee__c>0 AND CreatedDate < last_n_days:60];
         system.debug('feeList::'+feeList);
       
         // Send reminder emails

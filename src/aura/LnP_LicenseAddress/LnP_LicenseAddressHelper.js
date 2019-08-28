@@ -8,11 +8,6 @@
                 if (!($A.util.isEmpty(contactRecordId) || $A.util.isUndefined(contactRecordId))) {
                     component.set("v.contactId",contactRecordId);
                     console.log('set contactId' + component.get("v.contactId"));
-                    //if(component.get('v.changeAddress')=== true){
-                    // this.getAddress(component, event, helper);  
-                    //} else {
-                           
-                    //}
                     if(!component.get("v.isAMR")){
                         
                         this.getallAddress(component, event, helper);
@@ -562,6 +557,7 @@
             } else if (actionResult.getState() ==="ERROR"){
                 //Error 
                 component.set("v.Spinner", false);
+                sessionStorage.clear();
                 var errors = actionResult.getError();
                 console.log(JSON.stringify(errors));
                 if (errors) {
@@ -572,7 +568,7 @@
                     console.log("Unknown error");
                 }
             }
-            
+            sessionStorage.clear();
         });
         $A.enqueueAction(action);
     },    
@@ -588,8 +584,9 @@
             accountOrContactId = component.get("v.accountId");
         }
         console.log('accountOrContactId on get alladdress=== ' + accountOrContactId);
+		var applicationId= component.get("v.applicationId");
         var action=component.get("c.getAllAddress");
-        action.setParams({accountOrContactId: accountOrContactId });
+        action.setParams({'accountOrContactId': accountOrContactId, 'applicationId':applicationId });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -751,158 +748,6 @@
         });
         $A.enqueueAction(action);        
     },
-    
-    //forcontactupdate
-    //
-    
-    /*getAddress : function(component, event, helper) {
-        var applicationId= component.get("v.contactId");
-        console.log('applicationId=== ' + applicationId);
-        console.log('getallAddress started');
-        var action=component.get("c.getAddress");
-        action.setParams({applicationId: applicationId });
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {
-                console.log('getallAddress2');
-                component.set("v.allAddressList", response.getReturnValue());
-                var allAddressList = component.get("v.allAddressList");
-                console.log('allAddressList===' + JSON.stringify(allAddressList));
-                if(!($A.util.isEmpty(allAddressList) || $A.util.isUndefined(allAddressList))){
-                    for(var i=0; i<allAddressList.length; i++){
-                        if(allAddressList[i].Address_Type__c == 'MAILING ADDRESS' && !(allAddressList[i].is_Physical_and_Mailing_Address_Same__c)){
-                            console.log('Entered block 1' + allAddressList[i].County__c + allAddressList[i].is_Physical_and_Mailing_Address_Same__c);
-                            component.set("v.mailingAddressparcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
-                            component.set("v.mailingAddressparcel.MUSW__City__c", allAddressList[i].MUSW__City__c);
-                            component.set("v.defaultCountry",allAddressList[i].Country__c);
-                            console.log('Country__c :' +allAddressList[i].Country__c);
-                            console.log('defaultCountry :' +component.get("v.defaultCountry"));
-                            component.set("v.isPhysicalAndMailingSame", false);
-                            if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
-                                component.set("v.defaultCounty",allAddressList[i].County__c);
-                                component.set("v.isOutOfCountry", true);
-                            }else{
-                                component.set("v.isOutOfCountry", false);
-                            }
-                            if(allAddressList[i].Country__c =='Canada' ){
-                                component.set("v.isCanadianProvince", true);
-                                component.set("v.defaultcanadianProvince",allAddressList[i].Canadian_provinces__c);
-                                component.set("v.isState",false);
-                                component.set("v.isNotApplicable",false);
-                            }else if(allAddressList[i].Country__c =='United States'){
-                                component.set("v.isCanadianProvince", false);
-                                component.set("v.isNotApplicable",false);
-                                component.set("v.isState",true);
-                                component.set("v.defaultState",allAddressList[i].MUSW__State__c);
-                            }
-                                else{
-                                    component.set("v.isNotApplicable",true);
-                                    component.set("v.isCanadianProvince", false);
-                                    component.set("v.isState", false);
-                                }
-                            component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-                        }else if(allAddressList[i].Address_Type__c == 'MAILING ADDRESS' && allAddressList[i].is_Physical_and_Mailing_Address_Same__c){
-                            console.log('Entered block 2' + allAddressList[i].is_Physical_and_Mailing_Address_Same__c);
-                            component.set("v.mailingAddressparcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
-                            component.set("v.mailingAddressparcel.MUSW__City__c", allAddressList[i].MUSW__City__c);
-                            component.set("v.physicalAddressParcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
-                            component.set("v.physicalAddressParcel.MUSW__City__c", allAddressList[i].MUSW__City__c);
-                            component.set("v.defaultCountry",allAddressList[i].Country__c);
-                            component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
-                            console.log('Country__c :' +allAddressList[i].Country__c);
-                            console.log('defaultCountry :' +component.get("v.defaultCountry"));
-                            component.set("v.isPhysicalAndMailingSame", true);
-                            if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
-                                component.set("v.defaultPhysicalCounty",allAddressList[i].County__c);
-                                component.set("v.isPhysicalOutOfCountry", true);
-                                component.set("v.defaultCounty",allAddressList[i].County__c);
-                                component.set("v.isOutOfCountry", true);
-                            }else{
-                                component.set("v.isPhysicalOutOfCountry", false);
-                                component.set("v.isOutOfCountry", false);
-                            }
-                            if(allAddressList[i].Country__c =='Canada' ){
-                                component.set("v.isPhysicalCanadianProvince", true);
-                                component.set("v.defaultPhysicalcanadianProvince",allAddressList[i].Canadian_provinces__c);
-                                component.set("v.isPhysicalState",false);
-                                component.set("v.isPhysicalNotApplicable",false);
-                                component.set("v.isCanadianProvince", true);
-                                component.set("v.defaultcanadianProvince",allAddressList[i].Canadian_provinces__c);
-                                component.set("v.isState",false);
-                                component.set("v.isNotApplicable",false);
-                            }else if(allAddressList[i].Country__c =='United States'){
-                                component.set("v.isCanadianProvince", false);
-                                component.set("v.isNotApplicable",false);
-                                component.set("v.isState",true);
-                                component.set("v.defaultState",allAddressList[i].MUSW__State__c);
-                                component.set("v.isPhysicalCanadianProvince", false);
-                                component.set("v.isPhysicalNotApplicable",false);
-                                component.set("v.isPhysicalState",true);
-                                component.set("v.defaultPhysicalState",allAddressList[i].MUSW__State__c);
-                            }
-                                else{
-                                    component.set("v.isNotApplicable",true);
-                                    component.set("v.isCanadianProvince", false);
-                                    component.set("v.isState", false);
-                                    component.set("v.isPhysicalNotApplicable",true);
-                                    component.set("v.isPhysicalCanadianProvince", false);
-                                    component.set("v.isPhysicalState", false);
-                                }
-                            component.set("v.physicalAddressParcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-                            component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-                            
-                        }else{
-                            console.log('Entered block 3');
-                            component.set("v.physicalAddressParcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
-                            component.set("v.physicalAddressParcel.MUSW__City__c", allAddressList[i].MUSW__City__c);
-                            component.set("v.isPhysicalAndMailingSame", false);
-                            component.set("v.defaultPhysicalCountry",allAddressList[i].Country__c);
-                            if(!($A.util.isEmpty(allAddressList[i].County__c) || $A.util.isUndefined(allAddressList[i].County__c))){
-                                component.set("v.defaultPhysicalCounty",allAddressList[i].County__c);
-                                component.set("v.isPhysicalOutOfCountry", true);
-                            }else{
-                                component.set("v.isPhysicalOutOfCountry", false);
-                            }
-                            if(allAddressList[i].Country__c =='Canada' ){
-                                component.set("v.isCanadianProvince", true);
-                                component.set("v.defaultPhysicalcanadianProvince",allAddressList[i].Canadian_provinces__c);
-                                component.set("v.isPhysicalState",false);
-                                component.set("v.isPhysicalNotApplicable",false);
-                            }else if(allAddressList[i].Country__c =='United States'){
-                                component.set("v.isPhysicalCanadianProvince", false);
-                                component.set("v.isPhysicalNotApplicable",false);
-                                component.set("v.isPhysicalState",true);
-                                component.set("v.defaultPhysicalState",allAddressList[i].MUSW__State__c);
-                            }
-                                else{
-                                    component.set("v.isPhysicalNotApplicable",true);
-                                    component.set("v.isPhysicalCanadianProvince", false);
-                                    component.set("v.isPhysicalState", false);
-                                }
-                            component.set("v.physicalAddressParcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-                        }
-                        
-                    }
-                }
-                console.log('defaultCountry last:' +component.get("v.defaultCountry"));
-            }
-            else
-            {
-                console.log('No existing address');
-            }
-        });
-        $A.enqueueAction(action);
-        
-    },*/
-    //function not working
-    setDefaultFields: function(component) {
-        component.set("v.street", "");
-        component.set("v.street2", "");
-        component.set("v.city", "");
-        component.set("v.parcelObject.MUSW__State__c", "");
-        component.set("v.zip", "");
-        console.log('setDefault Start1');
-    },
     deleteRecordHelper: function(component, event, helper){
         var parentDiv = event.target.parentNode;
         var appId = parentDiv.firstElementChild.className;
@@ -939,8 +784,14 @@
     
     updateExistingMailingAddress: function(component, event, helper, isChecked){
         var accountOrContactId;
-        var addressRecordData= component.get("v.saveAddressList");
+        var addressRecordData;
+        if($A.util.isEmpty(component.get("v.saveAddressList")) || $A.util.isUndefined(component.get("v.saveAddressList"))){
+            addressRecordData= component.get("v.allAddressList");
+        }else{
+            addressRecordData= component.get("v.saveAddressList");
+        }
         console.log('addressRecordData==' + JSON.stringify(addressRecordData));
+        var applicationId= component.get("v.applicationId");
         if(!($A.util.isEmpty(addressRecordData) || $A.util.isUndefined(addressRecordData))){
             if($A.util.isEmpty(addressRecordData[0].Primary_Account__c) || $A.util.isUndefined(addressRecordData[0].Primary_Account__c) || addressRecordData[0].Primary_Account__c == 'null'){
                 accountOrContactId = addressRecordData[0].MUSW__Primary_Contact__c;
@@ -950,10 +801,10 @@
             //var contactRecordId = addressRecordData[0].MUSW__Primary_Contact__c;
             var recordId = addressRecordData[0].Id;
             var sObj = component.get("v.parcelObject");
-            console.log('appId==' + appId + 'recordId==' + recordId + 'sObj=' + JSON.stringify(sObj) + 'accountOrContactId=' + accountOrContactId);
+            console.log('recordId==' + recordId + 'sObj=' + JSON.stringify(sObj) + 'accountOrContactId=' + accountOrContactId);
             var action = component.get("c.sameAddUpdate");
             action.setParams({
-                recordId : recordId,sobjectType : sObj.sobjectType, accountOrContactId : accountOrContactId , isSame: isChecked
+                recordId : recordId,sobjectType : sObj.sobjectType, accountOrContactId : accountOrContactId , isSame: isChecked, applicationId: applicationId
             });
             action.setCallback(this,function(response){
                 var state = response.getState();
@@ -977,150 +828,4 @@
             $A.enqueueAction(action);
         }
     },
-    /*onsaveContactAddressHelper : function(component ,event, helper) {
-        console.log('onsaave1');
-        var address; 
-        var isAptInfo = component.get("v.isAddress2");
-        console.log('isAptInfo=='+ isAptInfo);
-        var contactId= component.get("v.contactId");
-        //  console.log('applicationId=='+ applicationId);
-        var selectedAddress = component.get("v.userSelectedAddr");
-        if(($A.util.isEmpty(selectedAddress) || $A.util.isUndefined(selectedAddress))){
-            selectedAddress = 'OriginalAddress';
-        }
-        console.log('selectedAddress=='+ selectedAddress);
-        var issuggestTrue = component.get("v.isSelectedAddrTrue");
-        console.log('issuggestTrue=='+ issuggestTrue);
-        var addresstype = component.get("v.selectedAddressType");
-        console.log('addresstype=='+ addresstype);
-        var isPhysicalAndMailingSame =  component.get("v.isPhysicalAndMailingSame");
-        console.log('isPhysicalAndMailingSame on save====' + isPhysicalAndMailingSame);
-        var finalAddresstype;
-        if(addresstype == 'PHYSICAL ADDRESS' &&  isPhysicalAndMailingSame){
-            finalAddresstype = 'MAILING ADDRESS';
-        }else{
-            finalAddresstype = addresstype;
-        }
-        console.log('Final address type===' + finalAddresstype);
-        var county;
-        if(finalAddresstype == 'MAILING ADDRESS'){
-            county = component.get("v.selectedCounty");
-        }else{
-            component.get("v.selectedPhysicalCounty");
-        }
-        console.log('county=== '+ county);
-        if(selectedAddress === 'OriginalAddress'){
-            address = component.get("v.originalAddress");
-        }else if(selectedAddress === 'SuggestedAddress'){
-            address = component.get("v.suggestedAddress");
-        }
-        console.log('address'+ address);
-        console.log('isAptInfo'+ isAptInfo);
-        var action = component.get("c.updateContactParcel");
-        component.set("v.Spinner", true);
-        action.setParams({
-            'selectedAddress': address,
-            'isAptInfo' : isAptInfo,
-            'contactId':contactId,
-            'issuggestTrue' : issuggestTrue,
-            'addresstype' : finalAddresstype,
-            'county' : county
-        });
-        action.setCallback(this, function(actionResult) {
-            if(actionResult.getState() ==="SUCCESS"){ 
-                var parcelList = actionResult.getReturnValue();
-                console.log("parcelList=="+ JSON.stringify(parcelList));
-                console.log('withor json==' + parcelList[0].Address_Type__c);
-                component.set("v.Spinner", false);
-                component.set("v.isAddAddressClicked",false);
-                if(!($A.util.isEmpty(parcelList) || $A.util.isUndefined(parcelList))){
-                    if(parcelList[0].Address_Type__c == 'MAILING ADDRESS'){
-                        component.set("v.saveAddressList", parcelList);
-                        console.log('Entered block 1');
-                        component.set("v.mailingAddressparcel.MUSW__Street2__c", parcelList[0].MUSW__Street2__c);
-                        component.set("v.mailingAddressparcel.MUSW__City__c", parcelList[0].MUSW__City__c);
-                        component.set("v.defaultCountry",parcelList[0].Country__c);
-                        if(!($A.util.isEmpty(parcelList[0].County__c) || $A.util.isUndefined(parcelList[0].County__c))){
-                            component.set("v.defaultCounty",parcelList[0].County__c);
-                            component.set("v.OutOfCountry", true);
-                        }else{
-                            component.set("v.isOutOfCountry", false);
-                        }
-                        
-                        if(parcelList[0].Country__c =='Canada' ){
-                            component.set("v.isCanadianProvince", true);
-                            component.set("v.defaultcanadianProvince",parcelList[0].Canadian_provinces__c);
-                            component.set("v.isState",false);
-                            component.set("v.isNotApplicable",false);
-                        }else if(parcelList[0].Country__c =='United States'){
-                            component.set("v.isCanadianProvince", false);
-                            component.set("v.isNotApplicable",false);
-                            component.set("v.isState",true);
-                            component.set("v.defaultState",parcelList[0].MUSW__State__c);
-                        }
-                            else{
-                                component.set("v.isNotApplicable",true);
-                                component.set("v.isCanadianProvince", false);
-                                component.set("v.isState", false);
-                            }
-                        component.set("v.mailingAddressparcel.Zip_Postal_Code__c", parcelList[0].Zip_Postal_Code__c);
-                    }else{
-                        console.log('Entered block 2');
-                        component.set("v.physicalAddressParcel.MUSW__Street2__c", parcelList[0].MUSW__Street2__c);
-                        component.set("v.physicalAddressParcel.MUSW__City__c", parcelList[0].MUSW__City__c);
-                        component.set("v.defaultPhysicalCountry",parcelList[0].Country__c);
-                        if(!($A.util.isEmpty(parcelList[0].County__c) || $A.util.isUndefined(parcelList[0].County__c))){
-                            component.set("v.defaultPhysicalCounty",parcelList[0].County__c);
-                            component.set("v.isPhysicalOutOfCountry", true);
-                        }else{
-                            component.set("v.isPhysicalOutOfCountry", false);
-                        }
-                        if(parcelList[0].Country__c =='Canada' ){
-                            component.set("v.isCanadianProvince", true);
-                            component.set("v.defaultPhysicalAddressParcelcanadianProvince",parcelList[0].Canadian_provinces__c);
-                            component.set("v.isPhysicalAddressParcelState",false);
-                            component.set("v.isPhysicalNotApplicable",false);
-                        }else if(parcelList[0].Country__c =='United States'){
-                            component.set("v.isPhysicalCanadianProvince", false);
-                            component.set("v.isPhysicalNotApplicable",false);
-                            component.set("v.isPhysicalState",true);
-                            component.set("v.defaultPhysicalState",parcelList[0].MUSW__State__c);
-                        }
-                            else{
-                                component.set("v.isPhysicalNotApplicable",true);
-                                component.set("v.isPhysicalCanadianProvince", false);
-                                component.set("v.isPhysicalState", false);
-                            }
-                        component.set("v.physicalAddressParcel.Zip_Postal_Code__c", parcelList[0].Zip_Postal_Code__c);
-                        console.log("inside physical address::::");
-                        console.log("isRenewal::"+component.get("v.isRenewal"));
-                        if(component.get("v.isRenewal")){
-                            console.log("inside event call");
-                            var compEvent = $A.get("e.c:RefreshComponentEvent"); 
-                            compEvent.setParams({"physicalAddressModifiedonRenewal" : "true" });
-                            compEvent.fire();
-                        }
-                    }
-                    helper.showToast(component, event, "Success!", "success", "Your address Entry has been successfully created."); 
-                }
-                else{
-                    helper.showToast(component, event, "Error!", "Error", "Error on saving your address Entry."); 
-                }
-            } else if (actionResult.getState() ==="ERROR"){
-                //Error 
-                component.set("v.Spinner", false);
-                var errors = actionResult.getError();
-                console.log(JSON.stringify(errors));
-                if (errors) {
-                    if (errors[0] && errors[0].message) {
-                        helper.showToast(component, event, "Error!", "error", errors[0].message);
-                    }
-                } else {
-                    console.log("Unknown error");
-                }
-            }
-            
-        });
-        $A.enqueueAction(action);
-    },*/
 })

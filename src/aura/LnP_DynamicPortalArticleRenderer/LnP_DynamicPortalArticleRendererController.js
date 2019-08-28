@@ -19,6 +19,9 @@
     },
     showLess : function(component,event,helper){
         helper.showLess(component,event);
-    }
-    
+    },
+    redirectToHelp : function(component,event,helper){
+        helper.redirectToHelp(component,event);
+    }   
+       
 })

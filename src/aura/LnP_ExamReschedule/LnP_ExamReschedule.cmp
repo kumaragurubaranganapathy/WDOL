@@ -18,7 +18,7 @@
                         <th scope="col" class="slds-truncate"><span title="Exam Status" class="slds-truncate">Exam Status</span></th>
                         <th scope="col" class="slds-truncate"><span title="Exam Expiration Date" class="slds-truncate">Exam Expiration Date</span></th>
                         <th scope="col" class="slds-truncate"><span title="Exam Completion Date" class="slds-truncate">Exam Completion Date</span></th>
-                        <th scope="col" class="slds-truncate"><span title="Action" class="slds-truncate">Action</span></th>
+                        <th scope="col" class="action" ><span title="Action">Action</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,7 @@
                                              data-reschedule="{!examRescheduleInstance.Reschedule_Possible__c}"
                                              data-board="{!examRescheduleInstance.Program_Type__c}"
                                              data-requestType="Reschedule Exam">
-                                            <lightning:button variant="brand" label="Reschedule Exam" title="Reschedule Exam"
+                                            <lightning:button variant="brand" label="Reschedule" title="Reschedule"
                                                               />
                                         </div>
                                     </aura:if>
@@ -53,7 +53,7 @@
                                                  data-status="{!examRescheduleInstance.Status__c}"
                                                  data-board="{!examRescheduleInstance.Program_Type__c}"
                                                  data-requestType="Submit Exam Results">
-                                                <lightning:button variant="brand" label="Submit Exam Results" title="Submit Exam Results"
+                                                <lightning:button variant="brand" label="Submit" title="Submit"
                                                                   />
                                                 
                                             </div>
@@ -78,7 +78,7 @@
 
             </div>
             <aura:set attribute="else">
-                <div class="empty-state slds-align_absolute-center">There are no exams</div>
+                <div class="empty-state">You have no exams</div>
             </aura:set>
         </aura:if>
         <aura:if isTrue="{!v.isOpen}">

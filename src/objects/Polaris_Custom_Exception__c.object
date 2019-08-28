@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides> 
+    <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -48,6 +48,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -183,27 +184,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>HTTP_Status_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>HTTP Status Code</label>
-        <length>10</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Integration_Duration__c</fullName>
-        <externalId>false</externalId>
-        <label>Integration Duration</label>
-        <precision>7</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Language__c</fullName>
         <externalId>false</externalId>
         <label>Language</label>
@@ -228,35 +208,11 @@
         <fullName>Log_Type__c</fullName>
         <externalId>false</externalId>
         <label>Log Type</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>INFO</fullName>
-                    <default>false</default>
-                    <label>INFO</label>
-                </value>
-                <value>
-                    <fullName>DEBUG</fullName>
-                    <default>false</default>
-                    <label>DEBUG</label>
-                </value>
-                <value>
-                    <fullName>ERROR</fullName>
-                    <default>false</default>
-                    <label>ERROR</label>
-                </value>
-                <value>
-                    <fullName>SEVERE</fullName>
-                    <default>false</default>
-                    <label>SEVERE</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Platform__c</fullName>
@@ -279,45 +235,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Record_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Record Id</label>
-        <length>20</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Request_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>Request Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>RequestedJSON__c</fullName>
-        <externalId>false</externalId>
-        <label>RequestedJSON</label>
-        <length>131072</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Requested_On__c</fullName>
-        <externalId>false</externalId>
-        <label>Requested On</label>
-        <length>40</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Responded_On__c</fullName>
         <externalId>false</externalId>
         <label>Responded On</label>
@@ -326,15 +243,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ResponseJSON__c</fullName>
-        <externalId>false</externalId>
-        <label>ResponseJSON</label>
-        <length>32768</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Session_Id__c</fullName>
@@ -360,25 +268,11 @@
         <fullName>Source__c</fullName>
         <externalId>false</externalId>
         <label>Source</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Mulesoft</fullName>
-                    <default>false</default>
-                    <label>Mulesoft</label>
-                </value>
-                <value>
-                    <fullName>Salesforce</fullName>
-                    <default>false</default>
-                    <label>Salesforce</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Stack_Trace__c</fullName>
@@ -389,34 +283,7 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
-    <fields>
-        <fullName>User_Profile__c</fullName>
-        <defaultValue>$Profile.Name</defaultValue>
-        <externalId>false</externalId>
-        <label>User Profile</label>
-        <length>100</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>User_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT($User.UserType)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>User Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Polaris Custom Exception</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <displayFormat>EXC-{000000}</displayFormat>
         <label>Custom Exception Name</label>

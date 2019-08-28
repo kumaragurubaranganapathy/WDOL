@@ -116,6 +116,25 @@
         </valueSet>
     </fields>
     <label>Epayment_Remittance_Data</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>remittance_view</fullName>
+        <columns>NAME</columns>
+        <columns>Details__c</columns>
+        <columns>Status__c</columns>
+        <columns>INFO__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>remittance_view</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>EpaymentRemittanceData Name</label>
         <type>Text</type>

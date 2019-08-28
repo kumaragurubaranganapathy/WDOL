@@ -5,13 +5,14 @@
     <aura:attribute name="licenseDetail" type="String" />
     
     
-    <c:LnP_Relationship sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.mainAccountName}" /> 
+    <c:LnP_Relationship  Type="Administrators" sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.mainAccountName}" /> 
     <div class="relation-add">
-        <c:LnP_Add_Contact accountId="{!v.selectedAccount}" accountName="{!v.mainAccountName}"/>
+        <c:LnP_Add_Contact  accountId="{!v.selectedAccount}" accountName="{!v.mainAccountName}"/>
     </div>
+    <c:LnP_Relationship Type="Owners" sObjectName="MUSW__Account_Contact__c" queryId="{!v.selectedAccount}" accountName="{!v.mainAccountName}" /> 
     <aura:if isTrue="{!v.licenseDetail}">       
         
-        <c:LnP_Relationship parentLicense="{!v.licenseId}"  sObjectName="Associations__c" queryId="{!v.licenseId}" />        
+        <c:LnP_Relationship parentLicense="{!v.licenseId}" sObjectName="Associations__c" queryId="{!v.licenseId}" />        
         <div class="add-association">
             <c:LnP_Add_Association  parentLicense="{!v.licenseId}" />
         </div>

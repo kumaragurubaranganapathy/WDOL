@@ -1,6 +1,7 @@
 ({
 	addLocation : function(component,event){
         component.set("v.isAddLocation",true);
+        
     },
     cancelLoc : function(component,event){
         component.set("v.isAddLocation",false);
@@ -8,33 +9,45 @@
     
     saveLocation :  function (component,event,helper){
     console.log('parcel Object::'+ JSON.stringify(component.get("v.parcel")));
-        console.log("remove::"+ component.get("v.remove"));
+    console.log("remove::"+ component.get("v.remove"));
     var action = component.get("c.AffiliatedLocation");
     action.setParams({"parcel" : JSON.stringify(component.get("v.parcel")),
-                      "removeLocation" : component.get("v.remove") });
+                      "removeLocation" : component.get("v.remove"),
+                      "isAMR" : component.get("v.isAMR")});
 	action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
                 var Result = actionResult.getReturnValue();
                 console.log('Result::'+ Result);
-               /* var toastEvent = $A.get("e.force:showToast");
+                
+                var toastEvent = $A.get("e.force:showToast");
+                if(component.get("v.remove")){
+                     toastEvent.setParams({
+                        "title": 'Success',
+                        "message": 'Record Removed Succesfully' ,
+                        "type": 'Success'
+                    });
+                }else{
                     toastEvent.setParams({
                         "title": 'Success',
                         "message": 'Record inserted Succesfully' ,
                         "type": 'Success'
                     });
-                    toastEvent.fire(); */
+                }
+                toastEvent.fire(); 
                 component.set("v.isOneLocation",true);
                 component.set("v.isAddLocation",false);
+                component.set("v.remove",false);
                 helper.setLocationTable(component,event,helper);
+                
             }else{
                 console.log('Error');
-               /* var toastEvent = $A.get("e.force:showToast");
+                var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": 'Error',
                         "message": 'Something Went Wrong' ,
                         "type": 'Error'
                     });
-                    toastEvent.fire(); */
+                    toastEvent.fire(); 
             }
          
      });
@@ -42,7 +55,31 @@
     
 	},
     
-     getCountryList: function(component, helper){
+    setRequestLocationTable : function(component,event,helper){
+   	var action = component.get("c.setRequestLocationTable");
+        action.setParams({'requestId': component.get("v.requestId")});
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var currentLicenseTableData = JSON.parse(response.getReturnValue());                
+                
+                var currentLicenseTableColumnData = currentLicenseTableData.tableHeader;
+                
+                
+                var currentLicenseTableHeaderData = currentLicenseTableData.tableData;
+               
+                component.set("v.requestedLocationTableList",currentLicenseTableHeaderData);
+                
+                component.set("v.requestedHeaderList",currentLicenseTableColumnData);
+              
+            } else if (state === "ERROR") {
+                var errors = response.getError();                
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    getCountryList: function(component, helper){
         var action = component.get("c.getStates");
       
         action.setParams({
@@ -195,7 +232,11 @@
     
     setLocationTable : function(component,event,helper){
         var action = component.get("c.setLocationTable");
-        action.setParams({'applicationId': component.get("v.applicationId")});
+        var applicationId = component.get("v.isAMR") ? component.get("v.licenseId") : component.get("v.applicationId");
+        console.log('applicationId::'+applicationId);
+        action.setParams({'applicationId': applicationId,
+                          'requestId' : component.get("v.requestId"),
+                          'isAMR': component.get("v.isAMR")});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -213,8 +254,10 @@
                 console.log("currentLicenseTableColumnData::"+JSON.stringify(currentLicenseTableHeaderData));
                 
                 console.log("currentLicenseTableColumnheadingsData::"+JSON.stringify(currentLicenseTableColumnData));
-                
-                component.set("v.isOneLocation",true);
+                if(currentLicenseTableHeaderData.length != 0){
+                     component.set("v.isOneLocation",true); 
+                }
+              
             } else if (state === "ERROR") {
                 var errors = response.getError();                
             }
@@ -223,29 +266,40 @@
     },
     
     removeLocationId : function(component,event,helper){
-         var action = component.get("c.removeLocation");
-    action.setParams({"parcelId" : component.get("v.selectedParcelId") });
+    var action = component.get("c.removeLocation");
+    action.setParams({"parcelId" : component.get("v.selectedParcelId"),
+                      "isAMR" : component.get("v.isAMR")});
 	action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
                 var Result = actionResult.getReturnValue();
                 console.log('Result::'+ Result);
                 if(Result){
-                   /* var toastEvent = $A.get("e.force:showToast");
-                    toastEvent.setParams({
-                        "title": 'Success',
-                        "message": 'Record inserted Succesfully' ,
-                        "type": 'Success'
-                    });
-                    toastEvent.fire(); */ 
-                    helper.setLocationTable(component,event,helper);
+                    var toastEvent = $A.get("e.force:showToast");
+                    if(component.get("v.isAMR")){
+                          toastEvent.setParams({
+                            "title": 'Success',
+                            "message": 'Record removed requested Succesfully' ,
+                            "type": 'Success'
+                            });  
+                    }else{
+                        toastEvent.setParams({
+                            "title": 'Success',
+                            "message": 'Record removed Succesfully' ,
+                            "type": 'Success'
+                            }); 
+                    }
+                    
+                    toastEvent.fire(); 
+                component.set("v.remove",false);
+                helper.setLocationTable(component,event,helper);
                 }else{
-                      /* var toastEvent = $A.get("e.force:showToast");
+                    var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": 'Error',
                         "message": 'Something Went Wrong' ,
                         "type": 'Error'
                     });
-                    toastEvent.fire(); */
+                    toastEvent.fire(); 
                 }
                 
             }else{
@@ -256,5 +310,52 @@
      });
 	 $A.enqueueAction(action);
     
+    },
+    
+    RemoveAffiliateRequest : function(component,event,helper){
+        var action = component.get("c.removeAffiliationRequest");
+        action.setParams({
+            'parcelIdList': component.get("v.locationList"),
+            'RequestId': component.get("v.requestId")
+        });
+        action.setCallback(this, function(response){
+            var stateResponse = response.getState();
+            if (stateResponse === "SUCCESS") {              
+            	   var Result = response.getReturnValue();
+                if(Result){
+                    Console.log('Request Updated Succeed');
+                }else{
+                    Console.log('Request Update Failed');
+                }
+            }else{
+                Console.log('Request Errored');
+            }
+            
+        });
+        $A.enqueueAction(action); 
+    },
+    
+    undoAffiliateRequest : function(component,event,helper){
+        var action = component.get("c.undoAffiliateRequest");
+        action.setParams({"parcelId" : component.get("v.selectedParcelId"),
+                      "status" : component.get("v.status"),
+                      "license":  component.get("v.licenseData") });
+        action.setCallback(this, function(response){
+            var stateResponse = response.getState();
+            if (stateResponse === "SUCCESS") {              
+            	   var Result = response.getReturnValue();
+                 helper.setLocationTable(component,event,helper);
+                if(Result){
+                    console.log('Action Updated Succeed');
+                }else{
+                    console.log('Action Update Failed');
+                }
+            }else{
+                console.log('Request Errored');
+            }
+            
+        });
+        $A.enqueueAction(action); 
     }
+    
 })

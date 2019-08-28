@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Start each new letter within batch on the odd page number. May create blank pages. --></help>
+        <label><!-- Batch Duplex Printing --></label>
+        <name>BGBL__Batch_Duplex_Printing__c</name>
+    </fields>
+    <fields>
+        <help><!-- Files attached to parent records (e.g., Contacts) will utilize this &quot;friendly&quot; name plus a timestamp --></help>
+        <label><!-- File Name Prefix --></label>
+        <name>BGBL__File_Name_Prefix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Merge Template --></label>
+        <name>BGBL__Merge_Template__c</name>
+        <relationshipLabel><!-- Letters --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Output Type (short) --></label>
+        <name>BGBL__Output_Type_Short__c</name>
+    </fields>
+    <fields>
+        <label><!-- Output Type --></label>
+        <name>BGBL__Output_Type__c</name>
+        <picklistValues>
+            <masterLabel>Acrobat (.pdf)</masterLabel>
+            <translation><!-- Acrobat (.pdf) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word 2003 or earlier (.doc)</masterLabel>
+            <translation><!-- Word 2003 or earlier (.doc) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word 2007 (.docx)</masterLabel>
+            <translation><!-- Word 2007 (.docx) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Create and save large stitched file on server. Cannot be unchecked if also not Attaching --></help>
+        <label><!-- Save Large Batch File --></label>
+        <name>BGBL__Save_Batch_Letter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tracking Number --></label>
+        <name>BGBL__Track_No__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set if you do not want the letter to show in letter request pages --></help>
+        <label><!-- Trigger Only --></label>
+        <name>BGBL__Trigger_Only__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Run_Job --></label>
+        <name>BGBL__Run_Job</name>
+    </webLinks>
+</CustomObjectTranslation>

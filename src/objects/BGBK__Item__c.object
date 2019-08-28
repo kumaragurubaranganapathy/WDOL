@@ -357,21 +357,7 @@
     <fields>
         <fullName>GL_To_AFRS__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(
-    IF(
-        BGBK__Amount__c&lt;0,
-            CASE(BGBK__Type__c,
-                &quot;049X&quot;,1,&quot;071X&quot;,1,&quot;074R&quot;,1,&quot;090X&quot;,1,&quot;455X&quot;,1,&quot;966X&quot;,1,
-                0
-            ),
-            CASE(BGBK__Type__c,
-                &quot;049R&quot;,1,&quot;071R&quot;,1,&quot;074X&quot;,1, &quot;951X&quot;,1, &quot;955X&quot;,1, &quot;965X&quot;,1, 
-                0
-            )
-        )=1,
-    BGBK__Fund__r.GL__c, 
-    &quot;&quot;
-)</formula>
+        <formula>BGBK__Fund__r.GL__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>GL (To AFRS)</label>
         <required>false</required>
@@ -382,7 +368,15 @@
     <fields>
         <fullName>Intake_Method__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK(BGBK__Fee__c),IF( ISBLANK(Fee_Payment__c) , IF( ISBLANK( BGBK__Receipt__c ) , text(Payable_Receipt__r.MUSW__Receipt__r.Intake_Method__c) , text(BGBK__Receipt__r.Intake_Method__c) ) , text(Fee_Payment__r.MUSW__Receipt__r.Intake_Method__c) ),&quot;N/A&quot;)</formula>
+        <formula>IF(ISBLANK(Deposit__c),
+  IF(ISBLANK(BGBK__Fee__c),
+    IF( ISBLANK(Fee_Payment__c) , 
+      IF( ISBLANK( BGBK__Receipt__c ) , 
+        text(Payable_Receipt__r.MUSW__Receipt__r.Intake_Method__c) , 
+        text(BGBK__Receipt__r.Intake_Method__c) ) , 
+      text(Fee_Payment__r.MUSW__Receipt__r.Intake_Method__c) )
+    ,&quot;N/A&quot;),
+  &quot;Validation Room&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Intake Method</label>
         <required>false</required>
@@ -405,8 +399,8 @@ IF( BGBK__Fund__r.Accounting_System__c = &quot;AFRS&quot;,
         BGBK__Fund__r.Sub_Source__c,
     &quot;&quot;
 ) &amp; &quot;-&quot; &amp;
-IF(BGBK__Amount__c &gt; 0, &quot;DR&quot;, &quot;CR&quot;) &amp;
-IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</formula>
+IF(BGBK__Amount__c &gt; 0, &quot;DR&quot;, &quot;CR&quot;) &amp; &quot;-&quot; &amp;
+BGBK__Fund__r.GL__c</formula>
         <label>Journal Voucher Detail Grouping</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -438,6 +432,16 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Journal_Voucher_Reference__c</fullName>
+        <externalId>false</externalId>
+        <formula>Journal_Voucher_Detail__r.JournalVoucher__c</formula>
+        <label>Journal Voucher Reference</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Payable_Receipt__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -452,7 +456,7 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
     <fields>
         <fullName>Payment_Method__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK(BGBK__Fee__c),IF(  ISBLANK(Fee_Payment__c)  ,  IF( ISBLANK( BGBK__Receipt__c ) ,  text(Payable_Receipt__r.MUSW__Receipt__r.MUSW__Payment_Method__c) ,  text(BGBK__Receipt__r.MUSW__Payment_Method__c) ) ,  text(Fee_Payment__r.MUSW__Receipt__r.MUSW__Payment_Method__c) ),&quot;N/A&quot;)</formula>
+        <formula>IF(ISBLANK(BGBK__Fee__c),IF( ISBLANK(Fee_Payment__c) , IF( ISBLANK( BGBK__Receipt__c ) , text(Payable_Receipt__r.MUSW__Receipt__r.MUSW__Payment_Method__c) , text(BGBK__Receipt__r.MUSW__Payment_Method__c) ) , text(Fee_Payment__r.MUSW__Receipt__r.MUSW__Payment_Method__c) ),&quot;N/A&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Payment Method</label>
         <required>false</required>
@@ -473,7 +477,7 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
     <fields>
         <fullName>Program_Index__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK( BGBK__Fee__c ), IF(ISBLANK(  Fee_Payment__c  ),  IF( ISBLANK( Payable_Receipt__c ) , &quot;From Receipt - Receipt doesn&apos;t have PI&quot;,  Payable_Receipt__r.MUSW__Deposit__r.wadol_Professional_Code__c) ,  Fee_Payment__r.MUSW__Fee__r.Profession_Code__c ) ,  BGBK__Fee__r.Profession_Code__c )</formula>
+        <formula>IF(ISBLANK( BGBK__Fee__c ), IF(ISBLANK(  Fee_Payment__c  ),  IF( ISBLANK( Payable_Receipt__c ) , &quot;From Receipt - Receipt doesn&apos;t have PI&quot;,  Payable_Receipt__r.MUSW__Deposit__r.License__r.Profession_Code__c  ) ,  Fee_Payment__r.MUSW__Fee__r.Profession_Code__c ) ,  BGBK__Fee__r.Profession_Code__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Index</label>
         <required>false</required>
@@ -492,6 +496,17 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_Code_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(RIGHT(text(BGBK__Type__c),1)="R","R","")</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction Code Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Target_Accounting_System__c</fullName>
@@ -534,17 +549,6 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Transaction_Code_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(RIGHT(text(BGBK__Type__c),1)=&quot;R&quot;,&quot;R&quot;,&quot;&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Transaction Code Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Transaction_Code__c</fullName>
         <externalId>false</externalId>
         <formula>LEFT( Text(BGBK__Type__c)  , 3)</formula>
@@ -577,7 +581,7 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <unique>false</unique>
     </fields>
     <label>Item</label>
-      <listViews>
+    <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>BGBK__Amount__c</columns>
@@ -587,43 +591,44 @@ IF(ISBLANK(GL_To_AFRS__c),&quot;&quot;,&quot;-&quot; &amp;  GL_To_AFRS__c)</form
         <columns>BGBK__Fund__c</columns>
         <columns>GL_To_AFRS__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>BGBK__Fund__c</field>
+            <operation>contains</operation>
+            <value>06L-02-77-000008</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>7/17/2019 12:00 AM</value>
+        </filters>
         <label>All</label>
     </listViews>
     <listViews>
-        <fullName>Counter_Funds_Received</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <fullName>Search</fullName>
         <columns>NAME</columns>
         <columns>BGBK__Amount__c</columns>
-        <columns>Deposit__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Fee_Payment__c</columns>
+        <columns>Transaction_Code__c</columns>
         <columns>BGBK__Fund__c</columns>
         <columns>GL_To_AFRS__c</columns>
-        <columns>Program_Index__c</columns>
-        <columns>Transaction_Code__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>Fund_GL__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Fund_AccountSys__c</field>
-            <operation>equals</operation>
-            <value>AFRS,TMS</value>
+            <field>BGBK__Fund__c</field>
+            <operation>contains</operation>
+            <value>01P</value>
         </filters>
         <filters>
-            <field>Payment_Method__c</field>
-            <operation>equals</operation>
-            <value>Cash,Check,Money Order,Vital Check</value>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>7/22/2019 12:00 AM</value>
         </filters>
         <filters>
             <field>Transaction_Code__c</field>
             <operation>equals</operation>
-            <value>001,770</value>
+            <value>965</value>
         </filters>
-        <filters>
-            <field>Fund_GL__c</field>
-            <operation>equals</operation>
-            <value>3210,7110,4310</value>
-        </filters>
-        <label>Counter Funds Received</label>
-        <language>en_US</language>
+        <label>Search</label>
     </listViews>
     <nameField>
         <displayFormat>IT-{00000000}</displayFormat>

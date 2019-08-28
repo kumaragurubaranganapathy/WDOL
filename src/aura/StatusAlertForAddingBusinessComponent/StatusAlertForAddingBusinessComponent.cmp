@@ -1,18 +1,29 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="isLandingPage" type="Boolean" />
     <div>
+        
         <div class="businessStatus slds-box">
-             
+            
             <span><lightning:icon iconName="utility:info" alternativeText="Info" /></span>
-            <div class="businessHeader">You haven’t added a business yet</div>
+            <h1 class="businessHeader">{!v.isLandingPage?'You need to finish setting up your account':'You haven’t added a business yet'}</h1>
             <div class="bizlayout">
-            <p class="businessSubHeader">Please add a business. Once you add a business, you’ll be able to:</p>
-            <ul class="business">
-                <li>Apply for a business license</li>
-                <li>Link to existing licenses</li>
-                <li>Add other businesses</li>
-                <li>Add training courses</li>
-                <li>Pay fees for others</li>
-            </ul>
+                <aura:if isTrue="{!v.isLandingPage}">
+                    <p class="businessSubHeader">You can:</p>
+                    <ul class="business">
+                        <li>Apply for a professional license or link to your existing license.</li>
+                        <li>Create a business profile or link to an existing profile.</li>                        
+                    </ul>
+                    <aura:set attribute="else">
+                        <p class="businessSubHeader">Please add a business. Once you add a business, you’ll be able to:</p>
+                        <ul class="business">
+                            <li>Apply for a business license</li>
+                            <li>Link to existing licenses</li>
+                            <li>Add other businesses</li>
+                            <li>Add training courses</li>
+                            <li>Pay fees for others</li>
+                        </ul>
+                    </aura:set>
+                </aura:if>
             </div>
         </div>
     </div>

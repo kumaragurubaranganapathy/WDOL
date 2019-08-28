@@ -305,15 +305,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Invitation_Accepted_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Invitation Accepted Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Location_Address__c</fullName>
         <externalId>false</externalId>
         <label>Location Address</label>
@@ -484,15 +475,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Status_Change_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Status Change Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
@@ -603,10 +585,9 @@
         <columns>Child_License__c</columns>
         <columns>Association_Type__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>Status__c</columns>
-        <columns>Status_Change_Date__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>LRN-{0000000}</displayFormat>
@@ -843,10 +824,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -896,7 +873,7 @@
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -961,6 +938,10 @@
                 <fullName>Pending Remove</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Pending Review</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -970,6 +951,14 @@
         <label>DoNotUse_Location</label>
         <picklistValues>
             <picklist>Association_Type__c</picklist>
+            <values>
+                <fullName>Appraiser Trainee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Camping Resort Salesperson</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Designated Architect</fullName>
                 <default>false</default>
@@ -984,6 +973,18 @@
             </values>
             <values>
                 <fullName>Designated Land Surveyor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embalmer Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funeral Director Intern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1170,10 +1171,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of Country</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Palau</fullName>
                 <default>false</default>
             </values>
@@ -1223,7 +1220,7 @@
             </values>
             <values>
                 <fullName>Washington</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Washington D%2EC%2E</fullName>
@@ -1286,6 +1283,10 @@
             </values>
             <values>
                 <fullName>Pending Remove</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Review</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

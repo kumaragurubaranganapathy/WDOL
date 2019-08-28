@@ -25,6 +25,10 @@
 .THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__label{
     float:unset;
 }
+.THIS .slds-input.slds-combobox__input, .THIS .slds-textarea{
+    border: 1px solid #5b616b;    
+    border-radius:0;
+}
 @media t(mqSmall){
     .THIS .slds-form-element_horizontal.slds-form-element_1-col .slds-form-element__control{        
         width:100%;

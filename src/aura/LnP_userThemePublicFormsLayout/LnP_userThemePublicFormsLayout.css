@@ -40,6 +40,10 @@
 .THIS .merriweather-font{
     font-family: t(merrifontfamily);
 }
+.THIS :focus{
+	box-shadow:none;
+	outline:none;
+}
 .THIS .required{
     color:t(fieldclr);
 }
@@ -102,7 +106,7 @@ border-radius: 5px;
 .THIS .personal-info .slds-checkbox_faux{
     border:1px solid #5b616b;
 }
-.THIS .personal-info .slds-input:focus,.THIS .slds-select:focus,.THIS .validate .uiInputTextArea:focus{
+.THIS .personal-info .slds-input:focus,.THIS .slds-select:focus,.THIS .uiInputTextArea:focus{
     box-shadow:none;
     border: solid 1px #5b616b
 }
@@ -157,7 +161,7 @@ border-radius: 5px;
 }
 /*fields label and input style*/
 .THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
-,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label{
+,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label,.THIS .self-service-wrapper label{
     font-family: token(publicSansfontfamily);
     font-size: token(fieldlabelsize);
     line-height:1.5;
@@ -166,7 +170,7 @@ border-radius: 5px;
     max-width: none;
 }
 
-.THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input{
+.THIS .field-size div input, .THIS .field-size div select,.THIS .field-item div input,.THIS .amrfield div input{
     padding:0px 12px;
     box-sizing:border-box;
     border: solid 1px #5b616b;
@@ -185,7 +189,7 @@ border-radius: 5px;
     margin: 0 0 0.8rem;
     box-sizing: border-box;
 }
-.THIS .field-item .slds-form-element__control{
+.THIS .field-item .slds-form-element__control,.THIS .self-service-wrapper .slds-form-element__control{
     width:50%;
 }
 .THIS .field-size .slds-form-element__control{
@@ -199,7 +203,7 @@ width:auto;
 flex-basis:auto;
 } */
 .THIS .screen-one .section-header{/*license lookup */
-    font-family: token(publicSansfontfamily);
+    font-family: token(merrifontfamily);
     font-size: token(btnfontsize);
     line-height:1;
     font-weight: token(txtfontweight);
@@ -216,7 +220,7 @@ flex-basis:auto;
     color: token(placeholderColor);
 }
 .THIS .sub-header,.THIS .sub-section,.THIS .subheader span{
-    font-family: token(publicSansfontfamily);
+    font-family: token(merrifontfamily);
     font-size: token(senfontsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
@@ -324,7 +328,7 @@ padding:0;
     font-weight: token(txtfontweight);
 } 
 .THIS .screen-two .slds-m-bottom_medium .sub-header{
-    font-family: t(publicSansfontfamily);
+    font-family: t(merrifontfamily);
     font-size: 22px;
     font-weight: 500;
     font-style: t(txtfontstyle);
@@ -355,6 +359,12 @@ padding:0;
     text-decoration: underline;
     padding-bottom:3rem;
 }
+.THIS .buttonpos{
+    margin: 0;
+    padding-top: 45px;
+    padding-bottom: 22px;
+    border-top: 1px solid #5b616b;
+}
 .THIS .personal-info .slds-button_icon-bare{
     color:t(primary);
 }
@@ -372,6 +382,9 @@ margin-right:10%;
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
     color: token(fieldclr);
+}
+.THIS .headings{
+    font-family: token(merrifontfamily);
 }
 /* review and submit declaration statements*/
 .THIS .sentences,.THIS .field-item .slds-text-longform{
@@ -417,6 +430,14 @@ margin-right:10%;
     box-shadow:none;
     
 }
+.THIS .sentenceResp .uiOutputRichText{
+    color:t(sentenceclr);
+    font-size:t(fieldlabelsize);
+}
+.THIS .sentenceResp .revAndSubCompletionFont .uiOutputRichText{
+    color:t(fieldclr);
+    font-size:t(fieldlabelsize);
+}
 .THIS .ques .quesclr{
     color:token(LnGPlaceholderText);
     height: auto;
@@ -429,6 +450,8 @@ margin-right:10%;
 .THIS .slds-select, .THIS .slds-input{
     border-radius:unset;
     font-size: token(fieldlabelsize);
+    box-shadow:none;
+    border:1px solid t(gray);
 }
 .THIS .slds-select{
     z-index:1;
@@ -678,6 +701,15 @@ margin-right:10%;
         
         font-size:0.8125rem;
     }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .THIS .field-size .slds-form-element__control{
+        width:100%
+    }
+    .THIS  .field-item .slds-form-element__control{
+        width:100%;
+    }
+    
 }
 .THIS .slds-spinner_container {
     position:fixed;

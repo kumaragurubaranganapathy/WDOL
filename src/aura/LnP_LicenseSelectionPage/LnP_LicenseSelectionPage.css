@@ -11,7 +11,7 @@
 }
 .THIS .card-wrapper p,.THIS .card-wrapper span,.THIS .card-wrapper li{
     color:t(fieldclr);
-    font-size: token(fieldlabelsize);
+    font-size: token(fieldlabelsize);    
 }
 .THIS .slds-radio .slds-form-element__label{
     padding-right: .5rem;
@@ -55,14 +55,12 @@
 .THIS .account-label{
     margin-bottom:1rem;
 }
-.THIS .slds-form-element__control{
-    width:80%;
-}
 .THIS .slds-form-element__label, .THIS .app-type{
     font-size: 14px;
     color: t(fieldclr);
     font-weight:normal;
     padding-right:0;
+    margin-bottom:0.25rem;
 }
 .THIS .slds-form-element__label{
     line-height:1.5;
@@ -156,7 +154,15 @@
     border:1px solid #1b1c1a;
     font-weight: token(btnfontweight);
 }
-
+.THIS .slds-form-element__control{
+    width:50%;
+    clear:left;
+    padding-left:0;
+    margin-top:0.25rem;
+}
+.THIS .slds-form-element_horizontal:not(.slds-is-editing){
+    padding:0;
+}
 @media screen and (max-width:767.9px) {
     .THIS .form-wrapper{
         padding:16px;

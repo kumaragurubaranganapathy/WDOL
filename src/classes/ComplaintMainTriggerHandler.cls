@@ -8,6 +8,7 @@ public class ComplaintMainTriggerHandler implements ITriggerHandler {
     public void BeforeUpdate(Map<Id, SObject> newItems, Map<Id, SObject> oldItems) {
     }
     public void BeforeDelete(Map<Id, SObject> oldItems) {
+        
     }
     
     public void AfterInsert(List<SObject> newItems) {
@@ -18,7 +19,7 @@ public class ComplaintMainTriggerHandler implements ITriggerHandler {
     }
                             
     public void AfterDelete(Map<Id, SObject> oldItems) {
-        countComplaintsOnEachLicense(null, (Map<id,MUSW__Complaint2__c>)oldItems);
+        
     }
     public void AfterUndelete(Map<Id, SObject> oldItems) {
     }
@@ -28,25 +29,39 @@ public class ComplaintMainTriggerHandler implements ITriggerHandler {
     }
     public void countComplaintsOnEachLicense(List<MUSW__Complaint2__c> newItems, Map<Id, MUSW__Complaint2__c> oldMap){
         Set<ID> licenseIds = new Set<ID>();
+        List<MUSW__License2__c> licenseToUpdateList = new List<MUSW__License2__c>();
+        Map<Id,Decimal> noOfComplaintForEachLicenseMap = new map<Id,Decimal>();
         for(MUSW__Complaint2__c complaintObj : newItems){
             if(Trigger.isInsert || Trigger.isDelete|| (Trigger.isUpdate && oldMap!= null && oldMap.containsKey(complaintObj.id) && oldMap.get(complaintObj.id).MUSW__Status__c != complaintObj.MUSW__Status__c)){
                 if(complaintObj.License__c != null){
-                	licenseIds.add(complaintObj.License__c);
+                    licenseIds.add(complaintObj.License__c);
             	}
             }
         }
-        List<AggregateResult> aggComplaintObj = [select Count(id) compCount, License__c from MUSW__Complaint2__c where MUSW__Status__c !='Closed'and License__c IN:licenseIds group by License__c ];
-        List<MUSW__License2__c> licenseToUpdateList = new List<MUSW__License2__c>();
-        for(AggregateResult aggResObj: aggComplaintObj){
+        if(!licenseIds.isEmpty()){
+            List<AggregateResult> aggComplaintObj = [select Count(id) compCount, License__c from MUSW__Complaint2__c where MUSW__Status__c !='Closed'and License__c IN:licenseIds group by License__c ];
+        	System.debug('###aggComplaintObj###'+aggComplaintObj);
+        	for(AggregateResult aggResObj: aggComplaintObj){
+            	noOfComplaintForEachLicenseMap.put((id)aggResObj.get('License__c'),(Decimal)aggResObj.get('compCount'));
+            }
+        }
+        for(ID licId :licenseIds){
             MUSW__License2__c licenseObj = new MUSW__License2__c();
-            licenseObj.id = (id)aggResObj.get('License__c');
-            licenseObj.Open_Complaints__c = (decimal)aggResObj.get('compCount');
-            licenseToUpdateList.add(licenseObj);
+            if(noOfComplaintForEachLicenseMap.containsKey(licId) && noOfComplaintForEachLicenseMap.values()!= null){
+                licenseObj.id = licId;
+                licenseObj.Open_Complaints__c = noOfComplaintForEachLicenseMap.get(licId);
+                licenseToUpdateList.add(licenseObj);
+             }
+            else{
+                licenseObj.id = licId;
+                licenseObj.Open_Complaints__c = 0;
+                licenseToUpdateList.add(licenseObj);
+            }
         }
         try{
-        	Utilityclass_withoutsharing.updateList(licenseToUpdateList);
+            Utilityclass_withoutsharing.updateList(licenseToUpdateList);
         }Catch(Exception ex){
             Polaris_CreateErrorLog_Exception.addError(ex,'Error in Updating License','on Complaint object');
-        }
+        } 
     }
 }

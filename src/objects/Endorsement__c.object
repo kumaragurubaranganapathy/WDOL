@@ -89,97 +89,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Branch_of_Engineering__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch of Engineering</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Agricultural &amp; Biological</fullName>
-                    <default>false</default>
-                    <label>Agricultural &amp; Biological</label>
-                </value>
-                <value>
-                    <fullName>Architectural</fullName>
-                    <default>false</default>
-                    <label>Architectural</label>
-                </value>
-                <value>
-                    <fullName>Chemical</fullName>
-                    <default>false</default>
-                    <label>Chemical</label>
-                </value>
-                <value>
-                    <fullName>Civil</fullName>
-                    <default>false</default>
-                    <label>Civil</label>
-                </value>
-                <value>
-                    <fullName>Control Systems</fullName>
-                    <default>false</default>
-                    <label>Control Systems</label>
-                </value>
-                <value>
-                    <fullName>Electrical</fullName>
-                    <default>false</default>
-                    <label>Electrical</label>
-                </value>
-                <value>
-                    <fullName>Environmental</fullName>
-                    <default>false</default>
-                    <label>Environmental</label>
-                </value>
-                <value>
-                    <fullName>Fire Protection</fullName>
-                    <default>false</default>
-                    <label>Fire Protection</label>
-                </value>
-                <value>
-                    <fullName>Industrial</fullName>
-                    <default>false</default>
-                    <label>Industrial</label>
-                </value>
-                <value>
-                    <fullName>Mechanical</fullName>
-                    <default>false</default>
-                    <label>Mechanical</label>
-                </value>
-                <value>
-                    <fullName>Metallurgical and Materials</fullName>
-                    <default>false</default>
-                    <label>Metallurgical and Materials</label>
-                </value>
-                <value>
-                    <fullName>Mining and Mineral Processing</fullName>
-                    <default>false</default>
-                    <label>Mining and Mineral Processing</label>
-                </value>
-                <value>
-                    <fullName>Naval Architect/Marine</fullName>
-                    <default>false</default>
-                    <label>Naval Architect/Marine</label>
-                </value>
-                <value>
-                    <fullName>Nuclear</fullName>
-                    <default>false</default>
-                    <label>Nuclear</label>
-                </value>
-                <value>
-                    <fullName>Petroleum</fullName>
-                    <default>false</default>
-                    <label>Petroleum</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
         <fullName>Created_for_New_Application__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -225,17 +134,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Days_after_Endorsement_Issue_Date_30__c</fullName>
-        <externalId>false</externalId>
-        <formula>Effective_Date__c + 30</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Days after Endorsement Issue Date 30</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Effective_Date__c</fullName>
         <externalId>false</externalId>
         <label>Current Issue Date</label>
@@ -254,7 +152,7 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
-    <fields>
+	<fields>
         <fullName>Endorsement_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
@@ -421,19 +319,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Hours__c</fullName>
-        <description>Endorsement Hours</description>
-        <externalId>false</externalId>
-        <label>Hours</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>License_Applicant__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.Applicant_Full_Name__c</formula>
@@ -520,90 +405,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Name_of_Electronic_Software_Provider__c</fullName>
-        <externalId>false</externalId>
-        <label>Name Electronic Software Provider</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Docusign</fullName>
-                    <default>false</default>
-                    <label>Docusign</label>
-                </value>
-                <value>
-                    <fullName>DocVerify</fullName>
-                    <default>false</default>
-                    <label>DocVerify</label>
-                </value>
-                <value>
-                    <fullName>Pavaso</fullName>
-                    <default>false</default>
-                    <label>Pavaso</label>
-                </value>
-                <value>
-                    <fullName>Simplifile</fullName>
-                    <default>false</default>
-                    <label>Simplifile</label>
-                </value>
-                <value>
-                    <fullName>World Wide Notary</fullName>
-                    <default>false</default>
-                    <label>World Wide Notary</label>
-                </value>
-                <value>
-                    <fullName>CSC E-recording</fullName>
-                    <default>false</default>
-                    <label>CSC E-recording</label>
-                </value>
-                <value>
-                    <fullName>GNUPG (proprietary or in-house software)</fullName>
-                    <default>false</default>
-                    <label>GNUPG (proprietary or in-house software)</label>
-                </value>
-                <value>
-                    <fullName>Collier Technologies LLC (Orcas Island ISP)</fullName>
-                    <default>false</default>
-                    <label>Collier Technologies LLC (Orcas Island ISP)</label>
-                </value>
-                <value>
-                    <fullName>Rush</fullName>
-                    <default>false</default>
-                    <label>Rush</label>
-                </value>
-                <value>
-                    <fullName>Translate</fullName>
-                    <default>false</default>
-                    <label>Translate</label>
-                </value>
-                <value>
-                    <fullName>SnapDocs</fullName>
-                    <default>false</default>
-                    <label>SnapDocs</label>
-                </value>
-                <value>
-                    <fullName>Settleware</fullName>
-                    <default>false</default>
-                    <label>Settleware</label>
-                </value>
-                <value>
-                    <fullName>Oracle Textura Management</fullName>
-                    <default>false</default>
-                    <label>Oracle Textura Management</label>
-                </value>
-                <value>
-                    <fullName>Other</fullName>
-                    <default>false</default>
-                    <label>Other</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Program_Type__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(License__r.Application_Type__c)</formula>
@@ -614,27 +415,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Release__c</fullName>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Removed_Electronic_Software_Providers__c</fullName>
-        <externalId>false</externalId>
-        <label>Removed Electronic Software Providers</label>
-        <length>131072</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Renewal_Reinstatement_Application__c</fullName>
@@ -747,152 +527,26 @@
                 <value>
                     <fullName>Applicant Action</fullName>
                     <default>false</default>
-                    <label>Applicant Action</label>
                 </value>
                 <value>
                     <fullName>Third Party Action</fullName>
                     <default>false</default>
-                    <label>Third Party Action</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <label>Endorsement</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>License__c</columns>
-        <columns>Renewal_Reinstatement_Application__c</columns>
-        <columns>License_Type__c</columns>
-        <columns>Status__c</columns>
-        <columns>Sub_Status__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Endorsements_with_Pending_Actions</fullName>
-        <columns>NAME</columns>
-        <columns>Status__c</columns>
-        <columns>Sub_Status__c</columns>
-        <columns>License__c</columns>
-        <columns>License_Type__c</columns>
-        <columns>Date_Requested_for_Adding_Endorsement__c</columns>
-        <columns>Date_Requested_for_Removing_Endorsement__c</columns>
-        <columns>Electronic_Software_Provider__c</columns>
-        <columns>Removed_Electronic_Software_Providers__c</columns>
-        <columns>Endorsement_Type__c</columns>
-        <columns>Date_Granted__c</columns>
-        <columns>Date_Removed__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Pending Action</value>
-        </filters>
-        <filters>
-            <field>Sub_Status__c</field>
-            <operation>equals</operation>
-            <value>Applicant Action,Third Party Action</value>
-        </filters>
-        <label>Endorsements with Pending Actions</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Pending_Action</fullName>
-        <columns>NAME</columns>
-        <columns>Status__c</columns>
-        <columns>Sub_Status__c</columns>
-        <columns>License__c</columns>
-        <columns>License_Type__c</columns>
-        <columns>Endorsement_Type__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Pending Action</value>
-        </filters>
-        <label>Pending Action</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <displayFormat>END-{0000000}</displayFormat>
-        <label>Endorsement  icon Name</label>
-        <trackHistory>false</trackHistory>
+        <label>Endorsement icon Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Endorsements</pluralLabel>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Endorsement</fullName>
         <active>true</active>
         <compactLayoutAssignment>Endorsement_Compact_Layout</compactLayoutAssignment>
         <label>Endorsement</label>
-        <picklistValues>
-            <picklist>Branch_of_Engineering__c</picklist>
-            <values>
-                <fullName>Agricultural %26 Biological</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architectural</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chemical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Civil</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Control Systems</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Electrical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Environmental</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fire Protection</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Industrial</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mechanical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Metallurgical and Materials</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mining and Mineral Processing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Naval Architect%2FMarine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nuclear</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Petroleum</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
         <picklistValues>
             <picklist>Endorsement_Type__c</picklist>
             <values>
@@ -1194,69 +848,6 @@
                 <fullName>Timeshare Salesperson</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Unlicensed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Name_of_Electronic_Software_Provider__c</picklist>
-            <values>
-                <fullName>CSC E-recording</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Collier Technologies LLC %28Orcas Island ISP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DocVerify</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Docusign</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GNUPG %28proprietary or in-house software%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oracle Textura Management</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pavaso</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rush</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Settleware</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Simplifile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SnapDocs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Translate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>World Wide Notary</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>
@@ -1305,17 +896,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>Sub_Status__c</picklist>
-            <values>
-                <fullName>Applicant Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Third Party Action</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>Endorsement_Type__c</searchResultsAdditionalFields>
@@ -1324,17 +904,6 @@
         <searchResultsAdditionalFields>Date_Granted__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
-    <validationRules>
-        <fullName>Electronic_software_provider_not_blank</fullName>
-        <active>false</active>
-        <description>if Name_of_Electronic_Software_Provider__c is other then only electronic software provider should be filled.</description>
-        <errorConditionFormula>AND(
-NOT(ISPICKVAL( Name_of_Electronic_Software_Provider__c ,&apos;Other&apos;)),
-NOT(ISBLANK( Electronic_Software_Provider__c ))
-)</errorConditionFormula>
-        <errorDisplayField>Electronic_Software_Provider__c</errorDisplayField>
-        <errorMessage>Can not insert value for selected Name of Electronic software provider</errorMessage>
-    </validationRules>
     <visibility>Public</visibility>
 	<webLinks>
         <fullName>Letter</fullName>

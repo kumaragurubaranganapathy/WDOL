@@ -59,7 +59,7 @@
                 <leftValueReference>myVariable_current.Question__r.Question_Body__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
-                    <stringValue>military spouse</stringValue>
+                    <stringValue>military </stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -87,10 +87,41 @@
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Question__r.Qualifying_Response__c</leftValueReference>
-                <operator>Contains</operator>
+                <leftValueReference>myVariable_current.Answer_Text__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>yes</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Question__r.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -99,7 +130,7 @@
             <label>Military spouse check</label>
         </rules>
     </decisions>
-    <interviewLabel>WA_elicense_Military_Spouse_Check-3_InterviewLabel</interviewLabel>
+    <interviewLabel>WA_elicense_Military_Spouse_Check-4_InterviewLabel</interviewLabel>
     <label>WA_elicense_Military_Spouse_Check</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -207,7 +238,7 @@
         <object>MUSW__License2__c</object>
     </recordUpdates>
     <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
-    <status>Draft</status>
+    <status>Obsolete</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>

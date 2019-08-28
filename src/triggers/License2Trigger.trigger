@@ -36,5 +36,58 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
             WA_License_utility.updateRenewalFields(licList);
         }
     }
+	if(trigger.isAfter && trigger.isUpdate){
+            List<Renewal_Application__c> relatedRenewalApplications  = new List<Renewal_Application__c>();
+            
+            set<id> licenseIDs = new Set<Id>();
+            for(MUSW__License2__c licenseRec : Trigger.new){
+                   
+                if(licenseRec.Polaris_DHP__c ==  True && licenseRec.MUSW__Status__c != trigger.OldMap.get(licenseRec.Id).MUSW__Status__c && licenseRec.MUSW__Status__c == 'Inactive'){
+                    licenseIDs.add(licenseRec.Id);
+                    
+                }
+            
+            }
+            if(!licenseIDs.isEmpty()){
+                relatedRenewalApplications = [SELECT Id,License__c, Renewal_Status__c, License__r.MUSW__Status__c,License__r.Polaris_DHP__c,Renewal_Reinstatement_Type__c,License__r.MUSW__Applicant__r.Email,License__r.MUSW__Applicant__c,License__r.CreatedById,License__r.Name FROM Renewal_Application__c WHERE License__c IN :Trigger.newMap.keySet() AND Renewal_Reinstatement_Type__c='Renewal'];
+            }   
+            System.debug('Starttttt');
+            
+            List<Renewal_Application__c> updaterelatedRenewalApplications = new List<Renewal_Application__c>();
+            List<Task> insertLicenseDHPTask = new List<Task>();
+            Id recordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByName().get('Reminder').getRecordTypeId();
+            //User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+            
+            if(!relatedRenewalApplications.isEmpty()){
+                for(Renewal_Application__c relatedRenewalApplicationRecord :relatedRenewalApplications ){
+                    if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true && trigger.NewMap.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c != trigger.OldMap.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c){
+                        System.debug('Update');
+                        Task licenseDHPTask = new Task();
+                        relatedRenewalApplicationRecord.Renewal_Status__c = 'Pending Payment';
+                        licenseDHPTask.WhatId = relatedRenewalApplicationRecord.License__c;
+                        licenseDHPTask.RecordTypeId = recordTypeId;
+                        licenseDHPTask.Type = 'DHP';
+                        licenseDHPTask.Description = 'DHP Reminder';
+                        licenseDHPTask.Status = 'Pending';
+                        licenseDHPTask.Subject = 'Bounced Check';
+                        licenseDHPTask.Email__c=relatedRenewalApplicationRecord.License__r.MUSW__Applicant__r.Email;
+                        licenseDHPTask.WhoId = relatedRenewalApplicationRecord.License__r.MUSW__Applicant__c;
+                        licenseDHPTask.OwnerId = relatedRenewalApplicationRecord.License__r.CreatedById;
+                        licenseDHPTask.Parent_License_Name__c = relatedRenewalApplicationRecord.License__r.Name;
+                        
+                        updaterelatedRenewalApplications.add(relatedRenewalApplicationRecord);
+                        insertLicenseDHPTask.add(licenseDHPTask);
+                    }
+                }
+            }
+            if(relatedRenewalApplications.size() > 0){
+                update updaterelatedRenewalApplications;
+                //System.debug('Test......'+licenseDHPTask.Status);
+            }
+            if(insertLicenseDHPTask.size() > 0){
+             insert insertLicenseDHPTask;
+            }
+            
+        } 
 
 }

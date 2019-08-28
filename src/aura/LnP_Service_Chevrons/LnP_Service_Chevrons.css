@@ -1,8 +1,35 @@
+.THIS.content-wrapper{
+    margin:2rem 7.5rem;
+}
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
+.THIS .devide-list .field-item{
+    width:100%;
+}
+.THIS .field-item .uiOutputRichText{
+    font-size:t(fieldlabelsize);
+    color:t(sentenceclr);
+    
+}
+.THIS .uiInputTextArea{
+    border:1px solid #5b616b;
+  
+    
+}
+.THIS .field-item .revAndSubCompletionFont .uiOutputRichText{
+    font-size:t(fieldlabelsize);
+    color:t(fieldclr);
+}
 .THIS label{
     font-size: 16px;
+}
+.THIS .hiddenLabel label{
+    display:none;
+    
+}
+.THIS .aff-loc.address-sec {
+    width:100%;
 }
 .THIS .slds-form-element__label{
     font-size: 14px; 
@@ -10,16 +37,21 @@
     word-break: normal;
     overflow-wrap: normal;
 }
-.THIS .section{
-    font-size: 18px;
-    color:t(LnGFormTitleColor);
-    margin: 0 0 0 25px;
-    padding-bottom:10px;
-    width:100%;
+.THIS .DeclrtnWidth.slds-form-element__control{
+    width:auto;
+}
+.THIS .sectionwidth{
+    width: 100%;
+    height: 30px;
+    border-bottom: .5px solid #d6d7d9;
+    margin-bottom: 1rem;   
 }
 .THIS .sectiondetail{
-    margin: 0 0 25px 25px;    
-    color: t(LnGFormGray);  
+    margin: 0 0 1.5rem;    
+    color: t(LnGFormTitleColor);
+    
+}
+.THIS .section-wrapper{
     width:100%;
 }
 .THIS .slds-radio .slds-form-element__label{
@@ -51,7 +83,14 @@
     font-size: 25px;
 }
 .THIS .field-item{
-   padding: 0px 25px 25px 25px; 
+    padding-left: 0;
+    padding-bottom: 8px; 
+}
+.THIS .field-item span{
+    font-size:t(fieldlabelsize);
+}
+.THIS .fileupload .slds-form-element__label{
+    margin: 10px;
 }
 .THIS.button-section{
     width: -webkit-fill-available;
@@ -62,6 +101,9 @@
     margin: auto;
     padding: 10px;
     padding-left: 30px;
+}
+.THIS .attestation{
+    padding-bottom:25px;
 }
 .THIS .pull-right{
     margin-left: auto;
@@ -77,10 +119,10 @@
     font-size:14px;    
 }
 .THIS .revAndSubCompletionFont{
-    margin:8px 0 20px 12px;
+    margin:0.5rem 0 1.25rem;
     color: t(LnGFormTitleColor);
-    font-size:14px;  
-    padding:5px 10px;
+    font-size:0.875rem;  
+    padding:0.25rem 0.5rem;
     background-color: rgb(233, 234, 236);    
     -moz-user-select: none;
     -ms-user-select: none;
@@ -90,7 +132,7 @@
     border-top:none;
     border-left:none;
     border-right:none;
-    font-size:14px;
+    font-size:0.875rem;
     color:t(LnGFormTitleColor);
     border-radius:0;
     background:t(LnGBackgroundGray);
@@ -99,19 +141,22 @@
     padding:10px 0 25px;
 }
 .THIS .attestBody{
-    font-size:14px;
+    font-size:0.875rem;
+    margin-bottom:1rem
 }
 .THIS .uiInput--default.uiInput--input{
     border:none;
-    font-size:14px;
+    font-size:t(fieldlabelsize);
     color:t(LnGFormTitleColor);
-    background-color: t(LnGBackgroundGray);    
-    cursor: not-allowed;    
+    background-color: t(LnGWhite);    
+    cursor: not-allowed; 
+    padding-left: 0;
+    font-weight:t(txtfontweight);
 }
 .THIS .reviewHeading{
-    font-weight: bold;   
-    color: t(LnGFormGray);
-    font-size:16px;
+    font-weight: 600;   
+    color: t(fieldclr);
+    font-size:t(fieldlabelsize);
 }
 .THIS .attValidationStyle{
     padding-left: 25px;
@@ -137,16 +182,8 @@
 .THIS .LnP_Employment__caddRecord{
    padding:10px 0 0 0;
 }
-.THIS{
-    margin: 0 40px;
-}
-
 .THIS .personal-info{    
-    margin: 20px auto;
-    padding: 30px 10px;    
-    border-radius: 8px;
-  	box-shadow: 3px 3px 12px 0 rgba(208, 208, 208, 0.5);
-    background:t(LnGBackgroundGray);
+    margin: 1.5rem 0;    
     display: flex;
     flex-direction: column;    
 }
@@ -163,27 +200,30 @@
     margin: auto;     
 }
 .THIS .subheader{
-    font-size:24px;
+    font-size:1.25rem;
+    font-weight:600;
     color:t(LnGFormTitleColor);
 }
-.THIS .btn-lnp{
-    background: #4c65f2;
+.THIS .field-item.attest-fields{
+    width:100%;
+}
+.THIS .btn-lnp{    
     color: #ffffff;
-    padding: .25rem 1rem;
-    border-radius: 50px;
+    padding: .25rem 1rem;    
 }
 .THIS .background-section{
     background-color:t(white);
     margin: 20px 0px;
-    padding: 22px;
+    
 }
+
 .THIS .tile-wrap{
     display:flex;
     flex-wrap: wrap;
     padding:0 0 10px 0;
 }
 .THIS .tile-wrap .recordDetail{
-    padding:15px;
+    padding:15px 15px 15px 0;
 }
 .THIS .tile-wrap .recordDetail .row{
     width: 100%;
@@ -200,4 +240,47 @@
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
+    border-color:t(LnGGrayText);
+}
+.THIS .personal-info .field-item > .slds-form-element__label:before {
+    position: absolute;
+    content: "*";
+    color: red;
+    top: 0;
+    left: -5px;
+}
+.THIS .personal-info .field-item > .slds-form-element__label {
+    position: relative;
+}
+.THIS .sectionwidth.headings{
+    font-family:t(merrifontfamily);
+}
+@media t(mqSmall){
+    .THIS.content-wrapper{
+        margin:1rem;
+    }
+    .THIS .personal-info .field-item{
+        padding-bottom:0.5rem;
+    }
+    .THIS .field-item{
+        width:100%;
+    }
+    .THIS.content-wrapper .field-item .slds-form-element__control{
+        width:100%;
+    }
+    .THIS .subheader{
+        font-size:1rem;
+    }
+    .THIS .button-section.slds-m-top_xx-large{
+        margin-top:1rem;
+        display:flex;
+        flex-direction:column;
+    }
+    .THIS .button-section button{
+        width:100%;
+    }
+    .THIS .button-section .back-button{
+        margin-bottom:0.5rem;
+    }
+    
 }

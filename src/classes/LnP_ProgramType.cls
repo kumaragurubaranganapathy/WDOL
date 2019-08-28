@@ -213,7 +213,7 @@ public with sharing class LnP_ProgramType{
             }            
         }
         
-        DateTime myDateTime = Datetime.now();  
+        DateTime myDateTime =  Datetime.now();   
         BGBK.PaymentService paymentServiceObj = new BGBK.PaymentService();
         system.debug('payables : ' +payables);
         system.debug('receiptMap : '+receiptMap);

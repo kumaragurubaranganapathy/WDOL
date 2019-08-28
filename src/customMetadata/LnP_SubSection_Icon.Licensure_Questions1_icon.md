@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Licensure Questions icon</label>
+    <label>Endorsement  icon</label>
     <protected>false</protected>
     <values>
         <field>LnP_Icon_Name__c</field>
-        <value xsi:type="xsd:string">Schedule 3A icon</value>
+        <value xsi:type="xsd:string">Endorsement icon</value>
     </values>
     <values>
         <field>LnP_Icon_SVG_Name__c</field>

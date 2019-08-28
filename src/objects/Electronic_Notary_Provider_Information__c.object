@@ -66,14 +66,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Date_Requested__c</fullName>
-        <externalId>false</externalId>
-        <label>Date Requested for Removing Endorsement</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
@@ -198,19 +190,9 @@
         <type>Lookup</type>
     </fields>
     <label>Electronic Notary Provider Information</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Provider_Name__c</columns>
-        <columns>Effective_Date__c</columns>
-        <columns>Endorsement__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <displayFormat>Provider-{0000000}</displayFormat>
-        <label>Electronic Notary Provider Information Name</label>
+        <label>Electronic Notary Provider Information N</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Electronic Notary Provider Information</pluralLabel>
@@ -278,10 +260,7 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
-    <startsWith>Vowel</startsWith>
-    <validationRules>
+	<validationRules>
         <fullName>Electronic_software_provider_not_blank</fullName>
         <active>true</active>
         <description>if Provider_Name__c is other then only electronic software provider should be filled.</description>
@@ -291,5 +270,8 @@ ISBLANK( Description__c)
 )</errorConditionFormula>
         <errorMessage>Please enter Provide Information in description</errorMessage>
     </validationRules>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

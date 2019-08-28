@@ -4,6 +4,28 @@
 .THIS label{
     font-size: 16px;
 }
+.THIS .uiInputTextArea{
+    box-shadow:none;
+}
+.THIS .buttonpos{
+    margin: 0;
+    padding-top: 45px;
+    padding-bottom: 22px;
+    border-top: 1px solid #5b616b;
+}
+.THIS button.slds-button.slds-button_neutral.removebtn{
+    border:none;
+    color:#333;
+    font-weight:normal;
+}
+.THIS button.slds-button.slds-button_neutral.removebtn:hover{
+    border:none;
+    color:#2574a9;
+    font-weight:bold;
+    outline:0;
+    text-decoration:none;
+    
+}
 .THIS .slds-form-element__label{
     font-size: 14px; 
     color:t(LnGFormGray);
@@ -140,7 +162,7 @@
    padding:10px 0 0 0;
 }
 .THIS{
-    margin: 0 40px;
+    margin: 0 7.5rem;
 }
 
 .THIS .personal-info{    
@@ -165,9 +187,19 @@
     margin: auto;     
 }
 .THIS .subheader{
-    font-size:24px;
-    color:t(LnGFormTitleColor);
+    font-size: 1rem;
+    padding-bottom: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #171717;
 }
+
+.THIS .spaceBottm{
+    padding-bottom:5px;
+    font-size:t(fieldlabelsize);
+}
+
 .THIS .btn-lnp{
     background: #4c65f2;
     color: #ffffff;

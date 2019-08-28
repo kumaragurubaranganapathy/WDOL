@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Associate Flag</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Associate Flags</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Associate Flags --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Associate Flags --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credential --></label>
+        <name>Credential__c</name>
+        <relationshipLabel><!-- Associate Flags --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective Date --></label>
+        <name>Effective_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flag --></label>
+        <name>Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- PTO/Plan Review --></label>
+        <name>PTO_Plan_Review__c</name>
+        <relationshipLabel><!-- Associate Flags --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Severity --></label>
+        <name>Severity__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Info</masterLabel>
+            <translation><!-- Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Cannot be Past date --></errorMessage>
+        <name>End_Date_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Ensure at least one of the following lookup fields is not blank: Account, Contact, Credential, PTO/Plan Review. --></errorMessage>
+        <name>Select_atleast_one_lookup</name>
+    </validationRules>
+</CustomObjectTranslation>

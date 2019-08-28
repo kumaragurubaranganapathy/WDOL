@@ -50,6 +50,7 @@
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -68,6 +69,15 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>Is_Abandoned__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Abandoned ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Application_Method__c</fullName>
@@ -441,17 +451,7 @@
         <type>Location</type>
     </fields>
     <fields>
-        <fullName>Is_Abandoned__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Is Abandoned ?</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>License_ID__c</fullName>
-        <description>Foreign Key for Data Migration of Legacy Data</description>
         <externalId>false</externalId>
         <label>License ID</label>
         <length>50</length>
@@ -656,39 +656,14 @@
                     <label>Under Review</label>
                 </value>
                 <value>
-                    <fullName>Draft</fullName>
-                    <default>false</default>
-                    <label>Draft</label>
-                </value>
-                <value>
-                    <fullName>Submission Failed</fullName>
-                    <default>false</default>
-                    <label>Submission Failed</label>
-                </value>
-                <value>
-                    <fullName>Pending Payment</fullName>
-                    <default>false</default>
-                    <label>Pending Payment</label>
-                </value>
-                <value>
-                    <fullName>Pending Action</fullName>
-                    <default>false</default>
-                    <label>Pending Action</label>
-                </value>
-                <value>
-                    <fullName>Pending Additional Qualification</fullName>
-                    <default>false</default>
-                    <label>Pending Additional Qualification</label>
-                </value>
-                <value>
-                    <fullName>Deleted</fullName>
-                    <default>false</default>
-                    <label>Deleted</label>
-                </value>
-                <value>
                     <fullName>Abandoned</fullName>
                     <default>false</default>
                     <label>Abandoned</label>
+                </value>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -979,17 +954,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Security_Code__c</fullName>
-        <externalId>false</externalId>
-        <label>Security Code</label>
-        <length>10</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Special_Accommodation_Request__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Special Accommodation Request</description>
@@ -1102,36 +1066,33 @@
     </fields>
     <label>Application</label>
     <listViews>
-        <fullName>AMC_Applications</fullName>
+        <fullName>Abandoned_Applications</fullName>
         <columns>NAME</columns>
-        <columns>Credential_Type__c</columns>
-        <columns>MUSW__Type__c</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>MUSW__Parcel__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Credential_Type__c</field>
+            <field>MUSW__Status__c</field>
             <operation>equals</operation>
-            <value>Appraisal Management Company</value>
+            <value>Abandoned</value>
         </filters>
-        <label>AMC Applications</label>
+        <label>Abandoned Applications</label>
     </listViews>
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
-        <columns>Application_Number__c</columns>
         <columns>Credential_Type__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>MUSW__Type__c</columns>
+        <columns>Application_Method__c</columns>
         <columns>MUSW__Applicant__c</columns>
+        <columns>MUSW__Total_Balance__c</columns>
         <columns>MUSW__Status__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
-        <columns>MUSW__Parcel__c</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>7/16/2019 12:00 AM</value>
+        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>
@@ -1281,10 +1242,6 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1665,10 +1622,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deleted</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Denied</fullName>
                 <default>false</default>
             </values>
@@ -1683,22 +1636,6 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Pending Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Additional Qualification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submission Failed</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -1907,10 +1844,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Fine</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -2003,10 +1936,6 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2379,10 +2308,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deleted</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Denied</fullName>
                 <default>false</default>
             </values>
@@ -2393,22 +2318,6 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Pending Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Additional Qualification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submission Failed</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -2621,10 +2530,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Fine</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -2717,10 +2622,6 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2990,10 +2891,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Engineering%2FLand Surveying Company</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Funeral Director</fullName>
                 <default>false</default>
             </values>
@@ -3093,10 +2990,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deleted</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Denied</fullName>
                 <default>false</default>
             </values>
@@ -3107,22 +3000,6 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Pending Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Additional Qualification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submission Failed</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Withdrawn</fullName>
@@ -3323,10 +3200,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Fine</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -3419,10 +3292,6 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3803,10 +3672,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deleted</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Denied</fullName>
                 <default>false</default>
             </values>
@@ -3821,22 +3686,6 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Pending Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Additional Qualification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submission Failed</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>
@@ -4088,10 +3937,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Fine</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>General Application</fullName>
                 <default>false</default>
             </values>
@@ -4184,10 +4029,6 @@
             </values>
             <values>
                 <fullName>On-site Wastewater</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Program Unknown</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4568,10 +4409,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deleted</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Denied</fullName>
                 <default>false</default>
             </values>
@@ -4586,22 +4423,6 @@
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Pending Action</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Additional Qualification</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Payment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Submission Failed</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Submitted</fullName>

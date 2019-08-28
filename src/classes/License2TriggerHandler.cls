@@ -10,27 +10,37 @@
 
 public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public static user u;
+    public static boolean runAgain = true;
     public License2TriggerHandler() {
         u = [Select Id, UserType, Is_Portal_User__c From User where Id = :UserInfo.getUserId()];
     }
+    
     public void onAfterDelete() {}
     public void onAfterInsert() {
         //This method is to run the automation rules
         BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
         
-        /*Calling the after method to create submissions*/        
-        afterMethod();
+        /*Calling the after method to create submissions*/   
+        if(runAgain == true) {
+            runAgain= false;
+            afterMethod();
+        }
+       
+            
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-        afterMethod();
+     if(runAgain == true) {
+         runAgain= false;
+         afterMethod();
+        }
+
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
-            SObjectTriggerHandler handler = new SObjectTriggerHandler(Trigger.New,SObjectTriggerHandler.Action.BeforeInsert);
-            handler.process();
+           
         }else{
             //if(!test.isRunningTest()){
             //Added to restrict users from updating credential number- Bug#2488
@@ -58,8 +68,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onBeforeUpdate() {
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
-            SObjectTriggerHandler handler = new SObjectTriggerHandler(Trigger.New,SObjectTriggerHandler.Action.beforeupdate);               
-            handler.process();
+            
         }
         beforeMethod();
         
@@ -75,6 +84,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
           * Method to update sumission records based on answers in License records         
           * Fetching old and new values for the License if any
         */
+        
+        
         
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
@@ -149,149 +160,9 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             system.debug('listEndorsement : '+listEndorsement);
             update listEndorsement; 
         }
-
-    /*   if(licensesInPendingStatusMap.size() > 0) {
-            System.debug('in if size > 0 ');
-            
-            //Share the records based on custom setttings
-            //SharingUtilityController sharingController = new SharingUtilityController();
-            //sharingController.ShareRecordProcessingUtility(Trigger.NewMap.keySet(), 'MUSW__License2__c', 'after insert', 'LicenseTrigger', Schema.MUSW__License2__share.RowCause.Insert_CredentialShare__c);
-            
-            //Share the License records when the Delegated Admin is the applicant on the License
-            LicenseCreatedByDelegate DelegateController = new LicenseCreatedByDelegate();
-            DelegateController.shareLicenseRecords(TriggerNew);
-            
-            //Creating a map of license type and corresponding submission list.
-            
-            Map<String, List<MUSW__Master_Submission_List__c>> licenseTypesSubmissionListMap = new Map<String, List<MUSW__Master_Submission_List__c>>();
-            for(MUSW__Master_Submission_List__c masterSubmission: [SELECT Id, External_id__c, Name, Background_Question_Field_API_Name__c,
-                                                                   Description_Long__c, Application_Type__c, Credential_Type__c, Credential__c, Default__c, Show_For__c,Question__r.External_Id__c,Expected_Answer__c,
-                                                                   Submission_Type__c, Document_API_Name__c, Application_Method__c, BG_File_Location_Type__c
-                                                                   FROM MUSW__Master_Submission_List__c 
-                                                                   WHERE Active__c = TRUE 
-                                                                   AND Object__c = :label.API_License2 
-                                                                   AND Credential__c IN :credentialInPendingStatusSet
-                                                                   AND Application_Method__c IN :applicationMethodSet
-                                                                   LIMIT 5000]) {
-                                                                       System.debug('in second for loop ');                                                                 
-                                                                       List<MUSW__Master_Submission_List__c> tempSubmissionList = new List<MUSW__Master_Submission_List__c> ();
-                                                                       /* if license type already exists in the map, then fetch the list of submission list
-* records associated with that license type
-                                                                       if(licenseTypesSubmissionListMap.containsKey(masterSubmission.Credential__c)) {
-                                                                           tempSubmissionList = licenseTypesSubmissionListMap.get(masterSubmission.Credential__c);
-                                                                       }
-                                                                       /*1. adding submission list for the license type in a list                                                      
-* 2. If the above 'if condition' was executed, then the new submission list record would be added to the
-* existing list 
-                                                                       tempSubmissionList.add(masterSubmission);
-                                                                       //adding license type and corresponding list in a map
-                                                                       licenseTypesSubmissionListMap.put(masterSubmission.Credential__c, tempSubmissionList);
-                                                                   }
-            
-            Set<String> licenseFieldSet = Schema.SObjectType.MUSW__License2__c.fields.getMap().keyset();
-            system.debug('licenseFieldSet : '+licenseFieldSet );
-            List<MUSW__Submission__c> submissionUpsertList = new List<MUSW__Submission__c>();
-            List<MUSW__Submission__c> submissionDeleteList = new List<MUSW__Submission__c>();
-            // Querying existing submissions under license records and iterating over it to create new submissions
-            
-            for(MUSW__License2__c license:[Select id,(Select Id, Name, LicenseQuestionKey__c FROM MUSW__Submissions__r) FROM MUSW__License2__c WHERE Id = :licensesInPendingStatusMap.keyset()]){
-                
-                // Getting new license instance from Trigger.newMap
-                
-                MUSW__License2__c newLicense = licensesInPendingStatusMap.get(license.Id);
-                List <Answer__c> answerList = [Select id, External_id_of_Question__c, License__c, Answer_Text__c FROM Answer__c where License__c =: newLicense.Id ];
-                //Creating a map of existing submission records
-                
-                Map<String,MUSW__Submission__c> keyToSubmissionMap = new Map<String, MUSW__Submission__c>();
-                for(MUSW__Submission__c submission: license.MUSW__Submissions__r) {
-                    if(submission.LicenseQuestionKey__c != null){
-                        keyToSubmissionMap.put(submission.LicenseQuestionKey__c, submission);
-                    }
-                }
-                
-                // Creating submissions based on License Type
-                
-                if(licenseTypesSubmissionListMap.containsKey(newLicense.Credential__c)) {
-                    for(MUSW__Master_Submission_List__c masterSubmission : licenseTypesSubmissionListMap.get(newLicense.Credential__c)) {
-                        String licenseSubmissionComboKey = String.valueOf(newLicense.Id) + String.valueOf(masterSubmission.External_Id__c);
-                        // If question is background question type, submission is created based on answer
-                        
-                        if(masterSubmission.Background_Question_Field_API_Name__c != null && licenseFieldSet.contains(masterSubmission.Background_Question_Field_API_Name__c.toLowerCase())) {
-                            String questionAnswer;
-                            questionAnswer= (String)newLicense.get(masterSubmission.Background_Question_Field_API_Name__c);
-                            system.debug('questionAnswer : '+questionAnswer);
-                            // If answer is 'Yes' new submission is created
-                            
-                            if(questionAnswer!= null && questionAnswer.equalsIgnoreCase('Yes')) { 
-                                if(!keyToSubmissionMap.containsKey(licenseSubmissionComboKey)) {
-                                    MUSW__Submission__c newSubmission = new MUSW__Submission__c(Name = masterSubmission.Name, Description_Long__c = masterSubmission.Description_Long__c,
-                                                                                                LicenseQuestionKey__c = licenseSubmissionComboKey, MUSW__License2__c = newLicense.Id, Application_Type__c = masterSubmission.Application_Type__c,
-                                                                                                Type__c = (masterSubmission.Submission_Type__c =='Hardcopy: To be Mailed' ? 'Hardcopy: To be Mailed' : 'Softcopy: To be Uploaded'),
-                                                                                                Extid_from_Submission_List__c = masterSubmission.External_Id__c, Document_API_Name__c = masterSubmission.Document_API_Name__c, 
-                                                                                                Master_Submission_List__c = masterSubmission.Id, MUSW__BG_File_Location_Type__c = masterSubmission.BG_File_Location_Type__c);
-                                    
-                                    if(newSubmission.MUSW__BG_File_Location_Type__c == null || newSubmission.MUSW__BG_File_Location_Type__c == '') newSubmission.MUSW__BG_File_Location_Type__c = 'Salesforce';
-                                    submissionUpsertList.add(newSubmission);
-                                }
-                            }else if((questionAnswer == null || questionAnswer.equalsIgnoreCase('No')) && keyToSubmissionMap.containsKey(licenseSubmissionComboKey)) {
-                                //If answer is 'No' and there is an existing submission, it is deleted
-                                
-                                MUSW__Submission__c oldSubmission = keyToSubmissionMap.get(licenseSubmissionComboKey);
-                                submissionDeleteList.add(oldSubmission);
-                            }
-                        }
-                        //To create attachments based on question answer
-                        for(Answer__c ans : answerList){
-                            if(masterSubmission.Question__r.External_Id__c == ans.External_id_of_Question__c &&  masterSubmission.Background_Question_Field_API_Name__c == null && !masterSubmission.Default__c  ){
-                                if(masterSubmission.Expected_Answer__c == ans.Answer_Text__c ){
-                                    if(!keyToSubmissionMap.containsKey(licenseSubmissionComboKey)) {
-                                        MUSW__Submission__c newSubmission = new MUSW__Submission__c(Name = masterSubmission.Name, Description_Long__c =       masterSubmission.Description_Long__c,
-                                                                                                LicenseQuestionKey__c = licenseSubmissionComboKey, MUSW__License2__c = newLicense.Id, Application_Type__c = masterSubmission.Application_Type__c,
-                                                                                                Type__c = (masterSubmission.Submission_Type__c =='Hardcopy: To be Mailed' ? 'Hardcopy: To be Mailed' : 'Softcopy: To be Uploaded'),
-                                                                                                Extid_from_Submission_List__c = masterSubmission.External_Id__c, Document_API_Name__c = masterSubmission.Document_API_Name__c, 
-                                                                                                Master_Submission_List__c = masterSubmission.Id, MUSW__BG_File_Location_Type__c = masterSubmission.BG_File_Location_Type__c);
-                                    
-                                        if(newSubmission.MUSW__BG_File_Location_Type__c == null || newSubmission.MUSW__BG_File_Location_Type__c == '') newSubmission.MUSW__BG_File_Location_Type__c = 'Salesforce';
-                                        submissionUpsertList.add(newSubmission);
-                                        
-                                    }
-                                }
-                                else if(masterSubmission.Expected_Answer__c != ans.Answer_Text__c  && keyToSubmissionMap.containsKey(licenseSubmissionComboKey)){
-                                    //If answer is not equal to expected and there is an existing submission, it is deleted
-                                
-                                    MUSW__Submission__c oldSubmission = keyToSubmissionMap.get(licenseSubmissionComboKey);
-                                    submissionDeleteList.add(oldSubmission);
-                                }
-                            }
-                        }
-                        if(masterSubmission.Default__c) {
-                            // If submisison list is not of question type, corresponding submission is created
-                            
-                            if(!keyToSubmissionMap.containsKey(licenseSubmissionComboKey)) {
-                                if(masterSubmission.Show_For__c != null && masterSubmission.Show_For__c.containsIgnoreCase('Credential')) {
-                                    MUSW__Submission__c newSubmission = new MUSW__Submission__c(Name = masterSubmission.Name, Description_Long__c = masterSubmission.Description_Long__c,
-                                                                                                LicenseQuestionKey__c = licenseSubmissionComboKey, MUSW__License2__c = newLicense.Id, Application_Type__c = masterSubmission.Application_Type__c,
-                                                                                                Type__c = (masterSubmission.Submission_Type__c =='Hardcopy: To be Mailed' ? 'Hardcopy: To be Mailed' : 'Softcopy: To be Uploaded'),
-                                                                                                MUSW__Required__c = masterSubmission.Default__c, Extid_from_Submission_List__c = masterSubmission.External_Id__c,
-                                                                                                Document_API_Name__c = masterSubmission.Document_API_Name__c, Master_Submission_List__c = masterSubmission.Id,
-                                                                                                MUSW__BG_File_Location_Type__c = masterSubmission.BG_File_Location_Type__c);
-                                    
-                                    if(newSubmission.MUSW__BG_File_Location_Type__c == null || newSubmission.MUSW__BG_File_Location_Type__c == '') newSubmission.MUSW__BG_File_Location_Type__c = 'Salesforce';
-                                    submissionUpsertList.add(newSubmission);
-                                }
-                                
-                            }
-                        }
-                    }
-                }
-            }
-            
-            upsert submissionUpsertList LicenseQuestionKey__c;
-           // if(Schema.sObjectType.MUSW__Submission__c.isDeletable()) {
-                delete submissionDeleteList;
-            //}
-            
-        }*/
+        
+        //Update exipration date logic moved from  process builder to  trigger to  optimize the logic
+      // List<MUSW_License2__c> lstLicense = [SELECT Id,Credential_Type__c,Date_of_Birth__c, from MUSW__License2__c ]; 
         
     }
     
@@ -328,11 +199,6 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             if(trigger.Old != null){
                 licOld = (MUSW__License2__c)trigger.OldMap.get(lic.Id);
             }
-            /*if(lic.MUSW__Total_Fees__c > 0 && lic.MUSW__Total_Balance__c == 0 && lic.MUSW__Status__c == label.ST_Generate_Fee && (licOld == null || licOld.MUSW__Total_Balance__c > 0)){
-                lic.MUSW__Status__c = 'Submitted';
-                lic.App_Submitted_Date__c = Date.today();
-            }*/
-            
             //Copy the application number to a new field only once
             if(licOld != null && String.isBlank(licOld.Application_Number__c)){
                 lic.Application_Number__c = lic.Name;
@@ -351,37 +217,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             Decimal feeAmt = mapLicenseTotalFee.get(lic.Id);
             if (lic.Id != null && feeAmt != null && lic.MUSW__Total_Fees__c != feeAmt) {
                 lic.MUSW__Total_Fees__c = feeAmt;
-                
-                /*if(lic.MUSW__Total_Fees__c == lic.MUSW__Total_Payments__c){
-                    lic.MUSW__Status__c = 'Submitted';
-                    lic.App_Submitted_Date__c = Date.today();
-                }*/
             }
         } 
-        
-        
-        /*below code calls FeeWaiver class to update No Fee required field on License if the applicant is eligible for Fee waiver */
-        /*List<MUSW__License2__c> triggerNew = Trigger.New;
-List<MUSW__License2__c> licensesForFeeWaiver = new List<MUSW__License2__c>();
-Map<Id, MUSW__License2__c> contactMap = new Map<Id, MUSW__License2__c>();
-
-for(MUSW__License2__c licenseNew: triggerNew){
-contactMap.put(licenseNew.MUSW__Applicant__c, licenseNew);
-}
-List<Contact> listOfContacts = [select id, Served_in_Military__c from Contact where id in :contactMap.keyset() and Served_in_Military__c = 'Yes']; 
-System.debug('listOfContacts size' +listOfContacts.size());
-for(Contact con: listOfContacts){
-licensesForFeeWaiver.add(contactMap.get(con.id));
-}
-System.debug('licensesForFeeWaiver>>>>>>>>>>>>>>' +licensesForFeeWaiver);
-Fee_Waiver fWaiver = new Fee_Waiver();
-fWaiver.UpdateNoFeeRequired(licensesForFeeWaiver, 'Credential'); */
-        /* List<MUSW__License2__c> triggerNew = Trigger.New;
-for(MUSW__License2__c licenseNew: triggerNew){
-if(licenseNew.DVA_Voucher_code__c != '' && licenseNew.DVA_Voucher_code__c != Null){
-licenseNew.No_Fee_Required__c = true;
-}
-} */
     } 
     
     /*********************************************************************************
@@ -392,7 +229,7 @@ Parameter      : Nil
 *********************************************************************************/
     public void Notificationdate() {
         
-        List<MUSW__License2__c> triggerOld = Trigger.Old;
+     /*   List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
         Map<String, List<Email_Reminder_Setting__mdt>> mapTypeVsCriteria = Email_Utility.getEmailCriteriaMap(label.Str_Credential);
         for (Integer i = 0; i < triggerNew.size(); i++) {
@@ -427,7 +264,7 @@ Parameter      : Nil
                     }
                 }
             }
-        }
+        } */
         
     }
     

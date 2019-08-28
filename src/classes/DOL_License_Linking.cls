@@ -134,9 +134,10 @@ public without Sharing class DOL_License_Linking {
         List<MUSW__Account_Contact__c> lstAssociation = new List<MUSW__Account_Contact__c>();
         List<BGBK__Cart__c> lstCart = new List<BGBK__Cart__c>();
         List<MUSW__License2__c> lstlicense = new List<MUSW__License2__c>();
-        List<Contact>  lstContacts =[select id, (select id,Contact__c from Requests__r),(select id,MUSW__Contact__c from MUSW__Account_Contacts__r),
-                                  (select id,MUSW__Applicant__c from  MUSW__License2s__r),(select id,BGBK__Contact__c from  BGBK__Carts__r) 
+        List<Contact>  lstContacts =[select id, (select id,ownerId,Contact__c from Requests__r),(select id,ownerId,MUSW__Contact__c from MUSW__Account_Contacts__r),
+                                  (select id,MUSW__Applicant__c,ownerId from  MUSW__License2s__r),(select id,ownerId,BGBK__Contact__c from  BGBK__Carts__r) 
                                    from  Contact where Id =:contactId LIMIT 1];
+
         if(!lstContacts.isEmpty()) {
             if(!lstContacts[0].Requests__r.isEmpty()){
                lstrequset.addAll(lstContacts[0].Requests__r); 
@@ -153,10 +154,12 @@ public without Sharing class DOL_License_Linking {
         } 
         
         User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+        Id owner = currentUser.Id;
         Savepoint sp = Database.setSavepoint();
         if(!lstlicense.isEmpty()){
             for(MUSW__License2__c license : lstlicense){
                 license.MUSW__Applicant__c = currentUser.ContactId;
+                license.ownerId = owner;
             }
             try{
               Database.update(lstlicense);
@@ -172,6 +175,7 @@ public without Sharing class DOL_License_Linking {
        if(!lstrequset.isEmpty()){
             for(Request__c request : lstrequset){
                 request.Contact__c = currentUser.ContactId;
+                request.ownerId = owner;
             }
             try {
                 Database.update(lstrequset);
@@ -186,6 +190,7 @@ public without Sharing class DOL_License_Linking {
         if(!lstAssociation.isEmpty()){
             for(MUSW__Account_Contact__c accCon : lstAssociation){
                 accCon.MUSW__Contact__c = currentUser.ContactId;
+                accCon.ownerId = owner;
             }
             try {
               //  Utilityclass_withsharing.updateList(lstAssociation);
@@ -200,6 +205,7 @@ public without Sharing class DOL_License_Linking {
         if(!lstCart.isEmpty()){
             for(BGBK__Cart__c cart : lstCart){
                 cart.BGBK__Contact__c = currentUser.ContactId;
+                cart.ownerId = owner;
             }
             try {
                 Database.update(lstCart);
@@ -228,5 +234,93 @@ public without Sharing class DOL_License_Linking {
         }
         return options;
         
+    }
+        @AuraEnabled
+    public static List<String> getProgramPicklist () {
+      DOL_AppUtility.isAuthenticatedUser() ;
+      List<String> options = new List<String>();
+        if(!Polaris_UtilityClass.getProgramPicklist ().isEmpty()) {
+            options.addAll(Polaris_UtilityClass.getProgramPicklist());
+        }
+        return options;
+        
+    }
+    @AuraEnabled
+    public static string sendActivationCodeEmail(String activationCode, String emailAdd){
+       DOL_AppUtility.isAuthenticatedUser() ;
+       OrgWideEmailAddress orgWideAddress = [select Id, DisplayName, Address from OrgWideEmailAddress where DisplayName = :label.Str_Org_Wide_Address];
+       List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+        String message='';
+       // List<Contact> lstContact = new List<Contact>();
+        List<String> email= new List<String>();
+        email.add(emailAdd);
+        if( orgWideAddress != null && !email.isEmpty()) {
+                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+                mail.setSubject('Activation code for linking license');
+                mail.setHtmlBody('ActivationCode : ' +activationCode);
+                mail.setToAddresses(email);
+                mail.setOrgWideEmailAddressId(orgWideAddress.Id);
+                mails.add(mail);
+
+        } else {
+            message= Label.System_Admin_Contact_Message;
+            return message;
+        }
+        
+        if(!mails.isEmpty()){
+            Messaging.sendEmail(mails);
+            string maskedEmail = email[0].replaceAll('(^[^@]{2}|(?!^)\\G)[^@]', '$1*');
+            message = Label.Activation_Code_Sent_Message + ' ' + maskedEmail;
+        }
+        
+        return message;
+    }
+    @AuraEnabled
+    public static List<MUSW__License2__c> searchLicenseNumber(String ProgramType,String LicenseNumber){
+        DOL_AppUtility.isAuthenticatedUser() ;
+        String message ='';
+        List<MUSW__License2__c> lstLicense = new List<MUSW__License2__c>();
+        for(MUSW__License2__c license : [SELECT ID,MUSW__Applicant__r.Email,MUSW__Applicant__r.Security_Code__c,Ultimate_Parent_Account__r.Security_Code__c,Ultimate_Parent_Account__r.Email__c,
+                                         (select Parcel_Address__c from MUSW__License2_Parcels__r where Type__c ='Mailing' or Mailing__c =True Limit 1) 
+                                         FROM MUSW__License2__c WHERE Name =:LicenseNumber AND Application_Type__c =:ProgramType Limit 1]) 
+        {
+                 
+                  lstLicense.add(license); 
+            
+        }
+        return lstLicense; 
+    }
+    @AuraEnabled
+    public static string createReviewRecord(String Name, String licenseId, String mail) {
+        DOL_AppUtility.isAuthenticatedUser() ;
+        MUSW__License2__c license  = [select Id,Credential_Type__c,Application_Type__c from MUSW__License2__c where id =:licenseId limit 1];
+        List<Master_ConfigData_Listing__c> lstQueue= [select id,Queue_Id__c from Master_ConfigData_Listing__c where Program_Type__c includes  (:license.Application_Type__c) and Queue_Name__c in ('RBS Queue','RE Queue') ];
+        List<Request__c> lstreview = new List<Request__c>();
+        List<User> lstUser = [Select ContactId from User  where  id =:UserInfo.getUserId() limit 1];
+        String message ='';
+        if(license != null) {
+            Request__c request = new Request__c();
+            request.Description__c = mail;
+            request.Service_Request_Type__c ='Sending Activation Code';
+            request.Status__c ='Pending';
+            request.Profession__c = license.Application_Type__c;
+            request.License__c = license.Id;
+            request.License_Type__c = license.Credential_Type__c;
+            request.Service_Request_Type__c  ='Request Activation Code';
+            if(!lstQueue.isEmpty())
+            request.ownerId =lstQueue[0].Queue_Id__c;
+            request.Contact__c = lstUser[0].ContactId;
+            lstreview.add(request);
+        }
+        try{
+            if(!lstreview.isEmpty()) {
+                insert lstreview;
+                message ='Success';
+            }  
+        } catch (Exception ex) {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            message = 'error';
+        }
+        return message;
     }
 }

@@ -1,5 +1,11 @@
 ({	
     doInit : function(component,event,helper){
+        console.log("requestId"+ component.get("v.requestId"));
+        console.log("licenseId" + component.get("v.licenseId") );
+      	console.log("isAMR" + component.get("v.isAMR"));
+        if(component.get("v.isAMR") != true){
+            component.set("v.addAction", true);
+        }
        	component.set("v.defaultCountry" , 'United States');
         component.set("v.defaultState" , 'WA');
         component.set("v.defaultcanadianProvince" , 'British Columbia');
@@ -12,12 +18,55 @@
         helper.setLocationTable(component,event,helper); 
     },
 	addLocation : function(component,event,helper){
+        var clearParcel = {'sobjectType': 'MUSW__Parcel__c',
+        					'Designated_Engineer_License__c':'',
+        					'Designated_Land_Surveyor_License__c':'',
+                    		'MUSW__Street2__c ': '',                                                
+                           'MUSW__Unit__c ': '',
+                           'MUSW__City__c ': '',
+                           'Country__c ':'',
+                           'County__c' : '',
+                           'MUSW__State__c ' :'',
+                           'Canadian_provinces__c ':'',
+                           'Zip_Postal_Code__c' : '',
+                           'Address_Type__c' : '',
+                           'Application_BG__c ':'',
+                           'Request__c':''
+                          };
+        component.set("v.parcel",clearParcel);
         helper.addLocation(component,event);
     },
+    
     cancelLoc : function(component,event,helper){
         helper.cancelLoc(component,event);
     },
     
+    onChange : function(component,event,helper){
+    	var actionSelected = component.find('select').get('v.value');
+        if(actionSelected == "Add Affiliation"){
+             component.set("v.addAction", true);
+             component.set("v.removeAction", false);
+        }else{
+            component.set("v.removeAction", true);
+            component.set("v.addAction", false);
+        }
+    },
+    
+
+    undoAction : function(component,event,helper){
+        var dataId = event.currentTarget.getAttribute('data-id');
+        var statusData = event.currentTarget.getAttribute('data-status');
+        var licenseData = event.currentTarget.getAttribute('data-license');
+        component.set("v.selectedParcelId",dataId);
+        component.set("v.status",statusData);
+        component.set("v.licenseData",licenseData);
+    	helper.undoAffiliateRequest(component,event,helper);   
+    },
+    
+    RequestRemove : function(component,event,helper){
+        console.log("inside RequestRemove::");
+        helper.RemoveAffiliateRequest(component,event,helper);
+    },
     onRemoveClick : function(component,event,helper){
         var dataId = event.currentTarget.getAttribute('data-id');
         component.set("v.selectedParcelId",dataId);
@@ -25,9 +74,18 @@
     	helper.removeLocationId(component,event,helper);    
     },
     
+    onRemoveAMRClick : function(component,event,helper){
+    	   var dataId = event.currentTarget.getAttribute('data-id');
+           component.set("v.parcel.Request__c",component.get("v.requestId"));
+           component.set("v.selectedParcelId",dataId);
+           component.set("v.remove",true);
+           helper.removeLocationId(component,event,helper);
+    },
+    
     saveLocation : function(component,event,helper){
-    component.set("v.parcel.Application_BG__c",component.get("v.applicationId") );
-    helper.saveLocation(component,event,helper);
+         component.set("v.parcel.Request__c",component.get("v.requestId"));
+         component.set("v.parcel.Application_BG__c",component.get("v.applicationId") );
+         helper.saveLocation(component,event,helper);
     },
       onCountryChange: function(component, event, helper){
         var selectedCountry = event.getSource().get("v.value")

@@ -13,7 +13,8 @@
     <tabs>standard-Account</tabs>
     <tabs>MUSW__Violation_Type__c</tabs>
     <tabs>standard-report</tabs>
-    <tabs>Dol_Batch_Monitor__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
     <tabs>Master_Exam_List__c</tabs>
-    <tabs>Master_ConfigData_Listing__c</tabs>
+    <tabs>LnP_Parcel__c</tabs>
+    <tabs>EpaymentRemittanceData__c</tabs>
 </CustomApplication>

@@ -40,14 +40,15 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Used to capture header and footer information for the Journal Voucher .pdf and interface file.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -59,8 +60,8 @@
         <label>AFRS Interface Total Amount</label>
         <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
         <summaryFilterItems>
-            <field>Journal_Voucher_Detail__c.Target_Accounting_System__c</field>
-            <operation>equals</operation>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
             <value>AFRS</value>
         </summaryFilterItems>
         <summaryFilterItems>
@@ -80,8 +81,8 @@
         <label>AFRS PDF Total Amount</label>
         <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
         <summaryFilterItems>
-            <field>Journal_Voucher_Detail__c.Target_Accounting_System__c</field>
-            <operation>equals</operation>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
             <value>AFRS</value>
         </summaryFilterItems>
         <summaryFilterItems>
@@ -227,7 +228,7 @@
         <fullName>Distribution__c</fullName>
         <externalId>false</externalId>
         <label>Distribution</label>
-        <length>4</length>
+        <length>14</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -281,11 +282,6 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Manual JV</fullName>
-                    <default>false</default>
-                    <label>Manual JV</label>
-                </value>
-                <value>
                     <fullName>Manual CreditJournal - User Created</fullName>
                     <default>false</default>
                     <label>Manual CreditJournal - User Created</label>
@@ -323,7 +319,11 @@
                 <value>
                     <fullName>Manual IAP -user created to ensure document # matches OFM/AFRS</fullName>
                     <default>false</default>
-                    <label>Manual IAP -user created to ensure document # matches OFM/AFRS</label>
+                </value>
+                <value>
+                    <fullName>Automated JV</fullName>
+                    <default>false</default>
+		    <label>Automated JV</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -343,24 +343,24 @@
         <fullName>Fiscal_Month__c</fullName>
         <externalId>false</externalId>
         <label>Fiscal Month</label>
-        <precision>2</precision>
+        <length>2</length>
         <required>false</required>
-        <scale>0</scale>
+        
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>Fiscal_Year__c</fullName>
         <externalId>false</externalId>
         <label>Fiscal Year</label>
-        <precision>2</precision>
+        <length>2</length>
         <required>false</required>
-        <scale>0</scale>
+        
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -457,7 +457,7 @@
         <fullName>Refund1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Refund1</label>
+        <label>Refund</label>
         <referenceTo>BGBK__Refund2__c</referenceTo>
         <relationshipLabel>Journal Vouchers</relationshipLabel>
         <relationshipName>Journal_Vouchers</relationshipName>
@@ -467,19 +467,49 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Refund__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <fullName>TMS_Interface_Total_Amount__c</fullName>
         <externalId>false</externalId>
-        <label>Refund</label>
-        <referenceTo>BGBK__Refund__c</referenceTo>
-        <relationshipLabel>Journal Vouchers</relationshipLabel>
-        <relationshipName>Journal_Vouchers</relationshipName>
-        <required>false</required>
+        <label>TMS Interface Total Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>TMS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Summary</type>
+    </fields>
+     <fields>
+        <fullName>TMS_PDF_Total_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>TMS PDF Total Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>TMS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_PDF__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
+
         <fullName>TMS_Status__c</fullName>
         <defaultValue>&quot;Not Processed&quot;</defaultValue>
         <externalId>false</externalId>
@@ -525,20 +555,14 @@
         <fullName>Total__c</fullName>
         <externalId>false</externalId>
         <label>Total</label>
-        <precision>12</precision>
-        <required>false</required>
-        <scale>2</scale>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Summary</type>
     </fields>
     <label>Journal Voucher</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <displayFormat>JV-{0000}</displayFormat>
         <label>Journal Voucher  Name</label>
@@ -581,39 +605,7 @@
         <picklistValues>
             <picklist>Document_Type__c</picklist>
             <values>
-                <fullName>Manual CRJSfor Daily -Lockbox  240Q</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual CreditJournal - User Created</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual IAP -user created to ensure document %23 matches OFM%2FAFRS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual JV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual JV -Remittance JV from a validation number</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manual JV -User Created - Correction JV or one system to another JV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ManualTransfer - System Generated to other agencies</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ManualTransfer - User Created</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RemittanceTransfer in POLARIS - User Created</fullName>
+                <fullName>Automated JV</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -698,10 +690,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Manual JV</fullName>
-                <default>false</default>
-            </values>
-            <values>
+
                 <fullName>Manual JV -Remittance JV from a validation number</fullName>
                 <default>false</default>
             </values>

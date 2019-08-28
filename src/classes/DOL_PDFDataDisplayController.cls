@@ -1,20 +1,20 @@
 /*
-* classname 	:  DOL_PDFDataDisplayController
-* @description 	:  This class is used to get license data for generating PDF
-* @author 		:  Gunjit Kaur
-* @date 		:  07/08/2019
+* classname     :  DOL_PDFDataDisplayController
+* @description  :  This class is used to get license data for generating PDF
+* @author       :  Gunjit Kaur
+* @date         :  07/08/2019
 * MODIFICATION LOG:
 * DEVELOPER                     DATE                               DESCRIPTION
 * ---------------------------------------------------------------------------------------------
-* Gunjit Kaur	      07/10/2019	      Added SOQL to get Question data
+* Gunjit Kaur         07/10/2019          Added SOQL to get Question data
 **/
 
 public with sharing class DOL_PDFDataDisplayController {
     private final MUSW__License2__c licenseData;
     public MUSW__License2__c licenseRecordData {get;set;}
+    public RecordType recordtypeName{get;set;}
     public List<Question__c> questionRecordList {get;set;}
     public List<MUSW__Parcel__c> addressRecordList {get;set;}
-    public RecordType recordtypeName{get;set;}
     public DOL_PDFDataDisplayController(ApexPages.StandardController stdController) {
         this.licenseData = (MUSW__License2__c)stdController.getRecord();
         system.debug('MUSW__License2__c: '+licenseData);
@@ -23,11 +23,10 @@ public with sharing class DOL_PDFDataDisplayController {
         addressRecordList = new List<MUSW__Parcel__c>();
         // query for getting specific License Data
         for(MUSW__License2__c licenseRecordInstance : [Select Id, Name, CreatedDate, Application_Type__c, Credential_Type__c, MUSW__Status__c,
-                                                       Ultimate_Parent_Account__r.Name, MUSW__Primary_Licensee__r.Name,Owner.Name,
-                                                       Application_Method__c, Sub_Status__c, Original_Issue_Date__c, 
-                                                       MUSW__Applicant__r.Name,MUSW__Applicant__r.LastName, MUSW__Applicant__r.FirstName, 
-                                                       MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.Contact_Suffix__c, 
-                                                       MUSW__Applicant__r.ContactName__c, MUSW__Applicant__r.Birthdate,
+                                                       Application_Method__c, Ultimate_Parent_Account__r.Name, MUSW__Primary_Licensee__r.Name, Owner.Name,
+                                                       Sub_Status__c, Original_Issue_Date__c, MUSW__Applicant__r.Name,
+                                                       MUSW__Applicant__r.LastName, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.MiddleName,
+                                                       MUSW__Applicant__r.Contact_Suffix__c, MUSW__Applicant__r.ContactName__c, MUSW__Applicant__r.Birthdate,
                                                        MUSW__Applicant__r.Unique_ID_To_Provide__c, MUSW__Applicant__r.Social_Security_Number_Encrypted__c,
                                                        MUSW__Applicant__r.MobilePhone, MUSW__Applicant__r.OtherPhone, MUSW__Applicant__r.Email, 
                                                        MUSW__Applicant__r.ITIN__c, MUSW__Applicant__r.Other_Email__c, MUSW__Total_Fees__c, 
