@@ -1238,6 +1238,16 @@
                     <label>Expired</label>
                 </value>
                 <value>
+                    <fullName>No Show</fullName>
+                    <default>false</default>
+                    <label>No Show</label>
+                </value>
+                <value>
+                    <fullName>Canceled</fullName>
+                    <default>false</default>
+                    <label>Canceled</label>
+                </value>
+                <value>
                     <fullName>Draft</fullName>
                     <default>false</default>
                     <label>Draft</label>
@@ -6579,6 +6589,14 @@
             <picklist>Status__c</picklist>
             <values>
                 <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Show</fullName>
                 <default>false</default>
             </values>
             <values>
