@@ -1,4 +1,4 @@
-public class Polaris_ReceiptTriggerHandler {/*
+public class Polaris_ReceiptTriggerHandler {
     
     public static void handleAfterInsert(List<MUSW__Receipt__c> newList){
         Set<String> paymentBatchIds = new Set<String>();
@@ -73,5 +73,5 @@ public class Polaris_ReceiptTriggerHandler {/*
             system.debug('Exception::'+ex.getStackTraceString());
         }
        
-    }*/
+    }
 }

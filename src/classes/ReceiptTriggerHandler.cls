@@ -7,20 +7,7 @@
 * 08/22/2018   Srikanth Kottam/Deloitte          Initial Creation
 **/
 public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
-    
-    //Added by Abhilasha
-    public void onAfterDelete() {
-        Set<String> paymentBatchIds = new Set<String>();
-        for(sObject sObj : trigger.old){
-            MUSW__Receipt__c rec = (MUSW__Receipt__c) sObj;
-            if(rec.Payment_Batch_Id__c != null){
-                paymentBatchIds.add(String.valueOf(rec.Payment_Batch_Id__c).substring(0, 15));
-            }
-        }
-        if(paymentBatchIds.size() >0){
-            doCalculation(paymentBatchIds);
-        }
-    }
+    public void onAfterDelete() {}
     public void onAfterInsert() {
         //This Method is called when already an AccountContact Record exists on an Account and Receipt records get Created. This Record will be shared with the community Plus User
         //ReceiptUserSharing controller = new ReceiptUserSharing();
@@ -28,43 +15,16 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         //End of ReceiptUserSharing
         
         //Share the Receipt records when the Delegated Admin is the applicant
-        ReceiptCreatedbyDelegate DelegateController = new ReceiptCreatedbyDelegate();
-        DelegateController.shareReceiptRecords(Trigger.New);
-        
-        //Added by Abhilasha **start**
-        Set<String> paymentBatchIds = new Set<String>();
-        for(sObject sObj : trigger.new){
-            MUSW__Receipt__c rec = (MUSW__Receipt__c) sObj;
-            if(rec.Payment_Batch_Id__c != null){
-                paymentBatchIds.add(String.valueOf(rec.Payment_Batch_Id__c).substring(0, 15));
-            }
-        }
-        if(paymentBatchIds.size() >0){
-            doCalculation(paymentBatchIds);
-        }
-        //**end**
+        //ReceiptCreatedbyDelegate DelegateController = new ReceiptCreatedbyDelegate();
+        //DelegateController.shareReceiptRecords(Trigger.New);
     }
-    
-    //Added by Abhilasha 
-    public void onAfterUndelete() {
-        Set<String> paymentBatchIds = new Set<String>();
-        for(sObject sObj : trigger.new){
-            MUSW__Receipt__c rec = (MUSW__Receipt__c) sObj;
-            if(rec.Payment_Batch_Id__c != null){
-                paymentBatchIds.add(String.valueOf(rec.Payment_Batch_Id__c).substring(0, 15));
-            }
-        }
-        if(paymentBatchIds.size() >0){
-            doCalculation(paymentBatchIds);
-        }
-    }
+    public void onAfterUndelete() {}
     public void onAfterUpdate() {
         system.debug('!!!After update');
         
         //Added by for US1469 On 07/11/2019 [Chiranth]
         set<Id>DHP_receiptIDs = new Set<Id>();
         set<id> receiptIds = new Set<id>(); // Added by Rishap US - 1966 - [Rishap]
-        Set<String> paymentBatchIds = new Set<String>(); // Added by Abhilasha
         
         for(SObject sobj: trigger.new) {
             
@@ -77,12 +37,7 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
             }
             if(oldreceipt.Agency_Code__c != receipt.Agency_Code__c || oldreceipt.Voucher_Number__c != receipt.Voucher_Number__c){ 
                 receiptIds.add(receipt.Id);
-            } 
-            // added by abhilasha **start**
-            if(receipt.Payment_Batch_Id__c != null){
-                paymentBatchIds.add(String.valueOf(receipt.Payment_Batch_Id__c).substring(0, 15));
-            }
-            //**end**
+            }   
         }
         
         List<MUSW__Fee_Payment__c> feePaymentLists = new List<MUSW__Fee_Payment__c>();
@@ -148,12 +103,6 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
             update finalFeesToUpdate;
         }
         
-        //added by Abhilasha **start**
-        if(paymentBatchIds.size() >0){
-            doCalculation(paymentBatchIds);
-        }
-        //**end**
-        
         
     }
     public void onBeforeDelete() {}
@@ -179,53 +128,5 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
                 receipt.MUSW__Card_Type__c = 'Amex';
             }
         }
-    }
-    
-    public void doCalculation(Set<String> pbIds){
-        List<BGBK__Payment_Batch__c> paymentBatchToBeUpdated = new List<BGBK__Payment_Batch__c>();
-        List<MUSW__Receipt__c> recRes = [Select MUSW__Amount_Tendered__c,MUSW__Payment_Method__c,Payment_Batch_Id__c from MUSW__Receipt__c where Intake_Method__c = 'Counter' and Payment_Batch_Id__c IN: pbIds];
-        for(sObject sObj : trigger.New){
-            MUSW__Receipt__c receipt = (MUSW__Receipt__c) sObj;
-            if(receipt.Payment_Batch_Id__c != null){
-                Decimal totalCash = 0;
-                Decimal totalCheck = 0;
-                Decimal totalCC = 0;
-                BGBK__Payment_Batch__c pb;
-                for(MUSW__Receipt__c rec: recRes){
-                    if(rec.Payment_Batch_Id__c == receipt.Payment_Batch_Id__c){
-                        pb = new BGBK__Payment_Batch__c(id = rec.Payment_Batch_Id__c);
-                        if(rec.MUSW__Payment_Method__c == 'Cash'){
-                             totalCash += rec.MUSW__Amount_Tendered__c;
-                        }else if(rec.MUSW__Payment_Method__c == 'Check/Cashier\'s Check'){
-                            totalCheck += rec.MUSW__Amount_Tendered__c;
-                        }else if(rec.MUSW__Payment_Method__c == 'Credit Card'){
-                            if(receipt.MUSW__Amount_Tendered__c != null){
-                                totalCC += rec.MUSW__Amount_Tendered__c;
-                            }
-                            
-                        }
-                	}
-                }
-                if(pb != null){
-                    pb.Total_Cash_In_Register__c = totalCash;
-                	pb.Total_check_credit_card__c = totalCheck + totalCC;
-                	//pb.Total_credit_card_receipts__c = totalCC;
-                    system.debug('pb::'+pb);
-                    
-                	paymentBatchToBeUpdated.add(pb);
-                }
-                
-            }
-        }
-        
-        try{
-            system.debug('paymentBatchToBeUpdated::'+paymentBatchToBeUpdated);
-            if(paymentBatchToBeUpdated.size() >0){
-                update paymentBatchToBeUpdated;
-            }
-        }catch(DmlException ex){
-            system.debug('Exception::'+ex.getStackTraceString());
-        }
-       
     }
 }
