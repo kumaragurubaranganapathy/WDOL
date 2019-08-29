@@ -1595,7 +1595,7 @@ public class Polaris_ApplyForLicenseController {
             if(String.isNotBlank(contactAccountId)){
                 List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
-                                                     County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                     County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
                                                      where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)
@@ -1625,7 +1625,7 @@ public class Polaris_ApplyForLicenseController {
         if(String.isNotBlank(contactAccountId)){
             for(MUSW__Parcel__c allAddressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
-                                                     County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                     County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
                                                      where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)

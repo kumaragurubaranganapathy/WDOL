@@ -69,7 +69,7 @@
                                 <lightning:layoutItem size="12" mediumDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
                                     <div class="field-style address">
                                         <div class="label-style">Mailing address:</div>
-                                        <div class="data-style">{!parcel.Country__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.Zip_Postal_Code__c}</div>
+                                        <div class="data-style">{!parcel.MUSW__Street2__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c}, {!parcel.Country__c}, {!parcel.MUSW__Post_Zip_Code__c}</div>
                                     </div>
                                 </lightning:layoutItem>
                                 <!--<div class="">{!parcel.MUSW__Street__c},</div>

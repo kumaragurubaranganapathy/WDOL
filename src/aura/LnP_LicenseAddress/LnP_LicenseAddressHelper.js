@@ -511,7 +511,7 @@
                                 component.set("v.isCanadianProvince", false);
                                 component.set("v.isState", false);
                             }
-                        component.set("v.mailingAddressparcel.Zip_Postal_Code__c", parcelList[0].Zip_Postal_Code__c);
+                        component.set("v.mailingAddressparcel.MUSW__Post_Zip_Code__c", parcelList[0].MUSW__Post_Zip_Code__c);
                     }else{
                         console.log('Entered block 2');
                         component.set("v.physicalAddressParcel.MUSW__Street2__c", parcelList[0].MUSW__Street2__c);
@@ -539,7 +539,7 @@
                                 component.set("v.isPhysicalCanadianProvince", false);
                                 component.set("v.isPhysicalState", false);
                             }
-                        component.set("v.physicalAddressParcel.Zip_Postal_Code__c", parcelList[0].Zip_Postal_Code__c);
+                        component.set("v.physicalAddressParcel.MUSW__Post_Zip_Code__c", parcelList[0].MUSW__Post_Zip_Code__c);
                         console.log("inside physical address::::");
                         console.log("isRenewal::"+component.get("v.isRenewal"));
                         if(component.get("v.isRenewal")){
@@ -625,7 +625,7 @@
                                     component.set("v.isCanadianProvince", false);
                                     component.set("v.isState", false);
                                 }
-                            component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
+                            component.set("v.mailingAddressparcel.MUSW__Post_Zip_Code__c", allAddressList[i].MUSW__Post_Zip_Code__c);
                         }else if(allAddressList[i].Address_Type__c == 'MAILING ADDRESS' && allAddressList[i].is_Physical_and_Mailing_Address_Same__c){
                             console.log('Entered block 2' + allAddressList[i].is_Physical_and_Mailing_Address_Same__c);
                             component.set("v.mailingAddressparcel.MUSW__Street2__c", allAddressList[i].MUSW__Street2__c);
@@ -673,8 +673,8 @@
                                     component.set("v.isPhysicalCanadianProvince", false);
                                     component.set("v.isPhysicalState", false);
                                 }
-                            component.set("v.physicalAddressParcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
-                            component.set("v.mailingAddressparcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
+                            component.set("v.physicalAddressParcel.MUSW__Post_Zip_Code__c", allAddressList[i].MUSW__Post_Zip_Code__c);
+                            component.set("v.mailingAddressparcel.MUSW__Post_Zip_Code__c", allAddressList[i].MUSW__Post_Zip_Code__c);
                             
                         }else{
                             console.log('Entered block 3');
@@ -704,7 +704,7 @@
                                     component.set("v.isPhysicalCanadianProvince", false);
                                     component.set("v.isPhysicalState", false);
                                 }
-                            component.set("v.physicalAddressParcel.Zip_Postal_Code__c", allAddressList[i].Zip_Postal_Code__c);
+                            component.set("v.physicalAddressParcel.MUSW__Post_Zip_Code__c", allAddressList[i].MUSW__Post_Zip_Code__c);
                         }
                         
                     }
