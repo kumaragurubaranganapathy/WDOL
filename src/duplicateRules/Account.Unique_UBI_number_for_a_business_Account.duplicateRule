@@ -2,7 +2,7 @@
 <DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOnInsert>Block</actionOnInsert>
     <actionOnUpdate>Block</actionOnUpdate>
-    <alertText>Please use a unique UBI number</alertText>
+    <alertText>Please use a unique UBI Number as Account with this number already exists.</alertText>
     <description xsi:nil="true"/>
     <duplicateRuleFilter>
         <booleanFilter xsi:nil="true"/>
@@ -16,7 +16,7 @@
     </duplicateRuleFilter>
     <duplicateRuleMatchRules>
         <matchRuleSObjectType>Account</matchRuleSObjectType>
-        <matchingRule>Unique_UBI_number_for_a_business_Account_matching_rule</matchingRule>
+        <matchingRule>Unique_Full_UBI_for_Business_Accounts</matchingRule>
         <objectMapping xsi:nil="true"/>
     </duplicateRuleMatchRules>
     <isActive>true</isActive>
