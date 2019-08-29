@@ -1,4 +1,12 @@
 ({
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
 	doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
         var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -19,6 +27,7 @@
             var state = response.getState();
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();  
+                if(result!=null){
                 console.log('result---'+result);
                 if(auraAttr == 'v.deliveryMethodOptions' || auraAttr == 'v.courseTopicOptions' ){
                     for(var i=0; i<result.length; i++){
@@ -26,11 +35,15 @@
                     }
                     component.set(auraAttr,picklistArray);
                 }
-				else{
+                else{
                      component.set(auraAttr, result);
                 }
                 component.set("v.loaded", true);
-            }else{
+                }
+                else{
+                    this.errorlog(component,event);
+                }
+                }else{
                 component.set("v.loaded", true);
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
