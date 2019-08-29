@@ -2,33 +2,26 @@ public class ExamReschedule {
     
     //method to get Education History Related List for Specific License
     @AuraEnabled
-    public static List<Education_History__c> getEducationHistoryData(String licenseId){
-        try{
+    public static List<Education_History__c> getEducationHistoryData(Id licenseId){
         System.debug('licenseId=== ' + licenseId);
         List<Education_History__c> educationHistoryList = new List<Education_History__c>();
         Id educationHistoryRecordId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId() ;
         if(String.isNotBlank(licenseId)){
-            system.debug('inside debug');
             for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
-                                                              Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,Program_Type__c,Submit_Exam_Results__c
+                                                              Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,
+                                                              Request__c,Program_Type__c,Request__r.Service_Request_Type__c,Submit_Exam_Results__c
                                                               From Education_History__c Where License__c = :licenseId
                                                               And RecordTypeId = :educationHistoryRecordId]){
                                                                   educationHistoryList.add(educationHistoryRecods);                                             
                                                               }
         }
         return educationHistoryList;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
      public static String insertRequestExam(String licId,String licenseType, String board,String ServiceRequestType,String ExamRecordId)
     {
-        try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
@@ -59,16 +52,10 @@ public class ExamReschedule {
         }
         string appId = '';
         return appId = application.Id;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static String createReviewRecord(MUSW__License2__c licenseRecord, Id requestId){
-        try{
         System.debug('licenseRecord==' + licenseRecord + 'requestId==' + requestId);
         Database.SaveResult[] srList;
         String outputResponse;
@@ -105,10 +92,5 @@ public class ExamReschedule {
             }
         }
         return outputResponse;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return 'Fail';
-        }
     }
 }

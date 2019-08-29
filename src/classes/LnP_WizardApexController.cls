@@ -3,7 +3,6 @@ public class LnP_WizardApexController {
     @AuraEnabled
     public static List<MUSW__License2__c> fetchLicenseList(String Board, String LicenseType)
     {
-        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
@@ -20,16 +19,10 @@ public class LnP_WizardApexController {
             lstChildLicenseType.add(ul.Child_License_Type__c);
         }
         return [SELECT MUSW__Status__c,Credential_Type__c,Application_Type__c,Name,id FROM MUSW__License2__c where MUSW__Status__c='Active' AND MUSW__Applicant__c=:getContactId AND Credential_Type__c IN:lstChildLicenseType ];
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
+        
     }
     @AuraEnabled
     public static Integer validationForTemporaryLicenses(String Board,String LicenseType,String ApplicationType,String parentObjectAPIName){
-        try{
         Id loggedInUserID = UserInfo.getUserId();
         Id contactID;
         Integer noOfTempLicenses = 0;
@@ -64,16 +57,9 @@ lstTempLicenses.add(lic);
         }
         system.debug('noOfTempLicenses---'+noOfTempLicenses);
         return noOfTempLicenses;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName){
-        try{
         Map<String,Question__c> LabelMap = new Map<String,Question__c>();
         Map<String,String> questionMap = new Map<String,String>();
         List<String> picklistValues = new List<String>();
@@ -105,17 +91,10 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
             system.debug('LabelMap---'+Ques);
         }
         return LabelMap;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     //For Renewal
     @AuraEnabled
     public static Map<String,Question__c> questionForLicenceTyep(String Board, String LicenseType, String ApplicationType, String parentObjectAPIName, String renewalReinstate){
-        try{
         Map<String,Question__c> LabelMap = new Map<String,Question__c>();
         Map<String,String> questionMap = new Map<String,String>();
         List<String> picklistValues = new List<String>();
@@ -150,19 +129,13 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
             system.debug('LabelMap---'+Ques);
         }
         return LabelMap;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     
     @AuraEnabled    
     public static AccountWrapper fetchAccountList(String Board, String LicenseType){
-        try{
         List<Account>  lstAccount = new  List<Account>();
+        system.debug('SELECT  IndividualBusinessType__c,Application_Type__c,Credential_Type__c FROM License_Type__mdt where Application_Type__c = :'+Board+'  and  Credential_Type__c =: '+LicenseType+'');
         List<License_Type__mdt> lstLicenseAccount =[SELECT  IndividualBusinessType__c,Application_Type__c,Credential_Type__c FROM License_Type__mdt where Application_Type__c = :Board  and  Credential_Type__c =:LicenseType Limit 1];
         string licenseAccountType ='';
         AccountWrapper acctwrapper = new AccountWrapper();
@@ -176,16 +149,9 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         }
         system.debug('acctwrapper'+acctwrapper);
         return acctwrapper;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     private static List<Account> getAccountList(){        
-        
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
@@ -201,42 +167,25 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         }
         
         return [Select Id,Name,Course_Provider__c, recordType.name From Account where id IN: setAcctId];
-        
-        
     }
     
     @AuraEnabled
     public static String fetchCnBLabels(String customLabelAPI, String board){
-        try{
         Map<String, String> labelMap = new Map<String, String>();
         labelMap = LnP_AllBoardsLabels.fetchBoardLabel(board);
         String var = labelMap.get(customLabelAPI);
         return var;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static Map<String, List<String>> getPicklistOptions(string sObj, String conField, String depField){ 
-        try{
         Map<String, List<String>> mapConDep = new Map<String, List<String>>();
         MUSW__License2__c mapval = new MUSW__License2__c();
         mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(mapval, conField, depField);
         system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
         return mapConDep;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static Id startAnApplication(String board, String licenseType, String applicationType,String account,String LicenseUpgradeRecordID){
-        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -246,7 +195,7 @@ Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Respo
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = null;
         if(userInfoData[0].ContactId != null){
-            getContactId = userInfoData[0].ContactId; 
+            getContactId = userInfoData[0].ContactId;
         }
         //MUSW_Application2__c application = new MUSW_Application2__c();
         /* MUSW__Application2__c application = new MUSW__Application2__c();
@@ -266,9 +215,9 @@ application.MUSW_Account__c = account;*/
         application.Credential_Type__c = licenseType; 
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
-        application.MUSW__Status__c  = 'Draft';
+		application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
-        if( account != '' && account != null && account !='undefined'){
+                if( account != '' && account != null && account !='undefined'){
             application.MUSW__Account__c = account;
         }
         if(branchLicense.contains(licenseType)){
@@ -287,17 +236,10 @@ application.MUSW_Account__c = account;*/
         }
         system.debug('appId : '+application.Id);
         return application.Id;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     //For renewal
     @AuraEnabled
     public static Id startRenewalApplication(String board, String licenseType, String applicationType,String account, String isRenewal,String licId){
-        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
@@ -336,14 +278,12 @@ application.MUSW_Account__c = account;*/
         }
         Set<Id> parcelIds = new Set<Id>();
         List<MUSW__Parcel__c>lstParcels = new List<MUSW__Parcel__c>();
-        for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c 
-                                                             where MUSW__License2__c=:licId]){
+        for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c where MUSW__License2__c=:licId]){
             parcelIds.add(licenseParcelInstance.MUSW__Parcel__c);
         }
         if(!parcelIds.isEmpty()){
-        lstParcels = [Select id, Application_BG__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,
-                      Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c,
-                      MUSW__Primary_Contact__c FROM MUSW__Parcel__c where Id IN :parcelIds];
+        lstParcels = [Select id, Application_BG__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,Melissa_Address_Verified__c,
+                                                      is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c FROM MUSW__Parcel__c where Id IN :parcelIds];
                                                       }
         List<MUSW__Parcel__c>lstupdateParcel = new List<MUSW__Parcel__c>();
         if(!lstParcels.isEmpty())
@@ -351,14 +291,14 @@ application.MUSW_Account__c = account;*/
             for(MUSW__Parcel__c par : lstParcels )
             {
                 MUSW__Parcel__c parcel = new MUSW__Parcel__c();
-                parcel.MUSW__Primary_Contact__c = par.MUSW__Primary_Contact__c;
+                parcel.Application_BG__c = application.Id;
                 parcel.Address_Type__c  = par.Address_Type__c;
                 parcel.MUSW__City__c = par.MUSW__City__c;
                 parcel.Country__c = par.Country__c;
                 parcel.MUSW__State__c = par.MUSW__State__c;
                 parcel.MUSW__Street2__c = par.MUSW__Street2__c;
                 parcel.Zip_Postal_Code__c = par.Zip_Postal_Code__c;
-                parcel.County__c = par.County__c ;
+				parcel.County__c = par.County__c ;
                 parcel.is_Physical_and_Mailing_Address_Same__c = par.is_Physical_and_Mailing_Address_Same__c;
                 lstupdateParcel.add(parcel);
             }
@@ -427,31 +367,18 @@ insert bgckList;
 }*/
         
         return application.Id;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static Map<String,String> getAllStaticTexts(){
-        try{
         Map<String, String> mapJSON = new Map<String, String>();
         try{
             mapJSON = DE_LandingPageCustomLabels.getWizardStaticTexts(); 
         }
         catch(Exception e){
-            DOL_CreateErrorLog_Exception.logApplicationError(e);
+            Polaris_CreateErrorLog_Exception.addError(e,'LnP_WizardApexController','getAllStaticTexts');
         } 
         
         return mapJSON;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     public class accountWrapper{
@@ -459,11 +386,8 @@ insert bgckList;
         @AuraEnabled public List<Account> lstAccount {get;set;}
         @AuraEnabled public string noAccount {get;set;}
     }
-    
     @AuraEnabled
-    public  static List<String> fetchInstructions(String Board, String LicenseType, String ApplicationType, String Obj, String renewalReinstate, String upgradeLicenseIdValue) {
-        try{
-        System.debug('IDIDIDIDIDIDDID'+upgradeLicenseIdValue);
+    public  static List<String> fetchInstructions(string Board, String LicenseType, String ApplicationType, string Obj, string renewalReinstate,string upgradeLicenseIdValue) {
         List<String> result = new List<String>();
         String condition1 = 'Application_Type__c = \''+Board+'\'';
         String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
@@ -473,29 +397,28 @@ insert bgckList;
         String condition6 = 'Default__c = True';
         String condition7 = 'Object__c = \''+Obj+'\'';
         //String condition7 = 'Object__c = \'MUSW__License2__c\'';
-       system.debug('test123::'+renewalReinstate);
-        String condition8 = '';
+        String condition8 ='';
         String condition9 = 'Order_No__c';
-        MUSW__License2__c upgradeLicense = new MUSW__License2__c();
+		MUSW__License2__c upgradeLicense = new MUSW__License2__c();
         if(upgradeLicenseIdValue!=null && upgradeLicenseIdValue!=''){
          upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue limit 1];
         }
         String condition10 = 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
         if(renewalReinstate=='Renewal')
         {
-            condition8 = ' AND Show_For__c includes (\'Credential Renewal\')';
+            condition8 = 'AND Show_For__c includes (\'Credential Renewal\')';
         }
         else if(renewalReinstate=='Reinstatement')
         {
-            condition8 = ' AND Show_For__c includes (\'Credential Reinstatement\')';
+            condition8 = 'AND Show_For__c includes (\'Credential Reinstatement\')';
         }
         list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
         list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
         
         String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
-        system.debug('News Query::'+appInstructionList);
-        String Str2 ='';
+        
+		String Str2 ='';
         if(ApplicationType == 'Upgrade' && upgradeLicenseIdValue != null){
           Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
          
@@ -503,14 +426,14 @@ insert bgckList;
         else{
         Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
         }
-        masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
+		masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
         
         if(!appInstructionList.isEmpty()){
             result.add(appInstructionList[0].Instructions__c);             
         }
         else{
-            result.add('null');
+            result.add('');
         }
         if(!masterSubListOnAppInstrList.isEmpty()){
             for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
@@ -520,16 +443,9 @@ insert bgckList;
         system.debug('@@@@result'+result);
         
         return result;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static Map<String,List<String>> fetchLicenseType(String typeOFLicense) {
-        try{
         Map<String,List<String>> lstLicenseType = new  Map<String,List<String>> ();
          List<License_Type__mdt> lstlicenseTypess= new  List<License_Type__mdt>();
         if(typeOFLicense == 'Individual') {
@@ -549,12 +465,6 @@ insert bgckList;
             }
         }
         return lstLicenseType;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
        }
        
         
