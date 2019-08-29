@@ -289,116 +289,11 @@
         <name>ApexComponent</name>
     </types>
     <types>
-        <members>BackendLicenseSubmission</members>
-        <members>BandwidthExceeded</members>
-        <members>Cart</members>
-        <members>ChangePassword</members>
-        <members>CommunitiesLanding</members>
-        <members>CommunitiesLogin</members>
-        <members>CommunitiesSelfReg</members>
-        <members>CommunitiesSelfRegConfirm</members>
-        <members>DOL_PDFGenerator</members>
-        <members>DepositPageDefaults</members>
-        <members>DisplayReport</members>
-        <members>EquipmentPageDefaults</members>
-        <members>Exception</members>
-        <members>FileNotFound</members>
-        <members>ForgotPassword</members>
-        <members>ForgotPasswordConfirm</members>
-        <members>InMaintenance</members>
-        <members>Journal_Voucher_Pdf</members>
-        <members>MasterDistributionPageDefaults</members>
-        <members>MasterFeePageDefaults</members>
-        <members>MasterInspectionPageDefaults</members>
-        <members>MasterSubmissionPageDefaults</members>
-        <members>MasterValuationPageDefaults</members>
-        <members>MasterWorkItemPageDefaults</members>
-        <members>PaymentBatchPageDefaults</members>
-        <members>PermitParcel</members>
-        <members>ReviewPageDefaults</members>
-        <members>SiteRegister</members>
-        <members>SiteRegisterConfirm</members>
-        <members>StandardTextSearch</members>
-        <members>TVSVerify</members>
-        <members>UploadFileToBluebeam</members>
+        <members>*</members>
         <name>ApexPage</name>
     </types>
-    <types>
-        <members>AccountContactTrigger</members>
-        <members>AccountSequenceNumber</members>
-        <members>AccountTrigger</members>
-        <members>AnswerTrigger</members>
-        <members>Associations_Trigger</members>
-        <members>CashRegisterTrigger</members>
-        <members>ClassTrigger</members>
-        <members>ComplaintMainTrigger</members>
-        <members>ContactTrigger</members>
-        <members>Customer_Envelope_Trigger</members>
-        <members>DRE2_Account</members>
-        <members>DRE2_Action_c</members>
-        <members>DRE2_Associations_c</members>
-        <members>DRE2_Attachment</members>
-        <members>DRE2_BGBK_Bill_c</members>
-        <members>DRE2_BGBK_Receipt_Refund_c</members>
-        <members>DRE2_BGBK_Refund2_c</members>
-        <members>DRE2_ContentDocumentLink</members>
-        <members>DRE2_Education_History_c</members>
-        <members>DRE2_Endorsement_c</members>
-        <members>DRE2_Legal_Activity_c</members>
-        <members>DRE2_MUSW_Account_Contact_c</members>
-        <members>DRE2_MUSW_Application2_c</members>
-        <members>DRE2_MUSW_Complaint2_c</members>
-        <members>DRE2_MUSW_Deposit_c</members>
-        <members>DRE2_MUSW_Fee_Payment_c</members>
-        <members>DRE2_MUSW_Fee_c</members>
-        <members>DRE2_MUSW_Inspection_c</members>
-        <members>DRE2_MUSW_License2_c</members>
-        <members>DRE2_MUSW_License_c</members>
-        <members>DRE2_MUSW_Master_Fee_List_c</members>
-        <members>DRE2_MUSW_Master_Inspection_List_c</members>
-        <members>DRE2_MUSW_Payable_Receipt_c</members>
-        <members>DRE2_MUSW_Permit2_c</members>
-        <members>DRE2_MUSW_Receipt_c</members>
-        <members>DRE2_MUSW_Review_c</members>
-        <members>DRE2_MUSW_Submission_c</members>
-        <members>DRE2_MUSW_Violation_c</members>
-        <members>DRE2_MUSW_Work_Item_c</members>
-        <members>DRE2_Renewal_Application_c</members>
-        <members>DRE2_Request_c</members>
-        <members>DepositUpdateCart</members>
-        <members>Dol_IsContactRecordUpdatedForASC</members>
-        <members>Dol_IsLicenseRecordUpdatedForASC</members>
-        <members>Dol_IsParcelRecordUpdatedForASC</members>
-       <!-- <members>Dol_UpdateUIDonSSNUpdate</members> -->
-        <members>EmailNotificationTrigger</members>
-        <members>FeePaymentTrigger</members>
-        <members>FeeTrigger</members>
-        <members>FeeUpdateCart</members>
-        <members>FeeUpdatePriceAmount</members>
-        <members>FineTrigger</members>
-        <members>InspectionTrigger</members>
-        <members>InspectionUpdateParent</members>
-        <members>InspectionViolationAddInspection</members>
-        <members>InspectionViolationDeleteDuplicate</members>
-        <members>InspectionViolationUpdateInspection</members>
-        <members>License2Trigger</members>
-        <members>ParcelTrigger</members>
-        <members>Polaris_RefundTrigger</members>
-        <members>ReceiptTrigger</members>
-        <members>RenewalApplicationTrigger</members>
-        <members>RequestTrigger</members>
-        <members>ResourceAvailabilityModifier</members>
-        <members>ResourceTrigger</members>
-        <members>ReviewTrigger</members>
-        <members>ServiceRequestTrigger</members>
-        <members>SitesequenceNumber</members>
-        <members>StoreDebugErrorLogs</members>
-        <members>SubmissionTrigger</members>
-        <members>ViolationUpdateInspection</members>
-        <members>manageResourceAvailability</members>
-        <members>manageResourceWeekAvailability</members>
-        <members>updateEndorsementStatusOnProviderDelete</members>        
-        <members>LnP_DepositTrigger</members>
+    <types>       
+        <members>*</members>
         <name>ApexTrigger</name>
     </types>
     <types>
@@ -3723,12 +3618,6 @@
         <members>Refund_Path</members>
         <members>Warrant_Path</members>
         <name>PathAssistant</name>
-    </types>
-    <types>
-        <members>BGSystemAdmin</members>
-      <!--  <members>IntegrationAdmin</members> -->
-        <members>Sales_User</members>
-        <name>PermissionSet</name>
     </types>
     <types>
         <members>Appraisal_Controlling_Person_Queue</members>
