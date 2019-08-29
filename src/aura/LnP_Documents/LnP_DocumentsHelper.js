@@ -3,17 +3,23 @@
     addDepositRecord: function(component, event) {
         //debugger;
         //below if logic will limit the creation of child row once 'documentTotal' == 'paymentSourceTotal'
-        if( component.find("documentTotal").get('v.value') !== component.get("v.paymentSourceTotal")){
+        if( component.find("documentTotal").get('v.value') <= component.get("v.paymentSourceTotal")){
             //below if checks is for back logic : if the already inserted record have value then use 'insertedDepositList' for iteration 
             if(component.get("v.insertedDepositList").length !== 0){              
                 var _insertedDepositList = [];
                 _insertedDepositList = component.get("v.insertedDepositList");  
                 //adding the blank record to the existing list 
-                _insertedDepositList.push(component.get("v.programType"))   ;
+                if(component.find("documentTotal").get('v.value') !== component.get("v.paymentSourceTotal")){
+                    _insertedDepositList.push(component.get("v.programType"))   ;
+                    component.set("v.depositList", _insertedDepositList);   
+                    _insertedDepositList.pop();
+                }else{
+                    component.set("v.isDisabledSubmit",false);
+                    component.set("v.depositList", _insertedDepositList); 
+                }              
                 //console.log("original insertedDepositList "+JSON.stringify(component.get("v.insertedDepositList")));
-                component.set("v.depositList", _insertedDepositList);   
-                _insertedDepositList.pop();
-                component.set("v.isDisabledSubmit",false);
+                
+                //component.set("v.isDisabledSubmit",false);
             }else{
                 //else use the new 'depositList' for iteration
                 var _depositList = component.get("v.depositList");       
