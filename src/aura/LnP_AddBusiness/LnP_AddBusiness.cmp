@@ -38,7 +38,7 @@
     </aura:if>
     <div class="add-biz-wrapper">
         <div class="add-biz-title">
-            <h1>Add a new business</h1>
+            <h1>Add a New Business</h1>
         </div>
         <!--###### MODAL BOX Start######--> 
         <!-- <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -70,27 +70,27 @@
                         <aura:if isTrue="{!fieldlist.Required__c || fieldlist.Regex_Validation__c !=''}">
                             <aura:if isTrue="{!fieldlist.lName == 'UBI_Number__c' || fieldlist.lName == 'UBI_Status__c'}">
                                 <aura:if isTrue="{!fieldlist.lName == 'UBI_Number__c'}">
-                                	<lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'')}"  onchange="{!c.fieldchange}" value="{!v.ubiValueEntered}"/>
-                                	<lightning:button variant="Neutral" type="button" label="Validate" name="Validate" class="btnHeight back-button"  onclick="{!c.validateUBINumber}"/>
+                                    <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'')}"  onchange="{!c.fieldchange}" value="{!v.ubiValueEntered}"/>
+                                    <lightning:button variant="brand" type="button" label="Validate UBI" name="Validate" class="btnHeight back-button"  onclick="{!c.validateUBINumber}"/>
                                 </aura:if>
                                 <aura:if isTrue="{!fieldlist.lName == 'UBI_Status__c'}">
-                                	<lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}" value="{!v.ubiValidationResponse}"/>
+                                    <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}" value="{!v.ubiValidationResponse}"/>
                                 </aura:if>
                                 <aura:if isTrue="{!fieldlist.lName == 'Name'}">
-                                	<lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}" />
+                                    <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}" />
                                 </aura:if>
                                 <aura:set attribute="else">
                                     <label class="{!fieldlist.lName == 'Name'?'label-style required':'slds-hide'}">
                                         Business Name
                                     </label>
-                                    <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'')}"  onchange="{!c.fieldchange}" variant="{!fieldlist.lName == 'Name'?'label-hidden':''}"/>
+                                    <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'') + (fieldlist.lName == 'Business_Structure__c'?' biz-structure':'')}"  onchange="{!c.fieldchange}" variant="{!fieldlist.lName == 'Name'?'label-hidden':''}"/>
                                     
                                 </aura:set>
                             </aura:if> 
                             <aura:set attribute="else">
                                 <aura:if isTrue="{!fieldlist.lName == 'UBI_Status__c'}">
-                                	<lightning:inputField fieldName="{!fieldlist.lName}" class="field-size multi-field slds-hide" value="{!v.ubiValidationResponse}"/>
-                                	<aura:set attribute="else">
+                                    <lightning:inputField fieldName="{!fieldlist.lName}" class="field-size multi-field slds-hide" value="{!v.ubiValidationResponse}"/>
+                                    <aura:set attribute="else">
                                         <aura:if isTrue="{!fieldlist.lName == 'Name'}">
                                             <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}"/>
                                         </aura:if>
@@ -103,20 +103,21 @@
                             </aura:set>
                         </aura:if>
                     </aura:iteration>
-                    <div class="btn-wrapper">
-                        <lightning:button variant="Neutral" type="button" label="Back" name="Cancel" class="btnHeight back-button"  onclick="{! c.returnBusiness }"/>
-                        <lightning:button variant="brand" type="button" name="Save" label="Save" onclick="{!c.validateFields}" class="add-button" disabled="{!v.buttonDisable}" />
-                    </div>
+                    
                 </div>
             </lightning:recordEditForm>
+        </div>
+        <div class="btn-wrapper">
+            <lightning:button variant="Neutral" type="button" label="Back" name="Cancel" class="btnHeight back-button"  onclick="{! c.returnBusiness }"/>
+            <lightning:button variant="brand" type="button" name="Save" label="Save" onclick="{!c.validateFields}" disabled="{!v.buttonDisable}" class="add-button"/>
         </div>
         <!--</div>
                 </div>
             </section> -->
         <!-- <div class="slds-backdrop slds-backdrop_open"></div> -->
         <!--###### MODAL BOX Part END Here ######-->
-    </div> 
-	<!-- UBI number pop up -->
+    </div>
+    <!-- UBI number pop up -->
     <aura:if isTrue="{!v.isOpen}">             
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
@@ -126,7 +127,7 @@
                 </header>
                 <!-- pop up body -->
                 <div class="slds-modal__content slds-p-around_medium">
-                   	<div class="slds-form-element slds-form-element_horizontal">
+                    <div class="slds-form-element slds-form-element_horizontal">
                         <div class="slds-form-element__label">Business Name:<span>&nbsp;</span></div>
                         <div class="slds-form-element__control btnnrml">{!v.ubiDetails.Name}</div>
                     </div>
