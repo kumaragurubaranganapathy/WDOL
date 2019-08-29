@@ -571,7 +571,7 @@ return ListAddress;
                         parcel.MUSW__State__c = null;
                     }
                     parcel.MUSW__Post_Zip_Code__c = zip;
-                    if(String.isNotBlank(objectRecordName)){
+                    if(objectRecordName!='Contact'){
                         parcel.Primary_Account__c = accountOrContactId;
                     }else{
                         parcel.MUSW__Primary_Contact__c = accountOrContactId;

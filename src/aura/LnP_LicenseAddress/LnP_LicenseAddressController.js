@@ -2,8 +2,8 @@
     doInit: function(component, event, helper){
         var objectData = sessionStorage.getItem('objectName');
         var accountRecordId = sessionStorage.getItem("recordId");
-       // component.set("v.accountId", accountRecordId);
-       // component.set("v.objectName", objectData);
+        component.set("v.accountId", accountRecordId);
+        component.set("v.objectName", objectData);
         
         console.log('objectData in Address===' + objectData + accountRecordId);
         //sessionStorage.clear();
