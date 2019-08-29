@@ -104,8 +104,6 @@ public class DOL_ProcessPayment {
             update cart;
             processSuccessful = m_ps.processPayment(payables, rsAmt, accountSelected, cart.BGBK__Process_DateTime__c);
             if(! processSuccessful){
-                if(sp != null)
-                    Database.rollback(sp);
                 throw new CustomException('BGBK Method Failed to process payment , Payment not succeded');
             }
         }
@@ -117,6 +115,9 @@ public class DOL_ProcessPayment {
         
     }
 
+    // Below method will be used for NCR Payment
+    // Rollback is not required here,
+    // Rollback is in place APEX class DOL_Process_NCR_Data_Batch
     public void doPaymentForNCR(){
         validateNCRInput();
         MUSW__Fee__c[] allCartFees;
