@@ -4,7 +4,6 @@ public with sharing class Lnp_CommonHeader_AC {
     
     @AuraEnabled
     public static Map<String,String> getLabel() {
-        try{
         Map<String, String> customLabelMap = new Map<String, String>();
         customLabelMap.put('LnP_CommonHeader_Home', System.Label.LnP_CommonHeader_Home);
         customLabelMap.put('LnP_CommonHeader_AboutUs', System.Label.LnP_CommonHeader_AboutUs);
@@ -53,16 +52,10 @@ public with sharing class Lnp_CommonHeader_AC {
         
         
         return customLabelMap;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static Id saveChunk(String fileName, String base64Data, String contentType, String fileId) {
-        try{
         if (fileId == '') {
             system.debug('inside the method of save chunk');
             fileId = saveTheFile( fileName, base64Data, contentType); 
@@ -71,18 +64,12 @@ public with sharing class Lnp_CommonHeader_AC {
             appendToFile(fileId, base64Data);
         }
         return Id.valueOf(fileId);
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static List<String> getContactUserInfo(){
-         try{
          List<String> usrInfo = new List<String>();
-       
+        try{
          //List<User> userDetail = [select id,UserType,Name from User where ContactId=:conId];
          //String userType= userDetail[0].UserType;
          //String userName = userDetail[0].Name;
@@ -91,19 +78,15 @@ public with sharing class Lnp_CommonHeader_AC {
          //usrInfo.add(userDetail[0].Name);
          //usrInfo.add(userDetail[0].Id);
             //usrInfo.add(conId);
-        
-         return usrInfo;
-         }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
         }
+		catch(Exception e){
+            HandleException.LogException(e,'LnP_comHeaderPublicFormsApexController','getCurrentUserInfo');
+        }
+         return usrInfo;
       }
     
     @AuraEnabled  
     public static boolean isValidCommunityUser(){
-        try
-        {
         String validProfileName = 'eSLA Customer Community Plus Login User';
         Boolean isValid = true;
         User u  = [select id,Profile.name from user where id  =: UserInfo.getUserId() LIMIT 1];
@@ -113,16 +96,9 @@ public with sharing class Lnp_CommonHeader_AC {
             }
         }        
         return isValid;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     public static Id saveTheFile(String fileName, String base64Data,String contentType) {
-        try
-        {
         base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
         Document oAttachment=new Document();
         oAttachment.Name = fileName;
@@ -136,16 +112,11 @@ public with sharing class Lnp_CommonHeader_AC {
       //  getImageText(oAttachment.id);
         //System.debug('recId----> ::'+oAttachment.id);
         return oAttachment.id;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
         
     }
     @AuraEnabled
     public static string getImageText(String imageId){
-        try{
+        
         system.debug('inside getImageTExt method');
         //using post method
         
@@ -212,11 +183,6 @@ public with sharing class Lnp_CommonHeader_AC {
       recordiD= getSearchRec(parsedTextList);
         system.debug('the val of:' +recordiD);
         return recordiD;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     private static string getSearchRec(List<String> parsedTextList1){
@@ -226,7 +192,6 @@ public with sharing class Lnp_CommonHeader_AC {
     }
     
     private static void appendToFile(Id fileId, String base64Data) {
-        try{
         system.debug('inside append to file');
         base64Data = EncodingUtil.urlDecode(base64Data, 'UTF-8');
         
@@ -241,11 +206,6 @@ public with sharing class Lnp_CommonHeader_AC {
         a.body = EncodingUtil.base64Decode(existingBody + base64Data);
         
         update a;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            
-        }
     }
     
     

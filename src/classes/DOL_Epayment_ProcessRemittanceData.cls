@@ -108,7 +108,6 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
             receipt.Payer_Last_Name__c = tempRemittanceInput.lastName;
         if(! String.isBlank(tempRemittanceInput.companyName))
             receipt.Company_Name__c = tempRemittanceInput.companyName;
-        receipt.Remittance_Process_Date_Time__c = System.now();
     }
 
 }

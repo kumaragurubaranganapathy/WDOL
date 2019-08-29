@@ -3,7 +3,6 @@ public without sharing class CommunityRegistrationController {
     @AuraEnabled
     public static string registerNewCommunityUser(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd,string birthdate) 
     {
-        try{
         List<User> existinguser = [Select ID,Username from User Where Username = :email Limit 1 ];
         String successmsg;
         if(!existinguser.isEmpty()){
@@ -32,15 +31,8 @@ public without sharing class CommunityRegistrationController {
         }
         
         return successmsg;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     public static Contact handleAccountContactCreation(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd, String birthdate) {
-        try{
         Contact retRes = null ;
         String passwordParameter = pwd;
         List<User> users = [Select Id FROM User WHERE Name =: System.Label.Admin_Name and isActive = true LIMIT 1  ] ;
@@ -61,15 +53,8 @@ public without sharing class CommunityRegistrationController {
         System.debug('Contact Creation done' + retRes.id);                                      
         
         return retRes ;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     public static String handleCommunityUserOperations(Contact con,  Id accId , string passwordIn  ) {
-        try{
         system.debug('inside handle');
         profile profileId = [SELECT ID FROM profile WHERE name='eSLA Customer Community Plus Login User'];
         String successmsg = '';
@@ -118,12 +103,6 @@ public without sharing class CommunityRegistrationController {
         }
         
         return successmsg ;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
         
