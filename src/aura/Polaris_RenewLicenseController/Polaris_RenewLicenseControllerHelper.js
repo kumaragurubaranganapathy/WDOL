@@ -1,4 +1,13 @@
 ({
+    errorlog:function(component,event){
+        console.log('error on insert application');
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
     fetchDataFromServer : function(component, event, helper){
         var licenseType = component.get("v.licenseType");        
         var board = component.get("v.board");
@@ -108,55 +117,62 @@
                 if (state === "SUCCESS"){
                     serverActionStatus = true;
                     var result = actionResult.getReturnValue();
-                    var resultWrapper = JSON.parse(result);
-                    component.set("v.licenseWrapper",resultWrapper);
-                    if(totalTabNumber ==tabNumber){
-                        var resultObject = component.get("v.licenseWrapper");
-                        var newlst =[];
-                        Object.keys(resultObject).forEach(function(key) {
-                            console.log(key, resultObject[key]);
-                            if(resultObject[key].sectionError){
-                                newlst.push(resultObject[key].sectionName);
+                    if(result!=null){
+                        var resultWrapper = JSON.parse(result);
+                        component.set("v.licenseWrapper",resultWrapper);
+                        if(totalTabNumber ==tabNumber){
+                            var resultObject = component.get("v.licenseWrapper");
+                            var newlst =[];
+                            Object.keys(resultObject).forEach(function(key) {
+                                console.log(key, resultObject[key]);
+                                if(resultObject[key].sectionError){
+                                    newlst.push(resultObject[key].sectionName);
+                                }
+                            });
+                            if(newlst.length==0){
+                                component.set("v.AttFlagForsubmit","true");
                             }
-                        });
-                        if(newlst.length==0){
-                            component.set("v.AttFlagForsubmit","true");
+                            component.set("v.SectionError",newlst);
+                            
                         }
-                        component.set("v.SectionError",newlst);
+                        var sectionList = [];
+                        for (var index = 0; index < resultWrapper.length; index++){
+                            var obj = new Object();
+                            obj.header = resultWrapper[index].sectionName;
+                            obj.errorImage=resultWrapper[index].sectionError;;
+                            obj.icon = resultWrapper[index].icon;
+                            obj.subheader = resultWrapper[index].subheader;
+                            //obj.sectionNumber = resultWrapper[index].currentTab;
+                            sectionList.push(obj);
+                        }
+                        component.set("v.section",sectionList);
+                        console.log('licenseWrapper ' + JSON.stringify(component.get("v.licenseWrapper")));
+                        component.set("v.totalTabs", sectionList.length);
+                        this.hideSpinner(component, event);
+                        if(component.get("v.saveAndSubmit") == true){
+                            this.SaveAndSubmit(component,event,helper); 
+                        }
+                        var tabsList = component.get("v.licenseWrapper");
+                        var currentTab = component.get("v.currentTab");
+                        if(currentTab == 2 && component.get("v.PhysicalAddressModified")){
+                            console.log("inside update Physical address ::");
+                            this.updatePhysicalAddress(component,event,helper);
+                        }
                         
+                        if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
+                        {
+                            component.set("v.showNotaryEndo",true);
+                        }
+                        // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
+                    } //end of if for result check
+                    else{
+                        console.log('error on insert application');
+                       this.errorlog(component,event);
                     }
-                    var sectionList = [];
-                    for (var index = 0; index < resultWrapper.length; index++){
-                        var obj = new Object();
-                        obj.header = resultWrapper[index].sectionName;
-                        obj.errorImage=resultWrapper[index].sectionError;;
-                        obj.icon = resultWrapper[index].icon;
-                        obj.subheader = resultWrapper[index].subheader;
-                        //obj.sectionNumber = resultWrapper[index].currentTab;
-                        sectionList.push(obj);
-                    }
-                    component.set("v.section",sectionList);
-                    console.log('licenseWrapper ' + JSON.stringify(component.get("v.licenseWrapper")));
-                    component.set("v.totalTabs", sectionList.length);
-                    this.hideSpinner(component, event);
-                    if(component.get("v.saveAndSubmit") == true){
-                        this.SaveAndSubmit(component,event,helper); 
-                    }
-                    var tabsList = component.get("v.licenseWrapper");
-                    var currentTab = component.get("v.currentTab");
-                    if(currentTab == 2 && component.get("v.PhysicalAddressModified")){
-                        console.log("inside update Physical address ::");
-                        this.updatePhysicalAddress(component,event,helper);
-                    }
+                } //end of success if
+                else {
                     
-                    if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[0].questionSectionClass =='Endorsement' && tabsList[currentTab-1].labelFieldsMap[0].value == tabsList[currentTab-1].labelFieldsMap[0].messageTriggerResponse)
-                    {
-                        component.set("v.showNotaryEndo",true);
-                    }
-                    // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
-                } else {
-                    //handle error as well
-                    console.log('error on insert application');
+                    this.errorlog(component,event);
                 }
             });
             $A.enqueueAction(action);
@@ -247,16 +263,27 @@
                 var state = actionResult.getState();
                 if (state === "SUCCESS"){
                     var result = actionResult.getReturnValue();
+                    if(result!=null){
+                        component.set("v.storeServerValue", result);
+                        this.closeModel(component, event, helper);
+                    }
+                    else{
+                        console.log("Submit Error->");
+                        this.hideSpinner(component,event);
+                        this.errorlog(component,event);
+                    }
                     //this.hideSpinner(component, event);
                     // Set popup property values before displayiong pop up.
                     /* component.set("v.popupHeader", "Successfully Submitted");
                      component.set("v.popupBody", "Thank you for submission of your application.");
                      component.set("v.serverStatus", "success"); 
                      component.set("v.isOpen", true);*/
-                    component.set("v.storeServerValue", result);
-                    this.closeModel(component, event, helper);
+                    
                 }else{
                     console.log("Submit Error->");
+                    this.hideSpinner(component,event);
+                    this.errorlog(component,event);
+                    
                     //handle error as well
                 }
                 
