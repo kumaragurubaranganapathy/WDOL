@@ -45,10 +45,11 @@
                                             <th class="header-data" scope="col">
                                                 <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
                                             </th> 
-                                            <th class="" scope="col">
-                                                <div class="slds-truncate" title="actions">Action</div>
-                                            </th>
+                                            
                                         </aura:iteration>
+					<th class="" scope="col">
+                                                <div class="slds-truncate" title="actions">Action</div>
+                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
