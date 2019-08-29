@@ -9,7 +9,9 @@ public without sharing class LnP_DashboardApexController_2 {
             }else{
                 return null;
             }
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
         
@@ -17,11 +19,12 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static Boolean createAssociationTask(Id associationID){
+        try{
         Associations__c association = [SELECT id, Association_Type__c,Parent_License__r.MUSW__Applicant__c,Parent_License__r.Application_Type__c,Parent_License__r.Credential_Type__c,Parent_License__r.Name,Child_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Child_License__r.Name,Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
         Contact childcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Child_License__r.MUSW__Applicant__c];
         Contact parentcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Parent_License__r.MUSW__Applicant__c];
         List<User> childConCommunityUserId = [select id from User where ContactId =: childcon.Id AND Is_Portal_User__c = true AND IsActive = true LIMIT 1];
-        try{
+        
             task t = new task();
             t.Whatid = associationID;
             t.Status = 'Pending';
@@ -46,8 +49,9 @@ public without sharing class LnP_DashboardApexController_2 {
             
             insert t;
             return true;
-        }catch(Exception e){
-            System.debug(e.getMessage());
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return false;
         }
     }
@@ -62,7 +66,9 @@ public without sharing class LnP_DashboardApexController_2 {
             }                           
             
             return null;
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -74,15 +80,18 @@ public without sharing class LnP_DashboardApexController_2 {
             System.debug('mapJSON::');
             mapJSON = getDashboardJSON(); 
             System.debug('mapJSON: after::'+ mapJSON );
-        }
-        catch(Exception e){
-            HandleException.LogException(e,'LnP_DashboardApexController','getDBJSON');
+        
+    }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            
         }
         return mapJSON;
     }
     
     @AuraEnabled
     public static String uploadAdditionalDocuments(String licenseId){
+        try{
         Id  licenseId_id = licenseId;
         Schema.SObjectType sObjType = licenseId_id.getSobjectType();
         String sobjName =  sObjType.getDescribe().getName();
@@ -96,11 +105,17 @@ public without sharing class LnP_DashboardApexController_2 {
         //UPDATE sObj;
         
         return subnissionObj.id;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
     @AuraEnabled
     public static void setLicenseToInreview(String licenseId){
+        try{
         Id  licenseId_id = licenseId;
         Schema.SObjectType sObjType = licenseId_id.getSobjectType();
         String sobjName =  sObjType.getDescribe().getName();
@@ -108,6 +123,11 @@ public without sharing class LnP_DashboardApexController_2 {
         
         sObj.put('MUSW__Status__c','In Review');
         UPDATE sObj;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            
+        }
     }
     
     @AuraEnabled
@@ -156,7 +176,7 @@ public without sharing class LnP_DashboardApexController_2 {
         
         }catch(Exception e){
             
-            DOL_CreateErrorLog_Exception.addError(e,'LnP_DashboardApexController_2','setAbandonStatus');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
             
             operationsuccesssful = false;
             
@@ -206,7 +226,9 @@ public without sharing class LnP_DashboardApexController_2 {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -224,7 +246,9 @@ public without sharing class LnP_DashboardApexController_2 {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -246,6 +270,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String DraftNewLicenseApplicationsTable(){
+        try{
         List<String> businessLicensesTobeIgnored;
         
         List<String> licenseStatusesToBeFiltered;            
@@ -270,13 +295,18 @@ public without sharing class LnP_DashboardApexController_2 {
         
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
-        return JSON.serialize(wrapperObj,true);                             
+        return JSON.serialize(wrapperObj,true); 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     @AuraEnabled
     public static String setDraftRenewApplicationsTable(){
         
-        
+        try{
         
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Last Updated'};
@@ -292,10 +322,16 @@ public without sharing class LnP_DashboardApexController_2 {
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
         return JSON.serialize(wrapperObj,true); 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static String setDraftMaintananceRequestApplicationsData(){
+        try{
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         List<String> columnHeaderList = new List<String>{'Request Type', 'Request Against', 'Status','Last Updated'};
         //List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn'};
@@ -308,10 +344,16 @@ public without sharing class LnP_DashboardApexController_2 {
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
         return JSON.serialize(wrapperObj,true); 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static String setDraftAMRAppLicenseData(String licenseId){
+        try{
         String AMRlicenseId = licenseId;
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         List<String> columnHeaderList = new List<String>{'Request ID','Request Type', 'Request Against', 'Status','Last Updated'};
@@ -325,6 +367,11 @@ public without sharing class LnP_DashboardApexController_2 {
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
         return JSON.serialize(wrapperObj,true); 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
@@ -360,7 +407,9 @@ public without sharing class LnP_DashboardApexController_2 {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -383,7 +432,9 @@ public without sharing class LnP_DashboardApexController_2 {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -402,7 +453,9 @@ public without sharing class LnP_DashboardApexController_2 {
             
             return JSON.serialize(wrapperObj,true); 
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -421,14 +474,16 @@ public without sharing class LnP_DashboardApexController_2 {
             
             return JSON.serialize(wrapperObj,true); 
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
     
     @AuraEnabled
     public static String fetchLicenseDetailsTable(String licenseId){
-        
+        try{
         if(licenseId != null){
             List<MUSW__License2__c> msusLicenseData = [select id,Name,Polaris_DHP__c,RecordTypeId, Credential_Type__c, MUSW__Status__c, Sub_Status__c,MUSW__Applicant__r.Name,Original_Issue_Date__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, Application_Type__c,Application_Method__c,
                                                        (select id,name, State_Province__c, Country__c, City__c from LnP_Parcels__r ) from MUSW__License2__c where id =: licenseId LIMIT 1];
@@ -436,11 +491,17 @@ public without sharing class LnP_DashboardApexController_2 {
         }else{
             return null;
         }
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
     @AuraEnabled
     public static String[] fetchEndorsementDetails(String licenseId){
+        try{
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
         if(licenseId != null){ 
@@ -451,12 +512,17 @@ public without sharing class LnP_DashboardApexController_2 {
         }
         system.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
         
-        return EndorsementList;  
+        return EndorsementList; 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @auraEnabled
     public static String getBusinessRelationShipData(String license_id){
-        
+        try{
         List<String> columnHeaderList = new List<String>{'Name','Role','License Type','Phone','Email'};
             List<String> statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                 List<SObject> columnDataList = [Select Id,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
@@ -467,11 +533,17 @@ public without sharing class LnP_DashboardApexController_2 {
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
         return JSON.serialize(wrapperObj,true);
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseType, String licenseId){
         
+        try{
         List<String> columnHeaderList;   
         
         List<String> statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
@@ -506,12 +578,17 @@ public without sharing class LnP_DashboardApexController_2 {
             
         }
         return JSON.serialize(wrapperObj);
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
 
     
     @AuraEnabled
     public static Contact getContact(){
+        try{
         Contact conObj;
         List<Contact> ConList =  [SELECT Id 
                                   FROM Contact 
@@ -522,9 +599,15 @@ public without sharing class LnP_DashboardApexController_2 {
             conObj = ConList[0];
         }
         return conObj;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     public static Map<String, String> getDashboardJSON() {
+        try{
         Map <String, String> mapJSON = new Map <String, String>();
         //mapJSON.put('Card Menu List','[{"header":"Notifications", "url":"/dashboard", "icon": "LnP__Notification_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"},{"header":"Service Requests:", "url":"/dashboard", "icon": "LnP__ServiceRequest_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"},{"header":"My To Do List", "url":"/dashboard", "icon": "LnP__ToDoList_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"},{"header":"All Applications", "url":"/dashboard", "icon": "LnP__Applications_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1"}]');
         mapJSON.put('Card Menu List','[{"header":"All Applications", "url":"/dashboard", "icon": "LnP__Applications_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1"}]');
@@ -630,6 +713,11 @@ public without sharing class LnP_DashboardApexController_2 {
         mapJSON.put('businessFlag',businessFlag );
         System.debug('mapJSON :'+mapJSON);
         return mapJSON;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
@@ -641,7 +729,7 @@ public without sharing class LnP_DashboardApexController_2 {
     @AuraEnabled
     public static String fetchLicenseRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId){
         
-        
+        try{
         List<String> columnHeaderList = new List<String>{'Start Date','Job Title','Employer','End Date','Total Hours','Street Address','County','State','Country','City','Zip Code','Status'};   
             
             List<LnP_BackgroundSection__c> columnDataList =   [SELECT Start_Date__c,Job_Title__c,Employer__c,End_date__c,Total_Hours__c,
@@ -652,12 +740,18 @@ public without sharing class LnP_DashboardApexController_2 {
                                                                AND Status__c = 'Pending'];    
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
-        return JSON.serialize(wrapperObj,true);      
+        return JSON.serialize(wrapperObj,true); 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     } 
     
     
     @AuraEnabled
     public static String fetchRenewalRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId){
+        try{
         List<String> columnHeaderList = new List<String>{'Name Of Institution','Degree','Minor','Major','Start Date','End Date','Country','State','Status'};
             
             List<LnP_BackgroundSection__c> columnDataList =    [SELECT Start_Date__c,Job_Title__c,Employer__c,End_date__c,Total_Hours__c,
@@ -669,7 +763,12 @@ public without sharing class LnP_DashboardApexController_2 {
         
         LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
         
-        return JSON.serialize(wrapperObj,true);                                                                     
+        return JSON.serialize(wrapperObj,true);   
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     public class lightningDataTableWrapper{
@@ -699,13 +798,14 @@ public without sharing class LnP_DashboardApexController_2 {
             return JSON.serialize(helptextMap);
         }
         catch(Exception e){
-            DOL_CreateErrorLog_Exception.addError(e,'LnP_DashboardApexController_2','helptextFetch');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
             return JSON.serialize(helptextMap);       
         }
     }
     
     @AuraEnabled
     public static Boolean checkActiveCart(){
+        try{
         Boolean redirect = false;
        List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
@@ -720,5 +820,10 @@ public without sharing class LnP_DashboardApexController_2 {
             redirect = true;
         }
         return redirect;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
 }
