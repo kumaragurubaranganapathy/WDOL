@@ -3,24 +3,37 @@ public class Polaris_AMRLinkCntrl {
     @AuraEnabled
     Public static List<AMR_Link__mdt> fetchServiceLinksServer(String board, String licenseType, String applicationMethod)
     {       
+        try{
         return [SELECT id,MasterLabel,AMR_Type__c,Order_Number__c,Board__c,Service_Request_Type__c,License_Type__c,Application_Method__c FROM AMR_Link__mdt where Board__c =:board AND License_Type__c =:licenseType AND Application_Method__c=:applicationMethod AND Display_In_Related_Tab__c=false ORDER BY Order_Number__c ASC  ];
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+            
     }
     
     @AuraEnabled
     public static String printUpdateLicense(String licId,String printType)
-    {
+    {   
+        try{
+        string value='';
         if(licId!=null){
             if(printType == 'download')
             {
                 Set<Id> setConId = new Set<Id>();
-                List<ContentDocumentLink> lstcontDocLink = [SELECT ContentDocumentId,Id FROM ContentDocumentLink WHERE LinkedEntityId = 'a0Zr0000001Zmj2'];
+               // List<ContentDocumentLink> lstcontDocLink = [SELECT id, linkedEntityId FROM ContentDocumentLink Using Scope Everything where linkedEntityId ='a1Lr0000003O3pu'];
+                 List<ContentDocumentLink> lstcontDocLink = [ SELECT ContentDocumentId,ContentDocument.Title, ContentDocument.CreatedDate,LinkedEntityId
+                         FROM ContentDocumentLink where LinkedEntityId ='005t00000029lMJ'];
+                system.debug('lstcontDocLink'+lstcontDocLink);
                 for(ContentDocumentLink contDocLink:lstcontDocLink) 
                 {
-                    setConId.add(contDocLink.ContentDocumentId);
+                   
+                   setConId.add(contDocLink.ContentDocumentId);
                 }
                 if(!setConId.isEmpty()){
                     system.debug('--setConId'+setConId);
-                ContentVersion conVersion = [SELECT CreatedDate,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId AND Title LIKE '%License_Certificate%' ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
+                ContentVersion conVersion = [SELECT CreatedDate,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
             	return conVersion.Id;
                 
                 }
@@ -40,19 +53,25 @@ public class Polaris_AMRLinkCntrl {
                     update lic;
                     return 'true';
                 }catch(Exception e){
-                    Polaris_CreateErrorLog_Exception.addError(e,'Polaris_AMRLinkCntrl','printUpdateLicense');
+                    DOL_CreateErrorLog_Exception.logApplicationError(e);
                 }
                 
             }
             
         }
-        return 'false';
+        return value;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
     @AuraEnabled
     public static String fetchAppId(String licId)
     {
+        try{
         String appId = '';
         system.debug('licId : '+licId);
         if(licId!=null){
@@ -60,12 +79,18 @@ public class Polaris_AMRLinkCntrl {
             appId = lic.Application__c;
         }
         return appId;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     //getMetada values in manage request
     @AuraEnabled
     public static AMR_Link__mdt getMetadata(String board,String ServiceRequestType,String licenseType){
       
+      try{
       List<AMR_Link__mdt> listMdt = [ SELECT Sections__c,Generate_Fee__c FROM AMR_Link__mdt WHERE Board__c =:board AND License_Type__c =:licenseType AND Service_Request_Type__c =:ServiceRequestType];
       
       if(!listMdt.isEmpty()){
@@ -73,22 +98,33 @@ public class Polaris_AMRLinkCntrl {
       }else{
           return null;
       }
+      }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
       
     }
     @AuraEnabled
     public static String fetchContactInfo()
     {
+        try{
         List<User> userInfoData = new List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
         return [Select id,Full_Name__c FROM Contact where id=:userInfoData[0].Contact.Id].Full_Name__c;
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     @AuraEnabled
     public static Account fetchAccountInfo(String licId)
     {
+        try{
         Account acct = null;
         list<Account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:licId];
         system.debug('acctlist==='+acctlist);
@@ -97,11 +133,17 @@ public class Polaris_AMRLinkCntrl {
             acct = acctlist[0];
         }
         return acct;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static String fetchWebsiteInfo(String licId)
     {
+        try{
         String websiteInfo = '';
         system.debug('licId : '+licId);
         if(licId!=null){
@@ -109,10 +151,16 @@ public class Polaris_AMRLinkCntrl {
             websiteInfo = lic.Website__c;
         }
         return websiteInfo;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
 @AuraEnabled
     public static string updateWebsiteInfo(String licId,String websiteInfo)
     {   
+         try{
          string randomcharacter='';
         system.debug('websiteInfo==='+ websiteInfo+'==licId=='+licId);
         if(String.isNotBlank(websiteInfo) && websiteInfo == 'createCode' && String.isNotBlank(licId)){
@@ -148,12 +196,18 @@ public class Polaris_AMRLinkCntrl {
             update lic;
         }
         return randomcharacter;
+         }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
    
     @AuraEnabled 
     public static String createCodeValue(String test)
     {            
+       try{
        system.debug('createcode===');
         String value = 'success';
         List<User> userInfoData = new  List<User>();
@@ -177,10 +231,16 @@ public class Polaris_AMRLinkCntrl {
             upsert  accts;
             }
         return value;
+       }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
 
     
     public static String generateRandomString(Integer len) {
+    try{
     final String chars = '0123456789';
     String randStr = '';
     while (randStr.length() < len) {
@@ -188,15 +248,21 @@ public class Polaris_AMRLinkCntrl {
        randStr += chars.substring(idx, idx+1);
     }
     return randStr; 
+    }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
 }
     
     @AuraEnabled
     public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType)
     {
+        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition+ 'Limit 1';
         system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
@@ -220,15 +286,21 @@ public class Polaris_AMRLinkCntrl {
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'Polaris_AMRLinkCntrl','insertRequest');            
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
         string appId = '';
         return appId = application.Id;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
     @AuraEnabled 
     public static List<selectListWrapper> getPickListData(String mainLicense){
+    try{
     List<String> str = new List<String>();
     List<selectListWrapper> listWrapper = new List<selectListWrapper>();
     List<Branch_License__mdt> brachList = [select id,MasterLabel,Branch_License__c,Main_License__c from Branch_License__mdt where Main_License__c =:mainLicense];
@@ -243,15 +315,25 @@ public class Polaris_AMRLinkCntrl {
            listWrapper.add(slw);
       }
       return listWrapper;
+    }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     //method to create application.
     @AuraEnabled
     public static Id createApplication(String board, String licenseType, String applicationType,String account,String LicenseUpgradeRecordID){
-    
+    try{
     Id applicationId = LnP_WizardApexController.startAnApplication(board,licenseType,applicationType,account,LicenseUpgradeRecordID);
     
     return applicationId;
+    }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     public class selectListWrapper{
