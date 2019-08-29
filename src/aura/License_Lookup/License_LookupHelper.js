@@ -1,4 +1,12 @@
 ({	
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
         //var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -62,13 +70,19 @@
             var state = response.getState();
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();
+                
                 var filteredResults = [];
+                if(result!=null){
                 for(var i=0; i<result.length; i++){
                     if(result[i].Credential_Type__c != undefined && result[i].Credential_Type__c != "Appraiser Course" && result[i].Credential_Type__c != "Architect Firms" && result[i].Credential_Type__c != 'Appraisal Controlling Person' && filteredResults.indexOf(result[i].Credential_Type__c)==-1){
                         filteredResults.push(result[i].Credential_Type__c);
                     }
                 }
                 component.set(auraAttr, filteredResults);
+                }
+                else{
+                     this.errorlog(component,event);
+                }
             }else{
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({

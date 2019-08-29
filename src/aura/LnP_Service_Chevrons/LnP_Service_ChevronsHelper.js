@@ -1,4 +1,12 @@
 ({
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
     fetchDataFromServer : function(component, event, helper){
         console.log('fetchData');
         var licenseType = component.get("v.licenseType");        
@@ -125,6 +133,7 @@
             if (state === "SUCCESS"){
                 serverActionStatus = true;
                 var result = actionResult.getReturnValue();
+                if(result!=null){
                 var resultWrapper = JSON.parse(result);
                 component.set("v.licenseWrapper",resultWrapper);
                 if(totalTabNumber ==tabNumber){
@@ -156,9 +165,16 @@
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
                 // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
-            } else {
+                }
+                else{
+                    console.log('error on insert application');
+                     this.errorlog(component,event);
+                }
+                } 
+                else {
                 //handle error as well
-                console.log('error on insert application');
+                       console.log('error on insert application');
+                       this.errorlog(component,event);
             }
         });
         $A.enqueueAction(action);
@@ -211,8 +227,10 @@
                 var state = actionResult.getState();
                 if (state === "SUCCESS"){
                     var result = actionResult.getReturnValue();
+                    if(result!=null){
+                    
                     component.set("v.storeServerValue", result[0].Id);
-					component.set("v.serverStatus", "success");                     
+                    component.set("v.serverStatus", "success");                     
                     this.hideSpinner(component, event);
                     var AMRvalues = component.get("v.amrData");
                     if(!AMRvalues.Generate_Fee__c)
@@ -228,9 +246,17 @@
                     {
                        helper.closeModel(component, event);
                     }
+                    }
+                    else{
+                        console.log("Submit Error->"+error);
+                    
+                       this.errorlog(component,event);
+                    }
                     
                 }else{
                     console.log("Submit Error->"+error);
+                    
+                      this.errorlog(component,event);
                     //handle error as well
                 }
                 
