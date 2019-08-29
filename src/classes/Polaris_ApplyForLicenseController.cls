@@ -1183,8 +1183,6 @@ public class Polaris_ApplyForLicenseController {
                         for(MUSW__Submission__c submissions : appListOtherDetils[0].MUSW__Submissions__r){
                             submissions.MUSW__License2__c = licenseID[0].Id; 
                             if(submissions!=null && submissions.ContentDocumentId__c != null ) {
-                                submissions.IsSANFileUploadTrue__c = true;
-                                submissions.SAN_Image_Type__c ='Applications';
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
                             }
                             lstSubmissions.add(submissions); 
