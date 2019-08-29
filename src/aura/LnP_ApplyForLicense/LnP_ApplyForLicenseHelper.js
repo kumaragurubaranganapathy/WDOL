@@ -887,6 +887,10 @@
                             if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                 return true;
                             } else {
+								if(item.label=='Manager&#39;s Email:')
+                                    {
+                                        item.label = 'Managers Email:'
+                                    }
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                 return false;
                             }  
