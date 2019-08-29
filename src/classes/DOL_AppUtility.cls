@@ -1,5 +1,28 @@
 public class DOL_AppUtility {
 
+    @AuraEnabled
+    public static String fetchErrorLogs()
+    {
+        //if(!DOL_AppUtility.lstErrorLogIds.isEmpty())
+        //return DOL_AppUtility.lstErrorLogIds;
+        //else
+        //return null;
+        String sId = UserInfo.getUserId();
+        if(sId <> null)
+        {
+        List<Polaris_Custom_Exception__c> oD = [select Name from Polaris_Custom_Exception__c 
+        where CreatedById = :sId order by createddate desc LIMIT 10];
+        System.debug(sId+' Sumeet '+oD);
+        if(oD <> null && !oD.isEmpty())
+        {
+            System.debug(' Sumeet '+oD[0].Name);
+            return oD[0].Name;
+        }
+        }
+        return null;
+        
+    }
+    
     /**
     * @author: Mangesh Madhukar, A
     * @method: isAuthenticatedUser
