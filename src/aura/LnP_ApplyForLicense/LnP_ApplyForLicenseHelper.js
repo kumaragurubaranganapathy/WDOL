@@ -1,4 +1,12 @@
 ({
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
     fetchDataFromServer : function(component, event, helper){
         var licenseType = component.get("v.licenseType");   
         var businessLicenseType =$A.get("$Label.c.Business_Licenses");
@@ -87,13 +95,13 @@
         component.set("v.attestationError", "");
     },
     goToNextTab : function(component, event, helper) {
-       	this.checkFieldValidations(component, event);
+        this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
-			component.set("v.isSSNchanged", false);
+            component.set("v.isSSNchanged", false);
             component.set("v.showEndoMessage",false);
             component.set("v.errorMsgsList", []);
             component.set("v.showErrorMsgs", false); 
-            var curTab= component.get("v.currentTab");		
+            var curTab= component.get("v.currentTab");      
             var tabNumber = component.get("v.currentTab");
             var totalTabNumber = component.get("v.totalTabs");
             component.set("v.submitButtonDisable", "true");
@@ -105,7 +113,7 @@
             //var wrapperforsection = component.get("v.licenseWrapper");
             
             // var currentsectionName = wrapperforsection[curTab].sectionName
-            action.setParams({"dataString" : JSON.stringify(component.get("v.licenseWrapper")), "tabNumber" : tabNumber, "appId" : component.get("v.applicationId"),"Board": component.get("v.board"), "LicenseType": component.get("v.licenseType"),  "ApplicationType": component.get("v.applicationType"),"upgradeLicenseId": component.get("v.licenseRecordID")});
+            action.setParams({"dataString" : JSON.stringify(component.get("v.licenseWrapper")), "tabNumber" : tabNumber, "appId" : component.get("v.applicationId"),"Board": component.get("v.board"), "LicenseType": component.get("v.licenseType"),  "ApplicationType": component.get("v.applicationType"),"upgradeLicenseId": component.get("v.licenseRecordID") });
             var serverActionStatus = false;
             this.showSpinner(component, event);
             action.setCallback(this, function(actionResult){
@@ -113,6 +121,7 @@
                 if (state === "SUCCESS"){
                     serverActionStatus = true;
                     var result = actionResult.getReturnValue();
+                    if(result!=null){
                     var resultWrapper = JSON.parse(result);
                     component.set("v.licenseWrapper",resultWrapper);
                     if(totalTabNumber ==tabNumber){
@@ -154,14 +163,20 @@
                         component.set("v.showNotaryEndo",true);
                     }
                     // helper.showDependentQuestionsOnPageLoadHelper(component, event, helper);
-                } else {
+                    }
+                    else{
+                        console.log('error on insert application');
+                        this.errorlog(component,event);
+                    }
+                } 
+                else {
                     //handle error as well
                     console.log('error on insert application');
+                    this.errorlog(component,event);
                 }
             });
             $A.enqueueAction(action);
             //Added to save the personal imformation
-            
             if(component.find("recordObjectForm")!=undefined && component.find("recordObjectForm").length!=undefined){
                 if(component.find("recordObjectForm") != null && component.find("recordObjectForm")[0].find("editForm") != null){
                     component.find("recordObjectForm")[0].find("editForm").submit();            
@@ -195,7 +210,7 @@
                                    a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value}); 
                                 }
                                 
-                            }						
+                            }                       
                         }
                     }                
                     else if(tabsList[key].sectionName =='Attachments'){
@@ -253,62 +268,70 @@
             //helper.AttestVal(component, event, helper);
             action.setCallback(this, function(actionResult){
                 var state = actionResult.getState();
+              
                 if (state === "SUCCESS"){
                     var result = actionResult.getReturnValue();
                     //var noFees;
                     //this.hideSpinner(component, event);
-                    component.set("v.storeServerValue", result[0].Id);
-                    id = component.get("v.storeServerValue");
-                    try{
-                        return new Promise($A.getCallback(function(resolve, reject) {
-                            var action = component.get("c.getTotalBalance");
-                            action.setParams({"licId" : id });
-                            action.setCallback(this, function(actionResult){
-                                var state = actionResult.getState();
-                                if (state === "SUCCESS"){
-                                    console.log("state::"+state);
-                                    noFees = actionResult.getReturnValue();
-                                    resolve(actionResult.getReturnValue());
-                                    console.log("state::"+state);
-                                }
-                                
-                            });
-                            $A.enqueueAction(action);
-                        })).then(
-                            $A.getCallback(function(result){ 
-                                var str = '';
-                                component.set("v.loadingSpinner", false);
-                                if(noFees){
-                                    /*str ='/dashboard';
-                                    var urlEvent = $A.get("e.force:navigateToURL");
-                                    urlEvent.setParams({
-                                        "url": str
-                                    });
-                                    urlEvent.fire(); */
-                                    // below code is for no fees case
-                                    that.hideSpinner(component, event);
-                                    component.set("v.popupHeader", "Successfully Submitted");
-                                    component.set("v.popupBody", "Thank you for submission of your application.");
-                                    component.set("v.serverStatus", "success"); 
-                                    //component.set("v.storeServerValue", result[0].Id);
-                                    component.set("v.isOpen", true); 
-                                    // no fees code ends
-                                }else{ 
-                                    that.hideSpinner(component, event);
-									var isBizLic = component.get("v.isbusinsessLicense");
-									//var str ='/cart?id='+id+'&isBLic='+isBizLic;
-									var str ='/cart?id='+id;
-                                    var urlEvent = $A.get("e.force:navigateToURL");
-                                    urlEvent.setParams({
-                                        "url": str
-                                    });
-                                    urlEvent.fire();
-                                    //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                                } 
-                            }));
-                    }    
-                    catch(e){
-                        console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+                    if(result != null){
+                        component.set("v.storeServerValue", result[0].Id);
+                        id = component.get("v.storeServerValue");
+                        try{
+                            return new Promise($A.getCallback(function(resolve, reject) {
+                                var action = component.get("c.getTotalBalance");
+                                action.setParams({"licId" : id });
+                                action.setCallback(this, function(actionResult){
+                                    var state = actionResult.getState();
+                                    if (state === "SUCCESS"){
+                                        console.log("state::"+state);
+                                        noFees = actionResult.getReturnValue();
+                                        resolve(actionResult.getReturnValue());
+                                        console.log("state::"+state);
+                                    }
+                                    
+                                });
+                                $A.enqueueAction(action);
+                            })).then(
+                                $A.getCallback(function(result){ 
+                                    var str = '';
+                                    component.set("v.loadingSpinner", false);
+                                    if(noFees){
+                                        /*str ='/dashboard';
+                                        var urlEvent = $A.get("e.force:navigateToURL");
+                                        urlEvent.setParams({
+                                            "url": str
+                                        });
+                                        urlEvent.fire(); */
+                                        // below code is for no fees case
+                                        that.hideSpinner(component, event);
+                                        component.set("v.popupHeader", "Successfully Submitted");
+                                        component.set("v.popupBody", "Thank you for submission of your application.");
+                                        component.set("v.serverStatus", "success"); 
+                                        //component.set("v.storeServerValue", result[0].Id);
+                                        component.set("v.isOpen", true); 
+                                        // no fees code ends
+                                    }else{ 
+                                        that.hideSpinner(component, event);
+                                        var isBizLic = component.get("v.isbusinsessLicense");
+                                        var isBLic = component.get("v.isbusinsessLicense");
+                                        console.log('***************'+isBizLic);
+                                        sessionStorage.setItem('isBuz',isBLic);
+                                        var str ='/cart?id='+id+'&isBLic='+isBizLic;
+                                        var urlEvent = $A.get("e.force:navigateToURL");
+                                        urlEvent.setParams({
+                                            "url": str
+                                        });
+                                        urlEvent.fire();
+                                        //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
+                                    } 
+                                }));
+                        }    
+                        catch(e){
+                            console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);   
+                        }
+                    }else{
+                        console.log("Error");
+                      this.errorlog(component,event);
                     }
                     // Set popup property values before displayiong pop up.
                     /*component.set("v.popupHeader", "Successfully Submitted");
@@ -318,9 +341,8 @@
                     component.set("v.isOpen", true); */
                 }else{
                     console.log("Error");
-                    //handle error as well
+                    this.errorlog(component,event);
                 }
-                
             });
             $A.enqueueAction(action);
             
@@ -887,6 +909,10 @@
                             if( item.multiValues.length > 0 || valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                 return true;
                             } else {
+								if(item.label=='Manager&#39;s Email:')
+                                    {
+                                        item.label = 'Managers Email:'
+                                    }
                                 errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
                                 return false;
                             }  
@@ -1048,17 +1074,18 @@
                                 var valueVal = item.value;
                                 if(valueVal!="" && valueVal!=null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
                                     if(item.regex == "Future-Date"){
+                                        // Date should be future and not greater than 4 years
                                         var valueVal = item.value;
                                         var today = new Date();
-                                        //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                        //compareDate = new Date(compareDate);
+                                        var compareDate = (today.getFullYear()+4)+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        compareDate = new Date(compareDate);
                                         var enteredDate = new Date(valueVal);
-                                        if(enteredDate > today){
+                                        if(enteredDate > today && enteredDate < compareDate){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
                                             return false;
-                                        }
+                                        } 
                                     } else if(item.regex == "Policy-Amount"){
                                         var valueVal = item.value;
                                         var minValue = parseInt(item.minValue);
@@ -1096,12 +1123,13 @@
                                 var valueVal = item.value;
                                 if( valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal != "--Select one--" && valueVal != "--Select One--" && valueVal.toString()!= undefined && valueVal.toString().trim() != undefined && valueVal.toString().trim() != "" ){
                                     if(item.regex == "Future-Date"){
+                                        // Date should be future and not greater than 4 years
                                         var valueVal = item.value;
                                         var today = new Date();
-                                        //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-                                        //compareDate = new Date(compareDate);
+                                        var compareDate = (today.getFullYear()+4)+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                        compareDate = new Date(compareDate);
                                         var enteredDate = new Date(valueVal);
-                                        if(enteredDate > today){
+                                        if(enteredDate > today && enteredDate < compareDate){
                                             return true;
                                         }else{
                                             errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";

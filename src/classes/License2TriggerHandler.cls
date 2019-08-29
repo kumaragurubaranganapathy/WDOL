@@ -11,6 +11,7 @@
 public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public static user u;
     public static boolean runAgain = true;
+    public static boolean runOnce = false;
     public License2TriggerHandler() {
         u = [Select Id, UserType, Is_Portal_User__c From User where Id = :UserInfo.getUserId()];
     }
@@ -89,6 +90,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         
         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
+        Map<Id,MUSW__License2__c> oldMapLicense = (Map<Id,MUSW__License2__c>)Trigger.OldMap;
+        Map<Id,MUSW__License2__c> newMapLicense = (Map<Id,MUSW__License2__c>)Trigger.NewMap;
         List<MUSW__License2__c> licensesForFeeWaiver = new List<MUSW__License2__c>();
         Map<Id, MUSW__License2__c> licensesInPendingStatusMap = new Map<Id, MUSW__License2__c>();
         Set<String> credentialInPendingStatusSet = new Set<String>();
@@ -161,9 +164,61 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             update listEndorsement; 
         }
         
-        //Update exipration date logic moved from  process builder to  trigger to  optimize the logic
-      // List<MUSW_License2__c> lstLicense = [SELECT Id,Credential_Type__c,Date_of_Birth__c, from MUSW__License2__c ]; 
-        
+        //DHP Task
+         if(trigger.isUpdate && runOnce == false){
+            System.debug('Start executing');
+            runOnce = true;
+            List<Renewal_Application__c> relatedRenewalApplications  = new List<Renewal_Application__c>();
+            
+            set<id> licenseIDs = new Set<Id>();
+            for(MUSW__License2__c licenseRec : triggerNew){
+                   
+                if(licenseRec.Polaris_DHP__c ==  True && licenseRec.MUSW__Status__c != oldMapLicense.get(licenseRec.Id).MUSW__Status__c  && licenseRec.MUSW__Status__c == 'Inactive'){
+                    licenseIDs.add(licenseRec.Id);
+                    
+                }
+            
+            }
+            if(!licenseIDs.isEmpty()){
+                relatedRenewalApplications = [SELECT Id,License__c, Renewal_Status__c, License__r.MUSW__Status__c,License__r.Polaris_DHP__c,Renewal_Reinstatement_Type__c,License__r.MUSW__Applicant__r.Email,License__r.MUSW__Applicant__c,License__r.CreatedById,License__r.Name FROM Renewal_Application__c WHERE License__c IN :Trigger.newMap.keySet() AND Renewal_Reinstatement_Type__c='Renewal'];
+            }   
+            System.debug('Starttttt');
+            
+            List<Renewal_Application__c> updaterelatedRenewalApplications = new List<Renewal_Application__c>();
+            List<Task> insertLicenseDHPTask = new List<Task>();
+            Id recordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByName().get('Reminder').getRecordTypeId();
+            //User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+            
+            if(!relatedRenewalApplications.isEmpty()){
+                for(Renewal_Application__c relatedRenewalApplicationRecord :relatedRenewalApplications ){
+                    if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true && newMapLicense.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c != oldMapLicense.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c){
+                        System.debug('Update');
+                        Task licenseDHPTask = new Task();
+                        relatedRenewalApplicationRecord.Renewal_Status__c = 'Pending Payment';
+                        licenseDHPTask.WhatId = relatedRenewalApplicationRecord.License__c;
+                        licenseDHPTask.RecordTypeId = recordTypeId;
+                        licenseDHPTask.Type = 'DHP';
+                        licenseDHPTask.Description = 'DHP Reminder';
+                        licenseDHPTask.Status = 'Pending';
+                        licenseDHPTask.Subject = 'Bounced Check';
+                        licenseDHPTask.Email__c=relatedRenewalApplicationRecord.License__r.MUSW__Applicant__r.Email;
+                        licenseDHPTask.WhoId = relatedRenewalApplicationRecord.License__r.MUSW__Applicant__c;
+                        licenseDHPTask.OwnerId = relatedRenewalApplicationRecord.License__r.CreatedById;
+                        licenseDHPTask.Parent_License_Name__c = relatedRenewalApplicationRecord.License__r.Name;
+                        
+                        updaterelatedRenewalApplications.add(relatedRenewalApplicationRecord);
+                        insertLicenseDHPTask.add(licenseDHPTask);
+                    }
+                }
+            }
+            if(relatedRenewalApplications.size() > 0){
+                update updaterelatedRenewalApplications;
+                //System.debug('Test......'+licenseDHPTask.Status);
+            }
+            if(insertLicenseDHPTask.size() > 0){
+             insert insertLicenseDHPTask;
+            }
+    }
     }
     
     public void beforeMethod() {

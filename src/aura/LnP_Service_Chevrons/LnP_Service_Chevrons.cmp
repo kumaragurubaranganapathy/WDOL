@@ -88,7 +88,7 @@
                                     <!-- ATTEST<br></br> -->
                                     <aura:if isTrue="{!v.flowType!='License History Request'}">
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings underline">Questions Review</div><br/>
+                                        <div class="headings underline">Review and Submit</div><br/>
                                         
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
@@ -178,7 +178,7 @@
                                         <div class="attestBody">Declare before proceeding.</div>
                                         <div class="slds-form-element  field-item">
                                             <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
-                                            (<span>{!v.currentUser.Name}</span>)
+                                            <span>{!v.currentUser.Name}</span>
                                         </div>
                                         <aura:if isTrue="{!v.showMessage}">
                                             <ui:message title="{!v.title}" severity="Error" closable="true">
@@ -196,7 +196,7 @@
                                     <aura:set attribute="else">
                                         <div class="{!((varSection+1)==v.currentTab)?'section-wrapper':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
+                                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection=='General Questions'?'Request Information':question.questionSection}</div>
                                                 <div class="{!(question.questionSection!='null')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
@@ -344,9 +344,9 @@
         </aura:iteration>
         
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
-            <lightning:button variant="neutral" label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
-            <lightning:button variant="neutral" label="Previous" title="Previous" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'btn btn-lnp prevBtn back-button':'slds-hide'}"/>
-            <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
+            <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
+            <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'btn btn-lnp prevBtn back-button':'slds-hide'}"/>
+            <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
             <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Submit" title="Submit" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
         </div>
     </div>

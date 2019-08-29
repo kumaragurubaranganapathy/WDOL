@@ -47,7 +47,7 @@
         var accId = component.get("v.selectedAccount");
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
-            "url": "/licenseSelectionPage?accId="+accId
+            "url": "/licenseSelectionPage?biz-lic=true&accId="+accId
         });
         urlEvent.fire();
     },

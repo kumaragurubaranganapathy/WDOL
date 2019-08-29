@@ -2,6 +2,7 @@ public with sharing class LnP_LicenseAddressApexController {
     
     @AuraEnabled
     public static List<LnP_Parcel__c> getAddressLines(LnP_Parcel__c addr, Id applicationId){
+        try{
         List<LnP_Parcel__c> ListAddress = new List<LnP_Parcel__c>();
         System.debug('--addr--'+addr);
         if(addr != null){
@@ -12,34 +13,55 @@ public with sharing class LnP_LicenseAddressApexController {
         ListAddress = [select Id,Address_Type__c, Street__c,Unit__c, City__c,State__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, is_Physical_and_Mailing_Address_Same__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
         system.debug('ListAddress'+ListAddress);
         return ListAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
-    public static List<MUSW__Parcel__c> getAllAddress(Id accountOrContactId){
-        system.debug('accountOrContactId==='+ accountOrContactId);
+    public static List<MUSW__Parcel__c> getAllAddress(Id accountOrContactId, Id applicationId){
+        try{
+        system.debug('accountOrContactId==='+ accountOrContactId + 'application Id--' + applicationId);
         List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
         if(String.isNotBlank(accountOrContactId)){
             for(MUSW__Parcel__c addressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                   MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
-                                                  County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
-                                                  Primary_Account__c FROM MUSW__Parcel__c 
+                                                  County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                  Primary_Account__c,LastModifiedDate FROM MUSW__Parcel__c 
                                                   WHERE (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId)
-                                                  OR (Primary_Account__c!= null AND Primary_Account__c = :accountOrContactId)]){
+                                                  OR (Primary_Account__c!= null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId 
+                                                     ) order by LastModifiedDate desc]){
                                                       allAddressList.add(addressRecords);
                                                   }  
             system.debug('allAddressList'+allAddressList);
         }
         return allAddressList;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static MUSW__Parcel__c getPhysicalAddress(String licId){
+        try{
         String queryCondition = ' MUSW__License2__c=\''+licId+'\'';
         String str = 'Select id,MUSW__Parcel__c,MUSW__License2__c,Physical__c From MUSW__License_Parcel__c where '+queryCondition+' AND Physical__c= true limit 1 ';
         system.debug('str--'+str);
         List<MUSW__License_Parcel__c> lstLicenseParcel = Utilityclass_withsharing.queryRecords(str);
         system.debug('licenseParcel--'+lstLicenseParcel);
-        return [SELECT Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c,MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, MUSW__Primary_Contact__c,Primary_Account__c FROM MUSW__Parcel__c WHERE Id=:lstLicenseParcel[0].MUSW__Parcel__c];
+        return [SELECT Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c,MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,Primary_Account__c FROM MUSW__Parcel__c WHERE Id=:lstLicenseParcel[0].MUSW__Parcel__c];
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }        
     }
     /*@AuraEnabled
     public static List<MUSW__Parcel__c> getAddress(Id applicationId){
@@ -79,6 +101,7 @@ public with sharing class LnP_LicenseAddressApexController {
     
     @AuraEnabled    
     public static List<String> getAddressDetailsType(){
+        try{
         List<String> options = new List<String>();
         Schema.DescribeFieldResult fieldResult = LnP_Parcel__c.Address_Type__c.getDescribe();
         List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
@@ -88,10 +111,17 @@ public with sharing class LnP_LicenseAddressApexController {
             options.sort();
         }
         return options;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static List<selectOption> getCountyValue(String state, String city){
+        try{
         List<selectOption> selectCounty = new List<selectOption>();
         String stateValue = state;
         System.debug('statevalue::'+stateValue);
@@ -121,6 +151,12 @@ public with sharing class LnP_LicenseAddressApexController {
         }
         System.debug('selectCounty::'+selectCounty);
         return selectCounty;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         //System.debug('selectCounty::'+selectCounty);
         
     }
@@ -196,6 +232,7 @@ return ListAddress;
 */
     @AuraEnabled
     public static SOD_Autocomplete_Wrapper getAutoComplete(string strPrefix) {
+        try{
         system.debug('strPrefix3'+strPrefix);
         strPrefix = EncodingUtil.urlEncode(strPrefix, 'UTF-8');
         
@@ -207,12 +244,13 @@ return ListAddress;
             + '&prefix=' + strPrefix;
         
         system.debug('URL = '+url);
-        try{
+       
             SOD_Autocomplete_Wrapper response = SOD_Autocomplete_Wrapper.parse(makeAPICall(url));
             return response; 
         }
-        catch(Exception e){
-            HandleException.LogException(e,'LnP_PublicFormsApexController','getAutoComplete');
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -238,6 +276,7 @@ return ListAddress;
     }
     @AuraEnabled
     public static List<MUSW__Parcel__c> deleteTableRecord(String recordId, String addrType,String sobjectType,String applicationId){
+        try{
         System.debug('---recordId---'+recordId);
         Id recId = (Id)recordId;
         List<MUSW__Parcel__c> listAddress = new List<MUSW__Parcel__c>();
@@ -247,22 +286,26 @@ return ListAddress;
         String query = 'SELECT Id FROM ' + sobjectType + ' WHERE ' + recCondition1+' AND '+recCondition2;
         List<Sobject> recList = Database.query(query);
         if(!recList.isEmpty()){
-            try{
+            
                 delete recList[0];
-            }
-            Catch(Exception e){
-                System.debug('---EXCEPTION---'+e.getMessage());
-            }
-            listAddress = [select id,Address_Type__c, MUSW__Street2__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, is_Physical_and_Mailing_Address_Same__c from MUSW__Parcel__c where Application_BG__c=: applicationId];        
+            
+            listAddress = [select id,Address_Type__c, MUSW__Street2__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, is_Physical_and_Mailing_Address_Same__c from MUSW__Parcel__c where Application_BG__c=: applicationId];        
         } else{
             
         }
         return listAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     
     @AuraEnabled
-    public static List<MUSW__Parcel__c> sameAddUpdate(String recordId, String sobjectType,String accountOrContactId, boolean isSame){
+    public static List<MUSW__Parcel__c> sameAddUpdate(String recordId, String sobjectType,String accountOrContactId, boolean isSame, String applicationId){
+        try{
         System.debug('---recordId---'+recordId);
         Id recId = (Id)recordId;
         List<MUSW__Parcel__c> listAddress = new List<MUSW__Parcel__c>();
@@ -278,9 +321,9 @@ return ListAddress;
                 MUSW__Parcel__c parcel = (MUSW__Parcel__c)recList[0];
                 //parcel.Address_Type__c = 'Physical Address';
                 parcel.is_Physical_and_Mailing_Address_Same__c = true;
-                allAddr = [Select id,name, MUSW__Primary_Contact__c, Primary_Account__c from MUSW__Parcel__c 
+                allAddr = [Select id,name, MUSW__Primary_Contact__c, Primary_Account__c, Application_BG__c from MUSW__Parcel__c 
                            where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c =:accountOrContactId) OR 
-                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId)];
+                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId)];
                 system.debug('allAddr'+allAddr);
                 for(Integer i = 0; i < allAddr.size(); i++){
                     if(allAddr.get(i).id == parcel.id){
@@ -296,29 +339,30 @@ return ListAddress;
                 parcel.is_Physical_and_Mailing_Address_Same__c = false;
             }
             
-            try{
+            
                 update recList[0];
                 if(Dol_IntegrationUtil.isNotEmpty(allAddr)){
-                    try{
+                    
                         delete allAddr;
-                    }Catch(Exception e){
-                        System.debug('---EXCEPTION---'+e.getMessage());
-                    }     
+                        
                 }
-            }
-            Catch(Exception e){
-                System.debug('---EXCEPTION---'+e.getMessage());
-            }
-            listAddress = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c, Canadian_provinces__c, 
+           
+            listAddress = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c, Canadian_provinces__c, 
                            Country__c,Melissa_Address_Verified__c,Address_Type__c,is_Physical_and_Mailing_Address_Same__c, 
-                           MUSW__Primary_Contact__c, County__c, Primary_Account__c from MUSW__Parcel__c
+                           MUSW__Primary_Contact__c, County__c, Primary_Account__c, Application_BG__c from MUSW__Parcel__c
                            where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c =:accountOrContactId) OR 
-                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId)];        
+                           (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId)];        
         } else{
             System.debug('The sameAdd recList empty is:');
         }
         System.debug('The sameAdd listAddress is:'+listAddress);
         return listAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     public class selectOption{
@@ -329,6 +373,7 @@ return ListAddress;
     
     @auraEnabled
     public static Dol_AddressValidationService.AddrWrapper validateAddress(String addrLine1,String addrLine2,String city, String state, String zip){
+        try{
         String licenseKey;
         Dol_AddressValidationService.AddrWrapper validatedAddress = new Dol_AddressValidationService.AddrWrapper();
         
@@ -395,10 +440,17 @@ return ListAddress;
         System.debug('zipRange'+zipRange);
         validatedAddress.country = address.getChildElement('Country', 'urn:mdWebServiceAddress').getChildElement('Name', 'urn:mdWebServiceAddress').getText() == 'United States of America' ? 'United States' : '';
         return validatedAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled 
     public static List<SelectOption> getStates(sObject objObject, string fld) {
+        try{
         system.debug('objObject:' + objObject);
         system.debug('fld:' + fld);
         //List<String> allOpts = new list <String> ();
@@ -420,10 +472,17 @@ return ListAddress;
         }
         system.debug('allOpts ---->' + allOpts);
         return allOpts;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }  
     
     @auraEnabled
     public static List<MUSW__Parcel__c> integrationsaveAddress(string selectedAddress,Boolean isAptInfo,String applicationId, Boolean issuggestTrue,String addresstype, String county, String accountOrContactId, String objectRecordName, Boolean isAMR){
+        try{
         List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
         String addres1;
         String aptInfo = '';
@@ -435,7 +494,7 @@ return ListAddress;
         system.debug('isAptInfo=='+isAptInfo + 'objectname---' + objectRecordName);
         system.debug('selectedAddress=='+selectedAddress);
         
-        try{
+       
             if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
                 selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
                 system.debug('selectedAddress='+selectedAddress);
@@ -458,23 +517,24 @@ return ListAddress;
                         country = Addresslist[5] != null ? Addresslist[5].trim() : '';
                     }
                 }
-                for(MUSW__Parcel__c existingParcel : [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,
+                for(MUSW__Parcel__c existingParcel : [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c,Country__c,
                                                       Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
                                                       Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
                                                       where Address_Type__c = :addresstype AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId) 
-                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId)) Limit 1]){
+                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND 
+                                                         Application_BG__c = :applicationId)) Limit 1]){
                                                           System.debug('existingParcel=='+ existingParcel);
                                                           existingParcel.MUSW__Street2__c = addres1;
                                                           existingParcel.MUSW__Unit__c = aptInfo;
                                                           existingParcel.MUSW__City__c = city;
                                                           existingParcel.Country__c = country;
                                                           existingParcel.County__c = countyVal;
-                                                          if(String.isNotBlank(objectRecordName)){
+                                                          if(objectRecordName!='Contact'){
                                                               existingParcel.Primary_Account__c = accountOrContactId;
                                                           }else{
                                                               existingParcel.MUSW__Primary_Contact__c = accountOrContactId;
                                                           }
-                                                          //existingParcel.Application_BG__c = applicationId;
+                                                          existingParcel.Application_BG__c = applicationId;
                                                           if(country!= 'Canada'){
                                                               existingParcel.MUSW__State__c = state; 
                                                               existingParcel.Canadian_provinces__c = null;
@@ -482,7 +542,7 @@ return ListAddress;
                                                               existingParcel.Canadian_provinces__c = state;
                                                               existingParcel.MUSW__State__c = null;
                                                           }
-                                                          existingParcel.Zip_Postal_Code__c = zip;
+                                                          existingParcel.MUSW__Post_Zip_Code__c = zip;
                                                           if(isAMR)
                                                           {
                                                               existingParcel.Request_Parcel__c = applicationId;
@@ -490,12 +550,9 @@ return ListAddress;
                                                           parcelList.add(existingParcel);
                                                       }
                 if(!parcelList.isEmpty()){
-                    try{
+                    
                         upsert parcelList;
-                    }
-                    catch(DmlException e){
-                        System.debug('Error while updating existing Parcel ==' + e.getMessage());
-                    }
+                    
                     System.debug('updated parcelList'+parcelList);
                 }
                 else{
@@ -513,8 +570,8 @@ return ListAddress;
                         parcel.Canadian_provinces__c = state;
                         parcel.MUSW__State__c = null;
                     }
-                    parcel.Zip_Postal_Code__c = zip;
-                    if(String.isNotBlank(objectRecordName)){
+                    parcel.MUSW__Post_Zip_Code__c = zip;
+                    if(objectRecordName!='Contact'){
                         parcel.Primary_Account__c = accountOrContactId;
                     }else{
                         parcel.MUSW__Primary_Contact__c = accountOrContactId;
@@ -535,15 +592,12 @@ return ListAddress;
                     }
                     System.debug('parcel' + parcel);
                     if(parcel != null ){
-                        try{
+                        
                            upsert parcel; 
-                        }
-                        catch(DmlException e){
-                            System.debug('Error while inserting new Parcel---' + e.getMessage());
-                        }
+                        
                         if(Dol_IntegrationUtil.isNotBlank(parcel.id)){
                             List<MUSW__Parcel__c> insertedParcel = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,
-                                                                    Zip_Postal_Code__c, Canadian_provinces__c, Country__c,County__c,
+                                                                    MUSW__Post_Zip_Code__c, Canadian_provinces__c, Country__c,County__c,
                                                                     Melissa_Address_Verified__c,Address_Type__c, Application_BG__c, Primary_Account__c,
                                                                     is_Physical_and_Mailing_Address_Same__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
                                                                     where id =:parcel.id Limit 1];
@@ -555,17 +609,21 @@ return ListAddress;
                     } 
                 }
             }
-        }catch(Exception e){
-            System.debug('Dol_AddressValidationService - Exception: '+e);
-            DebugErrorLoggger.LogError(e, '', '','Dol_AddressValidationService','saveAddress','saveAddress Method failed');  
-        }
+        
         system.debug('parcelList=='+parcelList);
         return parcelList;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     
     @AuraEnabled
     public static MUSW__Parcel__c AffiliatedLocation(String parcel,boolean removeLocation,Boolean isAMR){
+        try{
         MUSW__Parcel__c parcl = (MUSW__Parcel__c)JSON.deserialize(parcel,MUSW__Parcel__c.class);
         parcl.recordTypeId= Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
         
@@ -591,10 +649,18 @@ return ListAddress;
             }
         }
         return parcl ;
+            
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static Boolean removeLocation(Id parcelId,Boolean isAMR){
+        try{
         Boolean removed = false;
         MUSW__Parcel__c parcl = new MUSW__Parcel__c(id=parcelId); 
         if(isAMR){
@@ -603,15 +669,18 @@ return ListAddress;
         }else{
             parcl.Status__c = 'Inactive';
         }
-        try{
+        
             update parcl ;
             removed = true;
-        }catch(Exception e){
-            System.debug(e.getMessage());
-            removed = false;
-        }
+        
         
         return removed;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return false;
+        }
     }
     
     
@@ -621,13 +690,16 @@ return ListAddress;
             Id LocationRT = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
             List<SObject> columnDataList;
             List<String> columnHeaderList ;
-            columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+            columnDataList = [SELECT id, Designated_Engineer_License__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,MUSW__Post_Zip_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
             columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Action'};
             
             LnP_LicenseAddressApexController.lightningDataTableWrapper wrapperObj = new LnP_LicenseAddressApexController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -650,10 +722,12 @@ return ListAddress;
                 update parcelList;
             }
               return true;  
-          }catch(Exception e){
-                System.debug('e.getMessage()');
-                return false;
-       }
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return false;
+        }
     } 
     
     @AuraEnabled
@@ -674,10 +748,12 @@ return ListAddress;
            
                 update parcel;
               return true;  
-          }catch(Exception e){
-                System.debug('e.getMessage()');
-                return false;
-       }
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return false;
+        }
     }    
     
     @AuraEnabled
@@ -693,20 +769,23 @@ return ListAddress;
             if(isAMR){
                 Set<String> AMRstatus = new Set<String>{'Pending Add','Pending Remove'};
                 Set<String> licenseStatus = new Set<String>{'Active','Pending Add','Pending Remove'};
-                columnDataList = [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
-                for(SObject objs : [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c IN:AMRstatus AND recordtypeid =:LocationRT]){
+                columnDataList = [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,MUSW__Post_Zip_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c IN:licenseStatus AND recordtypeid =:LocationRT];                          
+                for(SObject objs : [SELECT id, Designated_Engineer_License__c,isUndo__c,Designated_Land_Surveyor_License__c,Status__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,MUSW__Post_Zip_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Request__c=:requestId AND Status__c IN:AMRstatus AND recordtypeid =:LocationRT]){
                     columnDataList.add(objs);
                 }
                 columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};
                 
             }else{
                 columnHeaderList = new List<String>{'Designated Engineer','Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};
-                columnDataList = [SELECT id, Designated_Engineer_License__c,Status__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,Zip_Postal_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Application_BG__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+                columnDataList = [SELECT id, Designated_Engineer_License__c,Status__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,MUSW__Post_Zip_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Application_BG__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
             }
             LnP_LicenseAddressApexController.lightningDataTableWrapper wrapperObj = new LnP_LicenseAddressApexController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -845,21 +924,35 @@ return ListAddress;
         return parcelList;
     }*/
     Public static void addContactparcel (string contactID, Id parcelId) {
+        try{
         MUSW__Parcel_Contact2__c  newParcelContact =  new MUSW__Parcel_Contact2__c();
         newParcelContact.MUSW__Contact__c = contactID;
         newParcelContact.MUSW__Parcel__c = parcelId;
         insert newParcelContact;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            
+        }
     }
     
     @AuraEnabled
     public static Id getloggedInContactData()
     {
+        try{
         Id contactId;
         for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
             contactId = userRecord.contactId;
         }
         System.debug('contactId===' + contactId);
         return contactId;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
        
     }
 }

@@ -107,7 +107,7 @@ public with sharing class CartController
         //Check if it is business cart
         isBusinessCart = false;
         if(isPortalUser){
-            objContact =[SELECT id,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
+            objContact =[SELECT id,Name,BusinessCartToOpen__c from contact where id in (select contactid from user where id =: userinfo.getUserId())];
             if (objContact!=null && objContact.BusinessCartToOpen__c != null){
                 m_accId =objContact.BusinessCartToOpen__c;
                 isBusinessCart = true;
@@ -127,6 +127,7 @@ public with sharing class CartController
             activeTab = 'fees';
             requestFromEPayment = false; 
             m_pid = System.currentPageReference().getParameters().get('id');
+			isBLic = System.currentPageReference().getParameters().get('isBLic');
             system.debug('m_pid$$'+m_pid);
             m_cartId = System.currentPageReference().getParameters().get('cartId');
             m_invoiceId = System.currentPageReference().getParameters().get('invoiceId');
@@ -1426,7 +1427,7 @@ public with sharing class CartController
         }else{
             // selectedTab = label.Str_Fees;
 			//String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback&isBizLic='+isBisuneesLic;
-            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback';
+            String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback?isBizLic='+isBLic;
             PageReference pageRef = new PageReference(portalURL); // Srujan - added to show Feedback Component
             return pageRef; 
         }

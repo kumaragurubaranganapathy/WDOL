@@ -1,4 +1,12 @@
 ({
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         component.set("v.loadingSpinner", true);
         var action = component.get("c.getPicklistFieldValues");
@@ -116,7 +124,8 @@
                         action.setCallback(this, function(actionResult) {
             			var state = actionResult.getState();
                             if (state === "SUCCESS"){
-                                var result = actionResult.getReturnValue();                
+                                var result = actionResult.getReturnValue();
+                                if(result!=null){
                                 component.set("v.applicationId",result);
                                 component.set("v.loadingSpinner", false);
                                 component.set("v.currentTab", 2);
@@ -124,6 +133,11 @@
                                 component.set("v.screenTwo", true);
                                 component.set("v.screenThree", false);
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }
+                                else{
+                                    console.log("Error");
+                                    this.errorlog(component,event);
+                                }
                             } else {
                                 component.set("v.loadingSpinner", false);
                                 var toastEvent = $A.get("e.force:showToast");
@@ -262,12 +276,17 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
+                if(result!=null){
                 var form = component.find("complaintApplication");
                 $A.util.addClass(form, 'slds-hide');
                 component.set("v.loadingSpinner", false);
                 component.set("v.isOpen", true);
                 component.set("v.complaintId", result);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                else{
+                    this.errorlog(component,event);
+                }
             } else {
                 component.set("v.loadingSpinner", false);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -367,5 +386,22 @@
               var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
               event.getSource().set('v.value',phone);    
           }
-    }   
+    },
+	redirectToHome: function(component, event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home");
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    printAcknowledgement: function(component, event){
+        document.getElementById("pageHeader").style.display = "none";
+        document.getElementById("pageFooter").style.display = "none";
+        document.getElementById("PrintButton").style.visibility = "hidden";
+        window.print();
+        document.getElementById("pageHeader").style.display = "block";
+        document.getElementById("pageFooter").style.display = "block";
+        document.getElementById("PrintButton").style.visibility = "visible";
+    },
 })

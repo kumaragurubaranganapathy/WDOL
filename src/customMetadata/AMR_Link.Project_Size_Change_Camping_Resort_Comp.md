@@ -32,7 +32,7 @@
     </values>
     <values>
         <field>Sections__c</field>
-        <value xsi:type="xsd:string">Request Information,Review and Submit</value>
+        <value xsi:type="xsd:string">Request Information,Attachments,Review and Submit</value>
     </values>
     <values>
         <field>Service_Request_Type__c</field>

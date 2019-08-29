@@ -21,7 +21,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="change" value="{!v.fullList}" action="{!c.doInit}"/>
     <div>
-        <ul class="pagination">
+        <ul class="{!(v.pgArr.length > 1?'pagination':'slds-hide')}">
             <li class="{!'page-item'+((v.actPg==1)?' disabled':'')}">
                 <a href="javascript:void(0)" class="page-link" onclick="{!c.showPrev}">
                     <i class="fas fa-angle-left"></i>

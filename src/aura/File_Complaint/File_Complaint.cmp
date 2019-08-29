@@ -286,7 +286,7 @@
                         <div class="sub-header slds-p-top_x-small slds-p-bottom_small">Please include a timeline, other parties involved, and any efforts you have already made to resolve the problem.</div>
                         <lightning:textarea name="complaintSummary" aura:id="complaintSummary" placeholder="Enter complaint description" variant="label-hidden"/>
                     </div>
-                    <div class="attachments slds-m-vertical_medium">
+                    <div class="attachments slds-m-top_xx-large slds-m-bottom_medium">
                         <h2 class="sec-header">Attachments</h2>
                         <div class="sub-header slds-p-top_x-small slds-p-bottom_large">Attach any relevant documents, photos, or other evidence. Don’t dispose of any information or evidence, even after you submit your complaint.</div>
                         <div class="slds-box">
@@ -295,7 +295,7 @@
                             </aura:if>
                         </div>
                     </div>
-                    <div class="declaration slds-m-vertical_large">
+                    <div class="declaration slds-m-top_xx-large slds-m-bottom_medium">
                         <h2 class="sec-header">Submit Complaint</h2>
                         <div class="">
                             <div class="sub-header slds-p-top_x-small">By submitting this complaint, I agree the information I have provided is true and correct. I understand the Department of Licensing (DOL) cannot give refunds or legal advice. I also understand that DOL may refer my complaint to a more appropriate agency.</div>
@@ -354,6 +354,14 @@
                     <!--div class="slds-m-vertical_medium">
                         If you wish to return to the  state of Washington's Manage Your Professional and Business Licenses Online page, you can do so at any time by clicking on the "Home" button in the main menu at the top of this page.
                     </div-->
+                </div>
+            </div>
+			<div id="PrintButton" class="slds-grid buttons complaint-btn-wrapper">
+                <div class="slds-small-size_4-of-4 slds-medium-size_1-of-4 left">
+                    <lightning:button class="cancel-button" variant="neutral" type="button" label="Print" onclick="{!c.printAcknowledgement}"/>
+                </div>
+                <div class="slds-small-size_4-of-4 slds-medium-size_3-of-4 right submit-btn-wrapper">
+                    <lightning:button class="next-button" variant="brand" type="submit" label="I'm Done" onclick="{!c.redirectToHome}" />
                 </div>
             </div>
         </aura:if>

@@ -45,7 +45,11 @@
                                             <th class="header-data" scope="col">
                                                 <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
                                             </th> 
+                                            
                                         </aura:iteration>
+					<th class="" scope="col">
+                                                <div class="slds-truncate" title="actions">Action</div>
+                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,6 +106,9 @@
                                                 <div class="slds-truncate">
                                                     <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment')||(tableData.MUSW__Status__c == 'Payment Pending')}">
                                                         <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee" onclick= "{!c.redirectToCart}"/>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!tableData.MUSW__Status__c == 'In Review' || tableData.MUSW__Status__c == 'Submitted' || (tableData.MUSW__Status__c == 'In-Review')}">
+                                                        <lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>
                                                     </aura:if>
                                                 </div>    
                                             </td>

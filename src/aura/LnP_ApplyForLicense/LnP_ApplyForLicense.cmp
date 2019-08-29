@@ -245,12 +245,11 @@
                                     </aura:if>
                                     
                                     <div id="AttestationValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="attestation headings">Signature</div>
-                                        <div class="attestBody sentences">Attest before proceeding.</div>
-                                        <div class="attestBody sentences">Electronic signature name must match name shown below.</div>
+                                        <div class="attestation headings">Signature</div>                                        
+                                        <div class="attestBody sentences">Please type your legal name as shown below</div>
                                         <div class="field-item review-item attest-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
-                                            <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
-                                            (<span>{!v.currentUser.Name}</span>)
+                                            <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}" variant="label-hidden"/>                                            
+                                            <span>{!v.currentUser.Name}</span>
                                         </div>
 										<div class="slds-m-bottom_small attestBody sentences">I declare, under penalty of perjury under the law of Washington, that all of the information I’ve provided in this application and any associated documents is true, complete, and correct.</div>
                                         <aura:if isTrue="{!v.showMessage}">
@@ -424,10 +423,12 @@
             </aura:if>
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
-            <lightning:button label="Previous" title="Previous" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn back-button'}"/>
-            <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn btn-lnp next-button"/>
-            <lightning:button variant="brand" label="Save and Continue" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp next-button'}"/>    
-            <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Save and Proceed to Payment" title="Submit" onclick="{!c.submit}" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
+            <lightning:button label="Back" title="Previous" onclick="{! c.previousTab }" class="{!(v.currentTab==1)?'hide-button':'btn back-button'}"/>
+            <div class="save-buttons">
+                <lightning:button aura:id="SaveAndSubmit" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show btn-lnp next-button"/>
+                <lightning:button variant="brand" label="Continue" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show btn-lnp'}"/>    
+                <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Continue" title="Submit" onclick="{!c.submit}" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp next-button':'slds-hide'}"/>
+            </div>
         </div>
     </div>
     <!-- Pop up start -->

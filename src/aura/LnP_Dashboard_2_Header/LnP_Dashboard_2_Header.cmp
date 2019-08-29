@@ -69,7 +69,7 @@
                                 <lightning:layoutItem size="12" mediumDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
                                     <div class="field-style address">
                                         <div class="label-style">Mailing address:</div>
-                                        <div class="data-style">{!parcel.Country__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.Zip_Postal_Code__c}</div>
+                                        <div class="data-style">{!parcel.MUSW__Street2__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c}, {!parcel.Country__c}, {!parcel.MUSW__Post_Zip_Code__c}</div>
                                     </div>
                                 </lightning:layoutItem>
                                 <!--<div class="">{!parcel.MUSW__Street__c},</div>
@@ -90,10 +90,10 @@
                     
                 </lightning:layout>
                 <lightning:layout class="action-links slds-wrap"> 
-                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="change-link-wrapper">
+                    <lightning:layoutItem size="12" mediumDeviceSize="6" class="change-link-wrapper">
                         <a href="javascript:void(0);" class="change-link" onclick="{!c.updateContactInfo}">Update contact information</a>
                     </lightning:layoutItem>
-                    <lightning:layoutItem size="12" mediumDeviceSize="4" class="change-link-wrapper">
+                    <lightning:layoutItem size="12" mediumDeviceSize="6" class="change-link-wrapper">
                         <a href="javascript:void(0);" class="change-link" onclick="{!c.updateAddress}">Change address</a>
                     </lightning:layoutItem>                    
                 </lightning:layout>
@@ -102,19 +102,8 @@
                 <ul class="{!v.showMoreAMR?'exp-links-inner':''}">
                     <li class="{!v.activeCart?'cart-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);" target="_self" >Make a Payment</a></li>
                     <li aura:id="action-item"><a onclick="{!c.handleClick}" href="javascript:void(0);">Apply for new license</a></li>
-                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change Legal Name</a></li>
-                    
-                    <!--<li aura:id="action-item"><a onclick="{!c.handleClick }" href="javascript:void(0);">Apply For New License</a></li>
-                    <li aura:id="action-item"><a href="javascript:void(0);" onclick="{!c.updateContactInfo}">Update Contact Information</a></li>
-                    <li aura:id="action-item"><a onclick="{!c.handleClick }" href="javascript:void(0);">Apply For New License</a></li>
-                    <li aura:id="action-item"><a href="javascript:void(0);" onclick="{!c.updateContactInfo}">Update Contact Information</a></li>
-                    <li aura:id="action-item"><a onclick="{!c.handleClick }" href="javascript:void(0);">Apply For New License</a></li>
-                    <li aura:id="action-item"><a href="javascript:void(0);" onclick="{!c.updateContactInfo}">Update Contact Information</a></li>-->
-                    <!--li><a href="javascript:void(0);" onclick="{!c.updateAddress}">Update Address</a></li>
-                    <li><a href="javascript:void(0);">Create New Business</a></li>
-                    <li><a href="javascript:void(0);">Edit phone number</a></li>
-                    <li><a href="javascript:void(0);">Request Name Change</a></li>
-                    <li><a href="javascript:void(0);">Request Address Change</a></li-->
+                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change Legal Name</a></li>                
+                
                 </ul>
             </lightning:layoutItem>
         </lightning:layout>

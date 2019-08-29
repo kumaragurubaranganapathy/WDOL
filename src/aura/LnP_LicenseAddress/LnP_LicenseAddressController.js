@@ -2,8 +2,8 @@
     doInit: function(component, event, helper){
         var objectData = sessionStorage.getItem('objectName');
         var accountRecordId = sessionStorage.getItem("recordId");
-       // component.set("v.accountId", accountRecordId);
-       // component.set("v.objectName", objectData);
+        component.set("v.accountId", accountRecordId);
+        component.set("v.objectName", objectData);
         
         console.log('objectData in Address===' + objectData + accountRecordId);
         //sessionStorage.clear();
@@ -79,7 +79,7 @@
                 component.set("v.isOutOfCountry",false);
             }
             component.set("v.selectedCounty",county);
-            zip = mailingPhysicalAddress.Zip_Postal_Code__c;
+            zip = mailingPhysicalAddress.MUSW__Post_Zip_Code__c;
         }else{
             mailingPhysicalAddress = component.get("v.physicalAddressParcel");
             console.log('address=== ' + JSON.stringify(mailingPhysicalAddress));
@@ -104,7 +104,7 @@
                 component.set("v.isOutOfCountry",false);
             }
             component.set("v.selectedPhysicalCounty",county);
-            zip = mailingPhysicalAddress.Zip_Postal_Code__c;
+            zip = mailingPhysicalAddress.MUSW__Post_Zip_Code__c;
         }
         helper.getValidatedAddressHelper(component, event, helper, selectedAddressType, mailingPhysicalAddress, street, street2, state, city, country, county, zip);
         
@@ -287,7 +287,7 @@
             }else{
                 component.set("v.isPhysicalOutOfCountry",false);
             }
-            var zip = mailingPhysicalAddress.Zip_Postal_Code__c;
+            var zip = mailingPhysicalAddress.MUSW__Post_Zip_Code__c;
             component.set("v.defaultPhysicalCountry", country);
             component.set("v.physicalAddressParcel.MUSW__Street2__c", street);
             component.set("v.physicalAddressParcel.MUSW__Unit__c", street2);
@@ -308,7 +308,7 @@
                     component.set("v.isPhysicalCanadianProvince", false);
                     component.set("v.isPhysicalState", false);
                 }
-            component.set("v.physicalAddressParcel.Zip_Postal_Code__c", zip);
+            component.set("v.physicalAddressParcel.MUSW__Post_Zip_Code__c", zip);
             //component.set("v.defaultPhysicalCounty", county);
             helper.updateExistingMailingAddress(component, event, helper, isChecked);
         }else{
@@ -320,7 +320,7 @@
             component.set("v.isPhysicalState", true);
             component.set("v.isPhysicalCanadianProvince", false);
             component.set("v.isPhysicalNotApplicable",false);
-            component.set("v.physicalAddressParcel.Zip_Postal_Code__c", "");
+            component.set("v.physicalAddressParcel.MUSW__Post_Zip_Code__c", "");
             component.set("v.physicalAddressParcel.County__c", county);
             helper.updateExistingMailingAddress(component, event, helper, isChecked);
         }

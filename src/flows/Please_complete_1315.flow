@@ -221,6 +221,9 @@
         <label>myDecision12</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision15</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_13</name>
@@ -297,20 +300,17 @@
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>1.0</numberValue>
+                <numberValue>5.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision3</name>
-        <label>myDecision3</label>
+        <name>myDecision15</name>
+        <label>myDecision15</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision6</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_4</name>
-            <conditionLogic>(1 OR 2 OR 4 OR 5 OR 6 OR 7) AND 3</conditionLogic>
+            <name>myRule_16</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4)  AND 5</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -339,69 +339,7 @@
                 <leftValueReference>myVariable_current.Credential_Type__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Architect</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Landscape Architect</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Active</stringValue>
+                    <stringValue>Professional Land Surveyor</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -433,37 +371,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Professional Engineer</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Professional Land Surveyor</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -528,29 +435,60 @@
                     <stringValue>On-site Wastewater Inspector</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
-                <targetReference>myRule_4_pmetdec</targetReference>
+                <targetReference>myRule_16_pmetdec</targetReference>
             </connector>
-            <label>Professional License -Birthday with Grace Period for Architect</label>
+            <label>Land Surveyor</label>
         </rules>
     </decisions>
     <decisions>
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>2.0</numberValue>
+                <numberValue>1.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision6</name>
-        <label>myDecision6</label>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision9</targetReference>
+            <targetReference>myDecision6</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_7</name>
+            <name>myRule_4</name>
             <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7) AND 8</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -801,9 +739,126 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_7_pmetdec</targetReference>
+                <targetReference>myRule_4_pmetdec</targetReference>
             </connector>
             <label>Business Licenses- 90 day grace</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision9</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>(1 OR 2 ) AND 3</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Architect</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Landscape Architect</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_pmetdec</targetReference>
+            </connector>
+            <label>Professional License -Birthday with Grace Period for Architect</label>
         </rules>
     </decisions>
     <decisions>
@@ -948,6 +1003,191 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Prearrangement Funeral Services</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_16_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>1600</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_16_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_16_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_16_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_16_pmetrule</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4)  AND 5</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Professional Land Surveyor</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Professional Engineer</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On-site Wastewater Designer</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On-site Wastewater Inspector</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1226,253 +1466,6 @@
         </rules>
         <rules>
             <name>myRule_4_pmetrule</name>
-            <conditionLogic>(1 OR 2 OR 4 OR 5 OR 6 OR 7) AND 3</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Architect</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Landscape Architect</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.MUSW__Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Active</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Professional Engineer</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Professional Land Surveyor</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>On-site Wastewater Designer</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>On-site Wastewater Inspector</stringValue>
-                </rightValue>
-            </conditions>
-            <label>Previously Met - Prev</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>myRule_7_pmetdec</name>
-        <label>Previously Met Decision</label>
-        <locationX>700</locationX>
-        <locationY>100</locationY>
-        <defaultConnector>
-            <targetReference>myRule_7_A1</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
-        <rules>
-            <name>myRule_7_pmetnullrule</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_7_A1</targetReference>
-            </connector>
-            <label>Previously Met - Null</label>
-        </rules>
-        <rules>
-            <name>myRule_7_pmetrule</name>
             <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7) AND 8</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1725,6 +1718,129 @@
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>myRule_7_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>700</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_7_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_7_pmetrule</name>
+            <conditionLogic>(1 OR 2 ) AND 3</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Architect</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Credential_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Landscape Architect</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.MUSW__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -1736,7 +1852,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_8851915768</name>
+        <name>formula_11_myRule_10_A1_6494677377</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	  {!myVariable_current.MUSW__Issue_Date__c} - DATE(YEAR(TODAY())+1,1, 31) &gt;90,
@@ -1758,7 +1874,7 @@
 	[MUSW__License2__c].AQB_Approval_Expiration_Date__c,DATE(YEAR([MUSW__License2__c].MUSW__Issue_Date__c)+3,MONTH( [MUSW__License2__c].MUSW__Issue_Date__c ), DAY( [MUSW__License2__c].MUSW__Issue_Date__c )) )))) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_14_myRule_13_A1_5514878489</name>
+        <name>formula_14_myRule_13_A1_3381527102</name>
         <dataType>Date</dataType>
         <expression>IF(
 	INCLUDES({!myVariable_current.Delivery_Method__c} , &quot;One-time event / Seminar&quot;), 
@@ -1768,6 +1884,31 @@
 	{!myVariable_current.IDECC_Approval_Expiration_Date__c},IF(
 	AND(INCLUDES({!myVariable_current.Delivery_Method__c}, &quot;Classroom (Instructor in room with students)&quot;), INCLUDES({!myVariable_current.Pre_Approval__c},&quot;AQB&quot;)),
 	{!myVariable_current.AQB_Approval_Expiration_Date__c},DATE(YEAR({!myVariable_current.MUSW__Issue_Date__c})+3,MONTH( {!myVariable_current.MUSW__Issue_Date__c} ), DAY( {!myVariable_current.MUSW__Issue_Date__c} )) ))))</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>	If(  [MUSW__License2__c].NumberoFDaysToExpired__c &gt;0,
+		IF(	
+		 [MUSW__License2__c].NumberoFDaysToExpired__c &gt; 90,
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c),MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c )),
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 2, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
+		 ),
+	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ))
+	 )</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_17_myRule_16_A1_2887902489</name>
+        <dataType>Date</dataType>
+        <expression>	If(  {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
+		IF(	
+		 {!myVariable_current.NumberoFDaysToExpired__c} &gt; 90,
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c}),MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} )),
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
+		 ),
+	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
+	 )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -1783,7 +1924,7 @@
 	 ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_1272187056</name>
+        <name>formula_2_myRule_1_A1_5275936654</name>
         <dataType>Date</dataType>
         <expression>	If( {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
 	  IF(	
@@ -1798,31 +1939,6 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>	If(  [MUSW__License2__c].NumberoFDaysToExpired__c &gt;0,
-		IF(	
-		 [MUSW__License2__c].NumberoFDaysToExpired__c &gt; 90,
-		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c )),
-		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 2, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
-		 ),
-	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ))
-	 )</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_5_myRule_4_A1_8544807368</name>
-        <dataType>Date</dataType>
-        <expression>	If(  {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
-		IF(	
-		 {!myVariable_current.NumberoFDaysToExpired__c} &gt; 90,
-		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} )),
-		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
-		 ),
-	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
-	 )</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
                 <stringValue>	IF(
 	[MUSW__License2__c].DaysFromJan31__c &gt;90,
 	  DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c) + 1,1, 31),
@@ -1830,7 +1946,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_0981538831</name>
+        <name>formula_5_myRule_4_A1_8831071477</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	{!myVariable_current.DaysFromJan31__c} &gt;90,
@@ -1838,7 +1954,32 @@
 	  DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, 1, 31 )
 	)</expression>
     </formulas>
-    <interviewLabel>Please_complete_1315-65_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>	If(  [MUSW__License2__c].NumberoFDaysToExpired__c &gt;0,
+		IF(	
+		 [MUSW__License2__c].NumberoFDaysToExpired__c &gt; 90,
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c )),
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 2, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
+		 ),
+	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+2,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ))
+	 )</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_8_myRule_7_A1_8156831661</name>
+        <dataType>Date</dataType>
+        <expression>	If(  {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
+		IF(	
+		 {!myVariable_current.NumberoFDaysToExpired__c} &gt; 90,
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} )),
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
+		 ),
+	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+2,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
+	 )</expression>
+    </formulas>
+    <interviewLabel>Please_complete_1315-67_InterviewLabel</interviewLabel>
     <label>Enterprise - Expiration Dates and Fees - Licenses with Set Expiration Date (Pre-Grace Period)5.</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -2025,7 +2166,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_8851915768</elementReference>
+                <elementReference>formula_11_myRule_10_A1_6494677377</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2190,7 +2331,172 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_14_myRule_13_A1_5514878489</elementReference>
+                <elementReference>formula_14_myRule_13_A1_3381527102</elementReference>
+            </value>
+        </inputAssignments>
+        <object>MUSW__License2__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[MUSW__License2__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_16_A1</name>
+        <label>Update record</label>
+        <locationX>1600</locationX>
+        <locationY>200</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Expired Date Updated</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Expired_Date_Updated__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Expired Date Updated</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Expired_Date_Updated__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Expiration Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Expiration_Date__c</field>
+            <value>
+                <elementReference>formula_17_myRule_16_A1_2887902489</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2355,7 +2661,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_1272187056</elementReference>
+                <elementReference>formula_2_myRule_1_A1_5275936654</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2386,7 +2692,7 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_4_A1</name>
-        <label>Update expiration date</label>
+        <label>Update new date</label>
         <locationX>400</locationX>
         <locationY>200</locationY>
         <filters>
@@ -2520,7 +2826,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_8544807368</elementReference>
+                <elementReference>formula_5_myRule_4_A1_8831071477</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2551,7 +2857,7 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_7_A1</name>
-        <label>Update new date</label>
+        <label>Update expiration date</label>
         <locationX>700</locationX>
         <locationY>200</locationY>
         <filters>
@@ -2685,7 +2991,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_0981538831</elementReference>
+                <elementReference>formula_8_myRule_7_A1_8156831661</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>

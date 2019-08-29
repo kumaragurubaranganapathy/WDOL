@@ -83,11 +83,8 @@
 .THIS .field-size div input{
     font-weight:normal;
 }
-.THIS .field-size.course-field{
-    margin-bottom:0;
-}
 .THIS .course-text{
-    margin-bottom:1rem;
+    margin-top:1rem;
 }
 .THIS .course-field .slds-form-element_stacked.slds-form-element{
     display:flex;
@@ -115,6 +112,29 @@
 }
 .THIS .course-field .slds-checkbox.slds-checkbox_standalone{
     display:flex;
+}
+.THIS .biz-structure .slds-combobox_container:after{
+    border-top: 5px solid rgb(6, 28, 63);
+    bottom: calc((1.75rem / 2) - 6px);
+}
+.THIS .biz-structure .slds-combobox_container:before{
+    border-bottom: 5px solid rgb(6, 28, 63);
+    top: calc((1.75rem / 2) - 6px);
+}
+.THIS .biz-structure .slds-combobox_container:after, .THIS .slds-combobox_container:before{
+    position: absolute;
+    content: '';
+    display: block;
+    right: .5rem;
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    pointer-events: none;
+    z-index:1000;
+}
+.THIS .biz-structure .slds-input__icon-group{
+    display:none;
 }
 
 @media t(mqSmall){

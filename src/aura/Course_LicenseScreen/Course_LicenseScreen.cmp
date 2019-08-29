@@ -99,9 +99,9 @@ z
                                                             </aura:set> -->
                                                 </aura:if>
                                             </div> 
-                                            <aura:if isTrue="{!tableData.MUSW__Status__c == 'In Review' || tableData.MUSW__Status__c == 'Active'}">
+                                           <!-- <aura:if isTrue="{!tableData.MUSW__Status__c == 'In Review' || tableData.MUSW__Status__c == 'Active'}">
                                                 <lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>
-                                            </aura:if>
+                                            </aura:if> -->
                                         </td>
                                         
                                     </tr>

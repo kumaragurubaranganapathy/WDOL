@@ -8,7 +8,7 @@
                                                                                   'MUSW__State__c' : '',
                                                                                   'County__c' : '',
                                                                                   'Country__c' : 'United States',
-                                                                                  'Zip_Postal_Code__c' : '', 
+                                                                                  'MUSW__Post_Zip_Code__c' : '', 
                                                                                   'Application_BG__c':'',
                                                                                   'is_Physical_and_Mailing_Address_Same__c':'',
                                                                                   }"/>
@@ -21,7 +21,7 @@
                                                                                  'MUSW__State__c' : '',
                                                                                  'County__c' : '',
                                                                                  'Country__c' : 'United States',
-                                                                                 'Zip_Postal_Code__c' : '', 
+                                                                                 'MUSW__Post_Zip_Code__c' : '', 
                                                                                  'Application_BG__c':'',
                                                                                  'is_Physical_and_Mailing_Address_Same__c':'',
                                                                                  }"/>
@@ -34,7 +34,7 @@
                                                                                   'MUSW__State__c' : '',
                                                                                   'County__c' : '',
                                                                                   'Country__c' : 'United States',
-                                                                                  'Zip_Postal_Code__c' : '',
+                                                                                  'MUSW__Post_Zip_Code__c' : '',
                                                                                   }"/>
     <aura:attribute name="parcelObject" type="MUSW__Parcel__c" default="{ 'sobjectType': 'MUSW__Parcel__c'}" />
     <aura:attribute name="licenseId" type="String" />
@@ -127,7 +127,7 @@
             <aura:if isTrue="{!v.isNotApplicable}">
                 <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
             </aura:if>
-            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.mailingAddressparcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.mailingAddressparcel.MUSW__Post_Zip_Code__c}" required="true" class="field-size address-fields"/>
             <aura:if isTrue="{!v.isOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.defaultCounty}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.countyList}" var="eachCounty">
@@ -229,7 +229,7 @@
             <aura:if isTrue="{!v.isNotApplicable}">
                 <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
             </aura:if>
-            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.mailingAddressparcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.mailingAddressparcel.MUSW__Post_Zip_Code__c}" required="true" class="field-size address-fields"/>
             <aura:if isTrue="{!v.isOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.defaultCounty}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.countyList}" var="eachCounty">
@@ -279,7 +279,7 @@
             <aura:if isTrue="{!v.isPhysicalNotApplicable}">
                 <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
             </aura:if>
-            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.physicalAddressParcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.physicalAddressParcel.MUSW__Post_Zip_Code__c}" required="true" class="field-size address-fields"/>
             <aura:if isTrue="{!v.isPhysicalOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.defaultPhysicalCounty}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.physicalAddressCounty}" var="eachCounty">
@@ -363,7 +363,7 @@
             <div class="slds-box">
                 <div>{!v.physicalAddressParcelAMRRead.MUSW__Street2__c},</div>
                  <div>{!v.physicalAddressParcelAMRRead.MUSW__City__c},{!v.physicalAddressParcelAMRRead.County__c},</div>
-                 <div>{!v.physicalAddressParcelAMRRead.MUSW__State__c}-{!v.physicalAddressParcelAMRRead.Zip_Postal_Code__c}</div>
+                 <div>{!v.physicalAddressParcelAMRRead.MUSW__State__c}-{!v.physicalAddressParcelAMRRead.MUSW__Post_Zip_Code__c}</div>
             </div>
            <!-- <lightning:input title="country" name="country" label="Country" value="{!v.physicalAddressParcelAMRRead.Country__c}"  required="true" class="field-size address-fields" disabled = "true"/>
             <lightning:input title="street" name="street" label="Address Line 1" value="{!v.physicalAddressParcelAMRRead.MUSW__Street2__c}"  required="true" class="field-size address-fields" disabled = "true"/>
@@ -459,7 +459,7 @@
             <aura:if isTrue="{!v.isPhysicalNotApplicable}">
                 <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" required="true" class="field-size address-fields" disabled = "true"/>
             </aura:if>
-            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.physicalAddressParcel.Zip_Postal_Code__c}" required="true" class="field-size address-fields"/>
+            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.physicalAddressParcel.MUSW__Post_Zip_Code__c}" required="true" class="field-size address-fields"/>
             <aura:if isTrue="{!v.isPhysicalOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.defaultPhysicalCounty}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.physicalAddressCounty}" var="eachCounty">

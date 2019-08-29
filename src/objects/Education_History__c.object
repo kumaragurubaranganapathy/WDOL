@@ -466,6 +466,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Exam_Check_In_Time__c</fullName>
+        <description>Time the applicant is scheduled to check-in for the exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Time the applicant is scheduled to check-in for the exam</inlineHelpText>
+        <label>Exam Check-In Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
         <fullName>Exam_Pass_Date__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -473,6 +483,19 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>Exam_Required_Score__c</fullName>
+        <description>Score required to pass the exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Score required to pass the exam</inlineHelpText>
+        <label>Exam Required Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Exam_Reschedule_via_DOL__c</fullName>
@@ -508,6 +531,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Exam_Scheduled_Time__c</fullName>
+        <description>Time the applicant is scheduled to take exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Time the applicant is scheduled to take exam</inlineHelpText>
+        <label>Exam Scheduled Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Time</type>
+    </fields>
+    <fields>
         <fullName>Exam_Type__c</fullName>
         <externalId>false</externalId>
         <label>Exam Type</label>
@@ -518,6 +551,29 @@
             <restricted>true</restricted>
             <valueSetName>Exam_Type</valueSetName>
         </valueSet>
+    </fields>
+	<fields>
+        <fullName>Exam_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Exam Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Exam_Location__c</fullName>
+        <description>Address where the applicant will take the exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Address where the applicant will take the exam</inlineHelpText>
+        <label>Exam Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>HSW__c</fullName>
@@ -709,7 +765,7 @@
         <externalId>false</externalId>
         <label>License</label>
         <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>Education History</relationshipLabel>
+        <relationshipLabel>Exams</relationshipLabel>
         <relationshipName>Education_History</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -1182,6 +1238,16 @@
                     <label>Expired</label>
                 </value>
                 <value>
+                    <fullName>No Show</fullName>
+                    <default>false</default>
+                    <label>No Show</label>
+                </value>
+                <value>
+                    <fullName>Canceled</fullName>
+                    <default>false</default>
+                    <label>Canceled</label>
+                </value>
+                <value>
                     <fullName>Draft</fullName>
                     <default>false</default>
                     <label>Draft</label>
@@ -1274,7 +1340,7 @@
     </listViews>
     <nameField>
         <displayFormat>EDUH-{000000}</displayFormat>
-        <label>Education History Name</label>
+        <label>Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Education History</pluralLabel>
@@ -6526,6 +6592,14 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Draft</fullName>
                 <default>false</default>
             </values>
@@ -10084,4 +10158,23 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Letter</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Letter</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/BGBL__LetterAttach?pid={!Education_History__c.Id}</url>
+    </webLinks>
 </CustomObject>
