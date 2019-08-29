@@ -624,11 +624,8 @@ public class Polaris_ApplyForLicenseController {
                 }
                 if(docId.size()>0){
                     List<ContentDocumentLink> contentLink = new List<ContentDocumentLink>();
-                    //Since there is no input parameters in this string and this has been completely generated 
-                    //here itself without any User interaction
-                    //Leaving it as it is now
                     String queryFiles = 'SELECT Id, ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE ContentDocumentId IN : XXX';
-                    contentLink = Utilityclass_withsharing.queryRecordsInClause(queryFiles,docId);
+                    contentLink = Utilityclass_withsharing.queryRecordsInClause(String.escapeSingleQuotes(queryFiles),docId);
                     for(ContentDocumentLink link : contentLink){
                         System.debug('link.LinkedEntityId--->'+link.LinkedEntityId);
                         System.debug('appId--->'+appId);
@@ -1186,8 +1183,6 @@ public class Polaris_ApplyForLicenseController {
                         for(MUSW__Submission__c submissions : appListOtherDetils[0].MUSW__Submissions__r){
                             submissions.MUSW__License2__c = licenseID[0].Id; 
                             if(submissions!=null && submissions.ContentDocumentId__c != null ) {
-                                submissions.IsSANFileUploadTrue__c = true;
-                                submissions.SAN_Image_Type__c ='Applications';
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
                             }
                             lstSubmissions.add(submissions); 
@@ -1600,7 +1595,7 @@ public class Polaris_ApplyForLicenseController {
             if(String.isNotBlank(contactAccountId)){
                 List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
-                                                     County__c, Country__c,MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                     County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
                                                      where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)

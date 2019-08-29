@@ -5,23 +5,14 @@ public with Sharing class  Polaris_TodoList{
     
     @AuraEnabled
     public static List<task> getTodoList(){
-        try{
         //Status =:'Pending',
         User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
         system.debug('currentUser :'+currentUser);
-        Contact con = [Select id,Email FROM Contact where id=:currentUser.ContactId];
-        return [select id,Description,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status ='Pending' and Email__c=:con.Email ];
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }    
-            
+        return [select id,Description,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status ='Pending' and Email__c=:currentUser.Email ];
     }
     @AuraEnabled
      public static String insertEducationRequestInformation(String licId,String licenseType, String board,String ServiceRequestType,String ExamRecordId)
     {
-        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -54,15 +45,9 @@ public with Sharing class  Polaris_TodoList{
         }
         string appId = '';
         return appId = application.Id;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static String insertRequestInformation(String licId,String licenseType, String board,String ServiceRequestType){
-        try{
         Id getContactId ; 
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
@@ -86,24 +71,17 @@ public with Sharing class  Polaris_TodoList{
         try
         {          
             insert application;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            
+        }
+        catch(Exception e){
+            HandleException.LogException(e,'Polaris_TodoList','insertRequestInformation');            
         }
         string appId = '';
         return appId = application.Id;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static String fetchChildLicense(Id taskId)
     {
-        try{
         Task ta =  [select id,Subject,Email__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where id =: taskId ];
         List<Associations__c> lstAssociation = [SELECT id, Status__c,Child_License__c,Child_License__r.MUSW__Expiration_Date__c From Associations__c where id=:ta.Whatid];
         for(Associations__c associ : lstAssociation)
@@ -117,17 +95,11 @@ public with Sharing class  Polaris_TodoList{
             update lstAssociation;
         }
         return ta.Child_License_Id__c;
-    }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     //method to insert Request
     @AuraEnabled
     public static String insertRequest(String accountContactId,String licenseType, String board,String ServiceRequestType){
         
-        try{
         Id getContactId ; 
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
@@ -157,16 +129,10 @@ public with Sharing class  Polaris_TodoList{
         }
         string appId = '';
         return appId = application.Id;   
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static String updateTask(Id taskId,String subStatus){
-        try{
         String message = '';
         task tskList = [select id,Whatid,Status,Sub_status__c from task where id=:taskId];
         
@@ -186,7 +152,7 @@ public with Sharing class  Polaris_TodoList{
         for(Associations__c asso : lstAssociation){
             childLicenseIds.add(asso.Child_License__c);
         }
-        List<Associations__c> lstAssociationsOnChild = [SELECT Id,Child_License__c, Child_License__r.Name FROM Associations__c WHERE Child_License__c IN : childLicenseIds AND Status__c='Active' AND (Child_License_Type__c ='Timeshare Salesperson' OR Child_License_Type__c='Camping Resort Salesperson') ];
+        List<Associations__c> lstAssociationsOnChild = [SELECT Id,Child_License__c, Child_License__r.Name FROM Associations__c WHERE Child_License__c IN : childLicenseIds AND (Child_License_Type__c ='Timeshare Salesperson' OR Child_License_Type__c='Camping Resort Salesperson') ];
         
         for(MUSW__Account_Contact__c acc : accConList ){
             if(subStatus == 'Accepted'){
@@ -259,12 +225,7 @@ public with Sharing class  Polaris_TodoList{
                 return 'Success';
             }
         }
-        return 'Fail';     
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
+        return 'Fail';                   
     }
     
     @AuraEnabled
@@ -292,12 +253,8 @@ public with Sharing class  Polaris_TodoList{
             
         }catch(Exception Ex){
             
-            DOL_CreateErrorLog_Exception.logApplicationError(Ex);
             return hasBusinessAccounts = true;
-            
-        
         }
-   
     }
         @AuraEnabled
     public static boolean hasLicenses(){
@@ -341,19 +298,12 @@ public with Sharing class  Polaris_TodoList{
     @AuraEnabled
     public static String getContactName(){
         //Status =:'Pending',
-        try{
         User currentUserDetails = [SELECT Name from User Where ID = :UserInfo.getUserId() LIMIT 1];
         return currentUserDetails.Name;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static List<Account> getAllAccounts(){
-        try{
         Set<Id> accntIdSet = new Set<Id>();
         List<Account> accList = new List<Account>();
         User currentUser = [SELECT Id, Name,firstName ,lastName, ContactId , IsActive, IsPortalEnabled, MUSW__Successor__c, ProfileId , email from User Where ID = :UserInfo.getUserId() LIMIT 1];
@@ -376,11 +326,6 @@ public with Sharing class  Polaris_TodoList{
             
         }
         return accList;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
 }

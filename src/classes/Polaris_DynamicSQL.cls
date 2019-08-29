@@ -5,7 +5,6 @@ public without sharing class Polaris_DynamicSQL {
     public  String FieldType;
     
     public String setSOQLCriteria() {
-        try{
         if(Operator == '='){
             if(FieldType == 'DOUBLE') {
              return fieldName + ' '  + Operator +  FieldValue ;   
@@ -16,12 +15,6 @@ public without sharing class Polaris_DynamicSQL {
         } else  {
              return fieldName + ' '  + Operator + '('+' \'' + FieldValue + '\''+ ')';
         }
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
-        
         
     }
     
@@ -29,7 +22,6 @@ public without sharing class Polaris_DynamicSQL {
         return FieldValue != null && FieldValue != '';
     }
     public static String generateWhereQuery(List<Polaris_DynamicSQL> criterias) {
-        try{
         List<String> and_conditions = new List<String>();
         for(Polaris_DynamicSQL single_criteria : criterias) {
             if (single_criteria.IsFieldValueGiven()) {
@@ -37,15 +29,9 @@ public without sharing class Polaris_DynamicSQL {
             }
         }
         return String.join(and_conditions, ' AND ');
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     public static String generateORQuery(List<Polaris_DynamicSQL> ORCriterias) {
-        try{
         List<String> or_conditions = new List<String>();
         for(Polaris_DynamicSQL single_criteria : ORCriterias) {
             if (single_criteria.IsFieldValueGiven()) {
@@ -56,33 +42,21 @@ public without sharing class Polaris_DynamicSQL {
         if(!or_conditions.isEmpty())
             sFinal = '('+String.join(or_conditions, ' OR ')+')';
         return sFinal;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static String addComplaint()
     {
-        try{
         MUSW__Complaint2__c complaint = new MUSW__Complaint2__c();
         complaint.MUSW__Type__c = 'Other';
         complaint.MUSW__Status__c = 'Draft';
         complaint.Name = 'System Number';
         insert complaint;
         return complaint.id;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
         
     }
     @AuraEnabled
     public static String saveComplaint(String dataString,String applicationId)
     {
-        try{
         Map<String, Object> message = (Map<String, Object>)JSON.deserializeUntyped(dataString);
         system.debug('message : ' + message);
         
@@ -171,16 +145,10 @@ String pemail = (String)pdata.get('email');*/
         system.debug('bdata : '+bdata);
         
         return complaint.Name;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static List<SObject> generateQueryLimit(String objectName, List<String> lstFieldsName, Map<String,String> mapValues,Integer limitvalue){
-        try{
         system.debug('inside');
         system.debug('mapValues'+mapValues);
         Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(objectName).getDescribe().SObjectType.getDescribe().fields.getMap();
@@ -210,18 +178,12 @@ String pemail = (String)pdata.get('email');*/
         //List<SObject>  lstRecords  = new List<SObject> () ;
         lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
         return   lstRecords; 
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static List<SObject> generateQueryWithGenericOR(String objectName, List<String> lstFieldsName, 
                                                            Map<String,String> mapValues, Map<String, String> mapORValues, Boolean bIsStatusIncluded,
                                                            Boolean showDeciplinary){
-                                                               try{
                                                                system.debug('inside');
                                                                system.debug('mapValues'+mapValues);
                                                                system.debug(' sumeet OR Check '+mapORValues);
@@ -356,17 +318,11 @@ String pemail = (String)pdata.get('email');*/
                                                         }
 
                                                                return   lstRecords; 
-                                                               }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
                                                            } 
     
     @AuraEnabled
     public static List<SObject> generateQueryWithOR(String objectName, List<String> lstFieldsName, 
                                                     Map<String,String> mapValues, Boolean bIsStatusIncluded, Boolean showDeciplinary){
-                                                          try{
                                                           Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
                                                         system.debug('inside');
                                                         system.debug('mapValues'+mapValues);
@@ -491,11 +447,6 @@ String pemail = (String)pdata.get('email');*/
                                                         }
 
                                                         return   lstRecords; 
-                                                          }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
                                                     } 
     
     
@@ -503,7 +454,6 @@ String pemail = (String)pdata.get('email');*/
       @AuraEnabled
     public static List<SObject> generateQueryWithORDetails(String objectName, List<String> lstFieldsName, 
                                                     Map<String,String> mapValues, Boolean bIsStatusIncluded, Boolean showDeciplinary){
-                                                          try{
                                                           Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
                                                         system.debug('inside');
                                                         system.debug('mapValues'+mapValues);
@@ -628,16 +578,10 @@ String pemail = (String)pdata.get('email');*/
                                                         
 
                                                         return   lstRecords; 
-                                                          }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
                                                     } 
     
     @AuraEnabled
     public static List<SObject> generateQuery(String objectName, List<String> lstFieldsName, Map<String,String> mapValues){
-        try{
         Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(objectName).getDescribe().SObjectType.getDescribe().fields.getMap();
         system.debug('fields1234'+fields);
         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
@@ -671,29 +615,17 @@ String pemail = (String)pdata.get('email');*/
         lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
         system.debug('lstRecords----'+lstRecords);
         return   lstRecords; 
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     } 
     
     @AuraEnabled
     public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){	
-        try{
         Map<String, List<String>> mapConDep = new Map<String, List<String>>();
         mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(sObj, conField, depField);
         system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
         return mapConDep;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static List<String> getPicklistFieldValues(String objectName, String pickListFieldName){
-        try{
         List<String> picklistValues = new List<String>();
         SObjectType objectType = Schema.getGlobalDescribe().get(objectName);
         List<Schema.PicklistEntry> pick_list_values = objectType.getDescribe()
@@ -704,15 +636,9 @@ String pemail = (String)pdata.get('email');*/
             picklistValues.add(aPickListValue.getValue()); 
         }
         return picklistValues;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     @AuraEnabled
     public static Map<String,List<String>> fetchMetaDataValues(){
-       try{
         Map<String, List<String>> PicklistValueMap = new Map <String, List<String>>();
         List<Course_Catalog_Search__mdt> lstValues = new List<Course_Catalog_Search__mdt>();
         
@@ -728,17 +654,11 @@ String pemail = (String)pdata.get('email');*/
             system.debug('PicklistValueMap---'+PicklistValueMap);
         }
         return PicklistValueMap;
-       }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
     
     @AuraEnabled
     public static List<SObject> generateQueryWithORparent(String objectName, List<String> lstFieldsName, 
                                                           Map<String,String> mapValues, Boolean bIsStatusIncluded){
-                                                              try{
                                                               system.debug('inside');
                                                               system.debug('mapValues'+mapValues);
                                                               List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
@@ -831,15 +751,9 @@ String pemail = (String)pdata.get('email');*/
                                                                   
                                                               }
                                                               return   lstRecords; 
-                                                              }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
                                                           }
     
     public  static  Map<String, disciPlinaryAction> getDeliplinaryAction (Set<String> lstname) {
-        try{
         Map<String,disciPlinaryAction> mapDesciplinaryAction = new Map<String,disciPlinaryAction>();
         List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ];
         Set<Id> setDoc = new Set<ID>();
@@ -864,11 +778,6 @@ String pemail = (String)pdata.get('email');*/
             }  
         }
         return mapDesciplinaryAction;
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
     }
 
             
