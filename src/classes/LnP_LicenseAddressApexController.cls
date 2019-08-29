@@ -529,10 +529,10 @@ return ListAddress;
                                                           existingParcel.MUSW__City__c = city;
                                                           existingParcel.Country__c = country;
                                                           existingParcel.County__c = countyVal;
-                                                          if(objectRecordName!='Contact'){
-                                                              existingParcel.Primary_Account__c = accountOrContactId;
+                                                          if(objectRecordName=='Contact' || String.isBlank(objectRecordName)){
+                                                          		existingParcel.MUSW__Primary_Contact__c = accountOrContactId;
                                                           }else{
-                                                              existingParcel.MUSW__Primary_Contact__c = accountOrContactId;
+                                                          			existingParcel.Primary_Account__c = accountOrContactId;
                                                           }
                                                           existingParcel.Application_BG__c = applicationId;
                                                           if(country!= 'Canada'){
@@ -571,10 +571,10 @@ return ListAddress;
                         parcel.MUSW__State__c = null;
                     }
                     parcel.MUSW__Post_Zip_Code__c = zip;
-                    if(objectRecordName!='Contact'){
-                        parcel.Primary_Account__c = accountOrContactId;
-                    }else{
+                    if(objectRecordName=='Contact' || String.isBlank(objectRecordName)){
                         parcel.MUSW__Primary_Contact__c = accountOrContactId;
+                    }else{
+                        parcel.Primary_Account__c = accountOrContactId;
                     }
                     if(issuggestTrue == true){
                         parcel.Melissa_Address_Verified__c = true;
