@@ -233,8 +233,14 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJVD.Subsidiary_Account_Debit__c = '';
             objJVD.Subsidiary_Account_Credit__c ='';
             objJVD.JournalVoucher__c = objJournalWrapper.objItemsData.Journal_Voucher__c; 
-            objJVD.Add_to_Interface__c=true;
-            objJVD.Add_to_PDF__c=true;
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS' && objJournalWrapper.objItemsData.Transaction_Code__c=='198' && objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3205'){
+                objJVD.Add_to_Interface__c=true;
+            	objJVD.Add_to_PDF__c=true;	
+            }else{
+                objJVD.Add_to_Interface__c=false;
+            	objJVD.Add_to_PDF__c=false;
+            }
+            
             
             
             listJVDtoInsert.add(objJVD);
