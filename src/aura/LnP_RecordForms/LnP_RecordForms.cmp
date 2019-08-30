@@ -70,30 +70,18 @@
                                 <aura:set attribute="else">
                                     <aura:if isTrue="{!field.required || field.regex != undefined}">
                                         <aura:if isTrue="{!field.apiname == 'NO_SSN_ITIN__c'}">
-                                            <div
-                                                class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">
-                                                <label>I certify that I don't have a Social Security Number or
-                                                    Individual Taxpayer Identification Number</label>
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
-                                                    class="{!(field.apiname == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}"
-                                                    variant="label-hidden" />
+                                            <div class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">
+                                                
+                                                <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.apiname == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" variant="label-hidden"/>   
+                                                <label>I certify that I don't have a Social Security Number or Individual Taxpayer Identification Number</label>
                                             </div>
                                             <aura:set attribute="else">
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
-                                                    class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}"
-                                                    onchange="{!c.getpattern}" />
-                                                <div
-                                                    class="{!and(v.flagHideAndShow == 'SSN', field.label == 'SSN') ?'ssn-text':'slds-hide'}">
-                                                    All United States applicants are required by federal and state law
-                                                    to provide their Social Security number (SSN) for use in child
-                                                    support enforcement programs (42 U.S.C. 666(a)(13) and RCW
-                                                    74.20A.320). It may also be used for education loan repayment
-                                                    programs and identification of records with similar names.
-                                                    Submission of your SSN is mandatory; failure to submit it may result
-                                                    in denial of your application
-                                                </div>
+                                                <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.label == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" onchange="{!c.getpattern}"/>   
+                                                <aura:if isTrue="{!and(v.flagHideAndShow == 'SSN', field.apiname == 'Social_Security_Number_Encrypted__c')}">
+                                                    <div class="ssn-text">
+                                                        <p> All United States applicants are required by federal and state law to provide their Social Security number (SSN) for use in child support enforcement programs (42 U.S.C. 666(a)(13) and RCW 74.20A.320). It may also be used for education loan repayment programs and identification of records with similar names. Submission of your SSN is mandatory; failure to submit it may result in denial of your application </p>
+                                                    </div>
+                                                </aura:if>
                                             </aura:set>
                                         </aura:if>
                                     </aura:if>

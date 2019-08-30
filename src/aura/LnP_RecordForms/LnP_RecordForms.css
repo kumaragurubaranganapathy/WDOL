@@ -13,22 +13,16 @@
     flex-direction:column;
 }
 .THIS .input-field-wrapper{
-    display:flex;
-    flex-direction:column;
-}
-.THIS .header-style{
-    padding:1rem 0;
-    font-size:t(fieldlabelsize);
-    color:t(fieldclr);
-    font-weight:600;
-    padding-bottom:0;
+    display:flex;    
+    width:100%;
 }
 .THIS .input-field-wrapper label{    
-    font-size: 0.875rem;
-    line-height: 1.5;
-    font-weight: normal;
-    color: #1b1c1a;
-    margin-bottom:0.25rem;
+    font-size: 0.875rem;    
+    color: t(fieldclr);
+    display: flex;    
+}
+.THIS .input-field-wrapper .field-size .slds-form-element__control{
+    width:auto;
 }
 .THIS .in-create .slds-form-element__label{
     padding-bottom:5px;
@@ -39,6 +33,13 @@
 .THIS .slds-combobox_container,.THIS .slds-combobox{
     
     width:100%;
+}
+
+.THIS .header-style{
+    padding:1rem 0;
+    font-size:t(fieldlabelsize);
+    color:t(fieldclr);
+    font-weight:600;   
 }
 
 .THIS .slds-form-element__static{
@@ -99,10 +100,12 @@ margin-right:10%;
 .THIS .addedfield1{
     margin-right:0;
 }
-.THIS .ssn-text{
-    width:50%;
+.THIS .ssn-text{    
     margin-bottom:0.8rem;
     font-size:0.875rem;
+}
+.THIS .ssn-text p{
+    width:50%;
 }
 @media t(mqSmall){
     .THIS .field-inline div{
@@ -110,6 +113,9 @@ margin-right:10%;
     }
     .THIS .ssn-text{
         width:100%;       
+    }
+    .THIS .input-field-wrapper{
+        flex-direction:column;
     }
     /* .THIS label.slds-form-element__label {
     display: none;
