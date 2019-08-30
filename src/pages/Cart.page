@@ -702,6 +702,9 @@
 </apex:commandButton>
 -->
 
+					<!-- Added by Abhilasha as a part of bug 6264 -->
+                    <apex:commandButton value="Previous" action="{!returnToPrevPage}" rendered = "{!activeTab = 'checkout'}"/>
+
                     <!-- Multiple Payment Option not required by State of WA--- Uncommenting this code as a part of 1986-->
                     <apex:commandButton value="Add Payment Method" action="{!addReceipt}" reRender="tab,checkout,depositCheckout"
                         rendered="{!canPayMulti && !isGatewayRequiredforPaymentMethod && !isFeeTransfer}"
