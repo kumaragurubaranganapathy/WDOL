@@ -7,14 +7,14 @@
     <apex:includeScript value="/support/console/26.0/integration.js" />
     <style>
         @font-face{
-    		font-family:'SourceSansPro-Regular';
-    		src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
-		}
+            font-family:'SourceSansPro-Regular';
+            src:url('/lightningwashington/resource/Source_Sans_Pro/Source_Sans_Pro/SourceSansPro-Regular.ttf');
+        }
         
         @font-face{
-    		font-family:'Merriweather-Regular';
-    		src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf);
-		}
+            font-family:'Merriweather-Regular';
+            src:url(/lightningwashington/resource/Merriweather/Merriweather-Regular.ttf);
+        }
         
         body {
             font-family: 'SourceSansPro-Regular';
@@ -220,11 +220,11 @@
     <apex:variable var="hasCC" value="false"/>
     
     <apex:form id="f">
-		<!----
+        <!----
         <apex:outputPanel rendered="{!isPortalUser}">
-			<img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
-		</apex:outputPanel>
-		--->
+            <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
+        </apex:outputPanel>
+        --->
         <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '’s Cart', 'Your Cart')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
@@ -644,7 +644,7 @@
                                 <apex:inputField label="Voucher Number" id="voucherCheckNumber" value="{!rvo.r.Voucher_Number__c}" />
                             </apex:pageBlockSection>
                         </apex:outputPanel>
-						<!-- Added as a part of bug 6337 by Abhilasha -->
+                        <!-- Added as a part of bug 6337 by Abhilasha -->
                         <apex:outputPanel id="formNumberInput" rendered="{!rvo.r.MUSW__Payment_Method__c = checkOptionName || rvo.r.MUSW__Payment_Method__c = 'Money Order'}" >
                             <apex:pageBlockSection columns="1" id="formNumberInputCheckout">
                                 <apex:inputField label="Form Number" id="formNumberInputField" value="{!rvo.r.Form_Number__c}"
@@ -701,9 +701,6 @@
 <apex:actionSupport event="onclick"  action="{!review}" reRender="tab,msg" oncomplete="document.getElementById('preloader2').style.visibility='hidden';"/>
 </apex:commandButton>
 -->
-
-					<!-- Added by Abhilasha as a part of bug 6264 -->
-                    <apex:commandButton value="Previous" action="{!returnToPrevPage}" rendered = "{!activeTab = 'checkout'}"/>
 
                     <!-- Multiple Payment Option not required by State of WA--- Uncommenting this code as a part of 1986-->
                     <apex:commandButton value="Add Payment Method" action="{!addReceipt}" reRender="tab,checkout,depositCheckout"
@@ -764,14 +761,8 @@
                                           emailAddress="{!con.email}" totalAmount="{!totalSelected}" error="{!processResultCode}" rendered="{!activeTab = 'confirm'}" >
                                           </BGBK:CartConfirm>
                         
-                        <!-- Added as a part of bug 6414 -->
-                        <apex:commandButton value="Print Receipt" reRender="tab,msg" onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');"
-                            rendered="{!processSuccessful && receiptVOs.size>0 && !isPortalUser}" />
-                            
-                            <apex:commandButton value="Print Receipt" reRender="tab,msg" onClick="window.open('/lightningwashington/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');"
-                            rendered="{!processSuccessful && receiptVOs.size>0 && isPortalUser}" />
-                        
-						<!--Chiranth - Renamed the button to Continue-->
+                        <apex:commandButton value="Print Receipt" reRender="tab,msg" action="{!printReceipt}" rendered="{!processSuccessful && receiptVOs.size>0}"/>
+                        <!--Chiranth - Renamed the button to Continue-->
                         <apex:commandButton styleClass="continute_btn" value="Continue" action="{!backToItems}" />
                         <apex:commandButton value="Try Again" action="{!checkout}" reRender="tab,msg" rendered="{!!processSuccessful && (feeVOs.size > 0 || invoiceVOs.size > 0)}" />
                     </apex:outputPanel>                      
@@ -868,7 +859,7 @@
             </form>
         </apex:outputPanel>
     </apex:outputPanel>
-	<!----
+    <!----
     <div class="footer" data-aura-rendered-by="170:0">
         <div class="footerWrapper cLnP_Footer" data-aura-rendered-by="173:0" data-aura-class="cLnP_Footer">
             <div class="slds-grid botNav" data-aura-rendered-by="174:0">
@@ -885,5 +876,5 @@
             </div>
         </div>
     </div>
-	--->
+    --->
 </apex:page>
