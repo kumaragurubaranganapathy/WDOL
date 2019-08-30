@@ -93,9 +93,11 @@ public with sharing class CartController
     public Integer counter = 0;    // To track number of records parsed
     public Integer limitSize = 2; // Number of records to be displayed
     public Integer totalSize = 0;  // To store the total number of records available
-    
+    public string checkOptionName {get;set;} //-Added as a part of bug 6337 by Abhilasha
+	
     public CartController(ApexPages.StandardSetController c)
     {
+		checkOptionName = 'Check/Cashier\'s Check';//Added as a part of bug 6337 by Abhilasha
         processSuccessful = false;
         totalSelected = 0;
         totalSelectedOutstanding = 0;
