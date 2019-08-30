@@ -725,7 +725,7 @@ public with sharing class Add_BusinessController {
     
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
-        
+        try{
         String licenseType ='';
         System.debug('Checkkkk######## License Id'+licenseId);
         
@@ -756,7 +756,11 @@ public with sharing class Add_BusinessController {
             wrapperObj.miscellaneousData = 'false'; //false if the current license is child  
         }
         return JSON.serialize(wrapperObj);
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
