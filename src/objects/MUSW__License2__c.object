@@ -4573,32 +4573,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>DOR_Pending_Licenses</fullName>
-        <columns>DOR_License_Number__c</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>DOR_Endorsement_Code__c</columns>
-        <columns>MUSW__Type__c</columns>
-        <columns>Application_Type__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>MUSW__License2__c.DOR_Licenses</value>
-        </filters>
-        <filters>
-            <field>MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Pending Action</value>
-        </filters>
-        <label>DOR Pending Licenses</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>RBS_Licensing_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Delegated_Municipality1</fullName>
         <columns>NAME</columns>
         <columns>MUSW__Applicant__c</columns>
