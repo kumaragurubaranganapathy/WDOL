@@ -29,10 +29,10 @@ public class DOL_ePaymentReturnSession {
     public String BillerBusinessDate ;
     public String IsPayorRegistered ;
     public String Email ;
-    public String SFDCId ;
+    public String SFDCId ; // Cart Id
     public String SFDCfeeId ; // DOL_AppConstants.ePaymentUrlListValuesSeperator seperated feeId
-    public String SFDCappId ;
-    public String SFDClicId ;
+    public String SFDCappId ; // Contact Id
+    public String SFDClicId ; // This is receipt Id
     public List<String> sfdcFeeIds ;
 
     public DOL_ePaymentReturnSession(){}
@@ -101,6 +101,15 @@ public class DOL_ePaymentReturnSession {
     private List<String> getSelectedFees(){
         MUSW__Receipt__c receipt = [select Id,Selected_Fees__c from MUSW__Receipt__c where Id =: SFDClicId];
         return receipt.Selected_Fees__c.split(',');
+    }
+
+    public void validateSessionData(){
+        if(String.isBlank(TransactionConfirmationID)){
+            throw new CustomException('Transaction Id is Blank in ePayment return session');
+        }
+        if(String.isBlank(this.SFDClicId)){
+            throw new CustomException('Receipt Id is Blank in ePayment return session');
+        }
     }
 
 }
