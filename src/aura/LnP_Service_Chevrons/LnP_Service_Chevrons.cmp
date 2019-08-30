@@ -175,9 +175,9 @@
                                     </aura:if>
                                     <div id="AttestationValidation" class='field-item attest-fields'>                
                                         <div class="headings attestation">Signature</div>
-                                        <div class="attestBody">Declare before proceeding.</div>
+                                        <!--<div class="attestBody">Declare before proceeding.</div> -->
                                         <div class="slds-form-element  field-item">
-                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}"/>                                            
+                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Please type your legal name as shown below." onchange="{!c.onAttestationChange}"/>                                            
                                             <span>{!v.currentUser.Name}</span>
                                         </div>
                                         <aura:if isTrue="{!v.showMessage}">
