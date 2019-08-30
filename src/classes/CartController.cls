@@ -2124,4 +2124,8 @@ system.debug('!!!underpayment : ');
         
     }
     
+	//Added by Abhilasha as a part of bug 6264
+    public void returnToPrevPage(){
+        activeTab = 'fees';
+    }
 }
