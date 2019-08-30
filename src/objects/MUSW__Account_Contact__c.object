@@ -154,7 +154,7 @@
     <fields>
         <fullName>Full_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>First_Name__c &amp; &apos; &apos; &amp; Last_Name__c</formula>
+        <formula>First_Name__c &amp; &apos; &apos; &amp; Middle_Name__c &amp; &apos; &apos; &amp; Last_Name__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Full Name</label>
         <required>false</required>
@@ -336,7 +336,7 @@
                     <default>false</default>
                     <label>Administrator</label>
                 </value>
-				<value>
+                <value>
                     <fullName>Owner</fullName>
                     <default>false</default>
                     <label>Owner</label>
@@ -611,7 +611,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Account Contacts</pluralLabel>
-	<recordTypes>
+    <recordTypes>
         <fullName>DOR_Account_Contacts</fullName>
         <active>true</active>
         <description>This record type to map data coming from DOR Interface</description>
@@ -638,9 +638,9 @@
                 <default>false</default>
             </values>
             <values>
-                    <fullName>Owner</fullName>
-                    <default>false</default>
-                </values>
+                <fullName>Owner</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>
