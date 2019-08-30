@@ -1,5 +1,19 @@
 ({
 	doInit : function(component, event, helper) {
+		window.onbeforeunload = function(e) {
+          e.preventDefault();
+          e.returnValue = '';
+        };
+        if(window.performance.navigation.type == 1) {
+            //event.preventDefault();
+            var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+            var urlEvent = $A.get("e.force:navigateToURL");
+            urlEvent.setParams({
+                "url": url
+            });
+            urlEvent.fire();
+            return false;
+        }
         console.log('inside init');
         helper.setApplicationType(component, event, helper);
         helper.fetchDataFromServer(component, event, helper); 
@@ -41,7 +55,8 @@
      attestValue: function(component, event, helper) {        
         alert(event.getSource().get("v.value"));
     },
-    submit : function(component, event, helper) {        
+    submit : function(component, event, helper) { 
+		window.onbeforeunload = null;      
         helper.submit(component, event, helper);
     },
      handlePassValuesEvent :  function(component, event, helper){
