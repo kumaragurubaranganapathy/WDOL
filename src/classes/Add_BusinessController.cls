@@ -3,11 +3,19 @@ public with sharing class Add_BusinessController {
     //get BusinessAccount RecordType Id 
     @AuraEnabled 
     public static id getRecordTypeIdAccount(){
+        try{
         return Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId() ;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled 
     public static String insertRequestBusiness(String acctId,String ServiceRequestType){
+        try{
+        system.debug('acctId--'+acctId);
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -34,14 +42,21 @@ public with sharing class Add_BusinessController {
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'Add_BusinessController','insertRequestBusiness');            
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+            //HandleException.LogException(e,'Add_BusinessController','insertRequestBusiness');            
         }
         string appId = '';
         return appId = application.Id;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static List<Account> getAllAccounts(){
+        try{
         Set<Id> accntIdSet = new Set<Id>();
         List<Account> accList = new List<Account>();
         User currentUser = [SELECT Id, Name,firstName ,lastName, ContactId , IsActive, IsPortalEnabled, MUSW__Successor__c, ProfileId , email from User Where ID = :UserInfo.getUserId() LIMIT 1];
@@ -64,6 +79,11 @@ public with sharing class Add_BusinessController {
             
         }
         return accList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
@@ -99,9 +119,9 @@ public with sharing class Add_BusinessController {
                               }
             
             return mapOfSobjects;
-        }    
-        catch(Exception ex){
-            
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -131,26 +151,41 @@ public with sharing class Add_BusinessController {
                 system.debug('ac234567'+ac);
                 return true;
             } 
-        }catch(Exception e){
-            System.debug(e.getMessage());
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+           
         }        return false;
     }
     
     @AuraEnabled
     public static void updateAccount(List<Account> acc ){
+       try{
         update acc;
+       }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            
+        }
     }
     
     @AuraEnabled
     public static List<MUSW__Account_Contact__c> getAllContacts(String accountId){
+        try{
         List<MUSW__Account_Contact__c> lstContact = new List<MUSW__Account_Contact__c>();
         for(MUSW__Account_Contact__c ac :[SELECT Id,MUSW__Account__r.Name,resend_Invitation__c,isAdminContact__c,First_Name__c,Last_Name__c,Title__c,Role__c,Ownership_Percentage__c,Associate_Status__c FROM MUSW__Account_Contact__c WHERE MUSW__Account__c =: accountId]){
             lstContact.add(ac);
         }
         return lstContact;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     @AuraEnabled
     public static List<MUSW__Account_Contact__c> updateContactAccountStatus(String Id, String status, String accountId) {
+        try{
         List<MUSW__Account_Contact__c> lstContact = new List<MUSW__Account_Contact__c>();
         for(MUSW__Account_Contact__c ac :[SELECT Id,Associate_Status__c 
                                           FROM MUSW__Account_Contact__c WHERE Id =: Id]){
@@ -166,9 +201,15 @@ public with sharing class Add_BusinessController {
             lstContact.add(ac);
         }
         return lstContact;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     @AuraEnabled
     public static List<MUSW__Account_Contact__c> resendEmailInvitation (String Id, String accountId) {
+        try{
         Polaris_UtilityClass appUtility = new  Polaris_UtilityClass();
         List<Messaging.SingleEmailMessage> resendEmailList = new List<Messaging.SingleEmailMessage>();        
         List<MUSW__Account_Contact__c> lstContact = [SELECT Id,Associate_Status__c,Email__c
@@ -199,12 +240,18 @@ public with sharing class Add_BusinessController {
             lstContact.add(ac);
         }
         return lstContact; 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
     @AuraEnabled
     public static List<MUSW__License2__c> getAllCourses(String accountId){
         
+        try{
         List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
         
         List<String> statusFilterList = new List<String>();
@@ -226,10 +273,16 @@ public with sharing class Add_BusinessController {
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         
         return courseList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static List<MUSW__License2__c> getBusinessLicenses(String accountId,Boolean branch,String LicenseId){
+        try{
         system.debug('accountId----'+accountId);
         Id businessRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
         List<MUSW__License2__c> businessList = new List<MUSW__License2__c>();
@@ -255,11 +308,17 @@ public with sharing class Add_BusinessController {
         }
         
         return businessList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static List<MUSW__Application2__c> getAllApplications(String accountId){
         
+        try{
         List<Portal_Dashboard_Settings__mdt> dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Business'];
         List<String> statusFilterList = new List<String>();
         if(!dashboardSettings.isEmpty()){
@@ -281,12 +340,18 @@ public with sharing class Add_BusinessController {
         system.debug('applicationList--'+applicationList);
         
         return applicationList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     
     
     @AuraEnabled 
     public static List<Renewal_Application__c> getAllRenewalApplications(String accountId){
+        try{
         system.debug('accountId---'+accountId);
         String businessRecordTypeId = Schema.SObjectType.Renewal_Application__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
         system.debug('businessRecordTypeId---'+businessRecordTypeId);
@@ -298,10 +363,16 @@ public with sharing class Add_BusinessController {
                                                        Renewed_Date__c,Responsible_Party_Type__c,Sales_Tax_Seller_Permit_Number__c,Section_Number__c,Special_Accommodation_Request__c,Total_Balance__c,
                                                        Total_Fees__c,Total_Payments__c,Trade_Name__c,Years_Expired__c FROM Renewal_Application__c WHERE RecordTypeId =: businessRecordTypeId];
         return renewalAppList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static List<MUSW__License2__c> getAllLicenses(String accountId){
+        try{
         Id businessRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
         List<MUSW__License2__c> licenseList = [SELECT Id,Name,Credential_Type__c, MUSW__Status__c, MUSW__Primary_Licensee__c,
                                                MUSW__Primary_Licensee__r.Doing_Business_As_1__c,
@@ -311,6 +382,11 @@ public with sharing class Add_BusinessController {
                                                Application_Type__c,Application_Method__c,LastModifiedDate FROM MUSW__License2__c
                                                WHERE RecordTypeId =: businessRecordTypeId  ];
         return licenseList;
+    }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
@@ -341,7 +417,9 @@ public with sharing class Add_BusinessController {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -349,12 +427,17 @@ public with sharing class Add_BusinessController {
     //method to get license details 
     @AuraEnabled 
     public static MUSW__License2__c getLicenseData(String Id){
-        
+        try{
         List<MUSW__License2__c>  lic = [SELECT id, Name,Application_Method__c,MUSW__Issue_Date__c,Original_Issue_Date__c, Application_Type__c,Ultimate_Parent_Account__r.Email__c,Ultimate_Parent_Account__r.Business_Phone__c,Ultimate_Parent_Account__r.Name,Ultimate_Parent_Account__r.Doing_Business_As_1__c, Credential_Type__c, MUSW__Expiration_Date__c, MUSW__Status__c, Sub_Status__c, MUSW__Parcel__r.Address_Type__c,
                                         MUSW__Parcel__r.MUSW__Street__c,MUSW__Parcel__r.MUSW__City__c,MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Post_Zip_Code__c FROM MUSW__License2__c WHERE id=:Id limit 1];
         if(!lic.isEmpty()){
             return lic[0];
         }else{
+            return null;
+        }
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
         
@@ -363,7 +446,7 @@ public with sharing class Add_BusinessController {
     //method to get endorsement details 
     @AuraEnabled 
     public static String[] getEndorsementData(String licenseId){
-        
+        try{
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
         if(licenseId != null){ 
@@ -374,7 +457,12 @@ public with sharing class Add_BusinessController {
         }
         system.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
         
-        return EndorsementList;  
+        return EndorsementList; 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     //method to get Address details 
@@ -387,6 +475,7 @@ public with sharing class Add_BusinessController {
         }else{
             return null;
         }*/
+        try{
         Set<Id> parcelIds = new Set<Id>();
         List<MUSW__Parcel__c>addressData = new List<MUSW__Parcel__c>();
         for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c where MUSW__License2__c=:Id]){
@@ -399,6 +488,11 @@ public with sharing class Add_BusinessController {
          if(!addressData.isEmpty()){
             return addressData;
         }else{
+            return null;
+        }
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -458,10 +552,11 @@ public with sharing class Add_BusinessController {
                 }
             }
             return true;
-        }catch(Exception e){
-            system.debug('exception::'+e.getmessage());
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return false;
-        } 
+        }
         
     }  
     @AuraEnabled 
@@ -473,7 +568,7 @@ public with sharing class Add_BusinessController {
             return true;
         }
         catch(Exception e){
-            Polaris_CreateErrorLog_Exception.addError(e,'Add_BusinessController','removeOwnerRecord');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
             return false;
         } 
         
@@ -506,7 +601,7 @@ public with sharing class Add_BusinessController {
             }
             return true;
         }catch(Exception e){
-            Polaris_CreateErrorLog_Exception.addError(e,'Add_BusinessController','removeAcconContactRecord');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
             return false;
         } 
         
@@ -542,10 +637,11 @@ public with sharing class Add_BusinessController {
                 update tsk;
             }
             return true;
-        }catch(Exception e){
-            system.debug('exception::removeAssociationRecord'+e.getmessage());
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return false;
-        } 
+        }
         
     }
     
@@ -563,9 +659,10 @@ public with sharing class Add_BusinessController {
             t.AccountId__c = accountId;
             insert t;
             return true;
-        }catch(Exception e){
-            HandleException.LogException(e,DOL_AppConstants.ADD_BUSINESSCONTROLLER,DOL_AppConstants.CREATETASK);  
-            return false;          
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return false;
         }
     }
     
@@ -582,8 +679,9 @@ public with sharing class Add_BusinessController {
             t.Type = 'License Relationship';
             insert t;
             return true;
-        }catch(Exception e){
-            System.debug(e.getMessage());
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return false;
         }
     }
@@ -591,7 +689,7 @@ public with sharing class Add_BusinessController {
     
     @AuraEnabled
     public static String getRelationShip(String sObjectName,String queryId,String Type){
-        
+        try{
         List<sObject> sObjList; 
         List<String> columnHeaderList;
         List<String> statusFilterList;
@@ -618,11 +716,16 @@ public with sharing class Add_BusinessController {
         }
         Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,sObjList);
         return JSON.serialize(wrapperObj,true);
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseId){
+        try{
         String licenseType ='';
         System.debug('Checkkkk######## License Id'+licenseId);
         
@@ -653,16 +756,26 @@ public with sharing class Add_BusinessController {
             wrapperObj.miscellaneousData = 'false'; //false if the current license is child  
         }
         return JSON.serialize(wrapperObj);
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
         
     }
     
     //method to get mandatory actions pending 
     @AuraEnabled
     public static List<task> getMandatoryActions(){
+        try{
         User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
         
         return [select id,Subject,Email__c,Business_Name__c,Status,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status =:'Pending' and Email__c=:currentUser.Email ];
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
@@ -689,7 +802,9 @@ public with sharing class Add_BusinessController {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -723,7 +838,9 @@ public with sharing class Add_BusinessController {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -752,7 +869,9 @@ public with sharing class Add_BusinessController {
             
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -772,7 +891,9 @@ public with sharing class Add_BusinessController {
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             return JSON.serialize(wrapperObj,true);
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
@@ -791,13 +912,16 @@ public with sharing class Add_BusinessController {
             
             return JSON.serialize(wrapperObj,true); 
             
-        }catch(Exception ex){
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
     }
     
     @AuraEnabled
     public static Boolean updateTask(Id taskId,String subStatus){
+        try{
         task tskList = [select id,Whatid,Status,Sub_status__c from task where id=:taskId];
         
         tskList.Status = 'Completed';
@@ -846,10 +970,16 @@ public with sharing class Add_BusinessController {
         }else{
             return false;
         }
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static boolean checkDCP(String accountId){
+        try{
         Account acc = [select id,Name from Account where id=: accountId limit 1];
         String accName = acc.Name;
         Boolean hasDCP = false;
@@ -860,6 +990,11 @@ public with sharing class Add_BusinessController {
                     hasDCP = (accCon.size() > 0) ? true :false;
                 }
         return hasDCP;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     } 
     
     @AuraEnabled
@@ -877,10 +1012,10 @@ public with sharing class Add_BusinessController {
             }    
             system.debug('helptextMap::'+helptextMap);            
             return JSON.serialize(helptextMap);
-        }
-        catch(Exception e){
-            DOL_CreateErrorLog_Exception.addError(e,'<class name>','<method name>');
-            return JSON.serialize(helptextMap);       
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
         }
     }
     
@@ -894,26 +1029,11 @@ public with sharing class Add_BusinessController {
         }
     }
     
-    @AuraEnabled
-    public static Boolean checkActiveCart(){
-        Boolean redirect = false;
-        List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
-        
-        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        
-        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId];
-        if(!crtList.isEmpty()){
-            redirect = true;
-        }
-        return redirect;
-    }
+    
     
     @auraEnabled
     public static Account validateUBI(String ubi){  
+        try{
         Account acc = new Account();
         HttpResponse response = Dol_RestAPIservice.callSOSservice(ubi);
         if(response.getStatusCode() == 200) {
@@ -928,22 +1048,68 @@ public with sharing class Add_BusinessController {
            acc.AccountNumber = '404'; 
         }
         return acc;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
+    
+    @AuraEnabled
+    public static Boolean checkActiveCart(){
+        try{
+        Boolean redirect = false;
+        List<User> userInfoData = new  List<User>();
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        System.debug('User Id ' + queryCondition);
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        system.debug('queryStr '+queryStr);
+        
+        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+        
+        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId];
+        if(!crtList.isEmpty()){
+            redirect = true;
+        }
+        return redirect;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+    }
+    
      @AuraEnabled
-    public static void updateBusinessAccIDonContact(String accountId){
+    public static Boolean updateBusinessAccIDonContact(String accountId){
+        try{
+        Boolean redirect = false;
         
         if(accountId != null){
-            User objUser = [select id,contactid from user where id=: userinfo.getUserId() limit 1];
-            contact objCon = new Contact ();
-            objCon.id = objUser.contactid;
-            objCon.BusinessCartToOpen__c =accountId;
-            update objCon;
+            List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Account__c =:accountId and BGBK__Status__c = 'Open' and BGBK__Total_Amount__c > 0];
+            if(!crtList.isEmpty()){
+                
+                User objUser = [select id,contactid from user where id=: userinfo.getUserId() limit 1];
+                contact objCon = new Contact ();
+                objCon.id = objUser.contactid;
+                objCon.BusinessCartToOpen__c =accountId;
+                update objCon;
+            
+                redirect = true;
+            }
         }
+        return redirect;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+        
     }
     
        @AuraEnabled
     public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType)
     {
+        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -975,6 +1141,10 @@ public with sharing class Add_BusinessController {
         }
         string appId = '';
         return appId = application.Id;
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     } 
 }
