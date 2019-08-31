@@ -13,6 +13,7 @@
     var action = component.get("c.AffiliatedLocation");
     action.setParams({"parcel" : JSON.stringify(component.get("v.parcel")),
                       "removeLocation" : component.get("v.remove"),
+                      "sApplicationId" : component.get("v.applicationId"),
                       "isAMR" : component.get("v.isAMR")});
 	action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
