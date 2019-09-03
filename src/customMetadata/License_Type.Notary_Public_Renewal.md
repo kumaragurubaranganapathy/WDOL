@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Application_Type__c</field>
-        <value xsi:type="xsd:string">Notary</value>
+        <value xsi:type="xsd:string">Notary Public</value>
     </values>
     <values>
         <field>Credential_Type__c</field>
