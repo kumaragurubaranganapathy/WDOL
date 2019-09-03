@@ -240,6 +240,8 @@
     },
     onRender : function(component,event){
         var account =  component.find("account-id");
-        account.getElement().scrollIntoView();
+        if(account){
+        	account.getElement().scrollIntoView();
+        }
     }
 })
