@@ -30,8 +30,7 @@
                 </aura:iteration>
             </div>
             <div class="row">
-                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"
-                    isRenewal="{!v.isRenewal}" />
+                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" isRenewal="{!v.isRenewal}" accountId="{!v.recordId}" objectName ="{!v.objectApiName}"/> 
             </div>
         </lightning:recordEditForm>
         <aura:set attribute="else">
@@ -170,8 +169,7 @@
                     </aura:iteration>
                 </div>
                 <div class="row">
-                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"
-                        isRenewal="{!v.isRenewal}" />
+                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" isRenewal="{!v.isRenewal}" accountId="{!v.recordId}" objectName ="{!v.objectApiName}"/> 
                 </div>
             </lightning:recordEditForm>
         </aura:set>
