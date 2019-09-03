@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Intern_accept_intern</fullName>
+        <description>Intern accept - intern</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Intern_accept_intern_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Intern_decline_intern</fullName>
+        <description>Intern decline - intern</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Intern_decline_intern_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_accept_business</fullName>
+        <description>Licensee accept - business</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Parent_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Licensee_accept_business_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_accept_licensee_additional_employer</fullName>
+        <description>Licensee accept - licensee - additional employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Licensee_accept_licensee_additional_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_accept_licensee_one_employer</fullName>
+        <description>Licensee accept - licensee - one employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Licensee_accept_licensee_one_employer_final</template>
+    </alerts>
+    <alerts>
         <fullName>Send_Invitaion_email_to_Child_Licensee</fullName>
         <description>Send Invitaion email to Child Licensee</description>
         <protected>false</protected>
@@ -8,21 +68,21 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>sisinkar@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Templates_Relationships/Licensee_invitation_notification_licensee</template>
+        <template>DOL_Client_Approved_Built/Licensee_invitation_notification_business_final</template>
     </alerts>
     <alerts>
-        <fullName>Send_Invitaion_email_to_Parent_Licensee</fullName>
-        <description>Send Invitaion email to Parent Licensee</description>
+        <fullName>Send_Invitation_email_to_Parent_Licensee</fullName>
+        <description>Send Invitation email to Parent Licensee</description>
         <protected>false</protected>
         <recipients>
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>sisinkar@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Templates_Relationships/Licensee_invitation_notification_business</template>
+        <template>DOL_Client_Approved_Built/Designated_person_invitation_notification_business_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_Child_Licensee_about_Declination</fullName>
@@ -33,7 +93,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>DOL_Templates_Relationships/Designated_person_decline_licensee</template>
+        <template>DOL_Client_Approved_Built/Designated_person_decline_RBS_licensee_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_Child_Licensee_about_acceptance</fullName>
@@ -43,9 +103,9 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>sisinkar@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Templates_Relationships/Licensee_accept_licensee</template>
+        <template>DOL_Client_Approved_Built/Designated_person_accept_licensee_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_Child_and_parent_Licensee_about_cancelation</fullName>
@@ -56,7 +116,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>DOL_Templates_Relationships/Licensee_separation_notification_licensee</template>
+        <template>DOL_Client_Approved_Built/Licensee_separation_notification_licensee_no_employer_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_Parent_Licensee_about_Declination</fullName>
@@ -66,9 +126,9 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>sisinkar@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Templates_Relationships/Designated_person_decline_business</template>
+        <template>DOL_Client_Approved_Built/Designated_person_decline_RBS_business_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_Parent_Licensee_about_acceptance</fullName>
@@ -78,9 +138,9 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>sisinkar@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Templates_Relationships/Designated_person_accept_business</template>
+        <template>DOL_Client_Approved_Built/Designated_person_accept_business_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_parent_Licensee</fullName>
@@ -91,7 +151,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>DOL_Templates_Relationships/Licensee_invitation_notification_licensee</template>
+        <template>DOL_Client_Approved_Built/Licensee_invitation_notification_business_final</template>
     </alerts>
     <alerts>
         <fullName>Send_email_to_parent_Licensee_about_cancelation</fullName>
@@ -102,7 +162,55 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>DOL_Templates_Relationships/Licensee_separation_notification_business</template>
+        <template>DOL_Client_Approved_Built/Licensee_separation_notification_business_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_removal_notification_trainee_no_supervisor</fullName>
+        <description>Trainee removal notification - trainee - no supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Trainee_removal_notification_trainee_no_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_removal_notification_trainee_with_supervisor</fullName>
+        <description>Trainee removal notification - trainee - with supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Trainee_removal_notification_trainee_with_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_separation_notification_trainee_no_supervisor</fullName>
+        <description>Trainee separation notification - trainee - no supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Trainee_separation_notification_trainee_no_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_separation_notification_trainee_with_supervisor</fullName>
+        <description>Trainee separation notification - trainee - with supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Client_Approved_Built/Trainee_separation_notification_trainee_with_supervisor_final</template>
     </alerts>
     <fieldUpdates>
         <fullName>Update_Child_License_email</fullName>
@@ -150,25 +258,7 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>Send email to parent and child license holder about Declination</fullName>
-        <actions>
-            <name>Send_email_to_Child_Licensee_about_Declination</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Send_email_to_Parent_Licensee_about_Declination</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Associations__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Declined</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Send email to parent and child license holder about acceptance</fullName>
+        <fullName>Designated person accept - Business%2FLicensee</fullName>
         <actions>
             <name>Send_email_to_Child_Licensee_about_acceptance</name>
             <type>Alert</type>
@@ -177,52 +267,155 @@
             <name>Send_email_to_Parent_Licensee_about_acceptance</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
             <value>Active</value>
         </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Designated Architect,Designated Funeral Director,Designated Engineer,Designated Land Surveyor</value>
+        </criteriaItems>
+        <description>Send email to parent and child license holder about acceptance</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>Send email to parent and child license holder about cancelation</fullName>
+        <fullName>Designated person decline - RBS Business%2FLicensee</fullName>
         <actions>
-            <name>Send_email_to_Child_and_parent_Licensee_about_cancelation</name>
+            <name>Send_email_to_Child_Licensee_about_Declination</name>
             <type>Alert</type>
         </actions>
         <actions>
-            <name>Send_email_to_parent_Licensee_about_cancelation</name>
+            <name>Send_email_to_Parent_Licensee_about_Declination</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
-            <value>Canceled</value>
+            <value>Declined</value>
         </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Designated Architect,Designated Funeral Director,Designated Engineer,Designated Land Surveyor</value>
+        </criteriaItems>
+        <description>Send email to parent and child license holder about Declination</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>Send email to parent and child license holder about invitation</fullName>
+        <fullName>Intern accept - intern</fullName>
+        <actions>
+            <name>Intern_accept_intern</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director Intern,Embalmer Intern</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Intern decline - intern</fullName>
+        <actions>
+            <name>Intern_decline_intern</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director Intern,Embalmer Intern</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Licensee accept - business</fullName>
+        <actions>
+            <name>Licensee_accept_business</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Licensee accept - licensee - additional employer</fullName>
+        <actions>
+            <name>Licensee_accept_licensee_additional_employer</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.No_of_Associations__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Licensee accept - licensee - one employer</fullName>
+        <actions>
+            <name>Licensee_accept_licensee_one_employer</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.No_of_Associations__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Licensee invitation notification - business</fullName>
         <actions>
             <name>Send_Invitaion_email_to_Child_Licensee</name>
             <type>Alert</type>
         </actions>
         <actions>
-            <name>Send_Invitaion_email_to_Parent_Licensee</name>
+            <name>Send_Invitation_email_to_Parent_Licensee</name>
             <type>Alert</type>
         </actions>
         <actions>
             <name>Update_Invited_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
             <value>Invited</value>
         </criteriaItems>
+        <description>Send email to parent and child license holder about invitation.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
@@ -233,6 +426,86 @@
             <timeLength>7</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Licensee separation notification - licensee - no employer</fullName>
+        <actions>
+            <name>Send_email_to_Child_and_parent_Licensee_about_cancelation</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Send_email_to_parent_Licensee_about_cancelation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.No_of_Active_Relationship__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <description>Send email to parent and child license holder about cancelation</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Trainee removal%2Fseparation notification - trainee - no supervisor</fullName>
+        <actions>
+            <name>Trainee_removal_notification_trainee_no_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Trainee_separation_notification_trainee_no_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.No_of_Associations__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee,Funeral Director Intern,Embalmer Intern</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Trainee removal%2Fseparation notification - trainee - with supervisor</fullName>
+        <actions>
+            <name>Trainee_removal_notification_trainee_with_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Trainee_separation_notification_trainee_with_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.No_of_Associations__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee,Funeral Director Intern,Embalmer Intern</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>update status and child parent license email</fullName>
