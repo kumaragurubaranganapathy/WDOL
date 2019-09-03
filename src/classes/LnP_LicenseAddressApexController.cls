@@ -626,16 +626,7 @@ return ListAddress;
         try{
         MUSW__Parcel__c parcl = (MUSW__Parcel__c)JSON.deserialize(parcel,MUSW__Parcel__c.class);
         parcl.recordTypeId= Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
-        if(sApplicationId <> null && sApplicationId <> '')
-        {
-        List<MUSW__Application2__c> lstApplications = [select MUSW__Account__c from MUSW__Application2__c where id = :sApplicationId LIMIT 1];
-        if(lstApplications <> null && !lstApplications.isEmpty() && lstApplications[0].MUSW__Account__c <> null)
-        {
         
-        parcl.Account__c = lstApplications[0].MUSW__Account__c;
-        parcl.Primary_Account__c = lstApplications[0].MUSW__Account__c;
-        }
-        }
         System.debug('parcl::'+ parcl );
         System.debug('removeLocation::'+ removeLocation);
         if(isAMR){
