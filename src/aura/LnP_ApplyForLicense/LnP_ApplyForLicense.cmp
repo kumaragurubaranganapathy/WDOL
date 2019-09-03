@@ -134,7 +134,7 @@
                                                     
                                                 </div>
                                                 <!-- <p> -->  
-                                                <aura:if isTrue="{!responses.answer != null}"> 
+                                                <aura:if isTrue="{!or(responses.answer != null,responses.answer != '')}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
                                                         <ui:outputRichText value="{!responses.answer}"/>
