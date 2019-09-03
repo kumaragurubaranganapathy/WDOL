@@ -30,6 +30,8 @@ ________________________________________________________________________________
     <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
      <aura:attribute name="programTypeList" type="List" description="Holds the lists of programType"/>
      <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+     <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+     
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
@@ -62,7 +64,7 @@ ________________________________________________________________________________
                 </div>                
             </div>
             <aura:if isTrue="{!not(empty(v.accountColumnListData))}">
-                <div class=" slds-show new-wrapper" id= "businessDiv">
+                <div class=" slds-show new-wrapper" id= "businessDiv" aura:id="account-id">
                     <div class="ser-title">
                         Confirm and link business profile
                     </div>

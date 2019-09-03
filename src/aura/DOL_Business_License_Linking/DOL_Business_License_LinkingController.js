@@ -104,5 +104,8 @@
                 helper.sendMailHelper(component,event,helper);  
             }
         }
+    },
+    onRender : function(component,event,helper){
+        helper.onRender(component,event);
     }
 })
