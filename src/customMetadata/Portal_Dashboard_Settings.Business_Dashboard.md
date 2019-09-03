@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>License_Types__c</field>
-        <value xsi:type="xsd:string">Appraisal Management Company,Appraiser Course,Camping Resort Company,Cemetery,Crematory,Engineering/Land Surveying Company,Funeral Establishment,Funeral Establishment Branch,Timeshare Company</value>
+        <value xsi:type="xsd:string">Appraisal Management Company,Appraiser Course,Camping Resort Company,Cemetery,Crematory,Engineering/Land Surveying Company,Funeral Establishment,Funeral Establishment Branch,Timeshare Company,Cremated Remains Disposition Permit,Prearrangement Funeral Services,Certificate of Removal Registration </value>
     </values>
     <values>
         <field>Pending_Applications_statuses__c</field>
