@@ -57,6 +57,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
        // }
         }
         
+		//Added by Abhilasha for bug 6999
+		updateProfCodeForLicenseWOFees();
         beforeMethod();
         
         //This is to generate Intial sequence number with "APP"
@@ -66,6 +68,10 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     }
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {
+	
+	//Added by Abhilasha for bug 6999
+		updateProfCodeForLicenseWOFees();
+		
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
             
@@ -295,6 +301,21 @@ Parameter      : Nil
                 }    
         // Call Automation rules
         BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
+    }
+	
+	//Added by Abhilasha for bug 6999
+    public void updateProfCodeForLicenseWOFees(){
+       system.debug('Entered updateProfCodeForLicenseWOFees');
+        List<License_without_Fees__mdt> mdList = [Select Program_Type__c, License_Type__c, Prof_Code__c from License_without_Fees__mdt];
+        system.debug('mdList::'+mdList);
+        for(Object sObj : trigger.new){
+            MUSW__License2__c lic = (MUSW__License2__c) sObj;
+            for(License_without_Fees__mdt md: mdList){
+                if(lic.Application_Type__c == md.Program_Type__c && lic.Credential_Type__c == md.License_Type__c){
+                    lic.Profession_Code__c = md.Prof_Code__c;
+                }
+            }
+        }
     }
     
 }
