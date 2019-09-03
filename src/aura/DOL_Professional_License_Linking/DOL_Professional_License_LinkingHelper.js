@@ -325,5 +325,9 @@
                 }
         });
         $A.enqueueAction(action); 
+    },
+    onRender : function(component,event){
+        var account =  component.find("account-id");
+        account.getElement().scrollIntoView();
     }
 })
