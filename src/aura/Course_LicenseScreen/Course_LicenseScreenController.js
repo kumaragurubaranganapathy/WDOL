@@ -3,10 +3,11 @@
       var accId = component.get("v.accountId");
       console.log('account id----'+accId);
       console.log("accountId::"+component.get("v.accountId"));  
-      helper.fetchData(component,event, helper);
+      helper.fetchData(component,event);
     },
-    renewLicense : function(component, event, helper){         
+    renewLicense : function(component, event){         
         var ctarget = event.currentTarget;
+       
           console.log('inside draftLicense::');
           sessionStorage.setItem("licId", ctarget.getAttribute("data-recordId"));
           sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
@@ -27,7 +28,7 @@
            }
               
     },
-    editApplication : function(component,event,helper){
+    editApplication : function(component,event){
           var ctarget = event.currentTarget;
           console.log('inside draftLicense::');
           sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
@@ -44,7 +45,7 @@
           }
     },
     
-    displayCourseDetails : function (component,event,helper) {
+    displayCourseDetails : function (component,event) {
         console.log('dsiplayCourseDetails........');
         var licenseId = event.target.getAttribute("data-licenseId");
         component.set("v.licenseId",licenseId);
@@ -55,7 +56,7 @@
         compEvent.setParams({"primaryAccountId" : primaryAccountId});
         compEvent.fire();
     },
-    downloadDocument : function(component, event, helper) {
+    downloadDocument : function(component, event) {
         console.log('Pending Application Button');
         var recordIdForPDF = event.getSource().get("v.value");
         console.log('recordIdForPDF== ' + recordIdForPDF);

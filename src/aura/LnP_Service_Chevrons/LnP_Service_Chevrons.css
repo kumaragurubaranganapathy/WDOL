@@ -70,8 +70,8 @@
     width:20px;
     height:20px;
 }
-.THIS .slds-form-element__control .slds-radio{
-    display : inline-block !important;
+.THIS .field-item .slds-form-element__control .slds-radio{
+    display : flex;
 }
 .THIS .slds-form-element__legend{
 	font-size: 14px;
@@ -248,6 +248,11 @@
     color: red;
     top: 0;
     left: -5px;
+}
+.THIS .personal-info .field-item.not-required > .slds-form-element__label:before {
+   
+    content: none;
+  
 }
 .THIS .personal-info .field-item > .slds-form-element__label {
     position: relative;

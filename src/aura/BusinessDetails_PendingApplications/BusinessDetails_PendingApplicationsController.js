@@ -1,15 +1,15 @@
 ({
     doInit : function(component, event, helper) {
         var accId = component.get("v.accountId");      
-        helper.fetchPendingCourseData(component,event, helper,accId);
-        helper.setPendingNewLicenseApplicationsTableData(component, event, helper);
-        helper.setPendingRenewalApplicationsTableData(component, event, helper,accId);
-        helper.setPendingMaintanceRequestTableData(component, event, helper,accId);
+        helper.fetchPendingCourseData(component,event,accId);
+        helper.setPendingNewLicenseApplicationsTableData(component, event);
+        helper.setPendingRenewalApplicationsTableData(component, event,accId);
+        helper.setPendingMaintanceRequestTableData(component, event,accId);
         helper.getHelptextHelper(component, event, helper);
         
     },
     
-    getHelpText : function(component, event, helper) {
+    getHelpText : function(component, event) {
         var htmap = component.get("v.helptextmap");
         console.log('htmap::'+JSON.stringify(htmap));
         var license_Status = event.currentTarget.getAttribute("data-status");
@@ -23,7 +23,7 @@
         console.log('value::'+value);
     },
     
-    redirectToCart : function(component, event, helper){
+    redirectToCart : function(component, event){
         var portal_Home_URL = component.get("v.portalURL");
         var applicationId = event.getSource().get("v.value");
         var remove_s = portal_Home_URL.slice(0,-2);
@@ -32,7 +32,7 @@
         window.open(PayFee_URI, "_self");
     },
     
-    uploadpendingdocuments :function(component, event, helper){
+    uploadpendingdocuments :function(component, event){
         console.log('uploadpendingdocuments');
         /*
         var license_Id = event.currentTarget.getAttribute("data-id");
@@ -41,7 +41,7 @@
         */
     },
     
-    updateAdditionalQualification : function(component, event, helper){
+    updateAdditionalQualification : function(component, event){
         console.log('updateAdditionalQualification..');
         /*
          console.log('updateAdditionalQualification');
@@ -49,7 +49,7 @@
         helper.updateAdditionalQualificationsHelper(component, event, helper,license_Id);
         */
     },
-    downloadDocument : function(component, event, helper) {
+    downloadDocument : function(component, event) {
         console.log('Pending Application Button');
         var recordIdForPDF = event.getSource().get("v.value");
         console.log('recordIdForPDF== ' + recordIdForPDF);

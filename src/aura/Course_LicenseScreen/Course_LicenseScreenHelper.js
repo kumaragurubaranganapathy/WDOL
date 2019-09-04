@@ -1,5 +1,5 @@
 ({
-    fetchData : function (component,event,helper) {
+    fetchData : function (component,event) {
        var accountIdValue = component.get("v.accountId");
        console.log('acccount id value in fetch data ',accountIdValue)
        var action = component.get("c.getAllCourses");

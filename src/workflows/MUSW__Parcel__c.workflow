@@ -27,6 +27,17 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_MUSW_Post_Zip_Code_c</fullName>
+        <description>Set MUSW__Post_Zip_Code__c with Zip_Postal_Code__c</description>
+        <field>MUSW__Post_Zip_Code__c</field>
+        <formula>Zip_Postal_Code__c</formula>
+        <name>Set MUSW__Post_Zip_Code__c</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
     <rules>
         <fullName>MUSW__Blank Parcel City %26 Zip</fullName>
         <active>false</active>
@@ -49,6 +60,16 @@
         </actions>
         <active>true</active>
         <formula>OR(AND(MUSW__Primary_Contact__c != null, MUSW__Primary_Contact_Name__c == null),ISCHANGED(MUSW__Primary_Contact__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sync Zip_Postal_Code%5F%5Fc With MUSW%5F%5FPost_Zip_Code%5F%5Fc</fullName>
+        <actions>
+            <name>Set_MUSW_Post_Zip_Code_c</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Zip_Postal_Code__c)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

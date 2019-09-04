@@ -942,7 +942,7 @@
                     </div>
                 </lightning:tab>
                 
-                <lightning:tab class="tab-style" label="Draft Applications or Requests" id="ProfessionalDraftApplicationsTab">
+                <lightning:tab class="tab-style" label="Unsubmitted Applications" id="ProfessionalDraftApplicationsTab">
                     <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0 || v.DraftRenewApplicationsDataList.length != 0 || v.DraftMaintananceRequestApplicationsDataList.length != 0}">
                         <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0}">
                             <div class="">
@@ -1186,7 +1186,7 @@
                     </aura:if>
                 </lightning:tab>
                 
-                <lightning:tab class="tab-style" label="Pending Applications or Requests" id="ProfessionalPendingApplicationsTab">
+                <lightning:tab class="tab-style" label="Submitted Applications" id="ProfessionalPendingApplicationsTab">
                     <aura:if isTrue="{!v.PendingNewLicenseApplicationsDataList.length != 0 || v.PendingRenewApplicationsDataList.length != 0 || v.PendingMaintananceRequestApplicationsDataList.length != 0}">
                         <aura:if isTrue="{!v.PendingNewLicenseApplicationsDataList.length != 0}">
                             <div class="">

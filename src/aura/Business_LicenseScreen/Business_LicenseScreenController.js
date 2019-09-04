@@ -17,7 +17,7 @@
     	helper.addRequestHelper(component,event,helper);    
     },
     
-    getHelpText : function(component, event, helper) {
+    getHelpText : function(component, event) {
         var htmap = component.get("v.helptextmap");
         console.log('htmap::'+JSON.stringify(htmap));
         var license_Status = event.currentTarget.getAttribute("data-status");
@@ -45,7 +45,7 @@
         compEvent.fire();
     },
     
-    renewLicense : function(component,event,helper){
+    renewLicense : function(component,event){
         var ctarget = event.currentTarget;
         console.log('inside draftLicense::');
         sessionStorage.setItem("licId", ctarget.getAttribute("data-recordId"));

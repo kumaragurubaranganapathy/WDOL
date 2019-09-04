@@ -57,9 +57,9 @@
             <name>Complaint_Fill_Longitude_from_Parcel</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>When a complaint&apos;s parcel lookup is filled and the Lat Long is blank the Lat Long fields should populate from the parcel.</description>
-        <formula>NOT(ISBLANK(MUSW__Parcel__c))</formula>
+        <formula>AND(not(isblank(MUSW__Parcel__c)),isblank(  MUSW__Geolocation__c ))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

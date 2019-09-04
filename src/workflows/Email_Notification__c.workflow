@@ -110,7 +110,7 @@
             <name>Update_Sent_Email_field</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Email_Notification__c.Body__c</field>
             <operation>notEqual</operation>

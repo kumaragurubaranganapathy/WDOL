@@ -1,5 +1,5 @@
 ({
-    doInit : function(component, event, helper) {
+    doInit : function(component, event) {
         var action1 = component.get("c.getLicenseType")
         action1.setCallback(this, function(response){                                
             var state = response.getState();
@@ -12,7 +12,7 @@
         $A.enqueueAction(action1);
        
     },
-    getProfessional:function(component,event,helper) {
+    getProfessional:function(component,event) {
          var action2 = component.get("c.getProgramPicklist")
         action2.setCallback(this, function(response){                                
             var state = response.getState();
@@ -24,7 +24,7 @@
        
         $A.enqueueAction(action2);
     },
- searchLicenseHelper: function(component,event,helper) {
+ searchLicenseHelper: function(component,event) {
         var columnList =  $A.get("$Label.c.ProfessionalLicenseToDoList").toString().split(',');
         component.set("v.licenseColumnList",columnList);
          var securityCode = '';
@@ -99,7 +99,7 @@
       //  ar securityCode = component.find("securityTokenBusiness").get("v.value");
         
     },
-    linkLicenseToContactHelper: function(component,event,helper) {
+    linkLicenseToContactHelper: function(component,event) {
         var contactId = '';
         var action = component.get("c.updateLicenseContact");
         var licenseList = component.get("v.LicenseColumnListData");
@@ -199,7 +199,7 @@
         });
         $A.enqueueAction(action); 
     },
-      sendActivationEmail : function(component,event,helper){
+      sendActivationEmail : function(component,event){
       var action = component.get("c.sendActivationEmail");
         action.setCallback(this, function(response){
             var state = response.getState();
@@ -222,11 +222,11 @@
         });
         $A.enqueueAction(action); 
     },
-    sendMail : function(component,event,helper){
+    sendMail : function(component,event){
      component.set('v.disabled',false);
     // component.set('v.emailID','')
     },
-    searchLicenseHelperForActivation : function(component,event,helper) {
+    searchLicenseHelperForActivation : function(component,event) {
         var action = component.get("c.searchLicenseNumber");
         var ProgramType = component.find('programToken').get('v.value');
         var LicenseNumber = component.find('licenseNumber').get('v.value');
@@ -325,5 +325,11 @@
                 }
         });
         $A.enqueueAction(action); 
+    },
+    onRender : function(component,event){
+        var account =  component.find("account-id");
+        if(account){
+        	account.getElement().scrollIntoView();
+        }
     }
 })

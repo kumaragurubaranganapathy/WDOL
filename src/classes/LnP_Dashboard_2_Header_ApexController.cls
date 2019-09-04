@@ -1,6 +1,7 @@
 public class LnP_Dashboard_2_Header_ApexController {
     @AuraEnabled
     public static Contact getContact(){
+        try{
         Contact conObj;
         List<Contact> ConList =  [SELECT Other_Email__c,Email,OtherStreet, OtherCity, OtherState, OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, Name, FirstName, LastName, Id, MiddleName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, MailingGeocodeAccuracy, Phone, MobilePhone, HomePhone, OtherPhone, Title  
                                   FROM Contact 
@@ -11,6 +12,11 @@ public class LnP_Dashboard_2_Header_ApexController {
             conObj = ConList[0];
         }
         return conObj;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled 
@@ -24,21 +30,29 @@ AND MUSW__Contact__c  in (Select ContactId From User Where Id = :UserInfo.getUse
 if(!lstContact.isEmpty()){
 conParcel = lstContact[0];
 }*/
+        try{
+            String sAddressType ='MAILING ADDRESS';
         MUSW__Parcel__c mailingAddressData = new MUSW__Parcel__c();
         for(MUSW__Parcel__c mailingAddressRecord : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                     MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
-                                                    County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, MUSW__Primary_Contact__c
-                                                    FROM MUSW__Parcel__c WHERE Address_Type__c = 'MAILING ADDRESS' AND
+                                                    County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c
+                                                    FROM MUSW__Parcel__c WHERE Address_Type__c = :sAddressType AND
                                                     MUSW__Primary_Contact__c IN (Select ContactId From User Where Id = :UserInfo.getUserId()) Limit 1]){
                                                         mailingAddressData = mailingAddressRecord;
                                                     } 
         
         system.debug('mailingAddressData'+mailingAddressData);
         return mailingAddressData;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled 
     public static String insertRequest(String ServiceRequestType){
+        try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
@@ -61,16 +75,24 @@ conParcel = lstContact[0];
         try
         {          
             insert application;
-        }
-        catch(Exception e){
-            HandleException.LogException(e,'LnP_Dashboard_2_Header_ApexController','insertRequest');            
+        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            
         }
         string appId = '';
         return appId = application.Id;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
     
     @AuraEnabled
     public static Boolean checkActiveCart(){
+        try{
         Boolean redirect = false;
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
@@ -85,5 +107,10 @@ conParcel = lstContact[0];
             redirect = true;
         }
         return redirect;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
     }
 }

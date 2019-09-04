@@ -134,7 +134,7 @@
                                                     
                                                 </div>
                                                 <!-- <p> -->  
-                                                <aura:if isTrue="{!responses.answer != null}"> 
+                                                <aura:if isTrue="{!or(responses.answer != null,responses.answer != '')}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
                                                         <ui:outputRichText value="{!responses.answer}"/>
@@ -246,7 +246,7 @@
                                     
                                     <div id="AttestationValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
                                         <div class="attestation headings">Signature</div>                                        
-                                        <div class="attestBody sentences">Please type your legal name as shown below</div>
+                                        <div class="attestBody sentences">Please type your legal name as shown below.</div>
                                         <div class="field-item review-item attest-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
                                             <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}" variant="label-hidden"/>                                            
                                             <span>{!v.currentUser.Name}</span>
@@ -285,7 +285,7 @@
                                                                 <lightning:helptext content="{!question.helptext}"/>
                                                             </label>
                                                         </aura:if>
-                                                        <lightning:select class="{!question.helptext != null?'help-text':'no-help'}" aura:id="{!(question.isMandatoryQues?'validate':'no-validate')}" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}" variant="{!question.helptext != null?'label-hidden':''}">
+                                                        <lightning:select class="{!question.helptext != null?'help-text':'no-help'+' field-item'}" aura:id="{!(question.isMandatoryQues?'validate':'no-validate')}" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}" variant="{!question.helptext != null?'label-hidden':''}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 <option value="{!option}">{!option}</option>
                                                             </aura:iteration>

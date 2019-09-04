@@ -1,5 +1,5 @@
 ({  
-    doInit : function(component, event, helper) {
+    doInit : function(component, event) {
         var action2 = component.get("c.getProgramPicklist")
         action2.setCallback(this, function(response){                                
             var state = response.getState();
@@ -8,11 +8,11 @@
                 component.set("v.programTypeList",resultprogram);    
             }
         });
-       
+        
         $A.enqueueAction(action2);
-       
+        
     },
-    searchAccountHelper: function(component,event,helper) {
+    searchAccountHelper: function(component,event) {
         var securityCode = component.find("securityTokenBusiness").get("v.value");
         var action = component.get("c.getAccountList");
         action.setParams({
@@ -25,7 +25,7 @@
                 var result = response.getReturnValue();
                 if(result != ''){
                     component.set("v.accountColumnListData",result);
-                    $A.util.removeClass(component.find("business"), 'slds-hide');	
+                    $A.util.removeClass(component.find("business"), 'slds-hide');                    
                 } else {
                     $A.util.addClass(component.find("business"), 'slds-hide');	
                     var toastEvent = $A.get("e.force:showToast");
@@ -45,7 +45,7 @@
         $A.enqueueAction(action); 
     },
     
-    linkContactToAccountHelper: function(component,event,helper) {
+    linkContactToAccountHelper: function(component,event) {
         
         var accName = '';
         var accountDetails = component.get("v.accountColumnListData");        
@@ -77,7 +77,7 @@
                         "url": "/business"
                     });
                     urlEvent.fire();
-                    //  helper.searchAccountHelper();
+                    //  this.searchAccountHelper();
                 }
             }else{
                 console.log("error");
@@ -96,7 +96,7 @@
         });
         urlEvent.fire();*/
     },
-    searchLicenseHelperForActivation : function(component,event,helper) {
+    searchLicenseHelperForActivation : function(component,event) {
         var action = component.get("c.searchLicenseNumber");
         var ProgramType = component.find('programToken').get('v.value');
         var LicenseNumber = component.find('licenseNumber').get('v.value');
@@ -122,7 +122,7 @@
                         component.set('v.mailToSend',mail);
                         mail = mail[0].slice(0,2)+'*****'+mail.splice(1);
                         // mail = mail.split(',')[0].slice(0,2)+'****@'+mail.split(',')[1]; 
-                         component.set('v.mailID', 'Activation code will be mailed to '+mail);
+                        component.set('v.mailID', 'Activation code will be mailed to '+mail);
                     }
                     component.set('v.emailID', 'Activation code will be emailed to '+email);
                     component.set('v.LicenseID',message[0].Id);
@@ -137,7 +137,7 @@
                     });
                     toastEvent.fire();  
                 }
-
+                
             } else {
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -192,22 +192,22 @@
         });
         $A.enqueueAction(action); 
     },
-        sendMailHelper : function(component,event){
-      var action = component.get("c.createReviewRecord");
-      var licenseId = component.get('v.LicenseID'); 
-      var ReviewName = component.get('v.ReviewName'); 
-      var mail = component.get('v.mailID');  
-      var mailtosend = 'Send Business Activation Code to '+component.get('v.mailToSend');    
-       action.setParams({
+    sendMailHelper : function(component,event){
+        var action = component.get("c.createReviewRecord");
+        var licenseId = component.get('v.LicenseID'); 
+        var ReviewName = component.get('v.ReviewName'); 
+        var mail = component.get('v.mailID');  
+        var mailtosend = 'Send Business Activation Code to '+component.get('v.mailToSend');    
+        action.setParams({
             "licenseId": licenseId, 
             "Name":  ReviewName,
-           "mail" :mailtosend
+            "mail" :mailtosend
         });   
         action.setCallback(this, function(response){
             var state = response.getState();
             var result = response.getReturnValue();
             if (state === "SUCCESS"){
-                 
+                
                 var toastEvent = $A.get("e.force:showToast");
                 var message = response.getReturnValue();
                 toastEvent.setParams({
@@ -225,17 +225,23 @@
                         urlEvent.fire();
                     }), 2000
                 )
-                } else {
-                    var toastEvent = $A.get("e.force:showToast");
-                    toastEvent.setParams({
-                        "title": "Error!",
-                        "message": result,
-                        "type": "Error"
-                    });
-                    toastEvent.fire();  
-                    component.set("v.loadingSpinner",false);
-                }
+            } else {
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message": result,
+                    "type": "Error"
+                });
+                toastEvent.fire();  
+                component.set("v.loadingSpinner",false);
+            }
         });
         $A.enqueueAction(action); 
+    },
+    onRender : function(component,event){
+        var account =  component.find("account-id");
+        if(account){
+        	account.getElement().scrollIntoView();
+        }
     }
 })

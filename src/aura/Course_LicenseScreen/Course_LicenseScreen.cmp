@@ -75,7 +75,7 @@
                                         </td>
                                         <td data-label="Actions" class="cell-style action-cell">
                                             <div class="slds-truncate">
-                                                <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
+                                                <aura:if isTrue="{!and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c),(tableData.MUSW__Status__c == 'Active')) ? true : false}">
                                                     <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c)}">
                                                         <div class="slds-truncate"   onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-app="{!tableData.Application__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                                              data-board = "{!tableData.Application_Type__c}" data-renewereinstate="Renewal"  data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">

@@ -35,8 +35,8 @@ ________________________________________________________________________________
     <aura:attribute name="media" type="String" default=""/>
     <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
     <aura:attribute name="disabled" type="Boolean" default="true" />
-     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
     
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" class="spinner-style" alternativeText="Page is loading..."/>
@@ -125,7 +125,7 @@ ________________________________________________________________________________
         
             <div id="scrollTillHere"></div>
             <aura:if isTrue="{!not(empty(v.LicenseColumnListData))}">
-                <div class="new-wrapper">
+                <div class="new-wrapper" aura:id="account-id">
                     <div class="ser-title">
                         Confirm and link professional license
                     </div>

@@ -86,12 +86,12 @@ public with sharing class CartController
     public boolean requestFromEPayment {get; set;}
     public DOL_ePaymentReturnSession ePaymentReturnSession {get; set;}
     public List<Profile> portalProfiles {get;set;}
-	public String isBisuneesLic {get;set;}
-	public string checkOptionName {get;set;} //- Added as a part of bug 6337 by Abhilasha 
-	
+    public String isBisuneesLic {get;set;}
+    public string checkOptionName {get;set;} //- Added as a part of bug 6337 by Abhilasha 
+    
     public CartController(ApexPages.StandardSetController c)
     {
-		checkOptionName = 'Check/Cashier\'s Check'; // Added as a part of bug 6337 by Abhilasha
+        checkOptionName = 'Check/Cashier\'s Check'; // Added as a part of bug 6337 by Abhilasha
         processSuccessful = false;
         totalSelected = 0;
         totalSelectedOutstanding = 0;
@@ -127,7 +127,7 @@ public with sharing class CartController
             activeTab = 'fees';
             requestFromEPayment = false; 
             m_pid = System.currentPageReference().getParameters().get('id');
-			isBLic = System.currentPageReference().getParameters().get('isBLic');
+            isBLic = System.currentPageReference().getParameters().get('isBLic');
             system.debug('m_pid$$'+m_pid);
             m_cartId = System.currentPageReference().getParameters().get('cartId');
             m_invoiceId = System.currentPageReference().getParameters().get('invoiceId');
@@ -159,7 +159,7 @@ public with sharing class CartController
         }
         else if (m_accId != null)
         {
-	    system.debug('Account id ##$$ m_cs' +m_accId);
+        system.debug('Account id ##$$ m_cs' +m_accId);
             m_cs =  new BGBK.CartService(m_accId);
             system.debug('Account cart ##$$ m_cs' +m_cs);
             
@@ -209,8 +209,8 @@ public with sharing class CartController
         }
         system.debug('contact = '+ m_cs.getActiveContact() );
         paymentGatewaySettings = [Select Id, DeveloperName, Endpoint__c, Biller_ID__c, Biller_Group_ID__c, Product_Code__c From Payment_Gateway_Settings__mdt where DeveloperName = 'US_Bank_Settings' limit 1];
-		
-		List<String> portalProfileNames = DOL_AppConstants.PORTAL_PROFILES;
+        
+        List<String> portalProfileNames = DOL_AppConstants.PORTAL_PROFILES;
         system.debug('portalProfileNames::'+portalProfileNames);
         portalProfiles = [Select id, Name from Profile where Id =: userinfo.getProfileid() and Name In: portalProfileNames];
         system.debug('portalProfiles::'+portalProfiles);
@@ -469,7 +469,7 @@ public with sharing class CartController
         get
         {
             pmtMethods = new Selectoption[]{};
-			List<String> BackOffice_Payment_MethodsList = System.Label.BackOffice_Payment_Methods.split(',');
+            List<String> BackOffice_Payment_MethodsList = System.Label.BackOffice_Payment_Methods.split(',');
             //initial payment method OR
             //multiple payment methods where initial payment method is not Deposit
             if(receiptVOs.size() <= 1 || receiptVOs[0].pmtMethodSelected != 'Deposit') 
@@ -486,7 +486,7 @@ public with sharing class CartController
                     if (isPortalUser && method.BGBK__isPortal_Accessible__c) {
                         pmtMethods.add(new SelectOption(method.Label,method.Label));
                     }
-					if(!isPortalUser){
+                    if(!isPortalUser){
                         if(BackOffice_Payment_MethodsList != null){
                             if(BackOffice_Payment_MethodsList.contains(method.Label)){
                                 pmtMethods.add(new SelectOption(method.Label,method.Label));
@@ -497,9 +497,9 @@ public with sharing class CartController
 
                 //don't include Deposit if multiple payment methods where initial payment method is not Deposit
                if(m_settings.BGBK__Allow_Pay_By_Deposit__c && deposits.size() == 0 && receiptVOs.size() <= 1){
-					if(!isPortalUser){  // Added the check to remove deposit option for Portal user as per demo feedback [Chiranth 7/25/2019]
-						pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
-					}
+                    if(!isPortalUser){  // Added the check to remove deposit option for Portal user as per demo feedback [Chiranth 7/25/2019]
+                        pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
+                    }
                 }
 
                 //Add 'Exisiting Receipt' payment method
@@ -514,7 +514,7 @@ public with sharing class CartController
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
             }
-			pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
+            pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
             return pmtMethods;
         }
         set;
@@ -1057,7 +1057,7 @@ public with sharing class CartController
             string sPin=BGBK.CartManager.getCartPIN(lstAcc[0]);
             BGBK.CartManager.transferFeesToCart(feeIds, lstAcc[0].id, pinToTransferFee); 
             String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/newdashboard';
-          	PageReference pageRef = new PageReference(portalURL); 
+            PageReference pageRef = new PageReference(portalURL); 
             return pageRef;
         } else{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please enter a valid PIN'));//Added by Vinanthi for US 1835
@@ -1208,11 +1208,11 @@ public with sharing class CartController
                     Set<MUSW__Receipt__c> receipts = rsAmt.keySet();
                     populateFeeAndInvoicePayment(receipts, feePaymentIds);
                     depositPayments = populateDepositPayment(receipts);
-					// Multiple Receipt Fix BUG - 2497, Developer :- Laltu Banerjee
+                    // Multiple Receipt Fix BUG - 2497, Developer :- Laltu Banerjee
                     // Get Receipt Id created in this transaction
                     if(rs.size()>0){
-						receiptId = rs.get(0).Id;
-					}
+                        receiptId = rs.get(0).Id;
+                    }
                     // ELGIN-237: re-query receipt in order to get the receipt numbers
                     MUSW__Receipt__c[] allCartReceipt = m_cs.getCartReceipts();
                     rs.clear();
@@ -1287,7 +1287,7 @@ public with sharing class CartController
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = 'Draft';
-		receipt.MUSW__Payment_Gateway_Transaction_Number__c = 'temp'; // BG Case 10041
+        receipt.MUSW__Payment_Gateway_Transaction_Number__c = 'temp'; // BG Case 10041
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
@@ -1406,8 +1406,8 @@ public with sharing class CartController
         pr.setredirect(true);
         return pr;
     }
-	
-	//Added for BUG:3573
+    
+    //Added for BUG:3573
     public PageReference printReceipt(){
         //onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');"
         if(portalProfiles.size() == 0){
@@ -1426,13 +1426,13 @@ public with sharing class CartController
             return cancel();
         }else{
             // selectedTab = label.Str_Fees;
-			//String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback&isBizLic='+isBisuneesLic;
+            //String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback&isBizLic='+isBisuneesLic;
             String portalURL = URL.getSalesforceBaseUrl().toExternalForm() + '/lightningwashington/s/user-feedback?isBizLic='+isBLic;
             PageReference pageRef = new PageReference(portalURL); // Srujan - added to show Feedback Component
             return pageRef; 
         }
     }
-	
+    
     public pageReference cancel()
     {
         return getPageReference();
@@ -1704,8 +1704,8 @@ public with sharing class CartController
         }
         // also query based on cart id
         Id cartId = cart!=null? cart.Id:m_cartId!=null?m_cartId:'';
-		System.debug('receiptIds='+receiptIds);
-		System.debug('cartId = '+cartId);
+        System.debug('receiptIds='+receiptIds);
+        System.debug('cartId = '+cartId);
         query += 'Id, MUSW__Fee__c,BGBK__Invoice__c,BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c, MUSW__Receipt__c ' +
         'FROM MUSW__Fee_Payment__c WHERE MUSW__Receipt__c IN :receiptIds and MUSW__Receipt__r.MUSW__Payment_Method__c != \'Deposit\' and BGBK__Cart__c = :cartId';
         system.debug('query123'+query);
@@ -2070,6 +2070,11 @@ public with sharing class CartController
             return null;
         }
         
+    }
+	
+	//Added by Abhilasha as a part of bug 6264
+    public void returnToPrevPage(){
+        activeTab = 'fees';
     }
 
 }

@@ -52,7 +52,7 @@
         $A.enqueueAction(action);
     },*/
     
-    fetchPendingCourseData :function(component, event, helper, selectedAccountId){
+    fetchPendingCourseData :function(component, event, selectedAccountId){
     
     
             var action = component.get("c.fetchPendingCourseData");
@@ -88,7 +88,7 @@
         
     },
     
-    setPendingNewLicenseApplicationsTableData : function(component, event, helper){
+    setPendingNewLicenseApplicationsTableData : function(component, event){
         
         try{
             
@@ -132,7 +132,7 @@
         }
     },
     
-    setPendingRenewalApplicationsTableData : function(component, event, helpert, selectedAccountId){
+    setPendingRenewalApplicationsTableData : function(component, event, selectedAccountId){
         
         var action = component.get("c.PendingRenewApplicationsTable");
         
@@ -166,7 +166,7 @@
         $A.enqueueAction(action);
     },
     
-    setPendingMaintanceRequestTableData : function(component, event, helper, selectedAccountId){
+    setPendingMaintanceRequestTableData : function(component, event, selectedAccountId){
         
         var action = component.get("c.PendingMaintananceRequestApplicationsTable");
         

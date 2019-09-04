@@ -349,6 +349,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IsSANFileUploadTrue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This filed would be TRUE if the submission record is crated newly and the file/attachment is not Uploaded to SAN location . Once the file/attachment is uploaded to SAN, the image URL is updated in Salesforce this flag would be set to False</description>
+        <externalId>false</externalId>
+        <label>IsSANFileUploadTrue</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Legal_Action_Documents__c</fullName>
         <externalId>false</externalId>
         <label>Legal Action Documents</label>

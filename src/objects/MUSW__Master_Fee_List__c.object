@@ -139,7 +139,8 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-        <fields>
+        
+		<fields>
         <fullName>Application_Method__c</fullName>
         <externalId>false</externalId>
         <label>Application Method</label>
@@ -179,6 +180,7 @@
                 <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Compliance</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
@@ -196,52 +198,6 @@
                 <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
                 <controllingFieldValue>In State Collection Agency</controllingFieldValue>
                 <valueName>General Application</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Geologist in Training</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Architect Firm</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <controllingFieldValue>Academic Intern</controllingFieldValue>
-                <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Engineer in Training</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <valueName>Reciprocity</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
@@ -364,6 +320,7 @@
                 <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Compliance</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
@@ -411,6 +368,7 @@
                 <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Compliance</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
@@ -481,6 +439,7 @@
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
@@ -521,6 +480,7 @@
                 <controllingFieldValue>Miscellaneous Fee</controllingFieldValue>
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Compliance</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
@@ -599,7 +559,8 @@
             </valueSettings>
         </valueSet>
     </fields>
-    <fields>
+    
+	<fields>
         <fullName>Application_Type__c</fullName>
         <externalId>false</externalId>
         <label>Application Type</label>
@@ -875,7 +836,7 @@
             </valueSettings>
         </valueSet>
     </fields>
-    <fields>
+	<fields>
         <fullName>Credential__c</fullName>
         <externalId>false</externalId>
         <label>Credential</label>
@@ -910,7 +871,6 @@
                 <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
                 <controllingFieldValue>Delegated Municipality Agent</controllingFieldValue>
                 <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
@@ -940,6 +900,7 @@
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
                 <controllingFieldValue>Geologist In Training</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <controllingFieldValue>Compliance</controllingFieldValue>
                 <valueName>Miscellaneous Fee</valueName>
             </valueSettings>
             <valueSettings>
@@ -1005,10 +966,6 @@
             <valueSettings>
                 <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <valueName>Prearrangement Funeral Services</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funeral Director</controllingFieldValue>
@@ -1114,9 +1071,13 @@
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
                 <valueName>Certificate of Removal Registration</valueName>
             </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Compliance</controllingFieldValue>
+                <valueName>Compliance</valueName>
+            </valueSettings>
         </valueSet>
-    </fields>
-    <fields>
+    </fields>    
+	<fields>
         <fullName>Department__c</fullName>
         <externalId>false</externalId>
         <label>Department</label>
@@ -4444,7 +4405,7 @@
         <fullName>Allow_user_to_input_Only_till_4_digits</fullName>
         <active>true</active>
         <description>This validation rule would prevent user to enter more than 4 digits in the base field</description>
-        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),Base__c&lt;0 || Base__c&gt;=5999.99)</errorConditionFormula>
+        <errorConditionFormula>AND(NOT(ISBLANK(Base__c)),Base__c&lt;0 || Base__c&gt;=6000)</errorConditionFormula>
         <errorDisplayField>Base__c</errorDisplayField>
         <errorMessage>Base amount cannot be negative or more than 5999.99</errorMessage>
     </validationRules>

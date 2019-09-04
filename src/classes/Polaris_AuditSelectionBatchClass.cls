@@ -13,7 +13,7 @@ global class Polaris_AuditSelectionBatchClass implements Database.Batchable<sObj
 
     global Database.QueryLocator start(Database.BatchableContext bc) {
         // collect the batches of records or objects to be passed to execute
-        return Database.getQueryLocator('SELECT Id, Name,Renewal_Status__c,Credential_Type__c,Application_Type__c,License__c FROM Renewal_Application__c WHERE Renewal_Status__c = \'Complete\' AND Selected_for_Audit__c = FALSE AND LastModifiedDate >= LAST_N_DAYS : 30');
+        return Database.getQueryLocator('SELECT Id, Name,Renewal_Status__c,Credential_Type__c,Application_Type__c,License__c FROM Renewal_Application__c WHERE Renewal_Status__c = \'Complete\' AND Selected_for_Audit__c = FALSE AND Manual_Fee_Generation__c = FALSE AND LastModifiedDate >= LAST_N_DAYS : 30');
     }
      global void execute(Database.BatchableContext bc, List<Renewal_Application__c> renewalAppList){
         // process each batch of records

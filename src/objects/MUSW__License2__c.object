@@ -29,7 +29,7 @@
     <actionOverrides>
         <actionName>New</actionName>
         <content>MUSW__LicensePageDefaults</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
@@ -171,6 +171,32 @@
         </displayedFields>
         <label>Public Lookup Fields</label>
     </fieldSets>
+	<fields>
+        <fullName>DOR_Endorsement_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>DOR Endorsement Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DOR_License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>DOR License Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AIDS_Affidavit__c</fullName>
         <defaultValue>false</defaultValue>
@@ -336,6 +362,32 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RFI_Send_Date_2nd__c</fullName>
+        <description>Date 2nd RFI was sent</description>
+        <encryptionScheme>None</encryptionScheme>
+        <inlineHelpText>Date 2nd RFI was sent</inlineHelpText>
+        <externalId>false</externalId>
+        <label>RFI Send Date 2nd</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RFP_Send_Date_2nd__c</fullName>
+        <description>Date 2nd RFP was sent</description>
+        <encryptionScheme>None</encryptionScheme>
+        <inlineHelpText>Date 2nd RFP was sent</inlineHelpText>
+        <externalId>false</externalId>
+        <label>RFP Send Date 2nd</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2829,7 +2881,7 @@ Military_Waiver__c))))))))))))</formula>
     <fields>
         <fullName>No_of_years_inactive__c</fullName>
         <externalId>false</externalId>
-        <formula>(TODAY()-MUSW__Expiration_Date__c) / 365</formula>
+        <formula>(MUSW__Expiration_Date__c - TODAY()) / 365</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No.of years inactive</label>
         <precision>18</precision>
@@ -4561,7 +4613,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-    <listViews>
+  <!--  <listViews>
         <fullName>Courses_Queue</fullName>
         <columns>NAME</columns>
         <filterScope>Queue</filterScope>
@@ -4571,7 +4623,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
+    </listViews> -->
     <listViews>
         <fullName>Delegated_Municipality1</fullName>
         <columns>NAME</columns>
@@ -4810,7 +4862,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-    <listViews>
+   <!-- <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
@@ -4818,7 +4870,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
+    </listViews> -->
     <listViews>
         <fullName>Real_Estate_Appraisers_All</fullName>
         <booleanFilter>(1 or 2) and 3</booleanFilter>
@@ -10949,7 +11001,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>Delegated_Agent_Record_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for all Delegated Agent</description>
         <label>Delegated Agent Record Type</label>
@@ -12894,7 +12946,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>Individual</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>for Individual Type License</description>
         <label>Individual22</label>
@@ -14911,7 +14963,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>Manufactured_Homes_Record_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for all Manufactured homes.</description>
         <label>Manufactured Homes Record Type</label>
@@ -20933,7 +20985,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>eSLA_Portal</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>Record Type for Portal user</description>
         <label>eSLA Portal</label>

@@ -1,3 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>RBS_Inspections</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RBS Inspections</label>
+        <sharedTo>
+            <group>RBS_Regulatory_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Collection Agency,On-site Wastewater,Architects,Landscape Architects,Cemeteries,Land Surveyors,Geologist,Funerals,Engineers</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>RE_Inspections</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RE Inspections</label>
+        <sharedTo>
+            <group>RE_Regulatory_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Companies,Camping Resorts,Notary Public,Appraisers - Real Estate,Timeshares</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

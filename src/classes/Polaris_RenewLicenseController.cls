@@ -88,23 +88,23 @@ public class Polaris_RenewLicenseController {
         }
         //mapSObject used to store application Id and List of License application record
         /*Map<Id, List<SObject>> mapSObject = new Map<Id, List<SObject>>();
-		for (MUSW__Application2__c app : lstApps) 
-		{
-		mapSObject.put(app.Id, app.License_Application__r);
-		}
+        for (MUSW__Application2__c app : lstApps) 
+        {
+        mapSObject.put(app.Id, app.License_Application__r);
+        }
 
-		List<LnP_Licence_Application__c> lstLicenseApplication =new List<LnP_Licence_Application__c>();
-		for (List <sObject> lstApplicationLicense : mapSObject.values())
-		{               
-		lstLicenseApplication =lstApplicationLicense ;            
-		}*/
-				
-				
-				/*if(lstApps.size() >0 && !lstLicenseApplication.isEmpty() && lstApps[0].Stage__c != null  )
-		{
-		currentTab = Integer.valueOf(lstApps[0].Stage__c);
-		ansWrapper = getJSONWrapper(lstLicenseApplication);
-		}*/
+        List<LnP_Licence_Application__c> lstLicenseApplication =new List<LnP_Licence_Application__c>();
+        for (List <sObject> lstApplicationLicense : mapSObject.values())
+        {               
+        lstLicenseApplication =lstApplicationLicense ;            
+        }*/
+                
+                
+                /*if(lstApps.size() >0 && !lstLicenseApplication.isEmpty() && lstApps[0].Stage__c != null  )
+        {
+        currentTab = Integer.valueOf(lstApps[0].Stage__c);
+        ansWrapper = getJSONWrapper(lstLicenseApplication);
+        }*/
         if(lstApps.size() >0 && lstApps[0].Stage__c != null && lstApps[0].Form_JSON__c != '' )
         {
             currentTab = Integer.valueOf(lstApps[0].Stage__c); 
@@ -477,7 +477,10 @@ return parser;
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
-        mapAddress = getAddresses(setAppId);
+        Id accountIdFromApplication; 
+        for(MUSW__Application2__c getAccountIdFromApplication: [Select Id, MUSW__Account__c From MUSW__Application2__c where Id = :appId]){
+            accountIdFromApplication = getAccountIdFromApplication.MUSW__Account__c;
+        }
         mapEducation = getBackgroundInformation(setAppId);
         System.debug('dataString---->'+dataString);
         List<LnP_ApplyForLicenseWrapper> wrapperList = (List<LnP_ApplyForLicenseWrapper>)JSON.deserialize(dataString, List<LnP_ApplyForLicenseWrapper>.class);
@@ -488,6 +491,16 @@ return parser;
             accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
         }
         wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType);
+        Id contactAccountId;
+        Id contactRecordId = getCommunityUserContactId();
+        System.debug('contactRecordId for insert application===' + contactRecordId + 'accountIdFromApplication---' + accountIdFromApplication);
+        if(String.isNotBlank(accountIdFromApplication)){
+            contactAccountId = accountIdFromApplication;
+        }else{
+            contactAccountId = contactRecordId;
+        }
+        System.debug('Entered mapAddress method---' + appId);
+        mapAddress = getAddresses(contactAccountId, appId);
         System.debug('Wrapper'+JSON.serialize(wrapperList));
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
@@ -518,7 +531,7 @@ return parser;
             Integer count = 0;
             Integer questioncount = 0;
             Integer FGquestioncount = 0;
-			Integer refcount = 0;
+            Integer refcount = 0;
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                 refcount++;
                 if(fieldMap.questionSectionClass =='Certifications' || (fieldMap.value != null && fieldMap.value != '' && fieldMap.value != '--None--' && fieldMap.value != '--Select one--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
@@ -770,7 +783,7 @@ listApp.add(applicationChild);*/
                             if(mapAddress.isEmpty()){
                                 objWrapper.sectionError = true;
                             }
-							else{
+                            else{
                                 if(!mapAddress.containsKey('MAILING ADDRESS') || (!mapAddress.containsKey('PHYSICAL ADDRESS') && !mapAddress.get('MAILING ADDRESS')[0].is_Physical_and_Mailing_Address_Same__c)){
                                     //if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
                                         system.debug('inside the mandatory'+mapAddress.get('PHYSICAL ADDRESS'));
@@ -812,7 +825,7 @@ listApp.add(applicationChild);*/
         setapplicationId.add(applicationId);
         String appCondition = 'Id=\''+applicationId+'\'';
         //String strApp = 'Select Id, Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
-        String strApp = 'Select Id, Stage__c, Form_JSON__c, Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
+        String strApp = 'Select Id, Stage__c, Form_JSON__c, MUSW__Account__c, Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
         system.debug('StrApp Query--->'+strApp);
         appList = Utilityclass_withsharing.queryRecords(strApp);
         system.debug('Applist In AController--->'+appList);
@@ -887,14 +900,17 @@ listApp.add(applicationChild);*/
                     parcelId.add(parcel.Id);
                 }
                 System.debug('parcelId==='+ parcelId);
-                for(MUSW__License_Parcel__c licenseParcel : [Select Id, Renewal_Reinstatement_Application__c, MUSW__Parcel__r.Id From MUSW__License_Parcel__c Where MUSW__Parcel__r.Id IN :parcelId]){
-                    licenseParcel.Renewal_Reinstatement_Application__c = licenseID;
-                    lstParcelsList.add(licenseParcel);
-                }
-                System.debug('lstParcelsList==='+ lstParcelsList);
-                if(!lstParcelsList.isEmpty()){
-                    update lstParcelsList;
-                }
+                //Fetch Parcel Record data based on Logged in User
+                    Id contactRecordIdData = getCommunityUserContactId();
+                    Id contactAccountId;
+                    System.debug('contactRecordIdData===' + contactRecordIdData + 'account Id==='+ appList[0].MUSW__Account__c + 'License Id-- ' + licenseID);
+                    if(String.isNotBlank(appList[0].MUSW__Account__c)){
+                        contactAccountId = appList[0].MUSW__Account__c;
+                    }else{
+                        contactAccountId = contactRecordIdData;
+                    }
+                    List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
+                    getAllAddressesForComposite(contactAccountId, appList[0].Id, licenseID);
                 List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
                 if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
                     for(LnP_BackgroundSection__c EduHist : appListOtherDetils[0].LnP_BackgroundSections__r){
@@ -1097,7 +1113,7 @@ listApp.add(applicationChild);*/
         system.debug('applicationList : '+applicationList);
         liceseIDRenewal = [Select Id,Application__c,Bond_Number__c,recordTypeId, Surety_Bond_Company_Name__c, Policy_Amount__c, Effective_Date_of_Bond__c, Expiration_Date_of_Bond__c From MUSW__License2__c where Application__c IN:appId limit 1];
         
-		//system.debug('liceseIDRenewal : '+liceseIDRenewal);
+        //system.debug('liceseIDRenewal : '+liceseIDRenewal);
         for(MUSW__Application2__c application : applicationList){
             Renewal_Application__c  mstLicense =  new Renewal_Application__c();
             mstLicense.Applicant__c = application.MUSW__Applicant__c;
@@ -1323,22 +1339,74 @@ mstLicense.RecordTypeId = businessRT;
     }
     
     //Fetch all the addresses
-    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Set<Id> appId){
-        Map<String, List<MUSW__Parcel__c>> mapAddress  =  new Map<String,List<MUSW__Parcel__c>>();
-        List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
-                                                  MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
-                                                  County__c, Country__c, Zip_Postal_Code__c,Application_BG__c
-                                                  FROM MUSW__Parcel__c WHERE Application_BG__c IN :appId];
-        if(!lstAddress.isEmpty()){
-            for(MUSW__Parcel__c parcelAddress : lstAddress) {
-                if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
-                    mapAddress.get(parcelAddress.Address_Type__c).add(parcelAddress);
-                } else {
-                    mapAddress.put(parcelAddress.Address_Type__c, new List<MUSW__Parcel__c>{parcelAddress});
+    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Id contactAccountId, Id appId){
+        try{
+            Map<String, List<MUSW__Parcel__c>> mapAddress  =  new Map<String,List<MUSW__Parcel__c>>();
+            if(String.isNotBlank(contactAccountId)){
+                List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
+                                                     MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
+                                                     County__c, Country__c,MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                     Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
+                                                     where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)
+                                                     order by LastModifiedDate desc];
+                System.debug('lstAddress===' + lstAddress);
+                if(!lstAddress.isEmpty()){
+                    for(MUSW__Parcel__c parcelAddress : lstAddress) {
+                        if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
+                            mapAddress.get(parcelAddress.Address_Type__c).add(parcelAddress);
+                        } else {
+                            mapAddress.put(parcelAddress.Address_Type__c, new List<MUSW__Parcel__c>{parcelAddress});
+                        }
+                    }
                 }
+                System.debug('mapAddress from method===' + mapAddress);
             }
+            return  mapAddress ;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
         }
-        return  mapAddress ;
+    }
+    
+    @Future
+    public static void getAllAddressesForComposite (Id contactAccountId, Id appId, Id licenseId){
+        List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
+        Set<Id> parcelIdSet = new Set<Id>();
+        if(String.isNotBlank(contactAccountId)){
+            for(MUSW__Parcel__c allAddressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
+                                                     MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
+                                                     County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                     Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
+                                                     where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)
+                                                     order by LastModifiedDate desc]){
+                                                         allAddressList.add(allAddressRecords);
+                                                         parcelIdSet.add(allAddressRecords.Id);
+                                                     }
+        }
+        List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
+        List<MUSW__License_Parcel__c> licenseParcelList = new List <MUSW__License_Parcel__c>();
+        if(!allAddressList.isEmpty()){
+            for(MUSW__License_Parcel__c licenseParcel : [Select Id, Renewal_Reinstatement_Application__c, MUSW__Parcel__r.Id From MUSW__License_Parcel__c 
+                                                         Where MUSW__Parcel__r.Id IN :parcelIdSet]){
+                                                             licenseParcel.Renewal_Reinstatement_Application__c = licenseId;
+                                                             licenseParcelList.add(licenseParcel);
+                                                         }
+            System.debug('licenseParcelList==='+ licenseParcelList);
+            if(!licenseParcelList.isEmpty()){
+                try{
+                    update licenseParcelList; 
+                }
+                catch(DmlException e){
+                    System.debug('Error while updating---' + e.getMessage());
+                }
+                System.debug('licenseParcelList===' + licenseParcelList);   
+            }
+        }          
+        System.debug('allAddressList===' + allAddressList);
+        //  return  allAddressList ;
     }
     //Fetch BackgroundInformation
     public static Map<String,List<LnP_BackgroundSection__c>> getBackgroundInformation (Set<Id> appId) {
@@ -1418,6 +1486,22 @@ mstLicense.RecordTypeId = businessRT;
         if(!lstContent.isEmpty()) {
             upsert lstFiles;
         } 
+    }
+    
+    private static Id getCommunityUserContactId(){
+        try{
+            Id contactId;
+            for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
+                contactId = userRecord.contactId;
+            }
+            System.debug('contactId===' + contactId);
+            return contactId;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+        
     }
     
     
