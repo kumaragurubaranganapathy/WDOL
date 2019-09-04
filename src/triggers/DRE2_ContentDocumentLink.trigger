@@ -1,4 +1,4 @@
-trigger DRE2_ContentDocumentLink on ContentDocumentLink (after insert, before update, before delete, after undelete) {
+trigger DRE2_ContentDocumentLink on ContentDocumentLink (before insert,after insert, before update, before delete, after undelete) {
     
     public static boolean runonce = false;
     if(Trigger.isAfter &&Trigger.isInsert && runonce == false) {
@@ -19,7 +19,28 @@ trigger DRE2_ContentDocumentLink on ContentDocumentLink (after insert, before up
         if(!lstnewAttachment.isEmpty()){
            update lstnewAttachment;
         }
-    }    
-    BGCM.TriggerManager.execute('DRE2_ContentDocumentLink', new DRETriggerHandler()); 
-
+        List<ContentDocumentLink> lstContentDocLink = Trigger.new;
+        List<ContentDocumentLink> lstNewContentDocLink =  new List<ContentDocumentLink>();
+        List<ContentDocumentLink> lstdeleteContDocLink  = [SELECT ContentDocumentId,ContentDocument.Title,Id,IsDeleted,LinkedEntityId,ShareType,SystemModstamp,Visibility FROM ContentDocumentLink WHERE LinkedEntityId IN:lstdocs AND ShareType = 'V' AND ContentDocument.Title Like '%License_Certificate%'];
+        for(ContentDocumentLink cd : lstdeleteContDocLink )
+        {
+            ContentDocumentLink cd1 = new ContentDocumentLink();
+            cd1.ContentDocumentId = cd.ContentDocumentId;
+            cd1.LinkedEntityId = cd.LinkedEntityId;
+            cd1.ShareType = 'I';
+            cd1.Visibility = 'AllUsers';
+            lstNewContentDocLink.add(cd1);
+        }
+        if(!lstNewContentDocLink.isEmpty()){
+        try{
+            delete lstdeleteContDocLink;
+           insert lstNewContentDocLink;
+           }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);            
+        }    
+           
+        }
+    }
+    
 }

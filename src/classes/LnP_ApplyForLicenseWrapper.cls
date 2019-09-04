@@ -14,6 +14,7 @@ public class LnP_ApplyForLicenseWrapper {
     public string fieldsList;
     public string mandatorySubsection;
     public string fieldJson;
+	public string AMRlabel;
     public class MapLabelToFields{
         public String label;
         public String labelId;
