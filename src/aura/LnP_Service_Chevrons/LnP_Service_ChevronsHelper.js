@@ -37,6 +37,7 @@
                     obj.header = resultWrapper[index].sectionName;
                     obj.icon = resultWrapper[index].icon;
                     obj.subheader = resultWrapper[index].subheader;
+					component.set("v.AMRlabel",resultWrapper[index].AMRlabel);
                     sectionList.push(obj);
                 }
                 component.set("v.section",sectionList);

@@ -30,7 +30,7 @@ public static List<User> fetchUserDetails () {
         //else
         	str = 'SELECT Sections__c FROM AMR_Link__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Service_Request_Type__c = \''+flowType+'\'';
         
-       // str = 'SELECT Sections__c FROM AMR_Link__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Service_Request_Type__c = \''+flowType+'\'';
+       // str = 'SELECT Sections__c,MasterLabel FROM AMR_Link__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Service_Request_Type__c = \''+flowType+'\'';
         system.debug('str '+str);
         lstSections = Utilityclass_withsharing.queryRecords(str);
         return lstSections;

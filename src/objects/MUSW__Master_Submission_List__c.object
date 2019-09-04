@@ -1062,14 +1062,11 @@
         <columns>NAME</columns>
         <columns>Question__c</columns>
         <columns>Application_Method__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>Credential__c</columns>
         <columns>Credential_Type__c</columns>
-        <columns>Expected_Answer__c</columns>
         <columns>Required__c</columns>
         <columns>Active__c</columns>
         <columns>Default__c</columns>
-        <columns>Show_For_License__c</columns>
+        <columns>Service_Request__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -1340,6 +1337,31 @@
         <label>Permit Submission</label>
     </listViews>
     <listViews>
+        <fullName>Professional_Engineer</fullName>
+        <columns>NAME</columns>
+        <columns>Object__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>Show_For__c</columns>
+        <columns>Active__c</columns>
+        <columns>External_Id__c</columns>
+        <columns>Required__c</columns>
+        <columns>Order_No__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineers</value>
+        </filters>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Professional Engineer</value>
+        </filters>
+        <label>Professional Engineer</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>RE_Attachment_Logic</fullName>
         <columns>NAME</columns>
         <columns>Order_No__c</columns>
@@ -1431,7 +1453,7 @@
         <filters>
             <field>Service_Request__c</field>
             <operation>equals</operation>
-            <value>CE Audit</value>
+            <value>Ad Reviews</value>
         </filters>
         <label>UDC</label>
         <language>en_US</language>
@@ -3254,6 +3276,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Update DBA Name</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Update Legal Name</fullName>
                 <default>false</default>
             </values>
@@ -3263,6 +3289,10 @@
             </values>
             <values>
                 <fullName>Update Physical Address</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Update Print Name</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4529,6 +4559,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Update DBA Name</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Update Legal Name</fullName>
                 <default>false</default>
             </values>
@@ -4538,6 +4572,10 @@
             </values>
             <values>
                 <fullName>Update Physical Address</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Update Print Name</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5712,6 +5750,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Update DBA Name</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Update Legal Name</fullName>
                 <default>false</default>
             </values>
@@ -5721,6 +5763,10 @@
             </values>
             <values>
                 <fullName>Update Physical Address</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Update Print Name</fullName>
                 <default>false</default>
             </values>
             <values>

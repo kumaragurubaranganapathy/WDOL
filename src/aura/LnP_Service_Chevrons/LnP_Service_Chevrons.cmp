@@ -2,6 +2,7 @@
     <aura:attribute name="section" type="List"/>
     <aura:attribute name="currentTab" type="Integer" default="1"/>
     <aura:attribute name="totalTabs" type="Integer" default="1"/>
+	<aura:attribute name="AMRlabel" type="String"/>
     <aura:attribute name="licenseType" type="String" default="Notary Public"/>
     <aura:attribute name="board" type="String" default="Notary Public"/>
     <aura:attribute name="applicationType" type="String" default="Service Request - Name Change"/>
@@ -59,7 +60,12 @@
     </aura:if>
     <div class="content-wrapper">
        <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
-         <h1 class="subheader">{!v.flowType}</h1>
+         <aura:if isTrue="{!not(empty(v.AMRlabel))}">
+            <h1 class="subheader">{!v.AMRlabel}</h1>
+            <aura:set attribute="else">
+                <h1 class="subheader">{!v.flowType}</h1>
+            </aura:set>
+        </aura:if> 
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
         <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">

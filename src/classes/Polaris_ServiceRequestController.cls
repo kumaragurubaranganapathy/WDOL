@@ -1,6 +1,7 @@
 public class Polaris_ServiceRequestController {
     public static Map<String,String> mapSubsectionIcon {get;set;}
     public static String sections {get;set;}
+	public static String AMRlabel {get;set;}
     public static List<Question__c> lstQuestions {get;set;} 
     public static List<MUSW__Master_Submission_List__c> lstMasterSubmission {get;set;}
     public static List<Request__c> lstApps {get;set;}   
@@ -28,6 +29,7 @@ public class Polaris_ServiceRequestController {
         lstSections = Polaris_ServiceRequestService.fetchSection(board,licenseType,requestType,flowType);
         if(!lstSections.isEmpty()){
             sections = lstSections[0].Sections__c;
+			AMRlabel = lstSections[0].MasterLabel;
         }
         system.debug('sections'+sections);
         List<String> lstOfSections = sections.split(',');
@@ -177,6 +179,7 @@ public class Polaris_ServiceRequestController {
             licenseWrapper.subheader = section;
             licenseWrapper.currentTab = currentTab;
             licenseWrapper.tabIndex = tabIndex;
+			licenseWrapper.AMRlabel = AMRlabel;
             if(!mapSubsectionIcon.isEmpty() && mapSubsectionIcon.containsKey(section+' icon')){
                 licenseWrapper.icon = mapSubsectionIcon.get(section+' icon');              
             }
