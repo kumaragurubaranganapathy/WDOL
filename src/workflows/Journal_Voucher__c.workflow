@@ -55,13 +55,4 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>ApprovedbyDate</fullName>
-        <field>Approved_by_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>Approved by Date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
 </Workflow>
