@@ -8,7 +8,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>niinani@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Service_Request_Completed</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>niinani@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Service_Request_Submitted</template>
     </alerts>
