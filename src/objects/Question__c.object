@@ -1110,7 +1110,7 @@ If multiple responses qualify for the dependency, then multiple values can be st
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+ <!--   <fields>
         <fullName>Submission_Title__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -1120,7 +1120,7 @@ If multiple responses qualify for the dependency, then multiple values can be st
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
+    </fields> -->
     <fields>
         <fullName>Triggering_Comment_Box_Value__c</fullName>
         <description>A field that allows the boards to enter the values (answers) to this question that would require a comment box.</description>
