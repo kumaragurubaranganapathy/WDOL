@@ -1081,8 +1081,8 @@ public with sharing class Add_BusinessController {
         Boolean redirect = false;
         
         if(accountId != null){
-            List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Account__c =:accountId and BGBK__Status__c = 'Open' and BGBK__Total_Amount__c > 0];
-            if(!crtList.isEmpty()){
+           // List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Account__c =:accountId and BGBK__Status__c = 'Open' and BGBK__Total_Amount__c > 0];
+           // if(!crtList.isEmpty()){
                 
                 User objUser = [select id,contactid from user where id=: userinfo.getUserId() limit 1];
                 contact objCon = new Contact ();
@@ -1091,7 +1091,7 @@ public with sharing class Add_BusinessController {
                 update objCon;
             
                 redirect = true;
-            }
+           // }
         }
         return redirect;
         }catch(Exception ex)
