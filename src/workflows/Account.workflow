@@ -8,7 +8,7 @@
             <recipient>vagoel@deloitte.wadolbuspro</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>niinani@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Account_Grace_Period</template>
     </alerts>
@@ -20,7 +20,7 @@
             <recipient>vagoel@deloitte.wadolbuspro</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>niinani@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Account_Active</template>
     </alerts>
@@ -32,7 +32,7 @@
             <recipient>vagoel@deloitte.wadolbuspro</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>niinani@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Account_On_Hold</template>
     </alerts>
