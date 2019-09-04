@@ -30,7 +30,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         return Database.getQueryLocator([ 
                 select id, INFO__c, Input__c, File_Name__c, Status__c, Input_Type__c 
                 from DOL_Integration_Batch_Input__c 
-                where Status__c = 'UNPROCESSED' and Input_Type__c = 'DOR'
+                where Input_Type__c = 'DOR' and Status__c = 'UNPROCESSED'
                 ]);
     }
     
@@ -83,6 +83,21 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }
 
         if(! inputDorLicenseUBIs.isEmpty() ){
+            String accUbiQuery = 'Select Id, Name, UBI_Number__c, Bus_Id__c, Loc_Id__c' 
+                                    +' from Account' 
+                                    +' where UBI_Number__c IN :inputDorLicenseUBIs';
+            List<Account> accRec = ((List<Account>) Database.query(accUbiQuery));
+            if(! accRec.isEmpty()){
+                ubiAccountMap = new Map<String,Account>();
+                String tempKey = '';
+                for(Account acc : accRec){
+                    tempKey = acc.UBI_Number__c+acc.Bus_Id__c+acc.Loc_Id__c;
+                    ubiAccountMap.put(tempKey,acc);
+                }
+            }
+        }
+        System.debug('ubiAccountMap '+ubiAccountMap.size());
+        /* if(! inputDorLicenseUBIs.isEmpty() ){
             String accountUbiQuery = 'Select Id, UBI_Number__c from Account where UBI_Number__c IN :inputDorLicenseUBIs';
             List<Account> accRecords = ((List<Account>) Database.query(accountUbiQuery));
             if(! accRecords.isEmpty() ){
@@ -90,9 +105,9 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                     ubiAccountMap.put(acc.UBI_Number__c,acc);
                 }
             }
-        }
+        }*/
 
-            //licenceMap = new Map<Id,MUSW__License2__c>([ select id, MUSW__Primary_Licensee__c, MUSW__Parcel__c, ( select id from Account_Contacts__r ) from MUSW__License2__c where id IN :polarisIds ]);
+        //licenceMap = new Map<Id,MUSW__License2__c>([ select id, MUSW__Primary_Licensee__c, MUSW__Parcel__c, ( select id from Account_Contacts__r ) from MUSW__License2__c where id IN :polarisIds ]);
         
         // Iterate through the records and get the updated
         // MUSW__License2__c, Account, MUSW__Account_Contact__c, MUSW__Parcel__c
@@ -116,12 +131,14 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                     // Initiate DOR_sObject and setSobjects and update with sfdcID
                     tempDORsObject = new DOR_sObject();
                     tempDORsObject.setSobjects(tempUpdatedLicense, tempUpdatedAccount, tempUpdatedAccContacts, 
-                                                tempPhysicalParcel, tempMailingParcel, tempExistingLicenseRecord);
+                                                tempPhysicalParcel, tempMailingParcel, tempExistingLicenseRecord,
+                                                this);
                     
                     tempDORsObject.validateRequiredData();
                     tempDORsObject.updateSFDCIdInRecords();
                     // save records to DB
                     saveSFDCObjects(tempDORsObject);
+                    updateUbiAccountMap(tempDORsObject.acc);
                     
                     batchInput.INFO__C += 'Successfully Completed '+tempDORsObject.getInfoForLogging();
                     batchInput.Status__c = 'SUCCESSFUL';
@@ -187,6 +204,17 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }
     }
 
+    private void updateUbiAccountMap(Account acc){
+        if(acc != null){
+            try{
+                String tempKey = acc.UBI_Number__c+acc.Bus_Id__c+acc.Loc_Id__c;
+                ubiAccountMap.put(tempKey,acc);
+            }catch(Exception e){
+                DOL_CreateErrorLog_Exception.logApplicationError(e);
+            }
+        }
+    }
+
     // Validate input Data
     private void validateDorInput(DOL_DOR_Input dorInput){
             if( String.isBlank(dorInput.polarisID) ){
@@ -195,7 +223,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                 boolean invalidData = false;
                 if(String.isBlank(dorInput.dorEntityName) && String.isBlank(dorInput.dorBusinessName)){
                     invalidData = true;
-                    respError += ' dorEntityName and dorBusinessName ';
+                    respError += ' dorEntityName , dorBusinessName, ';
                 }
                 if(String.isBlank(dorInput.dolProfCode) ){
                     invalidData = true;
@@ -203,16 +231,23 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                 }
                 if(String.isBlank(dorInput.dorLicenseStatus) ){
                     invalidData = true;
-                    respError += ' dorLicenseStatus ';
+                    respError += ' dorLicenseStatus, ';
+                }
+                if(String.isBlank(dorInput.dorLicenseUBI)){
+                    invalidData = true;
+                    respError += ' dorLicenseUBI, ';
+                }
+                if(String.isBlank(dorinput.dorLicenseBusID)){
+                    invalidData = true;
+                    respError += ' dorLicenseBusID, ';
+                }
+                if(String.isBlank(dorInput.dorLicenseLocID)){
+                    invalidData = true;
+                    respError += ' dorLicenseLocID, ';
                 }
                 if(invalidData){
                     throw new CustomException(respError);
                 }
-            }
-            if(! String.isBlank(dorInput.dorLicenseUBI)){
-                Account tempAcc = ubiAccountMap.get(dorInput.dorLicenseUBI);
-                if(tempAcc != null && String.isBlank(dorInput.polarisID))
-                    throw new CustomException('Duplicate UBI number Found '+dorInput.dorLicenseUBI+', already exist with Account Id = '+tempAcc.Id);
             }
         }
     
@@ -248,7 +283,11 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             updateFound = true;
         }
         if(! String.isBlank(dorInput.dorLicenseNumber)){
-            license.Pre_License_Number__c = dorInput.dorLicenseNumber;
+            license.DOR_License_Number__c = dorInput.dorLicenseNumber;
+            updateFound = true;
+        }
+        if(! String.isBlank(dorInput.dorEndorsementCode)){
+            license.DOR_Endorsement_Code__c = dorInput.dorEndorsementCode;
             updateFound = true;
         }
         if(! String.isBlank(dorInput.polarisID)){
@@ -256,8 +295,11 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }
         if(updateFound){
             license.RecordTypeId = licenseRecTypeId;
-            if(String.isBlank(dorInput.polarisID))
+            if(String.isBlank(dorInput.polarisID)){
                 license.Name = 'System Number';
+                //license.Application_Method__c = 'General Application';
+            }
+                
             return license;
         }
        return null;
@@ -320,29 +362,35 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             updateFound = true;
         }	
         if(! String.isBlank(dorInput.dorLicenseBusID) && DOL_AppUtility.isValidDecimalValue(dorInput.dorLicenseBusID)){
-            acc.Bus_Id__c = String.valueOf(dorInput.dorLicenseBusID);
+            acc.Bus_Id__c = dorInput.dorLicenseBusID;
             updateFound = true;
         }
         if(! String.isBlank(dorInput.dorLicenseLocID) && DOL_AppUtility.isValidDecimalValue(dorInput.dorLicenseLocID)){
-            acc.Loc_Id__c = String.valueOf(dorInput.dorLicenseLocID);
+            acc.Loc_Id__c = dorInput.dorLicenseLocID;
             updateFound = true;
         }	
         if(! String.isBlank(dorInput.dorBusinessType)){
             acc.Business_Structure__c = dorInput.dorBusinessType;
             updateFound = true;
+            // Here we have hardcoded sole proprietor
+            // because it is required for only few transaction where
+            // Business Type is sole proprietor
+            if(dorInput.dorBusinessType.trim().equalsIgnoreCase('sole proprietor')){
+                if(!String.isBlank(dorInput.dorOwnerFirstName) || !String.isBlank(dorInput.dorOwnerMiddleName))
+                    acc.First_Name_Primary_Contact__c = dorInput.dorOwnerFirstName+' '+dorInput.dorOwnerMiddleName;
+                if(! String.isBlank(dorInput.dorOwnerLastName))
+                    acc.Last_Name_Primary_Contact__c = dorInput.dorOwnerLastName;
+            }
         }
         if(! String.isBlank(dorInput.dorBusinessName) ){
             acc.Name = dorInput.dorBusinessName;
+            acc.Business_Name__c = dorInput.dorBusinessName;
             updateFound = true;
         }
         if(! String.isBlank(dorInput.dorEntityName)){
             acc.Name = dorInput.dorEntityName;
             updateFound = true;
-        } 
-        if(! String.isBlank(dorInput.dorBusinessName)){
-            acc.Business_Name__c = dorInput.dorBusinessName;
-            updateFound = true;
-        }   
+        }
         if(! String.isBlank(dorInput.dorOwnerFirstName)){
             acc.First_Name_Primary_Contact__c = dorInput.dorOwnerFirstName;
             updateFound = true;
@@ -483,16 +531,19 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         MUSW__Parcel__c mailParcel;
         MUSW__License2__c existingLicenseRecord;
         List<MUSW__Account_Contact__c> accContacts;
+        DOL_Process_DOR_Data_Batch dorOuterClass;
 
         public void setSobjects(MUSW__License2__c license, Account acc,
                                 List<MUSW__Account_Contact__c> accContacts,MUSW__Parcel__c physicalParcel, 
-                                MUSW__Parcel__c mailParcel, MUSW__License2__c existingLicenseRecord ){
+                                MUSW__Parcel__c mailParcel, MUSW__License2__c existingLicenseRecord,
+                                DOL_Process_DOR_Data_Batch dorOuterClass){
             this.license = license;
             this.acc = acc;
             this.physicalParcel = physicalParcel;
             this.mailParcel = mailParcel;
             this.existingLicenseRecord = existingLicenseRecord;
             this.accContacts = accContacts;
+            this.dorOuterClass = dorOuterClass;
         }
 
         public String getInfoForLogging(){
@@ -564,6 +615,12 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                         }
                     }
                 }
+            }
+            else{
+                // Check for existing account
+                Account tempAcc = dorOuterClass.ubiAccountMap.get(acc.UBI_Number__c+acc.Bus_Id__c+acc.Loc_Id__c);
+                if(tempAcc != null)
+                    acc.Id = tempAcc.Id;
             }
         }
 
