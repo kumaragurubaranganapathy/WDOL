@@ -8,7 +8,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Intern_accept_intern_final</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Intern_decline_intern_final</template>
     </alerts>
@@ -32,7 +32,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Licensee_accept_business_final</template>
     </alerts>
@@ -44,7 +44,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Licensee_accept_licensee_additional_employer_final</template>
     </alerts>
@@ -56,7 +56,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Licensee_accept_licensee_one_employer_final</template>
     </alerts>
@@ -172,7 +172,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Trainee_removal_notification_trainee_no_supervisor_final</template>
     </alerts>
@@ -184,7 +184,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Trainee_removal_notification_trainee_with_supervisor_final</template>
     </alerts>
@@ -196,7 +196,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Trainee_separation_notification_trainee_no_supervisor_final</template>
     </alerts>
@@ -208,7 +208,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Trainee_separation_notification_trainee_with_supervisor_final</template>
     </alerts>
