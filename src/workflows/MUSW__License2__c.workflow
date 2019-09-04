@@ -379,7 +379,7 @@
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
-            <value>In Review</value>
+            <value>In-Review</value>
         </criteriaItems>
         <description>Automation rule for email notification: Application submission</description>
         <triggerType>onAllChanges</triggerType>
