@@ -2,13 +2,13 @@
     doInit : function(component, event, helper) {
         var accId = component.get("v.accountId");
         console.log('draft account id----'+accId);
-        helper.fetchData(component,event, helper);
-        helper.fetchActionDetails(component,event,helper);
-        helper.getHelptextHelper(component, event, helper);
+        helper.fetchData(component,event);
+        helper.fetchActionDetails(component,event);
+        helper.getHelptextHelper(component, event);
         
     },
     
-    getHelpText : function(component, event, helper) {
+    getHelpText : function(component, event) {
         var htmap = component.get("v.helptextmap");
         console.log('htmap::'+JSON.stringify(htmap));
         var license_Status = event.currentTarget.getAttribute("data-status");
@@ -22,7 +22,7 @@
         console.log('value::'+value);
     },
     
-    editDraftLicenseApplication :  function(component,event,helper){
+    editDraftLicenseApplication :  function(component,event){
         var ctarget = event.currentTarget;
         console.log('inside draftLicense::');
         sessionStorage.setItem("applicationId", ctarget.getAttribute("data-recordId"));
@@ -39,7 +39,7 @@
         }
     },
     
-    deleteDraftLicenseApplication: function(component, event, helper) {
+    deleteDraftLicenseApplication: function(component, event) {
         var ctarget = event.currentTarget;
         var application_Id = ctarget.getAttribute("data-recordId");
     },
@@ -67,7 +67,7 @@
         component.set("v.actionclicked",actionName); 
         
         if(hasTask){
-            helper.actionRequest(component, event, helper);     
+            helper.actionRequest(component, event);     
         }
         
     } 

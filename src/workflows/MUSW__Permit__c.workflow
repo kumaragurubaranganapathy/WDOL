@@ -20,6 +20,33 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PermitCityDefault</fullName>
+        <field>MUSW__Job_Location_City__c</field>
+        <formula>&quot;&quot;</formula>
+        <name>Permit City - Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PermitExpirywhenIssuedSet</fullName>
+        <field>MUSW__Expiration_Date__c</field>
+        <formula>MUSW__Issued_Date__c + 365</formula>
+        <name>Permit Expiry when Issued - Set</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PermitPostZipCodeDefault</fullName>
+        <field>MUSW__Job_Location_Post_Zip_Code__c</field>
+        <formula>&quot;&quot;</formula>
+        <name>Permit Post Zip Code - Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>MUSW__Blank Permit City %26 Zip</fullName>
         <active>false</active>

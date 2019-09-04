@@ -1,16 +1,16 @@
 ({
     doInit : function(component, event, helper) {
-        helper.doInit(component, event, helper);
+        helper.doInit(component, event);
       
     },
-    cancelBusiness : function(component,event,helper) {
+    cancelBusiness : function(component,event) {
         component.set('v.accountColumnListData',[]);
         component.find("securityTokenBusiness").set("v.value",'');
         //document.getElementById("businessDiv").addClass("slds-hide");
        // component.set()
         window.history.back();
     },
-    displayBusinessForm : function (component,event,helper) {
+    displayBusinessForm : function (component,event) {
         $A.util.removeClass(component.find("businessForm"), 'slds-hide');	 
         $A.util.addClass(component.find("business"), 'slds-hide');	
     },
@@ -24,14 +24,14 @@
             return false;
         } else {
             inputCmp.set("v.validity", null);
-            helper.searchAccountHelper(component,event,helper);
+            helper.searchAccountHelper(component,event);
         }
     },
     linkContactToAccount : function(component,event,helper){
-        helper.linkContactToAccountHelper(component,event,helper);
+        helper.linkContactToAccountHelper(component,event);
     },    
     redirectRequest : function(component,event,helper){
-        helper.redirectRequest(component,event,helper);
+        helper.redirectRequest(component,event);
     },
      goBack:function(){
         window.history.back();
@@ -48,10 +48,10 @@
             });
             toastEvent.fire(); 
         } else {
-            helper.searchLicenseHelperForActivation(component,event,helper);
+            helper.searchLicenseHelperForActivation(component,event);
         }
     },
-    sendEmail : function(component,event,helper){
+    sendEmail : function(component,event){
         var value=event.getSource().get('v.value'); 
         component.set('v.media',value); 
     },
@@ -77,7 +77,7 @@
                 });
                 toastEvent.fire(); 
             } else{
-                helper.sendEmailHelper(component,event,helper);  
+                helper.sendEmailHelper(component,event);  
             }
                 
         } 
@@ -101,7 +101,7 @@
                     }), 2000
                   )
             } else{
-                helper.sendMailHelper(component,event,helper);  
+                helper.sendMailHelper(component,event);  
             }
         }
     },

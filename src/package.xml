@@ -10065,15 +10065,18 @@
         <members>Task.MUSW__Update_Alerts</members>
         <name>WebLink</name>
     </types>
-    <types>
+	<types>
         <members>Account</members>
         <members>Associations__c</members>
+        <members>BGBK__Bill__c</members>
         <members>BGBK__Refund2__c</members>
         <members>BGBL__Applied_Query__c</members>
         <members>BGBL__Batch_Letter_Job__c</members>
+        <members>BGCK__Answer__c</members>
         <members>Contact</members>
         <members>Education_History__c</members>
         <members>Email_Notification__c</members>
+        <members>Endorsement__c</members>
         <members>Journal_Voucher__c</members>
         <members>MUSW__Account_Contact__c</members>
         <members>MUSW__Application2__c</members>
@@ -10091,16 +10094,24 @@
         <members>MUSW__Receipt__c</members>
         <members>MUSW__Review__c</members>
         <members>MUSW__Submission__c</members>
+        <members>MUSW__Violation_Type__c</members>
         <members>Renewal_Application__c</members>
         <members>Request__c</members>
+        <members>Time_Frame__c</members>
+        <members>User</members>
         <name>Workflow</name>
     </types>
     <types>
         <members>Account.DSPS_Tax_Account_grace_period</members>
         <members>Account.DSPS_Tax_delinquency_Account_Active</members>
         <members>Account.DSPS_Tax_delinquency_Account_OnHold</members>
+        <members>Associations__c.Intern_accept_intern</members>
+        <members>Associations__c.Intern_decline_intern</members>
+        <members>Associations__c.Licensee_accept_business</members>
+        <members>Associations__c.Licensee_accept_licensee_additional_employer</members>
+        <members>Associations__c.Licensee_accept_licensee_one_employer</members>
         <members>Associations__c.Send_Invitaion_email_to_Child_Licensee</members>
-        <members>Associations__c.Send_Invitaion_email_to_Parent_Licensee</members>
+        <members>Associations__c.Send_Invitation_email_to_Parent_Licensee</members>
         <members>Associations__c.Send_email_to_Child_Licensee_about_Declination</members>
         <members>Associations__c.Send_email_to_Child_Licensee_about_acceptance</members>
         <members>Associations__c.Send_email_to_Child_and_parent_Licensee_about_cancelation</members>
@@ -10108,28 +10119,69 @@
         <members>Associations__c.Send_email_to_Parent_Licensee_about_acceptance</members>
         <members>Associations__c.Send_email_to_parent_Licensee</members>
         <members>Associations__c.Send_email_to_parent_Licensee_about_cancelation</members>
+        <members>Associations__c.Trainee_removal_notification_trainee_no_supervisor</members>
+        <members>Associations__c.Trainee_removal_notification_trainee_with_supervisor</members>
+        <members>Associations__c.Trainee_separation_notification_trainee_no_supervisor</members>
+        <members>Associations__c.Trainee_separation_notification_trainee_with_supervisor</members>
         <members>BGBL__Batch_Letter_Job__c.BGBL__Completed_Batch_Letter_Job_Notification</members>
         <members>Contact.DSPS_Tax_Contact_grace_period</members>
         <members>Contact.DSPS_Tax_delinquency_Contact_Active</members>
         <members>Contact.DSPS_Tax_delinquency_Contact_OnHold</members>
+        <members>Education_History__c.Exam_approval_email_Appraiser</members>
+        <members>Education_History__c.Exam_approval_email_RBS</members>
+        <members>Education_History__c.Exam_fail_notification_Geologist</members>
+        <members>Education_History__c.Exam_pass_notification_FG_exam</members>
+        <members>Education_History__c.Exam_pass_notification_Law_Review</members>
         <members>Email_Notification__c.Send_Email_Notification</members>
         <members>Email_Notification__c.Send_Email_for_business_security_code</members>
         <members>Email_Notification__c.Send_Email_for_security_code</members>
         <members>Email_Notification__c.User_Upgrade_Notification</members>
+        <members>Endorsement__c.Email</members>
+        <members>Endorsement__c.Email_Endorsement_add_review</members>
+        <members>Endorsement__c.Email_Endorsement_remove_request</members>
+        <members>MUSW__Account_Contact__c.Accept_inviation</members>
+        <members>MUSW__Account_Contact__c.Account_Admin_accept_business</members>
+        <members>MUSW__Account_Contact__c.Account_Admin_accept_contact</members>
+        <members>MUSW__Account_Contact__c.Account_Admin_decline_business</members>
+        <members>MUSW__Account_Contact__c.Account_Admin_decline_contact</members>
+        <members>MUSW__Account_Contact__c.Account_Admin_invitation_notification_contact</members>
         <members>MUSW__Account_Contact__c.Notify</members>
-        <members>MUSW__Account_Contact__c.Send_Email_About_Acceptance</members>
-        <members>MUSW__Account_Contact__c.Send_Email_About_Declination</members>
-        <members>MUSW__Account_Contact__c.WA_Email_Alert_that_inivitation_is_sent</members>
-        <members>MUSW__Account_Contact__c.WA_Email_Alert_to_accept_invitation_to_join_firm</members>
+        <members>MUSW__Account_Contact__c.Send_invitation_on_contact_addition</members>
+        <members>MUSW__Application2__c.Send_SR_Completed_Email</members>
+        <members>MUSW__Application2__c.Send_SR_Submitted_Email</members>
+        <members>MUSW__Fee__c.send_payment_reminder</members>
         <members>MUSW__License2__c.Application_Submitted_Alert</members>
+        <members>MUSW__License2__c.Application_closed_RFI</members>
+        <members>MUSW__License2__c.Application_closed_RFP</members>
+        <members>MUSW__License2__c.Application_submission</members>
+        <members>MUSW__License2__c.Bond_Expiration</members>
+        <members>MUSW__License2__c.Email_First_license_issued_Active_Design_except_Engineer</members>
+        <members>MUSW__License2__c.Email_First_license_issued_Active_EIT_LSIT_GIT</members>
+        <members>MUSW__License2__c.Email_First_license_issued_Active_Engineer</members>
+        <members>MUSW__License2__c.Email_First_license_issued_Active_Funeraal_Director_Embalmer_Intern</members>
+        <members>MUSW__License2__c.Email_First_license_issued_Active_Funeral_Director_Embalmer</members>
+        <members>MUSW__License2__c.Email_First_license_issued_Active_Notary</members>
+        <members>MUSW__License2__c.First_license_issued_Active_Appraiser_email</members>
+        <members>MUSW__License2__c.First_license_issued_Active_Other_R1</members>
+        <members>MUSW__License2__c.First_license_issued_Inactive_business_association</members>
+        <members>MUSW__License2__c.First_license_issued_Inactive_supervisor_sponsor_association</members>
         <members>MUSW__License2__c.License_Email_Alert</members>
+        <members>MUSW__License2__c.License_expiration_notice_New_application</members>
+        <members>MUSW__License2__c.License_expiration_notice_Renewal_allowed_1</members>
+        <members>MUSW__License2__c.License_expiration_notice_Renewal_allowed_2</members>
         <members>MUSW__License2__c.Polaris_License_Expiration_Notice</members>
+        <members>MUSW__License2__c.Retired_status</members>
         <members>MUSW__Login_UserInfo__c.MUSW__Login_New_User_Created</members>
         <members>Request__c.AMR_Approval_Notification</members>
+        <members>Request__c.Approval_to_Reschedule_Exam</members>
         <members>Request__c.Email_to_Request_Applicant_when_request_is_approved</members>
         <members>Request__c.Email_to_Request_Applicant_when_request_is_rejected</members>
+        <members>Request__c.Maintenance_request_complete</members>
+        <members>Request__c.Maintenance_submission_review_required</members>
+        <members>Request__c.Notification_on_AMR_Approval_to_Reschedule_Exam</members>
         <name>WorkflowAlert</name>
     </types>
+    
     <types>
         <members>Account.Set_SecurityCode</members>
         <members>Associations__c.Update_Child_License_email</members>

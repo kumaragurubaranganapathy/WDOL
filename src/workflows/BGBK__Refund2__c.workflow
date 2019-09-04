@@ -10,6 +10,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Mark_Approval_Status_as_Approved</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Mark Approval Status as Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Mark_Approval_Status_as_Rejected</fullName>
         <field>Approval_Status__c</field>
         <literalValue>Rejected</literalValue>
