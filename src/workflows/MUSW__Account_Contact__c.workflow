@@ -19,7 +19,7 @@
             <field>LastModifiedById</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Account_Admin_accept_business_final</template>
     </alerts>
@@ -35,7 +35,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Account_Admin_accept_contact_final</template>
     </alerts>
@@ -46,7 +46,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Account_Admin_decline_business_final</template>
     </alerts>
@@ -58,7 +58,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Account_Admin_decline_contact_final</template>
     </alerts>
