@@ -11,7 +11,7 @@
         component.set("v.taskId",taskId);
         component.set("v.actionclicked",'Declined');
         
-        helper.actionRequest(component, event, helper);
+        helper.actionRequest(component, event);
     },
     acceptRequest : function(component, event, helper) {
         console.log("inside acceptd");
@@ -30,31 +30,31 @@
         component.set("v.ServiceRequestType","AMC Controlling Person Registration");
         component.set("v.actionclicked",'Accepted');
         component.set("v.accountContact",ctarget.getAttribute("data-whatid"));
-        debugger;
+        //debugger;
         console.log("DCP::"+DCP);
         if(acctName == 'Appraisal Management Companies' && (designation == 'Designated Controlling Person' || designation == 'Controlling person')){
             console.log("acctName::"+acctName);
             console.log( "v.accountContact"+ ctarget.getAttribute("data-whatid"));
-            helper.insertRequest(component,event,helper); 
+            helper.insertRequest(component,event); 
         }else{
-        	helper.actionRequest(component, event, helper,subject);    
+        	helper.actionRequest(component, event,subject);    
         }
         
     },
-    proceedRequest : function(component, event, helper) {
-        //helper.proceedRequest(component, event, helper);
+    proceedRequest : function(component, event) {
+        //helper.proceedRequest(component, event);
         
     },
     renewRequest : function(component, event, helper) {
-        helper.proceedRequest(component, event, helper);
+        helper.proceedRequest(component, event);
     },
     payFees : function(component, event, helper) {
-        helper.payFees(component, event, helper);
+        helper.payFees(component, event);
     },
     updateRequest : function(component, event, helper) {
-        helper.updateRequest(component, event, helper);
+        helper.updateRequest(component, event);
     },
-    handleClick : function(component, event, helper){
+    handleClick : function(component, event){
         var portal_Home_URL = component.get("v.portalURL");
         var licenseSelectionPage_URI = portal_Home_URL+'licenseSelectionPage';
     	window.open(licenseSelectionPage_URI, "_self");
@@ -70,10 +70,10 @@
         console.log("taskdId::"+ taskId);
         component.set("v.taskId",taskId);
         component.set("v.actionclicked",'Accepted');
-        helper.actionRequest(component, event, helper);
+        helper.actionRequest(component, event);
     },
     
-    openModelReschedule : function(component, event, helper) {
+    openModelReschedule : function(component, event) {
         var taskRecordForModel = event.getSource().get("v.value");
         console.log('Value==' + JSON.stringify(taskRecordForModel));
         component.set("v.taskRecordForModel", taskRecordForModel);
@@ -81,34 +81,34 @@
         component.set("v.isOpenExam", true);
     },
     
-    closeModelExamReschedule : function(component, event, helper) {
+    closeModelExamReschedule : function(component, event) {
         component.set("v.isOpenExam", false);
         
     } ,
     linkProfLic : function(component,event,helper){
-        helper.linkProfLic(component,event);
+        helper.linkProfLic(component);
     },
     linkBizLic : function(component,event,helper){
-        helper.linkBizLic(component,event);
+        helper.linkBizLic(component);
     },
     redirectLicense : function(component,event,helper){
-        helper.redirectLicense(component,event);
+        helper.redirectLicense(component);
     },
     redirectBusiness : function(component,event,helper){
-        helper.redirectBusiness(component,event);
+        helper.redirectBusiness(component);
     },
     
     goToProfDashboard : function(component,event,helper){
-        helper.goToProfDashboard(component,event);
+        helper.goToProfDashboard(component);
     },
     bizLicApp : function(component,event,helper){
-        helper.bizLicApp(component,event);
+        helper.bizLicApp(component);
     },
     goToBizDashboard : function(component,event,helper){
-        helper.goToBizDashboard(component,event);
+        helper.goToBizDashboard(component);
     },
     openTrainingApp : function(component,event,helper){
-        helper.openTrainingApp(component,event);
+        helper.openTrainingApp(component);
     },
     StartRequestInformation : function(component,event,helper){
         helper.StartRequestInformationHelper(component,event);

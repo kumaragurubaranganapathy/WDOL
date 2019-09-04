@@ -1,5 +1,5 @@
 ({
-    doInit : function(component,event) {
+    doInit : function(component) {
         var ratingValues = [
             {
                 "index":1,                 
@@ -37,7 +37,7 @@
             var emptyId = 'empty'+ index;
             
             var halfStar = document.querySelector("#"+halfId);
-            var emptyStar = document.querySelector("#"+emptyId);
+            //var emptyStar = document.querySelector("#"+emptyId);
             halfStarArray.forEach(function(element){
                 var elem = element.getElement();
                 if(elem.dataset.index===index)
@@ -70,7 +70,7 @@
             value = index;     
         }
         if(className==="full"){
-            var full = 'full'+ index;
+            //var full = 'full'+ index;
             var emptyId = 'empty'+ index;
             
             /*var halfStar = document.querySelector("#"+halfId);
@@ -105,7 +105,7 @@
         component.set("v.userfeedback", feedback);
     },
     
-    saveFeedbackForm : function(component, event){
+    saveFeedbackForm : function(component){
         console.log('FeedBack value==' + JSON.stringify(component.get("v.userfeedback")));
         console.log('Create Record...');
         var userfeedback = component.get("v.userfeedback");
@@ -148,7 +148,7 @@
         //window.location.href='/lightningwashington/s/newdashboard';
         
     },
-    skipFeedback : function(component,event) {
+    skipFeedback : function(component) {
         var isbuz = sessionStorage.getItem("isBusinesss");
         var sPageURL = document.URL;
         var isbusiness;
