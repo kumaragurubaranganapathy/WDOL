@@ -32,7 +32,7 @@
             <recipient>deploymentuser@polaris</recipient>
             <type>user</type>
         </recipients>
-        <senderAddress>OrgWideEmailAddress</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_On_Hold</template>
     </alerts>
