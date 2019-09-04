@@ -1,4 +1,4 @@
-<apex:page standardController="MUSW__Fee__c" extensions="CartController" tabStyle="BGBK__Cart__c"
+﻿<apex:page standardController="MUSW__Fee__c" extensions="CartController" tabStyle="BGBK__Cart__c"
     recordSetVar="c" action="{!initOrder}" id="p" sidebar="false" showHeader="false"
     title="Cart" docType="html-5.0" applyHtmlTag="false" applyBodyTag="false">
     <title>Cart</title>
@@ -225,7 +225,7 @@
             <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
         </apex:outputPanel>
         --->
-        <apex:sectionHeader title="Cart" subtitle="{!IF(con != null, con.Name + '’s Cart', 'Your Cart')}" id="h">
+        <apex:sectionHeader title="Cart" subtitle="{!IF(isBusinessCart, a.Name + '’s Cart', IF(con != null, con.Name + '’s Cart', 'Your Cart'))}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
         </apex:sectionHeader>
