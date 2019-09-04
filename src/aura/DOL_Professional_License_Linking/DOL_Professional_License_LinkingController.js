@@ -1,19 +1,19 @@
 ({
     doInit : function(component, event, helper) {
-        helper.doInit(component, event, helper);
-        helper.getProfessional(component, event, helper);
+        helper.doInit(component, event);
+        helper.getProfessional(component, event);
     },   
-    displayProfessionalForm : function(component,event,helper) {
+    displayProfessionalForm : function(component,event) {
          $A.util.removeClass(component.find("professionalForm"), 'slds-hide');
          $A.util.addClass(component.find("professionalLicenseDetails"), 'slds-hide');	
     },
-    showSecurityCode :function(component,event,helper) {
+    showSecurityCode :function(component,event) {
         component.set("v.hasSecurityCode",true);
         component.set("v.doesNotHaveSecurityCode",false);
         var buttonData = document.getElementById("buttonData");
         buttonData.classList.remove("slds-hide"); 
     },
-    hideSecurityCode :function(component,event,helper) {
+    hideSecurityCode :function(component,event) {
         var buttonData = document.getElementById("buttonData");
         buttonData.classList.remove("slds-hide"); 
     },
@@ -29,7 +29,7 @@
             allValid=  true;
         }
         if (allValid) {
-            helper.searchLicenseHelper(component,event,helper);
+            helper.searchLicenseHelper(component,event);
         } else {
             return false;
         }
@@ -41,12 +41,12 @@
                 return validSoFar && !inputCmp.get('v.validity').valueMissing;
             }, true);
         if (allValid) {
-            helper.searchLicenseHelper(component,event,helper);
+            helper.searchLicenseHelper(component,event);
         } else {
             return false;
         }
     },
-    cancelBusiness : function(component,event,helper) {
+    cancelBusiness : function(component,event) {
         component.set('v.LicenseColumnListData',[]); 
         component.find('securityToken').reduce(function (validSoFar, inputCmp) {
            inputCmp.set('v.value','');
@@ -55,12 +55,12 @@
         window.history.back();
     },
     linkLicenseToContact :function(component,event,helper) {
-      helper.linkLicenseToContactHelper(component,event,helper);
+      helper.linkLicenseToContactHelper(component,event);
     },
     redirectRequest : function(component,event,helper){
-        helper.redirectRequest(component,event,helper);
+        helper.redirectRequest(component,event);
     },
-    sendEmail : function(component,event,helper){
+    sendEmail : function(component,event){
        var value=event.getSource().get('v.value'); 
        component.set('v.media',value); 
     },
@@ -86,7 +86,7 @@
                 });
                 toastEvent.fire(); 
             } else{
-                helper.sendEmailHelper(component,event,helper);  
+                helper.sendEmailHelper(component,event);  
             }
                 
         } 
@@ -110,7 +110,7 @@
                     }), 2000
                   )
             } else{
-                helper.sendMailHelper(component,event,helper);  
+                helper.sendMailHelper(component,event);  
             }
         }
     },
@@ -129,7 +129,7 @@
             });
             toastEvent.fire(); 
         } else {
-            helper.searchLicenseHelperForActivation(component,event,helper);
+            helper.searchLicenseHelperForActivation(component,event);
         }
         
     },
