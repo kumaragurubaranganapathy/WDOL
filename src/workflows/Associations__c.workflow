@@ -68,7 +68,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Licensee_invitation_notification_business_final</template>
     </alerts>
@@ -80,7 +80,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Designated_person_invitation_notification_business_final</template>
     </alerts>
@@ -103,7 +103,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Designated_person_accept_licensee_final</template>
     </alerts>
@@ -126,7 +126,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Designated_person_decline_RBS_business_final</template>
     </alerts>
@@ -138,7 +138,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>sisinkar@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Designated_person_accept_business_final</template>
     </alerts>

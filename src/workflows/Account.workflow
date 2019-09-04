@@ -5,8 +5,8 @@
         <description>DSPS Tax Account grace period</description>
         <protected>false</protected>
         <recipients>
-            <recipient>deploymentuser@polaris</recipient>
-            <type>user</type>
+            <recipient>System_Admin_Group</recipient>
+            <type>group</type>
         </recipients>
         <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
