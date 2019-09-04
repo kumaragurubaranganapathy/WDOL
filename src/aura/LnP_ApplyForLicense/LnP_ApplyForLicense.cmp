@@ -285,7 +285,7 @@
                                                                 <lightning:helptext content="{!question.helptext}"/>
                                                             </label>
                                                         </aura:if>
-                                                        <lightning:select class="{!question.helptext != null?'help-text':'no-help'}" aura:id="{!(question.isMandatoryQues?'validate':'no-validate')}" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}" variant="{!question.helptext != null?'label-hidden':''}">
+                                                        <lightning:select class="{!question.helptext != null?'help-text':'no-help'+' field-item'}" aura:id="{!(question.isMandatoryQues?'validate':'no-validate')}" name="{!section.sectionName+questionItem}" label="{!question.label}" value="{!question.value}" onchange="{!c.showDependentQuestions}" variant="{!question.helptext != null?'label-hidden':''}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 <option value="{!option}">{!option}</option>
                                                             </aura:iteration>

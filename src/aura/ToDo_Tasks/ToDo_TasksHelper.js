@@ -1,5 +1,5 @@
 ({
-    doInit : function(component, event, helper) {
+    doInit : function(component, event) {
         console.log('Entering task doInit');
         var action = component.get("c.getTodoList");
         action.setCallback(this, function(response){
@@ -57,7 +57,7 @@
         $A.enqueueAction(actionName); 
     },
     
-    showBusinessAccountAlert : function(component, event, helper) {
+    showBusinessAccountAlert : function(component, event) {
         var action = component.get("c.hasBusinessAccounts");
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -70,7 +70,7 @@
         });
         $A.enqueueAction(action);    
     },
-        showLicenseAlert : function(component, event, helper) {
+        showLicenseAlert : function(component, event) {
         var action = component.get("c.hasLicenses");
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -144,7 +144,7 @@
         $A.enqueueAction(action);
        
     },
-    actionRequest : function(component, event, helper,subject) {
+    actionRequest : function(component, event,subject) {
         console.log('inside actionRequest');
         var action = component.get("c.updateTask");
         action.setParams({"taskId": component.get("v.taskId"),"subStatus": component.get("v.actionclicked")});
@@ -194,7 +194,7 @@
                             });
                         }
                 toastEvent.fire();
-                this.doInit(component,event,helper);
+                this.doInit(component,event);
             }else{
                 console.log('inside error');
                 var toastEvent = $A.get("e.force:showToast");
@@ -209,7 +209,7 @@
         $A.enqueueAction(action);  
     },
     
-    insertRequest : function(component,event,helper){
+    insertRequest : function(component,event){
         console.log("inside insertRequest::");
         
         var action = component.get("c.insertRequest");
@@ -259,10 +259,10 @@
         $A.enqueueAction(action);   
     },
     
-    proceedRequest: function(component, event, helper){
+    /*proceedRequest: function(component, event){
         
-    },
-    linkProfLic : function(component,event){
+    },*/    
+    linkProfLic : function(component){
         var str ='/professional-license-linking';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -270,7 +270,7 @@
         });
         urlEvent.fire();
     },
-    linkBizLic : function(component,event){
+    linkBizLic : function(component){
         var str ='/business-license-linking';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -278,7 +278,7 @@
         });
         urlEvent.fire();
     },
-    redirectLicense : function(component,event){
+    redirectLicense : function(component){
         var str ='/licenseSelectionPage';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -286,7 +286,7 @@
         });
         urlEvent.fire();
     },
-    redirectBusiness : function(component,event){
+    redirectBusiness : function(component){
         var str ='/new-business';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -294,7 +294,7 @@
         });
         urlEvent.fire();
     },
-    goToProfDashboard : function(component,event){
+    goToProfDashboard : function(component){
         var str ='/newdashboard';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -302,7 +302,7 @@
         });
         urlEvent.fire();
     },
-    bizLicApp : function(component,event){
+    bizLicApp : function(component){
         var str ='/licenseSelectionPage?biz-lic';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -310,7 +310,7 @@
         });
         urlEvent.fire();
     },
-    goToBizDashboard : function(component,event){
+    goToBizDashboard : function(component){
         var str ='/business';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -318,7 +318,7 @@
         });
         urlEvent.fire();
     },
-    openTrainingApp : function(component,event){
+    openTrainingApp : function(component){
         var str ='/licenseSelectionPage';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
@@ -327,7 +327,7 @@
         urlEvent.fire();
     },
 	
-    fetchData : function (component,event,helper) {
+    fetchData : function (component,event) {
         var action = component.get("c.getAllAccounts");
         action.setCallback(this, function(response) {
             var state = response.getState();

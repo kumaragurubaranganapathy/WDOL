@@ -1,5 +1,5 @@
 ({
-    fetchData : function (component,event,helper) {
+    fetchData : function (component,event) {
         var accountIdValue = component.get("v.accountId");
         console.log('acccount id value draftapp ',accountIdValue)
         var action = component.get("c.getAllApplications");
@@ -46,7 +46,7 @@
         $A.enqueueAction(action);
     },
     
-    fetchActionDetails : function(component,event,helper){
+    fetchActionDetails : function(component,event){
         var action = component.get("c.getMandatoryActions");
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -65,7 +65,7 @@
         $A.enqueueAction(action);
     },
     
-    actionRequest : function(component,event,helper){
+    actionRequest : function(component,event){
         console.log("inside actionrequest");
         console.log("actionClicked::"+component.get("v.actionclicked"));
         var action = component.get("c.actionOnTask");
