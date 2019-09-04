@@ -10,8 +10,10 @@
             <div class="text-wrap">
                 <lightning:icon iconName="utility:warning" alternativeText="Warning!" variant="warning"/>
                 <div class="EerrorHeading">IMPORTANT</div>
-                <div class="EerrorSentnce">Support for Internet Explorer 11 to access Lightning</div>
-                <div class="Eunderline EerrorSentnce">Experience is retiring beginning in Summer'16.</div>
+                <ui:outputRichText class="Eunderline EerrorSentnce" value="{!$Label.c.ExplorerErrorText}"/>
+                
+              <!--  <div class="EerrorSentnce">Support for Internet Explorer 11 to access Lightning</div>
+                <div class="Eunderline EerrorSentnce">Experience is retiring beginning in Summer'16.</div>-->
                 <div class="download slds-m-vertical_medium">DOWNLOAD</div>
                 <div class="imgLayout">
                     <div class="layout" ><img src="{!$Resource.LnP_Icons+'/LnP_Icons/chrome.png'}" alt="chrome" /><div><a class="link" href="https://google-chrome.en.uptodown.com/windows/download" target="_blank">Chrome</a><img class="dwnldImg" src="{!$Resource.LnP_Icons+'/LnP_Icons/group.png'}"></img></div></div>
@@ -35,7 +37,7 @@
                         </ul>
                     </div>
                     <div class="slds-m-top_small">Please take a screenshot and mail to</div>
-                    <div class="slds-m-bottom_small telstyle">email@dol.wa.gov</div>
+                    <div class="slds-m-bottom_small telstyle">{!$Label.c.ErrorEmailID}"</div>
                     <div>Or,reach out to us on</div>
                     <div class="telstyle">{!$Label.c.Phone_number_Activation_code}</div>
                 </div>
