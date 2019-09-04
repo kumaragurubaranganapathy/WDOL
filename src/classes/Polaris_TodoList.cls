@@ -5,10 +5,17 @@ public with Sharing class  Polaris_TodoList{
     
     @AuraEnabled
     public static List<task> getTodoList(){
+       try{
         //Status =:'Pending',
         User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
         system.debug('currentUser :'+currentUser);
-        return [select id,Description,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status ='Pending' and Email__c=:currentUser.Email ];
+        Contact con = [Select id,Email FROM Contact where id=:currentUser.ContactId];
+        return [select id,Description,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Designation__c from task where Status ='Pending' and Email__c=:con.Email ];
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }    
     }
     @AuraEnabled
      public static String insertEducationRequestInformation(String licId,String licenseType, String board,String ServiceRequestType,String ExamRecordId)
