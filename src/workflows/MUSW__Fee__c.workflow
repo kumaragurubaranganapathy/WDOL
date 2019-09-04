@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>send_payment_reminder</fullName>
+        <description>send payment reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>abhilassharma@deloitte.wadolbuspro</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Fee_Past_Due_Payment_Notice</template>
+    </alerts>
     <fieldUpdates>
         <fullName>FeeAmountSet</fullName>
         <field>MUSW__Amount__c</field>
@@ -58,7 +69,7 @@ MUSW__Price_Per_Unit__c)</formula>
     </fieldUpdates>
     <rules>
         <fullName>MUSW__Blank Flat Fee Amount</fullName>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>(1 OR 2) and 3</booleanFilter>
         <criteriaItems>
             <field>MUSW__Fee__c.MUSW__Amount__c</field>

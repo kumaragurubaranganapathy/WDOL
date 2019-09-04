@@ -12,7 +12,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Send_Email_Reminder</template>
     </alerts>
@@ -24,7 +24,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Security_Code_Email_Business_path</template>
     </alerts>
@@ -36,7 +36,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Security_Code_Email</template>
     </alerts>
@@ -48,7 +48,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/User_Upgrade_Notification</template>
     </alerts>
@@ -110,7 +110,7 @@
             <name>Update_Sent_Email_field</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Email_Notification__c.Body__c</field>
             <operation>notEqual</operation>

@@ -5,10 +5,10 @@
         <description>DSPS Tax Contact grace period</description>
         <protected>false</protected>
         <recipients>
-            <recipient>System_Admin_Group</recipient>
-            <type>group</type>
+            <recipient>vagoel@deloitte.wadolbuspro</recipient>
+            <type>user</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_Grace_Period</template>
     </alerts>
@@ -17,10 +17,10 @@
         <description>DSPS Tax delinquency Contact Active</description>
         <protected>false</protected>
         <recipients>
-            <recipient>System_Admin_Group</recipient>
-            <type>group</type>
+            <recipient>vagoel@deloitte.wadolbuspro</recipient>
+            <type>user</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_Active</template>
     </alerts>
@@ -29,10 +29,10 @@
         <description>DSPS Tax delinquency Contact OnHold</description>
         <protected>false</protected>
         <recipients>
-            <recipient>System_Admin_Group</recipient>
-            <type>group</type>
+            <recipient>vagoel@deloitte.wadolbuspro</recipient>
+            <type>user</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>niinani@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Contact_On_Hold</template>
     </alerts>
@@ -91,7 +91,7 @@
             <name>Contact_Update_Record_Type_on_Create</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Contact.LastName</field>
             <operation>notEqual</operation>
