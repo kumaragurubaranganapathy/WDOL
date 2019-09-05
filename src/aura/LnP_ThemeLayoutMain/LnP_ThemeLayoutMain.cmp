@@ -33,7 +33,15 @@ DEVELOPER           DATE            DESCRIPTION
             </div>
             
             <aura:set attribute = "else">
-                <c:ExplorerErrorPage dispPage = "true" />
+                <div class="main-content ie-content">
+                    <div class="ie-header">                       
+                        <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+                    </div>  
+                    <c:ExplorerErrorPage dispPage = "true" />
+                    <div class="footer">               
+                        <c:LnP_Footer />
+                    </div> 
+                </div>
             </aura:set>
             
         </aura:if>

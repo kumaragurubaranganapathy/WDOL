@@ -66,6 +66,15 @@
 .THIS .side-bar{
     width: 25%;  
 }
+.THIS .ie-header{
+    width:100%;
+    padding:1.5rem;	
+	background-color:t(headerclr);
+}
+.THIS.main-content.ie-content .footerWrapper{
+    position:absolute;
+    bottom:0px;
+}
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS .body{
         width: 100%;; 
@@ -323,6 +332,7 @@ padding:0;
 .THIS .screen-two .slds-form-element__label{
     padding:0;
     max-width:100%;
+    
 }
 .THIS .screen-two .btnnrml{
     font-weight: token(txtfontweight);
@@ -709,6 +719,7 @@ margin-right:10%;
     .THIS  .field-item .slds-form-element__control{
         width:100%;
     }
+    
     
 }
 .THIS .slds-spinner_container {
