@@ -1,7 +1,7 @@
 /*
 Controller for ToDoList
 */
-public with Sharing class  Polaris_TodoList{
+public without Sharing class  Polaris_TodoList{
     
     @AuraEnabled
     public static List<task> getTodoList(){
