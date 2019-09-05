@@ -39,6 +39,11 @@
 .THIS h1,.THIS h2,.THIS h3,.THIS h4,.THIS h5,.THIS h6{
     font-family: t(merrifontfamily);
 }
+.THIS .ie-header{
+    width:100%;
+    padding:1.5rem;	
+	background-color:t(headerclr);
+}
 .THIS .header{
     width:100%;
 }
@@ -47,6 +52,10 @@
 }
 .THIS .main-content .contentRegion{
     padding:0;
+}
+.THIS.main-content.ie-content .footerWrapper{
+    position:absolute;
+    bottom:0px;
 }
 /*common style for table */
 .THIS .slds-table thead th{
