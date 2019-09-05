@@ -309,6 +309,8 @@
                                         component.set("v.serverStatus", "success"); 
                                         //component.set("v.storeServerValue", result[0].Id);
                                         component.set("v.isOpen", true); 
+                                        var isBLic = component.get("v.isbusinsessLicense");
+                                        sessionStorage.setItem('isBuz',isBLic);
                                         // no fees code ends
                                     }else{ 
                                         that.hideSpinner(component, event);

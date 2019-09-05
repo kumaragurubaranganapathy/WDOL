@@ -128,19 +128,25 @@
                                        'Grade__c':''
                                       }
                 component.set("v.userfeedback",newUserfeedback);
-                var isbuz = sessionStorage.getItem("isBusinesss");
-                var sPageURL = document.URL;
-                var isbusiness;
-                if(sPageURL.includes('isBizLic=')){
-                    var sURLVariables = sPageURL.split('=');
-                    isbusiness= sURLVariables[1];
-                } 
+                var isbusiness;  
+                var v = sessionStorage.getItem('isBuz');
+                //console.log('log on feedabck'+v);
+               if(v != undefined && v == 'true') {
+                    isbusiness = true;  
+                } else {
+                    isbusiness = false;
+                }
                 var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
+               // var homePageUrl = $A.get("$Label.c.Polaris_Portal_Home");
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
                 });
                 urlEvent.fire();
+                sessionStorage.clear();
+            }
+            else{
+                console.log('ERRRORRRRRRRRR');
             }
             
         });
@@ -149,19 +155,21 @@
         
     },
     skipFeedback : function(component) {
-        var isbuz = sessionStorage.getItem("isBusinesss");
-        var sPageURL = document.URL;
         var isbusiness;
-        if(sPageURL.includes('isBizLic=')){
-        	var sURLVariables = sPageURL.split('=');
-        	isbusiness= sURLVariables[1];
+        
+        var v = sessionStorage.getItem('isBuz');
+        if(v != undefined && v == 'true') {
+            isbusiness = true;  
+        } else  {
+            isbusiness = false; 
         }
         var str =  isbusiness ? '/business?app-flow' : '/newdashboard?app-flow';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str
         });
-        urlEvent.fire();
+        urlEvent.fire();    
+        sessionStorage.clear();
     }
     
 })
