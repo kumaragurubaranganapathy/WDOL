@@ -925,7 +925,20 @@ public class Polaris_ApplyForLicenseController {
                             lstEduHist.add(EduHist);
                         }
                         update lstEduHist;                
-                    }   
+                    }
+                     //update Affiliated Locations 
+                    List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
+                    if(appListOtherDetils[0].Parcels__r != null && appListOtherDetils[0].Parcels__r.size()>0 ){
+                        for(MUSW__Parcel__c parcel : appListOtherDetils[0].Parcels__r){
+                            if(parcel.RecordType.Name == 'Affiliated Location'){
+                                parcel.License__c = licenseID[0].Id; 
+                                lstParcels.add(parcel);
+                            }
+                        }               
+                    }
+                    if(!lstParcels.isEmpty()){
+                        update lstParcels; 
+                    }    
                     List<BGCK__Answer__c> lstAnswers = new List<BGCK__Answer__c>();
                     List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
                     String providerName = '';
