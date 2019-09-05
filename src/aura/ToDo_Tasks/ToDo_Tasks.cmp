@@ -105,7 +105,7 @@ _______________________________________________________________
                     <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                You have been invited to join a business
+                                Invitation to join <!--Bug 7012-->
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
                                 <!--<lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
