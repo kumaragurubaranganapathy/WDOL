@@ -321,7 +321,7 @@
                         <lightning:layoutItem size="12" mediumDeviceSize="3" class="nav-links">
                             <div class="{!'links-wrapper' + (v.showMoreDashboard?(v.expandedMenu?' exp-wrapper':' mobile-exp'):' slds-show_medium')}">
                                 <ul class="{! 'links-list' + (v.expandedMenu?' expanded':'')}">
-                                    <li data-index="1" aura:id="action-item"><a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">Apply Business License</a></li>
+                                    <li data-index="1" aura:id="action-item"><a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">Apply for Business License</a></li>
                                     <!--<li data-index="2" aura:id="action-item"><a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a></li> -->
                                     <li data-index="2" aura:id="action-item"><a onclick="{!c.updateBusinessInfo}" href="javascript:void(0);">Close Your Business</a></li>
                                    <!-- <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li> -->
