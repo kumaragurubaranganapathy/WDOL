@@ -217,7 +217,7 @@
 				if(item.isMandatoryQues){
 					if(item.regex != undefined && item.regex != null && item.regex != ""){
 						var valueVal = fieldValuesWrapper[index].get("v.value");
-						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString.trim() != undefined && valueVal.toString.trim() != ""){
+						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
 							if(item.regex == "Date-Validation"){
 								var valueVal = fieldValuesWrapper[index].get("v.value");
 								var today = new Date();
@@ -255,7 +255,7 @@
 						}
 					} else {
 						var valueVal = fieldValuesWrapper[index].get("v.value");
-						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString.trim() != undefined && valueVal.toString.trim() != ""){
+						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
 							return true;
 						} else {
 							errorMessage = item.errormsg != undefined? item.errormsg: item.label+" is required.";
@@ -265,7 +265,7 @@
 				} else {
 					if(item.regex != undefined && item.regex != null && item.regex != ""){
 						var valueVal = fieldValuesWrapper[index].get("v.value");
-						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString.trim() != undefined && valueVal.toString.trim() != ""){
+						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
 							if(item.Regex_Validation__c == "Date-Validation"){
 								var valueVal = fieldValuesWrapper[index].get("v.value");
 								var today = new Date();
