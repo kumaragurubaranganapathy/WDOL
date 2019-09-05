@@ -110,7 +110,13 @@ public class Polaris_ServiceRequestController {
             labelToFields.message = Ques.Message__c;
             labelToFields.endorsementType=Ques.Endorsement_Type__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
-            if(questionSection == Ques.Section__c || Ques.Section__c==null){
+            if(Ques.isRequired__c==true){
+            	labelToFields.isMandatoryQues = true;
+             }
+             else{
+                labelToFields.isMandatoryQues = false;
+             }
+			if(questionSection == Ques.Section__c || Ques.Section__c==null){
                 labelToFields.questionSection ='null';
             }
             else{
