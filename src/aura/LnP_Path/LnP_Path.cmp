@@ -39,7 +39,7 @@
                            
                             
                             <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"-->
-							<li data-id="{!(var+1)}" class="slds-path__item" role="presentation">
+							<li data-id="{!(var+1)}" class="slds-path__item" role="presentation" onclick="{!c.setCurrTab}">
 								<a style="cursor: default;" title="{!tabPath.header}">
                                     <!-- {!(var+1) + ' '}{!v.currentTab} -->
                                     <aura:if isTrue="{!tabPath.errorImage}">
