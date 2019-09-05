@@ -23,7 +23,12 @@
     
     <div class="lic-renew-wrapper">
         <div class="page-title-wrapper">
-            <h1 class="page-title">Renew a License</h1>
+            <aura:if isTrue="{!v.RenewReinstate == 'Renewal'? true :false}">
+				<h1 class="page-title">Renew a License</h1>
+            </aura:if>
+            <aura:if isTrue="{!v.RenewReinstate == 'Reinstatement'? true :false}">
+				<h1 class="page-title">Reinstate a License</h1>
+            </aura:if>
         </div>
         <lightning:recordEditForm aura:id="recordViewForm" objectApiName="MUSW__License2__c">
             <div id="applicationInstuctionDiv" class="card-wrapper slds-wrap">
