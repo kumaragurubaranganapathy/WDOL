@@ -395,7 +395,7 @@ public class Polaris_ServiceRequestController {
             system.debug('questioncount '+questioncount);
             system.debug('questionsAnswered '+questionsAnswered);
             if(questionsAnswered != questioncount ){
-                questionsIncomplete = true;
+                //questionsIncomplete = true;
             }
         }
         if(submissionFields.size()>0){

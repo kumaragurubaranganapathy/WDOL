@@ -2,7 +2,7 @@
     <aura:attribute name="section" type="List"/>
     <aura:attribute name="currentTab" type="Integer" default="1"/>
     <aura:attribute name="totalTabs" type="Integer" default="1"/>
-	<aura:attribute name="AMRlabel" type="String"/>
+    <aura:attribute name="AMRlabel" type="String"/>
     <aura:attribute name="licenseType" type="String" default="Notary Public"/>
     <aura:attribute name="board" type="String" default="Notary Public"/>
     <aura:attribute name="applicationType" type="String" default="Service Request - Name Change"/>
@@ -16,6 +16,7 @@
     <aura:handler name="LnP_setCurrTabEvent" event="c:LnP_setCurrTabEvent" action="{!c.getCurrTab}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name ="recordId" type="String"/>
+    <aura:attribute name="nextFlag" type="Boolean" default="true"/>
     <aura:attribute name="objectName" type ="String"/>
     <aura:attribute name="SectionError" type="string[]" default="[]"/>
     <aura:attribute name="currSection" type ="String" default=""/>
@@ -49,6 +50,8 @@
     <aura:attribute name="contactRecordId" type="String" />  
     <aura:attribute name="taskDescription" type="String" />    
     <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
+    <aura:attribute name="errorMsgsList" type="List"/>
+    <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
@@ -60,13 +63,22 @@
     </aura:if>
     <div class="content-wrapper">
        <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
-         <aura:if isTrue="{!not(empty(v.AMRlabel))}">
+        <aura:if isTrue="{!not(empty(v.AMRlabel))}">
             <h1 class="subheader">{!v.AMRlabel}</h1>
             <aura:set attribute="else">
                 <h1 class="subheader">{!v.flowType}</h1>
             </aura:set>
         </aura:if> 
+         
+        
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
+        <aura:if isTrue="{!v.showErrorMsgs}">
+            <ul class="error-messages slds-theme_error">
+                <aura:iteration items="{!v.errorMsgsList}" var="item">
+                    <li>{!item}</li>
+                </aura:iteration>
+            </ul>
+        </aura:if>
         <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">
                 {!v.endoMessage}
@@ -98,12 +110,15 @@
                                         
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
+                                            
+                                            
                                             <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
                                                 <div>
                                                     <ui:outputRichText  value="{!responses.question}"/>
                                                 </div>
                                                 <!-- <p> -->  
-                                                <aura:if isTrue="{!responses.answer != null}"> 
+                                                
+                                                <aura:if isTrue="{!or(responses.answer != null,responses.answer != '')}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
                                                         <ui:outputRichText value="{!responses.answer}"/>
@@ -120,7 +135,7 @@
                                                     </aura:set>  
                                                 </aura:if>                 
                                                 <!-- </p> -->
-                                            </div>
+                                            </div>                                            
                                         </aura:iteration>
                                     </div>
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
@@ -265,8 +280,10 @@
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
-                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (question.isMandatoryQues?' ':' not-required ') + 'field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
-                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+													<div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (question.isMandatoryQues?' ':' not-required ') + 'field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                     <!--   <span  class="{!(question.label=='Middle Name or Initial'?'middlename':'')+' slds-form-element__label'}"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3" variant="label-hidden" />-->
+                                                        <span  class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3" variant="label-hidden" />
                                                     </div>
                                                 </aura:if> 
