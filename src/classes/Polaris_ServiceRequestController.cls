@@ -747,7 +747,7 @@ public class Polaris_ServiceRequestController {
                             }
                             lstNewAnswers.add(ans);
                             //Added by Babita
-                            if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null && ans.QuestionDOL__r.Parent_Object_API_Name__c == 'MUSW__License2__c' && ans.QuestionDOL__r.RecordType.DeveloperName == 'Background_Questions'){
+                            if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null && ans.QuestionDOL__r.Parent_Object_API_Name__c == 'MUSW__License2__c' && ans.QuestionDOL__r.RecordType.DeveloperName == 'Background_Questions' && (ans.QuestionDOL__r.Service_Request_Type__c=='Update Project Size' || ans.QuestionDOL__r.Service_Request_Type__c=='Request Duplicate Wall Certificate' )){
                                    mapValueToStr.put(ans.QuestionDOL__r.QuestionFieldAPI__c,ans.Answer_Text__c);
                             }
                         }
