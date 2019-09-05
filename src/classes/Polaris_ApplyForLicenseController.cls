@@ -1433,15 +1433,15 @@ public class Polaris_ApplyForLicenseController {
                                 String quesBody = ans.QuestionDOL__r.Question_Body__c;
                                 String answerText = ans.Answer_Text__c;
                                 String stringToDate = '';
-                                if(quesBody == 'Bond / Policy Number'){
+                                if(quesBody == 'Bond or Policy Number'){
                                     mstLicense.Bond_Number__c = String.valueOf(answerText);
                                 }
                                 
-                                if(quesBody == 'Bond / Insurance Company Name'){
+                                if(quesBody == 'Bond or Insurance Company Name'){
                                     mstLicense.Surety_Bond_Company_Name__c = String.valueOf(answerText);
                                 }
                                 
-                                if(quesBody == 'Bond / Policy Amount'){
+                                if(quesBody == 'Bond or Policy Amount'){
                                     mstLicense.Policy_Amount__c = String.valueOf(answerText);
                                 }
                                 
