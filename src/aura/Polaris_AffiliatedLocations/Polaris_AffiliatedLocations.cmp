@@ -162,84 +162,6 @@
             </div>
         </aura:set>
     </aura:if>
-    
-    <!--<aura:if isTrue="{!v.requestedLocationTableList.length != 0}">        
-        <div>
-            <br></br>
-            <br></br>
-            Requested Locations 
-            <div class="table-wrapper">                        
-                <div class="table-scroll">
-                    <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
-                        <thead>
-                            <tr class="slds-line-height_reset">
-                                <aura:iteration items="{!v.requestedHeaderList}" var="headerData">
-                                    <th class="" scope="col">
-                                        <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
-                                    </th> 
-                                </aura:iteration>
-                              
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <aura:iteration items="{!v.requestedLocationTableList}" var="tableData" indexVar="ind">
-                                <tr class="slds-hint-parent">
-                                    <td data-label="Designated_Engineer_License__c" class="cell-style"> 
-                                        <aura:if isTrue="{!tableData.Designated_Engineer_License__c}">
-                                            <div class="slds-truncate" title="{!tableData.Designated_Engineer_License__c}">{!tableData.Designated_Engineer_License__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                                    <td data-label="Designated_Land_Surveyor_License__c" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Designated_Land_Surveyor_License__c}">
-                                            <div class="slds-truncate" title="{!tableData.Designated_Land_Surveyor_License__c}" >{!tableData.Designated_Land_Surveyor_License__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                    				<td data-label="Country__c" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Country__c}">
-                                            <div class="slds-truncate" title="{!tableData.Country__c}">{!tableData.Country__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                    				<td data-label="MUSW__Street2__c" class="cell-style">
-                                        <aura:if isTrue="{!tableData.MUSW__Street2__c}">
-                                            <div class="slds-truncate" title="{!tableData.MUSW__Street2__c}">{!tableData.MUSW__Street2__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                                    <td data-label="MUSW__State__c" class="cell-style">
-                                        <aura:if isTrue="{!tableData.MUSW__State__c}">
-                                            <div class="slds-truncate" title="{!tableData.MUSW__State__c}" >{!tableData.MUSW__State__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                                    <td data-label="County__c" class="cell-style">
-                                        <aura:if isTrue="{!tableData.County__c}">
-                                            <div class="slds-truncate" title="{!tableData.County__c}">{!tableData.County__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                                    <td data-label="Zip_Postal_Code__c" class="cell-style">
-                                        <aura:if isTrue="{!tableData.Zip_Postal_Code__c}">
-                                            <div class="slds-truncate" title="{!tableData.Zip_Postal_Code__c}">{!tableData.Zip_Postal_Code__c}</div>
-                                            <aura:set attribute="else">None</aura:set>
-                                        </aura:if>
-                                    </td>
-                                    <td data-label="actions" class="cell-style action-cell">
-                                        <div class="slds-truncate">
-                                           <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveClick}" target="_blank">Remove</a>
-									    </div>    
-                                    </td>
-                                </tr>  
-                            </aura:iteration>
-                        </tbody>
-                    </table>                               
-                </div>
-            </div>
-        </div>
-    </aura:if> -->
-  
     <br></br>
     <div class="affiliated-loc-wrapper">
         
@@ -276,12 +198,16 @@
             </aura:if>
            
             <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.parcel.Zip_Postal_Code__c}"  class="field-size address-fields"/>
-             <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" class="field-size address-fields" onchange="{!c.onCountyChange}"> 
+             <aura:if isTrue="{!v.isOutOfCountry}">
+                <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.countyList}" var="eachCounty">
                         <option text="{!eachCounty.label}" value="{!eachCounty.value}" selected="{!eachCounty.selected}"/>
                     </aura:iteration>
-              </lightning:select>
-             
+                </lightning:select>
+                <aura:set attribute="else">
+                    <lightning:input name="county" label="County" value="{!v.parcel.County__c}" required="true" class="field-size address-fields" disabled = "true"/>
+                </aura:set>
+            </aura:if>
             <div class="action-buttons">
                 <lightning:button variant="neutral" label="Cancel" class="{!v.isOneLocation?'cancel-loc':'slds-hide'}" onclick="{!c.cancelLoc}"/>
                 <lightning:button variant="brand" label="Save" onclick="{!c.saveLocation}"/>

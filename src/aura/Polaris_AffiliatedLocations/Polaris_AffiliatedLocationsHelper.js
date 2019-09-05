@@ -8,6 +8,7 @@
     },
     
     saveLocation :  function (component,event,helper){
+        var toastEvent;
     console.log('parcel Object::'+ JSON.stringify(component.get("v.parcel")));
     console.log("remove::"+ component.get("v.remove"));
     var action = component.get("c.AffiliatedLocation");
@@ -19,7 +20,7 @@
                 var Result = actionResult.getReturnValue();
                 console.log('Result::'+ Result);
                 
-                var toastEvent = $A.get("e.force:showToast");
+                 toastEvent = $A.get("e.force:showToast");
                 if(component.get("v.remove")){
                      toastEvent.setParams({
                         "title": 'Success',
@@ -41,7 +42,7 @@
                 
             }else{
                 console.log('Error');
-                var toastEvent = $A.get("e.force:showToast");
+                 toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": 'Error',
                         "message": 'Something Went Wrong' ,
@@ -267,6 +268,7 @@
     
     removeLocationId : function(component,event,helper){
     var action = component.get("c.removeLocation");
+        var toastEvent = $A.get("e.force:showToast");
     action.setParams({"parcelId" : component.get("v.selectedParcelId"),
                       "isAMR" : component.get("v.isAMR")});
 	action.setCallback(this, function(actionResult) {
@@ -274,7 +276,7 @@
                 var Result = actionResult.getReturnValue();
                 console.log('Result::'+ Result);
                 if(Result){
-                    var toastEvent = $A.get("e.force:showToast");
+                    
                     if(component.get("v.isAMR")){
                           toastEvent.setParams({
                             "title": 'Success',
@@ -293,7 +295,7 @@
                 component.set("v.remove",false);
                 helper.setLocationTable(component,event,helper);
                 }else{
-                    var toastEvent = $A.get("e.force:showToast");
+                    
                     toastEvent.setParams({
                         "title": 'Error',
                         "message": 'Something Went Wrong' ,

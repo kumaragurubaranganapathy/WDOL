@@ -7,8 +7,11 @@
             component.set("v.addAction", true);
         }
        	component.set("v.defaultCountry" , 'United States');
-        component.set("v.defaultState" , 'WA');
-        component.set("v.defaultcanadianProvince" , 'British Columbia');
+        component.set("v.parcel.County__c","Adams");
+        component.set("v.parcel.Country__c","United States");
+        component.set("v.parcel.MUSW__State__c","WA");
+        component.set("v.defaultState","WA");
+        component.set("v.defaultcanadianProvince",'British Columbia');
         component.set("v.isState", true);
         component.set("v.isOutOfCountry",true);
         helper.getCountryList(component , helper);
@@ -24,9 +27,9 @@
                     		'MUSW__Street2__c ': '',                                                
                            'MUSW__Unit__c ': '',
                            'MUSW__City__c ': '',
-                           'Country__c ':'',
-                           'County__c' : '',
-                           'MUSW__State__c ' :'',
+                           'Country__c ':'United States',
+                           'County__c' : 'Adams',
+                           'MUSW__State__c ' :'WA',
                            'Canadian_provinces__c ':'',
                            'Zip_Postal_Code__c' : '',
                            'Address_Type__c' : '',
@@ -85,7 +88,26 @@
     saveLocation : function(component,event,helper){
          component.set("v.parcel.Request__c",component.get("v.requestId"));
          component.set("v.parcel.Application_BG__c",component.get("v.applicationId") );
-         helper.saveLocation(component,event,helper);
+         var message  ;
+        var requiredFlag = false;
+        if(component.get("v.parcel.MUSW__City__c") == null || component.get("v.parcel.MUSW__City__c") == ''){
+           message = 'please enter City';
+           requiredFlag = true; 
+        }
+        if(component.get("v.parcel.County__c") == "Out of State"){
+           component.set("v.parcel.County__c",""); 
+        }
+        if(!requiredFlag){
+            helper.saveLocation(component,event,helper);
+        }else{
+             var toastEvent = $A.get("e.force:showToast");
+             toastEvent.setParams({
+                        "title": 'Error',
+                        "message": message ,
+                        "type": 'Error'
+                    });
+            toastEvent.fire(); 
+        } 
     },
       onCountryChange: function(component, event, helper){
         var selectedCountry = event.getSource().get("v.value")
@@ -108,6 +130,7 @@
             component.set("v.isState",false);
             component.set("v.isNotApplicable",false);
             component.set("v.isOutOfCountry",false);
+            component.set("v.parcel.County__c","Out of State");
             component.set("v.parcel.Canadian_provinces__c",component.get("v.defaultcanadianProvince"));
         }else if(selectedCountry =='United States'){
             console.log('Entered condition 3');
@@ -115,7 +138,7 @@
             component.set("v.isNotApplicable",false);
             component.set("v.isState",true);
             component.set("v.isOutOfCountry",false);
-            component.set("v.parcel.County__c",'Adams');
+            component.set("v.parcel.County__c","Out of State");
         }
             else{
                 console.log('Entered condition 4');
@@ -123,6 +146,7 @@
                 component.set("v.isCanadianProvince", false);
                 component.set("v.isState", false);
                 component.set("v.isOutOfCountry",false);
+                component.set("v.parcel.County__c","Out of State");
             }
           
           if(component.get("v.isState")){
@@ -140,6 +164,7 @@
             component.set("v.isOutOfCountry",true);
         }else{
             component.set("v.isOutOfCountry",false);
+            component.set("v.parcel.County__c","Out of State");
         }
     },
     
