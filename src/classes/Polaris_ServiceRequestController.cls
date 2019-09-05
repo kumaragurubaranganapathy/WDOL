@@ -701,7 +701,7 @@ public class Polaris_ServiceRequestController {
                         update lstEduHist;                
                     } 
                     List<BGCK__Answer__c> lstNewAnswers = new List<BGCK__Answer__c>();
-                    List<BGCK__Answer__c> lstAnswers = [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.RecordType.DeveloperName FROM BGCK__Answer__c where Request__c=:applicationId];
+                    List<BGCK__Answer__c> lstAnswers = [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.Service_Request_Type__c,QuestionDOL__r.RecordType.DeveloperName FROM BGCK__Answer__c where Request__c=:applicationId];
                     List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
                     String providerName = '';
                     if(lstAnswers != null && lstAnswers.size()>0 && appList[0].License_Type__c == 'Notary Public'){
