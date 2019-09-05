@@ -22469,4 +22469,11 @@ catch( e ) {
         <protected>false</protected>
         <url>/BGCK/QuestionChecklist2.app?pid={!MUSW__Review__c.Id}</url>
     </webLinks>
+    <validationRules>
+        <fullName>Active_DCP_for_Appraisal_Management</fullName>
+        <active>true</active>
+        <description>Need  Active DCP for Appraisal Management Company  License to be Active</description>
+        <errorConditionFormula>AND(NOT(ISBLANK(License__c)),ISPICKVAL(Review_Type__c,&apos;General Application&apos;),ISPICKVAL(License__r.Credential_Type__c,&apos;Appraisal Management Company&apos;),ISPICKVAL(MUSW__Status__c,&apos;Approved&apos;), ISBLANK(License__r.Account_Contact__c))</errorConditionFormula>
+        <errorMessage>License should have active DCP  to make license active.</errorMessage>
+    </validationRules>
 </CustomObject>
