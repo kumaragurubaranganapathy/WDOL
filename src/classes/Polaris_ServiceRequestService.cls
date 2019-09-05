@@ -28,7 +28,7 @@ public static List<User> fetchUserDetails () {
               //  str = 'SELECT Sections__c FROM LnP_License_Type_Sections_Setting__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \''+flowType+'\'';
             //}
         //else
-        	str = 'SELECT Sections__c FROM AMR_Link__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Service_Request_Type__c = \''+flowType+'\'';
+        	str = 'SELECT Sections__c,MasterLabel FROM AMR_Link__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Service_Request_Type__c = \''+flowType+'\'';
         
        // str = 'SELECT Sections__c,MasterLabel FROM AMR_Link__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Service_Request_Type__c = \''+flowType+'\'';
         system.debug('str '+str);
