@@ -83,13 +83,14 @@
                                     <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>                                    
                                     <td>
                                         <aura:if isTrue="{!v.disableRemove}">
+										<aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
                                             <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
-                                                <aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
                                                     <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
                                                     <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
-                                                </aura:if>
+                                                
                                               <!--  <lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove"  />-->
                                             </lightning:buttonMenu>
+											</aura:if>
                                         </aura:if>
                                     </td>
                                 </tr>
