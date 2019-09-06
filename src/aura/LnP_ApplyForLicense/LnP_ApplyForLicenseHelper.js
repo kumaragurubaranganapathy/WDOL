@@ -890,7 +890,7 @@
                             }  else if(item.regex == "minimum-value"){
                                 var valueVal = item.value;
                                 var minValue = parseInt(item.minValue);
-                                if(valueVal >= minValue){
+                                if(valueVal >= minValue && valueVal !== null){
                                     return true;
                                 }else{
                                     errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
@@ -950,7 +950,7 @@
                                 }  else if(item.regex == "minimum-value"){
 									var valueVal = item.value;
 									var minValue = parseInt(item.minValue);
-									if(valueVal >= minValue){
+									if(valueVal >= minValue && valueVal !== null){
 										return true;
 									}else{
 										errorMessage = item.errormsg != undefined? item.errormsg: item.Name+" error";
