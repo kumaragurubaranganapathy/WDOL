@@ -319,7 +319,7 @@ application.MUSW_Account__c = account;*/
         if(isRenewal != null && isRenewal != ''){
             application.isRenewal__c = Boolean.valueOf(isRenewal);   
         }
-        if(lic.recordType.name == 'Business') {
+        if(lic.recordType.name == 'Business' || lic.recordType.name == 'Course' ) {
             application.MUSW__Account__c = lic.Ultimate_Parent_Account__c;
         }
         try{
