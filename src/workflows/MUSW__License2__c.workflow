@@ -229,7 +229,7 @@
     </alerts>
     <alerts>
         <fullName>Polaris_License_Expiration_Notice</fullName>
-        <ccEmails>kkakariya@deloitte.com</ccEmails>
+        
         <description>Polaris - License Expiration Notice</description>
         <protected>false</protected>
         <recipients>
