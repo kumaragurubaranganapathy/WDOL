@@ -1471,7 +1471,7 @@ public class Polaris_ApplyForLicenseController {
                     
                     
                     if(application.Credential_Type__c == 'Notary Public'){
-                       // mstLicense.MUSW__Expiration_Date__c = mstLicense.Expiration_Date_of_Bond__c;
+                       // mstLicense.MUSW__Expiration_Date__c = mstLicense.Expiration_Date_of_Bond__c; 
                         
                         if(!(mstLicense.Effective_Date_of_Bond__c < system.today())){
                             mstLicense.MUSW__Issue_Date__c = mstLicense.Effective_Date_of_Bond__c;       
