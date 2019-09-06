@@ -98,7 +98,7 @@ public without sharing class CommunityRegistrationController {
             u.Alias = fullname.substring(0, aliasLength);
             u.languagelocalekey = 'en_US';
             u.localesidkey = 'en_US';
-            u.timezonesidkey = 'America/New_York';
+            u.timezonesidkey = 'America/Tijuana';
             u.emailencodingkey = 'UTF-8';
             Id userId;
            /* List<User> existinguser = [Select ID,Username from User Where Username = :con.Email Limit 1 ] ;*/
