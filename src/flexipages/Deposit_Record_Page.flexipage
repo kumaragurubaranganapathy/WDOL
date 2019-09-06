@@ -58,6 +58,32 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentName>forceChatter:recordFeedContainer</componentName>
+        </componentInstances>
+        <name>Facet-08510a0e-6bff-46ff-b553-74f42a7eff01</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-08510a0e-6bff-46ff-b553-74f42a7eff01</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.collaborate</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <name>Facet-9d686651-db64-485b-aeb6-99b591948865</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
                 <value>NONE</value>
@@ -96,7 +122,11 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>forceChatter:recordFeedContainer</componentName>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>Facet-9d686651-db64-485b-aeb6-99b591948865</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
