@@ -558,6 +558,17 @@
     },
     onAttestationChange: function(component, event, helper) {
         this.toEnableSubmitButtonCheck(component, event);
+        
+        var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
+        var givenName = component.get("v.attestValue").trim().toLowerCase();
+        if(attestedName === givenName){
+            component.set("v.attestationStatus", true);
+            component.set("v.attestationError", "");
+        } else {
+            component.set("v.attestationStatus", false);
+            component.set("v.attestationError", "Entered name should be same as name below the box.");
+        } 
+        
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && component.get("v.declarationFlag") == true){
             component.set("v.submitButtonDisable", "false");
         }
@@ -601,7 +612,7 @@
         }
         
         
-        var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
+        /*var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
         var givenName = component.get("v.attestValue").trim().toLowerCase();
         if(attestedName == givenName){
             component.set("v.attestationStatus", true);
@@ -609,7 +620,7 @@
         } else {
             component.set("v.attestationStatus", false);
             //component.set("v.attestationError", "Name should be same.");
-        }        
+        }    */     
     },
     checkboxValidation: function(component, event){
         var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
