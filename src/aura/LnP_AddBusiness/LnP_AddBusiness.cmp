@@ -10,7 +10,9 @@
     <aura:attribute name="ubiValueEntered" type="String"/>
     <aura:attribute name="ubiValidationResponse" type="String" default="NA" />
     <aura:attribute name="ubiDetails" type="Object"/>
+    <aura:attribute name="ubiRequired" type="Boolean" default="true" />
     <aura:attribute name="isOpen" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="validateFields" type="List" default='[{"lName":"Name", "Required__c":true, "Error_Message__c":"Account Name is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
                                                                {"lName":"Business_Structure__c", "Required__c":true, "Error_Message__c":"Business Structure is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
                                                                /*{"lName":"Doing_Business_As_1__c", "Required__c":false, "Error_Message__c":"Doing Business As is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},*/

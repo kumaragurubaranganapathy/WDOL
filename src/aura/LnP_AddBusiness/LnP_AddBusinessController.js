@@ -1,7 +1,16 @@
 ({    
+    doInit : function(component, event) {
+        component.set("v.ubiHelpText", "Ubi help <b>text</b>");        
+        var fields = component.get("v.validateFields");
+        fields.forEach(function(elem){
+            if(elem.lName === "UBI_Number__c"){
+                elem.Required__c = true;
+            }
+        });
+    },    
     handleClick : function(component, event,helper) {
         helper.handleClick(component,event);        
-    },    
+    },  
     returnBusiness : function(component,event,helper){
         helper.returnBusiness(component,event);        
     },    
@@ -14,7 +23,10 @@
     // Validate input fields and submit add business.
     validateFields : function(component,event,helper){
         component.set("v.buttonDisable",true);
-		var ubiValidation = component.get("v.ubiValidated");
+		if(component.get("v.ubiRequired"))            
+            var ubiValidation = component.get("v.ubiValidated");
+        else
+            var ubiValidation = true;
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         component.set("v.loadingSpinner",true);
         var fieldsWrapper = component.get("v.validateFields");
@@ -96,6 +108,7 @@
     fieldchange:function(component,event,helper){       
         var numbers=event.getSource().get('v.value');
         var fieldname=event.getSource().get('v.fieldName');
+        var validateFields = component.get("v.validateFields");
         if(fieldname=="Phone_Primary_Contact__c" || fieldname=="Business_Phone__c"){
             if(numbers.length==10){
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
@@ -119,6 +132,24 @@
                 event.getSource().set('v.value',phone); 
             }
         }        
+        if(fieldname==="Course_Provider__c"){
+            if(numbers){
+                validateFields.forEach(function(elem){
+                    if(elem.lName === 'UBI_Number__c'){
+                        elem.Required__c = !numbers;  
+                        component.set("v.ubiRequired", elem.Required__c);
+                    }
+                });
+            }
+            else{
+                validateFields.forEach(function(elem){
+                    if(elem.lName === 'UBI_Number__c')
+                        elem.Required__c = true; 
+                    component.set("v.ubiRequired", elem.Required__c);
+                });
+            }
+            component.set("v.validateFields",validateFields);
+        }
     },
     cancelUBIDetails : function(component, event, helper){
         component.set("v.ubiValidated", false);
@@ -139,6 +170,8 @@
         component.set("v.isOpen", false);
     },
     validateUBINumber : function(component, event, helper) {
+        var ubiRequired = component.get("v.ubiRequired");
+        if(ubiRequired){
         var ubi = component.get("v.ubiValueEntered");
         var valid = true;
         if(ubi==undefined){
@@ -203,6 +236,7 @@
                 }
             });
             $A.enqueueAction(action);
-        }        
+        }    
+    }    
     },
 })
