@@ -1,41 +1,4 @@
 ({
-    fetchLicenseDetailsHelper : function(component,event,helper,licenseId) {
-        console.log('in fetch license details helper');
-       
-        var action = component.get("c.fetchLicenseDetails");
-        console.log('license data -- ',licenseId);
-        alert('licenseId',licenseId);
-        action.setParams(
-            {"licenseID": licenseId}
-        );
-        action.setCallback(this, function (response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {
-                var result =  response.getReturnValue();
-                console.log('result --', result);
-                component.set("v.licenseRecord",result);
-            } /*else if (state === "ERROR") {
-                
-            }*/
-        });
-        $A.enqueueAction(action);
-    },
-    onRecordSubmit: function(component,event,helper){
-        console.log('in record submit method');
-        console.log('license record---',component.get("v.licenseRecord"));
-        if(component.get("v.licenseRecord.No_of_Associations__c")>=3 && (component.get("v.licenseRecord.Credential_Type__c") === 'Certified General Appraiser' || component.get("v.licenseRecord.Credential_Type__c") === 'Certified Residential Appraiser'))
-        {
-            event.preventDefault();
-            component.set("v.loadingSpinner",false);
-            var toastEvent = $A.get("e.force:showToast");
-            toastEvent.setParams({
-                "title": "Error!!!",
-                "message": "Please Apply for AMR to add more trainee",
-                "type": "error"
-            });
-            toastEvent.fire();
-             }
-    },
     setJSON : function(component, event, helper) {        
         try{
             var jsonMap= [];
@@ -391,7 +354,7 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
-                if(response.getReturnValue()!=null){
+                
                 var licenseData = JSON.parse(response.getReturnValue());
                 /* var licenseDataList = [];
                 licenseData.forEach(function(element) {

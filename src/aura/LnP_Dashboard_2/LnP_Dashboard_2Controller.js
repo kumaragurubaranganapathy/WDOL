@@ -4,7 +4,6 @@
         helper.setJSON(component, event, helper);
         helper.setCurrentLicensesTableData(component, event, helper);
         helper.setRelationshipTableData(component, event, helper);
-       
         helper.setDraftNewLicenseApplicationsTableData(component, event, helper);
         helper.setDraftRenewalApplicationsTableData(component, event, helper);
         helper.setDraftMaintanceRequestTableData(component, event, helper);
@@ -15,7 +14,6 @@
         helper.setCompletedMaintanceRequestTableData(component, event, helper);
         helper.setContactId(component, event, helper);
         helper.getHelptextHelper(component, event, helper);
-     
         //component.set("v.loadingSpinner",false);
         
     },
@@ -32,12 +30,9 @@
         var value = component.get("v.helptextcontent");
         console.log('value::'+value);
     },
-    
     showSpinner: function(component, event, helper){
         component.set("v.loadingSpinner",true);
-        helper.onRecordSubmit(component,event,helper);
     },
-    
     handleAssociationSubmissionSuccess: function(component, event, helper){
         
         var params = event.getParams();
@@ -335,8 +330,6 @@
         helper.fetchBusinessRelationShipRecords(component, event, helper,licenseId);
         
         helper.setDraftAMRLicenseDetailTableData(component,event,helper,licenseId);
-        
-        helper.fetchLicenseDetailsHelper(component, event, helper, licenseId);
     },
     
     dsiplayPendingLicenseDetails : function(component, event, helper){
