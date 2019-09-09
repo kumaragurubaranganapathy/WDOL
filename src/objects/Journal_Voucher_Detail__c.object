@@ -66,6 +66,23 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Accounting_Code__c</fullName>
+        <description>Accounting code concat</description>
+        <externalId>false</externalId>
+        <formula>Fund__c 
+&amp; &apos;-&apos; &amp; IF(ISBLANK(Major_Group__c) , &apos;xx&apos;, Major_Group__c)   
+&amp; &apos;-&apos; &amp; IF(ISBLANK(Major_Source__c) , &apos;xx&apos;, Major_Source__c)  
+&amp; &apos;-&apos; &amp; IF(ISBLANK(Sub_Source__c) , &apos;xxxxxx&apos;, Sub_Source__c)  
+&amp; IF( Send_GL__c , &apos;-&apos; &amp; General_Ledger_Account__c , &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Accounting Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Add_to_Interface__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -207,6 +224,20 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <unique>false</unique>
     </fields>
     <fields>
+    <fields>
+        <fullName>Net_Amount__c</fullName>
+        <description>Absolute value</description>
+        <externalId>false</externalId>
+        <formula>IF( Debit_Credit__c = &quot;DR&quot;, 1, -1) *  Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
         <fullName>Program_Index__c</fullName>
         <externalId>false</externalId>
         <label>Program Index</label>
@@ -227,6 +258,20 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+        <fields>
+        <fullName>Refund_Amount__c</fullName>
+        <description>Refund Formula Field</description>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(JournalVoucher__r.Document_Title__c, &apos;Refund JV&apos;),  Amount__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Refund Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Reversal__c</fullName>
@@ -341,6 +386,20 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+        <fields>
+        <fullName>Total_Received_Reports__c</fullName>
+        <description>Cash Receipts</description>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( JournalVoucher__r.Document_Title__c , &apos;CRJS&apos;) ,  Amount__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Received Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Transaction_Code__c</fullName>
