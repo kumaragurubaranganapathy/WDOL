@@ -1,4 +1,49 @@
 ({
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    fetchLicenseDetailsHelper : function(component,event,helper,licenseId) {
+        console.log('in fetch license details helper');
+       
+        var action = component.get("c.fetchLicenseDetails");
+        console.log('license data -- ',licenseId);
+        alert('licenseId',licenseId);
+        action.setParams(
+            {"licenseID": licenseId}
+        );
+        action.setCallback(this, function (response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var result =  response.getReturnValue();
+                console.log('result --', result);
+                component.set("v.licenseRecord",result);
+            } /*else if (state === "ERROR") {
+                
+            }*/
+        });
+        $A.enqueueAction(action);
+    },
+    onRecordSubmit: function(component,event,helper){
+        console.log('in record submit method');
+        console.log('license record---',component.get("v.licenseRecord"));
+        if(component.get("v.licenseRecord.No_of_Associations__c")>=3 && (component.get("v.licenseRecord.Credential_Type__c") === 'Certified General Appraiser' || component.get("v.licenseRecord.Credential_Type__c") === 'Certified Residential Appraiser'))
+        {
+            event.preventDefault();
+            component.set("v.loadingSpinner",false);
+            var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title": "Error!!!",
+                "message": "Please Apply for AMR to add more trainee",
+                "type": "error"
+            });
+            toastEvent.fire();
+             }
+    },
     setJSON : function(component, event, helper) {        
         try{
             var jsonMap= [];
@@ -26,8 +71,8 @@
                                   for (var key in appList){
                                       newAppList.push(appList[key]);
                                   }
-                                  for (var key in licList){
-                                      newLicList.push(licList[key]);
+                                  for (var keyLic in licList){
+                                      newLicList.push(licList[keyLic]);
                                   }	  
                                   
                                   component.set("v.application", newAppList);
@@ -48,15 +93,15 @@
                                       var newBusLicListToIterate =[];
                                       var busItems = jsonMap['BusinessLicense'];
                                       var busList = JSON.parse(busItems);
-                                      for(var key in busList){
-                                          busLicList.push(busList[key]);
+                                      for(var keyBus in busList){
+                                          busLicList.push(busList[keyBus]);
                                       }
                                       
                                       component.set("v.BusinessLicense",busLicList);  
                                       if(component.get("v.BusinessLicense").length != undefined && component.get("v.BusinessLicense").length >=10){
                                           component.set("v.viewMoreBusinessLicensesBoolean", true);
-                                          for(var i=0; i<10; i++ ){
-                                              newBusLicListToIterate.push(busLicList[i]);
+                                          for(var j=0; j<10; j++ ){
+                                              newBusLicListToIterate.push(busLicList[j]);
                                           }
                                       }else{
                                           newBusLicListToIterate = busLicList;
@@ -68,8 +113,8 @@
                                   var newAppListToIterate = [];
                                   if(component.get("v.application").length != undefined && component.get("v.application").length >=10){
                                       component.set("v.viewMoreApplicationBoolean", true);
-                                      for(var i=0; i<10; i++ ){
-                                          newAppListToIterate.push(newAppList[i]);
+                                      for(var k=0; k<10; k++ ){
+                                          newAppListToIterate.push(newAppList[k]);
                                       }
                                   }else{
                                       newAppListToIterate = newAppList;
@@ -354,7 +399,7 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
-                
+                if(response.getReturnValue()!=null){
                 var licenseData = JSON.parse(response.getReturnValue());
                 /* var licenseDataList = [];
                 licenseData.forEach(function(element) {
@@ -398,8 +443,14 @@
                 }
                 
                 
-            }else if (state === "ERROR") {
+            }
+                else{
+                    this.errorlog(component,event);
+                }
+            }
+            else if (state === "ERROR") {
                 var errors = response.getError();
+                this.errorlog(component,event);
                 console.error(JSON.stringify(errors));
             }    
         });
@@ -419,6 +470,7 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
+                if(response.getReturnValue()!=null){
                 
                 var BusinessLicenseTableData = JSON.parse(response.getReturnValue());
                 
@@ -429,12 +481,17 @@
                 component.set("v.BusinessLicenseTableColumnsList",BusinessLicenseTableColumnData);
                 
                 component.set("v.BusinessLicenseTableDataList",BusinessLicenseTableHeaderData);
+                }
+                else{
+                     this.errorlog(component,event);
+                }
                 
             }else if (state === "ERROR") {
                 
                 var errors = response.getError();
                 
                 console.error(JSON.stringify(errors));
+                this.errorlog(component,event);
             }     
         });
         $A.enqueueAction(action);
@@ -1009,7 +1066,8 @@
                 }
                 component.set("v.CompletedMaintananceRequestApplicationsDataList",completedMaintananceRequestApplicationsTableData);
                 
-            } else if (state === "ERROR") {
+            } 
+            else if (state === "ERROR") {
                 
                 var errors = response.getError();
                 
@@ -1033,7 +1091,8 @@
                 
                 component.set("v.isAuthenticatedUser",returnValue);
                 
-            } else if (state === "ERROR") {
+            } 
+            else if (state === "ERROR") {
                 
                 var errors = response.getError();
                 
@@ -1066,12 +1125,14 @@
                 
                  this.showToast(component, event, helper,"you have successfully deleted","success"); 
                  
-            }if(res == false){
+            }
+            if(res == false){
                 
                 this.showToast(component, event, helper,"Seems like there is an error.\n please contact your system administrator","error");
             }
                 
-            }else if (state === "ERROR") {
+            }
+            else if (state === "ERROR") {
                 
                 var errors = response.getError();
                 

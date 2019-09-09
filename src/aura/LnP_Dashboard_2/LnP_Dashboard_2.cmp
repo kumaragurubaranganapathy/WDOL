@@ -104,9 +104,9 @@
                     />                
     <aura:attribute name="displayRemoveBusinessRelationShipModal" type="Boolean" default="false"
                     />
-  <aura:attribute name="BusinessRelationShipModalAction" type="Boolean" default="false"
+    <aura:attribute name="BusinessRelationShipModalAction" type="Boolean" default="false"
                     />                    
-                    
+    
     <aura:attribute name= "associationModalMessage" type = "String"/> 
     
     <aura:attribute name="Lincese_Details_LastDate" type="String" />
@@ -143,6 +143,7 @@
     <aura:attribute name="showMoreAMR" type="Boolean" default="false" />
     <aura:attribute name="pendingApp" type="Boolean" default="false" />
     <aura:attribute name="defaultTab" type="String" default="ProfessionalLicensesTab" />
+    <aura:attribute name="licenseRecord" type="MUSW__License2__c" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     
@@ -183,7 +184,7 @@
         
         <aura:if isTrue="{!v.DisplayDashboardHeader}">
             <div id="LnP_Dashboard_2_HeaderCompId" class="header-wrapper">
-
+                
                 <c:LnP_Dashboard_2_Header/>
             </div>
         </aura:if>
@@ -702,10 +703,10 @@
                         </header>
                         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                             <lightning:recordEditForm aura:id="createassociationrecordEditForm" objectApiName="Associations__c"
-                                                      density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}"
+                                                      density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}" onsubmit="{!c.onRecordSubmit}"
                                                       onerror="{!c.handleAssociationSubmissionError}" recordTypeId="{!v.setAssociationRecordTypeId}">
                                 <lightning:messages />
-                               <!-- <lightning:inputField fieldName="Name__c" /> -->
+                                <!-- <lightning:inputField fieldName="Name__c" /> -->
                                 <lightning:inputField fieldName="Association_Type__c" />
                                 <lightning:inputField fieldName="Child_License__c" />
                                 <lightning:inputField fieldName="Status__c" value="Invited" class="slds-hide" />
@@ -771,7 +772,7 @@
                                                                 <u> <a data-index="{!ind}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.dsiplayLicenseDetails}">{!tableData.Name}</a></u>
                                                             </div>
                                                         </td>
-                                                       <!-- <td data-label="Profession" class="cell-style">
+                                                        <!-- <td data-label="Profession" class="cell-style">
                                                             <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
                                                         </td> -->
                                                         <td data-label="License type" class="cell-style">
@@ -839,7 +840,7 @@
                                 </div>
                             </div>
                             <aura:set attribute="else">
-                                <div class="slds-align_absolute-center">There no license to display</div>
+                                <div class="slds-align_absolute-center">There no licenses to display</div>
                             </aura:set>
                         </aura:if>
                     </div>
@@ -981,7 +982,7 @@
                                                             <td data-label="Status" class="cell-style">
                                                                 <div class="help-text-wrapper">
                                                                     <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
-                                                                   <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
+                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
                                                                          data-substatus="">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
                                                                     </div> -->
@@ -1047,8 +1048,8 @@
                                                     <aura:iteration items="{!v.draftRenewPaginationList}" var="tableData" indexVar="ind">
                                                         <tr class="slds-hint-parent">
                                                             <td data-label="License" class="cell-style">
-                                                               
-                                                               <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
+                                                                
+                                                                <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                                             </td>
                                                             <td data-label="Profession" class="cell-style">
                                                                 <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
@@ -1066,7 +1067,7 @@
                                                             <td data-label="Status" class="cell-style">
                                                                 <div class="help-text-wrapper">
                                                                     <div class="slds-truncate" title="{!tableData.Application__r.MUSW__Status__c}">{!tableData.Application__r.MUSW__Status__c}</div>
-                                                                   <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="	Renewal/Reinstatement"
+                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="	Renewal/Reinstatement"
                                                                          data-status="{!tableData.Application__r.MUSW__Status__c}"
                                                                          data-substatus="">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
@@ -1227,7 +1228,7 @@
                                                             <td data-label="Status">
                                                                 <div class="help-text-wrapper">
                                                                     <div class="slds-truncate" title="{!tableData.MUSW__Status__c}">{!tableData.MUSW__Status__c}</div>
-                                                                   <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
+                                                                    <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="License" data-status="{!tableData.MUSW__Status__c}"
                                                                          data-substatus="{!tableData.Sub_Status__c}">
                                                                         <lightning:helptext content="{!v.helptextcontent}" />
                                                                     </div> -->
@@ -1515,8 +1516,8 @@
         
     </div>
     <aura:if isTrue="{!v.dsiplaySpinner}">
-            <div>
-                <lightning:spinner alternativeText="Loading" size="large" />
-            </div>
-        </aura:if>
+        <div>
+            <lightning:spinner alternativeText="Loading" size="large" />
+        </div>
+    </aura:if>
 </aura:component>
