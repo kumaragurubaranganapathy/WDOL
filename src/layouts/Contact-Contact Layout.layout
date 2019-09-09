@@ -289,6 +289,15 @@
         <relatedList>Affiliation__c.Related_Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Parcel_Number2__c</fields>
+        <fields>MUSW__City__c</fields>
+        <fields>MUSW__Primary_Zoning__c</fields>
+        <fields>MUSW__Alert_Indicator__c</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <relatedList>MUSW__Parcel__c.MUSW__Primary_Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
@@ -368,15 +377,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Miscellaneous_Fee__c.Contact__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>MUSW__Parcel_Number2__c</fields>
-        <fields>MUSW__City__c</fields>
-        <fields>MUSW__Primary_Zoning__c</fields>
-        <fields>MUSW__Alert_Indicator__c</fields>
-        <fields>UPDATEDBY_USER</fields>
-        <relatedList>MUSW__Parcel__c.Contact__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

@@ -258,6 +258,14 @@
         <relatedList>Associations__c.Child_Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__City__c</fields>
+        <fields>MUSW__State__c</fields>
+        <fields>MUSW__Post_Zip_Code__c</fields>
+        <fields>Address_Type__c</fields>
+        <relatedList>MUSW__Parcel__c.MUSW__Primary_Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -302,15 +310,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Miscellaneous_Fee__c.Contact__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>MUSW__Parcel_Number2__c</fields>
-        <fields>MUSW__City__c</fields>
-        <fields>MUSW__Primary_Zoning__c</fields>
-        <fields>MUSW__Alert_Indicator__c</fields>
-        <fields>UPDATEDBY_USER</fields>
-        <relatedList>MUSW__Parcel__c.Contact__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
