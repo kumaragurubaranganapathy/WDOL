@@ -2493,6 +2493,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Pending Action</label>
                 </value>
                 <value>
+                    <fullName>In-Review</fullName>
+                    <default>false</default>
+                    <label>In-Review</label>
+                </value>
+                <value>
                     <fullName>In Review</fullName>
                     <default>false</default>
                     <label>In Review</label>
@@ -2556,11 +2561,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <fullName>Pending</fullName>
                     <default>true</default>
                     <label>Pending</label>
-                </value>
-                <value>
-                    <fullName>In-Review</fullName>
-                    <default>false</default>
-                    <label>In-Review</label>
                 </value>
                 <value>
                     <fullName>Unlicensed Activity</fullName>
@@ -6239,7 +6239,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>In Review</fullName>
+                <fullName>In-Review</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8056,7 +8056,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>In Review</fullName>
+                <fullName>In-Review</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18048,7 +18048,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>In Review</fullName>
+                <fullName>In-Review</fullName>
                 <default>false</default>
             </values>
             <values>
