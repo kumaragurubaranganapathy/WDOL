@@ -1024,12 +1024,6 @@ public class Polaris_ApplyForLicenseController {
                                         preApproval.add('College'); 
                                     }
                                     
-                                    if(ans.QuestionDOL__r.Question_Body__c == 'When does your IDECC approval expire?' &&  ans.Answer_Text__c != '' )
-                                    {
-                                        preApproval.add('IDECC');
-                                        
-                                    }
-                                    
                                     if(ans.QuestionDOL__r.Question_Body__c == 'Do you have an Appraisal Qualification Board approval certificate?' &&  ans.Answer_Text__c == 'Yes')
                                     {
                                         preApproval.add('AQB'); 
@@ -1042,20 +1036,27 @@ public class Polaris_ApplyForLicenseController {
                                         
                                     }   
                                     system.debug('preApproval---'+preApproval);
-                                    String preApprovalString ='';
-                                    for(String str : preApproval)
-                                    {
-                                        preApprovalString += str + ';' ;
-                                    }
-                                    // remove last additional comma from string
-                                    
-                                    preApprovalString = preApprovalString.subString(0,preApprovalString.length());
-                                    
-                                    system.debug('preApproval----> '+preApproval);
-                                    
-                                    LicenseObj.Pre_Approval__c = preApprovalString;
+                                   
                                 }
-                                
+                                 if(ans.QuestionDOL__r.Question_Body__c == 'When does your IDECC approval expire?')
+                                    {
+                                        preApproval.add('IDECC');
+                                        
+                                    }
+                                    String preApprovalString ='';
+                                    if(!preApproval.isEmpty()){
+                                        for(String str : preApproval)
+                                        {
+                                            preApprovalString += str + ';' ;
+                                        }
+                                        // remove last additional comma from string
+                                        
+                                        preApprovalString = preApprovalString.subString(0,preApprovalString.length());
+                                        
+                                        system.debug('preApproval----> '+preApproval);
+                                        
+                                        LicenseObj.Pre_Approval__c = preApprovalString;
+                                    }
                                 if(QuestionObjFieldAPIName == 'USPAP_Courses_Expiration_Date__c'){
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.USPAP_Courses_Expiration_Date__c = Date.valueOf(ans.Answer_Text__c);
