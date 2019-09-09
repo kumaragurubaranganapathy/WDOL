@@ -2382,6 +2382,27 @@ N/A</description>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+	<listViews>
+        <fullName>Courses_Queue_Review</fullName>
+        <columns>License_Record_Type__c</columns>
+        <columns>Applicant_Licensee_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>License__c</columns>
+        <columns>Renewal_Application__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Courses Queue</value>
+        </filters>
+        <label>Courses Queue</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_Queue_Review</fullName>
         <columns>NAME</columns>
