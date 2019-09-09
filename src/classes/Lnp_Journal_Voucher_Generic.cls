@@ -13,7 +13,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
     JV_Sequence__c objJVseq = new JV_Sequence__c();
     decimal currentSeq=0 ;
     public Database.QueryLocator start(Database.BatchableContext objContext) {
-        
+        try{  
         datetime currentTime= system.now();
         Decimal currentHour= currentTime.hourGmt();
         
@@ -62,11 +62,11 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         }
         //List<Journal_Voucher_meta__mdt> lstJVMeta = new List<Journal_Voucher_meta__mdt>();
         if(Label.ConsiderBatchTime == 'Yes'){
-            lstJVMeta = [select id,MasterLabel,JV_Document_Title__c,Doc_Number_Prefix__c,JV_Explanation_of_Entry__c,(select id,Add_To_PDF__c,Add_To_Interface__c,JV_name__c,Item_FundAccSystem__c,Item_Fund_GL__c,Item_Intake_Method__c,Item_Payment_Method__c,Item_Transaction_Code__c,Journal_Voucher_mtd__c from Journal_Voucher_Filters__r) from Journal_Voucher_meta__mdt WHERE Is_Active__c = true AND Batch_Time__c =: currentHour];
+            lstJVMeta = [select id,MasterLabel,JV_Document_Title__c,Doc_Number_Prefix__c,JV_Explanation_of_Entry__c,(select id,Add_To_PDF__c,Add_To_Interface__c,JV_name__c,Item_FundAccSystem__c,Item_Fund_GL__c,Item_Intake_Method__c,Item_Payment_Method__c,Item_Transaction_Code__c,Journal_Voucher_mtd__c from Journal_Voucher_Filters__r) from Journal_Voucher_meta__mdt WHERE Is_Active__c = true and Is_Active__c!= null AND Batch_Time__c =: currentHour and Batch_Time__c!=null];
         
         }
         else{
-            lstJVMeta  = [select id,MasterLabel,JV_Document_Title__c,Doc_Number_Prefix__c,JV_Explanation_of_Entry__c,(select id,Add_To_PDF__c,Add_To_Interface__c,JV_name__c,Item_FundAccSystem__c,Item_Fund_GL__c,Item_Intake_Method__c,Item_Payment_Method__c,Item_Transaction_Code__c,Journal_Voucher_mtd__c from Journal_Voucher_Filters__r) from Journal_Voucher_meta__mdt WHERE Is_Active__c = true ];
+            lstJVMeta  = [select id,MasterLabel,JV_Document_Title__c,Doc_Number_Prefix__c,JV_Explanation_of_Entry__c,(select id,Add_To_PDF__c,Add_To_Interface__c,JV_name__c,Item_FundAccSystem__c,Item_Fund_GL__c,Item_Intake_Method__c,Item_Payment_Method__c,Item_Transaction_Code__c,Journal_Voucher_mtd__c from Journal_Voucher_Filters__r) from Journal_Voucher_meta__mdt WHERE Is_Active__c = true and Is_Active__c!= null];
         }
         for(Journal_Voucher_meta__mdt objJVMeta:lstJVMeta){
             Journal_Voucher__c objJV = new Journal_Voucher__c(); 
@@ -108,7 +108,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             //objJV.Fiscal_Month__c =FiscalMonth;
             //objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
-            objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Automated').getRecordTypeId();
+            objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get(DOL_AppConstants.sJVAutomated).getRecordTypeId();
             if(currentSeq > 9998){
                 currentSeq =0;
             } else{
@@ -161,6 +161,12 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         strQuery+= 'AND Intake_Method__c IN (\'';
         strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')';   
         return Database.getQueryLocator(strQuery);
+        }
+        catch(Exception e){
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+			return null;
+        }
+        
     }
     public void execute(Database.BatchableContext objContext, List<BGBK__Item__c> lstItemRecords) {
         
@@ -171,7 +177,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         Map<String, Decimal> mapTotalItemAmount = new Map<String, Decimal>();
         Map<String, String> mapTotalItemIds = new Map<String, String>();
         String sToBeGroupedFields= null;
-        
+        try{
         for(BGBK__Item__c objItem : lstItemRecords){
             system.debug('lstItemRecords$$'+lstItemRecords);
             string strFilterKey= objItem.Intake_Method__c+objItem.Payment_Method__c+objItem.BGBK__Fund__r.Accounting_System__c+objItem.Transaction_Code__c+objItem.BGBK__Fund__r.GL__c;
@@ -186,12 +192,12 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                 }
                 lstItemRecordsForJV.add(objItem);
                 //Aggregate item records for TMS accounting system
-                if((objItem.BGBK__Fund__r.Accounting_System__c == 'TMS')){
+                if((objItem.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVTMS)){
                     sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
                         +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+objItem.Journal_Voucher__c;
                 }
                 //Aggregate item records for AFRS accounting system
-                else if((objItem.BGBK__Fund__r.Accounting_System__c == 'AFRS')){
+                else if((objItem.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES)){
                     
                     sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
                         +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+
@@ -253,10 +259,10 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             objJVD.Subsidiary_Account_Credit__c ='';
             objJVD.JournalVoucher__c = objJournalWrapper.objItemsData.Journal_Voucher__c;
             lstJVID.add(objJVD.JournalVoucher__c);
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS'){
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES){
                 objJVD.AFRS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;  
             }
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'TMS'){
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVTMS){
                 objJVD.TMS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;
             }
             string strFilterKey= objJournalWrapper.objItemsData.Intake_Method__c+objJournalWrapper.objItemsData.Payment_Method__c+objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c+objJournalWrapper.objItemsData.Transaction_Code__c+objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c;
@@ -288,22 +294,33 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         if(lstItemToUpdate.size()>0){
             update lstItemToUpdate;
         }
+        }
+        catch(Exception e){
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+			
+        }
     }
     
     global void finish(Database.BatchableContext objBatchableContext) {
-	system.debug('lstJVID$$'+lstJVID);
+        system.debug('lstJVID$$'+lstJVID);
         decimal count = 0;
         List<Journal_Voucher__c> lstJVtoDelete= new List<Journal_Voucher__c>();
-        for(journal_voucher__c objJV : lstJV){
-            if(!lstJVID.contains(objJV.id)){
-                count++;
-                lstJVtoDelete.add(objJV);
+        try{
+            for(journal_voucher__c objJV : lstJV){
+                if(!lstJVID.contains(objJV.id)){
+                    count++;
+                    lstJVtoDelete.add(objJV);
+                }
+            }
+            if(lstJVtoDelete.size()>0){
+                delete lstJVtoDelete;
+                objJVseq.Current_sequence__c = objJVseq.Current_sequence__c - count;
+                update objJVseq;
             }
         }
-        if(lstJVtoDelete.size()>0){
-            delete lstJVtoDelete;
-            objJVseq.Current_sequence__c = objJVseq.Current_sequence__c - count;
-            update objJVseq;
+        catch(Exception e){
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+			
         }
     }
     
