@@ -224,8 +224,7 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <unique>false</unique>
     </fields>
     <fields>
-    <fields>
-        <fullName>Net_Amount__c</fullName>
+		<fullName>Net_Amount__c</fullName>
         <description>Absolute value</description>
         <externalId>false</externalId>
         <formula>IF( Debit_Credit__c = &quot;DR&quot;, 1, -1) *  Amount__c</formula>
@@ -238,6 +237,7 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
+	<fields>
         <fullName>Program_Index__c</fullName>
         <externalId>false</externalId>
         <label>Program Index</label>
