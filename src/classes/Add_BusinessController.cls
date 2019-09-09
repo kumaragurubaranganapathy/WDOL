@@ -268,7 +268,7 @@ public with sharing class Add_BusinessController {
                                               Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,MUSW__Primary_Licensee__c,
                                               Course_Status__c, Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                               Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,Is_Renewal_Eligible__c,
-                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,MUSW__Expiration_Date__c,
+                                              Is_Reinstatement_Eligible__c,Renew_Reinstatement_in_progress__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,MUSW__Expiration_Date__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         

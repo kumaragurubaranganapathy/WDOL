@@ -167,6 +167,7 @@
         <type>LongTextArea</type>
         <visibleLines>2</visibleLines>
     </fields>
+
     <fields>
         <fullName>JournalVoucher__c</fullName>
         <externalId>false</externalId>
@@ -180,6 +181,20 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Journal_Vouchers__c</fullName>
+        <description>Journal Voucher Amount</description>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( JournalVoucher__r.Document_Title__c , &apos;Journal Voucher&apos;) ,  Amount__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Journal Voucher Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Journal_Voucher_Detail_Grouping__c</fullName>
