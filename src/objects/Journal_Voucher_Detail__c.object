@@ -182,6 +182,20 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>JournalVoucher__c</fullName>
+        <externalId>false</externalId>
+        <label>Journal Voucher</label>
+        <referenceTo>Journal_Voucher__c</referenceTo>
+        <relationshipLabel>Journal Voucher Details</relationshipLabel>
+        <relationshipName>Journal_Voucher_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
         <fullName>Journal_Voucher_Detail_Grouping__c</fullName>
         <externalId>false</externalId>
         <formula>Transaction_Code__c &amp; &quot;-&quot; &amp;
