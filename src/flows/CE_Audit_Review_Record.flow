@@ -83,7 +83,7 @@
             <label>CE Audit Record Type For Review</label>
         </rules>
     </decisions>
-    <interviewLabel>CE_Audit_Review_Record-2_InterviewLabel</interviewLabel>
+    <interviewLabel>CE_Audit_Review_Record-7_InterviewLabel</interviewLabel>
     <label>CE Audit Review Record</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -239,12 +239,12 @@
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Picklist</stringValue>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
             <field>Program_Type__c</field>
             <value>
-                <stringValue>Geologist</stringValue>
+                <elementReference>myVariable_current.Application_Type__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
