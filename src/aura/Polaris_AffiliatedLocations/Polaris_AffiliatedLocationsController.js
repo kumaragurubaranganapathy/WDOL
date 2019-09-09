@@ -31,7 +31,7 @@
                            'County__c' : 'Adams',
                            'MUSW__State__c ' :'WA',
                            'Canadian_provinces__c ':'',
-                           'Zip_Postal_Code__c' : '',
+                           'MUSW__Post_Zip_Code__c' : '',
                            'Address_Type__c' : '',
                            'Application_BG__c ':'',
                            'Request__c':''
@@ -44,18 +44,6 @@
         helper.cancelLoc(component,event);
     },
     
-    onChange : function(component,event,helper){
-    	var actionSelected = component.find('select').get('v.value');
-        if(actionSelected == "Add Affiliation"){
-             component.set("v.addAction", true);
-             component.set("v.removeAction", false);
-        }else{
-            component.set("v.removeAction", true);
-            component.set("v.addAction", false);
-        }
-    },
-    
-
     undoAction : function(component,event,helper){
         var dataId = event.currentTarget.getAttribute('data-id');
         var statusData = event.currentTarget.getAttribute('data-status');
@@ -65,11 +53,7 @@
         component.set("v.licenseData",licenseData);
     	helper.undoAffiliateRequest(component,event,helper);   
     },
-    
-    RequestRemove : function(component,event,helper){
-        console.log("inside RequestRemove::");
-        helper.RemoveAffiliateRequest(component,event,helper);
-    },
+   
     onRemoveClick : function(component,event,helper){
         var dataId = event.currentTarget.getAttribute('data-id');
         component.set("v.selectedParcelId",dataId);

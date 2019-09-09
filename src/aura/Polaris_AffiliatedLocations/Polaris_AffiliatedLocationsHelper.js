@@ -56,30 +56,6 @@
     
 	},
     
-    setRequestLocationTable : function(component,event,helper){
-   	var action = component.get("c.setRequestLocationTable");
-        action.setParams({'requestId': component.get("v.requestId")});
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {
-                var currentLicenseTableData = JSON.parse(response.getReturnValue());                
-                
-                var currentLicenseTableColumnData = currentLicenseTableData.tableHeader;
-                
-                
-                var currentLicenseTableHeaderData = currentLicenseTableData.tableData;
-               
-                component.set("v.requestedLocationTableList",currentLicenseTableHeaderData);
-                
-                component.set("v.requestedHeaderList",currentLicenseTableColumnData);
-              
-            } else if (state === "ERROR") {
-                var errors = response.getError();                
-            }
-        });
-        $A.enqueueAction(action);
-    },
-    
     getCountryList: function(component, helper){
         var action = component.get("c.getStates");
       
@@ -312,29 +288,6 @@
      });
 	 $A.enqueueAction(action);
     
-    },
-    
-    RemoveAffiliateRequest : function(component,event,helper){
-        var action = component.get("c.removeAffiliationRequest");
-        action.setParams({
-            'parcelIdList': component.get("v.locationList"),
-            'RequestId': component.get("v.requestId")
-        });
-        action.setCallback(this, function(response){
-            var stateResponse = response.getState();
-            if (stateResponse === "SUCCESS") {              
-            	   var Result = response.getReturnValue();
-                if(Result){
-                    Console.log('Request Updated Succeed');
-                }else{
-                    Console.log('Request Update Failed');
-                }
-            }else{
-                Console.log('Request Errored');
-            }
-            
-        });
-        $A.enqueueAction(action); 
     },
     
     undoAffiliateRequest : function(component,event,helper){
