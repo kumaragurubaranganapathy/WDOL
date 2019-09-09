@@ -202,6 +202,11 @@
 				return item.questionSectionClass == "Qualifying Courses" && (item.isMandatoryQues || item.regex != null);
 			});
 		}
+		if(classList.includes("Continuing Education")){
+            sectionFieldsList = totalFieldsList.filter(function(item){
+                return item.questionSectionClass == "Continuing Education" && (item.isMandatoryQues || item.regex != null);
+            });
+        }
 		if(classList.includes("editFields")){
 			component.set("v.editForm", true);
 			var fieldValuesWrapper = component.find("validateEditField");
