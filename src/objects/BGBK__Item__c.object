@@ -442,6 +442,16 @@ BGBK__Fund__r.GL__c</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Journal_Voucher_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(TEXT(BGBK__Type__c),LEN(TEXT(BGBK__Type__c))-5)</formula>
+        <label>Journal Voucher Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Payable_Receipt__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
