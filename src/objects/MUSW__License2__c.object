@@ -1964,7 +1964,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
     <fields>
         <fullName>Last_4_SSN__c</fullName>
         <externalId>false</externalId>
-        <formula>MUSW__Applicant__r.Last_4_Social__c</formula>
+        <formula>MUSW__Applicant__r.Last_4_Digits_of_SSN__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Last 4 SSN</label>
         <required>false</required>
