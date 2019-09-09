@@ -1022,11 +1022,6 @@ CASE( MUSW__AlertCode__c,
                     <label>Email</label>
                 </value>
                 <value>
-                    <fullName>Text</fullName>
-                    <default>false</default>
-                    <label>Text</label>
-                </value>
-                <value>
                     <fullName>Mail</fullName>
                     <default>false</default>
                     <label>Mail</label>
@@ -1034,7 +1029,14 @@ CASE( MUSW__AlertCode__c,
                 <value>
                     <fullName>Phone</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Phone</label>
+                </value>
+                <value>
+                    <fullName>Text</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Text</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3586,14 +3588,6 @@ CASE( MUSW__AlertCode__c,
                 <fullName>Mail</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Text</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Reason_for_No_SSN__c</picklist>
@@ -5857,14 +5851,6 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Text</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
