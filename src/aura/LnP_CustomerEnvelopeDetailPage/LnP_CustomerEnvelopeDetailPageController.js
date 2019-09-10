@@ -19,7 +19,7 @@
         var savedRecord = component.get("v.newRecSaved") || new Set();
         savedRecord.add(record.id);
         component.set("v.newRecSaved",savedRecord);
-        var savedRecord = component.get("v.newRecSaved");
+         savedRecord = component.get("v.newRecSaved");
         var savedRecordLength = savedRecord.size;
         component.set("v.completedDoc",savedRecordLength);
        
