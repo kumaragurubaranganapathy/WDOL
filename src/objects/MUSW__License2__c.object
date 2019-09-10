@@ -1397,6 +1397,20 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>DHP_Aging__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()- DHP_Stamp_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DHP Aging</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>DHP_Stamp_Date__c</fullName>
         <description>1656</description>
         <encryptionScheme>None</encryptionScheme>
