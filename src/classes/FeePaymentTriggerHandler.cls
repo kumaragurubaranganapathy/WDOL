@@ -22,8 +22,7 @@ public class FeePaymentTriggerHandler implements BGCM.ITriggerHandler{
     public void onBeforeUpdate() {}
     
     public void afterMethod() {
-        //To share Fee Payemnt records
-        FeePaymentCreatedByDelegate DelegateController = new FeePaymentCreatedByDelegate(); 
-        DelegateController.shareFeePaymentRecords(Trigger.new);
+     /*   FeePaymentCreatedByDelegate DelegateController = new FeePaymentCreatedByDelegate(); 
+        DelegateController.shareFeePaymentRecords(Trigger.new);*/
     } 
 }
