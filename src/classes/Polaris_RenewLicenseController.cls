@@ -1434,7 +1434,7 @@ mstLicense.RecordTypeId = businessRT;
     @AuraEnabled
     public static Boolean getTotalBalance(Id licId){
         Boolean noFees;
-        List<Renewal_Application__c> licList = [select Id,Total_Balance__c from Renewal_Application__c where Id=:licId];
+        List<Renewal_Application__c> licList = [select Id,Total_Balance__c,Renewal_Status__c from Renewal_Application__c where Id=:licId];
         if(!licList.isEmpty() && licList[0].Total_Balance__c == 0){
             noFees = true;
         }else{
@@ -1443,6 +1443,7 @@ mstLicense.RecordTypeId = businessRT;
         
         if(noFees){
             licList[0].No_Fee_Required__c = noFees;
+            licList[0].Renewal_Status__c = 'Pending Payment';
             update licList[0];
         }
         
