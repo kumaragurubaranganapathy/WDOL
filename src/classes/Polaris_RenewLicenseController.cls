@@ -977,10 +977,14 @@ listApp.add(applicationChild);*/
                                     
                                 }
                                 String preApprovalString ='';
-                                for(String str : preApproval)
-                                {
-                                    preApprovalString += str + ';' ;
-                                }
+                                
+									for(String str : preApproval)
+									{	 if(preApproval.size() > 1){
+										preApprovalString += str + ';' ;
+									}else{
+										preApprovalString += str ;
+									}
+									} 
                                 // remove last additional comma from string
                                 
                                 preApprovalString = preApprovalString.subString(0,preApprovalString.length());
