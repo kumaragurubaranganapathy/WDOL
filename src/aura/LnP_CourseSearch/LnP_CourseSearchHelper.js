@@ -287,11 +287,11 @@
         component.set("v.dispList", "");
         component.set("v.applicationFilt","");
         component.set("v.detailData", "");
-       // component.set("v.endorsementData", "");
-       // component.set("v.licenseRelationData", "");
+        // component.set("v.endorsementData", "");
+        // component.set("v.licenseRelationData", "");
         component.set("v.selectedTabId", "tab1");
-      //  component.set("v.licenseNameToDisplay", "License");
-        
+        //omponent.set("v.licenseNameToDisplay", "License");
+        component.set("v.deliveryMethodOptions", "");
         component.set("v.searchOne", false);
         component.set("v.searchOneArray", []);
         component.set("v.searchTwo", false);
