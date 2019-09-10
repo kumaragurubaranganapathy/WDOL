@@ -1,12 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Refund_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelp>MUSW__HelpInterface</customHelp>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fieldSets>
+        <fullName>BGBK__Refund2_Basic</fullName>
+        <description>Adjust screen</description>
+        <displayedFields>
+            <field>BGBK__Amount__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGBK__Effective_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGBK__Contact__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        
+        <label>Refund2 Basic</label>
+    </fieldSets>
     <fields>
         <fullName>Approval_Status__c</fullName>
         <description>Only for backend purpose. No need to include on page layouts</description>
         <externalId>false</externalId>
         <label>Approval Status</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -28,6 +107,106 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>BGBK__Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Refunded amount.</description>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>14</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+	<fields>
+        <fullName>Refund_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Refund Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Incorrect License Type</fullName>
+                    <default>false</default>
+                    <label>Incorrect License Type</label>
+                </value>
+                <value>
+                    <fullName>Ineligible for License</fullName>
+                    <default>false</default>
+                    <label>Ineligible for License</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Licenses</fullName>
+                    <default>false</default>
+                    <label>Duplicate Licenses</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>BGBK__Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Refund recipient.</description>
+        <externalId>false</externalId>
+        <label>Refundee</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Refunds</relationshipLabel>
+        <relationshipName>Refunds2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Effective_Date__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Refund date.</description>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>Revenue_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Fee__r.Revenue_Code__c), &quot;&quot;, Fee__r.Revenue_Code__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Revenue Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BGBK__Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used to describe reason for the refund.</description>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Fee__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -36,23 +215,9 @@
         <relationshipLabel>Refunds</relationshipLabel>
         <relationshipName>Refunds</relationshipName>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Program_Type__c</fullName>
@@ -66,51 +231,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Refund_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>true</externalId>
-        <label>Refund Id</label>
-        <length>60</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Refund_Reason__c</fullName>
-        <externalId>false</externalId>
-        <label>Refund Reason</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Test1</fullName>
-                    <default>false</default>
-                    <label>Test1</label>
-                </value>
-                <value>
-                    <fullName>Test2</fullName>
-                    <default>false</default>
-                    <label>Test2</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Reissue_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reissue Date</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -120,7 +244,6 @@
         <externalId>false</externalId>
         <label>Reissue Reason</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -141,7 +264,6 @@
         <externalId>false</externalId>
         <label>Rejection Reason</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -162,36 +284,10 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Release__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Revenue_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(ISBLANK(Fee__r.Revenue_Code__c), &quot;&quot;, Fee__r.Revenue_Code__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Revenue Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Stage__c</fullName>
         <externalId>false</externalId>
         <label>Stage</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -237,7 +333,6 @@
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -316,6 +411,12 @@
                     <default>false</default>
                     <label>Reissued</label>
                 </value>
+                <value>
+                    <fullName>Released to AFRS</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Released to AFRS</label>
+                </value>
             </valueSetDefinition>
             <valueSettings>
                 <controllingFieldValue>Request</controllingFieldValue>
@@ -345,25 +446,20 @@
             <valueSettings>
                 <controllingFieldValue>Release</controllingFieldValue>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
-                <controllingFieldValue>Sent to AFRS</controllingFieldValue>
-                <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Released</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
-                <controllingFieldValue>Sent to AFRS</controllingFieldValue>
                 <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Issued in Error</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
-                <controllingFieldValue>Sent to AFRS</controllingFieldValue>
                 <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Unclaimed Property</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Send Refund</controllingFieldValue>
-                <controllingFieldValue>Sent to AFRS</controllingFieldValue>
                 <controllingFieldValue>Received from AFRS</controllingFieldValue>
                 <valueName>Long Term Debt</valueName>
             </valueSettings>
@@ -389,4 +485,133 @@
             </valueSettings>
         </valueSet>
     </fields>
+    <label>Refund</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Approval_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Appraisal_Management_Company_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Appraisal Management Company Queue</label>
+        <queue>Appraisal_Management_Company_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Camping_Resorts_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Camping Resorts Queue</label>
+        <queue>Camping_Resorts_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Disbursement_Staff_Refund_Release_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Disbursement Staff Refund Release</label>
+        <queue>Disbursement_Staff_Refund_Release</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Nancy_s_Queue</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>Rejected Refunds</label>
+    </listViews>
+    <listViews>
+        <fullName>Notaries_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Notaries Queue</label>
+        <queue>Notaries_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RBS_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RBS Queue</label>
+        <queue>RBS_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Real_Estate_Appraiser_Courses_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Real Estate Appraiser Courses Queue</label>
+        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Real_Estate_Appraisers_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Real Estate Appraisers Queue</label>
+        <queue>Real_Estate_Appraisers_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Refunds_on_Hold</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Hold</value>
+        </filters>
+        <label>Refunds on Hold</label>
+    </listViews>
+    <listViews>
+        <fullName>Timeshare_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Timeshare Queue</label>
+        <queue>Timeshare_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Undeliverable</fullName>
+        <columns>NAME</columns>
+        <columns>Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>BGBK__Contact__c</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Undeliverable</value>
+        </filters>
+        <label>Undeliverable</label>
+    </listViews>
+    <nameField>
+        <displayFormat>RFD-{000000}</displayFormat>
+        <label>Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Refunds</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
