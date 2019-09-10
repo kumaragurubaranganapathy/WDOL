@@ -384,7 +384,7 @@
         var key = function(a) { return a[fieldName]; }
         var reverse = sortDirection == 'asc' ? 1: -1;
         
-        if(fieldName == 'NumberOfEmployees'){ 
+        if(fieldName == 'NumberOfEmployees' || fieldName == 'Clock_Hours__c'){ 
             data.sort(function(a,b){
                 var a = key(a) ? key(a) : '';
                 var b = key(b) ? key(b) : '';
