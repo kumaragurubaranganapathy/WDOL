@@ -16,13 +16,52 @@
     <columns>
         <field>MUSW__Receipt__c.VitalCheck_Number__c</field>
     </columns>
+    <columns>
+        <field>MUSW__Receipt__c.Intake_Method__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>MUSW__Receipt__c.Last_4_digits_of_Credit_Card_or_ACH__c</field>
+    </columns>
+    <columns>
+        <field>MUSW__Receipt__c.Transaction_Confirmation_ID__c</field>
+    </columns>
     <description>Mid Day Deposit</description>
-    <format>Matrix</format>
-    <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>MUSW__Receipt__c.MUSW__Card_Type__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsAcross>
+    <filter>
+        <booleanFilter>2 AND 3 AND ((1 AND 4) OR 5)</booleanFilter>
+        <criteriaItems>
+            <column>MUSW__Receipt__c.US_Bank_Payment_Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Settled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MUSW__Receipt__c.Polaris_CreatedDate__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessThan</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MUSW__Receipt__c.MidDay_Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>2</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MUSW__Receipt__c.MUSW__Payment_Method__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Credit Card</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MUSW__Receipt__c.MUSW__Payment_Method__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Cash,Lockbox,Vitalcheck - Counter,Check/Cashier&apos;s Check,Money Order,Inter-agency Payment,Voucher,Misc - Unknown,NCR - cash,NCR - check,Vitalcheck - DHP</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>MUSW__Receipt__c.MUSW__Payment_Method__c</field>
