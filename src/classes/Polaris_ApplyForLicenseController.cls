@@ -1481,7 +1481,7 @@ public class Polaris_ApplyForLicenseController {
                     System.debug('mstLicense : '+mstLicense);
                     
                     if(mstLicense.RecordTypeId == individualRT){
-                        mstLicense.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
+                        mstLicense.License_Printable_Name__c = (MiddleName == null)?(firstName+' '+ LastName):(firstName+' '+ MiddleName+' '+ LastName);
                         mstLicense.Print_First_Name__c = firstName;
                         mstLicense.Print_Middle_Name__c = MiddleName;
                         mstLicense.Print_Last_Name__c = LastName;
