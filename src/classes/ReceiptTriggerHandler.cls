@@ -7,6 +7,7 @@
 * 08/22/2018   Srikanth Kottam/Deloitte          Initial Creation
 **/
 public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
+    public static boolean runonce = false;
     public void onAfterDelete() {}
     public void onAfterInsert() {
         //This Method is called when already an AccountContact Record exists on an Account and Receipt records get Created. This Record will be shared with the community Plus User
@@ -20,6 +21,9 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
+        if(runonce == false) {
+            runonce = true;
+        
         system.debug('!!!After update');
         
         //Added by for US1469 On 07/11/2019 [Chiranth]
@@ -102,7 +106,7 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         if(!finalFeesToUpdate.isEmpty()){
             update finalFeesToUpdate;
         }
-        
+       }
         
     }
     public void onBeforeDelete() {}
