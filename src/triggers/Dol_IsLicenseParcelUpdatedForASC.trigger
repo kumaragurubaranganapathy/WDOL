@@ -4,45 +4,44 @@ trigger Dol_IsLicenseParcelUpdatedForASC on MUSW__License_Parcel__c (after inser
         // If the triggers have been disabled, then do not call the trigger handler
         return;
     }
-     List<Id> permitParcelIds  = new List<Id>();
-     List<MUSW__License_Parcel__c> permitParcelList = new List<MUSW__License_Parcel__c>();
-     List<MUSW__License_Parcel__c> updtPermitParcelList = new List<MUSW__License_Parcel__c>();
+     List<Id> licenseParcelIds  = new List<Id>();
+     List<MUSW__License_Parcel__c> licenseParceList = new List<MUSW__License_Parcel__c>();
+     List<MUSW__License_Parcel__c> updtlicenseParceList = new List<MUSW__License_Parcel__c>();
     
     if(trigger.isinsert && trigger.isafter){
         System.debug('inside new');
-      for (MUSW__License_Parcel__c pLic : trigger.new){
-            if(pLic.Mailing__c  == true ){
-                System.debug('inside mailing true');
-                permitParcelIds.add(pLic.id);
+      for (MUSW__License_Parcel__c licP : trigger.new){
+            if(licP.Mailing__c  == true ){
+                licenseParcelIds.add(licP.id);
             }
         }
-        System.debug('permitParcelIds'+permitParcelIds);
-        permitParcelList = [select id,IsLicenseParcelUpdatedForASC__c from MUSW__License_Parcel__c  where id=:permitParcelIds];
-        System.debug('permitParcelList'+permitParcelList);
-        for(MUSW__License_Parcel__c parcelLic : permitParcelList){
-               parcelLic.IsLicenseParcelUpdatedForASC__c = TRUE;
-               updtPermitParcelList.add(parcelLic);
-    	}
-        if(Dol_IntegrationUtil.isNotEmpty(updtPermitParcelList)){
-            upsert updtPermitParcelList;
-        } 
+    }
+    if(Dol_IntegrationUtil.isNotEmpty(licenseParcelIds)){
+        licenseParceList = [Select id, MUSW__License2__c, MUSW__License2__r.Credential_Type__c from MUSW__License_Parcel__c where id =: licenseParcelIds AND MUSW__License2__r.Credential_Type__c in ('Certified Residential Appraiser','Certified General Appraiser','State Licensed Appraiser')];
+        for(MUSW__License_Parcel__c parLic : licenseParceList){
+            for(MUSW__License_Parcel__c licP : trigger.new){
+                licP.IsLicenseParcelUpdatedForASC__c = true;
+            }
+        }
     }
     
      if(trigger.isupdate && trigger.isafter){
-         for(MUSW__License_Parcel__c permitPar : trigger.new){
-             if(permitPar.Mailing__c == TRUE && trigger.oldmap.get(permitPar.id).Mailing__c != TRUE) {
-                 permitParcelIds.add(permitPar.id);
+         for(MUSW__License_Parcel__c licP : trigger.new){
+             System.debug('inside Lic update');
+             if(licP.Mailing__c == true && trigger.oldmap.get(licP.id).Mailing__c != true && licP.IsLicenseParcelUpdatedForASC__c != true && licP.MUSW__License2__c != null ) {
+                     System.debug('inside Lic update after'+licP);
+                 licenseParcelIds.add (licP.id);
              }
-        }
-        System.debug('permitParcelIds'+permitParcelIds);
-        if(Dol_IntegrationUtil.isNotEmpty(permitParcelIds)){
-            permitParcelList = [select id,IsLicenseParcelUpdatedForASC__c  from MUSW__License_Parcel__c  where id =:permitParcelIds];
-        }
-    
-        for(MUSW__License_Parcel__c permitPar : permitParcelList){
-            for(MUSW__License_Parcel__c pPar : trigger.new){
-                pPar.IsLicenseParcelUpdatedForASC__c = true;
-            }     
-        }
+         }
+         if(Dol_IntegrationUtil.isNotEmpty(licenseParcelIds)){
+            licenseParceList = [Select id, MUSW__License2__c,IsLicenseParcelUpdatedForASC__c, MUSW__License2__r.Credential_Type__c from MUSW__License_Parcel__c where id =: licenseParcelIds AND MUSW__License2__r.Credential_Type__c in ('Certified Residential Appraiser','Certified General Appraiser','State Licensed Appraiser')];
+                for(MUSW__License_Parcel__c licenseParceL : licenseParceList){
+                    licenseParceL.IsLicenseParcelUpdatedForASC__c = true;
+                    updtlicenseParceList.add(licenseParceL);
+                }
+            }
+         if(Dol_IntegrationUtil.isNotEmpty(updtlicenseParceList)){
+            upsert updtlicenseParceList;
+         }
      }   
 }
