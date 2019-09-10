@@ -1,0 +1,53 @@
+<!--@AUTHOR: Sanghmitra Sahu/Tuhin Mazumder
+@Date: 01-Oct-2018 
+
+Description: Lightning Theme Component for Public Forms Theme Layout. 
+
+MODIFICATION LOG:
+DEVELOPER                          DATE                     DESCRIPTION
+================================================================================
+Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
+================================================================================= -->
+<aura:component  implements="forceCommunity:themeLayout">
+    
+    <aura:attribute name="footer" type="Aura.Component[]"/>
+    <aura:attribute name="sidebarFooter" type="Aura.Component[]"/>
+    <!--<aura:attribute name="showSideNav" type="Boolean" default="false"/> -->
+    <aura:attribute name="pageTitle" type="String" default="title"/> 
+    <aura:attribute name="isBrowserIE" type="Boolean" default="false"/>    
+    <aura:attribute name="isScriptLoaded" type="Boolean" />
+    <ltng:require styles="{!$Resource.Lnp_communityStyles}" />
+	<ltng:require styles="{!$Resource.FileUploadViewDetails}" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:if isTrue="{!v.isScriptLoaded}">
+        <aura:if isTrue="{!!v.isBrowserIE}">
+            <div class="{!v.pageTitle=='wizard'?'theme-background':''}">   
+                <!--<div role="banner" class="mainheader"> <h1 class="slds-hide">Delaware L&amp;P</h1> </div> -->
+                <c:LnP_comHeaderPublicForms/>
+                <!--a href="#main">Skip to main content</a>-->
+                <div role="main" class="slds-grid slds-wrap themeContainer" id="main" tabindex="-1">
+                    <!-- <div class="{!(and(v.showSideNav==true)?'':'slds-hide')+' side-bar'}">
+               <c:LnP_VerticalNav/>
+            </div>    -->         
+                    <div class="{!(v.showSideNav==true)?'body':'full-body'}">
+                        {!v.body}
+                    </div>
+                </div>
+                <c:LnP_comFooterPublicForms/>
+                
+            </div> 
+            <aura:set attribute = "else">
+                <div class="main-content ie-content">
+                    <div class="ie-header">                       
+                        <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/LnGLogonew.png'}" alt="WA state department of licencing logo" />
+                    </div>  
+                    <c:ExplorerErrorPage dispPage = "true" />
+                    <div class="footer">               
+                        <c:LnP_Footer />
+                    </div> 
+                </div>
+            </aura:set>
+        </aura:if>
+    </aura:if>
+</aura:component>

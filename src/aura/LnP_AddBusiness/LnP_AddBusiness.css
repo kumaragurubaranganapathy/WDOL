@@ -112,6 +112,7 @@
 }
 .THIS .course-field .slds-checkbox.slds-checkbox_standalone{
     display:flex;
+	align-items:center;
 }
 .THIS .biz-structure .slds-combobox_container:after{
     border-top: 5px solid rgb(6, 28, 63);
@@ -178,4 +179,23 @@
 }
 .THIS .disable {
     pointer-events: none;
+}
+.THIS .slds-checkbox .slds-checkbox_faux {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 12px;
+    border: 1px solid t(gray);
+}
+.THIS .biz-fields-wrapper .slds-checkbox [type=checkbox] {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    opacity: 0;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    pointer-events: auto;
 }

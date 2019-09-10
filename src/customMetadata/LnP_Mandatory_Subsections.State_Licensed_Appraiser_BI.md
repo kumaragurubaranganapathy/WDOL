@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>RenewOrReinstate__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Renewal</value>
     </values>
     <values>
         <field>Section__c</field>
@@ -20,6 +20,6 @@
     </values>
     <values>
         <field>SubSection__c</field>
-        <value xsi:type="xsd:string">Qualifying Experience, Qualifying Courses</value>
+        <value xsi:type="xsd:string">Qualifying Experience, Qualifying Courses, Continuing Education</value>
     </values>
 </CustomMetadata>

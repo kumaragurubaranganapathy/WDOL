@@ -89,10 +89,10 @@
                                                 <lightning:inputField required="true" fieldName="Contact__c" value="{!item.Contact__c}" />
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
-                                                <lightning:inputField required="true" fieldName="MUSW__Account__c" value="{!item.MUSW__Account__c}" />
+                                                <lightning:inputField fieldName="MUSW__Account__c" value="{!item.MUSW__Account__c}" />
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
-                                                <lightning:inputField required="true" fieldName="Route_to_Miscellaneous_queue__c" value="{!item.Route_to_Miscellaneous_queue__c}" />
+                                                <lightning:inputField fieldName="Route_to_Miscellaneous_queue__c" value="{!item.Route_to_Miscellaneous_queue__c}" />
                                             </lightning:layoutItem>
                                             
                                             <lightning:layoutItem size="12" padding="around-small">

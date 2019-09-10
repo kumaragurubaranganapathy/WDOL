@@ -3,8 +3,7 @@
 * Type: Trigger
 * Description: Trigger on MUSW__License2__c which calls License2TriggerHandler if trigger have not been disabled
 * Date:        Developer/Company                    Description
-* ---------------------------------------------------------------------------------------------------------------------------------------- *
-* 06/13/2018   Sharad Maheshwari/Deloitte           Initial Creation
+* ----------------------------------------------------------------------------------------------------------------------------------------
 **/
 
 trigger License2Trigger on MUSW__License2__c(before insert, before update, before delete, after insert, after update, after delete, after undelete) {
@@ -15,13 +14,15 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
         /*If the triggers have been disabled, then do not call the trigger handler*/
         return;
     }
-    //if(Fee_Waiver.lictrgexcflg){return;}
-    /*If the triggers have not been disabled, then call the trigger handler which then executes the required
-        code based on before/after insert/update/delete/undelete condition*/
-    TriggerDispatcher.Run(new License2TriggerHandler());  
-    //added to update renewal fields on License -- siddhesh 
-    
-   if(trigger.isBefore && trigger.isupdate){
+    public static boolean runOnce = false;
+    TriggerDispatcher.Run(new License2TriggerHandler());
+    System.debug('inside before Insert trigger');
+    if(trigger.isBefore && trigger.isInsert){
+        System.debug('inside before Insert trigger');
+        WA_License_utility.updateProfessionCode(trigger.New);
+    }
+      
+    if(trigger.isBefore && trigger.isupdate){
         List<MUSW__License2__c> licList = new List<MUSW__License2__c>();
         for(MUSW__License2__c lic : trigger.new){
             //padma.commented to update renewal date when issuedate changes

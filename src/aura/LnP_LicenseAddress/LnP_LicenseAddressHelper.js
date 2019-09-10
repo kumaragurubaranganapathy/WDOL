@@ -801,7 +801,6 @@
             //var contactRecordId = addressRecordData[0].MUSW__Primary_Contact__c;
             var recordId = addressRecordData[0].Id;
             var sObj = component.get("v.parcelObject");
-            console.log('recordId==' + recordId + 'sObj=' + JSON.stringify(sObj) + 'accountOrContactId=' + accountOrContactId);
             var action = component.get("c.sameAddUpdate");
             action.setParams({
                 recordId : recordId,sobjectType : sObj.sobjectType, accountOrContactId : accountOrContactId , isSame: isChecked, applicationId: applicationId

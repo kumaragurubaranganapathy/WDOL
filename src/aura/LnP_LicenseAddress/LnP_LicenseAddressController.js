@@ -249,7 +249,6 @@
         var isaddress2 = component.get("v.isAddress2");
     },
     handleCancel: function(component, event, helper) {
-        helper.setDefaultFields(component);
         component.set("v.isAddAddressClicked",false);
         
     },

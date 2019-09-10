@@ -126,7 +126,7 @@
                     <td>{!item.Major_Source__c}</td>
                     <td>{!item.Sub_Source__c}</td>
                     <td>{!item.Debit_Credit__c}</td>
-                    <td >{!item.Amount__c}</td>
+                    <td align="right">${!item.Amount__c}</td>
                     <td>{!item.General_Ledger_Account__c}</td>
                     <td>{!item.Subsidiary_Account_Debit__c}</td>
                     <td>{!item.Subsidiary_Account_Credit__c}</td>
@@ -152,7 +152,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>Total: </td>
-                <td>{!Amt}</td>
+                <td align="right">${!Amt}</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
