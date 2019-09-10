@@ -1241,7 +1241,7 @@ public class Polaris_ApplyForLicenseController {
             Id branchLicenseRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch_License_Account').getRecordTypeId();
             //Get COurse Record TYpe Id
             // List<MUSW_Application2__c> applicationList = [SELECT Id,Application_Type__c,Board__c,License_Type__c,MUSW__Account__c,MUSW__Applicant__c FROM MUSW__Application2__c where id IN: appId];
-            List<LnP_ProfessionalCode__mdt> professionCodeMaps = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
+           // List<LnP_ProfessionalCode__mdt> professionCodeMaps = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
             System.debug('***appIDvalues::'+appId);
             List<MUSW__Application2__c> applicationList =new List<MUSW__Application2__c>();
             List<Account>  lstacc = new List<Account>();
@@ -1312,13 +1312,13 @@ public class Polaris_ApplyForLicenseController {
                     mstLicense.MUSW__Status__c = 'Generate Fee';
                     mstLicense.Name = 'System Number';
                     
-                    if(!professionCodeMaps.isEmpty()){
+                   /* if(!professionCodeMaps.isEmpty()){
                         for(LnP_ProfessionalCode__mdt professionCodeMap : professionCodeMaps){
                             if(mstLicense.Credential_Type__c == professionCodeMap.License_Type__c){
                                 mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                             }
                         } 
-                    }
+                    }*/
                     
                     String printableName = '';
                     String firstName = '' ;

@@ -51,5 +51,22 @@ public static void updateRenewalFields(List<MUSW__License2__c> licenseList){
 
 }
 
+public static void updateProfessionCode(List<MUSW__License2__c> licenseList){
+   System.debug('inside updateProfessionCode');
+   List<LnP_ProfessionalCode__mdt> professionCode = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
+    Map<String,String> professionCodeMap = new Map<String,String>(); 
+    if(!professionCode.isEmpty()){
+        for(LnP_ProfessionalCode__mdt pfcode : professionCode){
+            System.debug('inside updateProfessionCode'+ pfcode.License_Type__c + ' '+pfcode.Profession_Code__c );
+           professionCodeMap.put(pfcode.License_Type__c,pfcode.Profession_Code__c);
+        } 
+    }
+    
+    for(MUSW__License2__c lic : licenseList){
+        System.debug('inside updateProfessionCode' + professionCodeMap.get(lic.Credential_Type__c));
+        lic.Profession_Code__c = professionCodeMap.get(lic.Credential_Type__c);
+    }
+}
+
 
 }
