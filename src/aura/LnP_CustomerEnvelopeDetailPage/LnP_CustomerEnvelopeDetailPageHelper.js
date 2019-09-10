@@ -33,15 +33,16 @@
         });
         fetchDepositAction.setCallback(this,function(response){
             var state = response.getState();
+            var _toastEvt = component.getEvent("toastEvt");
             if (state === "SUCCESS") {
                 var result = response.getReturnValue();
-                var _toastEvt = component.getEvent("toastEvt");
+                
                 _toastEvt.setParams({'state' : state , 'data' : 'Customer Envelope record updated' });
                 _toastEvt.fire();
                 //redirect to List view
                 this.gotoListView(component, event);            
             }else{
-                var _toastEvt = component.getEvent("toastEvt");
+                
                 _toastEvt.setParams({'state' : state , 'data' : 'Error' });
                 _toastEvt.fire();
             }
