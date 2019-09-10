@@ -23,4 +23,13 @@
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
+    <rules>
+        <fullName>asd</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>MUSW__Submission__c.Description_Long__c</field>
+            <operation>notContain</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
 </Workflow>

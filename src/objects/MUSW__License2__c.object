@@ -378,7 +378,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>RFP_Send_Date_2nd</fullName>
+        <fullName>RFP_Send_Date_2nd__c</fullName>
         <description>Date 2nd RFP was sent</description>
         <encryptionScheme>None</encryptionScheme>
         <inlineHelpText>Date 2nd RFP was sent</inlineHelpText>
@@ -429,10 +429,6 @@
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Collection Agency Branch</controllingFieldValue>
-                <controllingFieldValue>Out Of State Collection Agency Branch</controllingFieldValue>
-                <controllingFieldValue>Out Of State Collection Agency</controllingFieldValue>
                 <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
@@ -442,8 +438,11 @@
                 <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Collection Agency Branch</controllingFieldValue>
+                <controllingFieldValue>Out Of State Collection Agency Branch</controllingFieldValue>
+                <controllingFieldValue>Out Of State Collection Agency</controllingFieldValue>
                 <controllingFieldValue>Architect Firm</controllingFieldValue>
-                <controllingFieldValue>Unlicensed</controllingFieldValue>
                 <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
@@ -1799,6 +1798,18 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>License_Business_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Primary_Licensee__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Business Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>HUD_3__c</fullName>
         <description>HUD 3- used for data load</description>
@@ -1953,7 +1964,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
     <fields>
         <fullName>Last_4_SSN__c</fullName>
         <externalId>false</externalId>
-        <formula>MUSW__Applicant__r.Last_4_Social__c</formula>
+        <formula>MUSW__Applicant__r.Last_4_Digits_of_SSN__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Last 4 SSN</label>
         <required>false</required>
@@ -2482,6 +2493,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Pending Action</label>
                 </value>
                 <value>
+                    <fullName>In-Review</fullName>
+                    <default>false</default>
+                    <label>In-Review</label>
+                </value>
+                <value>
                     <fullName>In Review</fullName>
                     <default>false</default>
                     <label>In Review</label>
@@ -2545,11 +2561,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <fullName>Pending</fullName>
                     <default>true</default>
                     <label>Pending</label>
-                </value>
-                <value>
-                    <fullName>In-Review</fullName>
-                    <default>false</default>
-                    <label>In-Review</label>
                 </value>
                 <value>
                     <fullName>Unlicensed Activity</fullName>
@@ -2887,7 +2898,7 @@ Military_Waiver__c))))))))))))</formula>
     <fields>
         <fullName>No_of_years_inactive__c</fullName>
         <externalId>false</externalId>
-        <formula>(MUSW__Expiration_Date__c - TODAY())/ 365</formula>
+        <formula>(MUSW__Expiration_Date__c - TODAY()) / 365</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No.of years inactive</label>
         <precision>18</precision>
@@ -4619,7 +4630,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-   <!-- <listViews>
+  <!--  <listViews>
         <fullName>Courses_Queue</fullName>
         <columns>NAME</columns>
         <filterScope>Queue</filterScope>
@@ -4868,7 +4879,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-    <listViews>
+   <!-- <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
@@ -4876,7 +4887,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
+    </listViews> -->
     <listViews>
         <fullName>Real_Estate_Appraisers_All</fullName>
         <booleanFilter>(1 or 2) and 3</booleanFilter>
@@ -6228,7 +6239,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>In Review</fullName>
+                <fullName>In-Review</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8045,7 +8056,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>In Review</fullName>
+                <fullName>In-Review</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11007,7 +11018,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>Delegated_Agent_Record_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for all Delegated Agent</description>
         <label>Delegated Agent Record Type</label>
@@ -12952,7 +12963,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>Individual</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>for Individual Type License</description>
         <label>Individual22</label>
@@ -14969,7 +14980,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>Manufactured_Homes_Record_Type</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>This is the record type for all Manufactured homes.</description>
         <label>Manufactured Homes Record Type</label>
@@ -18037,7 +18048,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                 <default>false</default>
             </values>
             <values>
-                <fullName>In Review</fullName>
+                <fullName>In-Review</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -20991,7 +21002,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
     </recordTypes>
     <recordTypes>
         <fullName>eSLA_Portal</fullName>
-        <active>true</active>
+        <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>
         <description>Record Type for Portal user</description>
         <label>eSLA Portal</label>

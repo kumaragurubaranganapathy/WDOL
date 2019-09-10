@@ -45,6 +45,16 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Course_Type</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Course_Provider</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Course Type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Account Grace Period</fullName>
         <active>true</active>
@@ -86,6 +96,20 @@
             <value>False</value>
         </criteriaItems>
         <description>Generates Security code for Account</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Account Record Type Id</fullName>
+        <actions>
+            <name>Update_Course_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Course_Provider__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

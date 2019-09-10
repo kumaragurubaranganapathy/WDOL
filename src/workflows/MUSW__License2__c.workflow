@@ -8,7 +8,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Application_submission_final</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Application_closed_RFI_final</template>
     </alerts>
@@ -32,7 +32,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Application_closed_RFP_final</template>
     </alerts>
@@ -44,7 +44,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Application_submission_final</template>
     </alerts>
@@ -56,7 +56,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Bond_expiration_final</template>
     </alerts>
@@ -68,7 +68,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_Design_except_Engineer_final</template>
     </alerts>
@@ -80,7 +80,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_EIT_LSIT_GIT_final</template>
     </alerts>
@@ -92,7 +92,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_Engineer_final</template>
     </alerts>
@@ -104,7 +104,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_FD_Embalmer_Intern_final</template>
     </alerts>
@@ -116,7 +116,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_FD_Embalmer_final</template>
     </alerts>
@@ -128,7 +128,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_Notary_final</template>
     </alerts>
@@ -139,7 +139,7 @@
         <recipients>
             <type>campaignMemberDerivedOwner</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_Appraiser_final</template>
     </alerts>
@@ -151,7 +151,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Active_Other_R1_final</template>
     </alerts>
@@ -163,7 +163,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Inactive_business_association_final</template>
     </alerts>
@@ -175,7 +175,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/First_license_issued_Inactive_supervisor_sponsor_association_final</template>
     </alerts>
@@ -187,7 +187,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Payment_For_License</template>
     </alerts>
@@ -199,7 +199,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/License_expiration_notice_New_application_final</template>
     </alerts>
@@ -211,7 +211,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
@@ -223,20 +223,20 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
     <alerts>
         <fullName>Polaris_License_Expiration_Notice</fullName>
-        <ccEmails>kkakariya@deloitte.com</ccEmails>
+        
         <description>Polaris - License Expiration Notice</description>
         <protected>false</protected>
         <recipients>
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Polaris_120_days_Renewal_Notice</template>
     </alerts>
@@ -248,7 +248,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Retired_status_final</template>
     </alerts>
@@ -382,7 +382,7 @@
             <value>In-Review</value>
         </criteriaItems>
         <description>Automation rule for email notification: Application submission</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>Email - Bond expiration</fullName>

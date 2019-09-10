@@ -2,6 +2,7 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
         <fullName>Approved</fullName>
+        <description>This would update the approved checkbox to true after it gets approved from the approver.</description>
         <field>Approved__c</field>
         <literalValue>1</literalValue>
         <name>Approved</name>
@@ -12,10 +13,46 @@
     <fieldUpdates>
         <fullName>ApprovedBy</fullName>
         <field>Approved_By__c</field>
+        <formula>$User.FirstName+&apos; &apos;+$User.LastName</formula>
+        <name>ApprovedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ApprovedByDate_AP</fullName>
+        <field>Approved_by_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>ApprovedByDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ApprovedBy_AP</fullName>
+        <field>Approved_By__c</field>
         <formula>$User.FirstName + &apos; &apos; + $User.LastName</formula>
         <name>ApprovedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approved_AP</fullName>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approved_N</fullName>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
 </Workflow>

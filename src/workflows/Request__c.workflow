@@ -63,7 +63,7 @@
             <field>Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Maintenance_request_complete_final</template>
     </alerts>
@@ -75,7 +75,7 @@
             <field>Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>shiparthasarathy@deloitte.com</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/Maintenance_submission_review_required_final</template>
     </alerts>

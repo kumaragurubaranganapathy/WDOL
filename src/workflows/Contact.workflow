@@ -91,7 +91,7 @@
             <name>Contact_Update_Record_Type_on_Create</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Contact.LastName</field>
             <operation>notEqual</operation>
