@@ -123,7 +123,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             //objJV.Fiscal_Month__c =FiscalMonth;
             //objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
-            objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get(DOL_AppConstants.sJVAutomated).getRecordTypeId();
+            objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Automated').getRecordTypeId();
          	if(currentSeq > 9998){
                 currentSeq =0;
             } else{
@@ -161,12 +161,12 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
                 
                 lstItemRecordsForJV.add(objItem);
                 //Aggregate item records for TMS accounting system
-               if((objItem.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVTMS)){
+               if((objItem.BGBK__Fund__r.Accounting_System__c == 'TMS')){
                    sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
                     +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+mapItemIDRefundID.get(objItem.Id);
                }
                 	//Aggregate item records for AFRS accounting system
-                   else if((objItem.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES)){
+                   else if((objItem.BGBK__Fund__r.Accounting_System__c == 'AFRS')){
                         
                         sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
                         +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+
@@ -214,10 +214,10 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             
             objJVD.Target_Accounting_System__c =objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c;
             //objJVD.Transaction_Code__c = objJournalWrapper.objItemsData.Transaction_Code__c;
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES){
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS'){
                 objJVD.AFRS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;  
             }
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVTMS){
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'TMS'){
                 objJVD.TMS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;
             }
             objJVD.Reversal__c = objJournalWrapper.objItemsData.Transaction_Code_Type__c;     
@@ -233,9 +233,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJVD.Subsidiary_Account_Debit__c = '';
             objJVD.Subsidiary_Account_Credit__c ='';
             objJVD.JournalVoucher__c = objJournalWrapper.objItemsData.Journal_Voucher__c; 
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES 
-            && objJournalWrapper.objItemsData.Transaction_Code__c=='198' 
-            && objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3205'){
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS' && objJournalWrapper.objItemsData.Transaction_Code__c=='198' && objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3205'){
                 objJVD.Add_to_Interface__c=true;
             	objJVD.Add_to_PDF__c=true;	
             }else{
