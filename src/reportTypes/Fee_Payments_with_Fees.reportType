@@ -327,6 +327,16 @@
             <field>MUSW__Type__c</field>
             <table>MUSW__Fee__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <table>MUSW__Fee__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MUSW__License2__c.Application_Type__c</field>
+            <table>MUSW__Fee__c</table>
+        </columns>
         <masterLabel>Fees</masterLabel>
     </sections>
     <sections>
