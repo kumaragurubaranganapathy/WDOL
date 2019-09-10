@@ -1,4 +1,6 @@
 trigger Dol_IsContactRecordUpdatedForASC on Contact (before update) {
+    List<Id> contactIds = new List<Id>();
+    List<Contact> contactList = new List<Contact>();
   /*Checking whether triggers have been disabled for the user or not*/
     Global_Settings__c gs = Global_Settings__c.getInstance(UserInfo.getUserId());
     if(gs.Disable_Triggers__c == true){
@@ -11,7 +13,18 @@ trigger Dol_IsContactRecordUpdatedForASC on Contact (before update) {
              || con.FirstName != trigger.oldmap.get(con.id).FirstName|| con.MiddleName != trigger.oldmap.get(con.id).MiddleName
              || con.Phone != trigger.oldmap.get(con.id).Phone || con.Company_Name__c != trigger.oldmap.get(con.id).Company_Name__c))
              {
-                 con.IsContactRecordUpdatedForASC__c = true;
+                 //con.IsContactRecordUpdatedForASC__c =true;
+                 contactIds.add(con.id);
              }
+    }
+    if (Dol_IntegrationUtil.isNotEmpty(contactIds)){
+        contactList= [select id,IsContactRecordUpdatedForASC__c,(select id from MUSW__License2s__r where Credential_Type__c in ('Certified Residential Appraiser','Certified General Appraiser','State Licensed Appraiser')) from Contact where id =:contactIds];
+        for(Contact con : contactList){
+            if(Dol_IntegrationUtil.isNotEmpty(con.MUSW__License2s__r)){
+                for(Contact Cont : trigger.new){
+                    Cont.IsContactRecordUpdatedForASC__c =true;
+                }
+            } 
+        }
     }
 }
