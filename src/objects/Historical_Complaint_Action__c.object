@@ -40,9 +40,10 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Junction object for Complaint and Action Object</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -52,24 +53,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>Activity_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Activity Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Activity_Id__c</fullName>
+        <fullName>Complaint_Action_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
-        <label>Activity Id</label>
-        <length>60</length>
+        <label>Complaint Action Id</label>
+        <length>50</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -78,49 +69,17 @@
     </fields>
     <fields>
         <fullName>Complaint__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Complaint</label>
         <referenceTo>MUSW__Complaint2__c</referenceTo>
-        <relationshipName>Investigation_Notes</relationshipName>
-        <required>false</required>
+        <relationshipLabel>Historical Complaint Action</relationshipLabel>
+        <relationshipName>Historical_Complaint_Action</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Description1__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Description</label>
-        <length>3000</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Description__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Description</label>
-        <length>3000</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>10</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Inspection__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Inspection</label>
-        <referenceTo>MUSW__Inspection__c</referenceTo>
-        <relationshipName>Investigation_Notes</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Release__c</fullName>
@@ -135,26 +94,33 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Title__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
+        <fullName>Sanction__c</fullName>
         <externalId>false</externalId>
-        <label>Title</label>
-        <length>30</length>
-        <required>true</required>
+        <label>Sanction</label>
+        <referenceTo>Action__c</referenceTo>
+        <relationshipLabel>Historical Complaint Action</relationshipLabel>
+        <relationshipName>Action</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-    <label>Activity Log</label>
+    <label>Historical Complaint Action</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
-        <displayFormat>{YY}-{MM}-{DD}-{0000}-NOTE</displayFormat>
-        <label>Investigation Notes ID</label>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Historical Complaint Action Name</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Activity Logs</pluralLabel>
+    <pluralLabel>Historical Complaint Action</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
