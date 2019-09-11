@@ -61,8 +61,9 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
 		updateProfCodeForLicenseWOFees();
         
         beforeMethod();
-        
-        //This is to generate Intial sequence number with "APP"
+        //Dol_IsLicenseRecordUpdatedForASC start
+        changeData();
+        //end
         MUSW.SequenceNumber.updateNumbers(Trigger.New, Trigger.Old);
         
       //  Notificationdate();
@@ -242,19 +243,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     }
     
     public void beforeMethod() {
-        
-        
-        //Verify if Total Fee was updated correctly
-        Map<Id, Decimal> MapLicenseTotalFee = new Map<Id, Decimal>();
-        if (trigger.isUpdate) {
-            for (AggregateResult ar : [Select MUSW__License2__c, SUM(MUSW__Amount__c) amt, SUM(MUSW__Amount_Waived__c) wamt From MUSW__Fee__c where MUSW__License2__c IN :trigger.New group by MUSW__License2__c]) {
-                Decimal feeAmt = (Decimal) ar.get('amt');
-                Decimal feeWaivedAmt = (Decimal) ar.get('wamt');
-                if (feeAmt == null) feeAmt = 0;
-                if (feeWaivedAmt == null) feeWaivedAmt = 0;
-                mapLicenseTotalFee.put((Id) ar.get('MUSW__License2__c'), feeAmt - feeWaivedAmt);
-            }
-            
+        //end            
             // If Request for deletion is checked capture the Date which is used for reporting
             
             list<MUSW__License2__c> triggerNew = trigger.new;
@@ -265,7 +254,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                
             }
             
-        }
+        
         
         //Set the App Submitted Date
         for(sObject sObj : trigger.New){
@@ -285,14 +274,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             
             if ((licOld != null && !licOld.No_Fee__c) &&
                 (licOld.MUSW__Status__c != lic.MUSW__Status__c && lic.MUSW__Status__c == label.ST_Generate_Fee)) {
-                    lic.Attestation_Date__c   = system.today();
-                    
+                    lic.Attestation_Date__c   = system.today(); 
                 }
-            
-            Decimal feeAmt = mapLicenseTotalFee.get(lic.Id);
-            if (lic.Id != null && feeAmt != null && lic.MUSW__Total_Fees__c != feeAmt) {
-                lic.MUSW__Total_Fees__c = feeAmt;
-            }
         } 
     } 
     
@@ -371,8 +354,53 @@ Parameter      : Nil
         // Call Automation rules
         BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
     }
-	
-	//Added by Abhilasha for bug 6999
+    public void change() {
+                //Code to  update the  send information  async  -- Nibedita's original code moved from Dol_IsLicenseRecordUpdatedForASC         
+        //Verify if Total Fee was updated correctly
+        if (trigger.isUpdate) {
+            //Added from Trigger Sukrut
+            List<MUSW__License2__c> licList = new List<MUSW__License2__c>();
+            for(sObject sObj : trigger.new){
+                
+                MUSW__License2__c lic = (MUSW__License2__c) sObj;
+              
+                MUSW__License2__c licOld = null;
+                if(trigger.Old != null){
+                    licOld = (MUSW__License2__c)trigger.OldMap.get(lic.Id);
+                } 
+                //Code to  update the  send information  async  -- Nibedita's original code moved from Dol_IsLicenseRecordUpdatedForASC 
+                if(lic.MUSW__Applicant__c  != null && lic.Send_information_to_ASC__c != true && (lic.MUSW__Applicant__c != licOld.MUSW__Applicant__c
+                                                                                                 || lic.MUSW__Status__c != licOld.MUSW__Status__c 
+                                                                                                 || lic.MUSW__Expiration_Date__c != licOld.MUSW__Expiration_Date__c
+                                                                                                 || lic.MUSW__Type__c !=licOld.MUSW__Type__c)
+                  
+                  && (lic.Credential_Type__c == 'Certified Residential Appraiser' ||lic.Credential_Type__c == 'Certified General Appraiser'|| lic.Credential_Type__c == 'State Licensed Appraiser')){
+                                                                                                     lic.Send_information_to_ASC__c = true;                                                                
+                                                                                                 }
+                //code end for
+                
+                if(lic.MUSW__Expiration_Date__c != licOld.MUSW__Expiration_Date__c && lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null){
+                    licList.add(lic);
+                }else if(lic.MUSW__Status__c == 'Active' && lic.MUSW__Expiration_Date__c != null && lic.Application_Type__c == 'Notary Public' && lic.MUSW__Issue_Date__c != licOld.MUSW__Issue_Date__c ){
+                    licList.add(lic);
+                }
+            }
+            if(!licList.isEmpty()){
+                WA_License_utility.updateRenewalFields(licList);
+            }
+        }
+    }
+    
+    public void changeData() {
+        for(Object sObj : trigger.new){
+            MUSW__License2__c lic = (MUSW__License2__c) sObj;
+            if(lic.MUSW__Applicant__c  != null && lic.MUSW__Status__c  != 'Generate Fee' && lic.Send_information_to_ASC__c != true && (lic.Credential_Type__c == 'Certified Residential Appraiser' || lic.Credential_Type__c == 'Certified General Appraiser'|| lic.Credential_Type__c == 'State Licensed Appraiser')){
+                lic.Send_information_to_ASC__c = true;
+            }            
+        }
+    }
+    
+    //Added by Abhilasha for bug 6999
     public void updateProfCodeForLicenseWOFees(){
        system.debug('Entered updateProfCodeForLicenseWOFees');
         List<License_without_Fees__mdt> mdList = [Select Program_Type__c, License_Type__c, Prof_Code__c from License_without_Fees__mdt];
