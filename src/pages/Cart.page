@@ -294,9 +294,9 @@
                             --->
                              <apex:column headerValue="Pay" >
                                 <apex:facet name="header"> 
-                                    <apex:inputCheckbox id="cbFeeAll" styleClass="cbFeeAll" onclick="selectAll(this, 'fee')" />
+                                    <apex:inputCheckbox id="cbFeeAll" styleClass="cbFeeAll" onclick="selectAll(this, 'fee');refreshTotalJS(getUnselectedItems());" />
                                 </apex:facet>
-                                <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll')" id="{!fee.f.Id}" />
+                                <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll');refreshTotalJS(getUnselectedItems());" id="{!fee.f.Id}" />
                             </apex:column>
                             <apex:repeat value="{!$ObjectType.MUSW__Fee__c.FieldSets.BGBK__Fee_Basic}" var="ff">  
                                 
@@ -317,9 +317,9 @@
                         <apex:pageBlocktable value="{!depositVOs}" var="dep" style="width:100%">
                             <apex:column headerValue="Pay">
                                 <apex:facet name="header"> 
-                                    <apex:inputCheckbox id="cbDepositAll" styleClass="cbDepositAll" onclick="selectAll(this, 'deposit')" />
+                                    <apex:inputCheckbox id="cbDepositAll" styleClass="cbDepositAll" onclick="selectAll(this, 'deposit');refreshTotalJS(getUnselectedItems());" />
                                 </apex:facet>
-                                <input type="checkbox" checked="{!IF(dep.isSelected, 'checked', '')}" onclick="check(this,'cbDepositAll')" id="{!dep.deposit.Id}"/> 
+                                <input type="checkbox" checked="{!IF(dep.isSelected, 'checked', '')}" onclick="check(this,'cbDepositAll');refreshTotalJS(getUnselectedItems());" id="{!dep.deposit.Id}"/> 
                             </apex:column>
                             <apex:repeat value="{!$ObjectType.MUSW__Deposit__c.FieldSets.BGBK__Deposit_Basic}" var="ff">     
                                 
@@ -338,9 +338,9 @@
                         <apex:pageBlocktable value="{!invoiceVOs}" var="inv" style="width:100%">
                             <apex:column headerValue="Pay">
                                 <apex:facet name="header"> 
-                                    <apex:inputCheckbox id="cbInvoiceAll" styleClass="cbInvoiceAll" onclick="selectAll(this, 'invoice')" />
+                                    <apex:inputCheckbox id="cbInvoiceAll" styleClass="cbInvoiceAll" onclick="selectAll(this, 'invoice');refreshTotalJS(getUnselectedItems());" />
                                 </apex:facet>
-                                <input type="checkbox" checked="{!IF(inv.isSelected, 'checked', '')}" onclick="check(this,'cbInvoiceAll')" id="{!inv.i.Id}"/> 
+                                <input type="checkbox" checked="{!IF(inv.isSelected, 'checked', '')}" onclick="check(this,'cbInvoiceAll');refreshTotalJS(getUnselectedItems());" id="{!inv.i.Id}"/> 
                             </apex:column>
                             
                             <apex:repeat value="{!$ObjectType.BGBK__Bill__c.FieldSets.BGBK__Invoice_Basic}" var="ff">                
@@ -359,9 +359,9 @@
                             <apex:outputText label="Total Selected" value="${!totalSelected}" id="totalSelected"
                                 style="font-weight:bold;font-size:1.5em;" styleClass="bg-float-right"
                             />
-                            <br/>
+                            <!-- Commenting as a part of bug 7018 
                             <apex:outputPanel styleClass="btn refresh_btn" style="margin-left:18%" onclick="refreshTotalJS(getUnselectedItems());"
-                                rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel>
+                                rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel> -->
 
                             <!---
                             <apex:selectList id="accounts" rendered="{!!isPortalUser}" value="{!accountSelected}"
