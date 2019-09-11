@@ -480,6 +480,13 @@ public without sharing class LnP_DashboardApexController_2 {
             return null;
         }
     }
+	
+	@AuraEnabled 
+    public static MUSW__License2__c fetchLicenseDetails(String licenseID)
+    {
+        DOL_AppUtility.isAuthenticatedUser() ;
+        return [SELECT id,Credential_Type__c,No_of_Associations__c FROM MUSW__License2__c WHERE id=:licenseID];
+    }
     
     @AuraEnabled
     public static String fetchLicenseDetailsTable(String licenseId){
