@@ -125,7 +125,7 @@
             <name>Maintenance_request_complete</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Request__c.Status__c</field>
             <operation>equals</operation>
@@ -139,7 +139,7 @@
             <name>Maintenance_submission_review_required</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Request__c.Status__c</field>
             <operation>equals</operation>
@@ -183,7 +183,7 @@ ISPICKVAL(License__r.Application_Type__c, &apos;Appraisal Management Companies&a
             <name>Email_to_Request_Applicant_when_request_is_approved</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Request__c.Status__c</field>
             <operation>equals</operation>
@@ -197,7 +197,7 @@ ISPICKVAL(License__r.Application_Type__c, &apos;Appraisal Management Companies&a
             <name>Email_to_Request_Applicant_when_request_is_rejected</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Request__c.Status__c</field>
             <operation>equals</operation>
@@ -221,7 +221,7 @@ ISPICKVAL(License__r.Application_Type__c, &apos;Appraisal Management Companies&a
             <name>Approval_to_Reschedule_Exam</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Request__c.Service_Request_Type__c</field>
             <operation>equals</operation>

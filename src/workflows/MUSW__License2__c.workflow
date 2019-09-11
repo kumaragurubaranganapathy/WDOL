@@ -347,7 +347,7 @@
             <name>Application_closed_RFI</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Automation rule for email notification: Application closed - RFI</description>
         <formula>Text(MUSW__Status__c) = &apos;Abandoned&apos; &amp;&amp; (TODAY() -  RFI_Send_Date__c &gt;= 120) &amp;&amp; NOT(ISBLANK(RFI_Send_Date__c)) &amp;&amp; NOT(ISBLANK(RFI_Send_Date_2nd__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -358,7 +358,7 @@
             <name>Application_closed_RFP</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Automation rule for email notification: Application closed - RFP</description>
         <formula>Text(MUSW__Status__c) = &apos;Abandoned&apos; &amp;&amp; (TODAY() -  RFP_Send_Date__c &gt;= 120) &amp;&amp; NOT(ISBLANK(RFP_Send_Date__c)) &amp;&amp; NOT(ISBLANK(RFP_Send_Date_2nd__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -369,7 +369,7 @@
             <name>Application_submission</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -390,7 +390,7 @@
             <name>Bond_Expiration</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Automation rule for email notification: Bond expiration</description>
         <formula>Expiration_Date_of_Bond__c = Today()+ 7 || Expiration_Date_of_Bond__c = Today()+ 14 ||
 Expiration_Date_of_Bond__c = Today()+ 30||
@@ -403,7 +403,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>First_license_issued_Active_Appraiser_email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 9</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -459,7 +459,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>Email_First_license_issued_Active_Design_except_Engineer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6) AND 7</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -505,7 +505,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>Email_First_license_issued_Active_EIT_LSIT_GIT</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3 OR 4) AND 5</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -541,7 +541,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>Email_First_license_issued_Active_Engineer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -567,7 +567,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>Email_First_license_issued_Active_Funeral_Director_Embalmer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -598,7 +598,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>Email_First_license_issued_Active_Funeraal_Director_Embalmer_Intern</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND( 2 OR 3 OR 4 ) AND 5</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -634,7 +634,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>Email_First_license_issued_Active_Notary</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -660,7 +660,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>First_license_issued_Active_Other_R1</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 OR 17)</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -756,7 +756,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>First_license_issued_Inactive_business_association</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -787,7 +787,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>First_license_issued_Inactive_supervisor_sponsor_association</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -823,7 +823,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>License_expiration_notice_New_application</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -844,7 +844,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>License_expiration_notice_Renewal_allowed_1</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 OR 17 OR 18 OR 19 OR 20 OR 21 OR 22 OR 23 OR 24)</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
@@ -975,7 +975,7 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
             <name>License_expiration_notice_Renewal_allowed_2</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6)</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
