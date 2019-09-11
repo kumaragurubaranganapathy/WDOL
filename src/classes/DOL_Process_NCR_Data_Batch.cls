@@ -8,7 +8,10 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
     global DOL_Process_NCR_Data_Batch(){}
     
     global Database.QueryLocator start(Database.BatchableContext BC){
-        return Database.getQueryLocator([ select id, INFO__c, Input__c, File_Name__c, Status__c, Input_Type__c from DOL_Integration_Batch_Input__c where Status__c = 'UNPROCESSED' and Input_Type__c = 'NCR' ]);
+        return Database.getQueryLocator([ select id, INFO__c, Input__c, File_Name__c, Status__c, Input_Type__c 
+                                        from DOL_Integration_Batch_Input__c 
+                                        where Status__c = 'UNPROCESSED' and Input_Type__c = 'NCR' 
+                                        ]);
     }
 
     global void execute(Database.BatchableContext BC, List<DOL_Integration_Batch_Input__c> records){
@@ -127,11 +130,12 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
             feeIdList.add(fee.Id);
         }
         MUSW__Receipt__c ncrReceipt = new MUSW__Receipt__c();
-        ncrReceipt.MUSW__Payment_Method__c = 'NCR Cash';
+        // BUG - 5598 Intake and Payment Method must be NCR for NCR transaction
+        ncrReceipt.MUSW__Payment_Method__c = 'NCR';
+        ncrReceipt.Intake_Method__c = 'NCR';
         ncrReceipt.MUSW__Paid_By__c = licenseRecord.MUSW__Primary_Licensee__c;
         ncrReceipt.MUSW__Receipt_Paid_by__c = licenseRecord.MUSW__Applicant__c;
         ncrReceipt.Selected_Fees__c = String.join(feeIdList, ',');
-        ncrReceipt.Intake_Method__c = 'Counter';
         insert ncrReceipt;
         tempNCRFileData.INFO__C += ' Receipt Created = '+ncrReceipt.Id;
         // Here cartId is null , as we are not creating any cart
