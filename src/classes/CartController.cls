@@ -497,7 +497,8 @@ else cart = m_cs.getActiveCart();
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
             }
-            pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
+            //Removing sort as a part of BUG: 6985
+            //pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
             
             return pmtMethods;
         }
