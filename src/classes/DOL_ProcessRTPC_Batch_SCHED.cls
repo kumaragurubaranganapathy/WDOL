@@ -7,7 +7,7 @@
 * ------------------------------------------------------------------------------------------------*
 * 08/2/2019   Laltu Banerjee/Deloitte           Initial Creation
 **/
-global class DOL_ProcessRTPC_Batch_SCHED {
+global class DOL_ProcessRTPC_Batch_SCHED implements Schedulable {
     global void execute(SchedulableContext sc){
         if(! Dol_IntegrationUtil.isBatchRunning('DOL_ProcessRTPC_Batch')){
             DOL_ProcessRTPC_Batch batch = new DOL_ProcessRTPC_Batch();
