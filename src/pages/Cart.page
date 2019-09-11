@@ -253,7 +253,7 @@
             <apex:tabPanel switchType="client" value="{!activeTab}" id="tab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab" rendered="{!feeVOs.size >= 0 || invoiceVOs.size >= 0}">
                 
                 <!---- FEES TAB ---->
-                <apex:tab label="Items" name="fees" disabled="{!processSuccessful}" onTabEnter="setSelected();refreshFees();">
+                <apex:tab label="Fees" name="fees" disabled="{!processSuccessful}" onTabEnter="setSelected();refreshFees();">
                     <apex:outputPanel rendered="{!isPortalUser}">
                         <p>To add fees, view <a href="/apex/PermitTabPortal">your permits</a> and click "Add to Payments" on any permits with an outstanding fee.</p>
                         <p><strong>Note that you must use a valid VISA, MasterCard or Discover credit card to pay online.</strong></p>
@@ -394,7 +394,7 @@
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
 
-                            <apex:commandButton styleClass="back_btn" value="Previous" action="{!backToItems}"
+                            <apex:commandButton styleClass="back_btn" value="Pay Later" action="{!backToItems}"
                             />
                             <apex:outputPanel styleClass="btn cont_btn" onclick="checkoutJS(getUnselectedItems());"
                                 rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0 || depositVOs.size > 0)}">Continue</apex:outputPanel>
