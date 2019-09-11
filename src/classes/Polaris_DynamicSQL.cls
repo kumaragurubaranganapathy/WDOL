@@ -841,7 +841,7 @@ String pemail = (String)pdata.get('email');*/
     public  static  Map<String, disciPlinaryAction> getDeliplinaryAction (Set<String> lstname) {
         try{
         Map<String,disciPlinaryAction> mapDesciplinaryAction = new Map<String,disciPlinaryAction>();
-        List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true and Disciplinary_Action_End_Date__c < :System.date.today()];
+        List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true and Disciplinary_Action_End_Date__c > :System.date.today()];
         Set<Id> setDoc = new Set<ID>();
         List<ContentDocumentLink> lstCon;
         if(!lstSub.isEmpty()) {
