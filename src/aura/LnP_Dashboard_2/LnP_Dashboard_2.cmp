@@ -703,7 +703,7 @@
                         </header>
                         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                             <lightning:recordEditForm aura:id="createassociationrecordEditForm" objectApiName="Associations__c"
-                                                      density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}" onsubmit="{!c.onRecordSubmit}"
+                                                      density="Auto" onsuccess="{!c.handleAssociationSubmissionSuccess}"
                                                       onerror="{!c.handleAssociationSubmissionError}" recordTypeId="{!v.setAssociationRecordTypeId}">
                                 <lightning:messages />
                                 <!-- <lightning:inputField fieldName="Name__c" /> -->
