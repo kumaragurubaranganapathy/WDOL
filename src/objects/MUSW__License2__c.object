@@ -1815,7 +1815,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
 	<fields>
         <fullName>License_Business_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>MUSW__Primary_Licensee__r.Name</formula>
+        <formula>Ultimate_Parent_Account__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Business Name</label>
         <required>false</required>
@@ -2062,6 +2062,18 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_RecordType_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License RecordType Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
