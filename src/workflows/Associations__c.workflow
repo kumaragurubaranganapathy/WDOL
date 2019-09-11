@@ -291,7 +291,7 @@
             <name>Send_email_to_Parent_Licensee_about_Declination</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -311,7 +311,7 @@
             <name>Intern_accept_intern</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -330,7 +330,7 @@
             <name>Intern_decline_intern</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -349,7 +349,7 @@
             <name>Licensee_accept_business</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -363,7 +363,7 @@
             <name>Licensee_accept_licensee_additional_employer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -382,7 +382,7 @@
             <name>Licensee_accept_licensee_one_employer</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -409,7 +409,7 @@
             <name>Update_Invited_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -437,7 +437,7 @@
             <name>Send_email_to_parent_Licensee_about_cancelation</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -461,7 +461,7 @@
             <name>Trainee_separation_notification_trainee_no_supervisor</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -489,7 +489,7 @@
             <name>Trainee_separation_notification_trainee_with_supervisor</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
@@ -517,7 +517,7 @@
             <name>update_parent_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>OR( NOT (ISNULL(Parent_License__c))  ,NOT (ISNULL(Child_License__c)) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
