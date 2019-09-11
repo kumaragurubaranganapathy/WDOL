@@ -93,7 +93,7 @@
             <name>Exam_approval_email_Appraiser</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Education_History__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -118,7 +118,7 @@
             <name>Exam_approval_email_RBS</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Education_History__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -143,7 +143,7 @@
             <name>Exam_fail_notification_Geologist</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND (2 OR 3 )AND 4</booleanFilter>
         <criteriaItems>
             <field>Education_History__c.RecordTypeId</field>
@@ -174,7 +174,7 @@
             <name>Exam_pass_notification_FG_exam</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Education_History__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -204,7 +204,7 @@
             <name>Exam_pass_notification_Law_Review</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Education_History__c.RecordTypeId</field>
             <operation>equals</operation>

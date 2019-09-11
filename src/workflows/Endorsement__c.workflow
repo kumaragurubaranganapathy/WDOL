@@ -36,7 +36,7 @@
             <name>Email</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Endorsement__c.Status__c</field>
             <operation>equals</operation>
@@ -51,7 +51,7 @@
             <name>Email_Endorsement_add_review</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Endorsement__c.Status__c</field>
             <operation>equals</operation>
@@ -65,7 +65,7 @@
             <name>Email_Endorsement_remove_request</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Endorsement__c.Status__c</field>
             <operation>equals</operation>
