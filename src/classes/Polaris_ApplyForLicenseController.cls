@@ -1204,8 +1204,9 @@ public class Polaris_ApplyForLicenseController {
                                 submissions.IsSANFileUploadTrue__c = true;
                                 submissions.SAN_Image_Type__c ='Applications';
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
+                                lstSubmissions.add(submissions);
                             }
-                            lstSubmissions.add(submissions); 
+                             
                         }
                        update lstSubmissions;                
                     }
