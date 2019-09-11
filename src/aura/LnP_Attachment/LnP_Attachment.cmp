@@ -1,7 +1,7 @@
 <aura:component implements='force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction' 
                         access='global' controller="FileUploadController">
     
-   <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg', '.png', '.pdf','.mp4','.xlsx','.txt']"/>
+   <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg', '.png', '.pdf','.mp4','.xlsx','.txt','.docx','.doc','.rtf']"/>
    <aura:attribute name="uploadedFileList" type="List"/>
    <aura:attribute name="previousFileList" type="List"/>
    <aura:attribute name="docList" type="List"/>
