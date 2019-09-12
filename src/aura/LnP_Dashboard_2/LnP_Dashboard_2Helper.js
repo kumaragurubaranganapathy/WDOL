@@ -1121,7 +1121,7 @@
                 
                 this.setDraftRenewalApplicationsTableData(component,event, helper);
                 
-                 this.showToast(component, event, helper,"you have successfully deleted","success"); 
+                 this.showToast(component, event, helper,"You have successfully deleted your draft application.","success"); 
                  
             }
             if(res == false){
