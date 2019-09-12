@@ -236,6 +236,32 @@
             <valueSetName>Address_Type</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Status__c</fullName>
+        <description>Status for License Parcel Record</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <label>License Parcel</label>
     <nameField>
         <displayFormat>{0000000}</displayFormat>
