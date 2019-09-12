@@ -16,19 +16,23 @@
     </values>
     <values>
         <field>Item_Fund_GL__c</field>
-        <value xsi:type="xsd:string">3210</value>
+        <value xsi:type="xsd:string">5199</value>
     </values>
     <values>
         <field>Item_Intake_Method__c</field>
-        <value xsi:type="xsd:string">Validation Room</value>
+        <value xsi:type="xsd:string">Portal</value>
     </values>
     <values>
         <field>Item_Payment_Method__c</field>
-        <value xsi:type="xsd:string">any</value>
+        <value xsi:type="xsd:string">Any</value>
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
-        <value xsi:type="xsd:string">001</value>
+        <value xsi:type="xsd:string">965</value>
+    </values>
+    <values>
+        <field>Item_Transaction_Type__c</field>
+        <value xsi:type="xsd:string">Reapplied Payment</value>
     </values>
     <values>
         <field>JV_name__c</field>
