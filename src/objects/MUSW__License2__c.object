@@ -2490,7 +2490,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 </value>
                 <value>
                     <fullName>Submitted</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Submitted</label>
                 </value>
                 <value>
@@ -2585,13 +2585,18 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 </value>
                 <value>
                     <fullName>Pending</fullName>
-                    <default>true</default>
+                    <default>false</default>
                     <label>Pending</label>
                 </value>
                 <value>
                     <fullName>Unlicensed Activity</fullName>
                     <default>false</default>
                     <label>Unlicensed Activity</label>
+                </value>
+                <value>
+                    <fullName>Pending License Fee</fullName>
+                    <default>false</default>
+                    <label>Pending License Fee</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
