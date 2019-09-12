@@ -1141,18 +1141,4 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
-        <fullName>activity tracker</fullName>
-        <actions>
-            <name>track_me</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>notEqual</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
 </Workflow>
