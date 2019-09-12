@@ -20,15 +20,19 @@
     </values>
     <values>
         <field>Item_Intake_Method__c</field>
-        <value xsi:type="xsd:string">Counter</value>
+        <value xsi:type="xsd:string">Portal</value>
     </values>
     <values>
         <field>Item_Payment_Method__c</field>
-        <value xsi:type="xsd:string">any</value>
+        <value xsi:type="xsd:string">Any</value>
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
-        <value xsi:type="xsd:string">001</value>
+        <value xsi:type="xsd:string">006</value>
+    </values>
+    <values>
+        <field>Item_Transaction_Type__c</field>
+        <value xsi:type="xsd:string">Reapplied Payment</value>
     </values>
     <values>
         <field>JV_name__c</field>
