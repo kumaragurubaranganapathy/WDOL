@@ -12,7 +12,6 @@
        
         var action = component.get("c.fetchLicenseDetails");
         console.log('license data -- ',licenseId);
-        alert('licenseId',licenseId);
         action.setParams(
             {"licenseID": licenseId}
         );
@@ -251,7 +250,6 @@
         var applicationType = parcedValue[4];                                
         var licenseAppId = parcedValue[5];
         var appIsRenewal = parcedValue[6];
-        //alert("licId :"+ licID+"  licenseType :"+ licenseType);
         sessionStorage.setItem("manageEndorsement", manageEndorsement);
         sessionStorage.setItem("licId", licID);
         sessionStorage.setItem("board", board);
