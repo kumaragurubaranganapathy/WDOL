@@ -163,15 +163,15 @@
         }
         
         .btn {
-			font-weight: bold!important;
+            font-weight: bold!important;
             border-radius: 4px!important;
-            color: white!important;
-            background: #0071bc!important;
+            color: #0071bc!important;
+            background: white!important;
             border: solid 1px #0071bc!important;
             margin: 1px!important;
             padding: 6px 6px!important;
             /* font-weight: bold; */
-            font-size: .9em!important; 
+            font-size: .9em!important;
         }
         
         .btn:hover {
@@ -182,10 +182,17 @@
             font-size: 2em!important;
         }
         
-        .back_btn {}
+        .back_btn {
+           color: #0071bc!important;
+           background: white!important;
+           border: solid 1px #0071bc!important;
+        }
         
         .cont_btn {
-            float: right;
+           float: right;
+           color: white!important;
+           background: #0071bc!important;
+           border: solid 1px #0071bc!important;
         }
         
         .refresh_btn {
@@ -193,7 +200,11 @@
         }
         
         .epay_btn {
-            float: right;
+            text-align: center;
+            float:right;
+            color: white!important;
+            background: #0071bc!important;
+            border: solid 1px #0071bc!important;
         }
         
         .bg-steps {
