@@ -40,8 +40,8 @@ public with sharing class DOL_PDFDataDisplayController {
                                                        (Select Id, Name, Question_Section__c, Answer_Text__c, QuestionDOL__r.Question_Body__c, QuestionDOL__r.Record_Type_Name__c, 
                                                         QuestionDOL__r.Question_Sub_Section__c,QuestionDOL__r.Sub_Sub_Header__c, QuestionDOL__r.Section__c 
                                                         From Answers2__r),(Select Id, Name, MUSW__Description__c From  MUSW__Submissions__r), 
-                                                        (Select Id, Parcel_Address__c, Physical__c, Mailing__c From MUSW__License2_Parcels__r) 
-                                                        From MUSW__License2__c 
+                                                        (Select Id, Parcel_Address__c, Physical__c, Mailing__c, Status__c 
+                                                        From MUSW__License2_Parcels__r WHERE Status__c = 'Active') From MUSW__License2__c 
                                                         Where Id = :licenseData.Id LIMIT 1]){
                                                            licenseRecordData = licenseRecordInstance;
                                                        }
