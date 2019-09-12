@@ -51,6 +51,9 @@
     payFees : function(component, event, helper) {
         helper.payFees(component, event);
     },
+    StartPayment:function(component, event, helper) {
+        helper.StartPaymentHelper(component, event);
+    },
     updateRequest : function(component, event, helper) {
         helper.updateRequest(component, event);
     },
