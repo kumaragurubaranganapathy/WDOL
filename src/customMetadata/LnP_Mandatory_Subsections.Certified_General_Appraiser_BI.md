@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>RenewOrReinstate__c</field>
-        <value xsi:type="xsd:string">Renewal</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Section__c</field>
