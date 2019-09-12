@@ -1127,14 +1127,7 @@
                             }
                         }
                         var mandatoryqualification = qualificationValidation.split(",");
-                        if(component.get("v.RenewReinstate")==="Renewal"){
-                        mandatoryqualification.forEach(
-                            function(item,index){
-                                
-                                if(item.trim()==="Qualifying Courses"){
-                                    mandatoryqualification.splice(index,1)
-                                }});
-                        }
+                        
                         var qualificationValid = mandatoryqualification.filter(function(item){
                             if(enteredSections.includes(item.trim())){
                                 return true;

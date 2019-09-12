@@ -1229,12 +1229,7 @@
                             }
                         }
                         var mandatoryqualification = qualificationValidation.split(",");
-                        mandatoryqualification.forEach(
-                            function(item,index){
-                                
-                                if(item.trim()==="Continuing Education"){
-                                    mandatoryqualification.splice(index,1)
-                                }})
+                        
                         var qualificationValid = mandatoryqualification.filter(function(item){
                             if(enteredSections.includes(item.trim())){
                                 return true;
