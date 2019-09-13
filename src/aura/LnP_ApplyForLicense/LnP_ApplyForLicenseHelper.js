@@ -270,7 +270,7 @@
                 var state = actionResult.getState();
               
                 if (state === "SUCCESS"){
-					console.log('***Result Lic ID***'+JSON.Stringify(result));
+					console.log('***Result Lic ID***'+JSON.stringify(result));
                     var result = actionResult.getReturnValue();
                     //var noFees;
                     //this.hideSpinner(component, event);
