@@ -331,16 +331,6 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>track_me</fullName>
-        <field>Expiration_Date__c</field>
-        <formula>LastModifiedDate</formula>
-        <name>track me</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
     <rules>
         <fullName>Email - Application closed - RFI</fullName>
         <actions>
