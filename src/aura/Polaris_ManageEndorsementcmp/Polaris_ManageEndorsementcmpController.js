@@ -11,7 +11,7 @@
         var status = parcedValue[1];
         if(status == 'Show Provider')
         {               
-            helper.viewProviderHelper(component, event, helper,endorsementID);
+            helper.viewProviderHelper(component, event, helper);
         }
         else if(status == 'Add Provider')
         {
@@ -47,7 +47,6 @@
         helper.addEndorsemet(component, event, helper);        
     },
     saveData : function(component,event,helper){
-    saveData : function(component,event){
        event.preventDefault();     
        var eventfields = event.getParam("fields");
        eventfields["Endorsement__c"] = component.get("v.endorsementID");              
