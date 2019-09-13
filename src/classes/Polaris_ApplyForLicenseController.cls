@@ -1417,6 +1417,15 @@ public class Polaris_ApplyForLicenseController {
                             if(ans.QuestionDOL__r.Question_Body__c=='Middle Name or initial' && MiddleName == '' ){
                                 MiddleName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
+							
+							if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains('Use my full legal name')))
+                            {
+                                mstLicense.Using_my_legal_name_as_print_name__c = true;
+                            }
+                            if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && ans.Answer_Text__c.contains('Using a different version of my name'))
+                            {
+                                mstLicense.Using_my_legal_name_as_print_name__c = false;
+                            }
                             
                             if(ans.QuestionDOL__r.Question_Body__c=='Last Name' && LastName == '' ){
                                 LastName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
@@ -1621,9 +1630,9 @@ public class Polaris_ApplyForLicenseController {
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
                                                      County__c, Country__c,MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
-                                                     where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
-                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)
-                                                     order by LastModifiedDate desc];
+                                                     where Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId 
+                                                     and Application_BG__c!=null))];
                 System.debug('lstAddress===' + lstAddress);
                 if(!lstAddress.isEmpty()){
                     for(MUSW__Parcel__c parcelAddress : lstAddress) {
@@ -1651,9 +1660,9 @@ public class Polaris_ApplyForLicenseController {
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
                                                      County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
-                                                     where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
-                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId)
-                                                     order by LastModifiedDate desc]){
+                                                     where Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId 
+                                                     AND Application_BG__c !=null))]){
                                                          allAddressList.add(allAddressRecords);
                                                      }
         }

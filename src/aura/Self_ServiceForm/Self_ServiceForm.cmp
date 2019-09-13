@@ -30,7 +30,7 @@
                                       objectApiName="{!v.objectApiName}"
                                       onsuccess="{!c.cancel}">
                 <!-- the messages component is for error messages -->
-                <!-- <lightning:messages /> -->
+                <!--<lightning:messages />-->
                 <div class="service-form-container">
                     <div class="input-field-wrapper">
                         <h2 class="contact-name">{!v.contactName}</h2>
@@ -103,7 +103,7 @@
             
             <div class="slds-align_absolute-center slds-p-around_medium ">
                 <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.printUpdate}"/>
+                <lightning:button variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.printUpdate}"/>
                 <!--<lightning:button variant="success" label="CreateCode" title="Success" onclick="{!!c.createcode}"/>-->
             </div>
         </aura:if>

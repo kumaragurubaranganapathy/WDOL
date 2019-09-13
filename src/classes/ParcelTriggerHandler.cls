@@ -39,7 +39,25 @@ public class ParcelTriggerHandler implements BGCM.ITriggerHandler {
                 if (address.length() > 80) address = address.substring(0, 80);
                 p.Name = address;
             }
+            String fulladdr;
+            if(p.Name!=null)
+            {
+                fulladdr = p.Name;
+            }
+            if(p.MUSW__State__c!=null)
+            {
+                fulladdr = fulladdr+ ', '+p.MUSW__State__c;
+            }
+            if(p.MUSW__Post_Zip_Code__c!=null)
+            {
+                fulladdr = fulladdr+ ', '+p.MUSW__Post_Zip_Code__c;
+            }
+            if(p.Country__c!=null)
+            {
+                fulladdr= fulladdr+', '+p.Country__c;
+            }
             
+            p.Full_Address__c = fulladdr;
         }
         
     }

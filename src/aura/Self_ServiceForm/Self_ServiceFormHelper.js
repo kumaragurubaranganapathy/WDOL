@@ -227,9 +227,10 @@
                 {
                     var conVerId = response.getReturnValue();
                     //windows.location = 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER';
+                     console.log('conVerId==' + conVerId);                    
                     var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
-                        "url": 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER'
+                        "url": $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/document/download/'+conVerId+'?operationContext=S1'
                     });
                     urlEvent.fire();
                 }
@@ -271,6 +272,7 @@
     },
     
     validateFields : function(component,event){
+        var toastEvent = $A.get("e.force:showToast");
         var inputFields = component.find("input-fields");
         // var inputFields = component.find("UpdateContactId");
         var errorCount = 0;
@@ -279,7 +281,7 @@
             {
                 if(elem.get("v.fieldName") === "MobilePhone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                     errorCount++;
-                    var toastEvent = $A.get("e.force:showToast");
+                    
                     toastEvent.setParams({
                         "title": "ERROR!",
                         "message": "Mobile Phone should be 10 digits",
@@ -290,7 +292,7 @@
                 }
                 else if(elem.get("v.fieldName") === "Phone" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                     errorCount++;
-                    var toastEvent = $A.get("e.force:showToast");
+                    
                     toastEvent.setParams({
                         "title": "ERROR!",
                         "message": "Business Phone should be 10 digits",
@@ -301,7 +303,7 @@
                 }
                 if(elem.get("v.fieldName") === "Phone_Primary_Contact__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                     errorCount++;
-                    var toastEvent = $A.get("e.force:showToast");
+                    
                     toastEvent.setParams({
                         "title": "ERROR!",
                         "message": "Mobile Phone should be 10 digits",
@@ -312,7 +314,7 @@
                 }
                 else if(elem.get("v.fieldName") === "Business_Phone__c" && elem.get("v.value").length!==12 && elem.get("v.value").length!==0){
                     errorCount++;
-                    var toastEvent = $A.get("e.force:showToast");
+                    
                     toastEvent.setParams({
                         "title": "ERROR!",
                         "message": "Business Phone should be 10 digits",

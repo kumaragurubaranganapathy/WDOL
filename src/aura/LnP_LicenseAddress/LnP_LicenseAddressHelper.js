@@ -9,7 +9,6 @@
                     component.set("v.contactId",contactRecordId);
                     console.log('set contactId' + component.get("v.contactId"));
                     if(!component.get("v.isAMR")){
-                        
                         this.getallAddress(component, event, helper);
                     }
         
@@ -473,6 +472,7 @@
             'accountOrContactId': accountOrContactId,
             'objectRecordName' : objectRecordName,
             'isAMR':component.get("v.isAMR"),
+            'UpdateMailing': component.get("v.changeOnlyMailingAdd"),
         });
         action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
@@ -789,6 +789,7 @@
     updateExistingMailingAddress: function(component, event, helper, isChecked){
         var accountOrContactId;
         var addressRecordData;
+        var recordId;
         if($A.util.isEmpty(component.get("v.saveAddressList")) || $A.util.isUndefined(component.get("v.saveAddressList"))){
             addressRecordData= component.get("v.allAddressList");
         }else{
@@ -803,7 +804,11 @@
                 accountOrContactId = addressRecordData[0].Primary_Account__c;
             }
             //var contactRecordId = addressRecordData[0].MUSW__Primary_Contact__c;
-            var recordId = addressRecordData[0].Id;
+            if(addressRecordData[0].Address_Type__c=='MAILING ADDRESS'){
+            	recordId = addressRecordData[0].Id;   
+            }else{
+                recordId = addressRecordData[1].Id;  
+            }
             var sObj = component.get("v.parcelObject");
             var action = component.get("c.sameAddUpdate");
             action.setParams({

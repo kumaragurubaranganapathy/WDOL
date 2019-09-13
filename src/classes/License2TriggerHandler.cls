@@ -34,6 +34,23 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
      if(runAgain == true) {
          runAgain= false;
          afterMethod();
+               
+         //calling future method to generate Review on License.
+         
+        List<MUSW__License2__c> triggerOld = Trigger.Old;
+        List<MUSW__License2__c> triggerNew = Trigger.New;
+        Map<Id,MUSW__License2__c> oldMapLicense = (Map<Id,MUSW__License2__c>)Trigger.OldMap;
+        Map<Id,MUSW__License2__c> newMapLicense = (Map<Id,MUSW__License2__c>)Trigger.NewMap;
+        List<Id> licenseList = new List<Id>();
+        for(MUSW__License2__c lic : triggerNew ){
+            if(lic.MUSW__Total_Balance__c == 0 && lic.MUSW__Status__c == 'Pending Payment'){
+                  licenseList.add(lic.id);
+            }
+        
+        } 
+        if(!licenseList.isEmpty()){
+           createReviewOnLicense(licenseList);
+        } 
         }
 
     }
