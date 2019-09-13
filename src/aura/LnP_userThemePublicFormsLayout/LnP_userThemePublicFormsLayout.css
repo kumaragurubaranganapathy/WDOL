@@ -36,10 +36,11 @@
 }
 .THIS .slds-input::-moz-placeholder {  /*firefox*/       
   
-    line-height:40px !important;
+    line-height: 42px !important;
 }
 .THIS .slds-input::-webkit-input-placeholder { /*safari*/   
-     line-height:40px !important;
+      line-height: inherit !important;
+      height: 42px !important; 
 }
 .THIS h1,.THIS h2,.THIS h3,.THIS h4,.THIS h5,.THIS h6{
     font-family: t(merrifontfamily);
