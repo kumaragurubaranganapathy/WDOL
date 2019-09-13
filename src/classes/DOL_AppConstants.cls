@@ -8,46 +8,6 @@ public class DOL_AppConstants {
     public static final String ePaymentReturnUrlNonPortalUser = 'ePayment Return Url Non Portal User';
     public static final String ePaymentSessionValuesSeperator = '|';
     public static final String ePaymentUrlListValuesSeperator = 'SEPARATOR';
-    public static final List<String> PORTAL_PROFILES = new List<String>{'eSLA Customer Community Plus Login User','eSLA Customer Community Login User'};
-    
-    //Class DOL_JITHandler
-    public static final String sJITErrorMessageOne = 'An SAML error occurred. Please contact us for assistance.';
-    public static final String sJITErrorMessageTwo = 'Configuration';
-    public static final String sJITErrorMessageThree = 'Missing SAML attributes. Cant initiate JIT creation process. Please check if Custom Label for SAML attributes are set appropriately.';
-    public static final String sJITException = 'DOL_JITHandler.JitException';
-    public static final String sJITKey = 'IX6Wjpic/pToPXTvi6J0slh9nJuR0sH82+BFsCW13XA=';
-    public static final String sJITAlgorithm = 'AES256';
-    
-    //Class Journal_Voucher_Trigger_Handler
-    public static final String sJVTriggerOne = 'Manual CreditJournal - User Created';
-    public static final String sJVTriggerTwo = 'Manual JV -User Created - Correction JV or one system to another JV';
-    public static final String sJVTriggerThree = 'RemittanceTransfer in POLARIS - User Created';
-    public static final String sJVTriggerFour = 'Manual JV -Remittance JV from a validation number';
-    public static final String sJVTriggerFive = 'ManualTransfer - User Created';
-    public static final String sJVTriggerSix = 'ManualTransfer - System Generated to other agencies';
-    public static final String sJVTriggerSeven = 'Manual CRJSfor Daily -Lockbox  240Q';
-    public static final String sJVTriggerEight = 'Manual IAP -user created to ensure document # matches OFM/AFRS';
-    
-    //Class LnP_SaveBackGroundDetails
-    public static final String sSuccessResponse = 'Successfull';
-    public static final String sFailedResponse = 'Fail';
-    
-    //Class Lnp_Journal_Voucher_Generic
-    public static final String sJVAutomated = 'Journal Voucher Automated';
-    public static final String sJVAFRES = 'AFRS';
-    public static final String sJVTMS = 'TMS';
-    
-    //Class Polaris_AMRLinkCntrl
-    public static final String sContactId = '003r000000EOhBB';
-    
-    //Class mapDemo
-    public static final String sRoute = 'https://www.google.com/maps/dir';
-    public static final String sIcon = 'utility:salesforce1';
-    
-    
-    //Class batchSendLicenseCertification
-    public static final String sSubjectLine = 'Dept of Licensing – License Certificate';
-    public static final String sMailBody = 'Please find attached a copy of your License Certificate';
     
     public static Map<String,String> integrationSettingsMetadataMap = new Map<String,String>();
     
@@ -227,9 +187,9 @@ public class DOL_AppConstants {
     
     //CredCEhoursScheduler
     public static final String QUERY_LICENSE_ELIGIBLE_STRING = 'Select id, name, CE_Hours__c, Renewal_Cycle_End_Date__c, ' + 
-               		 'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
-               		 'from MUSW__License2__c where CE_Eligible__c = true limit 200';
-               		 
+                    'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
+                    'from MUSW__License2__c where CE_Eligible__c = true limit 200';
+                    
     //CredentialNotificationScheduler
     public static final String QUERY_CREDENTIAL_NOTIFICATION_SCHEDULER = 'Select Id, Name, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.LastName, MUSW__Applicant__r.Name, MUSW__Primary_Licensee__r.Email_Primary_Contact__c, MUSW__Status__c, ' + 
             'MUSW__Expiration_Date__c, Next_Notification_Date__c, Next_Notification_Attempt__c, Business_License__c, OwnerId,Credential__c, ' + 
