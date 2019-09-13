@@ -20,10 +20,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>License__c</field>
-            </layoutItems
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>isAdminContact__c</field>
             </layoutItems>
             <layoutItems>
@@ -117,10 +113,6 @@
         <fields>TASK.PRIORITY</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <relatedList>RelatedActivityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Fingerprint_Results__c.Account_Contact__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
