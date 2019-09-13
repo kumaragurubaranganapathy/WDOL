@@ -1398,6 +1398,9 @@ public class Polaris_ApplyForLicenseController {
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Initial_Contracts__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
+								if(QuestionObjFieldAPIName == 'Date_Fiscal_Year_Ends__c'){
+                                    mstLicense.Date_Fiscal_Year_Ends__c = Date.valueOf(ans.Answer_Text__c);
+                                }
                             }
                             //-----------Completed by Babita------------------
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How will your name appear') && firstName == '' ){

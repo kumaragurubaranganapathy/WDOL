@@ -18,10 +18,9 @@ trigger Dol_IsLicenseParcelUpdatedForASC on MUSW__License_Parcel__c (after inser
     }
     if(Dol_IntegrationUtil.isNotEmpty(licenseParcelIds)){
         licenseParceList = [Select id, MUSW__License2__c, MUSW__License2__r.Credential_Type__c from MUSW__License_Parcel__c where id =: licenseParcelIds AND MUSW__License2__r.Credential_Type__c in ('Certified Residential Appraiser','Certified General Appraiser','State Licensed Appraiser')];
-        for(MUSW__License_Parcel__c parLic : licenseParceList){
-            for(MUSW__License_Parcel__c licP : trigger.new){
-                licP.IsLicenseParcelUpdatedForASC__c = true;
-            }
+        for(MUSW__License_Parcel__c licenseParceL : licenseParceList){
+           licenseParceL.IsLicenseParcelUpdatedForASC__c = true;
+           updtlicenseParceList.add(licenseParceL);
         }
     }
     
@@ -35,13 +34,13 @@ trigger Dol_IsLicenseParcelUpdatedForASC on MUSW__License_Parcel__c (after inser
          }
          if(Dol_IntegrationUtil.isNotEmpty(licenseParcelIds)){
             licenseParceList = [Select id, MUSW__License2__c,IsLicenseParcelUpdatedForASC__c, MUSW__License2__r.Credential_Type__c from MUSW__License_Parcel__c where id =: licenseParcelIds AND MUSW__License2__r.Credential_Type__c in ('Certified Residential Appraiser','Certified General Appraiser','State Licensed Appraiser')];
-                for(MUSW__License_Parcel__c licenseParceL : licenseParceList){
-                    licenseParceL.IsLicenseParcelUpdatedForASC__c = true;
-                    updtlicenseParceList.add(licenseParceL);
-                }
-            }
-         if(Dol_IntegrationUtil.isNotEmpty(updtlicenseParceList)){
-            upsert updtlicenseParceList;
-         }
-     }   
+             for(MUSW__License_Parcel__c licenseParceL : licenseParceList){
+                 licenseParceL.IsLicenseParcelUpdatedForASC__c = true;
+                 updtlicenseParceList.add(licenseParceL);
+             }
+        }
+     } 
+    if(Dol_IntegrationUtil.isNotEmpty(updtlicenseParceList)){
+        upsert updtlicenseParceList;
+    }
 }

@@ -1461,6 +1461,32 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+	<fields>
+        <fullName>Date_Fiscal_Year_Ends__c</fullName>
+        <description></description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Fiscal Year Ends</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>NoOfDaysExpirePreFuneral__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(MUSW__Issue_Date__c &lt; Date_Fiscal_Year_Ends__c, Date_Fiscal_Year_Ends__c-MUSW__Issue_Date__c,MUSW__Issue_Date__c-Date_Fiscal_Year_Ends__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NoOfDaysExpireToPreFuneralFiscYear</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Date_of_Birth__c</fullName>
         <externalId>false</externalId>
@@ -6272,6 +6298,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Pending Additional Qualifications</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Pending License Fee</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18081,6 +18111,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             </values>
             <values>
                 <fullName>Pending Additional Qualifications</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Pending License Fee</fullName>
                 <default>false</default>
             </values>
             <values>
