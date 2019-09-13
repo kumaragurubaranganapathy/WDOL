@@ -49,45 +49,6 @@ public class DOL_AppConstants {
     public static final String sSubjectLine = 'Dept of Licensing – License Certificate';
     public static final String sMailBody = 'Please find attached a copy of your License Certificate';
     
-    //Class DOL_JITHandler
-    public static final String sJITErrorMessageOne = 'An SAML error occurred. Please contact us for assistance.';
-    public static final String sJITErrorMessageTwo = 'Configuration';
-    public static final String sJITErrorMessageThree = 'Missing SAML attributes. Cant initiate JIT creation process. Please check if Custom Label for SAML attributes are set appropriately.';
-    public static final String sJITException = 'DOL_JITHandler.JitException';
-    public static final String sJITKey = 'IX6Wjpic/pToPXTvi6J0slh9nJuR0sH82+BFsCW13XA=';
-    public static final String sJITAlgorithm = 'AES256';
-    
-    //Class Journal_Voucher_Trigger_Handler
-    public static final String sJVTriggerOne = 'Manual CreditJournal - User Created';
-    public static final String sJVTriggerTwo = 'Manual JV -User Created - Correction JV or one system to another JV';
-    public static final String sJVTriggerThree = 'RemittanceTransfer in POLARIS - User Created';
-    public static final String sJVTriggerFour = 'Manual JV -Remittance JV from a validation number';
-    public static final String sJVTriggerFive = 'ManualTransfer - User Created';
-    public static final String sJVTriggerSix = 'ManualTransfer - System Generated to other agencies';
-    public static final String sJVTriggerSeven = 'Manual CRJSfor Daily -Lockbox  240Q';
-    public static final String sJVTriggerEight = 'Manual IAP -user created to ensure document # matches OFM/AFRS';
-    
-    //Class LnP_SaveBackGroundDetails
-    public static final String sSuccessResponse = 'Successfull';
-    public static final String sFailedResponse = 'Fail';
-    
-    //Class Lnp_Journal_Voucher_Generic
-    public static final String sJVAutomated = 'Journal Voucher Automated';
-    public static final String sJVAFRES = 'AFRS';
-    public static final String sJVTMS = 'TMS';
-    
-    //Class Polaris_AMRLinkCntrl
-    public static final String sContactId = '003r000000EOhBB';
-    
-    //Class mapDemo
-    public static final String sRoute = 'https://www.google.com/maps/dir';
-    public static final String sIcon = 'utility:salesforce1';
-    
-    
-    //Class batchSendLicenseCertification
-    public static final String sSubjectLine = 'Dept of Licensing – License Certificate';
-    public static final String sMailBody = 'Please find attached a copy of your License Certificate';
-    
     public static Map<String,String> integrationSettingsMetadataMap = new Map<String,String>();
     
     static{
