@@ -270,12 +270,14 @@
                 var state = actionResult.getState();
               
                 if (state === "SUCCESS"){
+					console.log('***Result Lic ID***'+JSON.Stringify(result));
                     var result = actionResult.getReturnValue();
                     //var noFees;
                     //this.hideSpinner(component, event);
                     if(result != null){
                         component.set("v.storeServerValue", result[0].Id);
                         id = component.get("v.storeServerValue");
+						console.log('***Which ID***'+id);
                         try{
                             return new Promise($A.getCallback(function(resolve, reject) {
                                 var action = component.get("c.getTotalBalance");
