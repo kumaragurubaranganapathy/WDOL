@@ -46,12 +46,6 @@
     showAddRecord : function(component, event, helper){
         helper.addEndorsemet(component, event, helper);        
     },
-    saveData : function(component,event,helper){
-       event.preventDefault();     
-       var eventfields = event.getParam("fields");
-       eventfields["Endorsement__c"] = component.get("v.endorsementID");              
-       component.find('providerForm').submit(eventfields); 
-	},
     addProvider : function(component, event, helper){        
         component.set("v.endorsementID",event.getSource().get("v.value"));        
         component.set("v.isModalOpen",true);      
