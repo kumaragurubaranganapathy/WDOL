@@ -30,7 +30,7 @@
                                       objectApiName="{!v.objectApiName}"
                                       onsuccess="{!c.cancel}">
                 <!-- the messages component is for error messages -->
-                <lightning:messages />
+                <!-- <lightning:messages /> -->
                 <div class="service-form-container">
                     <div class="input-field-wrapper">
                         <h2 class="contact-name">{!v.contactName}</h2>
