@@ -88,6 +88,7 @@
                 sessionStorage.setItem("licenseType", component.get("v.licenseType"));
                 sessionStorage.setItem("applicationType", component.get("v.applicationMethod"));
                 sessionStorage.setItem("requestId", requestId);
+                sessionStorage.setItem("accountRecordID",component.get("v.accountId"));
                 sessionStorage.setItem("recordId", component.get("v.recordId"));
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';                    
             }

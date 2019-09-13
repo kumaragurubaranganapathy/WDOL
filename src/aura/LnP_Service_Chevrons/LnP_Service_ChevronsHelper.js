@@ -37,6 +37,7 @@
                 component.set("v.totalTabs", sectionList.length);
                 this.hideSpinner(component, event);
                 this.getAMRMetadata(component,event,helper);
+                this.showWarningMessage(component,event,helper)
             }else{
                 //  window.location.href = "./error";
                 console.log("error" +  state);
@@ -53,7 +54,7 @@
         //var recordID =  sessionStorage.getItem("accountRecordID");
         var flowType = sessionStorage.getItem("ServiceRequestType");
         var recordId = sessionStorage.getItem("recordId");
-        var accountRecordId = sessionStorage.getItem("accountRecordId");
+        var accountRecordId = sessionStorage.getItem("accountRecordID");
         var taskDescription  = sessionStorage.getItem("taskDescription");
         var contactRecordId = sessionStorage.getItem("contactRecordId");        
         var objectName = "";
@@ -64,6 +65,10 @@
                 window.location.href = "./error";
             }
         }*/
+        if(accountRecordId!=null)
+        {
+            component.set("v.objectName",'Account');
+        }
         component.set("v.taskDescription", taskDescription);
         component.set("v.licenseType", licenseType);
         component.set("v.board", board);
@@ -273,6 +278,15 @@
         });
         urlEvent.fire();
     },
+    showWarningMessage: function(component, event, helper){
+        var tabsList = component.get("v.licenseWrapper");
+        var currentTab = component.get("v.currentTab");
+        if(tabsList[currentTab-1].labelFieldsMap[0].warningMessages != null)
+        {            
+            component.set("v.showWarningMessage",true);
+            component.set("v.warningMessage",tabsList[currentTab-1].labelFieldsMap[0].warningMessages);            
+        }
+    },
     showDependentQuestionsHelper : function(component, event, helper){        
         component.set("v.showEndoMessage",false);
         component.set("v.showNotaryEndo",false);
@@ -306,6 +320,7 @@
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
         }
+        
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
         var childQuestionsArray = [];
@@ -428,7 +443,7 @@
         else {
             component.set("v.submitButtonDisable", "true");
         }
-        if(component.get("v.flowType")=='License History Request' && component.get("v.attestationStatus") == true)
+        if(component.get("v.attestationStatus") == true)
         {
             component.set("v.submitButtonDisable", "false");
         }

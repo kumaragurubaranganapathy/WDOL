@@ -40,6 +40,8 @@
     <aura:attribute name="title" type="String" /> 
     <aura:attribute name="showEndoMessage" type="Boolean" default="false" />
     <aura:attribute name="endoMessage" type="String" />
+    <aura:attribute name="showWarningMessage" type="Boolean" default="false" />
+    <aura:attribute name="warningMessage" type="String" />
     <aura:attribute name="showNotaryEndo" type="Boolean" default="false" />
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
     <aura:attribute name="declarationFlag" type="Boolean" default="false" />
@@ -84,6 +86,11 @@
                 {!v.endoMessage}
             </ui:message>
         </aura:if>
+        <aura:if isTrue="{!v.showWarningMessage}">
+            <ui:message title="Warning" severity="warning" closable="true">
+                {!v.warningMessage}
+            </ui:message>
+        </aura:if>
         <aura:iteration items="{!v.licenseWrapper}" var="section" indexVar="varSection">
             <aura:if isTrue="{!and(or(section.sectionName=='Personal Information',section.sectionName=='Business Information'), v.currentTab==section.tabIndex)}">
                 <div class="personal-info">
@@ -104,12 +111,11 @@
                             <aura:set attribute="else">
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
-									<aura:if isTrue="{!and(v.showEndoMessage,(v.flowType == 'Update Company Information'))}">
+                                    <aura:if isTrue="{!and(v.showEndoMessage,(v.flowType == 'Update Company Information'))}">
                                         <ui:message title="Warning" severity="error" closable="true">
                                             {!v.endoMessage}
                                         </ui:message>
                                     </aura:if>
-                                    <aura:if isTrue="{!v.flowType!='License History Request'}">
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings underline">Review and Submit</div><br/>
                                         
@@ -198,7 +204,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </aura:if>
+                                    
                                     <div id="AttestationValidation" class='field-item attest-fields'>                
                                         <div class="headings attestation">Signature</div>
                                         <!--<div class="attestBody">Declare before proceeding.</div> -->
@@ -212,7 +218,7 @@
                                                 
                                             </ui:message>
                                         </aura:if>
-                                        <!-- <div class="error attestation-error slds-m-top_large">{!v.attestationError}</div> -->
+                                        
                                         <div class = "revAndSubErrorFont">
                                             <!--<ui:outputText aura:id="ErrorMessageLabel" value="{!v.SectionError}"/>-->
                                             <aura:iteration items="{!v.SectionError}" var="responses" indexVar="varRes"> 
@@ -344,7 +350,7 @@
                         </aura:if>
                         <aura:if isTrue="{!and(section.sectionName=='Address',v.currentTab==section.tabIndex)}">
                             <div class="aff-loc address-sec">
-                                <c:LnP_LicenseAddress amrLicId="{!v.recordId}" isApplicationFlow="false" requestId="{!v.applicationId}" isAMR ="true" aura:id="lnpStoreAddress"/>
+                                <c:LnP_LicenseAddress amrLicId="{!v.recordId}" isApplicationFlow="false" requestId="{!v.applicationId}" accountId="{!v.accountRecordId}" objectName="{!v.objectName}" isAMR ="true" aura:id="lnpStoreAddress"/>
                             </div>
                         </aura:if>
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">

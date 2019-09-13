@@ -238,7 +238,7 @@
                         </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!empty(v.ServiceLink)?'slds-hide':(v.showMoreAMR?'amr-links exp-actions':'amr-links slds-show_medium')}">
-                        <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" recordId="{!v.LicenseData.Id}"  />
+                        <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" recordId="{!v.LicenseData.Id}" accountId="{!v.selectedAccount}" />
                     </lightning:layoutItem>
                     
                 </lightning:layout>

@@ -235,20 +235,22 @@
     
     onChange: function(component , event, helper) {
         var selectedAddress = document.querySelector('input[name="locations"]:checked').value;
+        var addr;
         console.log('selectedAddress===' + selectedAddress);
         component.set("v.userSelectedAddr" , selectedAddress);
-        if(selectedAddress == 'SuggestedAddress'){
-            var addr = component.get("v.issuggestedAdd2");
+        if(selectedAddress === 'SuggestedAddress'){
+             addr = component.get("v.issuggestedAdd2");
             component.set("v.isAddress2" , addr);
             component.set("v.isSelectedAddrTrue" , true);
         }
-        if(selectedAddress == 'OriginalAddress'){
-            var addr = component.get("v.isOriginalAdd2");
+        if(selectedAddress === 'OriginalAddress'){
+             addr = component.get("v.isOriginalAdd2");
             component.set("v.isAddress2" , addr);
         }
-        var isaddress2 = component.get("v.isAddress2");
+        //var isaddress2 = component.get("v.isAddress2");
     },
     handleCancel: function(component, event, helper) {
+        //helper.setDefaultFields(component);
         component.set("v.isAddAddressClicked",false);
         
     },
