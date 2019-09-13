@@ -453,6 +453,20 @@
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Inspection_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Inspection Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Inspection_Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Start Date</label>
@@ -517,6 +531,21 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+        <fields>
+        <fullName>License_ID__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+
     <fields>
         <fullName>MUSW__AlertCode__c</fullName>
         <deprecated>false</deprecated>
@@ -1113,6 +1142,19 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Related To</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>

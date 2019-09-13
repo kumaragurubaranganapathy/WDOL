@@ -565,6 +565,20 @@
             <valueSetName>State_Provinces</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Complainant_Business_Zipcode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Complainant Business Zipcode</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    
     <fields>
         <fullName>Complainant_City__c</fullName>
         <externalId>false</externalId>
@@ -576,6 +590,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+
     <fields>
         <fullName>Complainant_Doing_Business_As__c</fullName>
         <externalId>false</externalId>
@@ -923,6 +938,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
+    </fields>
+	<fields>
+        <fullName>Complaint_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Complaint Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Complainant_Individual_State__c</fullName>
@@ -1344,7 +1373,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+	<fields>
         <fullName>Complaint_Source__c</fullName>
         <externalId>false</externalId>
         <label>Complaint Source</label>
@@ -3813,6 +3842,17 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <valueName>Program</valueName>
             </valueSettings>
         </valueSet>
+    </fields>
+	<fields>
+        <fullName>Submitted_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Subtype__c</fullName>
