@@ -552,7 +552,7 @@
                     helper.showToast(component, event, "Success!", "success", "Your address Entry has been successfully created."); 
 					if(!component.get("v.changeOnlyMailingAdd"))
                     {
-                        window.location.href = $A.get("$Label.c.Polaris_Portal_Home");
+                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback" ;
                     }
                 }
                 else{
