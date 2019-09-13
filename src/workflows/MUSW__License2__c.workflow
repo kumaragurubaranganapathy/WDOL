@@ -1052,6 +1052,35 @@ Expiration_Date_of_Bond__c = Today()+ 1</formula>
         <formula>NOT(ISBLANK(MUSW__Parcel__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+	<rules>
+        <fullName>Payment Notification for License Fee</fullName>
+        <actions>
+            <name>Payment_for_License_Fee_two_step</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Pending License Fee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Total_Balance__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>contains</operation>
+            <value>Architect,Landscape Architect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Populate Pre Licensure Number</fullName>
         <actions>
