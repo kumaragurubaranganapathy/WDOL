@@ -155,6 +155,31 @@
         <label>Submission Review Overview</label>
     </fieldSets>
     <fields>
+        <fullName>SAN_Area_Code__c</fullName>
+        <description>Area code of image processed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>SAN Area Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Activity_Log__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -864,19 +889,7 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <fields>
-        <fullName>SAN_Area_Code__c</fullName>
-        <description>Area code of image processed</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>SAN Area Code</label>
-        <length>3</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
+    
     <fields>
         <fullName>SAN_Department_Code__c</fullName>
         <description>Child departments under the areas</description>
