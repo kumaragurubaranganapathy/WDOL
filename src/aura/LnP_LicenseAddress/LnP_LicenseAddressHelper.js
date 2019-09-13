@@ -572,7 +572,8 @@
                     console.log("Unknown error");
                 }
             }
-            sessionStorage.clear();
+            //BUG 6964
+            //sessionStorage.clear();
         });
         $A.enqueueAction(action);
     },    
