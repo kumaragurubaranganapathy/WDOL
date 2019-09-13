@@ -12,7 +12,7 @@
     <aura:attribute name="ShowAddEndorsement" type="boolean" default="true"/>    
     <aura:attribute name="isModalOpen" type="boolean" default="false"/>
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
-    <aura:attribute name="disableRemove" type="boolean" default="true"/>
+    <aura:attribute name="disableRemove" type="boolean" default="false"/>
     <aura:attribute name="showProvider" type="boolean" default="false"/>
     <aura:attribute name="ProviderFields" type="String[]" default="['Provider_Name__c','Effective_Date__c','Description__c']" />
     <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
@@ -82,15 +82,16 @@
                                     <td>{!doc.Status__c}</td>
                                     <td>{!doc.Date_Requested_for_Adding_Endorsement__c}</td>                                    
                                     <td>
-                                        <aura:if isTrue="{!v.disableRemove}">
-										<aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
+                                        <aura:if isTrue="{!doc.License_Type__c == 'Notary Public'}">
                                             <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
-                                                    <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
-                                                    <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
-                                                
-                                              <!--  <lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove"  />-->
+                                                <lightning:menuItem value="{!join(',',doc.Id,'Show Provider')}" label="Show Provider" />
+                                                <lightning:menuItem value="{!join(',',doc.Id,'Add Provider')}" label="Add Provider" />
                                             </lightning:buttonMenu>
-											</aura:if>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(v.disableRemove,(doc.License_Type__c == 'Certified Residential Appraiser' || doc.License_Type__c == 'Certified General Appraiser'))}">
+                                            <lightning:buttonMenu  aura:id="menu" onselect="{!c.handleValueSelect}" alternativeText="Show menu">
+                                                <lightning:menuItem value="{!join(',',doc.Id,'Remove')}" label="Remove"  />
+                                            </lightning:buttonMenu>
                                         </aura:if>
                                     </td>
                                 </tr>

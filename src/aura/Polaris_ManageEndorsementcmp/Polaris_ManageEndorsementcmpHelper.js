@@ -97,9 +97,9 @@
             var state = actionResult.getState();
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
-                if(result > 0)
+                if(result == 0)
                 {
-                    component.set("v.disableRemove",false);
+                    component.set("v.disableRemove",true);
                 }
                 
             }else{
